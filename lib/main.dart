@@ -18,6 +18,5 @@ Future<void> main() async {
       enabled: !kReleaseMode && true,
       builder: (context) => AppWidget(),
     ),
-    
   );
 }
