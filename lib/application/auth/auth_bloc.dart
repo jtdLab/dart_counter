@@ -23,5 +23,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     // TODO: implement mapEventToState
+    _authFacade.signOut();
   }
 }

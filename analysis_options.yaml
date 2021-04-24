@@ -8,4 +8,4 @@ analyzer:
   errors:
     missing_required_param: error
     parameter_assignments: error
-    missing_retrun: error 
+    sort_pub_dependencies: ignore
