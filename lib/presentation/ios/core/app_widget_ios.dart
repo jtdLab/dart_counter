@@ -4,6 +4,7 @@ class AppWidgetIos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CupertinoApp(
+      debugShowCheckedModeBanner: false,
       title: 'DartCounter',
       theme: CupertinoThemeData(
         primaryColor: CupertinoColors.activeBlue,
