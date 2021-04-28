@@ -3,7 +3,7 @@ part of 'sign_in_form_bloc.dart';
 @freezed
 class SignInFormState with _$SignInFormState {
   const factory SignInFormState({
-    required EmailAddress emailAddress,
+    required Username username,
     required Password password,
     required bool showErrorMessages,
     required bool isSubmitting,
@@ -11,7 +11,7 @@ class SignInFormState with _$SignInFormState {
   }) = _SignInFormState;
 
   factory SignInFormState.initial() => SignInFormState(
-    emailAddress: EmailAddress(''),
+    username: Username(''),
     password: Password(''),
     showErrorMessages: false,
     isSubmitting: false,

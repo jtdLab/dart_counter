@@ -1,0 +1,11 @@
+{
+    "username" : "Benutzername",
+    "password" : "Passwort",
+    "signIn" : "Einloggen",
+    "forgotPassword" : "Passwort vergessen?",
+    "signUpNow" : "Jetzt Registrieren",
+
+    "email" : "E-Mail",
+    "passwordAgain" : "Passwort wiederholen",
+    "signUp" : "Registriern"
+}

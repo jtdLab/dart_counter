@@ -23,9 +23,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     SignInFormEvent event,
   ) async* {
     yield* event.map(
-      emailChanged: (e) async* {
+      usernameChanged: (e) async* {
         yield state.copyWith(
-          emailAddress: EmailAddress(e.emailString),
+          username: Username(e.usernameString),
           authFailureOrSuccess: null,
         );
       },
@@ -35,9 +35,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           authFailureOrSuccess: null,
         );
       },
-      signInWithEmailAndPasswordPressed: (e) async* {
+      signInPressed: (e) async* {
         Either<AuthFailure, Unit>? failureOrSuccess;
-        final isEmailValid = state.emailAddress.isValid();
+        final isEmailValid = state.username.isValid();
         final isPasswordValid = state.password.isValid();
 
         if (isEmailValid && isPasswordValid) {
@@ -45,18 +45,14 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             isSubmitting: true,
             authFailureOrSuccess: null,
           );
-          failureOrSuccess =
-              await _authFacade.signInWithEmailAndPassword(emailAddress: state.emailAddress, password: state.password);
+          failureOrSuccess = await _authFacade.singInWithUsernameAndPassword(
+              username: state.username, password: state.password);
         }
         yield state.copyWith(
           isSubmitting: false,
           showErrorMessages: true,
           authFailureOrSuccess: failureOrSuccess,
         );
-      },
-      forgotPasswordPressed: (e) async* {
-        // TODO: implement
-        throw UnimplementedError();
       },
       signInWithFacebookPressed: (e) async* {
         // TODO: implement
@@ -74,10 +70,6 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       },
       signInWithInstagramPressed: (e) async* {
-        // TODO: implement
-        throw UnimplementedError();
-      },
-      signUpNowPressed: (e) async* {
         // TODO: implement
         throw UnimplementedError();
       },
