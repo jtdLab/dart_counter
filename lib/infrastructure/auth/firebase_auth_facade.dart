@@ -1,3 +1,5 @@
+import 'package:dart_counter/domain/auth/i_user_repository.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,15 +14,20 @@ import 'package:dart_counter/infrastructure/auth/firebase_user_mapper.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final IUserRepository _userRepository;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._googleSignIn, this._userRepository);
 
   @override
-  Future<User?> getSignedInUser() => Future.value(_firebaseAuth.currentUser?.toDomain());
+  Future<User?> getSignedInUser() =>
+      Future.value(_firebaseAuth.currentUser?.toDomain());
 
   @override
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
+  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
+      {required EmailAddress emailAddress,
+      required Username username,
+      required Password password}) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     try {
@@ -28,6 +35,15 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddressStr,
         password: passwordStr,
       );
+
+      final user = await getSignedInUser();
+      final userFailureOrUnit = await _userRepository.create(user!);
+      userFailureOrUnit.fold((failure) {
+        // TODO: create user in database as cloud function or
+        //  deal with the problem that an user can be created in the aut part of firebase but no user gets created in db
+        return left(const AuthFailure.serverError());
+      }, (_) {});
+
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

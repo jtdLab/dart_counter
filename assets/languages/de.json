@@ -7,5 +7,10 @@
 
     "email" : "E-Mail",
     "passwordAgain" : "Passwort wiederholen",
-    "signUp" : "Registriern"
+    "signUp" : "Registriern",
+
+    "errorCancelledByUser" : "Abbruch",
+    "errorServer" : "Server error",
+    "errorEmailAlreadyInUse" : "Email-Adresse vergeben",
+    "errorInvalidEmailAndPasswordCombination" : "Ungültige Email-Adresse oder Passwort"
 }

@@ -7,5 +7,10 @@
 
     "email" : "Email address",
     "passwordAgain" : "Passwort again",
-    "signUp" : "Sign up"
+    "signUp" : "Sign up",
+
+    "errorCancelledByUser" : "Cancelled",
+    "errorServer" : "Server error",
+    "errorEmailAlreadyInUse" : "Email already in use",
+    "errorInvalidEmailAndPasswordCombination" : "Invalid email and password combination"
 }

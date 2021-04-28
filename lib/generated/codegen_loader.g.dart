@@ -22,7 +22,11 @@ class CodegenLoader extends AssetLoader{
   "signUpNow": "Jetzt Registrieren",
   "email": "E-Mail",
   "passwordAgain": "Passwort wiederholen",
-  "signUp": "Registriern"
+  "signUp": "Registriern",
+  "errorCancelledByUser": "Abbruch",
+  "errorServer": "Server error",
+  "errorEmailAlreadyInUse": "Email-Adresse vergeben",
+  "errorInvalidEmailAndPasswordCombination": "Ungültige Email-Adresse oder Passwort"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -32,7 +36,11 @@ static const Map<String,dynamic> en = {
   "signUpNow": "Sign up now",
   "email": "Email address",
   "passwordAgain": "Passwort again",
-  "signUp": "Sign up"
+  "signUp": "Sign up",
+  "errorCancelledByUser": "Cancelled",
+  "errorServer": "Server error",
+  "errorEmailAlreadyInUse": "Email already in use",
+  "errorInvalidEmailAndPasswordCombination": "Invalid email and password combination"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

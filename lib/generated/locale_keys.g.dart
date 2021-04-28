@@ -9,5 +9,9 @@ abstract class  LocaleKeys {
   static const email = 'email';
   static const passwordAgain = 'passwordAgain';
   static const signUp = 'signUp';
+  static const errorCancelledByUser = 'errorCancelledByUser';
+  static const errorServer = 'errorServer';
+  static const errorEmailAlreadyInUse = 'errorEmailAlreadyInUse';
+  static const errorInvalidEmailAndPasswordCombination = 'errorInvalidEmailAndPasswordCombination';
 
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_user_repository.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -48,7 +49,7 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
         );
       },
       signUpPressed: (e) async* {
-        Either<AuthFailure, Unit>? failureOrSuccess;
+        Either<AuthFailure, Unit>? authFailureOrSuccess;
         final isEmailValid = state.username.isValid();
         final isUsernameValid = state.username.isValid();
         final isPasswordValid = state.password.isValid();
@@ -65,18 +66,16 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
             isSubmitting: true,
             authFailureOrSuccess: null,
           );
-          failureOrSuccess = await _authFacade.singUpWithEmailAndPassword(
-              emailAddress: state.email, password: state.password);
-
-          if (failureOrSuccess.isRight()) {
-            // TODO: create user in database
-            // if creation failed failure set failureOrSuccess = authfailure.servererror
-          }
+          authFailureOrSuccess =
+              await _authFacade.singUpWithEmailAndUsernameAndPassword(
+                  emailAddress: state.email,
+                  username: state.username,
+                  password: state.password);
         }
         yield state.copyWith(
           isSubmitting: false,
           showErrorMessages: true,
-          authFailureOrSuccess: failureOrSuccess,
+          authFailureOrSuccess: authFailureOrSuccess,
         );
       },
     );

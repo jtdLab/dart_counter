@@ -10,7 +10,6 @@ import 'package:dart_counter/presentation/ios/sign_in/widgets/social_media_butto
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -24,20 +23,20 @@ class SignInForm extends StatelessWidget {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
         state.authFailureOrSuccess?.fold(
-          (failure) => Fluttertoast.showToast(
-            msg: failure
-                .map(
-                  cancelledByUser: (_) => 'Cancelled',
-                  serverError: (_) => 'Server error',
-                  emailAlreadyInUse: (_) => 'Email already in use',
+          (failure) {
+            showToast(
+              failure.map(
+                  cancelledByUser: (_) => LocaleKeys.errorCancelledByUser.tr(),
+                  serverError: (_) => LocaleKeys.errorServer.tr(),
+                  emailAlreadyInUse: (_) =>
+                      LocaleKeys.errorEmailAlreadyInUse.tr(),
                   invalidEmailAndPasswordCombination: (_) =>
-                      'Invalid email and password combination',
-                )
-                .toString(),
-          ),
+                      LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
+            );
+          },
           (_) {
             context.router.replace(const HomePageRoute());
-            context.watch<AuthBloc>().add(const AuthEvent.authCheckRequested());
+            context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
           },
         );
       },
@@ -84,27 +83,39 @@ class SignInForm extends StatelessWidget {
                           ),
                           AppTextField(
                             placeholder: LocaleKeys.username.tr(),
+                            onChanged: (usernameString) =>
+                                context.read<SignInFormBloc>().add(
+                                      SignInFormEvent.usernameChanged(
+                                          usernameString),
+                                    ),
                           ),
                           const Spacer(
                             flex: 6,
                           ),
                           AppTextField(
                             placeholder: LocaleKeys.password.tr(),
+                            onChanged: (passwordString) =>
+                                context.read<SignInFormBloc>().add(
+                                      SignInFormEvent.passwordChanged(
+                                          passwordString),
+                                    ),
                           ),
                           const Spacer(
                             flex: 10,
                           ),
                           PrimaryButton(
                             text: LocaleKeys.signIn.tr(),
-                            onPressed: () {},
+                            onPressed: () => context.read<SignInFormBloc>().add(
+                                  const SignInFormEvent.signInPressed(),
+                                ),
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(6.0, 0, 0, 0),
                               child: Builder(
-                                builder: (context) =>
-                                    LinkButton(text: LocaleKeys.forgotPassword.tr()),
+                                builder: (context) => LinkButton(
+                                    text: LocaleKeys.forgotPassword.tr()),
                               ),
                             ),
                           ),
@@ -117,19 +128,31 @@ class SignInForm extends StatelessWidget {
                               Builder(
                                 builder: (context) => SocialMediaButton(
                                   type: Type.facebook,
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      context.read<SignInFormBloc>().add(
+                                            const SignInFormEvent
+                                                .signInWithFacebookPressed(),
+                                          ),
                                 ),
                               ),
                               Builder(
                                 builder: (context) => SocialMediaButton(
                                   type: Type.google,
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      context.read<SignInFormBloc>().add(
+                                            const SignInFormEvent
+                                                .signInWithGooglePressed(),
+                                          ),
                                 ),
                               ),
                               Builder(
                                 builder: (context) => SocialMediaButton(
                                   type: Type.instagram,
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      context.read<SignInFormBloc>().add(
+                                            const SignInFormEvent
+                                                .signInWithInstagramPressed(),
+                                          ),
                                 ),
                               ),
                             ],
