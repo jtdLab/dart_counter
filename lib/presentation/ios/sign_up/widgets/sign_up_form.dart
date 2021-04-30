@@ -30,8 +30,8 @@ class SignUpForm extends StatelessWidget {
                   serverError: (_) => LocaleKeys.errorServer.tr(),
                   emailAlreadyInUse: (_) =>
                       LocaleKeys.errorEmailAlreadyInUse.tr(),
-                  invalidEmailAndPasswordCombination: (_) =>
-                      LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
+                  invalidUsernameAndPasswordCombination: (_) =>
+                      LocaleKeys.errorInvalidUsernameAndPasswordCombination.tr()),
             );
           },
           (_) {
@@ -104,6 +104,7 @@ class SignUpForm extends StatelessWidget {
                                 ),
                                 const Spacer(flex: 6),
                                 AppTextField(
+                                  obscureText: true,
                                   placeholder: LocaleKeys.password.tr(),
                                   onChanged: (passwordString) =>
                                       context.read<SignUpFormBloc>().add(
@@ -115,6 +116,7 @@ class SignUpForm extends StatelessWidget {
                                   flex: 6,
                                 ),
                                 AppTextField(
+                                  obscureText: true,
                                   placeholder: LocaleKeys.passwordAgain.tr(),
                                   onChanged: (passwordAgainString) => context
                                       .read<SignUpFormBloc>()

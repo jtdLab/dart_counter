@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/auth/i_user_repository.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -54,8 +53,7 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
         final isUsernameValid = state.username.isValid();
         final isPasswordValid = state.password.isValid();
         final isPasswordAgainValid = state.passwordAgain.isValid();
-        const passwordsMatch = true;
-        //state.passwordAgain == state.password; // TODO: check if value equality is correctly generated
+        final passwordsMatch = state.password == state.passwordAgain;
 
         if (isEmailValid &&
             isUsernameValid &&

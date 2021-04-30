@@ -27,6 +27,10 @@ class _$UserFailureTearOff {
   _UnableToUpdate unableToUpdate() {
     return const _UnableToUpdate();
   }
+
+  _UnableToRead unableToRead() {
+    return const _UnableToRead();
+  }
 }
 
 /// @nodoc
@@ -39,6 +43,7 @@ mixin _$UserFailure {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function() unableToRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +51,7 @@ mixin _$UserFailure {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function()? unableToRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +61,7 @@ mixin _$UserFailure {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_UnableToRead value) unableToRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +69,7 @@ mixin _$UserFailure {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +132,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function() unableToRead,
   }) {
     return unexpected();
   }
@@ -134,6 +143,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function()? unableToRead,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -149,6 +159,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_UnableToRead value) unableToRead,
   }) {
     return unexpected(this);
   }
@@ -159,6 +170,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -214,6 +226,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function() unableToRead,
   }) {
     return insufficientPermission();
   }
@@ -224,6 +237,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function()? unableToRead,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -239,6 +253,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_UnableToRead value) unableToRead,
   }) {
     return insufficientPermission(this);
   }
@@ -249,6 +264,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -304,6 +320,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function() unableToRead,
   }) {
     return unableToUpdate();
   }
@@ -314,6 +331,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function()? unableToRead,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -329,6 +347,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_UnableToRead value) unableToRead,
   }) {
     return unableToUpdate(this);
   }
@@ -339,6 +358,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -350,4 +370,97 @@ class _$_UnableToUpdate implements _UnableToUpdate {
 
 abstract class _UnableToUpdate implements UserFailure {
   const factory _UnableToUpdate() = _$_UnableToUpdate;
+}
+
+/// @nodoc
+abstract class _$UnableToReadCopyWith<$Res> {
+  factory _$UnableToReadCopyWith(
+          _UnableToRead value, $Res Function(_UnableToRead) then) =
+      __$UnableToReadCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnableToReadCopyWithImpl<$Res> extends _$UserFailureCopyWithImpl<$Res>
+    implements _$UnableToReadCopyWith<$Res> {
+  __$UnableToReadCopyWithImpl(
+      _UnableToRead _value, $Res Function(_UnableToRead) _then)
+      : super(_value, (v) => _then(v as _UnableToRead));
+
+  @override
+  _UnableToRead get _value => super._value as _UnableToRead;
+}
+
+/// @nodoc
+class _$_UnableToRead implements _UnableToRead {
+  const _$_UnableToRead();
+
+  @override
+  String toString() {
+    return 'UserFailure.unableToRead()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UnableToRead);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToRead,
+  }) {
+    return unableToRead();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToRead,
+    required TResult orElse(),
+  }) {
+    if (unableToRead != null) {
+      return unableToRead();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_UnableToRead value) unableToRead,
+  }) {
+    return unableToRead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_UnableToRead value)? unableToRead,
+    required TResult orElse(),
+  }) {
+    if (unableToRead != null) {
+      return unableToRead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UnableToRead implements UserFailure {
+  const factory _UnableToRead() = _$_UnableToRead;
 }

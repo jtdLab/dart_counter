@@ -12,5 +12,5 @@
     "errorCancelledByUser" : "Abbruch",
     "errorServer" : "Server error",
     "errorEmailAlreadyInUse" : "Email-Adresse vergeben",
-    "errorInvalidEmailAndPasswordCombination" : "Ungültige Email-Adresse oder Passwort"
+    "errorInvalidUsernameAndPasswordCombination" : "Ungültiger Benutzername oder Passwort"
 }

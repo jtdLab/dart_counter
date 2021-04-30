@@ -30,8 +30,8 @@ class SignInForm extends StatelessWidget {
                   serverError: (_) => LocaleKeys.errorServer.tr(),
                   emailAlreadyInUse: (_) =>
                       LocaleKeys.errorEmailAlreadyInUse.tr(),
-                  invalidEmailAndPasswordCombination: (_) =>
-                      LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
+                  invalidUsernameAndPasswordCombination: (_) =>
+                      LocaleKeys.errorInvalidUsernameAndPasswordCombination.tr()),
             );
           },
           (_) {
@@ -93,6 +93,7 @@ class SignInForm extends StatelessWidget {
                             flex: 6,
                           ),
                           AppTextField(
+                            obscureText: true,
                             placeholder: LocaleKeys.password.tr(),
                             onChanged: (passwordString) =>
                                 context.read<SignInFormBloc>().add(

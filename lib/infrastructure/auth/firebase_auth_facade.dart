@@ -1,4 +1,6 @@
-import 'package:dart_counter/domain/auth/i_user_repository.dart';
+import 'package:dart_counter/domain/auth/user/i_user_repository.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/profile/profile.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -6,7 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/auth/user.dart';
+import 'package:dart_counter/domain/auth/user/user.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/firebase_user_mapper.dart';
 
@@ -21,7 +23,7 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<User?> getSignedInUser() =>
-      Future.value(_firebaseAuth.currentUser?.toDomain());
+      _firebaseAuth.currentUser?.toDomain() ?? Future.value(null);
 
   @override
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
@@ -36,13 +38,18 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
 
-      final user = await getSignedInUser();
-      final userFailureOrUnit = await _userRepository.create(user!);
-      userFailureOrUnit.fold((failure) {
-        // TODO: create user in database as cloud function or
-        //  deal with the problem that an user can be created in the aut part of firebase but no user gets created in db
-        return left(const AuthFailure.serverError());
-      }, (_) {});
+      _userRepository.create(
+        User(
+          id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid),
+          emailAddress: emailAddress,
+          profile: Profile(
+            photoUrl: null,
+            username: username,
+          ),
+        ),
+      );
+
+      // TODO create empty careerstats etc
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -55,30 +62,18 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
-    final emailAddressStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddressStr,
-        password: passwordStr,
-      );
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
-    }
-  }
-
-  @override
   Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword(
-      {required Username username, required Password password}) {
-    // TODO: implement signInWithUsernameAndPassword
-    throw UnimplementedError();
+      {required Username username, required Password password}) async {
+    final usernameStr = username.getOrCrash();
+    final userFailureUrEmailAddress =
+        await _userRepository.findEmailAddressByUsername(usernameStr);
+
+    return userFailureUrEmailAddress.fold(
+      (failure) =>
+          left(const AuthFailure.invalidUsernameAndPasswordCombination()),
+      (emailAddress) => _signInWithEmailAndPassword(
+          emailAddress: EmailAddress(emailAddress), password: password),
+    );
   }
 
   @override
@@ -121,4 +116,25 @@ class FirebaseAuthFacade implements IAuthFacade {
         _googleSignIn.signOut(),
         _firebaseAuth.signOut(),
       ]);
+
+// TODO: throw error to caller method and catrch it ther would be cleaner
+  Future<Either<AuthFailure, Unit>> _signInWithEmailAndPassword(
+      {required EmailAddress emailAddress, required Password password}) async {
+    final emailAddressStr = emailAddress.getOrCrash();
+    final passwordStr = password.getOrCrash();
+
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: emailAddressStr,
+        password: passwordStr,
+      );
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        return left(const AuthFailure.invalidUsernameAndPasswordCombination());
+      } else {
+        return left(const AuthFailure.serverError());
+      }
+    }
+  }
 }
