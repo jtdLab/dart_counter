@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:dart_counter/presentation/ios/sign_in/widgets/social_media_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,8 +31,9 @@ class SignInForm extends StatelessWidget {
                   serverError: (_) => LocaleKeys.errorServer.tr(),
                   emailAlreadyInUse: (_) =>
                       LocaleKeys.errorEmailAlreadyInUse.tr(),
-                  invalidUsernameAndPasswordCombination: (_) =>
-                      LocaleKeys.errorInvalidUsernameAndPasswordCombination.tr()),
+                  invalidUsernameAndPasswordCombination: (_) => LocaleKeys
+                      .errorInvalidUsernameAndPasswordCombination
+                      .tr()),
             );
           },
           (_) {
@@ -42,150 +44,157 @@ class SignInForm extends StatelessWidget {
       },
       builder: (context, state) {
         return SafeArea(
-          child: LayoutBuilder(
-            builder: (context, boxConstraints) => SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: ConstrainedBox(
-                constraints: boxConstraints.copyWith(
-                    maxHeight: boxConstraints.maxHeight +
-                        MediaQuery.of(context).viewInsets.bottom -
-                        MediaQuery.of(context).viewPadding.bottom),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: responsiveDouble(
-                        context: context,
-                        mobile: [24, 32, 64],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
+          child: state.isSubmitting
+              ? Loading()
+              : LayoutBuilder(
+                  builder: (context, boxConstraints) => SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: boxConstraints.copyWith(
+                          maxHeight: boxConstraints.maxHeight +
+                              MediaQuery.of(context).viewInsets.bottom -
+                              MediaQuery.of(context).viewPadding.bottom),
+                      child: Row(
                         children: [
                           SizedBox(
-                            height: responsiveDouble(
-                              context: context,
-                              mobile: [75, 125, 200],
-                            ),
-                          ),
-                          Image.asset(
-                            AppImages.logo,
                             width: responsiveDouble(
                               context: context,
-                              mobile: [100, 175, 250],
+                              mobile: [24, 32, 64],
                             ),
-                            height: responsiveDouble(
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: responsiveDouble(
+                                    context: context,
+                                    mobile: [75, 125, 200],
+                                  ),
+                                ),
+                                Image.asset(
+                                  AppImages.logo,
+                                  width: responsiveDouble(
+                                    context: context,
+                                    mobile: [100, 175, 250],
+                                  ),
+                                  height: responsiveDouble(
+                                    context: context,
+                                    mobile: [100, 175, 250],
+                                  ),
+                                ),
+                                const Spacer(
+                                  flex: 44,
+                                ),
+                                AppTextField(
+                                  placeholder: LocaleKeys.username.tr(),
+                                  onChanged: (usernameString) =>
+                                      context.read<SignInFormBloc>().add(
+                                            SignInFormEvent.usernameChanged(
+                                                usernameString),
+                                          ),
+                                ),
+                                const Spacer(
+                                  flex: 6,
+                                ),
+                                AppTextField(
+                                  obscureText: true,
+                                  placeholder: LocaleKeys.password.tr(),
+                                  onChanged: (passwordString) =>
+                                      context.read<SignInFormBloc>().add(
+                                            SignInFormEvent.passwordChanged(
+                                                passwordString),
+                                          ),
+                                ),
+                                const Spacer(
+                                  flex: 10,
+                                ),
+                                PrimaryButton(
+                                  text: LocaleKeys.signIn.tr(),
+                                  onPressed: () => context
+                                      .read<SignInFormBloc>()
+                                      .add(
+                                        const SignInFormEvent.signInPressed(),
+                                      ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(6.0, 0, 0, 0),
+                                    child: Builder(
+                                      builder: (context) => LinkButton(
+                                          text: LocaleKeys.forgotPassword.tr()),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(
+                                  flex: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Builder(
+                                      builder: (context) => SocialMediaButton(
+                                        type: Type.facebook,
+                                        onPressed: () =>
+                                            context.read<SignInFormBloc>().add(
+                                                  const SignInFormEvent
+                                                      .signInWithFacebookPressed(),
+                                                ),
+                                      ),
+                                    ),
+                                    Builder(
+                                      builder: (context) => SocialMediaButton(
+                                        type: Type.google,
+                                        onPressed: () =>
+                                            context.read<SignInFormBloc>().add(
+                                                  const SignInFormEvent
+                                                      .signInWithGooglePressed(),
+                                                ),
+                                      ),
+                                    ),
+                                    Builder(
+                                      builder: (context) => SocialMediaButton(
+                                        type: Type.instagram,
+                                        onPressed: () =>
+                                            context.read<SignInFormBloc>().add(
+                                                  const SignInFormEvent
+                                                      .signInWithInstagramPressed(),
+                                                ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(
+                                  flex: 10,
+                                ),
+                                LinkButton(
+                                  text: LocaleKeys.signUpNow.tr(),
+                                  onPressed: () {
+                                    pageController.animateToPage(1,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        curve: Curves.easeIn);
+                                  },
+                                ),
+                                const Spacer(
+                                  flex: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: responsiveDouble(
                               context: context,
-                              mobile: [100, 175, 250],
+                              mobile: [24, 32, 64],
                             ),
-                          ),
-                          const Spacer(
-                            flex: 44,
-                          ),
-                          AppTextField(
-                            placeholder: LocaleKeys.username.tr(),
-                            onChanged: (usernameString) =>
-                                context.read<SignInFormBloc>().add(
-                                      SignInFormEvent.usernameChanged(
-                                          usernameString),
-                                    ),
-                          ),
-                          const Spacer(
-                            flex: 6,
-                          ),
-                          AppTextField(
-                            obscureText: true,
-                            placeholder: LocaleKeys.password.tr(),
-                            onChanged: (passwordString) =>
-                                context.read<SignInFormBloc>().add(
-                                      SignInFormEvent.passwordChanged(
-                                          passwordString),
-                                    ),
-                          ),
-                          const Spacer(
-                            flex: 10,
-                          ),
-                          PrimaryButton(
-                            text: LocaleKeys.signIn.tr(),
-                            onPressed: () => context.read<SignInFormBloc>().add(
-                                  const SignInFormEvent.signInPressed(),
-                                ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(6.0, 0, 0, 0),
-                              child: Builder(
-                                builder: (context) => LinkButton(
-                                    text: LocaleKeys.forgotPassword.tr()),
-                              ),
-                            ),
-                          ),
-                          const Spacer(
-                            flex: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Builder(
-                                builder: (context) => SocialMediaButton(
-                                  type: Type.facebook,
-                                  onPressed: () =>
-                                      context.read<SignInFormBloc>().add(
-                                            const SignInFormEvent
-                                                .signInWithFacebookPressed(),
-                                          ),
-                                ),
-                              ),
-                              Builder(
-                                builder: (context) => SocialMediaButton(
-                                  type: Type.google,
-                                  onPressed: () =>
-                                      context.read<SignInFormBloc>().add(
-                                            const SignInFormEvent
-                                                .signInWithGooglePressed(),
-                                          ),
-                                ),
-                              ),
-                              Builder(
-                                builder: (context) => SocialMediaButton(
-                                  type: Type.instagram,
-                                  onPressed: () =>
-                                      context.read<SignInFormBloc>().add(
-                                            const SignInFormEvent
-                                                .signInWithInstagramPressed(),
-                                          ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(
-                            flex: 10,
-                          ),
-                          LinkButton(
-                            text: LocaleKeys.signUpNow.tr(),
-                            onPressed: () {
-                              pageController.animateToPage(1,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeIn);
-                            },
-                          ),
-                          const Spacer(
-                            flex: 10,
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: responsiveDouble(
-                        context: context,
-                        mobile: [24, 32, 64],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
         );
       },
     );

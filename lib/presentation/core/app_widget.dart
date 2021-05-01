@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/generated/codegen_loader.g.dart';
 import 'package:dart_counter/injection.dart';
@@ -32,7 +31,7 @@ class AppWidget extends StatelessWidget {
         child: Builder(
           builder: (context) {
             return PlatformWidget(
-              android: (context) => ios.AppWidget(),
+              android: (context) => android.AppWidget(),
               ios: (context) => ios.AppWidget(),
             );
           },

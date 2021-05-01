@@ -5,7 +5,6 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/loading/loading_page.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
@@ -30,8 +29,9 @@ class SignUpForm extends StatelessWidget {
                   serverError: (_) => LocaleKeys.errorServer.tr(),
                   emailAlreadyInUse: (_) =>
                       LocaleKeys.errorEmailAlreadyInUse.tr(),
-                  invalidUsernameAndPasswordCombination: (_) =>
-                      LocaleKeys.errorInvalidUsernameAndPasswordCombination.tr()),
+                  invalidUsernameAndPasswordCombination: (_) => LocaleKeys
+                      .errorInvalidUsernameAndPasswordCombination
+                      .tr()),
             );
           },
           (_) {
@@ -42,128 +42,122 @@ class SignUpForm extends StatelessWidget {
       },
       builder: (context, state) {
         return SafeArea(
-          child: state.isSubmitting
-              ? LoadingPage()
-              : LayoutBuilder(
-                  builder: (context, boxConstraints) => SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: ConstrainedBox(
-                      constraints: boxConstraints.copyWith(
-                          maxHeight: boxConstraints.maxHeight +
-                              MediaQuery.of(context).viewInsets.bottom -
-                              MediaQuery.of(context).viewPadding.bottom),
-                      child: Row(
+          child: LayoutBuilder(
+            builder: (context, boxConstraints) => SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: boxConstraints.copyWith(
+                    maxHeight: boxConstraints.maxHeight +
+                        MediaQuery.of(context).viewInsets.bottom -
+                        MediaQuery.of(context).viewPadding.bottom),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: responsiveDouble(
+                        context: context,
+                        mobile: [24, 32, 64],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
                         children: [
                           SizedBox(
-                            width: responsiveDouble(
+                            height: responsiveDouble(
                               context: context,
-                              mobile: [24, 32, 64],
+                              mobile: [75, 125, 200],
                             ),
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: [75, 125, 200],
-                                  ),
-                                ),
-                                Image.asset(
-                                  AppImages.logo,
-                                  width: responsiveDouble(
-                                    context: context,
-                                    mobile: [100, 175, 250],
-                                  ),
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: [100, 175, 250],
-                                  ),
-                                ),
-                                const Spacer(
-                                  flex: 24,
-                                ),
-                                AppTextField(
-                                  placeholder: LocaleKeys.email.tr(),
-                                  onChanged: (emailString) =>
-                                      context.read<SignUpFormBloc>().add(
-                                            SignUpFormEvent.emailChanged(
-                                                emailString),
-                                          ),
-                                ),
-                                const Spacer(
-                                  flex: 6,
-                                ),
-                                AppTextField(
-                                  placeholder: LocaleKeys.username.tr(),
-                                  onChanged: (usernameString) =>
-                                      context.read<SignUpFormBloc>().add(
-                                            SignUpFormEvent.usernameChanged(
-                                                usernameString),
-                                          ),
-                                ),
-                                const Spacer(flex: 6),
-                                AppTextField(
-                                  obscureText: true,
-                                  placeholder: LocaleKeys.password.tr(),
-                                  onChanged: (passwordString) =>
-                                      context.read<SignUpFormBloc>().add(
-                                            SignUpFormEvent.passwordChanged(
-                                                passwordString),
-                                          ),
-                                ),
-                                const Spacer(
-                                  flex: 6,
-                                ),
-                                AppTextField(
-                                  obscureText: true,
-                                  placeholder: LocaleKeys.passwordAgain.tr(),
-                                  onChanged: (passwordAgainString) => context
-                                      .read<SignUpFormBloc>()
-                                      .add(
-                                        SignUpFormEvent.passwordAgainChanged(
-                                            passwordAgainString),
-                                      ),
-                                ),
-                                const Spacer(
-                                  flex: 10,
-                                ),
-                                PrimaryButton(
-                                  text: LocaleKeys.signUp.tr(),
-                                  onPressed: () => context
-                                      .read<SignUpFormBloc>()
-                                      .add(const SignUpFormEvent
-                                          .signUpPressed()),
-                                ),
-                                const Spacer(
-                                  flex: 8,
-                                ),
-                                LinkButton(
-                                  text: LocaleKeys.signIn.tr(),
-                                  onPressed: () {
-                                    pageController.animateToPage(0,
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.easeIn);
-                                  },
-                                ),
-                                const Spacer(
-                                  flex: 40,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
+                          Image.asset(
+                            AppImages.logo,
                             width: responsiveDouble(
                               context: context,
-                              mobile: [24, 32, 64],
+                              mobile: [100, 175, 250],
                             ),
+                            height: responsiveDouble(
+                              context: context,
+                              mobile: [100, 175, 250],
+                            ),
+                          ),
+                          const Spacer(
+                            flex: 24,
+                          ),
+                          AppTextField(
+                            placeholder: LocaleKeys.email.tr(),
+                            onChanged: (emailString) =>
+                                context.read<SignUpFormBloc>().add(
+                                      SignUpFormEvent.emailChanged(emailString),
+                                    ),
+                          ),
+                          const Spacer(
+                            flex: 6,
+                          ),
+                          AppTextField(
+                            placeholder: LocaleKeys.username.tr(),
+                            onChanged: (usernameString) =>
+                                context.read<SignUpFormBloc>().add(
+                                      SignUpFormEvent.usernameChanged(
+                                          usernameString),
+                                    ),
+                          ),
+                          const Spacer(flex: 6),
+                          AppTextField(
+                            obscureText: true,
+                            placeholder: LocaleKeys.password.tr(),
+                            onChanged: (passwordString) =>
+                                context.read<SignUpFormBloc>().add(
+                                      SignUpFormEvent.passwordChanged(
+                                          passwordString),
+                                    ),
+                          ),
+                          const Spacer(
+                            flex: 6,
+                          ),
+                          AppTextField(
+                            obscureText: true,
+                            placeholder: LocaleKeys.passwordAgain.tr(),
+                            onChanged: (passwordAgainString) =>
+                                context.read<SignUpFormBloc>().add(
+                                      SignUpFormEvent.passwordAgainChanged(
+                                          passwordAgainString),
+                                    ),
+                          ),
+                          const Spacer(
+                            flex: 10,
+                          ),
+                          PrimaryButton(
+                            text: LocaleKeys.signUp.tr(),
+                            onPressed: () => context
+                                .read<SignUpFormBloc>()
+                                .add(const SignUpFormEvent.signUpPressed()),
+                          ),
+                          const Spacer(
+                            flex: 8,
+                          ),
+                          LinkButton(
+                            text: LocaleKeys.signIn.tr(),
+                            onPressed: () {
+                              pageController.animateToPage(0,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeIn);
+                            },
+                          ),
+                          const Spacer(
+                            flex: 40,
                           ),
                         ],
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      width: responsiveDouble(
+                        context: context,
+                        mobile: [24, 32, 64],
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+            ),
+          ),
         );
       },
     );
