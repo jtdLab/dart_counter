@@ -15,7 +15,7 @@ class SplashPage extends StatelessWidget {
           context.router.replace(const HomePageRoute());
         }
       },
-      builder: (context, state) => CupertinoPageScaffold(
+      builder: (context, state) => const CupertinoPageScaffold(
         child: Center(
           child: Text('SPLASH'),
         ),

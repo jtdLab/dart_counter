@@ -11,7 +11,6 @@ part 'user_dtos.g.dart';
 
 @freezed
 class UserDto with _$UserDto {
-  const UserDto._();
   const factory UserDto({
     @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
     required String emailAddress,
@@ -20,6 +19,8 @@ class UserDto with _$UserDto {
     @ServerTimestampConverter()
         FieldValue? createdAt,
   }) = _UserDto;
+
+  const UserDto._();
 
   factory UserDto.fromDomain(User user) {
     return UserDto(
@@ -63,12 +64,12 @@ class ServerTimestampConverter implements JsonConverter<FieldValue?, Object?> {
 
 @freezed
 class ProfileDto with _$ProfileDto {
-  const ProfileDto._();
-
   const factory ProfileDto({
     required String? photoUrl,
     required String username,
   }) = _ProfileDto;
+
+  const ProfileDto._();
 
   factory ProfileDto.fromDomain(Profile profile) {
     return ProfileDto(
@@ -90,8 +91,6 @@ class ProfileDto with _$ProfileDto {
 
 @freezed
 class CareerStatsDto with _$CareerStatsDto {
-  const CareerStatsDto._();
-
   const factory CareerStatsDto({
     required double average,
     required String averageTrend,
@@ -103,6 +102,8 @@ class CareerStatsDto with _$CareerStatsDto {
     required int wins,
     required int defeats,
   }) = _CareerStatsDto;
+
+  const CareerStatsDto._();
 
   factory CareerStatsDto.fromDomain(CareerStats careerStats) {
     return CareerStatsDto(

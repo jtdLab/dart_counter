@@ -5,18 +5,18 @@ class AppCard extends StatelessWidget {
   final Widget leading;
   final Widget middle;
   final Widget trailing;
-  final Widget body;
+  final Widget? body;
   final BorderRadius borderRadius;
   final EdgeInsets paddingHeader;
   final EdgeInsets paddingBody;
   final int flexHeader;
   final int flexBody;
 
-  AppCard({
+  const AppCard({
     this.leading = const Spacer(),
     this.middle = const Spacer(),
     this.trailing = const Spacer(),
-    required this.body,
+    this.body,
     this.borderRadius = const BorderRadius.all(
       Radius.circular(8),
     ),
@@ -35,17 +35,18 @@ class AppCard extends StatelessWidget {
           Expanded(
             flex: flexHeader,
             child: Container(
-                color: AppColors.black,
-                child: Row(
-                  children: [
-                    leading,
-                    Spacer(),
-                    middle,
-                    Spacer(),
-                    trailing,
-                  ],
-                ),
-                padding: paddingHeader),
+              color: AppColors.black,
+              padding: paddingHeader,
+              child: Row(
+                children: [
+                  leading,
+                  const Spacer(),
+                  middle,
+                  const Spacer(),
+                  trailing,
+                ],
+              ),
+            ),
           ),
           Expanded(
             flex: flexBody,

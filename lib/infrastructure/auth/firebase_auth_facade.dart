@@ -1,17 +1,15 @@
-import 'package:dart_counter/domain/auth/user/i_user_repository.dart';
-import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/profile/profile.dart';
-
-import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart' hide User;
-import 'package:flutter/services.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:injectable/injectable.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/user/i_user_repository.dart';
 import 'package:dart_counter/domain/auth/user/user.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/profile/profile.dart';
 import 'package:dart_counter/infrastructure/auth/firebase_user_mapper.dart';
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {

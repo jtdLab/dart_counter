@@ -8,11 +8,11 @@ class SocialMediaButton extends StatelessWidget {
   final Type type;
   final VoidCallback? onPressed;
 
-  SocialMediaButton({required this.type, this.onPressed});
+  const SocialMediaButton({required this.type, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: responsiveDouble(
         context: context,
         mobile: [40, 50, 60],

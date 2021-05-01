@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/auth/user/i_user_repository.dart';
+import 'package:dart_counter/domain/auth/user/user.dart';
 import 'package:dart_counter/domain/auth/user/user_failure.dart';
 import 'package:dart_counter/infrastructure/auth/user_dtos.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dart_counter/domain/auth/user/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:injectable/injectable.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
 @LazySingleton(as: IUserRepository)
 class UserRepository implements IUserRepository {

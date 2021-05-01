@@ -12,10 +12,10 @@ class AppTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final VoidCallback? onEditingComplete;
 
-  AppTextField({
+  const AppTextField({
     this.onChanged,
     this.autoFocus = false,
-    this.autoCorrect: false,
+    this.autoCorrect = false,
     this.placeholder = '',
     this.obscureText = false,
     this.keyboardType,
@@ -25,7 +25,7 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: responsiveDouble(
         context: context,
         mobile: [40, 50, 60],
@@ -42,9 +42,9 @@ class AppTextField extends StatelessWidget {
             textInputAction: textInputAction,
             onEditingComplete: onEditingComplete,
             onChanged: onChanged,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.gray,
-              borderRadius: const BorderRadius.all(
+              borderRadius: BorderRadius.all(
                 Radius.circular(8.0),
               ),
               /*
@@ -56,12 +56,12 @@ class AppTextField extends StatelessWidget {
                   ),*/
             ),
           ),
-          Visibility(
+          const Visibility(
             visible: false, // TODO validate
             child: Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
+                padding: EdgeInsets.fromLTRB(0, 0, 8.0, 0),
                 child: Icon(
                   CupertinoIcons.xmark_circle,
                   color: AppColors.red,

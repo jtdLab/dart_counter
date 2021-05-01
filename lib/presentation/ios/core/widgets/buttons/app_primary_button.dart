@@ -7,14 +7,14 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  PrimaryButton({
+  const PrimaryButton({
     required this.text,
     this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: responsiveDouble(
         context: context,
         mobile: [40, 50, 60],
@@ -24,7 +24,8 @@ class PrimaryButton extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         onPressed: onPressed,
         borderRadius: BorderRadius.all(
-          Radius.circular(responsiveDouble(context: context, mobile: [8,12,16])),
+          Radius.circular(
+              responsiveDouble(context: context, mobile: [8, 12, 16])),
         ),
         child: Center(
           child: AutoSizeText(
