@@ -1,9 +1,16 @@
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
-
-import 'main_common.dart';
+import 'presentation/core/app_widget.dart';
 
 Future<void> main() async {
-  await mainCommon(Environment.prod);
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  configureInjection(Environment.prod);
+  await Firebase.initializeApp();
+  runApp(
+    AppWidget(),
+  );
 }

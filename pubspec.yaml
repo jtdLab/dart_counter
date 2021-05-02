@@ -27,14 +27,15 @@ dependencies:
   auto_route: ^1.0.2
   auto_size_text: ^3.0.0-nullsafety.0
   cached_network_image: ^3.0.0
-  cloud_firestore: ^1.0.6
+  cloud_firestore: ^1.0.7
+  cloud_functions: ^1.0.5
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.1
   easy_localization: ^3.0.0
   email_validator: ^2.0.1
-  firebase_auth: ^1.1.1
-  firebase_core: ^1.0.4
-  firebase_storage: ^8.0.4
+  firebase_auth: ^1.1.2
+  firebase_core: ^1.1.0
+  firebase_storage: ^8.0.5
   flutter_bloc: ^7.0.0
   flutter_hooks: ^0.16.0
   fluttertoast: ^8.0.6
@@ -55,7 +56,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^1.0.2
-  build_runner:
+  build_runner: null
   flutter_launcher_icons: ^0.9.0
   freezed: ^0.14.1
   injectable_generator: ^1.2.2
