@@ -12,5 +12,10 @@
     "errorCancelledByUser" : "Cancelled",
     "errorServer" : "Server error",
     "errorEmailAlreadyInUse" : "Email already in use",
-    "errorInvalidUsernameAndPasswordCombination" : "Invalid username or password"
+    "errorInvalidUsernameAndPasswordCombination" : "Invalid username or password",
+
+    "errorInvalidEmailAddress" : "errorInvalidEmailAddress - en",
+    "errorInvalidUsername" : "errorInvalidUsername - en",
+    "errorInvalidPassword" : "errorInvalidPassword - en",
+    "errorPasswordsDontMatch" : "errorPasswordsDontMatch - en"
 }

@@ -13,5 +13,9 @@ abstract class  LocaleKeys {
   static const errorServer = 'errorServer';
   static const errorEmailAlreadyInUse = 'errorEmailAlreadyInUse';
   static const errorInvalidUsernameAndPasswordCombination = 'errorInvalidUsernameAndPasswordCombination';
+  static const errorInvalidEmailAddress = 'errorInvalidEmailAddress';
+  static const errorInvalidUsername = 'errorInvalidUsername';
+  static const errorInvalidPassword = 'errorInvalidPassword';
+  static const errorPasswordsDontMatch = 'errorPasswordsDontMatch';
 
 }

@@ -2,7 +2,7 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
-enum Type { facebook, google, instagram }
+enum Type { facebook, google, apple }
 
 class SocialMediaButton extends StatelessWidget {
   final Type type;
@@ -27,7 +27,7 @@ class SocialMediaButton extends StatelessWidget {
                 ? AppImages.facebook
                 : type == Type.google
                     ? AppImages.google
-                    : AppImages.instagram,
+                    : AppImages.instagram, // TODO load apple icon
             fit: BoxFit.fill,
           ),
         ),

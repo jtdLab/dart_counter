@@ -12,11 +12,16 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: BlocProvider(
-        create: (context) => getIt<SignUpFormBloc>(),
-        child: SignUpForm(
-          pageController: pageController,
+    return BlocProvider(
+      create: (context) => getIt<SignUpFormBloc>(),
+      child: CupertinoPageScaffold(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SafeArea(
+            child: SignUpForm(
+              pageController: pageController,
+            ),
+          ),
         ),
       ),
     );

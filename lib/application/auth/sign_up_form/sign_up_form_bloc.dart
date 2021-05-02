@@ -49,7 +49,7 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
       },
       signUpPressed: (e) async* {
         Either<AuthFailure, Unit>? authFailureOrSuccess;
-        final isEmailValid = state.username.isValid();
+        final isEmailValid = state.email.isValid();
         final isUsernameValid = state.username.isValid();
         final isPasswordValid = state.password.isValid();
         final isPasswordAgainValid = state.passwordAgain.isValid();
@@ -69,9 +69,10 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
                   emailAddress: state.email,
                   username: state.username,
                   password: state.password);
-        }
+        } 
+
         yield state.copyWith(
-          isSubmitting: false,
+          isSubmitting: authFailureOrSuccess?.isRight() ?? false,
           showErrorMessages: true,
           authFailureOrSuccess: authFailureOrSuccess,
         );

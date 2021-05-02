@@ -36,22 +36,27 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       },
       signInPressed: (e) async* {
-        Either<AuthFailure, Unit>? failureOrSuccess;
+        Either<AuthFailure, Unit>? authFailureOrSuccess;
         final isEmailValid = state.username.isValid();
         final isPasswordValid = state.password.isValid();
 
+        yield state.copyWith(
+          isSubmitting: true,
+          authFailureOrSuccess: null,
+        );
+        await Future.delayed(const Duration(milliseconds: 750));
+
         if (isEmailValid && isPasswordValid) {
-          yield state.copyWith(
-            isSubmitting: true,
-            authFailureOrSuccess: null,
-          );
-          failureOrSuccess = await _authFacade.singInWithUsernameAndPassword(
-              username: state.username, password: state.password);
+          authFailureOrSuccess =
+              await _authFacade.singInWithUsernameAndPassword(
+                  username: state.username, password: state.password);
+        } else {
+          authFailureOrSuccess = left(const AuthFailure.invalidUsernameAndPasswordCombination());
         }
         yield state.copyWith(
-          isSubmitting: false,
+          isSubmitting: authFailureOrSuccess.isRight(),
           showErrorMessages: true,
-          authFailureOrSuccess: failureOrSuccess,
+          authFailureOrSuccess: authFailureOrSuccess,
         );
       },
       signInWithFacebookPressed: (e) async* {
@@ -59,14 +64,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         throw UnimplementedError();
       },
       signInWithGooglePressed: (e) async* {
-        yield state.copyWith(
-          isSubmitting: true,
-          authFailureOrSuccess: null,
-        );
-        final failureOrSuccess = await _authFacade.signInWithGoogle();
+        final authFailureOrSuccess = await _authFacade.signInWithGoogle();
         yield state.copyWith(
           isSubmitting: false,
-          authFailureOrSuccess: failureOrSuccess,
+          showErrorMessages: true,
+          authFailureOrSuccess: authFailureOrSuccess,
         );
       },
       signInWithInstagramPressed: (e) async* {

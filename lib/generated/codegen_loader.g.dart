@@ -26,7 +26,11 @@ class CodegenLoader extends AssetLoader{
   "errorCancelledByUser": "Abbruch",
   "errorServer": "Server error",
   "errorEmailAlreadyInUse": "Email-Adresse vergeben",
-  "errorInvalidUsernameAndPasswordCombination": "Ungültiger Benutzername oder Passwort"
+  "errorInvalidUsernameAndPasswordCombination": "Ungültiger Benutzername oder Passwort",
+  "errorInvalidEmailAddress": "errorInvalidEmailAddress - de",
+  "errorInvalidUsername": "errorInvalidUsername - de",
+  "errorInvalidPassword": "errorInvalidPassword - de",
+  "errorPasswordsDontMatch": "errorPasswordsDontMatch - de"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -40,7 +44,11 @@ static const Map<String,dynamic> en = {
   "errorCancelledByUser": "Cancelled",
   "errorServer": "Server error",
   "errorEmailAlreadyInUse": "Email already in use",
-  "errorInvalidUsernameAndPasswordCombination": "Invalid username or password"
+  "errorInvalidUsernameAndPasswordCombination": "Invalid username or password",
+  "errorInvalidEmailAddress": "errorInvalidEmailAddress - en",
+  "errorInvalidUsername": "errorInvalidUsername - en",
+  "errorInvalidPassword": "errorInvalidPassword - en",
+  "errorPasswordsDontMatch": "errorPasswordsDontMatch - en"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

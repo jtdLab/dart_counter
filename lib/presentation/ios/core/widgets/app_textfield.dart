@@ -1,9 +1,10 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+import 'package:flutter/material.dart';
 
-class AppTextField extends StatelessWidget {
-  final Function(String)? onChanged;
+class AppTextField extends StatefulWidget {
+  final Function(String) onChanged;
   final bool autoFocus;
   final bool autoCorrect;
   final String placeholder;
@@ -11,9 +12,10 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final VoidCallback? onEditingComplete;
+  final bool? valid;
 
   const AppTextField({
-    this.onChanged,
+    required this.onChanged,
     this.autoFocus = false,
     this.autoCorrect = false,
     this.placeholder = '',
@@ -21,12 +23,20 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.onEditingComplete,
+    this.valid,
   });
+
+  @override
+  _AppTextFieldState createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  bool valid = true;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: responsiveDouble(
+      height: widget.responsiveDouble(
         context: context,
         mobile: [40, 50, 60],
       ), // TODO screnn asdofhsdfongd
@@ -34,30 +44,29 @@ class AppTextField extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           CupertinoTextField(
-            autofocus: autoFocus,
-            autocorrect: autoCorrect,
-            placeholder: placeholder,
-            obscureText: obscureText,
-            keyboardType: keyboardType,
-            textInputAction: textInputAction,
-            onEditingComplete: onEditingComplete,
-            onChanged: onChanged,
-            decoration: const BoxDecoration(
+            autofocus: widget.autoFocus,
+            autocorrect: widget.autoCorrect,
+            placeholder: widget.placeholder,
+            obscureText: widget.obscureText,
+            keyboardType: widget.keyboardType,
+            textInputAction: widget.textInputAction,
+            onEditingComplete: widget.onEditingComplete,
+            onChanged: widget.onChanged,
+            decoration: BoxDecoration(
               color: AppColors.gray,
               borderRadius: BorderRadius.all(
                 Radius.circular(8.0),
               ),
-              /*
-            border: snapshot.data!
-                ? null
-                : Border.all(
-                    color: AppColors.red,
-                    width: 1,
-                  ),*/
+              border: widget.valid ?? true
+                  ? null
+                  : Border.all(
+                      color: AppColors.red,
+                      width: 1,
+                    ),
             ),
           ),
-          const Visibility(
-            visible: false, // TODO validate
+          Visibility(
+            visible: !(widget.valid ?? true),
             child: Align(
               alignment: Alignment.centerRight,
               child: Padding(

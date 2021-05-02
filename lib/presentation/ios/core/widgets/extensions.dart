@@ -1,9 +1,10 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-extension ResponsiveDoubleX on StatelessWidget {
+extension ResponsiveDoubleX on Widget {
   double responsiveDouble(
       {required BuildContext context,
       required List<double> mobile,
@@ -35,4 +36,5 @@ extension ResponsiveDoubleX on StatelessWidget {
         textColor: AppColors.white,
         fontSize: fontSize);
   }
+
 }
