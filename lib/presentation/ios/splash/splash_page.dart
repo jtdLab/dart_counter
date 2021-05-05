@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
+// TODO is this screen rly needed using nativ splashes would be better
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,8 @@ class SplashPage extends StatelessWidget {
           context.router.replace(const HomePageRoute());
         }
       },
-      builder: (context, state) => const CupertinoPageScaffold(
-        child: Center(
-          child: Text('SPLASH'),
-        ),
+      builder: (context, state) => CupertinoPageScaffold(
+        child: Container(),
       ),
     );
   }
