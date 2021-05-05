@@ -12,7 +12,7 @@ abstract class  LocaleKeys {
   static const errorCancelledByUser = 'errorCancelledByUser';
   static const errorServer = 'errorServer';
   static const errorEmailAlreadyInUse = 'errorEmailAlreadyInUse';
-  static const errorInvalidUsernameAndPasswordCombination = 'errorInvalidUsernameAndPasswordCombination';
+  static const errorInvalidEmailAndPasswordCombination = 'errorInvalidEmailAndPasswordCombination';
   static const errorInvalidEmailAddress = 'errorInvalidEmailAddress';
   static const errorInvalidUsername = 'errorInvalidUsername';
   static const errorInvalidPassword = 'errorInvalidPassword';

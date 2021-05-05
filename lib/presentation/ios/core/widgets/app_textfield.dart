@@ -54,7 +54,7 @@ class _AppTextFieldState extends State<AppTextField> {
             onChanged: widget.onChanged,
             decoration: BoxDecoration(
               color: AppColors.gray,
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),
               ),
               border: widget.valid ?? true
@@ -67,7 +67,7 @@ class _AppTextFieldState extends State<AppTextField> {
           ),
           Visibility(
             visible: !(widget.valid ?? true),
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 8.0, 0),

@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up_form/sign_up_form_bloc.dart';
-import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
@@ -40,6 +39,7 @@ class SignUpForm extends StatelessWidget {
         );
       },
       builder: (context, state) {
+        print(state);
         final node = FocusScope.of(context);
         return state.isSubmitting
             ? Loading()
@@ -221,12 +221,12 @@ class SignUpForm extends StatelessWidget {
                                 valid: !state.showErrorMessages ||
                                     (state.showErrorMessages &&
                                         state.password.isValid() &&
-                                        state.password == state.password),
+                                        state.password == state.passwordAgain),
                               ),
                               if (!state.showErrorMessages ||
                                   (state.showErrorMessages &&
                                       state.password.isValid() &&
-                                      state.password == state.password)) ...[
+                                      state.password == state.passwordAgain)) ...[
                                 SizedBox(
                                   height: responsiveDouble(
                                       context: context, mobile: [12, 16, 20]),

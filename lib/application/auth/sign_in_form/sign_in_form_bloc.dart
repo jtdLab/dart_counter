@@ -23,9 +23,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     SignInFormEvent event,
   ) async* {
     yield* event.map(
-      usernameChanged: (e) async* {
+      emailChanged: (e) async* {
         yield state.copyWith(
-          username: Username(e.usernameString),
+          email: EmailAddress(e.emailString),
           authFailureOrSuccess: null,
         );
       },
@@ -37,21 +37,20 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       },
       signInPressed: (e) async* {
         Either<AuthFailure, Unit>? authFailureOrSuccess;
-        final isEmailValid = state.username.isValid();
+        final isEmailValid = state.email.isValid();
         final isPasswordValid = state.password.isValid();
-
         yield state.copyWith(
           isSubmitting: true,
           authFailureOrSuccess: null,
         );
-        await Future.delayed(const Duration(milliseconds: 750));
-
+        await Future.delayed(
+            const Duration(milliseconds: 750)); // TODO rly wanted ??
         if (isEmailValid && isPasswordValid) {
-          authFailureOrSuccess =
-              await _authFacade.singInWithUsernameAndPassword(
-                  username: state.username, password: state.password);
+          authFailureOrSuccess = await _authFacade.singInWithEmailAndPassword(
+              emailAddress: state.email, password: state.password);
         } else {
-          authFailureOrSuccess = left(const AuthFailure.invalidUsernameAndPasswordCombination());
+          authFailureOrSuccess =
+              left(const AuthFailure.invalidEmailAndPasswordCombination());
         }
         yield state.copyWith(
           isSubmitting: authFailureOrSuccess.isRight(),
@@ -60,8 +59,12 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       },
       signInWithFacebookPressed: (e) async* {
-        // TODO: implement
-        throw UnimplementedError();
+        final authFailureOrSuccess = await _authFacade.signInWithFacebook();
+        yield state.copyWith(
+          isSubmitting: false,
+          showErrorMessages: true,
+          authFailureOrSuccess: authFailureOrSuccess,
+        );
       },
       signInWithGooglePressed: (e) async* {
         final authFailureOrSuccess = await _authFacade.signInWithGoogle();
@@ -71,9 +74,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           authFailureOrSuccess: authFailureOrSuccess,
         );
       },
-      signInWithInstagramPressed: (e) async* {
-        // TODO: implement
-        throw UnimplementedError();
+      signInWithApplePressed: (e) async* {
+        final authFailureOrSuccess = await _authFacade.signInWithApple();
+        yield state.copyWith(
+          isSubmitting: false,
+          showErrorMessages: true,
+          authFailureOrSuccess: authFailureOrSuccess,
+        );
       },
     );
   }

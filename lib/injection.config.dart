@@ -15,14 +15,14 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'application/auth/auth_bloc.dart' as _i16;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i14;
 import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i15;
-import 'domain/auth/i_auth_facade.dart' as _i12;
-import 'domain/auth/user/i_user_repository.dart' as _i10;
-import 'domain/friends/i_friends_repository.dart' as _i8;
-import 'infrastructure/auth/firebase_auth_facade.dart' as _i13;
-import 'infrastructure/auth/user_repository.dart' as _i11;
+import 'domain/auth/i_auth_facade.dart' as _i8;
+import 'domain/friends/i_friends_repository.dart' as _i10;
+import 'domain/user/i_user_repository.dart' as _i12;
+import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
+import 'infrastructure/auth/user_repository.dart' as _i13;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i17;
 import 'infrastructure/friends/friends_repository.dart'
-    as _i9; // ignore_for_file: unnecessary_lambdas
+    as _i11; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -40,18 +40,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i7.GoogleSignIn>(
       () => fireBaseInjectableModule.googleSignIn);
-  gh.lazySingleton<_i8.IFriendsRepository>(() => _i9.FriendsRepository());
-  gh.lazySingleton<_i10.IUserRepository>(() => _i11.UserRepository(
-      get<_i3.FirebaseAuth>(), get<_i4.FirebaseFirestore>()));
-  gh.lazySingleton<_i12.IAuthFacade>(() => _i13.FirebaseAuthFacade(
-      get<_i3.FirebaseAuth>(),
-      get<_i7.GoogleSignIn>(),
-      get<_i10.IUserRepository>()));
+  gh.lazySingleton<_i8.IAuthFacade>(() =>
+      _i9.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i7.GoogleSignIn>()));
+  gh.lazySingleton<_i10.IFriendsRepository>(() => _i11.FriendsRepository());
+  gh.lazySingleton<_i12.IUserRepository>(
+      () => _i13.UserRepository(get<_i4.FirebaseFirestore>()));
   gh.factory<_i14.SignInFormBloc>(
-      () => _i14.SignInFormBloc(get<_i12.IAuthFacade>()));
+      () => _i14.SignInFormBloc(get<_i8.IAuthFacade>()));
   gh.factory<_i15.SignUpFormBloc>(
-      () => _i15.SignUpFormBloc(get<_i12.IAuthFacade>()));
-  gh.factory<_i16.AuthBloc>(() => _i16.AuthBloc(get<_i12.IAuthFacade>()));
+      () => _i15.SignUpFormBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i16.AuthBloc>(() => _i16.AuthBloc(get<_i8.IAuthFacade>()));
   return get;
 }
 

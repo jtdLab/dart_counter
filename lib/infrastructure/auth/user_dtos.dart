@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_counter/domain/auth/user/user.dart';
+import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dart_counter/domain/careerStats/career_stats.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';

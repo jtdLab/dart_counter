@@ -69,7 +69,7 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
                   emailAddress: state.email,
                   username: state.username,
                   password: state.password);
-        } 
+        }
 
         yield state.copyWith(
           isSubmitting: authFailureOrSuccess?.isRight() ?? false,

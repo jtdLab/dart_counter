@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_counter/domain/auth/user/i_user_repository.dart';
-import 'package:dart_counter/domain/auth/user/user.dart';
-import 'package:dart_counter/domain/auth/user/user_failure.dart';
+import 'package:dart_counter/domain/user/i_user_repository.dart';
+import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/infrastructure/auth/user_dtos.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
@@ -10,10 +10,9 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IUserRepository)
 class UserRepository implements IUserRepository {
-  final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
 
-  UserRepository(this._firebaseAuth, this._firestore);
+  UserRepository(this._firestore);
 
   @override
   Future<Either<UserFailure, Unit>> create(User user) async {
@@ -34,14 +33,13 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<Either<UserFailure, User>> read() async {
+  Future<Either<UserFailure, User>> read(String id) async {
     try {
       final userDoc = await _firestore.userDocument();
       final data = (await userDoc.get()).data();
 
       if (data == null) return left(const UserFailure.unableToRead());
 
-      final id = _firebaseAuth.currentUser!.uid;
       return right(UserDto.fromJson(data).copyWith(id: id).toDomain());
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
@@ -64,7 +62,6 @@ class UserRepository implements IUserRepository {
     throw UnimplementedError();
   }
 
-  @override
   Future<Either<UserFailure, String>> findEmailAddressByUsername(
       String username) async {
     try {

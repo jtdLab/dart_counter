@@ -29,6 +29,7 @@ dependencies:
   cached_network_image: ^3.0.0
   cloud_firestore: ^1.0.7
   cloud_functions: ^1.0.5
+  crypto: ^3.0.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.1
   easy_localization: ^3.0.0
@@ -37,7 +38,9 @@ dependencies:
   firebase_core: ^1.1.0
   firebase_storage: ^8.0.5
   flutter_bloc: ^7.0.0
+  flutter_facebook_auth: ^3.3.3+1
   flutter_hooks: ^0.16.0
+  flutter_signin_button: ^2.0.0
   fluttertoast: ^8.0.6
   freezed_annotation: ^0.14.1
   get_it: ^6.1.1
@@ -49,6 +52,7 @@ dependencies:
   modal_bottom_sheet: ^2.0.0
   responsive_builder: ^0.4.0-nullsafety.1
   rxdart: ^0.26.0
+  sign_in_with_apple: ^3.0.0
   timeago: ^3.0.2
   uuid: ^3.0.4
 

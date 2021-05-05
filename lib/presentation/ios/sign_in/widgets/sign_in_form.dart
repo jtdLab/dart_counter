@@ -1,6 +1,5 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
@@ -8,14 +7,14 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_butt
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
-import 'package:dart_counter/presentation/ios/sign_in/widgets/social_media_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 
 class SignInForm extends StatelessWidget {
   final PageController pageController;
@@ -30,8 +29,8 @@ class SignInForm extends StatelessWidget {
           (failure) {
             failure.maybeWhen(
               serverError: () => showToast(LocaleKeys.errorServer.tr()),
-              invalidUsernameAndPasswordCombination: () => showToast(
-                  LocaleKeys.errorInvalidUsernameAndPasswordCombination.tr()),
+              invalidEmailAndPasswordCombination: () => showToast(
+                  LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
               orElse: () {},
             );
           },
@@ -85,14 +84,14 @@ class SignInForm extends StatelessWidget {
                                 flex: 44,
                               ),
                               AppTextField(
-                                placeholder: LocaleKeys.username.tr(),
+                                placeholder: LocaleKeys.email.tr(),
                                 textInputAction: TextInputAction.next,
                                 onEditingComplete: () => node.nextFocus(),
-                                onChanged: (usernameString) =>
-                                    context.read<SignInFormBloc>().add(
-                                          SignInFormEvent.usernameChanged(
-                                              usernameString),
-                                        ),
+                                onChanged: (emailString) => context
+                                    .read<SignInFormBloc>()
+                                    .add(
+                                      SignInFormEvent.emailChanged(emailString),
+                                    ),
                               ),
                               SizedBox(
                                 height: responsiveDouble(
@@ -134,45 +133,38 @@ class SignInForm extends StatelessWidget {
                               const Spacer(
                                 flex: 20,
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                              Column(
                                 children: [
-                                  SocialMediaButton(
-                                    type: Type.facebook,
-                                    onPressed: () =>
-                                        showCupertinoModalBottomSheet(
-                                      context: context,
-                                      builder: (context) =>
-                                          CupertinoPageScaffold(
-                                        // TODO animation off background like native is missing
-                                        child: Center(
-                                          child: Text('test modal facebook'),
-                                        ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SignInButton(
+                                        Buttons.Google,
+                                        onPressed: () =>
+                                            context.read<SignInFormBloc>().add(
+                                                  const SignInFormEvent
+                                                      .signInWithGooglePressed(),
+                                                ),
                                       ),
-                                    ),
+                                      SignInButton(
+                                        Buttons.Apple,
+                                        mini: true,
+                                        onPressed: () =>
+                                            context.read<SignInFormBloc>().add(
+                                                  const SignInFormEvent
+                                                      .signInWithApplePressed(),
+                                                ),
+                                      ),
+                                    ],
                                   ),
-                                  SocialMediaButton(
-                                    type: Type.google,
+                                  SignInButton(
+                                    Buttons.FacebookNew,
                                     onPressed: () =>
                                         context.read<SignInFormBloc>().add(
                                               const SignInFormEvent
-                                                  .signInWithGooglePressed(),
+                                                  .signInWithFacebookPressed(),
                                             ),
-                                  ),
-                                  SocialMediaButton(
-                                    type: Type.apple,
-                                    onPressed: () =>
-                                        showCupertinoModalBottomSheet(
-                                      context: context,
-                                      builder: (context) =>
-                                          CupertinoPageScaffold(
-                                        // TODO animation off background like native is missing
-                                        child: Center(
-                                          child: Text('test modal apple'),
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 ],
                               ),
