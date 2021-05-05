@@ -8,7 +8,6 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_b
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:auto_route/auto_route.dart';
@@ -57,7 +56,8 @@ class SignInForm extends StatelessWidget {
                         SizedBox(
                           width: responsiveDouble(
                             context: context,
-                            mobile: [24, 32, 64],
+                            mobile: ResponsiveDouble(
+                                normal: 24, large: 32, extraLarge: 64),
                           ),
                         ),
                         Expanded(
@@ -66,18 +66,21 @@ class SignInForm extends StatelessWidget {
                               SizedBox(
                                 height: responsiveDouble(
                                   context: context,
-                                  mobile: [75, 125, 200],
+                                  mobile: ResponsiveDouble(
+                                      normal: 75, large: 125, extraLarge: 200),
                                 ),
                               ),
                               Image.asset(
                                 AppImages.logo,
                                 width: responsiveDouble(
                                   context: context,
-                                  mobile: [100, 175, 250],
+                                  mobile: ResponsiveDouble(
+                                      normal: 100, large: 175, extraLarge: 250),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
-                                  mobile: [100, 175, 250],
+                                  mobile: ResponsiveDouble(
+                                      normal: 100, large: 175, extraLarge: 250),
                                 ),
                               ),
                               const Spacer(
@@ -95,7 +98,10 @@ class SignInForm extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: responsiveDouble(
-                                    context: context, mobile: [12, 16, 20]),
+                                  context: context,
+                                  mobile: ResponsiveDouble(
+                                      normal: 12, large: 16, extraLarge: 20),
+                                ),
                               ),
                               AppTextField(
                                 textInputAction: TextInputAction.done,
@@ -110,7 +116,10 @@ class SignInForm extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: responsiveDouble(
-                                    context: context, mobile: [16, 20, 24]),
+                                  context: context,
+                                  mobile: ResponsiveDouble(
+                                      normal: 16, large: 20, extraLarge: 24),
+                                ),
                               ),
                               PrimaryButton(
                                 text: LocaleKeys.signIn.tr(),
@@ -189,7 +198,8 @@ class SignInForm extends StatelessWidget {
                         SizedBox(
                           width: responsiveDouble(
                             context: context,
-                            mobile: [24, 32, 64],
+                            mobile: ResponsiveDouble(
+                                normal: 24, large: 32, extraLarge: 64),
                           ),
                         ),
                       ],

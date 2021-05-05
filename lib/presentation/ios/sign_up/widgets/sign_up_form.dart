@@ -56,7 +56,8 @@ class SignUpForm extends StatelessWidget {
                         SizedBox(
                           width: responsiveDouble(
                             context: context,
-                            mobile: [24, 32, 64],
+                            mobile: ResponsiveDouble(
+                                normal: 24, large: 32, extraLarge: 64),
                           ),
                         ),
                         Expanded(
@@ -65,18 +66,21 @@ class SignUpForm extends StatelessWidget {
                               SizedBox(
                                 height: responsiveDouble(
                                   context: context,
-                                  mobile: [75, 125, 200],
+                                  mobile: ResponsiveDouble(
+                                      normal: 75, large: 125, extraLarge: 200),
                                 ),
                               ),
                               Image.asset(
                                 AppImages.logo,
                                 width: responsiveDouble(
                                   context: context,
-                                  mobile: [100, 175, 250],
+                                  mobile: ResponsiveDouble(
+                                      normal: 100, large: 175, extraLarge: 250),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
-                                  mobile: [100, 175, 250],
+                                  mobile: ResponsiveDouble(
+                                      normal: 100, large: 175, extraLarge: 250),
                                 ),
                               ),
                               const Spacer(
@@ -101,12 +105,18 @@ class SignUpForm extends StatelessWidget {
                                       state.email.isValid())) ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                 ),
                               ] else ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
@@ -143,12 +153,18 @@ class SignUpForm extends StatelessWidget {
                                       state.username.isValid())) ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                 ),
                               ] else ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
@@ -185,12 +201,18 @@ class SignUpForm extends StatelessWidget {
                                       state.password.isValid())) ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                 ),
                               ] else ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
@@ -226,15 +248,22 @@ class SignUpForm extends StatelessWidget {
                               if (!state.showErrorMessages ||
                                   (state.showErrorMessages &&
                                       state.password.isValid() &&
-                                      state.password == state.passwordAgain)) ...[
+                                      state.password ==
+                                          state.passwordAgain)) ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                 ),
                               ] else ...[
                                 SizedBox(
                                   height: responsiveDouble(
-                                      context: context, mobile: [12, 16, 20]),
+                                    context: context,
+                                    mobile: ResponsiveDouble(
+                                        normal: 12, large: 16, extraLarge: 20),
+                                  ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Padding(
@@ -260,7 +289,10 @@ class SignUpForm extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: responsiveDouble(
-                                    context: context, mobile: [16, 20, 24]),
+                                  context: context,
+                                  mobile: ResponsiveDouble(
+                                      normal: 16, large: 20, extraLarge: 24),
+                                ),
                               ),
                               LinkButton(
                                 text: LocaleKeys.signIn.tr(),
@@ -280,7 +312,8 @@ class SignUpForm extends StatelessWidget {
                         SizedBox(
                           width: responsiveDouble(
                             context: context,
-                            mobile: [24, 32, 64],
+                            mobile: ResponsiveDouble(
+                                normal: 24, large: 32, extraLarge: 64),
                           ),
                         ),
                       ],

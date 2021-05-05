@@ -3,24 +3,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+class ResponsiveDouble {
+  final double normal;
+  final double large;
+  final double extraLarge;
+
+  ResponsiveDouble({required this.normal, required this.large, required this.extraLarge});
+}
+
 extension ResponsiveDoubleX on Widget {
   double responsiveDouble(
       {required BuildContext context,
-      required List<double> mobile,
-      List<double>? tablet}) {
+      required ResponsiveDouble mobile,
+      ResponsiveDouble? tablet}) {
     return getValueForScreenType(
       context: context,
       mobile: getValueForRefinedSize<double>(
         context: context,
-        normal: mobile[0],
-        large: mobile[1],
-        extraLarge: mobile[2],
+        normal: mobile.normal,
+        large: mobile.large,
+        extraLarge: mobile.extraLarge,
       ),
       tablet: getValueForRefinedSize<double>(
         context: context,
-        normal: tablet?[0] ?? mobile[0],
-        large: tablet?[1] ?? mobile[1],
-        extraLarge: tablet?[2] ?? mobile[2],
+        normal: tablet?.normal ?? mobile.normal,
+        large: tablet?.large ?? mobile.large,
+        extraLarge: tablet?.extraLarge ?? mobile.extraLarge,
       ),
     );
   }
@@ -35,5 +43,4 @@ extension ResponsiveDoubleX on Widget {
         textColor: AppColors.white,
         fontSize: fontSize);
   }
-
 }

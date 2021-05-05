@@ -17,15 +17,17 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: responsiveDouble(
         context: context,
-        mobile: [40, 50, 60],
+        mobile: ResponsiveDouble(normal: 40, large: 50, extraLarge: 60),
       ), //
       child: CupertinoButton(
         color: AppColors.black,
         padding: const EdgeInsets.all(8.0),
         onPressed: onPressed,
         borderRadius: BorderRadius.all(
-          Radius.circular(
-              responsiveDouble(context: context, mobile: [8, 12, 16])),
+          Radius.circular(responsiveDouble(
+            context: context,
+            mobile: ResponsiveDouble(normal: 8, large: 12, extraLarge: 16),
+          )),
         ),
         child: Center(
           child: AutoSizeText(

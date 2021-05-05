@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/presentation/ios/core/auth_widget.dart';
+import 'package:dart_counter/presentation/ios/friends/friends_page.dart';
 import 'package:dart_counter/presentation/ios/home/home_page.dart';
+import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
+import 'package:dart_counter/presentation/ios/profile/profile_page.dart';
+import 'package:dart_counter/presentation/ios/settings/settings_page.dart';
+import 'package:dart_counter/presentation/ios/social_media/social_media_page.dart';
 import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
 
 @CupertinoAutoRouter(
@@ -14,6 +19,21 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     AutoRoute(
       page: HomePage,
+    ),
+    AutoRoute(
+      page: ProfilePage,
+    ),
+    AutoRoute(
+      page: InvitationsPage,
+    ),
+    AutoRoute(
+      page: FriendsPage,
+    ),
+    AutoRoute(
+      page: SocialMediaPage,
+    ),
+    AutoRoute(
+      page: SettingsPage,
     ),
   ],
 )

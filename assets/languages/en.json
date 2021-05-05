@@ -17,5 +17,7 @@
     "errorInvalidEmailAddress" : "errorInvalidEmailAddress - en",
     "errorInvalidUsername" : "errorInvalidUsername - en",
     "errorInvalidPassword" : "errorInvalidPassword - en",
-    "errorPasswordsDontMatch" : "errorPasswordsDontMatch - en"
+    "errorPasswordsDontMatch" : "errorPasswordsDontMatch - en",
+
+    "home" : "Home"
 }

@@ -30,7 +30,8 @@ class CodegenLoader extends AssetLoader{
   "errorInvalidEmailAddress": "errorInvalidEmailAddress - de",
   "errorInvalidUsername": "errorInvalidUsername - de",
   "errorInvalidPassword": "errorInvalidPassword - de",
-  "errorPasswordsDontMatch": "errorPasswordsDontMatch - de"
+  "errorPasswordsDontMatch": "errorPasswordsDontMatch - de",
+  "home": "Home"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -48,7 +49,8 @@ static const Map<String,dynamic> en = {
   "errorInvalidEmailAddress": "errorInvalidEmailAddress - en",
   "errorInvalidUsername": "errorInvalidUsername - en",
   "errorInvalidPassword": "errorInvalidPassword - en",
-  "errorPasswordsDontMatch": "errorPasswordsDontMatch - en"
+  "errorPasswordsDontMatch": "errorPasswordsDontMatch - en",
+  "home": "Home"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }
