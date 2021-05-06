@@ -18,6 +18,12 @@ class AppImages {
   static const delete = 'assets/images/png/delete.png';
   static const photoPlaceholder = 'assets/images/png/photoPlaceholder.png';
   static const bot = 'assets/images/png/bot.png';
+  static const iconFacebook = 'assets/images/png/icon_facebook.png';
+  static const iconFriends = 'assets/images/png/icon_friends.png';
+  static const iconInstagram = 'assets/images/png/icon_instagram.png';
+  static const iconInvite = 'assets/images/png/icon_invite.png';
+  static const iconSettings = 'assets/images/png/icon_settings.png';
+  static const iconYoutube = 'assets/images/png/icon_youtube.png';
 }
 
 class AppColors {

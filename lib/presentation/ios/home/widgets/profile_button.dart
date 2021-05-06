@@ -1,3 +1,5 @@
+import 'package:dart_counter/presentation/core/assets.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/circle_image.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/home_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
@@ -12,7 +14,9 @@ class ProfileButton extends StatelessWidget {
         return Row(
           children: [
             const Expanded(
-              child: Placeholder(),
+              child: const CircleImage(
+                AssetImage(AppImages.photoPlaceholder),
+              ),
             ),
             Expanded(
               child: Column(

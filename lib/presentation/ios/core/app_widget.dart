@@ -1,3 +1,4 @@
+import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart' hide Router;
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
@@ -13,6 +14,7 @@ class AppWidget extends StatelessWidget {
       locale: context.locale,
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(),
+      theme: const CupertinoThemeData(primaryColor: AppColors.black),
     );
   }
 }

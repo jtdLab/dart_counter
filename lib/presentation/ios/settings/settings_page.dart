@@ -1,3 +1,5 @@
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -6,7 +8,10 @@ class SettingsPage extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(),
       child: Center(
-        child: Text(toStringShort()),
+        child: CupertinoButton(
+          onPressed: () => getIt<IAuthFacade>().signOut(),
+          child: const Text('Sign out'),
+        ),
       ),
     );
   }

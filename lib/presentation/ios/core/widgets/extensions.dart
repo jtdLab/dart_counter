@@ -8,7 +8,8 @@ class ResponsiveDouble {
   final double large;
   final double extraLarge;
 
-  ResponsiveDouble({required this.normal, required this.large, required this.extraLarge});
+  ResponsiveDouble(
+      {required this.normal, required this.large, required this.extraLarge});
 }
 
 extension ResponsiveDoubleX on Widget {

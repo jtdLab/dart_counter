@@ -34,13 +34,6 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: Column(
               children: [
-                SizedBox(
-                  height: responsiveDouble(
-                    context: context,
-                    mobile:
-                        ResponsiveDouble(normal: 2, large: 4, extraLarge: 6),
-                  ),
-                ),
                 ProfileButton(),
                 SizedBox(
                   height: responsiveDouble(
