@@ -3,6 +3,7 @@ import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up_form/sign_up_form_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
+import 'package:dart_counter/presentation/ios/core/styles.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
@@ -39,7 +40,6 @@ class SignUpForm extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        print(state);
         final node = FocusScope.of(context);
         return state.isSubmitting
             ? Loading()
@@ -75,12 +75,12 @@ class SignUpForm extends StatelessWidget {
                                 width: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 100, large: 175, extraLarge: 250),
+                                      normal: 125, large: 175, extraLarge: 250),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 100, large: 175, extraLarge: 250),
+                                      normal: 125, large: 175, extraLarge: 250),
                                 ),
                               ),
                               const Spacer(
@@ -126,7 +126,7 @@ class SignUpForm extends StatelessWidget {
                                         LocaleKeys.errorInvalidEmailAddress
                                             .tr(),
                                         maxLines: 1,
-                                        maxFontSize: AppFonts.mini,
+                                        maxFontSize: AppFontSizes.mini,
                                         minFontSize: 1,
                                         style: const TextStyle(
                                             color: AppColors.red),
@@ -173,7 +173,7 @@ class SignUpForm extends StatelessWidget {
                                       child: AutoSizeText(
                                         LocaleKeys.errorInvalidUsername.tr(),
                                         maxLines: 1,
-                                        maxFontSize: AppFonts.mini,
+                                        maxFontSize: AppFontSizes.mini,
                                         minFontSize: 1,
                                         style: const TextStyle(
                                             color: AppColors.red),
@@ -221,7 +221,7 @@ class SignUpForm extends StatelessWidget {
                                       child: AutoSizeText(
                                         LocaleKeys.errorInvalidPassword.tr(),
                                         maxLines: 1,
-                                        maxFontSize: AppFonts.mini,
+                                        maxFontSize: AppFontSizes.mini,
                                         minFontSize: 1,
                                         style: const TextStyle(
                                             color: AppColors.red),
@@ -272,7 +272,7 @@ class SignUpForm extends StatelessWidget {
                                       child: AutoSizeText(
                                         LocaleKeys.errorPasswordsDontMatch.tr(),
                                         maxLines: 1,
-                                        maxFontSize: AppFonts.mini,
+                                        maxFontSize: AppFontSizes.mini,
                                         minFontSize: 1,
                                         style: const TextStyle(
                                             color: AppColors.red),

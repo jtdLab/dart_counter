@@ -38,7 +38,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return SizedBox(
       height: widget.responsiveDouble(
         context: context,
-        mobile: ResponsiveDouble(normal: 40, large: 50, extraLarge: 60),
+        mobile: ResponsiveDouble(normal: 50, large: 50, extraLarge: 60),
       ), // TODO screnn asdofhsdfongd
       child: Stack(
         fit: StackFit.expand,

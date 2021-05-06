@@ -16,9 +16,25 @@ class SettingsButton extends StatelessWidget {
       onPressed: () => context.router.push(const SettingsPageRoute()),
       builder: (context, boxConstraints) {
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppImages.iconSettings),
-            AutoSizeText('Settings todo'),
+            const Spacer(),
+            Image.asset(
+              AppImages.iconSettings,
+              fit: BoxFit.fill,
+              width: 50,
+              height: 50,
+            ),
+            const Spacer(),
+            AutoSizeText(
+              'Settings todo',
+              maxLines: 1,
+              style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.white),
+            ),
+            const Spacer(),
           ],
         );
       },

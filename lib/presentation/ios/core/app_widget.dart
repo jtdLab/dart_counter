@@ -14,7 +14,13 @@ class AppWidget extends StatelessWidget {
       locale: context.locale,
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(),
-      theme: const CupertinoThemeData(primaryColor: AppColors.black),
+      theme: const CupertinoThemeData(
+        primaryColor: AppColors.black,
+        primaryContrastingColor: AppColors.white,
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(color: AppColors.white),
+        ),
+      ),
     );
   }
 }

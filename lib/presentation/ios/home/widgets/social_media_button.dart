@@ -11,17 +11,49 @@ class SocialMediaButton extends StatelessWidget {
     return HomeButton(
       onPressed: () => context.router.push(const SocialMediaPageRoute()),
       builder: (context, boxConstraints) {
-        return Column(
-          children: [
-            Row(
-              children: [
-                Image.asset(AppImages.iconFacebook),
-                Image.asset(AppImages.iconInstagram),
-                Image.asset(AppImages.iconYoutube),
-              ],
-            ),
-            AutoSizeText('Social Media todo'),
-          ],
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      AppImages.iconFacebook,
+                      fit: BoxFit.fill,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Image.asset(
+                      AppImages.iconInstagram,
+                      fit: BoxFit.fill,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Image.asset(
+                      AppImages.iconYoutube,
+                      fit: BoxFit.fill,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              AutoSizeText(
+                'Social Media todo',
+                maxLines: 1,
+                style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.white),
+              ),
+              const Spacer(),
+            ],
+          ),
         );
       },
     );

@@ -14,14 +14,31 @@ class FriendsButton extends StatelessWidget {
       builder: (context, boxConstraints) {
         return Column(
           children: [
+            const Spacer(),
             Badge(
               badgeContent: Text(
                 '1',
-                style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: AppColors.white, fontWeight: FontWeight.bold),
               ),
-              child: Image.asset(AppImages.iconFriends),
+              position: BadgePosition.topEnd(top: -5, end: -5),
+              child: Image.asset(
+                AppImages.iconFriends,
+                fit: BoxFit.fill,
+                width: 50,
+                height: 50,
+              ),
             ),
-            AutoSizeText('Friends todo'),
+            const Spacer(),
+            AutoSizeText(
+              'Friends todo',
+              maxLines: 1,
+              style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.white),
+            ),
+            const Spacer(),
           ],
         );
       },

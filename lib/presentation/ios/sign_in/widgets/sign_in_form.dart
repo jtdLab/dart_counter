@@ -75,12 +75,12 @@ class SignInForm extends StatelessWidget {
                                 width: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 100, large: 175, extraLarge: 250),
+                                      normal: 125, large: 175, extraLarge: 250),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 100, large: 175, extraLarge: 250),
+                                      normal: 125, large: 175, extraLarge: 250),
                                 ),
                               ),
                               const Spacer(

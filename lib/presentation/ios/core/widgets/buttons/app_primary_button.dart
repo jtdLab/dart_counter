@@ -17,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: responsiveDouble(
         context: context,
-        mobile: ResponsiveDouble(normal: 40, large: 50, extraLarge: 60),
+        mobile: ResponsiveDouble(normal: 50, large: 50, extraLarge: 60),
       ), //
       child: CupertinoButton(
         color: AppColors.black,

@@ -21,3 +21,4 @@ class SignUpFormState with _$SignUpFormState {
         isSubmitting: false,
       );
 }
+
