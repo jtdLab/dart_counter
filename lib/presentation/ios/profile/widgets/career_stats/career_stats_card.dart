@@ -17,13 +17,14 @@ class CareerStatsCard extends StatelessWidget {
     return AppCard(
       middle: AutoSizeText(
         title,
+        minFontSize: 8,
         maxLines: 1,
         style: TextStyle(
             fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.white),
       ),
       body: Row(
         children: [
-          Spacer(),
+          const Spacer(),
           Visibility(
               visible: trend != Trend.none,
               child: Row(
@@ -31,7 +32,7 @@ class CareerStatsCard extends StatelessWidget {
                   Image.asset(
                     trend == Trend.up ? AppImages.trendUp : AppImages.trendDown,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8.0,
                   ),
                 ],
@@ -39,9 +40,9 @@ class CareerStatsCard extends StatelessWidget {
           AutoSizeText(
             value.toString(),
             maxLines: 1,
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
-          Spacer()
+          const Spacer()
         ],
       ),
     );

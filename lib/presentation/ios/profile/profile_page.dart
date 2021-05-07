@@ -1,17 +1,19 @@
 import 'package:dart_counter/domain/careerStats/career_stats.dart';
+import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/career_stats/career_stats.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/header.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/sub_header.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Profile TODO'),
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(LocaleKeys.profile.tr()),
       ),
       child: SafeArea(
         child: Padding(
@@ -52,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               ActionButton(
-                text: 'Show History TODO',
+                text: LocaleKeys.showMatchHistory.tr(),
                 onPressed: () {},
               ),
               SizedBox(

@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SubHeader extends StatelessWidget {
   @override
@@ -16,7 +18,7 @@ class SubHeader extends StatelessWidget {
             Spacer(),
             Center(
               child: AutoSizeText(
-                'TODO carrer Stats',
+                LocaleKeys.careerStats.tr(),
                 maxLines: 1,
                 style: TextStyle(
                   color: AppColors.white,

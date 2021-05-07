@@ -20,8 +20,8 @@ class AppCard extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(8),
     ),
-    this.paddingHeader = const EdgeInsets.all(8),
-    this.paddingBody = const EdgeInsets.all(8),
+    this.paddingHeader = const EdgeInsets.all(4),
+    this.paddingBody = const EdgeInsets.all(6),
     this.flexHeader = 2,
     this.flexBody = 5,
   });

@@ -41,7 +41,7 @@ class Header extends StatelessWidget {
                 flex: 17,
               ),
               AutoSizeText(
-                'TODO name',
+                'Player name',
                 maxLines: 1,
                 style: TextStyle(
                   color: AppColors.white,
