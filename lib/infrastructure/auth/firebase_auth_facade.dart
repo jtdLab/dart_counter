@@ -6,6 +6,9 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/profile/profile.dart';
+import 'package:dart_counter/domain/user/i_user_repository.dart';
+import 'package:dart_counter/domain/user/user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -17,8 +20,10 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final IUserRepository _userRepository;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._googleSignIn, this._userRepository);
 
   @override
   UniqueId? getSignedInUid() {
@@ -35,7 +40,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       required Username username,
       required Password password}) async {
     final emailAddressStr = emailAddress.getOrCrash();
-    final usernameStr = username.getOrCrash();
     final passwordStr = password.getOrCrash();
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
@@ -43,7 +47,13 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
 
-      _firebaseAuth.currentUser!.updateProfile(displayName: usernameStr);
+      final uid = _firebaseAuth.currentUser!.uid;
+      final user = User(
+        id: UniqueId.fromUniqueString(uid),
+        emailAddress: emailAddress,
+        profile: Profile(username: username),
+      );
+      _userRepository.update(user);
 
       return right(unit);
     } on FirebaseAuthException catch (e) {

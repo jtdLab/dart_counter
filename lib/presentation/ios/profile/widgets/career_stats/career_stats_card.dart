@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class CareerStatsCard extends StatelessWidget {
   final String title;
-  final num value;
+  final String value;
   final Trend trend;
 
   const CareerStatsCard(
@@ -19,7 +19,7 @@ class CareerStatsCard extends StatelessWidget {
         title,
         minFontSize: 8,
         maxLines: 1,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.white),
       ),
       body: Row(
@@ -38,7 +38,7 @@ class CareerStatsCard extends StatelessWidget {
                 ],
               )),
           AutoSizeText(
-            value.toString(),
+            value,
             maxLines: 1,
             style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),

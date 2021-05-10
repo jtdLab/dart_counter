@@ -14,9 +14,9 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SignInFormBloc>(),
-      child: CupertinoPageScaffold(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: CupertinoPageScaffold(
           child: SafeArea(
             child: SignInForm(
               pageController: pageController,

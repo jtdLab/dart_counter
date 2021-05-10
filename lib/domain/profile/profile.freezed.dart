@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileTearOff {
   const _$ProfileTearOff();
 
-  _Profile call({required String? photoUrl, required Username username}) {
+  _Profile call({String? photoUrl, required Username username}) {
     return _Profile(
       photoUrl: photoUrl,
       username: username,
@@ -106,7 +106,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Profile implements _Profile {
-  const _$_Profile({required this.photoUrl, required this.username});
+  const _$_Profile({this.photoUrl, required this.username});
 
   @override
   final String? photoUrl;
@@ -143,8 +143,8 @@ class _$_Profile implements _Profile {
 }
 
 abstract class _Profile implements Profile {
-  const factory _Profile(
-      {required String? photoUrl, required Username username}) = _$_Profile;
+  const factory _Profile({String? photoUrl, required Username username}) =
+      _$_Profile;
 
   @override
   String? get photoUrl => throw _privateConstructorUsedError;

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/presentation/ios/core/auth_widget.dart';
 import 'package:dart_counter/presentation/ios/friends/friends_page.dart';
+import 'package:dart_counter/presentation/ios/game_history/game_history_page.dart';
 import 'package:dart_counter/presentation/ios/home/home_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
 import 'package:dart_counter/presentation/ios/profile/profile_page.dart';
@@ -22,6 +23,9 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     AutoRoute(
       page: ProfilePage,
+    ),
+    AutoRoute(
+      page: GameHistoryPage,
     ),
     AutoRoute(
       page: InvitationsPage,

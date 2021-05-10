@@ -5,10 +5,13 @@ import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/career_stats/career_stats.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/header.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/sub_header.dart';
+import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ProfilePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -55,7 +58,8 @@ class ProfilePage extends StatelessWidget {
               ),
               ActionButton(
                 text: LocaleKeys.showMatchHistory.tr(),
-                onPressed: () {},
+                onPressed: () =>
+                    context.router.push(const GameHistoryPageRoute()),
               ),
               SizedBox(
                 height: responsiveDouble(

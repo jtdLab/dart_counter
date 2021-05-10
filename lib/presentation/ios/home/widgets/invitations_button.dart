@@ -9,6 +9,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class InvitationsButton extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return HomeButton(
@@ -18,7 +19,7 @@ class InvitationsButton extends StatelessWidget {
           children: [
             const Spacer(),
             Badge(
-              badgeContent: Text(
+              badgeContent: const Text(
                 '1',
                 style: TextStyle(
                     color: AppColors.white, fontWeight: FontWeight.bold),
@@ -35,7 +36,7 @@ class InvitationsButton extends StatelessWidget {
             AutoSizeText(
               LocaleKeys.invitations.tr().toUpperCase(),
               maxLines: 1,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w900,
                   color: AppColors.white),

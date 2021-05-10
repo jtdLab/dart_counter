@@ -14,6 +14,11 @@ class UserRepository implements IUserRepository {
 
   UserRepository(this._firestore);
 
+  User? _user;
+
+  @override
+  User? get user => _user;
+
   @override
   Future<Either<UserFailure, Unit>> create(User user) async {
     try {
@@ -34,13 +39,15 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<Either<UserFailure, User>> read(String id) async {
+    // TOCO id rly needed?
     try {
       final userDoc = await _firestore.userDocument();
       final data = (await userDoc.get()).data();
 
       if (data == null) return left(const UserFailure.unableToRead());
 
-      return right(UserDto.fromJson(data).copyWith(id: id).toDomain());
+      _user = UserDto.fromJson(data).copyWith(id: id).toDomain();
+      return right(_user!);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
         return left(const UserFailure.insufficientPermission());
@@ -51,9 +58,21 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> update(User user) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<Either<UserFailure, Unit>> update(User user) async {
+    try {
+      final userDoc = await _firestore.userDocument();
+      final userDto = UserDto.fromDomain(user);
+
+      await userDoc.update(userDto.toJson());
+
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left(const UserFailure.insufficientPermission());
+      } else {
+        return left(const UserFailure.unexpected());
+      }
+    }
   }
 
   @override

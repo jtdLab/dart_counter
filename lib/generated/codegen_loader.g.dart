@@ -64,6 +64,7 @@ class CodegenLoader extends AssetLoader{
   "showProfile": "Profile anzeigen",
   "removeFriend": "Freund entfernen",
   "language": "Sprache",
+  "account": "Konto",
   "edit": "Ändern",
   "editUsername": "Benutzername ändern",
   "newUsernane": "Neuer Benutzername",
@@ -107,7 +108,11 @@ class CodegenLoader extends AssetLoader{
   "worstLeg": "Schlechtestes Leg",
   "dartsPerLeg": "Darts/Leg",
   "hightestFinish": "Höchstes Finish",
-  "hightestFinishShort": "Höchstes Finish"
+  "hightestFinishShort": "Höchstes Finish",
+  "matchHistory": "Spielverlauf",
+  "deletePhoto": "Foto löschen",
+  "takePhoto": "Foto aufnehmen",
+  "choosePhoto": "Foto auswählen"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -143,7 +148,7 @@ static const Map<String,dynamic> en = {
   "socialMedia": "Social Media",
   "settings": "Settings",
   "profile": "Profile",
-  "careerStats": "Career stats",
+  "careerStats": "Career Stats",
   "checkoutPercentageShort": "Checkout%",
   "firstNine": "First 9",
   "games": "Games",
@@ -159,6 +164,7 @@ static const Map<String,dynamic> en = {
   "showProfile": "Show Profile",
   "removeFriend": "Remove Friend",
   "language": "Language",
+  "account": "Account",
   "edit": "Edit",
   "editUsername": "Edit username",
   "newUsernane": "New Username",
@@ -202,7 +208,11 @@ static const Map<String,dynamic> en = {
   "worstLeg": "Worst leg",
   "dartsPerLeg": "Darts/Leg",
   "hightestFinish": "Highest Finish",
-  "hightestFinishShort": "High. Finish"
+  "hightestFinishShort": "High. Finish",
+  "matchHistory": "Match History",
+  "deletePhoto": "Delete Photo",
+  "takePhoto": "Take Photo",
+  "choosePhoto": "Choose Photo"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

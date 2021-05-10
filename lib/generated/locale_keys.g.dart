@@ -50,6 +50,7 @@ abstract class  LocaleKeys {
   static const showProfile = 'showProfile';
   static const removeFriend = 'removeFriend';
   static const language = 'language';
+  static const account = 'account';
   static const edit = 'edit';
   static const editUsername = 'editUsername';
   static const newUsernane = 'newUsernane';
@@ -94,5 +95,9 @@ abstract class  LocaleKeys {
   static const dartsPerLeg = 'dartsPerLeg';
   static const hightestFinish = 'hightestFinish';
   static const hightestFinishShort = 'hightestFinishShort';
+  static const matchHistory = 'matchHistory';
+  static const deletePhoto = 'deletePhoto';
+  static const takePhoto = 'takePhoto';
+  static const choosePhoto = 'choosePhoto';
 
 }

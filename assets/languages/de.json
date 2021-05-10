@@ -48,6 +48,7 @@
     "showProfile": "Profile anzeigen",
     "removeFriend": "Freund entfernen",
     "language": "Sprache",
+    "account": "Konto",
     "edit": "Ändern",
     "editUsername": "Benutzername ändern",
     "newUsernane": "Neuer Benutzername",
@@ -91,5 +92,10 @@
     "worstLeg": "Schlechtestes Leg",
     "dartsPerLeg": "Darts/Leg",
     "hightestFinish": "Höchstes Finish",
-    "hightestFinishShort": "Höchstes Finish"
+    "hightestFinishShort": "Höchstes Finish",
+    "matchHistory" : "Spielverlauf",
+
+    "deletePhoto" : "Foto löschen",
+    "takePhoto" : "Foto aufnehmen",
+    "choosePhoto" : "Foto auswählen"
 }

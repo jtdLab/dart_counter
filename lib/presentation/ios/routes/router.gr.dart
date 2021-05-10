@@ -7,12 +7,13 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 
 import '../core/auth_widget.dart' as _i3;
-import '../friends/friends_page.dart' as _i7;
+import '../friends/friends_page.dart' as _i8;
+import '../game_history/game_history_page.dart' as _i6;
 import '../home/home_page.dart' as _i4;
-import '../invitations/invitations_page.dart' as _i6;
+import '../invitations/invitations_page.dart' as _i7;
 import '../profile/profile_page.dart' as _i5;
-import '../settings/settings_page.dart' as _i9;
-import '../social_media/social_media_page.dart' as _i8;
+import '../settings/settings_page.dart' as _i10;
+import '../social_media/social_media_page.dart' as _i9;
 import '../splash/splash_page.dart' as _i2;
 
 class Router extends _i1.RootStackRouter {
@@ -32,17 +33,20 @@ class Router extends _i1.RootStackRouter {
     ProfilePageRoute.name: (entry) {
       return _i1.CupertinoPageX(entry: entry, child: _i5.ProfilePage());
     },
+    GameHistoryPageRoute.name: (entry) {
+      return _i1.CupertinoPageX(entry: entry, child: _i6.GameHistoryPage());
+    },
     InvitationsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i6.InvitationsPage());
+      return _i1.CupertinoPageX(entry: entry, child: _i7.InvitationsPage());
     },
     FriendsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i7.FriendsPage());
+      return _i1.CupertinoPageX(entry: entry, child: _i8.FriendsPage());
     },
     SocialMediaPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i8.SocialMediaPage());
+      return _i1.CupertinoPageX(entry: entry, child: _i9.SocialMediaPage());
     },
     SettingsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i9.SettingsPage());
+      return _i1.CupertinoPageX(entry: entry, child: _i10.SettingsPage());
     }
   };
 
@@ -52,6 +56,7 @@ class Router extends _i1.RootStackRouter {
         _i1.RouteConfig(AuthWidgetRoute.name, path: '/auth-widget'),
         _i1.RouteConfig(HomePageRoute.name, path: '/home-page'),
         _i1.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
+        _i1.RouteConfig(GameHistoryPageRoute.name, path: '/game-history-page'),
         _i1.RouteConfig(InvitationsPageRoute.name, path: '/invitations-page'),
         _i1.RouteConfig(FriendsPageRoute.name, path: '/friends-page'),
         _i1.RouteConfig(SocialMediaPageRoute.name, path: '/social-media-page'),
@@ -81,6 +86,12 @@ class ProfilePageRoute extends _i1.PageRouteInfo {
   const ProfilePageRoute() : super(name, path: '/profile-page');
 
   static const String name = 'ProfilePageRoute';
+}
+
+class GameHistoryPageRoute extends _i1.PageRouteInfo {
+  const GameHistoryPageRoute() : super(name, path: '/game-history-page');
+
+  static const String name = 'GameHistoryPageRoute';
 }
 
 class InvitationsPageRoute extends _i1.PageRouteInfo {

@@ -32,7 +32,7 @@
     "socialMedia": "Social Media",
     "settings": "Settings",
     "profile": "Profile",
-    "careerStats": "Career stats",
+    "careerStats": "Career Stats",
     "checkoutPercentageShort": "Checkout%",
     "firstNine": "First 9",
     "games": "Games",
@@ -48,6 +48,7 @@
     "showProfile": "Show Profile",
     "removeFriend": "Remove Friend",
     "language": "Language",
+    "account": "Account",
     "edit": "Edit",
     "editUsername": "Edit username",
     "newUsernane": "New Username",
@@ -91,5 +92,10 @@
     "worstLeg": "Worst leg",
     "dartsPerLeg": "Darts/Leg",
     "hightestFinish": "Highest Finish",
-    "hightestFinishShort": "High. Finish"
+    "hightestFinishShort": "High. Finish",
+    "matchHistory" : "Match History",
+
+    "deletePhoto" : "Delete Photo",
+    "takePhoto" : "Take Photo",
+    "choosePhoto" : "Choose Photo"
 }
