@@ -16,20 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$UserFailureTearOff {
   const _$UserFailureTearOff();
 
-  _Unexpected unexpected() {
-    return const _Unexpected();
-  }
-
-  _InsufficientPermission insufficientPermission() {
-    return const _InsufficientPermission();
-  }
-
-  _UnableToUpdate unableToUpdate() {
-    return const _UnableToUpdate();
-  }
-
-  _UnableToRead unableToRead() {
-    return const _UnableToRead();
+  _Failure failure() {
+    return const _Failure();
   }
 }
 
@@ -40,36 +28,23 @@ const $UserFailure = _$UserFailureTearOff();
 mixin _$UserFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unexpected,
-    required TResult Function() insufficientPermission,
-    required TResult Function() unableToUpdate,
-    required TResult Function() unableToRead,
+    required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unexpected,
-    TResult Function()? insufficientPermission,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToRead,
+    TResult Function()? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InsufficientPermission value)
-        insufficientPermission,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToRead value) unableToRead,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InsufficientPermission value)? insufficientPermission,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToRead value)? unableToRead,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -92,35 +67,33 @@ class _$UserFailureCopyWithImpl<$Res> implements $UserFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
-      __$UnexpectedCopyWithImpl<$Res>;
+abstract class _$FailureCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
+      __$FailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$UserFailureCopyWithImpl<$Res>
-    implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
-      : super(_value, (v) => _then(v as _Unexpected));
+class __$FailureCopyWithImpl<$Res> extends _$UserFailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
+      : super(_value, (v) => _then(v as _Failure));
 
   @override
-  _Unexpected get _value => super._value as _Unexpected;
+  _Failure get _value => super._value as _Failure;
 }
 
 /// @nodoc
-class _$_Unexpected implements _Unexpected {
-  const _$_Unexpected();
+class _$_Failure implements _Failure {
+  const _$_Failure();
 
   @override
   String toString() {
-    return 'UserFailure.unexpected()';
+    return 'UserFailure.failure()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unexpected);
+    return identical(this, other) || (other is _Failure);
   }
 
   @override
@@ -129,25 +102,19 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unexpected,
-    required TResult Function() insufficientPermission,
-    required TResult Function() unableToUpdate,
-    required TResult Function() unableToRead,
+    required TResult Function() failure,
   }) {
-    return unexpected();
+    return failure();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unexpected,
-    TResult Function()? insufficientPermission,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToRead,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
-    if (unexpected != null) {
-      return unexpected();
+    if (failure != null) {
+      return failure();
     }
     return orElse();
   }
@@ -155,312 +122,24 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InsufficientPermission value)
-        insufficientPermission,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToRead value) unableToRead,
+    required TResult Function(_Failure value) failure,
   }) {
-    return unexpected(this);
+    return failure(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InsufficientPermission value)? insufficientPermission,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToRead value)? unableToRead,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (unexpected != null) {
-      return unexpected(this);
+    if (failure != null) {
+      return failure(this);
     }
     return orElse();
   }
 }
 
-abstract class _Unexpected implements UserFailure {
-  const factory _Unexpected() = _$_Unexpected;
-}
-
-/// @nodoc
-abstract class _$InsufficientPermissionCopyWith<$Res> {
-  factory _$InsufficientPermissionCopyWith(_InsufficientPermission value,
-          $Res Function(_InsufficientPermission) then) =
-      __$InsufficientPermissionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InsufficientPermissionCopyWithImpl<$Res>
-    extends _$UserFailureCopyWithImpl<$Res>
-    implements _$InsufficientPermissionCopyWith<$Res> {
-  __$InsufficientPermissionCopyWithImpl(_InsufficientPermission _value,
-      $Res Function(_InsufficientPermission) _then)
-      : super(_value, (v) => _then(v as _InsufficientPermission));
-
-  @override
-  _InsufficientPermission get _value => super._value as _InsufficientPermission;
-}
-
-/// @nodoc
-class _$_InsufficientPermission implements _InsufficientPermission {
-  const _$_InsufficientPermission();
-
-  @override
-  String toString() {
-    return 'UserFailure.insufficientPermission()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InsufficientPermission);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unexpected,
-    required TResult Function() insufficientPermission,
-    required TResult Function() unableToUpdate,
-    required TResult Function() unableToRead,
-  }) {
-    return insufficientPermission();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unexpected,
-    TResult Function()? insufficientPermission,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (insufficientPermission != null) {
-      return insufficientPermission();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InsufficientPermission value)
-        insufficientPermission,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToRead value) unableToRead,
-  }) {
-    return insufficientPermission(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InsufficientPermission value)? insufficientPermission,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToRead value)? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (insufficientPermission != null) {
-      return insufficientPermission(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InsufficientPermission implements UserFailure {
-  const factory _InsufficientPermission() = _$_InsufficientPermission;
-}
-
-/// @nodoc
-abstract class _$UnableToUpdateCopyWith<$Res> {
-  factory _$UnableToUpdateCopyWith(
-          _UnableToUpdate value, $Res Function(_UnableToUpdate) then) =
-      __$UnableToUpdateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$UnableToUpdateCopyWithImpl<$Res>
-    extends _$UserFailureCopyWithImpl<$Res>
-    implements _$UnableToUpdateCopyWith<$Res> {
-  __$UnableToUpdateCopyWithImpl(
-      _UnableToUpdate _value, $Res Function(_UnableToUpdate) _then)
-      : super(_value, (v) => _then(v as _UnableToUpdate));
-
-  @override
-  _UnableToUpdate get _value => super._value as _UnableToUpdate;
-}
-
-/// @nodoc
-class _$_UnableToUpdate implements _UnableToUpdate {
-  const _$_UnableToUpdate();
-
-  @override
-  String toString() {
-    return 'UserFailure.unableToUpdate()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UnableToUpdate);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unexpected,
-    required TResult Function() insufficientPermission,
-    required TResult Function() unableToUpdate,
-    required TResult Function() unableToRead,
-  }) {
-    return unableToUpdate();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unexpected,
-    TResult Function()? insufficientPermission,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (unableToUpdate != null) {
-      return unableToUpdate();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InsufficientPermission value)
-        insufficientPermission,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToRead value) unableToRead,
-  }) {
-    return unableToUpdate(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InsufficientPermission value)? insufficientPermission,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToRead value)? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (unableToUpdate != null) {
-      return unableToUpdate(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UnableToUpdate implements UserFailure {
-  const factory _UnableToUpdate() = _$_UnableToUpdate;
-}
-
-/// @nodoc
-abstract class _$UnableToReadCopyWith<$Res> {
-  factory _$UnableToReadCopyWith(
-          _UnableToRead value, $Res Function(_UnableToRead) then) =
-      __$UnableToReadCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$UnableToReadCopyWithImpl<$Res> extends _$UserFailureCopyWithImpl<$Res>
-    implements _$UnableToReadCopyWith<$Res> {
-  __$UnableToReadCopyWithImpl(
-      _UnableToRead _value, $Res Function(_UnableToRead) _then)
-      : super(_value, (v) => _then(v as _UnableToRead));
-
-  @override
-  _UnableToRead get _value => super._value as _UnableToRead;
-}
-
-/// @nodoc
-class _$_UnableToRead implements _UnableToRead {
-  const _$_UnableToRead();
-
-  @override
-  String toString() {
-    return 'UserFailure.unableToRead()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UnableToRead);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unexpected,
-    required TResult Function() insufficientPermission,
-    required TResult Function() unableToUpdate,
-    required TResult Function() unableToRead,
-  }) {
-    return unableToRead();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unexpected,
-    TResult Function()? insufficientPermission,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (unableToRead != null) {
-      return unableToRead();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InsufficientPermission value)
-        insufficientPermission,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToRead value) unableToRead,
-  }) {
-    return unableToRead(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InsufficientPermission value)? insufficientPermission,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToRead value)? unableToRead,
-    required TResult orElse(),
-  }) {
-    if (unableToRead != null) {
-      return unableToRead(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UnableToRead implements UserFailure {
-  const factory _UnableToRead() = _$_UnableToRead;
+abstract class _Failure implements UserFailure {
+  const factory _Failure() = _$_Failure;
 }

@@ -1,8 +1,8 @@
-import 'package:dart_counter/domain/careerStats/career_stats.dart';
+import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:dart_counter/presentation/ios/profile/widgets/career_stats/career_stats.dart';
+import 'package:dart_counter/presentation/ios/profile/widgets/career_stats/career_stats_displayer.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/header.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/sub_header.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: CareerStatsDisplayer(
-                  careerStats: CareerStats.empty(),
+                  careerStats: CareerStats.dummy(),
                 ), // TODO real data
               ),
               SizedBox(

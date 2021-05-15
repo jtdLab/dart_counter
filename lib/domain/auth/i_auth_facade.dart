@@ -2,8 +2,6 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 
-import 'value_objects.dart';
-
 abstract class IAuthFacade {
   UniqueId? getSignedInUid();
 
@@ -20,4 +18,10 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInWithApple();
 
   Future<void> signOut();
+
+  Future<Either<AuthFailure, Unit>> updateEmailAddress({required EmailAddress oldEmailAddress, required EmailAddress newEmailAddress});
+
+  Future<Either<AuthFailure, Unit>> updatePassword({required Password oldPassword, required Password newPassword});
+
+  Future<Either<AuthFailure, Unit>> resetPassword();
 }

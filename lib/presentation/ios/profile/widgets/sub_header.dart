@@ -15,12 +15,12 @@ class SubHeader extends StatelessWidget {
         color: AppColors.black,
         child: Row(
           children: [
-            Spacer(),
+            const Spacer(),
             Center(
               child: AutoSizeText(
                 LocaleKeys.careerStats.tr(),
                 maxLines: 1,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 37,

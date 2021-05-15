@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dart_counter/domain/careerStats/career_stats.dart';
+import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card.dart';
 import 'package:flutter/cupertino.dart';

@@ -10,4 +10,8 @@ class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortPassword({
     required T failedValue,
   }) = _ShortPassword<T>;
+  const factory ValueFailure.listTooLong({
+    required T failedValue,
+    required int max,
+  }) = _ListTooLong<T>;
 }

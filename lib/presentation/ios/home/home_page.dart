@@ -1,10 +1,4 @@
-import 'package:dart_counter/application/career_stats/career_stats_watcher/career_stats_watcher_bloc.dart';
-import 'package:dart_counter/application/friends/friends_watcher/friends_watcher_bloc.dart';
-import 'package:dart_counter/application/invitations/invitations_watcher/invitations_watcher_bloc.dart';
-import 'package:dart_counter/application/user/user_actor/user_actor_bloc.dart';
-import 'package:dart_counter/application/user/user_watcher/user_watcher_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/friends_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/invitations_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/offline_button.dart';
@@ -13,7 +7,6 @@ import 'package:dart_counter/presentation/ios/home/widgets/profile_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/settings_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/social_media_button.dart';
 import 'package:flutter/cupertino.dart' hide Router;
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 

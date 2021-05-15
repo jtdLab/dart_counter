@@ -1,6 +1,8 @@
+import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:flutter/foundation.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
@@ -31,6 +33,45 @@ abstract class ValueObject<T> {
   String toString() => 'Value($value)';
 }
 
+class EmailAddress extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory EmailAddress(String input) {
+    return EmailAddress._(
+      validateEmailAddress(input),
+    );
+  }
+
+  const EmailAddress._(this.value);
+}
+
+class Username extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Username(String input) {
+    return Username._(
+      validateUsername(input),
+    );
+  }
+
+  const Username._(this.value);
+}
+
+class Password extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Password(String input) {
+    return Password._(
+      validatePassword(input),
+    );
+  }
+
+  const Password._(this.value);
+}
+
 class UniqueId extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -48,4 +89,27 @@ class UniqueId extends ValueObject<String> {
   }
 
   const UniqueId._(this.value);
+}
+
+class List10<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  static const maxLength = 10;
+
+  factory List10(KtList<T> input) {
+    return List10._(
+      validateMaxListLength(input, maxLength),
+    );
+  }
+
+  const List10._(this.value);
+
+  int get length {
+    return value.getOrElse(() => emptyList()).size;
+  }
+
+  bool get isFull {
+    return length == maxLength;
+  }
 }

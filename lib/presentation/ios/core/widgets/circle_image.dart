@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class CircleImage extends StatelessWidget {
   final ImageProvider image;
 
-  const CircleImage(this.image);
+  const CircleImage({required this.image});
 
   @override
   Widget build(BuildContext context) {

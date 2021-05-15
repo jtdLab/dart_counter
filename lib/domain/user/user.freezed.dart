@@ -19,11 +19,19 @@ class _$UserTearOff {
   _User call(
       {required UniqueId id,
       required EmailAddress emailAddress,
-      required Profile profile}) {
+      required Profile profile,
+      required CareerStats careerStatsOnline,
+      required CareerStats careerStatsOffline,
+      required List10<Game> gameHistoryOnline,
+      required List10<Game> gameHistoryOffline}) {
     return _User(
       id: id,
       emailAddress: emailAddress,
       profile: profile,
+      careerStatsOnline: careerStatsOnline,
+      careerStatsOffline: careerStatsOffline,
+      gameHistoryOnline: gameHistoryOnline,
+      gameHistoryOffline: gameHistoryOffline,
     );
   }
 }
@@ -36,6 +44,10 @@ mixin _$User {
   UniqueId get id => throw _privateConstructorUsedError;
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Profile get profile => throw _privateConstructorUsedError;
+  CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
+  CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
+  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List10<Game> get gameHistoryOffline => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -45,9 +57,18 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({UniqueId id, EmailAddress emailAddress, Profile profile});
+  $Res call(
+      {UniqueId id,
+      EmailAddress emailAddress,
+      Profile profile,
+      CareerStats careerStatsOnline,
+      CareerStats careerStatsOffline,
+      List10<Game> gameHistoryOnline,
+      List10<Game> gameHistoryOffline});
 
   $ProfileCopyWith<$Res> get profile;
+  $CareerStatsCopyWith<$Res> get careerStatsOnline;
+  $CareerStatsCopyWith<$Res> get careerStatsOffline;
 }
 
 /// @nodoc
@@ -63,6 +84,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? id = freezed,
     Object? emailAddress = freezed,
     Object? profile = freezed,
+    Object? careerStatsOnline = freezed,
+    Object? careerStatsOffline = freezed,
+    Object? gameHistoryOnline = freezed,
+    Object? gameHistoryOffline = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -77,6 +102,22 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as Profile,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
+      careerStatsOffline: careerStatsOffline == freezed
+          ? _value.careerStatsOffline
+          : careerStatsOffline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
+      gameHistoryOnline: gameHistoryOnline == freezed
+          ? _value.gameHistoryOnline
+          : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
+      gameHistoryOffline: gameHistoryOffline == freezed
+          ? _value.gameHistoryOffline
+          : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
     ));
   }
 
@@ -86,6 +127,20 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       return _then(_value.copyWith(profile: value));
     });
   }
+
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOnline {
+    return $CareerStatsCopyWith<$Res>(_value.careerStatsOnline, (value) {
+      return _then(_value.copyWith(careerStatsOnline: value));
+    });
+  }
+
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOffline {
+    return $CareerStatsCopyWith<$Res>(_value.careerStatsOffline, (value) {
+      return _then(_value.copyWith(careerStatsOffline: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -93,10 +148,21 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, EmailAddress emailAddress, Profile profile});
+  $Res call(
+      {UniqueId id,
+      EmailAddress emailAddress,
+      Profile profile,
+      CareerStats careerStatsOnline,
+      CareerStats careerStatsOffline,
+      List10<Game> gameHistoryOnline,
+      List10<Game> gameHistoryOffline});
 
   @override
   $ProfileCopyWith<$Res> get profile;
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOnline;
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOffline;
 }
 
 /// @nodoc
@@ -113,6 +179,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? id = freezed,
     Object? emailAddress = freezed,
     Object? profile = freezed,
+    Object? careerStatsOnline = freezed,
+    Object? careerStatsOffline = freezed,
+    Object? gameHistoryOnline = freezed,
+    Object? gameHistoryOffline = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -127,6 +197,22 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as Profile,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
+      careerStatsOffline: careerStatsOffline == freezed
+          ? _value.careerStatsOffline
+          : careerStatsOffline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
+      gameHistoryOnline: gameHistoryOnline == freezed
+          ? _value.gameHistoryOnline
+          : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
+      gameHistoryOffline: gameHistoryOffline == freezed
+          ? _value.gameHistoryOffline
+          : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
     ));
   }
 }
@@ -134,7 +220,13 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 class _$_User implements _User {
   const _$_User(
-      {required this.id, required this.emailAddress, required this.profile});
+      {required this.id,
+      required this.emailAddress,
+      required this.profile,
+      required this.careerStatsOnline,
+      required this.careerStatsOffline,
+      required this.gameHistoryOnline,
+      required this.gameHistoryOffline});
 
   @override
   final UniqueId id;
@@ -142,10 +234,18 @@ class _$_User implements _User {
   final EmailAddress emailAddress;
   @override
   final Profile profile;
+  @override
+  final CareerStats careerStatsOnline;
+  @override
+  final CareerStats careerStatsOffline;
+  @override
+  final List10<Game> gameHistoryOnline;
+  @override
+  final List10<Game> gameHistoryOffline;
 
   @override
   String toString() {
-    return 'User(id: $id, emailAddress: $emailAddress, profile: $profile)';
+    return 'User(id: $id, emailAddress: $emailAddress, profile: $profile, careerStatsOnline: $careerStatsOnline, careerStatsOffline: $careerStatsOffline, gameHistoryOnline: $gameHistoryOnline, gameHistoryOffline: $gameHistoryOffline)';
   }
 
   @override
@@ -158,7 +258,20 @@ class _$_User implements _User {
                 const DeepCollectionEquality()
                     .equals(other.emailAddress, emailAddress)) &&
             (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
+                const DeepCollectionEquality()
+                    .equals(other.profile, profile)) &&
+            (identical(other.careerStatsOnline, careerStatsOnline) ||
+                const DeepCollectionEquality()
+                    .equals(other.careerStatsOnline, careerStatsOnline)) &&
+            (identical(other.careerStatsOffline, careerStatsOffline) ||
+                const DeepCollectionEquality()
+                    .equals(other.careerStatsOffline, careerStatsOffline)) &&
+            (identical(other.gameHistoryOnline, gameHistoryOnline) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameHistoryOnline, gameHistoryOnline)) &&
+            (identical(other.gameHistoryOffline, gameHistoryOffline) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameHistoryOffline, gameHistoryOffline)));
   }
 
   @override
@@ -166,7 +279,11 @@ class _$_User implements _User {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(profile);
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(careerStatsOnline) ^
+      const DeepCollectionEquality().hash(careerStatsOffline) ^
+      const DeepCollectionEquality().hash(gameHistoryOnline) ^
+      const DeepCollectionEquality().hash(gameHistoryOffline);
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +295,11 @@ abstract class _User implements User {
   const factory _User(
       {required UniqueId id,
       required EmailAddress emailAddress,
-      required Profile profile}) = _$_User;
+      required Profile profile,
+      required CareerStats careerStatsOnline,
+      required CareerStats careerStatsOffline,
+      required List10<Game> gameHistoryOnline,
+      required List10<Game> gameHistoryOffline}) = _$_User;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -186,6 +307,14 @@ abstract class _User implements User {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   @override
   Profile get profile => throw _privateConstructorUsedError;
+  @override
+  CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
+  @override
+  CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
+  @override
+  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
+  @override
+  List10<Game> get gameHistoryOffline => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

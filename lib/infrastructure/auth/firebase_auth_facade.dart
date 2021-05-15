@@ -4,11 +4,8 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/auth/value_objects.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/profile/profile.dart';
-import 'package:dart_counter/domain/user/i_user_repository.dart';
-import 'package:dart_counter/domain/user/user.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -20,10 +17,9 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final IUserRepository _userRepository;
 
-  FirebaseAuthFacade(
-      this._firebaseAuth, this._googleSignIn, this._userRepository);
+
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
 
   @override
   UniqueId? getSignedInUid() {
@@ -48,13 +44,16 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
 
       final uid = _firebaseAuth.currentUser!.uid;
+
+      /** 
       final user = User(
         id: UniqueId.fromUniqueString(uid),
         emailAddress: emailAddress,
         profile: Profile(username: username),
       );
-      _userRepository.update(user);
-
+      
+      // write user to db and add fields not added in cloudfunction
+      */
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -139,8 +138,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       // include a nonce in the credential request. When signing in in with
       // Firebase, the nonce in the id token returned by Apple, is expected to
       // match the sha256 hash of `rawNonce`.
-      final rawNonce = generateNonce();
-      final nonce = sha256ofString(rawNonce);
+      final rawNonce = _generateNonce();
+      final nonce = _sha256ofString(rawNonce);
 
       // Request credential for the currently signed in Apple account.
       final appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -174,9 +173,53 @@ class FirebaseAuthFacade implements IAuthFacade {
         ],
       );
 
+// TODO error handling
+  @override
+  Future<Either<AuthFailure, Unit>> updateEmailAddress(
+      {required EmailAddress oldEmailAddress,
+      required EmailAddress newEmailAddress}) async {
+    final oldEmailAddressValid = oldEmailAddress.isValid();
+    final newEmailAddressValid = oldEmailAddress.isValid();
+    final emailAdressesNotEqual = oldEmailAddress != newEmailAddress;
+
+    if (oldEmailAddressValid && newEmailAddressValid) {
+      if (emailAdressesNotEqual) {
+        final user = _firebaseAuth.currentUser;
+        if (user == null) {
+          return left(const AuthFailure.serverError());
+          // TODO not auth error
+        }
+
+        try {
+          await user.updateEmail(newEmailAddress.getOrCrash());
+          return right(unit);
+        } on FirebaseAuthException catch (e) {
+          // TODO
+        }
+      } else {
+        // TODO return can not update email to current mail
+      }
+    } else {
+      // return invalid email
+
+    }
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> updatePassword(
+      {required Password oldPassword, required Password newPassword}) {
+    throw UnimplementedError(); // TODO: implement
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> resetPassword() {
+    throw UnimplementedError(); // TODO: implement
+  }
+
   /// Generates a cryptographically secure random nonce, to be included in a
   /// credential request.
-  String generateNonce([int length = 32]) {
+  String _generateNonce([int length = 32]) {
     const charset =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final random = Random.secure();
@@ -185,7 +228,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   /// Returns the sha256 hash of [input] in hex notation.
-  String sha256ofString(String input) {
+  String _sha256ofString(String input) {
     final bytes = utf8.encode(input);
     final digest = sha256.convert(bytes);
     return digest.toString();

@@ -4,8 +4,5 @@ part 'user_failure.freezed.dart';
 
 @freezed
 class UserFailure with _$UserFailure {
-  const factory UserFailure.unexpected() = _Unexpected;
-  const factory UserFailure.insufficientPermission() = _InsufficientPermission;
-  const factory UserFailure.unableToUpdate() = _UnableToUpdate;
-  const factory UserFailure.unableToRead() = _UnableToRead;
+  const factory UserFailure.failure() = _Failure;
 }
