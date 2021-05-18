@@ -16,8 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FriendButtonEventTearOff {
   const _$FriendButtonEventTearOff();
 
-  _WatchDataRequested watchDataRequested() {
-    return const _WatchDataRequested();
+  _WatchDataStarted watchDataStarted() {
+    return const _WatchDataStarted();
+  }
+
+  _DataReceived dataReceived(
+      Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest) {
+    return _DataReceived(
+      failureOrFriendRequest,
+    );
   }
 }
 
@@ -28,23 +35,32 @@ const $FriendButtonEvent = _$FriendButtonEventTearOff();
 mixin _$FriendButtonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest)
+        dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrFriendRequest)?
+        dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataRequested value) watchDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataRequested value)? watchDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,36 +84,36 @@ class _$FriendButtonEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WatchDataRequestedCopyWith<$Res> {
-  factory _$WatchDataRequestedCopyWith(
-          _WatchDataRequested value, $Res Function(_WatchDataRequested) then) =
-      __$WatchDataRequestedCopyWithImpl<$Res>;
+abstract class _$WatchDataStartedCopyWith<$Res> {
+  factory _$WatchDataStartedCopyWith(
+          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
+      __$WatchDataStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchDataRequestedCopyWithImpl<$Res>
+class __$WatchDataStartedCopyWithImpl<$Res>
     extends _$FriendButtonEventCopyWithImpl<$Res>
-    implements _$WatchDataRequestedCopyWith<$Res> {
-  __$WatchDataRequestedCopyWithImpl(
-      _WatchDataRequested _value, $Res Function(_WatchDataRequested) _then)
-      : super(_value, (v) => _then(v as _WatchDataRequested));
+    implements _$WatchDataStartedCopyWith<$Res> {
+  __$WatchDataStartedCopyWithImpl(
+      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
+      : super(_value, (v) => _then(v as _WatchDataStarted));
 
   @override
-  _WatchDataRequested get _value => super._value as _WatchDataRequested;
+  _WatchDataStarted get _value => super._value as _WatchDataStarted;
 }
 
 /// @nodoc
-class _$_WatchDataRequested implements _WatchDataRequested {
-  const _$_WatchDataRequested();
+class _$_WatchDataStarted implements _WatchDataStarted {
+  const _$_WatchDataStarted();
 
   @override
   String toString() {
-    return 'FriendButtonEvent.watchDataRequested()';
+    return 'FriendButtonEvent.watchDataStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _WatchDataRequested);
+    return identical(this, other) || (other is _WatchDataStarted);
   }
 
   @override
@@ -106,19 +122,26 @@ class _$_WatchDataRequested implements _WatchDataRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest)
+        dataReceived,
   }) {
-    return watchDataRequested();
+    return watchDataStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrFriendRequest)?
+        dataReceived,
     required TResult orElse(),
   }) {
-    if (watchDataRequested != null) {
-      return watchDataRequested();
+    if (watchDataStarted != null) {
+      return watchDataStarted();
     }
     return orElse();
   }
@@ -126,26 +149,154 @@ class _$_WatchDataRequested implements _WatchDataRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataRequested value) watchDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) {
-    return watchDataRequested(this);
+    return watchDataStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataRequested value)? watchDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
-    if (watchDataRequested != null) {
-      return watchDataRequested(this);
+    if (watchDataStarted != null) {
+      return watchDataStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class _WatchDataRequested implements FriendButtonEvent {
-  const factory _WatchDataRequested() = _$_WatchDataRequested;
+abstract class _WatchDataStarted implements FriendButtonEvent {
+  const factory _WatchDataStarted() = _$_WatchDataStarted;
+}
+
+/// @nodoc
+abstract class _$DataReceivedCopyWith<$Res> {
+  factory _$DataReceivedCopyWith(
+          _DataReceived value, $Res Function(_DataReceived) then) =
+      __$DataReceivedCopyWithImpl<$Res>;
+  $Res call(
+      {Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest});
+}
+
+/// @nodoc
+class __$DataReceivedCopyWithImpl<$Res>
+    extends _$FriendButtonEventCopyWithImpl<$Res>
+    implements _$DataReceivedCopyWith<$Res> {
+  __$DataReceivedCopyWithImpl(
+      _DataReceived _value, $Res Function(_DataReceived) _then)
+      : super(_value, (v) => _then(v as _DataReceived));
+
+  @override
+  _DataReceived get _value => super._value as _DataReceived;
+
+  @override
+  $Res call({
+    Object? failureOrFriendRequest = freezed,
+  }) {
+    return _then(_DataReceived(
+      failureOrFriendRequest == freezed
+          ? _value.failureOrFriendRequest
+          : failureOrFriendRequest // ignore: cast_nullable_to_non_nullable
+              as Either<FriendFailure, KtList<FriendRequest>>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_DataReceived implements _DataReceived {
+  const _$_DataReceived(this.failureOrFriendRequest);
+
+  @override
+  final Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest;
+
+  @override
+  String toString() {
+    return 'FriendButtonEvent.dataReceived(failureOrFriendRequest: $failureOrFriendRequest)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DataReceived &&
+            (identical(other.failureOrFriendRequest, failureOrFriendRequest) ||
+                const DeepCollectionEquality().equals(
+                    other.failureOrFriendRequest, failureOrFriendRequest)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failureOrFriendRequest);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest)
+        dataReceived,
+  }) {
+    return dataReceived(failureOrFriendRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrFriendRequest)?
+        dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(failureOrFriendRequest);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
+  }) {
+    return dataReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataReceived implements FriendButtonEvent {
+  const factory _DataReceived(
+          Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequest) =
+      _$_DataReceived;
+
+  Either<FriendFailure, KtList<FriendRequest>> get failureOrFriendRequest =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

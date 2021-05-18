@@ -28,21 +28,20 @@ class FriendButtonBloc extends Bloc<FriendButtonEvent, FriendButtonState> {
     FriendButtonEvent event,
   ) async* {
     yield* event.map(
-      watchDataRequested: (e) async* {
-        _friendRequestStreamSubscription =
-            _friendFacade.watchFriendRequests().listen(
-          (failureOrFriendRequests) {
-            failureOrFriendRequests.fold(
-              (failure) async* {
-                yield state;
-              },
-              (friendRequests) async* {
-                yield FriendButtonState.data(
-                  newFriendRequests: friendRequests.size,
-                );
-              },
+      watchDataStarted: (e) async* {
+        _friendRequestStreamSubscription = _friendFacade
+            .watchFriendRequests()
+            .listen(
+              (failureOrFriendRequests) =>
+                  add(FriendButtonEvent.dataReceived(failureOrFriendRequests)),
             );
-          },
+      },
+      dataReceived: (e) async* {
+        yield e.failureOrFriendRequest.fold(
+          (f) => const FriendButtonState.noData(),
+          (friendRequests) => FriendButtonState.data(
+            newFriendRequests: friendRequests.size, // TODO only new
+          ),
         );
       },
     );

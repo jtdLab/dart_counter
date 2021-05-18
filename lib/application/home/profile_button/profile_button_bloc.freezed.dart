@@ -16,8 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileButtonEventTearOff {
   const _$ProfileButtonEventTearOff();
 
-  _LoadDataRequested loadDataRequested() {
-    return const _LoadDataRequested();
+  _WatchDataStarted watchDataStarted() {
+    return const _WatchDataStarted();
+  }
+
+  _DataReceived dataReceived(Either<UserFailure, User> failureOrUser) {
+    return _DataReceived(
+      failureOrUser,
+    );
   }
 }
 
@@ -28,23 +34,28 @@ const $ProfileButtonEvent = _$ProfileButtonEventTearOff();
 mixin _$ProfileButtonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(Either<UserFailure, User> failureOrUser)
+        dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(Either<UserFailure, User> failureOrUser)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadDataRequested value) loadDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadDataRequested value)? loadDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,36 +79,36 @@ class _$ProfileButtonEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LoadDataRequestedCopyWith<$Res> {
-  factory _$LoadDataRequestedCopyWith(
-          _LoadDataRequested value, $Res Function(_LoadDataRequested) then) =
-      __$LoadDataRequestedCopyWithImpl<$Res>;
+abstract class _$WatchDataStartedCopyWith<$Res> {
+  factory _$WatchDataStartedCopyWith(
+          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
+      __$WatchDataStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadDataRequestedCopyWithImpl<$Res>
+class __$WatchDataStartedCopyWithImpl<$Res>
     extends _$ProfileButtonEventCopyWithImpl<$Res>
-    implements _$LoadDataRequestedCopyWith<$Res> {
-  __$LoadDataRequestedCopyWithImpl(
-      _LoadDataRequested _value, $Res Function(_LoadDataRequested) _then)
-      : super(_value, (v) => _then(v as _LoadDataRequested));
+    implements _$WatchDataStartedCopyWith<$Res> {
+  __$WatchDataStartedCopyWithImpl(
+      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
+      : super(_value, (v) => _then(v as _WatchDataStarted));
 
   @override
-  _LoadDataRequested get _value => super._value as _LoadDataRequested;
+  _WatchDataStarted get _value => super._value as _WatchDataStarted;
 }
 
 /// @nodoc
-class _$_LoadDataRequested implements _LoadDataRequested {
-  const _$_LoadDataRequested();
+class _$_WatchDataStarted implements _WatchDataStarted {
+  const _$_WatchDataStarted();
 
   @override
   String toString() {
-    return 'ProfileButtonEvent.loadDataRequested()';
+    return 'ProfileButtonEvent.watchDataStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoadDataRequested);
+    return identical(this, other) || (other is _WatchDataStarted);
   }
 
   @override
@@ -106,19 +117,22 @@ class _$_LoadDataRequested implements _LoadDataRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(Either<UserFailure, User> failureOrUser)
+        dataReceived,
   }) {
-    return loadDataRequested();
+    return watchDataStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(Either<UserFailure, User> failureOrUser)? dataReceived,
     required TResult orElse(),
   }) {
-    if (loadDataRequested != null) {
-      return loadDataRequested();
+    if (watchDataStarted != null) {
+      return watchDataStarted();
     }
     return orElse();
   }
@@ -126,26 +140,147 @@ class _$_LoadDataRequested implements _LoadDataRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadDataRequested value) loadDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) {
-    return loadDataRequested(this);
+    return watchDataStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadDataRequested value)? loadDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
-    if (loadDataRequested != null) {
-      return loadDataRequested(this);
+    if (watchDataStarted != null) {
+      return watchDataStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadDataRequested implements ProfileButtonEvent {
-  const factory _LoadDataRequested() = _$_LoadDataRequested;
+abstract class _WatchDataStarted implements ProfileButtonEvent {
+  const factory _WatchDataStarted() = _$_WatchDataStarted;
+}
+
+/// @nodoc
+abstract class _$DataReceivedCopyWith<$Res> {
+  factory _$DataReceivedCopyWith(
+          _DataReceived value, $Res Function(_DataReceived) then) =
+      __$DataReceivedCopyWithImpl<$Res>;
+  $Res call({Either<UserFailure, User> failureOrUser});
+}
+
+/// @nodoc
+class __$DataReceivedCopyWithImpl<$Res>
+    extends _$ProfileButtonEventCopyWithImpl<$Res>
+    implements _$DataReceivedCopyWith<$Res> {
+  __$DataReceivedCopyWithImpl(
+      _DataReceived _value, $Res Function(_DataReceived) _then)
+      : super(_value, (v) => _then(v as _DataReceived));
+
+  @override
+  _DataReceived get _value => super._value as _DataReceived;
+
+  @override
+  $Res call({
+    Object? failureOrUser = freezed,
+  }) {
+    return _then(_DataReceived(
+      failureOrUser == freezed
+          ? _value.failureOrUser
+          : failureOrUser // ignore: cast_nullable_to_non_nullable
+              as Either<UserFailure, User>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_DataReceived implements _DataReceived {
+  const _$_DataReceived(this.failureOrUser);
+
+  @override
+  final Either<UserFailure, User> failureOrUser;
+
+  @override
+  String toString() {
+    return 'ProfileButtonEvent.dataReceived(failureOrUser: $failureOrUser)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DataReceived &&
+            (identical(other.failureOrUser, failureOrUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureOrUser, failureOrUser)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failureOrUser);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchDataStarted,
+    required TResult Function(Either<UserFailure, User> failureOrUser)
+        dataReceived,
+  }) {
+    return dataReceived(failureOrUser);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchDataStarted,
+    TResult Function(Either<UserFailure, User> failureOrUser)? dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(failureOrUser);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
+  }) {
+    return dataReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataReceived implements ProfileButtonEvent {
+  const factory _DataReceived(Either<UserFailure, User> failureOrUser) =
+      _$_DataReceived;
+
+  Either<UserFailure, User> get failureOrUser =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

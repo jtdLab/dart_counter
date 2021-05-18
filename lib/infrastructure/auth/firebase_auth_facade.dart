@@ -1,10 +1,17 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
+import 'package:dart_counter/domain/user/career_stats.dart';
+import 'package:dart_counter/domain/user/profile.dart';
+import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/game_invitation/game_invitation_dto.dart';
+import 'package:dart_counter/infrastructure/user/user_dto.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -12,14 +19,16 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final FirebaseFirestore _firebaseFirestore;
 
-
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._googleSignIn, this._firebaseFirestore);
 
   @override
   UniqueId? getSignedInUid() {
@@ -43,17 +52,25 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
 
-      final uid = _firebaseAuth.currentUser!.uid;
-
-      /** 
+      final userDoc = await _firebaseFirestore.userDocument();
       final user = User(
-        id: UniqueId.fromUniqueString(uid),
+        id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid),
         emailAddress: emailAddress,
-        profile: Profile(username: username),
+        profile: Profile(
+          username: username,
+        ),
+        careerStatsOnline: CareerStats.initial(),
+        careerStatsOffline: CareerStats.initial(),
+        gameHistoryOnline: List10.empty(),
+        gameHistoryOffline: List10.empty(),
       );
-      
-      // write user to db and add fields not added in cloudfunction
-      */
+
+      await userDoc.set(UserDto.fromDomain(user).toJson());
+      /**
+       * await userDoc.gameInvitationsCollection
+          .add(GameInvitationDto.fromDomain(GameInvitation.dummy()).toJson());
+       */
+
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

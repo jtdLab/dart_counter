@@ -19,7 +19,7 @@ class ProfileButton extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => getIt<ProfileButtonBloc>()
-            ..add(const ProfileButtonEvent.loadDataRequested()),
+            ..add(const ProfileButtonEvent.watchDataStarted()),
         ),
       ],
       child: BlocBuilder<ProfileButtonBloc, ProfileButtonState>(

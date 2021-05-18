@@ -23,8 +23,8 @@ class User with _$User {
         id: UniqueId.fromUniqueString('dummyUserUID'),
         emailAddress: EmailAddress('dummy@user.com'),
         profile: Profile.dummy(),
-        careerStatsOffline: CareerStats.dummy(),
-        careerStatsOnline: CareerStats.dummy(),
+        careerStatsOffline: CareerStats.initial(),
+        careerStatsOnline: CareerStats.initial(),
         gameHistoryOnline: List10(const KtList.empty()), // TODO game
         gameHistoryOffline: List10(const KtList.empty()), // TODO add game
       );

@@ -19,6 +19,10 @@ class _$UserFailureTearOff {
   _Failure failure() {
     return const _Failure();
   }
+
+  _InsufficientPermission insufficientPermission() {
+    return const _InsufficientPermission();
+  }
 }
 
 /// @nodoc
@@ -29,22 +33,27 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,6 +112,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() insufficientPermission,
   }) {
     return failure();
   }
@@ -111,6 +121,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -123,6 +134,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return failure(this);
   }
@@ -131,6 +144,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -142,4 +156,90 @@ class _$_Failure implements _Failure {
 
 abstract class _Failure implements UserFailure {
   const factory _Failure() = _$_Failure;
+}
+
+/// @nodoc
+abstract class _$InsufficientPermissionCopyWith<$Res> {
+  factory _$InsufficientPermissionCopyWith(_InsufficientPermission value,
+          $Res Function(_InsufficientPermission) then) =
+      __$InsufficientPermissionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InsufficientPermissionCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res>
+    implements _$InsufficientPermissionCopyWith<$Res> {
+  __$InsufficientPermissionCopyWithImpl(_InsufficientPermission _value,
+      $Res Function(_InsufficientPermission) _then)
+      : super(_value, (v) => _then(v as _InsufficientPermission));
+
+  @override
+  _InsufficientPermission get _value => super._value as _InsufficientPermission;
+}
+
+/// @nodoc
+class _$_InsufficientPermission implements _InsufficientPermission {
+  const _$_InsufficientPermission();
+
+  @override
+  String toString() {
+    return 'UserFailure.insufficientPermission()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _InsufficientPermission);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() failure,
+    required TResult Function() insufficientPermission,
+  }) {
+    return insufficientPermission();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? failure,
+    TResult Function()? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (insufficientPermission != null) {
+      return insufficientPermission();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+  }) {
+    return insufficientPermission(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (insufficientPermission != null) {
+      return insufficientPermission(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InsufficientPermission implements UserFailure {
+  const factory _InsufficientPermission() = _$_InsufficientPermission;
 }

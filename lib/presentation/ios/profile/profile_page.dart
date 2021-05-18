@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: CareerStatsDisplayer(
-                  careerStats: CareerStats.dummy(),
+                  careerStats: CareerStats.initial(),
                 ), // TODO real data
               ),
               SizedBox(

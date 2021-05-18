@@ -16,8 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameInvitationButtonEventTearOff {
   const _$GameInvitationButtonEventTearOff();
 
-  _WatchDataRequested watchDataRequested() {
-    return const _WatchDataRequested();
+  _WatchDataStarted watchDataStarted() {
+    return const _WatchDataStarted();
+  }
+
+  _DataReceived dataReceived(
+      Either<GameInvitationFailure, KtList<GameInvitation>>
+          failureOrInvitations) {
+    return _DataReceived(
+      failureOrInvitations,
+    );
   }
 }
 
@@ -28,23 +36,33 @@ const $GameInvitationButtonEvent = _$GameInvitationButtonEventTearOff();
 mixin _$GameInvitationButtonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)
+        dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)?
+        dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataRequested value) watchDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataRequested value)? watchDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,36 +86,36 @@ class _$GameInvitationButtonEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WatchDataRequestedCopyWith<$Res> {
-  factory _$WatchDataRequestedCopyWith(
-          _WatchDataRequested value, $Res Function(_WatchDataRequested) then) =
-      __$WatchDataRequestedCopyWithImpl<$Res>;
+abstract class _$WatchDataStartedCopyWith<$Res> {
+  factory _$WatchDataStartedCopyWith(
+          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
+      __$WatchDataStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchDataRequestedCopyWithImpl<$Res>
+class __$WatchDataStartedCopyWithImpl<$Res>
     extends _$GameInvitationButtonEventCopyWithImpl<$Res>
-    implements _$WatchDataRequestedCopyWith<$Res> {
-  __$WatchDataRequestedCopyWithImpl(
-      _WatchDataRequested _value, $Res Function(_WatchDataRequested) _then)
-      : super(_value, (v) => _then(v as _WatchDataRequested));
+    implements _$WatchDataStartedCopyWith<$Res> {
+  __$WatchDataStartedCopyWithImpl(
+      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
+      : super(_value, (v) => _then(v as _WatchDataStarted));
 
   @override
-  _WatchDataRequested get _value => super._value as _WatchDataRequested;
+  _WatchDataStarted get _value => super._value as _WatchDataStarted;
 }
 
 /// @nodoc
-class _$_WatchDataRequested implements _WatchDataRequested {
-  const _$_WatchDataRequested();
+class _$_WatchDataStarted implements _WatchDataStarted {
+  const _$_WatchDataStarted();
 
   @override
   String toString() {
-    return 'GameInvitationButtonEvent.watchDataRequested()';
+    return 'GameInvitationButtonEvent.watchDataStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _WatchDataRequested);
+    return identical(this, other) || (other is _WatchDataStarted);
   }
 
   @override
@@ -106,19 +124,27 @@ class _$_WatchDataRequested implements _WatchDataRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataRequested,
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)
+        dataReceived,
   }) {
-    return watchDataRequested();
+    return watchDataStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataRequested,
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)?
+        dataReceived,
     required TResult orElse(),
   }) {
-    if (watchDataRequested != null) {
-      return watchDataRequested();
+    if (watchDataStarted != null) {
+      return watchDataStarted();
     }
     return orElse();
   }
@@ -126,26 +152,157 @@ class _$_WatchDataRequested implements _WatchDataRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataRequested value) watchDataRequested,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
   }) {
-    return watchDataRequested(this);
+    return watchDataStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataRequested value)? watchDataRequested,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
-    if (watchDataRequested != null) {
-      return watchDataRequested(this);
+    if (watchDataStarted != null) {
+      return watchDataStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class _WatchDataRequested implements GameInvitationButtonEvent {
-  const factory _WatchDataRequested() = _$_WatchDataRequested;
+abstract class _WatchDataStarted implements GameInvitationButtonEvent {
+  const factory _WatchDataStarted() = _$_WatchDataStarted;
+}
+
+/// @nodoc
+abstract class _$DataReceivedCopyWith<$Res> {
+  factory _$DataReceivedCopyWith(
+          _DataReceived value, $Res Function(_DataReceived) then) =
+      __$DataReceivedCopyWithImpl<$Res>;
+  $Res call(
+      {Either<GameInvitationFailure, KtList<GameInvitation>>
+          failureOrInvitations});
+}
+
+/// @nodoc
+class __$DataReceivedCopyWithImpl<$Res>
+    extends _$GameInvitationButtonEventCopyWithImpl<$Res>
+    implements _$DataReceivedCopyWith<$Res> {
+  __$DataReceivedCopyWithImpl(
+      _DataReceived _value, $Res Function(_DataReceived) _then)
+      : super(_value, (v) => _then(v as _DataReceived));
+
+  @override
+  _DataReceived get _value => super._value as _DataReceived;
+
+  @override
+  $Res call({
+    Object? failureOrInvitations = freezed,
+  }) {
+    return _then(_DataReceived(
+      failureOrInvitations == freezed
+          ? _value.failureOrInvitations
+          : failureOrInvitations // ignore: cast_nullable_to_non_nullable
+              as Either<GameInvitationFailure, KtList<GameInvitation>>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_DataReceived implements _DataReceived {
+  const _$_DataReceived(this.failureOrInvitations);
+
+  @override
+  final Either<GameInvitationFailure, KtList<GameInvitation>>
+      failureOrInvitations;
+
+  @override
+  String toString() {
+    return 'GameInvitationButtonEvent.dataReceived(failureOrInvitations: $failureOrInvitations)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DataReceived &&
+            (identical(other.failureOrInvitations, failureOrInvitations) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureOrInvitations, failureOrInvitations)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failureOrInvitations);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchDataStarted,
+    required TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)
+        dataReceived,
+  }) {
+    return dataReceived(failureOrInvitations);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchDataStarted,
+    TResult Function(
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrInvitations)?
+        dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(failureOrInvitations);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_DataReceived value) dataReceived,
+  }) {
+    return dataReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_DataReceived value)? dataReceived,
+    required TResult orElse(),
+  }) {
+    if (dataReceived != null) {
+      return dataReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataReceived implements GameInvitationButtonEvent {
+  const factory _DataReceived(
+      Either<GameInvitationFailure, KtList<GameInvitation>>
+          failureOrInvitations) = _$_DataReceived;
+
+  Either<GameInvitationFailure, KtList<GameInvitation>>
+      get failureOrInvitations => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

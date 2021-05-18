@@ -21,17 +21,22 @@ class _$GameInvitationDtoTearOff {
   const _$GameInvitationDtoTearOff();
 
   _GameInvitationDto call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       required String from,
       required int lobbyCode,
       required bool? accepted,
-      required bool read}) {
+      required bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt}) {
     return _GameInvitationDto(
       id: id,
       from: from,
       lobbyCode: lobbyCode,
       accepted: accepted,
       read: read,
+      createdAt: createdAt,
     );
   }
 
@@ -52,6 +57,9 @@ mixin _$GameInvitationDto {
   int get lobbyCode => throw _privateConstructorUsedError;
   bool? get accepted => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  FieldValue? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,11 +73,15 @@ abstract class $GameInvitationDtoCopyWith<$Res> {
           GameInvitationDto value, $Res Function(GameInvitationDto) then) =
       _$GameInvitationDtoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       String from,
       int lobbyCode,
       bool? accepted,
-      bool read});
+      bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt});
 }
 
 /// @nodoc
@@ -88,6 +100,7 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
     Object? lobbyCode = freezed,
     Object? accepted = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -110,6 +123,10 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as FieldValue?,
     ));
   }
 }
@@ -122,11 +139,15 @@ abstract class _$GameInvitationDtoCopyWith<$Res>
       __$GameInvitationDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       String from,
       int lobbyCode,
       bool? accepted,
-      bool read});
+      bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt});
 }
 
 /// @nodoc
@@ -147,6 +168,7 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
     Object? lobbyCode = freezed,
     Object? accepted = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_GameInvitationDto(
       id: id == freezed
@@ -169,6 +191,10 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as FieldValue?,
     ));
   }
 }
@@ -178,11 +204,15 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
 /// @nodoc
 class _$_GameInvitationDto extends _GameInvitationDto {
   const _$_GameInvitationDto(
-      {@JsonKey(ignore: true) this.id,
+      {@JsonKey(ignore: true)
+          this.id,
       required this.from,
       required this.lobbyCode,
       required this.accepted,
-      required this.read})
+      required this.read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          this.createdAt})
       : super._();
 
   factory _$_GameInvitationDto.fromJson(Map<String, dynamic> json) =>
@@ -199,10 +229,14 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   final bool? accepted;
   @override
   final bool read;
+  @override
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  final FieldValue? createdAt;
 
   @override
   String toString() {
-    return 'GameInvitationDto(id: $id, from: $from, lobbyCode: $lobbyCode, accepted: $accepted, read: $read)';
+    return 'GameInvitationDto(id: $id, from: $from, lobbyCode: $lobbyCode, accepted: $accepted, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -220,7 +254,10 @@ class _$_GameInvitationDto extends _GameInvitationDto {
                 const DeepCollectionEquality()
                     .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)));
+                const DeepCollectionEquality().equals(other.read, read)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -230,7 +267,8 @@ class _$_GameInvitationDto extends _GameInvitationDto {
       const DeepCollectionEquality().hash(from) ^
       const DeepCollectionEquality().hash(lobbyCode) ^
       const DeepCollectionEquality().hash(accepted) ^
-      const DeepCollectionEquality().hash(read);
+      const DeepCollectionEquality().hash(read) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -245,11 +283,15 @@ class _$_GameInvitationDto extends _GameInvitationDto {
 
 abstract class _GameInvitationDto extends GameInvitationDto {
   const factory _GameInvitationDto(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       required String from,
       required int lobbyCode,
       required bool? accepted,
-      required bool read}) = _$_GameInvitationDto;
+      required bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt}) = _$_GameInvitationDto;
   const _GameInvitationDto._() : super._();
 
   factory _GameInvitationDto.fromJson(Map<String, dynamic> json) =
@@ -266,6 +308,10 @@ abstract class _GameInvitationDto extends GameInvitationDto {
   bool? get accepted => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  FieldValue? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameInvitationDtoCopyWith<_GameInvitationDto> get copyWith =>

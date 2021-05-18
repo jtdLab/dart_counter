@@ -10,10 +10,13 @@ extension FirestoreX on FirebaseFirestore {
     if (id == null) throw NotAuthenticatedError();
     return FirebaseFirestore.instance.collection('users').doc(id);
   }
+}
 
-  Future<CollectionReference> usersCollection() async {
-    return FirebaseFirestore.instance.collection('users');
-  }
+extension DocumentReferenceX on DocumentReference {
+  CollectionReference get friendRequestsCollection =>
+      collection('friendRequests');
+  CollectionReference get gameInvitationsCollection =>
+      collection('gameInvitations');
 }
 
 class ServerTimestampConverter implements JsonConverter<FieldValue?, Object?> {

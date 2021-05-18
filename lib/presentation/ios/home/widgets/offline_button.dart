@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
+import 'package:dart_counter/infrastructure/auth/firebase_auth_facade.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/home_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,7 +13,7 @@ class OfflineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HomeButton(
-      onPressed: () {},
+      onPressed: () async {},
       builder: (context, boxConstraints) {
         return Row(
           children: [

@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'friend_request_dto.freezed.dart';
@@ -12,6 +14,9 @@ class FriendRequestDto with _$FriendRequestDto {
     required String from,
     bool? accepted,
     required bool read,
+    @JsonKey(includeIfNull: false)
+    @ServerTimestampConverter()
+        FieldValue? createdAt,
   }) = _FriendRequestDto;
 
   const FriendRequestDto._();
@@ -32,6 +37,10 @@ class FriendRequestDto with _$FriendRequestDto {
       accepted: accepted,
       read: read,
     );
+  }
+
+  factory FriendRequestDto.fromFirestore(DocumentSnapshot doc) {
+    return FriendRequestDto.fromJson(doc.data()!).copyWith(id: doc.id);
   }
 
   factory FriendRequestDto.fromJson(Map<String, dynamic> json) =>

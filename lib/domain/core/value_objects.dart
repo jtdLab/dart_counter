@@ -103,6 +103,8 @@ class List10<T> extends ValueObject<KtList<T>> {
     );
   }
 
+  factory List10.empty() => List10(const KtList.empty());
+  
   const List10._(this.value);
 
   int get length {

@@ -29,21 +29,20 @@ class GameInvitationButtonBloc
     GameInvitationButtonEvent event,
   ) async* {
     yield* event.map(
-      watchDataRequested: (e) async* {
-        _invitationStreamSubscription =
-            _gameInvitationFacade.watchReceivedInvitations().listen(
-          (failureOrInvitations) {
-            failureOrInvitations.fold(
-              (failure) async* {
-                yield state;
-              },
-              (invitations) async* {
-                yield GameInvitationButtonState.data(
-                  newGameInvitations: invitations.size,
-                );
-              },
+      watchDataStarted: (e) async* {
+        _invitationStreamSubscription = _gameInvitationFacade
+            .watchReceivedInvitations()
+            .listen(
+              (failureOrInvitations) => add(
+                  GameInvitationButtonEvent.dataReceived(failureOrInvitations)),
             );
-          },
+      },
+      dataReceived: (e) async* {
+        yield e.failureOrInvitations.fold(
+          (f) => const GameInvitationButtonState.noData(),
+          (invitations) => GameInvitationButtonState.data(
+            newGameInvitations: invitations.size, // TODO only new
+          ),
         );
       },
     );

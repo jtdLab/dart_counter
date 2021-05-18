@@ -21,15 +21,20 @@ class _$FriendRequestDtoTearOff {
   const _$FriendRequestDtoTearOff();
 
   _FriendRequestDto call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       required String from,
       bool? accepted,
-      required bool read}) {
+      required bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt}) {
     return _FriendRequestDto(
       id: id,
       from: from,
       accepted: accepted,
       read: read,
+      createdAt: createdAt,
     );
   }
 
@@ -49,6 +54,9 @@ mixin _$FriendRequestDto {
   String get from => throw _privateConstructorUsedError;
   bool? get accepted => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  FieldValue? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,10 +70,14 @@ abstract class $FriendRequestDtoCopyWith<$Res> {
           FriendRequestDto value, $Res Function(FriendRequestDto) then) =
       _$FriendRequestDtoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       String from,
       bool? accepted,
-      bool read});
+      bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt});
 }
 
 /// @nodoc
@@ -83,6 +95,7 @@ class _$FriendRequestDtoCopyWithImpl<$Res>
     Object? from = freezed,
     Object? accepted = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -101,6 +114,10 @@ class _$FriendRequestDtoCopyWithImpl<$Res>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as FieldValue?,
     ));
   }
 }
@@ -113,10 +130,14 @@ abstract class _$FriendRequestDtoCopyWith<$Res>
       __$FriendRequestDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       String from,
       bool? accepted,
-      bool read});
+      bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt});
 }
 
 /// @nodoc
@@ -136,6 +157,7 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
     Object? from = freezed,
     Object? accepted = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_FriendRequestDto(
       id: id == freezed
@@ -154,6 +176,10 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as FieldValue?,
     ));
   }
 }
@@ -163,10 +189,14 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
 /// @nodoc
 class _$_FriendRequestDto extends _FriendRequestDto {
   const _$_FriendRequestDto(
-      {@JsonKey(ignore: true) this.id,
+      {@JsonKey(ignore: true)
+          this.id,
       required this.from,
       this.accepted,
-      required this.read})
+      required this.read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          this.createdAt})
       : super._();
 
   factory _$_FriendRequestDto.fromJson(Map<String, dynamic> json) =>
@@ -181,10 +211,14 @@ class _$_FriendRequestDto extends _FriendRequestDto {
   final bool? accepted;
   @override
   final bool read;
+  @override
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  final FieldValue? createdAt;
 
   @override
   String toString() {
-    return 'FriendRequestDto(id: $id, from: $from, accepted: $accepted, read: $read)';
+    return 'FriendRequestDto(id: $id, from: $from, accepted: $accepted, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -199,7 +233,10 @@ class _$_FriendRequestDto extends _FriendRequestDto {
                 const DeepCollectionEquality()
                     .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)));
+                const DeepCollectionEquality().equals(other.read, read)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -208,7 +245,8 @@ class _$_FriendRequestDto extends _FriendRequestDto {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(from) ^
       const DeepCollectionEquality().hash(accepted) ^
-      const DeepCollectionEquality().hash(read);
+      const DeepCollectionEquality().hash(read) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -223,10 +261,14 @@ class _$_FriendRequestDto extends _FriendRequestDto {
 
 abstract class _FriendRequestDto extends FriendRequestDto {
   const factory _FriendRequestDto(
-      {@JsonKey(ignore: true) String? id,
+      {@JsonKey(ignore: true)
+          String? id,
       required String from,
       bool? accepted,
-      required bool read}) = _$_FriendRequestDto;
+      required bool read,
+      @JsonKey(includeIfNull: false)
+      @ServerTimestampConverter()
+          FieldValue? createdAt}) = _$_FriendRequestDto;
   const _FriendRequestDto._() : super._();
 
   factory _FriendRequestDto.fromJson(Map<String, dynamic> json) =
@@ -241,6 +283,10 @@ abstract class _FriendRequestDto extends FriendRequestDto {
   bool? get accepted => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: false)
+  @ServerTimestampConverter()
+  FieldValue? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendRequestDtoCopyWith<_FriendRequestDto> get copyWith =>
