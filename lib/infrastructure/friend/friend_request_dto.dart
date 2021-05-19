@@ -40,6 +40,7 @@ class FriendRequestDto with _$FriendRequestDto {
   }
 
   factory FriendRequestDto.fromFirestore(DocumentSnapshot doc) {
+    // TODO ! operator could make problems
     return FriendRequestDto.fromJson(doc.data()!).copyWith(id: doc.id);
   }
 

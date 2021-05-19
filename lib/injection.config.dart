@@ -12,21 +12,22 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i7;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i21;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i19;
-import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i20;
-import 'application/home/friend_button/friend_button_bloc.dart' as _i23;
+import 'application/auth/auth_bloc.dart' as _i22;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i20;
+import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i21;
+import 'application/home/friend_button/friend_button_bloc.dart' as _i24;
 import 'application/home/game_invitation_button/game_invitation_button_bloc.dart'
-    as _i24;
-import 'application/home/profile_button/profile_button_bloc.dart' as _i18;
-import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i22;
+    as _i25;
+import 'application/home/profile_button/profile_button_bloc.dart' as _i19;
+import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i23;
+import 'application/profile/profile_bloc.dart' as _i18;
 import 'domain/auth/i_auth_facade.dart' as _i8;
 import 'domain/friend/i_friend_facade.dart' as _i10;
 import 'domain/game_invitation/i_game_invitation_facade.dart' as _i12;
 import 'domain/play/i_play_facade.dart' as _i14;
 import 'domain/user/i_user_facade.dart' as _i16;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i25;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i26;
 import 'infrastructure/friend/friend_facade.dart' as _i11;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i13;
 import 'infrastructure/play/play_facade.dart' as _i15;
@@ -63,20 +64,21 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i6.FirebaseStorage>(),
       get<_i8.IAuthFacade>(),
       get<_i5.FirebaseFunctions>()));
-  gh.factory<_i18.ProfileButtonBloc>(
-      () => _i18.ProfileButtonBloc(get<_i16.IUserFacade>()));
-  gh.factory<_i19.SignInFormBloc>(
-      () => _i19.SignInFormBloc(get<_i8.IAuthFacade>()));
-  gh.factory<_i20.SignUpFormBloc>(
-      () => _i20.SignUpFormBloc(get<_i8.IAuthFacade>()));
-  gh.factory<_i21.AuthBloc>(() => _i21.AuthBloc(get<_i8.IAuthFacade>()));
-  gh.factory<_i22.EditProfileBloc>(
-      () => _i22.EditProfileBloc(get<_i16.IUserFacade>()));
-  gh.factory<_i23.FriendButtonBloc>(
-      () => _i23.FriendButtonBloc(get<_i10.IFriendFacade>()));
-  gh.factory<_i24.GameInvitationButtonBloc>(
-      () => _i24.GameInvitationButtonBloc(get<_i12.IGameInvitationFacade>()));
+  gh.factory<_i18.ProfileBloc>(() => _i18.ProfileBloc(get<_i16.IUserFacade>()));
+  gh.factory<_i19.ProfileButtonBloc>(
+      () => _i19.ProfileButtonBloc(get<_i16.IUserFacade>()));
+  gh.factory<_i20.SignInFormBloc>(
+      () => _i20.SignInFormBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i21.SignUpFormBloc>(
+      () => _i21.SignUpFormBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i22.AuthBloc>(() => _i22.AuthBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i23.EditProfileBloc>(
+      () => _i23.EditProfileBloc(get<_i16.IUserFacade>()));
+  gh.factory<_i24.FriendButtonBloc>(
+      () => _i24.FriendButtonBloc(get<_i10.IFriendFacade>()));
+  gh.factory<_i25.GameInvitationButtonBloc>(
+      () => _i25.GameInvitationButtonBloc(get<_i12.IGameInvitationFacade>()));
   return get;
 }
 
-class _$FireBaseInjectableModule extends _i25.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i26.FireBaseInjectableModule {}

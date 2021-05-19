@@ -6,10 +6,12 @@ import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/friend/friend_request_dto.dart';
 import 'package:dart_counter/infrastructure/game_invitation/game_invitation_dto.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
 
@@ -66,10 +68,11 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
 
       await userDoc.set(UserDto.fromDomain(user).toJson());
-      /**
-       * await userDoc.gameInvitationsCollection
+      await userDoc.gameInvitationsCollection
           .add(GameInvitationDto.fromDomain(GameInvitation.dummy()).toJson());
-       */
+
+      await userDoc.friendRequestsCollection
+          .add(FriendRequestDto.fromDomain(FriendRequest.dummy()).toJson());
 
       return right(unit);
     } on FirebaseAuthException catch (e) {

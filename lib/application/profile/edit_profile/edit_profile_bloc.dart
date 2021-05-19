@@ -22,10 +22,10 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     EditProfileEvent event,
   ) async* {
     event.map(
-      deletePressed: (_) async* {
+      deletePressed: (_) async {
         _userFacade.deletePhoto();
       },
-      takePressed: (_) async* {
+      takePressed: (_) async {
         final pickedFile =
             await ImagePicker().getImage(source: ImageSource.camera);
         if (pickedFile == null) {
@@ -35,7 +35,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         final file = File(pickedFile.path);
         _userFacade.updatePhoto(file);
       },
-      choosePressed: (_) async* {
+      choosePressed: (_) async {
         final pickedFile =
             await ImagePicker().getImage(source: ImageSource.gallery);
         if (pickedFile == null) {

@@ -19,7 +19,7 @@ Either<ValueFailure<String>, String> validateUsername(String input) {
   if (input.length >= 3 && input.length <= 15) {
     return right(input);
   } else {
-    return left(ValueFailure.shortPassword(failedValue: input));
+    return left(ValueFailure.shortUsername(failedValue: input));
   }
 }
 

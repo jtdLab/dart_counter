@@ -104,7 +104,7 @@ class UserFacade implements IUserFacade {
 
       final photoUrl = await ref.getDownloadURL();
       final userDoc = await _firestore.userDocument();
-      userDoc.update({'photoUrl': photoUrl});
+      userDoc.update({'profile.photoUrl': photoUrl});
 
       return right(unit);
     } on FirebaseException {
@@ -119,11 +119,11 @@ class UserFacade implements IUserFacade {
       return left(const UserFailure.failure()); // TODO not authenticated
     }
 
-    final ref = _storage.ref('profilePhotos/$uid');
+    final ref = _storage.ref('profilePhotos/${uid.getOrCrash()}');
     await ref.delete();
 
     final userDoc = await _firestore.userDocument();
-    userDoc.update({'photoUrl': null});
+    userDoc.update({'profile.photoUrl': null});
 
     return right(unit);
   }
@@ -141,7 +141,7 @@ class UserFacade implements IUserFacade {
         if (isAvailable) {
           // update username in database
           final userDoc = await _firestore.userDocument();
-          await userDoc.update({'username': newUsername.getOrCrash()});
+          await userDoc.update({'profile.username': newUsername.getOrCrash()});
           return right(unit);
         } else {
           // TODO name not available

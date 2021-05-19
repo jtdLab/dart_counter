@@ -14,7 +14,7 @@ class FriendRequest with _$FriendRequest {
 
   factory FriendRequest.dummy() => FriendRequest(
         id: UniqueId.fromUniqueString('dummyFriendRequestUID'),
-        from: Username('dummyFriendRequester'),
+        from: Username('dummyFriendRq'),
         accepted: null,
         read: false,
       );
