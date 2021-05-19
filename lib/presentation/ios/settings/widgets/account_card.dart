@@ -32,9 +32,10 @@ class AccountCard extends StatelessWidget {
         bodyHeight: 50,
         body: Center(
           child: CupertinoButton(
+            padding: EdgeInsets.zero,
             onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signedOut()),
             child: AutoSizeText(
-              LocaleKeys.account.tr(),
+              LocaleKeys.signOut.tr(),
               minFontSize: 8,
               maxLines: 1,
               style: const TextStyle(

@@ -253,6 +253,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  dart_client:
+    dependency: "direct main"
+    description:
+      path: "packages/dart_client"
+      relative: true
+    source: path
+    version: "0.0.1"
+  dart_game:
+    dependency: "direct main"
+    description:
+      path: "packages/dart_game"
+      relative: true
+    source: path
+    version: "0.0.1"
   dart_style:
     dependency: transitive
     description:
@@ -295,6 +309,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  faker:
+    dependency: transitive
+    description:
+      name: faker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   ffi:
     dependency: transitive
     description:

@@ -99,5 +99,6 @@ abstract class  LocaleKeys {
   static const deletePhoto = 'deletePhoto';
   static const takePhoto = 'takePhoto';
   static const choosePhoto = 'choosePhoto';
+  static const signOut = 'signOut';
 
 }

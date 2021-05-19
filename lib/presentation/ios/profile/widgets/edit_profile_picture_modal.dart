@@ -56,6 +56,7 @@ class EditProfilePictureModal extends StatelessWidget {
                             context
                                 .read<EditProfileBloc>()
                                 .add(const EditProfileEvent.deletePressed());
+                            context.router.pop();
                           },
                         ),
                       ),
@@ -89,6 +90,7 @@ class EditProfilePictureModal extends StatelessWidget {
                               context
                                   .read<EditProfileBloc>()
                                   .add(const EditProfileEvent.takePressed());
+                              context.router.pop();
                             }),
                       ),
                       const Spacer(
@@ -121,6 +123,7 @@ class EditProfilePictureModal extends StatelessWidget {
                               context
                                   .read<EditProfileBloc>()
                                   .add(const EditProfileEvent.choosePressed());
+                              context.router.pop();
                             }),
                       ),
                       const Spacer(

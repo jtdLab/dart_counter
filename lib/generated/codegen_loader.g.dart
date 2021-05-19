@@ -112,7 +112,8 @@ class CodegenLoader extends AssetLoader{
   "matchHistory": "Spielverlauf",
   "deletePhoto": "Foto löschen",
   "takePhoto": "Foto aufnehmen",
-  "choosePhoto": "Foto auswählen"
+  "choosePhoto": "Foto auswählen",
+  "signOut": "Ausloggen"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -212,7 +213,8 @@ static const Map<String,dynamic> en = {
   "matchHistory": "Match History",
   "deletePhoto": "Delete Photo",
   "takePhoto": "Take Photo",
-  "choosePhoto": "Choose Photo"
+  "choosePhoto": "Choose Photo",
+  "signOut": "Sign out"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

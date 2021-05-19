@@ -97,5 +97,6 @@
 
     "deletePhoto" : "Delete Photo",
     "takePhoto" : "Take Photo",
-    "choosePhoto" : "Choose Photo"
+    "choosePhoto" : "Choose Photo",
+    "signOut": "Sign out"
 }

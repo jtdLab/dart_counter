@@ -97,5 +97,6 @@
 
     "deletePhoto" : "Foto löschen",
     "takePhoto" : "Foto aufnehmen",
-    "choosePhoto" : "Foto auswählen"
+    "choosePhoto" : "Foto auswählen",
+    "signOut": "Ausloggen"
 }
