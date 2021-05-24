@@ -6,6 +6,7 @@ import 'package:dart_counter/injection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/widgets.dart';
@@ -20,9 +21,9 @@ Future<void> main() async {
   configureInjection(Environment.dev);
   await Firebase.initializeApp();
 
-  FirebaseFunctions.instance
-      .useFunctionsEmulator(origin: 'http://localhost:5002');
+  FirebaseFunctions.instance.useFunctionsEmulator(origin: 'http://localhost:5002');
   FirebaseAuth.instance.useEmulator('http://localhost:9099');
+  //FirebaseStorage.instance.useEmulator(host: "localhost", port: 9199);
   FirebaseFirestore.instance.settings = Settings(
       host: Platform.isAndroid ? '10.0.2.2:8080' : 'localhost:8080',
       sslEnabled: false,

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class CircleImage extends StatelessWidget {
-  final ImageProvider image;
+  final Widget child;
 
-  const CircleImage({required this.image});
+  const CircleImage({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class CircleImage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          image: DecorationImage(image: image, fit: BoxFit.fill),
         ),
+        child: child,
       ),
     );
   }

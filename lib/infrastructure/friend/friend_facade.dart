@@ -10,16 +10,18 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:social_client/social_client.dart';
 
 @LazySingleton(as: IFriendFacade)
 class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
+  final SocialClient _socialClient;
 
-  FriendFacade(this._firestore);
+  FriendFacade(this._firestore, this._socialClient);
 
   @override
   Future<Either<FriendFailure, Unit>> addFriend(User user) {
-    // TODO: implement addFriend
+    // TODO: implement removeFriend
     throw UnimplementedError();
   }
 

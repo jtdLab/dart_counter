@@ -1,8 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_counter/application/profile/profile_bloc.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/circle_image.dart';
-import 'package:dart_counter/presentation/ios/profile/widgets/edit_profile_picture_modal.dart';
+import 'package:dart_counter/presentation/ios/profile/edit_profile_picture_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -33,17 +34,16 @@ class Header extends StatelessWidget {
                     ),
                     child: state.map(
                         noData: (_) => CircleImage(
-                              image:
-                                  const AssetImage(AppImages.photoPlaceholder),
+                              child: Image.asset(AppImages.photoPlaceholder),
                             ),
                         data: (e) {
                           if (e.photoUrl != null) {
                             return CircleImage(
-                              image: NetworkImage(e.photoUrl!),
+                              child: CachedNetworkImage(imageUrl: e.photoUrl!),
                             );
                           } else {
-                            return const CircleImage(
-                              image: AssetImage(AppImages.photoPlaceholder),
+                            return CircleImage(
+                              child: Image.asset(AppImages.photoPlaceholder),
                             );
                           }
                         }),

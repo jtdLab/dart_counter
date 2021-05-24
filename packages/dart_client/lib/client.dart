@@ -1,6 +1,6 @@
 part of dart_client;
 
-abstract class AbstractClient {
+abstract class AbstractDartClient {
   /// INTERFACE
   Stream<ResponsePacket> get received;
 
@@ -35,10 +35,10 @@ abstract class AbstractClient {
   void undoThrow();
 }
 
-class Client implements AbstractClient {
+class DartClient implements AbstractDartClient {
   final WebSocketClient _webSocketClient;
 
-  Client(String host, int port)
+  DartClient(String host, int port)
       : this._webSocketClient = WebSocketClient(host, port);
 
   @override

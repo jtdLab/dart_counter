@@ -3,7 +3,6 @@ import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up_form/sign_up_form_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/styles.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';

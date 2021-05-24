@@ -53,7 +53,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddressStr,
         password: passwordStr,
       );
-
+      
       final userDoc = await _firebaseFirestore.userDocument();
       final user = User(
         id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid),

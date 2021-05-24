@@ -28,6 +28,8 @@ dependencies:
     path: packages/dart_game
   dart_client:
     path: packages/dart_client
+  social_client:
+    path: packages/social_client
 
   auto_route: ^1.0.2
   auto_size_text: ^3.0.0-nullsafety.0
@@ -42,7 +44,7 @@ dependencies:
   email_validator: ^2.0.1
   firebase_auth: ^1.1.2
   firebase_core: ^1.1.0
-  firebase_storage: ^8.0.5
+  firebase_storage: ^8.1.0
   flutter_bloc: ^7.0.0
   flutter_facebook_auth: ^3.3.3+1
   flutter_hooks: ^0.16.0
