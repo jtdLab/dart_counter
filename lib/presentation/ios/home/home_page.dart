@@ -17,99 +17,97 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<HomeBloc>()..add(const HomeEvent.watchDataStarted()),
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) => CupertinoPageScaffold(
-          navigationBar: !state.loading
-              ? CupertinoNavigationBar(
-                  middle: Text(LocaleKeys.home.tr()),
+    return BlocBuilder<HomeBloc, HomeState>(
+      bloc: getIt<HomeBloc>()..add(const HomeEvent.watchDataStarted()),
+      builder: (context, state) => CupertinoPageScaffold(
+        navigationBar: !state.loading
+            ? CupertinoNavigationBar(
+                middle: Text(LocaleKeys.home.tr()),
+              )
+            : null,
+        child: SafeArea(
+          child: !state.loading
+              ? Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    children: [
+                      ProfileButton(
+                        photoUrl: state.user!.profile.photoUrl,
+                        username: state.user!.profile.username.getOrCrash(),
+                        averrage: state.user!.careerStatsOnline.average,
+                        checkoutPercentage:
+                            state.user!.careerStatsOnline.checkoutPercentage,
+                        wins: state.user!.careerStatsOnline.wins,
+                        defeats: state.user!.careerStatsOnline.defeats,
+                      ),
+                      SizedBox(
+                        height: responsiveDouble(
+                          context: context,
+                          mobile: ResponsiveDouble(
+                              normal: 2, large: 4, extraLarge: 6),
+                        ),
+                      ),
+                      OfflineButton(),
+                      SizedBox(
+                        height: responsiveDouble(
+                          context: context,
+                          mobile: ResponsiveDouble(
+                              normal: 2, large: 4, extraLarge: 6),
+                        ),
+                      ),
+                      OnlineButton(),
+                      SizedBox(
+                        height: responsiveDouble(
+                          context: context,
+                          mobile: ResponsiveDouble(
+                              normal: 2, large: 4, extraLarge: 6),
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            InvitationsButton(
+                              newGameInvitations: state.newGameInvitations!,
+                            ),
+                            SizedBox(
+                              width: responsiveDouble(
+                                context: context,
+                                mobile: ResponsiveDouble(
+                                    normal: 2, large: 4, extraLarge: 6),
+                              ),
+                            ),
+                            FriendsButton(
+                              newFriendRequests: state.newFriendRequests!,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: responsiveDouble(
+                          context: context,
+                          mobile: ResponsiveDouble(
+                              normal: 2, large: 4, extraLarge: 6),
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            SocialMediaButton(),
+                            SizedBox(
+                              width: responsiveDouble(
+                                context: context,
+                                mobile: ResponsiveDouble(
+                                    normal: 2, large: 4, extraLarge: 6),
+                              ),
+                            ),
+                            const SettingsButton(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 )
-              : null,
-          child: SafeArea(
-            child: !state.loading
-                ? Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Column(
-                      children: [
-                        ProfileButton(
-                          photoUrl: state.user!.profile.photoUrl,
-                          username: state.user!.profile.username.getOrCrash(),
-                          averrage: state.user!.careerStatsOnline.average,
-                          checkoutPercentage:
-                              state.user!.careerStatsOnline.checkoutPercentage,
-                          wins: state.user!.careerStatsOnline.wins,
-                          defeats: state.user!.careerStatsOnline.defeats,
-                        ),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                normal: 2, large: 4, extraLarge: 6),
-                          ),
-                        ),
-                        OfflineButton(),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                normal: 2, large: 4, extraLarge: 6),
-                          ),
-                        ),
-                        OnlineButton(),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                normal: 2, large: 4, extraLarge: 6),
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              InvitationsButton(
-                                newGameInvitations: state.newGameInvitations!,
-                              ),
-                              SizedBox(
-                                width: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      normal: 2, large: 4, extraLarge: 6),
-                                ),
-                              ),
-                              FriendsButton(
-                                newFriendRequests: state.newFriendRequests!,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                normal: 2, large: 4, extraLarge: 6),
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              SocialMediaButton(),
-                              SizedBox(
-                                width: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      normal: 2, large: 4, extraLarge: 6),
-                                ),
-                              ),
-                              const SettingsButton(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : Loading(),
-          ),
+              : Loading(),
         ),
       ),
     );

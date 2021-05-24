@@ -7,9 +7,11 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 
 import '../core/auth_widget.dart' as _i3;
+import '../create_game/create_game_page.dart' as _i11;
 import '../friends/friends_page.dart' as _i8;
 import '../game_history/game_history_page.dart' as _i6;
 import '../home/home_page.dart' as _i4;
+import '../in_game/in_game_page.dart' as _i12;
 import '../invitations/invitations_page.dart' as _i7;
 import '../profile/profile_page.dart' as _i5;
 import '../settings/settings_page.dart' as _i10;
@@ -47,6 +49,12 @@ class Router extends _i1.RootStackRouter {
     },
     SettingsPageRoute.name: (entry) {
       return _i1.CupertinoPageX(entry: entry, child: _i10.SettingsPage());
+    },
+    CreateGamePageRoute.name: (entry) {
+      return _i1.CupertinoPageX(entry: entry, child: _i11.CreateGamePage());
+    },
+    InGamePageRoute.name: (entry) {
+      return _i1.CupertinoPageX(entry: entry, child: _i12.InGamePage());
     }
   };
 
@@ -60,7 +68,9 @@ class Router extends _i1.RootStackRouter {
         _i1.RouteConfig(InvitationsPageRoute.name, path: '/invitations-page'),
         _i1.RouteConfig(FriendsPageRoute.name, path: '/friends-page'),
         _i1.RouteConfig(SocialMediaPageRoute.name, path: '/social-media-page'),
-        _i1.RouteConfig(SettingsPageRoute.name, path: '/settings-page')
+        _i1.RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
+        _i1.RouteConfig(CreateGamePageRoute.name, path: '/create-game-page'),
+        _i1.RouteConfig(InGamePageRoute.name, path: '/in-game-page')
       ];
 }
 
@@ -116,4 +126,16 @@ class SettingsPageRoute extends _i1.PageRouteInfo {
   const SettingsPageRoute() : super(name, path: '/settings-page');
 
   static const String name = 'SettingsPageRoute';
+}
+
+class CreateGamePageRoute extends _i1.PageRouteInfo {
+  const CreateGamePageRoute() : super(name, path: '/create-game-page');
+
+  static const String name = 'CreateGamePageRoute';
+}
+
+class InGamePageRoute extends _i1.PageRouteInfo {
+  const InGamePageRoute() : super(name, path: '/in-game-page');
+
+  static const String name = 'InGamePageRoute';
 }
