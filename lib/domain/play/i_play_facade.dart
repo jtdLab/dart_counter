@@ -6,6 +6,9 @@ import 'package:dartz/dartz.dart';
 import 'game.dart';
 
 abstract class IPlayFacade {
+
+  Stream<Game> watchGame();
+
   Future<Either<PlayFailure, Unit>> createGame({required bool online});
   Future<Either<PlayFailure, Unit>> reorderPlayer(
       {required int oldIndex, required int newIndex});

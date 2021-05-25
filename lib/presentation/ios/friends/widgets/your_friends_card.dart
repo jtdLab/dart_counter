@@ -14,7 +14,7 @@ class YourFriendsCard extends StatelessWidget {
         LocaleKeys.yourFriends.tr(),
         minFontSize: 8,
         maxLines: 1,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 23, fontWeight: FontWeight.bold, color: AppColors.white),
       ),
       bodyHeight: 50,
@@ -23,7 +23,7 @@ class YourFriendsCard extends StatelessWidget {
           LocaleKeys.yourFriends.tr(),
           minFontSize: 8,
           maxLines: 1,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: AppColors.white),

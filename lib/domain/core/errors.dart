@@ -13,3 +13,5 @@ class UnexpectedValueError extends Error {
     return Error.safeToString('$explanation Failure was: $valueFailure');
   }
 }
+
+class MissingGameError extends Error {}
