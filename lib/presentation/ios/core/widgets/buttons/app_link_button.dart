@@ -15,7 +15,7 @@ class LinkButton extends StatelessWidget {
       onPressed: onPressed,
       child: AutoSizeText(
         text.toUpperCase(),
-      maxFontSize: 14,
+        maxFontSize: 14,
         maxLines: 1,
         style: const TextStyle(
           color: AppColors.red,

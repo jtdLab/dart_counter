@@ -20,7 +20,7 @@ class AppCard extends StatelessWidget {
     this.trailing = const Spacer(),
     this.body,
     this.borderRadius = const BorderRadius.all(
-      Radius.circular(8),
+      Radius.circular(0),
     ),
     this.paddingHeader = const EdgeInsets.all(4),
     this.paddingBody = const EdgeInsets.all(6),
@@ -59,7 +59,7 @@ class AppCard extends StatelessWidget {
               child: Visibility(
                 visible: body != null,
                 child: Container(
-                  color: AppColors.gray,
+                  color: AppColors.white,
                   padding: paddingBody,
                   child: Center(
                     child: body,
@@ -89,7 +89,7 @@ class AppCard extends StatelessWidget {
               child: Visibility(
                 visible: body != null,
                 child: Container(
-                  color: AppColors.gray,
+                  color: AppColors.white,
                   padding: paddingBody,
                   child: Center(
                     child: body,

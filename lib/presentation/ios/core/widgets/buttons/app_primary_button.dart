@@ -23,16 +23,15 @@ class PrimaryButton extends StatelessWidget {
         color: AppColors.black,
         padding: const EdgeInsets.all(8.0),
         onPressed: onPressed,
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            0
-          ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(0),
         ),
         child: Center(
           child: AutoSizeText(
             text.toUpperCase(),
             maxLines: 1,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+            maxFontSize: 14,
+            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
           ),
         ),
       ),

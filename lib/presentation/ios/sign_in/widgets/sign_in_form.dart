@@ -7,6 +7,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_butt
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/sign_in/modals/forgot_password_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
@@ -14,6 +15,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SignInForm extends StatelessWidget {
   final PageController pageController;
@@ -131,8 +133,15 @@ class SignInForm extends StatelessWidget {
                               Row(
                                 children: [
                                   LinkButton(
-                                      text: LocaleKeys.forgotPassword.tr()),
-                                  Spacer(),
+                                    text: LocaleKeys.forgotPassword.tr(),
+                                    onPressed: () {
+                                      showCupertinoModalBottomSheet(
+                                        context: context,
+                                        builder: (context) => ForgotPasswordModal(),
+                                      );
+                                    },
+                                  ),
+                                  const Spacer(),
                                   LinkButton(
                                     text: LocaleKeys.signUpNow.tr(),
                                     onPressed: () {
@@ -155,7 +164,7 @@ class SignInForm extends StatelessWidget {
                                     onPressed: () =>
                                         context.read<SignInFormBloc>().add(
                                               const SignInFormEvent
-                                                  .signInWithGooglePressed(),
+                                                  .signInWithFacebookPressed(),
                                             ),
                                     child: Image.asset(AppImages.fb_new),
                                   ),
@@ -171,7 +180,7 @@ class SignInForm extends StatelessWidget {
                                     onPressed: () =>
                                         context.read<SignInFormBloc>().add(
                                               const SignInFormEvent
-                                                  .signInWithFacebookPressed(),
+                                                  .signInWithGooglePressed(),
                                             ),
                                     child: Image.asset(AppImages.google_new),
                                   ),

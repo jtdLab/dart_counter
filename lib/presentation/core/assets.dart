@@ -5,6 +5,13 @@ abstract class AppImages {
   static const fb_new = 'assets/images/png/fb_new.png';
   static const ig_new = 'assets/images/png/ig_new.png';
   static const google_new = 'assets/images/png/google_new.png';
+  static const checkmark_new = 'assets/images/png/checkmark_new.png';
+  static const chevron_back_new = 'assets/images/png/chevron_back_new.png';
+  static const lupe_new = 'assets/images/png/lupe_new.png';
+  static const settings_new = 'assets/images/png/settings_new.png';
+  static const x_mark = 'assets/images/png/x_mark.png';
+  static const de = 'assets/images/png/de.png';
+  static const uk = 'assets/images/png/uk.png';
 
   static const logo = 'assets/images/png/logo.png';
   static const adBanner = 'assets/images/png/adBanner.png';
