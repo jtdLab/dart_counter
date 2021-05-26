@@ -26,12 +26,16 @@ class LanguageCard extends StatelessWidget {
       body: Column(
         children: [
           const Spacer(),
-          const Expanded(
-            child: LanguageItem(language: 'deutsch'),
+          Expanded(
+            child: const LanguageItem(
+              language: Locale('de'),
+            ),
           ),
           const SizedBox(height: 20),
-          const Expanded(
-            child: LanguageItem(language: 'english'),
+          Expanded(
+            child: const LanguageItem(
+              language: Locale('en'),
+            ),
           ),
           const Spacer(),
         ],

@@ -154,6 +154,7 @@ class __$InvalidEmailCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_InvalidEmail<T> implements _InvalidEmail<T> {
   const _$_InvalidEmail({required this.failedValue});
 
@@ -282,6 +283,7 @@ class __$ShortUsernameCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_ShortUsername<T> implements _ShortUsername<T> {
   const _$_ShortUsername({required this.failedValue});
 
@@ -410,6 +412,7 @@ class __$ShortPasswordCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_ShortPassword<T> implements _ShortPassword<T> {
   const _$_ShortPassword({required this.failedValue});
 
@@ -543,6 +546,7 @@ class __$ListTooLongCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$_ListTooLong<T> implements _ListTooLong<T> {
   const _$_ListTooLong({required this.failedValue, required this.max});
 

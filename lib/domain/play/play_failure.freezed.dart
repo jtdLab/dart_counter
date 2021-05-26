@@ -83,6 +83,7 @@ class __$ErrorCopyWithImpl<$Res> extends _$PlayFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Error implements _Error {
   const _$_Error();
 

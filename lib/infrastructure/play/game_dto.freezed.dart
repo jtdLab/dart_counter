@@ -194,9 +194,8 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_GameDto extends _GameDto {
   const _$_GameDto(
       {required this.id,

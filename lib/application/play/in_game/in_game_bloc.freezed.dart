@@ -148,6 +148,7 @@ class __$WatchDataStartedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_WatchDataStarted implements _WatchDataStarted {
   const _$_WatchDataStarted();
 
@@ -279,6 +280,7 @@ class __$SnapshotReceivedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_SnapshotReceived implements _SnapshotReceived {
   const _$_SnapshotReceived({required this.game});
 
@@ -404,6 +406,7 @@ class __$CancelPressedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_CancelPressed implements _CancelPressed {
   const _$_CancelPressed();
 
@@ -513,6 +516,7 @@ class __$UndoThrowPressedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_UndoThrowPressed implements _UndoThrowPressed {
   const _$_UndoThrowPressed();
 
@@ -644,6 +648,7 @@ class __$PerformThrowPressedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_PerformThrowPressed implements _PerformThrowPressed {
   const _$_PerformThrowPressed({required this.t});
 
@@ -771,6 +776,7 @@ class __$CheckPressedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_CheckPressed implements _CheckPressed {
   const _$_CheckPressed();
 
@@ -879,6 +885,7 @@ class __$ErasePressedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_ErasePressed implements _ErasePressed {
   const _$_ErasePressed();
 
@@ -1000,6 +1007,7 @@ class __$DigitPressedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_DigitPressed implements _DigitPressed {
   const _$_DigitPressed({required this.digit});
 
@@ -1187,6 +1195,7 @@ class __$LoadingCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -1291,6 +1300,7 @@ class __$SnapshotCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Snapshot implements _Snapshot {
   const _$_Snapshot({required this.game});
 

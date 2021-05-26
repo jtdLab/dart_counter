@@ -105,6 +105,7 @@ class __$SetCopyWithImpl<$Res> extends _$SetCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Set implements _Set {
   const _$_Set({required this.id, required this.legs});
 

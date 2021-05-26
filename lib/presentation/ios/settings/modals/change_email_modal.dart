@@ -13,7 +13,6 @@ class ChangeEmailModal extends StatelessWidget {
   }
 }
 
-
 class ChangeEmailIdle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -65,7 +64,7 @@ class ChangeEmailIdle extends StatelessWidget {
                           flex: 20,
                         ),
                         Text(
-                          'CHANGE EMAIL ADDRESS',
+                          LocaleKeys.changeEmail.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -76,7 +75,7 @@ class ChangeEmailIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.newEmailAddress.tr(),
+                          placeholder: LocaleKeys.newEmailAddress.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () => node.unfocus(),
                           onChanged: (emailString) {},
@@ -165,7 +164,7 @@ class ChangeEmailModalSuccess extends StatelessWidget {
                           flex: 20,
                         ),
                         Text(
-                           LocaleKeys.email.tr().toUpperCase(),
+                          LocaleKeys.email.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,

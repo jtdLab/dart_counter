@@ -103,6 +103,7 @@ class __$UnexpectedCopyWithImpl<$Res> extends _$FriendFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Unexpected implements _Unexpected {
   const _$_Unexpected();
 
@@ -193,6 +194,7 @@ class __$InsufficientPermissionCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_InsufficientPermission implements _InsufficientPermission {
   const _$_InsufficientPermission();
 
@@ -283,6 +285,7 @@ class __$UnableToReadCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_UnableToRead implements _UnableToRead {
   const _$_UnableToRead();
 

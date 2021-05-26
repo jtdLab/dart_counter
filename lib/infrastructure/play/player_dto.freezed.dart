@@ -287,9 +287,8 @@ class __$PlayerDtoCopyWithImpl<$Res> extends _$PlayerDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_PlayerDto extends _PlayerDto {
   const _$_PlayerDto(
       {this.id,

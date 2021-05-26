@@ -116,9 +116,8 @@ class __$SetDtoCopyWithImpl<$Res> extends _$SetDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_SetDto extends _SetDto {
   const _$_SetDto({@JsonKey(ignore: true) this.id, required this.legs})
       : super._();

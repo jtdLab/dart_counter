@@ -1,8 +1,9 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LanguageItem extends StatelessWidget {
-  final String language;
+  final Locale language;
 
   const LanguageItem({Key? key, required this.language}) : super(key: key);
 
@@ -14,11 +15,11 @@ class LanguageItem extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              language.toUpperCase() == 'DEUTSCH' ? AppImages.de : AppImages.uk,
+              language == const Locale('de') ? AppImages.de : AppImages.uk,
             ),
             const Spacer(),
             Text(
-              language.toUpperCase(),
+              language.toString().toUpperCase(),
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
@@ -27,7 +28,9 @@ class LanguageItem extends StatelessWidget {
             ),
             const Spacer(),
             CupertinoButton(
-              onPressed: () {},
+              onPressed: () async {
+                await context.setLocale(language);
+              },
               padding: EdgeInsets.zero,
               child: Image.asset(AppImages.checkmark_new),
             ),

@@ -133,6 +133,7 @@ class __$ThrowCopyWithImpl<$Res> extends _$ThrowCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Throw implements _Throw {
   const _$_Throw(
       {required this.id,

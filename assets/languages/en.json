@@ -98,5 +98,9 @@
     "deletePhoto" : "Delete Photo",
     "takePhoto" : "Take Photo",
     "choosePhoto" : "Choose Photo",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+
+    "changeUsername": "Change Username",
+    "changePassword" : "Change Password",
+    "changeEmail" : "Change Email"
 }

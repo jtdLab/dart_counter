@@ -105,6 +105,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Profile implements _Profile {
   const _$_Profile({this.photoUrl, required this.username});
 

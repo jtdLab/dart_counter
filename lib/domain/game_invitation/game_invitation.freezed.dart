@@ -155,6 +155,7 @@ class __$GameInvitationCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GameInvitation implements _GameInvitation {
   const _$_GameInvitation(
       {required this.id,

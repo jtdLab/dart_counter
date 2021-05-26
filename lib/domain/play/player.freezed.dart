@@ -278,6 +278,7 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Player implements _Player {
   const _$_Player(
       {this.id,

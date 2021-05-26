@@ -186,6 +186,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Game implements _Game {
   const _$_Game(
       {required this.id,

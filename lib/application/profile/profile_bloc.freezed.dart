@@ -97,6 +97,7 @@ class __$WatchDataStartedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_WatchDataStarted implements _WatchDataStarted {
   const _$_WatchDataStarted();
 
@@ -195,6 +196,7 @@ class __$DataReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_DataReceived implements _DataReceived {
   const _$_DataReceived(this.failureOrUser);
 
@@ -407,6 +409,7 @@ class __$NoDataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_NoData implements _NoData {
   const _$_NoData();
 
@@ -587,6 +590,7 @@ class __$DataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Data implements _Data {
   const _$_Data(
       {required this.photoUrl,

@@ -152,9 +152,8 @@ class __$ThrowDtoCopyWithImpl<$Res> extends _$ThrowDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_ThrowDto extends _ThrowDto {
   const _$_ThrowDto(
       {@JsonKey(ignore: true) this.id,

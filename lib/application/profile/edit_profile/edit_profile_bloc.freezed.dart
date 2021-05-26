@@ -103,6 +103,7 @@ class __$DeletePressedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_DeletePressed implements _DeletePressed {
   const _$_DeletePressed();
 
@@ -192,6 +193,7 @@ class __$TakePressedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_TakePressed implements _TakePressed {
   const _$_TakePressed();
 
@@ -281,6 +283,7 @@ class __$ChoosePressedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_ChoosePressed implements _ChoosePressed {
   const _$_ChoosePressed();
 
@@ -430,6 +433,7 @@ class __$InitialCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -512,6 +516,7 @@ class __$ChangedCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Changed implements _Changed {
   const _$_Changed();
 

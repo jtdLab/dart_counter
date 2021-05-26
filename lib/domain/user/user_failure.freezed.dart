@@ -92,6 +92,7 @@ class __$FailureCopyWithImpl<$Res> extends _$UserFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure();
 
@@ -178,6 +179,7 @@ class __$InsufficientPermissionCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_InsufficientPermission implements _InsufficientPermission {
   const _$_InsufficientPermission();
 

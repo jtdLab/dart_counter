@@ -64,7 +64,7 @@ class ChangePasswordIdle extends StatelessWidget {
                           flex: 20,
                         ),
                         Text(
-                          'CHANGED PASSWORD',
+                          LocaleKeys.changePassword.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -75,7 +75,7 @@ class ChangePasswordIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.oldPassword.tr(),
+                          placeholder: LocaleKeys.oldPassword.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () => node.nextFocus(),
                           obscureText: true,

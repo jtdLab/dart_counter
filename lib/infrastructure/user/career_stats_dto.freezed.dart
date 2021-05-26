@@ -231,9 +231,8 @@ class __$CareerStatsDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_CareerStatsDto extends _CareerStatsDto {
   const _$_CareerStatsDto(
       {required this.average,

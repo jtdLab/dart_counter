@@ -97,6 +97,7 @@ class __$WatchDataStartedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_WatchDataStarted implements _WatchDataStarted {
   const _$_WatchDataStarted();
 
@@ -204,6 +205,7 @@ class __$SnapshotReceivedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_SnapshotReceived implements _SnapshotReceived {
   const _$_SnapshotReceived(this.game);
 
@@ -358,6 +360,7 @@ class __$InitialCopyWithImpl<$Res> extends _$CreateGameStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 

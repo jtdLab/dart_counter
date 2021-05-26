@@ -100,5 +100,8 @@ abstract class  LocaleKeys {
   static const takePhoto = 'takePhoto';
   static const choosePhoto = 'choosePhoto';
   static const signOut = 'signOut';
+  static const changeUsername = 'changeUsername';
+  static const changePassword = 'changePassword';
+  static const changeEmail = 'changeEmail';
 
 }

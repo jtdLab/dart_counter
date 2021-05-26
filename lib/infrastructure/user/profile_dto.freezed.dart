@@ -117,9 +117,8 @@ class __$ProfileDtoCopyWithImpl<$Res> extends _$ProfileDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_ProfileDto extends _ProfileDto {
   const _$_ProfileDto({required this.photoUrl, required this.username})
       : super._();

@@ -64,7 +64,7 @@ class ChangeUsernameIdle extends StatelessWidget {
                           flex: 20,
                         ),
                         Text(
-                          'CHANGE USERNAME',
+                          LocaleKeys.changeUsername.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -75,7 +75,7 @@ class ChangeUsernameIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.newUsernane.tr(),
+                          placeholder: LocaleKeys.newUsernane.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () => node.unfocus(),
                           onChanged: (newUsernameString) {},

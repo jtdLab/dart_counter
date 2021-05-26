@@ -199,9 +199,8 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_GameInvitationDto extends _GameInvitationDto {
   const _$_GameInvitationDto(
       {@JsonKey(ignore: true)

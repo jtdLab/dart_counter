@@ -20,13 +20,13 @@ class CodegenLoader extends AssetLoader{
   "signIn": "Einloggen",
   "forgotPassword": "Passwort vergessen?",
   "signUpNow": "Jetzt Registrieren",
-  "enterEmailToResetPassword": "Enter your email address to reset your password",
-  "confirm": "Confirm",
-  "emailSent": "Email sent!",
-  "checkoutMailAccountToResetPassword": "Checkout your mail account to reset your password",
+  "enterEmailToResetPassword": "Gib deine Email Addresse ein und setze dein Passwort zurück",
+  "confirm": "Bestätigen",
+  "emailSent": "Email gesendet!",
+  "checkoutMailAccountToResetPassword": "Überprüfe dein Postfach und setze dein Passwort zurück",
   "email": "E-Mail",
   "passwordAgain": "Passwort wiederholen",
-  "signUp": "Registriern",
+  "signUp": "Registrieren",
   "errorCancelledByUser": "Abbruch",
   "errorServer": "Server error",
   "errorEmailAlreadyInUse": "Email-Adresse vergeben",
@@ -87,7 +87,7 @@ class CodegenLoader extends AssetLoader{
   "gameMode": "Spielmodus",
   "startGame": "Spiel starten",
   "advancedSettings": "Erweiterte Einstellungen",
-  "speechInput": "Spracheingabw",
+  "speechInput": "Spracheingabe",
   "showAverrage": "Averrage anzeigen",
   "showCheckoutPercentage": "Doppelquote anzeigen",
   "removePlayer": "Spieler entfernen",
@@ -113,7 +113,10 @@ class CodegenLoader extends AssetLoader{
   "deletePhoto": "Foto löschen",
   "takePhoto": "Foto aufnehmen",
   "choosePhoto": "Foto auswählen",
-  "signOut": "Ausloggen"
+  "signOut": "Ausloggen",
+  "changeUsername": "Benutzername ändern",
+  "changePassword": "Passwort ändern",
+  "changeEmail": "E-Mail Addresse ändern"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -214,7 +217,10 @@ static const Map<String,dynamic> en = {
   "deletePhoto": "Delete Photo",
   "takePhoto": "Take Photo",
   "choosePhoto": "Choose Photo",
-  "signOut": "Sign out"
+  "signOut": "Sign out",
+  "changeUsername": "Change Username",
+  "changePassword": "Change Password",
+  "changeEmail": "Change Email"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

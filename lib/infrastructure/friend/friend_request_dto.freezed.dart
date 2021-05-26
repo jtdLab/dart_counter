@@ -184,9 +184,8 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_FriendRequestDto extends _FriendRequestDto {
   const _$_FriendRequestDto(
       {@JsonKey(ignore: true)

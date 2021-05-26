@@ -336,6 +336,7 @@ class __$StatsCopyWithImpl<$Res> extends _$StatsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Stats implements _Stats {
   const _$_Stats(
       {required this.average,

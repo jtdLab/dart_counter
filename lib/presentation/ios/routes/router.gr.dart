@@ -5,57 +5,81 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
+import 'package:flutter/material.dart' as _i2;
 
-import '../core/auth_widget.dart' as _i3;
-import '../create_game/create_game_page.dart' as _i11;
-import '../friends/friends_page.dart' as _i8;
-import '../game_history/game_history_page.dart' as _i6;
-import '../home/home_page.dart' as _i4;
-import '../in_game/in_game_page.dart' as _i12;
-import '../invitations/invitations_page.dart' as _i7;
-import '../profile/profile_page.dart' as _i5;
-import '../settings/settings_page.dart' as _i10;
-import '../social_media/social_media_page.dart' as _i9;
-import '../splash/splash_page.dart' as _i2;
+import '../core/auth_widget.dart' as _i4;
+import '../create_game/create_game_page.dart' as _i12;
+import '../friends/friends_page.dart' as _i9;
+import '../game_history/game_history_page.dart' as _i7;
+import '../home/home_page.dart' as _i5;
+import '../in_game/in_game_page.dart' as _i13;
+import '../invitations/invitations_page.dart' as _i8;
+import '../profile/profile_page.dart' as _i6;
+import '../settings/settings_page.dart' as _i11;
+import '../social_media/social_media_page.dart' as _i10;
+import '../splash/splash_page.dart' as _i3;
 
 class Router extends _i1.RootStackRouter {
-  Router();
+  Router([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SplashPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i2.SplashPage());
-    },
-    AuthWidgetRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i3.AuthWidget());
-    },
-    HomePageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i4.HomePage());
-    },
-    ProfilePageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i5.ProfilePage());
-    },
-    GameHistoryPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i6.GameHistoryPage());
-    },
-    InvitationsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i7.InvitationsPage());
-    },
-    FriendsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i8.FriendsPage());
-    },
-    SocialMediaPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i9.SocialMediaPage());
-    },
-    SettingsPageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i10.SettingsPage());
-    },
-    CreateGamePageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i11.CreateGamePage());
-    },
-    InGamePageRoute.name: (entry) {
-      return _i1.CupertinoPageX(entry: entry, child: _i12.InGamePage());
-    }
+    SplashPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i3.SplashPage();
+        }),
+    AuthWidgetRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.AuthWidget();
+        }),
+    HomePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.HomePage();
+        }),
+    ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.ProfilePage();
+        }),
+    GameHistoryPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.GameHistoryPage();
+        }),
+    InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i8.InvitationsPage();
+        }),
+    FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i9.FriendsPage();
+        }),
+    SocialMediaPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i10.SocialMediaPage();
+        }),
+    SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i11.SettingsPage();
+        }),
+    CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i12.CreateGamePage();
+        }),
+    InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i13.InGamePage();
+        })
   };
 
   @override

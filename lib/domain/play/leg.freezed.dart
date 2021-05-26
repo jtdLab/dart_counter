@@ -105,6 +105,7 @@ class __$LegCopyWithImpl<$Res> extends _$LegCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Leg implements _Leg {
   const _$_Leg({required this.id, required this.throws});
 

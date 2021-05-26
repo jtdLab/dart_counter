@@ -221,6 +221,7 @@ class __$CareerStatsCopyWithImpl<$Res> extends _$CareerStatsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_CareerStats implements _CareerStats {
   const _$_CareerStats(
       {required this.average,

@@ -345,9 +345,8 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_StatsDto extends _StatsDto {
   const _$_StatsDto(
       {required this.average,

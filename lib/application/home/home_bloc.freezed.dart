@@ -132,6 +132,7 @@ class __$WatchDataStartedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_WatchDataStarted implements _WatchDataStarted {
   const _$_WatchDataStarted();
 
@@ -254,6 +255,7 @@ class __$InvitationsReceivedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_InvitationsReceived implements _InvitationsReceived {
   const _$_InvitationsReceived(this.failureOrInvitations);
 
@@ -399,6 +401,7 @@ class __$FriendRequestsReceivedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FriendRequestsReceived implements _FriendRequestsReceived {
   const _$_FriendRequestsReceived(this.failureOrFriendRequests);
 
@@ -542,6 +545,7 @@ class __$UserReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_UserReceived implements _UserReceived {
   const _$_UserReceived(this.failureOrUser);
 
@@ -811,6 +815,7 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {required this.loading,

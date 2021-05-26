@@ -116,9 +116,8 @@ class __$LegDtoCopyWithImpl<$Res> extends _$LegDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_LegDto extends _LegDto {
   const _$_LegDto({@JsonKey(ignore: true) this.id, required this.throws})
       : super._();
