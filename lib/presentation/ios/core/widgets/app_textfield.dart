@@ -44,24 +44,34 @@ class _AppTextFieldState extends State<AppTextField> {
         fit: StackFit.expand,
         children: [
           CupertinoTextField(
+            textAlign: TextAlign.center,
+            textAlignVertical: TextAlignVertical.center,
             autofocus: widget.autoFocus,
             autocorrect: widget.autoCorrect,
-            placeholder: widget.placeholder,
+            placeholder: widget.placeholder.toUpperCase(),
             obscureText: widget.obscureText,
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
             onEditingComplete: widget.onEditingComplete,
             onChanged: widget.onChanged,
-            decoration: BoxDecoration(
+            style: const TextStyle(
+              color: AppColors.black,
+              fontWeight: FontWeight.w800,
+            ),
+            placeholderStyle: const TextStyle(
               color: AppColors.gray,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(8.0),
-              ),
+              fontWeight: FontWeight.w800,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.white,
               border: widget.valid ?? true
-                  ? null
+                  ? Border.all(
+                      color: AppColors.black,
+                      width: 4,
+                    )
                   : Border.all(
                       color: AppColors.red,
-                      width: 1,
+                      width: 4,
                     ),
             ),
           ),
@@ -72,7 +82,7 @@ class _AppTextFieldState extends State<AppTextField> {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 8.0, 0),
                 child: Icon(
-                  CupertinoIcons.xmark_circle,
+                  CupertinoIcons.xmark,
                   color: AppColors.red,
                   size: 25,
                 ),

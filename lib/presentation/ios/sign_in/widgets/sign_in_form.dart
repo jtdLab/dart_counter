@@ -84,7 +84,7 @@ class SignInForm extends StatelessWidget {
                                 ),
                               ),
                               const Spacer(
-                                flex: 44,
+                                flex: 84,
                               ),
                               AppTextField(
                                 placeholder: LocaleKeys.email.tr(),
@@ -128,69 +128,57 @@ class SignInForm extends StatelessWidget {
                                           const SignInFormEvent.signInPressed(),
                                         ),
                               ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(6.0, 0, 0, 0),
-                                  child: Builder(
-                                    builder: (context) => LinkButton(
-                                        text: LocaleKeys.forgotPassword.tr()),
+                              Row(
+                                children: [
+                                  LinkButton(
+                                      text: LocaleKeys.forgotPassword.tr()),
+                                  Spacer(),
+                                  LinkButton(
+                                    text: LocaleKeys.signUpNow.tr(),
+                                    onPressed: () {
+                                      pageController.animateToPage(1,
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.easeIn);
+                                    },
                                   ),
-                                ),
+                                ],
                               ),
                               const Spacer(
-                                flex: 20,
+                                flex: 60,
                               ),
-                              Column(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SignInButton(
-                                        Buttons.Google,
-                                        onPressed: () =>
-                                            context.read<SignInFormBloc>().add(
-                                                  const SignInFormEvent
-                                                      .signInWithGooglePressed(),
-                                                ),
-                                      ),
-                                      SignInButton(
-                                        Buttons.Apple,
-                                        mini: true,
-                                        onPressed: () =>
-                                            context.read<SignInFormBloc>().add(
-                                                  const SignInFormEvent
-                                                      .signInWithApplePressed(),
-                                                ),
-                                      ),
-                                    ],
+                                  CupertinoButton(
+                                    onPressed: () =>
+                                        context.read<SignInFormBloc>().add(
+                                              const SignInFormEvent
+                                                  .signInWithGooglePressed(),
+                                            ),
+                                    child: Image.asset(AppImages.fb_new),
                                   ),
-                                  SignInButton(
-                                    Buttons.FacebookNew,
+                                  CupertinoButton(
+                                    onPressed: () =>
+                                        context.read<SignInFormBloc>().add(
+                                              const SignInFormEvent
+                                                  .signInWithApplePressed(),
+                                            ),
+                                    child: Image.asset(AppImages.ig_new),
+                                  ),
+                                  CupertinoButton(
                                     onPressed: () =>
                                         context.read<SignInFormBloc>().add(
                                               const SignInFormEvent
                                                   .signInWithFacebookPressed(),
                                             ),
+                                    child: Image.asset(AppImages.google_new),
                                   ),
                                 ],
                               ),
                               const Spacer(
-                                flex: 10,
-                              ),
-                              LinkButton(
-                                text: LocaleKeys.signUpNow.tr(),
-                                onPressed: () {
-                                  pageController.animateToPage(1,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.easeIn);
-                                },
-                              ),
-                              const Spacer(
-                                flex: 10,
+                                flex: 30,
                               ),
                             ],
                           ),

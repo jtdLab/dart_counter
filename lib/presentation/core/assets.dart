@@ -2,11 +2,15 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
+  static const fb_new = 'assets/images/png/fb_new.png';
+  static const ig_new = 'assets/images/png/ig_new.png';
+  static const google_new = 'assets/images/png/google_new.png';
+
   static const logo = 'assets/images/png/logo.png';
   static const adBanner = 'assets/images/png/adBanner.png';
   static const facebook = 'assets/images/png/facebook.png';
   static const instagram = 'assets/images/png/instagram.png';
-   static const youtube = 'assets/images/png/youtube.png';
+  static const youtube = 'assets/images/png/youtube.png';
   static const google = 'assets/images/png/google.png';
   static const target = 'assets/images/png/target.png';
   static const win = 'assets/images/png/win.png';

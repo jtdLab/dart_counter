@@ -14,9 +14,13 @@ class LinkButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: AutoSizeText(
-        text,
+        text.toUpperCase(),
+      maxFontSize: 14,
         maxLines: 1,
-        style: const TextStyle(color: AppColors.blue),
+        style: const TextStyle(
+          color: AppColors.red,
+          fontWeight: FontWeight.w800,
+        ),
       ),
     );
   }
