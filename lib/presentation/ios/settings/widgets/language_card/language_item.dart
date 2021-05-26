@@ -9,7 +9,11 @@ class LanguageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () async {
+        await context.setLocale(language);
+      },
       child: Container(
         height: 100,
         child: Row(
@@ -27,11 +31,11 @@ class LanguageItem extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            CupertinoButton(
-              onPressed: () async {
-                await context.setLocale(language);
-              },
-              padding: EdgeInsets.zero,
+            Visibility(
+              visible: context.locale == language,
+              maintainState: true,
+              maintainSize: true,
+              maintainAnimation: true,
               child: Image.asset(AppImages.checkmark_new),
             ),
           ],
