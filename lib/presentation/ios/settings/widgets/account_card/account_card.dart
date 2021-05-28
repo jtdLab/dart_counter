@@ -44,7 +44,8 @@ class AccountCard extends StatelessWidget {
               child: AccountItem(
                 title: LocaleKeys.username.tr(),
                 onPressed: () {
-                  showCupertinoModalBottomSheet(
+                  showBarModalBottomSheet(
+                    expand: true,
                     context: context,
                     builder: (context) => ChangeUsernameModal(),
                   );
@@ -57,6 +58,7 @@ class AccountCard extends StatelessWidget {
                 title: LocaleKeys.password.tr(),
                 onPressed: () {
                   showCupertinoModalBottomSheet(
+                    expand: true,
                     context: context,
                     builder: (context) => ChangePasswordModal(),
                   );

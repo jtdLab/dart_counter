@@ -3,6 +3,7 @@ import 'package:dart_counter/presentation/ios/core/auth_widget.dart';
 import 'package:dart_counter/presentation/ios/create_game/create_game_page.dart';
 import 'package:dart_counter/presentation/ios/friends/friends_page.dart';
 import 'package:dart_counter/presentation/ios/game_history/game_history_page.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/game_history_details_page.dart';
 import 'package:dart_counter/presentation/ios/home/home_page.dart';
 import 'package:dart_counter/presentation/ios/in_game/in_game_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
@@ -28,6 +29,9 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     AutoRoute(
       page: GameHistoryPage,
+    ),
+    AutoRoute(
+      page: GameHistoryDetailsPage,
     ),
     AutoRoute(
       page: InvitationsPage,

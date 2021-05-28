@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_b
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ChangeUsernameModal extends StatelessWidget {
   @override
@@ -34,7 +35,10 @@ class ChangeUsernameIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                        normal: 24,
+                        large: 32,
+                        extraLarge: 64,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -44,7 +48,10 @@ class ChangeUsernameIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 75, large: 125, extraLarge: 200),
+                              normal: 75,
+                              large: 125,
+                              extraLarge: 200,
+                            ),
                           ),
                         ),
                         Image.asset(
@@ -52,12 +59,18 @@ class ChangeUsernameIdle extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                              normal: 125,
+                              large: 175,
+                              extraLarge: 250,
+                            ),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                              normal: 125,
+                              large: 175,
+                              extraLarge: 250,
+                            ),
                           ),
                         ),
                         const Spacer(
@@ -75,7 +88,8 @@ class ChangeUsernameIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.newUsernane.tr().toUpperCase(),
+                          placeholder:
+                              LocaleKeys.newUsernane.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () => node.unfocus(),
                           onChanged: (newUsernameString) {},
@@ -84,7 +98,10 @@ class ChangeUsernameIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 12, large: 16, extraLarge: 20),
+                              normal: 12,
+                              large: 16,
+                              extraLarge: 20,
+                            ),
                           ),
                         ),
                         PrimaryButton(
@@ -101,7 +118,10 @@ class ChangeUsernameIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                        normal: 24,
+                        large: 32,
+                        extraLarge: 64,
+                      ),
                     ),
                   ),
                 ],

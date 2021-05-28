@@ -5,18 +5,21 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
+import 'package:flutter/cupertino.dart' as _i15;
 import 'package:flutter/material.dart' as _i2;
 
+import '../../../domain/play/game.dart' as _i16;
 import '../core/auth_widget.dart' as _i4;
-import '../create_game/create_game_page.dart' as _i12;
-import '../friends/friends_page.dart' as _i9;
+import '../create_game/create_game_page.dart' as _i13;
+import '../friends/friends_page.dart' as _i10;
 import '../game_history/game_history_page.dart' as _i7;
+import '../game_history_details/game_history_details_page.dart' as _i8;
 import '../home/home_page.dart' as _i5;
-import '../in_game/in_game_page.dart' as _i13;
-import '../invitations/invitations_page.dart' as _i8;
+import '../in_game/in_game_page.dart' as _i14;
+import '../invitations/invitations_page.dart' as _i9;
 import '../profile/profile_page.dart' as _i6;
-import '../settings/settings_page.dart' as _i11;
-import '../social_media/social_media_page.dart' as _i10;
+import '../settings/settings_page.dart' as _i12;
+import '../social_media/social_media_page.dart' as _i11;
 import '../splash/splash_page.dart' as _i3;
 
 class Router extends _i1.RootStackRouter {
@@ -50,35 +53,42 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return _i7.GameHistoryPage();
         }),
+    GameHistoryDetailsPageRoute.name: (routeData) =>
+        _i1.CupertinoPageX<dynamic>(
+            routeData: routeData,
+            builder: (data) {
+              final args = data.argsAs<GameHistoryDetailsPageRouteArgs>();
+              return _i8.GameHistoryDetailsPage(key: args.key, game: args.game);
+            }),
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.InvitationsPage();
+          return _i9.InvitationsPage();
         }),
     FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.FriendsPage();
+          return _i10.FriendsPage();
         }),
     SocialMediaPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i10.SocialMediaPage();
+          return _i11.SocialMediaPage();
         }),
     SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i11.SettingsPage();
+          return _i12.SettingsPage();
         }),
     CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i12.CreateGamePage();
+          return _i13.CreateGamePage();
         }),
     InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i13.InGamePage();
+          return _i14.InGamePage();
         })
   };
 
@@ -89,6 +99,8 @@ class Router extends _i1.RootStackRouter {
         _i1.RouteConfig(HomePageRoute.name, path: '/home-page'),
         _i1.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
         _i1.RouteConfig(GameHistoryPageRoute.name, path: '/game-history-page'),
+        _i1.RouteConfig(GameHistoryDetailsPageRoute.name,
+            path: '/game-history-details-page'),
         _i1.RouteConfig(InvitationsPageRoute.name, path: '/invitations-page'),
         _i1.RouteConfig(FriendsPageRoute.name, path: '/friends-page'),
         _i1.RouteConfig(SocialMediaPageRoute.name, path: '/social-media-page'),
@@ -126,6 +138,24 @@ class GameHistoryPageRoute extends _i1.PageRouteInfo {
   const GameHistoryPageRoute() : super(name, path: '/game-history-page');
 
   static const String name = 'GameHistoryPageRoute';
+}
+
+class GameHistoryDetailsPageRoute
+    extends _i1.PageRouteInfo<GameHistoryDetailsPageRouteArgs> {
+  GameHistoryDetailsPageRoute({_i15.Key? key, required _i16.Game game})
+      : super(name,
+            path: '/game-history-details-page',
+            args: GameHistoryDetailsPageRouteArgs(key: key, game: game));
+
+  static const String name = 'GameHistoryDetailsPageRoute';
+}
+
+class GameHistoryDetailsPageRouteArgs {
+  const GameHistoryDetailsPageRouteArgs({this.key, required this.game});
+
+  final _i15.Key? key;
+
+  final _i16.Game game;
 }
 
 class InvitationsPageRoute extends _i1.PageRouteInfo {

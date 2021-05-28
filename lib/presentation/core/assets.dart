@@ -2,6 +2,22 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
+  static const accept_new = 'assets/images/png/accept_new.png';
+  static const add_new = 'assets/images/png/add_new.png';
+  static const chevron_forward_new = 'assets/images/png/chevron_forward_new.png';
+  static const chevron_yellow_back_new = 'assets/images/png/chevron_yellow_back_new.png';
+  static const chevron_yellow_forward_new = 'assets/images/png/chevron_yellow_forward_new.png';
+  static const clock_new = 'assets/images/png/clock_new.png';
+  static const decline_new = 'assets/images/png/decline_new.png';
+  static const message_new = 'assets/images/png/message_new.png';
+  static const photo_placeholder_new = 'assets/images/png/photo_placeholder_new.png';
+  static const player_new = 'assets/images/png/player_new.png';
+  static const star_new = 'assets/images/png/star_new.png';
+  static const stats_new = 'assets/images/png/stats_new.png';
+  static const target_new = 'assets/images/png/target_new.png';
+  static const trend_down_new = 'assets/images/png/trend_down_new.png';
+  static const trend_up_new = 'assets/images/png/trend_up_new.png';
+
   static const fb_new = 'assets/images/png/fb_new.png';
   static const ig_new = 'assets/images/png/ig_new.png';
   static const google_new = 'assets/images/png/google_new.png';
