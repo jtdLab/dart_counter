@@ -3,7 +3,7 @@ import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up_form/sign_up_form_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
@@ -56,7 +56,10 @@ class SignUpForm extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 24, large: 32, extraLarge: 64),
+                                small: 16,
+                                normal: 24,
+                                large: 32,
+                                extraLarge: 64),
                           ),
                         ),
                         Expanded(
@@ -66,7 +69,10 @@ class SignUpForm extends StatelessWidget {
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 75, large: 125, extraLarge: 200),
+                                      small: 60,
+                                      normal: 75,
+                                      large: 125,
+                                      extraLarge: 200),
                                 ),
                               ),
                               Image.asset(
@@ -74,12 +80,18 @@ class SignUpForm extends StatelessWidget {
                                 width: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 125, large: 175, extraLarge: 250),
+                                      small: 100,
+                                      normal: 125,
+                                      large: 175,
+                                      extraLarge: 250),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 125, large: 175, extraLarge: 250),
+                                      small: 100,
+                                      normal: 125,
+                                      large: 175,
+                                      extraLarge: 250),
                                 ),
                               ),
                               const Spacer(
@@ -106,7 +118,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                 ),
                               ] else ...[
@@ -114,7 +129,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
@@ -154,7 +172,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                 ),
                               ] else ...[
@@ -162,7 +183,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
@@ -202,7 +226,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                 ),
                               ] else ...[
@@ -210,7 +237,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
@@ -253,7 +283,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                 ),
                               ] else ...[
@@ -261,7 +294,10 @@ class SignUpForm extends StatelessWidget {
                                   height: responsiveDouble(
                                     context: context,
                                     mobile: ResponsiveDouble(
-                                        normal: 12, large: 16, extraLarge: 20),
+                                        small: 10,
+                                        normal: 12,
+                                        large: 16,
+                                        extraLarge: 20),
                                   ),
                                   child: Align(
                                     alignment: Alignment.centerRight,
@@ -280,7 +316,7 @@ class SignUpForm extends StatelessWidget {
                                   ),
                                 ),
                               ],
-                              PrimaryButton(
+                              AppPrimaryButton(
                                 text: LocaleKeys.signUp.tr(),
                                 onPressed: () => context
                                     .read<SignUpFormBloc>()
@@ -290,10 +326,13 @@ class SignUpForm extends StatelessWidget {
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 16, large: 20, extraLarge: 24),
+                                      small: 10,
+                                      normal: 16,
+                                      large: 20,
+                                      extraLarge: 24),
                                 ),
                               ),
-                              LinkButton(
+                              AppLinkButton(
                                 text: LocaleKeys.signIn.tr(),
                                 onPressed: () {
                                   pageController.animateToPage(0,
@@ -312,7 +351,10 @@ class SignUpForm extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 24, large: 32, extraLarge: 64),
+                                small: 16,
+                                normal: 24,
+                                large: 32,
+                                extraLarge: 64),
                           ),
                         ),
                       ],

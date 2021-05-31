@@ -17,6 +17,8 @@ abstract class AppImages {
   static const target_new = 'assets/images/png/target_new.png';
   static const trend_down_new = 'assets/images/png/trend_down_new.png';
   static const trend_up_new = 'assets/images/png/trend_up_new.png';
+  static const check_mark_quad_new = 'assets/images/png/check_mark_quad_new.png';
+  static const unchecked_new = 'assets/images/png/unchecked_new.png';
 
   static const fb_new = 'assets/images/png/fb_new.png';
   static const ig_new = 'assets/images/png/ig_new.png';

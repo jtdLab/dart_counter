@@ -3,11 +3,16 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
-class ActionButton extends StatelessWidget {
+class AppActionButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  const ActionButton({
+  const AppActionButton.small({
+    required this.text,
+    this.onPressed,
+  });
+
+  const AppActionButton.large({
     required this.text,
     this.onPressed,
   });
@@ -17,7 +22,12 @@ class ActionButton extends StatelessWidget {
     return SizedBox(
       height: responsiveDouble(
         context: context,
-        mobile: ResponsiveDouble(normal: 60, large: 75, extraLarge: 90),
+        mobile: const ResponsiveDouble(
+          small: 50,
+          normal: 60,
+          large: 75,
+          extraLarge: 90,
+        ),
       ), //
       child: CupertinoButton(
         padding: const EdgeInsets.all(16),

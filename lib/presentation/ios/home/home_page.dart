@@ -44,7 +44,11 @@ class HomePage extends StatelessWidget {
                         height: responsiveDouble(
                           context: context,
                           mobile: ResponsiveDouble(
-                              normal: 2, large: 4, extraLarge: 6),
+                            small: 1,
+                            normal: 2,
+                            large: 4,
+                            extraLarge: 6,
+                          ),
                         ),
                       ),
                       OfflineButton(),
@@ -52,7 +56,11 @@ class HomePage extends StatelessWidget {
                         height: responsiveDouble(
                           context: context,
                           mobile: ResponsiveDouble(
-                              normal: 2, large: 4, extraLarge: 6),
+                            small: 1,
+                            normal: 2,
+                            large: 4,
+                            extraLarge: 6,
+                          ),
                         ),
                       ),
                       OnlineButton(),
@@ -60,7 +68,11 @@ class HomePage extends StatelessWidget {
                         height: responsiveDouble(
                           context: context,
                           mobile: ResponsiveDouble(
-                              normal: 2, large: 4, extraLarge: 6),
+                            small: 1,
+                            normal: 2,
+                            large: 4,
+                            extraLarge: 6,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -73,7 +85,11 @@ class HomePage extends StatelessWidget {
                               width: responsiveDouble(
                                 context: context,
                                 mobile: ResponsiveDouble(
-                                    normal: 2, large: 4, extraLarge: 6),
+                                  small: 1,
+                                  normal: 2,
+                                  large: 4,
+                                  extraLarge: 6,
+                                ),
                               ),
                             ),
                             FriendsButton(
@@ -86,7 +102,11 @@ class HomePage extends StatelessWidget {
                         height: responsiveDouble(
                           context: context,
                           mobile: ResponsiveDouble(
-                              normal: 2, large: 4, extraLarge: 6),
+                            small: 1,
+                            normal: 2,
+                            large: 4,
+                            extraLarge: 6,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -97,7 +117,11 @@ class HomePage extends StatelessWidget {
                               width: responsiveDouble(
                                 context: context,
                                 mobile: ResponsiveDouble(
-                                    normal: 2, large: 4, extraLarge: 6),
+                                  small: 1,
+                                  normal: 2,
+                                  large: 4,
+                                  extraLarge: 6,
+                                ),
                               ),
                             ),
                             const SettingsButton(),

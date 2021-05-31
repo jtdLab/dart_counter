@@ -35,7 +35,7 @@ class GameHistoryDetailsPage extends StatelessWidget {
                     flex: 2,
                   ),
                   Text(
-                    'BEST OF 8 SETS',//'${game.mode} ${game.size} ${game.type}',
+                    'BEST OF 8 SETS', //'${game.mode} ${game.size} ${game.type}',
                     style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 14,
@@ -50,15 +50,25 @@ class GameHistoryDetailsPage extends StatelessWidget {
               SizedBox(
                 height: responsiveDouble(
                   context: context,
-                  mobile:
-                      ResponsiveDouble(normal: 40, large: 50, extraLarge: 60),
+                  mobile: ResponsiveDouble(
+                    small: 30,
+                    normal: 40,
+                    large: 50,
+                    extraLarge: 60,
+                  ),
                 ),
               ),
-              GameHistoryDetailsCard(title: LocaleKeys.category.tr().toUpperCase(),),
+              GameHistoryDetailsCard(
+                title: LocaleKeys.category.tr().toUpperCase(),
+              ),
               const Spacer(),
-              GameHistoryDetailsCard(title: LocaleKeys.averrage.tr().toUpperCase(),),
+              GameHistoryDetailsCard(
+                title: LocaleKeys.averrage.tr().toUpperCase(),
+              ),
               const Spacer(),
-              GameHistoryDetailsCard(title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),),
+              GameHistoryDetailsCard(
+                title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+              ),
               const Spacer(),
               GameHistoryDetailsCard(title: 'Aufnahmen - TODO'.toUpperCase()),
               const Spacer(),

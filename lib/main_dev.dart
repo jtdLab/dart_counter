@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import 'domain/auth/i_auth_facade.dart';
 import 'generated/codegen_loader.g.dart';
@@ -19,6 +20,10 @@ import 'presentation/core/app_widget.dart';
 
 bool x = true;
 Future<void> main() async {
+  ResponsiveSizingConfig.instance.setCustomBreakpoints(
+    null,
+    customRefinedBreakpoints: const RefinedBreakpoints(mobileNormal: 360),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   configureInjection(Environment.dev);

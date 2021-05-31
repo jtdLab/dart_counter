@@ -3,13 +3,15 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
-class PrimaryButton extends StatelessWidget {
+class AppPrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
+  final Color color;
 
-  const PrimaryButton({
+  const AppPrimaryButton({
     required this.text,
     this.onPressed,
+    this.color = AppColors.black
   });
 
   @override
@@ -17,10 +19,10 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: responsiveDouble(
         context: context,
-        mobile: ResponsiveDouble(normal: 60, large: 60, extraLarge: 70),
+        mobile: const ResponsiveDouble(small: 50, normal: 55, large: 60, extraLarge: 70),
       ), //
       child: CupertinoButton(
-        color: AppColors.black,
+        color: color,
         padding: const EdgeInsets.all(8.0),
         onPressed: onPressed,
         borderRadius: const BorderRadius.all(

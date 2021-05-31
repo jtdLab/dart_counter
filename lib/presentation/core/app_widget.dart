@@ -13,21 +13,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-        Locale('de'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+        ),
       ],
-      fallbackLocale: const Locale('en'),
-      path: 'assets/languages',
-      assetLoader: const CodegenLoader(),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) =>
-                getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-          ),
+      child: EasyLocalization(
+        supportedLocales: const [
+          Locale('en'),
+          Locale('de'),
         ],
+        fallbackLocale: const Locale('en'),
+        path: 'assets/languages',
+        assetLoader: const CodegenLoader(),
         child: Builder(
           builder: (context) {
             return PlatformWidget(

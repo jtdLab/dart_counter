@@ -36,10 +36,7 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.responsiveDouble(
-        context: context,
-        mobile: ResponsiveDouble(normal: 50, large: 50, extraLarge: 60),
-      ), // TODO screnn asdofhsdfongd
+      height: widget.size40(context),
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -66,7 +63,6 @@ class _AppTextFieldState extends State<AppTextField> {
               color: AppColors.white,
               border: widget.valid ?? true
                   ? Border.all(
-                      color: AppColors.black,
                       width: 4,
                     )
                   : Border.all(

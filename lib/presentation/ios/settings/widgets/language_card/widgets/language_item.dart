@@ -1,6 +1,8 @@
 import 'package:dart_counter/presentation/core/assets.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class LanguageItem extends StatelessWidget {
   final Locale language;
@@ -9,47 +11,51 @@ class LanguageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
-      padding: EdgeInsets.zero,
-      onPressed: () async {
-        await context.setLocale(language);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.black,
-            width: 4,
+    return AppCardItem.small(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _flagDisplayer(context),
+          Text(
+            language.toLanguageTag().toUpperCase(),
           ),
-        ),
-        height: 94,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            children: [
-              Image.asset(
-                language == const Locale('de') ? AppImages.de : AppImages.uk,
-              ),
-              const Spacer(),
-              Text(
-                language.toString().toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.black,
-                ),
-              ),
-              const Spacer(),
-              Visibility(
-                visible: context.locale == language,
-                maintainState: true,
-                maintainSize: true,
-                maintainAnimation: true,
-                child: Image.asset(AppImages.checkmark_new),
-              ),
-            ],
-          ),
-        ),
+          _checkBox(context),
+        ],
       ),
     );
+  }
+
+  Widget _flagDisplayer(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Image.asset(
+        language == const Locale('de') ? AppImages.de : AppImages.uk,
+      ),
+    );
+  }
+
+  Widget _checkBox(BuildContext context) {
+    if (context.locale == language) {
+      return Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Image.asset(
+          AppImages.check_mark_quad_new,
+        ),
+      );
+    } else {
+      return Padding(
+        padding: EdgeInsets.all(5.0),
+        child: CupertinoButton(
+          minSize: 0,
+          padding: EdgeInsets.zero,
+          onPressed: () async {
+            await context.setLocale(language);
+          },
+          child: Image.asset(
+            AppImages.unchecked_new,
+          ),
+        ),
+      );
+    }
   }
 }

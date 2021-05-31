@@ -2,7 +2,7 @@ import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
@@ -13,8 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SignInForm extends StatelessWidget {
@@ -59,7 +57,10 @@ class SignInForm extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 24, large: 32, extraLarge: 64),
+                                small: 20,
+                                normal: 24,
+                                large: 32,
+                                extraLarge: 64),
                           ),
                         ),
                         Expanded(
@@ -69,7 +70,10 @@ class SignInForm extends StatelessWidget {
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 75, large: 125, extraLarge: 200),
+                                      small: 50,
+                                      normal: 75,
+                                      large: 125,
+                                      extraLarge: 200),
                                 ),
                               ),
                               Image.asset(
@@ -77,12 +81,20 @@ class SignInForm extends StatelessWidget {
                                 width: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 125, large: 175, extraLarge: 250),
+                                    small: 100,
+                                    normal: 125,
+                                    large: 175,
+                                    extraLarge: 250,
+                                  ),
                                 ),
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 125, large: 175, extraLarge: 250),
+                                    small: 100,
+                                    normal: 125,
+                                    large: 175,
+                                    extraLarge: 250,
+                                  ),
                                 ),
                               ),
                               const Spacer(
@@ -102,7 +114,10 @@ class SignInForm extends StatelessWidget {
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 12, large: 16, extraLarge: 20),
+                                      small: 8,
+                                      normal: 12,
+                                      large: 16,
+                                      extraLarge: 20),
                                 ),
                               ),
                               AppTextField(
@@ -120,10 +135,13 @@ class SignInForm extends StatelessWidget {
                                 height: responsiveDouble(
                                   context: context,
                                   mobile: ResponsiveDouble(
-                                      normal: 16, large: 20, extraLarge: 24),
+                                      small: 10,
+                                      normal: 16,
+                                      large: 20,
+                                      extraLarge: 24),
                                 ),
                               ),
-                              PrimaryButton(
+                              AppPrimaryButton(
                                 text: LocaleKeys.signIn.tr(),
                                 onPressed: () =>
                                     context.read<SignInFormBloc>().add(
@@ -132,17 +150,18 @@ class SignInForm extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  LinkButton(
+                                  AppLinkButton(
                                     text: LocaleKeys.forgotPassword.tr(),
                                     onPressed: () {
                                       showCupertinoModalBottomSheet(
                                         context: context,
-                                        builder: (context) => ForgotPasswordModal(),
+                                        builder: (context) =>
+                                            ForgotPasswordModal(),
                                       );
                                     },
                                   ),
                                   const Spacer(),
-                                  LinkButton(
+                                  AppLinkButton(
                                     text: LocaleKeys.signUpNow.tr(),
                                     onPressed: () {
                                       pageController.animateToPage(1,
@@ -196,7 +215,10 @@ class SignInForm extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 24, large: 32, extraLarge: 64),
+                                small: 16,
+                                normal: 24,
+                                large: 32,
+                                extraLarge: 64),
                           ),
                         ),
                       ],

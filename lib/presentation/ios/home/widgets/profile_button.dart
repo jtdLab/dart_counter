@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/circle_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/home_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
@@ -38,7 +38,7 @@ class ProfileButton extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Center(
-                child: CircleImage(
+                child: RoundedImage.normal(
                   child: photoUrl != null
                       ? CachedNetworkImage(imageUrl: photoUrl!)
                       : Image.asset(AppImages.photoPlaceholder),

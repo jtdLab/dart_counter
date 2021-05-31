@@ -1,6 +1,6 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_textfield.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
@@ -34,7 +34,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                   Expanded(
@@ -44,7 +44,10 @@ class ForgotPasswordIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 75, large: 125, extraLarge: 200),
+                                small: 50,
+                                normal: 75,
+                                large: 125,
+                                extraLarge: 200),
                           ),
                         ),
                         Image.asset(
@@ -52,12 +55,18 @@ class ForgotPasswordIdle extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                                small: 50,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                                small: 75,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                         ),
                         const Spacer(
@@ -84,10 +93,13 @@ class ForgotPasswordIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 12, large: 16, extraLarge: 20),
+                                small: 8,
+                                normal: 12,
+                                large: 16,
+                                extraLarge: 20),
                           ),
                         ),
-                        PrimaryButton(
+                        AppPrimaryButton(
                           text: LocaleKeys.confirm.tr(),
                           onPressed: () {},
                         ),
@@ -101,7 +113,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                 ],
@@ -134,7 +146,7 @@ class ForgotPasswordSuccess extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                   Expanded(
@@ -144,7 +156,10 @@ class ForgotPasswordSuccess extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 75, large: 125, extraLarge: 200),
+                                small: 50,
+                                normal: 75,
+                                large: 125,
+                                extraLarge: 200),
                           ),
                         ),
                         Image.asset(
@@ -152,12 +167,18 @@ class ForgotPasswordSuccess extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                normal: 125, large: 175, extraLarge: 250),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                         ),
                         const Spacer(
@@ -174,7 +195,7 @@ class ForgotPasswordSuccess extends StatelessWidget {
                         const Spacer(
                           flex: 40,
                         ),
-                        PrimaryButton(
+                        AppPrimaryButton(
                           text: LocaleKeys.signIn.tr(),
                           onPressed: () {},
                         ),
@@ -188,7 +209,7 @@ class ForgotPasswordSuccess extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                 ],

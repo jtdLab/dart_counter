@@ -15,7 +15,12 @@ class SocialMediaButton extends StatelessWidget {
     return SizedBox(
       height: responsiveDouble(
         context: context,
-        mobile: ResponsiveDouble(normal: 40, large: 50, extraLarge: 60),
+        mobile: ResponsiveDouble(
+          small: 30,
+          normal: 40,
+          large: 50,
+          extraLarge: 60,
+        ),
       ), //
       child: CupertinoButton(
         padding: EdgeInsets.zero,

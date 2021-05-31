@@ -20,3 +20,4 @@ flutter pub run easy_localization:generate -S assets/languages -f keys -o locale
 flutter pub run build_runner watch --delete-conflicting-outputs
 
 flutter pub run easy_localization:generate -S assets/languages  
+

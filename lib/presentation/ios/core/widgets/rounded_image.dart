@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-class CircleImage extends StatelessWidget {
+class RoundedImage extends StatelessWidget {
   final Widget child;
 
-  const CircleImage({required this.child});
+  const RoundedImage.small({required this.child});
+  const RoundedImage.normal({required this.child});
+  const RoundedImage.large({required this.child});
+  const RoundedImage.extraLarge({required this.child});
 
   @override
   Widget build(BuildContext context) {

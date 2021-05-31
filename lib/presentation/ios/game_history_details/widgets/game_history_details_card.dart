@@ -26,7 +26,12 @@ class GameHistoryDetailsCard extends StatelessWidget {
           SizedBox(
             height: responsiveDouble(
               context: context,
-              mobile: ResponsiveDouble(normal: 50, large: 50, extraLarge: 60),
+              mobile: ResponsiveDouble(
+                small: 40,
+                normal: 50,
+                large: 50,
+                extraLarge: 60,
+              ),
             ),
             child: Container(
               color: AppColors.black,
@@ -66,13 +71,23 @@ class GameHistoryDetailsCard extends StatelessWidget {
           SizedBox(
             height: responsiveDouble(
               context: context,
-              mobile: ResponsiveDouble(normal: 8, large: 8, extraLarge: 12),
+              mobile: ResponsiveDouble(
+                small: 6,
+                normal: 8,
+                large: 8,
+                extraLarge: 12,
+              ),
             ), //
           ),
           SizedBox(
             height: responsiveDouble(
               context: context,
-              mobile: ResponsiveDouble(normal: 80, large: 80, extraLarge: 95),
+              mobile: ResponsiveDouble(
+                small: 6,
+                normal: 80,
+                large: 80,
+                extraLarge: 95,
+              ),
             ), //
             child: Container(
               decoration: BoxDecoration(
