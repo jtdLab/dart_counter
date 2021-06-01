@@ -18,7 +18,19 @@ class AppPage extends StatelessWidget {
             children: [
               navigationBar ?? Container(),
               Expanded(
-                child: child,
+                child: LayoutBuilder(
+                  builder: (context, boxConstraints) => SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: boxConstraints.maxHeight,
+                        maxHeight: boxConstraints.maxHeight < 574
+                            ? 574
+                            : boxConstraints.maxHeight,
+                      ),
+                      child: child,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

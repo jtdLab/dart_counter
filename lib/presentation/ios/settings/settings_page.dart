@@ -50,30 +50,22 @@ class SettingsPage extends StatelessWidget {
           LocaleKeys.settings.tr().toUpperCase(),
         ),
       ),
-      child: LayoutBuilder(
-        builder: (context, boxConstraints) => SingleChildScrollView(
-          child: SizedBox(
-            height: boxConstraints.maxHeight,
-            width: boxConstraints.maxWidth,
-            child: Column(
-              children: [
-                const Spacer(),
-                PhotoWidget(),
-                const Spacer(),
-                LanguageCard(),
-                const Spacer(),
-                AccountCard(),
-                const Spacer(),
-                AppPrimaryButton(
-                  text: LocaleKeys.signOut.tr(),
-                  color: AppColors.red,
-                  onPressed: () =>
-                      context.read<AuthBloc>().add(const AuthEvent.signedOut()),
-                ),
-              ],
-            ),
+      child: Column(
+        children: [
+          const Spacer(),
+          PhotoWidget(),
+          const Spacer(),
+          LanguageCard(),
+          const Spacer(),
+          AccountCard(),
+          const Spacer(),
+          AppPrimaryButton(
+            text: LocaleKeys.signOut.tr(),
+            color: AppColors.red,
+            onPressed: () =>
+                context.read<AuthBloc>().add(const AuthEvent.signedOut()),
           ),
-        ),
+        ],
       ),
     );
   }
