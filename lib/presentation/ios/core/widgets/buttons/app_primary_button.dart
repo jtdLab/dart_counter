@@ -5,35 +5,33 @@ import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class AppPrimaryButton extends StatelessWidget {
   final String text;
+  final BorderRadius borderRadius;
   final VoidCallback? onPressed;
   final Color color;
 
   const AppPrimaryButton({
     required this.text,
+    this.borderRadius = const BorderRadius.all(
+      Radius.circular(0),
+    ),
     this.onPressed,
-    this.color = AppColors.black
+    this.color = AppColors.black,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: responsiveDouble(
-        context: context,
-        mobile: const ResponsiveDouble(small: 50, normal: 55, large: 60, extraLarge: 70),
-      ), //
+      height: size55(context),
       child: CupertinoButton(
         color: color,
         padding: const EdgeInsets.all(8.0),
         onPressed: onPressed,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(0),
-        ),
+        borderRadius: borderRadius,
         child: Center(
           child: AutoSizeText(
             text.toUpperCase(),
             maxLines: 1,
             maxFontSize: 14,
-            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
           ),
         ),
       ),

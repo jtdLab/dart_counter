@@ -85,6 +85,16 @@ extension ResponsiveDoubleX on Widget {
         ),
       );
 
+  double size30(BuildContext context) => responsiveDouble(
+        context: context,
+        mobile: const ResponsiveDouble(
+          small: 25,
+          normal: 30,
+          large: 35,
+          extraLarge: 40,
+        ),
+      );
+
   double size40(BuildContext context) => responsiveDouble(
         context: context,
         mobile: const ResponsiveDouble(

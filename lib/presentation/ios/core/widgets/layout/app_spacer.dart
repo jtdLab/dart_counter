@@ -10,8 +10,8 @@ class AppSpacer extends StatelessWidget {
 
   const AppSpacer.small({
     Key? key,
-  })  : orientation = Orientation.vertical,
-        mobileSize = const ResponsiveDouble(
+    this.orientation = Orientation.vertical,
+  })  : mobileSize = const ResponsiveDouble(
           small: 2,
           normal: 4,
           large: 6,
@@ -27,8 +27,8 @@ class AppSpacer extends StatelessWidget {
 
   const AppSpacer.normal({
     Key? key,
-  })  : orientation = Orientation.vertical,
-        mobileSize = const ResponsiveDouble(
+    this.orientation = Orientation.vertical,
+  })  : mobileSize = const ResponsiveDouble(
           small: 8,
           normal: 10,
           large: 14,
@@ -44,8 +44,8 @@ class AppSpacer extends StatelessWidget {
 
   const AppSpacer.large({
     Key? key,
-  })  : orientation = Orientation.vertical,
-        mobileSize = const ResponsiveDouble(
+    this.orientation = Orientation.vertical,
+  })  : mobileSize = const ResponsiveDouble(
           small: 14,
           normal: 20,
           large: 26,

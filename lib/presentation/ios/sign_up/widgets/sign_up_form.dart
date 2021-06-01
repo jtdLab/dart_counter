@@ -7,6 +7,8 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
@@ -75,25 +77,7 @@ class SignUpForm extends StatelessWidget {
                                       extraLarge: 200),
                                 ),
                               ),
-                              Image.asset(
-                                AppImages.logo,
-                                width: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      small: 100,
-                                      normal: 125,
-                                      large: 175,
-                                      extraLarge: 250),
-                                ),
-                                height: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      small: 100,
-                                      normal: 125,
-                                      large: 175,
-                                      extraLarge: 250),
-                                ),
-                              ),
+                              LogoDisplayer(),
                               const Spacer(
                                 flex: 24,
                               ),

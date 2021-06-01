@@ -9,7 +9,6 @@ import 'package:dart_counter/presentation/ios/in_game/in_game_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
 import 'package:dart_counter/presentation/ios/profile/profile_page.dart';
 import 'package:dart_counter/presentation/ios/settings/settings_page.dart';
-import 'package:dart_counter/presentation/ios/social_media/social_media_page.dart';
 import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
 
 @CupertinoAutoRouter(
@@ -38,9 +37,6 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     AutoRoute(
       page: FriendsPage,
-    ),
-    AutoRoute(
-      page: SocialMediaPage,
     ),
     AutoRoute(
       page: SettingsPage,

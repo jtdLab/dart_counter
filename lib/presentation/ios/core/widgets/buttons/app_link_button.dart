@@ -15,12 +15,12 @@ class AppLinkButton extends StatelessWidget {
       onPressed: onPressed,
       child: AutoSizeText(
         text.toUpperCase(),
-        maxFontSize: 14,
+        maxFontSize: 12,
         maxLines: 1,
-        style: const TextStyle(
-          color: AppColors.red,
-          fontWeight: FontWeight.w800,
-        ),
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(color: AppColors.red),
       ),
     );
   }

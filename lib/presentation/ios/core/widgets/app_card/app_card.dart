@@ -1,5 +1,5 @@
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/layout/app_column.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 

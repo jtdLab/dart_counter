@@ -1,4 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 
 class AppPage extends StatelessWidget {

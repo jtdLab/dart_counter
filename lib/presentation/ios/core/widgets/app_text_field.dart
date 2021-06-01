@@ -51,14 +51,10 @@ class _AppTextFieldState extends State<AppTextField> {
             textInputAction: widget.textInputAction,
             onEditingComplete: widget.onEditingComplete,
             onChanged: widget.onChanged,
-            style: const TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.w800,
-            ),
-            placeholderStyle: const TextStyle(
-              color: AppColors.gray,
-              fontWeight: FontWeight.w800,
-            ),
+            placeholderStyle: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.gray),
             decoration: BoxDecoration(
               color: AppColors.white,
               border: widget.valid ?? true
