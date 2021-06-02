@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
       );
 
   Widget _playOnlineButton(BuildContext context) => AppActionButton.large(
-        onPressed: () {},
+        onPressed: () => context.router.push(const CreateGamePageRoute()),
         color: AppColors.orange_new,
         fontColor: AppColors.black,
         icon: Image.asset(AppImages.players_new),
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
       );
 
   Widget _playOfflineButton(BuildContext context) => AppActionButton.large(
-        onPressed: () {},
+        onPressed: () => context.router.push(const CreateGamePageRoute()),
         color: AppColors.white,
         fontColor: AppColors.black,
         icon: Image.asset(AppImages.robot_new),

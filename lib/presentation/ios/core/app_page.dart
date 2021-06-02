@@ -25,7 +25,7 @@ class AppPage extends StatelessWidget {
                         minHeight: boxConstraints.maxHeight,
                         maxHeight: boxConstraints.maxHeight < 574
                             ? 574
-                            : boxConstraints.maxHeight,
+                            : boxConstraints.maxHeight + 300,
                       ),
                       child: child,
                     ),

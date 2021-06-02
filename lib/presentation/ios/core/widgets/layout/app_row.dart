@@ -33,7 +33,7 @@ class AppRow extends StatelessWidget {
       textBaseline: textBaseline,
       children: children
           .expand((Widget child) sync* {
-            yield SizedBox(height: spacing);
+            yield SizedBox(width: spacing);
             yield child;
           })
           .skip(1)

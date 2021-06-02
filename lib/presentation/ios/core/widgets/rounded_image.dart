@@ -7,26 +7,32 @@ enum RoundedImageSize {
   large,
   extraLarge,
 }
+
 // TODO assert imageName or child != null
 class RoundedImage extends StatelessWidget {
   final RoundedImageSize size;
   final String? imageName;
+  final Border? border;
   final Widget? child;
 
   const RoundedImage.small({
     this.imageName,
+    this.border,
     this.child,
   }) : size = RoundedImageSize.small;
   const RoundedImage.normal({
     this.imageName,
+    this.border,
     this.child,
   }) : size = RoundedImageSize.normal;
   const RoundedImage.large({
     this.imageName,
+    this.border,
     this.child,
   }) : size = RoundedImageSize.large;
   const RoundedImage.extraLarge({
     this.imageName,
+    this.border,
     this.child,
   }) : size = RoundedImageSize.extraLarge;
 
@@ -47,9 +53,7 @@ class RoundedImage extends StatelessWidget {
               : size == RoundedImageSize.large
                   ? size70(context)
                   : size150(context),
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-      ),
+      decoration: BoxDecoration(shape: BoxShape.circle, border: border),
       child: child ??
           Image.asset(
             imageName!,
