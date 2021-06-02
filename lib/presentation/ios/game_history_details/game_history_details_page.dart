@@ -1,13 +1,15 @@
 import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/game_history/widgets/game_history_card.dart';
+import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/app_page.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/widgets/average_card.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/widgets/checkout_card.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/widgets/main_stats_card.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/widgets/takes_card.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
-import 'widgets/game_history_details_card.dart';
 
 class GameHistoryDetailsPage extends StatelessWidget {
   final Game game;
@@ -17,64 +19,32 @@ class GameHistoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(40, 20, 40, 40),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CupertinoButton(
-                    onPressed: () {
-                      context.router.pop();
-                    },
-                    child: Image.asset(AppImages.chevron_back_new),
-                  ),
-                  const Spacer(
-                    flex: 2,
-                  ),
-                  Text(
-                    'BEST OF 8 SETS', //'${game.mode} ${game.size} ${game.type}',
-                    style: const TextStyle(
-                      color: AppColors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: responsiveDouble(
-                  context: context,
-                  mobile: ResponsiveDouble(
-                    small: 30,
-                    normal: 40,
-                    large: 50,
-                    extraLarge: 60,
-                  ),
-                ),
-              ),
-              GameHistoryDetailsCard(
-                title: LocaleKeys.category.tr().toUpperCase(),
-              ),
-              const Spacer(),
-              GameHistoryDetailsCard(
-                title: LocaleKeys.averrage.tr().toUpperCase(),
-              ),
-              const Spacer(),
-              GameHistoryDetailsCard(
-                title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
-              ),
-              const Spacer(),
-              GameHistoryDetailsCard(title: 'Aufnahmen - TODO'.toUpperCase()),
-              const Spacer(),
-            ],
+    return AppPage(
+      navigationBar: AppNavigationBar(
+        leading: AppNavigationBarButton(
+          onPressed: () => context.router.pop(),
+          child: Image.asset(
+            AppImages.chevron_back_new,
           ),
         ),
+        middle: Text(
+          'Best of 5 Legs'.toUpperCase(),
+        ),
+        trailing: AppNavigationBarButton(
+          onPressed: () {},
+          child: Image.asset(
+            AppImages.stats_new,
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          MainStatsCard(),
+          AverrageCard(),
+          CheckoutCard(),
+          TakesCard(),
+        ],
       ),
     );
   }

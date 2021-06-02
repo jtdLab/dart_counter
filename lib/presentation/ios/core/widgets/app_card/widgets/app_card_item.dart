@@ -4,35 +4,30 @@ import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 enum CardSize { custom, small, normal, large }
 
 class AppCardItem extends StatelessWidget {
-  final ResponsiveDouble? heightMobile;
-  final ResponsiveDouble? heightTablet;
+  final double? height;
   final CardSize size;
   final Widget content;
 
   const AppCardItem.custom({
     Key? key,
-    required this.heightMobile,
-    this.heightTablet,
+    required this.height,
     required this.content,
   })   : size = CardSize.custom,
         super(key: key);
 
   const AppCardItem.small({Key? key, required this.content})
       : size = CardSize.small,
-        heightMobile = null,
-        heightTablet = null,
+        height = null,
         super(key: key);
 
   const AppCardItem.normal({Key? key, required this.content})
       : size = CardSize.normal,
-        heightMobile = null,
-        heightTablet = null,
+        height = null,
         super(key: key);
 
   const AppCardItem.large({Key? key, required this.content})
       : size = CardSize.large,
-        heightMobile = null,
-        heightTablet = null,
+         height = null,
         super(key: key);
 
   @override
@@ -49,11 +44,7 @@ class AppCardItem extends StatelessWidget {
         height = size70(context);
         break;
       default:
-        height = responsiveDouble(
-          context: context,
-          mobile: heightMobile!,
-          tablet: heightTablet,
-        );
+        height = this.height!;
         break;
     }
     return Container(

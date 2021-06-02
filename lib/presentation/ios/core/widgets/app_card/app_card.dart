@@ -5,9 +5,9 @@ import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class AppCard extends StatelessWidget {
   final BorderRadius borderRadius;
-  final Widget leading;
-  final Widget middle;
-  final Widget trailing;
+  final Widget? leading;
+  final Widget? middle;
+  final Widget? trailing;
   final double? headerBodySpacing;
   final double? childrenSpacing;
   final List<Widget> children;
@@ -16,9 +16,9 @@ class AppCard extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(0),
     ),
-    this.leading = const Spacer(),
-    this.middle = const Spacer(),
-    this.trailing = const Spacer(),
+    this.leading,
+    this.middle,
+    this.trailing,
     this.headerBodySpacing,
     this.childrenSpacing,
     required this.children,
@@ -39,9 +39,30 @@ class AppCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    leading,
-                    middle,
-                    trailing,
+                    if (leading == null)
+                      const Spacer()
+                    else
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size6(context)),
+                        child: leading,
+                      ),
+                    if (middle == null)
+                      const Spacer()
+                    else
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size6(context)),
+                        child: middle,
+                      ),
+                    if (trailing == null)
+                      const Spacer()
+                    else
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size6(context)),
+                        child: trailing,
+                      ),
                   ],
                 ),
               ),
