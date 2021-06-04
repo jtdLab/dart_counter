@@ -16,25 +16,21 @@ class Header extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: size12(context), // TODO check 4 all device sizes
               ),
-              child: Expanded(
-                child: Container(
-                  height: size40(context),
-                  decoration: BoxDecoration(
-                    color: AppColors.yellow,
-                    border: Border.all(
-                      width: border4(context),
-                    ),
+              child: Container(
+                height: size40(context),
+                decoration: BoxDecoration(
+                  color: AppColors.yellow,
+                  border: Border.all(
+                    width: border4(context),
                   ),
-                  child: Center(
-                    child: Text(
-                      'Sebi Abi 69',
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .textStyle
-                          .copyWith(
-                            color: AppColors.white,
-                          ),
-                    ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Sebi Abi 69',
+                    style:
+                        CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                              color: AppColors.white,
+                            ),
                   ),
                 ),
               ),

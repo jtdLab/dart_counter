@@ -13,6 +13,11 @@ class DoButton extends StatelessWidget {
       child: Container(
         height: size55(context),
         color: AppColors.green,
+        child: Center(
+          child: Text(
+            toString(),
+          ),
+        ),
       ),
       onPressed: () => context.router.push(
         const PostGamePageRoute(),
