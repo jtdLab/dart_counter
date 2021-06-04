@@ -6,14 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class ChangeEmailModal extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeEmailIdle();
-  }
-}
-
-class ChangeEmailIdle extends StatelessWidget {
+class ChangePasswordIdle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -34,7 +27,7 @@ class ChangeEmailIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          small: 16,normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                   Expanded(
@@ -44,7 +37,10 @@ class ChangeEmailIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 50,normal: 75, large: 125, extraLarge: 200),
+                                small: 50,
+                                normal: 75,
+                                large: 125,
+                                extraLarge: 200),
                           ),
                         ),
                         Image.asset(
@@ -52,19 +48,25 @@ class ChangeEmailIdle extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 100, normal: 125, large: 175, extraLarge: 250),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 100,normal: 125, large: 175, extraLarge: 250),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                         ),
                         const Spacer(
                           flex: 20,
                         ),
                         Text(
-                          LocaleKeys.changeEmail.tr().toUpperCase(),
+                          LocaleKeys.changePassword.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -75,16 +77,55 @@ class ChangeEmailIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.newEmailAddress.tr().toUpperCase(),
+                          placeholder:
+                              LocaleKeys.oldPassword.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
-                          onEditingComplete: () => node.unfocus(),
-                          onChanged: (emailString) {},
+                          onEditingComplete: () => node.nextFocus(),
+                          obscureText: true,
+                          onChanged: (oldPasswordString) {},
                         ),
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 8,normal: 12, large: 16, extraLarge: 20),
+                                small: 10,
+                                normal: 12,
+                                large: 16,
+                                extraLarge: 20),
+                          ),
+                        ),
+                        AppTextField(
+                          placeholder: LocaleKeys.newPassword.tr(),
+                          textInputAction: TextInputAction.next,
+                          onEditingComplete: () => node.nextFocus(),
+                          obscureText: true,
+                          onChanged: (newPasswordString) {},
+                        ),
+                        SizedBox(
+                          height: responsiveDouble(
+                            context: context,
+                            mobile: ResponsiveDouble(
+                                small: 10,
+                                normal: 12,
+                                large: 16,
+                                extraLarge: 20),
+                          ),
+                        ),
+                        AppTextField(
+                          placeholder: LocaleKeys.newPasswordAgain.tr(),
+                          textInputAction: TextInputAction.done,
+                          onEditingComplete: () => node.unfocus(),
+                          obscureText: true,
+                          onChanged: (newPasswordAgainString) {},
+                        ),
+                        SizedBox(
+                          height: responsiveDouble(
+                            context: context,
+                            mobile: ResponsiveDouble(
+                                small: 10,
+                                normal: 12,
+                                large: 16,
+                                extraLarge: 20),
                           ),
                         ),
                         AppPrimaryButton(
@@ -101,94 +142,7 @@ class ChangeEmailIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          small: 16,normal: 24, large: 32, extraLarge: 64),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ChangeEmailModalSuccess extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: CupertinoPageScaffold(
-        child: LayoutBuilder(
-          builder: (context, boxConstraints) => SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: ConstrainedBox(
-              constraints: boxConstraints.copyWith(
-                  maxHeight: boxConstraints.maxHeight +
-                      MediaQuery.of(context).viewInsets.bottom -
-                      MediaQuery.of(context).viewPadding.bottom),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: responsiveDouble(
-                      context: context,
-                      mobile: ResponsiveDouble(
-                          small: 16,normal: 24, large: 32, extraLarge: 64),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 50,normal: 75, large: 125, extraLarge: 200),
-                          ),
-                        ),
-                        Image.asset(
-                          AppImages.logo,
-                          width: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 100,normal: 125, large: 175, extraLarge: 250),
-                          ),
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 100,normal: 125, large: 175, extraLarge: 250),
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 20,
-                        ),
-                        Text(
-                          LocaleKeys.email.tr().toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 40,
-                        ),
-                        AppPrimaryButton(
-                          text: LocaleKeys.signIn.tr(),
-                          onPressed: () {},
-                        ),
-                        const Spacer(
-                          flex: 50,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: responsiveDouble(
-                      context: context,
-                      mobile: ResponsiveDouble(
-                          small: 16,normal: 24, large: 32, extraLarge: 64),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                 ],

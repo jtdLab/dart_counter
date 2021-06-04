@@ -1,23 +1,13 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:auto_route/auto_route.dart';
 
-class ChangeUsernameModal extends StatelessWidget {
+class ChangeEmailModalSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeUsernameIdle();
-  }
-}
-
-class ChangeUsernameIdle extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final node = FocusScope.of(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CupertinoPageScaffold(
@@ -35,11 +25,7 @@ class ChangeUsernameIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                        small: 16,
-                        normal: 24,
-                        large: 32,
-                        extraLarge: 64,
-                      ),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                   Expanded(
@@ -49,11 +35,10 @@ class ChangeUsernameIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                              small: 50,
-                              normal: 75,
-                              large: 125,
-                              extraLarge: 200,
-                            ),
+                                small: 50,
+                                normal: 75,
+                                large: 125,
+                                extraLarge: 200),
                           ),
                         ),
                         Image.asset(
@@ -61,27 +46,25 @@ class ChangeUsernameIdle extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                              small: 100,
-                              normal: 125,
-                              large: 175,
-                              extraLarge: 250,
-                            ),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                              small: 100,
-                              normal: 125,
-                              large: 175,
-                              extraLarge: 250,
-                            ),
+                                small: 100,
+                                normal: 125,
+                                large: 175,
+                                extraLarge: 250),
                           ),
                         ),
                         const Spacer(
                           flex: 20,
                         ),
                         Text(
-                          LocaleKeys.changeUsername.tr().toUpperCase(),
+                          LocaleKeys.email.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -91,26 +74,8 @@ class ChangeUsernameIdle extends StatelessWidget {
                         const Spacer(
                           flex: 40,
                         ),
-                        AppTextField(
-                          placeholder:
-                              LocaleKeys.newUsernane.tr().toUpperCase(),
-                          textInputAction: TextInputAction.next,
-                          onEditingComplete: () => node.unfocus(),
-                          onChanged: (newUsernameString) {},
-                        ),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                              small: 8,
-                              normal: 12,
-                              large: 16,
-                              extraLarge: 20,
-                            ),
-                          ),
-                        ),
                         AppPrimaryButton(
-                          text: LocaleKeys.confirm.tr(),
+                          text: LocaleKeys.signIn.tr(),
                           onPressed: () {},
                         ),
                         const Spacer(
@@ -123,11 +88,7 @@ class ChangeUsernameIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                        small: 16,
-                        normal: 24,
-                        large: 32,
-                        extraLarge: 64,
-                      ),
+                          small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
                 ],
@@ -137,12 +98,5 @@ class ChangeUsernameIdle extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ChangeUsernameModalSuccess extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

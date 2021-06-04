@@ -6,14 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class ChangePasswordModal extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangePasswordIdle();
-  }
-}
-
-class ChangePasswordIdle extends StatelessWidget {
+class ChangeUsernameIdle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -34,7 +27,11 @@ class ChangePasswordIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          small: 16,normal: 24, large: 32, extraLarge: 64),
+                        small: 16,
+                        normal: 24,
+                        large: 32,
+                        extraLarge: 64,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -44,7 +41,11 @@ class ChangePasswordIdle extends StatelessWidget {
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 50,normal: 75, large: 125, extraLarge: 200),
+                              small: 50,
+                              normal: 75,
+                              large: 125,
+                              extraLarge: 200,
+                            ),
                           ),
                         ),
                         Image.asset(
@@ -52,19 +53,27 @@ class ChangePasswordIdle extends StatelessWidget {
                           width: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 100,normal: 125, large: 175, extraLarge: 250),
+                              small: 100,
+                              normal: 125,
+                              large: 175,
+                              extraLarge: 250,
+                            ),
                           ),
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 100, normal: 125, large: 175, extraLarge: 250),
+                              small: 100,
+                              normal: 125,
+                              large: 175,
+                              extraLarge: 250,
+                            ),
                           ),
                         ),
                         const Spacer(
                           flex: 20,
                         ),
                         Text(
-                          LocaleKeys.changePassword.tr().toUpperCase(),
+                          LocaleKeys.changeUsername.tr().toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.black,
@@ -75,45 +84,21 @@ class ChangePasswordIdle extends StatelessWidget {
                           flex: 40,
                         ),
                         AppTextField(
-                          placeholder: LocaleKeys.oldPassword.tr().toUpperCase(),
+                          placeholder:
+                              LocaleKeys.newUsernane.tr().toUpperCase(),
                           textInputAction: TextInputAction.next,
-                          onEditingComplete: () => node.nextFocus(),
-                          obscureText: true,
-                          onChanged: (oldPasswordString) {},
-                        ),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 10, normal: 12, large: 16, extraLarge: 20),
-                          ),
-                        ),
-                        AppTextField(
-                          placeholder: LocaleKeys.newPassword.tr(),
-                          textInputAction: TextInputAction.next,
-                          onEditingComplete: () => node.nextFocus(),
-                          obscureText: true,
-                          onChanged: (newPasswordString) {},
-                        ),
-                        SizedBox(
-                          height: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 10, normal: 12, large: 16, extraLarge: 20),
-                          ),
-                        ),
-                        AppTextField(
-                          placeholder: LocaleKeys.newPasswordAgain.tr(),
-                          textInputAction: TextInputAction.done,
                           onEditingComplete: () => node.unfocus(),
-                          obscureText: true,
-                          onChanged: (newPasswordAgainString) {},
+                          onChanged: (newUsernameString) {},
                         ),
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
                             mobile: ResponsiveDouble(
-                                small: 10, normal: 12, large: 16, extraLarge: 20),
+                              small: 8,
+                              normal: 12,
+                              large: 16,
+                              extraLarge: 20,
+                            ),
                           ),
                         ),
                         AppPrimaryButton(
@@ -130,7 +115,11 @@ class ChangePasswordIdle extends StatelessWidget {
                     width: responsiveDouble(
                       context: context,
                       mobile: ResponsiveDouble(
-                          small: 16, normal: 24, large: 32, extraLarge: 64),
+                        small: 16,
+                        normal: 24,
+                        large: 32,
+                        extraLarge: 64,
+                      ),
                     ),
                   ),
                 ],
@@ -140,12 +129,5 @@ class ChangePasswordIdle extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ChangePasswordModalSuccess extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
