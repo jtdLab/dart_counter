@@ -9,7 +9,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
-import 'package:dart_counter/presentation/ios/sign_in/modals/forgot_password_modal.dart';
+import 'package:dart_counter/presentation/ios/sign_in/modals/forgot_password/forgot_password_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
