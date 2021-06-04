@@ -2,10 +2,12 @@ import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_naviga
 import 'package:flutter/cupertino.dart';
 
 class AppPage extends StatelessWidget {
+  final double? maxHeight;
   final AppNavigationBar? navigationBar;
   final Widget child;
 
-  const AppPage({Key? key, this.navigationBar, required this.child})
+  const AppPage(
+      {Key? key, this.maxHeight, this.navigationBar, required this.child})
       : super(key: key);
 
   @override
@@ -23,9 +25,10 @@ class AppPage extends StatelessWidget {
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
                         minHeight: boxConstraints.maxHeight,
-                        maxHeight: boxConstraints.maxHeight < 574
-                            ? 574
-                            : boxConstraints.maxHeight + 300,
+                        maxHeight: maxHeight ??
+                            (boxConstraints.maxHeight < 574
+                                ? 574
+                                : boxConstraints.maxHeight),
                       ),
                       child: child,
                     ),

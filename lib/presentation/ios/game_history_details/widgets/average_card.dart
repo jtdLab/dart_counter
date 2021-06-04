@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import 'game_history_details_card_row.dart';
+import 'core/game_history_details_card_row.dart';
 
 class AverrageCard extends StatelessWidget {
   @override
@@ -26,7 +26,7 @@ class AverrageCard extends StatelessWidget {
       ),
       children: [
         AppCardItem.custom(
-          height: size70(context) + size12(context), // TODO 
+          height: size70(context) + size12(context), // TODO
           content: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -51,6 +51,5 @@ class AverrageCard extends StatelessWidget {
         ),
       ],
     );
-
   }
 }

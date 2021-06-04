@@ -18,6 +18,7 @@ class CreateGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPage(
+      maxHeight: 826, // TODO
       navigationBar: AppNavigationBar(
         leading: AppNavigationBarButton(
           onPressed: () => context.router.pop(),

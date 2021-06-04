@@ -5,10 +5,10 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/cupertino.dart' as _i14;
+import 'package:flutter/cupertino.dart' as _i15;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../../domain/play/game.dart' as _i15;
+import '../../../domain/play/game.dart' as _i16;
 import '../core/auth_widget.dart' as _i4;
 import '../create_game/create_game_page.dart' as _i12;
 import '../friends/friends_page.dart' as _i10;
@@ -17,6 +17,7 @@ import '../game_history_details/game_history_details_page.dart' as _i8;
 import '../home/home_page.dart' as _i5;
 import '../in_game/in_game_page.dart' as _i13;
 import '../invitations/invitations_page.dart' as _i9;
+import '../post_game/post_game_page.dart' as _i14;
 import '../profile/profile_page.dart' as _i6;
 import '../settings/settings_page.dart' as _i11;
 import '../splash/splash_page.dart' as _i3;
@@ -83,6 +84,11 @@ class Router extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return _i13.InGamePage();
+        }),
+    PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i14.PostGamePage();
         })
   };
 
@@ -99,7 +105,8 @@ class Router extends _i1.RootStackRouter {
         _i1.RouteConfig(FriendsPageRoute.name, path: '/friends-page'),
         _i1.RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
         _i1.RouteConfig(CreateGamePageRoute.name, path: '/create-game-page'),
-        _i1.RouteConfig(InGamePageRoute.name, path: '/in-game-page')
+        _i1.RouteConfig(InGamePageRoute.name, path: '/in-game-page'),
+        _i1.RouteConfig(PostGamePageRoute.name, path: '/post-game-page')
       ];
 }
 
@@ -135,7 +142,7 @@ class GameHistoryPageRoute extends _i1.PageRouteInfo {
 
 class GameHistoryDetailsPageRoute
     extends _i1.PageRouteInfo<GameHistoryDetailsPageRouteArgs> {
-  GameHistoryDetailsPageRoute({_i14.Key? key, required _i15.Game game})
+  GameHistoryDetailsPageRoute({_i15.Key? key, required _i16.Game game})
       : super(name,
             path: '/game-history-details-page',
             args: GameHistoryDetailsPageRouteArgs(key: key, game: game));
@@ -146,9 +153,9 @@ class GameHistoryDetailsPageRoute
 class GameHistoryDetailsPageRouteArgs {
   const GameHistoryDetailsPageRouteArgs({this.key, required this.game});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
-  final _i15.Game game;
+  final _i16.Game game;
 }
 
 class InvitationsPageRoute extends _i1.PageRouteInfo {
@@ -179,4 +186,10 @@ class InGamePageRoute extends _i1.PageRouteInfo {
   const InGamePageRoute() : super(name, path: '/in-game-page');
 
   static const String name = 'InGamePageRoute';
+}
+
+class PostGamePageRoute extends _i1.PageRouteInfo {
+  const PostGamePageRoute() : super(name, path: '/post-game-page');
+
+  static const String name = 'PostGamePageRoute';
 }

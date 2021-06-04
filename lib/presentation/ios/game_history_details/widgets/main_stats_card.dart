@@ -3,7 +3,7 @@ import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/game_history_details/widgets/game_history_details_card_row.dart';
+import 'package:dart_counter/presentation/ios/game_history_details/widgets/core/game_history_details_card_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';

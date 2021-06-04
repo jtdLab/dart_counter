@@ -1,6 +1,8 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/buttons/icon_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class AccountItem extends StatelessWidget {
   final String title;
@@ -16,24 +18,17 @@ class AccountItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: EdgeInsets.all(size6(context)),
             child: Text(
               title.toUpperCase(),
             ),
           ),
-          _icon(),
+          IconButton(
+            onPressed: onPressed,
+            icon: Image.asset(AppImages.settings_new),
+          ),
         ],
       ),
     );
   }
-
-  Widget _icon() => Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: CupertinoButton(
-          minSize: 0,
-          padding: EdgeInsets.zero,
-          onPressed: onPressed,
-          child: Image.asset(AppImages.settings_new),
-        ),
-      );
 }

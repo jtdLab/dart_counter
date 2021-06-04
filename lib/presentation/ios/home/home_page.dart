@@ -1,20 +1,22 @@
 import 'package:dart_counter/application/home/home_bloc.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/instagram_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/name_displayer.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/play_offline_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/play_online_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/train_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/youtube_button.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart' hide Router, Orientation;
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -67,82 +69,25 @@ class HomePage extends StatelessWidget {
               imageName: AppImages.photo_placeholder_new,
             ),
             const Spacer(),
-            _nameDisplayer(context),
+            NameDisplayer(),
             const Spacer(),
-            _playOnlineButton(context),
+            PlayOnlineButton(),
             const AppSpacer.normal(),
-            _playOfflineButton(context),
+            PlayOfflineButton(),
             const AppSpacer.normal(),
-            _trainButton(context),
+            TrainButton(),
             const Spacer(),
-            _socialMediaRow(context),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InstagramButton(),
+                YoutubeButton(),
+              ],
+            ),
             const Spacer(),
           ],
         ),
       ),
     );
   }
-
-  Widget _nameDisplayer(BuildContext context) => Container(
-        height: size40(context),
-        decoration: BoxDecoration(
-          color: AppColors.blue_new,
-          border: Border.all(
-            width: border4(context),
-          ),
-        ),
-        child: Center(
-          child: Text(
-            'Sebi Abi 69'.toUpperCase(),
-            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                  color: AppColors.white,
-                ),
-          ),
-        ),
-      );
-
-  Widget _playOnlineButton(BuildContext context) => AppActionButton.large(
-        onPressed: () => context.router.push(const CreateGamePageRoute()),
-        color: AppColors.orange_new,
-        fontColor: AppColors.black,
-        icon: Image.asset(AppImages.players_new),
-        text: '${LocaleKeys.play.tr()} ${LocaleKeys.online.tr()}'.toUpperCase(),
-      );
-
-  Widget _playOfflineButton(BuildContext context) => AppActionButton.large(
-        onPressed: () => context.router.push(const CreateGamePageRoute()),
-        color: AppColors.white,
-        fontColor: AppColors.black,
-        icon: Image.asset(AppImages.robot_new),
-        text:
-            '${LocaleKeys.play.tr()} ${LocaleKeys.offline.tr()}'.toUpperCase(),
-      );
-
-  Widget _trainButton(BuildContext context) => AppActionButton.large(
-        onPressed: () {},
-        color: AppColors.black,
-        icon: Image.asset(AppImages.target_new),
-        text: 'Practice room'.toUpperCase(),
-      );
-
-  Widget _socialMediaRow(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CupertinoButton(
-            onPressed: () async => await canLaunch(
-                    'https://www.instagram.com/darts_ger/')
-                ? await launch('https://www.instagram.com/darts_ger/')
-                : throw 'Could not launch https://www.instagram.com/darts_ger/',
-            child: Image.asset(AppImages.ig_new),
-          ),
-          CupertinoButton(
-            onPressed: () async => await canLaunch(
-                    'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
-                ? await launch(
-                    'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
-                : throw 'Could not launch https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ',
-            child: Image.asset(AppImages.google_new),
-          ),
-        ],
-      );
 }

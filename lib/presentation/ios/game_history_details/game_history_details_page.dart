@@ -10,7 +10,6 @@ import 'package:dart_counter/presentation/ios/game_history_details/widgets/takes
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 
-
 class GameHistoryDetailsPage extends StatelessWidget {
   final Game game;
 

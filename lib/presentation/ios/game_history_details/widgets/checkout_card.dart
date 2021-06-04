@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import 'game_history_details_card_row.dart';
+import 'core/game_history_details_card_row.dart';
 
 class CheckoutCard extends StatelessWidget {
   @override
