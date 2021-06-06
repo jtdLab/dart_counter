@@ -1,5 +1,6 @@
 import 'package:dart_counter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/presentation/ios/core/app_page.dart';
 
 import 'package:dart_counter/presentation/ios/sign_in/widgets/sign_in_form.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,14 +15,10 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SignInFormBloc>(),
-      child: GestureDetector(
+      child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: CupertinoPageScaffold(
-          child: SafeArea(
-            child: SignInForm(
-              pageController: pageController,
-            ),
-          ),
+        child: SignInForm(
+          pageController: pageController,
         ),
       ),
     );

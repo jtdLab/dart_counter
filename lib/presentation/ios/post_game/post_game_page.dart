@@ -19,12 +19,6 @@ class PostGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppPage(
       navigationBar: AppNavigationBar(
-        leading: AppNavigationBarButton(
-          onPressed: () {},
-          child: Image.asset(
-            AppImages.chevron_back_new,
-          ),
-        ),
         middle: Text(
           'Best of 5 Legs'.toUpperCase(),
         ),
@@ -41,7 +35,7 @@ class PostGamePage extends StatelessWidget {
           const PlayerProfileImageAndNameDisplayer(),
           _stats(context),
           AppPrimaryButton(
-            onPressed: () => context.router.push(
+            onPressed: () => context.router.replace(
               const HomePageRoute(),
             ),
             color: AppColors.red,

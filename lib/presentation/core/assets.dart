@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
   
+  static const x_mark_filled_new = 'assets/images/png/x_mark_filled_new.png';
+  static const check_mark_dark_new = 'assets/images/png/check_mark_dark_new.png';
   static const accept_new = 'assets/images/png/accept_new.png';
   static const add_new = 'assets/images/png/add_new.png';
   static const chevron_forward_new = 'assets/images/png/chevron_forward_new.png';

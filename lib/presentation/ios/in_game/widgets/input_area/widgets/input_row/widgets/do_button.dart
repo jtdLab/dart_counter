@@ -19,7 +19,7 @@ class DoButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: () => context.router.push(
+      onPressed: () => context.router.replace(
         const PostGamePageRoute(),
       ),
     );

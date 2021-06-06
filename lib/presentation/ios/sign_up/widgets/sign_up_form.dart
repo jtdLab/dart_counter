@@ -6,10 +6,11 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/sign_up/widgets/error_displayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,307 +45,89 @@ class SignUpForm extends StatelessWidget {
         final node = FocusScope.of(context);
         return state.isSubmitting
             ? Loading()
-            : LayoutBuilder(
-                builder: (context, boxConstraints) => SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: ConstrainedBox(
-                    constraints: boxConstraints.copyWith(
-                        maxHeight: boxConstraints.maxHeight +
-                            MediaQuery.of(context).viewInsets.bottom -
-                            MediaQuery.of(context).viewPadding.bottom),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 16,
-                                normal: 24,
-                                large: 32,
-                                extraLarge: 64),
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      small: 60,
-                                      normal: 75,
-                                      large: 125,
-                                      extraLarge: 200),
-                                ),
-                              ),
-                              LogoDisplayer(),
-                              const Spacer(
-                                flex: 24,
-                              ),
-                              AppTextField(
-                                placeholder: LocaleKeys.email.tr(),
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                                onEditingComplete: () => node.nextFocus(),
-                                onChanged: (emailStr) {
-                                  context.read<SignUpFormBloc>().add(
-                                        SignUpFormEvent.emailChanged(emailStr),
-                                      );
-                                },
-                                valid: !state.showErrorMessages ||
-                                    (state.showErrorMessages &&
-                                        state.email.isValid()),
-                              ),
-                              if (!state.showErrorMessages ||
-                                  (state.showErrorMessages &&
-                                      state.email.isValid())) ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                ),
-                              ] else ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: AutoSizeText(
-                                        LocaleKeys.errorInvalidEmailAddress
-                                            .tr(),
-                                        maxLines: 1,
-                                        maxFontSize: AppFontSizes.mini,
-                                        minFontSize: 1,
-                                        style: const TextStyle(
-                                            color: AppColors.red),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              AppTextField(
-                                placeholder: LocaleKeys.username.tr(),
-                                textInputAction: TextInputAction.next,
-                                onEditingComplete: () => node.nextFocus(),
-                                onChanged: (usernameString) =>
-                                    context.read<SignUpFormBloc>().add(
-                                          SignUpFormEvent.usernameChanged(
-                                              usernameString),
-                                        ),
-                                valid: !state.showErrorMessages ||
-                                    (state.showErrorMessages &&
-                                        state.username.isValid()),
-                              ),
-                              if (!state.showErrorMessages ||
-                                  (state.showErrorMessages &&
-                                      state.username.isValid())) ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                ),
-                              ] else ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: AutoSizeText(
-                                        LocaleKeys.errorInvalidUsername.tr(),
-                                        maxLines: 1,
-                                        maxFontSize: AppFontSizes.mini,
-                                        minFontSize: 1,
-                                        style: const TextStyle(
-                                            color: AppColors.red),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              AppTextField(
-                                obscureText: true,
-                                placeholder: LocaleKeys.password.tr(),
-                                textInputAction: TextInputAction.next,
-                                onEditingComplete: () => node.nextFocus(),
-                                onChanged: (passwordString) =>
-                                    context.read<SignUpFormBloc>().add(
-                                          SignUpFormEvent.passwordChanged(
-                                              passwordString),
-                                        ),
-                                valid: !state.showErrorMessages ||
-                                    (state.showErrorMessages &&
-                                        state.password.isValid()),
-                              ),
-                              if (!state.showErrorMessages ||
-                                  (state.showErrorMessages &&
-                                      state.password.isValid())) ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                ),
-                              ] else ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: AutoSizeText(
-                                        LocaleKeys.errorInvalidPassword.tr(),
-                                        maxLines: 1,
-                                        maxFontSize: AppFontSizes.mini,
-                                        minFontSize: 1,
-                                        style: const TextStyle(
-                                            color: AppColors.red),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              AppTextField(
-                                obscureText: true,
-                                placeholder: LocaleKeys.passwordAgain.tr(),
-                                textInputAction: TextInputAction.done,
-                                onEditingComplete: () => node.unfocus(),
-                                onChanged: (passwordAgainString) =>
-                                    context.read<SignUpFormBloc>().add(
-                                          SignUpFormEvent.passwordAgainChanged(
-                                              passwordAgainString),
-                                        ),
-                                valid: !state.showErrorMessages ||
-                                    (state.showErrorMessages &&
-                                        state.password.isValid() &&
-                                        state.password == state.passwordAgain),
-                              ),
-                              if (!state.showErrorMessages ||
-                                  (state.showErrorMessages &&
-                                      state.password.isValid() &&
-                                      state.password ==
-                                          state.passwordAgain)) ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                ),
-                              ] else ...[
-                                SizedBox(
-                                  height: responsiveDouble(
-                                    context: context,
-                                    mobile: ResponsiveDouble(
-                                        small: 10,
-                                        normal: 12,
-                                        large: 16,
-                                        extraLarge: 20),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: AutoSizeText(
-                                        LocaleKeys.errorPasswordsDontMatch.tr(),
-                                        maxLines: 1,
-                                        maxFontSize: AppFontSizes.mini,
-                                        minFontSize: 1,
-                                        style: const TextStyle(
-                                            color: AppColors.red),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              AppPrimaryButton(
-                                text: LocaleKeys.signUp.tr(),
-                                onPressed: () => context
-                                    .read<SignUpFormBloc>()
-                                    .add(const SignUpFormEvent.signUpPressed()),
-                              ),
-                              SizedBox(
-                                height: responsiveDouble(
-                                  context: context,
-                                  mobile: ResponsiveDouble(
-                                      small: 10,
-                                      normal: 16,
-                                      large: 20,
-                                      extraLarge: 24),
-                                ),
-                              ),
-                              AppLinkButton(
-                                text: LocaleKeys.signIn.tr(),
-                                onPressed: () {
-                                  pageController.animateToPage(0,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.easeIn);
-                                },
-                              ),
-                              const Spacer(
-                                flex: 44,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: responsiveDouble(
-                            context: context,
-                            mobile: ResponsiveDouble(
-                                small: 16,
-                                normal: 24,
-                                large: 32,
-                                extraLarge: 64),
-                          ),
-                        ),
-                      ],
-                    ),
+            : Column(
+                children: [
+                  SizedBox(
+                    height: size70(context),
                   ),
-                ),
+                  LogoDisplayer(),
+                  const Spacer(
+                    flex: 24,
+                  ),
+                  AppTextField(
+                    placeholder: LocaleKeys.email.tr(),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    onChanged: (emailStr) {
+                      context.read<SignUpFormBloc>().add(
+                            SignUpFormEvent.emailChanged(emailStr),
+                          );
+                    },
+                    valid: !state.showErrorMessages ||
+                        (state.showErrorMessages && state.email.isValid()),
+                    errorMessage: LocaleKeys.errorInvalidEmailAddress.tr(),
+                  ),
+                  AppTextField(
+                    placeholder: LocaleKeys.username.tr(),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    onChanged: (usernameString) =>
+                        context.read<SignUpFormBloc>().add(
+                              SignUpFormEvent.usernameChanged(usernameString),
+                            ),
+                    valid: !state.showErrorMessages ||
+                        (state.showErrorMessages && state.username.isValid()),
+                    errorMessage: LocaleKeys.errorInvalidUsername.tr(),
+                  ),
+                  AppTextField(
+                    obscureText: true,
+                    placeholder: LocaleKeys.password.tr(),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    onChanged: (passwordString) =>
+                        context.read<SignUpFormBloc>().add(
+                              SignUpFormEvent.passwordChanged(passwordString),
+                            ),
+                    valid: !state.showErrorMessages ||
+                        (state.showErrorMessages && state.password.isValid()),
+                    errorMessage: LocaleKeys.errorInvalidPassword.tr(),
+                  ),
+                  AppTextField(
+                    obscureText: true,
+                    placeholder: LocaleKeys.passwordAgain.tr(),
+                    textInputAction: TextInputAction.done,
+                    onEditingComplete: () => node.unfocus(),
+                    onChanged: (passwordAgainString) =>
+                        context.read<SignUpFormBloc>().add(
+                              SignUpFormEvent.passwordAgainChanged(
+                                  passwordAgainString),
+                            ),
+                    valid: !state.showErrorMessages ||
+                        (state.showErrorMessages &&
+                            state.password.isValid() &&
+                            state.password == state.passwordAgain),
+                    errorMessage: LocaleKeys.errorPasswordsDontMatch.tr(),
+                  ),
+                  AppPrimaryButton(
+                    text: LocaleKeys.signUp.tr(),
+                    onPressed: () => context
+                        .read<SignUpFormBloc>()
+                        .add(const SignUpFormEvent.signUpPressed()),
+                  ),
+                  const AppSpacer.large(),
+                  AppLinkButton(
+                    text: LocaleKeys.signIn.tr(),
+                    onPressed: () {
+                      pageController.animateToPage(0,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
+                    },
+                  ),
+                  const Spacer(
+                    flex: 44,
+                  ),
+                ],
               );
       },
     );

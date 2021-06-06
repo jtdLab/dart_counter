@@ -49,7 +49,7 @@ class CreateGamePage extends StatelessWidget {
   }
 
   Widget _playButton(BuildContext context) => AppActionButton.large(
-        onPressed: () => context.router.push(const InGamePageRoute()),
+        onPressed: () => context.router.replace(const InGamePageRoute()),
         icon: Image.asset(AppImages.target_new),
         text: LocaleKeys.play.tr().toUpperCase(),
       );

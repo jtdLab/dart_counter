@@ -1,34 +1,42 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/ios/friends/widgets/add_friends_card.dart';
-import 'package:dart_counter/presentation/ios/friends/widgets/your_friends_card.dart';
+import 'package:dart_counter/presentation/core/assets.dart';
+import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_search_field.dart';
+import 'package:dart_counter/presentation/ios/friends/widgets/friends_card/friends_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(
-            LocaleKeys.friends.tr(),
+    return AppPage(
+      navigationBar: AppNavigationBar(
+        leading: AppNavigationBarButton(
+          onPressed: () => context.router.pop(),
+          child: Image.asset(
+            AppImages.chevron_back_new,
           ),
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Column(
-              children: [
-                AddFriendsCard(),
-                const SizedBox(
-                  height: 4,
-                ),
-                YourFriendsCard(),
-              ],
-            ),
+        middle: Text(LocaleKeys.friends.tr().toUpperCase()),
+        trailing: AppNavigationBarButton(
+          onPressed: () {},
+          child: Image.asset(
+            AppImages.clock_new,
           ),
         ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          AppSearchField(
+            placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
+            onChanged: (x) {},
+          ),
+          FriendsCard(),
+        ],
       ),
     );
   }
