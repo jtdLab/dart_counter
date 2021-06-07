@@ -1,6 +1,11 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'app_card/widgets/app_card_item.dart';
+import 'buttons/icon_button.dart';
+import 'layout/app_column.dart';
 
 class AppSearchField extends StatefulWidget {
   final Function(String) onChanged;
@@ -28,11 +33,45 @@ class AppSearchField extends StatefulWidget {
 }
 
 class _AppSearchFieldState extends State<AppSearchField> {
-  bool valid = true;
+  late GlobalKey actionKey;
+  late double width, height, xPosition, yPosition;
+  bool isDropDownOpened = false;
+  late OverlayEntry floatingDropDown;
+
+  @override
+  void initState() {
+    actionKey = LabeledGlobalKey('kek'); // TODO random string here
+    super.initState();
+  }
+
+  OverlayEntry _createFloatingDropDown() {
+    return OverlayEntry(builder: (context) {
+      return Positioned(
+        left: xPosition,
+        width: width,
+        top: yPosition + height,
+        height: 4 * height + 445,
+        child: DropDown(
+          itemHeight: height,
+        ),
+      );
+    });
+  }
+
+  void findDropDownData() {
+    RenderBox renderBox =
+        actionKey.currentContext!.findRenderObject()! as RenderBox;
+    width = renderBox.size.width;
+    height = renderBox.size.height;
+    Offset offset = renderBox.localToGlobal(Offset.zero);
+    xPosition = offset.dx;
+    yPosition = offset.dy;
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      key: actionKey,
       height: widget.size40(context),
       child: Stack(
         fit: StackFit.expand,
@@ -47,7 +86,20 @@ class _AppSearchFieldState extends State<AppSearchField> {
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
             onEditingComplete: widget.onEditingComplete,
-            onChanged: widget.onChanged,
+            onChanged: (text) {
+              setState(() {
+                if (isDropDownOpened) {
+                  floatingDropDown.remove();
+                } else {
+                  findDropDownData();
+                  floatingDropDown = _createFloatingDropDown();
+                  Overlay.of(context)?.insert(floatingDropDown);
+                }
+
+                isDropDownOpened = !isDropDownOpened;
+              });
+              //widget.onChanged(text);
+            },
             placeholderStyle: CupertinoTheme.of(context)
                 .textTheme
                 .textStyle
@@ -63,4 +115,69 @@ class _AppSearchFieldState extends State<AppSearchField> {
       ),
     );
   }
+}
+
+class DropDown extends StatelessWidget {
+  final double itemHeight;
+
+  const DropDown({
+    Key? key,
+    required this.itemHeight,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.white,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 5,
+          ),
+          AppColumn(
+            spacing: 6,
+            children: [
+              _item(context),
+              _item(context),
+              _item(context),
+              _item(context),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _item(BuildContext context) => AppCardItem.large(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+              ),
+              child: const RoundedImage.small(
+                imageName: AppImages.photo_placeholder_new,
+              ),
+            ),
+            Text(
+              'Anis Abi'.toUpperCase(),
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                right: 16,
+              ),
+              child: IconButton(
+                onPressed: () {},
+                icon: Image.asset(
+                  AppImages.add_new,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 }

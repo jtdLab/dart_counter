@@ -12,6 +12,12 @@
         "type": "dart",
         "request": "launch",
         "program": "lib/main_prod.dart"
-      }
+      },
+      {
+        "name": "Flutter Playground",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main_playground.dart"
+      },
     ]
   }

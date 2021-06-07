@@ -13,6 +13,7 @@ class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPage(
+      onTap: () => FocusScope.of(context).unfocus(),
       navigationBar: AppNavigationBar(
         leading: AppNavigationBarButton(
           onPressed: () => context.router.pop(),

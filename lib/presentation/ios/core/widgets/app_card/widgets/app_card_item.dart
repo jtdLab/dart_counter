@@ -1,3 +1,4 @@
+import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
@@ -6,28 +7,39 @@ enum CardSize { custom, small, normal, large }
 class AppCardItem extends StatelessWidget {
   final double? height;
   final CardSize size;
+  final Color color;
   final Widget content;
 
   const AppCardItem.custom({
     Key? key,
     required this.height,
+    this.color = AppColors.white,
     required this.content,
   })   : size = CardSize.custom,
         super(key: key);
 
-  const AppCardItem.small({Key? key, required this.content})
-      : size = CardSize.small,
+  const AppCardItem.small({
+    Key? key,
+    this.color = AppColors.white,
+    required this.content,
+  })   : size = CardSize.small,
         height = null,
         super(key: key);
 
-  const AppCardItem.normal({Key? key, required this.content})
-      : size = CardSize.normal,
+  const AppCardItem.normal({
+    Key? key,
+    this.color = AppColors.white,
+    required this.content,
+  })   : size = CardSize.normal,
         height = null,
         super(key: key);
 
-  const AppCardItem.large({Key? key, required this.content})
-      : size = CardSize.large,
-         height = null,
+  const AppCardItem.large({
+    Key? key,
+    this.color = AppColors.white,
+    required this.content,
+  })   : size = CardSize.large,
+        height = null,
         super(key: key);
 
   @override
@@ -50,6 +62,7 @@ class AppCardItem extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(
+        color: color,
         border: Border.all(
           width: border4(context),
         ),
