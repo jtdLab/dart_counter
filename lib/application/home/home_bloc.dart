@@ -26,12 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IUserFacade _userFacade;
 
   HomeBloc(this._friendFacade, this._gameInvitationFacade, this._userFacade)
-      : super(
-          const HomeState(
-            loading: true,
-            error: false,
-          ),
-        );
+      : super(const HomeState.initial());
 
   StreamSubscription<Either<FriendFailure, KtList<FriendRequest>>>?
       _friendRequestStreamSubscription;
@@ -45,7 +40,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> mapEventToState(
     HomeEvent event,
   ) async* {
-    yield* event.map(
+    /**
+     * yield* event.map(
       watchDataStarted: (e) async* {
         _friendRequestStreamSubscription = _friendFacade
             .watchFriendRequests()
@@ -88,6 +84,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         );
       },
     );
+     */
   }
 
   @override

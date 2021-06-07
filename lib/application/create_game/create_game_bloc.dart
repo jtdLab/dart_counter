@@ -9,12 +9,13 @@ part 'create_game_state.dart';
 part 'create_game_bloc.freezed.dart';
 
 class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
-  CreateGameBloc() : super(_Initial());
+  CreateGameBloc() : super(const CreateGameState.initial());
 
   @override
   Stream<CreateGameState> mapEventToState(
     CreateGameEvent event,
   ) async* {
+    
     // TODO: implement mapEventToState
   }
 }

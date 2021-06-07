@@ -1118,14 +1118,14 @@ abstract class _DigitPressed implements InGameEvent {
 class _$InGameStateTearOff {
   const _$InGameStateTearOff();
 
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _Snapshot snapshot({required Game game}) {
-    return _Snapshot(
+  _InGame call({required Game game}) {
+    return _InGame(
       game: game,
     );
+  }
+
+  _Initial initial() {
+    return const _Initial();
   }
 }
 
@@ -1135,28 +1135,28 @@ const $InGameState = _$InGameStateTearOff();
 /// @nodoc
 mixin _$InGameState {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(Game game) snapshot,
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
+    required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Game game)? snapshot,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
+    TResult Function()? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Snapshot value) snapshot,
+  TResult map<TResult extends Object?>(
+    TResult Function(_InGame value) $default, {
+    required TResult Function(_Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Snapshot value)? snapshot,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InGame value)? $default, {
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1179,111 +1179,28 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
-}
-
-/// @nodoc
-
-class _$_Loading implements _Loading {
-  const _$_Loading();
-
-  @override
-  String toString() {
-    return 'InGameState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(Game game) snapshot,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Game game)? snapshot,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Snapshot value) snapshot,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Snapshot value)? snapshot,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements InGameState {
-  const factory _Loading() = _$_Loading;
-}
-
-/// @nodoc
-abstract class _$SnapshotCopyWith<$Res> {
-  factory _$SnapshotCopyWith(_Snapshot value, $Res Function(_Snapshot) then) =
-      __$SnapshotCopyWithImpl<$Res>;
+abstract class _$InGameCopyWith<$Res> {
+  factory _$InGameCopyWith(_InGame value, $Res Function(_InGame) then) =
+      __$InGameCopyWithImpl<$Res>;
   $Res call({Game game});
 
   $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
-class __$SnapshotCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
-    implements _$SnapshotCopyWith<$Res> {
-  __$SnapshotCopyWithImpl(_Snapshot _value, $Res Function(_Snapshot) _then)
-      : super(_value, (v) => _then(v as _Snapshot));
+class __$InGameCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
+    implements _$InGameCopyWith<$Res> {
+  __$InGameCopyWithImpl(_InGame _value, $Res Function(_InGame) _then)
+      : super(_value, (v) => _then(v as _InGame));
 
   @override
-  _Snapshot get _value => super._value as _Snapshot;
+  _InGame get _value => super._value as _InGame;
 
   @override
   $Res call({
     Object? game = freezed,
   }) {
-    return _then(_Snapshot(
+    return _then(_InGame(
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
@@ -1301,21 +1218,21 @@ class __$SnapshotCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Snapshot implements _Snapshot {
-  const _$_Snapshot({required this.game});
+class _$_InGame implements _InGame {
+  const _$_InGame({required this.game});
 
   @override
   final Game game;
 
   @override
   String toString() {
-    return 'InGameState.snapshot(game: $game)';
+    return 'InGameState(game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Snapshot &&
+        (other is _InGame &&
             (identical(other.game, game) ||
                 const DeepCollectionEquality().equals(other.game, game)));
   }
@@ -1326,59 +1243,141 @@ class _$_Snapshot implements _Snapshot {
 
   @JsonKey(ignore: true)
   @override
-  _$SnapshotCopyWith<_Snapshot> get copyWith =>
-      __$SnapshotCopyWithImpl<_Snapshot>(this, _$identity);
+  _$InGameCopyWith<_InGame> get copyWith =>
+      __$InGameCopyWithImpl<_InGame>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(Game game) snapshot,
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
+    required TResult Function() initial,
   }) {
-    return snapshot(game);
+    return $default(game);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Game game)? snapshot,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
-    if (snapshot != null) {
-      return snapshot(game);
+    if ($default != null) {
+      return $default(game);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Snapshot value) snapshot,
+  TResult map<TResult extends Object?>(
+    TResult Function(_InGame value) $default, {
+    required TResult Function(_Initial value) initial,
   }) {
-    return snapshot(this);
+    return $default(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Snapshot value)? snapshot,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InGame value)? $default, {
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
-    if (snapshot != null) {
-      return snapshot(this);
+    if ($default != null) {
+      return $default(this);
     }
     return orElse();
   }
 }
 
-abstract class _Snapshot implements InGameState {
-  const factory _Snapshot({required Game game}) = _$_Snapshot;
+abstract class _InGame implements InGameState {
+  const factory _InGame({required Game game}) = _$_InGame;
 
   Game get game => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SnapshotCopyWith<_Snapshot> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$InGameCopyWith<_InGame> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InitialCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
+
+  @override
+  _Initial get _value => super._value as _Initial;
+}
+
+/// @nodoc
+
+class _$_Initial implements _Initial {
+  const _$_Initial();
+
+  @override
+  String toString() {
+    return 'InGameState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
+    required TResult Function() initial,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InGame value) $default, {
+    required TResult Function(_Initial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InGame value)? $default, {
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements InGameState {
+  const factory _Initial() = _$_Initial;
 }

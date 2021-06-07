@@ -292,6 +292,12 @@ abstract class _SnapshotReceived implements CreateGameEvent {
 class _$CreateGameStateTearOff {
   const _$CreateGameStateTearOff();
 
+  _CreateGame call({required Game game}) {
+    return _CreateGame(
+      game: game,
+    );
+  }
+
   _Initial initial() {
     return const _Initial();
   }
@@ -303,23 +309,27 @@ const $CreateGameState = _$CreateGameStateTearOff();
 /// @nodoc
 mixin _$CreateGameState {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
     required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
     TResult Function()? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreateGame value) $default, {
     required TResult Function(_Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreateGame value)? $default, {
     TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) =>
@@ -341,6 +351,131 @@ class _$CreateGameStateCopyWithImpl<$Res>
   final CreateGameState _value;
   // ignore: unused_field
   final $Res Function(CreateGameState) _then;
+}
+
+/// @nodoc
+abstract class _$CreateGameCopyWith<$Res> {
+  factory _$CreateGameCopyWith(
+          _CreateGame value, $Res Function(_CreateGame) then) =
+      __$CreateGameCopyWithImpl<$Res>;
+  $Res call({Game game});
+
+  $GameCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class __$CreateGameCopyWithImpl<$Res>
+    extends _$CreateGameStateCopyWithImpl<$Res>
+    implements _$CreateGameCopyWith<$Res> {
+  __$CreateGameCopyWithImpl(
+      _CreateGame _value, $Res Function(_CreateGame) _then)
+      : super(_value, (v) => _then(v as _CreateGame));
+
+  @override
+  _CreateGame get _value => super._value as _CreateGame;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(_CreateGame(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
+
+  @override
+  $GameCopyWith<$Res> get game {
+    return $GameCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CreateGame implements _CreateGame {
+  const _$_CreateGame({required this.game});
+
+  @override
+  final Game game;
+
+  @override
+  String toString() {
+    return 'CreateGameState(game: $game)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateGame &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateGameCopyWith<_CreateGame> get copyWith =>
+      __$CreateGameCopyWithImpl<_CreateGame>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
+    required TResult Function() initial,
+  }) {
+    return $default(game);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(game);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreateGame value) $default, {
+    required TResult Function(_Initial value) initial,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreateGame value)? $default, {
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateGame implements CreateGameState {
+  const factory _CreateGame({required Game game}) = _$_CreateGame;
+
+  Game get game => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$CreateGameCopyWith<_CreateGame> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -379,7 +514,8 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+  TResult when<TResult extends Object?>(
+    TResult Function(Game game) $default, {
     required TResult Function() initial,
   }) {
     return initial();
@@ -387,7 +523,8 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Game game)? $default, {
     TResult Function()? initial,
     required TResult orElse(),
   }) {
@@ -399,7 +536,8 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreateGame value) $default, {
     required TResult Function(_Initial value) initial,
   }) {
     return initial(this);
@@ -407,7 +545,8 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreateGame value)? $default, {
     TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
