@@ -5,21 +5,22 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/cupertino.dart' as _i15;
+import 'package:flutter/cupertino.dart' as _i16;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../../domain/play/game.dart' as _i16;
-import '../core/auth_widget.dart' as _i4;
-import '../create_game/create_game_page.dart' as _i12;
-import '../friends/friends_page.dart' as _i10;
-import '../game_history/game_history_page.dart' as _i7;
-import '../game_history_details/game_history_details_page.dart' as _i8;
-import '../home/home_page.dart' as _i5;
-import '../in_game/in_game_page.dart' as _i13;
-import '../invitations/invitations_page.dart' as _i9;
-import '../post_game/post_game_page.dart' as _i14;
-import '../profile/profile_page.dart' as _i6;
-import '../settings/settings_page.dart' as _i11;
+import '../../../domain/play/game.dart' as _i17;
+import '../auth/auth_page.dart' as _i5;
+import '../create_game/create_game_page.dart' as _i13;
+import '../friends/friends_page.dart' as _i11;
+import '../game_history/game_history_page.dart' as _i8;
+import '../game_history_details/game_history_details_page.dart' as _i9;
+import '../home/home_page.dart' as _i6;
+import '../in_game/in_game_page.dart' as _i14;
+import '../invitations/invitations_page.dart' as _i10;
+import '../loading/loading_page.dart' as _i4;
+import '../post_game/post_game_page.dart' as _i15;
+import '../profile/profile_page.dart' as _i7;
+import '../settings/settings_page.dart' as _i12;
 import '../splash/splash_page.dart' as _i3;
 
 class Router extends _i1.RootStackRouter {
@@ -28,74 +29,88 @@ class Router extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SplashPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    SplashPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
           return _i3.SplashPage();
-        }),
-    AuthWidgetRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        },
+        opaque: true,
+        barrierDismissible: false),
+    LoadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i4.AuthWidget();
-        }),
-    HomePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+          return _i4.LoadingPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    AuthPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i5.HomePage();
-        }),
+          return _i5.AuthPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
+    HomePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i6.HomePage();
+        },
+        opaque: true,
+        barrierDismissible: false),
     ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.ProfilePage();
+          return _i7.ProfilePage();
         }),
     GameHistoryPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.GameHistoryPage();
+          return _i8.GameHistoryPage();
         }),
     GameHistoryDetailsPageRoute.name: (routeData) =>
         _i1.CupertinoPageX<dynamic>(
             routeData: routeData,
             builder: (data) {
               final args = data.argsAs<GameHistoryDetailsPageRouteArgs>();
-              return _i8.GameHistoryDetailsPage(key: args.key, game: args.game);
+              return _i9.GameHistoryDetailsPage(key: args.key, game: args.game);
             }),
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.InvitationsPage();
+          return _i10.InvitationsPage();
         }),
     FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i10.FriendsPage();
+          return _i11.FriendsPage();
         }),
     SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i11.SettingsPage();
+          return _i12.SettingsPage();
         }),
     CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i12.CreateGamePage();
+          return _i13.CreateGamePage();
         }),
     InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i13.InGamePage();
+          return _i14.InGamePage();
         }),
     PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i14.PostGamePage();
+          return _i15.PostGamePage();
         })
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(SplashPageRoute.name, path: '/'),
-        _i1.RouteConfig(AuthWidgetRoute.name, path: '/auth-widget'),
+        _i1.RouteConfig(LoadingPageRoute.name, path: '/loading-page'),
+        _i1.RouteConfig(AuthPageRoute.name, path: '/auth-page'),
         _i1.RouteConfig(HomePageRoute.name, path: '/home-page'),
         _i1.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
         _i1.RouteConfig(GameHistoryPageRoute.name, path: '/game-history-page'),
@@ -116,10 +131,16 @@ class SplashPageRoute extends _i1.PageRouteInfo {
   static const String name = 'SplashPageRoute';
 }
 
-class AuthWidgetRoute extends _i1.PageRouteInfo {
-  const AuthWidgetRoute() : super(name, path: '/auth-widget');
+class LoadingPageRoute extends _i1.PageRouteInfo {
+  const LoadingPageRoute() : super(name, path: '/loading-page');
 
-  static const String name = 'AuthWidgetRoute';
+  static const String name = 'LoadingPageRoute';
+}
+
+class AuthPageRoute extends _i1.PageRouteInfo {
+  const AuthPageRoute() : super(name, path: '/auth-page');
+
+  static const String name = 'AuthPageRoute';
 }
 
 class HomePageRoute extends _i1.PageRouteInfo {
@@ -142,7 +163,7 @@ class GameHistoryPageRoute extends _i1.PageRouteInfo {
 
 class GameHistoryDetailsPageRoute
     extends _i1.PageRouteInfo<GameHistoryDetailsPageRouteArgs> {
-  GameHistoryDetailsPageRoute({_i15.Key? key, required _i16.Game game})
+  GameHistoryDetailsPageRoute({_i16.Key? key, required _i17.Game game})
       : super(name,
             path: '/game-history-details-page',
             args: GameHistoryDetailsPageRouteArgs(key: key, game: game));
@@ -153,9 +174,9 @@ class GameHistoryDetailsPageRoute
 class GameHistoryDetailsPageRouteArgs {
   const GameHistoryDetailsPageRouteArgs({this.key, required this.game});
 
-  final _i15.Key? key;
+  final _i16.Key? key;
 
-  final _i16.Game game;
+  final _i17.Game game;
 }
 
 class InvitationsPageRoute extends _i1.PageRouteInfo {

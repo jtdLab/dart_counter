@@ -1,23 +1,27 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
-// TODO is this screen rly needed using nativ splashes would be better
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) async {
+        await Future.delayed(const Duration(seconds: 1));
+
         if (state == const AuthState.unauthenticated()) {
-          context.router.replace(const AuthWidgetRoute());
-        } else {
+          context.router.replace(const AuthPageRoute());
+        } else if (state == const AuthState.authenticated()) {
           context.router.replace(const HomePageRoute());
         }
       },
-      builder: (context, state) => CupertinoPageScaffold(
-        child: Container(),
+      child: CupertinoPageScaffold(
+        child: Center(
+          child: LogoDisplayer(),
+        ),
       ),
     );
   }

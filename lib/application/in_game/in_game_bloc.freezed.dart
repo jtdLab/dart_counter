@@ -1118,14 +1118,15 @@ abstract class _DigitPressed implements InGameEvent {
 class _$InGameStateTearOff {
   const _$InGameStateTearOff();
 
-  _InGame call({required Game game}) {
+  _InGame call(
+      {required int inputPoints,
+      required List<Tuple2<String, int>> inputPointsDeep,
+      required Game game}) {
     return _InGame(
+      inputPoints: inputPoints,
+      inputPointsDeep: inputPointsDeep,
       game: game,
     );
-  }
-
-  _Initial initial() {
-    return const _Initial();
   }
 }
 
@@ -1134,31 +1135,13 @@ const $InGameState = _$InGameStateTearOff();
 
 /// @nodoc
 mixin _$InGameState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Game game) $default, {
-    required TResult Function() initial,
-  }) =>
+  int get inputPoints => throw _privateConstructorUsedError;
+  List<Tuple2<String, int>> get inputPointsDeep =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Game game)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_InGame value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_InGame value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  Game get game => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $InGameStateCopyWith<InGameState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1167,6 +1150,10 @@ abstract class $InGameStateCopyWith<$Res> {
   factory $InGameStateCopyWith(
           InGameState value, $Res Function(InGameState) then) =
       _$InGameStateCopyWithImpl<$Res>;
+  $Res call(
+      {int inputPoints, List<Tuple2<String, int>> inputPointsDeep, Game game});
+
+  $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
@@ -1176,31 +1163,22 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
   final InGameState _value;
   // ignore: unused_field
   final $Res Function(InGameState) _then;
-}
-
-/// @nodoc
-abstract class _$InGameCopyWith<$Res> {
-  factory _$InGameCopyWith(_InGame value, $Res Function(_InGame) then) =
-      __$InGameCopyWithImpl<$Res>;
-  $Res call({Game game});
-
-  $GameCopyWith<$Res> get game;
-}
-
-/// @nodoc
-class __$InGameCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
-    implements _$InGameCopyWith<$Res> {
-  __$InGameCopyWithImpl(_InGame _value, $Res Function(_InGame) _then)
-      : super(_value, (v) => _then(v as _InGame));
-
-  @override
-  _InGame get _value => super._value as _InGame;
 
   @override
   $Res call({
+    Object? inputPoints = freezed,
+    Object? inputPointsDeep = freezed,
     Object? game = freezed,
   }) {
-    return _then(_InGame(
+    return _then(_value.copyWith(
+      inputPoints: inputPoints == freezed
+          ? _value.inputPoints
+          : inputPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      inputPointsDeep: inputPointsDeep == freezed
+          ? _value.inputPointsDeep
+          : inputPointsDeep // ignore: cast_nullable_to_non_nullable
+              as List<Tuple2<String, int>>,
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
@@ -1217,167 +1195,110 @@ class __$InGameCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+abstract class _$InGameCopyWith<$Res> implements $InGameStateCopyWith<$Res> {
+  factory _$InGameCopyWith(_InGame value, $Res Function(_InGame) then) =
+      __$InGameCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int inputPoints, List<Tuple2<String, int>> inputPointsDeep, Game game});
+
+  @override
+  $GameCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class __$InGameCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
+    implements _$InGameCopyWith<$Res> {
+  __$InGameCopyWithImpl(_InGame _value, $Res Function(_InGame) _then)
+      : super(_value, (v) => _then(v as _InGame));
+
+  @override
+  _InGame get _value => super._value as _InGame;
+
+  @override
+  $Res call({
+    Object? inputPoints = freezed,
+    Object? inputPointsDeep = freezed,
+    Object? game = freezed,
+  }) {
+    return _then(_InGame(
+      inputPoints: inputPoints == freezed
+          ? _value.inputPoints
+          : inputPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      inputPointsDeep: inputPointsDeep == freezed
+          ? _value.inputPointsDeep
+          : inputPointsDeep // ignore: cast_nullable_to_non_nullable
+              as List<Tuple2<String, int>>,
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
+}
+
+/// @nodoc
 
 class _$_InGame implements _InGame {
-  const _$_InGame({required this.game});
+  const _$_InGame(
+      {required this.inputPoints,
+      required this.inputPointsDeep,
+      required this.game});
 
+  @override
+  final int inputPoints;
+  @override
+  final List<Tuple2<String, int>> inputPointsDeep;
   @override
   final Game game;
 
   @override
   String toString() {
-    return 'InGameState(game: $game)';
+    return 'InGameState(inputPoints: $inputPoints, inputPointsDeep: $inputPointsDeep, game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _InGame &&
+            (identical(other.inputPoints, inputPoints) ||
+                const DeepCollectionEquality()
+                    .equals(other.inputPoints, inputPoints)) &&
+            (identical(other.inputPointsDeep, inputPointsDeep) ||
+                const DeepCollectionEquality()
+                    .equals(other.inputPointsDeep, inputPointsDeep)) &&
             (identical(other.game, game) ||
                 const DeepCollectionEquality().equals(other.game, game)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(inputPoints) ^
+      const DeepCollectionEquality().hash(inputPointsDeep) ^
+      const DeepCollectionEquality().hash(game);
 
   @JsonKey(ignore: true)
   @override
   _$InGameCopyWith<_InGame> get copyWith =>
       __$InGameCopyWithImpl<_InGame>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Game game) $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(game);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Game game)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(game);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_InGame value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_InGame value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _InGame implements InGameState {
-  const factory _InGame({required Game game}) = _$_InGame;
+  const factory _InGame(
+      {required int inputPoints,
+      required List<Tuple2<String, int>> inputPointsDeep,
+      required Game game}) = _$_InGame;
 
+  @override
+  int get inputPoints => throw _privateConstructorUsedError;
+  @override
+  List<Tuple2<String, int>> get inputPointsDeep =>
+      throw _privateConstructorUsedError;
+  @override
   Game get game => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$InGameCopyWith<_InGame> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'InGameState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Game game) $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Game game)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_InGame value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_InGame value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements InGameState {
-  const factory _Initial() = _$_Initial;
 }

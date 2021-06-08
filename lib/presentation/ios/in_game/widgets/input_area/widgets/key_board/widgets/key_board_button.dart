@@ -3,12 +3,14 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_bu
 import 'package:flutter/cupertino.dart';
 
 class KeyBoardButton extends StatelessWidget {
+  final VoidCallback? onPressed;
   final double fontSize;
   final String? text;
   final Widget? child;
 
 // TODO assert text or child supplied
   const KeyBoardButton({
+    this.onPressed,
     Key? key,
     this.fontSize = 28,
     this.text,
@@ -21,14 +23,14 @@ class KeyBoardButton extends StatelessWidget {
       return AppActionButton.normal(
         fontSize: fontSize,
         color: AppColors.white,
-        onPressed: () {},
+        onPressed: onPressed,
         text: text,
       );
     }
     if (child != null) {
       return AppActionButton.normal(
         color: AppColors.white,
-        onPressed: () {},
+        onPressed: onPressed,
         icon: child,
       );
     }

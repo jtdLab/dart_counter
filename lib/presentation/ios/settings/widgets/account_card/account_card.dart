@@ -20,7 +20,7 @@ class AccountCard extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state == const AuthState.unauthenticated()) {
-          context.router.replaceAll([const AuthWidgetRoute()]);
+          //ontext.router.replaceAll([const AuthWidgetRoute()]);
         }
       },
       child: AppCard(

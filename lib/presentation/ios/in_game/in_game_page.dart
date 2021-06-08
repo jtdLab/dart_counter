@@ -8,9 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 
 class InGamePage extends StatelessWidget {
-
-  
-
   @override
   Widget build(BuildContext context) {
     return AppPage(
@@ -35,7 +32,14 @@ class InGamePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           PlayerDisplayer(),
-          InputArea(),
+          // TODO
+          InputArea(
+            onCheckPressed: () {},
+            onDigitPressed: (digit) {},
+            onDoPressed: () {},
+            onEreasePressed: () {},
+            onUndoPressed: () {},
+          ),
         ],
       ),
     );

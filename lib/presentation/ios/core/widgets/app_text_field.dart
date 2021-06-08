@@ -1,5 +1,5 @@
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/sign_up/widgets/error_displayer.dart';
+import 'package:dart_counter/presentation/ios/auth/sign_up/widgets/error_displayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 

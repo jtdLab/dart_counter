@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'in_game_event.dart';
@@ -13,7 +14,14 @@ part 'in_game_bloc.freezed.dart';
 class InGameBloc extends Bloc<InGameEvent, InGameState> {
   final IPlayFacade _playFacade;
 
-  InGameBloc(this._playFacade) : super(const InGameState.initial());
+  InGameBloc(this._playFacade)
+      : super(
+          InGameState(
+            inputPoints: 0,
+            inputPointsDeep: List.empty(),
+            game: Game.dummy(), // TODO
+          ),
+        );
 
   StreamSubscription<Game>? _gameStreamSubscription;
 
@@ -28,7 +36,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState> {
             .listen((game) => add(InGameEvent.snapshotReceived(game: game)));
       },
       snapshotReceived: (e) async* {
-        yield InGameState(game: e.game);
+        
       },
       cancelPressed: (e) async* {
         _playFacade.cancelGame();

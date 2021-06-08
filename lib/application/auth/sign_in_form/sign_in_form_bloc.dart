@@ -43,8 +43,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           isSubmitting: true,
           authFailureOrSuccess: null,
         );
-        await Future.delayed(
-            const Duration(milliseconds: 750)); // TODO rly wanted ??
+        //await Future.delayed(const Duration(milliseconds: 750)); // TODO rly wanted ??
         if (isEmailValid && isPasswordValid) {
           authFailureOrSuccess = await _authFacade.singInWithEmailAndPassword(
               emailAddress: state.email, password: state.password);

@@ -6,6 +6,7 @@ import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/ap
 import 'package:dart_counter/presentation/ios/core/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:dart_counter/presentation/ios/settings/widgets/account_card/account_card.dart';
 import 'package:dart_counter/presentation/ios/settings/widgets/language_card/language_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,39 +14,47 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: AppNavigationBarButton(
-          onPressed: () => context.router.pop(),
-          child: Image.asset(
-            AppImages.chevron_back_new,
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state == const AuthState.unauthenticated()) {
+          context.router.replace(const AuthPageRoute());
+        }
+      },
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: AppNavigationBarButton(
+            onPressed: () => context.router.pop(),
+            child: Image.asset(
+              AppImages.chevron_back_new,
+            ),
+          ),
+          middle: Text(
+            LocaleKeys.settings.tr().toUpperCase(),
           ),
         ),
-        middle: Text(
-          LocaleKeys.settings.tr().toUpperCase(),
+        child: Column(
+          children: [
+            const Spacer(),
+            const RoundedImage.extraLarge(
+              imageName: AppImages.photo_placeholder_new,
+            ),
+            const Spacer(),
+            LanguageCard(),
+            const Spacer(),
+            AccountCard(),
+            const Spacer(),
+            AppPrimaryButton(
+              text: LocaleKeys.signOut.tr(),
+              color: AppColors.red,
+              onPressed: () {
+                context.read<AuthBloc>().add(const AuthEvent.signedOut());
+              },
+            ),
+          ],
         ),
-      ),
-      child: Column(
-        children: [
-          const Spacer(),
-          const RoundedImage.extraLarge(
-              imageName: AppImages.photo_placeholder_new),
-          const Spacer(),
-          LanguageCard(),
-          const Spacer(),
-          AccountCard(),
-          const Spacer(),
-          AppPrimaryButton(
-            text: LocaleKeys.signOut.tr(),
-            color: AppColors.red,
-            onPressed: () =>
-                context.read<AuthBloc>().add(const AuthEvent.signedOut()),
-          ),
-        ],
       ),
     );
   }
