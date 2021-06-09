@@ -1,5 +1,5 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
-import 'package:dart_counter/application/auth/sign_up_form/sign_up_form_bloc.dart';
+import 'package:dart_counter/application/auth/sign_up/sign_up_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
@@ -20,7 +20,7 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpFormBloc, SignUpFormState>(
+    return BlocConsumer<SignUpBloc, SignUpState>(
       listener: (context, state) {
         state.authFailureOrSuccess?.fold(
           (failure) {
@@ -54,8 +54,8 @@ class SignUpForm extends StatelessWidget {
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (emailStr) {
-                context.read<SignUpFormBloc>().add(
-                      SignUpFormEvent.emailChanged(emailStr),
+                context.read<SignUpBloc>().add(
+                      SignUpEvent.emailChanged(emailStr),
                     );
               },
               valid: !state.showErrorMessages ||
@@ -66,8 +66,8 @@ class SignUpForm extends StatelessWidget {
               placeholder: LocaleKeys.username.tr(),
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
-              onChanged: (usernameString) => context.read<SignUpFormBloc>().add(
-                    SignUpFormEvent.usernameChanged(usernameString),
+              onChanged: (usernameString) => context.read<SignUpBloc>().add(
+                    SignUpEvent.usernameChanged(usernameString),
                   ),
               valid: !state.showErrorMessages ||
                   (state.showErrorMessages && state.username.isValid()),
@@ -78,8 +78,8 @@ class SignUpForm extends StatelessWidget {
               placeholder: LocaleKeys.password.tr(),
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
-              onChanged: (passwordString) => context.read<SignUpFormBloc>().add(
-                    SignUpFormEvent.passwordChanged(passwordString),
+              onChanged: (passwordString) => context.read<SignUpBloc>().add(
+                    SignUpEvent.passwordChanged(passwordString),
                   ),
               valid: !state.showErrorMessages ||
                   (state.showErrorMessages && state.password.isValid()),
@@ -90,11 +90,10 @@ class SignUpForm extends StatelessWidget {
               placeholder: LocaleKeys.passwordAgain.tr(),
               textInputAction: TextInputAction.done,
               onEditingComplete: () => node.unfocus(),
-              onChanged: (passwordAgainString) => context
-                  .read<SignUpFormBloc>()
-                  .add(
-                    SignUpFormEvent.passwordAgainChanged(passwordAgainString),
-                  ),
+              onChanged: (passwordAgainString) =>
+                  context.read<SignUpBloc>().add(
+                        SignUpEvent.passwordAgainChanged(passwordAgainString),
+                      ),
               valid: !state.showErrorMessages ||
                   (state.showErrorMessages &&
                       state.password.isValid() &&
@@ -104,8 +103,8 @@ class SignUpForm extends StatelessWidget {
             AppPrimaryButton(
               text: LocaleKeys.signUp.tr(),
               onPressed: () => context
-                  .read<SignUpFormBloc>()
-                  .add(const SignUpFormEvent.signUpPressed()),
+                  .read<SignUpBloc>()
+                  .add(const SignUpEvent.signUpPressed()),
             ),
             const AppSpacer.large(),
             AppLinkButton(

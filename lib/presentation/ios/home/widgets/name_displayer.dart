@@ -3,6 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class NameDisplayer extends StatelessWidget {
+  final String name;
+
+  const NameDisplayer({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +22,7 @@ class NameDisplayer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          'Sebi Abi 69'.toUpperCase(),
+          name.toUpperCase(),
           style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                 color: AppColors.white,
               ),

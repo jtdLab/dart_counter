@@ -658,18 +658,18 @@ class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
   _HomeState call(
-      {required int newFriendRequests,
-      required int newGameInvitations,
-      required User user}) {
+      {required bool error,
+      required bool loading,
+      int? newFriendRequests,
+      int? newGameInvitations,
+      User? user}) {
     return _HomeState(
+      error: error,
+      loading: loading,
       newFriendRequests: newFriendRequests,
       newGameInvitations: newGameInvitations,
       user: user,
     );
-  }
-
-  _Initial initial() {
-    return const _Initial();
   }
 }
 
@@ -678,33 +678,14 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)
-        $default, {
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get error => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  int? get newFriendRequests => throw _privateConstructorUsedError;
+  int? get newGameInvitations => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -712,6 +693,14 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
+  $Res call(
+      {bool error,
+      bool loading,
+      int? newFriendRequests,
+      int? newGameInvitations,
+      User? user});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -721,16 +710,66 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+    Object? loading = freezed,
+    Object? newFriendRequests = freezed,
+    Object? newGameInvitations = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      newFriendRequests: newFriendRequests == freezed
+          ? _value.newFriendRequests
+          : newFriendRequests // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newGameInvitations: newGameInvitations == freezed
+          ? _value.newGameInvitations
+          : newGameInvitations // ignore: cast_nullable_to_non_nullable
+              as int?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$HomeStateCopyWith<$Res> {
+abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   factory _$HomeStateCopyWith(
           _HomeState value, $Res Function(_HomeState) then) =
       __$HomeStateCopyWithImpl<$Res>;
-  $Res call({int newFriendRequests, int newGameInvitations, User user});
+  @override
+  $Res call(
+      {bool error,
+      bool loading,
+      int? newFriendRequests,
+      int? newGameInvitations,
+      User? user});
 
-  $UserCopyWith<$Res> get user;
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -744,31 +783,34 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? error = freezed,
+    Object? loading = freezed,
     Object? newFriendRequests = freezed,
     Object? newGameInvitations = freezed,
     Object? user = freezed,
   }) {
     return _then(_HomeState(
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
       newFriendRequests: newFriendRequests == freezed
           ? _value.newFriendRequests
           : newFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       newGameInvitations: newGameInvitations == freezed
           ? _value.newGameInvitations
           : newGameInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
@@ -776,26 +818,37 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {required this.newFriendRequests,
-      required this.newGameInvitations,
-      required this.user});
+      {required this.error,
+      required this.loading,
+      this.newFriendRequests,
+      this.newGameInvitations,
+      this.user});
 
   @override
-  final int newFriendRequests;
+  final bool error;
   @override
-  final int newGameInvitations;
+  final bool loading;
   @override
-  final User user;
+  final int? newFriendRequests;
+  @override
+  final int? newGameInvitations;
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'HomeState(newFriendRequests: $newFriendRequests, newGameInvitations: $newGameInvitations, user: $user)';
+    return 'HomeState(error: $error, loading: $loading, newFriendRequests: $newFriendRequests, newGameInvitations: $newGameInvitations, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _HomeState &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.loading, loading) ||
+                const DeepCollectionEquality()
+                    .equals(other.loading, loading)) &&
             (identical(other.newFriendRequests, newFriendRequests) ||
                 const DeepCollectionEquality()
                     .equals(other.newFriendRequests, newFriendRequests)) &&
@@ -809,6 +862,8 @@ class _$_HomeState implements _HomeState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(loading) ^
       const DeepCollectionEquality().hash(newFriendRequests) ^
       const DeepCollectionEquality().hash(newGameInvitations) ^
       const DeepCollectionEquality().hash(user);
@@ -817,149 +872,28 @@ class _$_HomeState implements _HomeState {
   @override
   _$HomeStateCopyWith<_HomeState> get copyWith =>
       __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(newFriendRequests, newGameInvitations, user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(newFriendRequests, newGameInvitations, user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required int newFriendRequests,
-      required int newGameInvitations,
-      required User user}) = _$_HomeState;
+      {required bool error,
+      required bool loading,
+      int? newFriendRequests,
+      int? newGameInvitations,
+      User? user}) = _$_HomeState;
 
-  int get newFriendRequests => throw _privateConstructorUsedError;
-  int get newGameInvitations => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
+  @override
+  bool get error => throw _privateConstructorUsedError;
+  @override
+  bool get loading => throw _privateConstructorUsedError;
+  @override
+  int? get newFriendRequests => throw _privateConstructorUsedError;
+  @override
+  int? get newGameInvitations => throw _privateConstructorUsedError;
+  @override
+  User? get user => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$HomeStateCopyWith<_HomeState> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'HomeState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int newFriendRequests, int newGameInvitations, User user)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements HomeState {
-  const factory _Initial() = _$_Initial;
 }

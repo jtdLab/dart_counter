@@ -13,7 +13,7 @@ class RoundedImage extends StatelessWidget {
   final RoundedImageSize size;
   final String? imageName;
   final Border? border;
-  final Widget? child;
+  final ImageProvider? child;
 
   const RoundedImage.small({
     this.imageName,
@@ -53,11 +53,17 @@ class RoundedImage extends StatelessWidget {
               : size == RoundedImageSize.large
                   ? size70(context)
                   : size150(context),
-      decoration: BoxDecoration(shape: BoxShape.circle, border: border),
-      child: child ??
-          Image.asset(
-            imageName!,
-          ),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: border,
+        image: DecorationImage(
+          image: child ??
+              AssetImage(
+                imageName!,
+              ),
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 }

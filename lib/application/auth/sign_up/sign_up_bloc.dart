@@ -8,19 +8,19 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'sign_up_form_event.dart';
-part 'sign_up_form_state.dart';
-part 'sign_up_form_bloc.freezed.dart';
+part 'sign_up_event.dart';
+part 'sign_up_state.dart';
+part 'sign_up_bloc.freezed.dart';
 
 @injectable
-class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
+class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final IAuthFacade _authFacade;
 
-  SignUpFormBloc(this._authFacade) : super(SignUpFormState.initial());
+  SignUpBloc(this._authFacade) : super(SignUpState.initial());
 
   @override
-  Stream<SignUpFormState> mapEventToState(
-    SignUpFormEvent event,
+  Stream<SignUpState> mapEventToState(
+    SignUpEvent event,
   ) async* {
     yield* event.map(
       emailChanged: (e) async* {

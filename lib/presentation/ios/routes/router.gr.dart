@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 
 import '../../../domain/play/game.dart' as _i17;
 import '../auth/auth_page.dart' as _i5;
+import '../core/widgets/loading.dart' as _i4;
 import '../create_game/create_game_page.dart' as _i13;
 import '../friends/friends_page.dart' as _i11;
 import '../game_history/game_history_page.dart' as _i8;
@@ -17,7 +18,6 @@ import '../game_history_details/game_history_details_page.dart' as _i9;
 import '../home/home_page.dart' as _i6;
 import '../in_game/in_game_page.dart' as _i14;
 import '../invitations/invitations_page.dart' as _i10;
-import '../loading/loading_page.dart' as _i4;
 import '../post_game/post_game_page.dart' as _i15;
 import '../profile/profile_page.dart' as _i7;
 import '../settings/settings_page.dart' as _i12;
@@ -36,10 +36,10 @@ class Router extends _i1.RootStackRouter {
         },
         opaque: true,
         barrierDismissible: false),
-    LoadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    LoadingRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i4.LoadingPage();
+          return _i4.Loading();
         },
         opaque: true,
         barrierDismissible: false),
@@ -109,7 +109,7 @@ class Router extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(SplashPageRoute.name, path: '/'),
-        _i1.RouteConfig(LoadingPageRoute.name, path: '/loading-page'),
+        _i1.RouteConfig(LoadingRoute.name, path: '/Loading'),
         _i1.RouteConfig(AuthPageRoute.name, path: '/auth-page'),
         _i1.RouteConfig(HomePageRoute.name, path: '/home-page'),
         _i1.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
@@ -131,10 +131,10 @@ class SplashPageRoute extends _i1.PageRouteInfo {
   static const String name = 'SplashPageRoute';
 }
 
-class LoadingPageRoute extends _i1.PageRouteInfo {
-  const LoadingPageRoute() : super(name, path: '/loading-page');
+class LoadingRoute extends _i1.PageRouteInfo {
+  const LoadingRoute() : super(name, path: '/Loading');
 
-  static const String name = 'LoadingPageRoute';
+  static const String name = 'LoadingRoute';
 }
 
 class AuthPageRoute extends _i1.PageRouteInfo {

@@ -25,6 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield* event.map(
       authCheckRequested: (e) async* {
         final uid = _authFacade.getSignedInUid();
+
         if (uid != null) {
           yield const AuthState.authenticated();
         } else {

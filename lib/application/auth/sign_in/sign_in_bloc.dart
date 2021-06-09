@@ -8,19 +8,19 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'sign_in_form_bloc.freezed.dart';
-part 'sign_in_form_event.dart';
-part 'sign_in_form_state.dart';
+part 'sign_in_bloc.freezed.dart';
+part 'sign_in_event.dart';
+part 'sign_in_state.dart';
 
 @injectable
-class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
+class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final IAuthFacade _authFacade;
 
-  SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
+  SignInBloc(this._authFacade) : super(SignInState.initial());
 
   @override
-  Stream<SignInFormState> mapEventToState(
-    SignInFormEvent event,
+  Stream<SignInState> mapEventToState(
+    SignInEvent event,
   ) async* {
     yield* event.map(
       emailChanged: (e) async* {
@@ -43,7 +43,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           isSubmitting: true,
           authFailureOrSuccess: null,
         );
-        //await Future.delayed(const Duration(milliseconds: 750)); // TODO rly wanted ??
+
         if (isEmailValid && isPasswordValid) {
           authFailureOrSuccess = await _authFacade.singInWithEmailAndPassword(
               emailAddress: state.email, password: state.password);
@@ -51,6 +51,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           authFailureOrSuccess =
               left(const AuthFailure.invalidEmailAndPasswordCombination());
         }
+
         yield state.copyWith(
           isSubmitting: authFailureOrSuccess.isRight(),
           showErrorMessages: true,
