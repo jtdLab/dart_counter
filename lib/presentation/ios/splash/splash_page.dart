@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';

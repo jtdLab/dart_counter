@@ -1,7 +1,7 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart' hide Router;
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 
 class AppWidget extends StatelessWidget {
   final Router router = Router();

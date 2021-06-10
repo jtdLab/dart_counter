@@ -368,7 +368,7 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   KtList<Player> _fromExternalPlayers(List<dart.Player> players) {
-    List<Player> ps = [];
+    final List<Player> ps = [];
 
     for (final dart.Player player in players) {
       ps.add(_fromExternalPlayer(player));
@@ -419,7 +419,7 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   KtList<Set> _fromExternalSets(List<dart.Set> sets) {
-    List<Set> ss = [];
+    final List<Set> ss = [];
 
     for (final dart.Set set in sets) {
       ss.add(_fromExternalSet(set));
@@ -436,7 +436,7 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   KtList<Leg> _fromExternalLegs(List<dart.Leg> legs) {
-    List<Leg> ls = [];
+    final List<Leg> ls = [];
 
     for (final dart.Leg leg in legs) {
       ls.add(_fromExternalLeg(leg));
@@ -453,7 +453,7 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   KtList<Throw> _fromExternalThrows(List<dart.Throw> throws) {
-    List<Throw> ts = [];
+    final List<Throw> ts = [];
 
     for (final dart.Throw t in throws) {
       ts.add(_fromExternalThrow(t));

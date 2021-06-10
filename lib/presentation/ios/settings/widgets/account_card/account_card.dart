@@ -3,7 +3,6 @@ import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:dart_counter/presentation/ios/settings/modals/change_email/change_email_modal.dart';
 import 'package:dart_counter/presentation/ios/settings/modals/change_password/change_password_modal.dart';
 import 'package:dart_counter/presentation/ios/settings/modals/change_username/change_username_modal.dart';
@@ -11,7 +10,6 @@ import 'package:dart_counter/presentation/ios/settings/widgets/account_card/widg
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class AccountCard extends StatelessWidget {

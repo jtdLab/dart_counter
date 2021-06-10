@@ -45,6 +45,12 @@ class EditProfilePictureModal extends StatelessWidget {
                         child: CupertinoButton(
                           padding: EdgeInsets.zero,
                           color: AppColors.red,
+                          onPressed: () {
+                            context
+                                .read<EditProfileBloc>()
+                                .add(const EditProfileEvent.deletePressed());
+                            context.router.pop();
+                          },
                           child: Text(
                             LocaleKeys.deletePhoto.tr(),
                             style: const TextStyle(
@@ -52,12 +58,6 @@ class EditProfilePictureModal extends StatelessWidget {
                             ),
                             maxLines: 1,
                           ),
-                          onPressed: () {
-                            context
-                                .read<EditProfileBloc>()
-                                .add(const EditProfileEvent.deletePressed());
-                            context.router.pop();
-                          },
                         ),
                       ),
                       const Spacer(
@@ -77,21 +77,22 @@ class EditProfilePictureModal extends StatelessWidget {
                       Expanded(
                         flex: 167,
                         child: CupertinoButton(
-                            padding: EdgeInsets.zero,
-                            color: AppColors.gray,
-                            child: Text(
-                              LocaleKeys.takePhoto.tr(),
-                              style: const TextStyle(
-                                color: AppColors.black2,
-                              ),
-                              maxLines: 1,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.gray,
+                          onPressed: () {
+                            context
+                                .read<EditProfileBloc>()
+                                .add(const EditProfileEvent.takePressed());
+                            context.router.pop();
+                          },
+                          child: Text(
+                            LocaleKeys.takePhoto.tr(),
+                            style: const TextStyle(
+                              color: AppColors.black2,
                             ),
-                            onPressed: () {
-                              context
-                                  .read<EditProfileBloc>()
-                                  .add(const EditProfileEvent.takePressed());
-                              context.router.pop();
-                            }),
+                            maxLines: 1,
+                          ),
+                        ),
                       ),
                       const Spacer(
                         flex: 104,
@@ -110,21 +111,22 @@ class EditProfilePictureModal extends StatelessWidget {
                       Expanded(
                         flex: 167,
                         child: CupertinoButton(
-                            padding: EdgeInsets.zero,
-                            color: AppColors.gray,
-                            child: Text(
-                              LocaleKeys.choosePhoto.tr(),
-                              style: const TextStyle(
-                                color: AppColors.black2,
-                              ),
-                              maxLines: 1,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.gray,
+                          onPressed: () {
+                            context
+                                .read<EditProfileBloc>()
+                                .add(const EditProfileEvent.choosePressed());
+                            context.router.pop();
+                          },
+                          child: Text(
+                            LocaleKeys.choosePhoto.tr(),
+                            style: const TextStyle(
+                              color: AppColors.black2,
                             ),
-                            onPressed: () {
-                              context
-                                  .read<EditProfileBloc>()
-                                  .add(const EditProfileEvent.choosePressed());
-                              context.router.pop();
-                            }),
+                            maxLines: 1,
+                          ),
+                        ),
                       ),
                       const Spacer(
                         flex: 104,

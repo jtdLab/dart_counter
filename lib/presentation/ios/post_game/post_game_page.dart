@@ -8,7 +8,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_b
 import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/player_profile_image_and_name_displayer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';

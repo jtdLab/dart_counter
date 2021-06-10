@@ -25,7 +25,7 @@ class AppNavigationBar extends StatelessWidget {
   SizedBox _emptyBox(BuildContext context) => SizedBox(
         width: responsiveDouble(
           context: context,
-          mobile: ResponsiveDouble(
+          mobile: const ResponsiveDouble(
             small: 15,
             normal: 20,
             large: 25,
@@ -34,7 +34,7 @@ class AppNavigationBar extends StatelessWidget {
         ),
         height: responsiveDouble(
           context: context,
-          mobile: ResponsiveDouble(
+          mobile: const ResponsiveDouble(
             small: 15,
             normal: 20,
             large: 25,

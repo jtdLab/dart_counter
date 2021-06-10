@@ -54,7 +54,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddressStr,
         password: passwordStr,
       );
-      
+
       final userDoc = await _firebaseFirestore.userDocument();
       final user = User(
         id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid),
@@ -181,7 +181,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
       await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return right(unit);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       return left(const AuthFailure.serverError()); // TODO specify
     }
   }
@@ -214,7 +214,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         try {
           await user.updateEmail(newEmailAddress.getOrCrash());
           return right(unit);
-        } on FirebaseAuthException catch (e) {
+        } on FirebaseAuthException {
           // TODO
         }
       } else {

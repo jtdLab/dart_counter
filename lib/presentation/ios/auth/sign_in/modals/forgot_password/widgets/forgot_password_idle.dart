@@ -26,7 +26,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                   SizedBox(
                     width: responsiveDouble(
                       context: context,
-                      mobile: ResponsiveDouble(
+                      mobile: const ResponsiveDouble(
                           small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
@@ -36,7 +36,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 50,
                                 normal: 75,
                                 large: 125,
@@ -47,7 +47,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                           AppImages.logo,
                           width: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 50,
                                 normal: 125,
                                 large: 175,
@@ -55,7 +55,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                           ),
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 75,
                                 normal: 125,
                                 large: 175,
@@ -85,7 +85,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 8,
                                 normal: 12,
                                 large: 16,
@@ -105,7 +105,7 @@ class ForgotPasswordIdle extends StatelessWidget {
                   SizedBox(
                     width: responsiveDouble(
                       context: context,
-                      mobile: ResponsiveDouble(
+                      mobile: const ResponsiveDouble(
                           small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),

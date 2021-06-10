@@ -44,11 +44,11 @@ class _AppDropDownState extends State<AppDropDown> {
   }
 
   void findDropDownData() {
-    RenderBox renderBox =
+    final RenderBox renderBox =
         actionKey.currentContext!.findRenderObject()! as RenderBox;
     width = renderBox.size.width;
     height = renderBox.size.height;
-    Offset offset = renderBox.localToGlobal(Offset.zero);
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
     xPosition = offset.dx;
     yPosition = offset.dy;
   }
@@ -80,13 +80,13 @@ class _AppDropDownState extends State<AppDropDown> {
           children: [
             Text(
               widget.text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.arrow_drop_down,
               color: Colors.white,
             ),
@@ -119,22 +119,22 @@ class DropDown extends StatelessWidget {
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(
                       left: 16,
                     ),
-                    child: const RoundedImage.small(
+                    child: RoundedImage.small(
                       imageName: AppImages.photo_placeholder_new,
                     ),
                   ),
                   Text(
                     'Anis Abi'.toUpperCase(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       right: 16,
                     ),
                     child: IconButton(
@@ -148,9 +148,7 @@ class DropDown extends StatelessWidget {
               ),
             ),
             AppCardItem.large(
-              content: Row(
-                children: [],
-              ),
+              content: Row(),
             ),
           ],
         ),

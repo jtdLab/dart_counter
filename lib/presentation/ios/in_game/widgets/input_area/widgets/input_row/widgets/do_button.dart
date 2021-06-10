@@ -15,6 +15,7 @@ class DoButton extends StatelessWidget {
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
+      onPressed: onPressed,
       child: Container(
         height: size55(context),
         color: AppColors.green,
@@ -24,7 +25,6 @@ class DoButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onPressed,
     );
   }
 }

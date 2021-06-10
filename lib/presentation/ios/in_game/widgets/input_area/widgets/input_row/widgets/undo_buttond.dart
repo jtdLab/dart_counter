@@ -15,6 +15,7 @@ class UndoButton extends StatelessWidget {
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
+      onPressed: onPressed,
       child: Container(
         height: size55(context),
         color: AppColors.red,
@@ -24,7 +25,6 @@ class UndoButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onPressed,
     );
   }
 }

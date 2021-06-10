@@ -11,7 +11,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/game_settings_card.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/play_button.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/player_card/player_card.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';

@@ -12,7 +12,6 @@ enum Type { legs, sets }
 
 @freezed
 class Game with _$Game {
-  const Game._();
   const factory Game({
     required UniqueId? id,
     required Status status,
@@ -22,6 +21,8 @@ class Game with _$Game {
     required int startingPoints,
     required KtList<Player> players,
   }) = _Game;
+
+  const Game._();
 
   bool hasDartBot() {
     if (players.size < 2) {

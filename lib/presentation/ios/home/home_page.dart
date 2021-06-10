@@ -13,7 +13,7 @@ import 'package:dart_counter/presentation/ios/home/widgets/loaded/play_offline_b
 import 'package:dart_counter/presentation/ios/home/widgets/loaded/play_online_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/loaded/train_button.dart';
 import 'package:dart_counter/presentation/ios/home/widgets/loaded/youtube_button.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart' hide Router, Orientation;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,7 +86,9 @@ class HomePage extends StatelessWidget {
                 style: const TextStyle(
                     color: AppColors.white, fontWeight: FontWeight.bold),
               ),
-              position: BadgePosition.topEnd(top: -13, end: -10),
+              position: BadgePosition.topEnd(
+                top: -13,
+              ),
               child: AppNavigationBarButton(
                 onPressed: () =>
                     context.router.push(const InvitationsPageRoute()),
@@ -105,7 +107,9 @@ class HomePage extends StatelessWidget {
                 style: const TextStyle(
                     color: AppColors.white, fontWeight: FontWeight.bold),
               ),
-              position: BadgePosition.topEnd(top: -13, end: -10),
+              position: BadgePosition.topEnd(
+                top: -13,
+              ),
               child: AppNavigationBarButton(
                 onPressed: () => context.router.push(const FriendsPageRoute()),
                 child: Image.asset(

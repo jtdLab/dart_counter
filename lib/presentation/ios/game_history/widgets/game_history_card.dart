@@ -4,7 +4,7 @@ import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:auto_route/auto_route.dart';
@@ -58,81 +58,79 @@ class GameHistoryCard extends StatelessWidget {
         children: [
           const SizedBox(width: 6),
           Image.asset(AppImages.star_new),
-          Spacer(),
+          const Spacer(),
           Align(
             alignment: Alignment.centerRight,
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(
-                    flex: 3,
-                  ),
-                  Row(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: AutoSizeText(
-                          '${LocaleKeys.averrage.tr().toUpperCase()}:',
-                          maxLines: 1,
-                          maxFontSize: 14,
-                          style: const TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w800,
-                          ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Spacer(
+                  flex: 3,
+                ),
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: AutoSizeText(
+                        '${LocaleKeys.averrage.tr().toUpperCase()}:',
+                        maxLines: 1,
+                        maxFontSize: 14,
+                        style: const TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: AutoSizeText(
-                          '81.55',
-                          maxLines: 1,
-                          maxFontSize: 14,
-                          style: const TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: AutoSizeText(
-                          '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
-                          maxLines: 1,
-                          maxFontSize: 14,
-                          style: const TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w800,
-                          ),
+                    ),
+                    const Align(
+                      alignment: Alignment.centerRight,
+                      child: AutoSizeText(
+                        '81.55',
+                        maxLines: 1,
+                        maxFontSize: 14,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: AutoSizeText(
-                          '23.55',
-                          maxLines: 1,
-                          maxFontSize: 14,
-                          style: const TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w800,
-                          ),
+                    )
+                  ],
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: AutoSizeText(
+                        '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
+                        maxLines: 1,
+                        maxFontSize: 14,
+                        style: const TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w800,
                         ),
-                      )
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                ],
-              ),
+                      ),
+                    ),
+                    const Align(
+                      alignment: Alignment.centerRight,
+                      child: AutoSizeText(
+                        '23.55',
+                        maxLines: 1,
+                        maxFontSize: 14,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const Spacer(
+                  flex: 3,
+                ),
+              ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Image.asset(AppImages.chevron_forward_new),
           const SizedBox(width: 6),
         ],

@@ -26,7 +26,7 @@ class ChangePasswordIdle extends StatelessWidget {
                   SizedBox(
                     width: responsiveDouble(
                       context: context,
-                      mobile: ResponsiveDouble(
+                      mobile: const ResponsiveDouble(
                           small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),
@@ -36,7 +36,7 @@ class ChangePasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 50,
                                 normal: 75,
                                 large: 125,
@@ -47,7 +47,7 @@ class ChangePasswordIdle extends StatelessWidget {
                           AppImages.logo,
                           width: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 100,
                                 normal: 125,
                                 large: 175,
@@ -55,7 +55,7 @@ class ChangePasswordIdle extends StatelessWidget {
                           ),
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 100,
                                 normal: 125,
                                 large: 175,
@@ -87,7 +87,7 @@ class ChangePasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 10,
                                 normal: 12,
                                 large: 16,
@@ -104,7 +104,7 @@ class ChangePasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 10,
                                 normal: 12,
                                 large: 16,
@@ -121,7 +121,7 @@ class ChangePasswordIdle extends StatelessWidget {
                         SizedBox(
                           height: responsiveDouble(
                             context: context,
-                            mobile: ResponsiveDouble(
+                            mobile: const ResponsiveDouble(
                                 small: 10,
                                 normal: 12,
                                 large: 16,
@@ -141,7 +141,7 @@ class ChangePasswordIdle extends StatelessWidget {
                   SizedBox(
                     width: responsiveDouble(
                       context: context,
-                      mobile: ResponsiveDouble(
+                      mobile: const ResponsiveDouble(
                           small: 16, normal: 24, large: 32, extraLarge: 64),
                     ),
                   ),

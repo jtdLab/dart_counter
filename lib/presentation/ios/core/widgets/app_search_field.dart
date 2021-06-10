@@ -4,8 +4,8 @@ import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'app_card/widgets/app_card_item.dart';
-import 'buttons/icon_button.dart';
 import 'app_column.dart';
+import 'buttons/icon_button.dart';
 
 class AppSearchField extends StatefulWidget {
   final Function(String) onChanged;
@@ -59,11 +59,11 @@ class _AppSearchFieldState extends State<AppSearchField> {
   }
 
   void findDropDownData() {
-    RenderBox renderBox =
+    final RenderBox renderBox =
         actionKey.currentContext!.findRenderObject()! as RenderBox;
     width = renderBox.size.width;
     height = renderBox.size.height;
-    Offset offset = renderBox.localToGlobal(Offset.zero);
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
     xPosition = offset.dx;
     yPosition = offset.dy;
   }
@@ -152,22 +152,22 @@ class DropDown extends StatelessWidget {
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(
                 left: 16,
               ),
-              child: const RoundedImage.small(
+              child: RoundedImage.small(
                 imageName: AppImages.photo_placeholder_new,
               ),
             ),
             Text(
               'Anis Abi'.toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w800,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 right: 16,
               ),
               child: IconButton(

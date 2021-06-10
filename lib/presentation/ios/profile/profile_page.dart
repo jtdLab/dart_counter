@@ -7,7 +7,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/career_stats_item/career_stats_item.dart';
-import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
+import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
                 value: '19',
                 title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
               ),
-              CareerStatsItem(
+              const CareerStatsItem(
                 title: '180',
                 value: '156',
               ),

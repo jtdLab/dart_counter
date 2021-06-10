@@ -1,11 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'core/game_history_details_card_row.dart';
 
@@ -29,7 +27,7 @@ class TakesCard extends StatelessWidget {
           height: size150(context),
           content: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+            children: const [
               GameHistoryDetailsCardContentRow(
                 title: '40+',
                 value: '0',
