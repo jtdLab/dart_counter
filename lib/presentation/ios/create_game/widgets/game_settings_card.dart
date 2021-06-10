@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
@@ -11,6 +12,27 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class GameSettingsCard extends StatelessWidget {
+  final int startingPoints;
+  final Function(int) onStartingPointsChanged;
+  final Mode mode;
+  final Function(Mode) onModeChanged;
+  final int size;
+  final Function(int) onSizeChanged;
+  final Type type;
+  final Function(Type) onTypeChanged;
+
+  const GameSettingsCard({
+    Key? key,
+    required this.startingPoints,
+    required this.onStartingPointsChanged,
+    required this.mode,
+    required this.onModeChanged,
+    required this.size,
+    required this.onSizeChanged,
+    required this.type,
+    required this.onTypeChanged,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppCard(

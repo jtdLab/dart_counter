@@ -17,6 +17,7 @@ import 'package:injectable/injectable.dart';
 import 'package:image/image.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
+@Environment(Environment.prod)
 @LazySingleton(as: IUserFacade)
 class UserFacade implements IUserFacade {
   final FirebaseFirestore _firestore;

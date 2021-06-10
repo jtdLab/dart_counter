@@ -2,6 +2,7 @@ part of 'create_game_bloc.dart';
 
 @freezed
 class CreateGameEvent with _$CreateGameEvent {
-    const factory CreateGameEvent.watchDataStarted() = _WatchDataStarted;
-    const factory CreateGameEvent.snapshotReceived(Game game) = _SnapshotReceived;
+    const factory CreateGameEvent.gameCreated({required bool online}) = _GameCreated;
+    const factory CreateGameEvent.gameReceived({required Game game}) = _GameReceived;
 }
+

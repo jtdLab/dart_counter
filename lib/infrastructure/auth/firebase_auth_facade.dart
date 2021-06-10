@@ -23,6 +23,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
+@Environment(Environment.prod)
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;

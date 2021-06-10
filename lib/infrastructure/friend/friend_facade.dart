@@ -12,6 +12,7 @@ import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
+@Environment(Environment.prod)
 @LazySingleton(as: IFriendFacade)
 class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;

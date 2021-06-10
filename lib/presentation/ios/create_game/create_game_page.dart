@@ -1,56 +1,105 @@
+import 'package:dart_counter/application/create_game/create_game_bloc.dart';
+import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/game_settings_card.dart';
+import 'package:dart_counter/presentation/ios/create_game/widgets/play_button.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/player_card/player_card.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/dartbot_card.dart';
 
 class CreateGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      maxHeight: 826, // TODO
-      navigationBar: AppNavigationBar(
-        leading: AppNavigationBarButton(
-          onPressed: () => context.router.pop(),
-          child: Image.asset(
-            AppImages.chevron_back_new,
+    return BlocBuilder<CreateGameBloc, CreateGameState>(
+      bloc: getIt<CreateGameBloc>()
+        ..add(const CreateGameEvent.gameCreated(online: false)),
+      builder: (context, state) {
+        return AppPage(
+          maxHeight: 806, // TODO
+          navigationBar: AppNavigationBar(
+            leading: AppNavigationBarButton(
+              onPressed: () => context.router.pop(),
+              child: Image.asset(
+                AppImages.chevron_back_new,
+              ),
+            ),
+            middle: Text(
+              LocaleKeys.createGame.tr().toUpperCase(),
+            ),
           ),
-        ),
-        middle: Text(
-          LocaleKeys.createGame.tr().toUpperCase(),
-        ),
-      ),
-      child: Column(
-        children: [
-          const Spacer(),
-          Visibility(
-            child: DartBotCard(),
+          child: Builder(
+            builder: (context) {
+              if (state.loading) {
+                return Loading();
+              } else {
+                if (state.game != null) {
+                  final game = state.game!;
+                  return _CreateGameWidget(game: game);
+                }
+                return Container();
+              }
+            },
           ),
-          const AppSpacer.large(),
-          PlayerCard(),
-          const AppSpacer.large(),
-          GameSettingsCard(),
-          const AppSpacer.normal(),
-          _playButton(context),
-          const Spacer(),
-        ],
-      ),
+        );
+      },
     );
   }
+}
 
-  Widget _playButton(BuildContext context) => AppActionButton.large(
-        onPressed: () => context.router.replace(const InGamePageRoute()),
-        icon: Image.asset(AppImages.target_new),
-        text: LocaleKeys.play.tr().toUpperCase(),
-      );
+class _CreateGameWidget extends StatelessWidget {
+  final Game game;
+
+  const _CreateGameWidget({
+    Key? key,
+    required this.game,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Visibility(
+          visible: game.hasDartBot(),
+          child: DartBotCard(
+            onPressed: () {},
+          ),
+        ),
+        const AppSpacer.large(),
+        PlayerCard(
+          onAddPlayer: () {},
+          onReorderPlayer: (oldPos, newPos) {},
+          players: game.players,
+        ),
+        const AppSpacer.large(),
+        GameSettingsCard(
+          startingPoints: game.startingPoints,
+          onStartingPointsChanged: (newStartingPoints) {},
+          mode: game.mode,
+          onModeChanged: (newMode) {},
+          size: game.size,
+          onSizeChanged: (newSize) {},
+          type: game.type,
+          onTypeChanged: (newType) {},
+        ),
+        const AppSpacer.normal(),
+        PlayButton(
+          onPressed: () {
+            context.router.replace(const InGamePageRoute());
+          },
+        ),
+      ],
+    );
+  }
 }

@@ -187,7 +187,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Game implements _Game {
+class _$_Game extends _Game {
   const _$_Game(
       {required this.id,
       required this.status,
@@ -195,7 +195,8 @@ class _$_Game implements _Game {
       required this.size,
       required this.type,
       required this.startingPoints,
-      required this.players});
+      required this.players})
+      : super._();
 
   @override
   final UniqueId? id;
@@ -255,7 +256,7 @@ class _$_Game implements _Game {
       __$GameCopyWithImpl<_Game>(this, _$identity);
 }
 
-abstract class _Game implements Game {
+abstract class _Game extends Game {
   const factory _Game(
       {required UniqueId? id,
       required Status status,
@@ -264,6 +265,7 @@ abstract class _Game implements Game {
       required Type type,
       required int startingPoints,
       required KtList<Player> players}) = _$_Game;
+  const _Game._() : super._();
 
   @override
   UniqueId? get id => throw _privateConstructorUsedError;

@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:injectable/injectable.dart';
 
+@Environment(Environment.prod)
 @LazySingleton(as: IPlayFacade)
 class PlayFacade implements IPlayFacade {
 

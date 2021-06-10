@@ -9,6 +9,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
 
+@Environment(Environment.prod)
 @LazySingleton(as: IGameInvitationFacade)
 class GameInvitationFacade implements IGameInvitationFacade {
   final FirebaseFirestore _firestore;

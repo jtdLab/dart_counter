@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/dart.dart';
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 part 'throw.freezed.dart';
 
@@ -21,10 +21,22 @@ class Throw with _$Throw {
         dartsOnDouble: 0, // TODO
       );
 
-  factory Throw.dummy() => Throw(
-        id: UniqueId.fromUniqueString(const Uuid().v4()),
-        points: 100,
-        dartsThrown: 3,
-        dartsOnDouble: 0,
-      );
+  factory Throw.dummy({
+    int dartsOnDouble = 0,
+  }) {
+    final faker = Faker();
+
+    final boggys = [179, 178, 176, 175, 173, 172, 169, 166, 165, 163, 162];
+    int points = faker.randomGenerator.integer(180);
+    if (boggys.contains(points)) {
+      points -= 40;
+    }
+
+    return Throw(
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      points: points,
+      dartsThrown: 3,
+      dartsOnDouble: dartsOnDouble,
+    );
+  }
 }

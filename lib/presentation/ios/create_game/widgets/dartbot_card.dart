@@ -8,6 +8,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class DartBotCard extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const DartBotCard({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return AppCard(

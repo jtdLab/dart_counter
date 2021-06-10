@@ -1,8 +1,8 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:uuid/uuid.dart';
 
 part 'leg.freezed.dart';
 
@@ -13,8 +13,11 @@ class Leg with _$Leg {
     required KtList<Throw> throws,
   }) = _Leg;
 
-  factory Leg.dummy() => Leg(
-        id: UniqueId.fromUniqueString(const Uuid().v4()),
-        throws: KtList.from([Throw.dummy(), Throw.dummy()]),
-      );
+  factory Leg.dummy() {
+    final faker = Faker();
+    return Leg(
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      throws: KtList.from([Throw.dummy(), Throw.dummy()]),
+    );
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:uuid/uuid.dart';
 
 import 'leg.dart';
 
@@ -14,8 +14,11 @@ class Set with _$Set {
     required KtList<Leg> legs,
   }) = _Set;
 
-  factory Set.dummy() => Set(
-        id: UniqueId.fromUniqueString(const Uuid().v4()),
-        legs: KtList.from([Leg.dummy(), Leg.dummy()]),
-      );
+  factory Set.dummy() {
+    final faker = Faker();
+    return Set(
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      legs: KtList.from([Leg.dummy(), Leg.dummy()]),
+    );
+  }
 }
