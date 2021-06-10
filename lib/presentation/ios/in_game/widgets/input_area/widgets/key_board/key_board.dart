@@ -1,7 +1,7 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_column.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_row.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_row.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/input_area/widgets/key_board/widgets/key_board_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';

@@ -1,8 +1,8 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_search_field.dart';
 import 'package:dart_counter/presentation/ios/friends/widgets/friends_card/friends_card.dart';
 import 'package:flutter/cupertino.dart';

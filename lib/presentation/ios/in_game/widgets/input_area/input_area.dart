@@ -1,4 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_column.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/input_area/widgets/input_row/input_row.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/input_area/widgets/key_board/key_board.dart';
 import 'package:flutter/cupertino.dart';

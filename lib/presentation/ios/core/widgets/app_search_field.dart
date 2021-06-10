@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'app_card/widgets/app_card_item.dart';
 import 'buttons/icon_button.dart';
-import 'layout/app_column.dart';
+import 'app_column.dart';
 
 class AppSearchField extends StatefulWidget {
   final Function(String) onChanged;

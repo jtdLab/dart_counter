@@ -4,7 +4,7 @@ import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/logo_displayer.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';

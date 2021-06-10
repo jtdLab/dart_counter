@@ -1,4 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/player_displayer/widgets/center/center.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/player_displayer/widgets/footer.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/player_displayer/widgets/header.dart';

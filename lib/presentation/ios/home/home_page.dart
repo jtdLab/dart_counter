@@ -2,24 +2,24 @@ import 'package:badges/badges.dart';
 import 'package:dart_counter/application/home/home_bloc.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_spacer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/instagram_button.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/name_displayer.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/play_offline_button.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/play_online_button.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/train_button.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/youtube_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/instagram_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/name_displayer.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/play_offline_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/play_online_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/train_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/loaded/youtube_button.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart' hide Router, Orientation;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
-import 'widgets/image_displayer.dart';
+import 'widgets/loaded/image_displayer.dart';
 
 class HomePage extends StatelessWidget {
   @override

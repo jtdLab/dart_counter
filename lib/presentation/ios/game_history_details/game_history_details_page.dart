@@ -1,8 +1,8 @@
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/game_history_details/widgets/average_card.dart';
 import 'package:dart_counter/presentation/ios/game_history_details/widgets/checkout_card.dart';
 import 'package:dart_counter/presentation/ios/game_history_details/widgets/main_stats_card.dart';

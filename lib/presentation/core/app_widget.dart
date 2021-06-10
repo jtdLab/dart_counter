@@ -4,7 +4,7 @@ import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/android/core/app_widget.dart'
     as android;
 import 'package:dart_counter/presentation/core/platform_widget.dart';
-import 'package:dart_counter/presentation/ios/core/app_widget.dart' as ios;
+import 'package:dart_counter/presentation/ios/core/widgets/app_widget.dart' as ios;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,9 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
 import 'package:dart_counter/presentation/ios/routes/router.gr.dart';

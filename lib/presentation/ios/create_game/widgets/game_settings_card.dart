@@ -6,7 +6,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dar
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_number_picker.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/layout/app_row.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
