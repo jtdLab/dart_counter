@@ -14,6 +14,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -26,70 +27,87 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IUserFacade _userFacade;
 
   HomeBloc(this._friendFacade, this._gameInvitationFacade, this._userFacade)
-      : super(const HomeState(error: false, loading: true));
+      : super(const HomeState.loadInProgess());
 
-  StreamSubscription<Either<FriendFailure, KtList<FriendRequest>>>?
-      _friendRequestStreamSubscription;
-
-  StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _invitationStreamSubscription;
-
-  StreamSubscription<Either<UserFailure, User>>? _userStreamSubscription;
+  StreamSubscription<void>? _dataStreamSubscription;
 
   @override
   Stream<HomeState> mapEventToState(
     HomeEvent event,
   ) async* {
     yield* event.map(
+      // TODO not clean to return a object list maybe do this in a more readable and understandable manner
       watchDataStarted: (e) async* {
-        _friendRequestStreamSubscription = _friendFacade
-            .watchFriendRequests()
-            .listen(
-              (failureOrFriendRequests) => add(
-                  HomeEvent.friendRequestsReceived(failureOrFriendRequests)),
+        _dataStreamSubscription =
+            _friendFacade.watchFriendRequests().withLatestFrom2(
+          _gameInvitationFacade.watchReceivedInvitations(),
+          _userFacade.watchCurrentUser(),
+          (
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrFriendRequests,
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrGameInvitations,
+            Either<UserFailure, User> failureOrUser,
+          ) {
+            final friendRequests = failureOrFriendRequests.fold(
+              (l) => null,
+              (r) => r,
             );
-        _invitationStreamSubscription =
-            _gameInvitationFacade.watchReceivedInvitations().listen(
-                  (failureOrInvitations) =>
-                      add(HomeEvent.invitationsReceived(failureOrInvitations)),
-                );
-        _userStreamSubscription = _userFacade.watchCurrentUser().listen(
-              (failureOrUser) => add(HomeEvent.userReceived(failureOrUser)),
+            final gameInvitations = failureOrGameInvitations.fold(
+              (l) => null,
+              (r) => r,
             );
-      },
-      friendRequestsReceived: (e) async* {
-        yield e.failureOrFriendRequests.fold(
-          (f) => state.copyWith(error: true),
-          (friendRequests) => state.copyWith(
-              loading: state.newGameInvitations == null || state.user == null,
-              newFriendRequests: friendRequests.size), // TODO only new
+            final user = failureOrUser.fold(
+              (l) => null,
+              (r) => r,
+            );
+
+            if (friendRequests == null ||
+                gameInvitations == null ||
+                user == null) {
+              return null;
+            } else {
+              return [friendRequests, gameInvitations, user];
+            }
+          },
+        ).listen(
+          (event) {
+            add(HomeEvent.dataReceived(event));
+          },
         );
       },
-      invitationsReceived: (e) async* {
-        yield e.failureOrInvitations.fold(
-          (f) => state.copyWith(error: true),
-          (invitations) => state.copyWith(
-              loading: state.newFriendRequests == null || state.user == null,
-              newGameInvitations: invitations.size), // TODO only new
-        );
-      },
-      userReceived: (e) async* {
-        yield e.failureOrUser.fold(
-          (f) => state.copyWith(error: true),
-          (user) => state.copyWith(
-              loading: state.newFriendRequests == null ||
-                  state.newGameInvitations == null,
-              user: user),
-        );
+      dataReceived: (e) async* {
+        if (state is LoadInProgess) {
+          await Future.delayed(const Duration(seconds: 1));
+        }
+        final data = e.data;
+        if (data != null) {
+          final friendRequests = data[0] as KtList<FriendRequest>;
+          final gameInvitations = data[1] as KtList<GameInvitation>;
+          final user = data[2] as User;
+          yield HomeState.loadSuccess(
+            friendRequests: friendRequests,
+            gameInvitation: gameInvitations,
+            user: user,
+          );
+        } else {
+          yield const HomeState.loadFailure();
+        }
       },
     );
   }
 
+  /**
+  *  @override
+  void onTransition(Transition<HomeEvent, HomeState> transition) {
+    print(transition.nextState);
+    super.onTransition(transition);
+  }
+  */
+
   @override
   Future<void> close() async {
-    await _friendRequestStreamSubscription?.cancel();
-    await _invitationStreamSubscription?.cancel();
-    await _userStreamSubscription?.cancel();
+    await _dataStreamSubscription?.cancel();
     return super.close();
   }
 }

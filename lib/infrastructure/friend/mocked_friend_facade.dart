@@ -11,8 +11,6 @@ import 'package:kt_dart/kt.dart';
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendFacade)
 class MockedFriendFacade implements IFriendFacade {
-
-  
   bool fail = false; // toggle to simulate working / notworking endpoint
 
   @override
@@ -50,9 +48,8 @@ class MockedFriendFacade implements IFriendFacade {
 
   @override
   Stream<Either<FriendFailure, KtList<FriendRequest>>> watchFriendRequests() {
-    return Stream.periodic(
-      const Duration(seconds: 5),
-      (n) => fail
+    return Stream.value(
+      fail
           ? left(const FriendFailure.unexpected())
           : right(
               KtList.from(
@@ -68,9 +65,8 @@ class MockedFriendFacade implements IFriendFacade {
 
   @override
   Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
-    return Stream.periodic(
-      const Duration(seconds: 5),
-      (n) => fail
+    return Stream.value(
+      fail
           ? left(const FriendFailure.unexpected())
           : right(
               KtList.from(

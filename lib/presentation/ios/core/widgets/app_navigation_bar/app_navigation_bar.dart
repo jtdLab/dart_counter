@@ -1,14 +1,17 @@
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:flutter/cupertino.dart';
 
-// TODO all navbars renewed
 class AppNavigationBar extends StatelessWidget {
   final Widget? leading;
   final Widget? middle;
   final Widget? trailing;
 
-  const AppNavigationBar({Key? key, this.leading, this.middle, this.trailing})
-      : super(key: key);
+  const AppNavigationBar({
+    Key? key,
+    this.leading,
+    this.middle,
+    this.trailing,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -39,14 +39,12 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
       return Future.value(right(unit));
     }
   }
-  
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedInvitations() {
-    return Stream.periodic(
-      const Duration(seconds: 5),
-      (n) => fail
+    return Stream.value(
+      fail
           ? left(const GameInvitationFailure.unexpected())
           : right(
               KtList.from(

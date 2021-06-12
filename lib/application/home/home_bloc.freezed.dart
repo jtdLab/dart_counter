@@ -20,24 +20,9 @@ class _$HomeEventTearOff {
     return const _WatchDataStarted();
   }
 
-  _InvitationsReceived invitationsReceived(
-      Either<GameInvitationFailure, KtList<GameInvitation>>
-          failureOrInvitations) {
-    return _InvitationsReceived(
-      failureOrInvitations,
-    );
-  }
-
-  _FriendRequestsReceived friendRequestsReceived(
-      Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequests) {
-    return _FriendRequestsReceived(
-      failureOrFriendRequests,
-    );
-  }
-
-  _UserReceived userReceived(Either<UserFailure, User> failureOrUser) {
-    return _UserReceived(
-      failureOrUser,
+  _DataReceived dataReceived(List<Object>? data) {
+    return _DataReceived(
+      data,
     );
   }
 }
@@ -50,48 +35,26 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchDataStarted,
-    required TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)
-        invitationsReceived,
-    required TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)
-        friendRequestsReceived,
-    required TResult Function(Either<UserFailure, User> failureOrUser)
-        userReceived,
+    required TResult Function(List<Object>? data) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchDataStarted,
-    TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)?
-        invitationsReceived,
-    TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)?
-        friendRequestsReceived,
-    TResult Function(Either<UserFailure, User> failureOrUser)? userReceived,
+    TResult Function(List<Object>? data)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_InvitationsReceived value) invitationsReceived,
-    required TResult Function(_FriendRequestsReceived value)
-        friendRequestsReceived,
-    required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_DataReceived value) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_InvitationsReceived value)? invitationsReceived,
-    TResult Function(_FriendRequestsReceived value)? friendRequestsReceived,
-    TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,16 +116,7 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchDataStarted,
-    required TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)
-        invitationsReceived,
-    required TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)
-        friendRequestsReceived,
-    required TResult Function(Either<UserFailure, User> failureOrUser)
-        userReceived,
+    required TResult Function(List<Object>? data) dataReceived,
   }) {
     return watchDataStarted();
   }
@@ -171,15 +125,7 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchDataStarted,
-    TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)?
-        invitationsReceived,
-    TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)?
-        friendRequestsReceived,
-    TResult Function(Either<UserFailure, User> failureOrUser)? userReceived,
+    TResult Function(List<Object>? data)? dataReceived,
     required TResult orElse(),
   }) {
     if (watchDataStarted != null) {
@@ -192,10 +138,7 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_InvitationsReceived value) invitationsReceived,
-    required TResult Function(_FriendRequestsReceived value)
-        friendRequestsReceived,
-    required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_DataReceived value) dataReceived,
   }) {
     return watchDataStarted(this);
   }
@@ -204,9 +147,7 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_InvitationsReceived value)? invitationsReceived,
-    TResult Function(_FriendRequestsReceived value)? friendRequestsReceived,
-    TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
     if (watchDataStarted != null) {
@@ -221,108 +162,84 @@ abstract class _WatchDataStarted implements HomeEvent {
 }
 
 /// @nodoc
-abstract class _$InvitationsReceivedCopyWith<$Res> {
-  factory _$InvitationsReceivedCopyWith(_InvitationsReceived value,
-          $Res Function(_InvitationsReceived) then) =
-      __$InvitationsReceivedCopyWithImpl<$Res>;
-  $Res call(
-      {Either<GameInvitationFailure, KtList<GameInvitation>>
-          failureOrInvitations});
+abstract class _$DataReceivedCopyWith<$Res> {
+  factory _$DataReceivedCopyWith(
+          _DataReceived value, $Res Function(_DataReceived) then) =
+      __$DataReceivedCopyWithImpl<$Res>;
+  $Res call({List<Object>? data});
 }
 
 /// @nodoc
-class __$InvitationsReceivedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements _$InvitationsReceivedCopyWith<$Res> {
-  __$InvitationsReceivedCopyWithImpl(
-      _InvitationsReceived _value, $Res Function(_InvitationsReceived) _then)
-      : super(_value, (v) => _then(v as _InvitationsReceived));
+class __$DataReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$DataReceivedCopyWith<$Res> {
+  __$DataReceivedCopyWithImpl(
+      _DataReceived _value, $Res Function(_DataReceived) _then)
+      : super(_value, (v) => _then(v as _DataReceived));
 
   @override
-  _InvitationsReceived get _value => super._value as _InvitationsReceived;
+  _DataReceived get _value => super._value as _DataReceived;
 
   @override
   $Res call({
-    Object? failureOrInvitations = freezed,
+    Object? data = freezed,
   }) {
-    return _then(_InvitationsReceived(
-      failureOrInvitations == freezed
-          ? _value.failureOrInvitations
-          : failureOrInvitations // ignore: cast_nullable_to_non_nullable
-              as Either<GameInvitationFailure, KtList<GameInvitation>>,
+    return _then(_DataReceived(
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Object>?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_InvitationsReceived implements _InvitationsReceived {
-  const _$_InvitationsReceived(this.failureOrInvitations);
+class _$_DataReceived implements _DataReceived {
+  const _$_DataReceived(this.data);
 
   @override
-  final Either<GameInvitationFailure, KtList<GameInvitation>>
-      failureOrInvitations;
+  final List<Object>? data;
 
   @override
   String toString() {
-    return 'HomeEvent.invitationsReceived(failureOrInvitations: $failureOrInvitations)';
+    return 'HomeEvent.dataReceived(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InvitationsReceived &&
-            (identical(other.failureOrInvitations, failureOrInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.failureOrInvitations, failureOrInvitations)));
+        (other is _DataReceived &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failureOrInvitations);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
-  _$InvitationsReceivedCopyWith<_InvitationsReceived> get copyWith =>
-      __$InvitationsReceivedCopyWithImpl<_InvitationsReceived>(
-          this, _$identity);
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchDataStarted,
-    required TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)
-        invitationsReceived,
-    required TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)
-        friendRequestsReceived,
-    required TResult Function(Either<UserFailure, User> failureOrUser)
-        userReceived,
+    required TResult Function(List<Object>? data) dataReceived,
   }) {
-    return invitationsReceived(failureOrInvitations);
+    return dataReceived(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchDataStarted,
-    TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)?
-        invitationsReceived,
-    TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)?
-        friendRequestsReceived,
-    TResult Function(Either<UserFailure, User> failureOrUser)? userReceived,
+    TResult Function(List<Object>? data)? dataReceived,
     required TResult orElse(),
   }) {
-    if (invitationsReceived != null) {
-      return invitationsReceived(failureOrInvitations);
+    if (dataReceived != null) {
+      return dataReceived(data);
     }
     return orElse();
   }
@@ -331,325 +248,31 @@ class _$_InvitationsReceived implements _InvitationsReceived {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_InvitationsReceived value) invitationsReceived,
-    required TResult Function(_FriendRequestsReceived value)
-        friendRequestsReceived,
-    required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_DataReceived value) dataReceived,
   }) {
-    return invitationsReceived(this);
+    return dataReceived(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_InvitationsReceived value)? invitationsReceived,
-    TResult Function(_FriendRequestsReceived value)? friendRequestsReceived,
-    TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
-    if (invitationsReceived != null) {
-      return invitationsReceived(this);
+    if (dataReceived != null) {
+      return dataReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class _InvitationsReceived implements HomeEvent {
-  const factory _InvitationsReceived(
-      Either<GameInvitationFailure, KtList<GameInvitation>>
-          failureOrInvitations) = _$_InvitationsReceived;
+abstract class _DataReceived implements HomeEvent {
+  const factory _DataReceived(List<Object>? data) = _$_DataReceived;
 
-  Either<GameInvitationFailure, KtList<GameInvitation>>
-      get failureOrInvitations => throw _privateConstructorUsedError;
+  List<Object>? get data => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$InvitationsReceivedCopyWith<_InvitationsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FriendRequestsReceivedCopyWith<$Res> {
-  factory _$FriendRequestsReceivedCopyWith(_FriendRequestsReceived value,
-          $Res Function(_FriendRequestsReceived) then) =
-      __$FriendRequestsReceivedCopyWithImpl<$Res>;
-  $Res call(
-      {Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequests});
-}
-
-/// @nodoc
-class __$FriendRequestsReceivedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements _$FriendRequestsReceivedCopyWith<$Res> {
-  __$FriendRequestsReceivedCopyWithImpl(_FriendRequestsReceived _value,
-      $Res Function(_FriendRequestsReceived) _then)
-      : super(_value, (v) => _then(v as _FriendRequestsReceived));
-
-  @override
-  _FriendRequestsReceived get _value => super._value as _FriendRequestsReceived;
-
-  @override
-  $Res call({
-    Object? failureOrFriendRequests = freezed,
-  }) {
-    return _then(_FriendRequestsReceived(
-      failureOrFriendRequests == freezed
-          ? _value.failureOrFriendRequests
-          : failureOrFriendRequests // ignore: cast_nullable_to_non_nullable
-              as Either<FriendFailure, KtList<FriendRequest>>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_FriendRequestsReceived implements _FriendRequestsReceived {
-  const _$_FriendRequestsReceived(this.failureOrFriendRequests);
-
-  @override
-  final Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequests;
-
-  @override
-  String toString() {
-    return 'HomeEvent.friendRequestsReceived(failureOrFriendRequests: $failureOrFriendRequests)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _FriendRequestsReceived &&
-            (identical(
-                    other.failureOrFriendRequests, failureOrFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.failureOrFriendRequests, failureOrFriendRequests)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failureOrFriendRequests);
-
-  @JsonKey(ignore: true)
-  @override
-  _$FriendRequestsReceivedCopyWith<_FriendRequestsReceived> get copyWith =>
-      __$FriendRequestsReceivedCopyWithImpl<_FriendRequestsReceived>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
-    required TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)
-        invitationsReceived,
-    required TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)
-        friendRequestsReceived,
-    required TResult Function(Either<UserFailure, User> failureOrUser)
-        userReceived,
-  }) {
-    return friendRequestsReceived(failureOrFriendRequests);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
-    TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)?
-        invitationsReceived,
-    TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)?
-        friendRequestsReceived,
-    TResult Function(Either<UserFailure, User> failureOrUser)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (friendRequestsReceived != null) {
-      return friendRequestsReceived(failureOrFriendRequests);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_InvitationsReceived value) invitationsReceived,
-    required TResult Function(_FriendRequestsReceived value)
-        friendRequestsReceived,
-    required TResult Function(_UserReceived value) userReceived,
-  }) {
-    return friendRequestsReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_InvitationsReceived value)? invitationsReceived,
-    TResult Function(_FriendRequestsReceived value)? friendRequestsReceived,
-    TResult Function(_UserReceived value)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (friendRequestsReceived != null) {
-      return friendRequestsReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FriendRequestsReceived implements HomeEvent {
-  const factory _FriendRequestsReceived(
-      Either<FriendFailure, KtList<FriendRequest>>
-          failureOrFriendRequests) = _$_FriendRequestsReceived;
-
-  Either<FriendFailure, KtList<FriendRequest>> get failureOrFriendRequests =>
-      throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$FriendRequestsReceivedCopyWith<_FriendRequestsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$UserReceivedCopyWith<$Res> {
-  factory _$UserReceivedCopyWith(
-          _UserReceived value, $Res Function(_UserReceived) then) =
-      __$UserReceivedCopyWithImpl<$Res>;
-  $Res call({Either<UserFailure, User> failureOrUser});
-}
-
-/// @nodoc
-class __$UserReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements _$UserReceivedCopyWith<$Res> {
-  __$UserReceivedCopyWithImpl(
-      _UserReceived _value, $Res Function(_UserReceived) _then)
-      : super(_value, (v) => _then(v as _UserReceived));
-
-  @override
-  _UserReceived get _value => super._value as _UserReceived;
-
-  @override
-  $Res call({
-    Object? failureOrUser = freezed,
-  }) {
-    return _then(_UserReceived(
-      failureOrUser == freezed
-          ? _value.failureOrUser
-          : failureOrUser // ignore: cast_nullable_to_non_nullable
-              as Either<UserFailure, User>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_UserReceived implements _UserReceived {
-  const _$_UserReceived(this.failureOrUser);
-
-  @override
-  final Either<UserFailure, User> failureOrUser;
-
-  @override
-  String toString() {
-    return 'HomeEvent.userReceived(failureOrUser: $failureOrUser)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UserReceived &&
-            (identical(other.failureOrUser, failureOrUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.failureOrUser, failureOrUser)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failureOrUser);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UserReceivedCopyWith<_UserReceived> get copyWith =>
-      __$UserReceivedCopyWithImpl<_UserReceived>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
-    required TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)
-        invitationsReceived,
-    required TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)
-        friendRequestsReceived,
-    required TResult Function(Either<UserFailure, User> failureOrUser)
-        userReceived,
-  }) {
-    return userReceived(failureOrUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
-    TResult Function(
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrInvitations)?
-        invitationsReceived,
-    TResult Function(
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests)?
-        friendRequestsReceived,
-    TResult Function(Either<UserFailure, User> failureOrUser)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(failureOrUser);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_InvitationsReceived value) invitationsReceived,
-    required TResult Function(_FriendRequestsReceived value)
-        friendRequestsReceived,
-    required TResult Function(_UserReceived value) userReceived,
-  }) {
-    return userReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_InvitationsReceived value)? invitationsReceived,
-    TResult Function(_FriendRequestsReceived value)? friendRequestsReceived,
-    TResult Function(_UserReceived value)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserReceived implements HomeEvent {
-  const factory _UserReceived(Either<UserFailure, User> failureOrUser) =
-      _$_UserReceived;
-
-  Either<UserFailure, User> get failureOrUser =>
-      throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$UserReceivedCopyWith<_UserReceived> get copyWith =>
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -657,19 +280,23 @@ abstract class _UserReceived implements HomeEvent {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  _HomeState call(
-      {required bool error,
-      required bool loading,
-      int? newFriendRequests,
-      int? newGameInvitations,
-      User? user}) {
-    return _HomeState(
-      error: error,
-      loading: loading,
-      newFriendRequests: newFriendRequests,
-      newGameInvitations: newGameInvitations,
+  LoadInProgess loadInProgess() {
+    return const LoadInProgess();
+  }
+
+  LoadSuccess loadSuccess(
+      {required KtList<FriendRequest> friendRequests,
+      required KtList<GameInvitation> gameInvitation,
+      required User user}) {
+    return LoadSuccess(
+      friendRequests: friendRequests,
+      gameInvitation: gameInvitation,
       user: user,
     );
+  }
+
+  LoadFailure loadFailure() {
+    return const LoadFailure();
   }
 }
 
@@ -678,14 +305,39 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  bool get error => throw _privateConstructorUsedError;
-  bool get loading => throw _privateConstructorUsedError;
-  int? get newFriendRequests => throw _privateConstructorUsedError;
-  int? get newGameInvitations => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgess,
+    required TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgess,
+    TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInProgess value) loadInProgess,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(LoadFailure value) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInProgess value)? loadInProgess,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(LoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -693,14 +345,6 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool error,
-      bool loading,
-      int? newFriendRequests,
-      int? newGameInvitations,
-      User? user});
-
-  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -710,151 +354,184 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
+}
+
+/// @nodoc
+abstract class $LoadInProgessCopyWith<$Res> {
+  factory $LoadInProgessCopyWith(
+          LoadInProgess value, $Res Function(LoadInProgess) then) =
+      _$LoadInProgessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadInProgessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $LoadInProgessCopyWith<$Res> {
+  _$LoadInProgessCopyWithImpl(
+      LoadInProgess _value, $Res Function(LoadInProgess) _then)
+      : super(_value, (v) => _then(v as LoadInProgess));
+
+  @override
+  LoadInProgess get _value => super._value as LoadInProgess;
+}
+
+/// @nodoc
+
+class _$LoadInProgess implements LoadInProgess {
+  const _$LoadInProgess();
+
+  @override
+  String toString() {
+    return 'HomeState.loadInProgess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoadInProgess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgess,
+    required TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadInProgess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgess,
+    TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgess != null) {
+      return loadInProgess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInProgess value) loadInProgess,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(LoadFailure value) loadFailure,
+  }) {
+    return loadInProgess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInProgess value)? loadInProgess,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(LoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgess != null) {
+      return loadInProgess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadInProgess implements HomeState {
+  const factory LoadInProgess() = _$LoadInProgess;
+}
+
+/// @nodoc
+abstract class $LoadSuccessCopyWith<$Res> {
+  factory $LoadSuccessCopyWith(
+          LoadSuccess value, $Res Function(LoadSuccess) then) =
+      _$LoadSuccessCopyWithImpl<$Res>;
+  $Res call(
+      {KtList<FriendRequest> friendRequests,
+      KtList<GameInvitation> gameInvitation,
+      User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$LoadSuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $LoadSuccessCopyWith<$Res> {
+  _$LoadSuccessCopyWithImpl(
+      LoadSuccess _value, $Res Function(LoadSuccess) _then)
+      : super(_value, (v) => _then(v as LoadSuccess));
+
+  @override
+  LoadSuccess get _value => super._value as LoadSuccess;
 
   @override
   $Res call({
-    Object? error = freezed,
-    Object? loading = freezed,
-    Object? newFriendRequests = freezed,
-    Object? newGameInvitations = freezed,
+    Object? friendRequests = freezed,
+    Object? gameInvitation = freezed,
     Object? user = freezed,
   }) {
-    return _then(_value.copyWith(
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      newFriendRequests: newFriendRequests == freezed
-          ? _value.newFriendRequests
-          : newFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int?,
-      newGameInvitations: newGameInvitations == freezed
-          ? _value.newGameInvitations
-          : newGameInvitations // ignore: cast_nullable_to_non_nullable
-              as int?,
+    return _then(LoadSuccess(
+      friendRequests: friendRequests == freezed
+          ? _value.friendRequests
+          : friendRequests // ignore: cast_nullable_to_non_nullable
+              as KtList<FriendRequest>,
+      gameInvitation: gameInvitation == freezed
+          ? _value.gameInvitation
+          : gameInvitation // ignore: cast_nullable_to_non_nullable
+              as KtList<GameInvitation>,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as User,
     ));
   }
 
   @override
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$HomeStateCopyWith(
-          _HomeState value, $Res Function(_HomeState) then) =
-      __$HomeStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool error,
-      bool loading,
-      int? newFriendRequests,
-      int? newGameInvitations,
-      User? user});
+
+class _$LoadSuccess implements LoadSuccess {
+  const _$LoadSuccess(
+      {required this.friendRequests,
+      required this.gameInvitation,
+      required this.user});
 
   @override
-  $UserCopyWith<$Res>? get user;
-}
-
-/// @nodoc
-class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$HomeStateCopyWith<$Res> {
-  __$HomeStateCopyWithImpl(_HomeState _value, $Res Function(_HomeState) _then)
-      : super(_value, (v) => _then(v as _HomeState));
-
+  final KtList<FriendRequest> friendRequests;
   @override
-  _HomeState get _value => super._value as _HomeState;
-
+  final KtList<GameInvitation> gameInvitation;
   @override
-  $Res call({
-    Object? error = freezed,
-    Object? loading = freezed,
-    Object? newFriendRequests = freezed,
-    Object? newGameInvitations = freezed,
-    Object? user = freezed,
-  }) {
-    return _then(_HomeState(
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      newFriendRequests: newFriendRequests == freezed
-          ? _value.newFriendRequests
-          : newFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int?,
-      newGameInvitations: newGameInvitations == freezed
-          ? _value.newGameInvitations
-          : newGameInvitations // ignore: cast_nullable_to_non_nullable
-              as int?,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_HomeState implements _HomeState {
-  const _$_HomeState(
-      {required this.error,
-      required this.loading,
-      this.newFriendRequests,
-      this.newGameInvitations,
-      this.user});
-
-  @override
-  final bool error;
-  @override
-  final bool loading;
-  @override
-  final int? newFriendRequests;
-  @override
-  final int? newGameInvitations;
-  @override
-  final User? user;
+  final User user;
 
   @override
   String toString() {
-    return 'HomeState(error: $error, loading: $loading, newFriendRequests: $newFriendRequests, newGameInvitations: $newGameInvitations, user: $user)';
+    return 'HomeState.loadSuccess(friendRequests: $friendRequests, gameInvitation: $gameInvitation, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HomeState &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)) &&
-            (identical(other.loading, loading) ||
+        (other is LoadSuccess &&
+            (identical(other.friendRequests, friendRequests) ||
                 const DeepCollectionEquality()
-                    .equals(other.loading, loading)) &&
-            (identical(other.newFriendRequests, newFriendRequests) ||
+                    .equals(other.friendRequests, friendRequests)) &&
+            (identical(other.gameInvitation, gameInvitation) ||
                 const DeepCollectionEquality()
-                    .equals(other.newFriendRequests, newFriendRequests)) &&
-            (identical(other.newGameInvitations, newGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGameInvitations, newGameInvitations)) &&
+                    .equals(other.gameInvitation, gameInvitation)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
@@ -862,38 +539,173 @@ class _$_HomeState implements _HomeState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(error) ^
-      const DeepCollectionEquality().hash(loading) ^
-      const DeepCollectionEquality().hash(newFriendRequests) ^
-      const DeepCollectionEquality().hash(newGameInvitations) ^
+      const DeepCollectionEquality().hash(friendRequests) ^
+      const DeepCollectionEquality().hash(gameInvitation) ^
       const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
-      __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
+  $LoadSuccessCopyWith<LoadSuccess> get copyWith =>
+      _$LoadSuccessCopyWithImpl<LoadSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgess,
+    required TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadSuccess(friendRequests, gameInvitation, user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgess,
+    TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(friendRequests, gameInvitation, user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInProgess value) loadInProgess,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(LoadFailure value) loadFailure,
+  }) {
+    return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInProgess value)? loadInProgess,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(LoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState(
-      {required bool error,
-      required bool loading,
-      int? newFriendRequests,
-      int? newGameInvitations,
-      User? user}) = _$_HomeState;
+abstract class LoadSuccess implements HomeState {
+  const factory LoadSuccess(
+      {required KtList<FriendRequest> friendRequests,
+      required KtList<GameInvitation> gameInvitation,
+      required User user}) = _$LoadSuccess;
+
+  KtList<FriendRequest> get friendRequests =>
+      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get gameInvitation =>
+      throw _privateConstructorUsedError;
+  User get user => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoadSuccessCopyWith<LoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoadFailureCopyWith<$Res> {
+  factory $LoadFailureCopyWith(
+          LoadFailure value, $Res Function(LoadFailure) then) =
+      _$LoadFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadFailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $LoadFailureCopyWith<$Res> {
+  _$LoadFailureCopyWithImpl(
+      LoadFailure _value, $Res Function(LoadFailure) _then)
+      : super(_value, (v) => _then(v as LoadFailure));
 
   @override
-  bool get error => throw _privateConstructorUsedError;
+  LoadFailure get _value => super._value as LoadFailure;
+}
+
+/// @nodoc
+
+class _$LoadFailure implements LoadFailure {
+  const _$LoadFailure();
+
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  String toString() {
+    return 'HomeState.loadFailure()';
+  }
+
   @override
-  int? get newFriendRequests => throw _privateConstructorUsedError;
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoadFailure);
+  }
+
   @override
-  int? get newGameInvitations => throw _privateConstructorUsedError;
+  int get hashCode => runtimeType.hashCode;
+
   @override
-  User? get user => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgess,
+    required TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadFailure();
+  }
+
   @override
-  @JsonKey(ignore: true)
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
-      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgess,
+    TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitation, User user)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInProgess value) loadInProgess,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(LoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInProgess value)? loadInProgess,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(LoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadFailure implements HomeState {
+  const factory LoadFailure() = _$LoadFailure;
 }

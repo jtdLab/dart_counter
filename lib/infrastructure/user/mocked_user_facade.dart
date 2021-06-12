@@ -76,12 +76,8 @@ class MockedUserFacade implements IUserFacade {
 
   @override
   Stream<Either<UserFailure, User>> watchCurrentUser() {
-    return Stream.periodic(const Duration(seconds: 2), (n) {
-      if (_currentUser != null) {
-        return right(_currentUser!);
-      } else {
-        return left(const UserFailure.failure());
-      }
-    });
+    return Stream.value(!fail && _currentUser != null
+        ? right(_currentUser!)
+        : left(const UserFailure.failure()));
   }
 }
