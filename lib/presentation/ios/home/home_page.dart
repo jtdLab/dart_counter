@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Badge(
                       badgeContent: Text(
-                        state.gameInvitation.size.toString(),
+                        state.gameInvitations.size.toString(),
                         style: const TextStyle(
                             color: AppColors.white,
                             fontWeight: FontWeight.bold),

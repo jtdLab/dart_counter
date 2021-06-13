@@ -5,7 +5,7 @@ class HomeState with _$HomeState {
   const factory HomeState.loadInProgess() = LoadInProgess;
   const factory HomeState.loadSuccess({
     required KtList<FriendRequest> friendRequests,
-    required KtList<GameInvitation> gameInvitation,
+    required KtList<GameInvitation> gameInvitations,
     required User user,
   }) = LoadSuccess;
   const factory HomeState.loadFailure() = LoadFailure;

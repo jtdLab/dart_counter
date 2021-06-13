@@ -36,74 +36,79 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeEvent event,
   ) async* {
     yield* event.map(
-      // TODO not clean to return a object list maybe do this in a more readable and understandable manner
-      watchDataStarted: (e) async* {
-        _dataStreamSubscription =
-            _friendFacade.watchFriendRequests().withLatestFrom2(
-          _gameInvitationFacade.watchReceivedInvitations(),
-          _userFacade.watchCurrentUser(),
-          (
-            Either<FriendFailure, KtList<FriendRequest>>
-                failureOrFriendRequests,
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrGameInvitations,
-            Either<UserFailure, User> failureOrUser,
-          ) {
-            final friendRequests = failureOrFriendRequests.fold(
-              (l) => null,
-              (r) => r,
-            );
-            final gameInvitations = failureOrGameInvitations.fold(
-              (l) => null,
-              (r) => r,
-            );
-            final user = failureOrUser.fold(
-              (l) => null,
-              (r) => r,
-            );
+      watchDataStarted: (_) => _mapWatchDataStartedToState(),
+      dataReceived: (event) => _mapDataReceivedToState(event),
+      failureReceived: (_) => _mapFailureReceivedToState(),
+    );
+  }
 
-            if (friendRequests == null ||
-                gameInvitations == null ||
-                user == null) {
-              return null;
-            } else {
-              return [friendRequests, gameInvitations, user];
-            }
-          },
-        ).listen(
-          (event) {
-            add(HomeEvent.dataReceived(event));
-          },
+  Stream<HomeState> _mapWatchDataStartedToState() async* {
+    _dataStreamSubscription =
+        _friendFacade.watchFriendRequests().withLatestFrom2(
+      _gameInvitationFacade.watchReceivedInvitations(),
+      _userFacade.watchCurrentUser(),
+      (
+        Either<FriendFailure, KtList<FriendRequest>> failureOrFriendRequests,
+        Either<GameInvitationFailure, KtList<GameInvitation>>
+            failureOrGameInvitations,
+        Either<UserFailure, User> failureOrUser,
+      ) {
+        final friendRequests = failureOrFriendRequests.fold(
+          (l) => null,
+          (r) => r,
         );
-      },
-      dataReceived: (e) async* {
-        if (state is LoadInProgess) {
-          await Future.delayed(const Duration(seconds: 1));
+        final gameInvitations = failureOrGameInvitations.fold(
+          (l) => null,
+          (r) => r,
+        );
+        final user = failureOrUser.fold(
+          (l) => null,
+          (r) => r,
+        );
+
+        if (friendRequests == null || gameInvitations == null || user == null) {
+          return null;
+        } else {
+          return [friendRequests, gameInvitations, user];
         }
-        final data = e.data;
+      },
+    ).listen(
+      (data) {
         if (data != null) {
           final friendRequests = data[0] as KtList<FriendRequest>;
           final gameInvitations = data[1] as KtList<GameInvitation>;
           final user = data[2] as User;
-          yield HomeState.loadSuccess(
+          add(HomeEvent.dataReceived(
             friendRequests: friendRequests,
-            gameInvitation: gameInvitations,
+            gameInvitations: gameInvitations,
             user: user,
-          );
+          ));
         } else {
-          yield const HomeState.loadFailure();
+          add(const HomeEvent.failureReceived());
         }
       },
     );
   }
 
-  /**
-  *  @override
-  void onTransition(Transition<HomeEvent, HomeState> transition) {
-    print(transition.nextState);
-    super.onTransition(transition);
+  Stream<HomeState> _mapDataReceivedToState(DataReceived event) async* {
+    if (state is LoadInProgess) {
+      await Future.delayed(const Duration(seconds: 1));
+    }
+
+    yield HomeState.loadSuccess(
+      friendRequests: event.friendRequests,
+      gameInvitations: event.gameInvitations,
+      user: event.user,
+    );
   }
-  */
+
+  Stream<HomeState> _mapFailureReceivedToState() async* {
+    if (state is LoadInProgess) {
+      await Future.delayed(const Duration(seconds: 1));
+    }
+
+    yield const HomeState.loadFailure();
+  }
 
   @override
   Future<void> close() async {
