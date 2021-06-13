@@ -16,16 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$EditProfileEventTearOff {
   const _$EditProfileEventTearOff();
 
-  _DeletePressed deletePressed() {
-    return const _DeletePressed();
+  DeletePressed deletePressed() {
+    return const DeletePressed();
   }
 
-  _TakePressed takePressed() {
-    return const _TakePressed();
+  TakePressed takePressed() {
+    return const TakePressed();
   }
 
-  _ChoosePressed choosePressed() {
-    return const _ChoosePressed();
+  ChoosePressed choosePressed() {
+    return const ChoosePressed();
   }
 }
 
@@ -51,16 +51,16 @@ mixin _$EditProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_TakePressed value) takePressed,
-    required TResult Function(_ChoosePressed value) choosePressed,
+    required TResult Function(DeletePressed value) deletePressed,
+    required TResult Function(TakePressed value) takePressed,
+    required TResult Function(ChoosePressed value) choosePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_TakePressed value)? takePressed,
-    TResult Function(_ChoosePressed value)? choosePressed,
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,28 +84,28 @@ class _$EditProfileEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DeletePressedCopyWith<$Res> {
-  factory _$DeletePressedCopyWith(
-          _DeletePressed value, $Res Function(_DeletePressed) then) =
-      __$DeletePressedCopyWithImpl<$Res>;
+abstract class $DeletePressedCopyWith<$Res> {
+  factory $DeletePressedCopyWith(
+          DeletePressed value, $Res Function(DeletePressed) then) =
+      _$DeletePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$DeletePressedCopyWithImpl<$Res>
+class _$DeletePressedCopyWithImpl<$Res>
     extends _$EditProfileEventCopyWithImpl<$Res>
-    implements _$DeletePressedCopyWith<$Res> {
-  __$DeletePressedCopyWithImpl(
-      _DeletePressed _value, $Res Function(_DeletePressed) _then)
-      : super(_value, (v) => _then(v as _DeletePressed));
+    implements $DeletePressedCopyWith<$Res> {
+  _$DeletePressedCopyWithImpl(
+      DeletePressed _value, $Res Function(DeletePressed) _then)
+      : super(_value, (v) => _then(v as DeletePressed));
 
   @override
-  _DeletePressed get _value => super._value as _DeletePressed;
+  DeletePressed get _value => super._value as DeletePressed;
 }
 
 /// @nodoc
 
-class _$_DeletePressed implements _DeletePressed {
-  const _$_DeletePressed();
+class _$DeletePressed implements DeletePressed {
+  const _$DeletePressed();
 
   @override
   String toString() {
@@ -114,7 +114,7 @@ class _$_DeletePressed implements _DeletePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DeletePressed);
+    return identical(this, other) || (other is DeletePressed);
   }
 
   @override
@@ -147,9 +147,9 @@ class _$_DeletePressed implements _DeletePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_TakePressed value) takePressed,
-    required TResult Function(_ChoosePressed value) choosePressed,
+    required TResult Function(DeletePressed value) deletePressed,
+    required TResult Function(TakePressed value) takePressed,
+    required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return deletePressed(this);
   }
@@ -157,9 +157,9 @@ class _$_DeletePressed implements _DeletePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_TakePressed value)? takePressed,
-    TResult Function(_ChoosePressed value)? choosePressed,
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (deletePressed != null) {
@@ -169,33 +169,33 @@ class _$_DeletePressed implements _DeletePressed {
   }
 }
 
-abstract class _DeletePressed implements EditProfileEvent {
-  const factory _DeletePressed() = _$_DeletePressed;
+abstract class DeletePressed implements EditProfileEvent {
+  const factory DeletePressed() = _$DeletePressed;
 }
 
 /// @nodoc
-abstract class _$TakePressedCopyWith<$Res> {
-  factory _$TakePressedCopyWith(
-          _TakePressed value, $Res Function(_TakePressed) then) =
-      __$TakePressedCopyWithImpl<$Res>;
+abstract class $TakePressedCopyWith<$Res> {
+  factory $TakePressedCopyWith(
+          TakePressed value, $Res Function(TakePressed) then) =
+      _$TakePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$TakePressedCopyWithImpl<$Res>
+class _$TakePressedCopyWithImpl<$Res>
     extends _$EditProfileEventCopyWithImpl<$Res>
-    implements _$TakePressedCopyWith<$Res> {
-  __$TakePressedCopyWithImpl(
-      _TakePressed _value, $Res Function(_TakePressed) _then)
-      : super(_value, (v) => _then(v as _TakePressed));
+    implements $TakePressedCopyWith<$Res> {
+  _$TakePressedCopyWithImpl(
+      TakePressed _value, $Res Function(TakePressed) _then)
+      : super(_value, (v) => _then(v as TakePressed));
 
   @override
-  _TakePressed get _value => super._value as _TakePressed;
+  TakePressed get _value => super._value as TakePressed;
 }
 
 /// @nodoc
 
-class _$_TakePressed implements _TakePressed {
-  const _$_TakePressed();
+class _$TakePressed implements TakePressed {
+  const _$TakePressed();
 
   @override
   String toString() {
@@ -204,7 +204,7 @@ class _$_TakePressed implements _TakePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _TakePressed);
+    return identical(this, other) || (other is TakePressed);
   }
 
   @override
@@ -237,9 +237,9 @@ class _$_TakePressed implements _TakePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_TakePressed value) takePressed,
-    required TResult Function(_ChoosePressed value) choosePressed,
+    required TResult Function(DeletePressed value) deletePressed,
+    required TResult Function(TakePressed value) takePressed,
+    required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return takePressed(this);
   }
@@ -247,9 +247,9 @@ class _$_TakePressed implements _TakePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_TakePressed value)? takePressed,
-    TResult Function(_ChoosePressed value)? choosePressed,
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (takePressed != null) {
@@ -259,33 +259,33 @@ class _$_TakePressed implements _TakePressed {
   }
 }
 
-abstract class _TakePressed implements EditProfileEvent {
-  const factory _TakePressed() = _$_TakePressed;
+abstract class TakePressed implements EditProfileEvent {
+  const factory TakePressed() = _$TakePressed;
 }
 
 /// @nodoc
-abstract class _$ChoosePressedCopyWith<$Res> {
-  factory _$ChoosePressedCopyWith(
-          _ChoosePressed value, $Res Function(_ChoosePressed) then) =
-      __$ChoosePressedCopyWithImpl<$Res>;
+abstract class $ChoosePressedCopyWith<$Res> {
+  factory $ChoosePressedCopyWith(
+          ChoosePressed value, $Res Function(ChoosePressed) then) =
+      _$ChoosePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ChoosePressedCopyWithImpl<$Res>
+class _$ChoosePressedCopyWithImpl<$Res>
     extends _$EditProfileEventCopyWithImpl<$Res>
-    implements _$ChoosePressedCopyWith<$Res> {
-  __$ChoosePressedCopyWithImpl(
-      _ChoosePressed _value, $Res Function(_ChoosePressed) _then)
-      : super(_value, (v) => _then(v as _ChoosePressed));
+    implements $ChoosePressedCopyWith<$Res> {
+  _$ChoosePressedCopyWithImpl(
+      ChoosePressed _value, $Res Function(ChoosePressed) _then)
+      : super(_value, (v) => _then(v as ChoosePressed));
 
   @override
-  _ChoosePressed get _value => super._value as _ChoosePressed;
+  ChoosePressed get _value => super._value as ChoosePressed;
 }
 
 /// @nodoc
 
-class _$_ChoosePressed implements _ChoosePressed {
-  const _$_ChoosePressed();
+class _$ChoosePressed implements ChoosePressed {
+  const _$ChoosePressed();
 
   @override
   String toString() {
@@ -294,7 +294,7 @@ class _$_ChoosePressed implements _ChoosePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ChoosePressed);
+    return identical(this, other) || (other is ChoosePressed);
   }
 
   @override
@@ -327,9 +327,9 @@ class _$_ChoosePressed implements _ChoosePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_TakePressed value) takePressed,
-    required TResult Function(_ChoosePressed value) choosePressed,
+    required TResult Function(DeletePressed value) deletePressed,
+    required TResult Function(TakePressed value) takePressed,
+    required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return choosePressed(this);
   }
@@ -337,9 +337,9 @@ class _$_ChoosePressed implements _ChoosePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_TakePressed value)? takePressed,
-    TResult Function(_ChoosePressed value)? choosePressed,
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (choosePressed != null) {
@@ -349,20 +349,20 @@ class _$_ChoosePressed implements _ChoosePressed {
   }
 }
 
-abstract class _ChoosePressed implements EditProfileEvent {
-  const factory _ChoosePressed() = _$_ChoosePressed;
+abstract class ChoosePressed implements EditProfileEvent {
+  const factory ChoosePressed() = _$ChoosePressed;
 }
 
 /// @nodoc
 class _$EditProfileStateTearOff {
   const _$EditProfileStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  Initial initial() {
+    return const Initial();
   }
 
-  _Changed changed() {
-    return const _Changed();
+  Changed changed() {
+    return const Changed();
   }
 }
 
@@ -386,14 +386,14 @@ mixin _$EditProfileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Changed value) changed,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Changed value) changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Changed value)? changed,
+    TResult Function(Initial value)? initial,
+    TResult Function(Changed value)? changed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -417,25 +417,25 @@ class _$EditProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class _$InitialCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  Initial get _value => super._value as Initial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$Initial implements Initial {
+  const _$Initial();
 
   @override
   String toString() {
@@ -444,7 +444,7 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) || (other is Initial);
   }
 
   @override
@@ -475,8 +475,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Changed value) changed,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Changed value) changed,
   }) {
     return initial(this);
   }
@@ -484,8 +484,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Changed value)? changed,
+    TResult Function(Initial value)? initial,
+    TResult Function(Changed value)? changed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -495,30 +495,30 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements EditProfileState {
-  const factory _Initial() = _$_Initial;
+abstract class Initial implements EditProfileState {
+  const factory Initial() = _$Initial;
 }
 
 /// @nodoc
-abstract class _$ChangedCopyWith<$Res> {
-  factory _$ChangedCopyWith(_Changed value, $Res Function(_Changed) then) =
-      __$ChangedCopyWithImpl<$Res>;
+abstract class $ChangedCopyWith<$Res> {
+  factory $ChangedCopyWith(Changed value, $Res Function(Changed) then) =
+      _$ChangedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ChangedCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
-    implements _$ChangedCopyWith<$Res> {
-  __$ChangedCopyWithImpl(_Changed _value, $Res Function(_Changed) _then)
-      : super(_value, (v) => _then(v as _Changed));
+class _$ChangedCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
+    implements $ChangedCopyWith<$Res> {
+  _$ChangedCopyWithImpl(Changed _value, $Res Function(Changed) _then)
+      : super(_value, (v) => _then(v as Changed));
 
   @override
-  _Changed get _value => super._value as _Changed;
+  Changed get _value => super._value as Changed;
 }
 
 /// @nodoc
 
-class _$_Changed implements _Changed {
-  const _$_Changed();
+class _$Changed implements Changed {
+  const _$Changed();
 
   @override
   String toString() {
@@ -527,7 +527,7 @@ class _$_Changed implements _Changed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Changed);
+    return identical(this, other) || (other is Changed);
   }
 
   @override
@@ -558,8 +558,8 @@ class _$_Changed implements _Changed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Changed value) changed,
+    required TResult Function(Initial value) initial,
+    required TResult Function(Changed value) changed,
   }) {
     return changed(this);
   }
@@ -567,8 +567,8 @@ class _$_Changed implements _Changed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Changed value)? changed,
+    TResult Function(Initial value)? initial,
+    TResult Function(Changed value)? changed,
     required TResult orElse(),
   }) {
     if (changed != null) {
@@ -578,6 +578,6 @@ class _$_Changed implements _Changed {
   }
 }
 
-abstract class _Changed implements EditProfileState {
-  const factory _Changed() = _$_Changed;
+abstract class Changed implements EditProfileState {
+  const factory Changed() = _$Changed;
 }

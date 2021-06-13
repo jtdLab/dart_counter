@@ -2,7 +2,7 @@ part of 'profile_bloc.dart';
 
 @freezed
 class ProfileState with _$ProfileState {
-  const factory ProfileState.noData() = _NoData;
+  const factory ProfileState.noData() = NoData;
   const factory ProfileState.data({
     required String? photoUrl,
     required String username,
@@ -15,5 +15,5 @@ class ProfileState with _$ProfileState {
     required int games,
     required int wins,
     required int defeats,
-  }) = _Data;
+  }) = Data;
 }

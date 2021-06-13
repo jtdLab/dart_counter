@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LoadingEventTearOff {
   const _$LoadingEventTearOff();
 
-  _StartLoading startLoading() {
-    return const _StartLoading();
+  StartLoading startLoading() {
+    return const StartLoading();
   }
 
-  _StopLoading stopLoading() {
-    return const _StopLoading();
+  StopLoading stopLoading() {
+    return const StopLoading();
   }
 }
 
@@ -45,14 +45,14 @@ mixin _$LoadingEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartLoading value) startLoading,
-    required TResult Function(_StopLoading value) stopLoading,
+    required TResult Function(StartLoading value) startLoading,
+    required TResult Function(StopLoading value) stopLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartLoading value)? startLoading,
-    TResult Function(_StopLoading value)? stopLoading,
+    TResult Function(StartLoading value)? startLoading,
+    TResult Function(StopLoading value)? stopLoading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,27 +75,27 @@ class _$LoadingEventCopyWithImpl<$Res> implements $LoadingEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StartLoadingCopyWith<$Res> {
-  factory _$StartLoadingCopyWith(
-          _StartLoading value, $Res Function(_StartLoading) then) =
-      __$StartLoadingCopyWithImpl<$Res>;
+abstract class $StartLoadingCopyWith<$Res> {
+  factory $StartLoadingCopyWith(
+          StartLoading value, $Res Function(StartLoading) then) =
+      _$StartLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartLoadingCopyWithImpl<$Res> extends _$LoadingEventCopyWithImpl<$Res>
-    implements _$StartLoadingCopyWith<$Res> {
-  __$StartLoadingCopyWithImpl(
-      _StartLoading _value, $Res Function(_StartLoading) _then)
-      : super(_value, (v) => _then(v as _StartLoading));
+class _$StartLoadingCopyWithImpl<$Res> extends _$LoadingEventCopyWithImpl<$Res>
+    implements $StartLoadingCopyWith<$Res> {
+  _$StartLoadingCopyWithImpl(
+      StartLoading _value, $Res Function(StartLoading) _then)
+      : super(_value, (v) => _then(v as StartLoading));
 
   @override
-  _StartLoading get _value => super._value as _StartLoading;
+  StartLoading get _value => super._value as StartLoading;
 }
 
 /// @nodoc
 
-class _$_StartLoading implements _StartLoading {
-  const _$_StartLoading();
+class _$StartLoading implements StartLoading {
+  const _$StartLoading();
 
   @override
   String toString() {
@@ -104,7 +104,7 @@ class _$_StartLoading implements _StartLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _StartLoading);
+    return identical(this, other) || (other is StartLoading);
   }
 
   @override
@@ -135,8 +135,8 @@ class _$_StartLoading implements _StartLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartLoading value) startLoading,
-    required TResult Function(_StopLoading value) stopLoading,
+    required TResult Function(StartLoading value) startLoading,
+    required TResult Function(StopLoading value) stopLoading,
   }) {
     return startLoading(this);
   }
@@ -144,8 +144,8 @@ class _$_StartLoading implements _StartLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartLoading value)? startLoading,
-    TResult Function(_StopLoading value)? stopLoading,
+    TResult Function(StartLoading value)? startLoading,
+    TResult Function(StopLoading value)? stopLoading,
     required TResult orElse(),
   }) {
     if (startLoading != null) {
@@ -155,32 +155,32 @@ class _$_StartLoading implements _StartLoading {
   }
 }
 
-abstract class _StartLoading implements LoadingEvent {
-  const factory _StartLoading() = _$_StartLoading;
+abstract class StartLoading implements LoadingEvent {
+  const factory StartLoading() = _$StartLoading;
 }
 
 /// @nodoc
-abstract class _$StopLoadingCopyWith<$Res> {
-  factory _$StopLoadingCopyWith(
-          _StopLoading value, $Res Function(_StopLoading) then) =
-      __$StopLoadingCopyWithImpl<$Res>;
+abstract class $StopLoadingCopyWith<$Res> {
+  factory $StopLoadingCopyWith(
+          StopLoading value, $Res Function(StopLoading) then) =
+      _$StopLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StopLoadingCopyWithImpl<$Res> extends _$LoadingEventCopyWithImpl<$Res>
-    implements _$StopLoadingCopyWith<$Res> {
-  __$StopLoadingCopyWithImpl(
-      _StopLoading _value, $Res Function(_StopLoading) _then)
-      : super(_value, (v) => _then(v as _StopLoading));
+class _$StopLoadingCopyWithImpl<$Res> extends _$LoadingEventCopyWithImpl<$Res>
+    implements $StopLoadingCopyWith<$Res> {
+  _$StopLoadingCopyWithImpl(
+      StopLoading _value, $Res Function(StopLoading) _then)
+      : super(_value, (v) => _then(v as StopLoading));
 
   @override
-  _StopLoading get _value => super._value as _StopLoading;
+  StopLoading get _value => super._value as StopLoading;
 }
 
 /// @nodoc
 
-class _$_StopLoading implements _StopLoading {
-  const _$_StopLoading();
+class _$StopLoading implements StopLoading {
+  const _$StopLoading();
 
   @override
   String toString() {
@@ -189,7 +189,7 @@ class _$_StopLoading implements _StopLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _StopLoading);
+    return identical(this, other) || (other is StopLoading);
   }
 
   @override
@@ -220,8 +220,8 @@ class _$_StopLoading implements _StopLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartLoading value) startLoading,
-    required TResult Function(_StopLoading value) stopLoading,
+    required TResult Function(StartLoading value) startLoading,
+    required TResult Function(StopLoading value) stopLoading,
   }) {
     return stopLoading(this);
   }
@@ -229,8 +229,8 @@ class _$_StopLoading implements _StopLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartLoading value)? startLoading,
-    TResult Function(_StopLoading value)? stopLoading,
+    TResult Function(StartLoading value)? startLoading,
+    TResult Function(StopLoading value)? stopLoading,
     required TResult orElse(),
   }) {
     if (stopLoading != null) {
@@ -240,20 +240,20 @@ class _$_StopLoading implements _StopLoading {
   }
 }
 
-abstract class _StopLoading implements LoadingEvent {
-  const factory _StopLoading() = _$_StopLoading;
+abstract class StopLoading implements LoadingEvent {
+  const factory StopLoading() = _$StopLoading;
 }
 
 /// @nodoc
 class _$LoadingStateTearOff {
   const _$LoadingStateTearOff();
 
-  _Loading loading() {
-    return const _Loading();
+  Loading loading() {
+    return const Loading();
   }
 
-  _NotLoading notLoading() {
-    return const _NotLoading();
+  NotLoading notLoading() {
+    return const NotLoading();
   }
 }
 
@@ -277,14 +277,14 @@ mixin _$LoadingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_NotLoading value) notLoading,
+    required TResult Function(Loading value) loading,
+    required TResult Function(NotLoading value) notLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_NotLoading value)? notLoading,
+    TResult Function(Loading value)? loading,
+    TResult Function(NotLoading value)? notLoading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -307,25 +307,25 @@ class _$LoadingStateCopyWithImpl<$Res> implements $LoadingStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class $LoadingCopyWith<$Res> {
+  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
+      _$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$LoadingStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
+class _$LoadingCopyWithImpl<$Res> extends _$LoadingStateCopyWithImpl<$Res>
+    implements $LoadingCopyWith<$Res> {
+  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
+      : super(_value, (v) => _then(v as Loading));
 
   @override
-  _Loading get _value => super._value as _Loading;
+  Loading get _value => super._value as Loading;
 }
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$Loading implements Loading {
+  const _$Loading();
 
   @override
   String toString() {
@@ -334,7 +334,7 @@ class _$_Loading implements _Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
+    return identical(this, other) || (other is Loading);
   }
 
   @override
@@ -365,8 +365,8 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_NotLoading value) notLoading,
+    required TResult Function(Loading value) loading,
+    required TResult Function(NotLoading value) notLoading,
   }) {
     return loading(this);
   }
@@ -374,8 +374,8 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_NotLoading value)? notLoading,
+    TResult Function(Loading value)? loading,
+    TResult Function(NotLoading value)? notLoading,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -385,32 +385,31 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements LoadingState {
-  const factory _Loading() = _$_Loading;
+abstract class Loading implements LoadingState {
+  const factory Loading() = _$Loading;
 }
 
 /// @nodoc
-abstract class _$NotLoadingCopyWith<$Res> {
-  factory _$NotLoadingCopyWith(
-          _NotLoading value, $Res Function(_NotLoading) then) =
-      __$NotLoadingCopyWithImpl<$Res>;
+abstract class $NotLoadingCopyWith<$Res> {
+  factory $NotLoadingCopyWith(
+          NotLoading value, $Res Function(NotLoading) then) =
+      _$NotLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NotLoadingCopyWithImpl<$Res> extends _$LoadingStateCopyWithImpl<$Res>
-    implements _$NotLoadingCopyWith<$Res> {
-  __$NotLoadingCopyWithImpl(
-      _NotLoading _value, $Res Function(_NotLoading) _then)
-      : super(_value, (v) => _then(v as _NotLoading));
+class _$NotLoadingCopyWithImpl<$Res> extends _$LoadingStateCopyWithImpl<$Res>
+    implements $NotLoadingCopyWith<$Res> {
+  _$NotLoadingCopyWithImpl(NotLoading _value, $Res Function(NotLoading) _then)
+      : super(_value, (v) => _then(v as NotLoading));
 
   @override
-  _NotLoading get _value => super._value as _NotLoading;
+  NotLoading get _value => super._value as NotLoading;
 }
 
 /// @nodoc
 
-class _$_NotLoading implements _NotLoading {
-  const _$_NotLoading();
+class _$NotLoading implements NotLoading {
+  const _$NotLoading();
 
   @override
   String toString() {
@@ -419,7 +418,7 @@ class _$_NotLoading implements _NotLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NotLoading);
+    return identical(this, other) || (other is NotLoading);
   }
 
   @override
@@ -450,8 +449,8 @@ class _$_NotLoading implements _NotLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_NotLoading value) notLoading,
+    required TResult Function(Loading value) loading,
+    required TResult Function(NotLoading value) notLoading,
   }) {
     return notLoading(this);
   }
@@ -459,8 +458,8 @@ class _$_NotLoading implements _NotLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_NotLoading value)? notLoading,
+    TResult Function(Loading value)? loading,
+    TResult Function(NotLoading value)? notLoading,
     required TResult orElse(),
   }) {
     if (notLoading != null) {
@@ -470,6 +469,6 @@ class _$_NotLoading implements _NotLoading {
   }
 }
 
-abstract class _NotLoading implements LoadingState {
-  const factory _NotLoading() = _$_NotLoading;
+abstract class NotLoading implements LoadingState {
+  const factory NotLoading() = _$NotLoading;
 }

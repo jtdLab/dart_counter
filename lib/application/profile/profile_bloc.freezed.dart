@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
-  _WatchDataStarted watchDataStarted() {
-    return const _WatchDataStarted();
+  WatchDataStarted watchDataStarted() {
+    return const WatchDataStarted();
   }
 
-  _DataReceived dataReceived(Either<UserFailure, User> failureOrUser) {
-    return _DataReceived(
+  DataReceived dataReceived(Either<UserFailure, User> failureOrUser) {
+    return DataReceived(
       failureOrUser,
     );
   }
@@ -48,14 +48,14 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(WatchDataStarted value) watchDataStarted,
+    required TResult Function(DataReceived value) dataReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(WatchDataStarted value)? watchDataStarted,
+    TResult Function(DataReceived value)? dataReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,28 +78,28 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WatchDataStartedCopyWith<$Res> {
-  factory _$WatchDataStartedCopyWith(
-          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
-      __$WatchDataStartedCopyWithImpl<$Res>;
+abstract class $WatchDataStartedCopyWith<$Res> {
+  factory $WatchDataStartedCopyWith(
+          WatchDataStarted value, $Res Function(WatchDataStarted) then) =
+      _$WatchDataStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchDataStartedCopyWithImpl<$Res>
+class _$WatchDataStartedCopyWithImpl<$Res>
     extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$WatchDataStartedCopyWith<$Res> {
-  __$WatchDataStartedCopyWithImpl(
-      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
-      : super(_value, (v) => _then(v as _WatchDataStarted));
+    implements $WatchDataStartedCopyWith<$Res> {
+  _$WatchDataStartedCopyWithImpl(
+      WatchDataStarted _value, $Res Function(WatchDataStarted) _then)
+      : super(_value, (v) => _then(v as WatchDataStarted));
 
   @override
-  _WatchDataStarted get _value => super._value as _WatchDataStarted;
+  WatchDataStarted get _value => super._value as WatchDataStarted;
 }
 
 /// @nodoc
 
-class _$_WatchDataStarted implements _WatchDataStarted {
-  const _$_WatchDataStarted();
+class _$WatchDataStarted implements WatchDataStarted {
+  const _$WatchDataStarted();
 
   @override
   String toString() {
@@ -108,7 +108,7 @@ class _$_WatchDataStarted implements _WatchDataStarted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _WatchDataStarted);
+    return identical(this, other) || (other is WatchDataStarted);
   }
 
   @override
@@ -140,8 +140,8 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(WatchDataStarted value) watchDataStarted,
+    required TResult Function(DataReceived value) dataReceived,
   }) {
     return watchDataStarted(this);
   }
@@ -149,8 +149,8 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(WatchDataStarted value)? watchDataStarted,
+    TResult Function(DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
     if (watchDataStarted != null) {
@@ -160,33 +160,33 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   }
 }
 
-abstract class _WatchDataStarted implements ProfileEvent {
-  const factory _WatchDataStarted() = _$_WatchDataStarted;
+abstract class WatchDataStarted implements ProfileEvent {
+  const factory WatchDataStarted() = _$WatchDataStarted;
 }
 
 /// @nodoc
-abstract class _$DataReceivedCopyWith<$Res> {
-  factory _$DataReceivedCopyWith(
-          _DataReceived value, $Res Function(_DataReceived) then) =
-      __$DataReceivedCopyWithImpl<$Res>;
+abstract class $DataReceivedCopyWith<$Res> {
+  factory $DataReceivedCopyWith(
+          DataReceived value, $Res Function(DataReceived) then) =
+      _$DataReceivedCopyWithImpl<$Res>;
   $Res call({Either<UserFailure, User> failureOrUser});
 }
 
 /// @nodoc
-class __$DataReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements _$DataReceivedCopyWith<$Res> {
-  __$DataReceivedCopyWithImpl(
-      _DataReceived _value, $Res Function(_DataReceived) _then)
-      : super(_value, (v) => _then(v as _DataReceived));
+class _$DataReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements $DataReceivedCopyWith<$Res> {
+  _$DataReceivedCopyWithImpl(
+      DataReceived _value, $Res Function(DataReceived) _then)
+      : super(_value, (v) => _then(v as DataReceived));
 
   @override
-  _DataReceived get _value => super._value as _DataReceived;
+  DataReceived get _value => super._value as DataReceived;
 
   @override
   $Res call({
     Object? failureOrUser = freezed,
   }) {
-    return _then(_DataReceived(
+    return _then(DataReceived(
       failureOrUser == freezed
           ? _value.failureOrUser
           : failureOrUser // ignore: cast_nullable_to_non_nullable
@@ -197,8 +197,8 @@ class __$DataReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataReceived implements _DataReceived {
-  const _$_DataReceived(this.failureOrUser);
+class _$DataReceived implements DataReceived {
+  const _$DataReceived(this.failureOrUser);
 
   @override
   final Either<UserFailure, User> failureOrUser;
@@ -211,7 +211,7 @@ class _$_DataReceived implements _DataReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DataReceived &&
+        (other is DataReceived &&
             (identical(other.failureOrUser, failureOrUser) ||
                 const DeepCollectionEquality()
                     .equals(other.failureOrUser, failureOrUser)));
@@ -223,8 +223,8 @@ class _$_DataReceived implements _DataReceived {
 
   @JsonKey(ignore: true)
   @override
-  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
-      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
+  $DataReceivedCopyWith<DataReceived> get copyWith =>
+      _$DataReceivedCopyWithImpl<DataReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -252,8 +252,8 @@ class _$_DataReceived implements _DataReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
-    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(WatchDataStarted value) watchDataStarted,
+    required TResult Function(DataReceived value) dataReceived,
   }) {
     return dataReceived(this);
   }
@@ -261,8 +261,8 @@ class _$_DataReceived implements _DataReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
-    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(WatchDataStarted value)? watchDataStarted,
+    TResult Function(DataReceived value)? dataReceived,
     required TResult orElse(),
   }) {
     if (dataReceived != null) {
@@ -272,14 +272,14 @@ class _$_DataReceived implements _DataReceived {
   }
 }
 
-abstract class _DataReceived implements ProfileEvent {
-  const factory _DataReceived(Either<UserFailure, User> failureOrUser) =
-      _$_DataReceived;
+abstract class DataReceived implements ProfileEvent {
+  const factory DataReceived(Either<UserFailure, User> failureOrUser) =
+      _$DataReceived;
 
   Either<UserFailure, User> get failureOrUser =>
       throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+  $DataReceivedCopyWith<DataReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -287,11 +287,11 @@ abstract class _DataReceived implements ProfileEvent {
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
-  _NoData noData() {
-    return const _NoData();
+  NoData noData() {
+    return const NoData();
   }
 
-  _Data data(
+  Data data(
       {required String? photoUrl,
       required String username,
       required double average,
@@ -303,7 +303,7 @@ class _$ProfileStateTearOff {
       required int games,
       required int wins,
       required int defeats}) {
-    return _Data(
+    return Data(
       photoUrl: photoUrl,
       username: username,
       average: average,
@@ -363,14 +363,14 @@ mixin _$ProfileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NoData value) noData,
-    required TResult Function(_Data value) data,
+    required TResult Function(NoData value) noData,
+    required TResult Function(Data value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Data value)? data,
+    TResult Function(NoData value)? noData,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -393,25 +393,25 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NoDataCopyWith<$Res> {
-  factory _$NoDataCopyWith(_NoData value, $Res Function(_NoData) then) =
-      __$NoDataCopyWithImpl<$Res>;
+abstract class $NoDataCopyWith<$Res> {
+  factory $NoDataCopyWith(NoData value, $Res Function(NoData) then) =
+      _$NoDataCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoDataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$NoDataCopyWith<$Res> {
-  __$NoDataCopyWithImpl(_NoData _value, $Res Function(_NoData) _then)
-      : super(_value, (v) => _then(v as _NoData));
+class _$NoDataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements $NoDataCopyWith<$Res> {
+  _$NoDataCopyWithImpl(NoData _value, $Res Function(NoData) _then)
+      : super(_value, (v) => _then(v as NoData));
 
   @override
-  _NoData get _value => super._value as _NoData;
+  NoData get _value => super._value as NoData;
 }
 
 /// @nodoc
 
-class _$_NoData implements _NoData {
-  const _$_NoData();
+class _$NoData implements NoData {
+  const _$NoData();
 
   @override
   String toString() {
@@ -420,7 +420,7 @@ class _$_NoData implements _NoData {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoData);
+    return identical(this, other) || (other is NoData);
   }
 
   @override
@@ -475,8 +475,8 @@ class _$_NoData implements _NoData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NoData value) noData,
-    required TResult Function(_Data value) data,
+    required TResult Function(NoData value) noData,
+    required TResult Function(Data value) data,
   }) {
     return noData(this);
   }
@@ -484,8 +484,8 @@ class _$_NoData implements _NoData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Data value)? data,
+    TResult Function(NoData value)? noData,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) {
     if (noData != null) {
@@ -495,14 +495,14 @@ class _$_NoData implements _NoData {
   }
 }
 
-abstract class _NoData implements ProfileState {
-  const factory _NoData() = _$_NoData;
+abstract class NoData implements ProfileState {
+  const factory NoData() = _$NoData;
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<$Res> {
-  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
-      __$DataCopyWithImpl<$Res>;
+abstract class $DataCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) then) =
+      _$DataCopyWithImpl<$Res>;
   $Res call(
       {String? photoUrl,
       String username,
@@ -518,13 +518,13 @@ abstract class _$DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$DataCopyWith<$Res> {
-  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
-      : super(_value, (v) => _then(v as _Data));
+class _$DataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
+      : super(_value, (v) => _then(v as Data));
 
   @override
-  _Data get _value => super._value as _Data;
+  Data get _value => super._value as Data;
 
   @override
   $Res call({
@@ -540,7 +540,7 @@ class __$DataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object? wins = freezed,
     Object? defeats = freezed,
   }) {
-    return _then(_Data(
+    return _then(Data(
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -591,8 +591,8 @@ class __$DataCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Data implements _Data {
-  const _$_Data(
+class _$Data implements Data {
+  const _$Data(
       {required this.photoUrl,
       required this.username,
       required this.average,
@@ -636,7 +636,7 @@ class _$_Data implements _Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
+        (other is Data &&
             (identical(other.photoUrl, photoUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.photoUrl, photoUrl)) &&
@@ -687,8 +687,8 @@ class _$_Data implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<_Data> get copyWith =>
-      __$DataCopyWithImpl<_Data>(this, _$identity);
+  $DataCopyWith<Data> get copyWith =>
+      _$DataCopyWithImpl<Data>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -761,8 +761,8 @@ class _$_Data implements _Data {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_NoData value) noData,
-    required TResult Function(_Data value) data,
+    required TResult Function(NoData value) noData,
+    required TResult Function(Data value) data,
   }) {
     return data(this);
   }
@@ -770,8 +770,8 @@ class _$_Data implements _Data {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Data value)? data,
+    TResult Function(NoData value)? noData,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -781,8 +781,8 @@ class _$_Data implements _Data {
   }
 }
 
-abstract class _Data implements ProfileState {
-  const factory _Data(
+abstract class Data implements ProfileState {
+  const factory Data(
       {required String? photoUrl,
       required String username,
       required double average,
@@ -793,7 +793,7 @@ abstract class _Data implements ProfileState {
       required Trend firstNineTrend,
       required int games,
       required int wins,
-      required int defeats}) = _$_Data;
+      required int defeats}) = _$Data;
 
   String? get photoUrl => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
@@ -807,5 +807,5 @@ abstract class _Data implements ProfileState {
   int get wins => throw _privateConstructorUsedError;
   int get defeats => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
+  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }

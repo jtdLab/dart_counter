@@ -16,14 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CreateGameEventTearOff {
   const _$CreateGameEventTearOff();
 
-  _GameCreated gameCreated({required bool online}) {
-    return _GameCreated(
+  GameCreated gameCreated({required bool online}) {
+    return GameCreated(
       online: online,
     );
   }
 
-  _GameReceived gameReceived({required Game game}) {
-    return _GameReceived(
+  GameReceived gameReceived({required Game game}) {
+    return GameReceived(
       game: game,
     );
   }
@@ -49,14 +49,14 @@ mixin _$CreateGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GameCreated value) gameCreated,
-    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GameReceived value) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GameCreated value)? gameCreated,
-    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,29 +80,29 @@ class _$CreateGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GameCreatedCopyWith<$Res> {
-  factory _$GameCreatedCopyWith(
-          _GameCreated value, $Res Function(_GameCreated) then) =
-      __$GameCreatedCopyWithImpl<$Res>;
+abstract class $GameCreatedCopyWith<$Res> {
+  factory $GameCreatedCopyWith(
+          GameCreated value, $Res Function(GameCreated) then) =
+      _$GameCreatedCopyWithImpl<$Res>;
   $Res call({bool online});
 }
 
 /// @nodoc
-class __$GameCreatedCopyWithImpl<$Res>
+class _$GameCreatedCopyWithImpl<$Res>
     extends _$CreateGameEventCopyWithImpl<$Res>
-    implements _$GameCreatedCopyWith<$Res> {
-  __$GameCreatedCopyWithImpl(
-      _GameCreated _value, $Res Function(_GameCreated) _then)
-      : super(_value, (v) => _then(v as _GameCreated));
+    implements $GameCreatedCopyWith<$Res> {
+  _$GameCreatedCopyWithImpl(
+      GameCreated _value, $Res Function(GameCreated) _then)
+      : super(_value, (v) => _then(v as GameCreated));
 
   @override
-  _GameCreated get _value => super._value as _GameCreated;
+  GameCreated get _value => super._value as GameCreated;
 
   @override
   $Res call({
     Object? online = freezed,
   }) {
-    return _then(_GameCreated(
+    return _then(GameCreated(
       online: online == freezed
           ? _value.online
           : online // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$GameCreatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameCreated implements _GameCreated {
-  const _$_GameCreated({required this.online});
+class _$GameCreated implements GameCreated {
+  const _$GameCreated({required this.online});
 
   @override
   final bool online;
@@ -127,7 +127,7 @@ class _$_GameCreated implements _GameCreated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameCreated &&
+        (other is GameCreated &&
             (identical(other.online, online) ||
                 const DeepCollectionEquality().equals(other.online, online)));
   }
@@ -138,8 +138,8 @@ class _$_GameCreated implements _GameCreated {
 
   @JsonKey(ignore: true)
   @override
-  _$GameCreatedCopyWith<_GameCreated> get copyWith =>
-      __$GameCreatedCopyWithImpl<_GameCreated>(this, _$identity);
+  $GameCreatedCopyWith<GameCreated> get copyWith =>
+      _$GameCreatedCopyWithImpl<GameCreated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -166,8 +166,8 @@ class _$_GameCreated implements _GameCreated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GameCreated value) gameCreated,
-    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GameReceived value) gameReceived,
   }) {
     return gameCreated(this);
   }
@@ -175,8 +175,8 @@ class _$_GameCreated implements _GameCreated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GameCreated value)? gameCreated,
-    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCreated != null) {
@@ -186,41 +186,41 @@ class _$_GameCreated implements _GameCreated {
   }
 }
 
-abstract class _GameCreated implements CreateGameEvent {
-  const factory _GameCreated({required bool online}) = _$_GameCreated;
+abstract class GameCreated implements CreateGameEvent {
+  const factory GameCreated({required bool online}) = _$GameCreated;
 
   bool get online => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$GameCreatedCopyWith<_GameCreated> get copyWith =>
+  $GameCreatedCopyWith<GameCreated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GameReceivedCopyWith<$Res> {
-  factory _$GameReceivedCopyWith(
-          _GameReceived value, $Res Function(_GameReceived) then) =
-      __$GameReceivedCopyWithImpl<$Res>;
+abstract class $GameReceivedCopyWith<$Res> {
+  factory $GameReceivedCopyWith(
+          GameReceived value, $Res Function(GameReceived) then) =
+      _$GameReceivedCopyWithImpl<$Res>;
   $Res call({Game game});
 
   $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
-class __$GameReceivedCopyWithImpl<$Res>
+class _$GameReceivedCopyWithImpl<$Res>
     extends _$CreateGameEventCopyWithImpl<$Res>
-    implements _$GameReceivedCopyWith<$Res> {
-  __$GameReceivedCopyWithImpl(
-      _GameReceived _value, $Res Function(_GameReceived) _then)
-      : super(_value, (v) => _then(v as _GameReceived));
+    implements $GameReceivedCopyWith<$Res> {
+  _$GameReceivedCopyWithImpl(
+      GameReceived _value, $Res Function(GameReceived) _then)
+      : super(_value, (v) => _then(v as GameReceived));
 
   @override
-  _GameReceived get _value => super._value as _GameReceived;
+  GameReceived get _value => super._value as GameReceived;
 
   @override
   $Res call({
     Object? game = freezed,
   }) {
-    return _then(_GameReceived(
+    return _then(GameReceived(
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
@@ -238,8 +238,8 @@ class __$GameReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameReceived implements _GameReceived {
-  const _$_GameReceived({required this.game});
+class _$GameReceived implements GameReceived {
+  const _$GameReceived({required this.game});
 
   @override
   final Game game;
@@ -252,7 +252,7 @@ class _$_GameReceived implements _GameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameReceived &&
+        (other is GameReceived &&
             (identical(other.game, game) ||
                 const DeepCollectionEquality().equals(other.game, game)));
   }
@@ -263,8 +263,8 @@ class _$_GameReceived implements _GameReceived {
 
   @JsonKey(ignore: true)
   @override
-  _$GameReceivedCopyWith<_GameReceived> get copyWith =>
-      __$GameReceivedCopyWithImpl<_GameReceived>(this, _$identity);
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -291,8 +291,8 @@ class _$_GameReceived implements _GameReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GameCreated value) gameCreated,
-    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GameReceived value) gameReceived,
   }) {
     return gameReceived(this);
   }
@@ -300,8 +300,8 @@ class _$_GameReceived implements _GameReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GameCreated value)? gameCreated,
-    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -311,12 +311,12 @@ class _$_GameReceived implements _GameReceived {
   }
 }
 
-abstract class _GameReceived implements CreateGameEvent {
-  const factory _GameReceived({required Game game}) = _$_GameReceived;
+abstract class GameReceived implements CreateGameEvent {
+  const factory GameReceived({required Game game}) = _$GameReceived;
 
   Game get game => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$GameReceivedCopyWith<_GameReceived> get copyWith =>
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
