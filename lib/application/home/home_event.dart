@@ -10,3 +10,4 @@ class HomeEvent with _$HomeEvent {
   }) = DataReceived;
   const factory HomeEvent.failureReceived() = FailureReceived;
 }
+

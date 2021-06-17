@@ -450,10 +450,6 @@ abstract class FailureReceived implements HomeEvent {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  LoadInProgess loadInProgess() {
-    return const LoadInProgess();
-  }
-
   LoadSuccess loadSuccess(
       {required KtList<FriendRequest> friendRequests,
       required KtList<GameInvitation> gameInvitations,
@@ -468,6 +464,10 @@ class _$HomeStateTearOff {
   LoadFailure loadFailure() {
     return const LoadFailure();
   }
+
+  Initial initial() {
+    return const Initial();
+  }
 }
 
 /// @nodoc
@@ -477,35 +477,35 @@ const $HomeState = _$HomeStateTearOff();
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgess,
     required TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)
         loadSuccess,
     required TResult Function() loadFailure,
+    required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgess,
     TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)?
         loadSuccess,
     TResult Function()? loadFailure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadInProgess value) loadInProgess,
     required TResult Function(LoadSuccess value) loadSuccess,
     required TResult Function(LoadFailure value) loadFailure,
+    required TResult Function(Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadInProgess value)? loadInProgess,
     TResult Function(LoadSuccess value)? loadSuccess,
     TResult Function(LoadFailure value)? loadFailure,
+    TResult Function(Initial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -524,99 +524,6 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
-}
-
-/// @nodoc
-abstract class $LoadInProgessCopyWith<$Res> {
-  factory $LoadInProgessCopyWith(
-          LoadInProgess value, $Res Function(LoadInProgess) then) =
-      _$LoadInProgessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoadInProgessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements $LoadInProgessCopyWith<$Res> {
-  _$LoadInProgessCopyWithImpl(
-      LoadInProgess _value, $Res Function(LoadInProgess) _then)
-      : super(_value, (v) => _then(v as LoadInProgess));
-
-  @override
-  LoadInProgess get _value => super._value as LoadInProgess;
-}
-
-/// @nodoc
-
-class _$LoadInProgess implements LoadInProgess {
-  const _$LoadInProgess();
-
-  @override
-  String toString() {
-    return 'HomeState.loadInProgess()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadInProgess);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgess,
-    required TResult Function(KtList<FriendRequest> friendRequests,
-            KtList<GameInvitation> gameInvitations, User user)
-        loadSuccess,
-    required TResult Function() loadFailure,
-  }) {
-    return loadInProgess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgess,
-    TResult Function(KtList<FriendRequest> friendRequests,
-            KtList<GameInvitation> gameInvitations, User user)?
-        loadSuccess,
-    TResult Function()? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgess != null) {
-      return loadInProgess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadInProgess value) loadInProgess,
-    required TResult Function(LoadSuccess value) loadSuccess,
-    required TResult Function(LoadFailure value) loadFailure,
-  }) {
-    return loadInProgess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadInProgess value)? loadInProgess,
-    TResult Function(LoadSuccess value)? loadSuccess,
-    TResult Function(LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgess != null) {
-      return loadInProgess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadInProgess implements HomeState {
-  const factory LoadInProgess() = _$LoadInProgess;
 }
 
 /// @nodoc
@@ -721,11 +628,11 @@ class _$LoadSuccess implements LoadSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgess,
     required TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)
         loadSuccess,
     required TResult Function() loadFailure,
+    required TResult Function() initial,
   }) {
     return loadSuccess(friendRequests, gameInvitations, user);
   }
@@ -733,11 +640,11 @@ class _$LoadSuccess implements LoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgess,
     TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)?
         loadSuccess,
     TResult Function()? loadFailure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -749,9 +656,9 @@ class _$LoadSuccess implements LoadSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadInProgess value) loadInProgess,
     required TResult Function(LoadSuccess value) loadSuccess,
     required TResult Function(LoadFailure value) loadFailure,
+    required TResult Function(Initial value) initial,
   }) {
     return loadSuccess(this);
   }
@@ -759,9 +666,9 @@ class _$LoadSuccess implements LoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadInProgess value)? loadInProgess,
     TResult Function(LoadSuccess value)? loadSuccess,
     TResult Function(LoadFailure value)? loadFailure,
+    TResult Function(Initial value)? initial,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -826,11 +733,11 @@ class _$LoadFailure implements LoadFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgess,
     required TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)
         loadSuccess,
     required TResult Function() loadFailure,
+    required TResult Function() initial,
   }) {
     return loadFailure();
   }
@@ -838,11 +745,11 @@ class _$LoadFailure implements LoadFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgess,
     TResult Function(KtList<FriendRequest> friendRequests,
             KtList<GameInvitation> gameInvitations, User user)?
         loadSuccess,
     TResult Function()? loadFailure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -854,9 +761,9 @@ class _$LoadFailure implements LoadFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadInProgess value) loadInProgess,
     required TResult Function(LoadSuccess value) loadSuccess,
     required TResult Function(LoadFailure value) loadFailure,
+    required TResult Function(Initial value) initial,
   }) {
     return loadFailure(this);
   }
@@ -864,9 +771,9 @@ class _$LoadFailure implements LoadFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadInProgess value)? loadInProgess,
     TResult Function(LoadSuccess value)? loadSuccess,
     TResult Function(LoadFailure value)? loadFailure,
+    TResult Function(Initial value)? initial,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -878,4 +785,95 @@ class _$LoadFailure implements LoadFailure {
 
 abstract class LoadFailure implements HomeState {
   const factory LoadFailure() = _$LoadFailure;
+}
+
+/// @nodoc
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
+
+  @override
+  Initial get _value => super._value as Initial;
+}
+
+/// @nodoc
+
+class _$Initial implements Initial {
+  const _$Initial();
+
+  @override
+  String toString() {
+    return 'HomeState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitations, User user)
+        loadSuccess,
+    required TResult Function() loadFailure,
+    required TResult Function() initial,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(KtList<FriendRequest> friendRequests,
+            KtList<GameInvitation> gameInvitations, User user)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(LoadFailure value) loadFailure,
+    required TResult Function(Initial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(LoadFailure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initial implements HomeState {
+  const factory Initial() = _$Initial;
 }

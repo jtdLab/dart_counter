@@ -1,13 +1,11 @@
-import 'package:dart_counter/application/create_game/create_game_bloc.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/loading.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/game_settings_card.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/play_button.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/player_card/player_card.dart';
@@ -22,9 +20,7 @@ import 'widgets/dartbot_card.dart';
 class CreateGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateGameBloc, CreateGameState>(
-      bloc: getIt<CreateGameBloc>()
-        ..add(const CreateGameEvent.gameCreated(online: false)),
+    return BlocBuilder<PlayBloc, PlayState>(
       builder: (context, state) {
         return AppPage(
           maxHeight: 806, // TODO
@@ -39,18 +35,8 @@ class CreateGamePage extends StatelessWidget {
               LocaleKeys.createGame.tr().toUpperCase(),
             ),
           ),
-          child: Builder(
-            builder: (context) {
-              if (state.loading) {
-                return Loading();
-              } else {
-                if (state.game != null) {
-                  final game = state.game!;
-                  return _CreateGameWidget(game: game);
-                }
-                return Container();
-              }
-            },
+          child: _CreateGameWidget(
+            game: Game.dummy(),
           ),
         );
       },

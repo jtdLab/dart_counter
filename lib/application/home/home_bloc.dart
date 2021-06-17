@@ -26,8 +26,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IGameInvitationFacade _gameInvitationFacade;
   final IUserFacade _userFacade;
 
-  HomeBloc(this._friendFacade, this._gameInvitationFacade, this._userFacade)
-      : super(const HomeState.loadInProgess());
+  HomeBloc(
+    this._friendFacade,
+    this._gameInvitationFacade,
+    this._userFacade,
+  ) : super(const HomeState.initial());
 
   StreamSubscription<void>? _dataStreamSubscription;
 
@@ -91,10 +94,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Stream<HomeState> _mapDataReceivedToState(DataReceived event) async* {
-    if (state is LoadInProgess) {
-      await Future.delayed(const Duration(seconds: 1));
-    }
-
     yield HomeState.loadSuccess(
       friendRequests: event.friendRequests,
       gameInvitations: event.gameInvitations,
@@ -102,13 +101,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  Stream<HomeState> _mapFailureReceivedToState() async* {
-    if (state is LoadInProgess) {
-      await Future.delayed(const Duration(seconds: 1));
-    }
-
-    yield const HomeState.loadFailure();
-  }
+  Stream<HomeState> _mapFailureReceivedToState() async* {}
 
   @override
   Future<void> close() async {

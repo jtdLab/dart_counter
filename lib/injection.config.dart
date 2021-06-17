@@ -12,16 +12,19 @@ import 'package:firebase_storage/firebase_storage.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:social_client/social_client.dart' as _i26;
+import 'package:social_client/social_client.dart' as _i29;
 
-import 'application/auth/auth_bloc.dart' as _i27;
-import 'application/auth/sign_in/sign_in_bloc.dart' as _i24;
-import 'application/auth/sign_up/sign_up_bloc.dart' as _i25;
-import 'application/create_game/create_game_bloc.dart' as _i28;
-import 'application/home/home_bloc.dart' as _i30;
-import 'application/loading/loading_bloc.dart' as _i32;
-import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i29;
-import 'application/profile/profile_bloc.dart' as _i23;
+import 'application/auth/auth_bloc.dart' as _i31;
+import 'application/auth/sign_in/sign_in_bloc.dart' as _i27;
+import 'application/auth/sign_up/sign_up_bloc.dart' as _i28;
+import 'application/core/friend_request/friend_request_bloc.dart' as _i33;
+import 'application/core/invitation/invitation_bloc.dart' as _i23;
+import 'application/core/loading/loading_bloc.dart' as _i24;
+import 'application/core/play/play_bloc.dart' as _i25;
+import 'application/core/profile/edit_profile/edit_profile_bloc.dart' as _i32;
+import 'application/core/profile/profile_bloc.dart' as _i26;
+import 'application/core/user/user_bloc.dart' as _i30;
+import 'application/home/home_bloc.dart' as _i34;
 import 'domain/auth/i_auth_facade.dart' as _i9;
 import 'domain/friend/i_friend_facade.dart' as _i12;
 import 'domain/game_invitation/i_game_invitation_facade.dart' as _i14;
@@ -29,9 +32,9 @@ import 'domain/play/i_play_facade.dart' as _i17;
 import 'domain/user/i_user_facade.dart' as _i20;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
 import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i34;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i33;
-import 'infrastructure/friend/friend_facade.dart' as _i31;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i37;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i36;
+import 'infrastructure/friend/friend_facade.dart' as _i35;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i13;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i15;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
@@ -89,25 +92,29 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_prod});
   gh.lazySingleton<_i20.IUserFacade>(() => _i22.MockedUserFacade(),
       registerFor: {_dev});
-  gh.factory<_i23.ProfileBloc>(() => _i23.ProfileBloc(get<_i20.IUserFacade>()));
-  gh.factory<_i24.SignInBloc>(() => _i24.SignInBloc(get<_i9.IAuthFacade>()));
-  gh.factory<_i25.SignUpBloc>(() => _i25.SignUpBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i26.SocialClient>(() => jtdInjectableModule.socialClient);
-  gh.factory<_i27.AuthBloc>(() => _i27.AuthBloc(get<_i9.IAuthFacade>()));
-  gh.factory<_i28.CreateGameBloc>(
-      () => _i28.CreateGameBloc(get<_i17.IPlayFacade>()));
-  gh.factory<_i29.EditProfileBloc>(
-      () => _i29.EditProfileBloc(get<_i20.IUserFacade>()));
-  gh.factory<_i30.HomeBloc>(() => _i30.HomeBloc(get<_i12.IFriendFacade>(),
+  gh.factory<_i23.InvitationBloc>(
+      () => _i23.InvitationBloc(get<_i14.IGameInvitationFacade>()));
+  gh.factory<_i24.LoadingBloc>(() => _i24.LoadingBloc());
+  gh.factory<_i25.PlayBloc>(() => _i25.PlayBloc(get<_i17.IPlayFacade>()));
+  gh.factory<_i26.ProfileBloc>(() => _i26.ProfileBloc(get<_i20.IUserFacade>()));
+  gh.factory<_i27.SignInBloc>(() => _i27.SignInBloc(get<_i9.IAuthFacade>()));
+  gh.factory<_i28.SignUpBloc>(() => _i28.SignUpBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i29.SocialClient>(() => jtdInjectableModule.socialClient);
+  gh.factory<_i30.UserBloc>(() => _i30.UserBloc(get<_i20.IUserFacade>()));
+  gh.factory<_i31.AuthBloc>(() => _i31.AuthBloc(get<_i9.IAuthFacade>()));
+  gh.factory<_i32.EditProfileBloc>(
+      () => _i32.EditProfileBloc(get<_i20.IUserFacade>()));
+  gh.factory<_i33.FriendRequestBloc>(
+      () => _i33.FriendRequestBloc(get<_i12.IFriendFacade>()));
+  gh.factory<_i34.HomeBloc>(() => _i34.HomeBloc(get<_i12.IFriendFacade>(),
       get<_i14.IGameInvitationFacade>(), get<_i20.IUserFacade>()));
   gh.lazySingleton<_i12.IFriendFacade>(
-      () => _i31.FriendFacade(
-          get<_i5.FirebaseFirestore>(), get<_i26.SocialClient>()),
+      () => _i35.FriendFacade(
+          get<_i5.FirebaseFirestore>(), get<_i29.SocialClient>()),
       registerFor: {_prod});
-  gh.singleton<_i32.LoadingBloc>(_i32.LoadingBloc());
   return get;
 }
 
-class _$JtdInjectableModule extends _i33.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i36.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i34.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i37.FireBaseInjectableModule {}
