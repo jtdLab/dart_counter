@@ -24,7 +24,6 @@ import 'application/core/play/play_bloc.dart' as _i25;
 import 'application/core/profile/edit_profile/edit_profile_bloc.dart' as _i32;
 import 'application/core/profile/profile_bloc.dart' as _i26;
 import 'application/core/user/user_bloc.dart' as _i30;
-import 'application/home/home_bloc.dart' as _i34;
 import 'domain/auth/i_auth_facade.dart' as _i9;
 import 'domain/friend/i_friend_facade.dart' as _i12;
 import 'domain/game_invitation/i_game_invitation_facade.dart' as _i14;
@@ -32,9 +31,9 @@ import 'domain/play/i_play_facade.dart' as _i17;
 import 'domain/user/i_user_facade.dart' as _i20;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
 import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i37;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i36;
-import 'infrastructure/friend/friend_facade.dart' as _i35;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i36;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i35;
+import 'infrastructure/friend/friend_facade.dart' as _i34;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i13;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i15;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
@@ -106,15 +105,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i32.EditProfileBloc(get<_i20.IUserFacade>()));
   gh.factory<_i33.FriendRequestBloc>(
       () => _i33.FriendRequestBloc(get<_i12.IFriendFacade>()));
-  gh.factory<_i34.HomeBloc>(() => _i34.HomeBloc(get<_i12.IFriendFacade>(),
-      get<_i14.IGameInvitationFacade>(), get<_i20.IUserFacade>()));
   gh.lazySingleton<_i12.IFriendFacade>(
-      () => _i35.FriendFacade(
+      () => _i34.FriendFacade(
           get<_i5.FirebaseFirestore>(), get<_i29.SocialClient>()),
       registerFor: {_prod});
   return get;
 }
 
-class _$JtdInjectableModule extends _i36.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i35.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i37.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i36.FireBaseInjectableModule {}

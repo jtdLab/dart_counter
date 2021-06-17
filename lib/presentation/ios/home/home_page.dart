@@ -1,99 +1,35 @@
-import 'package:badges/badges.dart';
-import 'package:dart_counter/application/home/home_bloc.dart';
-import 'package:dart_counter/injection.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/home/widgets/error/error.dart';
-import 'package:dart_counter/presentation/ios/router.gr.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/friend_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/invitation_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/settings_button.dart';
+import 'package:dart_counter/presentation/ios/home/widgets/stats_button.dart';
 import 'package:flutter/cupertino.dart' hide Router, Orientation;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
-import 'widgets/loaded/loaded.dart';
+
+import 'widgets/home_widget/home_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<HomeBloc>()..add(const HomeEvent.watchDataStarted()),
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) => AppPage(
-          navigationBar: state.maybeMap(
-            loadSuccess: (state) => AppNavigationBar(
-              leading: AppNavigationBarButton(
-                onPressed: () => context.router.push(const SettingsPageRoute()),
-                child: Image.asset(
-                  AppImages.settings_new,
-                ),
-              ),
-              trailing: Row(
-                children: [
-                  Badge(
-                    badgeContent: Text(
-                      state.gameInvitations.size.toString(),
-                      style: const TextStyle(
-                          color: AppColors.white, fontWeight: FontWeight.bold),
-                    ),
-                    position: BadgePosition.topEnd(
-                      top: -13,
-                    ),
-                    child: AppNavigationBarButton(
-                      onPressed: () =>
-                          context.router.push(const InvitationsPageRoute()),
-                      child: Image.asset(
-                        AppImages.message_new,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  ),
-                  const AppSpacer.large(
-                    orientation: Orientation.horizontal,
-                  ),
-                  Badge(
-                    badgeContent: Text(
-                      state.friendRequests.size.toString(),
-                      style: const TextStyle(
-                          color: AppColors.white, fontWeight: FontWeight.bold),
-                    ),
-                    position: BadgePosition.topEnd(
-                      top: -13,
-                    ),
-                    child: AppNavigationBarButton(
-                      onPressed: () =>
-                          context.router.push(const FriendsPageRoute()),
-                      child: Image.asset(
-                        AppImages.player_new,
-                      ),
-                    ),
-                  ),
-                  const AppSpacer.large(
-                    orientation: Orientation.horizontal,
-                  ),
-                  AppNavigationBarButton(
-                    onPressed: () =>
-                        context.router.push(const ProfilePageRoute()),
-                    child: Image.asset(
-                      AppImages.stats_new,
-                    ),
-                  ),
-                ],
-              ),
+    return AppPage(
+      navigationBar: AppNavigationBar(
+        leading: const SettingsButton(),
+        trailing: Row(
+          children: const [
+            InvitationButton(),
+            AppSpacer.large(
+              orientation: Orientation.horizontal,
             ),
-            orElse: () => null,
-          ),
-          child: state.maybeMap(
-            loadSuccess: (state) => Loaded(
-              username: state.user.profile.username.getOrCrash(),
-              photoUrl: state.user.profile.photoUrl,
+            FriendButton(),
+            AppSpacer.large(
+              orientation: Orientation.horizontal,
             ),
-            loadFailure: (state) => const Error(),
-            orElse: () => Container(),
-          ),
+            StatsButton(),
+          ],
         ),
       ),
+      child: HomeWidget(),
     );
   }
 }
