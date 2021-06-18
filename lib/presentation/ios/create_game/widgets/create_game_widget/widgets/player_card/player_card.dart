@@ -5,12 +5,13 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/player_card/widgets/dartbot_item.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/player_card/widgets/player_item.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:kt_dart/kt.dart';
 
+import 'widgets/dartbot_item.dart';
+import 'widgets/player_item.dart';
 
 class PlayerCard extends StatelessWidget {
   final KtList<Player> players;

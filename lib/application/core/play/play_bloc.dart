@@ -16,7 +16,13 @@ part 'play_bloc.freezed.dart';
 class PlayBloc extends Bloc<PlayEvent, PlayState> {
   final IPlayFacade _playFacade;
 
-  PlayBloc(this._playFacade) : super(const PlayState.initial());
+  StreamSubscription<Game>? _gameStreamSubscription;
+
+  PlayBloc(this._playFacade) : super(const PlayState.inProgress()) {
+    _gameStreamSubscription = _playFacade.watchGame().listen((game) {
+      add(PlayEvent.gameReceived(game: game));
+    });
+  }
 
   @override
   Stream<PlayState> mapEventToState(
@@ -50,7 +56,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
     final failureOrUnit = await _playFacade.joinGame(invitation.lobbyCode);
     yield failureOrUnit.fold(
       (l) => const PlayState.failure(),
-      (r) => const PlayState.joinGameInProgress(),
+      (r) => const PlayState.inProgress(),
     );
   }
 
@@ -59,7 +65,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
     final failureOrUnit = await _playFacade.createGame(online: online);
     yield failureOrUnit.fold(
       (l) => const PlayState.failure(),
-      (r) => const PlayState.createGameInProgress(),
+      (r) => const PlayState.inProgress(),
     );
   }
 
@@ -220,5 +226,19 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
   Stream<PlayState> _mapGameReceivedToState(GameReceived event) async* {
     final game = event.game;
     yield PlayState.success(game: game);
+  }
+
+ /**
+  *  @override
+  void onTransition(Transition<PlayEvent, PlayState> transition) {
+    print('${transition.currentState.runtimeType} ${transition.nextState.runtimeType}');
+    super.onTransition(transition);
+  }
+  */
+
+  @override
+  Future<void> close() {
+    _gameStreamSubscription?.cancel();
+    return super.close();
   }
 }

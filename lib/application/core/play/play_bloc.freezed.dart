@@ -3351,16 +3351,8 @@ abstract class GameReceived implements PlayEvent {
 class _$PlayStateTearOff {
   const _$PlayStateTearOff();
 
-  Initial initial() {
-    return const Initial();
-  }
-
-  CreateGameInProgress createGameInProgress() {
-    return const CreateGameInProgress();
-  }
-
-  JoinGameInProgress joinGameInProgress() {
-    return const JoinGameInProgress();
+  InProgress inProgress() {
+    return const InProgress();
   }
 
   Success success({required Game game}) {
@@ -3381,18 +3373,14 @@ const $PlayState = _$PlayStateTearOff();
 mixin _$PlayState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
+    required TResult Function() inProgress,
     required TResult Function(Game game) success,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
+    TResult Function()? inProgress,
     TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
@@ -3400,18 +3388,14 @@ mixin _$PlayState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(Success value) success,
     required TResult Function(Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(Success value)? success,
     TResult Function(Failure value)? failure,
     required TResult orElse(),
@@ -3435,34 +3419,35 @@ class _$PlayStateCopyWithImpl<$Res> implements $PlayStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class $InProgressCopyWith<$Res> {
+  factory $InProgressCopyWith(
+          InProgress value, $Res Function(InProgress) then) =
+      _$InProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+class _$InProgressCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
+    implements $InProgressCopyWith<$Res> {
+  _$InProgressCopyWithImpl(InProgress _value, $Res Function(InProgress) _then)
+      : super(_value, (v) => _then(v as InProgress));
 
   @override
-  Initial get _value => super._value as Initial;
+  InProgress get _value => super._value as InProgress;
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$InProgress implements InProgress {
+  const _$InProgress();
 
   @override
   String toString() {
-    return 'PlayState.initial()';
+    return 'PlayState.inProgress()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) || (other is InProgress);
   }
 
   @override
@@ -3471,27 +3456,23 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
+    required TResult Function() inProgress,
     required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
-    return initial();
+    return inProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
+    TResult Function()? inProgress,
     TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (inProgress != null) {
+      return inProgress();
     }
     return orElse();
   }
@@ -3499,230 +3480,30 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(Success value) success,
     required TResult Function(Failure value) failure,
   }) {
-    return initial(this);
+    return inProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(Success value)? success,
     TResult Function(Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (inProgress != null) {
+      return inProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class Initial implements PlayState {
-  const factory Initial() = _$Initial;
-}
-
-/// @nodoc
-abstract class $CreateGameInProgressCopyWith<$Res> {
-  factory $CreateGameInProgressCopyWith(CreateGameInProgress value,
-          $Res Function(CreateGameInProgress) then) =
-      _$CreateGameInProgressCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateGameInProgressCopyWithImpl<$Res>
-    extends _$PlayStateCopyWithImpl<$Res>
-    implements $CreateGameInProgressCopyWith<$Res> {
-  _$CreateGameInProgressCopyWithImpl(
-      CreateGameInProgress _value, $Res Function(CreateGameInProgress) _then)
-      : super(_value, (v) => _then(v as CreateGameInProgress));
-
-  @override
-  CreateGameInProgress get _value => super._value as CreateGameInProgress;
-}
-
-/// @nodoc
-
-class _$CreateGameInProgress implements CreateGameInProgress {
-  const _$CreateGameInProgress();
-
-  @override
-  String toString() {
-    return 'PlayState.createGameInProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CreateGameInProgress);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
-    required TResult Function(Game game) success,
-    required TResult Function() failure,
-  }) {
-    return createGameInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
-    TResult Function(Game game)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (createGameInProgress != null) {
-      return createGameInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
-  }) {
-    return createGameInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (createGameInProgress != null) {
-      return createGameInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateGameInProgress implements PlayState {
-  const factory CreateGameInProgress() = _$CreateGameInProgress;
-}
-
-/// @nodoc
-abstract class $JoinGameInProgressCopyWith<$Res> {
-  factory $JoinGameInProgressCopyWith(
-          JoinGameInProgress value, $Res Function(JoinGameInProgress) then) =
-      _$JoinGameInProgressCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$JoinGameInProgressCopyWithImpl<$Res>
-    extends _$PlayStateCopyWithImpl<$Res>
-    implements $JoinGameInProgressCopyWith<$Res> {
-  _$JoinGameInProgressCopyWithImpl(
-      JoinGameInProgress _value, $Res Function(JoinGameInProgress) _then)
-      : super(_value, (v) => _then(v as JoinGameInProgress));
-
-  @override
-  JoinGameInProgress get _value => super._value as JoinGameInProgress;
-}
-
-/// @nodoc
-
-class _$JoinGameInProgress implements JoinGameInProgress {
-  const _$JoinGameInProgress();
-
-  @override
-  String toString() {
-    return 'PlayState.joinGameInProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is JoinGameInProgress);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
-    required TResult Function(Game game) success,
-    required TResult Function() failure,
-  }) {
-    return joinGameInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
-    TResult Function(Game game)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (joinGameInProgress != null) {
-      return joinGameInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
-  }) {
-    return joinGameInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (joinGameInProgress != null) {
-      return joinGameInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class JoinGameInProgress implements PlayState {
-  const factory JoinGameInProgress() = _$JoinGameInProgress;
+abstract class InProgress implements PlayState {
+  const factory InProgress() = _$InProgress;
 }
 
 /// @nodoc
@@ -3796,9 +3577,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
+    required TResult Function() inProgress,
     required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
@@ -3808,9 +3587,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
+    TResult Function()? inProgress,
     TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
@@ -3824,9 +3601,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(Success value) success,
     required TResult Function(Failure value) failure,
   }) {
@@ -3836,9 +3611,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(Success value)? success,
     TResult Function(Failure value)? failure,
     required TResult orElse(),
@@ -3895,9 +3668,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() createGameInProgress,
-    required TResult Function() joinGameInProgress,
+    required TResult Function() inProgress,
     required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
@@ -3907,9 +3678,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? createGameInProgress,
-    TResult Function()? joinGameInProgress,
+    TResult Function()? inProgress,
     TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
@@ -3923,9 +3692,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(CreateGameInProgress value) createGameInProgress,
-    required TResult Function(JoinGameInProgress value) joinGameInProgress,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(Success value) success,
     required TResult Function(Failure value) failure,
   }) {
@@ -3935,9 +3702,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(CreateGameInProgress value)? createGameInProgress,
-    TResult Function(JoinGameInProgress value)? joinGameInProgress,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(Success value)? success,
     TResult Function(Failure value)? failure,
     required TResult orElse(),

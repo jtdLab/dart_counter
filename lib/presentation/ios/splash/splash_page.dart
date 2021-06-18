@@ -10,7 +10,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  bool allDataReceived = false;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
@@ -37,7 +44,9 @@ class SplashPage extends StatelessWidget {
             loadSuccess: (_) {
               if (context.read<fr.FriendRequestBloc>().state
                       is fr.LoadSuccess &&
-                  context.read<i.InvitationBloc>().state is i.LoadSuccess) {
+                  context.read<i.InvitationBloc>().state is i.LoadSuccess &&
+                  !allDataReceived) {
+                allDataReceived = true;
                 context.router.replace(const HomePageRoute());
               }
             },
@@ -48,7 +57,9 @@ class SplashPage extends StatelessWidget {
           listener: (context, state) => state.maybeMap(
             loadSuccess: (_) {
               if (context.read<u.UserBloc>().state is u.LoadSuccess &&
-                  context.read<i.InvitationBloc>().state is i.LoadSuccess) {
+                  context.read<i.InvitationBloc>().state is i.LoadSuccess &&
+                  !allDataReceived) {
+                allDataReceived = true;
                 context.router.replace(const HomePageRoute());
               }
             },
@@ -60,7 +71,9 @@ class SplashPage extends StatelessWidget {
             loadSuccess: (_) {
               if (context.read<fr.FriendRequestBloc>().state
                       is fr.LoadSuccess &&
-                  context.read<u.UserBloc>().state is u.LoadSuccess) {
+                  context.read<u.UserBloc>().state is u.LoadSuccess &&
+                  !allDataReceived) {
+                allDataReceived = true;
                 context.router.replace(const HomePageRoute());
               }
             },
