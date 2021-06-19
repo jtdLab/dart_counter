@@ -18,11 +18,14 @@ class DoButton extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         height: size55(context),
-        color: AppColors.green,
-        child: Center(
-          child: Text(
-            toString(),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.green,
+            width: border4(context),
           ),
+        ),
+        child: Center(
+          child: Image.asset(AppImages.chevron_green_forward_new),
         ),
       ),
     );

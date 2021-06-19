@@ -21,7 +21,7 @@ class CheckBox extends StatelessWidget {
                     .read<PlayBloc>()
                     .add(const PlayEvent.dartBotRemoved()),
                 icon: Image.asset(
-                  AppImages.check_mark_quad_new,
+                  AppImages.check_mark_light_new,
                 ),
               );
             } else {
@@ -31,7 +31,7 @@ class CheckBox extends StatelessWidget {
                     .read<PlayBloc>()
                     .add(const PlayEvent.dartBotAdded()),
                 icon: Image.asset(
-                  AppImages.x_mark_filled_new,
+                  AppImages.check_mark_light_unchecked_new,
                 ),
               );
             }

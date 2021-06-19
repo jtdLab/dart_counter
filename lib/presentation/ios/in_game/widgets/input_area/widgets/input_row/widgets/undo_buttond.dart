@@ -18,11 +18,14 @@ class UndoButton extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         height: size55(context),
-        color: AppColors.red,
-        child: Center(
-          child: Text(
-            toString(),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.red,
+            width: border4(context),
           ),
+        ),
+        child: Center(
+          child: Image.asset(AppImages.chevron_red_back_new),
         ),
       ),
     );

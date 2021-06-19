@@ -2,7 +2,11 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
-  
+  static const check_mark_light_unchecked_new = 'assets/images/png/check_mark_light_unchecked_new.png';
+  static const check_mark_light_new = 'assets/images/png/check_mark_light_new.png';
+  static const chevron_green_forward_new = 'assets/images/png/chevron_green_forward_new.png';
+  static const chevron_red_back_new = 'assets/images/png/chevron_red_back_new.png';
+
   static const chevron_down_small_new = 'assets/images/png/chevron_down_small_new.png';
   static const chevron_up_small_new = 'assets/images/png/chevron_up_small_new.png';
   static const x_mark_filled_new = 'assets/images/png/x_mark_filled_new.png';

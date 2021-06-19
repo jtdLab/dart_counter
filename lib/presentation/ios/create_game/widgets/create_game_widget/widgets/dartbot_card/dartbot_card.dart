@@ -4,11 +4,13 @@ import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_number_picker.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/dartbot_card.dart/widgets/check_box.dart';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'widgets/check_box.dart';
 
 // TODO abstand wenn kein dartbot zur playercard
 class DartBotCard extends StatelessWidget {
