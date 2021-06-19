@@ -225,10 +225,11 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
 
   Stream<PlayState> _mapGameReceivedToState(GameReceived event) async* {
     final game = event.game;
-    yield PlayState.success(game: game);
+    final online = _playFacade.online;
+    yield PlayState.success(online: online, game: game);
   }
 
- /**
+  /**
   *  @override
   void onTransition(Transition<PlayEvent, PlayState> transition) {
     print('${transition.currentState.runtimeType} ${transition.nextState.runtimeType}');

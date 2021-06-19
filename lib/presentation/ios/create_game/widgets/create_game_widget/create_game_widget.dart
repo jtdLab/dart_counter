@@ -1,7 +1,7 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/dartbot_card.dart/dartbot_card.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card.dart';
+import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card/game_settings_card.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/play_button.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,28 +21,11 @@ class CreateGameWidget extends StatelessWidget {
           children: [
             DartBotCard(),
             const AppSpacer.large(),
-            PlayerCard(
-              onAddPlayer: () {},
-              onReorderPlayer: (oldPos, newPos) {},
-              players: success.game.players,
-            ),
+            PlayerCard(),
             const AppSpacer.large(),
-            GameSettingsCard(
-              startingPoints: success.game.startingPoints,
-              onStartingPointsChanged: (newStartingPoints) {},
-              mode: success.game.mode,
-              onModeChanged: (newMode) {},
-              size: success.game.size,
-              onSizeChanged: (newSize) {},
-              type: success.game.type,
-              onTypeChanged: (newType) {},
-            ),
+            GameSettingsCard(),
             const AppSpacer.normal(),
-            PlayButton(
-              onPressed: () {
-                context.router.replace(const InGamePageRoute());
-              },
-            ),
+            const PlayButton(),
           ],
         ),
         orElse: () => Container(), // TODO shouldnt happen

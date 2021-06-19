@@ -28,6 +28,9 @@ class MockedPlayFacade implements IPlayFacade {
   bool? _online;
 
   @override
+  bool get online => _online ?? false; // TODO
+
+  @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));

@@ -7,8 +7,13 @@ import 'app_spacer.dart';
 
 class AppNumberPicker extends StatefulWidget {
   final String? title;
+  final Function(int)? onChanged;
 
-  const AppNumberPicker({Key? key, this.title}) : super(key: key);
+  const AppNumberPicker({
+    Key? key,
+    this.title,
+    this.onChanged,
+  }) : super(key: key);
 
   @override
   _AppNumberPickerState createState() => _AppNumberPickerState();
@@ -79,6 +84,7 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
     setState(() {
       if (number < 100) {
         number++;
+        widget.onChanged?.call(number);
       }
     });
   }
@@ -87,6 +93,7 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
     setState(() {
       if (number > 1) {
         number--;
+        widget.onChanged?.call(number);
       }
     });
   }

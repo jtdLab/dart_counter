@@ -1,22 +1,21 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
-
+import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card/widgets/mode_picker.dart';
+import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card/widgets/starting_points_picker.dart';
+import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card/widgets/type_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:kt_dart/kt.dart';
 
-import 'widgets/add_player_button.dart';
-import 'widgets/player_list/player_list.dart';
+import 'widgets/size_picker.dart';
 
-class PlayerCard extends StatelessWidget {
+class GameSettingsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.player.tr().toUpperCase(),
+        LocaleKeys.modus.tr().toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -26,8 +25,10 @@ class PlayerCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: [
-        const PlayerList(),
-        const AddPlayerButton(),
+        const StartingPointsPicker(),
+        const ModePicker(),
+        const SizePicker(),
+        const TypePicker(),
       ],
     );
   }

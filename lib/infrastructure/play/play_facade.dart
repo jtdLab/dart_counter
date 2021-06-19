@@ -17,6 +17,9 @@ class PlayFacade implements IPlayFacade {
   bool? _online;
 
   @override
+  bool get online => _online ?? false; // TODO
+
+  @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
     if (_online == null) {
       throw MissingGameError();

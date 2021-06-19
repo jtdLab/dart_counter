@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
       listener: (context, state) {
         state.when(
           inProgress: () {},
-          success: (success) {
+          success: (_, __) {
             // TODO maybe add game as initial but or not ?
             context.router.replace(const CreateGamePageRoute());
           },
