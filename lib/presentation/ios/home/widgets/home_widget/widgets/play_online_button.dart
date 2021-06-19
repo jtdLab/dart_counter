@@ -10,9 +10,10 @@ class PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () => context
+      onPressed: () {},
+      /*() => context
           .read<PlayBloc>()
-          .add(const PlayEvent.gameCreated(online: true)),
+          .add(const PlayEvent.gameCreated(online: true)),*/
       color: AppColors.orange_new,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.players_new),

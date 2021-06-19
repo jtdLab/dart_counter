@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class IconButton extends StatelessWidget {
+
+  final EdgeInsets? padding;
   final VoidCallback? onPressed;
   final Widget icon;
 
   const IconButton({
     Key? key,
+    this.padding,
     this.onPressed,
     required this.icon,
   }) : super(key: key);
@@ -14,7 +17,7 @@ class IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(size6(context)),
+      padding: padding ?? EdgeInsets.all(size6(context)),
       child: CupertinoButton(
         minSize: 0,
         padding: EdgeInsets.zero,

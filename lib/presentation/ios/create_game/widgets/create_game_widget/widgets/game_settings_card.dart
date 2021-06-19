@@ -49,9 +49,7 @@ class GameSettingsCard extends StatelessWidget {
       children: [
         _sizeRow(context),
         _modeRow(context),
-        AppCardItem.large(
-          content: AppNumberPicker(),
-        ),
+        const AppNumberPicker(),
         _typeRow(context),
       ],
     );

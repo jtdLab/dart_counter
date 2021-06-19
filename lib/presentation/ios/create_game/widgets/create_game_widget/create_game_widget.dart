@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/dartbot_card.dart';
+import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/dartbot_card.dart/dartbot_card.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card.dart';
 import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/play_button.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
@@ -19,12 +19,7 @@ class CreateGameWidget extends StatelessWidget {
       builder: (context, state) => state.maybeMap(
         success: (success) => Column(
           children: [
-            Visibility(
-              visible: success.game.hasDartBot(),
-              child: DartBotCard(
-                onPressed: () {},
-              ),
-            ),
+            DartBotCard(),
             const AppSpacer.large(),
             PlayerCard(
               onAddPlayer: () {},

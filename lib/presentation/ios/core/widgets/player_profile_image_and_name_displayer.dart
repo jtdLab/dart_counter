@@ -8,7 +8,7 @@ class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
 
   const PlayerProfileImageAndNameDisplayer({
     Key? key,
-    this.color = AppColors.yellow,
+    this.color = AppColors.orange_new,
   }) : super(key: key);
 
   @override

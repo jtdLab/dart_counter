@@ -19,7 +19,7 @@ class AppActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const AppActionButton.small({
-    this.color = AppColors.yellow,
+    this.color = AppColors.orange_new,
     this.fontColor = AppColors.black,
     this.fontSize,
     this.borderRadius = const BorderRadius.all(
@@ -31,7 +31,7 @@ class AppActionButton extends StatelessWidget {
   }) : size = AppActionButtonSize.small;
 
   const AppActionButton.normal({
-    this.color = AppColors.yellow,
+    this.color = AppColors.orange_new,
     this.fontColor = AppColors.black,
     this.fontSize,
     this.borderRadius = const BorderRadius.all(
@@ -82,9 +82,10 @@ class AppActionButton extends StatelessWidget {
                 height: 30,
                 child: icon,
               ),
-            const AppSpacer.normal(
-              orientation: Orientation.horizontal,
-            ),
+            if (icon != null && text != null)
+              const AppSpacer.normal(
+                orientation: Orientation.horizontal,
+              ),
             if (text != null)
               AutoSizeText(
                 text!,

@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
               child: Container(
                 height: size40(context),
                 decoration: BoxDecoration(
-                  color: AppColors.yellow,
+                  color: AppColors.orange_new,
                   border: Border.all(
                     width: border4(context),
                   ),
