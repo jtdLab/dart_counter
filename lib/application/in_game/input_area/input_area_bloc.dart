@@ -58,13 +58,11 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
     final currentInput = state.input;
     final newInput = int.parse(currentInput.toString() + digit.toString());
 
-    print(newInput);
     final valid = newInput <= 180;
     // TODO validate more
-    
-    if(valid) {
+
+    if (valid) {
       yield InputAreaState(input: newInput);
     }
-
   }
 }
