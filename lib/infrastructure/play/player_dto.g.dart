@@ -8,8 +8,8 @@ part of 'player_dto.dart';
 
 _$_PlayerDto _$_$_PlayerDtoFromJson(Map<String, dynamic> json) {
   return _$_PlayerDto(
-    id: json['id'] as String?,
-    name: json['name'] as String?,
+    id: json['id'] as String,
+    name: json['name'] as String,
     isCurrentTurn: json['isCurrentTurn'] as bool?,
     won: json['won'] as bool?,
     wonSets: json['wonSets'] as int?,

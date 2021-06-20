@@ -12,7 +12,7 @@ part 'play_event.dart';
 part 'play_state.dart';
 part 'play_bloc.freezed.dart';
 
-@injectable
+@LazySingleton()
 class PlayBloc extends Bloc<PlayEvent, PlayState> {
   final IPlayFacade _playFacade;
 
@@ -239,6 +239,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
 
   @override
   Future<void> close() {
+    print('CLOSED PLAYBLOC');
     _gameStreamSubscription?.cancel();
     return super.close();
   }

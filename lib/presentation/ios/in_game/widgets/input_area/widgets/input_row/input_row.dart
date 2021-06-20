@@ -6,13 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 
 class InputRow extends StatelessWidget {
-  final VoidCallback onUndoPressed;
-  final VoidCallback onDoPressed;
-
   const InputRow({
     Key? key,
-    required this.onUndoPressed,
-    required this.onDoPressed,
   }) : super(key: key);
 
   @override
@@ -20,18 +15,14 @@ class InputRow extends StatelessWidget {
     return AppRow(
       spacing: size6(context),
       children: [
-        Expanded(
-          child: UndoButton(
-            onPressed: onUndoPressed,
-          ),
+        const Expanded(
+          child: UndoButton(),
         ),
         Expanded(
           child: InputPointsDisplayer(),
         ),
-        Expanded(
-          child: DoButton(
-            onPressed: onDoPressed,
-          ),
+        const Expanded(
+          child: DoButton(),
         ),
       ],
     );

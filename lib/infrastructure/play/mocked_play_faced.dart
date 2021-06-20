@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
@@ -11,6 +12,7 @@ import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/dart_game.dart' as dart;
 import 'package:kt_dart/kt.dart';
@@ -381,18 +383,21 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   Player _fromExternalPlayer(dart.Player player) {
+    final faker = Faker();
+
     return Player(
-      name: player.name,
-      isCurrentTurn: player.isCurrentTurn,
-      won: player.won,
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      name: player.name ?? 'Player ${faker.randomGenerator.integer(100)}',
+      isCurrentTurn: player.isCurrentTurn ?? false,
+      won: player.won ?? false,
       wonSets: player.wonSets,
-      wonLegsCurrentSet: player.wonLegsCurrentSet,
-      pointsLeft: player.pointsLeft,
+      wonLegsCurrentSet: player.wonLegsCurrentSet ?? 0,
+      pointsLeft: player.pointsLeft ?? 0,
       finishRecommendation: player.finishRecommendation != null
           ? KtList.from(player.finishRecommendation!)
           : null,
       lastPoints: player.lastPoints,
-      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
+      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg ?? 0,
       stats: _fromExternalStats(player.stats),
       sets: _fromExternalSets(player.sets),
       isDartBot: player is dart.DartBot,

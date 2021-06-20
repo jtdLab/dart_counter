@@ -17,19 +17,30 @@ class _$PlayerTearOff {
   const _$PlayerTearOff();
 
   _Player call(
-      {UniqueId? id,
-      String? name,
-      bool? isCurrentTurn,
-      bool? won,
+      {required UniqueId id,
+      required String name,
+      bool isCurrentTurn = false,
+      bool won = false,
       int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
+      int wonLegsCurrentSet = 0,
+      int pointsLeft = 0,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      Stats? stats,
-      KtList<Set>? sets,
-      bool? isDartBot}) {
+      int dartsThrownCurrentLeg = 0,
+      Stats stats = const Stats(
+          average: 0.0,
+          checkoutPercentage: 0.0,
+          firstNineAverage: 0.0,
+          fourtyPlus: 0,
+          sixtyPlus: 0,
+          eightyPlus: 0,
+          hundredPlus: 0,
+          hundredTwentyPlus: 0,
+          hundredFourtyPlus: 0,
+          hundredSixtyPlus: 0,
+          hundredEighty: 0),
+      KtList<Set> sets = const KtList.empty(),
+      required bool isDartBot}) {
     return _Player(
       id: id,
       name: name,
@@ -53,20 +64,20 @@ const $Player = _$PlayerTearOff();
 
 /// @nodoc
 mixin _$Player {
-  UniqueId? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  bool? get won => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  bool get isCurrentTurn => throw _privateConstructorUsedError;
+  bool get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  int? get pointsLeft => throw _privateConstructorUsedError;
+  int get wonLegsCurrentSet => throw _privateConstructorUsedError;
+  int get pointsLeft => throw _privateConstructorUsedError;
   KtList<String>? get finishRecommendation =>
       throw _privateConstructorUsedError;
   int? get lastPoints => throw _privateConstructorUsedError;
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  Stats? get stats => throw _privateConstructorUsedError;
-  KtList<Set>? get sets => throw _privateConstructorUsedError;
-  bool? get isDartBot => throw _privateConstructorUsedError;
+  int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
+  Stats get stats => throw _privateConstructorUsedError;
+  KtList<Set> get sets => throw _privateConstructorUsedError;
+  bool get isDartBot => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerCopyWith<Player> get copyWith => throw _privateConstructorUsedError;
@@ -77,21 +88,21 @@ abstract class $PlayerCopyWith<$Res> {
   factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
       _$PlayerCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId? id,
-      String? name,
-      bool? isCurrentTurn,
-      bool? won,
+      {UniqueId id,
+      String name,
+      bool isCurrentTurn,
+      bool won,
       int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
+      int wonLegsCurrentSet,
+      int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      Stats? stats,
-      KtList<Set>? sets,
-      bool? isDartBot});
+      int dartsThrownCurrentLeg,
+      Stats stats,
+      KtList<Set> sets,
+      bool isDartBot});
 
-  $StatsCopyWith<$Res>? get stats;
+  $StatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -122,19 +133,19 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+              as UniqueId,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       wonSets: wonSets == freezed
           ? _value.wonSets
           : wonSets // ignore: cast_nullable_to_non_nullable
@@ -142,11 +153,11 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
       wonLegsCurrentSet: wonLegsCurrentSet == freezed
           ? _value.wonLegsCurrentSet
           : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       pointsLeft: pointsLeft == freezed
           ? _value.pointsLeft
           : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       finishRecommendation: finishRecommendation == freezed
           ? _value.finishRecommendation
           : finishRecommendation // ignore: cast_nullable_to_non_nullable
@@ -158,29 +169,25 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
       dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
           ? _value.dartsThrownCurrentLeg
           : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats?,
+              as Stats,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>?,
+              as KtList<Set>,
       isDartBot: isDartBot == freezed
           ? _value.isDartBot
           : isDartBot // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 
   @override
-  $StatsCopyWith<$Res>? get stats {
-    if (_value.stats == null) {
-      return null;
-    }
-
-    return $StatsCopyWith<$Res>(_value.stats!, (value) {
+  $StatsCopyWith<$Res> get stats {
+    return $StatsCopyWith<$Res>(_value.stats, (value) {
       return _then(_value.copyWith(stats: value));
     });
   }
@@ -192,22 +199,22 @@ abstract class _$PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       __$PlayerCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId? id,
-      String? name,
-      bool? isCurrentTurn,
-      bool? won,
+      {UniqueId id,
+      String name,
+      bool isCurrentTurn,
+      bool won,
       int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
+      int wonLegsCurrentSet,
+      int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      Stats? stats,
-      KtList<Set>? sets,
-      bool? isDartBot});
+      int dartsThrownCurrentLeg,
+      Stats stats,
+      KtList<Set> sets,
+      bool isDartBot});
 
   @override
-  $StatsCopyWith<$Res>? get stats;
+  $StatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -239,19 +246,19 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+              as UniqueId,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       wonSets: wonSets == freezed
           ? _value.wonSets
           : wonSets // ignore: cast_nullable_to_non_nullable
@@ -259,11 +266,11 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
       wonLegsCurrentSet: wonLegsCurrentSet == freezed
           ? _value.wonLegsCurrentSet
           : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       pointsLeft: pointsLeft == freezed
           ? _value.pointsLeft
           : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       finishRecommendation: finishRecommendation == freezed
           ? _value.finishRecommendation
           : finishRecommendation // ignore: cast_nullable_to_non_nullable
@@ -275,19 +282,19 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
       dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
           ? _value.dartsThrownCurrentLeg
           : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats?,
+              as Stats,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>?,
+              as KtList<Set>,
       isDartBot: isDartBot == freezed
           ? _value.isDartBot
           : isDartBot // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -296,46 +303,76 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
 
 class _$_Player implements _Player {
   const _$_Player(
-      {this.id,
-      this.name,
-      this.isCurrentTurn,
-      this.won,
+      {required this.id,
+      required this.name,
+      this.isCurrentTurn = false,
+      this.won = false,
       this.wonSets,
-      this.wonLegsCurrentSet,
-      this.pointsLeft,
+      this.wonLegsCurrentSet = 0,
+      this.pointsLeft = 0,
       this.finishRecommendation,
       this.lastPoints,
-      this.dartsThrownCurrentLeg,
-      this.stats,
-      this.sets,
-      this.isDartBot});
+      this.dartsThrownCurrentLeg = 0,
+      this.stats = const Stats(
+          average: 0.0,
+          checkoutPercentage: 0.0,
+          firstNineAverage: 0.0,
+          fourtyPlus: 0,
+          sixtyPlus: 0,
+          eightyPlus: 0,
+          hundredPlus: 0,
+          hundredTwentyPlus: 0,
+          hundredFourtyPlus: 0,
+          hundredSixtyPlus: 0,
+          hundredEighty: 0),
+      this.sets = const KtList.empty(),
+      required this.isDartBot});
 
   @override
-  final UniqueId? id;
+  final UniqueId id;
   @override
-  final String? name;
+  final String name;
+  @JsonKey(defaultValue: false)
   @override
-  final bool? isCurrentTurn;
+  final bool isCurrentTurn;
+  @JsonKey(defaultValue: false)
   @override
-  final bool? won;
+  final bool won;
   @override
   final int? wonSets;
+  @JsonKey(defaultValue: 0)
   @override
-  final int? wonLegsCurrentSet;
+  final int wonLegsCurrentSet;
+  @JsonKey(defaultValue: 0)
   @override
-  final int? pointsLeft;
+  final int pointsLeft;
   @override
   final KtList<String>? finishRecommendation;
   @override
   final int? lastPoints;
+  @JsonKey(defaultValue: 0)
   @override
-  final int? dartsThrownCurrentLeg;
+  final int dartsThrownCurrentLeg;
+  @JsonKey(
+      defaultValue: const Stats(
+          average: 0.0,
+          checkoutPercentage: 0.0,
+          firstNineAverage: 0.0,
+          fourtyPlus: 0,
+          sixtyPlus: 0,
+          eightyPlus: 0,
+          hundredPlus: 0,
+          hundredTwentyPlus: 0,
+          hundredFourtyPlus: 0,
+          hundredSixtyPlus: 0,
+          hundredEighty: 0))
   @override
-  final Stats? stats;
+  final Stats stats;
+  @JsonKey(defaultValue: const KtList.empty())
   @override
-  final KtList<Set>? sets;
+  final KtList<Set> sets;
   @override
-  final bool? isDartBot;
+  final bool isDartBot;
 
   @override
   String toString() {
@@ -407,47 +444,47 @@ class _$_Player implements _Player {
 
 abstract class _Player implements Player {
   const factory _Player(
-      {UniqueId? id,
-      String? name,
-      bool? isCurrentTurn,
-      bool? won,
+      {required UniqueId id,
+      required String name,
+      bool isCurrentTurn,
+      bool won,
       int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
+      int wonLegsCurrentSet,
+      int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      Stats? stats,
-      KtList<Set>? sets,
-      bool? isDartBot}) = _$_Player;
+      int dartsThrownCurrentLeg,
+      Stats stats,
+      KtList<Set> sets,
+      required bool isDartBot}) = _$_Player;
 
   @override
-  UniqueId? get id => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool get isCurrentTurn => throw _privateConstructorUsedError;
   @override
-  bool? get won => throw _privateConstructorUsedError;
+  bool get won => throw _privateConstructorUsedError;
   @override
   int? get wonSets => throw _privateConstructorUsedError;
   @override
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
+  int get wonLegsCurrentSet => throw _privateConstructorUsedError;
   @override
-  int? get pointsLeft => throw _privateConstructorUsedError;
+  int get pointsLeft => throw _privateConstructorUsedError;
   @override
   KtList<String>? get finishRecommendation =>
       throw _privateConstructorUsedError;
   @override
   int? get lastPoints => throw _privateConstructorUsedError;
   @override
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
+  int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
-  Stats? get stats => throw _privateConstructorUsedError;
+  Stats get stats => throw _privateConstructorUsedError;
   @override
-  KtList<Set>? get sets => throw _privateConstructorUsedError;
+  KtList<Set> get sets => throw _privateConstructorUsedError;
   @override
-  bool? get isDartBot => throw _privateConstructorUsedError;
+  bool get isDartBot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerCopyWith<_Player> get copyWith => throw _privateConstructorUsedError;

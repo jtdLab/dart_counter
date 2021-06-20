@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -12,8 +13,8 @@ part 'player_dto.g.dart';
 @freezed
 class PlayerDto with _$PlayerDto {
   const factory PlayerDto({
-    String? id,
-    String? name,
+    required String id,
+    required String name,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -30,7 +31,7 @@ class PlayerDto with _$PlayerDto {
 
   factory PlayerDto.fromDomain(Player player) {
     return PlayerDto(
-      id: player.id?.getOrCrash(),
+      id: player.id.getOrCrash(),
       name: player.name,
       isCurrentTurn: player.isCurrentTurn,
       won: player.won,
@@ -40,29 +41,45 @@ class PlayerDto with _$PlayerDto {
       finishRecommendation: player.finishRecommendation?.asList(),
       lastPoints: player.lastPoints,
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: player.stats != null ? StatsDto.fromDomain(player.stats!) : null,
-      sets: player.sets?.map((set) => SetDto.fromDomain(set)).asList(),
+      stats: StatsDto.fromDomain(player.stats),
+      sets: player.sets.map((set) => SetDto.fromDomain(set)).asList(),
     );
   }
 
   Player toDomain() {
     return Player(
-      id: UniqueId.fromUniqueString(id!),
+      id: UniqueId.fromUniqueString(id),
       name: name,
-      isCurrentTurn: isCurrentTurn,
-      won: won,
+      isCurrentTurn: isCurrentTurn ?? false,
+      won: won ?? false,
       wonSets: wonSets,
-      wonLegsCurrentSet: wonLegsCurrentSet,
-      pointsLeft: pointsLeft,
+      wonLegsCurrentSet: wonLegsCurrentSet ?? 0,
+      pointsLeft: pointsLeft ?? 0,
       finishRecommendation: finishRecommendation != null
           ? KtList.from(finishRecommendation!)
           : null,
       lastPoints: lastPoints,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-      stats: stats?.toDomain(),
+      dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
+      stats: stats?.toDomain() ??
+          const Stats(
+            average: 0.00,
+            checkoutPercentage: 0.00,
+            firstNineAverage: 0.00,
+            fourtyPlus: 0,
+            sixtyPlus: 0,
+            eightyPlus: 0,
+            hundredPlus: 0,
+            hundredTwentyPlus: 0,
+            hundredFourtyPlus: 0,
+            hundredSixtyPlus: 0,
+            hundredEighty: 0,
+          ),
       sets: sets != null
-          ? KtList.from(sets!.map((setDto) => setDto.toDomain()))
-          : null,
+          ? KtList.from(
+              sets!.map((setDto) => setDto.toDomain()),
+            )
+          : const KtList.empty(),
+      isDartBot: false,
     );
   }
 

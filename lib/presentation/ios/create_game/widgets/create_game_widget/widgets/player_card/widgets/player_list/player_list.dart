@@ -21,7 +21,7 @@ class PlayerList extends StatelessWidget {
               children: game.players
                   .asList()
                   .map((player) =>
-                      player.isDartBot ?? false ? DartBotItem() : PlayerItem()) // TODO
+                      player.isDartBot ? DartBotItem() : PlayerItem())
                   .toList(),
             );
           },

@@ -23,7 +23,7 @@ class GameDto with _$GameDto {
 
   factory GameDto.fromDomain(Game game) {
     return GameDto(
-      id: game.id?.getOrCrash(),
+      id: game.id.getOrCrash(),
       status: game.status.toString().split('.')[1],
       mode: game.mode.toString().split('.')[1],
       size: game.size,

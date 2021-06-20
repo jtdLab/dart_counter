@@ -13,7 +13,7 @@ enum Type { legs, sets }
 @freezed
 class Game with _$Game {
   const factory Game({
-    required UniqueId? id,
+    required UniqueId id,
     required Status status,
     required Mode mode,
     required int size,
@@ -29,11 +29,15 @@ class Game with _$Game {
       return false;
     }
 
-    return players.any((player) => player.isDartBot!); // TODO
+    return players.any((player) => player.isDartBot);
   }
 
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
+
+  Player currentTurn() {
+    return players.first((player) => player.isCurrentTurn);
+  }
 
   factory Game.dummy() {
     final faker = Faker();

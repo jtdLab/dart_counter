@@ -1,9 +1,10 @@
+import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:flutter/cupertino.dart' hide Orientation;
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Footer extends StatelessWidget {
   @override
@@ -30,14 +31,21 @@ class Footer extends StatelessWidget {
           const AppSpacer.normal(
             orientation: Orientation.horizontal,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(': 3'),
-              Text(': 180.00'),
-              Text(': 9.55'),
-            ],
+          BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
+            builder: (context, state) {
+              final dartsThrown = state.player.dartsThrownCurrentLeg;
+              final average = state.player.stats.average;
+              final checkout = state.player.stats.checkoutPercentage;
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(': $dartsThrown'),
+                  Text(': ${average.toStringAsFixed(2)}'),
+                  Text(': ${checkout.toStringAsFixed(2)}'),
+                ],
+              );
+            },
           ),
         ],
       ),

@@ -47,15 +47,9 @@ class InGamePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  PlayerDisplayer(), // TODO
+                  const PlayerDisplayer(),
                   const AppSpacer.normal(),
-                  InputArea(
-                    onCheckPressed: () {},
-                    onDigitPressed: (digit) {},
-                    onDoPressed: () {},
-                    onEreasePressed: () {},
-                    onUndoPressed: () {},
-                  ),
+                  const InputArea(),
                 ],
               ),
             );

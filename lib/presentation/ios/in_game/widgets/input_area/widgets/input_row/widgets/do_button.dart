@@ -1,13 +1,12 @@
+import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DoButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
   const DoButton({
     Key? key,
-    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -15,7 +14,9 @@ class DoButton extends StatelessWidget {
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
-      onPressed: onPressed,
+      onPressed: () => context
+          .read<InputAreaBloc>()
+          .add(const InputAreaEvent.performThrowPressed()),
       child: Container(
         height: size55(context),
         decoration: BoxDecoration(

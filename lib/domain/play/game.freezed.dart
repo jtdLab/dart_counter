@@ -17,7 +17,7 @@ class _$GameTearOff {
   const _$GameTearOff();
 
   _Game call(
-      {required UniqueId? id,
+      {required UniqueId id,
       required Status status,
       required Mode mode,
       required int size,
@@ -41,7 +41,7 @@ const $Game = _$GameTearOff();
 
 /// @nodoc
 mixin _$Game {
-  UniqueId? get id => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) then) =
       _$GameCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId? id,
+      {UniqueId id,
       Status status,
       Mode mode,
       int size,
@@ -89,7 +89,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+              as UniqueId,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
       __$GameCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId? id,
+      {UniqueId id,
       Status status,
       Mode mode,
       int size,
@@ -156,7 +156,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+              as UniqueId,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -199,7 +199,7 @@ class _$_Game extends _Game {
       : super._();
 
   @override
-  final UniqueId? id;
+  final UniqueId id;
   @override
   final Status status;
   @override
@@ -258,7 +258,7 @@ class _$_Game extends _Game {
 
 abstract class _Game extends Game {
   const factory _Game(
-      {required UniqueId? id,
+      {required UniqueId id,
       required Status status,
       required Mode mode,
       required int size,
@@ -268,7 +268,7 @@ abstract class _Game extends Game {
   const _Game._() : super._();
 
   @override
-  UniqueId? get id => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   Status get status => throw _privateConstructorUsedError;
   @override

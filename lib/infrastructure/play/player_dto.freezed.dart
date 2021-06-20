@@ -21,8 +21,8 @@ class _$PlayerDtoTearOff {
   const _$PlayerDtoTearOff();
 
   _PlayerDto call(
-      {String? id,
-      String? name,
+      {required String id,
+      required String name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -59,8 +59,8 @@ const $PlayerDto = _$PlayerDtoTearOff();
 
 /// @nodoc
 mixin _$PlayerDto {
-  String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   bool? get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -83,8 +83,8 @@ abstract class $PlayerDtoCopyWith<$Res> {
   factory $PlayerDtoCopyWith(PlayerDto value, $Res Function(PlayerDto) then) =
       _$PlayerDtoCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
-      String? name,
+      {String id,
+      String name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -126,11 +126,11 @@ class _$PlayerDtoCopyWithImpl<$Res> implements $PlayerDtoCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -193,8 +193,8 @@ abstract class _$PlayerDtoCopyWith<$Res> implements $PlayerDtoCopyWith<$Res> {
       __$PlayerDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
-      String? name,
+      {String id,
+      String name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -238,11 +238,11 @@ class __$PlayerDtoCopyWithImpl<$Res> extends _$PlayerDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -291,8 +291,8 @@ class __$PlayerDtoCopyWithImpl<$Res> extends _$PlayerDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PlayerDto extends _PlayerDto {
   const _$_PlayerDto(
-      {this.id,
-      this.name,
+      {required this.id,
+      required this.name,
       this.isCurrentTurn,
       this.won,
       this.wonSets,
@@ -309,9 +309,9 @@ class _$_PlayerDto extends _PlayerDto {
       _$_$_PlayerDtoFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
-  final String? name;
+  final String name;
   @override
   final bool? isCurrentTurn;
   @override
@@ -404,8 +404,8 @@ class _$_PlayerDto extends _PlayerDto {
 
 abstract class _PlayerDto extends PlayerDto {
   const factory _PlayerDto(
-      {String? id,
-      String? name,
+      {required String id,
+      required String name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -422,9 +422,9 @@ abstract class _PlayerDto extends PlayerDto {
       _$_PlayerDto.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   @override

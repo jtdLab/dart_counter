@@ -10,19 +10,40 @@ part 'player.freezed.dart';
 @freezed
 class Player with _$Player {
   const factory Player({
-    UniqueId? id,
-    String? name,
-    bool? isCurrentTurn,
-    bool? won,
+    required UniqueId id,
+    required String name,
+    @Default(false)
+        bool isCurrentTurn,
+    @Default(false)
+        bool won,
     int? wonSets,
-    int? wonLegsCurrentSet,
-    int? pointsLeft,
+    @Default(0)
+        int wonLegsCurrentSet,
+    @Default(0)
+        int pointsLeft,
     KtList<String>? finishRecommendation,
     int? lastPoints,
-    int? dartsThrownCurrentLeg,
-    Stats? stats,
-    KtList<Set>? sets,
-    bool? isDartBot,
+    @Default(0)
+        int dartsThrownCurrentLeg,
+    @Default(
+      Stats(
+        average: 0.00,
+        checkoutPercentage: 0.00,
+        firstNineAverage: 0.00,
+        fourtyPlus: 0,
+        sixtyPlus: 0,
+        eightyPlus: 0,
+        hundredPlus: 0,
+        hundredTwentyPlus: 0,
+        hundredFourtyPlus: 0,
+        hundredSixtyPlus: 0,
+        hundredEighty: 0,
+      ),
+    )
+        Stats stats,
+    @Default(KtList.empty())
+        KtList<Set> sets,
+    required bool isDartBot,
   }) = _Player;
 
   factory Player.dummy() {

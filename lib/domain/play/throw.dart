@@ -14,11 +14,12 @@ class Throw with _$Throw {
     required int dartsOnDouble,
   }) = _Throw;
 
-  factory Throw.fromDarts(UniqueId id, List<Dart> darts) => Throw(
+  factory Throw.fromDarts(UniqueId id, List<Dart> darts, int dartsOnDouble) =>
+      Throw(
         id: id,
         points: darts.map((dart) => dart.points).toList().sum,
         dartsThrown: darts.length,
-        dartsOnDouble: 0, // TODO
+        dartsOnDouble: dartsOnDouble,
       );
 
   factory Throw.dummy({
