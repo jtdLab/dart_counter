@@ -11,9 +11,9 @@ class PlayerDisplayer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Header(),
-        const AppSpacer.large(),
+        const AppSpacer.normal(),
         Center(),
-        const AppSpacer.large(),
+        const AppSpacer.normal(),
         Footer(),
       ],
     );

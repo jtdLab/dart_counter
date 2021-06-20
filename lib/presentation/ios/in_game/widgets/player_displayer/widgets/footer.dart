@@ -1,5 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/generated/locale_keys.g.dart';
+import 'package:dart_counter/presentation/core/assets.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
+import 'package:flutter/cupertino.dart' hide Orientation;
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Footer extends StatelessWidget {
   @override
@@ -11,18 +15,29 @@ class Footer extends StatelessWidget {
           width: border4(context),
         ),
       ),
-
-      child: Column(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Text('Key : Value'.toUpperCase()),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(LocaleKeys.dartsThrown.tr().toUpperCase()),
+              Text(LocaleKeys.averrage.tr().toUpperCase()),
+              Text(LocaleKeys.checkoutPercentageShort.tr().toUpperCase()),
+            ],
           ),
-          Center(
-            child: Text('Key : Value'.toUpperCase()),
+          const AppSpacer.normal(
+            orientation: Orientation.horizontal,
           ),
-          Center(
-            child: Text('Key : Value'.toUpperCase()),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(': 3'),
+              Text(': 180.00'),
+              Text(': 9.55'),
+            ],
           ),
         ],
       ),

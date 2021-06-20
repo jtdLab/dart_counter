@@ -56,23 +56,23 @@ class AppActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size == AppActionButtonSize.small
-          ? size40(context)
-          : size == AppActionButtonSize.normal
-              ? size55(context)
-              : size70(context),
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: border4(context),
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      minSize: 1,
+      onPressed: onPressed,
+      borderRadius: borderRadius,
+      color: color,
+      child: Container(
+        height: size == AppActionButtonSize.small
+            ? size40(context)
+            : size == AppActionButtonSize.normal
+                ? size55(context)
+                : size70(context),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: border4(context),
+          ),
         ),
-      ),
-      child: CupertinoButton(
-        padding: EdgeInsets.zero,
-        minSize: 1,
-        onPressed: onPressed,
-        borderRadius: borderRadius,
-        color: color,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

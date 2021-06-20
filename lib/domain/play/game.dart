@@ -32,6 +32,9 @@ class Game with _$Game {
     return players.any((player) => player.isDartBot!); // TODO
   }
 
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
+
   factory Game.dummy() {
     final faker = Faker();
     return Game(
@@ -44,5 +47,5 @@ class Game with _$Game {
       players: KtList.from([Player.dummy()]),
     );
   }
-  // TODO add props current turn , description
+  // TODO add props current turn ,
 }

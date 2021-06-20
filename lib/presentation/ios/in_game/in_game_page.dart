@@ -4,6 +4,7 @@ import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/game/cancel_game_button.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/input_area/input_area.dart';
 import 'package:dart_counter/presentation/ios/in_game/widgets/player_displayer/player_displayer.dart';
@@ -27,32 +28,39 @@ class InGamePage extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return AppPage(
-          navigationBar: AppNavigationBar(
-            leading: const CancelGameButton(),
-            middle: Text(
-              'Best of 5 Legs'.toUpperCase(),
-            ),
-            trailing: AppNavigationBarButton(
-              onPressed: () {},
-              child: Image.asset(
-                AppImages.stats_new,
+        return state.maybeMap(
+          success: (success) {
+            final game = success.game;
+            return AppPage(
+              navigationBar: AppNavigationBar(
+                leading: const CancelGameButton(),
+                middle: Text(
+                  game.description(),
+                ),
+                trailing: AppNavigationBarButton(
+                  onPressed: () {},
+                  child: Image.asset(
+                    AppImages.stats_new,
+                  ),
+                ),
               ),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              PlayerDisplayer(), // TODO
-              InputArea(
-                onCheckPressed: () {},
-                onDigitPressed: (digit) {},
-                onDoPressed: () {},
-                onEreasePressed: () {},
-                onUndoPressed: () {},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PlayerDisplayer(), // TODO
+                  const AppSpacer.normal(),
+                  InputArea(
+                    onCheckPressed: () {},
+                    onDigitPressed: (digit) {},
+                    onDoPressed: () {},
+                    onEreasePressed: () {},
+                    onUndoPressed: () {},
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
+          orElse: () => Container(),
         );
       },
     );
