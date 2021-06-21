@@ -1,8 +1,8 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/icon_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:flutter/material.dart' hide Orientation, IconButton;
 
 class AppDropDown extends StatefulWidget {
@@ -36,7 +36,7 @@ class _AppDropDownState extends State<AppDropDown> {
         width: width,
         top: yPosition + height,
         height: 4 * height + 45,
-        child: DropDown(
+        child: _DropDown(
           itemHeight: height,
         ),
       );
@@ -97,10 +97,10 @@ class _AppDropDownState extends State<AppDropDown> {
   }
 }
 
-class DropDown extends StatelessWidget {
+class _DropDown extends StatelessWidget {
   final double itemHeight;
 
-  const DropDown({
+  const _DropDown({
     Key? key,
     required this.itemHeight,
   }) : super(key: key);
@@ -123,7 +123,7 @@ class DropDown extends StatelessWidget {
                     padding: EdgeInsets.only(
                       left: 16,
                     ),
-                    child: RoundedImage.small(
+                    child: AppRoundedImage.small(
                       imageName: AppImages.photo_placeholder_new,
                     ),
                   ),
@@ -137,7 +137,7 @@ class DropDown extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       right: 16,
                     ),
-                    child: IconButton(
+                    child: AppIconButton(
                       onPressed: () {},
                       icon: Image.asset(
                         AppImages.add_new,

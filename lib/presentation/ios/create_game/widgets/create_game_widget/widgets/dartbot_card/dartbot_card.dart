@@ -2,18 +2,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_number_picker.dart';
-
-
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'widgets/check_box.dart';
+import 'widgets/widgets.dart';
 
 // TODO abstand wenn kein dartbot zur playercard
 class DartBotCard extends StatelessWidget {
+  const DartBotCard({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayBloc, PlayState>(

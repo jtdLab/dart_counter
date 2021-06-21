@@ -1,5 +1,5 @@
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/icon_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_icon_button.dart';
 import 'package:flutter/cupertino.dart' hide Orientation;
 
 import 'app_card/widgets/app_card_item.dart';
@@ -56,13 +56,13 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
+                AppIconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onIncrementPressed,
                   icon: Image.asset(AppImages.chevron_up_small_new),
                 ),
                 const AppSpacer.small(),
-                IconButton(
+                AppIconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onDecrementPressed,
                   icon: Image.asset(AppImages.chevron_down_small_new),

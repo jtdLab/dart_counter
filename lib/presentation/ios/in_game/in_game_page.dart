@@ -1,17 +1,12 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/game/cancel_game_button.dart';
-import 'package:dart_counter/presentation/ios/in_game/widgets/input_area/input_area.dart';
-import 'package:dart_counter/presentation/ios/in_game/widgets/player_displayer/player_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+
+import 'widgets/widgets.dart';
 
 class InGamePage extends StatelessWidget {
   @override
@@ -37,21 +32,9 @@ class InGamePage extends StatelessWidget {
                 middle: Text(
                   game.description(),
                 ),
-                trailing: AppNavigationBarButton(
-                  onPressed: () {},
-                  child: Image.asset(
-                    AppImages.stats_new,
-                  ),
-                ),
+                trailing: const StatsButton(),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const PlayerDisplayer(),
-                  const AppSpacer.normal(),
-                  const InputArea(),
-                ],
-              ),
+              child: const InGameWidget(),
             );
           },
           orElse: () => Container(),

@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/ap
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_column.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/profile/widgets/career_stats_item/career_stats_item.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
       child: Column(
         children: [
           const Spacer(),
-          const RoundedImage.extraLarge(
+          const AppRoundedImage.extraLarge(
               imageName: AppImages.photo_placeholder_new),
           const Spacer(),
           AppColumn(

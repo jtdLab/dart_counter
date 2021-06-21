@@ -3,15 +3,11 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widgets/image_displayer.dart';
-import 'widgets/instagram_button.dart';
-import 'widgets/name_displayer.dart';
-import 'widgets/play_offline_button.dart';
-import 'widgets/play_online_button.dart';
-import 'widgets/train_button.dart';
-import 'widgets/youtube_button.dart';
+import 'widgets/widgets.dart';
 
 class HomeWidget extends StatelessWidget {
+  const HomeWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(

@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/ap
 import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
 import 'package:dart_counter/presentation/ios/settings/widgets/account_card/account_card.dart';
 import 'package:dart_counter/presentation/ios/settings/widgets/language_card/language_card.dart';
@@ -38,7 +38,7 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            const RoundedImage.extraLarge(
+            const AppRoundedImage.extraLarge(
               imageName: AppImages.photo_placeholder_new,
             ),
             const Spacer(),

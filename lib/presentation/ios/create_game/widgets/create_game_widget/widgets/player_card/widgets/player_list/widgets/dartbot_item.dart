@@ -2,8 +2,8 @@ import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/icon_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_icon_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,13 +22,13 @@ class DartBotItem extends StatelessWidget {
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const RoundedImage.normal(
+            const AppRoundedImage.normal(
               imageName: AppImages.robot_new,
             ),
             Text(
               LocaleKeys.dartBot.tr().toUpperCase(),
             ),
-            IconButton(
+            AppIconButton(
               onPressed: () {},
               icon: Image.asset(
                 AppImages.settings_new,

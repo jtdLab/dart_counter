@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/icon_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +15,7 @@ class CheckBox extends StatelessWidget {
           success: (success) {
             final game = success.game;
             if (game.hasDartBot()) {
-              return IconButton(
+              return AppIconButton(
                 padding: EdgeInsets.zero,
                 onPressed: () => context
                     .read<PlayBloc>()
@@ -25,7 +25,7 @@ class CheckBox extends StatelessWidget {
                 ),
               );
             } else {
-              return IconButton(
+              return AppIconButton(
                 padding: EdgeInsets.zero,
                 onPressed: () => context
                     .read<PlayBloc>()

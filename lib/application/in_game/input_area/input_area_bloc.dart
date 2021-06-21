@@ -94,6 +94,7 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
             ),
           ),
         );
+        yield const InputAreaState(input: 0, showCheckoutDetails: false);
       }
     }
   }

@@ -1,11 +1,11 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'app_card/widgets/app_card_item.dart';
 import 'app_column.dart';
-import 'buttons/icon_button.dart';
+import 'buttons/app_icon_button.dart';
 
 class AppSearchField extends StatefulWidget {
   final Function(String) onChanged;
@@ -156,7 +156,7 @@ class DropDown extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: 16,
               ),
-              child: RoundedImage.small(
+              child: AppRoundedImage.small(
                 imageName: AppImages.photo_placeholder_new,
               ),
             ),
@@ -170,7 +170,7 @@ class DropDown extends StatelessWidget {
               padding: const EdgeInsets.only(
                 right: 16,
               ),
-              child: IconButton(
+              child: AppIconButton(
                 onPressed: () {},
                 icon: Image.asset(
                   AppImages.add_new,

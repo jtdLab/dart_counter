@@ -1,11 +1,9 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/game_settings_card/game_settings_card.dart';
-import 'package:dart_counter/presentation/ios/create_game/widgets/create_game_widget/widgets/play_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'widgets/dartbot_card/dartbot_card.dart';
-import 'widgets/player_card/player_card.dart';
+
+import 'widgets/widgets.dart';
 
 class CreateGameWidget extends StatelessWidget {
   const CreateGameWidget({Key? key}) : super(key: key);
@@ -15,14 +13,14 @@ class CreateGameWidget extends StatelessWidget {
     return BlocBuilder<PlayBloc, PlayState>(
       builder: (context, state) => state.maybeMap(
         success: (success) => Column(
-          children: [
+          children: const [
             DartBotCard(),
-            const AppSpacer.large(),
+            AppSpacer.large(),
             PlayerCard(),
-            const AppSpacer.large(),
+            AppSpacer.large(),
             GameSettingsCard(),
-            const AppSpacer.normal(),
-            const PlayButton(),
+            AppSpacer.normal(),
+            PlayButton(),
           ],
         ),
         orElse: () => Container(), // TODO shouldnt happen

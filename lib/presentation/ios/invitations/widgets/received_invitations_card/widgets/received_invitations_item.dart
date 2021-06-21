@@ -1,7 +1,7 @@
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
 import 'package:flutter/cupertino.dart';
 
 class ReceivedInvitationsItem extends StatelessWidget {
@@ -11,7 +11,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const RoundedImage.normal(
+          const AppRoundedImage.normal(
             imageName: AppImages.photo_placeholder_new,
           ),
           Text(

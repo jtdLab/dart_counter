@@ -21,6 +21,7 @@ class ResponsiveDouble {
 
 // TODO maybe throw error when no tablet size is provided but running device is tablet
 extension ResponsiveDoubleX on Widget {
+  // TODO not needed anymore if migrated to size () extension
   double responsiveDouble(
       {required BuildContext context,
       required ResponsiveDouble mobile,
