@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/errors.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
@@ -88,6 +89,13 @@ class UniqueId extends ValueObject<String> {
     );
   }
 
+  factory UniqueId.generated() {
+    final faker = Faker();
+    return UniqueId._(
+      right(faker.randomGenerator.string(28, min: 28)),
+    );
+  }
+
   const UniqueId._(this.value);
 }
 
@@ -104,7 +112,7 @@ class List10<T> extends ValueObject<KtList<T>> {
   }
 
   factory List10.empty() => List10(const KtList.empty());
-  
+
   const List10._(this.value);
 
   int get length {

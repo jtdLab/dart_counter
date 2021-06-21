@@ -239,7 +239,6 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
 
   @override
   Future<void> close() {
-    print('CLOSED PLAYBLOC');
     _gameStreamSubscription?.cancel();
     return super.close();
   }

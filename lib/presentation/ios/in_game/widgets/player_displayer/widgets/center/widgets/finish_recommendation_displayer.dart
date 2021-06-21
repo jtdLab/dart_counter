@@ -10,27 +10,24 @@ class FinishRecommendationDisplayer extends StatelessWidget {
       builder: (context, state) {
         final finishRecommendation = state.player.finishRecommendation;
 
-        return Visibility(
-          visible: finishRecommendation != null,
-          child: Container(
-            height: 25,
-            color: AppColors.orange_new,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                if (finishRecommendation != null) ...[
-                  Text(
-                    finishRecommendation.get(0),
-                  ),
-                  Text(
-                    finishRecommendation.get(1),
-                  ),
-                  Text(
-                    finishRecommendation.get(2),
-                  ),
-                ]
-              ],
-            ),
+        return Container(
+          height: 25,
+          color: AppColors.orange_new,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              if (finishRecommendation != null) ...[
+                Text(
+                  finishRecommendation.get(0),
+                ),
+                Text(
+                  finishRecommendation.get(1),
+                ),
+                Text(
+                  finishRecommendation.get(2),
+                ),
+              ]
+            ],
           ),
         );
       },

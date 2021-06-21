@@ -625,9 +625,10 @@ abstract class DigitPressed implements InputAreaEvent {
 class _$InputAreaStateTearOff {
   const _$InputAreaStateTearOff();
 
-  State call({required int input}) {
+  State call({required int input, required bool showCheckoutDetails}) {
     return State(
       input: input,
+      showCheckoutDetails: showCheckoutDetails,
     );
   }
 }
@@ -638,6 +639,7 @@ const $InputAreaState = _$InputAreaStateTearOff();
 /// @nodoc
 mixin _$InputAreaState {
   int get input => throw _privateConstructorUsedError;
+  bool get showCheckoutDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InputAreaStateCopyWith<InputAreaState> get copyWith =>
@@ -649,7 +651,7 @@ abstract class $InputAreaStateCopyWith<$Res> {
   factory $InputAreaStateCopyWith(
           InputAreaState value, $Res Function(InputAreaState) then) =
       _$InputAreaStateCopyWithImpl<$Res>;
-  $Res call({int input});
+  $Res call({int input, bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -664,12 +666,17 @@ class _$InputAreaStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? input = freezed,
+    Object? showCheckoutDetails = freezed,
   }) {
     return _then(_value.copyWith(
       input: input == freezed
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
               as int,
+      showCheckoutDetails: showCheckoutDetails == freezed
+          ? _value.showCheckoutDetails
+          : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -679,7 +686,7 @@ abstract class $StateCopyWith<$Res> implements $InputAreaStateCopyWith<$Res> {
   factory $StateCopyWith(State value, $Res Function(State) then) =
       _$StateCopyWithImpl<$Res>;
   @override
-  $Res call({int input});
+  $Res call({int input, bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -694,12 +701,17 @@ class _$StateCopyWithImpl<$Res> extends _$InputAreaStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? input = freezed,
+    Object? showCheckoutDetails = freezed,
   }) {
     return _then(State(
       input: input == freezed
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
               as int,
+      showCheckoutDetails: showCheckoutDetails == freezed
+          ? _value.showCheckoutDetails
+          : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -707,14 +719,16 @@ class _$StateCopyWithImpl<$Res> extends _$InputAreaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$State implements State {
-  const _$State({required this.input});
+  const _$State({required this.input, required this.showCheckoutDetails});
 
   @override
   final int input;
+  @override
+  final bool showCheckoutDetails;
 
   @override
   String toString() {
-    return 'InputAreaState(input: $input)';
+    return 'InputAreaState(input: $input, showCheckoutDetails: $showCheckoutDetails)';
   }
 
   @override
@@ -722,12 +736,17 @@ class _$State implements State {
     return identical(this, other) ||
         (other is State &&
             (identical(other.input, input) ||
-                const DeepCollectionEquality().equals(other.input, input)));
+                const DeepCollectionEquality().equals(other.input, input)) &&
+            (identical(other.showCheckoutDetails, showCheckoutDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(input);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(input) ^
+      const DeepCollectionEquality().hash(showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -736,10 +755,13 @@ class _$State implements State {
 }
 
 abstract class State implements InputAreaState {
-  const factory State({required int input}) = _$State;
+  const factory State({required int input, required bool showCheckoutDetails}) =
+      _$State;
 
   @override
   int get input => throw _privateConstructorUsedError;
+  @override
+  bool get showCheckoutDetails => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $StateCopyWith<State> get copyWith => throw _privateConstructorUsedError;

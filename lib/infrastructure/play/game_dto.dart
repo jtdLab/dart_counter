@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/infrastructure/play/player_dto.dart';
+import 'package:dart_game/dart_game.dart' as dart;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
 
@@ -53,6 +54,12 @@ class GameDto with _$GameDto {
       players: KtList.from(players.map((playerDto) => playerDto.toDomain())),
     );
   }
+
+  /**
+  *  factory GameDto.fromExternal(dart.Game game) {
+    
+  }
+  */
 
   factory GameDto.fromJson(Map<String, dynamic> json) =>
       _$GameDtoFromJson(json);

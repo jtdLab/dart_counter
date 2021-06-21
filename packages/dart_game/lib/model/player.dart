@@ -181,8 +181,13 @@ class Player {
   }
 
   int? get _highestFinish {
-    List<int> nonNullFinishes = List.from(_finishes);
-    nonNullFinishes.removeWhere((element) => element == null);
+    List<int> nonNullFinishes = [];
+    for(int? finish in _finishes) {
+      if(finish != null) {
+        nonNullFinishes.add(finish);
+      }
+    }
+   
     if (nonNullFinishes.isEmpty) return null;
     return nonNullFinishes.reduce(max);
   }
