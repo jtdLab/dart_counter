@@ -8,6 +8,7 @@ import 'game.dart';
 abstract class IPlayFacade {
 
   bool get online;
+  Game? get game;
 
   Stream<Game> watchGame();
 

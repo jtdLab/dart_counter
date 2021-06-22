@@ -12,12 +12,16 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: IPlayFacade)
 class PlayFacade implements IPlayFacade {
 
-  dart.Game? game;
+  dart.Game? _game;
 
   bool? _online;
 
   @override
   bool get online => _online ?? false; // TODO
+
+ @override
+  Game? get game => Game.dummy(); // TODO
+ 
 
   @override
   Future<Either<PlayFailure, Unit>> addDartBot() {

@@ -16,20 +16,23 @@ import 'package:injectable/injectable.dart';
 import 'package:dart_game/dart_game.dart' as dart;
 import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IPlayFacade)
 class MockedPlayFacade implements IPlayFacade {
   bool fail = false; // toggle to simulate working / notworking endpoint
 
-  final StreamController<Game> _gameStramController =
-      StreamController.broadcast();
+  final BehaviorSubject<Game> _gameStreamController = BehaviorSubject();
 
-  dart.Game? game;
+  dart.Game? _game;
   bool? _online;
 
   @override
   bool get online => _online ?? false; // TODO
+
+  @override
+  Game? get game => _gameStreamController.stream.value;
 
   @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
@@ -37,9 +40,9 @@ class MockedPlayFacade implements IPlayFacade {
       return Future.value(left(const PlayFailure.error()));
     } else {
       if (!_online!) {
-        if (game != null) {
-          game!.addDartBot();
-          _gameStramController.add(_fromExternalGame(game!));
+        if (_game != null) {
+          _game!.addDartBot();
+          _gameStreamController.add(_fromExternalGame(_game!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -55,9 +58,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.addPlayer();
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.addPlayer();
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -67,12 +70,12 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   Future<Either<PlayFailure, Unit>> cancelGame() {
-    if (fail || game == null) {
+    if (fail || _game == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.cancel();
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.cancel();
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
         // TODO maybe set all to null after here
       } else {
@@ -87,8 +90,8 @@ class MockedPlayFacade implements IPlayFacade {
       return Future.value(left(const PlayFailure.error()));
     } else {
       _online = online;
-      game = dart.Game();
-      _gameStramController.add(_fromExternalGame(game!));
+      _game = dart.Game();
+      _gameStreamController.add(_fromExternalGame(_game!));
       return Future.value(right(unit));
     }
   }
@@ -110,9 +113,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.performThrow(_toExternalThrow(t));
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.performThrow(_toExternalThrow(t));
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -126,9 +129,9 @@ class MockedPlayFacade implements IPlayFacade {
       return Future.value(left(const PlayFailure.error()));
     } else {
       if (!_online!) {
-        if (game != null) {
-          game!.removeDartBot();
-          _gameStramController.add(_fromExternalGame(game!));
+        if (_game != null) {
+          _game!.removeDartBot();
+          _gameStreamController.add(_fromExternalGame(_game!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -144,9 +147,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.removePlayer(index);
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.removePlayer(index);
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -160,9 +163,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.reorderPlayer(oldIndex, newIndex);
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.reorderPlayer(oldIndex, newIndex);
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -177,9 +180,9 @@ class MockedPlayFacade implements IPlayFacade {
       return Future.value(left(const PlayFailure.error()));
     } else {
       if (!_online!) {
-        if (game != null) {
-          game!.setDartBotTargetAverage(targetAverage);
-          _gameStramController.add(_fromExternalGame(game!));
+        if (_game != null) {
+          _game!.setDartBotTargetAverage(targetAverage);
+          _gameStreamController.add(_fromExternalGame(_game!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -195,9 +198,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.setMode(_toExternalMode(mode));
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.setMode(_toExternalMode(mode));
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -210,9 +213,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.setSize(size);
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.setSize(size);
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -226,9 +229,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.setStartingPoints(startingPoints);
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.setStartingPoints(startingPoints);
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -241,9 +244,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.setType(_toExternalType(type));
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.setType(_toExternalType(type));
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -256,9 +259,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.start();
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.start();
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -271,9 +274,9 @@ class MockedPlayFacade implements IPlayFacade {
     if (fail || _online == null) {
       return Future.value(left(const PlayFailure.error()));
     } else {
-      if (game != null) {
-        game!.undoThrow();
-        _gameStramController.add(_fromExternalGame(game!));
+      if (_game != null) {
+        _game!.undoThrow();
+        _gameStreamController.add(_fromExternalGame(_game!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -288,11 +291,11 @@ class MockedPlayFacade implements IPlayFacade {
       return Future.value(left(const PlayFailure.error()));
     } else {
       if (!_online!) {
-        if (game != null) {
-          final player = game!.players[index];
+        if (_game != null) {
+          final player = _game!.players[index];
           player.name =
               newName; // TODO expose update name methode in package dart!
-          _gameStramController.add(_fromExternalGame(game!));
+          _gameStreamController.add(_fromExternalGame(_game!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -305,7 +308,7 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   Stream<Game> watchGame() {
-    return _gameStramController.stream;
+    return _gameStreamController.stream;
   }
 
 // TODO desereialzation etc somewhere else
