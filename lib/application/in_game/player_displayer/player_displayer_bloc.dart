@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,21 +13,20 @@ part 'player_displayer_bloc.freezed.dart';
 @injectable
 class PlayerDisplayerBloc
     extends Bloc<PlayerDisplayerEvent, PlayerDisplayerState> {
-  final PlayBloc _playBloc;
+  final IPlayFacade _playFacade;
+
   StreamSubscription? _playSubscription;
 
-  PlayerDisplayerBloc(this._playBloc)
+  PlayerDisplayerBloc(this._playFacade)
       : super(
           PlayerDisplayerState(
-            player: (_playBloc.state as Success).game.currentTurn(),
+            player: _playFacade.game!.currentTurn(),
           ),
         ) {
-    _playSubscription = _playBloc.stream.listen(
-      (event) {
-        if (event is Success) {
-          final player = event.game.currentTurn();
-          add(PlayerDisplayerEvent.currentPlayerUpdated(newPlayer: player));
-        }
+    _playSubscription = _playFacade.watchGame().listen(
+      (game) {
+        final player = game.currentTurn();
+        add(PlayerDisplayerEvent.currentPlayerUpdated(newPlayer: player));
       },
     );
   }
@@ -45,7 +43,7 @@ class PlayerDisplayerBloc
   }
 
   Stream<PlayerDisplayerState> _mapPreviousPlayerPressedToState() async* {
-    final game = (_playBloc.state as Success).game;
+    final game = _playFacade.game!;
     final players = game.players;
 
     final indexCurrentTurn = players.indexOf(state.player);
@@ -55,7 +53,7 @@ class PlayerDisplayerBloc
   }
 
   Stream<PlayerDisplayerState> _mapNextPlayerPressedToState() async* {
-    final game = (_playBloc.state as Success).game;
+    final game = _playFacade.game!;
     final players = game.players;
 
     final indexCurrentTurn = players.indexOf(state.player);

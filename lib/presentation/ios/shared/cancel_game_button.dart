@@ -5,15 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CancelGameButton extends StatelessWidget {
-  const CancelGameButton({Key? key}) : super(key: key);
+  const CancelGameButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
-      onPressed: () {
-        // TODO show dialog before canceling
-        context.read<PlayBloc>().add(const PlayEvent.gameCanceled());
-      },
+      onPressed: () => context.read<PlayBloc>().add(const PlayEvent.gameCanceled()),
       child: Image.asset(
         AppImages.x_mark,
       ),

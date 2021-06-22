@@ -12,7 +12,7 @@ part 'play_event.dart';
 part 'play_state.dart';
 part 'play_bloc.freezed.dart';
 
-@LazySingleton()
+@injectable
 class PlayBloc extends Bloc<PlayEvent, PlayState> {
   final IPlayFacade _playFacade;
 

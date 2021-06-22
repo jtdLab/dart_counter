@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 part 'input_area_event.dart';
 part 'input_area_state.dart';
@@ -14,9 +13,9 @@ part 'input_area_bloc.freezed.dart';
 
 @injectable
 class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
-  final PlayBloc _playBloc;
+  final IPlayFacade _playFacade;
 
-  InputAreaBloc(this._playBloc)
+  InputAreaBloc(this._playFacade)
       : super(const InputAreaState(input: 0, showCheckoutDetails: false));
 
   @override
@@ -33,7 +32,7 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
   }
 
   Stream<InputAreaState> _mapUndoThrowPressedToState() async* {
-    _playBloc.add(const PlayEvent.throwUndone());
+    _playFacade.undoThrow();
   }
 
   Stream<InputAreaState> _mapErasePressedToState() async* {
@@ -50,22 +49,19 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
   }
 
   Stream<InputAreaState> _mapPerformThrowPressedToState() async* {
-    final pointsLeftCurrentTurn =
-        (_playBloc.state as Success).game.currentTurn().pointsLeft;
+    final pointsLeftCurrentTurn = _playFacade.game!.currentTurn().pointsLeft;
     final pointsScored = state.input;
 
     // TODO if dart on double was possible considering pointsScored and currentTurnPointsLeft
     if (pointsLeftCurrentTurn <= 170) {
       yield state.copyWith(showCheckoutDetails: true);
     } else {
-      _playBloc.add(
-        PlayEvent.throwPerformed(
-          t: Throw(
-            id: UniqueId.generated(),
-            points: pointsScored,
-            dartsThrown: 3,
-            dartsOnDouble: 0,
-          ),
+      _playFacade.performThrow(
+        t: Throw(
+          id: UniqueId.generated(),
+          points: pointsScored,
+          dartsThrown: 3,
+          dartsOnDouble: 0,
         ),
       );
       yield const InputAreaState(input: 0, showCheckoutDetails: false);
@@ -73,8 +69,7 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
   }
 
   Stream<InputAreaState> _mapCheckPressedToState() async* {
-    final pointsLeftCurrentTurn =
-        (_playBloc.state as Success).game.currentTurn().pointsLeft;
+    final pointsLeftCurrentTurn = _playFacade.game!.currentTurn().pointsLeft;
 
     // TODO if pointsLeftCurrentTurn is finish
     if (pointsLeftCurrentTurn <= 170) {
@@ -84,14 +79,12 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
         yield state.copyWith(showCheckoutDetails: true);
       } else {
         // 3 dart finish
-        _playBloc.add(
-          PlayEvent.throwPerformed(
-            t: Throw(
-              id: UniqueId.generated(),
-              points: pointsLeftCurrentTurn,
-              dartsThrown: 3,
-              dartsOnDouble: 1,
-            ),
+        _playFacade.performThrow(
+          t: Throw(
+            id: UniqueId.generated(),
+            points: pointsLeftCurrentTurn,
+            dartsThrown: 3,
+            dartsOnDouble: 1,
           ),
         );
         yield const InputAreaState(input: 0, showCheckoutDetails: false);
