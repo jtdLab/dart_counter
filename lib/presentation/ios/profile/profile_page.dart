@@ -6,15 +6,13 @@ import 'widgets/widgets.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return const AppPage(
       navigationBar: AppNavigationBar(
-        leading: const BackButton(),
-        middle: Text(
-          'Sebi Abi 69'.toUpperCase(),
-        ),
-        trailing: const GameHistoryButton(),
+        leading: BackButton(),
+        middle: NameDisplayer(),
+        trailing: GameHistoryButton(),
       ),
-      child: const ProfileWidget(),
+      child: ProfileWidget(),
     );
   }
 }

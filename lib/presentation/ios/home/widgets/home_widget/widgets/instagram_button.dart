@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InstagramButton extends StatelessWidget {
+  const InstagramButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(

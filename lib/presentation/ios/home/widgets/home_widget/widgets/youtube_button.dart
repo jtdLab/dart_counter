@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class YoutubeButton extends StatelessWidget {
+  const YoutubeButton({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(

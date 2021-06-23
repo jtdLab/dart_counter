@@ -1,4 +1,4 @@
-export 'image_displayer.dart';
+export 'package:dart_counter/presentation/ios/shared/image_displayer.dart';
 export 'instagram_button.dart';
 export 'name_displayer.dart';
 export 'play_offline_button.dart';
