@@ -1,8 +1,8 @@
 import 'package:dart_counter/domain/user/career_stats.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/profile/widgets/career_stats_item/widgets/trend_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+
+import 'widgets/widgets.dart';
 
 class CareerStatsItem extends StatelessWidget {
   final String title;
