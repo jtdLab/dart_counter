@@ -1,10 +1,15 @@
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart' hide Orientation;
 
 class ReceivedInvitationsItem extends StatelessWidget {
+  final String name;
+
+  const ReceivedInvitationsItem({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppCardItem.large(
@@ -15,12 +20,14 @@ class ReceivedInvitationsItem extends StatelessWidget {
             imageName: AppImages.photo_placeholder_new,
           ),
           Text(
-            'Anis Abi'.toUpperCase(),
+            name.toUpperCase(),
           ),
           Row(
             children: [
               Image.asset(AppImages.check_mark_dark_new),
-              const AppSpacer.normal(),
+              const AppSpacer.normal(
+                orientation: Orientation.horizontal,
+              ),
               Image.asset(AppImages.x_mark_filled_new),
             ],
           ),
