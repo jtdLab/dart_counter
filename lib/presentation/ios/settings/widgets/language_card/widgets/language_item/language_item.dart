@@ -1,7 +1,7 @@
-import 'package:dart_counter/presentation/ios/core/widgets/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/settings/widgets/language_card/widgets/language_item/widgets/check_box.dart';
-import 'package:dart_counter/presentation/ios/settings/widgets/language_card/widgets/language_item/widgets/flag_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'widgets/widgets.dart';
 
 class LanguageItem extends StatelessWidget {
   final Locale language;

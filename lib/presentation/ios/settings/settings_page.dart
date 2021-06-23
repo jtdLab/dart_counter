@@ -1,18 +1,14 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:dart_counter/presentation/ios/settings/widgets/account_card/account_card.dart';
-import 'package:dart_counter/presentation/ios/settings/widgets/language_card/language_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -37,10 +33,7 @@ class SettingsPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Spacer(),
-            const AppRoundedImage.extraLarge(
-              imageName: AppImages.photo_placeholder_new,
-            ),
+            const ImageDisplayer(),
             const Spacer(),
             LanguageCard(),
             const Spacer(),

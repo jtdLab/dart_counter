@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:auto_route/auto_route.dart';
 
+
 class GameHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -3,22 +3,23 @@ import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:dart_counter/presentation/ios/auth/sign_in/modals/forgot_password/forgot_password_modal.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_link_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:dart_counter/presentation/ios/shared/logo_displayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class SignInForm extends StatelessWidget {
+import 'widgets/widgets.dart';
+
+class SignInWidget extends StatelessWidget {
   final PageController pageController;
 
-  const SignInForm({Key? key, required this.pageController}) : super(key: key);
+  const SignInWidget({
+    Key? key,
+    required this.pageController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class SignInForm extends StatelessWidget {
             );
           },
           (_) {
-            context.read<AuthBloc>().add(const AuthEvent.authCheckRequested()); // kinda double code do we need authbloc rly
+            context.read<AuthBloc>().add(const AuthEvent
+                .authCheckRequested()); // kinda double code do we need authbloc rly
             context.router.replace(const HomePageRoute());
           },
         );

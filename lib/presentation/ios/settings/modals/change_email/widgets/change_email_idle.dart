@@ -1,6 +1,6 @@
 import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_text_field.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';

@@ -1,4 +1,5 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/errors.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +24,10 @@ class PostGamePage extends StatelessWidget {
               child: const PostGameWidget(),
             );
           },
-          orElse: () => Container(), // TODO rly needed
+          orElse: () => throw UnexpectedStateError(),
         );
       },
     );
   }
 }
+

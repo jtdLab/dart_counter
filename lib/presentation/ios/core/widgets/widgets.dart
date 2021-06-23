@@ -18,7 +18,7 @@ export 'app_page.dart';
 export 'app_row.dart';
 export 'app_search_field.dart';
 export 'app_spacer.dart';
-export 'app_text_field.dart';
+export 'app_text_field/app_text_field.dart';
 export 'app_widget.dart';
 export 'app_rounded_image.dart';
 

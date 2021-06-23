@@ -1,11 +1,10 @@
-
 import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 import 'package:dart_counter/injection.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widgets/sign_in_form.dart';
+import 'widgets/widgets.dart';
 
 class SignInPage extends StatelessWidget {
   final PageController pageController;
@@ -18,7 +17,7 @@ class SignInPage extends StatelessWidget {
       create: (context) => getIt<SignInBloc>(),
       child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: SignInForm(
+        child: SignInWidget(
           pageController: pageController,
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dart_counter/presentation/core/assets.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 
 class ErrorDisplayer extends StatelessWidget {
   final String message;
