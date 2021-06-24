@@ -1,13 +1,7 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up/sign_up_bloc.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:auto_route/auto_route.dart';
 
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class SignUpWidget extends StatelessWidget {

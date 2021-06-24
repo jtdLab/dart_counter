@@ -1,8 +1,5 @@
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 
 class GameHistoryButton extends StatelessWidget {
   const GameHistoryButton({Key? key}) : super(key: key);

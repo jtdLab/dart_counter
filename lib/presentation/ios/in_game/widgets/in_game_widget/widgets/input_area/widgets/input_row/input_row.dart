@@ -1,5 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class InputRow extends StatelessWidget {

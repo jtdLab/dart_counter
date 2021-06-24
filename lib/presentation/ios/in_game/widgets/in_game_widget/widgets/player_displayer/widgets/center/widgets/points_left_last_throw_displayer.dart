@@ -1,7 +1,6 @@
 import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class PointsLeftLastThrowDisplayer extends StatelessWidget {
   const PointsLeftLastThrowDisplayer({Key? key}) : super(key: key);

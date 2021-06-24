@@ -1,7 +1,5 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'widgets/widgets.dart';
 
@@ -23,7 +21,7 @@ class CreateGameWidget extends StatelessWidget {
             PlayButton(),
           ],
         ),
-        orElse: () => Container(), // TODO shouldnt happen
+        orElse: () => throw UnexpectedStateError(),
       ),
     );
   }

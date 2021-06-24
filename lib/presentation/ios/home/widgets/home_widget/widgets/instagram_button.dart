@@ -1,6 +1,6 @@
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class InstagramButton extends StatelessWidget {
   const InstagramButton({Key? key}) : super(key: key);

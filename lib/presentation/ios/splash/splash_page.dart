@@ -4,11 +4,9 @@ import 'package:dart_counter/application/core/friend_request/friend_request_bloc
 import 'package:dart_counter/application/core/invitation/invitation_bloc.dart'
     as i;
 import 'package:dart_counter/application/core/user/user_bloc.dart' as u;
-import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:dart_counter/presentation/ios/splash/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'widgets/widgets.dart';
 
 class SplashPage extends StatefulWidget {
   @override

@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
-// TODO implement
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'widgets/widgets.dart';
 
 class LegalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const AppPage(
+      child: LegalWidget(),
+    );
   }
 }

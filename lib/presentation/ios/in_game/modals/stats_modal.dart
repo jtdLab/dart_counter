@@ -1,5 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class StatsModal extends StatelessWidget {
   const StatsModal({Key? key}) : super(key: key);

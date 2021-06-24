@@ -1,14 +1,5 @@
-import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_page.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_search_field.dart';
-import 'package:dart_counter/presentation/ios/friends/widgets/friends_card/friends_card.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:auto_route/auto_route.dart';
-
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'widgets/widgets.dart';
 
 class FriendsPage extends StatelessWidget {
   @override
@@ -16,30 +7,10 @@ class FriendsPage extends StatelessWidget {
     return AppPage(
       onTap: () => FocusScope.of(context).unfocus(),
       navigationBar: AppNavigationBar(
-        leading: AppNavigationBarButton(
-          onPressed: () => context.router.pop(),
-          child: Image.asset(
-            AppImages.chevron_back_new,
-          ),
-        ),
+        leading: const BackButton(),
         middle: Text(LocaleKeys.friends.tr().toUpperCase()),
-        trailing: AppNavigationBarButton(
-          onPressed: () {},
-          child: Image.asset(
-            AppImages.clock_new,
-          ),
-        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          AppSearchField(
-            placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
-            onChanged: (x) {},
-          ),
-          FriendsCard(),
-        ],
-      ),
+      child: const FriendsWidget(),
     );
   }
 }

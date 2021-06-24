@@ -1,10 +1,7 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/app_row.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
 class StartingPointsPicker extends StatelessWidget {
   const StartingPointsPicker({Key? key}) : super(key: key);
@@ -61,7 +58,7 @@ class StartingPointsPicker extends StatelessWidget {
               ],
             );
           },
-          orElse: () => Container(),
+          orElse: () => throw UnexpectedStateError(),
         );
       },
     );

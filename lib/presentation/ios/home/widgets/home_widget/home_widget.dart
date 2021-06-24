@@ -1,6 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/widgets/app_spacer.dart';
-import 'package:flutter/cupertino.dart';
-
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -11,7 +9,7 @@ class HomeWidget extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        const ImageDisplayer(),
+        const ProfileImageDisplayer(),
         const Spacer(),
         const NameDisplayer(),
         const Spacer(),

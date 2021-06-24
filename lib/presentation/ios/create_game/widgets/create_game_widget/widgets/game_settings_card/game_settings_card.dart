@@ -1,16 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-
-import 'package:flutter/cupertino.dart';
-import 'package:easy_localization/easy_localization.dart';
-
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'widgets/widgets.dart';
 
 class GameSettingsCard extends StatelessWidget {
   const GameSettingsCard({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return AppCard(

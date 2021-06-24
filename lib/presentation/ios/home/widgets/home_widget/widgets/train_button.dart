@@ -1,6 +1,5 @@
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_action_button.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
 class TrainButton extends StatelessWidget {
   @override

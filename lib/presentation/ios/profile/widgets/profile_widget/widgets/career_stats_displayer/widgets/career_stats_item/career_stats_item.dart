@@ -1,6 +1,6 @@
 import 'package:dart_counter/domain/user/career_stats.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'widgets/widgets.dart';
 

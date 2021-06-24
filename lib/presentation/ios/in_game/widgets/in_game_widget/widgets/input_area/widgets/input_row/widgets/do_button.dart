@@ -1,8 +1,5 @@
 import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class DoButton extends StatelessWidget {
   const DoButton({

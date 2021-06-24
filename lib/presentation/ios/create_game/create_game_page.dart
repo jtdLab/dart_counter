@@ -1,13 +1,8 @@
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
 
-import 'package:dart_counter/presentation/ios/router.gr.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class CreateGamePage extends StatelessWidget {

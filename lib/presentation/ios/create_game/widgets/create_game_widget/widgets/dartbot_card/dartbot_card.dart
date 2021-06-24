@@ -1,11 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_number_picker.dart';
 import 'widgets/widgets.dart';
 
 // TODO abstand wenn kein dartbot zur playercard
@@ -48,7 +45,7 @@ class DartBotCard extends StatelessWidget {
               ),
             );
           },
-          orElse: () => Container(), // TODO
+          orElse: () => throw UnexpectedStateError(),
         );
       },
     );

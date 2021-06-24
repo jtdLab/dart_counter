@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'presentation/core/app_widget.dart';
+import 'presentation/core/app_widget/app_widget.dart';
 
 Future<void> main() async {
   ResponsiveSizingConfig.instance.setCustomBreakpoints(

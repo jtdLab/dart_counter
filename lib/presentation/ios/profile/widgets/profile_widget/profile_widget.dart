@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -10,7 +9,7 @@ class ProfileWidget extends StatelessWidget {
     return Column(
       children: const [
         Spacer(),
-        ImageDisplayer(),
+        ProfileImageDisplayer(),
         Spacer(),
         CareerStatsDisplayer(),
         Spacer(),

@@ -1,9 +1,6 @@
 import 'package:dart_counter/application/core/user/user_bloc.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/errors.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class NameDisplayer extends StatelessWidget {
   const NameDisplayer({

@@ -1,8 +1,6 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/buttons/app_icon_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 
 class CheckBox extends StatelessWidget {
   const CheckBox({Key? key}) : super(key: key);
@@ -36,7 +34,7 @@ class CheckBox extends StatelessWidget {
               );
             }
           },
-          orElse: () => Container(),
+          orElse: () => throw UnexpectedStateError(),
         );
       },
     );
