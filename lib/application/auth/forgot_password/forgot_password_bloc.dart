@@ -45,6 +45,7 @@ class ForgotPasswordBloc
     yield (state as InitialState).copyWith(isSubmitting: true);
     final failureOrUnit =
         await _authFacade.resetPassword(emailAddress: emailAddress);
+    // TODO error when first invalid email and then 2nd try valid email the bloc crashes
     yield failureOrUnit.fold(
       (failure) => const ForgotPasswordState.failure(),
       (_) => const ForgotPasswordState.success(),
