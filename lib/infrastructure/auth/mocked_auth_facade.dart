@@ -19,11 +19,20 @@ class MockedAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> resetPassword() {
+  Future<Either<AuthFailure, Unit>> resetPassword(
+      {required EmailAddress emailAddress}) {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
-      return Future.value(right(unit));
+      final emailAddressIsValid = emailAddress.isValid();
+
+      if (emailAddressIsValid) {
+        return Future.value(right(unit));
+      } else {
+        return Future.value(
+          left(const AuthFailure.invalidEmailAndPasswordCombination()),
+        );
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:dart_counter/application/auth/forgot_password/forgot_password_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
@@ -40,11 +41,15 @@ class Initial extends StatelessWidget {
           placeholder: LocaleKeys.email.tr(),
           textInputAction: TextInputAction.next,
           onEditingComplete: () => node.unfocus(),
-          onChanged: (emailString) {},
+          onChanged: (emailString) => context
+              .read<ForgotPasswordBloc>()
+              .add(ForgotPasswordEvent.emailChanged(emailString: emailString)),
         ),
         AppPrimaryButton(
           text: LocaleKeys.confirm.tr(),
-          onPressed: () {},
+          onPressed: () => context
+              .read<ForgotPasswordBloc>()
+              .add(const ForgotPasswordEvent.confirmPressed()),
         ),
         const Spacer(
           flex: 7,

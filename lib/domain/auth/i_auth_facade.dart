@@ -6,7 +6,9 @@ abstract class IAuthFacade {
   UniqueId? getSignedInUid();
 
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
-      {required EmailAddress emailAddress, required Username username, required Password password});
+      {required EmailAddress emailAddress,
+      required Username username,
+      required Password password});
 
   Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password});
@@ -19,9 +21,13 @@ abstract class IAuthFacade {
 
   Future<void> signOut();
 
-  Future<Either<AuthFailure, Unit>> updateEmailAddress({required EmailAddress oldEmailAddress, required EmailAddress newEmailAddress});
+  Future<Either<AuthFailure, Unit>> updateEmailAddress(
+      {required EmailAddress oldEmailAddress,
+      required EmailAddress newEmailAddress});
 
-  Future<Either<AuthFailure, Unit>> updatePassword({required Password oldPassword, required Password newPassword});
+  Future<Either<AuthFailure, Unit>> updatePassword(
+      {required Password oldPassword, required Password newPassword});
 
-  Future<Either<AuthFailure, Unit>> resetPassword();
+  Future<Either<AuthFailure, Unit>> resetPassword(
+      {required EmailAddress emailAddress});
 }

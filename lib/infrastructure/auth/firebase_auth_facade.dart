@@ -234,8 +234,19 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> resetPassword() {
-    throw UnimplementedError(); // TODO: implement
+  Future<Either<AuthFailure, Unit>> resetPassword(
+      {required EmailAddress emailAddress}) async {
+    final emailAddressIsValid = emailAddress.isValid();
+
+    if (emailAddressIsValid) {
+      await _firebaseAuth.sendPasswordResetEmail(
+          email: emailAddress.getOrCrash());
+      return Future.value(right(unit));
+    } else {
+      return Future.value(
+        left(const AuthFailure.invalidEmailAndPasswordCombination()),
+      );
+    }
   }
 
   /// Generates a cryptographically secure random nonce, to be included in a

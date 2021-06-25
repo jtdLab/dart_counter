@@ -40,7 +40,7 @@ class Success extends StatelessWidget {
         ),
         AppPrimaryButton(
           text: LocaleKeys.signIn.tr(),
-          onPressed: () {},
+          onPressed: () => context.router.pop(),
         ),
         const Spacer(
           flex: 7,

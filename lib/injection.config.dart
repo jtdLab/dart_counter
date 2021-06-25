@@ -15,9 +15,10 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:social_client/social_client.dart' as _i31;
 
 import 'application/auth/auth_bloc.dart' as _i33;
+import 'application/auth/forgot_password/forgot_password_bloc.dart' as _i35;
 import 'application/auth/sign_in/sign_in_bloc.dart' as _i29;
 import 'application/auth/sign_up/sign_up_bloc.dart' as _i30;
-import 'application/core/friend_request/friend_request_bloc.dart' as _i35;
+import 'application/core/friend_request/friend_request_bloc.dart' as _i36;
 import 'application/core/invitation/invitation_bloc.dart' as _i24;
 import 'application/core/loading/loading_bloc.dart' as _i25;
 import 'application/core/play/play_bloc.dart' as _i26;
@@ -34,9 +35,9 @@ import 'domain/play/i_play_facade.dart' as _i17;
 import 'domain/user/i_user_facade.dart' as _i20;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
 import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i38;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i37;
-import 'infrastructure/friend/friend_facade.dart' as _i36;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i39;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i38;
+import 'infrastructure/friend/friend_facade.dart' as _i37;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i13;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i15;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
@@ -110,15 +111,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i33.AuthBloc>(() => _i33.AuthBloc(get<_i9.IAuthFacade>()));
   gh.factory<_i34.EditProfileBloc>(
       () => _i34.EditProfileBloc(get<_i20.IUserFacade>()));
-  gh.factory<_i35.FriendRequestBloc>(
-      () => _i35.FriendRequestBloc(get<_i12.IFriendFacade>()));
+  gh.factory<_i35.ForgotPasswordBloc>(
+      () => _i35.ForgotPasswordBloc(get<_i9.IAuthFacade>()));
+  gh.factory<_i36.FriendRequestBloc>(
+      () => _i36.FriendRequestBloc(get<_i12.IFriendFacade>()));
   gh.lazySingleton<_i12.IFriendFacade>(
-      () => _i36.FriendFacade(
+      () => _i37.FriendFacade(
           get<_i5.FirebaseFirestore>(), get<_i31.SocialClient>()),
       registerFor: {_prod});
   return get;
 }
 
-class _$JtdInjectableModule extends _i37.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i38.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i38.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i39.FireBaseInjectableModule {}

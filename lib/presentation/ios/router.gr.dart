@@ -5,11 +5,11 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/cupertino.dart' as _i15;
 import 'package:flutter/material.dart' as _i2;
 
 import '../../domain/play/game.dart' as _i16;
 import 'auth/auth_page.dart' as _i4;
+import 'core/core.dart' as _i15;
 import 'create_game/create_game_page.dart' as _i12;
 import 'friends/friends_page.dart' as _i10;
 import 'game_history/game_history_page.dart' as _i7;
