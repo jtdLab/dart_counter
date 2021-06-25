@@ -11,7 +11,7 @@ class GameHistoryPage extends StatelessWidget {
           LocaleKeys.matchHistory.tr().toUpperCase(),
         ),
       ),
-      child: const GameHistoryWidget(),
+      child: GameHistoryWidget(),
     );
   }
 }

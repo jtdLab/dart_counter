@@ -18,7 +18,7 @@ class GameHistoryDetailsPage extends StatelessWidget {
           game.description().toUpperCase(),
         ),
       ),
-      child: const GameHistoryDetailsWidget(),
+      child: GameHistoryDetailsWidget(),
     );
   }
 }

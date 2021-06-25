@@ -28,7 +28,7 @@ class CreateGamePage extends StatelessWidget {
               LocaleKeys.createGame.tr().toUpperCase(),
             ),
           ),
-          child: const CreateGameWidget(),
+          child: CreateGameWidget(),
         );
       },
     );

@@ -10,7 +10,7 @@ class FriendsPage extends StatelessWidget {
         leading: const BackButton(),
         middle: Text(LocaleKeys.friends.tr().toUpperCase()),
       ),
-      child: const FriendsWidget(),
+      child: FriendsWidget(),
     );
   }
 }

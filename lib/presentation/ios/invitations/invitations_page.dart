@@ -9,7 +9,7 @@ class InvitationsPage extends StatelessWidget {
         leading: const BackButton(),
         middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
       ),
-      child: const InvitationsWidget(),
+      child: InvitationsWidget(),
     );
   }
 }

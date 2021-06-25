@@ -4,7 +4,7 @@ import 'widgets/widgets.dart';
 class LegalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
+    return AppPage(
       child: LegalWidget(),
     );
   }

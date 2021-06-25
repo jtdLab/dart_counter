@@ -18,7 +18,7 @@ class PostGamePage extends StatelessWidget {
                   game.description().toUpperCase(),
                 ),
               ),
-              child: const PostGameWidget(),
+              child: PostGameWidget(),
             );
           },
           orElse: () => throw UnexpectedStateError(),

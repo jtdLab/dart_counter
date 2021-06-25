@@ -5,8 +5,8 @@ import 'widgets/widgets.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
-      navigationBar: AppNavigationBar(
+    return AppPage(
+      navigationBar: const AppNavigationBar(
         leading: BackButton(),
         middle: NameDisplayer(),
         trailing: GameHistoryButton(),
@@ -15,4 +15,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
