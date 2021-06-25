@@ -35,12 +35,24 @@ class SignUpWidget extends StatelessWidget {
         final node = FocusScope.of(context);
         return Column(
           children: [
-            SizedBox(
-              height: size70(context),
+            // TODO
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 70,
+                normal: 70,
+                large: 70,
+                extraLarge: 70,
+              ),
             ),
-            LogoDisplayer(),
-            const Spacer(
-              flex: 24,
+            const LogoDisplayer(),
+            // TODO
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 120,
+                normal: 120,
+                large: 120,
+                extraLarge: 120,
+              ),
             ),
             AppTextField(
               placeholder: LocaleKeys.email.tr(),
@@ -100,18 +112,18 @@ class SignUpWidget extends StatelessWidget {
                   .read<SignUpBloc>()
                   .add(const SignUpEvent.signUpPressed()),
             ),
-            const AppSpacer.large(),
+            const AppSpacer.small(),
             AppLinkButton(
               text: LocaleKeys.signIn.tr(),
               onPressed: () {
-                pageController.animateToPage(0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn);
+                pageController.animateToPage(
+                  0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                );
               },
             ),
-            const Spacer(
-              flex: 44,
-            ),
+            const Spacer(),
           ],
         );
       },

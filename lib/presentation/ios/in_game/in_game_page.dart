@@ -34,7 +34,7 @@ class InGamePage extends StatelessWidget {
               child: const InGameWidget(),
             );
           },
-          orElse: () => Container(),
+          orElse: () => throw UnexpectedStateError(),
         );
       },
     );

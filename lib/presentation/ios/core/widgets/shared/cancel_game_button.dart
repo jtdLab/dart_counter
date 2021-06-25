@@ -15,7 +15,7 @@ class CancelGameButton extends StatelessWidget {
       onPressed: () =>
           context.read<PlayBloc>().add(const PlayEvent.gameCanceled()),
       child: Image.asset(
-        AppImages.x_mark,
+        AppImages.x_mark_black_new,
       ),
     );
   }

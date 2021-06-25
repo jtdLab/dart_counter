@@ -1,5 +1,6 @@
 import 'package:dart_counter/injection.dart';
 
+import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -14,10 +15,29 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SignInBloc>(),
-      child: AppPage(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: SignInWidget(
-          pageController: pageController,
+      child: BlocListener<SignInBloc, SignInState>(
+        listener: (context, state) {
+          state.authFailureOrSuccess?.fold(
+            (failure) => failure.maybeWhen(
+              serverError: () => showToast(LocaleKeys.errorServer.tr()),
+              invalidEmailAndPasswordCombination: () => showToast(
+                  LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
+              orElse: () {},
+            ),
+            (_) {
+              context.read<AuthBloc>().add(
+                    const AuthEvent.authCheckRequested(),
+                  );
+              context.router.replace(const HomePageRoute());
+              // TODO kinda double code do we need authbloc rly
+            },
+          );
+        },
+        child: AppPage(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SignInWidget(
+            pageController: pageController,
+          ),
         ),
       ),
     );

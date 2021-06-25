@@ -2,6 +2,8 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
+
+  static const x_mark_black_new = 'assets/images/png/x_mark_black_new.png';
   static const check_mark_light_unchecked_new = 'assets/images/png/check_mark_light_unchecked_new.png';
   static const check_mark_light_new = 'assets/images/png/check_mark_light_new.png';
   static const chevron_green_forward_new = 'assets/images/png/chevron_green_forward_new.png';

@@ -1,10 +1,10 @@
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 
+import 'package:dart_counter/presentation/ios/auth/sign_in/modals/modals.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/auth/sign_in/modals/forgot_password/forgot_password_modal.dart';
 import 'widgets/widgets.dart';
 
 class SignInWidget extends StatelessWidget {
@@ -17,34 +17,29 @@ class SignInWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInBloc, SignInState>(
-      listener: (context, state) {
-        state.authFailureOrSuccess?.fold(
-          (failure) {
-            failure.maybeWhen(
-              serverError: () => showToast(LocaleKeys.errorServer.tr()),
-              invalidEmailAndPasswordCombination: () => showToast(
-                  LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
-              orElse: () {},
-            );
-          },
-          (_) {
-            context.read<AuthBloc>().add(const AuthEvent
-                .authCheckRequested()); // kinda double code do we need authbloc rly
-            context.router.replace(const HomePageRoute());
-          },
-        );
-      },
+    return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         final node = FocusScope.of(context);
         return Column(
           children: [
-            SizedBox(
-              height: size70(context),
+            // TODO
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 70,
+                normal: 70,
+                large: 70,
+                extraLarge: 70,
+              ),
             ),
-            LogoDisplayer(),
-            const Spacer(
-              flex: 84,
+            const LogoDisplayer(),
+            // TODO
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 120,
+                normal: 120,
+                large: 120,
+                extraLarge: 120,
+              ),
             ),
             AppTextField(
               placeholder: LocaleKeys.email.tr(),
@@ -69,6 +64,7 @@ class SignInWidget extends StatelessWidget {
                     const SignInEvent.signInPressed(),
                   ),
             ),
+            const AppSpacer.small(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -76,8 +72,9 @@ class SignInWidget extends StatelessWidget {
                   text: LocaleKeys.forgotPassword.tr(),
                   onPressed: () {
                     showCupertinoModalBottomSheet(
+                      expand: true,
                       context: context,
-                      builder: (context) => ForgotPasswordModal(),
+                      builder: (context) => const ForgotPasswordModal(),
                     );
                   },
                 ),
@@ -94,7 +91,7 @@ class SignInWidget extends StatelessWidget {
               ],
             ),
             const Spacer(
-              flex: 60,
+              flex: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,9 +116,7 @@ class SignInWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(
-              flex: 30,
-            ),
+            const Spacer(),
           ],
         );
       },

@@ -1,10 +1,14 @@
-import 'package:flutter/cupertino.dart';
-
-import 'widgets/forgot_pasword_success.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'widgets/widgets.dart';
 
 class ForgotPasswordModal extends StatelessWidget {
+  const ForgotPasswordModal({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ForgotPasswordSuccess();
+    return AppPage(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: const Success(),
+    );
   }
 }
