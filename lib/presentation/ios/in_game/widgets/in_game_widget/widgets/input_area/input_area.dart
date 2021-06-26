@@ -1,4 +1,3 @@
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:dart_counter/injection.dart';
 
 import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
