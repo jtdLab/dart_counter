@@ -4,6 +4,8 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class PlayerItem extends StatelessWidget {
+  const PlayerItem({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Dismissible(

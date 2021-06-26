@@ -6,6 +6,8 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class DartBotItem extends StatelessWidget {
+  const DartBotItem({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
