@@ -52,6 +52,8 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
                   GameInvitation.dummy(),
                   GameInvitation.dummy(),
                   GameInvitation.dummy(),
+                  GameInvitation.dummy(),
+                  GameInvitation.dummy(),
                 ],
               ),
             ),
