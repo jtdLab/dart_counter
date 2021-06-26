@@ -17,6 +17,8 @@ class FriendsCardItem extends StatelessWidget {
             'Anis Abi'.toUpperCase(),
           ),
           AppIconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {},
             icon: Image.asset(
               AppImages.settings_new,
             ),

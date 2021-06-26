@@ -15,7 +15,7 @@ class SentInvitationsItem extends StatelessWidget {
           Text(
             'Anis Abi'.toUpperCase(),
           ),
-          Image.asset(AppImages.check_mark_dark_new),
+          Image.asset(AppImages.clock_yellow_new),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
+import 'package:dart_counter/presentation/ios/in_game/widgets/in_game_widget/widgets/player_displayer/widgets/center/widgets/widgets.dart';
 
 class ReceivedInvitationsItem extends StatelessWidget {
   final String name;
@@ -24,11 +25,19 @@ class ReceivedInvitationsItem extends StatelessWidget {
           ),
           Row(
             children: [
-              Image.asset(AppImages.check_mark_dark_new),
+              AppIconButton(
+                padding: EdgeInsets.zero,
+                icon: Image.asset(AppImages.check_mark_dark_new),
+                onPressed: () {},
+              ),
               const AppSpacer.normal(
                 orientation: Orientation.horizontal,
               ),
-              Image.asset(AppImages.x_mark_filled_new),
+              AppIconButton(
+                padding: EdgeInsets.zero,
+                icon: Image.asset(AppImages.x_mark_filled_new),
+                onPressed: () {},
+              ),
             ],
           ),
         ],

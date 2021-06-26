@@ -6,7 +6,7 @@ class FriendsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: Text(
-        LocaleKeys.received.tr().toUpperCase(),
+        LocaleKeys.friends.tr().toUpperCase(),
         style: CupertinoTheme.of(context)
             .textTheme
             .textStyle
