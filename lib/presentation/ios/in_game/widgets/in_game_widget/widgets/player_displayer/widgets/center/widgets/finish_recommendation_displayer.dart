@@ -16,15 +16,10 @@ class FinishRecommendationDisplayer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               if (finishRecommendation != null) ...[
-                Text(
-                  finishRecommendation.get(0),
-                ),
-                Text(
-                  finishRecommendation.get(1),
-                ),
-                Text(
-                  finishRecommendation.get(2),
-                ),
+                for (int i = 0; i < finishRecommendation.size; i++)
+                  Text(
+                    finishRecommendation.get(i),
+                  ),
               ]
             ],
           ),

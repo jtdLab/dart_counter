@@ -1,10 +1,12 @@
-import 'package:flutter/cupertino.dart';
-
-import 'widgets/change_username_idle.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'widgets/widgets.dart';
 
 class ChangeUsernameModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeUsernameIdle();
+    return AppPage(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Initial(),
+    );
   }
 }

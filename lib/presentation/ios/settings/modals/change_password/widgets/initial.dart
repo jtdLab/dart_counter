@@ -1,13 +1,9 @@
-import 'package:dart_counter/application/auth/forgot_password/forgot_password_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
 class Initial extends StatelessWidget {
-  const Initial({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -33,27 +29,40 @@ class Initial extends StatelessWidget {
           ),
         ),
         Text(
-          LocaleKeys.forgotPassword.tr().toUpperCase(),
+          LocaleKeys.changePassword.tr().toUpperCase(),
         ),
-        const Spacer(
-          flex: 8,
-        ),
+        // TODO
+        const Spacer(),
         AppTextField(
-          placeholder: LocaleKeys.email.tr(),
+          placeholder: LocaleKeys.oldPassword.tr().toUpperCase(),
           textInputAction: TextInputAction.next,
+          onEditingComplete: () => node.nextFocus(),
+          obscureText: true,
+          onChanged: (oldPasswordString) {},
+        ),
+
+        AppTextField(
+          placeholder: LocaleKeys.newPassword.tr(),
+          textInputAction: TextInputAction.next,
+          onEditingComplete: () => node.nextFocus(),
+          obscureText: true,
+          onChanged: (newPasswordString) {},
+        ),
+
+        AppTextField(
+          placeholder: LocaleKeys.newPasswordAgain.tr(),
+          textInputAction: TextInputAction.done,
           onEditingComplete: () => node.unfocus(),
-          onChanged: (emailString) => context
-              .read<ForgotPasswordBloc>()
-              .add(ForgotPasswordEvent.emailChanged(emailString: emailString)),
+          obscureText: true,
+          onChanged: (newPasswordAgainString) {},
         ),
         AppPrimaryButton(
           text: LocaleKeys.confirm.tr(),
-          onPressed: () => context
-              .read<ForgotPasswordBloc>()
-              .add(const ForgotPasswordEvent.confirmPressed()),
+          onPressed: () {},
         ),
+        // TODO
         const Spacer(
-          flex: 7,
+          flex: 8,
         ),
       ],
     );

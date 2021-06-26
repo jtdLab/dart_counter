@@ -1,13 +1,9 @@
-import 'package:dart_counter/application/auth/forgot_password/forgot_password_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
 class Initial extends StatelessWidget {
-  const Initial({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -33,25 +29,23 @@ class Initial extends StatelessWidget {
           ),
         ),
         Text(
-          LocaleKeys.forgotPassword.tr().toUpperCase(),
+          LocaleKeys.changeUsername.tr().toUpperCase(),
         ),
+        // TODO
         const Spacer(
           flex: 8,
         ),
         AppTextField(
-          placeholder: LocaleKeys.email.tr(),
+          placeholder: LocaleKeys.newUsernane.tr().toUpperCase(),
           textInputAction: TextInputAction.next,
           onEditingComplete: () => node.unfocus(),
-          onChanged: (emailString) => context
-              .read<ForgotPasswordBloc>()
-              .add(ForgotPasswordEvent.emailChanged(emailString: emailString)),
+          onChanged: (newUsernameString) {}, // TODO
         ),
         AppPrimaryButton(
           text: LocaleKeys.confirm.tr(),
-          onPressed: () => context
-              .read<ForgotPasswordBloc>()
-              .add(const ForgotPasswordEvent.confirmPressed()),
+          onPressed: () {}, // TODO
         ),
+        // TODO
         const Spacer(
           flex: 7,
         ),

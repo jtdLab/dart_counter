@@ -1,14 +1,11 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dart_counter/application/core/profile/edit_profile/edit_profile_bloc.dart';
-import 'package:dart_counter/generated/locale_keys.g.dart';
 import 'package:dart_counter/injection.dart';
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:auto_route/auto_route.dart';
 
+import 'package:dart_counter/application/core/profile/edit_profile/edit_profile_bloc.dart';
+
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:flutter/material.dart';
+
+// TODO refactor this widget
 class EditProfilePictureModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
