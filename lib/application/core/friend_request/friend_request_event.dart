@@ -7,4 +7,5 @@ class FriendRequestEvent with _$FriendRequestEvent {
     required KtList<FriendRequest> friendRequests,
   }) = FriendRequestsReceived;
   const factory FriendRequestEvent.failureReceived() = FailureReceived;
+   const factory FriendRequestEvent.newInvitationsRead() = NewFriendRequestsRead;
 }

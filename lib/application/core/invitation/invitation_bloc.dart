@@ -32,6 +32,9 @@ class InvitationBloc extends Bloc<InvitationEvent, InvitationState> {
       gameInvitationsReceived: (event) =>
           _mapGameInvitationsReceivedToEvent(event),
       failureReceived: (_) => _mapFailureReceivedToEvent(),
+      accepted: (event) => _mapAcceptedToEvent(event),
+      declined: (event) => _mapDeclinedToEvent(event),
+      newInvitationsRead: (_) => _mapNewInvitationsReadToState(),
     );
   }
 
@@ -57,6 +60,30 @@ class InvitationBloc extends Bloc<InvitationEvent, InvitationState> {
 
   Stream<InvitationState> _mapFailureReceivedToEvent() async* {
     yield const InvitationState.loadFailure();
+  }
+
+  Stream<InvitationState> _mapAcceptedToEvent(Accepted event) async* {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  Stream<InvitationState> _mapDeclinedToEvent(Declined event) async* {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  Stream<InvitationState> _mapNewInvitationsReadToState() async* {
+    final mutableInvitations =
+        (state as LoadSuccess).gameInvitations.toMutableList();
+    final List<GameInvitation> invitations = [];
+
+    mutableInvitations.forEach((invitation) {
+      invitations.add(invitation.copyWith(read: true));
+    });
+
+    yield InvitationState.loadSuccess(
+      gameInvitations: KtList.from(invitations),
+    );
   }
 
   @override

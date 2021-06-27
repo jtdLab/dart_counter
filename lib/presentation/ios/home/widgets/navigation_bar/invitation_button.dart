@@ -10,31 +10,55 @@ class InvitationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Badge(
-      badgeContent: BlocBuilder<InvitationBloc, InvitationState>(
-        builder: (context, state) => state.maybeMap(
-          loadSuccess: (loadSuccess) => Text(
-            loadSuccess.gameInvitations.size.toString(),
-            style: const TextStyle(
-                color: AppColors.white, fontWeight: FontWeight.bold),
+    return BlocBuilder<InvitationBloc, InvitationState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          loadSuccess: (loadSuccess) {
+            final invitations = loadSuccess.gameInvitations;
+            final countNewInvitations = invitations
+                .asList()
+                .where((invitation) => !invitation.read)
+                .length;
+
+            if (countNewInvitations == 0) {
+              return AppNavigationBarButton(
+                onPressed: () =>
+                    context.router.push(const InvitationsPageRoute()),
+                child: Image.asset(
+                  AppImages.message_new,
+                  fit: BoxFit.fitHeight,
+                ),
+              );
+            } else {
+              return Badge(
+                badgeContent: Text(
+                  countNewInvitations.toString(),
+                  style: const TextStyle(
+                      color: AppColors.white, fontWeight: FontWeight.bold),
+                ),
+                position: BadgePosition.topEnd(
+                  top: -13,
+                ),
+                child: AppNavigationBarButton(
+                  onPressed: () =>
+                      context.router.push(const InvitationsPageRoute()),
+                  child: Image.asset(
+                    AppImages.message_new,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              );
+            }
+          },
+          orElse: () => AppNavigationBarButton(
+            onPressed: () => context.router.push(const InvitationsPageRoute()),
+            child: Image.asset(
+              AppImages.message_new,
+              fit: BoxFit.fitHeight,
+            ),
           ),
-          orElse: () => const Text(
-            '0',
-            style:
-                TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-      position: BadgePosition.topEnd(
-        top: -13,
-      ),
-      child: AppNavigationBarButton(
-        onPressed: () => context.router.push(const InvitationsPageRoute()),
-        child: Image.asset(
-          AppImages.message_new,
-          fit: BoxFit.fitHeight,
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -38,7 +38,7 @@ class Router extends _i1.RootStackRouter {
     AuthPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i4.AuthPage();
+          return const _i4.AuthPage();
         },
         opaque: true,
         barrierDismissible: false),

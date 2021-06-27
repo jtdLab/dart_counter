@@ -32,6 +32,7 @@ class FriendRequestBloc extends Bloc<FriendRequestEvent, FriendRequestState> {
       friendRequestsReceived: (event) =>
           _mapFriendRequestsReceivedToEvent(event),
       failureReceived: (_) => _mapFailureReceivedToEvent(),
+      newInvitationsRead: (_) => _mapNewInvitationsReadToEvent(),
     );
   }
 
@@ -55,6 +56,20 @@ class FriendRequestBloc extends Bloc<FriendRequestEvent, FriendRequestState> {
 
   Stream<FriendRequestState> _mapFailureReceivedToEvent() async* {
     yield const FriendRequestState.loadFailure();
+  }
+
+  Stream<FriendRequestState> _mapNewInvitationsReadToEvent() async* {
+    final mutableFriendRequests =
+        (state as LoadSuccess).friendRequests.toMutableList();
+    final List<FriendRequest> friendRequests = [];
+
+    mutableFriendRequests.forEach((friendRequest) {
+      friendRequests.add(friendRequest.copyWith(read: true));
+    });
+
+    yield FriendRequestState.loadSuccess(
+      friendRequests: KtList.from(friendRequests),
+    );
   }
 
   @override

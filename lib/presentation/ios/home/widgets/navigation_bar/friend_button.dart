@@ -10,30 +10,54 @@ class FriendButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Badge(
-      badgeContent: BlocBuilder<FriendRequestBloc, FriendRequestState>(
-        builder: (context, state) => state.maybeMap(
-          loadSuccess: (loadSuccess) => Text(
-            loadSuccess.friendRequests.size.toString(),
-            style: const TextStyle(
-                color: AppColors.white, fontWeight: FontWeight.bold),
+    return BlocBuilder<FriendRequestBloc, FriendRequestState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          loadSuccess: (loadSuccess) {
+            final friendRequests = loadSuccess.friendRequests;
+            final countNewFriendRequests = friendRequests
+                .asList()
+                .where((friendRequest) => !friendRequest.read)
+                .length;
+
+            if (countNewFriendRequests == 0) {
+              return AppNavigationBarButton(
+                onPressed: () => context.router.push(const FriendsPageRoute()),
+                child: Image.asset(
+                  AppImages.player_new,
+                  fit: BoxFit.fitHeight,
+                ),
+              );
+            } else {
+              return Badge(
+                badgeContent: Text(
+                  countNewFriendRequests.toString(),
+                  style: const TextStyle(
+                      color: AppColors.white, fontWeight: FontWeight.bold),
+                ),
+                position: BadgePosition.topEnd(
+                  top: -13,
+                ),
+                child: AppNavigationBarButton(
+                  onPressed: () =>
+                      context.router.push(const FriendsPageRoute()),
+                  child: Image.asset(
+                    AppImages.player_new,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              );
+            }
+          },
+          orElse: () => AppNavigationBarButton(
+            onPressed: () => context.router.push(const FriendsPageRoute()),
+            child: Image.asset(
+              AppImages.player_new,
+              fit: BoxFit.fitHeight,
+            ),
           ),
-          orElse: () => const Text(
-            '0',
-            style:
-                TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-      position: BadgePosition.topEnd(
-        top: -13,
-      ),
-      child: AppNavigationBarButton(
-        onPressed: () => context.router.push(const FriendsPageRoute()),
-        child: Image.asset(
-          AppImages.player_new,
-        ),
-      ),
+        );
+      },
     );
   }
 }

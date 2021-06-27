@@ -39,13 +39,13 @@ import 'infrastructure/core/firebase_injectable_module.dart' as _i39;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i38;
 import 'infrastructure/friend/friend_facade.dart' as _i37;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i13;
-import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i15;
+import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i16;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
-    as _i16;
-import 'infrastructure/play/mocked_play_faced.dart' as _i19;
-import 'infrastructure/play/play_facade.dart' as _i18;
-import 'infrastructure/user/mocked_user_facade.dart' as _i22;
-import 'infrastructure/user/user_facade.dart' as _i21;
+    as _i15;
+import 'infrastructure/play/mocked_play_faced.dart' as _i18;
+import 'infrastructure/play/play_facade.dart' as _i19;
+import 'infrastructure/user/mocked_user_facade.dart' as _i21;
+import 'infrastructure/user/user_facade.dart' as _i22;
 
 const String _prod = 'prod';
 const String _dev = 'dev';
@@ -77,24 +77,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i12.IFriendFacade>(() => _i13.MockedFriendFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i14.IGameInvitationFacade>(
-      () => _i15.GameInvitationFacade(get<_i5.FirebaseFirestore>()),
-      registerFor: {_prod});
-  gh.lazySingleton<_i14.IGameInvitationFacade>(
-      () => _i16.MockedGameInvitationFacade(),
+      () => _i15.MockedGameInvitationFacade(),
       registerFor: {_dev});
-  gh.lazySingleton<_i17.IPlayFacade>(() => _i18.PlayFacade(),
+  gh.lazySingleton<_i14.IGameInvitationFacade>(
+      () => _i16.GameInvitationFacade(get<_i5.FirebaseFirestore>()),
       registerFor: {_prod});
-  gh.lazySingleton<_i17.IPlayFacade>(() => _i19.MockedPlayFacade(),
+  gh.lazySingleton<_i17.IPlayFacade>(() => _i18.MockedPlayFacade(),
+      registerFor: {_dev});
+  gh.lazySingleton<_i17.IPlayFacade>(() => _i19.PlayFacade(),
+      registerFor: {_prod});
+  gh.lazySingleton<_i20.IUserFacade>(() => _i21.MockedUserFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i20.IUserFacade>(
-      () => _i21.UserFacade(
+      () => _i22.UserFacade(
           get<_i5.FirebaseFirestore>(),
           get<_i7.FirebaseStorage>(),
           get<_i9.IAuthFacade>(),
           get<_i6.FirebaseFunctions>()),
       registerFor: {_prod});
-  gh.lazySingleton<_i20.IUserFacade>(() => _i22.MockedUserFacade(),
-      registerFor: {_dev});
   gh.factory<_i23.InputAreaBloc>(
       () => _i23.InputAreaBloc(get<_i17.IPlayFacade>()));
   gh.factory<_i24.InvitationBloc>(

@@ -31,7 +31,7 @@ class GameInvitation with _$GameInvitation {
         ]),
       ),
       lobbyCode: faker.randomGenerator.integer(9999, min: 1000),
-      read: faker.randomGenerator.boolean(),
+      read: false,
     );
   }
 }

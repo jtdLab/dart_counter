@@ -30,6 +30,10 @@ class _$FriendRequestEventTearOff {
   FailureReceived failureReceived() {
     return const FailureReceived();
   }
+
+  NewFriendRequestsRead newInvitationsRead() {
+    return const NewFriendRequestsRead();
+  }
 }
 
 /// @nodoc
@@ -43,6 +47,7 @@ mixin _$FriendRequestEvent {
     required TResult Function(KtList<FriendRequest> friendRequests)
         friendRequestsReceived,
     required TResult Function() failureReceived,
+    required TResult Function() newInvitationsRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +56,7 @@ mixin _$FriendRequestEvent {
     TResult Function(KtList<FriendRequest> friendRequests)?
         friendRequestsReceived,
     TResult Function()? failureReceived,
+    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +66,7 @@ mixin _$FriendRequestEvent {
     required TResult Function(FriendRequestsReceived value)
         friendRequestsReceived,
     required TResult Function(FailureReceived value) failureReceived,
+    required TResult Function(NewFriendRequestsRead value) newInvitationsRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +74,7 @@ mixin _$FriendRequestEvent {
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
     TResult Function(FailureReceived value)? failureReceived,
+    TResult Function(NewFriendRequestsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +141,7 @@ class _$WatchStarted implements WatchStarted {
     required TResult Function(KtList<FriendRequest> friendRequests)
         friendRequestsReceived,
     required TResult Function() failureReceived,
+    required TResult Function() newInvitationsRead,
   }) {
     return watchStarted();
   }
@@ -144,6 +153,7 @@ class _$WatchStarted implements WatchStarted {
     TResult Function(KtList<FriendRequest> friendRequests)?
         friendRequestsReceived,
     TResult Function()? failureReceived,
+    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (watchStarted != null) {
@@ -159,6 +169,7 @@ class _$WatchStarted implements WatchStarted {
     required TResult Function(FriendRequestsReceived value)
         friendRequestsReceived,
     required TResult Function(FailureReceived value) failureReceived,
+    required TResult Function(NewFriendRequestsRead value) newInvitationsRead,
   }) {
     return watchStarted(this);
   }
@@ -169,6 +180,7 @@ class _$WatchStarted implements WatchStarted {
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
     TResult Function(FailureReceived value)? failureReceived,
+    TResult Function(NewFriendRequestsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (watchStarted != null) {
@@ -254,6 +266,7 @@ class _$FriendRequestsReceived implements FriendRequestsReceived {
     required TResult Function(KtList<FriendRequest> friendRequests)
         friendRequestsReceived,
     required TResult Function() failureReceived,
+    required TResult Function() newInvitationsRead,
   }) {
     return friendRequestsReceived(friendRequests);
   }
@@ -265,6 +278,7 @@ class _$FriendRequestsReceived implements FriendRequestsReceived {
     TResult Function(KtList<FriendRequest> friendRequests)?
         friendRequestsReceived,
     TResult Function()? failureReceived,
+    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (friendRequestsReceived != null) {
@@ -280,6 +294,7 @@ class _$FriendRequestsReceived implements FriendRequestsReceived {
     required TResult Function(FriendRequestsReceived value)
         friendRequestsReceived,
     required TResult Function(FailureReceived value) failureReceived,
+    required TResult Function(NewFriendRequestsRead value) newInvitationsRead,
   }) {
     return friendRequestsReceived(this);
   }
@@ -290,6 +305,7 @@ class _$FriendRequestsReceived implements FriendRequestsReceived {
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
     TResult Function(FailureReceived value)? failureReceived,
+    TResult Function(NewFriendRequestsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (friendRequestsReceived != null) {
@@ -355,6 +371,7 @@ class _$FailureReceived implements FailureReceived {
     required TResult Function(KtList<FriendRequest> friendRequests)
         friendRequestsReceived,
     required TResult Function() failureReceived,
+    required TResult Function() newInvitationsRead,
   }) {
     return failureReceived();
   }
@@ -366,6 +383,7 @@ class _$FailureReceived implements FailureReceived {
     TResult Function(KtList<FriendRequest> friendRequests)?
         friendRequestsReceived,
     TResult Function()? failureReceived,
+    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (failureReceived != null) {
@@ -381,6 +399,7 @@ class _$FailureReceived implements FailureReceived {
     required TResult Function(FriendRequestsReceived value)
         friendRequestsReceived,
     required TResult Function(FailureReceived value) failureReceived,
+    required TResult Function(NewFriendRequestsRead value) newInvitationsRead,
   }) {
     return failureReceived(this);
   }
@@ -391,6 +410,7 @@ class _$FailureReceived implements FailureReceived {
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
     TResult Function(FailureReceived value)? failureReceived,
+    TResult Function(NewFriendRequestsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (failureReceived != null) {
@@ -402,6 +422,103 @@ class _$FailureReceived implements FailureReceived {
 
 abstract class FailureReceived implements FriendRequestEvent {
   const factory FailureReceived() = _$FailureReceived;
+}
+
+/// @nodoc
+abstract class $NewFriendRequestsReadCopyWith<$Res> {
+  factory $NewFriendRequestsReadCopyWith(NewFriendRequestsRead value,
+          $Res Function(NewFriendRequestsRead) then) =
+      _$NewFriendRequestsReadCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NewFriendRequestsReadCopyWithImpl<$Res>
+    extends _$FriendRequestEventCopyWithImpl<$Res>
+    implements $NewFriendRequestsReadCopyWith<$Res> {
+  _$NewFriendRequestsReadCopyWithImpl(
+      NewFriendRequestsRead _value, $Res Function(NewFriendRequestsRead) _then)
+      : super(_value, (v) => _then(v as NewFriendRequestsRead));
+
+  @override
+  NewFriendRequestsRead get _value => super._value as NewFriendRequestsRead;
+}
+
+/// @nodoc
+
+class _$NewFriendRequestsRead implements NewFriendRequestsRead {
+  const _$NewFriendRequestsRead();
+
+  @override
+  String toString() {
+    return 'FriendRequestEvent.newInvitationsRead()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is NewFriendRequestsRead);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(KtList<FriendRequest> friendRequests)
+        friendRequestsReceived,
+    required TResult Function() failureReceived,
+    required TResult Function() newInvitationsRead,
+  }) {
+    return newInvitationsRead();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(KtList<FriendRequest> friendRequests)?
+        friendRequestsReceived,
+    TResult Function()? failureReceived,
+    TResult Function()? newInvitationsRead,
+    required TResult orElse(),
+  }) {
+    if (newInvitationsRead != null) {
+      return newInvitationsRead();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+    required TResult Function(NewFriendRequestsRead value) newInvitationsRead,
+  }) {
+    return newInvitationsRead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    TResult Function(NewFriendRequestsRead value)? newInvitationsRead,
+    required TResult orElse(),
+  }) {
+    if (newInvitationsRead != null) {
+      return newInvitationsRead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NewFriendRequestsRead implements FriendRequestEvent {
+  const factory NewFriendRequestsRead() = _$NewFriendRequestsRead;
 }
 
 /// @nodoc
