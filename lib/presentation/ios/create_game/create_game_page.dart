@@ -22,6 +22,7 @@ class CreateGamePage extends StatelessWidget {
       builder: (context, state) {
         return AppPage(
           maxHeight: 918, //806, // TODO
+          onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
             leading: const CancelGameButton(),
             middle: Text(

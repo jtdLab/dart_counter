@@ -11,7 +11,7 @@ class DartBotItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: const Key('DartBotItem'), // TODO
+      key: const Key('DartBotItem'), 
       direction: DismissDirection.endToStart,
       onDismissed: (_) =>
           context.read<PlayBloc>().add(const PlayEvent.dartBotRemoved()),

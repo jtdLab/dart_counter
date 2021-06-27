@@ -40,7 +40,8 @@ class _$PlayerTearOff {
           hundredSixtyPlus: 0,
           hundredEighty: 0),
       KtList<Set> sets = const KtList.empty(),
-      required bool isDartBot}) {
+      required bool isDartBot,
+      UniqueId? userId}) {
     return _Player(
       id: id,
       name: name,
@@ -55,6 +56,7 @@ class _$PlayerTearOff {
       stats: stats,
       sets: sets,
       isDartBot: isDartBot,
+      userId: userId,
     );
   }
 }
@@ -78,6 +80,7 @@ mixin _$Player {
   Stats get stats => throw _privateConstructorUsedError;
   KtList<Set> get sets => throw _privateConstructorUsedError;
   bool get isDartBot => throw _privateConstructorUsedError;
+  UniqueId? get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerCopyWith<Player> get copyWith => throw _privateConstructorUsedError;
@@ -100,7 +103,8 @@ abstract class $PlayerCopyWith<$Res> {
       int dartsThrownCurrentLeg,
       Stats stats,
       KtList<Set> sets,
-      bool isDartBot});
+      bool isDartBot,
+      UniqueId? userId});
 
   $StatsCopyWith<$Res> get stats;
 }
@@ -128,6 +132,7 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
     Object? stats = freezed,
     Object? sets = freezed,
     Object? isDartBot = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -182,6 +187,10 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
           ? _value.isDartBot
           : isDartBot // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as UniqueId?,
     ));
   }
 
@@ -211,7 +220,8 @@ abstract class _$PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       int dartsThrownCurrentLeg,
       Stats stats,
       KtList<Set> sets,
-      bool isDartBot});
+      bool isDartBot,
+      UniqueId? userId});
 
   @override
   $StatsCopyWith<$Res> get stats;
@@ -241,6 +251,7 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
     Object? stats = freezed,
     Object? sets = freezed,
     Object? isDartBot = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_Player(
       id: id == freezed
@@ -295,6 +306,10 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
           ? _value.isDartBot
           : isDartBot // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as UniqueId?,
     ));
   }
 }
@@ -326,7 +341,8 @@ class _$_Player implements _Player {
           hundredSixtyPlus: 0,
           hundredEighty: 0),
       this.sets = const KtList.empty(),
-      required this.isDartBot});
+      required this.isDartBot,
+      this.userId});
 
   @override
   final UniqueId id;
@@ -373,10 +389,12 @@ class _$_Player implements _Player {
   final KtList<Set> sets;
   @override
   final bool isDartBot;
+  @override
+  final UniqueId? userId;
 
   @override
   String toString() {
-    return 'Player(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, sets: $sets, isDartBot: $isDartBot)';
+    return 'Player(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, sets: $sets, isDartBot: $isDartBot, userId: $userId)';
   }
 
   @override
@@ -416,7 +434,9 @@ class _$_Player implements _Player {
                 const DeepCollectionEquality().equals(other.sets, sets)) &&
             (identical(other.isDartBot, isDartBot) ||
                 const DeepCollectionEquality()
-                    .equals(other.isDartBot, isDartBot)));
+                    .equals(other.isDartBot, isDartBot)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
@@ -434,7 +454,8 @@ class _$_Player implements _Player {
       const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
       const DeepCollectionEquality().hash(stats) ^
       const DeepCollectionEquality().hash(sets) ^
-      const DeepCollectionEquality().hash(isDartBot);
+      const DeepCollectionEquality().hash(isDartBot) ^
+      const DeepCollectionEquality().hash(userId);
 
   @JsonKey(ignore: true)
   @override
@@ -456,7 +477,8 @@ abstract class _Player implements Player {
       int dartsThrownCurrentLeg,
       Stats stats,
       KtList<Set> sets,
-      required bool isDartBot}) = _$_Player;
+      required bool isDartBot,
+      UniqueId? userId}) = _$_Player;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -485,6 +507,8 @@ abstract class _Player implements Player {
   KtList<Set> get sets => throw _privateConstructorUsedError;
   @override
   bool get isDartBot => throw _privateConstructorUsedError;
+  @override
+  UniqueId? get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerCopyWith<_Player> get copyWith => throw _privateConstructorUsedError;

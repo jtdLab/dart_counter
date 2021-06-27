@@ -1,13 +1,15 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 
-class PlayerItem extends StatelessWidget {
+class EditablePlayerItem extends StatelessWidget {
   final int index;
 
-  const PlayerItem({Key? key, required this.index}) : super(key: key);
+  const EditablePlayerItem({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +37,19 @@ class PlayerItem extends StatelessWidget {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    const AppSpacer.normal(orientation: Orientation.horizontal),
                     const AppRoundedImage.normal(
                       imageName: AppImages.photo_placeholder_new,
                     ),
-                    Text(
-                      player.name.toUpperCase(),
+                    const AppSpacer.normal(orientation: Orientation.horizontal),
+                    Expanded(
+                      child: AppTextField(
+                        withErrorDisplayer: false,
+                        placeholder: LocaleKeys.name.tr().toUpperCase(),
+                        onChanged: (_) => {},
+                      ),
                     ),
+                    const AppSpacer.normal(orientation: Orientation.horizontal),
                     AppIconButton(
                       onPressed: () {
                         // TODO implement
@@ -49,6 +58,7 @@ class PlayerItem extends StatelessWidget {
                         AppImages.settings_new,
                       ),
                     ),
+                    const AppSpacer.normal(orientation: Orientation.horizontal),
                   ],
                 ),
               ),

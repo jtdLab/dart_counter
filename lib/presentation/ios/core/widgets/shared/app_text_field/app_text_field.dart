@@ -4,6 +4,7 @@ import 'widgets/widgets.dart';
 
 // TODO assert error message is provided if validation is applied
 class AppTextField extends StatefulWidget {
+  final bool withErrorDisplayer; // TODO
   final Function(String) onChanged;
   final bool autoFocus;
   final bool autoCorrect;
@@ -16,6 +17,7 @@ class AppTextField extends StatefulWidget {
   final String? errorMessage;
 
   const AppTextField({
+    this.withErrorDisplayer = true,
     required this.onChanged,
     this.autoFocus = false,
     this.autoCorrect = false,
@@ -35,67 +37,95 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: widget.size40(context),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              CupertinoTextField(
-                textAlign: TextAlign.center,
-                textAlignVertical: TextAlignVertical.center,
-                autofocus: widget.autoFocus,
-                autocorrect: widget.autoCorrect,
-                placeholder: widget.placeholder.toUpperCase(),
-                obscureText: widget.obscureText,
-                keyboardType: widget.keyboardType,
-                textInputAction: widget.textInputAction,
-                onEditingComplete: widget.onEditingComplete,
-                onChanged: widget.onChanged,
-                placeholderStyle: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(color: AppColors.gray),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  border: widget.valid ?? true
-                      ? Border.all(
-                          width: 4,
-                        )
-                      : Border.all(
-                          color: AppColors.red,
-                          width: 4,
-                        ),
-                ),
-              ),
-              Visibility(
-                visible: !(widget.valid ?? true),
-                child: const Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 8.0, 0),
-                    child: Icon(
-                      CupertinoIcons.xmark,
-                      color: AppColors.red,
-                      size: 25,
-                    ),
+    if (widget.withErrorDisplayer) {
+      return Column(
+        children: [
+          SizedBox(
+            height: widget.size40(context),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                CupertinoTextField(
+                  textAlign: TextAlign.center,
+                  textAlignVertical: TextAlignVertical.center,
+                  autofocus: widget.autoFocus,
+                  autocorrect: widget.autoCorrect,
+                  placeholder: widget.placeholder.toUpperCase(),
+                  obscureText: widget.obscureText,
+                  keyboardType: widget.keyboardType,
+                  textInputAction: widget.textInputAction,
+                  onEditingComplete: widget.onEditingComplete,
+                  onChanged: widget.onChanged,
+                  placeholderStyle: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(color: AppColors.gray),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    border: widget.valid ?? true
+                        ? Border.all(
+                            width: 4,
+                          )
+                        : Border.all(
+                            color: AppColors.red,
+                            width: 4,
+                          ),
                   ),
                 ),
-              )
-            ],
+                Visibility(
+                  visible: !(widget.valid ?? true),
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 8.0, 0),
+                      child: Icon(
+                        CupertinoIcons.xmark,
+                        color: AppColors.red,
+                        size: 25,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          if (widget.valid ?? false) ...[
+            SizedBox(
+              height: widget.size12(context),
+            ),
+          ] else ...[
+            ErrorDisplayer(
+              message: widget.errorMessage ?? '',
+            ),
+          ]
+        ],
+      );
+    } else {
+      return SizedBox(
+        height: widget.size40(context),
+        child: CupertinoTextField(
+          textAlign: TextAlign.center,
+          textAlignVertical: TextAlignVertical.center,
+          autofocus: widget.autoFocus,
+          autocorrect: widget.autoCorrect,
+          placeholder: widget.placeholder.toUpperCase(),
+          obscureText: widget.obscureText,
+          keyboardType: widget.keyboardType,
+          textInputAction: widget.textInputAction,
+          onEditingComplete: widget.onEditingComplete,
+          onChanged: widget.onChanged,
+          placeholderStyle: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle
+              .copyWith(color: AppColors.gray),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            border: Border.all(
+              width: 4,
+            ),
           ),
         ),
-        if (widget.valid ?? false) ...[
-          SizedBox(
-            height: widget.size12(context),
-          ),
-        ] else ...[
-          ErrorDisplayer(
-            message: widget.errorMessage ?? '',
-          ),
-        ]
-      ],
-    );
+      );
+    }
   }
 }

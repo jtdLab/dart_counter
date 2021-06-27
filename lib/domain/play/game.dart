@@ -51,5 +51,4 @@ class Game with _$Game {
       players: KtList.from([Player.dummy()]),
     );
   }
-  // TODO add props current turn ,
 }

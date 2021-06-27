@@ -23,7 +23,9 @@ class PlayerList extends StatelessWidget {
                   if (player.isDartBot) {
                     return const DartBotItem();
                   } else {
-                    return const PlayerItem();
+                    return EditablePlayerItem(
+                      index: index,
+                    );
                   }
                 },
                 itemBuilder: (context, index) {
@@ -40,7 +42,9 @@ class PlayerList extends StatelessWidget {
                     return Column(
                       key: ValueKey(player),
                       children: [
-                        const PlayerItem(),
+                        EditablePlayerItem(
+                          index: index,
+                        ),
                         SizedBox(height: size6(context)),
                       ],
                     );

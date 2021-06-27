@@ -44,6 +44,7 @@ class Player with _$Player {
     @Default(KtList.empty())
         KtList<Set> sets,
     required bool isDartBot,
+    UniqueId? userId,
   }) = _Player;
 
   factory Player.dummy() {
