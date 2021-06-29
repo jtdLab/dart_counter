@@ -8,14 +8,16 @@ part of 'game_dto.dart';
 
 _$_GameDto _$_$_GameDtoFromJson(Map<String, dynamic> json) {
   return _$_GameDto(
-    id: json['id'] as String?,
+    id: json['id'] as String,
+    online: json['online'] as bool,
     status: json['status'] as String,
     mode: json['mode'] as String,
     size: json['size'] as int,
     type: json['type'] as String,
     startingPoints: json['startingPoints'] as int,
     players: (json['players'] as List<dynamic>)
-        .map((e) => PlayerDto.fromJson(e as Map<String, dynamic>))
+        .map((e) =>
+            const PlayerDtoConverter().fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -23,10 +25,12 @@ _$_GameDto _$_$_GameDtoFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_GameDtoToJson(_$_GameDto instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'online': instance.online,
       'status': instance.status,
       'mode': instance.mode,
       'size': instance.size,
       'type': instance.type,
       'startingPoints': instance.startingPoints,
-      'players': instance.players.map((e) => e.toJson()).toList(),
+      'players':
+          instance.players.map(const PlayerDtoConverter().toJson).toList(),
     };

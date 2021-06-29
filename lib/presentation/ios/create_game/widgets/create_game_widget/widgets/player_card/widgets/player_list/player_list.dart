@@ -20,7 +20,7 @@ class PlayerList extends StatelessWidget {
               child: ReorderableListView.builder(
                 proxyDecorator: (widget, index, animation) {
                   final player = players[index];
-                  if (player.isDartBot) {
+                  if (false) { // TODO player.isDartBot
                     return const DartBotItem();
                   } else {
                     return EditablePlayerItem(
@@ -30,7 +30,7 @@ class PlayerList extends StatelessWidget {
                 },
                 itemBuilder: (context, index) {
                   final player = players[index];
-                  if (player.isDartBot) {
+                  if (false) { // TODO player.isDartBot
                     return Column(
                       key: ValueKey(player),
                       children: [

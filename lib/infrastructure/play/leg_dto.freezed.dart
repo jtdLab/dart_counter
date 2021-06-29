@@ -20,10 +20,8 @@ LegDto _$LegDtoFromJson(Map<String, dynamic> json) {
 class _$LegDtoTearOff {
   const _$LegDtoTearOff();
 
-  _LegDto call(
-      {@JsonKey(ignore: true) String? id, required List<ThrowDto> throws}) {
+  _LegDto call({required List<ThrowDto> throws}) {
     return _LegDto(
-      id: id,
       throws: throws,
     );
   }
@@ -38,9 +36,6 @@ const $LegDto = _$LegDtoTearOff();
 
 /// @nodoc
 mixin _$LegDto {
-  @JsonKey(ignore: true)
-  String? get id =>
-      throw _privateConstructorUsedError; // TODO ignore and nullable fix
   List<ThrowDto> get throws => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +47,7 @@ mixin _$LegDto {
 abstract class $LegDtoCopyWith<$Res> {
   factory $LegDtoCopyWith(LegDto value, $Res Function(LegDto) then) =
       _$LegDtoCopyWithImpl<$Res>;
-  $Res call({@JsonKey(ignore: true) String? id, List<ThrowDto> throws});
+  $Res call({List<ThrowDto> throws});
 }
 
 /// @nodoc
@@ -65,14 +60,9 @@ class _$LegDtoCopyWithImpl<$Res> implements $LegDtoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? throws = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       throws: throws == freezed
           ? _value.throws
           : throws // ignore: cast_nullable_to_non_nullable
@@ -86,7 +76,7 @@ abstract class _$LegDtoCopyWith<$Res> implements $LegDtoCopyWith<$Res> {
   factory _$LegDtoCopyWith(_LegDto value, $Res Function(_LegDto) then) =
       __$LegDtoCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(ignore: true) String? id, List<ThrowDto> throws});
+  $Res call({List<ThrowDto> throws});
 }
 
 /// @nodoc
@@ -100,14 +90,9 @@ class __$LegDtoCopyWithImpl<$Res> extends _$LegDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? throws = freezed,
   }) {
     return _then(_LegDto(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       throws: throws == freezed
           ? _value.throws
           : throws // ignore: cast_nullable_to_non_nullable
@@ -119,38 +104,30 @@ class __$LegDtoCopyWithImpl<$Res> extends _$LegDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LegDto extends _LegDto {
-  const _$_LegDto({@JsonKey(ignore: true) this.id, required this.throws})
-      : super._();
+  const _$_LegDto({required this.throws}) : super._();
 
   factory _$_LegDto.fromJson(Map<String, dynamic> json) =>
       _$_$_LegDtoFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
-  final String? id;
-  @override // TODO ignore and nullable fix
   final List<ThrowDto> throws;
 
   @override
   String toString() {
-    return 'LegDto(id: $id, throws: $throws)';
+    return 'LegDto(throws: $throws)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LegDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.throws, throws) ||
                 const DeepCollectionEquality().equals(other.throws, throws)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(throws);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(throws);
 
   @JsonKey(ignore: true)
   @override
@@ -164,17 +141,12 @@ class _$_LegDto extends _LegDto {
 }
 
 abstract class _LegDto extends LegDto {
-  const factory _LegDto(
-      {@JsonKey(ignore: true) String? id,
-      required List<ThrowDto> throws}) = _$_LegDto;
+  const factory _LegDto({required List<ThrowDto> throws}) = _$_LegDto;
   const _LegDto._() : super._();
 
   factory _LegDto.fromJson(Map<String, dynamic> json) = _$_LegDto.fromJson;
 
   @override
-  @JsonKey(ignore: true)
-  String? get id => throw _privateConstructorUsedError;
-  @override // TODO ignore and nullable fix
   List<ThrowDto> get throws => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

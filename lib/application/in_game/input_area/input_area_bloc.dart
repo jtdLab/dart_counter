@@ -58,7 +58,6 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
     } else {
       _playFacade.performThrow(
         t: Throw(
-          id: UniqueId.generated(),
           points: pointsScored,
           dartsThrown: 3,
           dartsOnDouble: 0,
@@ -81,7 +80,6 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
         // 3 dart finish
         _playFacade.performThrow(
           t: Throw(
-            id: UniqueId.generated(),
             points: pointsLeftCurrentTurn,
             dartsThrown: 3,
             dartsOnDouble: 1,

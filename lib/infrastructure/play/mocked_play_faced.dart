@@ -335,6 +335,8 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   Game _fromExternalGame(dart.Game game) {
+    return Game.dummy();
+    /*
     return Game(
       id: UniqueId.fromUniqueString('dummyGameId'),
       status: _fromExternalStatus(game.status),
@@ -343,7 +345,7 @@ class MockedPlayFacade implements IPlayFacade {
       type: _fromExternalType(game.config.type),
       startingPoints: game.config.startingPoints,
       players: _fromExternalPlayers(game.players),
-    );
+    );*/
   }
 
   Status _fromExternalStatus(dart.Status status) {
@@ -386,7 +388,8 @@ class MockedPlayFacade implements IPlayFacade {
 
   Player _fromExternalPlayer(dart.Player player) {
     final faker = Faker();
-
+    return OnlinePlayer.dummy() as Player; // TODO
+    /*
     return Player(
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       name: player.name ?? 'Player ${faker.randomGenerator.integer(100)}',
@@ -402,8 +405,7 @@ class MockedPlayFacade implements IPlayFacade {
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg ?? 0,
       stats: _fromExternalStats(player.stats),
       sets: _fromExternalSets(player.sets),
-      isDartBot: player is dart.DartBot,
-    );
+    );*/
   }
 
   Stats _fromExternalStats(dart.Stats stats) {
@@ -440,7 +442,6 @@ class MockedPlayFacade implements IPlayFacade {
 
   Set _fromExternalSet(dart.Set set) {
     return Set(
-      id: UniqueId.fromUniqueString(const Uuid().v4()),
       legs: _fromExternalLegs(set.legs),
     );
   }
@@ -457,7 +458,6 @@ class MockedPlayFacade implements IPlayFacade {
 
   Leg _fromExternalLeg(dart.Leg leg) {
     return Leg(
-      id: UniqueId.fromUniqueString(const Uuid().v4()),
       throws: _fromExternalThrows(leg.throws),
     );
   }
@@ -474,7 +474,6 @@ class MockedPlayFacade implements IPlayFacade {
 
   Throw _fromExternalThrow(dart.Throw t) {
     return Throw(
-        id: UniqueId.fromUniqueString(const Uuid().v4()),
         points: t.points,
         dartsThrown: t.dartsThrown,
         dartsOnDouble: t.dartsOnDouble);

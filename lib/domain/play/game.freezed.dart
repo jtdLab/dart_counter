@@ -18,6 +18,7 @@ class _$GameTearOff {
 
   _Game call(
       {required UniqueId id,
+      required bool online,
       required Status status,
       required Mode mode,
       required int size,
@@ -26,6 +27,7 @@ class _$GameTearOff {
       required KtList<Player> players}) {
     return _Game(
       id: id,
+      online: online,
       status: status,
       mode: mode,
       size: size,
@@ -42,6 +44,7 @@ const $Game = _$GameTearOff();
 /// @nodoc
 mixin _$Game {
   UniqueId get id => throw _privateConstructorUsedError;
+  bool get online => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
@@ -59,6 +62,7 @@ abstract class $GameCopyWith<$Res> {
       _$GameCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
+      bool online,
       Status status,
       Mode mode,
       int size,
@@ -78,6 +82,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -90,6 +95,10 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      online: online == freezed
+          ? _value.online
+          : online // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -125,6 +134,7 @@ abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
+      bool online,
       Status status,
       Mode mode,
       int size,
@@ -145,6 +155,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -157,6 +168,10 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      online: online == freezed
+          ? _value.online
+          : online // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -190,6 +205,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
 class _$_Game extends _Game {
   const _$_Game(
       {required this.id,
+      required this.online,
       required this.status,
       required this.mode,
       required this.size,
@@ -200,6 +216,8 @@ class _$_Game extends _Game {
 
   @override
   final UniqueId id;
+  @override
+  final bool online;
   @override
   final Status status;
   @override
@@ -215,7 +233,7 @@ class _$_Game extends _Game {
 
   @override
   String toString() {
-    return 'Game(id: $id, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'Game(id: $id, online: $online, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
@@ -224,6 +242,8 @@ class _$_Game extends _Game {
         (other is _Game &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.online, online) ||
+                const DeepCollectionEquality().equals(other.online, online)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.mode, mode) ||
@@ -243,6 +263,7 @@ class _$_Game extends _Game {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(online) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(size) ^
@@ -259,6 +280,7 @@ class _$_Game extends _Game {
 abstract class _Game extends Game {
   const factory _Game(
       {required UniqueId id,
+      required bool online,
       required Status status,
       required Mode mode,
       required int size,
@@ -269,6 +291,8 @@ abstract class _Game extends Game {
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
+  @override
+  bool get online => throw _privateConstructorUsedError;
   @override
   Status get status => throw _privateConstructorUsedError;
   @override

@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LegTearOff {
   const _$LegTearOff();
 
-  _Leg call({required UniqueId id, required KtList<Throw> throws}) {
+  _Leg call({required KtList<Throw> throws}) {
     return _Leg(
-      id: id,
       throws: throws,
     );
   }
@@ -29,7 +28,6 @@ const $Leg = _$LegTearOff();
 
 /// @nodoc
 mixin _$Leg {
-  UniqueId get id => throw _privateConstructorUsedError;
   KtList<Throw> get throws => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,7 +38,7 @@ mixin _$Leg {
 abstract class $LegCopyWith<$Res> {
   factory $LegCopyWith(Leg value, $Res Function(Leg) then) =
       _$LegCopyWithImpl<$Res>;
-  $Res call({UniqueId id, KtList<Throw> throws});
+  $Res call({KtList<Throw> throws});
 }
 
 /// @nodoc
@@ -53,14 +51,9 @@ class _$LegCopyWithImpl<$Res> implements $LegCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? throws = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       throws: throws == freezed
           ? _value.throws
           : throws // ignore: cast_nullable_to_non_nullable
@@ -74,7 +67,7 @@ abstract class _$LegCopyWith<$Res> implements $LegCopyWith<$Res> {
   factory _$LegCopyWith(_Leg value, $Res Function(_Leg) then) =
       __$LegCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, KtList<Throw> throws});
+  $Res call({KtList<Throw> throws});
 }
 
 /// @nodoc
@@ -88,14 +81,9 @@ class __$LegCopyWithImpl<$Res> extends _$LegCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? throws = freezed,
   }) {
     return _then(_Leg(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       throws: throws == freezed
           ? _value.throws
           : throws // ignore: cast_nullable_to_non_nullable
@@ -107,33 +95,27 @@ class __$LegCopyWithImpl<$Res> extends _$LegCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Leg implements _Leg {
-  const _$_Leg({required this.id, required this.throws});
+  const _$_Leg({required this.throws});
 
-  @override
-  final UniqueId id;
   @override
   final KtList<Throw> throws;
 
   @override
   String toString() {
-    return 'Leg(id: $id, throws: $throws)';
+    return 'Leg(throws: $throws)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Leg &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.throws, throws) ||
                 const DeepCollectionEquality().equals(other.throws, throws)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(throws);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(throws);
 
   @JsonKey(ignore: true)
   @override
@@ -142,11 +124,8 @@ class _$_Leg implements _Leg {
 }
 
 abstract class _Leg implements Leg {
-  const factory _Leg({required UniqueId id, required KtList<Throw> throws}) =
-      _$_Leg;
+  const factory _Leg({required KtList<Throw> throws}) = _$_Leg;
 
-  @override
-  UniqueId get id => throw _privateConstructorUsedError;
   @override
   KtList<Throw> get throws => throw _privateConstructorUsedError;
   @override

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'dart.dart';
+part of 'dart_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,42 +12,51 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-/// @nodoc
-class _$DartTearOff {
-  const _$DartTearOff();
+DartDto _$DartDtoFromJson(Map<String, dynamic> json) {
+  return _DartDto.fromJson(json);
+}
 
-  _Dart call({required int points}) {
-    return _Dart(
+/// @nodoc
+class _$DartDtoTearOff {
+  const _$DartDtoTearOff();
+
+  _DartDto call({required int points}) {
+    return _DartDto(
       points: points,
     );
+  }
+
+  DartDto fromJson(Map<String, Object> json) {
+    return DartDto.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Dart = _$DartTearOff();
+const $DartDto = _$DartDtoTearOff();
 
 /// @nodoc
-mixin _$Dart {
+mixin _$DartDto {
   int get points => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DartCopyWith<Dart> get copyWith => throw _privateConstructorUsedError;
+  $DartDtoCopyWith<DartDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DartCopyWith<$Res> {
-  factory $DartCopyWith(Dart value, $Res Function(Dart) then) =
-      _$DartCopyWithImpl<$Res>;
+abstract class $DartDtoCopyWith<$Res> {
+  factory $DartDtoCopyWith(DartDto value, $Res Function(DartDto) then) =
+      _$DartDtoCopyWithImpl<$Res>;
   $Res call({int points});
 }
 
 /// @nodoc
-class _$DartCopyWithImpl<$Res> implements $DartCopyWith<$Res> {
-  _$DartCopyWithImpl(this._value, this._then);
+class _$DartDtoCopyWithImpl<$Res> implements $DartDtoCopyWith<$Res> {
+  _$DartDtoCopyWithImpl(this._value, this._then);
 
-  final Dart _value;
+  final DartDto _value;
   // ignore: unused_field
-  final $Res Function(Dart) _then;
+  final $Res Function(DartDto) _then;
 
   @override
   $Res call({
@@ -63,27 +72,27 @@ class _$DartCopyWithImpl<$Res> implements $DartCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DartCopyWith<$Res> implements $DartCopyWith<$Res> {
-  factory _$DartCopyWith(_Dart value, $Res Function(_Dart) then) =
-      __$DartCopyWithImpl<$Res>;
+abstract class _$DartDtoCopyWith<$Res> implements $DartDtoCopyWith<$Res> {
+  factory _$DartDtoCopyWith(_DartDto value, $Res Function(_DartDto) then) =
+      __$DartDtoCopyWithImpl<$Res>;
   @override
   $Res call({int points});
 }
 
 /// @nodoc
-class __$DartCopyWithImpl<$Res> extends _$DartCopyWithImpl<$Res>
-    implements _$DartCopyWith<$Res> {
-  __$DartCopyWithImpl(_Dart _value, $Res Function(_Dart) _then)
-      : super(_value, (v) => _then(v as _Dart));
+class __$DartDtoCopyWithImpl<$Res> extends _$DartDtoCopyWithImpl<$Res>
+    implements _$DartDtoCopyWith<$Res> {
+  __$DartDtoCopyWithImpl(_DartDto _value, $Res Function(_DartDto) _then)
+      : super(_value, (v) => _then(v as _DartDto));
 
   @override
-  _Dart get _value => super._value as _Dart;
+  _DartDto get _value => super._value as _DartDto;
 
   @override
   $Res call({
     Object? points = freezed,
   }) {
-    return _then(_Dart(
+    return _then(_DartDto(
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -93,22 +102,25 @@ class __$DartCopyWithImpl<$Res> extends _$DartCopyWithImpl<$Res>
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$_DartDto extends _DartDto {
+  const _$_DartDto({required this.points}) : super._();
 
-class _$_Dart implements _Dart {
-  const _$_Dart({required this.points});
+  factory _$_DartDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_DartDtoFromJson(json);
 
   @override
   final int points;
 
   @override
   String toString() {
-    return 'Dart(points: $points)';
+    return 'DartDto(points: $points)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Dart &&
+        (other is _DartDto &&
             (identical(other.points, points) ||
                 const DeepCollectionEquality().equals(other.points, points)));
   }
@@ -119,16 +131,25 @@ class _$_Dart implements _Dart {
 
   @JsonKey(ignore: true)
   @override
-  _$DartCopyWith<_Dart> get copyWith =>
-      __$DartCopyWithImpl<_Dart>(this, _$identity);
+  _$DartDtoCopyWith<_DartDto> get copyWith =>
+      __$DartDtoCopyWithImpl<_DartDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DartDtoToJson(this);
+  }
 }
 
-abstract class _Dart implements Dart {
-  const factory _Dart({required int points}) = _$_Dart;
+abstract class _DartDto extends DartDto {
+  const factory _DartDto({required int points}) = _$_DartDto;
+  const _DartDto._() : super._();
+
+  factory _DartDto.fromJson(Map<String, dynamic> json) = _$_DartDto.fromJson;
 
   @override
   int get points => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DartCopyWith<_Dart> get copyWith => throw _privateConstructorUsedError;
+  _$DartDtoCopyWith<_DartDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

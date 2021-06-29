@@ -17,12 +17,10 @@ class _$ThrowTearOff {
   const _$ThrowTearOff();
 
   _Throw call(
-      {required UniqueId id,
-      required int points,
+      {required int points,
       required int dartsThrown,
       required int dartsOnDouble}) {
     return _Throw(
-      id: id,
       points: points,
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
@@ -35,7 +33,6 @@ const $Throw = _$ThrowTearOff();
 
 /// @nodoc
 mixin _$Throw {
-  UniqueId get id => throw _privateConstructorUsedError;
   int get points => throw _privateConstructorUsedError;
   int get dartsThrown => throw _privateConstructorUsedError;
   int get dartsOnDouble => throw _privateConstructorUsedError;
@@ -48,7 +45,7 @@ mixin _$Throw {
 abstract class $ThrowCopyWith<$Res> {
   factory $ThrowCopyWith(Throw value, $Res Function(Throw) then) =
       _$ThrowCopyWithImpl<$Res>;
-  $Res call({UniqueId id, int points, int dartsThrown, int dartsOnDouble});
+  $Res call({int points, int dartsThrown, int dartsOnDouble});
 }
 
 /// @nodoc
@@ -61,16 +58,11 @@ class _$ThrowCopyWithImpl<$Res> implements $ThrowCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? points = freezed,
     Object? dartsThrown = freezed,
     Object? dartsOnDouble = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -92,7 +84,7 @@ abstract class _$ThrowCopyWith<$Res> implements $ThrowCopyWith<$Res> {
   factory _$ThrowCopyWith(_Throw value, $Res Function(_Throw) then) =
       __$ThrowCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, int points, int dartsThrown, int dartsOnDouble});
+  $Res call({int points, int dartsThrown, int dartsOnDouble});
 }
 
 /// @nodoc
@@ -106,16 +98,11 @@ class __$ThrowCopyWithImpl<$Res> extends _$ThrowCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? points = freezed,
     Object? dartsThrown = freezed,
     Object? dartsOnDouble = freezed,
   }) {
     return _then(_Throw(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -136,13 +123,10 @@ class __$ThrowCopyWithImpl<$Res> extends _$ThrowCopyWithImpl<$Res>
 
 class _$_Throw implements _Throw {
   const _$_Throw(
-      {required this.id,
-      required this.points,
+      {required this.points,
       required this.dartsThrown,
       required this.dartsOnDouble});
 
-  @override
-  final UniqueId id;
   @override
   final int points;
   @override
@@ -152,15 +136,13 @@ class _$_Throw implements _Throw {
 
   @override
   String toString() {
-    return 'Throw(id: $id, points: $points, dartsThrown: $dartsThrown, dartsOnDouble: $dartsOnDouble)';
+    return 'Throw(points: $points, dartsThrown: $dartsThrown, dartsOnDouble: $dartsOnDouble)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Throw &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.points, points) ||
                 const DeepCollectionEquality().equals(other.points, points)) &&
             (identical(other.dartsThrown, dartsThrown) ||
@@ -174,7 +156,6 @@ class _$_Throw implements _Throw {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(points) ^
       const DeepCollectionEquality().hash(dartsThrown) ^
       const DeepCollectionEquality().hash(dartsOnDouble);
@@ -187,13 +168,10 @@ class _$_Throw implements _Throw {
 
 abstract class _Throw implements Throw {
   const factory _Throw(
-      {required UniqueId id,
-      required int points,
+      {required int points,
       required int dartsThrown,
       required int dartsOnDouble}) = _$_Throw;
 
-  @override
-  UniqueId get id => throw _privateConstructorUsedError;
   @override
   int get points => throw _privateConstructorUsedError;
   @override

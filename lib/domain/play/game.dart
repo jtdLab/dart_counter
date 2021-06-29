@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/infrastructure/play/player_dto.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -14,6 +15,7 @@ enum Type { legs, sets }
 class Game with _$Game {
   const factory Game({
     required UniqueId id,
+    required bool online,
     required Status status,
     required Mode mode,
     required int size,
@@ -29,7 +31,7 @@ class Game with _$Game {
       return false;
     }
 
-    return players.any((player) => player.isDartBot);
+    return players.any((player) => player is DartBot);
   }
 
   String description() =>
@@ -42,13 +44,14 @@ class Game with _$Game {
   factory Game.dummy() {
     final faker = Faker();
     return Game(
+      online: false,
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       status: Status.pending,
       mode: Mode.firstTo,
       size: 3,
       type: Type.legs,
       startingPoints: 501,
-      players: KtList.from([Player.dummy()]),
+      players: KtList.from([OfflinePlayer.dummy() as Player]),
     );
   }
 }

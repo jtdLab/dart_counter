@@ -14,8 +14,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'presentation/core/app_widget/app_widget.dart';
 
-
-
 bool x = true;
 Future<void> main() async {
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
@@ -36,6 +34,7 @@ Future<void> main() async {
       sslEnabled: false,
       persistenceEnabled: false);
   //getIt<IAuthFacade>().signOut();
+
   runApp(
     AppWidget(),
   );

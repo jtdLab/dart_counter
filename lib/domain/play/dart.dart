@@ -1,4 +1,3 @@
-import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -7,14 +6,11 @@ part 'dart.freezed.dart';
 @freezed
 class Dart with _$Dart {
   const factory Dart({
-    required UniqueId id,
     required int points,
   }) = _Dart;
 
   factory Dart.dummy() {
-    final faker = Faker();
     return Dart(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       points: faker.randomGenerator.element([
             1,
             2,

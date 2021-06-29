@@ -271,8 +271,6 @@ abstract class $CurrentPlayerUpdatedCopyWith<$Res> {
           $Res Function(CurrentPlayerUpdated) then) =
       _$CurrentPlayerUpdatedCopyWithImpl<$Res>;
   $Res call({Player newPlayer});
-
-  $PlayerCopyWith<$Res> get newPlayer;
 }
 
 /// @nodoc
@@ -296,13 +294,6 @@ class _$CurrentPlayerUpdatedCopyWithImpl<$Res>
           : newPlayer // ignore: cast_nullable_to_non_nullable
               as Player,
     ));
-  }
-
-  @override
-  $PlayerCopyWith<$Res> get newPlayer {
-    return $PlayerCopyWith<$Res>(_value.newPlayer, (value) {
-      return _then(_value.copyWith(newPlayer: value));
-    });
   }
 }
 
@@ -426,8 +417,6 @@ abstract class $PlayerDisplayerStateCopyWith<$Res> {
           $Res Function(PlayerDisplayerState) then) =
       _$PlayerDisplayerStateCopyWithImpl<$Res>;
   $Res call({Player player});
-
-  $PlayerCopyWith<$Res> get player;
 }
 
 /// @nodoc
@@ -450,13 +439,6 @@ class _$PlayerDisplayerStateCopyWithImpl<$Res>
               as Player,
     ));
   }
-
-  @override
-  $PlayerCopyWith<$Res> get player {
-    return $PlayerCopyWith<$Res>(_value.player, (value) {
-      return _then(_value.copyWith(player: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -466,9 +448,6 @@ abstract class $StateCopyWith<$Res>
       _$StateCopyWithImpl<$Res>;
   @override
   $Res call({Player player});
-
-  @override
-  $PlayerCopyWith<$Res> get player;
 }
 
 /// @nodoc
