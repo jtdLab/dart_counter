@@ -1,4 +1,5 @@
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/domain/play/player.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/material.dart' show ReorderableListView;
@@ -20,7 +21,7 @@ class PlayerList extends StatelessWidget {
               child: ReorderableListView.builder(
                 proxyDecorator: (widget, index, animation) {
                   final player = players[index];
-                  if (false) { // TODO player.isDartBot
+                  if (player is DartBot) {
                     return const DartBotItem();
                   } else {
                     return EditablePlayerItem(
@@ -30,7 +31,7 @@ class PlayerList extends StatelessWidget {
                 },
                 itemBuilder: (context, index) {
                   final player = players[index];
-                  if (false) { // TODO player.isDartBot
+                  if (player is DartBot) {
                     return Column(
                       key: ValueKey(player),
                       children: [

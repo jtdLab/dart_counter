@@ -3355,9 +3355,8 @@ class _$PlayStateTearOff {
     return const InProgress();
   }
 
-  Success success({required bool online, required Game game}) {
+  Success success({required Game game}) {
     return Success(
-      online: online,
       game: game,
     );
   }
@@ -3375,14 +3374,14 @@ mixin _$PlayState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(bool online, Game game) success,
+    required TResult Function(Game game) success,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(bool online, Game game)? success,
+    TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) =>
@@ -3458,7 +3457,7 @@ class _$InProgress implements InProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(bool online, Game game) success,
+    required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
     return inProgress();
@@ -3468,7 +3467,7 @@ class _$InProgress implements InProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(bool online, Game game)? success,
+    TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -3511,7 +3510,7 @@ abstract class InProgress implements PlayState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({bool online, Game game});
+  $Res call({Game game});
 
   $GameCopyWith<$Res> get game;
 }
@@ -3527,14 +3526,9 @@ class _$SuccessCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? online = freezed,
     Object? game = freezed,
   }) {
     return _then(Success(
-      online: online == freezed
-          ? _value.online
-          : online // ignore: cast_nullable_to_non_nullable
-              as bool,
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
@@ -3553,33 +3547,27 @@ class _$SuccessCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success implements Success {
-  const _$Success({required this.online, required this.game});
+  const _$Success({required this.game});
 
-  @override
-  final bool online;
   @override
   final Game game;
 
   @override
   String toString() {
-    return 'PlayState.success(online: $online, game: $game)';
+    return 'PlayState.success(game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Success &&
-            (identical(other.online, online) ||
-                const DeepCollectionEquality().equals(other.online, online)) &&
             (identical(other.game, game) ||
                 const DeepCollectionEquality().equals(other.game, game)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(online) ^
-      const DeepCollectionEquality().hash(game);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
 
   @JsonKey(ignore: true)
   @override
@@ -3590,22 +3578,22 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(bool online, Game game) success,
+    required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
-    return success(online, game);
+    return success(game);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(bool online, Game game)? success,
+    TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(online, game);
+      return success(game);
     }
     return orElse();
   }
@@ -3636,9 +3624,8 @@ class _$Success implements Success {
 }
 
 abstract class Success implements PlayState {
-  const factory Success({required bool online, required Game game}) = _$Success;
+  const factory Success({required Game game}) = _$Success;
 
-  bool get online => throw _privateConstructorUsedError;
   Game get game => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
@@ -3682,7 +3669,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(bool online, Game game) success,
+    required TResult Function(Game game) success,
     required TResult Function() failure,
   }) {
     return failure();
@@ -3692,7 +3679,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(bool online, Game game)? success,
+    TResult Function(Game game)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {

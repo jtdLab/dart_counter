@@ -17,7 +17,7 @@ class DartBotCard extends StatelessWidget {
           success: (success) {
             final game = success.game;
             return Visibility(
-              visible: !success.online,
+              visible: !game.online,
               child: AppCard(
                 leading: AutoSizeText(
                   LocaleKeys.dartBot.tr().toUpperCase(),

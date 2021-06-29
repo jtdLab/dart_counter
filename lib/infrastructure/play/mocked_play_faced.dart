@@ -35,7 +35,9 @@ class MockedPlayFacade implements IPlayFacade {
       if (!_online!) {
         if (_game != null) {
           _game!.addDartBot();
-          _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+          _gameStreamController.add(GameDto.fromExternal(_game!)
+              .toDomain()
+              .copyWith(online: _online!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -53,7 +55,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.addPlayer();
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -68,7 +71,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.cancel();
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
         // TODO maybe set all to null after here
       } else {
@@ -84,7 +88,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       _online = online;
       _game = dart.Game();
-      _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+      _gameStreamController.add(
+          GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
       return Future.value(right(unit));
     }
   }
@@ -108,7 +113,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.performThrow(_toExternalThrow(t));
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -124,7 +130,9 @@ class MockedPlayFacade implements IPlayFacade {
       if (!_online!) {
         if (_game != null) {
           _game!.removeDartBot();
-          _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+          _gameStreamController.add(GameDto.fromExternal(_game!)
+              .toDomain()
+              .copyWith(online: _online!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -142,7 +150,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.removePlayer(index);
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -158,7 +167,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.reorderPlayer(oldIndex, newIndex);
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -175,7 +185,9 @@ class MockedPlayFacade implements IPlayFacade {
       if (!_online!) {
         if (_game != null) {
           _game!.setDartBotTargetAverage(targetAverage);
-          _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+          _gameStreamController.add(GameDto.fromExternal(_game!)
+              .toDomain()
+              .copyWith(online: _online!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));
@@ -193,7 +205,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.setMode(_toExternalMode(mode));
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -208,7 +221,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.setSize(size);
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -224,7 +238,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.setStartingPoints(startingPoints);
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -239,7 +254,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.setType(_toExternalType(type));
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -254,7 +270,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.start();
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -269,7 +286,8 @@ class MockedPlayFacade implements IPlayFacade {
     } else {
       if (_game != null) {
         _game!.undoThrow();
-        _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+        _gameStreamController.add(
+            GameDto.fromExternal(_game!).toDomain().copyWith(online: _online!));
         return Future.value(right(unit));
       } else {
         return Future.value(left(const PlayFailure.error()));
@@ -288,7 +306,9 @@ class MockedPlayFacade implements IPlayFacade {
           final player = _game!.players[index];
           player.name =
               newName; // TODO expose update name methode in package dart!
-          _gameStreamController.add(GameDto.fromExternal(_game!).toDomain());
+          _gameStreamController.add(GameDto.fromExternal(_game!)
+              .toDomain()
+              .copyWith(online: _online!));
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));

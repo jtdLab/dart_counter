@@ -87,8 +87,19 @@ class GameDto with _$GameDto {
       size: size,
       type: type == 'legs' ? Type.legs : Type.sets,
       startingPoints: startingPoints,
-      players:
-          KtList.from([]), // players.map((playerDto) => playerDto.toDomain())
+      players: KtList.from(
+        players.map(
+          (playerDto) {
+            if (playerDto is DartBotDto) {
+              return (playerDto as DartBotDto).toDomain() as Player;
+            } else if (playerDto is OfflinePlayerDto) {
+              return (playerDto as OfflinePlayerDto).toDomain() as Player;
+            } else {
+              return (playerDto as OnlinePlayerDto).toDomain() as Player;
+            }
+          },
+        ).toList(),
+      ),
     );
   }
 
