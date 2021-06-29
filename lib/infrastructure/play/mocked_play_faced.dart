@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
@@ -15,7 +14,6 @@ import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/dart_game.dart' as dart;
 import 'package:kt_dart/kt.dart';
-import 'package:uuid/uuid.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
