@@ -6,37 +6,44 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class DartBotItem extends StatelessWidget {
-  const DartBotItem({Key? key}) : super(key: key);
+  const DartBotItem({
+    required Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: const Key('DartBotItem'), 
-      direction: DismissDirection.endToStart,
-      onDismissed: (_) =>
-          context.read<PlayBloc>().add(const PlayEvent.dartBotRemoved()),
-      background: Container(
-        color: AppColors.red,
-      ),
-      child: AppCardItem.large(
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const AppRoundedImage.normal(
-              imageName: AppImages.robot_new,
+    return Column(
+      children: [
+        Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          onDismissed: (_) =>
+              context.read<PlayBloc>().add(const PlayEvent.dartBotRemoved()),
+          background: Container(
+            color: AppColors.red,
+          ),
+          child: AppCardItem.large(
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const AppRoundedImage.normal(
+                  imageName: AppImages.robot_new,
+                ),
+                Text(
+                  LocaleKeys.dartBot.tr().toUpperCase(),
+                ),
+                AppIconButton(
+                  onPressed: () {},
+                  icon: Image.asset(
+                    AppImages.settings_new,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              LocaleKeys.dartBot.tr().toUpperCase(),
-            ),
-            AppIconButton(
-              onPressed: () {},
-              icon: Image.asset(
-                AppImages.settings_new,
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        SizedBox(height: size6(context)),
+      ],
     );
   }
 }

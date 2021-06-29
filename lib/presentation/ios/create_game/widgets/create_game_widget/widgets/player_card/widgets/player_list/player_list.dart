@@ -19,35 +19,24 @@ class PlayerList extends StatelessWidget {
               height: players.size * size70(context) +
                   players.size * size6(context),
               child: ReorderableListView.builder(
-                proxyDecorator: (widget, index, animation) {
-                  final player = players[index];
-                  if (player is DartBot) {
-                    return const DartBotItem();
-                  } else {
-                    return EditablePlayerItem(
-                      index: index,
-                    );
-                  }
+                proxyDecorator: (child, index, animation) {
+                  return child;
                 },
                 itemBuilder: (context, index) {
                   final player = players[index];
                   if (player is DartBot) {
-                    return Column(
+                    return DartBotItem(
                       key: ValueKey(player),
-                      children: [
-                        const DartBotItem(),
-                        SizedBox(height: size6(context)),
-                      ],
+                    );
+                  } else if (player is OfflinePlayer) {
+                    return OfflinePlayerItem(
+                      key: ValueKey(player),
+                      player: player as OfflinePlayer,
                     );
                   } else {
-                    return Column(
+                    return OnlinePlayerItem(
                       key: ValueKey(player),
-                      children: [
-                        EditablePlayerItem(
-                          index: index,
-                        ),
-                        SizedBox(height: size6(context)),
-                      ],
+                      player: player as OnlinePlayer,
                     );
                   }
                 },
