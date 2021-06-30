@@ -146,10 +146,9 @@ class OfflinePlayerDto with _$OfflinePlayerDto {
   }
 
   factory OfflinePlayerDto.fromExternal(dart.Player player) {
-    final faker = Faker();
     return OfflinePlayerDto(
-      id: faker.randomGenerator.string(28, min: 28),
-      name: player.name ?? 'NoName', // TODO
+      id: player.id,
+      name: player.name,
       isCurrentTurn: player.isCurrentTurn,
       won: player.won,
       wonSets: player.wonSets,

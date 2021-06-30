@@ -5,9 +5,8 @@ class Player {
   /// PUBLIC
   ///
 
-  int? get anonymousCount => _anonymousCount;
-  final int id;
-  String? name;
+  final String id;
+  String name;
   bool? get isCurrentTurn => _isCurrentTurn;
   bool? get won => _won;
   int? get wonSets => _game._config.type == Type.legs ? null : _wonSets;
@@ -20,14 +19,13 @@ class Player {
 
   final List<Set> sets;
 
-  Player(this._game, this.id) : sets = [];
+  Player(this._game, this.id) : sets = [], name = 'player $id';
 
   ///
   /// PRIVATE
   ///
 
   /// computed properties for interface
-  int? _anonymousCount;
 
   bool get _isCurrentTurn => _game._currentTurn == this;
 

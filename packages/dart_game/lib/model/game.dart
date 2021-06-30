@@ -10,22 +10,24 @@ class Game {
 
   List<Player> get players => _players;
 
-  Game() : _config = Config(),
-  _oldStatus = Status.pending,
-  _status = Status.pending,
-  _players = [],
-  _turnIndex = 0,
-  _startSetIndex = 0,
-  _startLegIndex = 0 {
+  Game()
+      : _config = Config(),
+        _oldStatus = Status.pending,
+        _status = Status.pending,
+        _players = [],
+        _turnIndex = 0,
+        _startSetIndex = 0,
+        _startLegIndex = 0 {
     addPlayer();
   }
-
-
 
   bool addPlayer() {
     if (status == Status.pending) {
       if (_players.length < 4) {
-        _players.add(Player(this, ++_playerCounter));
+        _players.add(Player(
+            this,
+            (_players.length + 1)
+                .toString())); // TODO id should be a uuid v4 or smth long
         return true;
       }
     }
@@ -100,27 +102,22 @@ class Game {
   void start() {
     if (_status == Status.pending) {
       _status = Status.running;
-      int anonymousCount = 1;
       for (Player player in _players) {
-        if(player.name == null || player.name!.trim() == '') {
-          player._anonymousCount = anonymousCount;
-          anonymousCount++;
-        }
         player._createSet();
       }
     }
   }
 
   void restart() {
-    if(_oldStatus == Status.pending) {
+    if (_oldStatus == Status.pending) {
       start();
-    } else if(_oldStatus == Status.running) {
+    } else if (_oldStatus == Status.running) {
       _status = Status.running;
     }
   }
 
   void cancel() {
-    if(_status == Status.pending || _status == Status.running) {
+    if (_status == Status.pending || _status == Status.running) {
       _oldStatus = _status;
       _status = Status.canceled;
     }
@@ -135,7 +132,8 @@ class Game {
         } else {
           _nextTurn();
           if (_turnIndex == _dartBotIndex) {
-            Throw x = ThrowGenerator.generate(_players[_dartBotIndex] as DartBot, this);
+            Throw x = ThrowGenerator.generate(
+                _players[_dartBotIndex] as DartBot, this);
             performThrow(x);
           }
         }
@@ -195,7 +193,6 @@ class Game {
       }
     }
   }
-
 
   ///
   /// PRIVATE
@@ -288,8 +285,6 @@ class Game {
     // update CurrentTurn
     _turnIndex = (_turnIndex - 1) % _players.length;
   }
-
-  int _playerCounter = 0;
 
   @override
   String toString() {
