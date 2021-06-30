@@ -306,9 +306,11 @@ class MockedPlayFacade implements IPlayFacade {
           final player = _game!.players[index];
           player.name =
               newName; // TODO expose update name methode in package dart!
+          /*
           _gameStreamController.add(GameDto.fromExternal(_game!)
               .toDomain()
               .copyWith(online: _online!));
+         */
           return Future.value(right(unit));
         } else {
           return Future.value(left(const PlayFailure.error()));

@@ -53,9 +53,16 @@ class OfflinePlayerItem extends StatelessWidget {
                             orientation: Orientation.horizontal),
                         Expanded(
                           child: AppTextField(
+                            text: player.name,
                             withErrorDisplayer: false,
                             placeholder: LocaleKeys.name.tr().toUpperCase(),
-                            onChanged: (newName) {},
+                            onChanged: (newName) =>
+                                context.read<PlayBloc>().add(
+                                      PlayEvent.playerNameUpdated(
+                                        index: index,
+                                        newName: newName,
+                                      ),
+                                    ),
                           ),
                         ),
                         const AppSpacer.normal(

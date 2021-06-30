@@ -2,8 +2,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'widgets/widgets.dart';
 
-// TODO assert error message is provided if validation is applied
+// TODO assert error message is provided if validation is applied // TODO has it real to be stateful
 class AppTextField extends StatefulWidget {
+  final String text;
   final bool withErrorDisplayer; // TODO
   final Function(String) onChanged;
   final bool autoFocus;
@@ -17,6 +18,7 @@ class AppTextField extends StatefulWidget {
   final String? errorMessage;
 
   const AppTextField({
+    this.text = '',
     this.withErrorDisplayer = true,
     required this.onChanged,
     this.autoFocus = false,
@@ -35,6 +37,14 @@ class AppTextField extends StatefulWidget {
 }
 
 class _AppTextFieldState extends State<AppTextField> {
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    _controller.text = widget.text;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.withErrorDisplayer) {
@@ -46,6 +56,7 @@ class _AppTextFieldState extends State<AppTextField> {
               fit: StackFit.expand,
               children: [
                 CupertinoTextField(
+                  controller: _controller,
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.center,
                   autofocus: widget.autoFocus,
@@ -104,6 +115,7 @@ class _AppTextFieldState extends State<AppTextField> {
       return SizedBox(
         height: widget.size40(context),
         child: CupertinoTextField(
+          controller: _controller,
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.center,
           autofocus: widget.autoFocus,
