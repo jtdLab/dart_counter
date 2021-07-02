@@ -19,7 +19,7 @@ class GameHistoryCard extends StatelessWidget {
       child: AppCard(
         headerBodySpacing: size6(context),
         leading: AutoSizeText(
-          'BEST OF 5 LEGS'.toUpperCase(),
+          game.description().toUpperCase(),
           minFontSize: 8,
           maxFontSize: 14,
           maxLines: 1,
@@ -40,7 +40,7 @@ class GameHistoryCard extends StatelessWidget {
         ),
         children: [
           AppCardItem.large(
-            content: _content(context),
+            content: _content(context, game: game),
           )
         ],
       ),
@@ -48,7 +48,7 @@ class GameHistoryCard extends StatelessWidget {
   }
 
   // TODO make responsive
-  Widget _content(BuildContext context) => Row(
+  Widget _content(BuildContext context, {required Game game}) => Row(
         children: [
           const SizedBox(width: 6),
           Image.asset(AppImages.star_new),
@@ -75,16 +75,12 @@ class GameHistoryCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerRight,
                       child: AutoSizeText(
-                        '81.55',
+                        game.players[0].stats.average.toString(), // TODO
                         maxLines: 1,
                         maxFontSize: 14,
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w800,
-                        ),
                       ),
                     )
                   ],
@@ -98,22 +94,15 @@ class GameHistoryCard extends StatelessWidget {
                         '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
                         maxLines: 1,
                         maxFontSize: 14,
-                        style: const TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w800,
-                        ),
                       ),
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerRight,
                       child: AutoSizeText(
-                        '23.55',
+                        game.players[0].stats.checkoutPercentage
+                            .toString(), // TODO
                         maxLines: 1,
                         maxFontSize: 14,
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w800,
-                        ),
                       ),
                     )
                   ],

@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
@@ -17,8 +17,9 @@ class DartBotItem extends StatelessWidget {
         Dismissible(
           key: key!,
           direction: DismissDirection.endToStart,
-          onDismissed: (_) =>
-              context.read<PlayBloc>().add(const PlayEvent.dartBotRemoved()),
+          onDismissed: (_) => context
+              .read<CreateGameBloc>()
+              .add(const CreateGameEvent.dartBotRemoved()),
           background: Container(
             color: AppColors.red,
           ),

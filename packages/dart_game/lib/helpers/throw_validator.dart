@@ -138,7 +138,7 @@ class ThrowValidator {
     return false;
   }
 
-  static bool validatePoints(int points, pointsLeft) {
+  static bool validatePoints(int points, int pointsLeft) {
     if (points < 0 || points > 180) return false;
 
     if (points > pointsLeft) return false;
@@ -161,7 +161,59 @@ class ThrowValidator {
   }
 
   static bool isFinish(int points) {
-    return isOneDartFinish(points) || isTwoDartFinish(points) || isThreeDartFinish(points);
+    return isOneDartFinish(points) ||
+        isTwoDartFinish(points) ||
+        isThreeDartFinish(points);
+  }
+
+  static int minDartsThrown({required int points, required int pointsLeft}) {
+    if (validatePoints(points, pointsLeft)) {
+      if (points != pointsLeft || isThreeDartFinish(points)) {
+        return 3;
+      } else if (points == pointsLeft && isTwoDartFinish(points)) {
+        return 2;
+      } else if (points == pointsLeft && isOneDartFinish(points)) {
+        return 1;
+      } else {
+        throw Error();
+      }
+    } else {
+      throw Error();
+    }
+  }
+
+  static int maxDartsThrown({required int points, required int pointsLeft}) {
+    return 3;
+  }
+
+  static int minDartsOnDouble({required int points, required int pointsLeft}) {
+    if (validatePoints(points, pointsLeft)) {
+      if (points == 2 || points == pointsLeft) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } else {
+      throw Error();
+    }
+  }
+
+  static int maxDartsOnDouble({required int points, required int pointsLeft}) {
+    if (validatePoints(points, pointsLeft)) {
+      if (points == pointsLeft && isOneDartFinish(points)) {
+        return 3;
+      } else if (points == pointsLeft && isTwoDartFinish(points)) {
+        return 2;
+      } else if (points == pointsLeft && isThreeDartFinish(points)) {
+        return 1;
+      } else if (!isFinish(pointsLeft) || (pointsLeft - points > 50)) {
+        return 0;
+      } else {
+        throw Error();
+      }
+    } else {
+      throw Error();
+    }
   }
 }
 

@@ -46,10 +46,10 @@ class Game with _$Game {
       online: false,
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       status: Status.pending,
-      mode: Mode.firstTo,
-      size: 3,
-      type: Type.legs,
-      startingPoints: 501,
+      mode: faker.randomGenerator.element([Mode.firstTo, Mode.bestOf]),
+      size: faker.randomGenerator.integer(30, min: 1),
+      type: faker.randomGenerator.element([Type.legs, Type.sets]),
+      startingPoints: faker.randomGenerator.element([301, 501, 701]),
       players: KtList.from([OfflinePlayer.dummy() as Player]),
     );
   }

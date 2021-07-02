@@ -31,7 +31,7 @@ class Router extends _i1.RootStackRouter {
     SplashPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i3.SplashPage();
+          return const _i3.SplashPage();
         },
         opaque: true,
         barrierDismissible: false),
@@ -69,12 +69,12 @@ class Router extends _i1.RootStackRouter {
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.InvitationsPage();
+          return const _i9.InvitationsPage();
         }),
     FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i10.FriendsPage();
+          return const _i10.FriendsPage();
         }),
     SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,

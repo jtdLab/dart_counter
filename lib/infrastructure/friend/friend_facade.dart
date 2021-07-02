@@ -39,9 +39,12 @@ class FriendFacade implements IFriendFacade {
   }
 
   @override
-  Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchFriendRequests() async* {
-    final userDoc = await _firestore.userDocument();
+  ValueStream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchFriendRequests() {
+    // TODO: implement watchFriends
+    throw UnimplementedError();
+    /**
+     * final userDoc = await _firestore.userDocument();
     yield* userDoc.friendRequestsCollection
         .orderBy('createdAt', descending: true)
         .snapshots()
@@ -55,11 +58,24 @@ class FriendFacade implements IFriendFacade {
         .onErrorReturnWith((e) {
       return left(const FriendFailure.unexpected());
     });
+     */
   }
 
   @override
-  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
+  ValueStream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     // TODO: implement watchFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  ValueStream<Either<FriendFailure, int>> watchUnreadFriendRequests() {
+    // TODO: implement watchFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  void markFriendRequestsAsRead() {
+    // TODO: implement send
     throw UnimplementedError();
   }
 }

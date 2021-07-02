@@ -322,7 +322,39 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   @override
-  Stream<Game> watchGame() {
+  int minDartsThrown({required int points, required int pointsLeft}) {
+    return dart.ThrowValidator.minDartsThrown(
+      points: points,
+      pointsLeft: pointsLeft,
+    );
+  }
+
+  @override
+  int maxDartsThrown({required int points, required int pointsLeft}) {
+    return dart.ThrowValidator.maxDartsThrown(
+      points: points,
+      pointsLeft: pointsLeft,
+    );
+  }
+
+  @override
+  int minDartsOnDouble({required int points, required int pointsLeft}) {
+    return dart.ThrowValidator.minDartsOnDouble(
+      points: points,
+      pointsLeft: pointsLeft,
+    );
+  }
+
+  @override
+  int maxDartsOnDouble({required int points, required int pointsLeft}) {
+    return dart.ThrowValidator.maxDartsOnDouble(
+      points: points,
+      pointsLeft: pointsLeft,
+    );
+  }
+
+  @override
+  ValueStream<Game> watchGame() {
     return _gameStreamController.stream;
   }
 

@@ -7,11 +7,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayFacade)
 class PlayFacade implements IPlayFacade {
-
   dart.Game? _game;
 
   bool? _online;
@@ -19,9 +19,8 @@ class PlayFacade implements IPlayFacade {
   @override
   bool get online => _online ?? false; // TODO
 
- @override
+  @override
   Game? get game => Game.dummy(); // TODO
- 
 
   @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
@@ -29,7 +28,7 @@ class PlayFacade implements IPlayFacade {
       throw MissingGameError();
     }
 
-    if(_online == false) {
+    if (_online == false) {
       //game.addDartBot();
     }
     // TODO: implement addDartBot
@@ -186,7 +185,31 @@ class PlayFacade implements IPlayFacade {
   }
 
   @override
-  Stream<Game> watchGame() {
+  int minDartsThrown({required int points, required int pointsLeft}) {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  @override
+  int maxDartsThrown({required int points, required int pointsLeft}) {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  @override
+  int minDartsOnDouble({required int points, required int pointsLeft}) {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  @override
+  int maxDartsOnDouble({required int points, required int pointsLeft}) {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  @override
+  ValueStream<Game> watchGame() {
     // TODO: implement watchGame
     throw UnimplementedError();
   }

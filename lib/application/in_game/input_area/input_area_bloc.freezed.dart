@@ -625,10 +625,20 @@ abstract class DigitPressed implements InputAreaEvent {
 class _$InputAreaStateTearOff {
   const _$InputAreaStateTearOff();
 
-  State call({required int input, required bool showCheckoutDetails}) {
+  State call(
+      {required int input,
+      required bool showCheckoutDetails,
+      required int minDartsThrown,
+      required int maxDartsThrown,
+      required int minDartsOnDouble,
+      required int maxDartsOnDouble}) {
     return State(
       input: input,
       showCheckoutDetails: showCheckoutDetails,
+      minDartsThrown: minDartsThrown,
+      maxDartsThrown: maxDartsThrown,
+      minDartsOnDouble: minDartsOnDouble,
+      maxDartsOnDouble: maxDartsOnDouble,
     );
   }
 }
@@ -640,6 +650,10 @@ const $InputAreaState = _$InputAreaStateTearOff();
 mixin _$InputAreaState {
   int get input => throw _privateConstructorUsedError;
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
+  int get minDartsThrown => throw _privateConstructorUsedError;
+  int get maxDartsThrown => throw _privateConstructorUsedError;
+  int get minDartsOnDouble => throw _privateConstructorUsedError;
+  int get maxDartsOnDouble => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InputAreaStateCopyWith<InputAreaState> get copyWith =>
@@ -651,7 +665,13 @@ abstract class $InputAreaStateCopyWith<$Res> {
   factory $InputAreaStateCopyWith(
           InputAreaState value, $Res Function(InputAreaState) then) =
       _$InputAreaStateCopyWithImpl<$Res>;
-  $Res call({int input, bool showCheckoutDetails});
+  $Res call(
+      {int input,
+      bool showCheckoutDetails,
+      int minDartsThrown,
+      int maxDartsThrown,
+      int minDartsOnDouble,
+      int maxDartsOnDouble});
 }
 
 /// @nodoc
@@ -667,6 +687,10 @@ class _$InputAreaStateCopyWithImpl<$Res>
   $Res call({
     Object? input = freezed,
     Object? showCheckoutDetails = freezed,
+    Object? minDartsThrown = freezed,
+    Object? maxDartsThrown = freezed,
+    Object? minDartsOnDouble = freezed,
+    Object? maxDartsOnDouble = freezed,
   }) {
     return _then(_value.copyWith(
       input: input == freezed
@@ -677,6 +701,22 @@ class _$InputAreaStateCopyWithImpl<$Res>
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
               as bool,
+      minDartsThrown: minDartsThrown == freezed
+          ? _value.minDartsThrown
+          : minDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxDartsThrown: maxDartsThrown == freezed
+          ? _value.maxDartsThrown
+          : maxDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      minDartsOnDouble: minDartsOnDouble == freezed
+          ? _value.minDartsOnDouble
+          : minDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxDartsOnDouble: maxDartsOnDouble == freezed
+          ? _value.maxDartsOnDouble
+          : maxDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -686,7 +726,13 @@ abstract class $StateCopyWith<$Res> implements $InputAreaStateCopyWith<$Res> {
   factory $StateCopyWith(State value, $Res Function(State) then) =
       _$StateCopyWithImpl<$Res>;
   @override
-  $Res call({int input, bool showCheckoutDetails});
+  $Res call(
+      {int input,
+      bool showCheckoutDetails,
+      int minDartsThrown,
+      int maxDartsThrown,
+      int minDartsOnDouble,
+      int maxDartsOnDouble});
 }
 
 /// @nodoc
@@ -702,6 +748,10 @@ class _$StateCopyWithImpl<$Res> extends _$InputAreaStateCopyWithImpl<$Res>
   $Res call({
     Object? input = freezed,
     Object? showCheckoutDetails = freezed,
+    Object? minDartsThrown = freezed,
+    Object? maxDartsThrown = freezed,
+    Object? minDartsOnDouble = freezed,
+    Object? maxDartsOnDouble = freezed,
   }) {
     return _then(State(
       input: input == freezed
@@ -712,6 +762,22 @@ class _$StateCopyWithImpl<$Res> extends _$InputAreaStateCopyWithImpl<$Res>
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
               as bool,
+      minDartsThrown: minDartsThrown == freezed
+          ? _value.minDartsThrown
+          : minDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxDartsThrown: maxDartsThrown == freezed
+          ? _value.maxDartsThrown
+          : maxDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      minDartsOnDouble: minDartsOnDouble == freezed
+          ? _value.minDartsOnDouble
+          : minDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxDartsOnDouble: maxDartsOnDouble == freezed
+          ? _value.maxDartsOnDouble
+          : maxDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -719,16 +785,30 @@ class _$StateCopyWithImpl<$Res> extends _$InputAreaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$State implements State {
-  const _$State({required this.input, required this.showCheckoutDetails});
+  const _$State(
+      {required this.input,
+      required this.showCheckoutDetails,
+      required this.minDartsThrown,
+      required this.maxDartsThrown,
+      required this.minDartsOnDouble,
+      required this.maxDartsOnDouble});
 
   @override
   final int input;
   @override
   final bool showCheckoutDetails;
+  @override
+  final int minDartsThrown;
+  @override
+  final int maxDartsThrown;
+  @override
+  final int minDartsOnDouble;
+  @override
+  final int maxDartsOnDouble;
 
   @override
   String toString() {
-    return 'InputAreaState(input: $input, showCheckoutDetails: $showCheckoutDetails)';
+    return 'InputAreaState(input: $input, showCheckoutDetails: $showCheckoutDetails, minDartsThrown: $minDartsThrown, maxDartsThrown: $maxDartsThrown, minDartsOnDouble: $minDartsOnDouble, maxDartsOnDouble: $maxDartsOnDouble)';
   }
 
   @override
@@ -739,14 +819,30 @@ class _$State implements State {
                 const DeepCollectionEquality().equals(other.input, input)) &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
                 const DeepCollectionEquality()
-                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
+                    .equals(other.showCheckoutDetails, showCheckoutDetails)) &&
+            (identical(other.minDartsThrown, minDartsThrown) ||
+                const DeepCollectionEquality()
+                    .equals(other.minDartsThrown, minDartsThrown)) &&
+            (identical(other.maxDartsThrown, maxDartsThrown) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxDartsThrown, maxDartsThrown)) &&
+            (identical(other.minDartsOnDouble, minDartsOnDouble) ||
+                const DeepCollectionEquality()
+                    .equals(other.minDartsOnDouble, minDartsOnDouble)) &&
+            (identical(other.maxDartsOnDouble, maxDartsOnDouble) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxDartsOnDouble, maxDartsOnDouble)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(input) ^
-      const DeepCollectionEquality().hash(showCheckoutDetails);
+      const DeepCollectionEquality().hash(showCheckoutDetails) ^
+      const DeepCollectionEquality().hash(minDartsThrown) ^
+      const DeepCollectionEquality().hash(maxDartsThrown) ^
+      const DeepCollectionEquality().hash(minDartsOnDouble) ^
+      const DeepCollectionEquality().hash(maxDartsOnDouble);
 
   @JsonKey(ignore: true)
   @override
@@ -755,13 +851,26 @@ class _$State implements State {
 }
 
 abstract class State implements InputAreaState {
-  const factory State({required int input, required bool showCheckoutDetails}) =
-      _$State;
+  const factory State(
+      {required int input,
+      required bool showCheckoutDetails,
+      required int minDartsThrown,
+      required int maxDartsThrown,
+      required int minDartsOnDouble,
+      required int maxDartsOnDouble}) = _$State;
 
   @override
   int get input => throw _privateConstructorUsedError;
   @override
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
+  @override
+  int get minDartsThrown => throw _privateConstructorUsedError;
+  @override
+  int get maxDartsThrown => throw _privateConstructorUsedError;
+  @override
+  int get minDartsOnDouble => throw _privateConstructorUsedError;
+  @override
+  int get maxDartsOnDouble => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $StateCopyWith<State> get copyWith => throw _privateConstructorUsedError;

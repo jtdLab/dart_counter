@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/core/user/user_bloc.dart';
+import 'package:dart_counter/application/profile/profile_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -7,16 +7,12 @@ class NameDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        return state.maybeMap(
-          loadSuccess: (success) {
-            final username = success.user.profile.username.getOrCrash();
-            return Text(
-              username.toUpperCase(),
-            );
-          },
-          orElse: () => throw UnexpectedStateError(),
+        final username = state.user.profile.username.getOrCrash();
+
+        return Text(
+          username.toUpperCase(),
         );
       },
     );

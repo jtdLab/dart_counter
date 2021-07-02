@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
@@ -6,14 +6,18 @@ import 'widgets/widgets.dart';
 class GameHistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        GameHistoryCard(game: Game.dummy()),
-        GameHistoryCard(game: Game.dummy()),
-        GameHistoryCard(game: Game.dummy()),
-        GameHistoryCard(game: Game.dummy()),
-      ],
+    return BlocBuilder<GameHistoryBloc, GameHistoryState>(
+      builder: (context, state) {
+        final games = state.user.gameHistoryOnline.getOrCrash();
+
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            for (final game in games.iter) 
+              GameHistoryCard(game: game),
+          ],
+        );
+      },
     );
   }
 }

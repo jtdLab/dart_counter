@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,7 +15,14 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
   final IPlayFacade _playFacade;
 
   InputAreaBloc(this._playFacade)
-      : super(const InputAreaState(input: 0, showCheckoutDetails: false));
+      : super(const InputAreaState(
+          input: 0,
+          showCheckoutDetails: false,
+          minDartsThrown: 0,
+          maxDartsThrown: 0,
+          minDartsOnDouble: 0,
+          maxDartsOnDouble: 0,
+        ));
 
   @override
   Stream<InputAreaState> mapEventToState(
@@ -39,12 +45,26 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
     final input = state.input;
 
     if (input < 10) {
-      yield const InputAreaState(input: 0, showCheckoutDetails: false);
+      yield const InputAreaState(
+        input: 0,
+        showCheckoutDetails: false,
+        minDartsThrown: 0,
+        maxDartsThrown: 0,
+        minDartsOnDouble: 0,
+        maxDartsOnDouble: 0,
+      );
     } else {
       final inputString = input.toString();
       final newInput =
           int.parse(inputString.substring(0, inputString.length - 1));
-      yield InputAreaState(input: newInput, showCheckoutDetails: false);
+      yield InputAreaState(
+        input: newInput,
+        showCheckoutDetails: false,
+        minDartsThrown: 0,
+        maxDartsThrown: 0,
+        minDartsOnDouble: 0,
+        maxDartsOnDouble: 0,
+      );
     }
   }
 
@@ -52,18 +72,47 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
     final pointsLeftCurrentTurn = _playFacade.game!.currentTurn().pointsLeft;
     final pointsScored = state.input;
 
-    // TODO if dart on double was possible considering pointsScored and currentTurnPointsLeft
-    if (pointsLeftCurrentTurn <= 170) {
-      yield state.copyWith(showCheckoutDetails: true);
-    } else {
+    final minDartsThrown = _playFacade.minDartsThrown(
+      points: pointsScored,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+    final maxDartsThrown = _playFacade.maxDartsThrown(
+      points: pointsScored,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+
+    final minDartsOnDouble = _playFacade.minDartsOnDouble(
+      points: pointsScored,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+    final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+      points: pointsScored,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+
+    if (minDartsThrown == maxDartsThrown &&
+        minDartsOnDouble == maxDartsOnDouble) {
       _playFacade.performThrow(
-        t: Throw(
-          points: pointsScored,
-          dartsThrown: 3,
-          dartsOnDouble: 0,
-        ),
+        t: Throw(points: pointsScored, dartsThrown: 3, dartsOnDouble: 0),
       );
-      yield const InputAreaState(input: 0, showCheckoutDetails: false);
+      yield const InputAreaState(
+        input: 0,
+        showCheckoutDetails: false,
+        minDartsThrown: 0,
+        maxDartsThrown: 0,
+        minDartsOnDouble: 0,
+        maxDartsOnDouble: 0,
+      );
+    } else {
+      yield InputAreaState(
+        input: pointsScored,
+        showCheckoutDetails: true,
+        minDartsThrown: minDartsThrown,
+        maxDartsThrown: maxDartsThrown,
+        minDartsOnDouble: minDartsOnDouble,
+        maxDartsOnDouble: maxDartsOnDouble,
+      );
+      // TODO get return from ckd
     }
   }
 
@@ -85,7 +134,14 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
             dartsOnDouble: 1,
           ),
         );
-        yield const InputAreaState(input: 0, showCheckoutDetails: false);
+        yield const InputAreaState(
+          input: 0,
+          showCheckoutDetails: false,
+          minDartsThrown: 0,
+          maxDartsThrown: 0,
+          minDartsOnDouble: 0,
+          maxDartsOnDouble: 0,
+        );
       }
     }
   }
@@ -99,7 +155,14 @@ class InputAreaBloc extends Bloc<InputAreaEvent, InputAreaState> {
     // TODO validate more
 
     if (valid) {
-      yield InputAreaState(input: newInput, showCheckoutDetails: false);
+      yield InputAreaState(
+        input: newInput,
+        showCheckoutDetails: false,
+        minDartsThrown: 0,
+        maxDartsThrown: 0,
+        minDartsOnDouble: 0,
+        maxDartsOnDouble: 0,
+      );
     }
   }
 }

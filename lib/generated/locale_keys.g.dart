@@ -24,6 +24,7 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const averrage = 'averrage';
   static const checkoutPercentage = 'checkoutPercentage';
+  static const checkout = 'checkout';
   static const wins = 'wins';
   static const defeats = 'defeats';
   static const offline = 'offline';
@@ -38,7 +39,7 @@ abstract class  LocaleKeys {
   static const checkoutPercentageShort = 'checkoutPercentageShort';
   static const firstNine = 'firstNine';
   static const games = 'games';
-  static const showMatchHistory = 'showMatchHistory';
+  static const showGameHistory = 'showGameHistory';
   static const received = 'received';
   static const sent = 'sent';
   static const pending = 'pending';
@@ -95,7 +96,7 @@ abstract class  LocaleKeys {
   static const dartsPerLeg = 'dartsPerLeg';
   static const hightestFinish = 'hightestFinish';
   static const hightestFinishShort = 'hightestFinishShort';
-  static const matchHistory = 'matchHistory';
+  static const gameHistory = 'gameHistory';
   static const deletePhoto = 'deletePhoto';
   static const takePhoto = 'takePhoto';
   static const choosePhoto = 'choosePhoto';
@@ -103,5 +104,6 @@ abstract class  LocaleKeys {
   static const changeUsername = 'changeUsername';
   static const changePassword = 'changePassword';
   static const changeEmail = 'changeEmail';
+  static const general = 'general';
 
 }

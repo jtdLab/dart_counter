@@ -2,15 +2,15 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dartz/dartz.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'game.dart';
 
 abstract class IPlayFacade {
-
   bool get online;
   Game? get game;
 
-  Stream<Game> watchGame();
+  ValueStream<Game> watchGame();
 
   Future<Either<PlayFailure, Unit>> createGame({required bool online});
   Future<Either<PlayFailure, Unit>> reorderPlayer(
@@ -36,4 +36,9 @@ abstract class IPlayFacade {
 
   Future<Either<PlayFailure, Unit>> joinGame(int gameCode);
   Future<Either<PlayFailure, Unit>> inviteFriend(Friend friend);
+
+  int minDartsThrown({required int points, required int pointsLeft});
+  int maxDartsThrown({required int points, required int pointsLeft});
+  int minDartsOnDouble({required int points, required int pointsLeft});
+  int maxDartsOnDouble({required int points, required int pointsLeft});
 }

@@ -7,7 +7,7 @@ class GameHistoryDetailsWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        MainStatsCard(),
+        GeneralStatsCard(),
         AverrageCard(),
         CheckoutCard(),
         TakesCard(),

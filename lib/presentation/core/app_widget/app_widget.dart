@@ -5,11 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:dart_counter/generated/codegen_loader.g.dart';
 
 import 'package:dart_counter/application/auth/auth_bloc.dart';
-import 'package:dart_counter/application/core/friend_request/friend_request_bloc.dart';
-import 'package:dart_counter/application/core/invitation/invitation_bloc.dart';
-import 'package:dart_counter/application/core/loading/loading_bloc.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/application/core/user/user_bloc.dart';
 
 import 'package:dart_counter/presentation/android/core/app_widget.dart'
     as android;
@@ -25,21 +20,6 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-        ),
-        BlocProvider(
-          create: (context) => getIt<FriendRequestBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<InvitationBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<UserBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<PlayBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<LoadingBloc>(),
         ),
       ],
       child: EasyLocalization(

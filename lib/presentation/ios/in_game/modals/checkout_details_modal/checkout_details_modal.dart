@@ -4,7 +4,18 @@ import 'package:dart_counter/presentation/ios/settings/widgets/settings_widget/w
 import 'package:dart_counter/presentation/ios/settings/widgets/settings_widget/widgets/widgets.dart';
 
 class CheckoutDetailsModal extends StatelessWidget {
-  const CheckoutDetailsModal({Key? key}) : super(key: key);
+  final int minDartsThrown;
+  final int maxDartsThrown;
+  final int minDartsOnDouble;
+  final int maxDartsOnDouble;
+
+  const CheckoutDetailsModal({
+    Key? key,
+    required this.minDartsThrown,
+    required this.maxDartsThrown,
+    required this.minDartsOnDouble,
+    required this.maxDartsOnDouble,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +35,10 @@ class CheckoutDetailsModal extends StatelessWidget {
               AppRow(
                 spacing: size6(context),
                 children: [
-                  Expanded(
-                    child: CkdButton(
-                      onPressed: () {},
-                      text: '1',
+                  for (int i = minDartsThrown; i <= maxDartsThrown; i++)
+                    Expanded(
+                      child: CkdButton(onPressed: () {}, text: i.toString()),
                     ),
-                  ),
-                  Expanded(
-                    child: CkdButton(
-                       onPressed: () {},
-                      text: '2',
-                    ),
-                  ),
-                  Expanded(
-                    child: CkdButton(
-                       onPressed: () {},
-                      text: '3',
-                    ),
-                  ),
                 ],
               ),
             ],
@@ -59,24 +56,10 @@ class CheckoutDetailsModal extends StatelessWidget {
               AppRow(
                 spacing: size6(context),
                 children: [
-                  Expanded(
-                    child: CkdButton(
-                       onPressed: () {},
-                      text: '0',
+                  for (int i = minDartsOnDouble; i <= maxDartsOnDouble; i++)
+                    Expanded(
+                      child: CkdButton(onPressed: () {}, text: i.toString()),
                     ),
-                  ),
-                  Expanded(
-                    child: CkdButton(
-                       onPressed: () {},
-                      text: '1',
-                    ),
-                  ),
-                  Expanded(
-                    child: CkdButton(
-                       onPressed: () {},
-                      text: '2',
-                    ),
-                  ),
                 ],
               ),
             ],

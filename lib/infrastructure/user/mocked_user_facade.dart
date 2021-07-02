@@ -8,13 +8,25 @@ import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserFacade)
 class MockedUserFacade implements IUserFacade {
+  final BehaviorSubject<Either<UserFailure, User>> _userController =
+      BehaviorSubject();
+
   bool fail = false; // toggle to simulate working / notworking endpoint
 
   User? _currentUser = User.dummy();
+
+  MockedUserFacade() {
+    _userController.add(
+      !fail && _currentUser != null
+          ? right(_currentUser!)
+          : left(const UserFailure.failure()),
+    );
+  }
 
   @override
   Future<Either<UserFailure, Unit>> deletePhoto() {
@@ -75,9 +87,7 @@ class MockedUserFacade implements IUserFacade {
   }
 
   @override
-  Stream<Either<UserFailure, User>> watchCurrentUser() {
-    return Stream.value(!fail && _currentUser != null
-        ? right(_currentUser!)
-        : left(const UserFailure.failure()));
+  ValueStream<Either<UserFailure, User>> watchCurrentUser() {
+    return _userController.stream;
   }
 }

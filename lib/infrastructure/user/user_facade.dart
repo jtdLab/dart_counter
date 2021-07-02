@@ -16,6 +16,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:image/image.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.prod)
 @LazySingleton(as: IUserFacade)
@@ -28,8 +29,11 @@ class UserFacade implements IUserFacade {
   UserFacade(this._firestore, this._storage, this._authFacade, this._functions);
 
   @override
-  Stream<Either<UserFailure, User>> watchCurrentUser() async* {
-    try {
+  ValueStream<Either<UserFailure, User>> watchCurrentUser() {
+    // TODO implement
+    throw UnimplementedError();
+    /**
+     * try {
       final uid = _authFacade.getSignedInUid();
 
       if (uid == null) {
@@ -55,6 +59,7 @@ class UserFacade implements IUserFacade {
         yield left(const UserFailure.failure());
       }
     }
+     */
   }
 
   @override

@@ -22,6 +22,7 @@
     "home": "Home",
     "averrage": "Averrage",
     "checkoutPercentage": "Doppelquote",
+    "checkout" : "Doppel",
     "wins": "Siege",
     "defeats": "Niederlagen",
     "offline": "Offline",
@@ -36,7 +37,7 @@
     "checkoutPercentageShort": "Doppelquote",
     "firstNine": "First 9",
     "games": "Spiel",
-    "showMatchHistory": "Spielverlauf anzeigen",
+    "showGameHistory": "Spielverlauf anzeigen",
     "received": "Erhalten",
     "sent": "Gesendet",
     "pending": "Ausstehened",
@@ -93,7 +94,7 @@
     "dartsPerLeg": "Darts/Leg",
     "hightestFinish": "Höchstes Finish",
     "hightestFinishShort": "Höchstes Finish",
-    "matchHistory" : "Spielverlauf",
+    "gameHistory" : "Spielverlauf",
 
     "deletePhoto" : "Foto löschen",
     "takePhoto" : "Foto aufnehmen",
@@ -102,5 +103,7 @@
 
     "changeUsername": "Benutzername ändern",
     "changePassword" : "Passwort ändern",
-    "changeEmail" : "E-Mail Addresse ändern"
+    "changeEmail" : "E-Mail Addresse ändern",
+
+    "general": "Allgemein"
 }

@@ -37,8 +37,11 @@ class GameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations() async* {
+  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchReceivedInvitations() {
+    // TODO: implement send
+    throw UnimplementedError();
+    /*
     final userDoc = await _firestore.userDocument();
     yield* userDoc.gameInvitationsCollection
         .orderBy('createdAt', descending: true)
@@ -53,5 +56,25 @@ class GameInvitationFacade implements IGameInvitationFacade {
         .onErrorReturnWith((e) {
       return left(const GameInvitationFailure.unexpected());
     });
+    */
+  }
+
+  @override
+  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchSentInvitations() {
+    // TODO: implement send
+    throw UnimplementedError();
+  }
+
+  @override
+  ValueStream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
+    // TODO: implement send
+    throw UnimplementedError();
+  }
+
+  @override
+  void markGameInvitationsAsRead() {
+    // TODO: implement send
+    throw UnimplementedError();
   }
 }

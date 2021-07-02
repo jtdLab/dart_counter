@@ -9,7 +9,7 @@ class FriendsWidget extends StatelessWidget {
       children: [
         AppSearchField(
           placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
-          onChanged: (x) {},
+          onChanged: (newSearchString) {},
         ),
         FriendsCard(),
       ],

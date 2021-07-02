@@ -20,7 +20,12 @@ class InputArea extends StatelessWidget {
           if (state.showCheckoutDetails) {
             showCupertinoModalBottomSheet(
               context: context,
-              builder: (context) => const CheckoutDetailsModal(),
+              builder: (context) => CheckoutDetailsModal(
+                minDartsThrown: state.minDartsThrown,
+                maxDartsThrown: state.maxDartsThrown,
+                minDartsOnDouble: state.minDartsOnDouble,
+                maxDartsOnDouble: state.maxDartsOnDouble,
+              ),
             );
           }
         },

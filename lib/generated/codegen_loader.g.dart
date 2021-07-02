@@ -38,6 +38,7 @@ class CodegenLoader extends AssetLoader{
   "home": "Home",
   "averrage": "Averrage",
   "checkoutPercentage": "Doppelquote",
+  "checkout": "Doppel",
   "wins": "Siege",
   "defeats": "Niederlagen",
   "offline": "Offline",
@@ -52,7 +53,7 @@ class CodegenLoader extends AssetLoader{
   "checkoutPercentageShort": "Doppelquote",
   "firstNine": "First 9",
   "games": "Spiel",
-  "showMatchHistory": "Spielverlauf anzeigen",
+  "showGameHistory": "Spielverlauf anzeigen",
   "received": "Erhalten",
   "sent": "Gesendet",
   "pending": "Ausstehened",
@@ -109,14 +110,15 @@ class CodegenLoader extends AssetLoader{
   "dartsPerLeg": "Darts/Leg",
   "hightestFinish": "Höchstes Finish",
   "hightestFinishShort": "Höchstes Finish",
-  "matchHistory": "Spielverlauf",
+  "gameHistory": "Spielverlauf",
   "deletePhoto": "Foto löschen",
   "takePhoto": "Foto aufnehmen",
   "choosePhoto": "Foto auswählen",
   "signOut": "Ausloggen",
   "changeUsername": "Benutzername ändern",
   "changePassword": "Passwort ändern",
-  "changeEmail": "E-Mail Addresse ändern"
+  "changeEmail": "E-Mail Addresse ändern",
+  "general": "Allgemein"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -142,6 +144,7 @@ static const Map<String,dynamic> en = {
   "home": "Home",
   "averrage": "Averrage",
   "checkoutPercentage": "Checkout percentage",
+  "checkout": "Checkout",
   "wins": "Wins",
   "defeats": "Defeats",
   "offline": "Offline",
@@ -156,7 +159,7 @@ static const Map<String,dynamic> en = {
   "checkoutPercentageShort": "Checkout%",
   "firstNine": "First 9",
   "games": "Games",
-  "showMatchHistory": "Show Match History",
+  "showGameHistory": "Show Game History",
   "received": "Received",
   "sent": "Sent",
   "pending": "Pending",
@@ -213,14 +216,15 @@ static const Map<String,dynamic> en = {
   "dartsPerLeg": "Darts/Leg",
   "hightestFinish": "Highest Finish",
   "hightestFinishShort": "High. Finish",
-  "matchHistory": "Match History",
+  "gameHistory": "Game History",
   "deletePhoto": "Delete Photo",
   "takePhoto": "Take Photo",
   "choosePhoto": "Choose Photo",
   "signOut": "Sign out",
   "changeUsername": "Change Username",
   "changePassword": "Change Password",
-  "changeEmail": "Change Email"
+  "changeEmail": "Change Email",
+  "general": "General"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

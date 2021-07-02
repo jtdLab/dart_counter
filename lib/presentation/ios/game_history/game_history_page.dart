@@ -1,17 +1,24 @@
+import 'package:dart_counter/injection.dart';
+
+import 'package:dart_counter/application/game_history/game_history_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class GameHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: const BackButton(),
-        middle: Text(
-          LocaleKeys.matchHistory.tr().toUpperCase(),
+    return BlocProvider(
+      create: (context) => getIt<GameHistoryBloc>(),
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: const BackButton(),
+          middle: Text(
+            LocaleKeys.gameHistory.tr().toUpperCase(),
+          ),
         ),
+        child: GameHistoryWidget(),
       ),
-      child: GameHistoryWidget(),
     );
   }
 }

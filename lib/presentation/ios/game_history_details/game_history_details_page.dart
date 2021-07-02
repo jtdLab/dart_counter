@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/play/game.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
 import 'widgets/widgets.dart';
 
 class GameHistoryDetailsPage extends StatelessWidget {
@@ -11,14 +12,17 @@ class GameHistoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: const BackButton(),
-        middle: Text(
-          game.description().toUpperCase(),
+    return Provider.value(
+      value: game,
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: const BackButton(),
+          middle: Text(
+            game.description().toUpperCase(),
+          ),
         ),
+        child: GameHistoryDetailsWidget(),
       ),
-      child: GameHistoryDetailsWidget(),
     );
   }
 }
