@@ -26,10 +26,12 @@ class CreateGamePage extends StatelessWidget {
           maxHeight: 918, //806, // TODO
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
-            leading: CancelButton(
-              onPressed: () => context
-                  .read<CreateGameBloc>()
-                  .add(const CreateGameEvent.gameCanceled()),
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () => context
+                    .read<CreateGameBloc>()
+                    .add(const CreateGameEvent.gameCanceled()),
+              ),
             ),
             middle: Text(
               LocaleKeys.createGame.tr().toUpperCase(),
