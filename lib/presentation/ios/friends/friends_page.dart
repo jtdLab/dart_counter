@@ -11,7 +11,8 @@ class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<FriendsBloc>(),
+      create: (context) =>
+          getIt<FriendsBloc>()..add(const FriendsEvent.watchStarted()),
       child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
         navigationBar: AppNavigationBar(

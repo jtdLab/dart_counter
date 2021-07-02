@@ -9,7 +9,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ProfileBloc>(),
+      create: (context) =>
+          getIt<ProfileBloc>()..add(const ProfileEvent.watchStarted()),
       child: AppPage(
         navigationBar: const AppNavigationBar(
           leading: BackButton(),

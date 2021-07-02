@@ -9,7 +9,8 @@ class GameHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GameHistoryBloc>(),
+      create: (context) =>
+          getIt<GameHistoryBloc>()..add(const GameHistoryEvent.watchStarted()),
       child: AppPage(
         navigationBar: AppNavigationBar(
           leading: const BackButton(),
