@@ -2,8 +2,8 @@ import 'package:dart_counter/injection.dart';
 
 import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
 
+import 'package:dart_counter/presentation/ios/in_game/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/in_game/modals/checkout_details_modal/checkout_details_modal.dart';
 import 'widgets/widgets.dart';
 
 class InputArea extends StatelessWidget {
@@ -33,7 +33,7 @@ class InputArea extends StatelessWidget {
           spacing: size6(context),
           children: const [
             InputRow(),
-            KeyBoard(),
+            SpeechKeyBoard(),
           ],
         ),
       ),

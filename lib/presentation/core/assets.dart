@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
 
+  static const micro = 'assets/images/png/micro.png';
+
   static const clock_yellow_new = 'assets/images/png/clock_yellow_new.png';
   static const x_mark_black_new = 'assets/images/png/x_mark_black_new.png';
   static const check_mark_light_unchecked_new = 'assets/images/png/check_mark_light_unchecked_new.png';
