@@ -33,7 +33,7 @@ class InputArea extends StatelessWidget {
           spacing: size6(context),
           children: const [
             InputRow(),
-            SpeechKeyBoard(),
+            KeyBoard(),
           ],
         ),
       ),
