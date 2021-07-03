@@ -1,7 +1,9 @@
 import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
+import 'package:dart_counter/presentation/ios/settings/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:flutter/material.dart' show Colors;
 import 'widgets/widgets.dart';
 
 class SettingsWidget extends StatelessWidget {
@@ -13,8 +15,17 @@ class SettingsWidget extends StatelessWidget {
 
         return Column(
           children: [
-            ProfileImageDisplayer(
-              photoUrl: photoUrl,
+            CupertinoButton(
+              onPressed: () {
+                showCupertinoModalBottomSheet(
+                  backgroundColor: Colors.white70,
+                  context: context,
+                  builder: (context) => EditProfilePictureModal(),
+                );
+              },
+              child: ProfileImageDisplayer(
+                photoUrl: photoUrl,
+              ),
             ),
             const Spacer(),
             LanguageCard(),

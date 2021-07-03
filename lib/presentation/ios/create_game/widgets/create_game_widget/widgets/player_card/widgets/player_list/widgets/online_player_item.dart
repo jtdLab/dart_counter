@@ -2,10 +2,12 @@ import 'package:dart_counter/domain/play/player.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
+import 'package:dart_counter/presentation/ios/create_game/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
+import 'package:flutter/material.dart' show Colors;
 
 class OnlinePlayerItem extends StatelessWidget {
   final OnlinePlayer player;
@@ -51,7 +53,11 @@ class OnlinePlayerItem extends StatelessWidget {
                     ),
                     AppIconButton(
                       onPressed: () {
-                        // TODO implement
+                        showCupertinoModalBottomSheet(
+                          backgroundColor: Colors.white70,
+                          context: context,
+                          builder: (context) => AdvancedSettingsModal(),
+                        );
                       },
                       icon: Image.asset(
                         AppImages.settings_new,
