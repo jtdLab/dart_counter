@@ -31,9 +31,19 @@ class InputArea extends StatelessWidget {
         },
         child: AppColumn(
           spacing: size6(context),
-          children: const [
-            InputRow(),
-            KeyBoard(),
+          children: [
+            const InputRow(),
+            SizedBox(
+              height: 4 * size55(context) + 3 * size6(context),
+              child: PageView(
+                children: const [
+                  KeyBoard(),
+                  DetailedKeyBoard(),
+                  OpticalKeyboard(),
+                  SpeechKeyBoard(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
