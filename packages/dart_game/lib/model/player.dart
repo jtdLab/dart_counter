@@ -19,7 +19,9 @@ class Player {
 
   final List<Set> sets;
 
-  Player(this._game, this.id) : sets = [], name = 'player $id';
+  Player(this._game, this.id)
+      : sets = [],
+        name = 'player $id';
 
   ///
   /// PRIVATE
@@ -67,23 +69,27 @@ class Player {
   int? get _dartsThrownCurrentLeg => _currentSet?._currentLeg._dartsThrown;
 
   Stats get _stats => Stats(
-      average: _average,
-      checkoutPercentage: _checkoutPercentage,
-      firstNineAverage: _firstNineAverage,
-      bestLegDartsThrown: _bestLegDartsThrown,
-      bestLegAverage: _bestLegAverage,
-      worstLegDartsThrown: _worstLegDarts,
-      worstLegAverage: _worstLegAverage,
-      averageDartsPerLeg: _averageDartsPerLeg,
-      highestFinish: _highestFinish,
-      fourtyPlus: _fourtyPlus,
-      sixtyPlus: _sixtyPlus,
-      eightyPlus: _eightyPlus,
-      hundredPlus: _hundredPlus,
-      hundredTwentyPlus: _hundredTwentyPlus,
-      hundredFourtyPlus: _hundredFourtyPlus,
-      hundredSixtyPlus: _hundredSixtyPlus,
-      hundredEighty: _hundredEighty);
+        average: _average,
+        checkoutPercentage: _checkoutPercentage,
+        firstNineAverage: _firstNineAverage,
+        bestLegDartsThrown: _bestLegDartsThrown,
+        bestLegAverage: _bestLegAverage,
+        worstLegDartsThrown: _worstLegDarts,
+        worstLegAverage: _worstLegAverage,
+        averageDartsPerLeg: _averageDartsPerLeg,
+        highestFinish: _highestFinish,
+        firstDartAverage: _firstDartAverage,
+        secondDartAverage: _secondDartAverage,
+        thirdDartAverage: _thirdDartAverage,
+        fourtyPlus: _fourtyPlus,
+        sixtyPlus: _sixtyPlus,
+        eightyPlus: _eightyPlus,
+        hundredPlus: _hundredPlus,
+        hundredTwentyPlus: _hundredTwentyPlus,
+        hundredFourtyPlus: _hundredFourtyPlus,
+        hundredSixtyPlus: _hundredSixtyPlus,
+        hundredEighty: _hundredEighty,
+      );
 
   double get _average => _dartsThrown == 0 ? 0 : (3 * _points) / _dartsThrown;
 
@@ -180,14 +186,29 @@ class Player {
 
   int? get _highestFinish {
     List<int> nonNullFinishes = [];
-    for(int? finish in _finishes) {
-      if(finish != null) {
+    for (int? finish in _finishes) {
+      if (finish != null) {
         nonNullFinishes.add(finish);
       }
     }
-   
+
     if (nonNullFinishes.isEmpty) return null;
     return nonNullFinishes.reduce(max);
+  }
+
+  // TODO test
+  double? get _firstDartAverage {
+   
+  }
+
+  // TODO test
+  double? get _secondDartAverage {
+
+  }
+
+  // TODO test
+  double? get _thirdDartAverage {
+
   }
 
   int get _fourtyPlus {

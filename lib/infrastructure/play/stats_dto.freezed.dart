@@ -30,6 +30,9 @@ class _$StatsDtoTearOff {
       double? worstLegAverage,
       double? averageDartsPerLeg,
       int? highestFinish,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage,
       required int fourtyPlus,
       required int sixtyPlus,
       required int eightyPlus,
@@ -48,6 +51,9 @@ class _$StatsDtoTearOff {
       worstLegAverage: worstLegAverage,
       averageDartsPerLeg: averageDartsPerLeg,
       highestFinish: highestFinish,
+      firstDartAverage: firstDartAverage,
+      secondDartAverage: secondDartAverage,
+      thirdDartAverage: thirdDartAverage,
       fourtyPlus: fourtyPlus,
       sixtyPlus: sixtyPlus,
       eightyPlus: eightyPlus,
@@ -78,6 +84,9 @@ mixin _$StatsDto {
   double? get worstLegAverage => throw _privateConstructorUsedError;
   double? get averageDartsPerLeg => throw _privateConstructorUsedError;
   int? get highestFinish => throw _privateConstructorUsedError;
+  double? get firstDartAverage => throw _privateConstructorUsedError;
+  double? get secondDartAverage => throw _privateConstructorUsedError;
+  double? get thirdDartAverage => throw _privateConstructorUsedError;
   int get fourtyPlus => throw _privateConstructorUsedError;
   int get sixtyPlus => throw _privateConstructorUsedError;
   int get eightyPlus => throw _privateConstructorUsedError;
@@ -107,6 +116,9 @@ abstract class $StatsDtoCopyWith<$Res> {
       double? worstLegAverage,
       double? averageDartsPerLeg,
       int? highestFinish,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage,
       int fourtyPlus,
       int sixtyPlus,
       int eightyPlus,
@@ -136,6 +148,9 @@ class _$StatsDtoCopyWithImpl<$Res> implements $StatsDtoCopyWith<$Res> {
     Object? worstLegAverage = freezed,
     Object? averageDartsPerLeg = freezed,
     Object? highestFinish = freezed,
+    Object? firstDartAverage = freezed,
+    Object? secondDartAverage = freezed,
+    Object? thirdDartAverage = freezed,
     Object? fourtyPlus = freezed,
     Object? sixtyPlus = freezed,
     Object? eightyPlus = freezed,
@@ -182,6 +197,18 @@ class _$StatsDtoCopyWithImpl<$Res> implements $StatsDtoCopyWith<$Res> {
           ? _value.highestFinish
           : highestFinish // ignore: cast_nullable_to_non_nullable
               as int?,
+      firstDartAverage: firstDartAverage == freezed
+          ? _value.firstDartAverage
+          : firstDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      secondDartAverage: secondDartAverage == freezed
+          ? _value.secondDartAverage
+          : secondDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      thirdDartAverage: thirdDartAverage == freezed
+          ? _value.thirdDartAverage
+          : thirdDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
@@ -233,6 +260,9 @@ abstract class _$StatsDtoCopyWith<$Res> implements $StatsDtoCopyWith<$Res> {
       double? worstLegAverage,
       double? averageDartsPerLeg,
       int? highestFinish,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage,
       int fourtyPlus,
       int sixtyPlus,
       int eightyPlus,
@@ -263,6 +293,9 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
     Object? worstLegAverage = freezed,
     Object? averageDartsPerLeg = freezed,
     Object? highestFinish = freezed,
+    Object? firstDartAverage = freezed,
+    Object? secondDartAverage = freezed,
+    Object? thirdDartAverage = freezed,
     Object? fourtyPlus = freezed,
     Object? sixtyPlus = freezed,
     Object? eightyPlus = freezed,
@@ -309,6 +342,18 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
           ? _value.highestFinish
           : highestFinish // ignore: cast_nullable_to_non_nullable
               as int?,
+      firstDartAverage: firstDartAverage == freezed
+          ? _value.firstDartAverage
+          : firstDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      secondDartAverage: secondDartAverage == freezed
+          ? _value.secondDartAverage
+          : secondDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      thirdDartAverage: thirdDartAverage == freezed
+          ? _value.thirdDartAverage
+          : thirdDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
@@ -358,6 +403,9 @@ class _$_StatsDto extends _StatsDto {
       this.worstLegAverage,
       this.averageDartsPerLeg,
       this.highestFinish,
+      this.firstDartAverage,
+      this.secondDartAverage,
+      this.thirdDartAverage,
       required this.fourtyPlus,
       required this.sixtyPlus,
       required this.eightyPlus,
@@ -390,6 +438,12 @@ class _$_StatsDto extends _StatsDto {
   @override
   final int? highestFinish;
   @override
+  final double? firstDartAverage;
+  @override
+  final double? secondDartAverage;
+  @override
+  final double? thirdDartAverage;
+  @override
   final int fourtyPlus;
   @override
   final int sixtyPlus;
@@ -408,7 +462,7 @@ class _$_StatsDto extends _StatsDto {
 
   @override
   String toString() {
-    return 'StatsDto(average: $average, checkoutPercentage: $checkoutPercentage, firstNineAverage: $firstNineAverage, bestLegDartsThrown: $bestLegDartsThrown, bestLegAverage: $bestLegAverage, worstLegDartsThrown: $worstLegDartsThrown, worstLegAverage: $worstLegAverage, averageDartsPerLeg: $averageDartsPerLeg, highestFinish: $highestFinish, fourtyPlus: $fourtyPlus, sixtyPlus: $sixtyPlus, eightyPlus: $eightyPlus, hundredPlus: $hundredPlus, hundredTwentyPlus: $hundredTwentyPlus, hundredFourtyPlus: $hundredFourtyPlus, hundredSixtyPlus: $hundredSixtyPlus, hundredEighty: $hundredEighty)';
+    return 'StatsDto(average: $average, checkoutPercentage: $checkoutPercentage, firstNineAverage: $firstNineAverage, bestLegDartsThrown: $bestLegDartsThrown, bestLegAverage: $bestLegAverage, worstLegDartsThrown: $worstLegDartsThrown, worstLegAverage: $worstLegAverage, averageDartsPerLeg: $averageDartsPerLeg, highestFinish: $highestFinish, firstDartAverage: $firstDartAverage, secondDartAverage: $secondDartAverage, thirdDartAverage: $thirdDartAverage, fourtyPlus: $fourtyPlus, sixtyPlus: $sixtyPlus, eightyPlus: $eightyPlus, hundredPlus: $hundredPlus, hundredTwentyPlus: $hundredTwentyPlus, hundredFourtyPlus: $hundredFourtyPlus, hundredSixtyPlus: $hundredSixtyPlus, hundredEighty: $hundredEighty)';
   }
 
   @override
@@ -442,6 +496,15 @@ class _$_StatsDto extends _StatsDto {
             (identical(other.highestFinish, highestFinish) ||
                 const DeepCollectionEquality()
                     .equals(other.highestFinish, highestFinish)) &&
+            (identical(other.firstDartAverage, firstDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstDartAverage, firstDartAverage)) &&
+            (identical(other.secondDartAverage, secondDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondDartAverage, secondDartAverage)) &&
+            (identical(other.thirdDartAverage, thirdDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.thirdDartAverage, thirdDartAverage)) &&
             (identical(other.fourtyPlus, fourtyPlus) ||
                 const DeepCollectionEquality()
                     .equals(other.fourtyPlus, fourtyPlus)) &&
@@ -480,6 +543,9 @@ class _$_StatsDto extends _StatsDto {
       const DeepCollectionEquality().hash(worstLegAverage) ^
       const DeepCollectionEquality().hash(averageDartsPerLeg) ^
       const DeepCollectionEquality().hash(highestFinish) ^
+      const DeepCollectionEquality().hash(firstDartAverage) ^
+      const DeepCollectionEquality().hash(secondDartAverage) ^
+      const DeepCollectionEquality().hash(thirdDartAverage) ^
       const DeepCollectionEquality().hash(fourtyPlus) ^
       const DeepCollectionEquality().hash(sixtyPlus) ^
       const DeepCollectionEquality().hash(eightyPlus) ^
@@ -511,6 +577,9 @@ abstract class _StatsDto extends StatsDto {
       double? worstLegAverage,
       double? averageDartsPerLeg,
       int? highestFinish,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage,
       required int fourtyPlus,
       required int sixtyPlus,
       required int eightyPlus,
@@ -541,6 +610,12 @@ abstract class _StatsDto extends StatsDto {
   double? get averageDartsPerLeg => throw _privateConstructorUsedError;
   @override
   int? get highestFinish => throw _privateConstructorUsedError;
+  @override
+  double? get firstDartAverage => throw _privateConstructorUsedError;
+  @override
+  double? get secondDartAverage => throw _privateConstructorUsedError;
+  @override
+  double? get thirdDartAverage => throw _privateConstructorUsedError;
   @override
   int get fourtyPlus => throw _privateConstructorUsedError;
   @override

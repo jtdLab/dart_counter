@@ -8,11 +8,13 @@ part of 'dart_dto.dart';
 
 _$_DartDto _$_$_DartDtoFromJson(Map<String, dynamic> json) {
   return _$_DartDto(
-    points: json['points'] as int,
+    type: json['type'] as String,
+    value: json['value'] as int,
   );
 }
 
 Map<String, dynamic> _$_$_DartDtoToJson(_$_DartDto instance) =>
     <String, dynamic>{
-      'points': instance.points,
+      'type': instance.type,
+      'value': instance.value,
     };

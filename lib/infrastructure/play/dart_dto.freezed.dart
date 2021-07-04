@@ -20,9 +20,10 @@ DartDto _$DartDtoFromJson(Map<String, dynamic> json) {
 class _$DartDtoTearOff {
   const _$DartDtoTearOff();
 
-  _DartDto call({required int points}) {
+  _DartDto call({required String type, required int value}) {
     return _DartDto(
-      points: points,
+      type: type,
+      value: value,
     );
   }
 
@@ -36,7 +37,8 @@ const $DartDto = _$DartDtoTearOff();
 
 /// @nodoc
 mixin _$DartDto {
-  int get points => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  int get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +49,7 @@ mixin _$DartDto {
 abstract class $DartDtoCopyWith<$Res> {
   factory $DartDtoCopyWith(DartDto value, $Res Function(DartDto) then) =
       _$DartDtoCopyWithImpl<$Res>;
-  $Res call({int points});
+  $Res call({String type, int value});
 }
 
 /// @nodoc
@@ -60,12 +62,17 @@ class _$DartDtoCopyWithImpl<$Res> implements $DartDtoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? points = freezed,
+    Object? type = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -76,7 +83,7 @@ abstract class _$DartDtoCopyWith<$Res> implements $DartDtoCopyWith<$Res> {
   factory _$DartDtoCopyWith(_DartDto value, $Res Function(_DartDto) then) =
       __$DartDtoCopyWithImpl<$Res>;
   @override
-  $Res call({int points});
+  $Res call({String type, int value});
 }
 
 /// @nodoc
@@ -90,12 +97,17 @@ class __$DartDtoCopyWithImpl<$Res> extends _$DartDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? points = freezed,
+    Object? type = freezed,
+    Object? value = freezed,
   }) {
     return _then(_DartDto(
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -104,30 +116,36 @@ class __$DartDtoCopyWithImpl<$Res> extends _$DartDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DartDto extends _DartDto {
-  const _$_DartDto({required this.points}) : super._();
+  const _$_DartDto({required this.type, required this.value}) : super._();
 
   factory _$_DartDto.fromJson(Map<String, dynamic> json) =>
       _$_$_DartDtoFromJson(json);
 
   @override
-  final int points;
+  final String type;
+  @override
+  final int value;
 
   @override
   String toString() {
-    return 'DartDto(points: $points)';
+    return 'DartDto(type: $type, value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DartDto &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)));
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(points);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(value);
 
   @JsonKey(ignore: true)
   @override
@@ -141,13 +159,16 @@ class _$_DartDto extends _DartDto {
 }
 
 abstract class _DartDto extends DartDto {
-  const factory _DartDto({required int points}) = _$_DartDto;
+  const factory _DartDto({required String type, required int value}) =
+      _$_DartDto;
   const _DartDto._() : super._();
 
   factory _DartDto.fromJson(Map<String, dynamic> json) = _$_DartDto.fromJson;
 
   @override
-  int get points => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  @override
+  int get value => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DartDtoCopyWith<_DartDto> get copyWith =>

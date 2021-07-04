@@ -8,25 +8,42 @@ part 'dart_dto.g.dart';
 @freezed
 class DartDto with _$DartDto {
   const factory DartDto({
-    required int points,
+    required String type,
+    required int value,
   }) = _DartDto;
 
   const DartDto._();
 
   factory DartDto.fromDomain(Dart dart) {
-    return DartDto(points: dart.points);
+    return DartDto(
+      type: dart.type == DartType.s
+          ? 'single'
+          : dart.type == DartType.d
+              ? 'double'
+              : 'triple',
+      value: dart.value,
+    );
   }
 
-  factory DartDto.fromExternal() {
-    // TODO add param
+  factory DartDto.fromExternal(dart.Dart d) {
     return DartDto(
-      points: 80,
+      type: d.type == dart.DartType.s
+          ? 'single'
+          : d.type == dart.DartType.d
+              ? 'double'
+              : 'triple',
+      value: d.points,
     );
   }
 
   Dart toDomain() {
     return Dart(
-      points: points,
+      type: type == 'single'
+          ? DartType.s
+          : type == 'double'
+              ? DartType.d
+              : DartType.t,
+      value: value,
     );
   }
 

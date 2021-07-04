@@ -8,6 +8,7 @@ part 'enums/language.dart';
 part 'enums/mode.dart';
 part 'enums/status.dart';
 part 'enums/type.dart';
+part 'enums/dart_type.dart';
 
 /// helpers
 part 'helpers/finishes.dart';
@@ -23,3 +24,4 @@ part 'model/player.dart';
 part 'model/set.dart';
 part 'model/stats.dart';
 part 'model/throw.dart';
+part 'model/dart.dart';

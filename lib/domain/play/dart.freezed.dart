@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DartTearOff {
   const _$DartTearOff();
 
-  _Dart call({required int points}) {
+  _Dart call({required DartType type, required int value}) {
     return _Dart(
-      points: points,
+      type: type,
+      value: value,
     );
   }
 }
@@ -28,7 +29,8 @@ const $Dart = _$DartTearOff();
 
 /// @nodoc
 mixin _$Dart {
-  int get points => throw _privateConstructorUsedError;
+  DartType get type => throw _privateConstructorUsedError;
+  int get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DartCopyWith<Dart> get copyWith => throw _privateConstructorUsedError;
@@ -38,7 +40,7 @@ mixin _$Dart {
 abstract class $DartCopyWith<$Res> {
   factory $DartCopyWith(Dart value, $Res Function(Dart) then) =
       _$DartCopyWithImpl<$Res>;
-  $Res call({int points});
+  $Res call({DartType type, int value});
 }
 
 /// @nodoc
@@ -51,12 +53,17 @@ class _$DartCopyWithImpl<$Res> implements $DartCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? points = freezed,
+    Object? type = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DartType,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -67,7 +74,7 @@ abstract class _$DartCopyWith<$Res> implements $DartCopyWith<$Res> {
   factory _$DartCopyWith(_Dart value, $Res Function(_Dart) then) =
       __$DartCopyWithImpl<$Res>;
   @override
-  $Res call({int points});
+  $Res call({DartType type, int value});
 }
 
 /// @nodoc
@@ -81,12 +88,17 @@ class __$DartCopyWithImpl<$Res> extends _$DartCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? points = freezed,
+    Object? type = freezed,
+    Object? value = freezed,
   }) {
     return _then(_Dart(
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DartType,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -95,27 +107,33 @@ class __$DartCopyWithImpl<$Res> extends _$DartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Dart implements _Dart {
-  const _$_Dart({required this.points});
+  const _$_Dart({required this.type, required this.value});
 
   @override
-  final int points;
+  final DartType type;
+  @override
+  final int value;
 
   @override
   String toString() {
-    return 'Dart(points: $points)';
+    return 'Dart(type: $type, value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Dart &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)));
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(points);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(value);
 
   @JsonKey(ignore: true)
   @override
@@ -124,10 +142,12 @@ class _$_Dart implements _Dart {
 }
 
 abstract class _Dart implements Dart {
-  const factory _Dart({required int points}) = _$_Dart;
+  const factory _Dart({required DartType type, required int value}) = _$_Dart;
 
   @override
-  int get points => throw _privateConstructorUsedError;
+  DartType get type => throw _privateConstructorUsedError;
+  @override
+  int get value => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DartCopyWith<_Dart> get copyWith => throw _privateConstructorUsedError;

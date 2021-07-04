@@ -23,11 +23,13 @@ class _$ThrowDtoTearOff {
   _ThrowDto call(
       {required int points,
       required int dartsThrown,
-      required int dartsOnDouble}) {
+      required int dartsOnDouble,
+      List<DartDto>? darts}) {
     return _ThrowDto(
       points: points,
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
+      darts: darts,
     );
   }
 
@@ -44,6 +46,7 @@ mixin _$ThrowDto {
   int get points => throw _privateConstructorUsedError;
   int get dartsThrown => throw _privateConstructorUsedError;
   int get dartsOnDouble => throw _privateConstructorUsedError;
+  List<DartDto>? get darts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +58,8 @@ mixin _$ThrowDto {
 abstract class $ThrowDtoCopyWith<$Res> {
   factory $ThrowDtoCopyWith(ThrowDto value, $Res Function(ThrowDto) then) =
       _$ThrowDtoCopyWithImpl<$Res>;
-  $Res call({int points, int dartsThrown, int dartsOnDouble});
+  $Res call(
+      {int points, int dartsThrown, int dartsOnDouble, List<DartDto>? darts});
 }
 
 /// @nodoc
@@ -71,6 +75,7 @@ class _$ThrowDtoCopyWithImpl<$Res> implements $ThrowDtoCopyWith<$Res> {
     Object? points = freezed,
     Object? dartsThrown = freezed,
     Object? dartsOnDouble = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_value.copyWith(
       points: points == freezed
@@ -85,6 +90,10 @@ class _$ThrowDtoCopyWithImpl<$Res> implements $ThrowDtoCopyWith<$Res> {
           ? _value.dartsOnDouble
           : dartsOnDouble // ignore: cast_nullable_to_non_nullable
               as int,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as List<DartDto>?,
     ));
   }
 }
@@ -94,7 +103,8 @@ abstract class _$ThrowDtoCopyWith<$Res> implements $ThrowDtoCopyWith<$Res> {
   factory _$ThrowDtoCopyWith(_ThrowDto value, $Res Function(_ThrowDto) then) =
       __$ThrowDtoCopyWithImpl<$Res>;
   @override
-  $Res call({int points, int dartsThrown, int dartsOnDouble});
+  $Res call(
+      {int points, int dartsThrown, int dartsOnDouble, List<DartDto>? darts});
 }
 
 /// @nodoc
@@ -111,6 +121,7 @@ class __$ThrowDtoCopyWithImpl<$Res> extends _$ThrowDtoCopyWithImpl<$Res>
     Object? points = freezed,
     Object? dartsThrown = freezed,
     Object? dartsOnDouble = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_ThrowDto(
       points: points == freezed
@@ -125,6 +136,10 @@ class __$ThrowDtoCopyWithImpl<$Res> extends _$ThrowDtoCopyWithImpl<$Res>
           ? _value.dartsOnDouble
           : dartsOnDouble // ignore: cast_nullable_to_non_nullable
               as int,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as List<DartDto>?,
     ));
   }
 }
@@ -135,7 +150,8 @@ class _$_ThrowDto extends _ThrowDto {
   const _$_ThrowDto(
       {required this.points,
       required this.dartsThrown,
-      required this.dartsOnDouble})
+      required this.dartsOnDouble,
+      this.darts})
       : super._();
 
   factory _$_ThrowDto.fromJson(Map<String, dynamic> json) =>
@@ -147,10 +163,12 @@ class _$_ThrowDto extends _ThrowDto {
   final int dartsThrown;
   @override
   final int dartsOnDouble;
+  @override
+  final List<DartDto>? darts;
 
   @override
   String toString() {
-    return 'ThrowDto(points: $points, dartsThrown: $dartsThrown, dartsOnDouble: $dartsOnDouble)';
+    return 'ThrowDto(points: $points, dartsThrown: $dartsThrown, dartsOnDouble: $dartsOnDouble, darts: $darts)';
   }
 
   @override
@@ -164,7 +182,9 @@ class _$_ThrowDto extends _ThrowDto {
                     .equals(other.dartsThrown, dartsThrown)) &&
             (identical(other.dartsOnDouble, dartsOnDouble) ||
                 const DeepCollectionEquality()
-                    .equals(other.dartsOnDouble, dartsOnDouble)));
+                    .equals(other.dartsOnDouble, dartsOnDouble)) &&
+            (identical(other.darts, darts) ||
+                const DeepCollectionEquality().equals(other.darts, darts)));
   }
 
   @override
@@ -172,7 +192,8 @@ class _$_ThrowDto extends _ThrowDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(points) ^
       const DeepCollectionEquality().hash(dartsThrown) ^
-      const DeepCollectionEquality().hash(dartsOnDouble);
+      const DeepCollectionEquality().hash(dartsOnDouble) ^
+      const DeepCollectionEquality().hash(darts);
 
   @JsonKey(ignore: true)
   @override
@@ -189,7 +210,8 @@ abstract class _ThrowDto extends ThrowDto {
   const factory _ThrowDto(
       {required int points,
       required int dartsThrown,
-      required int dartsOnDouble}) = _$_ThrowDto;
+      required int dartsOnDouble,
+      List<DartDto>? darts}) = _$_ThrowDto;
   const _ThrowDto._() : super._();
 
   factory _ThrowDto.fromJson(Map<String, dynamic> json) = _$_ThrowDto.fromJson;
@@ -200,6 +222,8 @@ abstract class _ThrowDto extends ThrowDto {
   int get dartsThrown => throw _privateConstructorUsedError;
   @override
   int get dartsOnDouble => throw _privateConstructorUsedError;
+  @override
+  List<DartDto>? get darts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ThrowDtoCopyWith<_ThrowDto> get copyWith =>

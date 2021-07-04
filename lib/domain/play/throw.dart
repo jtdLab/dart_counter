@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'throw.freezed.dart';
 
@@ -10,14 +11,14 @@ class Throw with _$Throw {
     required int points,
     required int dartsThrown,
     required int dartsOnDouble,
+    KtList<Dart>? darts,
   }) = _Throw;
 
-  factory Throw.fromDarts(List<Dart> darts, int dartsOnDouble) =>
-      Throw(
-  
-        points: darts.map((dart) => dart.points).toList().sum,
+  factory Throw.fromDarts(List<Dart> darts, int dartsOnDouble) => Throw(
+        points: darts.map((dart) => dart.points()).toList().sum,
         dartsThrown: darts.length,
         dartsOnDouble: dartsOnDouble,
+        darts: KtList.from(darts),
       );
 
   factory Throw.dummy({

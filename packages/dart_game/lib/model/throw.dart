@@ -1,14 +1,24 @@
 part of dart_game;
 
 class Throw {
-  final int points;
-  final int dartsOnDouble;
-  final int dartsThrown;
+  late final int points;
+  late final int dartsOnDouble;
+  late final int dartsThrown;
+  late final List<Dart>? darts; // TODO does this work with late
 
-  Throw(this.points, {this.dartsThrown = 3, this.dartsOnDouble = 0});
+  Throw(
+    this.points, {
+    this.dartsThrown = 3,
+    this.dartsOnDouble = 0,
+  });
+
+  Throw.fromDarts({required this.darts, required this.dartsOnDouble}) {
+    dartsThrown = darts!.length;
+    points = darts!.fold(0, (previousValue, dart) => dart.points);
+  }
 
   @override
   String toString() {
-    return 'Throw{points: $points, dartsOnDouble: $dartsOnDouble, dartsThrown: $dartsThrown}';
+    return 'Throw{points: $points, dartsOnDouble: $dartsOnDouble, dartsThrown: $dartsThrown, darts: $darts}';
   }
 }

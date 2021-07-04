@@ -3,15 +3,40 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart.freezed.dart';
 
+// s = single, d = double, t = triple
+enum DartType { s, d, t }
+
 @freezed
 class Dart with _$Dart {
   const factory Dart({
-    required int points,
+    required DartType type,
+    required int value,
   }) = _Dart;
+
+  int points() {
+    int multiplier;
+    switch (type) {
+      case DartType.s:
+        multiplier = 1;
+        break;
+      case DartType.d:
+        multiplier = 2;
+        break;
+      default:
+        multiplier = 3;
+    }
+
+    return multiplier * value;
+  }
 
   factory Dart.dummy() {
     return Dart(
-      points: faker.randomGenerator.element([
+      type: faker.randomGenerator.element([
+        DartType.s,
+        DartType.d,
+        DartType.t,
+      ]),
+      value: faker.randomGenerator.element([
             1,
             2,
             3,

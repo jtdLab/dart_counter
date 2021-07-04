@@ -1,6 +1,9 @@
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_game/dart_game.dart' as dart;
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kt_dart/kt.dart';
+
+import 'dart_dto.dart';
 
 part 'throw_dto.freezed.dart';
 part 'throw_dto.g.dart';
@@ -11,6 +14,7 @@ class ThrowDto with _$ThrowDto {
     required int points,
     required int dartsThrown,
     required int dartsOnDouble,
+    List<DartDto>? darts,
   }) = _ThrowDto;
 
   const ThrowDto._();
@@ -20,6 +24,7 @@ class ThrowDto with _$ThrowDto {
       points: t.points,
       dartsThrown: t.dartsThrown,
       dartsOnDouble: t.dartsThrown,
+      darts: t.darts?.iter.map((dart) => DartDto.fromDomain(dart)).toList(),
     );
   }
 
@@ -28,6 +33,7 @@ class ThrowDto with _$ThrowDto {
       points: t.points,
       dartsThrown: t.dartsThrown,
       dartsOnDouble: t.dartsThrown,
+      darts: t.darts?.map((dart) => DartDto.fromExternal(dart)).toList(),
     );
   }
 
@@ -36,6 +42,7 @@ class ThrowDto with _$ThrowDto {
       points: points,
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
+      darts: KtList.from(darts?.map((dart) => dart.toDomain()) ?? []),
     );
   }
 
