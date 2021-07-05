@@ -7,5 +7,8 @@ class CheckoutDetailsState with _$CheckoutDetailsState {
     required int maxDartsThrown,
     required int minDartsOnDouble,
     required int maxDartsOnDouble,
+    required int selectedDartsThrown,
+    required int selectedDartsOnDouble,
+    required bool confirmed,
   }) = _CheckoutDetailsState;
 }

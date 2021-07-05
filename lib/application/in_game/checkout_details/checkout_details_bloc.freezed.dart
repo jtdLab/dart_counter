@@ -16,8 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CheckoutDetailsEventTearOff {
   const _$CheckoutDetailsEventTearOff();
 
-  _Started started() {
-    return const _Started();
+  SelectedDartsThrownUpdated selectedDartsThrownUpdated(
+      {required int newSelectedDartsThrown}) {
+    return SelectedDartsThrownUpdated(
+      newSelectedDartsThrown: newSelectedDartsThrown,
+    );
+  }
+
+  SelectedDartsOnDoubleUpdated selectedDartsOnDoubleUpdated(
+      {required int newSelectedDartsOnDouble}) {
+    return SelectedDartsOnDoubleUpdated(
+      newSelectedDartsOnDouble: newSelectedDartsOnDouble,
+    );
+  }
+
+  ConfirmPressed confirmPressed() {
+    return const ConfirmPressed();
   }
 }
 
@@ -28,23 +42,38 @@ const $CheckoutDetailsEvent = _$CheckoutDetailsEventTearOff();
 mixin _$CheckoutDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,35 +97,306 @@ class _$CheckoutDetailsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class $SelectedDartsThrownUpdatedCopyWith<$Res> {
+  factory $SelectedDartsThrownUpdatedCopyWith(SelectedDartsThrownUpdated value,
+          $Res Function(SelectedDartsThrownUpdated) then) =
+      _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>;
+  $Res call({int newSelectedDartsThrown});
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res>
+class _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>
     extends _$CheckoutDetailsEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+    implements $SelectedDartsThrownUpdatedCopyWith<$Res> {
+  _$SelectedDartsThrownUpdatedCopyWithImpl(SelectedDartsThrownUpdated _value,
+      $Res Function(SelectedDartsThrownUpdated) _then)
+      : super(_value, (v) => _then(v as SelectedDartsThrownUpdated));
 
   @override
-  _Started get _value => super._value as _Started;
+  SelectedDartsThrownUpdated get _value =>
+      super._value as SelectedDartsThrownUpdated;
+
+  @override
+  $Res call({
+    Object? newSelectedDartsThrown = freezed,
+  }) {
+    return _then(SelectedDartsThrownUpdated(
+      newSelectedDartsThrown: newSelectedDartsThrown == freezed
+          ? _value.newSelectedDartsThrown
+          : newSelectedDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
+  const _$SelectedDartsThrownUpdated({required this.newSelectedDartsThrown});
+
+  @override
+  final int newSelectedDartsThrown;
 
   @override
   String toString() {
-    return 'CheckoutDetailsEvent.started()';
+    return 'CheckoutDetailsEvent.selectedDartsThrownUpdated(newSelectedDartsThrown: $newSelectedDartsThrown)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) ||
+        (other is SelectedDartsThrownUpdated &&
+            (identical(other.newSelectedDartsThrown, newSelectedDartsThrown) ||
+                const DeepCollectionEquality().equals(
+                    other.newSelectedDartsThrown, newSelectedDartsThrown)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(newSelectedDartsThrown);
+
+  @JsonKey(ignore: true)
+  @override
+  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
+      get copyWith =>
+          _$SelectedDartsThrownUpdatedCopyWithImpl<SelectedDartsThrownUpdated>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated(newSelectedDartsThrown);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsThrownUpdated != null) {
+      return selectedDartsThrownUpdated(newSelectedDartsThrown);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsThrownUpdated != null) {
+      return selectedDartsThrownUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectedDartsThrownUpdated implements CheckoutDetailsEvent {
+  const factory SelectedDartsThrownUpdated(
+      {required int newSelectedDartsThrown}) = _$SelectedDartsThrownUpdated;
+
+  int get newSelectedDartsThrown => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  factory $SelectedDartsOnDoubleUpdatedCopyWith(
+          SelectedDartsOnDoubleUpdated value,
+          $Res Function(SelectedDartsOnDoubleUpdated) then) =
+      _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>;
+  $Res call({int newSelectedDartsOnDouble});
+}
+
+/// @nodoc
+class _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>
+    extends _$CheckoutDetailsEventCopyWithImpl<$Res>
+    implements $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  _$SelectedDartsOnDoubleUpdatedCopyWithImpl(
+      SelectedDartsOnDoubleUpdated _value,
+      $Res Function(SelectedDartsOnDoubleUpdated) _then)
+      : super(_value, (v) => _then(v as SelectedDartsOnDoubleUpdated));
+
+  @override
+  SelectedDartsOnDoubleUpdated get _value =>
+      super._value as SelectedDartsOnDoubleUpdated;
+
+  @override
+  $Res call({
+    Object? newSelectedDartsOnDouble = freezed,
+  }) {
+    return _then(SelectedDartsOnDoubleUpdated(
+      newSelectedDartsOnDouble: newSelectedDartsOnDouble == freezed
+          ? _value.newSelectedDartsOnDouble
+          : newSelectedDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
+  const _$SelectedDartsOnDoubleUpdated(
+      {required this.newSelectedDartsOnDouble});
+
+  @override
+  final int newSelectedDartsOnDouble;
+
+  @override
+  String toString() {
+    return 'CheckoutDetailsEvent.selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble: $newSelectedDartsOnDouble)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SelectedDartsOnDoubleUpdated &&
+            (identical(
+                    other.newSelectedDartsOnDouble, newSelectedDartsOnDouble) ||
+                const DeepCollectionEquality().equals(
+                    other.newSelectedDartsOnDouble, newSelectedDartsOnDouble)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(newSelectedDartsOnDouble);
+
+  @JsonKey(ignore: true)
+  @override
+  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
+      get copyWith => _$SelectedDartsOnDoubleUpdatedCopyWithImpl<
+          SelectedDartsOnDoubleUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsOnDoubleUpdated != null) {
+      return selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsOnDoubleUpdated != null) {
+      return selectedDartsOnDoubleUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectedDartsOnDoubleUpdated implements CheckoutDetailsEvent {
+  const factory SelectedDartsOnDoubleUpdated(
+      {required int newSelectedDartsOnDouble}) = _$SelectedDartsOnDoubleUpdated;
+
+  int get newSelectedDartsOnDouble => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConfirmPressedCopyWith<$Res> {
+  factory $ConfirmPressedCopyWith(
+          ConfirmPressed value, $Res Function(ConfirmPressed) then) =
+      _$ConfirmPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ConfirmPressedCopyWithImpl<$Res>
+    extends _$CheckoutDetailsEventCopyWithImpl<$Res>
+    implements $ConfirmPressedCopyWith<$Res> {
+  _$ConfirmPressedCopyWithImpl(
+      ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
+      : super(_value, (v) => _then(v as ConfirmPressed));
+
+  @override
+  ConfirmPressed get _value => super._value as ConfirmPressed;
+}
+
+/// @nodoc
+
+class _$ConfirmPressed implements ConfirmPressed {
+  const _$ConfirmPressed();
+
+  @override
+  String toString() {
+    return 'CheckoutDetailsEvent.confirmPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ConfirmPressed);
   }
 
   @override
@@ -105,19 +405,26 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
   }) {
-    return started();
+    return confirmPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (confirmPressed != null) {
+      return confirmPressed();
     }
     return orElse();
   }
@@ -125,26 +432,34 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
-    return started(this);
+    return confirmPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (confirmPressed != null) {
+      return confirmPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements CheckoutDetailsEvent {
-  const factory _Started() = _$_Started;
+abstract class ConfirmPressed implements CheckoutDetailsEvent {
+  const factory ConfirmPressed() = _$ConfirmPressed;
 }
 
 /// @nodoc
@@ -155,12 +470,18 @@ class _$CheckoutDetailsStateTearOff {
       {required int minDartsThrown,
       required int maxDartsThrown,
       required int minDartsOnDouble,
-      required int maxDartsOnDouble}) {
+      required int maxDartsOnDouble,
+      required int selectedDartsThrown,
+      required int selectedDartsOnDouble,
+      required bool confirmed}) {
     return _CheckoutDetailsState(
       minDartsThrown: minDartsThrown,
       maxDartsThrown: maxDartsThrown,
       minDartsOnDouble: minDartsOnDouble,
       maxDartsOnDouble: maxDartsOnDouble,
+      selectedDartsThrown: selectedDartsThrown,
+      selectedDartsOnDouble: selectedDartsOnDouble,
+      confirmed: confirmed,
     );
   }
 }
@@ -174,6 +495,9 @@ mixin _$CheckoutDetailsState {
   int get maxDartsThrown => throw _privateConstructorUsedError;
   int get minDartsOnDouble => throw _privateConstructorUsedError;
   int get maxDartsOnDouble => throw _privateConstructorUsedError;
+  int get selectedDartsThrown => throw _privateConstructorUsedError;
+  int get selectedDartsOnDouble => throw _privateConstructorUsedError;
+  bool get confirmed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CheckoutDetailsStateCopyWith<CheckoutDetailsState> get copyWith =>
@@ -189,7 +513,10 @@ abstract class $CheckoutDetailsStateCopyWith<$Res> {
       {int minDartsThrown,
       int maxDartsThrown,
       int minDartsOnDouble,
-      int maxDartsOnDouble});
+      int maxDartsOnDouble,
+      int selectedDartsThrown,
+      int selectedDartsOnDouble,
+      bool confirmed});
 }
 
 /// @nodoc
@@ -207,6 +534,9 @@ class _$CheckoutDetailsStateCopyWithImpl<$Res>
     Object? maxDartsThrown = freezed,
     Object? minDartsOnDouble = freezed,
     Object? maxDartsOnDouble = freezed,
+    Object? selectedDartsThrown = freezed,
+    Object? selectedDartsOnDouble = freezed,
+    Object? confirmed = freezed,
   }) {
     return _then(_value.copyWith(
       minDartsThrown: minDartsThrown == freezed
@@ -225,6 +555,18 @@ class _$CheckoutDetailsStateCopyWithImpl<$Res>
           ? _value.maxDartsOnDouble
           : maxDartsOnDouble // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedDartsThrown: selectedDartsThrown == freezed
+          ? _value.selectedDartsThrown
+          : selectedDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDartsOnDouble: selectedDartsOnDouble == freezed
+          ? _value.selectedDartsOnDouble
+          : selectedDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+      confirmed: confirmed == freezed
+          ? _value.confirmed
+          : confirmed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -240,7 +582,10 @@ abstract class _$CheckoutDetailsStateCopyWith<$Res>
       {int minDartsThrown,
       int maxDartsThrown,
       int minDartsOnDouble,
-      int maxDartsOnDouble});
+      int maxDartsOnDouble,
+      int selectedDartsThrown,
+      int selectedDartsOnDouble,
+      bool confirmed});
 }
 
 /// @nodoc
@@ -260,6 +605,9 @@ class __$CheckoutDetailsStateCopyWithImpl<$Res>
     Object? maxDartsThrown = freezed,
     Object? minDartsOnDouble = freezed,
     Object? maxDartsOnDouble = freezed,
+    Object? selectedDartsThrown = freezed,
+    Object? selectedDartsOnDouble = freezed,
+    Object? confirmed = freezed,
   }) {
     return _then(_CheckoutDetailsState(
       minDartsThrown: minDartsThrown == freezed
@@ -278,6 +626,18 @@ class __$CheckoutDetailsStateCopyWithImpl<$Res>
           ? _value.maxDartsOnDouble
           : maxDartsOnDouble // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedDartsThrown: selectedDartsThrown == freezed
+          ? _value.selectedDartsThrown
+          : selectedDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDartsOnDouble: selectedDartsOnDouble == freezed
+          ? _value.selectedDartsOnDouble
+          : selectedDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+      confirmed: confirmed == freezed
+          ? _value.confirmed
+          : confirmed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -289,7 +649,10 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
       {required this.minDartsThrown,
       required this.maxDartsThrown,
       required this.minDartsOnDouble,
-      required this.maxDartsOnDouble});
+      required this.maxDartsOnDouble,
+      required this.selectedDartsThrown,
+      required this.selectedDartsOnDouble,
+      required this.confirmed});
 
   @override
   final int minDartsThrown;
@@ -299,10 +662,16 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
   final int minDartsOnDouble;
   @override
   final int maxDartsOnDouble;
+  @override
+  final int selectedDartsThrown;
+  @override
+  final int selectedDartsOnDouble;
+  @override
+  final bool confirmed;
 
   @override
   String toString() {
-    return 'CheckoutDetailsState(minDartsThrown: $minDartsThrown, maxDartsThrown: $maxDartsThrown, minDartsOnDouble: $minDartsOnDouble, maxDartsOnDouble: $maxDartsOnDouble)';
+    return 'CheckoutDetailsState(minDartsThrown: $minDartsThrown, maxDartsThrown: $maxDartsThrown, minDartsOnDouble: $minDartsOnDouble, maxDartsOnDouble: $maxDartsOnDouble, selectedDartsThrown: $selectedDartsThrown, selectedDartsOnDouble: $selectedDartsOnDouble, confirmed: $confirmed)';
   }
 
   @override
@@ -320,7 +689,16 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
                     .equals(other.minDartsOnDouble, minDartsOnDouble)) &&
             (identical(other.maxDartsOnDouble, maxDartsOnDouble) ||
                 const DeepCollectionEquality()
-                    .equals(other.maxDartsOnDouble, maxDartsOnDouble)));
+                    .equals(other.maxDartsOnDouble, maxDartsOnDouble)) &&
+            (identical(other.selectedDartsThrown, selectedDartsThrown) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedDartsThrown, selectedDartsThrown)) &&
+            (identical(other.selectedDartsOnDouble, selectedDartsOnDouble) ||
+                const DeepCollectionEquality().equals(
+                    other.selectedDartsOnDouble, selectedDartsOnDouble)) &&
+            (identical(other.confirmed, confirmed) ||
+                const DeepCollectionEquality()
+                    .equals(other.confirmed, confirmed)));
   }
 
   @override
@@ -329,7 +707,10 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
       const DeepCollectionEquality().hash(minDartsThrown) ^
       const DeepCollectionEquality().hash(maxDartsThrown) ^
       const DeepCollectionEquality().hash(minDartsOnDouble) ^
-      const DeepCollectionEquality().hash(maxDartsOnDouble);
+      const DeepCollectionEquality().hash(maxDartsOnDouble) ^
+      const DeepCollectionEquality().hash(selectedDartsThrown) ^
+      const DeepCollectionEquality().hash(selectedDartsOnDouble) ^
+      const DeepCollectionEquality().hash(confirmed);
 
   @JsonKey(ignore: true)
   @override
@@ -343,7 +724,10 @@ abstract class _CheckoutDetailsState implements CheckoutDetailsState {
       {required int minDartsThrown,
       required int maxDartsThrown,
       required int minDartsOnDouble,
-      required int maxDartsOnDouble}) = _$_CheckoutDetailsState;
+      required int maxDartsOnDouble,
+      required int selectedDartsThrown,
+      required int selectedDartsOnDouble,
+      required bool confirmed}) = _$_CheckoutDetailsState;
 
   @override
   int get minDartsThrown => throw _privateConstructorUsedError;
@@ -353,6 +737,12 @@ abstract class _CheckoutDetailsState implements CheckoutDetailsState {
   int get minDartsOnDouble => throw _privateConstructorUsedError;
   @override
   int get maxDartsOnDouble => throw _privateConstructorUsedError;
+  @override
+  int get selectedDartsThrown => throw _privateConstructorUsedError;
+  @override
+  int get selectedDartsOnDouble => throw _privateConstructorUsedError;
+  @override
+  bool get confirmed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CheckoutDetailsStateCopyWith<_CheckoutDetailsState> get copyWith =>

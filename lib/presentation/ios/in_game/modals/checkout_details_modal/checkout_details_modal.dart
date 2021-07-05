@@ -12,12 +12,21 @@ class CheckoutDetailsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CheckoutDetailsBloc, CheckoutDetailsState>(
+    return BlocConsumer<CheckoutDetailsBloc, CheckoutDetailsState>(
+      listenWhen: (oldState, newState) =>
+          oldState.confirmed != newState.confirmed,
+      listener: (context, state) {
+        if (state.confirmed) {
+          context.router.pop();
+        }
+      },
       builder: (context, state) {
         final minDartsThrown = state.minDartsThrown;
         final maxDartsThrown = state.maxDartsThrown;
         final minDartsOnDouble = state.minDartsOnDouble;
         final maxDartsOnDouble = state.maxDartsOnDouble;
+        final selectedDartsThrown = state.selectedDartsThrown;
+        final selectedDartsOnDouble = state.selectedDartsOnDouble;
 
         return AppPage(
           child: Column(
@@ -37,8 +46,11 @@ class CheckoutDetailsModal extends StatelessWidget {
                     children: [
                       for (int i = minDartsThrown; i <= maxDartsThrown; i++)
                         Expanded(
-                          child:
-                              CkdButton(onPressed: () {}, text: i.toString()),
+                          child: CkdButton(
+                            selected: i == selectedDartsThrown,
+                            onPressed: () {},
+                            text: i.toString(),
+                          ),
                         ),
                     ],
                   ),
@@ -59,8 +71,11 @@ class CheckoutDetailsModal extends StatelessWidget {
                     children: [
                       for (int i = minDartsOnDouble; i <= maxDartsOnDouble; i++)
                         Expanded(
-                          child:
-                              CkdButton(onPressed: () {}, text: i.toString()),
+                          child: CkdButton(
+                            selected: i == selectedDartsOnDouble,
+                            onPressed: () {},
+                            text: i.toString(),
+                          ),
                         ),
                     ],
                   ),
@@ -69,7 +84,9 @@ class CheckoutDetailsModal extends StatelessWidget {
               AppSpacer.large(),
               AppPrimaryButton(
                 color: AppColors.orange_new,
-                onPressed: () => context.router.pop(),
+                onPressed: () => context
+                    .read<CheckoutDetailsBloc>()
+                    .add(const CheckoutDetailsEvent.confirmPressed()),
                 text: LocaleKeys.confirm.tr().toUpperCase(),
               ),
               Spacer(
@@ -88,6 +105,7 @@ class CkdButton extends StatelessWidget {
   final double fontSize;
   final String? text;
   final Widget? child;
+  final bool selected;
 
 // TODO assert text or child supplied
   const CkdButton({
@@ -95,6 +113,7 @@ class CkdButton extends StatelessWidget {
     Key? key,
     this.fontSize = 28,
     this.text,
+    required this.selected,
     this.child,
   }) : super(key: key);
 
@@ -103,14 +122,14 @@ class CkdButton extends StatelessWidget {
     if (text != null) {
       return AppActionButton.normal(
         fontSize: fontSize,
-        color: AppColors.white,
+        color: selected ? AppColors.orange_new : AppColors.white,
         onPressed: onPressed,
         text: text,
       );
     }
     if (child != null) {
       return AppActionButton.normal(
-        color: AppColors.white,
+        color: selected ? AppColors.orange_new : AppColors.white,
         onPressed: onPressed,
         icon: child,
       );
