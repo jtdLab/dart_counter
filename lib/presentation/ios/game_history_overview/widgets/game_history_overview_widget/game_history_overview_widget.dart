@@ -3,7 +3,7 @@ import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class GameHistoryWidget extends StatelessWidget {
+class GameHistoryOverviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GameHistoryBloc, GameHistoryState>(

@@ -4,6 +4,7 @@ import 'package:dart_counter/presentation/ios/create_game/create_game_page.dart'
 import 'package:dart_counter/presentation/ios/friends/friends_page.dart';
 import 'package:dart_counter/presentation/ios/game_history/game_history_page.dart';
 import 'package:dart_counter/presentation/ios/game_history_details/game_history_details_page.dart';
+import 'package:dart_counter/presentation/ios/game_history_overview/game_history_overview_page.dart';
 import 'package:dart_counter/presentation/ios/home/home_page.dart';
 import 'package:dart_counter/presentation/ios/in_game/in_game_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
@@ -29,9 +30,16 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     CupertinoRoute(
       page: GameHistoryPage,
-    ),
-    CupertinoRoute(
-      page: GameHistoryDetailsPage,
+      children: [
+        CustomRoute(
+          initial: true,
+          page: GameHistoryOverviewPage,
+        ),
+        CustomRoute(
+          page: GameHistoryDetailsPage,
+          reverseDurationInMilliseconds: 0,
+        ),
+      ],
     ),
     CupertinoRoute(
       page: InvitationsPage,

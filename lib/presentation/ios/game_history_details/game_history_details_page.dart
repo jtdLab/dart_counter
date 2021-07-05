@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class GameHistoryDetailsPage extends StatelessWidget {
-  final Game game;
+  final Game game; // TODO
 
   const GameHistoryDetailsPage({
     Key? key,
