@@ -7,8 +7,10 @@ import 'widgets/widgets.dart';
 class GameHistoryDetailsPage extends StatelessWidget {
   final Game game;
 
-  const GameHistoryDetailsPage({Key? key, required this.game})
-      : super(key: key);
+  const GameHistoryDetailsPage({
+    Key? key,
+    required this.game,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

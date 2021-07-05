@@ -149,8 +149,10 @@ abstract class _Started implements StatsEvent {
 class _$StatsStateTearOff {
   const _$StatsStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _StatsState call({required Game game}) {
+    return _StatsState(
+      game: game,
+    );
   }
 }
 
@@ -159,27 +161,10 @@ const $StatsState = _$StatsStateTearOff();
 
 /// @nodoc
 mixin _$StatsState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  Game get game => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $StatsStateCopyWith<StatsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -188,6 +173,9 @@ abstract class $StatsStateCopyWith<$Res> {
   factory $StatsStateCopyWith(
           StatsState value, $Res Function(StatsState) then) =
       _$StatsStateCopyWithImpl<$Res>;
+  $Res call({Game game});
+
+  $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
@@ -197,83 +185,100 @@ class _$StatsStateCopyWithImpl<$Res> implements $StatsStateCopyWith<$Res> {
   final StatsState _value;
   // ignore: unused_field
   final $Res Function(StatsState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(_value.copyWith(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
+
+  @override
+  $GameCopyWith<$Res> get game {
+    return $GameCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$StatsStateCopyWith<$Res> implements $StatsStateCopyWith<$Res> {
+  factory _$StatsStateCopyWith(
+          _StatsState value, $Res Function(_StatsState) then) =
+      __$StatsStateCopyWithImpl<$Res>;
+  @override
+  $Res call({Game game});
+
+  @override
+  $GameCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class __$StatsStateCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
+    implements _$StatsStateCopyWith<$Res> {
+  __$StatsStateCopyWithImpl(
+      _StatsState _value, $Res Function(_StatsState) _then)
+      : super(_value, (v) => _then(v as _StatsState));
+
+  @override
+  _StatsState get _value => super._value as _StatsState;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(_StatsState(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_StatsState implements _StatsState {
+  const _$_StatsState({required this.game});
+
+  @override
+  final Game game;
 
   @override
   String toString() {
-    return 'StatsState.initial()';
+    return 'StatsState(game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other is _StatsState &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$StatsStateCopyWith<_StatsState> get copyWith =>
+      __$StatsStateCopyWithImpl<_StatsState>(this, _$identity);
 }
 
-abstract class _Initial implements StatsState {
-  const factory _Initial() = _$_Initial;
+abstract class _StatsState implements StatsState {
+  const factory _StatsState({required Game game}) = _$_StatsState;
+
+  @override
+  Game get game => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$StatsStateCopyWith<_StatsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

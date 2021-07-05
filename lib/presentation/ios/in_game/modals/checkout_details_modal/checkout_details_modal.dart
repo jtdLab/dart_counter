@@ -48,7 +48,13 @@ class CheckoutDetailsModal extends StatelessWidget {
                         Expanded(
                           child: CkdButton(
                             selected: i == selectedDartsThrown,
-                            onPressed: () {},
+                            onPressed: () =>
+                                context.read<CheckoutDetailsBloc>().add(
+                                      CheckoutDetailsEvent
+                                          .selectedDartsThrownUpdated(
+                                        newSelectedDartsThrown: i,
+                                      ),
+                                    ),
                             text: i.toString(),
                           ),
                         ),
@@ -73,7 +79,13 @@ class CheckoutDetailsModal extends StatelessWidget {
                         Expanded(
                           child: CkdButton(
                             selected: i == selectedDartsOnDouble,
-                            onPressed: () {},
+                            onPressed: () =>
+                                context.read<CheckoutDetailsBloc>().add(
+                                      CheckoutDetailsEvent
+                                          .selectedDartsOnDoubleUpdated(
+                                        newSelectedDartsOnDouble: i,
+                                      ),
+                                    ),
                             text: i.toString(),
                           ),
                         ),
