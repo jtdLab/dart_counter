@@ -188,7 +188,7 @@ class ThrowValidator {
 
   static int minDartsOnDouble({required int points, required int pointsLeft}) {
     if (validatePoints(points, pointsLeft)) {
-      if (points == 2 || points == pointsLeft) {
+      if (pointsLeft == 2 || points == pointsLeft) {
         return 1;
       } else {
         return 0;
