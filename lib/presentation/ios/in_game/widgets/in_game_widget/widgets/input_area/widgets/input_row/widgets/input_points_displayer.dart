@@ -1,10 +1,11 @@
-import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
+import 'package:dart_counter/application/in_game/input_area/input_row/input_row_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class InputPointsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InputAreaBloc, InputAreaState>(
+    return BlocBuilder<InputRowBloc, InputRowState>(
       builder: (context, state) {
         return Container(
           height: size55(context),

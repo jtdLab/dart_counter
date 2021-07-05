@@ -198,17 +198,83 @@ class Player {
 
   // TODO test
   double? get _firstDartAverage {
-   
+    if (_dartsThrown == 0) {
+      return null;
+    }
+
+    int amount = 0;
+    int points = 0;
+    for (Set set in sets) {
+      for (Leg leg in set.legs) {
+        for (Throw t in leg.throws) {
+          if (t.darts == null) {
+            return null;
+          }
+
+          Dart? firstDart = t.darts?[0];
+          if (firstDart == null) {
+            return null;
+          }
+
+          amount++;
+          points += firstDart.points;
+        }
+      }
+    }
+    return amount == 0 ? null : (3 * points) / amount;
   }
 
   // TODO test
   double? get _secondDartAverage {
+    if (_dartsThrown <= 1) {
+      return null;
+    }
 
+    int amount = 0;
+    int points = 0;
+    for (Set set in sets) {
+      for (Leg leg in set.legs) {
+        for (Throw t in leg.throws) {
+          if (t.darts == null) {
+            return null;
+          }
+
+          Dart? secondDart = t.darts?[1];
+          if (secondDart != null) {
+            amount++;
+            points += secondDart.points;
+          }
+        }
+      }
+    }
+    return amount == 0 ? null : (3 * points) / amount;
   }
 
   // TODO test
   double? get _thirdDartAverage {
+    if (_dartsThrown <= 2) {
+      return null;
+    }
 
+    int amount = 0;
+    int points = 0;
+    for (Set set in sets) {
+      for (Leg leg in set.legs) {
+        for (Throw t in leg.throws) {
+          if (t.darts == null) {
+            return null;
+          }
+
+          Dart? thirdDart = t.darts?[2];
+          if (thirdDart != null) {
+            amount++;
+            points += thirdDart.points;
+          }
+        }
+      }
+    }
+
+    return amount == 0 ? null : (3 * points) / amount;
   }
 
   int get _fourtyPlus {

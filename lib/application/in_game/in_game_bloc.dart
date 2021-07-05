@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,8 +11,9 @@ part 'in_game_event.dart';
 part 'in_game_state.dart';
 part 'in_game_bloc.freezed.dart';
 
-@injectable
-class InGameBloc extends Bloc<InGameEvent, InGameState> {
+@lazySingleton
+class InGameBloc extends Bloc<InGameEvent, InGameState>
+    with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
   InGameBloc(this._playFacade)
@@ -21,6 +23,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState> {
                 .watchGame()
                 .valueWrapper! // TODO
                 .value,
+            showCheckoutDetails: false,
           ),
         );
 
@@ -34,6 +37,8 @@ class InGameBloc extends Bloc<InGameEvent, InGameState> {
       watchStarted: (_) => _mapWatchStartedToState(),
       receivedGame: (event) => _mapReceivedGameToState(event),
       gameCanceled: (_) => _mapGameCanceledToState(),
+      showCheckoutDetailsRequested: (_) =>
+          _mapShowCheckoutDetailsRequestedToState(),
     );
   }
 
@@ -44,7 +49,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState> {
   }
 
   Stream<InGameState> _mapReceivedGameToState(ReceivedGame event) async* {
-    yield InGameState(game: event.game);
+    yield InGameState(game: event.game, showCheckoutDetails: false);
   }
 
   Stream<InGameState> _mapGameCanceledToState() async* {
@@ -52,6 +57,10 @@ class InGameBloc extends Bloc<InGameEvent, InGameState> {
     if (failureOrUnit.isLeft()) {
       throw Error(); // TODO
     }
+  }
+
+  Stream<InGameState> _mapShowCheckoutDetailsRequestedToState() async* {
+    yield state.copyWith(showCheckoutDetails: true);
   }
 
   @override

@@ -1,9 +1,11 @@
-import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/domain/play/game.dart';
 
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
+import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'modals/modals.dart';
 import 'widgets/widgets.dart';
 
 class InGamePage extends StatelessWidget {
@@ -14,6 +16,18 @@ class InGamePage extends StatelessWidget {
           getIt<InGameBloc>()..add(const InGameEvent.watchStarted()),
       child: BlocConsumer<InGameBloc, InGameState>(
         listener: (context, state) {
+          final showCheckoutDetails = state.showCheckoutDetails;
+          if (showCheckoutDetails) {
+            showCupertinoModalBottomSheet(
+              expand: true,
+              context: context,
+              builder: (context) => BlocProvider(
+                create: (context) => getIt<CheckoutDetailsBloc>(),
+                child: const CheckoutDetailsModal(),
+              ),
+            );
+          }
+
           final game = state.game;
           if (game.status == Status.canceled) {
             context.router.replace(const HomePageRoute());

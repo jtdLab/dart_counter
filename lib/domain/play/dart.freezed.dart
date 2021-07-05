@@ -106,8 +106,8 @@ class __$DartCopyWithImpl<$Res> extends _$DartCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Dart implements _Dart {
-  const _$_Dart({required this.type, required this.value});
+class _$_Dart extends _Dart {
+  const _$_Dart({required this.type, required this.value}) : super._();
 
   @override
   final DartType type;
@@ -141,8 +141,9 @@ class _$_Dart implements _Dart {
       __$DartCopyWithImpl<_Dart>(this, _$identity);
 }
 
-abstract class _Dart implements Dart {
+abstract class _Dart extends Dart {
   const factory _Dart({required DartType type, required int value}) = _$_Dart;
+  const _Dart._() : super._();
 
   @override
   DartType get type => throw _privateConstructorUsedError;

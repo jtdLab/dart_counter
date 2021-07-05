@@ -7,4 +7,5 @@ class InGameEvent with _$InGameEvent {
     required Game game,
   }) = ReceivedGame;
   const factory InGameEvent.gameCanceled() = GameCanceled;
+  const factory InGameEvent.showCheckoutDetailsRequested() = ShowCheckoutDetailsRequested;
 }

@@ -1,4 +1,5 @@
-import 'package:dart_counter/application/in_game/input_area/input_area_bloc.dart';
+import 'package:dart_counter/application/in_game/input_area/input_row/input_row_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class DoButton extends StatelessWidget {
@@ -12,8 +13,8 @@ class DoButton extends StatelessWidget {
       minSize: 0,
       padding: EdgeInsets.zero,
       onPressed: () => context
-          .read<InputAreaBloc>()
-          .add(const InputAreaEvent.performThrowPressed()),
+          .read<InputRowBloc>()
+          .add(const InputRowEvent.performThrowPressed()),
       child: Container(
         height: size55(context),
         decoration: BoxDecoration(

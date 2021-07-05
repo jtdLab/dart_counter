@@ -13,6 +13,8 @@ class Dart with _$Dart {
     required int value,
   }) = _Dart;
 
+  const Dart._();
+
   int points() {
     int multiplier;
     switch (type) {
