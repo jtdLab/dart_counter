@@ -3,14 +3,18 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
 import 'widgets/widgets.dart';
 
-class LegalPage extends StatelessWidget {
+class ImpressumPage extends StatelessWidget {
+  const ImpressumPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppPage(
       navigationBar: const AppNavigationBar(
         leading: BackButton(),
       ),
-      child: LegalWidget(),
+      child: ImpressumWidget(),
     );
   }
 }

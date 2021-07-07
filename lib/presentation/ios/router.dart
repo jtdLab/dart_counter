@@ -7,8 +7,10 @@ import 'package:dart_counter/presentation/ios/game_history/game_history_page.dar
 import 'package:dart_counter/presentation/ios/game_history_details/game_history_details_page.dart';
 import 'package:dart_counter/presentation/ios/game_history_overview/game_history_overview_page.dart';
 import 'package:dart_counter/presentation/ios/home/home_page.dart';
+import 'package:dart_counter/presentation/ios/impressum/impressum_page.dart';
 import 'package:dart_counter/presentation/ios/in_game/in_game_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
+import 'package:dart_counter/presentation/ios/legal/legal_page.dart';
 import 'package:dart_counter/presentation/ios/post_game/post_game_page.dart';
 import 'package:dart_counter/presentation/ios/profile/profile_page.dart';
 import 'package:dart_counter/presentation/ios/settings/settings_page.dart';
@@ -28,6 +30,12 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
     ),
     CupertinoRoute(
       page: SettingsPage,
+    ),
+    CupertinoRoute(
+      page: LegalPage,
+    ),
+    CupertinoRoute(
+      page: ImpressumPage,
     ),
     CupertinoRoute(
       page: InvitationsPage,

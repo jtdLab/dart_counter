@@ -7,20 +7,22 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../domain/play/game.dart' as _i18;
+import '../../domain/play/game.dart' as _i20;
 import 'auth/auth_page.dart' as _i4;
-import 'core/core.dart' as _i17;
-import 'create_game/create_game_page.dart' as _i14;
-import 'friends/friends_page.dart' as _i8;
-import 'game/game_page.dart' as _i11;
-import 'game_history/game_history_page.dart' as _i10;
-import 'game_history_details/game_history_details_page.dart' as _i13;
-import 'game_history_overview/game_history_overview_page.dart' as _i12;
+import 'core/core.dart' as _i19;
+import 'create_game/create_game_page.dart' as _i16;
+import 'friends/friends_page.dart' as _i10;
+import 'game/game_page.dart' as _i13;
+import 'game_history/game_history_page.dart' as _i12;
+import 'game_history_details/game_history_details_page.dart' as _i15;
+import 'game_history_overview/game_history_overview_page.dart' as _i14;
 import 'home/home_page.dart' as _i5;
-import 'in_game/in_game_page.dart' as _i15;
-import 'invitations/invitations_page.dart' as _i7;
-import 'post_game/post_game_page.dart' as _i16;
-import 'profile/profile_page.dart' as _i9;
+import 'impressum/impressum_page.dart' as _i8;
+import 'in_game/in_game_page.dart' as _i17;
+import 'invitations/invitations_page.dart' as _i9;
+import 'legal/legal_page.dart' as _i7;
+import 'post_game/post_game_page.dart' as _i18;
+import 'profile/profile_page.dart' as _i11;
 import 'settings/settings_page.dart' as _i6;
 import 'splash/splash_page.dart' as _i3;
 
@@ -56,35 +58,45 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return _i6.SettingsPage();
         }),
+    LegalPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.LegalPage();
+        }),
+    ImpressumPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i8.ImpressumPage();
+        }),
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.InvitationsPage();
+          return const _i9.InvitationsPage();
         }),
     FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.FriendsPage();
+          return const _i10.FriendsPage();
         }),
     ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.ProfilePage();
+          return _i11.ProfilePage();
         }),
     GameHistoryPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i10.GameHistoryPage();
+          return _i12.GameHistoryPage();
         }),
     GamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i11.GamePage();
+          return const _i13.GamePage();
         }),
     GameHistoryOverviewPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i12.GameHistoryOverviewPage();
+          return const _i14.GameHistoryOverviewPage();
         },
         opaque: true,
         barrierDismissible: false),
@@ -92,7 +104,7 @@ class Router extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<GameHistoryDetailsPageRouteArgs>();
-          return _i13.GameHistoryDetailsPage(key: args.key, game: args.game);
+          return _i15.GameHistoryDetailsPage(key: args.key, game: args.game);
         },
         reverseDurationInMilliseconds: 0,
         opaque: true,
@@ -100,17 +112,17 @@ class Router extends _i1.RootStackRouter {
     CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i14.CreateGamePage();
+          return _i16.CreateGamePage();
         }),
     InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i15.InGamePage();
+          return _i17.InGamePage();
         }),
     PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i16.PostGamePage();
+          return _i18.PostGamePage();
         })
   };
 
@@ -120,6 +132,8 @@ class Router extends _i1.RootStackRouter {
         _i1.RouteConfig(AuthPageRoute.name, path: '/auth-page'),
         _i1.RouteConfig(HomePageRoute.name, path: '/home-page'),
         _i1.RouteConfig(SettingsPageRoute.name, path: '/settings-page'),
+        _i1.RouteConfig(LegalPageRoute.name, path: '/legal-page'),
+        _i1.RouteConfig(ImpressumPageRoute.name, path: '/impressum-page'),
         _i1.RouteConfig(InvitationsPageRoute.name, path: '/invitations-page'),
         _i1.RouteConfig(FriendsPageRoute.name, path: '/friends-page'),
         _i1.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
@@ -162,6 +176,18 @@ class SettingsPageRoute extends _i1.PageRouteInfo {
   static const String name = 'SettingsPageRoute';
 }
 
+class LegalPageRoute extends _i1.PageRouteInfo {
+  const LegalPageRoute() : super(name, path: '/legal-page');
+
+  static const String name = 'LegalPageRoute';
+}
+
+class ImpressumPageRoute extends _i1.PageRouteInfo {
+  const ImpressumPageRoute() : super(name, path: '/impressum-page');
+
+  static const String name = 'ImpressumPageRoute';
+}
+
 class InvitationsPageRoute extends _i1.PageRouteInfo {
   const InvitationsPageRoute() : super(name, path: '/invitations-page');
 
@@ -202,7 +228,7 @@ class GameHistoryOverviewPageRoute extends _i1.PageRouteInfo {
 
 class GameHistoryDetailsPageRoute
     extends _i1.PageRouteInfo<GameHistoryDetailsPageRouteArgs> {
-  GameHistoryDetailsPageRoute({_i17.Key? key, required _i18.Game game})
+  GameHistoryDetailsPageRoute({_i19.Key? key, required _i20.Game game})
       : super(name,
             path: 'game-history-details-page',
             args: GameHistoryDetailsPageRouteArgs(key: key, game: game));
@@ -213,9 +239,9 @@ class GameHistoryDetailsPageRoute
 class GameHistoryDetailsPageRouteArgs {
   const GameHistoryDetailsPageRouteArgs({this.key, required this.game});
 
-  final _i17.Key? key;
+  final _i19.Key? key;
 
-  final _i18.Game game;
+  final _i20.Game game;
 }
 
 class CreateGamePageRoute extends _i1.PageRouteInfo {

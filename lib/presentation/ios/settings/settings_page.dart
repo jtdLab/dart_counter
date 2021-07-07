@@ -19,6 +19,7 @@ class SettingsPage extends StatelessWidget {
         create: (context) =>
             getIt<SettingsBloc>()..add(const SettingsEvent.watchStarted()),
         child: AppPage(
+          maxHeight: 800, // TODO
           navigationBar: AppNavigationBar(
             leading: const BackButton(),
             middle: Text(

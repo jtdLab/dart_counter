@@ -5,3 +5,4 @@ export 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_
 // Widget specific
 export 'account_card/account_card.dart';
 export 'language_card/language_card.dart';
+export 'darts_ger_card/darts_ger_card.dart';

@@ -32,6 +32,8 @@ class SettingsWidget extends StatelessWidget {
             const Spacer(),
             AccountCard(),
             const Spacer(),
+            DartsGerCard(),
+            const Spacer(),
             AppPrimaryButton(
               text: LocaleKeys.signOut.tr(),
               color: AppColors.red,
