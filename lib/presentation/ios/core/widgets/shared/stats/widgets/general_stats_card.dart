@@ -8,7 +8,7 @@ import 'game_history_details_card_row.dart';
 class GeneralStatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final game = context.read<Game>();
+    final game;
     return AppCard(
       headerBodySpacing: size6(context),
       leading: AutoSizeText(

@@ -1,5 +1,3 @@
-import 'package:dart_counter/domain/play/game.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
@@ -8,7 +6,7 @@ import 'game_history_details_card_row.dart';
 class TakesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final game = context.read<Game>();
+    final game;
     
     return AppCard(
       headerBodySpacing: size6(context),
