@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       child: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state.game != null) {
-            context.router.replace(const CreateGamePageRoute());
+            context.router.replace(const GamePageRoute());
           }
         },
         child: AppPage(
