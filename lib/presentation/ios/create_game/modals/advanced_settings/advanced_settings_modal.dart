@@ -5,6 +5,7 @@ import 'package:dart_counter/application/settings/edit_profile/edit_profile_bloc
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:flutter/material.dart' show Colors;
 
 // TODO refactor
@@ -57,7 +58,10 @@ class AdvancedSettingsModal extends StatelessWidget {
                                 .toUpperCase(),
                           ),
                           const Spacer(),
-                          const Text('Check'),
+                          AppIconButton(
+                            onPressed: () {},
+                            icon: Image.asset(AppImages.check_mark_dark_new),
+                          ),
                         ],
                       ),
                     ),
@@ -73,7 +77,10 @@ class AdvancedSettingsModal extends StatelessWidget {
                             LocaleKeys.showAverrage.tr().toUpperCase(),
                           ),
                           const Spacer(),
-                          const Text('Check'),
+                          AppIconButton(
+                            onPressed: () {},
+                            icon: Image.asset(AppImages.check_mark_dark_new),
+                          ),
                         ],
                       ),
                     ),
