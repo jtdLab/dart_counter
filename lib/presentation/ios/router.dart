@@ -10,6 +10,7 @@ import 'package:dart_counter/presentation/ios/in_game/in_game_page.dart';
 import 'package:dart_counter/presentation/ios/invitations/invitations_page.dart';
 import 'package:dart_counter/presentation/ios/post_game/post_game_page.dart';
 import 'package:dart_counter/presentation/ios/profile/profile_page.dart';
+import 'package:dart_counter/presentation/ios/settings/modals/change_username/change_username_modal.dart';
 import 'package:dart_counter/presentation/ios/settings/settings_page.dart';
 import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
 
@@ -62,3 +63,20 @@ import 'package:dart_counter/presentation/ios/splash/splash_page.dart';
   ],
 )
 class $Router {}
+
+/**
+ * children: [
+        CustomRoute(
+          page: ChangeUsernameModal,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: SubPage1,
+            ),
+            CustomRoute(
+              page: SubPage2,
+            ),
+          ],
+        ),
+      ],
+ */

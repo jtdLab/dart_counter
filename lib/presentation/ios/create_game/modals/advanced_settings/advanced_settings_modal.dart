@@ -52,22 +52,6 @@ class AdvancedSettingsModal extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            LocaleKeys.speechInput.tr().toUpperCase(),
-                          ),
-                          const Spacer(),
-                          const Text('Check'),
-                        ],
-                      ),
-                    ),
-                  ),
-                  AppCardItem.small(
-                    content: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size12(context),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
                             LocaleKeys.showCheckoutPercentage
                                 .tr()
                                 .toUpperCase(),
@@ -94,12 +78,14 @@ class AdvancedSettingsModal extends StatelessWidget {
                       ),
                     ),
                   ),
-                  AppActionButton.normal(
+                  /**
+                  *  AppActionButton.normal(
                     onPressed: () {},
                     color: AppColors.red,
                     fontColor: AppColors.white,
                     text: LocaleKeys.removePlayer.tr().toUpperCase(),
                   ),
+                  */
                   AppActionButton.normal(
                     onPressed: () => context.router.pop(),
                     text: LocaleKeys.done.tr().toUpperCase(),
