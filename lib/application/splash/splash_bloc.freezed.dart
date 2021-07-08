@@ -20,24 +20,16 @@ class _$SplashEventTearOff {
     return const WatchStarted();
   }
 
-  InvitationsReceived invitationsReceived(
-      {required KtList<GameInvitation> gameInvitations}) {
-    return InvitationsReceived(
-      gameInvitations: gameInvitations,
-    );
+  InvitationsReceived invitationsReceived() {
+    return const InvitationsReceived();
   }
 
-  FriendRequestsReceived friendRequestsReceived(
-      {required KtList<FriendRequest> friendRequests}) {
-    return FriendRequestsReceived(
-      friendRequests: friendRequests,
-    );
+  FriendRequestsReceived friendRequestsReceived() {
+    return const FriendRequestsReceived();
   }
 
-  UserReceived userReceived({required User user}) {
-    return UserReceived(
-      user: user,
-    );
+  UserReceived userReceived() {
+    return const UserReceived();
   }
 
   FailureReceived failureReceived() {
@@ -53,22 +45,18 @@ mixin _$SplashEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) =>
@@ -151,11 +139,9 @@ class _$WatchStarted implements WatchStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) {
     return watchStarted();
@@ -165,11 +151,9 @@ class _$WatchStarted implements WatchStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
@@ -218,7 +202,6 @@ abstract class $InvitationsReceivedCopyWith<$Res> {
   factory $InvitationsReceivedCopyWith(
           InvitationsReceived value, $Res Function(InvitationsReceived) then) =
       _$InvitationsReceivedCopyWithImpl<$Res>;
-  $Res call({KtList<GameInvitation> gameInvitations});
 }
 
 /// @nodoc
@@ -231,80 +214,50 @@ class _$InvitationsReceivedCopyWithImpl<$Res>
 
   @override
   InvitationsReceived get _value => super._value as InvitationsReceived;
-
-  @override
-  $Res call({
-    Object? gameInvitations = freezed,
-  }) {
-    return _then(InvitationsReceived(
-      gameInvitations: gameInvitations == freezed
-          ? _value.gameInvitations
-          : gameInvitations // ignore: cast_nullable_to_non_nullable
-              as KtList<GameInvitation>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$InvitationsReceived implements InvitationsReceived {
-  const _$InvitationsReceived({required this.gameInvitations});
-
-  @override
-  final KtList<GameInvitation> gameInvitations;
+  const _$InvitationsReceived();
 
   @override
   String toString() {
-    return 'SplashEvent.invitationsReceived(gameInvitations: $gameInvitations)';
+    return 'SplashEvent.invitationsReceived()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is InvitationsReceived &&
-            (identical(other.gameInvitations, gameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameInvitations, gameInvitations)));
+    return identical(this, other) || (other is InvitationsReceived);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gameInvitations);
-
-  @JsonKey(ignore: true)
-  @override
-  $InvitationsReceivedCopyWith<InvitationsReceived> get copyWith =>
-      _$InvitationsReceivedCopyWithImpl<InvitationsReceived>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) {
-    return invitationsReceived(gameInvitations);
+    return invitationsReceived();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (invitationsReceived != null) {
-      return invitationsReceived(gameInvitations);
+      return invitationsReceived();
     }
     return orElse();
   }
@@ -340,15 +293,7 @@ class _$InvitationsReceived implements InvitationsReceived {
 }
 
 abstract class InvitationsReceived implements SplashEvent {
-  const factory InvitationsReceived(
-          {required KtList<GameInvitation> gameInvitations}) =
-      _$InvitationsReceived;
-
-  KtList<GameInvitation> get gameInvitations =>
-      throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $InvitationsReceivedCopyWith<InvitationsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory InvitationsReceived() = _$InvitationsReceived;
 }
 
 /// @nodoc
@@ -356,7 +301,6 @@ abstract class $FriendRequestsReceivedCopyWith<$Res> {
   factory $FriendRequestsReceivedCopyWith(FriendRequestsReceived value,
           $Res Function(FriendRequestsReceived) then) =
       _$FriendRequestsReceivedCopyWithImpl<$Res>;
-  $Res call({KtList<FriendRequest> friendRequests});
 }
 
 /// @nodoc
@@ -369,81 +313,50 @@ class _$FriendRequestsReceivedCopyWithImpl<$Res>
 
   @override
   FriendRequestsReceived get _value => super._value as FriendRequestsReceived;
-
-  @override
-  $Res call({
-    Object? friendRequests = freezed,
-  }) {
-    return _then(FriendRequestsReceived(
-      friendRequests: friendRequests == freezed
-          ? _value.friendRequests
-          : friendRequests // ignore: cast_nullable_to_non_nullable
-              as KtList<FriendRequest>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$FriendRequestsReceived implements FriendRequestsReceived {
-  const _$FriendRequestsReceived({required this.friendRequests});
-
-  @override
-  final KtList<FriendRequest> friendRequests;
+  const _$FriendRequestsReceived();
 
   @override
   String toString() {
-    return 'SplashEvent.friendRequestsReceived(friendRequests: $friendRequests)';
+    return 'SplashEvent.friendRequestsReceived()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is FriendRequestsReceived &&
-            (identical(other.friendRequests, friendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.friendRequests, friendRequests)));
+    return identical(this, other) || (other is FriendRequestsReceived);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(friendRequests);
-
-  @JsonKey(ignore: true)
-  @override
-  $FriendRequestsReceivedCopyWith<FriendRequestsReceived> get copyWith =>
-      _$FriendRequestsReceivedCopyWithImpl<FriendRequestsReceived>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) {
-    return friendRequestsReceived(friendRequests);
+    return friendRequestsReceived();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (friendRequestsReceived != null) {
-      return friendRequestsReceived(friendRequests);
+      return friendRequestsReceived();
     }
     return orElse();
   }
@@ -479,15 +392,7 @@ class _$FriendRequestsReceived implements FriendRequestsReceived {
 }
 
 abstract class FriendRequestsReceived implements SplashEvent {
-  const factory FriendRequestsReceived(
-          {required KtList<FriendRequest> friendRequests}) =
-      _$FriendRequestsReceived;
-
-  KtList<FriendRequest> get friendRequests =>
-      throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FriendRequestsReceivedCopyWith<FriendRequestsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory FriendRequestsReceived() = _$FriendRequestsReceived;
 }
 
 /// @nodoc
@@ -495,9 +400,6 @@ abstract class $UserReceivedCopyWith<$Res> {
   factory $UserReceivedCopyWith(
           UserReceived value, $Res Function(UserReceived) then) =
       _$UserReceivedCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -509,85 +411,50 @@ class _$UserReceivedCopyWithImpl<$Res> extends _$SplashEventCopyWithImpl<$Res>
 
   @override
   UserReceived get _value => super._value as UserReceived;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(UserReceived(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$UserReceived implements UserReceived {
-  const _$UserReceived({required this.user});
-
-  @override
-  final User user;
+  const _$UserReceived();
 
   @override
   String toString() {
-    return 'SplashEvent.userReceived(user: $user)';
+    return 'SplashEvent.userReceived()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UserReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+    return identical(this, other) || (other is UserReceived);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
-
-  @JsonKey(ignore: true)
-  @override
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) {
-    return userReceived(user);
+    return userReceived();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
-      return userReceived(user);
+      return userReceived();
     }
     return orElse();
   }
@@ -623,12 +490,7 @@ class _$UserReceived implements UserReceived {
 }
 
 abstract class UserReceived implements SplashEvent {
-  const factory UserReceived({required User user}) = _$UserReceived;
-
-  User get user => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory UserReceived() = _$UserReceived;
 }
 
 /// @nodoc
@@ -672,11 +534,9 @@ class _$FailureReceived implements FailureReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        invitationsReceived,
-    required TResult Function(KtList<FriendRequest> friendRequests)
-        friendRequestsReceived,
-    required TResult Function(User user) userReceived,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
     required TResult Function() failureReceived,
   }) {
     return failureReceived();
@@ -686,11 +546,9 @@ class _$FailureReceived implements FailureReceived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        invitationsReceived,
-    TResult Function(KtList<FriendRequest> friendRequests)?
-        friendRequestsReceived,
-    TResult Function(User user)? userReceived,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
     TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
@@ -738,11 +596,19 @@ abstract class FailureReceived implements SplashEvent {
 class _$SplashStateTearOff {
   const _$SplashStateTearOff();
 
-  _SplashState call(
+  Initial initial() {
+    return const Initial();
+  }
+
+  Unauthenticated unauthenticated() {
+    return const Unauthenticated();
+  }
+
+  Authenticated authenticated(
       {required bool invitationsReceived,
       required bool friendRequestsReceived,
       required bool userReceived}) {
-    return _SplashState(
+    return Authenticated(
       invitationsReceived: invitationsReceived,
       friendRequestsReceived: friendRequestsReceived,
       userReceived: userReceived,
@@ -755,12 +621,39 @@ const $SplashState = _$SplashStateTearOff();
 
 /// @nodoc
 mixin _$SplashState {
-  bool get invitationsReceived => throw _privateConstructorUsedError;
-  bool get friendRequestsReceived => throw _privateConstructorUsedError;
-  bool get userReceived => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SplashStateCopyWith<SplashState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+    required TResult Function(bool invitationsReceived,
+            bool friendRequestsReceived, bool userReceived)
+        authenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    TResult Function(bool invitationsReceived, bool friendRequestsReceived,
+            bool userReceived)?
+        authenticated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(Authenticated value) authenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -769,10 +662,6 @@ abstract class $SplashStateCopyWith<$Res> {
   factory $SplashStateCopyWith(
           SplashState value, $Res Function(SplashState) then) =
       _$SplashStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool invitationsReceived,
-      bool friendRequestsReceived,
-      bool userReceived});
 }
 
 /// @nodoc
@@ -782,37 +671,198 @@ class _$SplashStateCopyWithImpl<$Res> implements $SplashStateCopyWith<$Res> {
   final SplashState _value;
   // ignore: unused_field
   final $Res Function(SplashState) _then;
-
-  @override
-  $Res call({
-    Object? invitationsReceived = freezed,
-    Object? friendRequestsReceived = freezed,
-    Object? userReceived = freezed,
-  }) {
-    return _then(_value.copyWith(
-      invitationsReceived: invitationsReceived == freezed
-          ? _value.invitationsReceived
-          : invitationsReceived // ignore: cast_nullable_to_non_nullable
-              as bool,
-      friendRequestsReceived: friendRequestsReceived == freezed
-          ? _value.friendRequestsReceived
-          : friendRequestsReceived // ignore: cast_nullable_to_non_nullable
-              as bool,
-      userReceived: userReceived == freezed
-          ? _value.userReceived
-          : userReceived // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$SplashStateCopyWith<$Res>
-    implements $SplashStateCopyWith<$Res> {
-  factory _$SplashStateCopyWith(
-          _SplashState value, $Res Function(_SplashState) then) =
-      __$SplashStateCopyWithImpl<$Res>;
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitialCopyWithImpl<$Res> extends _$SplashStateCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
+
   @override
+  Initial get _value => super._value as Initial;
+}
+
+/// @nodoc
+
+class _$Initial implements Initial {
+  const _$Initial();
+
+  @override
+  String toString() {
+    return 'SplashState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+    required TResult Function(bool invitationsReceived,
+            bool friendRequestsReceived, bool userReceived)
+        authenticated,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    TResult Function(bool invitationsReceived, bool friendRequestsReceived,
+            bool userReceived)?
+        authenticated,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(Authenticated value) authenticated,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initial implements SplashState {
+  const factory Initial() = _$Initial;
+}
+
+/// @nodoc
+abstract class $UnauthenticatedCopyWith<$Res> {
+  factory $UnauthenticatedCopyWith(
+          Unauthenticated value, $Res Function(Unauthenticated) then) =
+      _$UnauthenticatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UnauthenticatedCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res>
+    implements $UnauthenticatedCopyWith<$Res> {
+  _$UnauthenticatedCopyWithImpl(
+      Unauthenticated _value, $Res Function(Unauthenticated) _then)
+      : super(_value, (v) => _then(v as Unauthenticated));
+
+  @override
+  Unauthenticated get _value => super._value as Unauthenticated;
+}
+
+/// @nodoc
+
+class _$Unauthenticated implements Unauthenticated {
+  const _$Unauthenticated();
+
+  @override
+  String toString() {
+    return 'SplashState.unauthenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Unauthenticated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+    required TResult Function(bool invitationsReceived,
+            bool friendRequestsReceived, bool userReceived)
+        authenticated,
+  }) {
+    return unauthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    TResult Function(bool invitationsReceived, bool friendRequestsReceived,
+            bool userReceived)?
+        authenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(Authenticated value) authenticated,
+  }) {
+    return unauthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Unauthenticated implements SplashState {
+  const factory Unauthenticated() = _$Unauthenticated;
+}
+
+/// @nodoc
+abstract class $AuthenticatedCopyWith<$Res> {
+  factory $AuthenticatedCopyWith(
+          Authenticated value, $Res Function(Authenticated) then) =
+      _$AuthenticatedCopyWithImpl<$Res>;
   $Res call(
       {bool invitationsReceived,
       bool friendRequestsReceived,
@@ -820,14 +870,14 @@ abstract class _$SplashStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SplashStateCopyWithImpl<$Res> extends _$SplashStateCopyWithImpl<$Res>
-    implements _$SplashStateCopyWith<$Res> {
-  __$SplashStateCopyWithImpl(
-      _SplashState _value, $Res Function(_SplashState) _then)
-      : super(_value, (v) => _then(v as _SplashState));
+class _$AuthenticatedCopyWithImpl<$Res> extends _$SplashStateCopyWithImpl<$Res>
+    implements $AuthenticatedCopyWith<$Res> {
+  _$AuthenticatedCopyWithImpl(
+      Authenticated _value, $Res Function(Authenticated) _then)
+      : super(_value, (v) => _then(v as Authenticated));
 
   @override
-  _SplashState get _value => super._value as _SplashState;
+  Authenticated get _value => super._value as Authenticated;
 
   @override
   $Res call({
@@ -835,7 +885,7 @@ class __$SplashStateCopyWithImpl<$Res> extends _$SplashStateCopyWithImpl<$Res>
     Object? friendRequestsReceived = freezed,
     Object? userReceived = freezed,
   }) {
-    return _then(_SplashState(
+    return _then(Authenticated(
       invitationsReceived: invitationsReceived == freezed
           ? _value.invitationsReceived
           : invitationsReceived // ignore: cast_nullable_to_non_nullable
@@ -854,8 +904,8 @@ class __$SplashStateCopyWithImpl<$Res> extends _$SplashStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SplashState implements _SplashState {
-  const _$_SplashState(
+class _$Authenticated implements Authenticated {
+  const _$Authenticated(
       {required this.invitationsReceived,
       required this.friendRequestsReceived,
       required this.userReceived});
@@ -869,13 +919,13 @@ class _$_SplashState implements _SplashState {
 
   @override
   String toString() {
-    return 'SplashState(invitationsReceived: $invitationsReceived, friendRequestsReceived: $friendRequestsReceived, userReceived: $userReceived)';
+    return 'SplashState.authenticated(invitationsReceived: $invitationsReceived, friendRequestsReceived: $friendRequestsReceived, userReceived: $userReceived)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SplashState &&
+        (other is Authenticated &&
             (identical(other.invitationsReceived, invitationsReceived) ||
                 const DeepCollectionEquality()
                     .equals(other.invitationsReceived, invitationsReceived)) &&
@@ -896,24 +946,74 @@ class _$_SplashState implements _SplashState {
 
   @JsonKey(ignore: true)
   @override
-  _$SplashStateCopyWith<_SplashState> get copyWith =>
-      __$SplashStateCopyWithImpl<_SplashState>(this, _$identity);
+  $AuthenticatedCopyWith<Authenticated> get copyWith =>
+      _$AuthenticatedCopyWithImpl<Authenticated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() unauthenticated,
+    required TResult Function(bool invitationsReceived,
+            bool friendRequestsReceived, bool userReceived)
+        authenticated,
+  }) {
+    return authenticated(
+        invitationsReceived, friendRequestsReceived, userReceived);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? unauthenticated,
+    TResult Function(bool invitationsReceived, bool friendRequestsReceived,
+            bool userReceived)?
+        authenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(
+          invitationsReceived, friendRequestsReceived, userReceived);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(Authenticated value) authenticated,
+  }) {
+    return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _SplashState implements SplashState {
-  const factory _SplashState(
+abstract class Authenticated implements SplashState {
+  const factory Authenticated(
       {required bool invitationsReceived,
       required bool friendRequestsReceived,
-      required bool userReceived}) = _$_SplashState;
+      required bool userReceived}) = _$Authenticated;
 
-  @override
   bool get invitationsReceived => throw _privateConstructorUsedError;
-  @override
   bool get friendRequestsReceived => throw _privateConstructorUsedError;
-  @override
   bool get userReceived => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$SplashStateCopyWith<_SplashState> get copyWith =>
+  $AuthenticatedCopyWith<Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }

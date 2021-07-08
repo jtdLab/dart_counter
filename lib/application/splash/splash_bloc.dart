@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
@@ -25,31 +26,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final IFriendFacade _friendFacade;
   final IUserFacade _userFacade;
 
-  SplashBloc(this._gameInvitationFacade, this._friendFacade, this._userFacade)
-      : super(
-          SplashState(
-            invitationsReceived: _gameInvitationFacade
-                    .watchReceivedInvitations()
-                    .valueWrapper
-                    ?.value
-                    .fold(
-                      (failure) => throw Error(), // TODO
-                      (invitations) => true,
-                    ) ??
-                false,
-            friendRequestsReceived:
-                _friendFacade.watchFriendRequests().valueWrapper?.value.fold(
-                          (failure) => throw Error(), // TODO
-                          (friendRequests) => true,
-                        ) ??
-                    false,
-            userReceived:
-                _userFacade.watchCurrentUser().valueWrapper?.value.fold(
-                          (failure) => throw Error(), // TODO
-                          (user) => true,
-                        ) ??
-                    false,
-          ),
+  SplashBloc(
+    this._gameInvitationFacade,
+    this._friendFacade,
+    this._userFacade,
+  ) : super(
+          const SplashState.initial(),
         );
 
   StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
@@ -65,80 +47,102 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     SplashEvent event,
   ) async* {
     yield* event.map(
-      watchStarted: (_) => _mapWatchStartedToEvent(),
-      invitationsReceived: (event) => _mapInvitationsReceivedToEvent(event),
-      friendRequestsReceived: (event) =>
-          _mapFriendRequestsReceivedToEvent(event),
-      userReceived: (event) => _mapUserReceivedToEvent(event),
-      failureReceived: (_) => _mapFailureReceivedToEvent(),
+      watchStarted: (_) => _mapWatchStartedToState(),
+      invitationsReceived: (_) => _mapInvitationsReceivedToState(),
+      friendRequestsReceived: (_) => _mapFriendRequestsReceivedToState(),
+      userReceived: (_) => _mapUserReceivedToState(),
+      failureReceived: (_) => _mapFailureReceivedToState(),
     );
   }
 
-  Stream<SplashState> _mapWatchStartedToEvent() async* {
-    _invitationStreamSubscription =
-        _gameInvitationFacade.watchReceivedInvitations().listen(
-      (failureOrInvitations) {
-        failureOrInvitations.fold(
-          (failure) => add(const SplashEvent.failureReceived()),
-          (invitations) => add(
-            SplashEvent.invitationsReceived(
-              gameInvitations: invitations,
-            ),
-          ),
+  Stream<SplashState> _mapWatchStartedToState() async* {
+    final failureOrUser = await _userFacade.readCurrentUser();
+
+    yield* failureOrUser.fold(
+      (failure) async* {
+        yield const SplashState.unauthenticated();
+      },
+      (user) async* {
+        yield const SplashState.authenticated(
+          invitationsReceived: false,
+          friendRequestsReceived: false,
+          userReceived: false,
+        );
+
+        _invitationStreamSubscription =
+            _gameInvitationFacade.watchReceivedInvitations().listen(
+          (failureOrInvitations) {
+            failureOrInvitations.fold(
+              (failure) => add(const SplashEvent.failureReceived()),
+              (invitations) => add(
+                const SplashEvent.invitationsReceived(),
+              ),
+            );
+          },
+        );
+
+        _friendRequestStreamSubscription =
+            _friendFacade.watchFriendRequests().listen(
+          (failureOrFriendRequests) {
+            failureOrFriendRequests.fold(
+              (failure) => add(const SplashEvent.failureReceived()),
+              (friendRequests) => add(
+                const SplashEvent.friendRequestsReceived(),
+              ),
+            );
+          },
+        );
+
+        _userStreamSubscription = _userFacade.watchCurrentUser().listen(
+          (failureOrUser) {
+            failureOrUser.fold(
+              (failure) => add(const SplashEvent.failureReceived()),
+              (user) => add(
+                const SplashEvent.userReceived(),
+              ),
+            );
+          },
         );
       },
     );
+  }
 
-    _friendRequestStreamSubscription =
-        _friendFacade.watchFriendRequests().listen(
-      (failureOrFriendRequests) {
-        failureOrFriendRequests.fold(
-          (failure) => add(const SplashEvent.failureReceived()),
-          (friendRequests) => add(
-            SplashEvent.friendRequestsReceived(
-              friendRequests: friendRequests,
-            ),
-          ),
+  Stream<SplashState> _mapInvitationsReceivedToState() async* {
+    yield state.maybeMap(
+      authenticated: (authenticated) {
+        return authenticated.copyWith(
+          invitationsReceived: true,
         );
       },
+      orElse: () => throw Error(), // speficy to Unexpected bloc state error
     );
+  }
 
-    _userStreamSubscription = _userFacade.watchCurrentUser().listen(
-      (failureOrUser) {
-        failureOrUser.fold(
-          (failure) => add(const SplashEvent.failureReceived()),
-          (user) => add(
-            SplashEvent.userReceived(
-              user: user,
-            ),
-          ),
+  Stream<SplashState> _mapFriendRequestsReceivedToState() async* {
+    yield state.maybeMap(
+      authenticated: (authenticated) {
+        return authenticated.copyWith(
+          friendRequestsReceived: true,
         );
       },
+      orElse: () => throw Error(), // speficy to Unexpected bloc state error
     );
   }
 
-  Stream<SplashState> _mapInvitationsReceivedToEvent(
-      InvitationsReceived event) async* {
-    yield state.copyWith(
-      invitationsReceived: true,
+  Stream<SplashState> _mapUserReceivedToState() async* {
+    yield state.maybeMap(
+      authenticated: (authenticated) {
+        return authenticated.copyWith(
+          userReceived: true,
+        );
+      },
+      orElse: () => throw Error(), // speficy to Unexpected bloc state error
     );
   }
 
-  Stream<SplashState> _mapFriendRequestsReceivedToEvent(
-      FriendRequestsReceived event) async* {
-    yield state.copyWith(
-      friendRequestsReceived: true,
-    );
-  }
-
-  Stream<SplashState> _mapUserReceivedToEvent(UserReceived event) async* {
-    yield state.copyWith(
-      userReceived: true,
-    );
-  }
-
-  Stream<SplashState> _mapFailureReceivedToEvent() async* {
-    throw Error(); // TODO
+  Stream<SplashState> _mapFailureReceivedToState() async* {
+    // TODO implement
+    throw UnimplementedError();
   }
 
   @override

@@ -43,8 +43,8 @@ import 'domain/friend/i_friend_facade.dart' as _i13;
 import 'domain/game_invitation/i_game_invitation_facade.dart' as _i15;
 import 'domain/play/i_play_facade.dart' as _i18;
 import 'domain/user/i_user_facade.dart' as _i21;
-import 'infrastructure/auth/firebase_auth_facade.dart' as _i12;
-import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
+import 'infrastructure/auth/firebase_auth_facade.dart' as _i11;
+import 'infrastructure/auth/mocked_auth_facade.dart' as _i12;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i47;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i46;
 import 'infrastructure/friend/friend_facade.dart' as _i45;
@@ -57,9 +57,9 @@ import 'infrastructure/play/play_facade.dart' as _i19;
 import 'infrastructure/user/mocked_user_facade.dart' as _i22;
 import 'infrastructure/user/user_facade.dart' as _i23;
 
-const String _dev = 'dev';
 const String _test = 'test';
 const String _prod = 'prod';
+const String _dev = 'dev';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -80,12 +80,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i9.GoogleSignIn>(
       () => fireBaseInjectableModule.googleSignIn);
-  gh.lazySingleton<_i10.IAuthFacade>(() => _i11.MockedAuthFacade(),
-      registerFor: {_dev});
   gh.lazySingleton<_i10.IAuthFacade>(
-      () => _i12.FirebaseAuthFacade(get<_i5.FirebaseAuth>(),
+      () => _i11.FirebaseAuthFacade(get<_i5.FirebaseAuth>(),
           get<_i9.GoogleSignIn>(), get<_i6.FirebaseFirestore>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i10.IAuthFacade>(() => _i12.MockedAuthFacade(),
+      registerFor: {_dev});
   gh.lazySingleton<_i13.IFriendFacade>(() => _i14.MockedFriendFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i15.IGameInvitationFacade>(

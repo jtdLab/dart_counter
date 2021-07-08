@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'domain/auth/i_auth_facade.dart';
 import 'presentation/core/app_widget/app_widget.dart';
 
 Future<void> main() async {
@@ -32,7 +34,9 @@ Future<void> main() async {
   /**
    * FirebaseFirestore.instance.settings = Settings(
     persistenceEnabled: true,
-  ); */
+  ); 
+  getIt<IAuthFacade>().signOut();
+  */
   runApp(
     AppWidget(),
   );

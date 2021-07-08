@@ -9,6 +9,9 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+
+import 'friend_request_dto.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -40,10 +43,12 @@ class FriendFacade implements IFriendFacade {
   @override
   ValueStream<Either<FriendFailure, KtList<FriendRequest>>>
       watchFriendRequests() {
-    // TODO: implement watchFriends
-    throw UnimplementedError();
-    /**
-     * final userDoc = await _firestore.userDocument();
+    return ValueConnectableStream(_watchFriendRequests()).autoConnect();
+  }
+
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      _watchFriendRequests() async* {
+    final userDoc = await _firestore.userDocument();
     yield* userDoc.friendRequestsCollection
         .orderBy('createdAt', descending: true)
         .snapshots()
@@ -57,7 +62,6 @@ class FriendFacade implements IFriendFacade {
         .onErrorReturnWith((e) {
       return left(const FriendFailure.unexpected());
     });
-     */
   }
 
   @override

@@ -17,6 +17,7 @@ import 'package:injectable/injectable.dart';
 import 'package:image/image.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -31,10 +32,11 @@ class UserFacade implements IUserFacade {
 
   @override
   ValueStream<Either<UserFailure, User>> watchCurrentUser() {
-    // TODO implement
-    throw UnimplementedError();
-    /**
-     * try {
+    return ValueConnectableStream(_watchCurrentUser()).autoConnect();
+  }
+
+  Stream<Either<UserFailure, User>> _watchCurrentUser() async* {
+    try {
       final uid = _authFacade.getSignedInUid();
 
       if (uid == null) {
@@ -43,7 +45,7 @@ class UserFacade implements IUserFacade {
 
       final userDoc = await _firestore.userDocument();
       yield* userDoc.snapshots().map((docSnapshot) {
-        final data = docSnapshot.data();
+        final data = docSnapshot.data() as Map<String, dynamic>?;
 
         if (data == null) {
           return left(const UserFailure.failure());
@@ -60,7 +62,6 @@ class UserFacade implements IUserFacade {
         yield left(const UserFailure.failure());
       }
     }
-     */
   }
 
   @override
@@ -164,10 +165,11 @@ class UserFacade implements IUserFacade {
     }
   }
 
-  /**
-  * 
   Future<Either<UserFailure, String>> findEmailAddressByUsername(
       String username) async {
+    throw UnimplementedError();
+    /**
+  * 
     try {
       final usersCollection = await _firestore.usersCollection();
       final querySnapshot = await usersCollection
@@ -187,6 +189,6 @@ class UserFacade implements IUserFacade {
         return left(const UserFailure.unexpected());
       }
     }
+      */
   }
-  */
 }

@@ -1,4 +1,3 @@
-import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/injection.dart';
 
 import 'package:dart_counter/application/splash/splash_bloc.dart';
@@ -16,15 +15,22 @@ class SplashPage extends StatelessWidget {
           getIt<SplashBloc>()..add(const SplashEvent.watchStarted()),
       child: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) async {
-          final allReceived = state.invitationsReceived &&
-              state.friendRequestsReceived &&
-              state.userReceived;
+          await Future.delayed(const Duration(seconds: 1));
+          state.maybeMap(
+            authenticated: (authenticated) {
+              final allReceived = authenticated.invitationsReceived &&
+                  authenticated.friendRequestsReceived &&
+                  authenticated.userReceived;
 
-          if (allReceived) {
-            await Future.delayed(const Duration(seconds: 1));
-            // TODO auth
-            context.router.replace(const HomePageRoute());
-          }
+              if (allReceived) {
+                context.router.replace(const HomePageRoute());
+              }
+            },
+            unauthenticated: (_) {
+              context.router.replace(const AuthPageRoute());
+            },
+            orElse: () {},
+          );
         },
         child: const CupertinoPageScaffold(
           child: Center(
