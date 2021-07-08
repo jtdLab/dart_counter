@@ -18,6 +18,7 @@ import 'package:image/image.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
 
+@Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IUserFacade)
 class UserFacade implements IUserFacade {
@@ -71,7 +72,7 @@ class UserFacade implements IUserFacade {
       }
 
       final userDoc = await _firestore.userDocument();
-      final data = (await userDoc.get()).data();
+      final data = (await userDoc.get()).data() as Map<String, dynamic>?;
 
       if (data == null) {
         return left(const UserFailure.failure());

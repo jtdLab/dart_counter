@@ -3,15 +3,14 @@ import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
-import 'package:dart_counter/infrastructure/friend/friend_request_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/friend/user.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
+@Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IFriendFacade)
 class FriendFacade implements IFriendFacade {

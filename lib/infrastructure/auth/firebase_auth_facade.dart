@@ -23,6 +23,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
+@Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -31,7 +32,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseFirestore _firebaseFirestore;
 
   FirebaseAuthFacade(
-      this._firebaseAuth, this._googleSignIn, this._firebaseFirestore);
+    this._firebaseAuth,
+    this._googleSignIn,
+    this._firebaseFirestore,
+  );
 
   @override
   UniqueId? getSignedInUid() {

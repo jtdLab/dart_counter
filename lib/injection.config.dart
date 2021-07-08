@@ -58,6 +58,7 @@ import 'infrastructure/user/mocked_user_facade.dart' as _i22;
 import 'infrastructure/user/user_facade.dart' as _i23;
 
 const String _dev = 'dev';
+const String _test = 'test';
 const String _prod = 'prod';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -84,7 +85,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i10.IAuthFacade>(
       () => _i12.FirebaseAuthFacade(get<_i5.FirebaseAuth>(),
           get<_i9.GoogleSignIn>(), get<_i6.FirebaseFirestore>()),
-      registerFor: {_prod});
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i13.IFriendFacade>(() => _i14.MockedFriendFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i15.IGameInvitationFacade>(
@@ -92,9 +93,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_dev});
   gh.lazySingleton<_i15.IGameInvitationFacade>(
       () => _i17.GameInvitationFacade(get<_i6.FirebaseFirestore>()),
-      registerFor: {_prod});
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i18.IPlayFacade>(() => _i19.PlayFacade(),
-      registerFor: {_prod});
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i18.IPlayFacade>(() => _i20.MockedPlayFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i21.IUserFacade>(() => _i22.MockedUserFacade(),
@@ -105,7 +106,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i8.FirebaseStorage>(),
           get<_i10.IAuthFacade>(),
           get<_i7.FirebaseFunctions>()),
-      registerFor: {_prod});
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i24.InGameBloc>(
       () => _i24.InGameBloc(get<_i18.IPlayFacade>()));
   gh.lazySingleton<_i25.InputRowBloc>(
@@ -150,7 +151,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i13.IFriendFacade>(
       () => _i45.FriendFacade(
           get<_i6.FirebaseFirestore>(), get<_i34.SocialClient>()),
-      registerFor: {_prod});
+      registerFor: {_test, _prod});
   return get;
 }
 

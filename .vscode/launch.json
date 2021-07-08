@@ -8,6 +8,12 @@
         "program": "lib/main_dev.dart"
       },
       {
+        "name": "Flutter Test",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/main_test.dart"
+      },
+      {
         "name": "Flutter Prod",
         "type": "dart",
         "request": "launch",

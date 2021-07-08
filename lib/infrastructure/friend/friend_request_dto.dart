@@ -41,7 +41,8 @@ class FriendRequestDto with _$FriendRequestDto {
 
   factory FriendRequestDto.fromFirestore(DocumentSnapshot doc) {
     // TODO ! operator could make problems
-    return FriendRequestDto.fromJson(doc.data()!).copyWith(id: doc.id);
+
+    return FriendRequestDto.fromJson((doc.data() as Map<String, dynamic>?)!).copyWith(id: doc.id);
   }
 
   factory FriendRequestDto.fromJson(Map<String, dynamic> json) =>

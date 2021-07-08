@@ -44,7 +44,8 @@ class GameInvitationDto with _$GameInvitationDto {
 
   factory GameInvitationDto.fromFirestore(DocumentSnapshot doc) {
     // TODO ! operator could make problems
-    return GameInvitationDto.fromJson(doc.data()!).copyWith(id: doc.id);
+
+    return GameInvitationDto.fromJson((doc.data() as Map<String, dynamic>?)!).copyWith(id: doc.id);
   }
 
   factory GameInvitationDto.fromJson(Map<String, dynamic> json) =>
