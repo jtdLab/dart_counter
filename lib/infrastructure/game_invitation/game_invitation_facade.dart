@@ -104,7 +104,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
 
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _watchSentInvitations() async* {
-        // TODO sent invitations not received
+    // TODO sent invitations not received
     final userDoc = await _firestore.userDocument();
     yield* userDoc.gameInvitationsCollection
         .orderBy('createdAt', descending: true)
