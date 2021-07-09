@@ -28,40 +28,16 @@ class UserFacade implements IUserFacade {
   final IAuthFacade _authFacade;
   final FirebaseFunctions _functions;
 
-  UserFacade(this._firestore, this._storage, this._authFacade, this._functions);
+  UserFacade(this._firestore, this._storage, this._authFacade, this._functions)
+      : _userController = BehaviorSubject() {
+    _userController.addStream(_watchCurrentUser());
+  }
+
+  final BehaviorSubject<Either<UserFailure, User>> _userController;
 
   @override
   ValueStream<Either<UserFailure, User>> watchCurrentUser() {
-    return ValueConnectableStream(_watchCurrentUser()).autoConnect();
-  }
-
-  Stream<Either<UserFailure, User>> _watchCurrentUser() async* {
-    try {
-      final uid = _authFacade.getSignedInUid();
-
-      if (uid == null) {
-        yield left(const UserFailure.failure()); // TODO not authenticated
-      }
-
-      final userDoc = await _firestore.userDocument();
-      yield* userDoc.snapshots().map((docSnapshot) {
-        final data = docSnapshot.data() as Map<String, dynamic>?;
-
-        if (data == null) {
-          return left(const UserFailure.failure());
-        }
-
-        final user =
-            UserDto.fromJson(data).copyWith(id: uid!.getOrCrash()).toDomain();
-        return right(user);
-      });
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        yield left(const UserFailure.insufficientPermission());
-      } else {
-        yield left(const UserFailure.failure());
-      }
-    }
+    return _userController.stream;
   }
 
   @override
@@ -190,5 +166,34 @@ class UserFacade implements IUserFacade {
       }
     }
       */
+  }
+
+  Stream<Either<UserFailure, User>> _watchCurrentUser() async* {
+    try {
+      final uid = _authFacade.getSignedInUid();
+
+      if (uid == null) {
+        yield left(const UserFailure.failure()); // TODO not authenticated
+      }
+
+      final userDoc = await _firestore.userDocument();
+      yield* userDoc.snapshots().map((docSnapshot) {
+        final data = docSnapshot.data() as Map<String, dynamic>?;
+
+        if (data == null) {
+          return left(const UserFailure.failure());
+        }
+
+        final user =
+            UserDto.fromJson(data).copyWith(id: uid!.getOrCrash()).toDomain();
+        return right(user);
+      });
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        yield left(const UserFailure.insufficientPermission());
+      } else {
+        yield left(const UserFailure.failure());
+      }
+    }
   }
 }

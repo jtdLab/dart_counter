@@ -17,10 +17,22 @@ class GameInvitationFacade implements IGameInvitationFacade {
   final FirebaseFirestore _firestore;
 
   GameInvitationFacade(this._firestore)
-      : _receivedInvitationsController = BehaviorSubject();
+      : _receivedInvitationsController = BehaviorSubject(),
+        _unreadInvitationsController = BehaviorSubject(),
+        _sentInvitationsController = BehaviorSubject() {
+    _receivedInvitationsController.addStream(_watchReceivedInvitations());
+    _unreadInvitationsController.addStream(_watchUnreadInvitations());
+    _sentInvitationsController.addStream(_watchSentInvitations());
+  }
 
   final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _receivedInvitationsController;
+
+  final BehaviorSubject<Either<GameInvitationFailure, int>>
+      _unreadInvitationsController;
+
+  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _sentInvitationsController;
 
   @override
   Future<Either<GameInvitationFailure, Unit>> accept(
@@ -45,8 +57,22 @@ class GameInvitationFacade implements IGameInvitationFacade {
   @override
   ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedInvitations() {
-    return ValueConnectableStream(_watchReceivedInvitations()).autoConnect();
+    return _receivedInvitationsController.stream;
   }
+
+  @override
+  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchSentInvitations() {
+    return _sentInvitationsController.stream;
+  }
+
+  @override
+  ValueStream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
+    return _unreadInvitationsController.stream;
+  }
+
+  @override
+  void markGameInvitationsAsRead() {}
 
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _watchReceivedInvitations() async* {
@@ -66,22 +92,32 @@ class GameInvitationFacade implements IGameInvitationFacade {
     });
   }
 
-  @override
-  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations() {
-    // TODO: implement send
-    throw UnimplementedError();
+  Stream<Either<GameInvitationFailure, int>> _watchUnreadInvitations() {
+    return watchReceivedInvitations().map(
+      (failureOrInvitations) => failureOrInvitations.fold(
+        (failure) => left(const GameInvitationFailure.unexpected()),
+        (invitations) =>
+            right(invitations.filter((invitation) => !invitation.read).size),
+      ),
+    );
   }
 
-  @override
-  ValueStream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
-    // TODO: implement send
-    throw UnimplementedError();
-  }
-
-  @override
-  void markGameInvitationsAsRead() {
-    // TODO: implement send
-    throw UnimplementedError();
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _watchSentInvitations() async* {
+        // TODO sent invitations not received
+    final userDoc = await _firestore.userDocument();
+    yield* userDoc.gameInvitationsCollection
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => right<GameInvitationFailure, KtList<GameInvitation>>(
+            snapshot.docs
+                .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
+                .toImmutableList(),
+          ),
+        )
+        .onErrorReturnWith((e) {
+      return left(const GameInvitationFailure.unexpected());
+    });
   }
 }
