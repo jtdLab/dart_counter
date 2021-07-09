@@ -35,8 +35,14 @@ Future<void> main() async {
    * FirebaseFirestore.instance.settings = Settings(
     persistenceEnabled: true,
   ); 
+  
   getIt<IAuthFacade>().signOut();
   */
+
+  //final ref = FirebaseStorage.instance.ref('sefssd');
+  //await ref.putFile(File('/Users/jonas/Desktop/dart_counter/assets/images/png/accept_new.png'));
+  //print(await ref.getDownloadURL());ƒ
+
   runApp(
     AppWidget(),
   );

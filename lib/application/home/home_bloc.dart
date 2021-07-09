@@ -103,6 +103,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       },
     );
 
+
     _unreadFriendRequestsSubscription =
         _friendFacade.watchUnreadFriendRequests().listen(
       (failureOrUnreadFriendRequests) {

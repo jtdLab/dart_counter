@@ -82,6 +82,7 @@ class UserFacade implements IUserFacade {
       }
 
       final ref = _storage.ref('profilePhotos/${uid.getOrCrash()}');
+      
       final thumbnail = copyResize(decodedImage, width: 120);
       await ref.putData(Uint8List.fromList(encodePng(thumbnail)),
           SettableMetadata(contentType: 'image/png'));

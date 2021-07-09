@@ -21,7 +21,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc(this._authFacade, this._userFacade)
       : super(
           SettingsState(
-            signedOut: true,
+            signedOut: false,
             user: _userFacade
                 .watchCurrentUser()
                 .valueWrapper! // TODO
@@ -39,7 +39,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   Stream<SettingsState> mapEventToState(
     SettingsEvent event,
   ) async* {
-    event.map(
+    yield* event.map(
       watchStarted: (_) => _mapWatchStartedToState(),
       userReceived: (event) => _mapWatchUserReceivedToState(event),
       signOutPressed: (_) => _mapSignOutPressedToState(),
