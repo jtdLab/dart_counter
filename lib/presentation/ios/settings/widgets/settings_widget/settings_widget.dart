@@ -1,4 +1,3 @@
-import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/settings/modals/modals.dart';
@@ -38,7 +37,9 @@ class SettingsWidget extends StatelessWidget {
               text: LocaleKeys.signOut.tr(),
               color: AppColors.red,
               onPressed: () {
-                context.read<AuthBloc>().add(const AuthEvent.signedOut());
+                context
+                    .read<SettingsBloc>()
+                    .add(const SettingsEvent.signOutPressed());
               },
             ),
           ],

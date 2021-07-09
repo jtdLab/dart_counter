@@ -2,18 +2,17 @@ import 'package:dart_counter/domain/play/player.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
-import 'package:dart_counter/presentation/ios/create_game/modals/modals.dart';
+import 'package:dart_counter/presentation/ios/game/create_game/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:flutter/material.dart' show Colors;
 
-class OfflinePlayerItem extends StatelessWidget {
-  final OfflinePlayer player;
+class OnlinePlayerItem extends StatelessWidget {
+  final OnlinePlayer player;
 
-  const OfflinePlayerItem({
+  const OnlinePlayerItem({
     required Key key,
     required this.player,
   }) : super(key: key);
@@ -46,26 +45,12 @@ class OfflinePlayerItem extends StatelessWidget {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
                     const AppRoundedImage.normal(
                       imageName: AppImages.photo_placeholder_new,
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
-                    Expanded(
-                      child: AppTextField(
-                        text: player.name,
-                        withErrorDisplayer: false,
-                        placeholder: LocaleKeys.name.tr().toUpperCase(),
-                        onChanged: (newName) =>
-                            context.read<CreateGameBloc>().add(
-                                  CreateGameEvent.playerNameUpdated(
-                                    index: index,
-                                    newName: newName,
-                                  ),
-                                ),
-                      ),
+                    Text(
+                      player.name.toUpperCase(),
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
                     AppIconButton(
                       onPressed: () {
                         showCupertinoModalBottomSheet(
@@ -78,7 +63,6 @@ class OfflinePlayerItem extends StatelessWidget {
                         AppImages.settings_new,
                       ),
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
                   ],
                 ),
               ),

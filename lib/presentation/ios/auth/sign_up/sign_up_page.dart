@@ -14,10 +14,21 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SignUpBloc>(),
-      child: AppPage(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: SignUpWidget(
-          pageController: pageController,
+      child: BlocListener<SignUpBloc, SignUpState>(
+        listener: (context, state) {
+          state.authFailureOrSuccess?.fold(
+            (failure) => failure.maybeWhen(
+              serverError: () => showToast(LocaleKeys.errorServer.tr()),
+              orElse: () {},
+            ),
+            (_) => context.router.replace(const HomePageRoute()),
+          );
+        },
+        child: AppPage(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SignUpWidget(
+            pageController: pageController,
+          ),
         ),
       ),
     );

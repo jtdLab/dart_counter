@@ -1,6 +1,5 @@
 import 'package:dart_counter/injection.dart';
 
-import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -24,13 +23,7 @@ class SignInPage extends StatelessWidget {
                   LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
               orElse: () {},
             ),
-            (_) {
-              context.read<AuthBloc>().add(
-                    const AuthEvent.authCheckRequested(),
-                  );
-              context.router.replace(const HomePageRoute());
-              // TODO kinda double code do we need authbloc rly
-            },
+            (_) => context.router.replace(const HomePageRoute()),
           );
         },
         child: AppPage(

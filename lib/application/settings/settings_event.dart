@@ -6,4 +6,5 @@ class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.userReceived({
     required User user,
   }) = UserReceived;
+  const factory SettingsEvent.signOutPressed() = SignOutPressed;
 }

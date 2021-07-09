@@ -3,8 +3,8 @@ import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/application/in_game/input_area/detailed_key_board/detailed_key_board_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-// TODO shared import
-import 'package:dart_counter/presentation/ios/in_game/widgets/in_game_widget/widgets/input_area/widgets/key_board/widgets/key_board_button.dart';
+// TODOkeyboard button doesnt belong to this widget
+import 'package:dart_counter/presentation/ios/game/in_game/widgets/in_game_widget/widgets/input_area/widgets/key_board/widgets/key_board_button.dart';
 import 'widgets/widgets.dart';
 
 class DetailedKeyBoard extends StatelessWidget {

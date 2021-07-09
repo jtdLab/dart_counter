@@ -25,6 +25,10 @@ class _$SettingsEventTearOff {
       user: user,
     );
   }
+
+  SignOutPressed signOutPressed() {
+    return const SignOutPressed();
+  }
 }
 
 /// @nodoc
@@ -36,12 +40,14 @@ mixin _$SettingsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
     required TResult Function(User user) userReceived,
+    required TResult Function() signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
     TResult Function(User user)? userReceived,
+    TResult Function()? signOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,12 +55,14 @@ mixin _$SettingsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(UserReceived value) userReceived,
+    required TResult Function(SignOutPressed value) signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(UserReceived value)? userReceived,
+    TResult Function(SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +126,7 @@ class _$WatchStarted implements WatchStarted {
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
     required TResult Function(User user) userReceived,
+    required TResult Function() signOutPressed,
   }) {
     return watchStarted();
   }
@@ -127,6 +136,7 @@ class _$WatchStarted implements WatchStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
     TResult Function(User user)? userReceived,
+    TResult Function()? signOutPressed,
     required TResult orElse(),
   }) {
     if (watchStarted != null) {
@@ -140,6 +150,7 @@ class _$WatchStarted implements WatchStarted {
   TResult map<TResult extends Object?>({
     required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(UserReceived value) userReceived,
+    required TResult Function(SignOutPressed value) signOutPressed,
   }) {
     return watchStarted(this);
   }
@@ -149,6 +160,7 @@ class _$WatchStarted implements WatchStarted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(UserReceived value)? userReceived,
+    TResult Function(SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (watchStarted != null) {
@@ -237,6 +249,7 @@ class _$UserReceived implements UserReceived {
   TResult when<TResult extends Object?>({
     required TResult Function() watchStarted,
     required TResult Function(User user) userReceived,
+    required TResult Function() signOutPressed,
   }) {
     return userReceived(user);
   }
@@ -246,6 +259,7 @@ class _$UserReceived implements UserReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchStarted,
     TResult Function(User user)? userReceived,
+    TResult Function()? signOutPressed,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -259,6 +273,7 @@ class _$UserReceived implements UserReceived {
   TResult map<TResult extends Object?>({
     required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(UserReceived value) userReceived,
+    required TResult Function(SignOutPressed value) signOutPressed,
   }) {
     return userReceived(this);
   }
@@ -268,6 +283,7 @@ class _$UserReceived implements UserReceived {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WatchStarted value)? watchStarted,
     TResult Function(UserReceived value)? userReceived,
+    TResult Function(SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -287,11 +303,102 @@ abstract class UserReceived implements SettingsEvent {
 }
 
 /// @nodoc
+abstract class $SignOutPressedCopyWith<$Res> {
+  factory $SignOutPressedCopyWith(
+          SignOutPressed value, $Res Function(SignOutPressed) then) =
+      _$SignOutPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SignOutPressedCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res>
+    implements $SignOutPressedCopyWith<$Res> {
+  _$SignOutPressedCopyWithImpl(
+      SignOutPressed _value, $Res Function(SignOutPressed) _then)
+      : super(_value, (v) => _then(v as SignOutPressed));
+
+  @override
+  SignOutPressed get _value => super._value as SignOutPressed;
+}
+
+/// @nodoc
+
+class _$SignOutPressed implements SignOutPressed {
+  const _$SignOutPressed();
+
+  @override
+  String toString() {
+    return 'SettingsEvent.signOutPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is SignOutPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(User user) userReceived,
+    required TResult Function() signOutPressed,
+  }) {
+    return signOutPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(User user)? userReceived,
+    TResult Function()? signOutPressed,
+    required TResult orElse(),
+  }) {
+    if (signOutPressed != null) {
+      return signOutPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(SignOutPressed value) signOutPressed,
+  }) {
+    return signOutPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(SignOutPressed value)? signOutPressed,
+    required TResult orElse(),
+  }) {
+    if (signOutPressed != null) {
+      return signOutPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignOutPressed implements SettingsEvent {
+  const factory SignOutPressed() = _$SignOutPressed;
+}
+
+/// @nodoc
 class _$SettingsStateTearOff {
   const _$SettingsStateTearOff();
 
-  _SettingsState call({required User user}) {
+  _SettingsState call({required bool signedOut, required User user}) {
     return _SettingsState(
+      signedOut: signedOut,
       user: user,
     );
   }
@@ -302,6 +409,7 @@ const $SettingsState = _$SettingsStateTearOff();
 
 /// @nodoc
 mixin _$SettingsState {
+  bool get signedOut => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -314,7 +422,7 @@ abstract class $SettingsStateCopyWith<$Res> {
   factory $SettingsStateCopyWith(
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res>;
-  $Res call({User user});
+  $Res call({bool signedOut, User user});
 
   $UserCopyWith<$Res> get user;
 }
@@ -330,9 +438,14 @@ class _$SettingsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? signedOut = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
+      signedOut: signedOut == freezed
+          ? _value.signedOut
+          : signedOut // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -355,7 +468,7 @@ abstract class _$SettingsStateCopyWith<$Res>
           _SettingsState value, $Res Function(_SettingsState) then) =
       __$SettingsStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user});
+  $Res call({bool signedOut, User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -374,9 +487,14 @@ class __$SettingsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? signedOut = freezed,
     Object? user = freezed,
   }) {
     return _then(_SettingsState(
+      signedOut: signedOut == freezed
+          ? _value.signedOut
+          : signedOut // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -388,27 +506,34 @@ class __$SettingsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SettingsState implements _SettingsState {
-  const _$_SettingsState({required this.user});
+  const _$_SettingsState({required this.signedOut, required this.user});
 
+  @override
+  final bool signedOut;
   @override
   final User user;
 
   @override
   String toString() {
-    return 'SettingsState(user: $user)';
+    return 'SettingsState(signedOut: $signedOut, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SettingsState &&
+            (identical(other.signedOut, signedOut) ||
+                const DeepCollectionEquality()
+                    .equals(other.signedOut, signedOut)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(signedOut) ^
+      const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -417,8 +542,11 @@ class _$_SettingsState implements _SettingsState {
 }
 
 abstract class _SettingsState implements SettingsState {
-  const factory _SettingsState({required User user}) = _$_SettingsState;
+  const factory _SettingsState({required bool signedOut, required User user}) =
+      _$_SettingsState;
 
+  @override
+  bool get signedOut => throw _privateConstructorUsedError;
   @override
   User get user => throw _privateConstructorUsedError;
   @override

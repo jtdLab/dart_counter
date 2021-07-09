@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -14,11 +15,13 @@ part 'settings_bloc.freezed.dart';
 
 @injectable
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
+  final IAuthFacade _authFacade;
   final IUserFacade _userFacade;
 
-  SettingsBloc(this._userFacade)
+  SettingsBloc(this._authFacade, this._userFacade)
       : super(
           SettingsState(
+            signedOut: true,
             user: _userFacade
                 .watchCurrentUser()
                 .valueWrapper! // TODO
@@ -39,6 +42,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     event.map(
       watchStarted: (_) => _mapWatchStartedToState(),
       userReceived: (event) => _mapWatchUserReceivedToState(event),
+      signOutPressed: (_) => _mapSignOutPressedToState(),
     );
   }
 
@@ -58,7 +62,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   Stream<SettingsState> _mapWatchUserReceivedToState(
       UserReceived event) async* {
-    yield SettingsState(user: event.user);
+    yield state.copyWith(user: event.user);
+  }
+
+  Stream<SettingsState> _mapSignOutPressedToState() async* {
+    await _authFacade.signOut();
+    yield state.copyWith(signedOut: true);
   }
 
   @override

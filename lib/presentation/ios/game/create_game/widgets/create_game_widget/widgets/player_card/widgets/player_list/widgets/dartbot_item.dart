@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
-import 'package:dart_counter/presentation/ios/create_game/modals/modals.dart';
+import 'package:dart_counter/presentation/ios/game/create_game/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';

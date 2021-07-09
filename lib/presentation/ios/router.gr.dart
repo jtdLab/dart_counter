@@ -10,18 +10,20 @@ import 'package:flutter/material.dart' as _i2;
 import '../../domain/play/game.dart' as _i20;
 import 'auth/auth_page.dart' as _i4;
 import 'core/core.dart' as _i19;
-import 'create_game/create_game_page.dart' as _i16;
 import 'friends/friends_page.dart' as _i10;
+import 'game/create_game/create_game_page.dart' as _i16;
 import 'game/game_page.dart' as _i13;
+import 'game/in_game/in_game_page.dart' as _i17;
+import 'game/post_game/post_game_page.dart' as _i18;
+import 'game_history/game_history_details/game_history_details_page.dart'
+    as _i15;
+import 'game_history/game_history_overview/game_history_overview_page.dart'
+    as _i14;
 import 'game_history/game_history_page.dart' as _i12;
-import 'game_history_details/game_history_details_page.dart' as _i15;
-import 'game_history_overview/game_history_overview_page.dart' as _i14;
 import 'home/home_page.dart' as _i5;
 import 'impressum/impressum_page.dart' as _i8;
-import 'in_game/in_game_page.dart' as _i17;
 import 'invitations/invitations_page.dart' as _i9;
 import 'legal/legal_page.dart' as _i7;
-import 'post_game/post_game_page.dart' as _i18;
 import 'profile/profile_page.dart' as _i11;
 import 'settings/settings_page.dart' as _i6;
 import 'splash/splash_page.dart' as _i3;
