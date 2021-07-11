@@ -67,8 +67,9 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> accept(
-      GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> accept({
+    required GameInvitation invitation,
+  }) {
     if (fail) {
       return Future.value(left(const GameInvitationFailure.unexpected()));
     } else {
@@ -77,8 +78,9 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> decline(
-      GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> decline({
+    required GameInvitation invitation,
+  }) {
     if (fail) {
       return Future.value(left(const GameInvitationFailure.unexpected()));
     } else {
@@ -87,7 +89,9 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> send(GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> send({
+    required GameInvitation invitation,
+  }) {
     if (fail) {
       return Future.value(left(const GameInvitationFailure.unexpected()));
     } else {

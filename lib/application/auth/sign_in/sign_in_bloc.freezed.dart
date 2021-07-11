@@ -16,6 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SignInEventTearOff {
   const _$SignInEventTearOff();
 
+  WatchStarted watchStarted() {
+    return const WatchStarted();
+  }
+
   EmailChanged emailChanged(String emailString) {
     return EmailChanged(
       emailString,
@@ -43,6 +47,22 @@ class _$SignInEventTearOff {
   SignInWithApplePressed signInWithApplePressed() {
     return const SignInWithApplePressed();
   }
+
+  InvitationsReceived invitationsReceived() {
+    return const InvitationsReceived();
+  }
+
+  FriendRequestsReceived friendRequestsReceived() {
+    return const FriendRequestsReceived();
+  }
+
+  UserReceived userReceived() {
+    return const UserReceived();
+  }
+
+  FailureReceived failureReceived() {
+    return const FailureReceived();
+  }
 }
 
 /// @nodoc
@@ -52,27 +72,38 @@ const $SignInEvent = _$SignInEventTearOff();
 mixin _$SignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -82,10 +113,16 @@ mixin _$SignInEvent {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -93,6 +130,10 @@ mixin _$SignInEvent {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +153,132 @@ class _$SignInEventCopyWithImpl<$Res> implements $SignInEventCopyWith<$Res> {
   final SignInEvent _value;
   // ignore: unused_field
   final $Res Function(SignInEvent) _then;
+}
+
+/// @nodoc
+abstract class $WatchStartedCopyWith<$Res> {
+  factory $WatchStartedCopyWith(
+          WatchStarted value, $Res Function(WatchStarted) then) =
+      _$WatchStartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$WatchStartedCopyWithImpl<$Res> extends _$SignInEventCopyWithImpl<$Res>
+    implements $WatchStartedCopyWith<$Res> {
+  _$WatchStartedCopyWithImpl(
+      WatchStarted _value, $Res Function(WatchStarted) _then)
+      : super(_value, (v) => _then(v as WatchStarted));
+
+  @override
+  WatchStarted get _value => super._value as WatchStarted;
+}
+
+/// @nodoc
+
+class _$WatchStarted implements WatchStarted {
+  const _$WatchStarted();
+
+  @override
+  String toString() {
+    return 'SignInEvent.watchStarted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is WatchStarted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function() signInPressed,
+    required TResult Function() signInWithFacebookPressed,
+    required TResult Function() signInWithGooglePressed,
+    required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
+  }) {
+    return watchStarted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function()? signInPressed,
+    TResult Function()? signInWithFacebookPressed,
+    TResult Function()? signInWithGooglePressed,
+    TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (watchStarted != null) {
+      return watchStarted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SignInPressed value) signInPressed,
+    required TResult Function(SignInWithFacebookPressed value)
+        signInWithFacebookPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+    required TResult Function(SignInWithApplePressed value)
+        signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+  }) {
+    return watchStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SignInPressed value)? signInPressed,
+    TResult Function(SignInWithFacebookPressed value)?
+        signInWithFacebookPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (watchStarted != null) {
+      return watchStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WatchStarted implements SignInEvent {
+  const factory WatchStarted() = _$WatchStarted;
 }
 
 /// @nodoc
@@ -179,12 +346,17 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return emailChanged(emailString);
   }
@@ -192,12 +364,17 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -209,6 +386,7 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -218,6 +396,11 @@ class _$EmailChanged implements EmailChanged {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return emailChanged(this);
   }
@@ -225,6 +408,7 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -232,6 +416,10 @@ class _$EmailChanged implements EmailChanged {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -317,12 +505,17 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return passwordChanged(passwordString);
   }
@@ -330,12 +523,17 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -347,6 +545,7 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -356,6 +555,11 @@ class _$PasswordChanged implements PasswordChanged {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return passwordChanged(this);
   }
@@ -363,6 +567,7 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -370,6 +575,10 @@ class _$PasswordChanged implements PasswordChanged {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -427,12 +636,17 @@ class _$SignInPressed implements SignInPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return signInPressed();
   }
@@ -440,12 +654,17 @@ class _$SignInPressed implements SignInPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (signInPressed != null) {
@@ -457,6 +676,7 @@ class _$SignInPressed implements SignInPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -466,6 +686,11 @@ class _$SignInPressed implements SignInPressed {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return signInPressed(this);
   }
@@ -473,6 +698,7 @@ class _$SignInPressed implements SignInPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -480,6 +706,10 @@ class _$SignInPressed implements SignInPressed {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (signInPressed != null) {
@@ -534,12 +764,17 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return signInWithFacebookPressed();
   }
@@ -547,12 +782,17 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithFacebookPressed != null) {
@@ -564,6 +804,7 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -573,6 +814,11 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return signInWithFacebookPressed(this);
   }
@@ -580,6 +826,7 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -587,6 +834,10 @@ class _$SignInWithFacebookPressed implements SignInWithFacebookPressed {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithFacebookPressed != null) {
@@ -640,12 +891,17 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return signInWithGooglePressed();
   }
@@ -653,12 +909,17 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithGooglePressed != null) {
@@ -670,6 +931,7 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -679,6 +941,11 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return signInWithGooglePressed(this);
   }
@@ -686,6 +953,7 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -693,6 +961,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithGooglePressed != null) {
@@ -746,12 +1018,17 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
     required TResult Function(String emailString) emailChanged,
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function() signInPressed,
     required TResult Function() signInWithFacebookPressed,
     required TResult Function() signInWithGooglePressed,
     required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
   }) {
     return signInWithApplePressed();
   }
@@ -759,12 +1036,17 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
     TResult Function(String emailString)? emailChanged,
     TResult Function(String passwordString)? passwordChanged,
     TResult Function()? signInPressed,
     TResult Function()? signInWithFacebookPressed,
     TResult Function()? signInWithGooglePressed,
     TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithApplePressed != null) {
@@ -776,6 +1058,7 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(SignInPressed value) signInPressed,
@@ -785,6 +1068,11 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
         signInWithGooglePressed,
     required TResult Function(SignInWithApplePressed value)
         signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
   }) {
     return signInWithApplePressed(this);
   }
@@ -792,6 +1080,7 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(SignInPressed value)? signInPressed,
@@ -799,6 +1088,10 @@ class _$SignInWithApplePressed implements SignInWithApplePressed {
         signInWithFacebookPressed,
     TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
     TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
     if (signInWithApplePressed != null) {
@@ -813,6 +1106,513 @@ abstract class SignInWithApplePressed implements SignInEvent {
 }
 
 /// @nodoc
+abstract class $InvitationsReceivedCopyWith<$Res> {
+  factory $InvitationsReceivedCopyWith(
+          InvitationsReceived value, $Res Function(InvitationsReceived) then) =
+      _$InvitationsReceivedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvitationsReceivedCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements $InvitationsReceivedCopyWith<$Res> {
+  _$InvitationsReceivedCopyWithImpl(
+      InvitationsReceived _value, $Res Function(InvitationsReceived) _then)
+      : super(_value, (v) => _then(v as InvitationsReceived));
+
+  @override
+  InvitationsReceived get _value => super._value as InvitationsReceived;
+}
+
+/// @nodoc
+
+class _$InvitationsReceived implements InvitationsReceived {
+  const _$InvitationsReceived();
+
+  @override
+  String toString() {
+    return 'SignInEvent.invitationsReceived()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InvitationsReceived);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function() signInPressed,
+    required TResult Function() signInWithFacebookPressed,
+    required TResult Function() signInWithGooglePressed,
+    required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
+  }) {
+    return invitationsReceived();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function()? signInPressed,
+    TResult Function()? signInWithFacebookPressed,
+    TResult Function()? signInWithGooglePressed,
+    TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (invitationsReceived != null) {
+      return invitationsReceived();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SignInPressed value) signInPressed,
+    required TResult Function(SignInWithFacebookPressed value)
+        signInWithFacebookPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+    required TResult Function(SignInWithApplePressed value)
+        signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+  }) {
+    return invitationsReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SignInPressed value)? signInPressed,
+    TResult Function(SignInWithFacebookPressed value)?
+        signInWithFacebookPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (invitationsReceived != null) {
+      return invitationsReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvitationsReceived implements SignInEvent {
+  const factory InvitationsReceived() = _$InvitationsReceived;
+}
+
+/// @nodoc
+abstract class $FriendRequestsReceivedCopyWith<$Res> {
+  factory $FriendRequestsReceivedCopyWith(FriendRequestsReceived value,
+          $Res Function(FriendRequestsReceived) then) =
+      _$FriendRequestsReceivedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FriendRequestsReceivedCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements $FriendRequestsReceivedCopyWith<$Res> {
+  _$FriendRequestsReceivedCopyWithImpl(FriendRequestsReceived _value,
+      $Res Function(FriendRequestsReceived) _then)
+      : super(_value, (v) => _then(v as FriendRequestsReceived));
+
+  @override
+  FriendRequestsReceived get _value => super._value as FriendRequestsReceived;
+}
+
+/// @nodoc
+
+class _$FriendRequestsReceived implements FriendRequestsReceived {
+  const _$FriendRequestsReceived();
+
+  @override
+  String toString() {
+    return 'SignInEvent.friendRequestsReceived()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FriendRequestsReceived);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function() signInPressed,
+    required TResult Function() signInWithFacebookPressed,
+    required TResult Function() signInWithGooglePressed,
+    required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
+  }) {
+    return friendRequestsReceived();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function()? signInPressed,
+    TResult Function()? signInWithFacebookPressed,
+    TResult Function()? signInWithGooglePressed,
+    TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (friendRequestsReceived != null) {
+      return friendRequestsReceived();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SignInPressed value) signInPressed,
+    required TResult Function(SignInWithFacebookPressed value)
+        signInWithFacebookPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+    required TResult Function(SignInWithApplePressed value)
+        signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+  }) {
+    return friendRequestsReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SignInPressed value)? signInPressed,
+    TResult Function(SignInWithFacebookPressed value)?
+        signInWithFacebookPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (friendRequestsReceived != null) {
+      return friendRequestsReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FriendRequestsReceived implements SignInEvent {
+  const factory FriendRequestsReceived() = _$FriendRequestsReceived;
+}
+
+/// @nodoc
+abstract class $UserReceivedCopyWith<$Res> {
+  factory $UserReceivedCopyWith(
+          UserReceived value, $Res Function(UserReceived) then) =
+      _$UserReceivedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserReceivedCopyWithImpl<$Res> extends _$SignInEventCopyWithImpl<$Res>
+    implements $UserReceivedCopyWith<$Res> {
+  _$UserReceivedCopyWithImpl(
+      UserReceived _value, $Res Function(UserReceived) _then)
+      : super(_value, (v) => _then(v as UserReceived));
+
+  @override
+  UserReceived get _value => super._value as UserReceived;
+}
+
+/// @nodoc
+
+class _$UserReceived implements UserReceived {
+  const _$UserReceived();
+
+  @override
+  String toString() {
+    return 'SignInEvent.userReceived()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UserReceived);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function() signInPressed,
+    required TResult Function() signInWithFacebookPressed,
+    required TResult Function() signInWithGooglePressed,
+    required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
+  }) {
+    return userReceived();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function()? signInPressed,
+    TResult Function()? signInWithFacebookPressed,
+    TResult Function()? signInWithGooglePressed,
+    TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (userReceived != null) {
+      return userReceived();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SignInPressed value) signInPressed,
+    required TResult Function(SignInWithFacebookPressed value)
+        signInWithFacebookPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+    required TResult Function(SignInWithApplePressed value)
+        signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+  }) {
+    return userReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SignInPressed value)? signInPressed,
+    TResult Function(SignInWithFacebookPressed value)?
+        signInWithFacebookPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (userReceived != null) {
+      return userReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserReceived implements SignInEvent {
+  const factory UserReceived() = _$UserReceived;
+}
+
+/// @nodoc
+abstract class $FailureReceivedCopyWith<$Res> {
+  factory $FailureReceivedCopyWith(
+          FailureReceived value, $Res Function(FailureReceived) then) =
+      _$FailureReceivedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FailureReceivedCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements $FailureReceivedCopyWith<$Res> {
+  _$FailureReceivedCopyWithImpl(
+      FailureReceived _value, $Res Function(FailureReceived) _then)
+      : super(_value, (v) => _then(v as FailureReceived));
+
+  @override
+  FailureReceived get _value => super._value as FailureReceived;
+}
+
+/// @nodoc
+
+class _$FailureReceived implements FailureReceived {
+  const _$FailureReceived();
+
+  @override
+  String toString() {
+    return 'SignInEvent.failureReceived()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FailureReceived);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchStarted,
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function() signInPressed,
+    required TResult Function() signInWithFacebookPressed,
+    required TResult Function() signInWithGooglePressed,
+    required TResult Function() signInWithApplePressed,
+    required TResult Function() invitationsReceived,
+    required TResult Function() friendRequestsReceived,
+    required TResult Function() userReceived,
+    required TResult Function() failureReceived,
+  }) {
+    return failureReceived();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchStarted,
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function()? signInPressed,
+    TResult Function()? signInWithFacebookPressed,
+    TResult Function()? signInWithGooglePressed,
+    TResult Function()? signInWithApplePressed,
+    TResult Function()? invitationsReceived,
+    TResult Function()? friendRequestsReceived,
+    TResult Function()? userReceived,
+    TResult Function()? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (failureReceived != null) {
+      return failureReceived();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WatchStarted value) watchStarted,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SignInPressed value) signInPressed,
+    required TResult Function(SignInWithFacebookPressed value)
+        signInWithFacebookPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+    required TResult Function(SignInWithApplePressed value)
+        signInWithApplePressed,
+    required TResult Function(InvitationsReceived value) invitationsReceived,
+    required TResult Function(FriendRequestsReceived value)
+        friendRequestsReceived,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(FailureReceived value) failureReceived,
+  }) {
+    return failureReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WatchStarted value)? watchStarted,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SignInPressed value)? signInPressed,
+    TResult Function(SignInWithFacebookPressed value)?
+        signInWithFacebookPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    TResult Function(SignInWithApplePressed value)? signInWithApplePressed,
+    TResult Function(InvitationsReceived value)? invitationsReceived,
+    TResult Function(FriendRequestsReceived value)? friendRequestsReceived,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+    required TResult orElse(),
+  }) {
+    if (failureReceived != null) {
+      return failureReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FailureReceived implements SignInEvent {
+  const factory FailureReceived() = _$FailureReceived;
+}
+
+/// @nodoc
 class _$SignInStateTearOff {
   const _$SignInStateTearOff();
 
@@ -821,13 +1621,19 @@ class _$SignInStateTearOff {
       required Password password,
       required bool showErrorMessages,
       required bool isSubmitting,
-      Either<AuthFailure, Unit>? authFailureOrSuccess}) {
+      Either<AuthFailure, Unit>? authFailureOrSuccess,
+      required bool invitationsReceived,
+      required bool friendRequestsReceived,
+      required bool userReceived}) {
     return _SignInState(
       email: email,
       password: password,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       authFailureOrSuccess: authFailureOrSuccess,
+      invitationsReceived: invitationsReceived,
+      friendRequestsReceived: friendRequestsReceived,
+      userReceived: userReceived,
     );
   }
 }
@@ -843,6 +1649,9 @@ mixin _$SignInState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   Either<AuthFailure, Unit>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
+  bool get invitationsReceived => throw _privateConstructorUsedError;
+  bool get friendRequestsReceived => throw _privateConstructorUsedError;
+  bool get userReceived => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -859,7 +1668,10 @@ abstract class $SignInStateCopyWith<$Res> {
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
-      Either<AuthFailure, Unit>? authFailureOrSuccess});
+      Either<AuthFailure, Unit>? authFailureOrSuccess,
+      bool invitationsReceived,
+      bool friendRequestsReceived,
+      bool userReceived});
 }
 
 /// @nodoc
@@ -877,6 +1689,9 @@ class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccess = freezed,
+    Object? invitationsReceived = freezed,
+    Object? friendRequestsReceived = freezed,
+    Object? userReceived = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
@@ -899,6 +1714,18 @@ class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Either<AuthFailure, Unit>?,
+      invitationsReceived: invitationsReceived == freezed
+          ? _value.invitationsReceived
+          : invitationsReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      friendRequestsReceived: friendRequestsReceived == freezed
+          ? _value.friendRequestsReceived
+          : friendRequestsReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      userReceived: userReceived == freezed
+          ? _value.userReceived
+          : userReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -915,7 +1742,10 @@ abstract class _$SignInStateCopyWith<$Res>
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
-      Either<AuthFailure, Unit>? authFailureOrSuccess});
+      Either<AuthFailure, Unit>? authFailureOrSuccess,
+      bool invitationsReceived,
+      bool friendRequestsReceived,
+      bool userReceived});
 }
 
 /// @nodoc
@@ -935,6 +1765,9 @@ class __$SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccess = freezed,
+    Object? invitationsReceived = freezed,
+    Object? friendRequestsReceived = freezed,
+    Object? userReceived = freezed,
   }) {
     return _then(_SignInState(
       email: email == freezed
@@ -957,6 +1790,18 @@ class __$SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Either<AuthFailure, Unit>?,
+      invitationsReceived: invitationsReceived == freezed
+          ? _value.invitationsReceived
+          : invitationsReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      friendRequestsReceived: friendRequestsReceived == freezed
+          ? _value.friendRequestsReceived
+          : friendRequestsReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      userReceived: userReceived == freezed
+          ? _value.userReceived
+          : userReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -969,7 +1814,10 @@ class _$_SignInState implements _SignInState {
       required this.password,
       required this.showErrorMessages,
       required this.isSubmitting,
-      this.authFailureOrSuccess});
+      this.authFailureOrSuccess,
+      required this.invitationsReceived,
+      required this.friendRequestsReceived,
+      required this.userReceived});
 
   @override
   final EmailAddress email;
@@ -981,10 +1829,16 @@ class _$_SignInState implements _SignInState {
   final bool isSubmitting;
   @override
   final Either<AuthFailure, Unit>? authFailureOrSuccess;
+  @override
+  final bool invitationsReceived;
+  @override
+  final bool friendRequestsReceived;
+  @override
+  final bool userReceived;
 
   @override
   String toString() {
-    return 'SignInState(email: $email, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'SignInState(email: $email, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccess: $authFailureOrSuccess, invitationsReceived: $invitationsReceived, friendRequestsReceived: $friendRequestsReceived, userReceived: $userReceived)';
   }
 
   @override
@@ -1003,8 +1857,17 @@ class _$_SignInState implements _SignInState {
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
             (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
+                const DeepCollectionEquality().equals(
+                    other.authFailureOrSuccess, authFailureOrSuccess)) &&
+            (identical(other.invitationsReceived, invitationsReceived) ||
                 const DeepCollectionEquality()
-                    .equals(other.authFailureOrSuccess, authFailureOrSuccess)));
+                    .equals(other.invitationsReceived, invitationsReceived)) &&
+            (identical(other.friendRequestsReceived, friendRequestsReceived) ||
+                const DeepCollectionEquality().equals(
+                    other.friendRequestsReceived, friendRequestsReceived)) &&
+            (identical(other.userReceived, userReceived) ||
+                const DeepCollectionEquality()
+                    .equals(other.userReceived, userReceived)));
   }
 
   @override
@@ -1014,7 +1877,10 @@ class _$_SignInState implements _SignInState {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(authFailureOrSuccess);
+      const DeepCollectionEquality().hash(authFailureOrSuccess) ^
+      const DeepCollectionEquality().hash(invitationsReceived) ^
+      const DeepCollectionEquality().hash(friendRequestsReceived) ^
+      const DeepCollectionEquality().hash(userReceived);
 
   @JsonKey(ignore: true)
   @override
@@ -1028,7 +1894,10 @@ abstract class _SignInState implements SignInState {
       required Password password,
       required bool showErrorMessages,
       required bool isSubmitting,
-      Either<AuthFailure, Unit>? authFailureOrSuccess}) = _$_SignInState;
+      Either<AuthFailure, Unit>? authFailureOrSuccess,
+      required bool invitationsReceived,
+      required bool friendRequestsReceived,
+      required bool userReceived}) = _$_SignInState;
 
   @override
   EmailAddress get email => throw _privateConstructorUsedError;
@@ -1041,6 +1910,12 @@ abstract class _SignInState implements SignInState {
   @override
   Either<AuthFailure, Unit>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
+  @override
+  bool get invitationsReceived => throw _privateConstructorUsedError;
+  @override
+  bool get friendRequestsReceived => throw _privateConstructorUsedError;
+  @override
+  bool get userReceived => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInStateCopyWith<_SignInState> get copyWith =>

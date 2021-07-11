@@ -28,8 +28,12 @@ class UserFacade implements IUserFacade {
   final IAuthFacade _authFacade;
   final FirebaseFunctions _functions;
 
-  UserFacade(this._firestore, this._storage, this._authFacade, this._functions)
-      : _userController = BehaviorSubject() {
+  UserFacade(
+    this._firestore,
+    this._storage,
+    this._authFacade,
+    this._functions,
+  ) : _userController = BehaviorSubject() {
     _userController.addStream(_watchCurrentUser());
   }
 
@@ -82,7 +86,7 @@ class UserFacade implements IUserFacade {
       }
 
       final ref = _storage.ref('profilePhotos/${uid.getOrCrash()}');
-      
+
       final thumbnail = copyResize(decodedImage, width: 120);
       await ref.putData(Uint8List.fromList(encodePng(thumbnail)),
           SettableMetadata(contentType: 'image/png'));
@@ -114,8 +118,9 @@ class UserFacade implements IUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updateUsername(
-      {required Username newUsername}) async {
+  Future<Either<UserFailure, Unit>> updateUsername({
+    required Username newUsername,
+  }) async {
     // check if valid username
     if (newUsername.isValid()) {
       try {
@@ -142,8 +147,9 @@ class UserFacade implements IUserFacade {
     }
   }
 
-  Future<Either<UserFailure, String>> findEmailAddressByUsername(
-      String username) async {
+  Future<Either<UserFailure, String>> _findEmailAddressByUsername({
+    required String username,
+  }) async {
     throw UnimplementedError();
     /**
   * 

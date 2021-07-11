@@ -11,26 +11,9 @@ class SignUpWidget extends StatelessWidget {
     required this.pageController,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpBloc, SignUpState>(
-      listener: (context, state) {
-        state.authFailureOrSuccess?.fold(
-          (failure) {
-            failure.maybeWhen(
-              serverError: () => showToast(LocaleKeys.errorServer.tr()),
-              emailAlreadyInUse: () =>
-                  showToast(LocaleKeys.errorEmailAlreadyInUse.tr()),
-              orElse: () {},
-            );
-          },
-          (_) {
-            context.router.replace(const HomePageRoute());
-            // TODO
-          },
-        );
-      },
+    return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         final node = FocusScope.of(context);
         return Column(

@@ -13,7 +13,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SignUpBloc>(),
+      create: (context) => getIt<SignUpBloc>()..add(const SignUpEvent.watchStarted()),
       child: BlocListener<SignUpBloc, SignUpState>(
         listener: (context, state) {
           state.authFailureOrSuccess?.fold(
@@ -21,7 +21,16 @@ class SignUpPage extends StatelessWidget {
               serverError: () => showToast(LocaleKeys.errorServer.tr()),
               orElse: () {},
             ),
-            (_) => context.router.replace(const HomePageRoute()),
+            (_) {
+              final dataLoaded = state.userReceived &&
+                  state.friendRequestsReceived &&
+                  state.invitationsReceived;
+              print(dataLoaded);
+
+              if (dataLoaded) {
+                context.router.replace(const HomePageRoute());
+              }
+            },
           );
         },
         child: AppPage(

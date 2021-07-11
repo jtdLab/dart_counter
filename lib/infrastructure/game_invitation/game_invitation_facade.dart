@@ -16,8 +16,9 @@ import 'game_invitation_dto.dart';
 class GameInvitationFacade implements IGameInvitationFacade {
   final FirebaseFirestore _firestore;
 
-  GameInvitationFacade(this._firestore)
-      : _receivedInvitationsController = BehaviorSubject(),
+  GameInvitationFacade(
+    this._firestore,
+  )   : _receivedInvitationsController = BehaviorSubject(),
         _unreadInvitationsController = BehaviorSubject(),
         _sentInvitationsController = BehaviorSubject() {
     _receivedInvitationsController.addStream(_watchReceivedInvitations());
@@ -35,21 +36,25 @@ class GameInvitationFacade implements IGameInvitationFacade {
       _sentInvitationsController;
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> accept(
-      GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> accept({
+    required GameInvitation invitation,
+  }) {
     // TODO: implement accept
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> decline(
-      GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> decline({
+    required GameInvitation invitation,
+  }) {
     // TODO: implement decline
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> send(GameInvitation invitation) {
+  Future<Either<GameInvitationFailure, Unit>> send({
+    required GameInvitation invitation,
+  }) {
     // TODO: implement send
     throw UnimplementedError();
   }

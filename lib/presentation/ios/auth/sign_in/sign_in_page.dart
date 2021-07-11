@@ -23,7 +23,16 @@ class SignInPage extends StatelessWidget {
                   LocaleKeys.errorInvalidEmailAndPasswordCombination.tr()),
               orElse: () {},
             ),
-            (_) => context.router.replace(const HomePageRoute()),
+            (_) {
+              final dataLoaded = state.userReceived &&
+                  state.friendRequestsReceived &&
+                  state.invitationsReceived;
+              print(dataLoaded);
+
+              if (dataLoaded) {
+                context.router.replace(const HomePageRoute());
+              }
+            },
           );
         },
         child: AppPage(

@@ -121,8 +121,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i30.ProfileBloc>(() => _i30.ProfileBloc(get<_i21.IUserFacade>()));
   gh.factory<_i31.SettingsBloc>(() =>
       _i31.SettingsBloc(get<_i10.IAuthFacade>(), get<_i21.IUserFacade>()));
-  gh.factory<_i32.SignInBloc>(() => _i32.SignInBloc(get<_i10.IAuthFacade>()));
-  gh.factory<_i33.SignUpBloc>(() => _i33.SignUpBloc(get<_i10.IAuthFacade>()));
+  gh.factory<_i32.SignInBloc>(() => _i32.SignInBloc(
+      get<_i10.IAuthFacade>(),
+      get<_i21.IUserFacade>(),
+      get<_i15.IGameInvitationFacade>(),
+      get<_i13.IFriendFacade>()));
+  gh.factory<_i33.SignUpBloc>(() => _i33.SignUpBloc(
+      get<_i10.IAuthFacade>(),
+      get<_i21.IUserFacade>(),
+      get<_i15.IGameInvitationFacade>(),
+      get<_i13.IFriendFacade>()));
   gh.lazySingleton<_i34.SocialClient>(() => jtdInjectableModule.socialClient);
   gh.factory<_i35.SplashBloc>(() => _i35.SplashBloc(
       get<_i15.IGameInvitationFacade>(),
