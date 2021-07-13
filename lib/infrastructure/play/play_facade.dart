@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -16,12 +15,6 @@ class PlayFacade implements IPlayFacade {
   dart.Game? _game;
 
   bool? _online;
-
-  @override
-  bool get online => _online ?? false; // TODO
-
-  @override
-  Game? get game => Game.dummy(); // TODO
 
   @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
@@ -210,7 +203,7 @@ class PlayFacade implements IPlayFacade {
   }
 
   @override
-  ValueStream<Game> watchGame() {
+  Stream<Either<PlayFailure, Game>> watchGame() {
     // TODO: implement watchGame
     throw UnimplementedError();
   }

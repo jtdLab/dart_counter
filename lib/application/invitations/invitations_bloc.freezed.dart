@@ -16,10 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InvitationsEventTearOff {
   const _$InvitationsEventTearOff();
 
-  WatchStarted watchStarted() {
-    return const WatchStarted();
-  }
-
   ReceivedGameInvitationsReceived receivedGameInvitationsReceived(
       {required KtList<GameInvitation> gameInvitations}) {
     return ReceivedGameInvitationsReceived(
@@ -32,10 +28,6 @@ class _$InvitationsEventTearOff {
     return SentGameInvitationsReceived(
       gameInvitations: gameInvitations,
     );
-  }
-
-  FailureReceived failureReceived() {
-    return const FailureReceived();
   }
 
   Accepted accepted({required GameInvitation gameInvitation}) {
@@ -62,12 +54,10 @@ const $InvitationsEvent = _$InvitationsEventTearOff();
 mixin _$InvitationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -75,12 +65,10 @@ mixin _$InvitationsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -89,12 +77,10 @@ mixin _$InvitationsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -102,12 +88,10 @@ mixin _$InvitationsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -131,120 +115,6 @@ class _$InvitationsEventCopyWithImpl<$Res>
   final InvitationsEvent _value;
   // ignore: unused_field
   final $Res Function(InvitationsEvent) _then;
-}
-
-/// @nodoc
-abstract class $WatchStartedCopyWith<$Res> {
-  factory $WatchStartedCopyWith(
-          WatchStarted value, $Res Function(WatchStarted) then) =
-      _$WatchStartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$WatchStartedCopyWithImpl<$Res>
-    extends _$InvitationsEventCopyWithImpl<$Res>
-    implements $WatchStartedCopyWith<$Res> {
-  _$WatchStartedCopyWithImpl(
-      WatchStarted _value, $Res Function(WatchStarted) _then)
-      : super(_value, (v) => _then(v as WatchStarted));
-
-  @override
-  WatchStarted get _value => super._value as WatchStarted;
-}
-
-/// @nodoc
-
-class _$WatchStarted implements WatchStarted {
-  const _$WatchStarted();
-
-  @override
-  String toString() {
-    return 'InvitationsEvent.watchStarted()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WatchStarted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        receivedGameInvitationsReceived,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
-    required TResult Function(GameInvitation gameInvitation) accepted,
-    required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
-  }) {
-    return watchStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        receivedGameInvitationsReceived,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
-    TResult Function(GameInvitation gameInvitation)? accepted,
-    TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGameInvitationsReceived value)
-        receivedGameInvitationsReceived,
-    required TResult Function(SentGameInvitationsReceived value)
-        sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
-    required TResult Function(Accepted value) accepted,
-    required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
-  }) {
-    return watchStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGameInvitationsReceived value)?
-        receivedGameInvitationsReceived,
-    TResult Function(SentGameInvitationsReceived value)?
-        sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
-    TResult Function(Accepted value)? accepted,
-    TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WatchStarted implements InvitationsEvent {
-  const factory WatchStarted() = _$WatchStarted;
 }
 
 /// @nodoc
@@ -319,12 +189,10 @@ class _$ReceivedGameInvitationsReceived
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -335,12 +203,10 @@ class _$ReceivedGameInvitationsReceived
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -355,12 +221,10 @@ class _$ReceivedGameInvitationsReceived
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -371,12 +235,10 @@ class _$ReceivedGameInvitationsReceived
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -471,12 +333,10 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -487,12 +347,10 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -507,12 +365,10 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -523,12 +379,10 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -551,120 +405,6 @@ abstract class SentGameInvitationsReceived implements InvitationsEvent {
   @JsonKey(ignore: true)
   $SentGameInvitationsReceivedCopyWith<SentGameInvitationsReceived>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FailureReceivedCopyWith<$Res> {
-  factory $FailureReceivedCopyWith(
-          FailureReceived value, $Res Function(FailureReceived) then) =
-      _$FailureReceivedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$FailureReceivedCopyWithImpl<$Res>
-    extends _$InvitationsEventCopyWithImpl<$Res>
-    implements $FailureReceivedCopyWith<$Res> {
-  _$FailureReceivedCopyWithImpl(
-      FailureReceived _value, $Res Function(FailureReceived) _then)
-      : super(_value, (v) => _then(v as FailureReceived));
-
-  @override
-  FailureReceived get _value => super._value as FailureReceived;
-}
-
-/// @nodoc
-
-class _$FailureReceived implements FailureReceived {
-  const _$FailureReceived();
-
-  @override
-  String toString() {
-    return 'InvitationsEvent.failureReceived()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FailureReceived);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        receivedGameInvitationsReceived,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
-    required TResult Function(GameInvitation gameInvitation) accepted,
-    required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
-  }) {
-    return failureReceived();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        receivedGameInvitationsReceived,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
-    TResult Function(GameInvitation gameInvitation)? accepted,
-    TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (failureReceived != null) {
-      return failureReceived();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGameInvitationsReceived value)
-        receivedGameInvitationsReceived,
-    required TResult Function(SentGameInvitationsReceived value)
-        sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
-    required TResult Function(Accepted value) accepted,
-    required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
-  }) {
-    return failureReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGameInvitationsReceived value)?
-        receivedGameInvitationsReceived,
-    TResult Function(SentGameInvitationsReceived value)?
-        sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
-    TResult Function(Accepted value)? accepted,
-    TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (failureReceived != null) {
-      return failureReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FailureReceived implements InvitationsEvent {
-  const factory FailureReceived() = _$FailureReceived;
 }
 
 /// @nodoc
@@ -740,12 +480,10 @@ class _$Accepted implements Accepted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -756,12 +494,10 @@ class _$Accepted implements Accepted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -776,12 +512,10 @@ class _$Accepted implements Accepted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -792,12 +526,10 @@ class _$Accepted implements Accepted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -892,12 +624,10 @@ class _$Declined implements Declined {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -908,12 +638,10 @@ class _$Declined implements Declined {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -928,12 +656,10 @@ class _$Declined implements Declined {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -944,12 +670,10 @@ class _$Declined implements Declined {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -1011,12 +735,10 @@ class _$NewInvitationsRead implements NewInvitationsRead {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
-    required TResult Function() failureReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -1027,12 +749,10 @@ class _$NewInvitationsRead implements NewInvitationsRead {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
-    TResult Function()? failureReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -1047,12 +767,10 @@ class _$NewInvitationsRead implements NewInvitationsRead {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(ReceivedGameInvitationsReceived value)
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -1063,12 +781,10 @@ class _$NewInvitationsRead implements NewInvitationsRead {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(ReceivedGameInvitationsReceived value)?
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,

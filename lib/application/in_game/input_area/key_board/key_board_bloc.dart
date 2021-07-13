@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
@@ -12,17 +14,19 @@ part 'key_board_event.dart';
 part 'key_board_state.dart';
 part 'key_board_bloc.freezed.dart';
 
-@injectable
-class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
+@lazySingleton
+class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
   final InGameBloc _inGameBloc;
   final InputRowBloc _inputRowBloc;
+  final GameBloc _gameBloc;
 
   KeyBoardBloc(
     this._playFacade,
     this._inGameBloc,
     this._inputRowBloc,
+    this._gameBloc,
   ) : super(const KeyBoardState.initial());
 
   @override
@@ -37,54 +41,55 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   Stream<KeyBoardState> _mapCheckPressedToState() async* {
-    final pointsLeftCurrentTurn = _playFacade.game?.currentTurn().pointsLeft;
+    _gameBloc.state.map(
+      loading: (_) => throw Error(), // TODO
+      success: (success) {
+        final pointsLeftCurrentTurn = success.game.currentTurn().pointsLeft;
 
-    if (pointsLeftCurrentTurn == null) {
-      throw Error(); // TODO
-    }
+        final isFinish = pointsLeftCurrentTurn <= 170; // TODO real finish check
+        if (isFinish) {
+          _inputRowBloc.add(
+            InputRowEvent.inputUpdated(newInput: pointsLeftCurrentTurn),
+          );
 
-    final isFinish = pointsLeftCurrentTurn <= 170; // TODO real finish check
-    if (isFinish) {
-      _inputRowBloc.add(
-        InputRowEvent.inputUpdated(newInput: pointsLeftCurrentTurn),
-      );
-
-      final minDartsThrown = _playFacade.minDartsThrown(
-        points: pointsLeftCurrentTurn,
-        pointsLeft: pointsLeftCurrentTurn,
-      );
-      final maxDartsThrown = _playFacade.maxDartsThrown(
-        points: pointsLeftCurrentTurn,
-        pointsLeft: pointsLeftCurrentTurn,
-      );
-
-      final minDartsOnDouble = _playFacade.minDartsOnDouble(
-        points: pointsLeftCurrentTurn,
-        pointsLeft: pointsLeftCurrentTurn,
-      );
-      final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
-        points: pointsLeftCurrentTurn,
-        pointsLeft: pointsLeftCurrentTurn,
-      );
-
-      final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
-          minDartsOnDouble == maxDartsOnDouble);
-
-      if (showCheckoutDetails) {
-        _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
-      } else {
-        _playFacade.performThrow(
-          t: Throw(
+          final minDartsThrown = _playFacade.minDartsThrown(
             points: pointsLeftCurrentTurn,
-            dartsThrown: 3,
-            dartsOnDouble: 1,
-          ),
-        );
-        _inputRowBloc.add(
-          const InputRowEvent.inputUpdated(newInput: 0),
-        );
-      }
-    }
+            pointsLeft: pointsLeftCurrentTurn,
+          );
+          final maxDartsThrown = _playFacade.maxDartsThrown(
+            points: pointsLeftCurrentTurn,
+            pointsLeft: pointsLeftCurrentTurn,
+          );
+
+          final minDartsOnDouble = _playFacade.minDartsOnDouble(
+            points: pointsLeftCurrentTurn,
+            pointsLeft: pointsLeftCurrentTurn,
+          );
+          final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+            points: pointsLeftCurrentTurn,
+            pointsLeft: pointsLeftCurrentTurn,
+          );
+
+          final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
+              minDartsOnDouble == maxDartsOnDouble);
+
+          if (showCheckoutDetails) {
+            _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+          } else {
+            _playFacade.performThrow(
+              t: Throw(
+                points: pointsLeftCurrentTurn,
+                dartsThrown: 3,
+                dartsOnDouble: 1,
+              ),
+            );
+            _inputRowBloc.add(
+              const InputRowEvent.inputUpdated(newInput: 0),
+            );
+          }
+        }
+      },
+    );
   }
 
   Stream<KeyBoardState> _mapErasePressedToState() async* {

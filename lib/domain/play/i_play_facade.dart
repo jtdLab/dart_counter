@@ -2,15 +2,11 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dartz/dartz.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'game.dart';
 
 abstract class IPlayFacade {
-  bool get online;
-  Game? get game;
-
-  ValueStream<Game> watchGame();
+  Stream<Either<PlayFailure, Game>> watchGame();
 
   Future<Either<PlayFailure, Unit>> createGame({required bool online});
   Future<Either<PlayFailure, Unit>> reorderPlayer(

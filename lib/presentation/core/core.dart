@@ -1,3 +1,2 @@
-export 'animations.dart';
+export 'app_animations.dart';
 export 'assets.dart';
-export 'errors.dart';

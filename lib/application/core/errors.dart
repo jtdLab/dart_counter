@@ -1,0 +1,1 @@
+class UnexpectedStateError extends Error {}

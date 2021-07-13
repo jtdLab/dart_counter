@@ -16,30 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeEventTearOff {
   const _$HomeEventTearOff();
 
-  WatchStarted watchStarted() {
-    return const WatchStarted();
-  }
-
-  UnreadInvitationsReceived unreadInvitationsReceived(
-      {required int unreadInvitations}) {
-    return UnreadInvitationsReceived(
-      unreadInvitations: unreadInvitations,
-    );
-  }
-
-  UnreadFriendRequestsReceived unreadFriendRequestsReceived(
-      {required int unreadFriendRequests}) {
-    return UnreadFriendRequestsReceived(
-      unreadFriendRequests: unreadFriendRequests,
-    );
-  }
-
-  UserReceived userReceived({required User user}) {
-    return UserReceived(
-      user: user,
-    );
-  }
-
   GameCreated gameCreated() {
     return const GameCreated();
   }
@@ -59,6 +35,32 @@ class _$HomeEventTearOff {
   CreateOfflineGamePressed createOfflineGamePressed() {
     return const CreateOfflineGamePressed();
   }
+
+  UserReceived userReceived({required User user}) {
+    return UserReceived(
+      user: user,
+    );
+  }
+
+  GameReceived gameReceived({required Game game}) {
+    return GameReceived(
+      game: game,
+    );
+  }
+
+  UnreadInvitationsReceived unreadInvitationsReceived(
+      {required int unreadInvitations}) {
+    return UnreadInvitationsReceived(
+      unreadInvitations: unreadInvitations,
+    );
+  }
+
+  UnreadFriendRequestsReceived unreadFriendRequestsReceived(
+      {required int unreadFriendRequests}) {
+    return UnreadFriendRequestsReceived(
+      unreadFriendRequests: unreadFriendRequests,
+    );
+  }
 }
 
 /// @nodoc
@@ -68,40 +70,34 @@ const $HomeEvent = _$HomeEventTearOff();
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
     required TResult Function() gameCreated,
     required TResult Function() goToInvitationsPressed,
     required TResult Function() goToFriendsPressed,
     required TResult Function() createOnlineGamePressed,
     required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
     TResult Function()? gameCreated,
     TResult Function()? goToInvitationsPressed,
     TResult Function()? goToFriendsPressed,
     TResult Function()? createOnlineGamePressed,
     TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
     required TResult Function(GameCreated value) gameCreated,
     required TResult Function(GoToInvitationsPressed value)
         goToInvitationsPressed,
@@ -110,21 +106,27 @@ mixin _$HomeEvent {
         createOnlineGamePressed,
     required TResult Function(CreateOfflineGamePressed value)
         createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
     TResult Function(GameCreated value)? gameCreated,
     TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
     TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
     TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
     TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,36 +148,36 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $WatchStartedCopyWith<$Res> {
-  factory $WatchStartedCopyWith(
-          WatchStarted value, $Res Function(WatchStarted) then) =
-      _$WatchStartedCopyWithImpl<$Res>;
+abstract class $GameCreatedCopyWith<$Res> {
+  factory $GameCreatedCopyWith(
+          GameCreated value, $Res Function(GameCreated) then) =
+      _$GameCreatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WatchStartedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements $WatchStartedCopyWith<$Res> {
-  _$WatchStartedCopyWithImpl(
-      WatchStarted _value, $Res Function(WatchStarted) _then)
-      : super(_value, (v) => _then(v as WatchStarted));
+class _$GameCreatedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements $GameCreatedCopyWith<$Res> {
+  _$GameCreatedCopyWithImpl(
+      GameCreated _value, $Res Function(GameCreated) _then)
+      : super(_value, (v) => _then(v as GameCreated));
 
   @override
-  WatchStarted get _value => super._value as WatchStarted;
+  GameCreated get _value => super._value as GameCreated;
 }
 
 /// @nodoc
 
-class _$WatchStarted implements WatchStarted {
-  const _$WatchStarted();
+class _$GameCreated implements GameCreated {
+  const _$GameCreated();
 
   @override
   String toString() {
-    return 'HomeEvent.watchStarted()';
+    return 'HomeEvent.gameCreated()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WatchStarted);
+    return identical(this, other) || (other is GameCreated);
   }
 
   @override
@@ -184,36 +186,36 @@ class _$WatchStarted implements WatchStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
     required TResult Function() gameCreated,
     required TResult Function() goToInvitationsPressed,
     required TResult Function() goToFriendsPressed,
     required TResult Function() createOnlineGamePressed,
     required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
   }) {
-    return watchStarted();
+    return gameCreated();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
     TResult Function()? gameCreated,
     TResult Function()? goToInvitationsPressed,
     TResult Function()? goToFriendsPressed,
     TResult Function()? createOnlineGamePressed,
     TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted();
+    if (gameCreated != null) {
+      return gameCreated();
     }
     return orElse();
   }
@@ -221,12 +223,6 @@ class _$WatchStarted implements WatchStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
     required TResult Function(GameCreated value) gameCreated,
     required TResult Function(GoToInvitationsPressed value)
         goToInvitationsPressed,
@@ -235,35 +231,850 @@ class _$WatchStarted implements WatchStarted {
         createOnlineGamePressed,
     required TResult Function(CreateOfflineGamePressed value)
         createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
   }) {
-    return watchStarted(this);
+    return gameCreated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
     TResult Function(GameCreated value)? gameCreated,
     TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
     TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
     TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
     TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
+    if (gameCreated != null) {
+      return gameCreated(this);
     }
     return orElse();
   }
 }
 
-abstract class WatchStarted implements HomeEvent {
-  const factory WatchStarted() = _$WatchStarted;
+abstract class GameCreated implements HomeEvent {
+  const factory GameCreated() = _$GameCreated;
+}
+
+/// @nodoc
+abstract class $GoToInvitationsPressedCopyWith<$Res> {
+  factory $GoToInvitationsPressedCopyWith(GoToInvitationsPressed value,
+          $Res Function(GoToInvitationsPressed) then) =
+      _$GoToInvitationsPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GoToInvitationsPressedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res>
+    implements $GoToInvitationsPressedCopyWith<$Res> {
+  _$GoToInvitationsPressedCopyWithImpl(GoToInvitationsPressed _value,
+      $Res Function(GoToInvitationsPressed) _then)
+      : super(_value, (v) => _then(v as GoToInvitationsPressed));
+
+  @override
+  GoToInvitationsPressed get _value => super._value as GoToInvitationsPressed;
+}
+
+/// @nodoc
+
+class _$GoToInvitationsPressed implements GoToInvitationsPressed {
+  const _$GoToInvitationsPressed();
+
+  @override
+  String toString() {
+    return 'HomeEvent.goToInvitationsPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GoToInvitationsPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return goToInvitationsPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (goToInvitationsPressed != null) {
+      return goToInvitationsPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return goToInvitationsPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (goToInvitationsPressed != null) {
+      return goToInvitationsPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GoToInvitationsPressed implements HomeEvent {
+  const factory GoToInvitationsPressed() = _$GoToInvitationsPressed;
+}
+
+/// @nodoc
+abstract class $GoToFriendsPressedCopyWith<$Res> {
+  factory $GoToFriendsPressedCopyWith(
+          GoToFriendsPressed value, $Res Function(GoToFriendsPressed) then) =
+      _$GoToFriendsPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GoToFriendsPressedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res>
+    implements $GoToFriendsPressedCopyWith<$Res> {
+  _$GoToFriendsPressedCopyWithImpl(
+      GoToFriendsPressed _value, $Res Function(GoToFriendsPressed) _then)
+      : super(_value, (v) => _then(v as GoToFriendsPressed));
+
+  @override
+  GoToFriendsPressed get _value => super._value as GoToFriendsPressed;
+}
+
+/// @nodoc
+
+class _$GoToFriendsPressed implements GoToFriendsPressed {
+  const _$GoToFriendsPressed();
+
+  @override
+  String toString() {
+    return 'HomeEvent.goToFriendsPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GoToFriendsPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return goToFriendsPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (goToFriendsPressed != null) {
+      return goToFriendsPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return goToFriendsPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (goToFriendsPressed != null) {
+      return goToFriendsPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GoToFriendsPressed implements HomeEvent {
+  const factory GoToFriendsPressed() = _$GoToFriendsPressed;
+}
+
+/// @nodoc
+abstract class $CreateOnlineGamePressedCopyWith<$Res> {
+  factory $CreateOnlineGamePressedCopyWith(CreateOnlineGamePressed value,
+          $Res Function(CreateOnlineGamePressed) then) =
+      _$CreateOnlineGamePressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateOnlineGamePressedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res>
+    implements $CreateOnlineGamePressedCopyWith<$Res> {
+  _$CreateOnlineGamePressedCopyWithImpl(CreateOnlineGamePressed _value,
+      $Res Function(CreateOnlineGamePressed) _then)
+      : super(_value, (v) => _then(v as CreateOnlineGamePressed));
+
+  @override
+  CreateOnlineGamePressed get _value => super._value as CreateOnlineGamePressed;
+}
+
+/// @nodoc
+
+class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
+  const _$CreateOnlineGamePressed();
+
+  @override
+  String toString() {
+    return 'HomeEvent.createOnlineGamePressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is CreateOnlineGamePressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return createOnlineGamePressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (createOnlineGamePressed != null) {
+      return createOnlineGamePressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return createOnlineGamePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (createOnlineGamePressed != null) {
+      return createOnlineGamePressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateOnlineGamePressed implements HomeEvent {
+  const factory CreateOnlineGamePressed() = _$CreateOnlineGamePressed;
+}
+
+/// @nodoc
+abstract class $CreateOfflineGamePressedCopyWith<$Res> {
+  factory $CreateOfflineGamePressedCopyWith(CreateOfflineGamePressed value,
+          $Res Function(CreateOfflineGamePressed) then) =
+      _$CreateOfflineGamePressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CreateOfflineGamePressedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res>
+    implements $CreateOfflineGamePressedCopyWith<$Res> {
+  _$CreateOfflineGamePressedCopyWithImpl(CreateOfflineGamePressed _value,
+      $Res Function(CreateOfflineGamePressed) _then)
+      : super(_value, (v) => _then(v as CreateOfflineGamePressed));
+
+  @override
+  CreateOfflineGamePressed get _value =>
+      super._value as CreateOfflineGamePressed;
+}
+
+/// @nodoc
+
+class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
+  const _$CreateOfflineGamePressed();
+
+  @override
+  String toString() {
+    return 'HomeEvent.createOfflineGamePressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is CreateOfflineGamePressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return createOfflineGamePressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (createOfflineGamePressed != null) {
+      return createOfflineGamePressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return createOfflineGamePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (createOfflineGamePressed != null) {
+      return createOfflineGamePressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreateOfflineGamePressed implements HomeEvent {
+  const factory CreateOfflineGamePressed() = _$CreateOfflineGamePressed;
+}
+
+/// @nodoc
+abstract class $UserReceivedCopyWith<$Res> {
+  factory $UserReceivedCopyWith(
+          UserReceived value, $Res Function(UserReceived) then) =
+      _$UserReceivedCopyWithImpl<$Res>;
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$UserReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements $UserReceivedCopyWith<$Res> {
+  _$UserReceivedCopyWithImpl(
+      UserReceived _value, $Res Function(UserReceived) _then)
+      : super(_value, (v) => _then(v as UserReceived));
+
+  @override
+  UserReceived get _value => super._value as UserReceived;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(UserReceived(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UserReceived implements UserReceived {
+  const _$UserReceived({required this.user});
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'HomeEvent.userReceived(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserReceived &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserReceivedCopyWith<UserReceived> get copyWith =>
+      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return userReceived(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (userReceived != null) {
+      return userReceived(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return userReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (userReceived != null) {
+      return userReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserReceived implements HomeEvent {
+  const factory UserReceived({required User user}) = _$UserReceived;
+
+  User get user => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserReceivedCopyWith<UserReceived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameReceivedCopyWith<$Res> {
+  factory $GameReceivedCopyWith(
+          GameReceived value, $Res Function(GameReceived) then) =
+      _$GameReceivedCopyWithImpl<$Res>;
+  $Res call({Game game});
+
+  $GameCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements $GameReceivedCopyWith<$Res> {
+  _$GameReceivedCopyWithImpl(
+      GameReceived _value, $Res Function(GameReceived) _then)
+      : super(_value, (v) => _then(v as GameReceived));
+
+  @override
+  GameReceived get _value => super._value as GameReceived;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(GameReceived(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
+
+  @override
+  $GameCopyWith<$Res> get game {
+    return $GameCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GameReceived implements GameReceived {
+  const _$GameReceived({required this.game});
+
+  @override
+  final Game game;
+
+  @override
+  String toString() {
+    return 'HomeEvent.gameReceived(game: $game)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameReceived &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function() goToInvitationsPressed,
+    required TResult Function() goToFriendsPressed,
+    required TResult Function() createOnlineGamePressed,
+    required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
+  }) {
+    return gameReceived(game);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function()? goToInvitationsPressed,
+    TResult Function()? goToFriendsPressed,
+    TResult Function()? createOnlineGamePressed,
+    TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(game);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCreated value) gameCreated,
+    required TResult Function(GoToInvitationsPressed value)
+        goToInvitationsPressed,
+    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
+    required TResult Function(CreateOnlineGamePressed value)
+        createOnlineGamePressed,
+    required TResult Function(CreateOfflineGamePressed value)
+        createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
+  }) {
+    return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
+    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
+    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameReceived implements HomeEvent {
+  const factory GameReceived({required Game game}) = _$GameReceived;
+
+  Game get game => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -335,16 +1146,16 @@ class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
     required TResult Function() gameCreated,
     required TResult Function() goToInvitationsPressed,
     required TResult Function() goToFriendsPressed,
     required TResult Function() createOnlineGamePressed,
     required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
   }) {
     return unreadInvitationsReceived(unreadInvitations);
   }
@@ -352,15 +1163,15 @@ class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
     TResult Function()? gameCreated,
     TResult Function()? goToInvitationsPressed,
     TResult Function()? goToFriendsPressed,
     TResult Function()? createOnlineGamePressed,
     TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
     if (unreadInvitationsReceived != null) {
@@ -372,12 +1183,6 @@ class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
     required TResult Function(GameCreated value) gameCreated,
     required TResult Function(GoToInvitationsPressed value)
         goToInvitationsPressed,
@@ -386,6 +1191,12 @@ class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
         createOnlineGamePressed,
     required TResult Function(CreateOfflineGamePressed value)
         createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
   }) {
     return unreadInvitationsReceived(this);
   }
@@ -393,17 +1204,17 @@ class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
     TResult Function(GameCreated value)? gameCreated,
     TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
     TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
     TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
     TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
     if (unreadInvitationsReceived != null) {
@@ -494,16 +1305,16 @@ class _$UnreadFriendRequestsReceived implements UnreadFriendRequestsReceived {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
     required TResult Function() gameCreated,
     required TResult Function() goToInvitationsPressed,
     required TResult Function() goToFriendsPressed,
     required TResult Function() createOnlineGamePressed,
     required TResult Function() createOfflineGamePressed,
+    required TResult Function(User user) userReceived,
+    required TResult Function(Game game) gameReceived,
+    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
+    required TResult Function(int unreadFriendRequests)
+        unreadFriendRequestsReceived,
   }) {
     return unreadFriendRequestsReceived(unreadFriendRequests);
   }
@@ -511,15 +1322,15 @@ class _$UnreadFriendRequestsReceived implements UnreadFriendRequestsReceived {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
     TResult Function()? gameCreated,
     TResult Function()? goToInvitationsPressed,
     TResult Function()? goToFriendsPressed,
     TResult Function()? createOnlineGamePressed,
     TResult Function()? createOfflineGamePressed,
+    TResult Function(User user)? userReceived,
+    TResult Function(Game game)? gameReceived,
+    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
+    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
     if (unreadFriendRequestsReceived != null) {
@@ -531,12 +1342,6 @@ class _$UnreadFriendRequestsReceived implements UnreadFriendRequestsReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
     required TResult Function(GameCreated value) gameCreated,
     required TResult Function(GoToInvitationsPressed value)
         goToInvitationsPressed,
@@ -545,6 +1350,12 @@ class _$UnreadFriendRequestsReceived implements UnreadFriendRequestsReceived {
         createOnlineGamePressed,
     required TResult Function(CreateOfflineGamePressed value)
         createOfflineGamePressed,
+    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(UnreadInvitationsReceived value)
+        unreadInvitationsReceived,
+    required TResult Function(UnreadFriendRequestsReceived value)
+        unreadFriendRequestsReceived,
   }) {
     return unreadFriendRequestsReceived(this);
   }
@@ -552,17 +1363,17 @@ class _$UnreadFriendRequestsReceived implements UnreadFriendRequestsReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
     TResult Function(GameCreated value)? gameCreated,
     TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
     TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
     TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
     TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(UnreadInvitationsReceived value)?
+        unreadInvitationsReceived,
+    TResult Function(UnreadFriendRequestsReceived value)?
+        unreadFriendRequestsReceived,
     required TResult orElse(),
   }) {
     if (unreadFriendRequestsReceived != null) {
@@ -583,789 +1394,19 @@ abstract class UnreadFriendRequestsReceived implements HomeEvent {
 }
 
 /// @nodoc
-abstract class $UserReceivedCopyWith<$Res> {
-  factory $UserReceivedCopyWith(
-          UserReceived value, $Res Function(UserReceived) then) =
-      _$UserReceivedCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class _$UserReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements $UserReceivedCopyWith<$Res> {
-  _$UserReceivedCopyWithImpl(
-      UserReceived _value, $Res Function(UserReceived) _then)
-      : super(_value, (v) => _then(v as UserReceived));
-
-  @override
-  UserReceived get _value => super._value as UserReceived;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(UserReceived(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$UserReceived implements UserReceived {
-  const _$UserReceived({required this.user});
-
-  @override
-  final User user;
-
-  @override
-  String toString() {
-    return 'HomeEvent.userReceived(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UserReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
-
-  @JsonKey(ignore: true)
-  @override
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return userReceived(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return userReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserReceived implements HomeEvent {
-  const factory UserReceived({required User user}) = _$UserReceived;
-
-  User get user => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GameCreatedCopyWith<$Res> {
-  factory $GameCreatedCopyWith(
-          GameCreated value, $Res Function(GameCreated) then) =
-      _$GameCreatedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GameCreatedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements $GameCreatedCopyWith<$Res> {
-  _$GameCreatedCopyWithImpl(
-      GameCreated _value, $Res Function(GameCreated) _then)
-      : super(_value, (v) => _then(v as GameCreated));
-
-  @override
-  GameCreated get _value => super._value as GameCreated;
-}
-
-/// @nodoc
-
-class _$GameCreated implements GameCreated {
-  const _$GameCreated();
-
-  @override
-  String toString() {
-    return 'HomeEvent.gameCreated()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameCreated);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return gameCreated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (gameCreated != null) {
-      return gameCreated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return gameCreated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (gameCreated != null) {
-      return gameCreated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GameCreated implements HomeEvent {
-  const factory GameCreated() = _$GameCreated;
-}
-
-/// @nodoc
-abstract class $GoToInvitationsPressedCopyWith<$Res> {
-  factory $GoToInvitationsPressedCopyWith(GoToInvitationsPressed value,
-          $Res Function(GoToInvitationsPressed) then) =
-      _$GoToInvitationsPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GoToInvitationsPressedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements $GoToInvitationsPressedCopyWith<$Res> {
-  _$GoToInvitationsPressedCopyWithImpl(GoToInvitationsPressed _value,
-      $Res Function(GoToInvitationsPressed) _then)
-      : super(_value, (v) => _then(v as GoToInvitationsPressed));
-
-  @override
-  GoToInvitationsPressed get _value => super._value as GoToInvitationsPressed;
-}
-
-/// @nodoc
-
-class _$GoToInvitationsPressed implements GoToInvitationsPressed {
-  const _$GoToInvitationsPressed();
-
-  @override
-  String toString() {
-    return 'HomeEvent.goToInvitationsPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GoToInvitationsPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return goToInvitationsPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (goToInvitationsPressed != null) {
-      return goToInvitationsPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return goToInvitationsPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (goToInvitationsPressed != null) {
-      return goToInvitationsPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoToInvitationsPressed implements HomeEvent {
-  const factory GoToInvitationsPressed() = _$GoToInvitationsPressed;
-}
-
-/// @nodoc
-abstract class $GoToFriendsPressedCopyWith<$Res> {
-  factory $GoToFriendsPressedCopyWith(
-          GoToFriendsPressed value, $Res Function(GoToFriendsPressed) then) =
-      _$GoToFriendsPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GoToFriendsPressedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements $GoToFriendsPressedCopyWith<$Res> {
-  _$GoToFriendsPressedCopyWithImpl(
-      GoToFriendsPressed _value, $Res Function(GoToFriendsPressed) _then)
-      : super(_value, (v) => _then(v as GoToFriendsPressed));
-
-  @override
-  GoToFriendsPressed get _value => super._value as GoToFriendsPressed;
-}
-
-/// @nodoc
-
-class _$GoToFriendsPressed implements GoToFriendsPressed {
-  const _$GoToFriendsPressed();
-
-  @override
-  String toString() {
-    return 'HomeEvent.goToFriendsPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GoToFriendsPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return goToFriendsPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (goToFriendsPressed != null) {
-      return goToFriendsPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return goToFriendsPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (goToFriendsPressed != null) {
-      return goToFriendsPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoToFriendsPressed implements HomeEvent {
-  const factory GoToFriendsPressed() = _$GoToFriendsPressed;
-}
-
-/// @nodoc
-abstract class $CreateOnlineGamePressedCopyWith<$Res> {
-  factory $CreateOnlineGamePressedCopyWith(CreateOnlineGamePressed value,
-          $Res Function(CreateOnlineGamePressed) then) =
-      _$CreateOnlineGamePressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateOnlineGamePressedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements $CreateOnlineGamePressedCopyWith<$Res> {
-  _$CreateOnlineGamePressedCopyWithImpl(CreateOnlineGamePressed _value,
-      $Res Function(CreateOnlineGamePressed) _then)
-      : super(_value, (v) => _then(v as CreateOnlineGamePressed));
-
-  @override
-  CreateOnlineGamePressed get _value => super._value as CreateOnlineGamePressed;
-}
-
-/// @nodoc
-
-class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
-  const _$CreateOnlineGamePressed();
-
-  @override
-  String toString() {
-    return 'HomeEvent.createOnlineGamePressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CreateOnlineGamePressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return createOnlineGamePressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (createOnlineGamePressed != null) {
-      return createOnlineGamePressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return createOnlineGamePressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (createOnlineGamePressed != null) {
-      return createOnlineGamePressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateOnlineGamePressed implements HomeEvent {
-  const factory CreateOnlineGamePressed() = _$CreateOnlineGamePressed;
-}
-
-/// @nodoc
-abstract class $CreateOfflineGamePressedCopyWith<$Res> {
-  factory $CreateOfflineGamePressedCopyWith(CreateOfflineGamePressed value,
-          $Res Function(CreateOfflineGamePressed) then) =
-      _$CreateOfflineGamePressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateOfflineGamePressedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements $CreateOfflineGamePressedCopyWith<$Res> {
-  _$CreateOfflineGamePressedCopyWithImpl(CreateOfflineGamePressed _value,
-      $Res Function(CreateOfflineGamePressed) _then)
-      : super(_value, (v) => _then(v as CreateOfflineGamePressed));
-
-  @override
-  CreateOfflineGamePressed get _value =>
-      super._value as CreateOfflineGamePressed;
-}
-
-/// @nodoc
-
-class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
-  const _$CreateOfflineGamePressed();
-
-  @override
-  String toString() {
-    return 'HomeEvent.createOfflineGamePressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CreateOfflineGamePressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(int unreadFriendRequests)
-        unreadFriendRequestsReceived,
-    required TResult Function(User user) userReceived,
-    required TResult Function() gameCreated,
-    required TResult Function() goToInvitationsPressed,
-    required TResult Function() goToFriendsPressed,
-    required TResult Function() createOnlineGamePressed,
-    required TResult Function() createOfflineGamePressed,
-  }) {
-    return createOfflineGamePressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(int unreadFriendRequests)? unreadFriendRequestsReceived,
-    TResult Function(User user)? userReceived,
-    TResult Function()? gameCreated,
-    TResult Function()? goToInvitationsPressed,
-    TResult Function()? goToFriendsPressed,
-    TResult Function()? createOnlineGamePressed,
-    TResult Function()? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (createOfflineGamePressed != null) {
-      return createOfflineGamePressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(UnreadFriendRequestsReceived value)
-        unreadFriendRequestsReceived,
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(GameCreated value) gameCreated,
-    required TResult Function(GoToInvitationsPressed value)
-        goToInvitationsPressed,
-    required TResult Function(GoToFriendsPressed value) goToFriendsPressed,
-    required TResult Function(CreateOnlineGamePressed value)
-        createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
-        createOfflineGamePressed,
-  }) {
-    return createOfflineGamePressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(UnreadFriendRequestsReceived value)?
-        unreadFriendRequestsReceived,
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(GameCreated value)? gameCreated,
-    TResult Function(GoToInvitationsPressed value)? goToInvitationsPressed,
-    TResult Function(GoToFriendsPressed value)? goToFriendsPressed,
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    required TResult orElse(),
-  }) {
-    if (createOfflineGamePressed != null) {
-      return createOfflineGamePressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateOfflineGamePressed implements HomeEvent {
-  const factory CreateOfflineGamePressed() = _$CreateOfflineGamePressed;
-}
-
-/// @nodoc
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
   _HomeState call(
-      {required int unreadReceivedInvitations,
-      required int unreadFriendRequests,
-      required User user,
-      Game? game}) {
+      {required User user,
+      Game? game,
+      required int unreadInvitations,
+      required int unreadFriendRequests}) {
     return _HomeState(
-      unreadReceivedInvitations: unreadReceivedInvitations,
-      unreadFriendRequests: unreadFriendRequests,
       user: user,
       game: game,
+      unreadInvitations: unreadInvitations,
+      unreadFriendRequests: unreadFriendRequests,
     );
   }
 }
@@ -1375,10 +1416,10 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  int get unreadReceivedInvitations => throw _privateConstructorUsedError;
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   Game? get game => throw _privateConstructorUsedError;
+  int get unreadInvitations => throw _privateConstructorUsedError;
+  int get unreadFriendRequests => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -1390,10 +1431,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
   $Res call(
-      {int unreadReceivedInvitations,
-      int unreadFriendRequests,
-      User user,
-      Game? game});
+      {User user, Game? game, int unreadInvitations, int unreadFriendRequests});
 
   $UserCopyWith<$Res> get user;
   $GameCopyWith<$Res>? get game;
@@ -1409,20 +1447,12 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? unreadReceivedInvitations = freezed,
-    Object? unreadFriendRequests = freezed,
     Object? user = freezed,
     Object? game = freezed,
+    Object? unreadInvitations = freezed,
+    Object? unreadFriendRequests = freezed,
   }) {
     return _then(_value.copyWith(
-      unreadReceivedInvitations: unreadReceivedInvitations == freezed
-          ? _value.unreadReceivedInvitations
-          : unreadReceivedInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
-      unreadFriendRequests: unreadFriendRequests == freezed
-          ? _value.unreadFriendRequests
-          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1431,6 +1461,14 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as Game?,
+      unreadInvitations: unreadInvitations == freezed
+          ? _value.unreadInvitations
+          : unreadInvitations // ignore: cast_nullable_to_non_nullable
+              as int,
+      unreadFriendRequests: unreadFriendRequests == freezed
+          ? _value.unreadFriendRequests
+          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -1460,10 +1498,7 @@ abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$HomeStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int unreadReceivedInvitations,
-      int unreadFriendRequests,
-      User user,
-      Game? game});
+      {User user, Game? game, int unreadInvitations, int unreadFriendRequests});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -1482,20 +1517,12 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? unreadReceivedInvitations = freezed,
-    Object? unreadFriendRequests = freezed,
     Object? user = freezed,
     Object? game = freezed,
+    Object? unreadInvitations = freezed,
+    Object? unreadFriendRequests = freezed,
   }) {
     return _then(_HomeState(
-      unreadReceivedInvitations: unreadReceivedInvitations == freezed
-          ? _value.unreadReceivedInvitations
-          : unreadReceivedInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
-      unreadFriendRequests: unreadFriendRequests == freezed
-          ? _value.unreadFriendRequests
-          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1504,6 +1531,14 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as Game?,
+      unreadInvitations: unreadInvitations == freezed
+          ? _value.unreadInvitations
+          : unreadInvitations // ignore: cast_nullable_to_non_nullable
+              as int,
+      unreadFriendRequests: unreadFriendRequests == freezed
+          ? _value.unreadFriendRequests
+          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -1512,50 +1547,48 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {required this.unreadReceivedInvitations,
-      required this.unreadFriendRequests,
-      required this.user,
-      this.game});
+      {required this.user,
+      this.game,
+      required this.unreadInvitations,
+      required this.unreadFriendRequests});
 
-  @override
-  final int unreadReceivedInvitations;
-  @override
-  final int unreadFriendRequests;
   @override
   final User user;
   @override
   final Game? game;
+  @override
+  final int unreadInvitations;
+  @override
+  final int unreadFriendRequests;
 
   @override
   String toString() {
-    return 'HomeState(unreadReceivedInvitations: $unreadReceivedInvitations, unreadFriendRequests: $unreadFriendRequests, user: $user, game: $game)';
+    return 'HomeState(user: $user, game: $game, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _HomeState &&
-            (identical(other.unreadReceivedInvitations,
-                    unreadReceivedInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.unreadReceivedInvitations,
-                    unreadReceivedInvitations)) &&
-            (identical(other.unreadFriendRequests, unreadFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.unreadFriendRequests, unreadFriendRequests)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)));
+                const DeepCollectionEquality().equals(other.game, game)) &&
+            (identical(other.unreadInvitations, unreadInvitations) ||
+                const DeepCollectionEquality()
+                    .equals(other.unreadInvitations, unreadInvitations)) &&
+            (identical(other.unreadFriendRequests, unreadFriendRequests) ||
+                const DeepCollectionEquality()
+                    .equals(other.unreadFriendRequests, unreadFriendRequests)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(unreadReceivedInvitations) ^
-      const DeepCollectionEquality().hash(unreadFriendRequests) ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(game);
+      const DeepCollectionEquality().hash(game) ^
+      const DeepCollectionEquality().hash(unreadInvitations) ^
+      const DeepCollectionEquality().hash(unreadFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -1565,19 +1598,19 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required int unreadReceivedInvitations,
-      required int unreadFriendRequests,
-      required User user,
-      Game? game}) = _$_HomeState;
+      {required User user,
+      Game? game,
+      required int unreadInvitations,
+      required int unreadFriendRequests}) = _$_HomeState;
 
-  @override
-  int get unreadReceivedInvitations => throw _privateConstructorUsedError;
-  @override
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
   @override
   User get user => throw _privateConstructorUsedError;
   @override
   Game? get game => throw _privateConstructorUsedError;
+  @override
+  int get unreadInvitations => throw _privateConstructorUsedError;
+  @override
+  int get unreadFriendRequests => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$HomeStateCopyWith<_HomeState> get copyWith =>

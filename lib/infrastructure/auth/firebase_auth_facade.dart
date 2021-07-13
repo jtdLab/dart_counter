@@ -38,6 +38,19 @@ class FirebaseAuthFacade implements IAuthFacade {
   );
 
   @override
+  Stream<UniqueId?> watchSignedInUid() {
+    return _firebaseAuth.authStateChanges().map(
+      (user) {
+        if (user != null) {
+          return UniqueId.fromUniqueString(user.uid);
+        } else {
+          return null;
+        }
+      },
+    );
+  }
+
+  @override
   UniqueId? getSignedInUid() {
     final uidString = _firebaseAuth.currentUser?.uid;
     if (uidString == null) {

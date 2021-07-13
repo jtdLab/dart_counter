@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
-import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
+import 'package:dart_counter/application/core/user/user_bloc.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/play/game.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,58 +13,58 @@ part 'game_history_event.dart';
 part 'game_history_state.dart';
 part 'game_history_bloc.freezed.dart';
 
-@injectable
-class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
-  final IUserFacade _userFacade;
+@lazySingleton
+class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
+    with AutoResetLazySingleton {
+  final UserBloc _userBloc;
 
-  GameHistoryBloc(this._userFacade)
-      : super(
+  GameHistoryBloc(
+    this._userBloc,
+  ) : super(
           GameHistoryState(
-            user: _userFacade
-                .watchCurrentUser()
-                .valueWrapper! // TODO
-                .value
-                .fold(
-                  (failure) => throw Error(), // TODO
-                  (user) => user,
-                ),
+            gameHistory: _userBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.user.gameHistoryOnline,
+            ),
           ),
-        );
+        ) {
+    _gameHistorySubscription = _userBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.user.gameHistoryOnline,
+      );
+    }).listen((gameHistory) {
+      add(GameHistoryEvent.gameHistoryReceived(gameHistory: gameHistory));
+    });
+  }
 
-  StreamSubscription<Either<UserFailure, User>>? _userStreamSubscription;
+  StreamSubscription<List10<Game>>? _gameHistorySubscription;
 
   @override
   Stream<GameHistoryState> mapEventToState(
     GameHistoryEvent event,
   ) async* {
-    event.map(
-      watchStarted: (_) => _mapWatchStartedToState(),
-      userReceived: (event) => _mapWatchUserReceivedToState(event),
+    yield* event.map(
+      gameHistoryReceived: (event) => _mapGameHistoryReceivedToState(event),
+      gameSelected: (event) => _mapGameSelectedToState(event),
     );
   }
 
-  Stream<GameHistoryState> _mapWatchStartedToState() async* {
-    _userStreamSubscription =
-        _userFacade.watchCurrentUser().listen((failureOrUser) {
-      failureOrUser.fold(
-        (failure) => throw Error(), // TODO
-        (user) => add(
-          GameHistoryEvent.userReceived(
-            user: user,
-          ),
-        ),
-      );
-    });
+  Stream<GameHistoryState> _mapGameHistoryReceivedToState(
+    GameHistoryReceived event,
+  ) async* {
+    yield state.copyWith(gameHistory: event.gameHistory);
   }
 
-  Stream<GameHistoryState> _mapWatchUserReceivedToState(
-      UserReceived event) async* {
-    yield GameHistoryState(user: event.user);
+  Stream<GameHistoryState> _mapGameSelectedToState(
+    GameSelected event,
+  ) async* {
+    yield state.copyWith(selectedGame: event.game);
   }
 
   @override
   Future<void> close() {
-    _userStreamSubscription?.cancel();
+    _gameHistorySubscription?.cancel();
     return super.close();
   }
 }

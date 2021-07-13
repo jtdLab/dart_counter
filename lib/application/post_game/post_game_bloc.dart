@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
+import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,19 +13,31 @@ part 'post_game_event.dart';
 part 'post_game_state.dart';
 part 'post_game_bloc.freezed.dart';
 
-@injectable
-class PostGameBloc extends Bloc<PostGameEvent, PostGameState> {
+@lazySingleton
+class PostGameBloc extends Bloc<PostGameEvent, PostGameState> with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
+  final GameBloc _gameBloc;
 
-  PostGameBloc(this._playFacade)
-      : super(
+  PostGameBloc(
+    this._playFacade,
+    this._gameBloc,
+  ) : super(
           PostGameState(
-            game: _playFacade
-                .watchGame()
-                .valueWrapper! // TODO
-                .value,
+            game: _gameBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.game,
+            ),
           ),
-        );
+        ) {
+    _gameSubscription = _gameBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.game,
+      );
+    }).listen((game) {
+      add(PostGameEvent.gameReceived(game: game));
+    });
+  }
 
   StreamSubscription<Game>? _gameSubscription;
 
@@ -31,19 +46,14 @@ class PostGameBloc extends Bloc<PostGameEvent, PostGameState> {
     PostGameEvent event,
   ) async* {
     yield* event.map(
-      watchStarted: (_) => _mapWatchStartedToState(),
-      receivedGame: (event) => _mapReceivedGameToState(event),
+      gameReceived: (event) => _mapGameReceivedToState(event),
     );
   }
 
-  Stream<PostGameState> _mapWatchStartedToState() async* {
-    _gameSubscription = _playFacade.watchGame().listen((game) {
-      add(PostGameEvent.receivedGame(game: game));
-    });
-  }
-
-  Stream<PostGameState> _mapReceivedGameToState(ReceivedGame event) async* {
-    yield PostGameState(game: event.game);
+  Stream<PostGameState> _mapGameReceivedToState(
+    GameReceived event,
+  ) async* {
+    yield state.copyWith(game: event.game);
   }
 
   @override

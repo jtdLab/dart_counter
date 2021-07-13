@@ -27,14 +27,14 @@ class SplashPage extends StatelessWidget {
               }
             },
             unauthenticated: (_) {
-              context.router.replace(const AuthPageRoute());
+              context.router.replace(const AuthFlowRoute());
             },
             orElse: () {},
           );
         },
         child: const CupertinoPageScaffold(
           child: Center(
-            child: LogoDisplayer(),
+            child: Text('ff'),
           ),
         ),
       ),

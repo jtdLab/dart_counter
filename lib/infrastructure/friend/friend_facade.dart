@@ -20,18 +20,7 @@ class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
-  FriendFacade(this._firestore, this._socialClient)
-      : _friendRequestController = BehaviorSubject(),
-        _unreadFriendRequestController = BehaviorSubject() {
-    _friendRequestController.addStream(_watchFriendRequests());
-    _unreadFriendRequestController.addStream(_watchUnreadFriendRequests());
-  }
-
-  final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _friendRequestController;
-
-  final BehaviorSubject<Either<FriendFailure, int>>
-      _unreadFriendRequestController;
+  FriendFacade(this._firestore, this._socialClient);
 
   @override
   Future<Either<FriendFailure, Unit>> addFriend(User user) {
@@ -52,29 +41,8 @@ class FriendFacade implements IFriendFacade {
   }
 
   @override
-  ValueStream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchFriendRequests() {
-    return _friendRequestController.stream;
-  }
-
-  @override
-  ValueStream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
-    // TODO: implement watchFriends
-    throw UnimplementedError();
-  }
-
-  @override
-  ValueStream<Either<FriendFailure, int>> watchUnreadFriendRequests() {
-    return _unreadFriendRequestController.stream;
-  }
-
-  @override
-  void markFriendRequestsAsRead() {
-    
-  }
-
   Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      _watchFriendRequests() async* {
+      watchFriendRequests() async* {
     final userDoc = await _firestore.userDocument();
     yield* userDoc.friendRequestsCollection
         .orderBy('createdAt', descending: true)
@@ -91,7 +59,14 @@ class FriendFacade implements IFriendFacade {
     });
   }
 
-  Stream<Either<FriendFailure, int>> _watchUnreadFriendRequests() {
+  @override
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
+    // TODO: implement watchFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<Either<FriendFailure, int>> watchUnreadFriendRequests() {
     return watchFriendRequests().map(
       (failureOrFriendRequests) => failureOrFriendRequests.fold(
         (failure) => left(const FriendFailure.unexpected()),
@@ -100,4 +75,7 @@ class FriendFacade implements IFriendFacade {
       ),
     );
   }
+
+  @override
+  void markFriendRequestsAsRead() {}
 }

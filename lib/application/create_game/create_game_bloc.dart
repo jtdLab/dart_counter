@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
+import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
@@ -11,19 +14,32 @@ part 'create_game_event.dart';
 part 'create_game_state.dart';
 part 'create_game_bloc.freezed.dart';
 
-@injectable
-class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
+@lazySingleton
+class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
-  CreateGameBloc(this._playFacade)
-      : super(
+  final GameBloc _gameBloc;
+
+  CreateGameBloc(
+    this._playFacade,
+    this._gameBloc,
+  ) : super(
           CreateGameState(
-            game: _playFacade
-                .watchGame()
-                .valueWrapper! // TODO
-                .value,
+            game: _gameBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.game,
+            ),
           ),
-        );
+        ) {
+    _gameSubscription = _gameBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.game,
+      );
+    }).listen((game) {
+      add(CreateGameEvent.gameReceived(game: game));
+    });
+  }
 
   StreamSubscription<Game>? _gameSubscription;
 
@@ -32,7 +48,6 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     CreateGameEvent event,
   ) async* {
     yield* event.map(
-      watchStarted: (_) => _mapWatchStartedToState(),
       gameCanceled: (_) => _mapGameCanceledToState(),
       playerReordered: (event) => _mapPlayerReorederedToState(event),
       playerAdded: (_) => _mapPlayerAddedToState(),
@@ -49,14 +64,8 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
       dartBotRemoved: (_) => _mapDartBotRemovedToState(),
       dartBotTargetAverageUpdated: (event) =>
           _mapDartBotTargetAverageSetToState(event),
-      receivedGame: (event) => _mapReceivedGameToState(event),
+      gameReceived: (event) => _mapGameReceivedToState(event),
     );
-  }
-
-  Stream<CreateGameState> _mapWatchStartedToState() async* {
-    _gameSubscription = _playFacade.watchGame().listen((game) {
-      add(CreateGameEvent.receivedGame(game: game));
-    });
   }
 
   Stream<CreateGameState> _mapGameCanceledToState() async* {
@@ -67,7 +76,8 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
   }
 
   Stream<CreateGameState> _mapPlayerReorederedToState(
-      PlayerReordered event) async* {
+    PlayerReordered event,
+  ) async* {
     final oldIndex = event.oldIndex;
     final newIndex = event.newIndex;
     final failureOrUnit = await _playFacade.reorderPlayer(
@@ -86,7 +96,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     }
   }
 
-  Stream<CreateGameState> _mapPlayerRemovedToState(PlayerRemoved event) async* {
+  Stream<CreateGameState> _mapPlayerRemovedToState(
+    PlayerRemoved event,
+  ) async* {
     final index = event.index;
 
     final failureOrUnit = await _playFacade.removePlayer(
@@ -98,7 +110,8 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
   }
 
   Stream<CreateGameState> _mapPlayerNameUpdatedToState(
-      PlayerNameUpdated event) async* {
+    PlayerNameUpdated event,
+  ) async* {
     final index = event.index;
     final newName = event.newName;
 
@@ -113,7 +126,8 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
   }
 
   Stream<CreateGameState> _mapStartingPointsUpdatedToState(
-      StartingPointsUpdated event) async* {
+    StartingPointsUpdated event,
+  ) async* {
     final newStartingPoints = event.newStartingPoints;
 
     final failureOrUnit = await _playFacade.setStartingPoints(
@@ -125,7 +139,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     }
   }
 
-  Stream<CreateGameState> _mapModeUpdatedToState(ModeUpdated event) async* {
+  Stream<CreateGameState> _mapModeUpdatedToState(
+    ModeUpdated event,
+  ) async* {
     final newMode = event.newMode;
 
     final failureOrUnit = await _playFacade.setMode(
@@ -137,7 +153,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     }
   }
 
-  Stream<CreateGameState> _mapSizeUpdatedToState(SizeUpdated event) async* {
+  Stream<CreateGameState> _mapSizeUpdatedToState(
+    SizeUpdated event,
+  ) async* {
     final newSize = event.newSize;
 
     final failureOrUnit = await _playFacade.setSize(
@@ -149,7 +167,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     }
   }
 
-  Stream<CreateGameState> _mapTypeUpdatedToState(TypeUpdated event) async* {
+  Stream<CreateGameState> _mapTypeUpdatedToState(
+    TypeUpdated event,
+  ) async* {
     final newType = event.newType;
 
     final failureOrUnit = await _playFacade.setType(
@@ -204,7 +224,8 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
   }
 
   Stream<CreateGameState> _mapDartBotTargetAverageSetToState(
-      DartBotTargetAverageUpdated event) async* {
+    DartBotTargetAverageUpdated event,
+  ) async* {
     final newTargetAverage = event.newTargetAverage;
     final failureOrUnit = await _playFacade.setDartBotTargetAverage(
         targetAverage: newTargetAverage);
@@ -214,8 +235,10 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> {
     }
   }
 
-  Stream<CreateGameState> _mapReceivedGameToState(ReceivedGame event) async* {
-    yield CreateGameState(game: event.game);
+  Stream<CreateGameState> _mapGameReceivedToState(
+    GameReceived event,
+  ) async* {
+    yield state.copyWith(game: event.game);
   }
 
   @override

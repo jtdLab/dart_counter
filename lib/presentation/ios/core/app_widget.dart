@@ -1,3 +1,5 @@
+import 'package:dart_counter/application/core/auth/auth_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 final Router router = Router();
@@ -10,7 +12,12 @@ class AppWidget extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routeInformationParser: router.defaultRouteParser(),
-      routerDelegate: router.delegate(),
+      routerDelegate: router.delegate(
+        initialRoutes: context.read<AuthBloc>().state.when(
+              signedOut: () => [const AuthFlowRoute()],
+              signedIn: () => [const MainFlowRoute()],
+            ),
+      ),
       theme: const CupertinoThemeData(
         primaryColor: AppColors.black,
         textTheme: CupertinoTextThemeData(

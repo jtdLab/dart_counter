@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
+import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,17 +17,29 @@ part 'in_game_bloc.freezed.dart';
 class InGameBloc extends Bloc<InGameEvent, InGameState>
     with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
+  final GameBloc _gameBloc;
 
-  InGameBloc(this._playFacade)
-      : super(
+  InGameBloc(
+    this._playFacade,
+    this._gameBloc,
+  ) : super(
           InGameState(
-            game: _playFacade
-                .watchGame()
-                .valueWrapper! // TODO
-                .value,
+            game: _gameBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.game,
+            ),
             showCheckoutDetails: false,
           ),
-        );
+        ) {
+    _gameSubscription = _gameBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.game,
+      );
+    }).listen((game) {
+      add(InGameEvent.gameReceived(game: game));
+    });
+  }
 
   StreamSubscription<Game>? _gameSubscription;
 
@@ -34,22 +48,11 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
     InGameEvent event,
   ) async* {
     yield* event.map(
-      watchStarted: (_) => _mapWatchStartedToState(),
-      receivedGame: (event) => _mapReceivedGameToState(event),
       gameCanceled: (_) => _mapGameCanceledToState(),
       showCheckoutDetailsRequested: (_) =>
           _mapShowCheckoutDetailsRequestedToState(),
+      gameReceived: (event) => _mapGameReceivedToState(event),
     );
-  }
-
-  Stream<InGameState> _mapWatchStartedToState() async* {
-    _gameSubscription = _playFacade.watchGame().listen((game) {
-      add(InGameEvent.receivedGame(game: game));
-    });
-  }
-
-  Stream<InGameState> _mapReceivedGameToState(ReceivedGame event) async* {
-    yield InGameState(game: event.game, showCheckoutDetails: false);
   }
 
   Stream<InGameState> _mapGameCanceledToState() async* {
@@ -61,6 +64,12 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
 
   Stream<InGameState> _mapShowCheckoutDetailsRequestedToState() async* {
     yield state.copyWith(showCheckoutDetails: true);
+  }
+
+  Stream<InGameState> _mapGameReceivedToState(
+    GameReceived event,
+  ) async* {
+    yield state.copyWith(game: event.game);
   }
 
   @override

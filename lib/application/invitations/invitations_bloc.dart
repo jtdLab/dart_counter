@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/core/errors.dart';
+import 'package:dart_counter/application/core/invitations/invitations_bloc.dart'
+    as ib;
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -17,82 +18,71 @@ part 'invitations_bloc.freezed.dart';
 class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   final IGameInvitationFacade _gameInvitationFacade;
 
-  InvitationsBloc(this._gameInvitationFacade)
-      : super(
+  final ib.InvitationsBloc _invitationsBloc;
+
+  InvitationsBloc(
+    this._gameInvitationFacade,
+    this._invitationsBloc,
+  ) : super(
           InvitationsState(
-            receivedGameInvitations: _gameInvitationFacade
-                .watchReceivedInvitations()
-                .valueWrapper! // TODO
-                .value
-                .fold(
-                  (failure) => throw Error(), // TODO
-                  (receivedInvitations) => receivedInvitations,
-                ),
-            sentGameInvitations: _gameInvitationFacade
-                .watchSentInvitations()
-                .valueWrapper! // TODO
-                .value
-                .fold(
-                  (failure) => throw Error(), // TODO
-                  (sentInvitations) => sentInvitations,
-                ),
+            receivedGameInvitations: _invitationsBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.receivedInvitations,
+            ),
+            sentGameInvitations: _invitationsBloc.state.map(
+              loading: (_) => throw UnexpectedStateError(),
+              success: (success) => success.sentInvitations,
+            ),
           ),
-        );
+        ) {
+    _receivedGameInvitationsSubscription = _invitationsBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.receivedInvitations,
+      );
+    }).listen((invitations) {
+      add(InvitationsEvent.receivedGameInvitationsReceived(
+          gameInvitations: invitations));
+    });
 
-  StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _receivedGameInvitationsStreamSubscription;
+    _sentGameInvitationsSubscription = _invitationsBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.sentInvitations,
+      );
+    }).listen((invitations) {
+      add(InvitationsEvent.sentGameInvitationsReceived(
+          gameInvitations: invitations));
+    });
+  }
 
-  StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _sentGameInvitationsStreamSubscription;
+  StreamSubscription<KtList<GameInvitation>>?
+      _receivedGameInvitationsSubscription;
+
+  StreamSubscription<KtList<GameInvitation>>? _sentGameInvitationsSubscription;
 
   @override
   Stream<InvitationsState> mapEventToState(
     InvitationsEvent event,
   ) async* {
     yield* event.map(
-      watchStarted: (_) => _mapWatchStartedToState(),
       receivedGameInvitationsReceived: (event) =>
           _mapReceivedGameInvitationsReceivedToState(event),
       sentGameInvitationsReceived: (event) =>
           _mapSentGameInvitationsReceivedToState(event),
-      failureReceived: (_) => _mapFailureReceivedToState(),
       accepted: (event) => _mapAcceptedToState(event),
       declined: (event) => _mapDeclinedToState(event),
       newInvitationsRead: (_) => _mapNewInvitationsReadToState(),
     );
   }
 
-  Stream<InvitationsState> _mapWatchStartedToState() async* {
-    _receivedGameInvitationsStreamSubscription = _gameInvitationFacade
-        .watchReceivedInvitations()
-        .listen((failureOrGameInvitations) {
-      failureOrGameInvitations.fold(
-        (failure) => add(const InvitationsEvent.failureReceived()),
-        (gameInvitations) => add(
-          InvitationsEvent.receivedGameInvitationsReceived(
-            gameInvitations: gameInvitations,
-          ),
-        ),
-      );
-    });
-    _sentGameInvitationsStreamSubscription = _gameInvitationFacade
-        .watchSentInvitations()
-        .listen((failureOrGameInvitations) {
-      failureOrGameInvitations.fold(
-        (failure) => add(const InvitationsEvent.failureReceived()),
-        (gameInvitations) => add(
-          InvitationsEvent.sentGameInvitationsReceived(
-            gameInvitations: gameInvitations,
-          ),
-        ),
-      );
-    });
-  }
-
   // TODO rly needed to call facade for other or just use state
   Stream<InvitationsState> _mapReceivedGameInvitationsReceivedToState(
       ReceivedGameInvitationsReceived event) async* {
-    final wrapper = _gameInvitationFacade.watchSentInvitations().valueWrapper;
+    // TODO implement
+    throw UnimplementedError();
+    /**
+    *  final wrapper = _gameInvitationFacade.watchSentInvitations().valueWrapper;
     if (wrapper != null) {
       final failureOrSentGameInvitations = wrapper.value;
       yield failureOrSentGameInvitations.fold(
@@ -106,12 +96,16 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         },
       );
     }
+    */
   }
 
   // TODO rly needed to call facade for other or just use state
   Stream<InvitationsState> _mapSentGameInvitationsReceivedToState(
       SentGameInvitationsReceived event) async* {
-    final wrapper =
+    // TODO implement
+    throw UnimplementedError();
+    /**
+    *  final wrapper =
         _gameInvitationFacade.watchReceivedInvitations().valueWrapper;
     if (wrapper != null) {
       final failureOrReceivedGameInvitations = wrapper.value;
@@ -126,10 +120,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         },
       );
     }
-  }
-
-  Stream<InvitationsState> _mapFailureReceivedToState() async* {
-    throw Error(); // TODO
+    */
   }
 
   Stream<InvitationsState> _mapAcceptedToState(Accepted event) async* {
@@ -160,8 +151,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
 
   @override
   Future<void> close() {
-    _receivedGameInvitationsStreamSubscription?.cancel();
-    _sentGameInvitationsStreamSubscription?.cancel();
+    _receivedGameInvitationsSubscription?.cancel();
+    _sentGameInvitationsSubscription?.cancel();
     return super.close();
   }
 }

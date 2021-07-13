@@ -16,10 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
-  WatchStarted watchStarted() {
-    return const WatchStarted();
-  }
-
   UserReceived userReceived({required User user}) {
     return UserReceived(
       user: user,
@@ -32,31 +28,33 @@ const $ProfileEvent = _$ProfileEventTearOff();
 
 /// @nodoc
 mixin _$ProfileEvent {
+  User get user => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(User user) userReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(User user)? userReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(UserReceived value) userReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(UserReceived value)? userReceived,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProfileEventCopyWith<ProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -65,6 +63,9 @@ abstract class $ProfileEventCopyWith<$Res> {
   factory $ProfileEventCopyWith(
           ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -74,100 +75,37 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
   final ProfileEvent _value;
   // ignore: unused_field
   final $Res Function(ProfileEvent) _then;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class $WatchStartedCopyWith<$Res> {
-  factory $WatchStartedCopyWith(
-          WatchStarted value, $Res Function(WatchStarted) then) =
-      _$WatchStartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$WatchStartedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements $WatchStartedCopyWith<$Res> {
-  _$WatchStartedCopyWithImpl(
-      WatchStarted _value, $Res Function(WatchStarted) _then)
-      : super(_value, (v) => _then(v as WatchStarted));
-
-  @override
-  WatchStarted get _value => super._value as WatchStarted;
-}
-
-/// @nodoc
-
-class _$WatchStarted implements WatchStarted {
-  const _$WatchStarted();
-
-  @override
-  String toString() {
-    return 'ProfileEvent.watchStarted()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WatchStarted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(User user) userReceived,
-  }) {
-    return watchStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(User user)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UserReceived value) userReceived,
-  }) {
-    return watchStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UserReceived value)? userReceived,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WatchStarted implements ProfileEvent {
-  const factory WatchStarted() = _$WatchStarted;
-}
-
-/// @nodoc
-abstract class $UserReceivedCopyWith<$Res> {
+abstract class $UserReceivedCopyWith<$Res>
+    implements $ProfileEventCopyWith<$Res> {
   factory $UserReceivedCopyWith(
           UserReceived value, $Res Function(UserReceived) then) =
       _$UserReceivedCopyWithImpl<$Res>;
+  @override
   $Res call({User user});
 
+  @override
   $UserCopyWith<$Res> get user;
 }
 
@@ -191,13 +129,6 @@ class _$UserReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
           : user // ignore: cast_nullable_to_non_nullable
               as User,
     ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
@@ -234,7 +165,6 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
     required TResult Function(User user) userReceived,
   }) {
     return userReceived(user);
@@ -243,7 +173,6 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
     TResult Function(User user)? userReceived,
     required TResult orElse(),
   }) {
@@ -256,7 +185,6 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
     required TResult Function(UserReceived value) userReceived,
   }) {
     return userReceived(this);
@@ -265,7 +193,6 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
     TResult Function(UserReceived value)? userReceived,
     required TResult orElse(),
   }) {
@@ -279,7 +206,9 @@ class _$UserReceived implements UserReceived {
 abstract class UserReceived implements ProfileEvent {
   const factory UserReceived({required User user}) = _$UserReceived;
 
+  @override
   User get user => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $UserReceivedCopyWith<UserReceived> get copyWith =>
       throw _privateConstructorUsedError;

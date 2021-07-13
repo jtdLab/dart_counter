@@ -5,19 +5,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:injectable/injectable.dart';
 import 'package:image/image.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -33,15 +30,34 @@ class UserFacade implements IUserFacade {
     this._storage,
     this._authFacade,
     this._functions,
-  ) : _userController = BehaviorSubject() {
-    _userController.addStream(_watchCurrentUser());
-  }
-
-  final BehaviorSubject<Either<UserFailure, User>> _userController;
+  );
 
   @override
-  ValueStream<Either<UserFailure, User>> watchCurrentUser() {
-    return _userController.stream;
+  Stream<Either<UserFailure, User>> watchCurrentUser() async* {
+    final uid = _authFacade.getSignedInUid();
+
+    if (uid == null) {
+      yield left(const UserFailure.failure()); // TODO not authenticated
+    }
+
+    final userDoc = await _firestore.userDocument();
+    yield* userDoc.snapshots().map<Either<UserFailure, User>>((docSnapshot) {
+      final data = docSnapshot.data() as Map<String, dynamic>?;
+
+      if (data == null) {
+        return left(const UserFailure.failure());
+      }
+
+      final user =
+          UserDto.fromJson(data).copyWith(id: uid!.getOrCrash()).toDomain();
+      return right(user);
+    }).onErrorReturnWith((e) {
+      if (e is FirebaseException && e.code == 'permission-denied') {
+        return left(const UserFailure.insufficientPermission());
+      } else {
+        return left(const UserFailure.failure());
+      }
+    });
   }
 
   @override
@@ -173,34 +189,5 @@ class UserFacade implements IUserFacade {
       }
     }
       */
-  }
-
-  Stream<Either<UserFailure, User>> _watchCurrentUser() async* {
-    try {
-      final uid = _authFacade.getSignedInUid();
-
-      if (uid == null) {
-        yield left(const UserFailure.failure()); // TODO not authenticated
-      }
-
-      final userDoc = await _firestore.userDocument();
-      yield* userDoc.snapshots().map((docSnapshot) {
-        final data = docSnapshot.data() as Map<String, dynamic>?;
-
-        if (data == null) {
-          return left(const UserFailure.failure());
-        }
-
-        final user =
-            UserDto.fromJson(data).copyWith(id: uid!.getOrCrash()).toDomain();
-        return right(user);
-      });
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        yield left(const UserFailure.insufficientPermission());
-      } else {
-        yield left(const UserFailure.failure());
-      }
-    }
   }
 }

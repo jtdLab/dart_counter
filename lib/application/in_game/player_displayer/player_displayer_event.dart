@@ -4,5 +4,5 @@ part of 'player_displayer_bloc.dart';
 class PlayerDisplayerEvent with _$PlayerDisplayerEvent {
   const factory PlayerDisplayerEvent.previousPlayerPressed() = PreviousPressed;
   const factory PlayerDisplayerEvent.nextPlayerPressed() = NextPressed;
-  const factory PlayerDisplayerEvent.currentPlayerUpdated({required Player newPlayer}) = CurrentPlayerUpdated;
+  const factory PlayerDisplayerEvent.currentIndexUpdated({required int newIndex}) = CurrentIndexUpdated;
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
@@ -20,8 +20,9 @@ part 'splash_event.dart';
 part 'splash_state.dart';
 part 'splash_bloc.freezed.dart';
 
-@injectable
-class SplashBloc extends Bloc<SplashEvent, SplashState> {
+@lazySingleton
+class SplashBloc extends Bloc<SplashEvent, SplashState>
+    with AutoResetLazySingleton {
   final IGameInvitationFacade _gameInvitationFacade;
   final IFriendFacade _friendFacade;
   final IUserFacade _userFacade;

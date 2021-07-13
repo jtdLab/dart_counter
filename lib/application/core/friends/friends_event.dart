@@ -1,0 +1,15 @@
+part of 'friends_bloc.dart';
+
+@freezed
+class FriendsEvent with _$FriendsEvent {
+  const factory FriendsEvent.watchStarted() = WatchStarted;
+  const factory FriendsEvent.friendRequestsReceived({
+    required KtList<FriendRequest> friendRequests,
+  }) = FriendRequestsReceived;
+  const factory FriendsEvent.unreadFriendRequestsReceived({
+    required int unreadFriendRequests,
+  }) = UnreadFriendRequestsReceived;
+  const factory FriendsEvent.failureReceived({
+    required FriendFailure failure,
+  }) = FailureReceived;
+}

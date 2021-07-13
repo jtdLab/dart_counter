@@ -16,13 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameHistoryEventTearOff {
   const _$GameHistoryEventTearOff();
 
-  WatchStarted watchStarted() {
-    return const WatchStarted();
+  GameHistoryReceived gameHistoryReceived({required List10<Game> gameHistory}) {
+    return GameHistoryReceived(
+      gameHistory: gameHistory,
+    );
   }
 
-  UserReceived userReceived({required User user}) {
-    return UserReceived(
-      user: user,
+  GameSelected gameSelected({required Game game}) {
+    return GameSelected(
+      game: game,
     );
   }
 }
@@ -34,27 +36,27 @@ const $GameHistoryEvent = _$GameHistoryEventTearOff();
 mixin _$GameHistoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(User user) userReceived,
+    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function(Game game) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(User user)? userReceived,
+    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(GameSelected value) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,60 +80,86 @@ class _$GameHistoryEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $WatchStartedCopyWith<$Res> {
-  factory $WatchStartedCopyWith(
-          WatchStarted value, $Res Function(WatchStarted) then) =
-      _$WatchStartedCopyWithImpl<$Res>;
+abstract class $GameHistoryReceivedCopyWith<$Res> {
+  factory $GameHistoryReceivedCopyWith(
+          GameHistoryReceived value, $Res Function(GameHistoryReceived) then) =
+      _$GameHistoryReceivedCopyWithImpl<$Res>;
+  $Res call({List10<Game> gameHistory});
 }
 
 /// @nodoc
-class _$WatchStartedCopyWithImpl<$Res>
+class _$GameHistoryReceivedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $WatchStartedCopyWith<$Res> {
-  _$WatchStartedCopyWithImpl(
-      WatchStarted _value, $Res Function(WatchStarted) _then)
-      : super(_value, (v) => _then(v as WatchStarted));
+    implements $GameHistoryReceivedCopyWith<$Res> {
+  _$GameHistoryReceivedCopyWithImpl(
+      GameHistoryReceived _value, $Res Function(GameHistoryReceived) _then)
+      : super(_value, (v) => _then(v as GameHistoryReceived));
 
   @override
-  WatchStarted get _value => super._value as WatchStarted;
+  GameHistoryReceived get _value => super._value as GameHistoryReceived;
+
+  @override
+  $Res call({
+    Object? gameHistory = freezed,
+  }) {
+    return _then(GameHistoryReceived(
+      gameHistory: gameHistory == freezed
+          ? _value.gameHistory
+          : gameHistory // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$WatchStarted implements WatchStarted {
-  const _$WatchStarted();
+class _$GameHistoryReceived implements GameHistoryReceived {
+  const _$GameHistoryReceived({required this.gameHistory});
+
+  @override
+  final List10<Game> gameHistory;
 
   @override
   String toString() {
-    return 'GameHistoryEvent.watchStarted()';
+    return 'GameHistoryEvent.gameHistoryReceived(gameHistory: $gameHistory)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WatchStarted);
+    return identical(this, other) ||
+        (other is GameHistoryReceived &&
+            (identical(other.gameHistory, gameHistory) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameHistory, gameHistory)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameHistory);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameHistoryReceivedCopyWith<GameHistoryReceived> get copyWith =>
+      _$GameHistoryReceivedCopyWithImpl<GameHistoryReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(User user) userReceived,
+    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function(Game game) gameSelected,
   }) {
-    return watchStarted();
+    return gameHistoryReceived(gameHistory);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(User user)? userReceived,
+    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted();
+    if (gameHistoryReceived != null) {
+      return gameHistoryReceived(gameHistory);
     }
     return orElse();
   }
@@ -139,119 +167,125 @@ class _$WatchStarted implements WatchStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(GameSelected value) gameSelected,
   }) {
-    return watchStarted(this);
+    return gameHistoryReceived(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
+    if (gameHistoryReceived != null) {
+      return gameHistoryReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class WatchStarted implements GameHistoryEvent {
-  const factory WatchStarted() = _$WatchStarted;
+abstract class GameHistoryReceived implements GameHistoryEvent {
+  const factory GameHistoryReceived({required List10<Game> gameHistory}) =
+      _$GameHistoryReceived;
+
+  List10<Game> get gameHistory => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameHistoryReceivedCopyWith<GameHistoryReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserReceivedCopyWith<$Res> {
-  factory $UserReceivedCopyWith(
-          UserReceived value, $Res Function(UserReceived) then) =
-      _$UserReceivedCopyWithImpl<$Res>;
-  $Res call({User user});
+abstract class $GameSelectedCopyWith<$Res> {
+  factory $GameSelectedCopyWith(
+          GameSelected value, $Res Function(GameSelected) then) =
+      _$GameSelectedCopyWithImpl<$Res>;
+  $Res call({Game game});
 
-  $UserCopyWith<$Res> get user;
+  $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
-class _$UserReceivedCopyWithImpl<$Res>
+class _$GameSelectedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $UserReceivedCopyWith<$Res> {
-  _$UserReceivedCopyWithImpl(
-      UserReceived _value, $Res Function(UserReceived) _then)
-      : super(_value, (v) => _then(v as UserReceived));
+    implements $GameSelectedCopyWith<$Res> {
+  _$GameSelectedCopyWithImpl(
+      GameSelected _value, $Res Function(GameSelected) _then)
+      : super(_value, (v) => _then(v as GameSelected));
 
   @override
-  UserReceived get _value => super._value as UserReceived;
+  GameSelected get _value => super._value as GameSelected;
 
   @override
   $Res call({
-    Object? user = freezed,
+    Object? game = freezed,
   }) {
-    return _then(UserReceived(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+    return _then(GameSelected(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+  $GameCopyWith<$Res> get game {
+    return $GameCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$UserReceived implements UserReceived {
-  const _$UserReceived({required this.user});
+class _$GameSelected implements GameSelected {
+  const _$GameSelected({required this.game});
 
   @override
-  final User user;
+  final Game game;
 
   @override
   String toString() {
-    return 'GameHistoryEvent.userReceived(user: $user)';
+    return 'GameHistoryEvent.gameSelected(game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other is GameSelected &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
 
   @JsonKey(ignore: true)
   @override
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
+  $GameSelectedCopyWith<GameSelected> get copyWith =>
+      _$GameSelectedCopyWithImpl<GameSelected>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(User user) userReceived,
+    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function(Game game) gameSelected,
   }) {
-    return userReceived(user);
+    return gameSelected(game);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(User user)? userReceived,
+    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(user);
+    if (gameSelected != null) {
+      return gameSelected(game);
     }
     return orElse();
   }
@@ -259,32 +293,32 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(GameSelected value) gameSelected,
   }) {
-    return userReceived(this);
+    return gameSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(this);
+    if (gameSelected != null) {
+      return gameSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class UserReceived implements GameHistoryEvent {
-  const factory UserReceived({required User user}) = _$UserReceived;
+abstract class GameSelected implements GameHistoryEvent {
+  const factory GameSelected({required Game game}) = _$GameSelected;
 
-  User get user => throw _privateConstructorUsedError;
+  Game get game => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
+  $GameSelectedCopyWith<GameSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -292,9 +326,11 @@ abstract class UserReceived implements GameHistoryEvent {
 class _$GameHistoryStateTearOff {
   const _$GameHistoryStateTearOff();
 
-  _GameHistoryState call({required User user}) {
+  _GameHistoryState call(
+      {required List10<Game> gameHistory, Game? selectedGame}) {
     return _GameHistoryState(
-      user: user,
+      gameHistory: gameHistory,
+      selectedGame: selectedGame,
     );
   }
 }
@@ -304,7 +340,8 @@ const $GameHistoryState = _$GameHistoryStateTearOff();
 
 /// @nodoc
 mixin _$GameHistoryState {
-  User get user => throw _privateConstructorUsedError;
+  List10<Game> get gameHistory => throw _privateConstructorUsedError;
+  Game? get selectedGame => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameHistoryStateCopyWith<GameHistoryState> get copyWith =>
@@ -316,9 +353,9 @@ abstract class $GameHistoryStateCopyWith<$Res> {
   factory $GameHistoryStateCopyWith(
           GameHistoryState value, $Res Function(GameHistoryState) then) =
       _$GameHistoryStateCopyWithImpl<$Res>;
-  $Res call({User user});
+  $Res call({List10<Game> gameHistory, Game? selectedGame});
 
-  $UserCopyWith<$Res> get user;
+  $GameCopyWith<$Res>? get selectedGame;
 }
 
 /// @nodoc
@@ -332,20 +369,29 @@ class _$GameHistoryStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
+    Object? gameHistory = freezed,
+    Object? selectedGame = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      gameHistory: gameHistory == freezed
+          ? _value.gameHistory
+          : gameHistory // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
+      selectedGame: selectedGame == freezed
+          ? _value.selectedGame
+          : selectedGame // ignore: cast_nullable_to_non_nullable
+              as Game?,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+  $GameCopyWith<$Res>? get selectedGame {
+    if (_value.selectedGame == null) {
+      return null;
+    }
+
+    return $GameCopyWith<$Res>(_value.selectedGame!, (value) {
+      return _then(_value.copyWith(selectedGame: value));
     });
   }
 }
@@ -357,10 +403,10 @@ abstract class _$GameHistoryStateCopyWith<$Res>
           _GameHistoryState value, $Res Function(_GameHistoryState) then) =
       __$GameHistoryStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user});
+  $Res call({List10<Game> gameHistory, Game? selectedGame});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $GameCopyWith<$Res>? get selectedGame;
 }
 
 /// @nodoc
@@ -376,13 +422,18 @@ class __$GameHistoryStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
+    Object? gameHistory = freezed,
+    Object? selectedGame = freezed,
   }) {
     return _then(_GameHistoryState(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      gameHistory: gameHistory == freezed
+          ? _value.gameHistory
+          : gameHistory // ignore: cast_nullable_to_non_nullable
+              as List10<Game>,
+      selectedGame: selectedGame == freezed
+          ? _value.selectedGame
+          : selectedGame // ignore: cast_nullable_to_non_nullable
+              as Game?,
     ));
   }
 }
@@ -390,27 +441,35 @@ class __$GameHistoryStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GameHistoryState implements _GameHistoryState {
-  const _$_GameHistoryState({required this.user});
+  const _$_GameHistoryState({required this.gameHistory, this.selectedGame});
 
   @override
-  final User user;
+  final List10<Game> gameHistory;
+  @override
+  final Game? selectedGame;
 
   @override
   String toString() {
-    return 'GameHistoryState(user: $user)';
+    return 'GameHistoryState(gameHistory: $gameHistory, selectedGame: $selectedGame)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _GameHistoryState &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+            (identical(other.gameHistory, gameHistory) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameHistory, gameHistory)) &&
+            (identical(other.selectedGame, selectedGame) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedGame, selectedGame)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(gameHistory) ^
+      const DeepCollectionEquality().hash(selectedGame);
 
   @JsonKey(ignore: true)
   @override
@@ -419,10 +478,14 @@ class _$_GameHistoryState implements _GameHistoryState {
 }
 
 abstract class _GameHistoryState implements GameHistoryState {
-  const factory _GameHistoryState({required User user}) = _$_GameHistoryState;
+  const factory _GameHistoryState(
+      {required List10<Game> gameHistory,
+      Game? selectedGame}) = _$_GameHistoryState;
 
   @override
-  User get user => throw _privateConstructorUsedError;
+  List10<Game> get gameHistory => throw _privateConstructorUsedError;
+  @override
+  Game? get selectedGame => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameHistoryStateCopyWith<_GameHistoryState> get copyWith =>

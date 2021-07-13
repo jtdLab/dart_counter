@@ -3,6 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 
 abstract class IAuthFacade {
+
+  Stream<UniqueId?> watchSignedInUid();
+
   UniqueId? getSignedInUid();
 
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(

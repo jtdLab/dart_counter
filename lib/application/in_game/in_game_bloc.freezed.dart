@@ -16,22 +16,18 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InGameEventTearOff {
   const _$InGameEventTearOff();
 
-  WatchStarted watchStarted() {
-    return const WatchStarted();
-  }
-
-  ReceivedGame receivedGame({required Game game}) {
-    return ReceivedGame(
-      game: game,
-    );
-  }
-
   GameCanceled gameCanceled() {
     return const GameCanceled();
   }
 
   ShowCheckoutDetailsRequested showCheckoutDetailsRequested() {
     return const ShowCheckoutDetailsRequested();
+  }
+
+  GameReceived gameReceived({required Game game}) {
+    return GameReceived(
+      game: game,
+    );
   }
 }
 
@@ -42,37 +38,33 @@ const $InGameEvent = _$InGameEventTearOff();
 mixin _$InGameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(Game game) receivedGame,
     required TResult Function() gameCanceled,
     required TResult Function() showCheckoutDetailsRequested,
+    required TResult Function(Game game) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(Game game)? receivedGame,
     TResult Function()? gameCanceled,
     TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(Game game)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGame value) receivedGame,
     required TResult Function(GameCanceled value) gameCanceled,
     required TResult Function(ShowCheckoutDetailsRequested value)
         showCheckoutDetailsRequested,
+    required TResult Function(GameReceived value) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGame value)? receivedGame,
     TResult Function(GameCanceled value)? gameCanceled,
     TResult Function(ShowCheckoutDetailsRequested value)?
         showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -92,235 +84,6 @@ class _$InGameEventCopyWithImpl<$Res> implements $InGameEventCopyWith<$Res> {
   final InGameEvent _value;
   // ignore: unused_field
   final $Res Function(InGameEvent) _then;
-}
-
-/// @nodoc
-abstract class $WatchStartedCopyWith<$Res> {
-  factory $WatchStartedCopyWith(
-          WatchStarted value, $Res Function(WatchStarted) then) =
-      _$WatchStartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$WatchStartedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
-    implements $WatchStartedCopyWith<$Res> {
-  _$WatchStartedCopyWithImpl(
-      WatchStarted _value, $Res Function(WatchStarted) _then)
-      : super(_value, (v) => _then(v as WatchStarted));
-
-  @override
-  WatchStarted get _value => super._value as WatchStarted;
-}
-
-/// @nodoc
-
-class _$WatchStarted implements WatchStarted {
-  const _$WatchStarted();
-
-  @override
-  String toString() {
-    return 'InGameEvent.watchStarted()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WatchStarted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(Game game) receivedGame,
-    required TResult Function() gameCanceled,
-    required TResult Function() showCheckoutDetailsRequested,
-  }) {
-    return watchStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(Game game)? receivedGame,
-    TResult Function()? gameCanceled,
-    TResult Function()? showCheckoutDetailsRequested,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGame value) receivedGame,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(ShowCheckoutDetailsRequested value)
-        showCheckoutDetailsRequested,
-  }) {
-    return watchStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGame value)? receivedGame,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(ShowCheckoutDetailsRequested value)?
-        showCheckoutDetailsRequested,
-    required TResult orElse(),
-  }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WatchStarted implements InGameEvent {
-  const factory WatchStarted() = _$WatchStarted;
-}
-
-/// @nodoc
-abstract class $ReceivedGameCopyWith<$Res> {
-  factory $ReceivedGameCopyWith(
-          ReceivedGame value, $Res Function(ReceivedGame) then) =
-      _$ReceivedGameCopyWithImpl<$Res>;
-  $Res call({Game game});
-
-  $GameCopyWith<$Res> get game;
-}
-
-/// @nodoc
-class _$ReceivedGameCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
-    implements $ReceivedGameCopyWith<$Res> {
-  _$ReceivedGameCopyWithImpl(
-      ReceivedGame _value, $Res Function(ReceivedGame) _then)
-      : super(_value, (v) => _then(v as ReceivedGame));
-
-  @override
-  ReceivedGame get _value => super._value as ReceivedGame;
-
-  @override
-  $Res call({
-    Object? game = freezed,
-  }) {
-    return _then(ReceivedGame(
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as Game,
-    ));
-  }
-
-  @override
-  $GameCopyWith<$Res> get game {
-    return $GameCopyWith<$Res>(_value.game, (value) {
-      return _then(_value.copyWith(game: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$ReceivedGame implements ReceivedGame {
-  const _$ReceivedGame({required this.game});
-
-  @override
-  final Game game;
-
-  @override
-  String toString() {
-    return 'InGameEvent.receivedGame(game: $game)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ReceivedGame &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
-
-  @JsonKey(ignore: true)
-  @override
-  $ReceivedGameCopyWith<ReceivedGame> get copyWith =>
-      _$ReceivedGameCopyWithImpl<ReceivedGame>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(Game game) receivedGame,
-    required TResult Function() gameCanceled,
-    required TResult Function() showCheckoutDetailsRequested,
-  }) {
-    return receivedGame(game);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(Game game)? receivedGame,
-    TResult Function()? gameCanceled,
-    TResult Function()? showCheckoutDetailsRequested,
-    required TResult orElse(),
-  }) {
-    if (receivedGame != null) {
-      return receivedGame(game);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGame value) receivedGame,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(ShowCheckoutDetailsRequested value)
-        showCheckoutDetailsRequested,
-  }) {
-    return receivedGame(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGame value)? receivedGame,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(ShowCheckoutDetailsRequested value)?
-        showCheckoutDetailsRequested,
-    required TResult orElse(),
-  }) {
-    if (receivedGame != null) {
-      return receivedGame(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ReceivedGame implements InGameEvent {
-  const factory ReceivedGame({required Game game}) = _$ReceivedGame;
-
-  Game get game => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ReceivedGameCopyWith<ReceivedGame> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -362,10 +125,9 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(Game game) receivedGame,
     required TResult Function() gameCanceled,
     required TResult Function() showCheckoutDetailsRequested,
+    required TResult Function(Game game) gameReceived,
   }) {
     return gameCanceled();
   }
@@ -373,10 +135,9 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(Game game)? receivedGame,
     TResult Function()? gameCanceled,
     TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(Game game)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCanceled != null) {
@@ -388,11 +149,10 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGame value) receivedGame,
     required TResult Function(GameCanceled value) gameCanceled,
     required TResult Function(ShowCheckoutDetailsRequested value)
         showCheckoutDetailsRequested,
+    required TResult Function(GameReceived value) gameReceived,
   }) {
     return gameCanceled(this);
   }
@@ -400,11 +160,10 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGame value)? receivedGame,
     TResult Function(GameCanceled value)? gameCanceled,
     TResult Function(ShowCheckoutDetailsRequested value)?
         showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCanceled != null) {
@@ -461,10 +220,9 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(Game game) receivedGame,
     required TResult Function() gameCanceled,
     required TResult Function() showCheckoutDetailsRequested,
+    required TResult Function(Game game) gameReceived,
   }) {
     return showCheckoutDetailsRequested();
   }
@@ -472,10 +230,9 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(Game game)? receivedGame,
     TResult Function()? gameCanceled,
     TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(Game game)? gameReceived,
     required TResult orElse(),
   }) {
     if (showCheckoutDetailsRequested != null) {
@@ -487,11 +244,10 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedGame value) receivedGame,
     required TResult Function(GameCanceled value) gameCanceled,
     required TResult Function(ShowCheckoutDetailsRequested value)
         showCheckoutDetailsRequested,
+    required TResult Function(GameReceived value) gameReceived,
   }) {
     return showCheckoutDetailsRequested(this);
   }
@@ -499,11 +255,10 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedGame value)? receivedGame,
     TResult Function(GameCanceled value)? gameCanceled,
     TResult Function(ShowCheckoutDetailsRequested value)?
         showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
     required TResult orElse(),
   }) {
     if (showCheckoutDetailsRequested != null) {
@@ -515,6 +270,136 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
 
 abstract class ShowCheckoutDetailsRequested implements InGameEvent {
   const factory ShowCheckoutDetailsRequested() = _$ShowCheckoutDetailsRequested;
+}
+
+/// @nodoc
+abstract class $GameReceivedCopyWith<$Res> {
+  factory $GameReceivedCopyWith(
+          GameReceived value, $Res Function(GameReceived) then) =
+      _$GameReceivedCopyWithImpl<$Res>;
+  $Res call({Game game});
+
+  $GameCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class _$GameReceivedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
+    implements $GameReceivedCopyWith<$Res> {
+  _$GameReceivedCopyWithImpl(
+      GameReceived _value, $Res Function(GameReceived) _then)
+      : super(_value, (v) => _then(v as GameReceived));
+
+  @override
+  GameReceived get _value => super._value as GameReceived;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(GameReceived(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
+    ));
+  }
+
+  @override
+  $GameCopyWith<$Res> get game {
+    return $GameCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GameReceived implements GameReceived {
+  const _$GameReceived({required this.game});
+
+  @override
+  final Game game;
+
+  @override
+  String toString() {
+    return 'InGameEvent.gameReceived(game: $game)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameReceived &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCanceled,
+    required TResult Function() showCheckoutDetailsRequested,
+    required TResult Function(Game game) gameReceived,
+  }) {
+    return gameReceived(game);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(Game game)? gameReceived,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(game);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameCanceled value) gameCanceled,
+    required TResult Function(ShowCheckoutDetailsRequested value)
+        showCheckoutDetailsRequested,
+    required TResult Function(GameReceived value) gameReceived,
+  }) {
+    return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameReceived implements InGameEvent {
+  const factory GameReceived({required Game game}) = _$GameReceived;
+
+  Game get game => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

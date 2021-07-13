@@ -1,20 +1,34 @@
+import 'dart:async';
+
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/subjects.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthFacade)
 class MockedAuthFacade implements IAuthFacade {
   bool fail = false; // toggle to simulate working / notworking endpoint
 
+  final BehaviorSubject<UniqueId?> _signedInUidController;
+
+  MockedAuthFacade() : _signedInUidController = BehaviorSubject() {
+    _signedInUidController.add(UniqueId.fromUniqueString('dummyUid'));
+  }
+
+  @override
+  Stream<UniqueId?> watchSignedInUid() {
+    return _signedInUidController.stream;
+  }
+
   @override
   UniqueId? getSignedInUid() {
     if (fail) {
       return null;
     } else {
-      return UniqueId.fromUniqueString('dummyUid');
+      return _signedInUidController.valueWrapper?.value;
     }
   }
 
@@ -41,6 +55,9 @@ class MockedAuthFacade implements IAuthFacade {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
+      _signedInUidController.add(
+        UniqueId.fromUniqueString('dummyUid'),
+      );
       return Future.value(right(unit));
     }
   }
@@ -50,6 +67,9 @@ class MockedAuthFacade implements IAuthFacade {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
+      _signedInUidController.add(
+        UniqueId.fromUniqueString('dummyUid'),
+      );
       return Future.value(right(unit));
     }
   }
@@ -59,12 +79,16 @@ class MockedAuthFacade implements IAuthFacade {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
+      _signedInUidController.add(
+        UniqueId.fromUniqueString('dummyUid'),
+      );
       return Future.value(right(unit));
     }
   }
 
   @override
   Future<void> signOut() {
+    _signedInUidController.add(null);
     return Future.value();
   }
 
@@ -74,6 +98,9 @@ class MockedAuthFacade implements IAuthFacade {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
+      _signedInUidController.add(
+        UniqueId.fromUniqueString('dummyUid'),
+      );
       return Future.value(right(unit));
     }
   }
@@ -86,6 +113,9 @@ class MockedAuthFacade implements IAuthFacade {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {
+      _signedInUidController.add(
+        UniqueId.fromUniqueString('dummyUid'),
+      );
       return Future.value(right(unit));
     }
   }

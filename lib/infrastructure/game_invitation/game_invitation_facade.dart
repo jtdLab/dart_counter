@@ -18,22 +18,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
 
   GameInvitationFacade(
     this._firestore,
-  )   : _receivedInvitationsController = BehaviorSubject(),
-        _unreadInvitationsController = BehaviorSubject(),
-        _sentInvitationsController = BehaviorSubject() {
-    _receivedInvitationsController.addStream(_watchReceivedInvitations());
-    _unreadInvitationsController.addStream(_watchUnreadInvitations());
-    _sentInvitationsController.addStream(_watchSentInvitations());
-  }
-
-  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _receivedInvitationsController;
-
-  final BehaviorSubject<Either<GameInvitationFailure, int>>
-      _unreadInvitationsController;
-
-  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _sentInvitationsController;
+  );
 
   @override
   Future<Either<GameInvitationFailure, Unit>> accept({
@@ -60,27 +45,8 @@ class GameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations() {
-    return _receivedInvitationsController.stream;
-  }
-
-  @override
-  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations() {
-    return _sentInvitationsController.stream;
-  }
-
-  @override
-  ValueStream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
-    return _unreadInvitationsController.stream;
-  }
-
-  @override
-  void markGameInvitationsAsRead() {}
-
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _watchReceivedInvitations() async* {
+      watchReceivedInvitations() async* {
     final userDoc = await _firestore.userDocument();
     yield* userDoc.gameInvitationsCollection
         .orderBy('createdAt', descending: true)
@@ -97,18 +63,9 @@ class GameInvitationFacade implements IGameInvitationFacade {
     });
   }
 
-  Stream<Either<GameInvitationFailure, int>> _watchUnreadInvitations() {
-    return watchReceivedInvitations().map(
-      (failureOrInvitations) => failureOrInvitations.fold(
-        (failure) => left(const GameInvitationFailure.unexpected()),
-        (invitations) =>
-            right(invitations.filter((invitation) => !invitation.read).size),
-      ),
-    );
-  }
-
+  @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _watchSentInvitations() async* {
+      watchSentInvitations() async* {
     // TODO sent invitations not received
     final userDoc = await _firestore.userDocument();
     yield* userDoc.gameInvitationsCollection
@@ -125,4 +82,18 @@ class GameInvitationFacade implements IGameInvitationFacade {
       return left(const GameInvitationFailure.unexpected());
     });
   }
+
+  @override
+  Stream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
+    return watchReceivedInvitations().map(
+      (failureOrInvitations) => failureOrInvitations.fold(
+        (failure) => left(const GameInvitationFailure.unexpected()),
+        (invitations) =>
+            right(invitations.filter((invitation) => !invitation.read).size),
+      ),
+    );
+  }
+
+  @override
+  void markGameInvitationsAsRead() {}
 }

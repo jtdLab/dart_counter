@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
+import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,12 +19,13 @@ part 'input_row_bloc.freezed.dart';
 class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
     with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
-
   final InGameBloc _inGameBloc;
+  final GameBloc _gameBloc;
 
   InputRowBloc(
     this._playFacade,
     this._inGameBloc,
+    this._gameBloc,
   ) : super(const InputRowState(input: 0));
 
   @override
@@ -40,45 +44,46 @@ class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
   }
 
   Stream<InputRowState> _mapPerformThrowPressedToState() async* {
-    final pointsLeftCurrentTurn = _playFacade.game?.currentTurn().pointsLeft;
+    yield* _gameBloc.state.map(
+      loading: (_) => throw Error(),
+      success: (success) async* {
+        final pointsLeftCurrentTurn = success.game.currentTurn().pointsLeft;
 
-    if (pointsLeftCurrentTurn == null) {
-      throw Error(); // TODO
-    }
-
-    final minDartsThrown = _playFacade.minDartsThrown(
-      points: state.input,
-      pointsLeft: pointsLeftCurrentTurn,
-    );
-    final maxDartsThrown = _playFacade.maxDartsThrown(
-      points: state.input,
-      pointsLeft: pointsLeftCurrentTurn,
-    );
-
-    final minDartsOnDouble = _playFacade.minDartsOnDouble(
-      points: state.input,
-      pointsLeft: pointsLeftCurrentTurn,
-    );
-    final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
-      points: state.input,
-      pointsLeft: pointsLeftCurrentTurn,
-    );
-
-    final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
-        minDartsOnDouble == maxDartsOnDouble);
-
-    if (showCheckoutDetails) {
-      _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
-    } else {
-      _playFacade.performThrow(
-        t: Throw(
+        final minDartsThrown = _playFacade.minDartsThrown(
           points: state.input,
-          dartsThrown: minDartsThrown,
-          dartsOnDouble: minDartsOnDouble,
-        ),
-      );
-      yield const InputRowState(input: 0);
-    }
+          pointsLeft: pointsLeftCurrentTurn,
+        );
+        final maxDartsThrown = _playFacade.maxDartsThrown(
+          points: state.input,
+          pointsLeft: pointsLeftCurrentTurn,
+        );
+
+        final minDartsOnDouble = _playFacade.minDartsOnDouble(
+          points: state.input,
+          pointsLeft: pointsLeftCurrentTurn,
+        );
+        final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+          points: state.input,
+          pointsLeft: pointsLeftCurrentTurn,
+        );
+
+        final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
+            minDartsOnDouble == maxDartsOnDouble);
+
+        if (showCheckoutDetails) {
+          _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+        } else {
+          _playFacade.performThrow(
+            t: Throw(
+              points: state.input,
+              dartsThrown: minDartsThrown,
+              dartsOnDouble: minDartsOnDouble,
+            ),
+          );
+          yield const InputRowState(input: 0);
+        }
+      },
+    );
   }
 
   Stream<InputRowState> _mapInputUpdatedToState(InputUpdated event) async* {

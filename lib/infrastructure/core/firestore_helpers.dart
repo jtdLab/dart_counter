@@ -6,7 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 extension FirestoreX on FirebaseFirestore {
   Future<DocumentReference> userDocument() async {
-    print('xdoc');
     final id = getIt<FirebaseAuth>().currentUser?.uid;
     if (id == null) throw NotAuthenticatedError();
     return FirebaseFirestore.instance.collection('users').doc(id);
