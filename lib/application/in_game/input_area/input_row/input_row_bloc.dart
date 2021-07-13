@@ -20,12 +20,10 @@ class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
     with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
   final InGameBloc _inGameBloc;
-  final GameBloc _gameBloc;
 
   InputRowBloc(
     this._playFacade,
     this._inGameBloc,
-    this._gameBloc,
   ) : super(const InputRowState(input: 0));
 
   @override
@@ -44,46 +42,42 @@ class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
   }
 
   Stream<InputRowState> _mapPerformThrowPressedToState() async* {
-    yield* _gameBloc.state.map(
-      loading: (_) => throw Error(),
-      success: (success) async* {
-        final pointsLeftCurrentTurn = success.game.currentTurn().pointsLeft;
+    final pointsLeftCurrentTurn =
+        _inGameBloc.state.game.currentTurn().pointsLeft;
 
-        final minDartsThrown = _playFacade.minDartsThrown(
-          points: state.input,
-          pointsLeft: pointsLeftCurrentTurn,
-        );
-        final maxDartsThrown = _playFacade.maxDartsThrown(
-          points: state.input,
-          pointsLeft: pointsLeftCurrentTurn,
-        );
-
-        final minDartsOnDouble = _playFacade.minDartsOnDouble(
-          points: state.input,
-          pointsLeft: pointsLeftCurrentTurn,
-        );
-        final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
-          points: state.input,
-          pointsLeft: pointsLeftCurrentTurn,
-        );
-
-        final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
-            minDartsOnDouble == maxDartsOnDouble);
-
-        if (showCheckoutDetails) {
-          _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
-        } else {
-          _playFacade.performThrow(
-            t: Throw(
-              points: state.input,
-              dartsThrown: minDartsThrown,
-              dartsOnDouble: minDartsOnDouble,
-            ),
-          );
-          yield const InputRowState(input: 0);
-        }
-      },
+    final minDartsThrown = _playFacade.minDartsThrown(
+      points: state.input,
+      pointsLeft: pointsLeftCurrentTurn,
     );
+    final maxDartsThrown = _playFacade.maxDartsThrown(
+      points: state.input,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+
+    final minDartsOnDouble = _playFacade.minDartsOnDouble(
+      points: state.input,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+    final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+      points: state.input,
+      pointsLeft: pointsLeftCurrentTurn,
+    );
+
+    final showCheckoutDetails = !(minDartsThrown == maxDartsThrown &&
+        minDartsOnDouble == maxDartsOnDouble);
+
+    if (showCheckoutDetails) {
+      _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+    } else {
+      _playFacade.performThrow(
+        t: Throw(
+          points: state.input,
+          dartsThrown: minDartsThrown,
+          dartsOnDouble: minDartsOnDouble,
+        ),
+      );
+      yield const InputRowState(input: 0);
+    }
   }
 
   Stream<InputRowState> _mapInputUpdatedToState(InputUpdated event) async* {

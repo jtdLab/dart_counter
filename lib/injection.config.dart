@@ -156,13 +156,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_test, _prod});
   gh.lazySingleton<_i42.InGameBloc>(
       () => _i42.InGameBloc(get<_i18.IPlayFacade>(), get<_i38.GameBloc>()));
-  gh.lazySingleton<_i43.InputRowBloc>(() => _i43.InputRowBloc(
-      get<_i18.IPlayFacade>(), get<_i42.InGameBloc>(), get<_i38.GameBloc>()));
+  gh.lazySingleton<_i43.InputRowBloc>(
+      () => _i43.InputRowBloc(get<_i18.IPlayFacade>(), get<_i42.InGameBloc>()));
   gh.lazySingleton<_i44.KeyBoardBloc>(() => _i44.KeyBoardBloc(
       get<_i18.IPlayFacade>(),
       get<_i42.InGameBloc>(),
-      get<_i43.InputRowBloc>(),
-      get<_i38.GameBloc>()));
+      get<_i43.InputRowBloc>()));
   gh.lazySingleton<_i45.PlayerDisplayerBloc>(
       () => _i45.PlayerDisplayerBloc(get<_i42.InGameBloc>()));
   gh.lazySingleton<_i46.PostGameBloc>(
