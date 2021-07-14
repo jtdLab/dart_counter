@@ -1,7 +1,3 @@
-import 'package:dart_counter/injection.dart';
-
-import 'package:dart_counter/application/settings/edit_profile/edit_profile_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
@@ -12,80 +8,71 @@ import 'package:flutter/material.dart' show Colors;
 class AdvancedSettingsModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<EditProfileBloc>(),
-        ),
-      ],
-      child: Builder(
-        builder: (context) => SafeArea(
-          top: false,
-          bottom: false,
-          child: CupertinoPageScaffold(
-            backgroundColor: Colors.white70,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: AppColumn(
-                spacing: size6(context),
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 30,
-                    child: Container(
-                      color: Colors.transparent,
-                    ),
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: CupertinoPageScaffold(
+        backgroundColor: Colors.white70,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: AppColumn(
+            spacing: size6(context),
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 30,
+                child: Container(
+                  color: Colors.transparent,
+                ),
+              ),
+              AppCardItem.custom(
+                height: size55(context),
+                content: Center(
+                  child: Text(
+                    LocaleKeys.advancedSettings.tr().toUpperCase(),
                   ),
-                  AppCardItem.custom(
-                    height: size55(context),
-                    content: Center(
-                      child: Text(
-                        LocaleKeys.advancedSettings.tr().toUpperCase(),
-                      ),
-                    ),
+                ),
+              ),
+              AppCardItem.small(
+                content: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size12(context),
                   ),
-                  AppCardItem.small(
-                    content: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size12(context),
+                  child: Row(
+                    children: [
+                      Text(
+                        LocaleKeys.showCheckoutPercentage.tr().toUpperCase(),
                       ),
-                      child: Row(
-                        children: [
-                          Text(
-                            LocaleKeys.showCheckoutPercentage
-                                .tr()
-                                .toUpperCase(),
-                          ),
-                          const Spacer(),
-                          AppIconButton(
-                            onPressed: () {},
-                            icon: Image.asset(AppImages.check_mark_dark_new),
-                          ),
-                        ],
+                      const Spacer(),
+                      AppIconButton(
+                        onPressed: () {},
+                        icon: Image.asset(AppImages.check_mark_dark_new),
                       ),
-                    ),
+                    ],
                   ),
-                  AppCardItem.small(
-                    content: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size12(context),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            LocaleKeys.showAverrage.tr().toUpperCase(),
-                          ),
-                          const Spacer(),
-                          AppIconButton(
-                            onPressed: () {},
-                            icon: Image.asset(AppImages.check_mark_dark_new),
-                          ),
-                        ],
-                      ),
-                    ),
+                ),
+              ),
+              AppCardItem.small(
+                content: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size12(context),
                   ),
-                  /**
+                  child: Row(
+                    children: [
+                      Text(
+                        LocaleKeys.showAverrage.tr().toUpperCase(),
+                      ),
+                      const Spacer(),
+                      AppIconButton(
+                        onPressed: () {},
+                        icon: Image.asset(AppImages.check_mark_dark_new),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              /**
                   *  AppActionButton.normal(
                     onPressed: () {},
                     color: AppColors.red,
@@ -93,19 +80,17 @@ class AdvancedSettingsModal extends StatelessWidget {
                     text: LocaleKeys.removePlayer.tr().toUpperCase(),
                   ),
                   */
-                  AppActionButton.normal(
-                    onPressed: () => context.router.pop(),
-                    text: LocaleKeys.done.tr().toUpperCase(),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: Container(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                ],
+              AppActionButton.normal(
+                onPressed: () => context.router.pop(),
+                text: LocaleKeys.done.tr().toUpperCase(),
               ),
-            ),
+              SizedBox(
+                height: 50,
+                child: Container(
+                  color: Colors.transparent,
+                ),
+              ),
+            ],
           ),
         ),
       ),

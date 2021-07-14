@@ -5,4 +5,8 @@ class InputRowState with _$InputRowState {
   const factory InputRowState({
     required int input,
   }) = _InputRowState;
+
+  factory InputRowState.initial() => const InputRowState(
+        input: 0,
+      );
 }

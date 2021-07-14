@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'edit_profile_bloc.dart';
+part of 'edit_profile_image_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$EditProfileEventTearOff {
-  const _$EditProfileEventTearOff();
+class _$EditProfileImageEventTearOff {
+  const _$EditProfileImageEventTearOff();
 
   DeletePressed deletePressed() {
     return const DeletePressed();
@@ -30,10 +30,10 @@ class _$EditProfileEventTearOff {
 }
 
 /// @nodoc
-const $EditProfileEvent = _$EditProfileEventTearOff();
+const $EditProfileImageEvent = _$EditProfileImageEventTearOff();
 
 /// @nodoc
-mixin _$EditProfileEvent {
+mixin _$EditProfileImageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() deletePressed,
@@ -67,20 +67,20 @@ mixin _$EditProfileEvent {
 }
 
 /// @nodoc
-abstract class $EditProfileEventCopyWith<$Res> {
-  factory $EditProfileEventCopyWith(
-          EditProfileEvent value, $Res Function(EditProfileEvent) then) =
-      _$EditProfileEventCopyWithImpl<$Res>;
+abstract class $EditProfileImageEventCopyWith<$Res> {
+  factory $EditProfileImageEventCopyWith(EditProfileImageEvent value,
+          $Res Function(EditProfileImageEvent) then) =
+      _$EditProfileImageEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EditProfileEventCopyWithImpl<$Res>
-    implements $EditProfileEventCopyWith<$Res> {
-  _$EditProfileEventCopyWithImpl(this._value, this._then);
+class _$EditProfileImageEventCopyWithImpl<$Res>
+    implements $EditProfileImageEventCopyWith<$Res> {
+  _$EditProfileImageEventCopyWithImpl(this._value, this._then);
 
-  final EditProfileEvent _value;
+  final EditProfileImageEvent _value;
   // ignore: unused_field
-  final $Res Function(EditProfileEvent) _then;
+  final $Res Function(EditProfileImageEvent) _then;
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ abstract class $DeletePressedCopyWith<$Res> {
 
 /// @nodoc
 class _$DeletePressedCopyWithImpl<$Res>
-    extends _$EditProfileEventCopyWithImpl<$Res>
+    extends _$EditProfileImageEventCopyWithImpl<$Res>
     implements $DeletePressedCopyWith<$Res> {
   _$DeletePressedCopyWithImpl(
       DeletePressed _value, $Res Function(DeletePressed) _then)
@@ -109,7 +109,7 @@ class _$DeletePressed implements DeletePressed {
 
   @override
   String toString() {
-    return 'EditProfileEvent.deletePressed()';
+    return 'EditProfileImageEvent.deletePressed()';
   }
 
   @override
@@ -169,7 +169,7 @@ class _$DeletePressed implements DeletePressed {
   }
 }
 
-abstract class DeletePressed implements EditProfileEvent {
+abstract class DeletePressed implements EditProfileImageEvent {
   const factory DeletePressed() = _$DeletePressed;
 }
 
@@ -182,7 +182,7 @@ abstract class $TakePressedCopyWith<$Res> {
 
 /// @nodoc
 class _$TakePressedCopyWithImpl<$Res>
-    extends _$EditProfileEventCopyWithImpl<$Res>
+    extends _$EditProfileImageEventCopyWithImpl<$Res>
     implements $TakePressedCopyWith<$Res> {
   _$TakePressedCopyWithImpl(
       TakePressed _value, $Res Function(TakePressed) _then)
@@ -199,7 +199,7 @@ class _$TakePressed implements TakePressed {
 
   @override
   String toString() {
-    return 'EditProfileEvent.takePressed()';
+    return 'EditProfileImageEvent.takePressed()';
   }
 
   @override
@@ -259,7 +259,7 @@ class _$TakePressed implements TakePressed {
   }
 }
 
-abstract class TakePressed implements EditProfileEvent {
+abstract class TakePressed implements EditProfileImageEvent {
   const factory TakePressed() = _$TakePressed;
 }
 
@@ -272,7 +272,7 @@ abstract class $ChoosePressedCopyWith<$Res> {
 
 /// @nodoc
 class _$ChoosePressedCopyWithImpl<$Res>
-    extends _$EditProfileEventCopyWithImpl<$Res>
+    extends _$EditProfileImageEventCopyWithImpl<$Res>
     implements $ChoosePressedCopyWith<$Res> {
   _$ChoosePressedCopyWithImpl(
       ChoosePressed _value, $Res Function(ChoosePressed) _then)
@@ -289,7 +289,7 @@ class _$ChoosePressed implements ChoosePressed {
 
   @override
   String toString() {
-    return 'EditProfileEvent.choosePressed()';
+    return 'EditProfileImageEvent.choosePressed()';
   }
 
   @override
@@ -349,71 +349,63 @@ class _$ChoosePressed implements ChoosePressed {
   }
 }
 
-abstract class ChoosePressed implements EditProfileEvent {
+abstract class ChoosePressed implements EditProfileImageEvent {
   const factory ChoosePressed() = _$ChoosePressed;
 }
 
 /// @nodoc
-class _$EditProfileStateTearOff {
-  const _$EditProfileStateTearOff();
+class _$EditProfileImageStateTearOff {
+  const _$EditProfileImageStateTearOff();
 
   Initial initial() {
     return const Initial();
   }
-
-  Changed changed() {
-    return const Changed();
-  }
 }
 
 /// @nodoc
-const $EditProfileState = _$EditProfileStateTearOff();
+const $EditProfileImageState = _$EditProfileImageStateTearOff();
 
 /// @nodoc
-mixin _$EditProfileState {
+mixin _$EditProfileImageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? changed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(Changed value) changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(Changed value)? changed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EditProfileStateCopyWith<$Res> {
-  factory $EditProfileStateCopyWith(
-          EditProfileState value, $Res Function(EditProfileState) then) =
-      _$EditProfileStateCopyWithImpl<$Res>;
+abstract class $EditProfileImageStateCopyWith<$Res> {
+  factory $EditProfileImageStateCopyWith(EditProfileImageState value,
+          $Res Function(EditProfileImageState) then) =
+      _$EditProfileImageStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EditProfileStateCopyWithImpl<$Res>
-    implements $EditProfileStateCopyWith<$Res> {
-  _$EditProfileStateCopyWithImpl(this._value, this._then);
+class _$EditProfileImageStateCopyWithImpl<$Res>
+    implements $EditProfileImageStateCopyWith<$Res> {
+  _$EditProfileImageStateCopyWithImpl(this._value, this._then);
 
-  final EditProfileState _value;
+  final EditProfileImageState _value;
   // ignore: unused_field
-  final $Res Function(EditProfileState) _then;
+  final $Res Function(EditProfileImageState) _then;
 }
 
 /// @nodoc
@@ -423,7 +415,8 @@ abstract class $InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
+class _$InitialCopyWithImpl<$Res>
+    extends _$EditProfileImageStateCopyWithImpl<$Res>
     implements $InitialCopyWith<$Res> {
   _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
       : super(_value, (v) => _then(v as Initial));
@@ -439,7 +432,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'EditProfileState.initial()';
+    return 'EditProfileImageState.initial()';
   }
 
   @override
@@ -454,7 +447,6 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() changed,
   }) {
     return initial();
   }
@@ -463,7 +455,6 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? changed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -476,7 +467,6 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(Changed value) changed,
   }) {
     return initial(this);
   }
@@ -485,7 +475,6 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(Changed value)? changed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -495,89 +484,6 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements EditProfileState {
+abstract class Initial implements EditProfileImageState {
   const factory Initial() = _$Initial;
-}
-
-/// @nodoc
-abstract class $ChangedCopyWith<$Res> {
-  factory $ChangedCopyWith(Changed value, $Res Function(Changed) then) =
-      _$ChangedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$ChangedCopyWithImpl<$Res> extends _$EditProfileStateCopyWithImpl<$Res>
-    implements $ChangedCopyWith<$Res> {
-  _$ChangedCopyWithImpl(Changed _value, $Res Function(Changed) _then)
-      : super(_value, (v) => _then(v as Changed));
-
-  @override
-  Changed get _value => super._value as Changed;
-}
-
-/// @nodoc
-
-class _$Changed implements Changed {
-  const _$Changed();
-
-  @override
-  String toString() {
-    return 'EditProfileState.changed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Changed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() changed,
-  }) {
-    return changed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? changed,
-    required TResult orElse(),
-  }) {
-    if (changed != null) {
-      return changed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Changed value) changed,
-  }) {
-    return changed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Changed value)? changed,
-    required TResult orElse(),
-  }) {
-    if (changed != null) {
-      return changed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Changed implements EditProfileState {
-  const factory Changed() = _$Changed;
 }

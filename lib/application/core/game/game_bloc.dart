@@ -17,14 +17,15 @@ part 'game_bloc.freezed.dart';
 class GameBloc extends Bloc<GameEvent, GameState> with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
-  GameBloc(this._playFacade)
-      : super(
+  GameBloc(
+    this._playFacade,
+  ) : super(
           const GameState.loading(),
         ) {
-    add(const GameEvent.watchStarted());
+    add(const GameEvent.watchStarted()); // TODO rly here or in ui ??? if provided via bloc
   }
 
-  StreamSubscription<Either<PlayFailure, Game>>? _gameStreamSubscription;
+  StreamSubscription<Either<PlayFailure, Game>>? _gameSubscription;
 
   @override
   Stream<GameState> mapEventToState(
@@ -38,7 +39,7 @@ class GameBloc extends Bloc<GameEvent, GameState> with AutoResetLazySingleton {
   }
 
   Stream<GameState> _mapWatchStartedToState() async* {
-    _gameStreamSubscription = _playFacade.watchGame().listen((failureOrGame) {
+    _gameSubscription = _playFacade.watchGame().listen((failureOrGame) {
       failureOrGame.fold(
         (failure) => add(
           GameEvent.failureReceived(
@@ -66,12 +67,12 @@ class GameBloc extends Bloc<GameEvent, GameState> with AutoResetLazySingleton {
     FailureReceived event,
   ) async* {
     // TODO implement
-    throw UnimplementedError();
+    // switch over failure types
   }
 
   @override
   Future<void> close() {
-    _gameStreamSubscription?.cancel();
+    _gameSubscription?.cancel();
     return super.close();
   }
 }

@@ -12,14 +12,15 @@ part 'forgot_password_state.dart';
 part 'forgot_password_bloc.freezed.dart';
 
 @lazySingleton
-class ForgotPasswordBloc
-    extends Bloc<ForgotPasswordEvent, ForgotPasswordState> with AutoResetLazySingleton {
+class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
+    with AutoResetLazySingleton {
   final IAuthFacade _authFacade;
 
-  ForgotPasswordBloc(this._authFacade)
-      : super(
+  ForgotPasswordBloc(
+    this._authFacade,
+  ) : super(
           ForgotPasswordState.initial(
-            email: EmailAddress(''),
+            email: EmailAddress(''), // TODO create empty constructor for email
             isSubmitting: false,
           ),
         );
@@ -35,17 +36,21 @@ class ForgotPasswordBloc
   }
 
   Stream<ForgotPasswordState> _mapEmailChangedToState(
-      EmailChanged event) async* {
+    EmailChanged event,
+  ) async* {
     yield (state as InitialState).copyWith(
+      // TODO remove typcasting
       email: EmailAddress(event.emailString),
     );
   }
 
   Stream<ForgotPasswordState> _mapConfirmPressedToState() async* {
-    final EmailAddress emailAddress = (state as InitialState).email;
+    final EmailAddress emailAddress =
+        (state as InitialState).email; // TODO remove type casting
     yield (state as InitialState).copyWith(isSubmitting: true);
-    final failureOrUnit =
-        await _authFacade.resetPassword(emailAddress: emailAddress);
+    final failureOrUnit = await _authFacade.resetPassword(
+      emailAddress: emailAddress,
+    );
     // TODO error when first invalid email and then 2nd try valid email the bloc crashes
     yield failureOrUnit.fold(
       (failure) => const ForgotPasswordState.failure(),

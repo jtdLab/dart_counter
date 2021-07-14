@@ -19,19 +19,20 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
     with AutoResetLazySingleton {
   final IGameInvitationFacade _gameInvitationFacade;
 
-  InvitationsBloc(this._gameInvitationFacade)
-      : super(
+  InvitationsBloc(
+    this._gameInvitationFacade,
+  ) : super(
           const InvitationsState.loading(),
         );
 
   StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _receivedInvitationsStreamSubscription;
+      _receivedInvitationsSubscription;
 
   StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _sentInvitationsStreamSubscription;
+      _sentInvitationsSubscription;
 
   StreamSubscription<Either<GameInvitationFailure, int>>?
-      _unreadInvitationsStreamSubscription;
+      _unreadInvitationsSubscription;
 
   @override
   Stream<InvitationsState> mapEventToState(
@@ -50,7 +51,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
   }
 
   Stream<InvitationsState> _mapWatchStartedToState() async* {
-    _receivedInvitationsStreamSubscription = _gameInvitationFacade
+    _receivedInvitationsSubscription = _gameInvitationFacade
         .watchReceivedInvitations()
         .listen((failureOrReceivedInvitations) {
       failureOrReceivedInvitations.fold(
@@ -67,7 +68,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
       );
     });
 
-    _sentInvitationsStreamSubscription = _gameInvitationFacade
+    _sentInvitationsSubscription = _gameInvitationFacade
         .watchSentInvitations()
         .listen((failureOrSentInvitations) {
       failureOrSentInvitations.fold(
@@ -84,7 +85,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
       );
     });
 
-    _unreadInvitationsStreamSubscription = _gameInvitationFacade
+    _unreadInvitationsSubscription = _gameInvitationFacade
         .watchUnreadInvitations()
         .listen((failureOrUnreadInvitations) {
       failureOrUnreadInvitations.fold(
@@ -186,9 +187,9 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
 
   @override
   Future<void> close() {
-    _receivedInvitationsStreamSubscription?.cancel();
-    _sentInvitationsStreamSubscription?.cancel();
-    _unreadInvitationsStreamSubscription?.cancel();
+    _receivedInvitationsSubscription?.cancel();
+    _sentInvitationsSubscription?.cancel();
+    _unreadInvitationsSubscription?.cancel();
     return super.close();
   }
 }

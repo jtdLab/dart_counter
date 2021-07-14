@@ -5,21 +5,19 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'post_game_bloc.freezed.dart';
 part 'post_game_event.dart';
 part 'post_game_state.dart';
-part 'post_game_bloc.freezed.dart';
 
 @lazySingleton
-class PostGameBloc extends Bloc<PostGameEvent, PostGameState> with AutoResetLazySingleton {
-  final IPlayFacade _playFacade;
+class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
+    with AutoResetLazySingleton {
   final GameBloc _gameBloc;
 
   PostGameBloc(
-    this._playFacade,
     this._gameBloc,
   ) : super(
           PostGameState(

@@ -26,10 +26,10 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
         );
 
   StreamSubscription<Either<FriendFailure, KtList<FriendRequest>>>?
-      _receivedFriendRequestStreamSubscription;
+      _receivedFriendRequestSubscription;
 
   StreamSubscription<Either<FriendFailure, int>>?
-      _unreadFriendRequestStreamSubscription;
+      _unreadFriendRequestSubscription;
 
   @override
   Stream<FriendsState> mapEventToState(
@@ -46,7 +46,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
   }
 
   Stream<FriendsState> _mapWatchStartedToState() async* {
-    _receivedFriendRequestStreamSubscription =
+    _receivedFriendRequestSubscription =
         _friendFacade.watchFriendRequests().listen((failureOrFriendRequests) {
       failureOrFriendRequests.fold(
         (failure) => add(
@@ -62,7 +62,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
       );
     });
 
-    _unreadFriendRequestStreamSubscription = _friendFacade
+    _unreadFriendRequestSubscription = _friendFacade
         .watchUnreadFriendRequests()
         .listen((failureOrUnreadFriendRequests) {
       failureOrUnreadFriendRequests.fold(
@@ -129,14 +129,14 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
   Stream<FriendsState> _mapFailureReceivedToState(
     FailureReceived event,
   ) async* {
-     // TODO implement
+    // TODO implement
     // switch over failure types
   }
 
   @override
   Future<void> close() {
-    _receivedFriendRequestStreamSubscription?.cancel();
-    _unreadFriendRequestStreamSubscription?.cancel();
+    _receivedFriendRequestSubscription?.cancel();
+    _unreadFriendRequestSubscription?.cancel();
     return super.close();
   }
 }

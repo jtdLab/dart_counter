@@ -16,7 +16,7 @@ part 'invitations_bloc.freezed.dart';
 
 @injectable
 class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
-  final IGameInvitationFacade _gameInvitationFacade;
+  final IGameInvitationFacade _gameInvitationFacade; // TODO rly needed
 
   final ib.InvitationsBloc _invitationsBloc;
 

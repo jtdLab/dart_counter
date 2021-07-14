@@ -1,6 +1,6 @@
 import 'package:dart_counter/injection.dart';
 
-import 'package:dart_counter/application/settings/edit_profile/edit_profile_bloc.dart';
+import 'package:dart_counter/application/settings/edit_profile_image/edit_profile_image_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
@@ -13,7 +13,7 @@ class EditProfilePictureModal extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<EditProfileBloc>(),
+          create: (context) => getIt<EditProfileImageBloc>(),
         ),
       ],
       child: Builder(
@@ -34,14 +34,13 @@ class EditProfilePictureModal extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                   ),
-                  
                   AppPrimaryButton(
                     text: LocaleKeys.deletePhoto.tr().toUpperCase(),
                     color: AppColors.red,
                     onPressed: () {
                       context
-                          .read<EditProfileBloc>()
-                          .add(const EditProfileEvent.deletePressed());
+                          .read<EditProfileImageBloc>()
+                          .add(const EditProfileImageEvent.deletePressed());
                       context.router.pop();
                     },
                   ),
@@ -50,8 +49,8 @@ class EditProfilePictureModal extends StatelessWidget {
                     text: LocaleKeys.takePhoto.tr().toUpperCase(),
                     onPressed: () {
                       context
-                          .read<EditProfileBloc>()
-                          .add(const EditProfileEvent.takePressed());
+                          .read<EditProfileImageBloc>()
+                          .add(const EditProfileImageEvent.takePressed());
                       context.router.pop();
                     },
                   ),
@@ -60,8 +59,8 @@ class EditProfilePictureModal extends StatelessWidget {
                     text: LocaleKeys.choosePhoto.tr().toUpperCase(),
                     onPressed: () {
                       context
-                          .read<EditProfileBloc>()
-                          .add(const EditProfileEvent.choosePressed());
+                          .read<EditProfileImageBloc>()
+                          .add(const EditProfileImageEvent.choosePressed());
                       context.router.pop();
                     },
                   ),

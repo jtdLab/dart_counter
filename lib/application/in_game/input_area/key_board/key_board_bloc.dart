@@ -101,7 +101,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState>
     }
   }
 
-  Stream<KeyBoardState> _mapDigitPressedToState(DigitPressed event) async* {
+  Stream<KeyBoardState> _mapDigitPressedToState(
+    DigitPressed event,
+  ) async* {
     final currentInput = _inputRowBloc.state.input;
     final newInput = int.parse(
       currentInput.toString() + event.digit.toString(),

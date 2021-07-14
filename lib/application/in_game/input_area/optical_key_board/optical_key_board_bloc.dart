@@ -13,7 +13,10 @@ part 'optical_key_board_bloc.freezed.dart';
 class OpticalKeyBoardBloc
     extends Bloc<OpticalKeyBoardEvent, OpticalKeyBoardState>
     with AutoResetLazySingleton {
-  OpticalKeyBoardBloc() : super(_Initial());
+  OpticalKeyBoardBloc()
+      : super(
+          const OpticalKeyBoardState.initial(),
+        );
 
   @override
   Stream<OpticalKeyBoardState> mapEventToState(

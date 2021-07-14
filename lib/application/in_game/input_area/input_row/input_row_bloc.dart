@@ -2,29 +2,27 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
-import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
-import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'input_row_bloc.freezed.dart';
 part 'input_row_event.dart';
 part 'input_row_state.dart';
-part 'input_row_bloc.freezed.dart';
 
 @lazySingleton
 class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
     with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
+  
   final InGameBloc _inGameBloc;
 
   InputRowBloc(
     this._playFacade,
     this._inGameBloc,
-  ) : super(const InputRowState(input: 0));
+  ) : super(InputRowState.initial());
 
   @override
   Stream<InputRowState> mapEventToState(
@@ -80,7 +78,9 @@ class InputRowBloc extends Bloc<InputRowEvent, InputRowState>
     }
   }
 
-  Stream<InputRowState> _mapInputUpdatedToState(InputUpdated event) async* {
+  Stream<InputRowState> _mapInputUpdatedToState(
+    InputUpdated event,
+  ) async* {
     yield InputRowState(input: event.newInput);
   }
 }

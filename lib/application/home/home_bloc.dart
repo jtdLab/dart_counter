@@ -115,17 +115,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
+    // TODO implement
     // TODO load
     final failurOrUnit = await _playFacade.createGame(online: true);
     /**
      * failurOrUnit.fold(
-      (failure) => throw Error(), // TODO
+      (failure) => throw Error(),
       (_) => add(const HomeEvent.gameCreated()),
     );
      */
   }
 
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
+    // TODO implement
     final failurOrUnit = await _playFacade.createGame(online: false);
     /**
      * _signedInUidController.valueWrapper.value

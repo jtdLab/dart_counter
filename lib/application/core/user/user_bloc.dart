@@ -17,12 +17,13 @@ part 'user_bloc.freezed.dart';
 class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   final IUserFacade _userFacade;
 
-  UserBloc(this._userFacade)
-      : super(
+  UserBloc(
+    this._userFacade,
+  ) : super(
           const UserState.loading(),
         );
 
-  StreamSubscription<Either<UserFailure, User>>? _userStreamSubscription;
+  StreamSubscription<Either<UserFailure, User>>? _userSubscription;
 
   @override
   Stream<UserState> mapEventToState(
@@ -36,8 +37,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   }
 
   Stream<UserState> _mapWatchStartedToState() async* {
-    _userStreamSubscription =
-        _userFacade.watchCurrentUser().listen((failureOrUser) {
+    _userSubscription = _userFacade.watchCurrentUser().listen((failureOrUser) {
       failureOrUser.fold(
         (failure) => add(
           UserEvent.failureReceived(
@@ -70,7 +70,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
 
   @override
   Future<void> close() {
-    _userStreamSubscription?.cancel();
+    _userSubscription?.cancel();
     return super.close();
   }
 }

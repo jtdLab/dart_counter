@@ -11,8 +11,13 @@ part 'detailed_key_board_state.dart';
 part 'detailed_key_board_bloc.freezed.dart';
 
 @lazySingleton
-class DetailedKeyBoardBloc extends Bloc<DetailedKeyBoardEvent, DetailedKeyBoardState> with AutoResetLazySingleton {
-  DetailedKeyBoardBloc() : super(const DetailedKeyBoardState());
+class DetailedKeyBoardBloc
+    extends Bloc<DetailedKeyBoardEvent, DetailedKeyBoardState>
+    with AutoResetLazySingleton {
+  DetailedKeyBoardBloc()
+      : super(
+          const DetailedKeyBoardState(),
+        );
 
   @override
   Stream<DetailedKeyBoardState> mapEventToState(
@@ -24,12 +29,16 @@ class DetailedKeyBoardBloc extends Bloc<DetailedKeyBoardEvent, DetailedKeyBoardS
     );
   }
 
-  Stream<DetailedKeyBoardState> _mapDartPressedToState(DartPressed event) async* {
+  Stream<DetailedKeyBoardState> _mapDartPressedToState(
+    DartPressed event,
+  ) async* {
     // TODO implement
     throw UnimplementedError();
   }
 
-  Stream<DetailedKeyBoardState> _mapDartDetailPressedToState(DartDetailPressed event) async* {
+  Stream<DetailedKeyBoardState> _mapDartDetailPressedToState(
+    DartDetailPressed event,
+  ) async* {
     // TODO implement
     throw UnimplementedError();
   }

@@ -15,8 +15,9 @@ class StatsBloc extends Bloc<StatsEvent, StatsState>
     with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
-  StatsBloc(this._playFacade)
-      : super(
+  StatsBloc(
+    this._playFacade,
+  ) : super(
           const StatsState.initial(),
         );
 

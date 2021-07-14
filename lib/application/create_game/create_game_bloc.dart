@@ -10,12 +10,13 @@ import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'create_game_bloc.freezed.dart';
 part 'create_game_event.dart';
 part 'create_game_state.dart';
-part 'create_game_bloc.freezed.dart';
 
 @lazySingleton
-class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState> with AutoResetLazySingleton {
+class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
+    with AutoResetLazySingleton {
   final IPlayFacade _playFacade;
 
   final GameBloc _gameBloc;

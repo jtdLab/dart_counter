@@ -26,79 +26,95 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     SignInEvent event,
   ) async* {
     yield* event.map(
-      emailChanged: (e) async* {
-        yield state.copyWith(
-          email: EmailAddress(e.emailString),
-          authFailure: null,
-        );
-      },
-      passwordChanged: (e) async* {
-        yield state.copyWith(
-          password: Password(e.passwordString),
-          authFailure: null,
-        );
-      },
-      signInPressed: (e) async* {
-        AuthFailure? authFailure;
-        final isEmailValid = state.email.isValid();
-        final isPasswordValid = state.password.isValid();
-        yield state.copyWith(
-          isSubmitting: true,
-          authFailure: null,
-        );
+      emailChanged: (event) => _mapEmailChangedToState(event),
+      passwordChanged: (event) => _mapPasswordChangedToState(event),
+      signInPressed: (_) => _mapSignInPressedToState(),
+      signInWithFacebookPressed: (_) => _mapSignInWithFacebookPressedToState(),
+      signInWithGooglePressed: (_) => _mapSignInWithGooglePressedToState(),
+      signInWithApplePressed: (_) => _mapSignInWithApplePressedToState(),
+    );
+  }
 
-        if (isEmailValid && isPasswordValid) {
-          authFailure = (await _authFacade.singInWithEmailAndPassword(
-            emailAddress: state.email,
-            password: state.password,
-          ))
-              .fold(
-            (failure) => failure,
-            (_) => null,
-          );
-        } else {
-          authFailure = const AuthFailure.invalidEmailAndPasswordCombination();
-        }
+  Stream<SignInState> _mapEmailChangedToState(
+    EmailChanged event,
+  ) async* {
+    yield state.copyWith(
+      email: EmailAddress(event.emailString),
+      authFailure: null,
+    );
+  }
 
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailure: authFailure,
-        );
-      },
-      signInWithFacebookPressed: (e) async* {
-        final authFailure = (await _authFacade.signInWithFacebook()).fold(
-          (failure) => failure,
-          (r) => null,
-        );
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailure: authFailure,
-        );
-      },
-      signInWithGooglePressed: (e) async* {
-        final authFailure = (await _authFacade.signInWithGoogle()).fold(
-          (failure) => failure,
-          (r) => null,
-        );
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailure: authFailure,
-        );
-      },
-      signInWithApplePressed: (e) async* {
-        final authFailure = (await _authFacade.signInWithApple()).fold(
-          (failure) => failure,
-          (r) => null,
-        );
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailure: authFailure,
-        );
-      },
+  Stream<SignInState> _mapPasswordChangedToState(
+    PasswordChanged event,
+  ) async* {
+    yield state.copyWith(
+      password: Password(event.passwordString),
+      authFailure: null,
+    );
+  }
+
+  Stream<SignInState> _mapSignInPressedToState() async* {
+    AuthFailure? authFailure;
+    final isEmailValid = state.email.isValid();
+    final isPasswordValid = state.password.isValid();
+    yield state.copyWith(
+      isSubmitting: true,
+      authFailure: null,
+    );
+
+    if (isEmailValid && isPasswordValid) {
+      authFailure = (await _authFacade.singInWithEmailAndPassword(
+        emailAddress: state.email,
+        password: state.password,
+      ))
+          .fold(
+        (failure) => failure,
+        (_) => null,
+      );
+    } else {
+      authFailure = const AuthFailure.invalidEmailAndPasswordCombination();
+    }
+
+    yield state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailure: authFailure,
+    );
+  }
+
+  Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
+    final authFailure = (await _authFacade.signInWithFacebook()).fold(
+      (failure) => failure,
+      (r) => null,
+    );
+    yield state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailure: authFailure,
+    );
+  }
+
+  Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
+    final authFailure = (await _authFacade.signInWithGoogle()).fold(
+      (failure) => failure,
+      (r) => null,
+    );
+    yield state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailure: authFailure,
+    );
+  }
+
+  Stream<SignInState> _mapSignInWithApplePressedToState() async* {
+    final authFailure = (await _authFacade.signInWithApple()).fold(
+      (failure) => failure,
+      (r) => null,
+    );
+    yield state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailure: authFailure,
     );
   }
 }

@@ -19,8 +19,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   final UserBloc _userBloc;
 
-  SettingsBloc(this._authFacade, this._userBloc)
-      : super(
+  SettingsBloc(
+    this._authFacade,
+    this._userBloc,
+  ) : super(
           SettingsState(
             user: _userBloc.state.map(
               loading: (_) => throw UnexpectedStateError(),

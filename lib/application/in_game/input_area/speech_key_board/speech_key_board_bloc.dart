@@ -10,8 +10,12 @@ part 'speech_key_board_state.dart';
 part 'speech_key_board_bloc.freezed.dart';
 
 @lazySingleton
-class SpeechKeyBoardBloc extends Bloc<SpeechKeyBoardEvent, SpeechKeyBoardState> with AutoResetLazySingleton {
-  SpeechKeyBoardBloc() : super(_Initial());
+class SpeechKeyBoardBloc extends Bloc<SpeechKeyBoardEvent, SpeechKeyBoardState>
+    with AutoResetLazySingleton {
+  SpeechKeyBoardBloc()
+      : super(
+          const SpeechKeyBoardState.initial(),
+        );
 
   @override
   Stream<SpeechKeyBoardState> mapEventToState(

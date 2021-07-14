@@ -23,16 +23,7 @@ class CheckoutDetailsBloc
     this._playFacade,
     this._inputRowBloc,
   ) : super(
-          const CheckoutDetailsState(
-            // TODO
-            minDartsThrown: 0,
-            maxDartsThrown: 0,
-            minDartsOnDouble: 0,
-            maxDartsOnDouble: 0,
-            selectedDartsThrown: 0,
-            selectedDartsOnDouble: 0,
-            confirmed: false,
-          ),
+          CheckoutDetailsState.initial(),
         );
 
   @override
@@ -49,7 +40,9 @@ class CheckoutDetailsBloc
   }
 
   Stream<CheckoutDetailsState> _mapSelectedDartsThrownUpdatedToState(
-      SelectedDartsThrownUpdated event) async* {
+    SelectedDartsThrownUpdated event,
+  ) async* {
+    // TODO implement
     /**
      * final newSelectedDartsOnDouble = state
         .selectedDartsOnDouble; // TODO calc depending on selectedDartsThrown
@@ -62,7 +55,9 @@ class CheckoutDetailsBloc
   }
 
   Stream<CheckoutDetailsState> _mapSelectedDartsOnDoubleUpdatedToState(
-      SelectedDartsOnDoubleUpdated event) async* {
+    SelectedDartsOnDoubleUpdated event,
+  ) async* {
+    // TODO implement
     /**
      * yield state.copyWith(
       selectedDartsOnDouble: event.newSelectedDartsOnDouble,
@@ -71,6 +66,7 @@ class CheckoutDetailsBloc
   }
 
   Stream<CheckoutDetailsState> _mapConfirmPressedToState() async* {
+    // TODO implement
     /**
      * _playFacade.performThrow(
       t: Throw(

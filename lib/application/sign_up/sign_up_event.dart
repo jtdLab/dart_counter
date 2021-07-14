@@ -6,7 +6,7 @@ class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.usernameChanged(String usernameString) =
       UsernameChanged;
   const factory SignUpEvent.passwordChanged(String passwordString) =
-      _asswordChanged;
+      PasswordChanged;
   const factory SignUpEvent.passwordAgainChanged(String passwordAgainString) =
       PasswordAgainChanged;
   const factory SignUpEvent.signUpPressed() = SignUpPressed;

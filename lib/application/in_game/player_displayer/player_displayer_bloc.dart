@@ -18,20 +18,22 @@ class PlayerDisplayerBloc
     with AutoResetLazySingleton {
   final InGameBloc _inGameBloc;
 
-  PlayerDisplayerBloc(this._inGameBloc)
-      : super(
+  PlayerDisplayerBloc(
+    this._inGameBloc,
+  ) : super(
           PlayerDisplayerState(
             player: _inGameBloc.state.game.currentTurn(),
           ),
         ) {
-    _gameSubscription =
-        _inGameBloc.stream.map((state) => state.game).listen((game) {
-      add(
-        PlayerDisplayerEvent.currentPlayerUpdated(
-          newPlayer: game.currentTurn(),
-        ),
-      );
-    });
+    _gameSubscription = _inGameBloc.stream.map((state) => state.game).listen(
+      (game) {
+        add(
+          PlayerDisplayerEvent.currentPlayerUpdated(
+            newPlayer: game.currentTurn(),
+          ),
+        );
+      },
+    );
   }
 
   StreamSubscription<Game>? _gameSubscription;

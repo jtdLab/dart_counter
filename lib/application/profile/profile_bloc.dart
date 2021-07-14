@@ -7,23 +7,33 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
-part 'profile_bloc.freezed.dart';
 
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserBloc _userBloc;
 
-  ProfileBloc(this._userBloc)
-      : super(
+  ProfileBloc(
+    this._userBloc,
+  ) : super(
           ProfileState(
             user: _userBloc.state.map(
               loading: (_) => throw UnexpectedStateError(),
               success: (success) => success.user,
             ),
           ),
-        );
+        ) {
+    _userSubscription = _userBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => throw UnexpectedStateError(),
+        success: (success) => success.user,
+      );
+    }).listen((user) {
+      add(ProfileEvent.userReceived(user: user));
+    });
+  }
 
   StreamSubscription<User>? _userSubscription;
 
@@ -36,7 +46,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     );
   }
 
-  Stream<ProfileState> _mapWatchUserReceivedToState(UserReceived event) async* {
+  Stream<ProfileState> _mapWatchUserReceivedToState(
+    UserReceived event,
+  ) async* {
     yield ProfileState(user: event.user);
   }
 

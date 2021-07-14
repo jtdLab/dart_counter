@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$OpticalKeyBoardEventTearOff {
   const _$OpticalKeyBoardEventTearOff();
 
-  _Started started() {
-    return const _Started();
+  Started started() {
+    return const Started();
   }
 }
 
@@ -39,12 +39,12 @@ mixin _$OpticalKeyBoardEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,26 +68,26 @@ class _$OpticalKeyBoardEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class $StartedCopyWith<$Res> {
+  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
+      _$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res>
+class _$StartedCopyWithImpl<$Res>
     extends _$OpticalKeyBoardEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+    implements $StartedCopyWith<$Res> {
+  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
+      : super(_value, (v) => _then(v as Started));
 
   @override
-  _Started get _value => super._value as _Started;
+  Started get _value => super._value as Started;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$Started implements Started {
+  const _$Started();
 
   @override
   String toString() {
@@ -96,7 +96,7 @@ class _$_Started implements _Started {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) || (other is Started);
   }
 
   @override
@@ -125,7 +125,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(Started value) started,
   }) {
     return started(this);
   }
@@ -133,7 +133,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(Started value)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,16 +143,16 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements OpticalKeyBoardEvent {
-  const factory _Started() = _$_Started;
+abstract class Started implements OpticalKeyBoardEvent {
+  const factory Started() = _$Started;
 }
 
 /// @nodoc
 class _$OpticalKeyBoardStateTearOff {
   const _$OpticalKeyBoardStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  Initial initial() {
+    return const Initial();
   }
 }
 
@@ -174,12 +174,12 @@ mixin _$OpticalKeyBoardState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -203,26 +203,26 @@ class _$OpticalKeyBoardStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res>
+class _$InitialCopyWithImpl<$Res>
     extends _$OpticalKeyBoardStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  Initial get _value => super._value as Initial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$Initial implements Initial {
+  const _$Initial();
 
   @override
   String toString() {
@@ -231,7 +231,7 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) || (other is Initial);
   }
 
   @override
@@ -260,7 +260,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
   }) {
     return initial(this);
   }
@@ -268,7 +268,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -278,6 +278,6 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements OpticalKeyBoardState {
-  const factory _Initial() = _$_Initial;
+abstract class Initial implements OpticalKeyBoardState {
+  const factory Initial() = _$Initial;
 }

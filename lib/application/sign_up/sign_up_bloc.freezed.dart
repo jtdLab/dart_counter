@@ -28,8 +28,8 @@ class _$SignUpEventTearOff {
     );
   }
 
-  _asswordChanged passwordChanged(String passwordString) {
-    return _asswordChanged(
+  PasswordChanged passwordChanged(String passwordString) {
+    return PasswordChanged(
       passwordString,
     );
   }
@@ -73,7 +73,7 @@ mixin _$SignUpEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) =>
@@ -82,7 +82,7 @@ mixin _$SignUpEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
@@ -201,7 +201,7 @@ class _$EmailChanged implements EmailChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) {
@@ -213,7 +213,7 @@ class _$EmailChanged implements EmailChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
@@ -331,7 +331,7 @@ class _$UsernameChanged implements UsernameChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) {
@@ -343,7 +343,7 @@ class _$UsernameChanged implements UsernameChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
@@ -365,29 +365,29 @@ abstract class UsernameChanged implements SignUpEvent {
 }
 
 /// @nodoc
-abstract class _$asswordChangedCopyWith<$Res> {
-  factory _$asswordChangedCopyWith(
-          _asswordChanged value, $Res Function(_asswordChanged) then) =
-      __$asswordChangedCopyWithImpl<$Res>;
+abstract class $PasswordChangedCopyWith<$Res> {
+  factory $PasswordChangedCopyWith(
+          PasswordChanged value, $Res Function(PasswordChanged) then) =
+      _$PasswordChangedCopyWithImpl<$Res>;
   $Res call({String passwordString});
 }
 
 /// @nodoc
-class __$asswordChangedCopyWithImpl<$Res>
+class _$PasswordChangedCopyWithImpl<$Res>
     extends _$SignUpEventCopyWithImpl<$Res>
-    implements _$asswordChangedCopyWith<$Res> {
-  __$asswordChangedCopyWithImpl(
-      _asswordChanged _value, $Res Function(_asswordChanged) _then)
-      : super(_value, (v) => _then(v as _asswordChanged));
+    implements $PasswordChangedCopyWith<$Res> {
+  _$PasswordChangedCopyWithImpl(
+      PasswordChanged _value, $Res Function(PasswordChanged) _then)
+      : super(_value, (v) => _then(v as PasswordChanged));
 
   @override
-  _asswordChanged get _value => super._value as _asswordChanged;
+  PasswordChanged get _value => super._value as PasswordChanged;
 
   @override
   $Res call({
     Object? passwordString = freezed,
   }) {
-    return _then(_asswordChanged(
+    return _then(PasswordChanged(
       passwordString == freezed
           ? _value.passwordString
           : passwordString // ignore: cast_nullable_to_non_nullable
@@ -398,8 +398,8 @@ class __$asswordChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_asswordChanged implements _asswordChanged {
-  const _$_asswordChanged(this.passwordString);
+class _$PasswordChanged implements PasswordChanged {
+  const _$PasswordChanged(this.passwordString);
 
   @override
   final String passwordString;
@@ -412,7 +412,7 @@ class _$_asswordChanged implements _asswordChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _asswordChanged &&
+        (other is PasswordChanged &&
             (identical(other.passwordString, passwordString) ||
                 const DeepCollectionEquality()
                     .equals(other.passwordString, passwordString)));
@@ -425,8 +425,8 @@ class _$_asswordChanged implements _asswordChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$asswordChangedCopyWith<_asswordChanged> get copyWith =>
-      __$asswordChangedCopyWithImpl<_asswordChanged>(this, _$identity);
+  $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
+      _$PasswordChangedCopyWithImpl<PasswordChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -461,7 +461,7 @@ class _$_asswordChanged implements _asswordChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) {
@@ -473,7 +473,7 @@ class _$_asswordChanged implements _asswordChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
@@ -485,12 +485,12 @@ class _$_asswordChanged implements _asswordChanged {
   }
 }
 
-abstract class _asswordChanged implements SignUpEvent {
-  const factory _asswordChanged(String passwordString) = _$_asswordChanged;
+abstract class PasswordChanged implements SignUpEvent {
+  const factory PasswordChanged(String passwordString) = _$PasswordChanged;
 
   String get passwordString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$asswordChangedCopyWith<_asswordChanged> get copyWith =>
+  $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -592,7 +592,7 @@ class _$PasswordAgainChanged implements PasswordAgainChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) {
@@ -604,7 +604,7 @@ class _$PasswordAgainChanged implements PasswordAgainChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
@@ -695,7 +695,7 @@ class _$SignUpPressed implements SignUpPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(UsernameChanged value) usernameChanged,
-    required TResult Function(_asswordChanged value) passwordChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(PasswordAgainChanged value) passwordAgainChanged,
     required TResult Function(SignUpPressed value) signUpPressed,
   }) {
@@ -707,7 +707,7 @@ class _$SignUpPressed implements SignUpPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(UsernameChanged value)? usernameChanged,
-    TResult Function(_asswordChanged value)? passwordChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(PasswordAgainChanged value)? passwordAgainChanged,
     TResult Function(SignUpPressed value)? signUpPressed,
     required TResult orElse(),
