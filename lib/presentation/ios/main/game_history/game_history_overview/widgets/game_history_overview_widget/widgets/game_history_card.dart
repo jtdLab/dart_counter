@@ -1,5 +1,6 @@
-import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
+
+import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
@@ -8,7 +9,10 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widge
 class GameHistoryCard extends StatelessWidget {
   final Game game;
 
-  const GameHistoryCard({Key? key, required this.game}) : super(key: key);
+  const GameHistoryCard({
+    Key? key,
+    required this.game,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class GameHistoryCard extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
         trailing: AutoSizeText(
-          '6 DAYS AGO',
+          '6 DAYS AGO', // TODO
           maxLines: 1,
           minFontSize: 6,
           maxFontSize: 10,
@@ -51,7 +55,7 @@ class GameHistoryCard extends StatelessWidget {
     );
   }
 
-  // TODO make responsive
+  // TODO make responsive and in seperate file
   Widget _content(BuildContext context, {required Game game}) => Row(
         children: [
           const SizedBox(width: 6),

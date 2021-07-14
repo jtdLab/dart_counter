@@ -2,7 +2,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class FriendsPage extends StatelessWidget {
-  const FriendsPage({Key? key}) : super(key: key);
+  const FriendsPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class FriendsPage extends StatelessWidget {
         leading: const BackButton(),
         middle: Text(LocaleKeys.friends.tr().toUpperCase()),
       ),
-      child: FriendsWidget(),
+      child: const FriendsWidget(),
     );
   }
 }

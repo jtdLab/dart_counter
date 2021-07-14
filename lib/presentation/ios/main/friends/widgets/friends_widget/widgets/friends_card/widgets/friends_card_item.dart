@@ -4,6 +4,10 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class FriendsCardItem extends StatelessWidget {
+  const FriendsCardItem({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppCardItem.large(

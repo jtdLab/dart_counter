@@ -12,7 +12,8 @@ class GameHistoryDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameHistoryBloc, GameHistoryState>(
       builder: (context, state) {
-        final game = state.selectedGame!;
+        final game = state.selectedGame!; // TODO ! needed
+
         return AppPage(
           navigationBar: AppNavigationBar(
             leading: const BackButton(),

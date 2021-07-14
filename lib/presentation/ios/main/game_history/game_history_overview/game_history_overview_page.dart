@@ -2,7 +2,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class GameHistoryOverviewPage extends StatelessWidget {
-  const GameHistoryOverviewPage({Key? key}) : super(key: key);
+  const GameHistoryOverviewPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class GameHistoryOverviewPage extends StatelessWidget {
           LocaleKeys.gameHistory.tr().toUpperCase(),
         ),
       ),
-      child: GameHistoryOverviewWidget(),
+      child: const GameHistoryOverviewWidget(),
     );
   }
 }

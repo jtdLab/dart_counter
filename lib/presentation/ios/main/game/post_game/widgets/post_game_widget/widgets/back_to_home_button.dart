@@ -2,7 +2,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
 class BackToHomeButton extends StatelessWidget {
-  const BackToHomeButton({Key? key}) : super(key: key);
+  const BackToHomeButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

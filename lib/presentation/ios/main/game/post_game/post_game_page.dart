@@ -6,6 +6,10 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class PostGamePage extends StatelessWidget {
+  const PostGamePage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -18,7 +22,7 @@ class PostGamePage extends StatelessWidget {
             ),
           ),
         ),
-        child: PostGameWidget(),
+        child: const PostGameWidget(),
       ),
     );
   }

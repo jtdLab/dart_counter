@@ -1,8 +1,11 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO real data
 class StatsDisplayer extends StatelessWidget {
-  const StatsDisplayer({Key? key}) : super(key: key);
+  const StatsDisplayer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class StatsDisplayer extends StatelessWidget {
           value: '19',
           title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
         ),
-        StatsItem(
+        const StatsItem(
           title: '180',
           value: '156',
         ),
