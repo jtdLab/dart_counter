@@ -21,8 +21,8 @@ class GameBloc extends Bloc<GameEvent, GameState> with AutoResetLazySingleton {
       : super(
           const GameState.loading(),
         ) {
-          add(const GameEvent.watchStarted());
-        }
+    add(const GameEvent.watchStarted());
+  }
 
   StreamSubscription<Either<PlayFailure, Game>>? _gameStreamSubscription;
 

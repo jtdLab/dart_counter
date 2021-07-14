@@ -1,4 +1,3 @@
-import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -8,8 +7,7 @@ class LegsSetsDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
       builder: (context, state) {
-        final player =
-            context.read<InGameBloc>().state.game.players[state.index];
+        final player = state.player;
 
         return Container(
           height: 25,

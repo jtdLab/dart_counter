@@ -1,6 +1,4 @@
-import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class Footer extends StatelessWidget {
@@ -30,8 +28,8 @@ class Footer extends StatelessWidget {
           ),
           BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
             builder: (context, state) {
-              final player =
-                  context.read<InGameBloc>().state.game.players[state.index];
+              final player = state.player;
+
               final dartsThrown = player.dartsThrownCurrentLeg;
               final average = player.stats.average;
               final checkout = player.stats.checkoutPercentage;

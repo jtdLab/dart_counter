@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/play/player.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,17 +20,15 @@ class PlayerDisplayerBloc
 
   PlayerDisplayerBloc(this._inGameBloc)
       : super(
-          const PlayerDisplayerState(
-            index: 0,
+          PlayerDisplayerState(
+            player: _inGameBloc.state.game.currentTurn(),
           ),
         ) {
     _gameSubscription =
         _inGameBloc.stream.map((state) => state.game).listen((game) {
       add(
-        PlayerDisplayerEvent.currentIndexUpdated(
-          newIndex: game.players.indexOf(
-            game.currentTurn(),
-          ),
+        PlayerDisplayerEvent.currentPlayerUpdated(
+          newPlayer: game.currentTurn(),
         ),
       );
     });
@@ -44,28 +43,32 @@ class PlayerDisplayerBloc
     yield* event.map(
       previousPlayerPressed: (_) => _mapPreviousPlayerPressedToState(),
       nextPlayerPressed: (_) => _mapNextPlayerPressedToState(),
-      currentIndexUpdated: (event) => _mapCurrentIndexUpdatedToState(event),
+      currentPlayerUpdated: (event) => _mapCurrentPlayerUpdatedToState(event),
     );
   }
 
   Stream<PlayerDisplayerState> _mapPreviousPlayerPressedToState() async* {
     final game = _inGameBloc.state.game;
     final size = game.players.size;
-    final indexPrevTurn = (state.index - 1) % size;
-    yield PlayerDisplayerState(index: indexPrevTurn);
+    final indexCurrentSelected = game.players.indexOf(state.player);
+    final indexPrev = (indexCurrentSelected - 1) % size;
+    final prev = game.players.get(indexPrev);
+    yield PlayerDisplayerState(player: prev);
   }
 
   Stream<PlayerDisplayerState> _mapNextPlayerPressedToState() async* {
     final game = _inGameBloc.state.game;
     final size = game.players.size;
-    final indexNextTurn = (state.index + 1) % size;
-    yield PlayerDisplayerState(index: indexNextTurn);
+    final indexCurrentSelected = game.players.indexOf(state.player);
+    final indexNext = (indexCurrentSelected + 1) % size;
+    final next = game.players.get(indexNext);
+    yield PlayerDisplayerState(player: next);
   }
 
-  Stream<PlayerDisplayerState> _mapCurrentIndexUpdatedToState(
-    CurrentIndexUpdated event,
+  Stream<PlayerDisplayerState> _mapCurrentPlayerUpdatedToState(
+    CurrentPlayerUpdated event,
   ) async* {
-    yield PlayerDisplayerState(index: event.newIndex);
+    yield PlayerDisplayerState(player: event.newPlayer);
   }
 
   @override

@@ -24,9 +24,9 @@ class _$PlayerDisplayerEventTearOff {
     return const NextPressed();
   }
 
-  CurrentIndexUpdated currentIndexUpdated({required int newIndex}) {
-    return CurrentIndexUpdated(
-      newIndex: newIndex,
+  CurrentPlayerUpdated currentPlayerUpdated({required Player newPlayer}) {
+    return CurrentPlayerUpdated(
+      newPlayer: newPlayer,
     );
   }
 }
@@ -40,14 +40,14 @@ mixin _$PlayerDisplayerEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() previousPlayerPressed,
     required TResult Function() nextPlayerPressed,
-    required TResult Function(int newIndex) currentIndexUpdated,
+    required TResult Function(Player newPlayer) currentPlayerUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? previousPlayerPressed,
     TResult Function()? nextPlayerPressed,
-    TResult Function(int newIndex)? currentIndexUpdated,
+    TResult Function(Player newPlayer)? currentPlayerUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,14 +55,14 @@ mixin _$PlayerDisplayerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(PreviousPressed value) previousPlayerPressed,
     required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentIndexUpdated value) currentIndexUpdated,
+    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PreviousPressed value)? previousPlayerPressed,
     TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentIndexUpdated value)? currentIndexUpdated,
+    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$PreviousPressed implements PreviousPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() previousPlayerPressed,
     required TResult Function() nextPlayerPressed,
-    required TResult Function(int newIndex) currentIndexUpdated,
+    required TResult Function(Player newPlayer) currentPlayerUpdated,
   }) {
     return previousPlayerPressed();
   }
@@ -137,7 +137,7 @@ class _$PreviousPressed implements PreviousPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? previousPlayerPressed,
     TResult Function()? nextPlayerPressed,
-    TResult Function(int newIndex)? currentIndexUpdated,
+    TResult Function(Player newPlayer)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
     if (previousPlayerPressed != null) {
@@ -151,7 +151,7 @@ class _$PreviousPressed implements PreviousPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(PreviousPressed value) previousPlayerPressed,
     required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentIndexUpdated value) currentIndexUpdated,
+    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
   }) {
     return previousPlayerPressed(this);
   }
@@ -161,7 +161,7 @@ class _$PreviousPressed implements PreviousPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PreviousPressed value)? previousPlayerPressed,
     TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentIndexUpdated value)? currentIndexUpdated,
+    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
     if (previousPlayerPressed != null) {
@@ -217,7 +217,7 @@ class _$NextPressed implements NextPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() previousPlayerPressed,
     required TResult Function() nextPlayerPressed,
-    required TResult Function(int newIndex) currentIndexUpdated,
+    required TResult Function(Player newPlayer) currentPlayerUpdated,
   }) {
     return nextPlayerPressed();
   }
@@ -227,7 +227,7 @@ class _$NextPressed implements NextPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? previousPlayerPressed,
     TResult Function()? nextPlayerPressed,
-    TResult Function(int newIndex)? currentIndexUpdated,
+    TResult Function(Player newPlayer)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
     if (nextPlayerPressed != null) {
@@ -241,7 +241,7 @@ class _$NextPressed implements NextPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(PreviousPressed value) previousPlayerPressed,
     required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentIndexUpdated value) currentIndexUpdated,
+    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
   }) {
     return nextPlayerPressed(this);
   }
@@ -251,7 +251,7 @@ class _$NextPressed implements NextPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PreviousPressed value)? previousPlayerPressed,
     TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentIndexUpdated value)? currentIndexUpdated,
+    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
     if (nextPlayerPressed != null) {
@@ -266,76 +266,77 @@ abstract class NextPressed implements PlayerDisplayerEvent {
 }
 
 /// @nodoc
-abstract class $CurrentIndexUpdatedCopyWith<$Res> {
-  factory $CurrentIndexUpdatedCopyWith(
-          CurrentIndexUpdated value, $Res Function(CurrentIndexUpdated) then) =
-      _$CurrentIndexUpdatedCopyWithImpl<$Res>;
-  $Res call({int newIndex});
+abstract class $CurrentPlayerUpdatedCopyWith<$Res> {
+  factory $CurrentPlayerUpdatedCopyWith(CurrentPlayerUpdated value,
+          $Res Function(CurrentPlayerUpdated) then) =
+      _$CurrentPlayerUpdatedCopyWithImpl<$Res>;
+  $Res call({Player newPlayer});
 }
 
 /// @nodoc
-class _$CurrentIndexUpdatedCopyWithImpl<$Res>
+class _$CurrentPlayerUpdatedCopyWithImpl<$Res>
     extends _$PlayerDisplayerEventCopyWithImpl<$Res>
-    implements $CurrentIndexUpdatedCopyWith<$Res> {
-  _$CurrentIndexUpdatedCopyWithImpl(
-      CurrentIndexUpdated _value, $Res Function(CurrentIndexUpdated) _then)
-      : super(_value, (v) => _then(v as CurrentIndexUpdated));
+    implements $CurrentPlayerUpdatedCopyWith<$Res> {
+  _$CurrentPlayerUpdatedCopyWithImpl(
+      CurrentPlayerUpdated _value, $Res Function(CurrentPlayerUpdated) _then)
+      : super(_value, (v) => _then(v as CurrentPlayerUpdated));
 
   @override
-  CurrentIndexUpdated get _value => super._value as CurrentIndexUpdated;
+  CurrentPlayerUpdated get _value => super._value as CurrentPlayerUpdated;
 
   @override
   $Res call({
-    Object? newIndex = freezed,
+    Object? newPlayer = freezed,
   }) {
-    return _then(CurrentIndexUpdated(
-      newIndex: newIndex == freezed
-          ? _value.newIndex
-          : newIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(CurrentPlayerUpdated(
+      newPlayer: newPlayer == freezed
+          ? _value.newPlayer
+          : newPlayer // ignore: cast_nullable_to_non_nullable
+              as Player,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CurrentIndexUpdated implements CurrentIndexUpdated {
-  const _$CurrentIndexUpdated({required this.newIndex});
+class _$CurrentPlayerUpdated implements CurrentPlayerUpdated {
+  const _$CurrentPlayerUpdated({required this.newPlayer});
 
   @override
-  final int newIndex;
+  final Player newPlayer;
 
   @override
   String toString() {
-    return 'PlayerDisplayerEvent.currentIndexUpdated(newIndex: $newIndex)';
+    return 'PlayerDisplayerEvent.currentPlayerUpdated(newPlayer: $newPlayer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CurrentIndexUpdated &&
-            (identical(other.newIndex, newIndex) ||
+        (other is CurrentPlayerUpdated &&
+            (identical(other.newPlayer, newPlayer) ||
                 const DeepCollectionEquality()
-                    .equals(other.newIndex, newIndex)));
+                    .equals(other.newPlayer, newPlayer)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newIndex);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newPlayer);
 
   @JsonKey(ignore: true)
   @override
-  $CurrentIndexUpdatedCopyWith<CurrentIndexUpdated> get copyWith =>
-      _$CurrentIndexUpdatedCopyWithImpl<CurrentIndexUpdated>(this, _$identity);
+  $CurrentPlayerUpdatedCopyWith<CurrentPlayerUpdated> get copyWith =>
+      _$CurrentPlayerUpdatedCopyWithImpl<CurrentPlayerUpdated>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() previousPlayerPressed,
     required TResult Function() nextPlayerPressed,
-    required TResult Function(int newIndex) currentIndexUpdated,
+    required TResult Function(Player newPlayer) currentPlayerUpdated,
   }) {
-    return currentIndexUpdated(newIndex);
+    return currentPlayerUpdated(newPlayer);
   }
 
   @override
@@ -343,11 +344,11 @@ class _$CurrentIndexUpdated implements CurrentIndexUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? previousPlayerPressed,
     TResult Function()? nextPlayerPressed,
-    TResult Function(int newIndex)? currentIndexUpdated,
+    TResult Function(Player newPlayer)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
-    if (currentIndexUpdated != null) {
-      return currentIndexUpdated(newIndex);
+    if (currentPlayerUpdated != null) {
+      return currentPlayerUpdated(newPlayer);
     }
     return orElse();
   }
@@ -357,9 +358,9 @@ class _$CurrentIndexUpdated implements CurrentIndexUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(PreviousPressed value) previousPlayerPressed,
     required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentIndexUpdated value) currentIndexUpdated,
+    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
   }) {
-    return currentIndexUpdated(this);
+    return currentPlayerUpdated(this);
   }
 
   @override
@@ -367,23 +368,23 @@ class _$CurrentIndexUpdated implements CurrentIndexUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PreviousPressed value)? previousPlayerPressed,
     TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentIndexUpdated value)? currentIndexUpdated,
+    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
     required TResult orElse(),
   }) {
-    if (currentIndexUpdated != null) {
-      return currentIndexUpdated(this);
+    if (currentPlayerUpdated != null) {
+      return currentPlayerUpdated(this);
     }
     return orElse();
   }
 }
 
-abstract class CurrentIndexUpdated implements PlayerDisplayerEvent {
-  const factory CurrentIndexUpdated({required int newIndex}) =
-      _$CurrentIndexUpdated;
+abstract class CurrentPlayerUpdated implements PlayerDisplayerEvent {
+  const factory CurrentPlayerUpdated({required Player newPlayer}) =
+      _$CurrentPlayerUpdated;
 
-  int get newIndex => throw _privateConstructorUsedError;
+  Player get newPlayer => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CurrentIndexUpdatedCopyWith<CurrentIndexUpdated> get copyWith =>
+  $CurrentPlayerUpdatedCopyWith<CurrentPlayerUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -391,9 +392,9 @@ abstract class CurrentIndexUpdated implements PlayerDisplayerEvent {
 class _$PlayerDisplayerStateTearOff {
   const _$PlayerDisplayerStateTearOff();
 
-  _PlayerDisplayerState call({required int index}) {
+  _PlayerDisplayerState call({required Player player}) {
     return _PlayerDisplayerState(
-      index: index,
+      player: player,
     );
   }
 }
@@ -403,7 +404,7 @@ const $PlayerDisplayerState = _$PlayerDisplayerStateTearOff();
 
 /// @nodoc
 mixin _$PlayerDisplayerState {
-  int get index => throw _privateConstructorUsedError;
+  Player get player => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerDisplayerStateCopyWith<PlayerDisplayerState> get copyWith =>
@@ -415,7 +416,7 @@ abstract class $PlayerDisplayerStateCopyWith<$Res> {
   factory $PlayerDisplayerStateCopyWith(PlayerDisplayerState value,
           $Res Function(PlayerDisplayerState) then) =
       _$PlayerDisplayerStateCopyWithImpl<$Res>;
-  $Res call({int index});
+  $Res call({Player player});
 }
 
 /// @nodoc
@@ -429,13 +430,13 @@ class _$PlayerDisplayerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? index = freezed,
+    Object? player = freezed,
   }) {
     return _then(_value.copyWith(
-      index: index == freezed
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      player: player == freezed
+          ? _value.player
+          : player // ignore: cast_nullable_to_non_nullable
+              as Player,
     ));
   }
 }
@@ -447,7 +448,7 @@ abstract class _$PlayerDisplayerStateCopyWith<$Res>
           $Res Function(_PlayerDisplayerState) then) =
       __$PlayerDisplayerStateCopyWithImpl<$Res>;
   @override
-  $Res call({int index});
+  $Res call({Player player});
 }
 
 /// @nodoc
@@ -463,13 +464,13 @@ class __$PlayerDisplayerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? index = freezed,
+    Object? player = freezed,
   }) {
     return _then(_PlayerDisplayerState(
-      index: index == freezed
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      player: player == freezed
+          ? _value.player
+          : player // ignore: cast_nullable_to_non_nullable
+              as Player,
     ));
   }
 }
@@ -477,27 +478,27 @@ class __$PlayerDisplayerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PlayerDisplayerState implements _PlayerDisplayerState {
-  const _$_PlayerDisplayerState({required this.index});
+  const _$_PlayerDisplayerState({required this.player});
 
   @override
-  final int index;
+  final Player player;
 
   @override
   String toString() {
-    return 'PlayerDisplayerState(index: $index)';
+    return 'PlayerDisplayerState(player: $player)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PlayerDisplayerState &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)));
+            (identical(other.player, player) ||
+                const DeepCollectionEquality().equals(other.player, player)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(player);
 
   @JsonKey(ignore: true)
   @override
@@ -507,11 +508,11 @@ class _$_PlayerDisplayerState implements _PlayerDisplayerState {
 }
 
 abstract class _PlayerDisplayerState implements PlayerDisplayerState {
-  const factory _PlayerDisplayerState({required int index}) =
+  const factory _PlayerDisplayerState({required Player player}) =
       _$_PlayerDisplayerState;
 
   @override
-  int get index => throw _privateConstructorUsedError;
+  Player get player => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerDisplayerStateCopyWith<_PlayerDisplayerState> get copyWith =>
