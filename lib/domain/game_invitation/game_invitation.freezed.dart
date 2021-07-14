@@ -40,7 +40,7 @@ mixin _$GameInvitation {
   UniqueId get id => throw _privateConstructorUsedError;
   Username get from => throw _privateConstructorUsedError;
   int get lobbyCode => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError;
+  bool? get accepted => throw _privateConstructorUsedError; // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -172,7 +172,7 @@ class _$_GameInvitation implements _GameInvitation {
   final int lobbyCode;
   @override
   final bool? accepted;
-  @override
+  @override // TODO rly nullable
   final bool read;
 
   @override
@@ -229,7 +229,7 @@ abstract class _GameInvitation implements GameInvitation {
   int get lobbyCode => throw _privateConstructorUsedError;
   @override
   bool? get accepted => throw _privateConstructorUsedError;
-  @override
+  @override // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

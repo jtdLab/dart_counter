@@ -44,7 +44,7 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updatePhoto(file);
+    _userFacade.updatePhoto(rawData: file);
   }
 
   Stream<EditProfileImageState> _mapChoosePressedToState() async* {
@@ -55,6 +55,6 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updatePhoto(file);
+    _userFacade.updatePhoto(rawData: file);
   }
 }

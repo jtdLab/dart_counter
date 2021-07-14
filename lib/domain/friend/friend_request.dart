@@ -8,14 +8,13 @@ class FriendRequest with _$FriendRequest {
   const factory FriendRequest({
     required UniqueId id,
     required Username from,
-    required bool? accepted,
+    bool? accepted, // TODO rly nullable
     required bool read,
   }) = _FriendRequest;
 
   factory FriendRequest.dummy() => FriendRequest(
-        id: UniqueId.fromUniqueString('dummyFriendRequestUID'),
-        from: Username('dummyFriendRq'),
-        accepted: null,
+        id: UniqueId.fromUniqueString('dummyFriendRequestUid'),
+        from: Username('dummyFriend'),
         read: false,
       );
 }

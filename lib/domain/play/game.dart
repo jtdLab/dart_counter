@@ -14,7 +14,7 @@ enum Type { legs, sets }
 class Game with _$Game {
   const factory Game({
     required UniqueId id,
-    required bool online,
+    required bool online, // TODO keep this flag or new game type OnlineGame??
     required Status status,
     required Mode mode,
     required int size,
@@ -40,17 +40,28 @@ class Game with _$Game {
     return players.first((player) => player.isCurrentTurn);
   }
 
-  factory Game.dummy() {
-    final faker = Faker();
-    return Game(
-      online: false,
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      status: Status.pending,
-      mode: faker.randomGenerator.element([Mode.firstTo, Mode.bestOf]),
-      size: faker.randomGenerator.integer(30, min: 1),
-      type: faker.randomGenerator.element([Type.legs, Type.sets]),
-      startingPoints: faker.randomGenerator.element([301, 501, 701]),
-      players: KtList.from([OfflinePlayer.dummy() as Player]),
-    );
-  }
+  factory Game.dummy() => Game(
+        online: false,
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        status: Status.pending,
+        mode: faker.randomGenerator.element([
+          Mode.firstTo,
+          Mode.bestOf,
+        ]),
+        size: faker.randomGenerator.integer(30, min: 1),
+        type: faker.randomGenerator.element([
+          Type.legs,
+          Type.sets,
+        ]),
+        startingPoints: faker.randomGenerator.element([
+          301,
+          501,
+          701,
+        ]),
+        players: KtList.from([
+          OfflinePlayer.dummy() as Player,
+        ]),
+      );
 }

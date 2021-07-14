@@ -55,13 +55,17 @@ class PlayFacade implements IPlayFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> inviteFriend(Friend friend) {
+  Future<Either<PlayFailure, Unit>> inviteFriend({
+    required Friend friend,
+  }) {
     // TODO: implement inviteFriend
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> joinGame(int gameCode) {
+  Future<Either<PlayFailure, Unit>> joinGame({
+    required int gameCode,
+  }) {
     // TODO: implement joinGame
     throw UnimplementedError();
   }

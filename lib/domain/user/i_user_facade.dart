@@ -8,7 +8,11 @@ import 'package:dartz/dartz.dart';
 abstract class IUserFacade {
   Stream<Either<UserFailure, User>> watchCurrentUser();
   Future<Either<UserFailure, User>> readCurrentUser();
-  Future<Either<UserFailure, Unit>> updatePhoto(File rawData);
+  Future<Either<UserFailure, Unit>> updatePhoto({
+    required File rawData,
+  });
   Future<Either<UserFailure, Unit>> deletePhoto();
-  Future<Either<UserFailure, Unit>> updateUsername({required Username newUsername});
+  Future<Either<UserFailure, Unit>> updateUsername({
+    required Username newUsername,
+  });
 }

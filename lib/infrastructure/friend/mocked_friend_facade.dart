@@ -65,7 +65,9 @@ class MockedFriendFacade implements IFriendFacade {
   bool fail = false; // toggle to simulate working / notworking endpoint
 
   @override
-  Future<Either<FriendFailure, Unit>> addFriend(User user) {
+  Future<Either<FriendFailure, Unit>> addFriend({
+    required User user,
+  }) {
     if (fail) {
       return Future.value(left(const FriendFailure.unexpected()));
     } else {
@@ -74,7 +76,9 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Future<Either<FriendFailure, Unit>> removeFriend(Friend friend) {
+  Future<Either<FriendFailure, Unit>> removeFriend({
+    required Friend friend,
+  }) {
     if (fail) {
       return Future.value(left(const FriendFailure.unexpected()));
     } else {
@@ -83,7 +87,9 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Future<Either<FriendFailure, User>> searchUserByUsername(String username) {
+  Future<Either<FriendFailure, User>> searchUserByUsername({
+    required String username,
+  }) {
     if (fail) {
       return Future.value(left(const FriendFailure.unexpected()));
     } else {

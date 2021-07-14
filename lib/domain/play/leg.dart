@@ -10,9 +10,13 @@ class Leg with _$Leg {
     required KtList<Throw> throws,
   }) = _Leg;
 
+  // TODO maybe random number of throws
   factory Leg.dummy() {
     return Leg(
-      throws: KtList.from([Throw.dummy(), Throw.dummy()]),
+      throws: KtList.from([
+        Throw.dummy(),
+        Throw.dummy(),
+      ]),
     );
   }
 }

@@ -19,7 +19,7 @@ class _$FriendRequestTearOff {
   _FriendRequest call(
       {required UniqueId id,
       required Username from,
-      required bool? accepted,
+      bool? accepted,
       required bool read}) {
     return _FriendRequest(
       id: id,
@@ -37,7 +37,7 @@ const $FriendRequest = _$FriendRequestTearOff();
 mixin _$FriendRequest {
   UniqueId get id => throw _privateConstructorUsedError;
   Username get from => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError;
+  bool? get accepted => throw _privateConstructorUsedError; // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -145,7 +145,7 @@ class _$_FriendRequest implements _FriendRequest {
   const _$_FriendRequest(
       {required this.id,
       required this.from,
-      required this.accepted,
+      this.accepted,
       required this.read});
 
   @override
@@ -154,7 +154,7 @@ class _$_FriendRequest implements _FriendRequest {
   final Username from;
   @override
   final bool? accepted;
-  @override
+  @override // TODO rly nullable
   final bool read;
 
   @override
@@ -195,7 +195,7 @@ abstract class _FriendRequest implements FriendRequest {
   const factory _FriendRequest(
       {required UniqueId id,
       required Username from,
-      required bool? accepted,
+      bool? accepted,
       required bool read}) = _$_FriendRequest;
 
   @override
@@ -204,7 +204,7 @@ abstract class _FriendRequest implements FriendRequest {
   Username get from => throw _privateConstructorUsedError;
   @override
   bool? get accepted => throw _privateConstructorUsedError;
-  @override
+  @override // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

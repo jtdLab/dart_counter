@@ -11,23 +11,19 @@ class Profile with _$Profile {
     required Username username,
   }) = _Profile;
 
-  factory Profile.dummy() {
-    final faker = Faker();
-
-    return Profile(
-      photoUrl: faker.image.image(width: 200, height: 200),
-      username: Username(
-        faker.randomGenerator.element([
-          'David88',
-          'mrjosch',
-          'SebiAbi69',
-          'HoeHoe',
-          'Soldier48',
-          'Needs',
-          'egesit',
-          'AnisAbi',
-        ]),
-      ),
-    );
-  }
+  factory Profile.dummy() => Profile(
+        photoUrl: faker.image.image(width: 200, height: 200),
+        username: Username(
+          faker.randomGenerator.element([
+            'David88',
+            'mrjosch',
+            'SebiAbi69',
+            'HoeHoe',
+            'Soldier48',
+            'Needs',
+            'egesit',
+            'AnisAbi',
+          ]),
+        ),
+      );
 }

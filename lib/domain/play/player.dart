@@ -61,12 +61,12 @@ class OfflinePlayer with _$OfflinePlayer {
         KtList<Set> sets,
   }) = _OfflinePlayer;
 
-  factory OfflinePlayer.dummy() {
-    final faker = Faker();
-    return OfflinePlayer(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      name: faker.randomGenerator.element(
-        [
+  // TODO maybe random number of sets
+  factory OfflinePlayer.dummy() => OfflinePlayer(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
           'SebiAbi69',
@@ -75,18 +75,18 @@ class OfflinePlayer with _$OfflinePlayer {
           'Needs',
           'egesit',
           'AnisAbi',
-        ],
-      ),
-      isCurrentTurn: true,
-      won: false,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 261,
-      lastPoints: 120,
-      dartsThrownCurrentLeg: 6,
-      stats: Stats.dummy(),
-      sets: KtList.from([Set.dummy()]),
-    );
-  }
+        ]),
+        isCurrentTurn: true,
+        won: false,
+        wonLegsCurrentSet: 0,
+        pointsLeft: 261,
+        lastPoints: 120,
+        dartsThrownCurrentLeg: 6,
+        stats: Stats.dummy(),
+        sets: KtList.from([
+          Set.dummy(),
+        ]),
+      );
 }
 
 @freezed
@@ -129,12 +129,12 @@ class OnlinePlayer with _$OnlinePlayer {
     required UniqueId userId,
   }) = _OnlinePlayer;
 
-  factory OnlinePlayer.dummy() {
-    final faker = Faker();
-    return OnlinePlayer(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      name: faker.randomGenerator.element(
-        [
+  // TODO maybe random number of sets
+  factory OnlinePlayer.dummy() => OnlinePlayer(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
           'SebiAbi69',
@@ -143,20 +143,21 @@ class OnlinePlayer with _$OnlinePlayer {
           'Needs',
           'egesit',
           'AnisAbi',
-        ],
-      ),
-      isCurrentTurn: true,
-      won: false,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 261,
-      lastPoints: 120,
-      dartsThrownCurrentLeg: 6,
-      stats: Stats.dummy(),
-      sets: KtList.from([Set.dummy()]),
-      userId:
-          UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-    );
-  }
+        ]),
+        isCurrentTurn: true,
+        won: false,
+        wonLegsCurrentSet: 0,
+        pointsLeft: 261,
+        lastPoints: 120,
+        dartsThrownCurrentLeg: 6,
+        stats: Stats.dummy(),
+        sets: KtList.from([
+          Set.dummy(),
+        ]),
+        userId: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+      );
 }
 
 @freezed
@@ -200,12 +201,12 @@ class DartBot with _$DartBot {
         int targetAverage,
   }) = _DartBot;
 
-  factory DartBot.dummy() {
-    final faker = Faker();
-    return DartBot(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      name: faker.randomGenerator.element(
-        [
+  // TODO maybe random number of sets
+  factory DartBot.dummy() => DartBot(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
           'SebiAbi69',
@@ -214,16 +215,16 @@ class DartBot with _$DartBot {
           'Needs',
           'egesit',
           'AnisAbi',
-        ],
-      ),
-      isCurrentTurn: true,
-      won: false,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 261,
-      lastPoints: 120,
-      dartsThrownCurrentLeg: 6,
-      stats: Stats.dummy(),
-      sets: KtList.from([Set.dummy()]),
-    );
-  }
+        ]),
+        isCurrentTurn: true,
+        won: false,
+        wonLegsCurrentSet: 0,
+        pointsLeft: 261,
+        lastPoints: 120,
+        dartsThrownCurrentLeg: 6,
+        stats: Stats.dummy(),
+        sets: KtList.from([
+          Set.dummy(),
+        ]),
+      );
 }

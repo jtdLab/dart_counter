@@ -27,6 +27,7 @@ class Stats with _$Stats {
     required int hundredEighty,
   }) = _Stats;
 
+  // TODO random stats
   factory Stats.dummy() => const Stats(
         average: 93.94,
         checkoutPercentage: 54.0,

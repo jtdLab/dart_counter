@@ -20,33 +20,31 @@ class User with _$User {
     required List10<Game> gameHistoryOffline,
   }) = _User;
 
-  factory User.dummy() {
-    final faker = Faker();
-
-    return User(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      emailAddress: EmailAddress(faker.internet.email()),
-      profile: Profile.dummy(),
-      careerStatsOffline: CareerStats.dummy(),
-      careerStatsOnline: CareerStats.dummy(),
-      gameHistoryOnline: List10(
-        KtList.from([
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-        ]),
-      ),
-      gameHistoryOffline: List10(
-        KtList.from([
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-        ]),
-      ),
-    );
-  }
+  factory User.dummy() => User(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        emailAddress: EmailAddress(faker.internet.email()),
+        profile: Profile.dummy(),
+        careerStatsOffline: CareerStats.dummy(),
+        careerStatsOnline: CareerStats.dummy(),
+        gameHistoryOnline: List10(
+          KtList.from([
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+          ]),
+        ),
+        gameHistoryOffline: List10(
+          KtList.from([
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+            Game.dummy(),
+          ]),
+        ),
+      );
 }

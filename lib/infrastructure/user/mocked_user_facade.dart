@@ -60,7 +60,9 @@ class MockedUserFacade implements IUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updatePhoto(File rawData) {
+  Future<Either<UserFailure, Unit>> updatePhoto({
+    required File rawData,
+  }) {
     if (fail) {
       return Future.value(left(const UserFailure.failure()));
     } else {

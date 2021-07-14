@@ -17,24 +17,18 @@ class Friend with _$Friend {
     required List10<Game> gameHistoryOnline,
   }) = _Friend;
 
-  factory Friend.dummy() {
-    final faker = Faker();
-
-    return Friend(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
-      profile: Profile.dummy(),
-      careerStatsOnline: CareerStats.dummy(),
-      gameHistoryOnline: List10(
-        KtList.from(
-          [
+  factory Friend.dummy() => Friend(
+        id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
+        profile: Profile.dummy(),
+        careerStatsOnline: CareerStats.dummy(),
+        gameHistoryOnline: List10(
+          KtList.from([
             Game.dummy(),
             Game.dummy(),
             Game.dummy(),
             Game.dummy(),
             Game.dummy(),
-          ],
+          ]),
         ),
-      ),
-    );
-  }
+      );
 }

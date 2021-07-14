@@ -88,7 +88,9 @@ class UserFacade implements IUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updatePhoto(File rawData) async {
+  Future<Either<UserFailure, Unit>> updatePhoto({
+    required File rawData,
+  }) async {
     try {
       final uid = _authFacade.getSignedInUid();
       if (uid == null) {

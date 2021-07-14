@@ -32,8 +32,6 @@ class CareerStats with _$CareerStats {
       );
 
   factory CareerStats.dummy() {
-    final faker = Faker();
-
     final games = faker.randomGenerator.integer(200);
     final wins = faker.randomGenerator.integer(games);
     final defeats = games - wins;

@@ -20,22 +20,31 @@ class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
-  FriendFacade(this._firestore, this._socialClient);
+  FriendFacade(
+    this._firestore,
+    this._socialClient,
+  );
 
   @override
-  Future<Either<FriendFailure, Unit>> addFriend(User user) {
+  Future<Either<FriendFailure, Unit>> addFriend({
+    required User user,
+  }) {
     // TODO: implement removeFriend
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<FriendFailure, Unit>> removeFriend(Friend friend) {
+  Future<Either<FriendFailure, Unit>> removeFriend({
+    required Friend friend,
+  }) {
     // TODO: implement removeFriend
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<FriendFailure, User>> searchUserByUsername(String username) {
+  Future<Either<FriendFailure, User>> searchUserByUsername({
+    required String username,
+  }) {
     // TODO: implement searchUserByUsername
     throw UnimplementedError();
   }

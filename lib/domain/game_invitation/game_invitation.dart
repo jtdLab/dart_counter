@@ -10,28 +10,27 @@ class GameInvitation with _$GameInvitation {
     required UniqueId id,
     required Username from,
     required int lobbyCode,
-    bool? accepted,
+    bool? accepted, // TODO rly nullable
     required bool read,
   }) = _GameInvitation;
 
-  factory GameInvitation.dummy() {
-    final faker = Faker();
-    return GameInvitation(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      from: Username(
-        faker.randomGenerator.element([
-          'SyxGott',
-          'Kelb37',
-          'Drecksau43',
-          'FlippIt',
-          'DartsIngo',
-          'FrenchKek',
-          'Flizzy',
-          'Marwinn8',
-        ]),
-      ),
-      lobbyCode: faker.randomGenerator.integer(9999, min: 1000),
-      read: false,
-    );
-  }
+  factory GameInvitation.dummy() => GameInvitation(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        from: Username(
+          faker.randomGenerator.element([
+            'SyxGott',
+            'Kelb37',
+            'Drecksau43',
+            'FlippIt',
+            'DartsIngo',
+            'FrenchKek',
+            'Flizzy',
+            'Marwinn8',
+          ]),
+        ),
+        lobbyCode: faker.randomGenerator.integer(9999, min: 1000),
+        read: false,
+      );
 }
