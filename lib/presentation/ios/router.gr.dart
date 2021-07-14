@@ -64,12 +64,12 @@ class Router extends _i1.RootStackRouter {
     SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.SettingsPage();
+          return const _i7.SettingsPage();
         }),
     LegalPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.LegalPage();
+          return const _i8.LegalPage();
         }),
     ImpressumPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
@@ -89,12 +89,12 @@ class Router extends _i1.RootStackRouter {
     ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i12.ProfilePage();
+          return const _i12.ProfilePage();
         }),
     GameHistoryFlowRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i13.GameHistoryFlow();
+          return const _i13.GameHistoryFlow();
         }),
     GameFlowRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
@@ -119,17 +119,17 @@ class Router extends _i1.RootStackRouter {
     CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i17.CreateGamePage();
+          return const _i17.CreateGamePage();
         }),
     InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i18.InGamePage();
+          return const _i18.InGamePage();
         }),
     PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i19.PostGamePage();
+          return const _i19.PostGamePage();
         })
   };
 
