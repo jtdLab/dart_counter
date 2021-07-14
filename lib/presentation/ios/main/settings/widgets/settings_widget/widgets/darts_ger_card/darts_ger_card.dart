@@ -1,13 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-
 import 'widgets/widgets.dart';
 
 class DartsGerCard extends StatelessWidget {
-  const DartsGerCard({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return AppCard(

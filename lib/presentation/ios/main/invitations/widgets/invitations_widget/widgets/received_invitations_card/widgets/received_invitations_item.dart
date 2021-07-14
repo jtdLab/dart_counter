@@ -28,7 +28,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.check_mark_dark_new),
-                onPressed: () {},
+                onPressed: () {}, // TODO
               ),
               const AppSpacer.normal(
                 orientation: Orientation.horizontal,
@@ -36,7 +36,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.x_mark_filled_new),
-                onPressed: () {},
+                onPressed: () {}, // TODO
               ),
             ],
           ),

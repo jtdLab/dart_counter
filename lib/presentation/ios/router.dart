@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dart_counter/presentation/ios/auth/auth_flow.dart';
-import 'package:dart_counter/presentation/ios/main/loading/loading_page.dart';
-import 'package:dart_counter/presentation/ios/main/main_flow.dart';
 
+import 'auth/auth_flow.dart';
 import 'main/friends/friends_page.dart';
 import 'main/game/create_game/create_game_page.dart';
 import 'main/game/game_flow.dart';
@@ -15,6 +13,8 @@ import 'main/home/home_page.dart';
 import 'main/impressum/impressum_page.dart';
 import 'main/invitations/invitations_page.dart';
 import 'main/legal/legal_page.dart';
+import 'main/loading/loading_page.dart';
+import 'main/main_flow.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';
 

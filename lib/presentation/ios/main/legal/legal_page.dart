@@ -4,10 +4,14 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.da
 import 'widgets/widgets.dart';
 
 class LegalPage extends StatelessWidget {
+  const LegalPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: const AppNavigationBar(
+    return const AppPage(
+      navigationBar: AppNavigationBar(
         leading: BackButton(),
       ),
       child: LegalWidget(),

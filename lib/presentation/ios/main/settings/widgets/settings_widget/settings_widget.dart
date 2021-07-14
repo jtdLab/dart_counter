@@ -1,11 +1,15 @@
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/main/settings/modals/modals.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:flutter/material.dart' show Colors;
 import 'widgets/widgets.dart';
 
 class SettingsWidget extends StatelessWidget {
+  const SettingsWidget({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
@@ -30,7 +34,7 @@ class SettingsWidget extends StatelessWidget {
             const Spacer(),
             AccountCard(),
             const Spacer(),
-            const DartsGerCard(),
+            DartsGerCard(),
             const Spacer(),
             AppPrimaryButton(
               text: LocaleKeys.signOut.tr(),

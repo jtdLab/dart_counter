@@ -6,7 +6,10 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 class CheckBox extends StatelessWidget {
   final Locale language;
 
-  const CheckBox({Key? key, required this.language}) : super(key: key);
+  const CheckBox({
+    Key? key,
+    required this.language,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

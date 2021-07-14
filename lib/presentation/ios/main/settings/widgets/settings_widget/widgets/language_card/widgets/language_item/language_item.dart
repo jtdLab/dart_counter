@@ -4,7 +4,10 @@ import 'widgets/widgets.dart';
 class LanguageItem extends StatelessWidget {
   final Locale language;
 
-  const LanguageItem({Key? key, required this.language}) : super(key: key);
+  const LanguageItem({
+    Key? key,
+    required this.language,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

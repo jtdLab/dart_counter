@@ -4,6 +4,10 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class ReceivedInvitationsCard extends StatelessWidget {
+  const ReceivedInvitationsCard({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<InvitationsBloc, InvitationsState>(

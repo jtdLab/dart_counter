@@ -4,7 +4,6 @@ import 'package:dart_counter/application/core/invitations/invitations_bloc.dart'
 import 'package:dart_counter/application/core/user/user_bloc.dart' as u;
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatelessWidget {
   const LoadingPage({
@@ -59,8 +58,8 @@ class LoadingPage extends StatelessWidget {
         child: Center(
           child: Lottie.asset(
             AppAnimations.loading,
-            width: 100,
-            height: 100,
+            width: 100, // TODO responsive
+            height: 100, // TODO responsive
           ),
         ),
       ),

@@ -1,12 +1,14 @@
 import 'package:dart_counter/application/core/auth/auth_bloc.dart';
-import 'package:dart_counter/injection.dart';
-
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -31,7 +33,7 @@ class SettingsPage extends StatelessWidget {
                   LocaleKeys.settings.tr().toUpperCase(),
                 ),
               ),
-              child: SettingsWidget(),
+              child: const SettingsWidget(),
             );
           },
         ),

@@ -6,8 +6,11 @@ class AccountItem extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const AccountItem({Key? key, required this.title, required this.onPressed})
-      : super(key: key);
+  const AccountItem({
+    Key? key,
+    required this.title,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

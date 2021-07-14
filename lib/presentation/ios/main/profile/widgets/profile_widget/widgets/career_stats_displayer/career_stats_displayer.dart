@@ -4,7 +4,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class CareerStatsDisplayer extends StatelessWidget {
-  const CareerStatsDisplayer({Key? key}) : super(key: key);
+  const CareerStatsDisplayer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
