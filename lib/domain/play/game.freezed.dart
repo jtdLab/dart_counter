@@ -44,7 +44,8 @@ const $Game = _$GameTearOff();
 /// @nodoc
 mixin _$Game {
   UniqueId get id => throw _privateConstructorUsedError;
-  bool get online => throw _privateConstructorUsedError;
+  bool get online =>
+      throw _privateConstructorUsedError; // TODO keep this flag or new game type OnlineGame??
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
@@ -218,7 +219,7 @@ class _$_Game extends _Game {
   final UniqueId id;
   @override
   final bool online;
-  @override
+  @override // TODO keep this flag or new game type OnlineGame??
   final Status status;
   @override
   final Mode mode;
@@ -293,7 +294,7 @@ abstract class _Game extends Game {
   UniqueId get id => throw _privateConstructorUsedError;
   @override
   bool get online => throw _privateConstructorUsedError;
-  @override
+  @override // TODO keep this flag or new game type OnlineGame??
   Status get status => throw _privateConstructorUsedError;
   @override
   Mode get mode => throw _privateConstructorUsedError;
