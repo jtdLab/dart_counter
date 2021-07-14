@@ -4,6 +4,9 @@ export 'package:flutter/cupertino.dart' hide Orientation, Router;
 // Material Colors
 export 'package:flutter/material.dart' show Colors;
 
+// Badges
+export 'package:badges/badges.dart';
+
 // Localization
 export 'package:easy_localization/easy_localization.dart' hide TextDirection;
 export 'package:dart_counter/generated/locale_keys.g.dart';
@@ -26,6 +29,9 @@ export 'package:dart_counter/injection.dart';
 
 // Lottie
 export 'package:lottie/lottie.dart';
+
+// Url launcher
+export 'package:url_launcher/url_launcher.dart';
 
 // Platform independent core
 export 'package:dart_counter/presentation/core/core.dart';

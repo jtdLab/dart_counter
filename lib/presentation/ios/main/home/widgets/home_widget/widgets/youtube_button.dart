@@ -1,10 +1,10 @@
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class YoutubeButton extends StatelessWidget {
-  const YoutubeButton({Key? key}) : super(key: key);
-  
+  const YoutubeButton({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
