@@ -1,7 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
 import 'widgets/widgets.dart';
 
+// TODO to complex widget? maybe split error and text input into seperate widgets
 // TODO assert error message is provided if validation is applied // TODO has it real to be stateful
 class AppTextField extends StatefulWidget {
   final String text;
@@ -37,7 +37,8 @@ class AppTextField extends StatefulWidget {
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller =
+      TextEditingController(); // TODO better solution available ?
 
   @override
   void initState() {

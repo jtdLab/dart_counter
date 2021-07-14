@@ -1,4 +1,3 @@
-import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/domain/play/game.dart';
 
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
@@ -9,6 +8,10 @@ import 'modals/modals.dart';
 import 'widgets/widgets.dart';
 
 class InGamePage extends StatelessWidget {
+  const InGamePage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

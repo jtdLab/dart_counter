@@ -1,8 +1,13 @@
 import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class Header extends StatelessWidget {
+  const Header({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(

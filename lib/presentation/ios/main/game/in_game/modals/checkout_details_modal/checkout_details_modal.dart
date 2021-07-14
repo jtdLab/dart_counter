@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_but
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
+// TODO refactor
 class CheckoutDetailsModal extends StatelessWidget {
   const CheckoutDetailsModal({
     Key? key,

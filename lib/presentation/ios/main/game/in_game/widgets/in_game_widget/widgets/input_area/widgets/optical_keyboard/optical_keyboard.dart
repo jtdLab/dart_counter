@@ -1,5 +1,4 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
 import 'widgets/widgets.dart';
 
 class OpticalKeyboard extends StatelessWidget {
@@ -11,8 +10,8 @@ class OpticalKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 4 * size55(context) + 3 * size6(context),
-        height: 4 * size55(context) + 3 * size6(context),
+        width: 4 * size55(context) + 3 * size6(context), // TODO
+        height: 4 * size55(context) + 3 * size6(context), // TODO
         child: const DartBoard(),
       ),
     );

@@ -3,11 +3,16 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_c
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'game_history_details_card_row.dart';
 
+// TODO refactor +  use game ???
 class TakesCard extends StatelessWidget {
+  const TakesCard({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final game;
-    
+
     return AppCard(
       headerBodySpacing: size6(context),
       leading: AutoSizeText(

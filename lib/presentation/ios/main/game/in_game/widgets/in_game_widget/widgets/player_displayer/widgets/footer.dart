@@ -1,7 +1,12 @@
 import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class Footer extends StatelessWidget {
+  const Footer({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

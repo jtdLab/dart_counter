@@ -1,8 +1,8 @@
 // Flutter for ios
 export 'package:flutter/cupertino.dart' hide Orientation, Router;
 
-// Material Colors
-export 'package:flutter/material.dart' show Colors;
+// Material colors + Reorderable list
+export 'package:flutter/material.dart' show Colors, ReorderableListView;
 
 // Badges
 export 'package:badges/badges.dart';
@@ -32,6 +32,9 @@ export 'package:lottie/lottie.dart';
 
 // Url launcher
 export 'package:url_launcher/url_launcher.dart';
+
+// Cached network image
+export 'package:cached_network_image/cached_network_image.dart';
 
 // Platform independent core
 export 'package:dart_counter/presentation/core/core.dart';

@@ -4,7 +4,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
 class StartingPointsPicker extends StatelessWidget {
-  const StartingPointsPicker({Key? key}) : super(key: key);
+  const StartingPointsPicker({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

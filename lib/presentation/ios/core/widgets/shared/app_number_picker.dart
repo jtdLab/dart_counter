@@ -3,6 +3,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'app_card/widgets/app_card_item.dart';
 import 'app_icon_button.dart';
 
+// TODO animate prev and next + show them like cuprtino picker
 class AppNumberPicker extends StatefulWidget {
   final String? title;
   final Function(int)? onChanged;

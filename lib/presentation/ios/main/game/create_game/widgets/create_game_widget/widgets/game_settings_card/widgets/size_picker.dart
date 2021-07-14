@@ -4,7 +4,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_number_picker.dart';
 
 class SizePicker extends StatelessWidget {
-  const SizePicker({Key? key}) : super(key: key);
+  const SizePicker({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

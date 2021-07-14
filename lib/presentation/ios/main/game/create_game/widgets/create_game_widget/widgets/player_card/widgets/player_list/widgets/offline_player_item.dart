@@ -3,12 +3,12 @@ import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/main/game/create_game/modals/modals.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
-import 'package:flutter/material.dart' show Colors;
 
 class OfflinePlayerItem extends StatelessWidget {
   final OfflinePlayer player;

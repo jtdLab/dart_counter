@@ -3,11 +3,12 @@ import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:flutter/material.dart' show ReorderableListView;
 import 'widgets/widgets.dart';
 
 class PlayerList extends StatelessWidget {
-  const PlayerList({Key? key}) : super(key: key);
+  const PlayerList({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_bu
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
+// TODO refactor
 class Initial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

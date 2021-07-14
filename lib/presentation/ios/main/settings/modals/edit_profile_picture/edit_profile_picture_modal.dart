@@ -1,12 +1,9 @@
-import 'package:dart_counter/injection.dart';
-
 import 'package:dart_counter/application/settings/edit_profile_image/edit_profile_image_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:flutter/material.dart' show Colors;
 
-// TODO refactor
+// TODO refactor and rename to edit profile image modal
 class EditProfilePictureModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

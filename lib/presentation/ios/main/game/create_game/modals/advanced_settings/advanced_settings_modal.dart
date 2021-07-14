@@ -2,7 +2,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
-import 'package:flutter/material.dart' show Colors;
 
 // TODO refactor
 class AdvancedSettingsModal extends StatelessWidget {

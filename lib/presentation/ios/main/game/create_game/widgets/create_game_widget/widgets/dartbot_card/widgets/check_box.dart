@@ -4,7 +4,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 
 class CheckBox extends StatelessWidget {
-  const CheckBox({Key? key}) : super(key: key);
+  const CheckBox({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

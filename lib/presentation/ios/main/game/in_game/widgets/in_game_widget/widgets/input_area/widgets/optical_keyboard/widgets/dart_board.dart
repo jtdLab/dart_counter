@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/material.dart' show Colors;
 
+// TODO whole file clean and seperate componenets
 class DartBoard extends StatefulWidget {
   const DartBoard({
     Key? key,

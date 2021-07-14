@@ -3,6 +3,10 @@ import 'package:dart_counter/application/in_game/player_displayer/player_display
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class FinishRecommendationDisplayer extends StatelessWidget {
+  const FinishRecommendationDisplayer({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(

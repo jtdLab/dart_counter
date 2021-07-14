@@ -2,8 +2,11 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
+// TODO refactor
 class Success extends StatelessWidget {
-  const Success({Key? key}) : super(key: key);
+  const Success({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

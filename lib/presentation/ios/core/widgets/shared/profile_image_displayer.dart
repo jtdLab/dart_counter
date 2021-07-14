@@ -1,5 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'app_rounded_image.dart';
 

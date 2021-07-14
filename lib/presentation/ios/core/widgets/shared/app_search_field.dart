@@ -1,9 +1,9 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
 import 'app_card/widgets/app_card_item.dart';
 import 'app_icon_button.dart';
 import 'app_rounded_image.dart';
 
+// TODO extract and abstract more + refactor
 class AppSearchField extends StatefulWidget {
   final Function(String) onChanged;
   final bool autoFocus;

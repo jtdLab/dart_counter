@@ -1,9 +1,10 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'widgets/widgets.dart';
 
 class PlayerCard extends StatelessWidget {
-  const PlayerCard({Key? key}) : super(key: key);
+  const PlayerCard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

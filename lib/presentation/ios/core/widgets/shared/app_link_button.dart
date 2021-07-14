@@ -4,7 +4,10 @@ class AppLinkButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  const AppLinkButton({required this.text, this.onPressed});
+  const AppLinkButton({
+    required this.text,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

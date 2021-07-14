@@ -1,13 +1,13 @@
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_number_picker.dart';
 import 'widgets/widgets.dart';
 
 // TODO abstand wenn kein dartbot zur playercard
 class DartBotCard extends StatelessWidget {
-  const DartBotCard({Key? key}) : super(key: key);
+  const DartBotCard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,9 @@ import 'package:dart_counter/application/in_game/player_displayer/player_display
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class PointsLeftLastThrowDisplayer extends StatelessWidget {
-  const PointsLeftLastThrowDisplayer({Key? key}) : super(key: key);
+  const PointsLeftLastThrowDisplayer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

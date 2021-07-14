@@ -1,12 +1,13 @@
-import 'package:dart_counter/injection.dart';
-
 import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO refactor
 class ForgotPasswordModal extends StatelessWidget {
-  const ForgotPasswordModal({Key? key}) : super(key: key);
+  const ForgotPasswordModal({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

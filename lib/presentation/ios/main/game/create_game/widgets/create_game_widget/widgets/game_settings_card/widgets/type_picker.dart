@@ -6,7 +6,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
 class TypePicker extends StatelessWidget {
-  const TypePicker({Key? key}) : super(key: key);
+  const TypePicker({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,15 @@
 import 'package:dart_counter/domain/play/game.dart';
 
-import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class CreateGamePage extends StatelessWidget {
+  const CreateGamePage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -36,7 +39,7 @@ class CreateGamePage extends StatelessWidget {
               LocaleKeys.createGame.tr().toUpperCase(),
             ),
           ),
-          child: CreateGameWidget(),
+          child: const CreateGameWidget(),
         ),
       ),
     );

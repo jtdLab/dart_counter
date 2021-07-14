@@ -1,5 +1,3 @@
-import 'package:dart_counter/injection.dart';
-
 import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/main/game/in_game/modals/modals.dart';
@@ -7,7 +5,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 
 class StatsButton extends StatelessWidget {
-  const StatsButton({Key? key}) : super(key: key);
+  const StatsButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

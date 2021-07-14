@@ -3,6 +3,7 @@ import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO refactor
 class SignUpWidget extends StatelessWidget {
   final PageController pageController;
 

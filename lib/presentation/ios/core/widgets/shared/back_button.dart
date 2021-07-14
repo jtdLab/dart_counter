@@ -1,5 +1,4 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
 import 'app_navigation_bar/widgets/app_navigation_bar_button.dart';
 
 class BackButton extends StatelessWidget {

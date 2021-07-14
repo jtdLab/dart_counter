@@ -1,5 +1,3 @@
-import 'package:dart_counter/injection.dart';
-
 import 'package:dart_counter/application/post_game/post_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';

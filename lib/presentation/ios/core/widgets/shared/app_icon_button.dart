@@ -1,7 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class AppIconButton extends StatelessWidget {
-
   final EdgeInsets? padding;
   final VoidCallback? onPressed;
   final Widget icon;
