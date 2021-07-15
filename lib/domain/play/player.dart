@@ -61,7 +61,6 @@ class OfflinePlayer with _$OfflinePlayer {
         KtList<Set> sets,
   }) = _OfflinePlayer;
 
-  // TODO maybe random number of sets
   factory OfflinePlayer.dummy() => OfflinePlayer(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
@@ -83,9 +82,9 @@ class OfflinePlayer with _$OfflinePlayer {
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from([
-          Set.dummy(),
-        ]),
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
       );
 }
 
@@ -129,7 +128,6 @@ class OnlinePlayer with _$OnlinePlayer {
     required UniqueId userId,
   }) = _OnlinePlayer;
 
-  // TODO maybe random number of sets
   factory OnlinePlayer.dummy() => OnlinePlayer(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
@@ -151,9 +149,9 @@ class OnlinePlayer with _$OnlinePlayer {
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from([
-          Set.dummy(),
-        ]),
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
         userId: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
@@ -201,7 +199,6 @@ class DartBot with _$DartBot {
         int targetAverage,
   }) = _DartBot;
 
-  // TODO maybe random number of sets
   factory DartBot.dummy() => DartBot(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
@@ -223,8 +220,8 @@ class DartBot with _$DartBot {
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from([
-          Set.dummy(),
-        ]),
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
       );
 }

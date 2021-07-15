@@ -24,7 +24,6 @@ class _$FriendRequestDtoTearOff {
       {@JsonKey(ignore: true)
           String? id,
       required String from,
-      bool? accepted,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -32,7 +31,6 @@ class _$FriendRequestDtoTearOff {
     return _FriendRequestDto(
       id: id,
       from: from,
-      accepted: accepted,
       read: read,
       createdAt: createdAt,
     );
@@ -52,7 +50,6 @@ mixin _$FriendRequestDto {
   String? get id =>
       throw _privateConstructorUsedError; // TODO ignore and nullable fix
   String get from => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
@@ -73,7 +70,6 @@ abstract class $FriendRequestDtoCopyWith<$Res> {
       {@JsonKey(ignore: true)
           String? id,
       String from,
-      bool? accepted,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -93,7 +89,6 @@ class _$FriendRequestDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? from = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -106,10 +101,6 @@ class _$FriendRequestDtoCopyWithImpl<$Res>
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as String,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -133,7 +124,6 @@ abstract class _$FriendRequestDtoCopyWith<$Res>
       {@JsonKey(ignore: true)
           String? id,
       String from,
-      bool? accepted,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -155,7 +145,6 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? from = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -168,10 +157,6 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as String,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -191,7 +176,6 @@ class _$_FriendRequestDto extends _FriendRequestDto {
       {@JsonKey(ignore: true)
           this.id,
       required this.from,
-      this.accepted,
       required this.read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -207,8 +191,6 @@ class _$_FriendRequestDto extends _FriendRequestDto {
   @override // TODO ignore and nullable fix
   final String from;
   @override
-  final bool? accepted;
-  @override
   final bool read;
   @override
   @JsonKey(includeIfNull: false)
@@ -217,7 +199,7 @@ class _$_FriendRequestDto extends _FriendRequestDto {
 
   @override
   String toString() {
-    return 'FriendRequestDto(id: $id, from: $from, accepted: $accepted, read: $read, createdAt: $createdAt)';
+    return 'FriendRequestDto(id: $id, from: $from, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -228,9 +210,6 @@ class _$_FriendRequestDto extends _FriendRequestDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.from, from) ||
                 const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.accepted, accepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
                 const DeepCollectionEquality().equals(other.read, read)) &&
             (identical(other.createdAt, createdAt) ||
@@ -243,7 +222,6 @@ class _$_FriendRequestDto extends _FriendRequestDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(accepted) ^
       const DeepCollectionEquality().hash(read) ^
       const DeepCollectionEquality().hash(createdAt);
 
@@ -263,7 +241,6 @@ abstract class _FriendRequestDto extends FriendRequestDto {
       {@JsonKey(ignore: true)
           String? id,
       required String from,
-      bool? accepted,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -278,8 +255,6 @@ abstract class _FriendRequestDto extends FriendRequestDto {
   String? get id => throw _privateConstructorUsedError;
   @override // TODO ignore and nullable fix
   String get from => throw _privateConstructorUsedError;
-  @override
-  bool? get accepted => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
   @override

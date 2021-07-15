@@ -17,14 +17,10 @@ class _$FriendRequestTearOff {
   const _$FriendRequestTearOff();
 
   _FriendRequest call(
-      {required UniqueId id,
-      required Username from,
-      bool? accepted,
-      required bool read}) {
+      {required UniqueId id, required Username from, required bool read}) {
     return _FriendRequest(
       id: id,
       from: from,
-      accepted: accepted,
       read: read,
     );
   }
@@ -37,7 +33,6 @@ const $FriendRequest = _$FriendRequestTearOff();
 mixin _$FriendRequest {
   UniqueId get id => throw _privateConstructorUsedError;
   Username get from => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError; // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -50,7 +45,7 @@ abstract class $FriendRequestCopyWith<$Res> {
   factory $FriendRequestCopyWith(
           FriendRequest value, $Res Function(FriendRequest) then) =
       _$FriendRequestCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Username from, bool? accepted, bool read});
+  $Res call({UniqueId id, Username from, bool read});
 }
 
 /// @nodoc
@@ -66,7 +61,6 @@ class _$FriendRequestCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? from = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
   }) {
     return _then(_value.copyWith(
@@ -78,10 +72,6 @@ class _$FriendRequestCopyWithImpl<$Res>
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as Username,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -97,7 +87,7 @@ abstract class _$FriendRequestCopyWith<$Res>
           _FriendRequest value, $Res Function(_FriendRequest) then) =
       __$FriendRequestCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Username from, bool? accepted, bool read});
+  $Res call({UniqueId id, Username from, bool read});
 }
 
 /// @nodoc
@@ -115,7 +105,6 @@ class __$FriendRequestCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? from = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
   }) {
     return _then(_FriendRequest(
@@ -127,10 +116,6 @@ class __$FriendRequestCopyWithImpl<$Res>
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as Username,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -143,23 +128,18 @@ class __$FriendRequestCopyWithImpl<$Res>
 
 class _$_FriendRequest implements _FriendRequest {
   const _$_FriendRequest(
-      {required this.id,
-      required this.from,
-      this.accepted,
-      required this.read});
+      {required this.id, required this.from, required this.read});
 
   @override
   final UniqueId id;
   @override
   final Username from;
   @override
-  final bool? accepted;
-  @override // TODO rly nullable
   final bool read;
 
   @override
   String toString() {
-    return 'FriendRequest(id: $id, from: $from, accepted: $accepted, read: $read)';
+    return 'FriendRequest(id: $id, from: $from, read: $read)';
   }
 
   @override
@@ -170,9 +150,6 @@ class _$_FriendRequest implements _FriendRequest {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.from, from) ||
                 const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.accepted, accepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
                 const DeepCollectionEquality().equals(other.read, read)));
   }
@@ -182,7 +159,6 @@ class _$_FriendRequest implements _FriendRequest {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(accepted) ^
       const DeepCollectionEquality().hash(read);
 
   @JsonKey(ignore: true)
@@ -195,7 +171,6 @@ abstract class _FriendRequest implements FriendRequest {
   const factory _FriendRequest(
       {required UniqueId id,
       required Username from,
-      bool? accepted,
       required bool read}) = _$_FriendRequest;
 
   @override
@@ -203,8 +178,6 @@ abstract class _FriendRequest implements FriendRequest {
   @override
   Username get from => throw _privateConstructorUsedError;
   @override
-  bool? get accepted => throw _privateConstructorUsedError;
-  @override // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -10,13 +11,11 @@ class Leg with _$Leg {
     required KtList<Throw> throws,
   }) = _Leg;
 
-  // TODO maybe random number of throws
   factory Leg.dummy() {
     return Leg(
-      throws: KtList.from([
-        Throw.dummy(),
-        Throw.dummy(),
-      ]),
+      throws: KtList.from(
+        faker.randomGenerator.amount((i) => Throw.dummy(), 10),
+      ),
     );
   }
 }

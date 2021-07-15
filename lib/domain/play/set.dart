@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -11,10 +12,11 @@ class Set with _$Set {
     required KtList<Leg> legs,
   }) = _Set;
 
-  // TODO maybe random number of legs
   factory Set.dummy() {
     return Set(
-      legs: KtList.from([Leg.dummy(), Leg.dummy()]),
+      legs: KtList.from(
+        faker.randomGenerator.amount((i) => Leg.dummy(), 5),
+      ),
     );
   }
 }

@@ -12,7 +12,6 @@ class FriendRequestDto with _$FriendRequestDto {
   const factory FriendRequestDto({
     @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
     required String from,
-    bool? accepted,
     required bool read,
     @JsonKey(includeIfNull: false)
     @ServerTimestampConverter()
@@ -25,7 +24,6 @@ class FriendRequestDto with _$FriendRequestDto {
     return FriendRequestDto(
       id: friendRequest.id.getOrCrash(),
       from: friendRequest.from.getOrCrash(),
-      accepted: friendRequest.accepted,
       read: friendRequest.read,
     );
   }
@@ -34,7 +32,6 @@ class FriendRequestDto with _$FriendRequestDto {
     return FriendRequest(
       id: UniqueId.fromUniqueString(id!),
       from: Username(from),
-      accepted: accepted,
       read: read,
     );
   }

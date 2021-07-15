@@ -20,13 +20,11 @@ class _$GameInvitationTearOff {
       {required UniqueId id,
       required Username from,
       required int lobbyCode,
-      bool? accepted,
       required bool read}) {
     return _GameInvitation(
       id: id,
       from: from,
       lobbyCode: lobbyCode,
-      accepted: accepted,
       read: read,
     );
   }
@@ -40,7 +38,6 @@ mixin _$GameInvitation {
   UniqueId get id => throw _privateConstructorUsedError;
   Username get from => throw _privateConstructorUsedError;
   int get lobbyCode => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError; // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -53,8 +50,7 @@ abstract class $GameInvitationCopyWith<$Res> {
   factory $GameInvitationCopyWith(
           GameInvitation value, $Res Function(GameInvitation) then) =
       _$GameInvitationCopyWithImpl<$Res>;
-  $Res call(
-      {UniqueId id, Username from, int lobbyCode, bool? accepted, bool read});
+  $Res call({UniqueId id, Username from, int lobbyCode, bool read});
 }
 
 /// @nodoc
@@ -71,7 +67,6 @@ class _$GameInvitationCopyWithImpl<$Res>
     Object? id = freezed,
     Object? from = freezed,
     Object? lobbyCode = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,10 +82,6 @@ class _$GameInvitationCopyWithImpl<$Res>
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
               as int,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -106,8 +97,7 @@ abstract class _$GameInvitationCopyWith<$Res>
           _GameInvitation value, $Res Function(_GameInvitation) then) =
       __$GameInvitationCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {UniqueId id, Username from, int lobbyCode, bool? accepted, bool read});
+  $Res call({UniqueId id, Username from, int lobbyCode, bool read});
 }
 
 /// @nodoc
@@ -126,7 +116,6 @@ class __$GameInvitationCopyWithImpl<$Res>
     Object? id = freezed,
     Object? from = freezed,
     Object? lobbyCode = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
   }) {
     return _then(_GameInvitation(
@@ -142,10 +131,6 @@ class __$GameInvitationCopyWithImpl<$Res>
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
               as int,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -161,7 +146,6 @@ class _$_GameInvitation implements _GameInvitation {
       {required this.id,
       required this.from,
       required this.lobbyCode,
-      this.accepted,
       required this.read});
 
   @override
@@ -171,13 +155,11 @@ class _$_GameInvitation implements _GameInvitation {
   @override
   final int lobbyCode;
   @override
-  final bool? accepted;
-  @override // TODO rly nullable
   final bool read;
 
   @override
   String toString() {
-    return 'GameInvitation(id: $id, from: $from, lobbyCode: $lobbyCode, accepted: $accepted, read: $read)';
+    return 'GameInvitation(id: $id, from: $from, lobbyCode: $lobbyCode, read: $read)';
   }
 
   @override
@@ -191,9 +173,6 @@ class _$_GameInvitation implements _GameInvitation {
             (identical(other.lobbyCode, lobbyCode) ||
                 const DeepCollectionEquality()
                     .equals(other.lobbyCode, lobbyCode)) &&
-            (identical(other.accepted, accepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
                 const DeepCollectionEquality().equals(other.read, read)));
   }
@@ -204,7 +183,6 @@ class _$_GameInvitation implements _GameInvitation {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(from) ^
       const DeepCollectionEquality().hash(lobbyCode) ^
-      const DeepCollectionEquality().hash(accepted) ^
       const DeepCollectionEquality().hash(read);
 
   @JsonKey(ignore: true)
@@ -218,7 +196,6 @@ abstract class _GameInvitation implements GameInvitation {
       {required UniqueId id,
       required Username from,
       required int lobbyCode,
-      bool? accepted,
       required bool read}) = _$_GameInvitation;
 
   @override
@@ -228,8 +205,6 @@ abstract class _GameInvitation implements GameInvitation {
   @override
   int get lobbyCode => throw _privateConstructorUsedError;
   @override
-  bool? get accepted => throw _privateConstructorUsedError;
-  @override // TODO rly nullable
   bool get read => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

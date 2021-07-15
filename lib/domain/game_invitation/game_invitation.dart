@@ -10,7 +10,6 @@ class GameInvitation with _$GameInvitation {
     required UniqueId id,
     required Username from,
     required int lobbyCode,
-    bool? accepted, // TODO rly nullable
     required bool read,
   }) = _GameInvitation;
 

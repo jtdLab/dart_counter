@@ -25,7 +25,6 @@ class _$GameInvitationDtoTearOff {
           String? id,
       required String from,
       required int lobbyCode,
-      required bool? accepted,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -34,7 +33,6 @@ class _$GameInvitationDtoTearOff {
       id: id,
       from: from,
       lobbyCode: lobbyCode,
-      accepted: accepted,
       read: read,
       createdAt: createdAt,
     );
@@ -55,7 +53,6 @@ mixin _$GameInvitationDto {
       throw _privateConstructorUsedError; // TODO ignore and nullable fix
   String get from => throw _privateConstructorUsedError;
   int get lobbyCode => throw _privateConstructorUsedError;
-  bool? get accepted => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
@@ -77,7 +74,6 @@ abstract class $GameInvitationDtoCopyWith<$Res> {
           String? id,
       String from,
       int lobbyCode,
-      bool? accepted,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -98,7 +94,6 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? from = freezed,
     Object? lobbyCode = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -115,10 +110,6 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
               as int,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -143,7 +134,6 @@ abstract class _$GameInvitationDtoCopyWith<$Res>
           String? id,
       String from,
       int lobbyCode,
-      bool? accepted,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -166,7 +156,6 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? from = freezed,
     Object? lobbyCode = freezed,
-    Object? accepted = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -183,10 +172,6 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
               as int,
-      accepted: accepted == freezed
-          ? _value.accepted
-          : accepted // ignore: cast_nullable_to_non_nullable
-              as bool?,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -207,7 +192,6 @@ class _$_GameInvitationDto extends _GameInvitationDto {
           this.id,
       required this.from,
       required this.lobbyCode,
-      required this.accepted,
       required this.read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -225,8 +209,6 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   @override
   final int lobbyCode;
   @override
-  final bool? accepted;
-  @override
   final bool read;
   @override
   @JsonKey(includeIfNull: false)
@@ -235,7 +217,7 @@ class _$_GameInvitationDto extends _GameInvitationDto {
 
   @override
   String toString() {
-    return 'GameInvitationDto(id: $id, from: $from, lobbyCode: $lobbyCode, accepted: $accepted, read: $read, createdAt: $createdAt)';
+    return 'GameInvitationDto(id: $id, from: $from, lobbyCode: $lobbyCode, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -249,9 +231,6 @@ class _$_GameInvitationDto extends _GameInvitationDto {
             (identical(other.lobbyCode, lobbyCode) ||
                 const DeepCollectionEquality()
                     .equals(other.lobbyCode, lobbyCode)) &&
-            (identical(other.accepted, accepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.accepted, accepted)) &&
             (identical(other.read, read) ||
                 const DeepCollectionEquality().equals(other.read, read)) &&
             (identical(other.createdAt, createdAt) ||
@@ -265,7 +244,6 @@ class _$_GameInvitationDto extends _GameInvitationDto {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(from) ^
       const DeepCollectionEquality().hash(lobbyCode) ^
-      const DeepCollectionEquality().hash(accepted) ^
       const DeepCollectionEquality().hash(read) ^
       const DeepCollectionEquality().hash(createdAt);
 
@@ -286,7 +264,6 @@ abstract class _GameInvitationDto extends GameInvitationDto {
           String? id,
       required String from,
       required int lobbyCode,
-      required bool? accepted,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -303,8 +280,6 @@ abstract class _GameInvitationDto extends GameInvitationDto {
   String get from => throw _privateConstructorUsedError;
   @override
   int get lobbyCode => throw _privateConstructorUsedError;
-  @override
-  bool? get accepted => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
   @override

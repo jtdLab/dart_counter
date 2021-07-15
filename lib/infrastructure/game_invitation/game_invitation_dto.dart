@@ -13,7 +13,6 @@ class GameInvitationDto with _$GameInvitationDto {
     @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
     required String from,
     required int lobbyCode,
-    required bool? accepted,
     required bool read,
     @JsonKey(includeIfNull: false)
     @ServerTimestampConverter()
@@ -27,7 +26,6 @@ class GameInvitationDto with _$GameInvitationDto {
       id: invitation.id.getOrCrash(),
       from: invitation.from.getOrCrash(),
       lobbyCode: invitation.lobbyCode,
-      accepted: invitation.accepted,
       read: invitation.read,
     );
   }
@@ -37,7 +35,6 @@ class GameInvitationDto with _$GameInvitationDto {
       id: UniqueId.fromUniqueString(id!),
       from: Username(from),
       lobbyCode: lobbyCode,
-      accepted: accepted,
       read: read,
     );
   }
@@ -45,7 +42,8 @@ class GameInvitationDto with _$GameInvitationDto {
   factory GameInvitationDto.fromFirestore(DocumentSnapshot doc) {
     // TODO ! operator could make problems
 
-    return GameInvitationDto.fromJson((doc.data() as Map<String, dynamic>?)!).copyWith(id: doc.id);
+    return GameInvitationDto.fromJson((doc.data() as Map<String, dynamic>?)!)
+        .copyWith(id: doc.id);
   }
 
   factory GameInvitationDto.fromJson(Map<String, dynamic> json) =>

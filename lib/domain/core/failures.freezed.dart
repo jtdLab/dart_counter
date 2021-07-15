@@ -28,8 +28,20 @@ class _$ValueFailureTearOff {
     );
   }
 
+  _InValidCharacters<T> invalidCharacters<T>({required T failedValue}) {
+    return _InValidCharacters<T>(
+      failedValue: failedValue,
+    );
+  }
+
   _ShortPassword<T> shortPassword<T>({required T failedValue}) {
     return _ShortPassword<T>(
+      failedValue: failedValue,
+    );
+  }
+
+  _InvalidWhitespaces<T> invalidWhitespaces<T>({required T failedValue}) {
+    return _InvalidWhitespaces<T>(
       failedValue: failedValue,
     );
   }
@@ -53,7 +65,9 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
     required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +75,9 @@ mixin _$ValueFailure<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
     TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
     required TResult orElse(),
   }) =>
@@ -70,7 +86,9 @@ mixin _$ValueFailure<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
     required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,7 +96,9 @@ mixin _$ValueFailure<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
     TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
     required TResult orElse(),
   }) =>
@@ -189,7 +209,9 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
     required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
   }) {
     return invalidEmail(failedValue);
@@ -200,7 +222,9 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
     TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
     required TResult orElse(),
   }) {
@@ -215,7 +239,9 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
     required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return invalidEmail(this);
@@ -226,7 +252,9 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
     TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
     required TResult orElse(),
   }) {
@@ -318,7 +346,9 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
     required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
   }) {
     return shortUsername(failedValue);
@@ -329,7 +359,9 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
     TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
     required TResult orElse(),
   }) {
@@ -344,7 +376,9 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
     required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return shortUsername(this);
@@ -355,7 +389,9 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
     TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
     required TResult orElse(),
   }) {
@@ -374,6 +410,145 @@ abstract class _ShortUsername<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$ShortUsernameCopyWith<T, _ShortUsername<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$InValidCharactersCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$InValidCharactersCopyWith(_InValidCharacters<T> value,
+          $Res Function(_InValidCharacters<T>) then) =
+      __$InValidCharactersCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$InValidCharactersCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$InValidCharactersCopyWith<T, $Res> {
+  __$InValidCharactersCopyWithImpl(
+      _InValidCharacters<T> _value, $Res Function(_InValidCharacters<T>) _then)
+      : super(_value, (v) => _then(v as _InValidCharacters<T>));
+
+  @override
+  _InValidCharacters<T> get _value => super._value as _InValidCharacters<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_InValidCharacters<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InValidCharacters<T> implements _InValidCharacters<T> {
+  const _$_InValidCharacters({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidCharacters(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _InValidCharacters<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  _$InValidCharactersCopyWith<T, _InValidCharacters<T>> get copyWith =>
+      __$InValidCharactersCopyWithImpl<T, _InValidCharacters<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
+    required TResult Function(T failedValue, int max) listTooLong,
+  }) {
+    return invalidCharacters(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+    required TResult orElse(),
+  }) {
+    if (invalidCharacters != null) {
+      return invalidCharacters(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
+    required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
+    required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
+    required TResult Function(_ListTooLong<T> value) listTooLong,
+  }) {
+    return invalidCharacters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+    required TResult orElse(),
+  }) {
+    if (invalidCharacters != null) {
+      return invalidCharacters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InValidCharacters<T> implements ValueFailure<T> {
+  const factory _InValidCharacters({required T failedValue}) =
+      _$_InValidCharacters<T>;
+
+  @override
+  T get failedValue => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$InValidCharactersCopyWith<T, _InValidCharacters<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -447,7 +622,9 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
     required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
   }) {
     return shortPassword(failedValue);
@@ -458,7 +635,9 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
     TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
     required TResult orElse(),
   }) {
@@ -473,7 +652,9 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
     required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return shortPassword(this);
@@ -484,7 +665,9 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
     TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
     required TResult orElse(),
   }) {
@@ -503,6 +686,145 @@ abstract class _ShortPassword<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$ShortPasswordCopyWith<T, _ShortPassword<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$InvalidWhitespacesCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$InvalidWhitespacesCopyWith(_InvalidWhitespaces<T> value,
+          $Res Function(_InvalidWhitespaces<T>) then) =
+      __$InvalidWhitespacesCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$InvalidWhitespacesCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$InvalidWhitespacesCopyWith<T, $Res> {
+  __$InvalidWhitespacesCopyWithImpl(_InvalidWhitespaces<T> _value,
+      $Res Function(_InvalidWhitespaces<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidWhitespaces<T>));
+
+  @override
+  _InvalidWhitespaces<T> get _value => super._value as _InvalidWhitespaces<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_InvalidWhitespaces<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
+  const _$_InvalidWhitespaces({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidWhitespaces(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _InvalidWhitespaces<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  _$InvalidWhitespacesCopyWith<T, _InvalidWhitespaces<T>> get copyWith =>
+      __$InvalidWhitespacesCopyWithImpl<T, _InvalidWhitespaces<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
+    required TResult Function(T failedValue, int max) listTooLong,
+  }) {
+    return invalidWhitespaces(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+    required TResult orElse(),
+  }) {
+    if (invalidWhitespaces != null) {
+      return invalidWhitespaces(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
+    required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
+    required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
+    required TResult Function(_ListTooLong<T> value) listTooLong,
+  }) {
+    return invalidWhitespaces(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+    required TResult orElse(),
+  }) {
+    if (invalidWhitespaces != null) {
+      return invalidWhitespaces(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidWhitespaces<T> implements ValueFailure<T> {
+  const factory _InvalidWhitespaces({required T failedValue}) =
+      _$_InvalidWhitespaces<T>;
+
+  @override
+  T get failedValue => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$InvalidWhitespacesCopyWith<T, _InvalidWhitespaces<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -587,7 +909,9 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) invalidCharacters,
     required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
   }) {
     return listTooLong(failedValue, max);
@@ -598,7 +922,9 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
     TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
     required TResult orElse(),
   }) {
@@ -613,7 +939,9 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
     required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return listTooLong(this);
@@ -624,7 +952,9 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
     TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
     required TResult orElse(),
   }) {

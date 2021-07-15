@@ -38,9 +38,9 @@ class EmailAddress extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory EmailAddress(String input) {
+  factory EmailAddress(String emailString) {
     return EmailAddress._(
-      validateEmailAddress(input),
+      validateEmailAddress(emailString: emailString),
     );
   }
 
@@ -51,9 +51,9 @@ class Username extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory Username(String input) {
+  factory Username(String usernameString) {
     return Username._(
-      validateUsername(input),
+      validateUsername(usernameString: usernameString),
     );
   }
 
@@ -64,9 +64,9 @@ class Password extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory Password(String input) {
+  factory Password(String passwordString) {
     return Password._(
-      validatePassword(input),
+      validatePassword(passwordString: passwordString),
     );
   }
 

@@ -10,7 +10,6 @@ _$_GameInvitationDto _$_$_GameInvitationDtoFromJson(Map<String, dynamic> json) {
   return _$_GameInvitationDto(
     from: json['from'] as String,
     lobbyCode: json['lobbyCode'] as int,
-    accepted: json['accepted'] as bool?,
     read: json['read'] as bool,
     createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
   );
@@ -21,7 +20,6 @@ Map<String, dynamic> _$_$_GameInvitationDtoToJson(
   final val = <String, dynamic>{
     'from': instance.from,
     'lobbyCode': instance.lobbyCode,
-    'accepted': instance.accepted,
     'read': instance.read,
   };
 

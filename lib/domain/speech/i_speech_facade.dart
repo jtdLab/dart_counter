@@ -1,3 +1,3 @@
 abstract class ISpeechFacade {
-  // TODO
+  // TODO define interface
 }

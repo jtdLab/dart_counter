@@ -3,32 +3,44 @@ import 'package:kt_dart/kt.dart';
 
 import 'failures.dart';
 
-Either<ValueFailure<String>, String> validateEmailAddress(String input) {
-  // TODO: better regex for email
+Either<ValueFailure<String>, String> validateEmailAddress({
+  required String emailString,
+}) {
   const emailRegex =
       r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
-  if (RegExp(emailRegex).hasMatch(input)) {
-    return right(input);
+  if (RegExp(emailRegex).hasMatch(emailString)) {
+    return right(emailString);
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(ValueFailure.invalidEmail(failedValue: emailString));
   }
 }
 
-Either<ValueFailure<String>, String> validateUsername(String input) {
-  // TODO: more complex username
-  if (input.length >= 3 && input.length <= 15) {
-    return right(input);
+Either<ValueFailure<String>, String> validateUsername({
+  required String usernameString,
+}) {
+  if (usernameString.length >= 3 && usernameString.length <= 15) {
+    const usernameRegex = r"""^[a-zA-Z0-9_.-]*$""";
+    if (RegExp(usernameRegex).hasMatch(usernameString)) {
+      return right(usernameString);
+    } else {
+      return left(ValueFailure.invalidCharacters(failedValue: usernameString));
+    }
   } else {
-    return left(ValueFailure.shortUsername(failedValue: input));
+    return left(ValueFailure.shortUsername(failedValue: usernameString));
   }
 }
 
-Either<ValueFailure<String>, String> validatePassword(String input) {
-  // TODO: more complex password
-  if (input.length >= 6) {
-    return right(input);
+Either<ValueFailure<String>, String> validatePassword({
+  required String passwordString,
+}) {
+  if (passwordString.length >= 6) {
+    if (!passwordString.contains(' ')) {
+      return right(passwordString);
+    } else {
+      return left(ValueFailure.invalidWhitespaces(failedValue: passwordString));
+    }
   } else {
-    return left(ValueFailure.shortPassword(failedValue: input));
+    return left(ValueFailure.shortPassword(failedValue: passwordString));
   }
 }
 
