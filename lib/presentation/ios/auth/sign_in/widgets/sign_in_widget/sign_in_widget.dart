@@ -7,7 +7,8 @@ import 'widgets/widgets.dart';
 
 // TODO refactor
 class SignInWidget extends StatelessWidget {
-  final PageController pageController;
+  final PageController
+      pageController; // TODO provide it and dont pass it via constructor ?
 
   const SignInWidget({
     Key? key,
@@ -73,7 +74,7 @@ class SignInWidget extends StatelessWidget {
                     showCupertinoModalBottomSheet(
                       expand: true,
                       context: context,
-                      builder: (context) => const ForgotPasswordModal(),
+                      builder: (context) => const ForgotPasswordFlow(),
                     );
                   },
                 ),

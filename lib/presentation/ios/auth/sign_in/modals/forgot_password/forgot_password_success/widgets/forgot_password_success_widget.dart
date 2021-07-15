@@ -2,9 +2,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
-// TODO refactor
-class Success extends StatelessWidget {
-  const Success({
+// TODO refactor build()
+class ForgotPasswordSuccessWidget extends StatelessWidget {
+  const ForgotPasswordSuccessWidget({
     Key? key,
   }) : super(key: key);
 

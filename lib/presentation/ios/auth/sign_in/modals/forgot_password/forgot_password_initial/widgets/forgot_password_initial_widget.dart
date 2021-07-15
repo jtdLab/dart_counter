@@ -1,13 +1,14 @@
 import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
-// TODO refactor
-class Initial extends StatelessWidget {
-  const Initial({Key? key}) : super(key: key);
+// TODO refactor build()
+class ForgotPasswordInitialWidget extends StatelessWidget {
+  const ForgotPasswordInitialWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class Initial extends StatelessWidget {
         Text(
           LocaleKeys.forgotPassword.tr().toUpperCase(),
         ),
+
         const Spacer(
           flex: 8,
         ),

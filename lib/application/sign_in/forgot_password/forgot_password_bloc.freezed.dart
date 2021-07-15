@@ -284,20 +284,17 @@ abstract class ConfirmPressed implements ForgotPasswordEvent {
 class _$ForgotPasswordStateTearOff {
   const _$ForgotPasswordStateTearOff();
 
-  InitialState initial(
-      {required EmailAddress email, required bool isSubmitting}) {
-    return InitialState(
+  _ForgotPasswordState call(
+      {required EmailAddress email,
+      required bool isSubmitting,
+      required bool successful,
+      AuthFailure? authFailure}) {
+    return _ForgotPasswordState(
       email: email,
       isSubmitting: isSubmitting,
+      successful: successful,
+      authFailure: authFailure,
     );
-  }
-
-  SuccessState success() {
-    return const SuccessState();
-  }
-
-  FailureState failure() {
-    return const FailureState();
   }
 }
 
@@ -306,35 +303,13 @@ const $ForgotPasswordState = _$ForgotPasswordStateTearOff();
 
 /// @nodoc
 mixin _$ForgotPasswordState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool isSubmitting) initial,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool isSubmitting)? initial,
-    TResult Function()? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(SuccessState value) success,
-    required TResult Function(FailureState value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SuccessState value)? success,
-    TResult Function(FailureState value)? failure,
-    required TResult orElse(),
-  }) =>
+  EmailAddress get email => throw _privateConstructorUsedError;
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get successful => throw _privateConstructorUsedError;
+  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -343,6 +318,13 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
   factory $ForgotPasswordStateCopyWith(
           ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
       _$ForgotPasswordStateCopyWithImpl<$Res>;
+  $Res call(
+      {EmailAddress email,
+      bool isSubmitting,
+      bool successful,
+      AuthFailure? authFailure});
+
+  $AuthFailureCopyWith<$Res>? get authFailure;
 }
 
 /// @nodoc
@@ -353,33 +335,15 @@ class _$ForgotPasswordStateCopyWithImpl<$Res>
   final ForgotPasswordState _value;
   // ignore: unused_field
   final $Res Function(ForgotPasswordState) _then;
-}
-
-/// @nodoc
-abstract class $InitialStateCopyWith<$Res> {
-  factory $InitialStateCopyWith(
-          InitialState value, $Res Function(InitialState) then) =
-      _$InitialStateCopyWithImpl<$Res>;
-  $Res call({EmailAddress email, bool isSubmitting});
-}
-
-/// @nodoc
-class _$InitialStateCopyWithImpl<$Res>
-    extends _$ForgotPasswordStateCopyWithImpl<$Res>
-    implements $InitialStateCopyWith<$Res> {
-  _$InitialStateCopyWithImpl(
-      InitialState _value, $Res Function(InitialState) _then)
-      : super(_value, (v) => _then(v as InitialState));
-
-  @override
-  InitialState get _value => super._value as InitialState;
 
   @override
   $Res call({
     Object? email = freezed,
     Object? isSubmitting = freezed,
+    Object? successful = freezed,
+    Object? authFailure = freezed,
   }) {
-    return _then(InitialState(
+    return _then(_value.copyWith(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -388,284 +352,157 @@ class _$InitialStateCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      successful: successful == freezed
+          ? _value.successful
+          : successful // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authFailure: authFailure == freezed
+          ? _value.authFailure
+          : authFailure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure?,
+    ));
+  }
+
+  @override
+  $AuthFailureCopyWith<$Res>? get authFailure {
+    if (_value.authFailure == null) {
+      return null;
+    }
+
+    return $AuthFailureCopyWith<$Res>(_value.authFailure!, (value) {
+      return _then(_value.copyWith(authFailure: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$ForgotPasswordStateCopyWith<$Res>
+    implements $ForgotPasswordStateCopyWith<$Res> {
+  factory _$ForgotPasswordStateCopyWith(_ForgotPasswordState value,
+          $Res Function(_ForgotPasswordState) then) =
+      __$ForgotPasswordStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {EmailAddress email,
+      bool isSubmitting,
+      bool successful,
+      AuthFailure? authFailure});
+
+  @override
+  $AuthFailureCopyWith<$Res>? get authFailure;
+}
+
+/// @nodoc
+class __$ForgotPasswordStateCopyWithImpl<$Res>
+    extends _$ForgotPasswordStateCopyWithImpl<$Res>
+    implements _$ForgotPasswordStateCopyWith<$Res> {
+  __$ForgotPasswordStateCopyWithImpl(
+      _ForgotPasswordState _value, $Res Function(_ForgotPasswordState) _then)
+      : super(_value, (v) => _then(v as _ForgotPasswordState));
+
+  @override
+  _ForgotPasswordState get _value => super._value as _ForgotPasswordState;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? isSubmitting = freezed,
+    Object? successful = freezed,
+    Object? authFailure = freezed,
+  }) {
+    return _then(_ForgotPasswordState(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailAddress,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      successful: successful == freezed
+          ? _value.successful
+          : successful // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authFailure: authFailure == freezed
+          ? _value.authFailure
+          : authFailure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$InitialState implements InitialState {
-  const _$InitialState({required this.email, required this.isSubmitting});
+class _$_ForgotPasswordState implements _ForgotPasswordState {
+  const _$_ForgotPasswordState(
+      {required this.email,
+      required this.isSubmitting,
+      required this.successful,
+      this.authFailure});
 
   @override
   final EmailAddress email;
   @override
   final bool isSubmitting;
+  @override
+  final bool successful;
+  @override
+  final AuthFailure? authFailure;
 
   @override
   String toString() {
-    return 'ForgotPasswordState.initial(email: $email, isSubmitting: $isSubmitting)';
+    return 'ForgotPasswordState(email: $email, isSubmitting: $isSubmitting, successful: $successful, authFailure: $authFailure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InitialState &&
+        (other is _ForgotPasswordState &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)));
+                    .equals(other.isSubmitting, isSubmitting)) &&
+            (identical(other.successful, successful) ||
+                const DeepCollectionEquality()
+                    .equals(other.successful, successful)) &&
+            (identical(other.authFailure, authFailure) ||
+                const DeepCollectionEquality()
+                    .equals(other.authFailure, authFailure)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(isSubmitting);
+      const DeepCollectionEquality().hash(isSubmitting) ^
+      const DeepCollectionEquality().hash(successful) ^
+      const DeepCollectionEquality().hash(authFailure);
 
   @JsonKey(ignore: true)
   @override
-  $InitialStateCopyWith<InitialState> get copyWith =>
-      _$InitialStateCopyWithImpl<InitialState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool isSubmitting) initial,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) {
-    return initial(email, isSubmitting);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool isSubmitting)? initial,
-    TResult Function()? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(email, isSubmitting);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(SuccessState value) success,
-    required TResult Function(FailureState value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SuccessState value)? success,
-    TResult Function(FailureState value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith =>
+      __$ForgotPasswordStateCopyWithImpl<_ForgotPasswordState>(
+          this, _$identity);
 }
 
-abstract class InitialState implements ForgotPasswordState {
-  const factory InitialState(
+abstract class _ForgotPasswordState implements ForgotPasswordState {
+  const factory _ForgotPasswordState(
       {required EmailAddress email,
-      required bool isSubmitting}) = _$InitialState;
+      required bool isSubmitting,
+      required bool successful,
+      AuthFailure? authFailure}) = _$_ForgotPasswordState;
 
+  @override
   EmailAddress get email => throw _privateConstructorUsedError;
+  @override
   bool get isSubmitting => throw _privateConstructorUsedError;
+  @override
+  bool get successful => throw _privateConstructorUsedError;
+  @override
+  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $InitialStateCopyWith<InitialState> get copyWith =>
+  _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SuccessStateCopyWith<$Res> {
-  factory $SuccessStateCopyWith(
-          SuccessState value, $Res Function(SuccessState) then) =
-      _$SuccessStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SuccessStateCopyWithImpl<$Res>
-    extends _$ForgotPasswordStateCopyWithImpl<$Res>
-    implements $SuccessStateCopyWith<$Res> {
-  _$SuccessStateCopyWithImpl(
-      SuccessState _value, $Res Function(SuccessState) _then)
-      : super(_value, (v) => _then(v as SuccessState));
-
-  @override
-  SuccessState get _value => super._value as SuccessState;
-}
-
-/// @nodoc
-
-class _$SuccessState implements SuccessState {
-  const _$SuccessState();
-
-  @override
-  String toString() {
-    return 'ForgotPasswordState.success()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SuccessState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool isSubmitting) initial,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool isSubmitting)? initial,
-    TResult Function()? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(SuccessState value) success,
-    required TResult Function(FailureState value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SuccessState value)? success,
-    TResult Function(FailureState value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SuccessState implements ForgotPasswordState {
-  const factory SuccessState() = _$SuccessState;
-}
-
-/// @nodoc
-abstract class $FailureStateCopyWith<$Res> {
-  factory $FailureStateCopyWith(
-          FailureState value, $Res Function(FailureState) then) =
-      _$FailureStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$FailureStateCopyWithImpl<$Res>
-    extends _$ForgotPasswordStateCopyWithImpl<$Res>
-    implements $FailureStateCopyWith<$Res> {
-  _$FailureStateCopyWithImpl(
-      FailureState _value, $Res Function(FailureState) _then)
-      : super(_value, (v) => _then(v as FailureState));
-
-  @override
-  FailureState get _value => super._value as FailureState;
-}
-
-/// @nodoc
-
-class _$FailureState implements FailureState {
-  const _$FailureState();
-
-  @override
-  String toString() {
-    return 'ForgotPasswordState.failure()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FailureState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool isSubmitting) initial,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) {
-    return failure();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool isSubmitting)? initial,
-    TResult Function()? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(SuccessState value) success,
-    required TResult Function(FailureState value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SuccessState value)? success,
-    TResult Function(FailureState value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FailureState implements ForgotPasswordState {
-  const factory FailureState() = _$FailureState;
 }

@@ -44,6 +44,10 @@ class EmailAddress extends ValueObject<String> {
     );
   }
 
+  factory EmailAddress.empty() {
+    return EmailAddress('');
+  }
+
   const EmailAddress._(this.value);
 }
 

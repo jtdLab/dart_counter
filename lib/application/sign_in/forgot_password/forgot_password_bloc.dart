@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,10 +20,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
   ForgotPasswordBloc(
     this._authFacade,
   ) : super(
-          ForgotPasswordState.initial(
-            email: EmailAddress(''), // TODO create empty constructor for email
-            isSubmitting: false,
-          ),
+          ForgotPasswordState.initial(),
         );
 
   @override
@@ -38,23 +36,28 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
   Stream<ForgotPasswordState> _mapEmailChangedToState(
     EmailChanged event,
   ) async* {
-    yield (state as InitialState).copyWith(
-      // TODO remove typcasting
-      email: EmailAddress(event.emailString),
-    );
+    yield state.copyWith(email: EmailAddress(event.emailString));
   }
 
   Stream<ForgotPasswordState> _mapConfirmPressedToState() async* {
-    final EmailAddress emailAddress =
-        (state as InitialState).email; // TODO remove type casting
-    yield (state as InitialState).copyWith(isSubmitting: true);
-    final failureOrUnit = await _authFacade.resetPassword(
-      emailAddress: emailAddress,
-    );
-    // TODO error when first invalid email and then 2nd try valid email the bloc crashes
-    yield failureOrUnit.fold(
-      (failure) => const ForgotPasswordState.failure(),
-      (_) => const ForgotPasswordState.success(),
+    AuthFailure? authFailure;
+    final isEmailValid = state.email.isValid();
+    if (isEmailValid) {
+      yield state.copyWith(isSubmitting: true);
+      authFailure = (await _authFacade.resetPassword(
+        emailAddress: state.email,
+      ))
+          .fold(
+        (failure) => failure,
+        (_) => null,
+      );
+    } else {
+      authFailure = const AuthFailure.invalidEmail();
+    }
+    yield state.copyWith(
+      isSubmitting: false,
+      successful: authFailure == null,
+      authFailure: authFailure,
     );
   }
 }
