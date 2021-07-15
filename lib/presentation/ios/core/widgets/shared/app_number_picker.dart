@@ -58,13 +58,13 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
                 AppIconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onIncrementPressed,
-                  icon: Image.asset(AppImages.chevron_up_small_new),
+                  icon: Image.asset(AppImages.chevronUpSmallNew),
                 ),
                 const AppSpacer.small(),
                 AppIconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onDecrementPressed,
-                  icon: Image.asset(AppImages.chevron_down_small_new),
+                  icon: Image.asset(AppImages.chevronDownSmallNew),
                 ),
               ],
             ),

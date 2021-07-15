@@ -48,7 +48,7 @@ class OfflinePlayerItem extends StatelessWidget {
                   children: [
                     const AppSpacer.normal(orientation: Orientation.horizontal),
                     const AppRoundedImage.normal(
-                      imageName: AppImages.photo_placeholder_new,
+                      imageName: AppImages.photoPlaceholderNew,
                     ),
                     const AppSpacer.normal(orientation: Orientation.horizontal),
                     Expanded(
@@ -75,7 +75,7 @@ class OfflinePlayerItem extends StatelessWidget {
                         );
                       },
                       icon: Image.asset(
-                        AppImages.settings_new,
+                        AppImages.settingsNew,
                       ),
                     ),
                     const AppSpacer.normal(orientation: Orientation.horizontal),

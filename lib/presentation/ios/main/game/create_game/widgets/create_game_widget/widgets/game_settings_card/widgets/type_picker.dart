@@ -22,7 +22,7 @@ class TypePicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.type == Type.legs
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.typeUpdated(
@@ -35,7 +35,7 @@ class TypePicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.type == Type.sets
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.typeUpdated(

@@ -14,7 +14,7 @@ class CancelButton extends StatelessWidget {
     return AppNavigationBarButton(
       onPressed: onPressed,
       child: Image.asset(
-        AppImages.x_mark_black_new,
+        AppImages.xMarkBlackNew,
       ),
     );
   }

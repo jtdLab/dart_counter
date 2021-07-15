@@ -13,9 +13,9 @@ class TrendDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (trend == Trend.up) {
-      return Image.asset(AppImages.trend_up_new);
+      return Image.asset(AppImages.trendUpNew);
     } else if (trend == Trend.down) {
-      return Image.asset(AppImages.trend_down_new);
+      return Image.asset(AppImages.trendDownNew);
     } else {
       return Container();
     }

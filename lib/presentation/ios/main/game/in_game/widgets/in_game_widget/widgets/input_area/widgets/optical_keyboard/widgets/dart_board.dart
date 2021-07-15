@@ -33,7 +33,7 @@ class _DartBoardState extends State<DartBoard> {
         ),
         child: GestureDetector(
           onTapUp: (details) {
-            var tapPosition = Offset(
+            final tapPosition = Offset(
               details.localPosition.dx,
               details.localPosition.dy,
             );
@@ -92,7 +92,7 @@ class DartBoardPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final orangeFilled = Paint()
-      ..color = AppColors.orange_new
+      ..color = AppColors.orangeNew
       ..style = PaintingStyle.fill;
 
     final grayFilled = Paint()

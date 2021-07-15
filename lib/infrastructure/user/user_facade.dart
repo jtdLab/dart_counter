@@ -170,7 +170,7 @@ class UserFacade implements IUserFacade {
   }) async {
     throw UnimplementedError();
     /**
-  * 
+  *  // TODO
     try {
       final usersCollection = await _firestore.usersCollection();
       final querySnapshot = await usersCollection

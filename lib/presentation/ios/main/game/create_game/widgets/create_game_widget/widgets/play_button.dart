@@ -14,7 +14,7 @@ class PlayButton extends StatelessWidget {
       onPressed: () => context
           .read<CreateGameBloc>()
           .add(const CreateGameEvent.gameStarted()),
-      icon: Image.asset(AppImages.target_new),
+      icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.play.tr().toUpperCase(),
     );
   }

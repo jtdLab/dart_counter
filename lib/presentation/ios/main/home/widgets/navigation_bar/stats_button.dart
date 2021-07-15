@@ -11,7 +11,7 @@ class StatsButton extends StatelessWidget {
     return AppNavigationBarButton(
       onPressed: () => context.router.push(const ProfilePageRoute()),
       child: Image.asset(
-        AppImages.stats_new,
+        AppImages.statsNew,
       ),
     );
   }

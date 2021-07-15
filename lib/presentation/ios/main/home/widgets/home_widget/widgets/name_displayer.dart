@@ -16,7 +16,7 @@ class NameDisplayer extends StatelessWidget {
         return Container(
           height: size40(context),
           decoration: BoxDecoration(
-            color: AppColors.blue_new,
+            color: AppColors.blueNew,
             border: Border.all(
               width: border4(context),
             ),

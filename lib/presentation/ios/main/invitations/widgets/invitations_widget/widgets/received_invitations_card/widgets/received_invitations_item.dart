@@ -18,7 +18,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const AppRoundedImage.normal(
-            imageName: AppImages.photo_placeholder_new,
+            imageName: AppImages.photoPlaceholderNew,
           ),
           Text(
             name.toUpperCase(),
@@ -27,7 +27,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
             children: [
               AppIconButton(
                 padding: EdgeInsets.zero,
-                icon: Image.asset(AppImages.check_mark_dark_new),
+                icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () {}, // TODO
               ),
               const AppSpacer.normal(
@@ -35,7 +35,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
               ),
               AppIconButton(
                 padding: EdgeInsets.zero,
-                icon: Image.asset(AppImages.x_mark_filled_new),
+                icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () {}, // TODO
               ),
             ],

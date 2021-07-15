@@ -168,7 +168,7 @@ class DetailedKeyBoard extends StatelessWidget {
                 flex: 2,
                 child: KeyBoardButton(
                   onPressed: () {},
-                  child: Image.asset(AppImages.chevron_back_new),
+                  child: Image.asset(AppImages.chevronBackNew),
                 ),
               ),
             ],

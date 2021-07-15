@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
                   child: Container(
                     height: size40(context),
                     decoration: BoxDecoration(
-                      color: AppColors.orange_new,
+                      color: AppColors.orangeNew,
                       border: Border.all(
                         width: border4(context),
                       ),
@@ -48,7 +48,7 @@ class Header extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: AppRoundedImage.large(
-                  imageName: AppImages.photo_placeholder_new,
+                  imageName: AppImages.photoPlaceholderNew,
                   border: Border.all(
                     width: border4(context),
                   ),

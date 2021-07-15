@@ -11,7 +11,6 @@ import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'domain/auth/i_auth_facade.dart';
 import 'presentation/core/app_widget/app_widget.dart';
 
 Future<void> main() async {
@@ -28,18 +27,6 @@ Future<void> main() async {
   FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-
-  /**
-   * FirebaseFirestore.instance.settings = Settings(
-    persistenceEnabled: true,
-  ); 
-  
-  getIt<IAuthFacade>().signOut();
-  */
-
-  //final ref = FirebaseStorage.instance.ref('sefssd');
-  //await ref.putFile(File('/Users/jonas/Desktop/dart_counter/assets/images/png/accept_new.png'));
-  //print(await ref.getDownloadURL());
 
   runApp(
     AppWidget(),

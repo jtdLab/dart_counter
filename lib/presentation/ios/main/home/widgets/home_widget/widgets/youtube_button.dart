@@ -13,7 +13,7 @@ class YoutubeButton extends StatelessWidget {
           ? await launch(
               'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
           : throw 'Could not launch https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ',
-      child: Image.asset(AppImages.google_new),
+      child: Image.asset(AppImages.googleNew),
     );
   }
 }

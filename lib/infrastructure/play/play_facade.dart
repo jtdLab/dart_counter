@@ -12,7 +12,7 @@ import 'package:injectable/injectable.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayFacade)
 class PlayFacade implements IPlayFacade {
-  dart.Game? _game;
+  late dart.Game? _game; // TODO
 
   bool? _online;
 

@@ -16,7 +16,7 @@ class CheckBox extends StatelessWidget {
     if (context.locale == language) {
       return AppIconButton(
         icon: Image.asset(
-          AppImages.check_mark_quad_new,
+          AppImages.checkMarkQuadNew,
         ),
       );
     } else {
@@ -29,7 +29,7 @@ class CheckBox extends StatelessWidget {
           context.read<SettingsBloc>().add(const SettingsEvent.localeChanged());
         },
         icon: Image.asset(
-          AppImages.unchecked_new,
+          AppImages.uncheckedNew,
         ),
       );
     }

@@ -24,7 +24,7 @@ class UndoButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Image.asset(AppImages.chevron_red_back_new),
+          child: Image.asset(AppImages.chevronRedBackNew),
         ),
       ),
     );

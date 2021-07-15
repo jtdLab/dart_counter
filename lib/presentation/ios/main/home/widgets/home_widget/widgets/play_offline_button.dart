@@ -12,7 +12,7 @@ class PlayOfflineButton extends StatelessWidget {
           .add(const HomeEvent.createOfflineGamePressed()),
       color: AppColors.white,
       fontColor: AppColors.black,
-      icon: Image.asset(AppImages.robot_new),
+      icon: Image.asset(AppImages.robotNew),
       text: '${LocaleKeys.play.tr()} ${LocaleKeys.offline.tr()}'.toUpperCase(),
     );
   }

@@ -11,7 +11,7 @@ class SettingsButton extends StatelessWidget {
     return AppNavigationBarButton(
       onPressed: () => context.router.push(const SettingsPageRoute()),
       child: Image.asset(
-        AppImages.settings_new,
+        AppImages.settingsNew,
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
@@ -10,9 +9,9 @@ import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'key_board_bloc.freezed.dart';
 part 'key_board_event.dart';
 part 'key_board_state.dart';
-part 'key_board_bloc.freezed.dart';
 
 @lazySingleton
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState>

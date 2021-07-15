@@ -26,7 +26,7 @@ class AccountItem extends StatelessWidget {
           ),
           AppIconButton(
             onPressed: onPressed,
-            icon: Image.asset(AppImages.settings_new),
+            icon: Image.asset(AppImages.settingsNew),
           ),
         ],
       ),

@@ -23,7 +23,7 @@ class InvitationButton extends StatelessWidget {
               context.router.push(const InvitationsPageRoute());
             },
             child: Image.asset(
-              AppImages.message_new,
+              AppImages.messageNew,
               fit: BoxFit.fitHeight,
             ),
           );
@@ -47,7 +47,7 @@ class InvitationButton extends StatelessWidget {
                 context.router.push(const InvitationsPageRoute());
               },
               child: Image.asset(
-                AppImages.message_new,
+                AppImages.messageNew,
                 fit: BoxFit.fitHeight,
               ),
             ),

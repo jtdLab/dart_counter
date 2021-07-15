@@ -2,60 +2,60 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
-  static const info_dark_new = 'assets/images/png/info_dark_new.png';
+  static const infoDarkNew = 'assets/images/png/info_dark_new.png';
   static const micro = 'assets/images/png/micro.png';
 
-  static const clock_yellow_new = 'assets/images/png/clock_yellow_new.png';
-  static const x_mark_black_new = 'assets/images/png/x_mark_black_new.png';
-  static const check_mark_light_unchecked_new =
+  static const clockYellowNew = 'assets/images/png/clock_yellow_new.png';
+  static const xMarkBlackNew = 'assets/images/png/x_mark_black_new.png';
+  static const checkMarkLightUncheckedNew =
       'assets/images/png/check_mark_light_unchecked_new.png';
-  static const check_mark_light_new =
+  static const checkMarkLightNew =
       'assets/images/png/check_mark_light_new.png';
-  static const chevron_green_forward_new =
+  static const chevronGreenForwardNew =
       'assets/images/png/chevron_green_forward_new.png';
-  static const chevron_red_back_new =
+  static const chevronRedBackNew =
       'assets/images/png/chevron_red_back_new.png';
 
-  static const chevron_down_small_new =
+  static const chevronDownSmallNew =
       'assets/images/png/chevron_down_small_new.png';
-  static const chevron_up_small_new =
+  static const chevronUpSmallNew =
       'assets/images/png/chevron_up_small_new.png';
-  static const x_mark_filled_new = 'assets/images/png/x_mark_filled_new.png';
-  static const check_mark_dark_new =
+  static const xMarkFilledNew = 'assets/images/png/x_mark_filled_new.png';
+  static const checkMarkDarkNew =
       'assets/images/png/check_mark_dark_new.png';
-  static const accept_new = 'assets/images/png/accept_new.png';
-  static const add_new = 'assets/images/png/add_new.png';
-  static const chevron_forward_new =
+  static const acceptNew = 'assets/images/png/accept_new.png';
+  static const addNew = 'assets/images/png/add_new.png';
+  static const chevronForwardNew =
       'assets/images/png/chevron_forward_new.png';
-  static const chevron_yellow_back_new =
+  static const chevronYellowBackNew =
       'assets/images/png/chevron_yellow_back_new.png';
-  static const chevron_yellow_forward_new =
+  static const chevronYellowForwardNew =
       'assets/images/png/chevron_yellow_forward_new.png';
-  static const clock_new = 'assets/images/png/clock_new.png';
-  static const decline_new = 'assets/images/png/decline_new.png';
-  static const message_new = 'assets/images/png/message_new.png';
-  static const photo_placeholder_new =
+  static const clockNew = 'assets/images/png/clock_new.png';
+  static const declineNew = 'assets/images/png/decline_new.png';
+  static const messageNew = 'assets/images/png/message_new.png';
+  static const photoPlaceholderNew =
       'assets/images/png/photo_placeholder_new.png';
-  static const player_new = 'assets/images/png/player_new.png';
-  static const star_new = 'assets/images/png/star_new.png';
-  static const stats_new = 'assets/images/png/stats_new.png';
-  static const target_new = 'assets/images/png/target_new.png';
-  static const trend_down_new = 'assets/images/png/trend_down_new.png';
-  static const trend_up_new = 'assets/images/png/trend_up_new.png';
-  static const check_mark_quad_new =
+  static const playerNew = 'assets/images/png/player_new.png';
+  static const starNew = 'assets/images/png/star_new.png';
+  static const statsNew = 'assets/images/png/stats_new.png';
+  static const targetNew = 'assets/images/png/target_new.png';
+  static const trendDownNew = 'assets/images/png/trend_down_new.png';
+  static const trendUpNew = 'assets/images/png/trend_up_new.png';
+  static const checkMarkQuadNew =
       'assets/images/png/check_mark_quad_new.png';
-  static const unchecked_new = 'assets/images/png/unchecked_new.png';
-  static const players_new = 'assets/images/png/players_new.png';
-  static const robot_new = 'assets/images/png/robot_new.png';
+  static const uncheckedNew = 'assets/images/png/unchecked_new.png';
+  static const playersNew = 'assets/images/png/players_new.png';
+  static const robotNew = 'assets/images/png/robot_new.png';
 
-  static const fb_new = 'assets/images/png/fb_new.png';
-  static const ig_new = 'assets/images/png/ig_new.png';
-  static const google_new = 'assets/images/png/google_new.png';
-  static const checkmark_new = 'assets/images/png/checkmark_new.png';
-  static const chevron_back_new = 'assets/images/png/chevron_back_new.png';
-  static const lupe_new = 'assets/images/png/lupe_new.png';
-  static const settings_new = 'assets/images/png/settings_new.png';
-  static const x_mark = 'assets/images/png/x_mark.png';
+  static const fbNew = 'assets/images/png/fb_new.png';
+  static const igNew = 'assets/images/png/ig_new.png';
+  static const googleNew = 'assets/images/png/google_new.png';
+  static const checkmarkNew = 'assets/images/png/checkmark_new.png';
+  static const chevronBackNew = 'assets/images/png/chevron_back_new.png';
+  static const lupeNew = 'assets/images/png/lupe_new.png';
+  static const settingsNew = 'assets/images/png/settings_new.png';
+  static const xMark = 'assets/images/png/x_mark.png';
   static const de = 'assets/images/png/de.png';
   static const uk = 'assets/images/png/uk.png';
 
@@ -93,8 +93,8 @@ abstract class AppColors {
   static const Color white = Color.fromRGBO(255, 255, 255, 1.0);
   static const Color yellow = Color.fromRGBO(245, 189, 68, 1.0);
 
-  static const Color orange_new = Color.fromRGBO(248, 173, 47, 1.0);
-  static const Color blue_new = Color.fromRGBO(28, 151, 212, 1.0);
+  static const Color orangeNew = Color.fromRGBO(248, 173, 47, 1.0);
+  static const Color blueNew = Color.fromRGBO(28, 151, 212, 1.0);
 }
 
 abstract class AppFontSizes {

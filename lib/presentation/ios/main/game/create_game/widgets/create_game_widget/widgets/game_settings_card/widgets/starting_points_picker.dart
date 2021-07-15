@@ -20,7 +20,7 @@ class StartingPointsPicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.startingPoints == 301
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.startingPointsUpdated(
@@ -33,7 +33,7 @@ class StartingPointsPicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.startingPoints == 501
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.startingPointsUpdated(
@@ -46,7 +46,7 @@ class StartingPointsPicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.startingPoints == 701
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.startingPointsUpdated(

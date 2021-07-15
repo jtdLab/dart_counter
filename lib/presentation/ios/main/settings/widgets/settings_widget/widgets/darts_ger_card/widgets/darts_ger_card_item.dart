@@ -31,7 +31,7 @@ class DartsGerCardItem extends StatelessWidget {
           ),
           AppIconButton(
             onPressed: onPressed,
-            icon: Image.asset(AppImages.info_dark_new),
+            icon: Image.asset(AppImages.infoDarkNew),
           ),
         ],
       ),

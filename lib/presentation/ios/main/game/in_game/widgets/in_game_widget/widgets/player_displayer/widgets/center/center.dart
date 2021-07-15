@@ -18,16 +18,16 @@ class Center extends StatelessWidget {
               .read<PlayerDisplayerBloc>()
               .add(const PlayerDisplayerEvent.previousPlayerPressed()),
           padding: EdgeInsets.zero,
-          icon: Image.asset(AppImages.chevron_yellow_back_new),
+          icon: Image.asset(AppImages.chevronYellowBackNew),
         ),
         SizedBox(
           width: size150(context),
           height: size150(context),
           child: AppColumn(
             spacing: size6(context),
-            children: [
+            children: const [
               LegsSetsDisplayer(),
-              const Expanded(
+              Expanded(
                 child: PointsLeftLastThrowDisplayer(),
               ),
               FinishRecommendationDisplayer(),
@@ -39,7 +39,7 @@ class Center extends StatelessWidget {
               .read<PlayerDisplayerBloc>()
               .add(const PlayerDisplayerEvent.nextPlayerPressed()),
           padding: EdgeInsets.zero,
-          icon: Image.asset(AppImages.chevron_yellow_forward_new),
+          icon: Image.asset(AppImages.chevronYellowForwardNew),
         ),
       ],
     );

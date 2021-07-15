@@ -46,7 +46,7 @@ class OnlinePlayerItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const AppRoundedImage.normal(
-                      imageName: AppImages.photo_placeholder_new,
+                      imageName: AppImages.photoPlaceholderNew,
                     ),
                     Text(
                       player.name.toUpperCase(),
@@ -60,7 +60,7 @@ class OnlinePlayerItem extends StatelessWidget {
                         );
                       },
                       icon: Image.asset(
-                        AppImages.settings_new,
+                        AppImages.settingsNew,
                       ),
                     ),
                   ],

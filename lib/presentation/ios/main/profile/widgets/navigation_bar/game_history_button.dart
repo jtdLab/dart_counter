@@ -11,7 +11,7 @@ class GameHistoryButton extends StatelessWidget {
     return AppNavigationBarButton(
       onPressed: () => context.router.push(const GameHistoryFlowRoute()),
       child: Image.asset(
-        AppImages.clock_new,
+        AppImages.clockNew,
       ),
     );
   }

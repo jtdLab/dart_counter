@@ -23,7 +23,7 @@ class FriendButton extends StatelessWidget {
               context.router.push(const FriendsPageRoute());
             },
             child: Image.asset(
-              AppImages.player_new,
+              AppImages.playerNew,
               fit: BoxFit.fitHeight,
             ),
           );
@@ -45,7 +45,7 @@ class FriendButton extends StatelessWidget {
                 context.router.push(const FriendsPageRoute());
               },
               child: Image.asset(
-                AppImages.player_new,
+                AppImages.playerNew,
                 fit: BoxFit.fitHeight,
               ),
             ),

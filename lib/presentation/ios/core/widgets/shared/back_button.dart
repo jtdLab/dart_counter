@@ -11,7 +11,7 @@ class BackButton extends StatelessWidget {
     return AppNavigationBarButton(
       onPressed: () => context.router.pop(),
       child: Image.asset(
-        AppImages.chevron_back_new,
+        AppImages.chevronBackNew,
       ),
     );
   }

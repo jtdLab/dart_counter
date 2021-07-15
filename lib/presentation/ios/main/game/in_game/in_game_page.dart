@@ -53,7 +53,7 @@ class InGamePage extends StatelessWidget {
               ),
               trailing: const StatsButton(),
             ),
-            child: InGameWidget(),
+            child: const InGameWidget(),
           );
         },
       ),

@@ -15,7 +15,7 @@ class FriendsCardItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const AppRoundedImage.normal(
-            imageName: AppImages.photo_placeholder_new,
+            imageName: AppImages.photoPlaceholderNew,
           ),
           Text(
             'Anis Abi'.toUpperCase(),
@@ -24,7 +24,7 @@ class FriendsCardItem extends StatelessWidget {
             padding: EdgeInsets.zero,
             onPressed: () {},
             icon: Image.asset(
-              AppImages.settings_new,
+              AppImages.settingsNew,
             ),
           ),
         ],

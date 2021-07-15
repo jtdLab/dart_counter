@@ -14,11 +14,11 @@ class PlayerDisplayer extends StatelessWidget {
       create: (context) => getIt<PlayerDisplayerBloc>(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+        children: const [
           Header(),
-          const AppSpacer.normal(),
+          AppSpacer.normal(),
           Center(),
-          const AppSpacer.normal(),
+          AppSpacer.normal(),
           Footer(),
         ],
       ),

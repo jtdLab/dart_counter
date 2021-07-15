@@ -125,7 +125,7 @@ class KeyBoard extends StatelessWidget {
                 onPressed: () => context
                     .read<KeyBoardBloc>()
                     .add(const KeyBoardEvent.erasePressed()),
-                child: Image.asset(AppImages.chevron_back_new),
+                child: Image.asset(AppImages.chevronBackNew),
               ),
             ),
           ],

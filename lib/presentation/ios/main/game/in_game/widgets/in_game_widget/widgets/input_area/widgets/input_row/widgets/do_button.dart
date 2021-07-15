@@ -24,7 +24,7 @@ class DoButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Image.asset(AppImages.chevron_green_forward_new),
+          child: Image.asset(AppImages.chevronGreenForwardNew),
         ),
       ),
     );

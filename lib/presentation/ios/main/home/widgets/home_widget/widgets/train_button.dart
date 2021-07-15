@@ -7,7 +7,7 @@ class TrainButton extends StatelessWidget {
     return AppActionButton.large(
       onPressed: () {}, // TODO
       color: AppColors.black,
-      icon: Image.asset(AppImages.target_new),
+      icon: Image.asset(AppImages.targetNew),
       text: 'Practice room'.toUpperCase(), // TODO
     );
   }

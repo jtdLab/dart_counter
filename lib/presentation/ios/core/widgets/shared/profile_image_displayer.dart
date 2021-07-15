@@ -19,7 +19,7 @@ class ProfileImageDisplayer extends StatelessWidget {
       );
     } else {
       return const AppRoundedImage.extraLarge(
-        imageName: AppImages.photo_placeholder_new,
+        imageName: AppImages.photoPlaceholderNew,
       );
     }
   }

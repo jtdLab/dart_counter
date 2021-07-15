@@ -15,7 +15,7 @@ class FinishRecommendationDisplayer extends StatelessWidget {
 
         return Container(
           height: 25,
-          color: AppColors.orange_new,
+          color: AppColors.orangeNew,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

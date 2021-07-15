@@ -30,7 +30,7 @@ class DartBotItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const AppRoundedImage.normal(
-                  imageName: AppImages.robot_new,
+                  imageName: AppImages.robotNew,
                 ),
                 Text(
                   LocaleKeys.dartBot.tr().toUpperCase(),
@@ -44,7 +44,7 @@ class DartBotItem extends StatelessWidget {
                     );
                   },
                   icon: Image.asset(
-                    AppImages.settings_new,
+                    AppImages.settingsNew,
                   ),
                 ),
               ],

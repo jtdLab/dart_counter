@@ -17,12 +17,12 @@ class SentInvitationsItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const AppRoundedImage.normal(
-            imageName: AppImages.photo_placeholder_new,
+            imageName: AppImages.photoPlaceholderNew,
           ),
           Text(
             name.toUpperCase(),
           ),
-          Image.asset(AppImages.clock_yellow_new),
+          Image.asset(AppImages.clockYellowNew),
         ],
       ),
     );

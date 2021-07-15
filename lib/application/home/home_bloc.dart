@@ -72,7 +72,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       add(HomeEvent.gameReceived(game: game));
     });
 
-    // TDOD _unreadInvitationsSubscription ODER _unreadFriendRequestsSubscription
+    // TODO _unreadInvitationsSubscription ODER _unreadFriendRequestsSubscription
   }
 
   StreamSubscription<User>? _userSubscription;

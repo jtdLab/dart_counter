@@ -22,7 +22,7 @@ class ModePicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.mode == Mode.firstTo
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.modeUpdated(
@@ -35,7 +35,7 @@ class ModePicker extends StatelessWidget {
             Expanded(
               child: AppActionButton.normal(
                 color: game.mode == Mode.bestOf
-                    ? AppColors.orange_new
+                    ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.modeUpdated(

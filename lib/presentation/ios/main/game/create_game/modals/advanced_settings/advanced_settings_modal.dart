@@ -46,7 +46,7 @@ class AdvancedSettingsModal extends StatelessWidget {
                       const Spacer(),
                       AppIconButton(
                         onPressed: () {},
-                        icon: Image.asset(AppImages.check_mark_dark_new),
+                        icon: Image.asset(AppImages.checkMarkDarkNew),
                       ),
                     ],
                   ),
@@ -65,7 +65,7 @@ class AdvancedSettingsModal extends StatelessWidget {
                       const Spacer(),
                       AppIconButton(
                         onPressed: () {},
-                        icon: Image.asset(AppImages.check_mark_dark_new),
+                        icon: Image.asset(AppImages.checkMarkDarkNew),
                       ),
                     ],
                   ),

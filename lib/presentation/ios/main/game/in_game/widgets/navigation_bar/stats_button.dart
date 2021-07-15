@@ -23,7 +23,7 @@ class StatsButton extends StatelessWidget {
         );
       },
       child: Image.asset(
-        AppImages.stats_new,
+        AppImages.statsNew,
       ),
     );
   }

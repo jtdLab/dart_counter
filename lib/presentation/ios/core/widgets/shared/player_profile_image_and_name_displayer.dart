@@ -7,7 +7,7 @@ class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
 
   const PlayerProfileImageAndNameDisplayer({
     Key? key,
-    this.color = AppColors.orange_new,
+    this.color = AppColors.orangeNew,
   }) : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: AppRoundedImage.large(
-              imageName: AppImages.photo_placeholder_new,
+              imageName: AppImages.photoPlaceholderNew,
               border: Border.all(
                 width: border4(context),
               ),

@@ -99,19 +99,19 @@ class SignInWidget extends StatelessWidget {
                   onPressed: () => context.read<SignInBloc>().add(
                         const SignInEvent.signInWithFacebookPressed(),
                       ),
-                  child: Image.asset(AppImages.fb_new),
+                  child: Image.asset(AppImages.fbNew),
                 ),
                 CupertinoButton(
                   onPressed: () => context.read<SignInBloc>().add(
                         const SignInEvent.signInWithApplePressed(),
                       ),
-                  child: Image.asset(AppImages.ig_new),
+                  child: Image.asset(AppImages.igNew),
                 ),
                 CupertinoButton(
                   onPressed: () => context.read<SignInBloc>().add(
                         const SignInEvent.signInWithGooglePressed(),
                       ),
-                  child: Image.asset(AppImages.google_new),
+                  child: Image.asset(AppImages.googleNew),
                 ),
               ],
             ),

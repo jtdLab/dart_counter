@@ -154,7 +154,7 @@ class DropDown extends StatelessWidget {
                 left: 16,
               ),
               child: AppRoundedImage.small(
-                imageName: AppImages.photo_placeholder_new,
+                imageName: AppImages.photoPlaceholderNew,
               ),
             ),
             Text(
@@ -170,7 +170,7 @@ class DropDown extends StatelessWidget {
               child: AppIconButton(
                 onPressed: () {},
                 icon: Image.asset(
-                  AppImages.add_new,
+                  AppImages.addNew,
                 ),
               ),
             ),

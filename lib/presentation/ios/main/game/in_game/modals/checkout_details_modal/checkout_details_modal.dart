@@ -32,7 +32,7 @@ class CheckoutDetailsModal extends StatelessWidget {
         return AppPage(
           child: Column(
             children: [
-              Spacer(),
+              const Spacer(),
               AppCard(
                 middle: Text(
                   LocaleKeys.dartsThrown.tr().toUpperCase(),
@@ -63,7 +63,7 @@ class CheckoutDetailsModal extends StatelessWidget {
                   ),
                 ],
               ),
-              AppSpacer.large(),
+              const AppSpacer.large(),
               AppCard(
                 middle: Text(
                   LocaleKeys.dartsOnDouble.tr().toUpperCase(),
@@ -94,15 +94,15 @@ class CheckoutDetailsModal extends StatelessWidget {
                   ),
                 ],
               ),
-              AppSpacer.large(),
+              const AppSpacer.large(),
               AppPrimaryButton(
-                color: AppColors.orange_new,
+                color: AppColors.orangeNew,
                 onPressed: () => context
                     .read<CheckoutDetailsBloc>()
                     .add(const CheckoutDetailsEvent.confirmPressed()),
                 text: LocaleKeys.confirm.tr().toUpperCase(),
               ),
-              Spacer(
+              const Spacer(
                 flex: 2,
               ),
             ],
@@ -135,14 +135,14 @@ class CkdButton extends StatelessWidget {
     if (text != null) {
       return AppActionButton.normal(
         fontSize: fontSize,
-        color: selected ? AppColors.orange_new : AppColors.white,
+        color: selected ? AppColors.orangeNew : AppColors.white,
         onPressed: onPressed,
         text: text,
       );
     }
     if (child != null) {
       return AppActionButton.normal(
-        color: selected ? AppColors.orange_new : AppColors.white,
+        color: selected ? AppColors.orangeNew : AppColors.white,
         onPressed: onPressed,
         icon: child,
       );

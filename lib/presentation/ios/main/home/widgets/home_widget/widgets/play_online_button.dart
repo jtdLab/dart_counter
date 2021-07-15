@@ -10,9 +10,9 @@ class PlayOnlineButton extends StatelessWidget {
       onPressed: () => context
           .read<HomeBloc>()
           .add(const HomeEvent.createOnlineGamePressed()),
-      color: AppColors.orange_new,
+      color: AppColors.orangeNew,
       fontColor: AppColors.black,
-      icon: Image.asset(AppImages.players_new),
+      icon: Image.asset(AppImages.playersNew),
       text: '${LocaleKeys.play.tr()} ${LocaleKeys.online.tr()}'.toUpperCase(),
     );
   }

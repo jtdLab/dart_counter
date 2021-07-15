@@ -12,7 +12,7 @@ class InstagramButton extends StatelessWidget {
           await canLaunch('https://www.instagram.com/darts_ger/')
               ? await launch('https://www.instagram.com/darts_ger/')
               : throw 'Could not launch https://www.instagram.com/darts_ger/',
-      child: Image.asset(AppImages.ig_new),
+      child: Image.asset(AppImages.igNew),
     );
   }
 }

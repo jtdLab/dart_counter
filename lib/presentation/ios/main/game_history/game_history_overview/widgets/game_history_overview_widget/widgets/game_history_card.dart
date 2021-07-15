@@ -59,7 +59,7 @@ class GameHistoryCard extends StatelessWidget {
   Widget _content(BuildContext context, {required Game game}) => Row(
         children: [
           const SizedBox(width: 6),
-          Image.asset(AppImages.star_new),
+          Image.asset(AppImages.starNew),
           const Spacer(),
           Align(
             alignment: Alignment.centerRight,
@@ -122,7 +122,7 @@ class GameHistoryCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Image.asset(AppImages.chevron_forward_new),
+          Image.asset(AppImages.chevronForwardNew),
           const SizedBox(width: 6),
         ],
       );
