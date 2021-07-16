@@ -3,7 +3,8 @@ import 'package:dart_counter/application/settings/edit_profile_image/edit_profil
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
-// TODO refactor and rename to edit profile image modal
+
+// TODO refactor
 class EditProfileImageModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
