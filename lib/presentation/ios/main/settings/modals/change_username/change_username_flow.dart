@@ -26,8 +26,10 @@ class ChangeUsernameFlow extends StatelessWidget {
                 builder: (context) => const ChangeUsernameInitialPage(),
               );
             case success:
-              return CupertinoPageRoute(
-                builder: (context) => const ChangeUsernameSuccessPage(),
+              return PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const ChangeUsernameSuccessPage(),
+                transitionDuration: const Duration(),
               );
           }
         },

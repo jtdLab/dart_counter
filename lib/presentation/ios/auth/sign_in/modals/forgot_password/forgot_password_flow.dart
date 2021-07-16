@@ -28,8 +28,10 @@ class ForgotPasswordFlow extends StatelessWidget {
                 builder: (context) => const ForogotPasswordInitialPage(),
               );
             case success:
-              return CupertinoPageRoute(
-                builder: (context) => const ForgotPasswordSuccessPage(),
+              return PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const ForgotPasswordSuccessPage(),
+                transitionDuration: const Duration(),
               );
           }
         },

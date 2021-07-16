@@ -26,8 +26,10 @@ class ChangeEmailFlow extends StatelessWidget {
                 builder: (context) => const ChangeEmailInitialPage(),
               );
             case success:
-              return CupertinoPageRoute(
-                builder: (context) => const ChangeEmailSuccessPage(),
+              return PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const ChangeEmailSuccessPage(),
+                transitionDuration: const Duration(),
               );
           }
         },

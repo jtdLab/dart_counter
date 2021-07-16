@@ -26,8 +26,10 @@ class ChangePasswordFlow extends StatelessWidget {
                 builder: (context) => const ChangePasswordInitialPage(),
               );
             case success:
-              return CupertinoPageRoute(
-                builder: (context) => const ChangePasswordSuccessPage(),
+              return PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const ChangePasswordSuccessPage(),
+                transitionDuration: const Duration(),
               );
           }
         },
