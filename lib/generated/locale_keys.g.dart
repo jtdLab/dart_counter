@@ -105,5 +105,8 @@ abstract class  LocaleKeys {
   static const changePassword = 'changePassword';
   static const changeEmail = 'changeEmail';
   static const general = 'general';
+  static const usernameChanged = 'usernameChanged';
+  static const passwordChanged = 'passwordChanged';
+  static const emailChanged = 'emailChanged';
 
 }

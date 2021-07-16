@@ -3,7 +3,6 @@ import 'package:dart_counter/application/settings/edit_profile_image/edit_profil
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
-// TODO refactor + responsive
 class EditProfileImageWidget extends StatelessWidget {
   const EditProfileImageWidget({
     Key? key,
@@ -14,17 +13,12 @@ class EditProfileImageWidget extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: Colors.white70,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              height: 30,
-              child: Container(
-                color: Colors.transparent,
-              ),
-            ),
+            const AppSpacer.large(),
             AppPrimaryButton(
               text: LocaleKeys.deletePhoto.tr().toUpperCase(),
               color: AppColors.red,
@@ -60,12 +54,14 @@ class EditProfileImageWidget extends StatelessWidget {
               text: LocaleKeys.done.tr().toUpperCase(),
               onPressed: () => context.router.pop(),
             ),
-            SizedBox(
-              height: 50,
-              child: Container(
-                color: Colors.transparent,
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 40,
+                normal: 50,
+                large: 50,
+                extraLarge: 60,
               ),
-            ),
+            )
           ],
         ),
       ),

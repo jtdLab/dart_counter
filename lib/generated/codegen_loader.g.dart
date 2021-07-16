@@ -118,7 +118,10 @@ class CodegenLoader extends AssetLoader{
   "changeUsername": "Benutzername ändern",
   "changePassword": "Passwort ändern",
   "changeEmail": "E-Mail Addresse ändern",
-  "general": "Allgemein"
+  "general": "Allgemein",
+  "usernameChanged": "Benutzername geändert",
+  "passwordChanged": "Passwort geändert",
+  "emailChanged": "E-Mail geändert"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -224,7 +227,10 @@ static const Map<String,dynamic> en = {
   "changeUsername": "Change Username",
   "changePassword": "Change Password",
   "changeEmail": "Change Email",
-  "general": "General"
+  "general": "General",
+  "usernameChanged": "Username changed",
+  "passwordChanged": "Password changed",
+  "emailChanged": "Email changed"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

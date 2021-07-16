@@ -33,7 +33,7 @@ class ChangeEmailSuccessWidget extends StatelessWidget {
         SizedBox(
           height: 4 * (size40(context) + size12(context)),
           child: Text(
-            'Email changed', // TODO translate
+            LocaleKeys.emailChanged.tr().toUpperCase(),
           ),
         ),
         AppPrimaryButton(

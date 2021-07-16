@@ -33,7 +33,7 @@ class ChangeUsernameSuccessWidget extends StatelessWidget {
         SizedBox(
           height: 4 * (size40(context) + size12(context)),
           child: Text(
-            'Username changed', // TODO translate
+            LocaleKeys.usernameChanged.tr().toUpperCase(),
           ),
         ),
         AppPrimaryButton(

@@ -33,7 +33,7 @@ class ChangePasswordSuccessWidget extends StatelessWidget {
         SizedBox(
           height: 4 * (size40(context) + size12(context)),
           child: Text(
-            'Password changed', // TODO translate
+            LocaleKeys.passwordChanged.tr().toUpperCase(),
           ),
         ),
         AppPrimaryButton(

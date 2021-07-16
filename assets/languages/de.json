@@ -105,5 +105,9 @@
     "changePassword" : "Passwort ändern",
     "changeEmail" : "E-Mail Addresse ändern",
 
-    "general": "Allgemein"
+    "general": "Allgemein",
+
+    "usernameChanged": "Benutzername geändert",
+    "passwordChanged": "Passwort geändert",
+    "emailChanged": "E-Mail geändert"
 }

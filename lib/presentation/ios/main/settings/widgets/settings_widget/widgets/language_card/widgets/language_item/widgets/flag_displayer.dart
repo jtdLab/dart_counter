@@ -11,7 +11,7 @@ class FlagDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0), // TODO not constant??
+      padding: EdgeInsets.all(size6(context)),
       child: Image.asset(
         language == const Locale('de') ? AppImages.de : AppImages.uk,
       ),

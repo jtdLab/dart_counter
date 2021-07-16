@@ -8,8 +8,8 @@ class LoadingWidget extends StatelessWidget {
     return Center(
       child: Lottie.asset(
         AppAnimations.loading,
-        width: 100, // TODO responsive
-        height: 100, // TODO responsive
+        width: 2 * size50(context),
+        height: 2 * size50(context),
       ),
     );
   }
