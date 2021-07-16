@@ -21,7 +21,6 @@ class SignInWidget extends StatelessWidget {
         final node = FocusScope.of(context);
         return Column(
           children: [
-            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 70,
@@ -31,7 +30,6 @@ class SignInWidget extends StatelessWidget {
               ),
             ),
             const LogoDisplayer(),
-            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 120,

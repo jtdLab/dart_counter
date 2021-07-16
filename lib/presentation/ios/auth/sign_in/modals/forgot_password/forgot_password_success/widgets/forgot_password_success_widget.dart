@@ -11,7 +11,6 @@ class ForgotPasswordSuccessWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 70,
@@ -21,7 +20,6 @@ class ForgotPasswordSuccessWidget extends StatelessWidget {
           ),
         ),
         const LogoDisplayer(),
-        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 120,
