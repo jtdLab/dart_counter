@@ -27,7 +27,6 @@ abstract class IAuthFacade {
   Future<void> signOut();
 
   Future<Either<AuthFailure, Unit>> updateEmailAddress({
-    required EmailAddress oldEmailAddress,
     required EmailAddress newEmailAddress,
   });
 

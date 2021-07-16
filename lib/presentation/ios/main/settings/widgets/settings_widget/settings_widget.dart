@@ -22,7 +22,7 @@ class SettingsWidget extends StatelessWidget {
                 showCupertinoModalBottomSheet(
                   backgroundColor: Colors.white70,
                   context: context,
-                  builder: (context) => EditProfilePictureModal(),
+                  builder: (context) => EditProfileImageModal(),
                 );
               },
               child: ProfileImageDisplayer(

@@ -4,7 +4,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
 // TODO refactor and rename to edit profile image modal
-class EditProfilePictureModal extends StatelessWidget {
+class EditProfileImageModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

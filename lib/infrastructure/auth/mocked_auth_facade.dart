@@ -121,9 +121,9 @@ class MockedAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> updateEmailAddress(
-      {required EmailAddress oldEmailAddress,
-      required EmailAddress newEmailAddress}) {
+  Future<Either<AuthFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
+  }) {
     if (fail) {
       return Future.value(left(const AuthFailure.serverError()));
     } else {

@@ -2,8 +2,8 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
-class ForgotPasswordSuccessWidget extends StatelessWidget {
-  const ForgotPasswordSuccessWidget({
+class ChangeUsernameSuccessWidget extends StatelessWidget {
+  const ChangeUsernameSuccessWidget({
     Key? key,
   }) : super(key: key);
 
@@ -37,7 +37,7 @@ class ForgotPasswordSuccessWidget extends StatelessWidget {
           ),
         ),
         AppPrimaryButton(
-          text: LocaleKeys.signIn.tr(),
+          text: LocaleKeys.confirm.tr().toUpperCase(),
           onPressed: () => context.router.pop(),
         ),
         const Spacer(),

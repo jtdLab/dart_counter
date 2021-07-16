@@ -1,16 +1,17 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
-// TODO refactor
-class Initial extends StatelessWidget {
+class ChangeEmailSuccessWidget extends StatelessWidget {
+  const ChangeEmailSuccessWidget({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final node = FocusScope.of(context);
     return Column(
       children: [
-        // TODO
+        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 70,
@@ -20,7 +21,7 @@ class Initial extends StatelessWidget {
           ),
         ),
         const LogoDisplayer(),
-        // TODO
+        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 120,
@@ -29,25 +30,17 @@ class Initial extends StatelessWidget {
             extraLarge: 120,
           ),
         ),
-        Text(
-          LocaleKeys.changeEmail.tr().toUpperCase(),
-        ),
-        const Spacer(
-          flex: 8,
-        ),
-        AppTextField(
-          placeholder: LocaleKeys.newEmailAddress.tr().toUpperCase(),
-          textInputAction: TextInputAction.next,
-          onEditingComplete: () => node.unfocus(),
-          onChanged: (emailString) {},
+        SizedBox(
+          height: 4 * (size40(context) + size12(context)),
+          child: Text(
+            LocaleKeys.emailSent.tr().toUpperCase(),
+          ),
         ),
         AppPrimaryButton(
-          text: LocaleKeys.confirm.tr(),
-          onPressed: () {},
+          text: LocaleKeys.confirm.tr().toUpperCase(),
+          onPressed: () => context.router.pop(),
         ),
-        const Spacer(
-          flex: 7,
-        ),
+        const Spacer(),
       ],
     );
   }

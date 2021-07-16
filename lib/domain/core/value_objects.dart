@@ -61,6 +61,10 @@ class Username extends ValueObject<String> {
     );
   }
 
+  factory Username.empty() {
+    return Username('');
+  }
+
   const Username._(this.value);
 }
 
@@ -72,6 +76,10 @@ class Password extends ValueObject<String> {
     return Password._(
       validatePassword(passwordString: passwordString),
     );
+  }
+
+  factory Password.empty() {
+    return Password('');
   }
 
   const Password._(this.value);

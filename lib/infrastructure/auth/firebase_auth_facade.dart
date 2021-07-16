@@ -213,29 +213,23 @@ class FirebaseAuthFacade implements IAuthFacade {
 
 // TODO error handling
   @override
-  Future<Either<AuthFailure, Unit>> updateEmailAddress(
-      {required EmailAddress oldEmailAddress,
-      required EmailAddress newEmailAddress}) async {
-    final oldEmailAddressValid = oldEmailAddress.isValid();
-    final newEmailAddressValid = oldEmailAddress.isValid();
-    final emailAdressesNotEqual = oldEmailAddress != newEmailAddress;
+  Future<Either<AuthFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
+  }) async {
+    final isNewEmailAddressValid = newEmailAddress.isValid();
 
-    if (oldEmailAddressValid && newEmailAddressValid) {
-      if (emailAdressesNotEqual) {
-        final user = _firebaseAuth.currentUser;
-        if (user == null) {
-          return left(const AuthFailure.serverError());
-          // TODO not auth error
-        }
+    if (isNewEmailAddressValid) {
+      final user = _firebaseAuth.currentUser;
+      if (user == null) {
+        return left(const AuthFailure.serverError());
+        // TODO not auth error
+      }
 
-        try {
-          await user.updateEmail(newEmailAddress.getOrCrash());
-          return right(unit);
-        } on FirebaseAuthException {
-          // TODO
-        }
-      } else {
-        // TODO return can not update email to current mail
+      try {
+        await user.updateEmail(newEmailAddress.getOrCrash());
+        return right(unit);
+      } on FirebaseAuthException {
+        // TODO
       }
     } else {
       // return invalid email

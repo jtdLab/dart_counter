@@ -5,47 +5,51 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'forgot_password_event.dart';
-part 'forgot_password_state.dart';
-part 'forgot_password_bloc.freezed.dart';
+part 'change_email_event.dart';
+part 'change_email_state.dart';
+part 'change_email_bloc.freezed.dart';
 
 @lazySingleton
-class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
+class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     with AutoResetLazySingleton {
   final IAuthFacade _authFacade;
 
-  ForgotPasswordBloc(
+  ChangeEmailBloc(
     this._authFacade,
   ) : super(
-          ForgotPasswordState.initial(),
+          ChangeEmailState.initial(),
         );
 
   @override
-  Stream<ForgotPasswordState> mapEventToState(
-    ForgotPasswordEvent event,
+  Stream<ChangeEmailState> mapEventToState(
+    ChangeEmailEvent event,
   ) async* {
     yield* event.map(
-      emailChanged: (event) => _mapEmailChangedToState(event),
+      newEmailChanged: (event) => _mapNewEmailChangedToState(event),
       confirmPressed: (_) => _mapConfirmPressedToState(),
     );
   }
 
-  Stream<ForgotPasswordState> _mapEmailChangedToState(
-    EmailChanged event,
+  Stream<ChangeEmailState> _mapNewEmailChangedToState(
+    NewEmailChanged event,
   ) async* {
-    yield state.copyWith(email: EmailAddress(event.emailString));
+    yield state.copyWith(
+      newEmail: EmailAddress(event.newEmailString),
+    );
   }
 
-  Stream<ForgotPasswordState> _mapConfirmPressedToState() async* {
+  // TODO more granular error handling
+  Stream<ChangeEmailState> _mapConfirmPressedToState() async* {
     AuthFailure? authFailure;
-    final isEmailValid = state.email.isValid();
-    if (isEmailValid) {
+    final isNewEmailValid = state.newEmail.isValid();
+    if (isNewEmailValid) {
       yield state.copyWith(isSubmitting: true);
-      authFailure = (await _authFacade.resetPassword(
-        emailAddress: state.email,
+      authFailure = (await _authFacade.updateEmailAddress(
+        newEmailAddress: state.newEmail,
       ))
           .fold(
         (failure) => failure,

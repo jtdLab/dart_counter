@@ -6,4 +6,5 @@ part 'user_failure.freezed.dart';
 class UserFailure with _$UserFailure {
   const factory UserFailure.failure() = _Failure;
   const factory UserFailure.insufficientPermission() = _InsufficientPermission;
+  const factory UserFailure.invalidUsername() = _InvalidUsername;
 }

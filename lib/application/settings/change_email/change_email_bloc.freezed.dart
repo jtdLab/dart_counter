@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'forgot_password_bloc.dart';
+part of 'change_email_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,12 +13,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ForgotPasswordEventTearOff {
-  const _$ForgotPasswordEventTearOff();
+class _$ChangeEmailEventTearOff {
+  const _$ChangeEmailEventTearOff();
 
-  EmailChanged emailChanged({required String emailString}) {
-    return EmailChanged(
-      emailString: emailString,
+  NewEmailChanged newEmailChanged({required String newEmailString}) {
+    return NewEmailChanged(
+      newEmailString: newEmailString,
     );
   }
 
@@ -28,32 +28,32 @@ class _$ForgotPasswordEventTearOff {
 }
 
 /// @nodoc
-const $ForgotPasswordEvent = _$ForgotPasswordEventTearOff();
+const $ChangeEmailEvent = _$ChangeEmailEventTearOff();
 
 /// @nodoc
-mixin _$ForgotPasswordEvent {
+mixin _$ChangeEmailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String newEmailString) newEmailChanged,
     required TResult Function() confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
+    TResult Function(String newEmailString)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(NewEmailChanged value) newEmailChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(NewEmailChanged value)? newEmailChanged,
     TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
@@ -61,49 +61,49 @@ mixin _$ForgotPasswordEvent {
 }
 
 /// @nodoc
-abstract class $ForgotPasswordEventCopyWith<$Res> {
-  factory $ForgotPasswordEventCopyWith(
-          ForgotPasswordEvent value, $Res Function(ForgotPasswordEvent) then) =
-      _$ForgotPasswordEventCopyWithImpl<$Res>;
+abstract class $ChangeEmailEventCopyWith<$Res> {
+  factory $ChangeEmailEventCopyWith(
+          ChangeEmailEvent value, $Res Function(ChangeEmailEvent) then) =
+      _$ChangeEmailEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ForgotPasswordEventCopyWithImpl<$Res>
-    implements $ForgotPasswordEventCopyWith<$Res> {
-  _$ForgotPasswordEventCopyWithImpl(this._value, this._then);
+class _$ChangeEmailEventCopyWithImpl<$Res>
+    implements $ChangeEmailEventCopyWith<$Res> {
+  _$ChangeEmailEventCopyWithImpl(this._value, this._then);
 
-  final ForgotPasswordEvent _value;
+  final ChangeEmailEvent _value;
   // ignore: unused_field
-  final $Res Function(ForgotPasswordEvent) _then;
+  final $Res Function(ChangeEmailEvent) _then;
 }
 
 /// @nodoc
-abstract class $EmailChangedCopyWith<$Res> {
-  factory $EmailChangedCopyWith(
-          EmailChanged value, $Res Function(EmailChanged) then) =
-      _$EmailChangedCopyWithImpl<$Res>;
-  $Res call({String emailString});
+abstract class $NewEmailChangedCopyWith<$Res> {
+  factory $NewEmailChangedCopyWith(
+          NewEmailChanged value, $Res Function(NewEmailChanged) then) =
+      _$NewEmailChangedCopyWithImpl<$Res>;
+  $Res call({String newEmailString});
 }
 
 /// @nodoc
-class _$EmailChangedCopyWithImpl<$Res>
-    extends _$ForgotPasswordEventCopyWithImpl<$Res>
-    implements $EmailChangedCopyWith<$Res> {
-  _$EmailChangedCopyWithImpl(
-      EmailChanged _value, $Res Function(EmailChanged) _then)
-      : super(_value, (v) => _then(v as EmailChanged));
+class _$NewEmailChangedCopyWithImpl<$Res>
+    extends _$ChangeEmailEventCopyWithImpl<$Res>
+    implements $NewEmailChangedCopyWith<$Res> {
+  _$NewEmailChangedCopyWithImpl(
+      NewEmailChanged _value, $Res Function(NewEmailChanged) _then)
+      : super(_value, (v) => _then(v as NewEmailChanged));
 
   @override
-  EmailChanged get _value => super._value as EmailChanged;
+  NewEmailChanged get _value => super._value as NewEmailChanged;
 
   @override
   $Res call({
-    Object? emailString = freezed,
+    Object? newEmailString = freezed,
   }) {
-    return _then(EmailChanged(
-      emailString: emailString == freezed
-          ? _value.emailString
-          : emailString // ignore: cast_nullable_to_non_nullable
+    return _then(NewEmailChanged(
+      newEmailString: newEmailString == freezed
+          ? _value.newEmailString
+          : newEmailString // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -111,53 +111,54 @@ class _$EmailChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EmailChanged implements EmailChanged {
-  const _$EmailChanged({required this.emailString});
+class _$NewEmailChanged implements NewEmailChanged {
+  const _$NewEmailChanged({required this.newEmailString});
 
   @override
-  final String emailString;
+  final String newEmailString;
 
   @override
   String toString() {
-    return 'ForgotPasswordEvent.emailChanged(emailString: $emailString)';
+    return 'ChangeEmailEvent.newEmailChanged(newEmailString: $newEmailString)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is EmailChanged &&
-            (identical(other.emailString, emailString) ||
+        (other is NewEmailChanged &&
+            (identical(other.newEmailString, newEmailString) ||
                 const DeepCollectionEquality()
-                    .equals(other.emailString, emailString)));
+                    .equals(other.newEmailString, newEmailString)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(emailString);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(newEmailString);
 
   @JsonKey(ignore: true)
   @override
-  $EmailChangedCopyWith<EmailChanged> get copyWith =>
-      _$EmailChangedCopyWithImpl<EmailChanged>(this, _$identity);
+  $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
+      _$NewEmailChangedCopyWithImpl<NewEmailChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String newEmailString) newEmailChanged,
     required TResult Function() confirmPressed,
   }) {
-    return emailChanged(emailString);
+    return newEmailChanged(newEmailString);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
+    TResult Function(String newEmailString)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
-    if (emailChanged != null) {
-      return emailChanged(emailString);
+    if (newEmailChanged != null) {
+      return newEmailChanged(newEmailString);
     }
     return orElse();
   }
@@ -165,32 +166,33 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(NewEmailChanged value) newEmailChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
-    return emailChanged(this);
+    return newEmailChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(NewEmailChanged value)? newEmailChanged,
     TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
-    if (emailChanged != null) {
-      return emailChanged(this);
+    if (newEmailChanged != null) {
+      return newEmailChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class EmailChanged implements ForgotPasswordEvent {
-  const factory EmailChanged({required String emailString}) = _$EmailChanged;
+abstract class NewEmailChanged implements ChangeEmailEvent {
+  const factory NewEmailChanged({required String newEmailString}) =
+      _$NewEmailChanged;
 
-  String get emailString => throw _privateConstructorUsedError;
+  String get newEmailString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EmailChangedCopyWith<EmailChanged> get copyWith =>
+  $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -203,7 +205,7 @@ abstract class $ConfirmPressedCopyWith<$Res> {
 
 /// @nodoc
 class _$ConfirmPressedCopyWithImpl<$Res>
-    extends _$ForgotPasswordEventCopyWithImpl<$Res>
+    extends _$ChangeEmailEventCopyWithImpl<$Res>
     implements $ConfirmPressedCopyWith<$Res> {
   _$ConfirmPressedCopyWithImpl(
       ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
@@ -220,7 +222,7 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   String toString() {
-    return 'ForgotPasswordEvent.confirmPressed()';
+    return 'ChangeEmailEvent.confirmPressed()';
   }
 
   @override
@@ -234,7 +236,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String newEmailString) newEmailChanged,
     required TResult Function() confirmPressed,
   }) {
     return confirmPressed();
@@ -243,7 +245,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
+    TResult Function(String newEmailString)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
@@ -256,7 +258,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(NewEmailChanged value) newEmailChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
@@ -265,7 +267,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(NewEmailChanged value)? newEmailChanged,
     TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
@@ -276,22 +278,22 @@ class _$ConfirmPressed implements ConfirmPressed {
   }
 }
 
-abstract class ConfirmPressed implements ForgotPasswordEvent {
+abstract class ConfirmPressed implements ChangeEmailEvent {
   const factory ConfirmPressed() = _$ConfirmPressed;
 }
 
 /// @nodoc
-class _$ForgotPasswordStateTearOff {
-  const _$ForgotPasswordStateTearOff();
+class _$ChangeEmailStateTearOff {
+  const _$ChangeEmailStateTearOff();
 
-  _ForgotPasswordState call(
-      {required EmailAddress email,
+  _ChangeEmailState call(
+      {required EmailAddress newEmail,
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
       AuthFailure? authFailure}) {
-    return _ForgotPasswordState(
-      email: email,
+    return _ChangeEmailState(
+      newEmail: newEmail,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       successful: successful,
@@ -301,28 +303,28 @@ class _$ForgotPasswordStateTearOff {
 }
 
 /// @nodoc
-const $ForgotPasswordState = _$ForgotPasswordStateTearOff();
+const $ChangeEmailState = _$ChangeEmailStateTearOff();
 
 /// @nodoc
-mixin _$ForgotPasswordState {
-  EmailAddress get email => throw _privateConstructorUsedError;
+mixin _$ChangeEmailState {
+  EmailAddress get newEmail => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get successful => throw _privateConstructorUsedError;
   AuthFailure? get authFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith =>
+  $ChangeEmailStateCopyWith<ChangeEmailState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ForgotPasswordStateCopyWith<$Res> {
-  factory $ForgotPasswordStateCopyWith(
-          ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
-      _$ForgotPasswordStateCopyWithImpl<$Res>;
+abstract class $ChangeEmailStateCopyWith<$Res> {
+  factory $ChangeEmailStateCopyWith(
+          ChangeEmailState value, $Res Function(ChangeEmailState) then) =
+      _$ChangeEmailStateCopyWithImpl<$Res>;
   $Res call(
-      {EmailAddress email,
+      {EmailAddress newEmail,
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
@@ -332,26 +334,26 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ForgotPasswordStateCopyWithImpl<$Res>
-    implements $ForgotPasswordStateCopyWith<$Res> {
-  _$ForgotPasswordStateCopyWithImpl(this._value, this._then);
+class _$ChangeEmailStateCopyWithImpl<$Res>
+    implements $ChangeEmailStateCopyWith<$Res> {
+  _$ChangeEmailStateCopyWithImpl(this._value, this._then);
 
-  final ForgotPasswordState _value;
+  final ChangeEmailState _value;
   // ignore: unused_field
-  final $Res Function(ForgotPasswordState) _then;
+  final $Res Function(ChangeEmailState) _then;
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? newEmail = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
     Object? authFailure = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      newEmail: newEmail == freezed
+          ? _value.newEmail
+          : newEmail // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
@@ -385,14 +387,14 @@ class _$ForgotPasswordStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ForgotPasswordStateCopyWith<$Res>
-    implements $ForgotPasswordStateCopyWith<$Res> {
-  factory _$ForgotPasswordStateCopyWith(_ForgotPasswordState value,
-          $Res Function(_ForgotPasswordState) then) =
-      __$ForgotPasswordStateCopyWithImpl<$Res>;
+abstract class _$ChangeEmailStateCopyWith<$Res>
+    implements $ChangeEmailStateCopyWith<$Res> {
+  factory _$ChangeEmailStateCopyWith(
+          _ChangeEmailState value, $Res Function(_ChangeEmailState) then) =
+      __$ChangeEmailStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {EmailAddress email,
+      {EmailAddress newEmail,
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
@@ -403,28 +405,28 @@ abstract class _$ForgotPasswordStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ForgotPasswordStateCopyWithImpl<$Res>
-    extends _$ForgotPasswordStateCopyWithImpl<$Res>
-    implements _$ForgotPasswordStateCopyWith<$Res> {
-  __$ForgotPasswordStateCopyWithImpl(
-      _ForgotPasswordState _value, $Res Function(_ForgotPasswordState) _then)
-      : super(_value, (v) => _then(v as _ForgotPasswordState));
+class __$ChangeEmailStateCopyWithImpl<$Res>
+    extends _$ChangeEmailStateCopyWithImpl<$Res>
+    implements _$ChangeEmailStateCopyWith<$Res> {
+  __$ChangeEmailStateCopyWithImpl(
+      _ChangeEmailState _value, $Res Function(_ChangeEmailState) _then)
+      : super(_value, (v) => _then(v as _ChangeEmailState));
 
   @override
-  _ForgotPasswordState get _value => super._value as _ForgotPasswordState;
+  _ChangeEmailState get _value => super._value as _ChangeEmailState;
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? newEmail = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
     Object? authFailure = freezed,
   }) {
-    return _then(_ForgotPasswordState(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+    return _then(_ChangeEmailState(
+      newEmail: newEmail == freezed
+          ? _value.newEmail
+          : newEmail // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
@@ -448,16 +450,16 @@ class __$ForgotPasswordStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ForgotPasswordState implements _ForgotPasswordState {
-  const _$_ForgotPasswordState(
-      {required this.email,
+class _$_ChangeEmailState implements _ChangeEmailState {
+  const _$_ChangeEmailState(
+      {required this.newEmail,
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.successful,
       this.authFailure});
 
   @override
-  final EmailAddress email;
+  final EmailAddress newEmail;
   @override
   final bool showErrorMessages;
   @override
@@ -469,15 +471,16 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
 
   @override
   String toString() {
-    return 'ForgotPasswordState(email: $email, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, authFailure: $authFailure)';
+    return 'ChangeEmailState(newEmail: $newEmail, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, authFailure: $authFailure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ForgotPasswordState &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+        (other is _ChangeEmailState &&
+            (identical(other.newEmail, newEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.newEmail, newEmail)) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 const DeepCollectionEquality()
                     .equals(other.showErrorMessages, showErrorMessages)) &&
@@ -495,7 +498,7 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(newEmail) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(successful) ^
@@ -503,21 +506,20 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
 
   @JsonKey(ignore: true)
   @override
-  _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith =>
-      __$ForgotPasswordStateCopyWithImpl<_ForgotPasswordState>(
-          this, _$identity);
+  _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>
+      __$ChangeEmailStateCopyWithImpl<_ChangeEmailState>(this, _$identity);
 }
 
-abstract class _ForgotPasswordState implements ForgotPasswordState {
-  const factory _ForgotPasswordState(
-      {required EmailAddress email,
+abstract class _ChangeEmailState implements ChangeEmailState {
+  const factory _ChangeEmailState(
+      {required EmailAddress newEmail,
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
-      AuthFailure? authFailure}) = _$_ForgotPasswordState;
+      AuthFailure? authFailure}) = _$_ChangeEmailState;
 
   @override
-  EmailAddress get email => throw _privateConstructorUsedError;
+  EmailAddress get newEmail => throw _privateConstructorUsedError;
   @override
   bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
@@ -528,6 +530,6 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
   AuthFailure? get authFailure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith =>
+  _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>
       throw _privateConstructorUsedError;
 }

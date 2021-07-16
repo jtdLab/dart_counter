@@ -23,7 +23,7 @@ class AccountCard extends StatelessWidget {
             showCupertinoModalBottomSheet(
               expand: true,
               context: context,
-              builder: (context) => ChangeUsernameModal(),
+              builder: (context) => ChangeUsernameFlow(),
             );
           },
         ),
@@ -33,7 +33,7 @@ class AccountCard extends StatelessWidget {
             showCupertinoModalBottomSheet(
               expand: true,
               context: context,
-              builder: (context) => ChangePasswordModal(),
+              builder: (context) => ChangePasswordFlow(),
             );
           },
         ),
@@ -43,7 +43,7 @@ class AccountCard extends StatelessWidget {
             showCupertinoModalBottomSheet(
               expand: true,
               context: context,
-              builder: (context) => ChangeEmailModal(),
+              builder: (context) => ChangeEmailFlow(),
             );
           },
         ),

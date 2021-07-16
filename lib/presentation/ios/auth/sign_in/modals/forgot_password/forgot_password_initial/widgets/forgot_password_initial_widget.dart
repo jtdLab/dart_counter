@@ -1,10 +1,10 @@
 import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
 
-// TODO refactor build()
 class ForgotPasswordInitialWidget extends StatelessWidget {
   const ForgotPasswordInitialWidget({
     Key? key,
@@ -15,7 +15,7 @@ class ForgotPasswordInitialWidget extends StatelessWidget {
     final node = FocusScope.of(context);
     return Column(
       children: [
-        // TODO
+        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 70,
@@ -25,7 +25,7 @@ class ForgotPasswordInitialWidget extends StatelessWidget {
           ),
         ),
         const LogoDisplayer(),
-        // TODO
+        // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
             small: 120,
@@ -34,16 +34,15 @@ class ForgotPasswordInitialWidget extends StatelessWidget {
             extraLarge: 120,
           ),
         ),
-        Text(
-          LocaleKeys.forgotPassword.tr().toUpperCase(),
-        ),
-
-        const Spacer(
-          flex: 8,
+        SizedBox(
+          height: 3 * (size40(context) + size12(context)),
+          child: Text(
+            LocaleKeys.forgotPassword.tr().toUpperCase(),
+          ),
         ),
         AppTextField(
           placeholder: LocaleKeys.email.tr(),
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.done,
           onEditingComplete: () => node.unfocus(),
           onChanged: (emailString) => context
               .read<ForgotPasswordBloc>()
@@ -55,9 +54,7 @@ class ForgotPasswordInitialWidget extends StatelessWidget {
               .read<ForgotPasswordBloc>()
               .add(const ForgotPasswordEvent.confirmPressed()),
         ),
-        const Spacer(
-          flex: 7,
-        ),
+        const Spacer(),
       ],
     );
   }

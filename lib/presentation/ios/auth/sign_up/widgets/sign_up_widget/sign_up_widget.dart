@@ -3,7 +3,6 @@ import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-// TODO refactor
 class SignUpWidget extends StatelessWidget {
   final PageController pageController;
 
@@ -19,7 +18,7 @@ class SignUpWidget extends StatelessWidget {
         final node = FocusScope.of(context);
         return Column(
           children: [
-            // TODO
+            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 70,
@@ -29,7 +28,7 @@ class SignUpWidget extends StatelessWidget {
               ),
             ),
             const LogoDisplayer(),
-            // TODO
+            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 120,

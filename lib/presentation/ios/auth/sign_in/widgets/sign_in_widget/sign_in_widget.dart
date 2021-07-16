@@ -5,10 +5,9 @@ import 'package:dart_counter/presentation/ios/auth/sign_in/modals/modals.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-// TODO refactor
 class SignInWidget extends StatelessWidget {
-  final PageController
-      pageController; // TODO provide it and dont pass it via constructor ?
+  // TODO provide it and dont pass it via constructor ?
+  final PageController pageController;
 
   const SignInWidget({
     Key? key,
@@ -22,7 +21,7 @@ class SignInWidget extends StatelessWidget {
         final node = FocusScope.of(context);
         return Column(
           children: [
-            // TODO
+            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 70,
@@ -32,7 +31,7 @@ class SignInWidget extends StatelessWidget {
               ),
             ),
             const LogoDisplayer(),
-            // TODO
+            // TODO  size for diffrent size classes
             const AppSpacer.custom(
               mobileSize: ResponsiveDouble(
                 small: 120,
@@ -90,9 +89,7 @@ class SignInWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(
-              flex: 5,
-            ),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -116,7 +113,6 @@ class SignInWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
           ],
         );
       },
