@@ -25,7 +25,7 @@ class CreateGamePage extends StatelessWidget {
           }
         },
         child: AppPage(
-          maxHeight: 918, //806, // TODO
+          maxHeight: 918, //806, // TODO calc size
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
             leading: Builder(

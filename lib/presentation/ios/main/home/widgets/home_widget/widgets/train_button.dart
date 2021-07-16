@@ -5,10 +5,10 @@ class TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () {}, // TODO
+      onPressed: () {}, // TODO go to practice overview
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
-      text: 'Practice room'.toUpperCase(), // TODO
+      text: LocaleKeys.practice.tr().toUpperCase(),
     );
   }
 }

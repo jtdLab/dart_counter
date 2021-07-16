@@ -1,10 +1,7 @@
-
 import 'package:dart_counter/application/in_game/input_area/detailed_key_board/detailed_key_board_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-// TODO keyboard button doesnt belong to this widget
-import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/input_area/widgets/key_board/widgets/key_board_button.dart';
-import 'widgets/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/input_area/widgets/key_board_button.dart';
 
 class DetailedKeyBoard extends StatelessWidget {
   const DetailedKeyBoard({
@@ -22,37 +19,43 @@ class DetailedKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '15',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '16',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '17',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '18',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '19',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '20',
                 ),
@@ -63,37 +66,43 @@ class DetailedKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '9',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '10',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '11',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '12',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '13',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '14',
                 ),
@@ -104,37 +113,43 @@ class DetailedKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '3',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '4',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '5',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '6',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '7',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '8',
                 ),
@@ -153,13 +168,15 @@ class DetailedKeyBoard extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '1',
                 ),
               ),
               Expanded(
-                child: DetailedKeyBoardButton(
+                child: KeyBoardButton(
+                  fontSize: 20,
                   onPressed: () {},
                   text: '2',
                 ),

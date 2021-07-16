@@ -10,8 +10,8 @@ class OpticalKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 4 * size55(context) + 3 * size6(context), // TODO
-        height: 4 * size55(context) + 3 * size6(context), // TODO
+        width: 4 * size55(context) + 3 * size6(context),
+        height: 4 * size55(context) + 3 * size6(context),
         child: const DartBoard(),
       ),
     );

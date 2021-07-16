@@ -1,6 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO redesign this page
 class FriendsPage extends StatelessWidget {
   const FriendsPage({
     Key? key,

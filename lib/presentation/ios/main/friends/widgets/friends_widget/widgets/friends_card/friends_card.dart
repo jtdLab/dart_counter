@@ -1,7 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-// TODO real data
 class FriendsCard extends StatelessWidget {
   const FriendsCard({
     Key? key,

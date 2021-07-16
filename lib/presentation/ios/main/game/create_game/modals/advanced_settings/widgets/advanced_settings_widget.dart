@@ -3,7 +3,6 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_but
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 
-// TODO refactor
 class AdvancedSettingsWidget extends StatelessWidget {
   const AdvancedSettingsWidget({
     Key? key,
@@ -14,18 +13,13 @@ class AdvancedSettingsWidget extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: Colors.white70,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: AppColumn(
           spacing: size6(context),
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              height: 30,
-              child: Container(
-                color: Colors.transparent,
-              ),
-            ),
+            const AppSpacer.large(),
             AppCardItem.custom(
               height: size55(context),
               content: Center(
@@ -46,7 +40,7 @@ class AdvancedSettingsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppIconButton(
-                      onPressed: () {},
+                      onPressed: () {}, // TODO
                       icon: Image.asset(AppImages.checkMarkDarkNew),
                     ),
                   ],
@@ -65,7 +59,7 @@ class AdvancedSettingsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppIconButton(
-                      onPressed: () {},
+                      onPressed: () {}, // TODO
                       icon: Image.asset(AppImages.checkMarkDarkNew),
                     ),
                   ],
@@ -73,7 +67,7 @@ class AdvancedSettingsWidget extends StatelessWidget {
               ),
             ),
             /**
-                  *  AppActionButton.normal(
+            *  AppActionButton.normal(
                     onPressed: () {},
                     color: AppColors.red,
                     fontColor: AppColors.white,
@@ -84,10 +78,12 @@ class AdvancedSettingsWidget extends StatelessWidget {
               onPressed: () => context.router.pop(),
               text: LocaleKeys.done.tr().toUpperCase(),
             ),
-            SizedBox(
-              height: 50,
-              child: Container(
-                color: Colors.transparent,
+            const AppSpacer.custom(
+              mobileSize: ResponsiveDouble(
+                small: 40,
+                normal: 50,
+                large: 50,
+                extraLarge: 60,
               ),
             ),
           ],

@@ -1,20 +1,20 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
-class DetailedKeyBoardButton extends StatelessWidget {
+class KeyBoardButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double fontSize;
   final String? text;
   final Widget? child;
 
-// TODO assert text or child supplied
-  const DetailedKeyBoardButton({
+  const KeyBoardButton({
     this.onPressed,
     Key? key,
-    this.fontSize = 20,
+    this.fontSize = 28,
     this.text,
     this.child,
-  }) : super(key: key);
+  })  : assert(text != null || child != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,6 @@ class DetailedKeyBoardButton extends StatelessWidget {
         icon: child,
       );
     }
-    return Container(); // TODO remove after assert
+    throw AssertionError('Need to provide child or text');
   }
 }

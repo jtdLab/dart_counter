@@ -14,7 +14,8 @@ class EditProfileImageWidget extends StatelessWidget {
       backgroundColor: Colors.white70,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
+        child: AppColumn(
+          spacing: size6(context),
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -29,7 +30,6 @@ class EditProfileImageWidget extends StatelessWidget {
                 context.router.pop();
               },
             ),
-            const AppSpacer.normal(),
             AppPrimaryButton(
               text: LocaleKeys.takePhoto.tr().toUpperCase(),
               onPressed: () {
@@ -39,7 +39,6 @@ class EditProfileImageWidget extends StatelessWidget {
                 context.router.pop();
               },
             ),
-            const AppSpacer.normal(),
             AppPrimaryButton(
               text: LocaleKeys.choosePhoto.tr().toUpperCase(),
               onPressed: () {
@@ -49,7 +48,6 @@ class EditProfileImageWidget extends StatelessWidget {
                 context.router.pop();
               },
             ),
-            const AppSpacer.normal(),
             AppPrimaryButton(
               text: LocaleKeys.done.tr().toUpperCase(),
               onPressed: () => context.router.pop(),
@@ -61,7 +59,7 @@ class EditProfileImageWidget extends StatelessWidget {
                 large: 50,
                 extraLarge: 60,
               ),
-            )
+            ),
           ],
         ),
       ),

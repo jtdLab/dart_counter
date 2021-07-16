@@ -109,5 +109,11 @@
 
     "usernameChanged": "Benutzername geändert",
     "passwordChanged": "Passwort geändert",
-    "emailChanged": "E-Mail geändert"
+    "emailChanged": "E-Mail geändert",
+    
+    "practice": "Training",
+
+    "noGamesFound": "Keine Spiele gefunden",
+
+    "mainMenu": "Hauptmenü"
 }

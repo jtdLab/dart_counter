@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size70(context) + 3 * size6(context), // TODO height
+      height: size70(context) + 3 * size6(context), // TODO height correct
       decoration: BoxDecoration(
         border: Border.all(
           width: border4(context),

@@ -1,7 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
-// TODO refactor
+// TODO keyboardbutton instead of this button
 class CheckoutDetailsButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double fontSize;
@@ -9,7 +9,6 @@ class CheckoutDetailsButton extends StatelessWidget {
   final Widget? child;
   final bool selected;
 
-// TODO assert text or child supplied
   const CheckoutDetailsButton({
     this.onPressed,
     Key? key,
@@ -36,6 +35,6 @@ class CheckoutDetailsButton extends StatelessWidget {
         icon: child,
       );
     }
-    return Container(); // TODO remove after assert
+    return Container();
   }
 }

@@ -15,8 +15,8 @@ class GameHistoryOverviewWidget extends StatelessWidget {
         final games = state.gameHistory.getOrCrash();
 
         if (games.size == 0) {
-          return const Center(
-            child: Text('No games found'), // TODO
+          return Center(
+            child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
           );
         }
 

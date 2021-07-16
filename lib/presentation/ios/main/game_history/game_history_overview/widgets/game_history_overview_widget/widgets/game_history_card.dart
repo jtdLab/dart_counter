@@ -6,6 +6,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 
+// TODO only display game owners stats here atm the game owner is assumed to be players[0]
 class GameHistoryCard extends StatelessWidget {
   final Game game;
 
@@ -37,7 +38,7 @@ class GameHistoryCard extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
         trailing: AutoSizeText(
-          '6 DAYS AGO', // TODO
+          '6 DAYS AGO', // TODO real date
           maxLines: 1,
           minFontSize: 6,
           maxFontSize: 10,
@@ -48,82 +49,72 @@ class GameHistoryCard extends StatelessWidget {
         ),
         children: [
           AppCardItem.large(
-            content: _content(context, game: game),
+            content: Row(
+              children: [
+                const AppSpacer.normal(
+                  orientation: Orientation.horizontal,
+                ),
+                Image.asset(AppImages.starNew),
+                const Spacer(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(
+                      flex: 3,
+                    ),
+                    Row(
+                      children: [
+                        AutoSizeText(
+                          '${LocaleKeys.averrage.tr().toUpperCase()}:',
+                          maxLines: 1,
+                          minFontSize: 8,
+                          maxFontSize: 14,
+                          style: const TextStyle(
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        AutoSizeText(
+                          game.players[0].stats.average.toStringAsFixed(2),
+                          maxLines: 1,
+                          minFontSize: 8,
+                          maxFontSize: 14,
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        AutoSizeText(
+                          '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
+                          maxLines: 1,
+                          minFontSize: 8,
+                          maxFontSize: 14,
+                        ),
+                        AutoSizeText(
+                          game.players[0].stats.checkoutPercentage
+                              .toStringAsFixed(2),
+                          maxLines: 1,
+                          minFontSize: 8,
+                          maxFontSize: 14,
+                        ),
+                      ],
+                    ),
+                    const Spacer(
+                      flex: 3,
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Image.asset(AppImages.chevronForwardNew),
+                const AppSpacer.normal(
+                  orientation: Orientation.horizontal,
+                ),
+              ],
+            ),
           )
         ],
       ),
     );
   }
-
-  // TODO make responsive and in seperate file
-  Widget _content(BuildContext context, {required Game game}) => Row(
-        children: [
-          const SizedBox(width: 6),
-          Image.asset(AppImages.starNew),
-          const Spacer(),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(
-                  flex: 3,
-                ),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
-                        '${LocaleKeys.averrage.tr().toUpperCase()}:',
-                        maxLines: 1,
-                        maxFontSize: 14,
-                        style: const TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: AutoSizeText(
-                        game.players[0].stats.average.toString(), // TODO
-                        maxLines: 1,
-                        maxFontSize: 14,
-                      ),
-                    )
-                  ],
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
-                        '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
-                        maxLines: 1,
-                        maxFontSize: 14,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: AutoSizeText(
-                        game.players[0].stats.checkoutPercentage
-                            .toString(), // TODO
-                        maxLines: 1,
-                        maxFontSize: 14,
-                      ),
-                    )
-                  ],
-                ),
-                const Spacer(
-                  flex: 3,
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          Image.asset(AppImages.chevronForwardNew),
-          const SizedBox(width: 6),
-        ],
-      );
 }

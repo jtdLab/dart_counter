@@ -23,7 +23,6 @@ class ReceivedInvitationsCard extends StatelessWidget {
                 .copyWith(color: AppColors.white),
           ),
           children: [
-            // TODO extract into seperate widget
             SizedBox(
               height: 3 * size70(context) + 2 * size6(context),
               child: ListView.builder(
