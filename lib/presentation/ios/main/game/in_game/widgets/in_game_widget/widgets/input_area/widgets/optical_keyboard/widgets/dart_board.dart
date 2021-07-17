@@ -1,8 +1,8 @@
 import 'dart:math' as math;
+import 'dart:ui';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/material.dart' show Colors;
 
-// TODO whole file clean and seperate componenets
 class DartBoard extends StatefulWidget {
   const DartBoard({
     Key? key,
@@ -21,7 +21,6 @@ class _DartBoardState extends State<DartBoard> {
     super.didChangeDependencies();
     final radius = (4 * widget.size55(context) + 3 * widget.size6(context)) / 2;
     center = Offset(radius, radius);
-    print('intital $center');
   }
 
   @override
@@ -33,33 +32,27 @@ class _DartBoardState extends State<DartBoard> {
         ),
         child: GestureDetector(
           onTapUp: (details) {
-            final tapPosition = Offset(
+            final Offset tapPosition = Offset(
               details.localPosition.dx,
               details.localPosition.dy,
             );
-
-            // translate tap position to (0,0) as center
 
             // zoom or reset
             setState(() {
               if (scale == 1) {
                 scale = 2.5;
-
                 center = tapPosition;
-
-                print('zoom $center');
               } else {
                 scale = 1;
                 final radius =
                     (4 * widget.size55(context) + 3 * widget.size6(context)) /
                         2;
                 center = Offset(radius, radius);
-                print('reset $center');
               }
             });
           },
           child: CustomPaint(
-            painter: DartBoardPainter(scale: scale, center: center),
+            painter: _DartBoardPainter(scale: scale, center: center),
           ),
         ),
       ),
@@ -67,11 +60,12 @@ class _DartBoardState extends State<DartBoard> {
   }
 }
 
-class DartBoardPainter extends CustomPainter {
+// TODO maybe use this more dart like approach with _ in other widget depending subwidgets
+class _DartBoardPainter extends CustomPainter {
   final double scale;
   final Offset center;
 
-  DartBoardPainter({
+  _DartBoardPainter({
     required this.scale,
     required this.center,
   });
@@ -79,6 +73,13 @@ class DartBoardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final radius = size.width < size.height ? size.width / 2 : size.height / 2;
+
+    // translate so the (0,0) of the coordinate system is in the middle
+    final Offset translatedCenter = Offset(
+      -center.dx + radius,
+      -center.dy + radius,
+    );
+    canvas.translate(radius, radius);
 
     // scale
     canvas.scale(scale);
@@ -104,28 +105,28 @@ class DartBoardPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     // double
-    canvas.drawCircle(center, radius, redFilled);
+    canvas.drawCircle(translatedCenter, radius, redFilled);
 
     // single
-    canvas.drawCircle(center, 0.9 * radius, blackFilled);
+    canvas.drawCircle(translatedCenter, 0.9 * radius, blackFilled);
 
     // triple
-    canvas.drawCircle(center, 0.7 * radius, orangeFilled);
+    canvas.drawCircle(translatedCenter, 0.7 * radius, orangeFilled);
 
     // single
-    canvas.drawCircle(center, 0.6 * radius, blackFilled);
+    canvas.drawCircle(translatedCenter, 0.6 * radius, blackFilled);
 
     // single bull
-    canvas.drawCircle(center, 0.2 * radius, grayFilled);
+    canvas.drawCircle(translatedCenter, 0.2 * radius, grayFilled);
 
     // bull
-    canvas.drawCircle(center, 0.1 * radius, redFilled);
+    canvas.drawCircle(translatedCenter, 0.1 * radius, redFilled);
 
     for (int i = 0; i < 10; i++) {
       // overlay
       canvas.drawArc(
         Rect.fromCenter(
-          center: center,
+          center: translatedCenter,
           height: 2 * radius,
           width: 2 * radius,
         ),
