@@ -47,8 +47,7 @@ const $Game = _$GameTearOff();
 mixin _$Game {
   UniqueId get id => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  bool get online =>
-      throw _privateConstructorUsedError; // TODO keep this flag or new game type OnlineGame??
+  bool get online => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
@@ -237,7 +236,7 @@ class _$_Game extends _Game {
   final DateTime createdAt;
   @override
   final bool online;
-  @override // TODO keep this flag or new game type OnlineGame??
+  @override
   final Status status;
   @override
   final Mode mode;
@@ -319,7 +318,7 @@ abstract class _Game extends Game {
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   bool get online => throw _privateConstructorUsedError;
-  @override // TODO keep this flag or new game type OnlineGame??
+  @override
   Status get status => throw _privateConstructorUsedError;
   @override
   Mode get mode => throw _privateConstructorUsedError;

@@ -15,7 +15,7 @@ class Game with _$Game {
   const factory Game({
     required UniqueId id,
     required DateTime createdAt,
-    required bool online, // TODO keep this flag or new game type OnlineGame??
+    required bool online,
     required Status status,
     required Mode mode,
     required int size,
