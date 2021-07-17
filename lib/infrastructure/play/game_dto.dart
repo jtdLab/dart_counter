@@ -14,6 +14,7 @@ part 'game_dto.g.dart';
 class GameDto with _$GameDto {
   const factory GameDto({
     required String id,
+    required DateTime createdAt,
     required bool online,
     required String status,
     required String mode,
@@ -27,8 +28,9 @@ class GameDto with _$GameDto {
 
   factory GameDto.fromDomain(Game game) {
     return GameDto(
-      online: game.online,
       id: game.id.getOrCrash(),
+      createdAt: game.createdAt,
+      online: game.online,
       status: game.status.toString().split('.')[1],
       mode: game.mode.toString().split('.')[1],
       size: game.size,
@@ -53,8 +55,9 @@ class GameDto with _$GameDto {
   factory GameDto.fromExternal(dart.Game game) {
     final faker = Faker();
     return GameDto(
-      online: false,
       id: faker.randomGenerator.string(28, min: 28),
+      createdAt: DateTime.now(),
+      online: false,
       status: game.status.toString().split('.')[1],
       mode: game.config.mode.toString().split('.')[1],
       size: game.config.size,
@@ -74,8 +77,9 @@ class GameDto with _$GameDto {
 
   Game toDomain() {
     return Game(
-      online: online,
       id: UniqueId.fromUniqueString(id),
+      createdAt: createdAt,
+      online: online,
       status: status == 'pending'
           ? Status.pending
           : status == 'running'

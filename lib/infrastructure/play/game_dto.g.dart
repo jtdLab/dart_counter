@@ -9,6 +9,7 @@ part of 'game_dto.dart';
 _$_GameDto _$_$_GameDtoFromJson(Map<String, dynamic> json) {
   return _$_GameDto(
     id: json['id'] as String,
+    createdAt: DateTime.parse(json['createdAt'] as String),
     online: json['online'] as bool,
     status: json['status'] as String,
     mode: json['mode'] as String,
@@ -25,6 +26,7 @@ _$_GameDto _$_$_GameDtoFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_GameDtoToJson(_$_GameDto instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'createdAt': instance.createdAt.toIso8601String(),
       'online': instance.online,
       'status': instance.status,
       'mode': instance.mode,

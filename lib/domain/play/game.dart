@@ -14,6 +14,7 @@ enum Type { legs, sets }
 class Game with _$Game {
   const factory Game({
     required UniqueId id,
+    required DateTime createdAt,
     required bool online, // TODO keep this flag or new game type OnlineGame??
     required Status status,
     required Mode mode,
@@ -41,10 +42,11 @@ class Game with _$Game {
   }
 
   factory Game.dummy() => Game(
-        online: false,
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
+        createdAt: DateTime.now(),
+        online: false,
         status: Status.pending,
         mode: faker.randomGenerator.element([
           Mode.firstTo,

@@ -1,3 +1,5 @@
+import 'package:timeago/timeago.dart' as timeago;
+
 import 'package:dart_counter/domain/play/game.dart';
 
 import 'package:dart_counter/application/game_history/game_history_bloc.dart';
@@ -38,7 +40,10 @@ class GameHistoryCard extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
         trailing: AutoSizeText(
-          '6 DAYS AGO', // TODO real date
+          timeago.format(
+            game.createdAt,
+            locale: context.locale.languageCode,
+          ),
           maxLines: 1,
           minFontSize: 6,
           maxFontSize: 10,

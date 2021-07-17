@@ -1,3 +1,4 @@
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dart_counter/injection.dart';
@@ -12,8 +13,10 @@ import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'presentation/core/app_widget/app_widget.dart';
+import 'presentation/core/de_messages.dart';
 
 Future<void> main() async {
+  timeago.setLocaleMessages('de', DeMessages());
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
     null,
     customRefinedBreakpoints: const RefinedBreakpoints(mobileNormal: 360),

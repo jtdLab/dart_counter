@@ -22,6 +22,7 @@ class _$GameDtoTearOff {
 
   _GameDto call(
       {required String id,
+      required DateTime createdAt,
       required bool online,
       required String status,
       required String mode,
@@ -31,6 +32,7 @@ class _$GameDtoTearOff {
       @PlayerDtoConverter() required List<PlayerDto> players}) {
     return _GameDto(
       id: id,
+      createdAt: createdAt,
       online: online,
       status: status,
       mode: mode,
@@ -52,6 +54,7 @@ const $GameDto = _$GameDtoTearOff();
 /// @nodoc
 mixin _$GameDto {
   String get id => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   bool get online => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
@@ -72,6 +75,7 @@ abstract class $GameDtoCopyWith<$Res> {
       _$GameDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      DateTime createdAt,
       bool online,
       String status,
       String mode,
@@ -92,6 +96,7 @@ class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? createdAt = freezed,
     Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
@@ -105,6 +110,10 @@ class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       online: online == freezed
           ? _value.online
           : online // ignore: cast_nullable_to_non_nullable
@@ -144,6 +153,7 @@ abstract class _$GameDtoCopyWith<$Res> implements $GameDtoCopyWith<$Res> {
   @override
   $Res call(
       {String id,
+      DateTime createdAt,
       bool online,
       String status,
       String mode,
@@ -165,6 +175,7 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? createdAt = freezed,
     Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
@@ -178,6 +189,10 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       online: online == freezed
           ? _value.online
           : online // ignore: cast_nullable_to_non_nullable
@@ -215,6 +230,7 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
 class _$_GameDto extends _GameDto {
   const _$_GameDto(
       {required this.id,
+      required this.createdAt,
       required this.online,
       required this.status,
       required this.mode,
@@ -229,6 +245,8 @@ class _$_GameDto extends _GameDto {
 
   @override
   final String id;
+  @override
+  final DateTime createdAt;
   @override
   final bool online;
   @override
@@ -247,7 +265,7 @@ class _$_GameDto extends _GameDto {
 
   @override
   String toString() {
-    return 'GameDto(id: $id, online: $online, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'GameDto(id: $id, createdAt: $createdAt, online: $online, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
@@ -256,6 +274,9 @@ class _$_GameDto extends _GameDto {
         (other is _GameDto &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
             (identical(other.online, online) ||
                 const DeepCollectionEquality().equals(other.online, online)) &&
             (identical(other.status, status) ||
@@ -277,6 +298,7 @@ class _$_GameDto extends _GameDto {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(online) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
@@ -299,6 +321,7 @@ class _$_GameDto extends _GameDto {
 abstract class _GameDto extends GameDto {
   const factory _GameDto(
       {required String id,
+      required DateTime createdAt,
       required bool online,
       required String status,
       required String mode,
@@ -312,6 +335,8 @@ abstract class _GameDto extends GameDto {
 
   @override
   String get id => throw _privateConstructorUsedError;
+  @override
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   bool get online => throw _privateConstructorUsedError;
   @override
