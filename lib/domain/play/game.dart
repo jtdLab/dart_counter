@@ -45,7 +45,9 @@ class Game with _$Game {
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
-        createdAt: DateTime.now(),
+        createdAt: DateTime.now().subtract(
+          Duration(seconds: faker.randomGenerator.integer(1000000)),
+        ),
         online: false,
         status: Status.pending,
         mode: faker.randomGenerator.element([

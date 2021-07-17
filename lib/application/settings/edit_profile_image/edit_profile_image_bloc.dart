@@ -40,7 +40,6 @@ class EditProfileImageBloc
   Stream<EditProfileImageState> _mapTakePressedToState() async* {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
     if (pickedFile == null) {
-      // TODO no image selected
       return;
     }
     final file = File(pickedFile.path);
@@ -51,7 +50,6 @@ class EditProfileImageBloc
     final pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
     if (pickedFile == null) {
-      // TODO no image selected
       return;
     }
     final file = File(pickedFile.path);

@@ -37,8 +37,14 @@ class UserDto with _$UserDto {
       profile: ProfileDto.fromDomain(user.profile),
       careerStatsOnline: CareerStatsDto.fromDomain(user.careerStatsOnline),
       careerStatsOffline: CareerStatsDto.fromDomain(user.careerStatsOffline),
-      gameHistoryOnline: user.gameHistoryOnline.getOrCrash().map((game) => GameDto.fromDomain(game)).asList(),
-      gameHistoryOffline: user.gameHistoryOffline.getOrCrash().map((game) => GameDto.fromDomain(game)).asList(),
+      gameHistoryOnline: user.gameHistoryOnline
+          .getOrCrash()
+          .map((game) => GameDto.fromDomain(game))
+          .asList(),
+      gameHistoryOffline: user.gameHistoryOffline
+          .getOrCrash()
+          .map((game) => GameDto.fromDomain(game))
+          .asList(),
       createdAt: FieldValue.serverTimestamp(),
     );
   }
@@ -50,14 +56,24 @@ class UserDto with _$UserDto {
       profile: profile.toDomain(),
       careerStatsOnline: careerStatsOnline.toDomain(),
       careerStatsOffline: careerStatsOffline.toDomain(),
-      gameHistoryOnline: List10(gameHistoryOnline.map((gameDto) => gameDto.toDomain()).toImmutableList()),
-      gameHistoryOffline: List10(gameHistoryOffline.map((gameDto) => gameDto.toDomain()).toImmutableList()),
+      gameHistoryOnline: List10(
+        gameHistoryOnline
+            .map((gameDto) => gameDto.toDomain())
+            .toImmutableList()
+            .sortedByDescending((game) => game.createdAt),
+      ),
+      gameHistoryOffline: List10(
+        gameHistoryOffline
+            .map((gameDto) => gameDto.toDomain())
+            .toImmutableList()
+            .sortedByDescending((game) => game.createdAt),
+      ),
     );
   }
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
-      
+
   /**
    * factory UserDto.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data();
