@@ -49,6 +49,7 @@ class PlayFacade implements IPlayFacade {
 
   @override
   Future<Either<PlayFailure, Unit>> createGame({required bool online}) {
+    // TODO link creator user to the player
     _online = online;
     // TODO: implement createGame
     throw UnimplementedError();

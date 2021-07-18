@@ -1,6 +1,7 @@
 import 'package:dart_counter/application/in_game/input_area/detailed_key_board/detailed_key_board_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/input_area/widgets/input_row/input_row.dart';
 import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/input_area/widgets/key_board_button.dart';
 
 class DetailedKeyBoard extends StatelessWidget {
@@ -15,6 +16,7 @@ class DetailedKeyBoard extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
+           const InputRow(),
           AppRow(
             spacing: size6(context),
             children: [

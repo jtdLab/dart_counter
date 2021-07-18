@@ -40,7 +40,7 @@ class _DartBoardState extends State<DartBoard> {
             // zoom or reset
             setState(() {
               if (scale == 1) {
-                scale = 2.5;
+                scale = 3;
                 center = tapPosition;
               } else {
                 scale = 1;
@@ -116,12 +116,6 @@ class _DartBoardPainter extends CustomPainter {
     // single
     canvas.drawCircle(translatedCenter, 0.6 * radius, blackFilled);
 
-    // single bull
-    canvas.drawCircle(translatedCenter, 0.2 * radius, grayFilled);
-
-    // bull
-    canvas.drawCircle(translatedCenter, 0.1 * radius, redFilled);
-
     for (int i = 0; i < 10; i++) {
       // overlay
       canvas.drawArc(
@@ -136,6 +130,12 @@ class _DartBoardPainter extends CustomPainter {
         whiteTransparent,
       );
     }
+
+    // single bull
+    canvas.drawCircle(translatedCenter, 0.2 * radius, grayFilled);
+
+    // bull
+    canvas.drawCircle(translatedCenter, 0.1 * radius, redFilled);
   }
 
   @override

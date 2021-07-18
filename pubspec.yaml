@@ -64,6 +64,7 @@ dependencies:
   rxdart: ^0.26.0
   sign_in_with_apple: ^3.0.0
   timeago: ^3.1.0
+  touchable: ^1.0.0
   url_launcher: ^6.0.9
   uuid: ^3.0.4
 

@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/infrastructure/play/game_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/play/throw.dart';
@@ -18,6 +20,12 @@ class MockedPlayFacade implements IPlayFacade {
 
   final BehaviorSubject<Either<PlayFailure, Game>> _gameStreamController =
       BehaviorSubject();
+
+  final IUserFacade _userFacade;
+
+  MockedPlayFacade(
+    this._userFacade,
+  );
 
   dart.Game? _game;
   bool? _online;
@@ -95,10 +103,13 @@ class MockedPlayFacade implements IPlayFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> createGame({required bool online}) {
+  Future<Either<PlayFailure, Unit>> createGame({
+    required bool online,
+  }) {
     if (fail) {
       return Future.value(left(const PlayFailure.error()));
     } else {
+      // TODO link user to the player
       _online = online;
       _createdAt = DateTime.now();
       _game = dart.Game();

@@ -5,13 +5,12 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'change_email_bloc.freezed.dart';
 part 'change_email_event.dart';
 part 'change_email_state.dart';
-part 'change_email_bloc.freezed.dart';
 
 @lazySingleton
 class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
