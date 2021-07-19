@@ -1,11 +1,10 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'app_card/widgets/app_card_item.dart';
-import 'app_icon_button.dart';
-import 'app_rounded_image.dart';
 
 // TODO extract and abstract more + refactor
-class AppSearchField extends StatefulWidget {
-  final Function(String) onChanged;
+class AppSearchField<T> extends StatefulWidget {
+  final List<T> Function(String) onSearch;
+  final Widget Function(BuildContext, T) itemBuilder;
+
   final bool autoFocus;
   final bool autoCorrect;
   final String placeholder;
@@ -15,7 +14,8 @@ class AppSearchField extends StatefulWidget {
   final VoidCallback? onEditingComplete;
 
   const AppSearchField({
-    required this.onChanged,
+    required this.onSearch,
+    required this.itemBuilder,
     this.autoFocus = false,
     this.autoCorrect = false,
     this.placeholder = '',
@@ -26,18 +26,19 @@ class AppSearchField extends StatefulWidget {
   });
 
   @override
-  _AppSearchFieldState createState() => _AppSearchFieldState();
+  _AppSearchFieldState<T> createState() => _AppSearchFieldState<T>();
 }
 
-class _AppSearchFieldState extends State<AppSearchField> {
+class _AppSearchFieldState<T> extends State<AppSearchField<T>> {
   late GlobalKey actionKey;
   late double width, height, xPosition, yPosition;
-  bool isDropDownOpened = false;
   late OverlayEntry floatingDropDown;
+
+  late List<T> searchResults;
 
   @override
   void initState() {
-    actionKey = LabeledGlobalKey('kek'); // TODO random string here
+    actionKey = LabeledGlobalKey('SearchFieldKey');
     super.initState();
   }
 
@@ -48,8 +49,9 @@ class _AppSearchFieldState extends State<AppSearchField> {
         width: width,
         top: yPosition + height,
         height: 4 * height + 445,
-        child: DropDown(
-          itemHeight: height,
+        child: DropDown<T>(
+          itemBuilder: widget.itemBuilder,
+          searchResults: searchResults,
         ),
       );
     });
@@ -85,17 +87,15 @@ class _AppSearchFieldState extends State<AppSearchField> {
             onEditingComplete: widget.onEditingComplete,
             onChanged: (text) {
               setState(() {
-                if (isDropDownOpened) {
+                searchResults = widget.onSearch(text);
+                if (searchResults.isEmpty) {
                   floatingDropDown.remove();
                 } else {
                   findDropDownData();
                   floatingDropDown = _createFloatingDropDown();
                   Overlay.of(context)?.insert(floatingDropDown);
                 }
-
-                isDropDownOpened = !isDropDownOpened;
               });
-              //widget.onChanged(text);
             },
             placeholderStyle: CupertinoTheme.of(context)
                 .textTheme
@@ -114,12 +114,14 @@ class _AppSearchFieldState extends State<AppSearchField> {
   }
 }
 
-class DropDown extends StatelessWidget {
-  final double itemHeight;
+class DropDown<T> extends StatelessWidget {
+  final Widget Function(BuildContext, T) itemBuilder;
+  final List<T> searchResults;
 
   const DropDown({
     Key? key,
-    required this.itemHeight,
+    required this.itemBuilder,
+    required this.searchResults,
   }) : super(key: key);
 
   @override
@@ -134,47 +136,12 @@ class DropDown extends StatelessWidget {
           AppColumn(
             spacing: 6,
             children: [
-              _item(context),
-              _item(context),
-              _item(context),
-              _item(context),
+              for (int i = 0; i < searchResults.length; i++)
+                itemBuilder(context, searchResults[i])
             ],
           ),
         ],
       ),
     );
   }
-
-  Widget _item(BuildContext context) => AppCardItem.large(
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-              ),
-              child: AppRoundedImage.small(
-                imageName: AppImages.photoPlaceholderNew,
-              ),
-            ),
-            Text(
-              'Anis Abi'.toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 16,
-              ),
-              child: AppIconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  AppImages.addNew,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
 }

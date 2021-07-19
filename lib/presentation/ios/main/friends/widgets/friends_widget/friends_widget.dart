@@ -10,12 +10,9 @@ class FriendsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        AppSearchField(
-          placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
-          onChanged: (newSearchString) {},
-        ),
-        const FriendsCard(),
+      children: const [
+        FriendRequestCard(),
+        FriendsCard(),
       ],
     );
   }
