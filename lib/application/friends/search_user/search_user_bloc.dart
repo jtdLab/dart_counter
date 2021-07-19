@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/friend/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_user_event.dart';
 part 'search_user_state.dart';
@@ -34,16 +35,13 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
   Stream<SearchUserState> _mapSearchStringChangedToState(
     SearchStringChanged event,
   ) async* {
-    yield state.copyWith(
-      searchString: event.newSearchString,
-    ); // TODO rly needed searchString in state  ??
-
     if (event.newSearchString.isEmpty) {
       yield SearchUserState.initial();
       return;
     }
     final failureOrSearchResults = await _friendFacade.searchUserByUsername(
-        username: event.newSearchString);
+      username: event.newSearchString,
+    );
     yield failureOrSearchResults.fold(
       (failure) => throw Error(), // TODO
       (searchResults) => state.copyWith(searchResults: searchResults),
@@ -52,5 +50,16 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
 
   Stream<SearchUserState> _mapClearSearchStringPressedToState() async* {
     yield SearchUserState.initial();
+  }
+
+  @override
+  Stream<Transition<SearchUserEvent, SearchUserState>> transformEvents(
+    Stream<SearchUserEvent> events,
+    transitionFn,
+  ) {
+    // TODO debounces all events but only changeSearchString should be debounced
+    return events
+        .debounceTime(const Duration(milliseconds: 500))
+        .switchMap(transitionFn);
   }
 }

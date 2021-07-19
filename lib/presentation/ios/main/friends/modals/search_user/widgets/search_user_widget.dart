@@ -28,6 +28,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
     return BlocBuilder<SearchUserBloc, SearchUserState>(
       builder: (context, state) {
         final searchResults = state.searchResults;
+      
         return AppColumn(
           spacing: widget.size6(context),
           children: [

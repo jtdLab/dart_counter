@@ -290,10 +290,8 @@ abstract class ClearSearchStringPressed implements SearchUserEvent {
 class _$SearchUserStateTearOff {
   const _$SearchUserStateTearOff();
 
-  _SearchUserState call(
-      {required String searchString, required KtList<User> searchResults}) {
+  _SearchUserState call({required KtList<User> searchResults}) {
     return _SearchUserState(
-      searchString: searchString,
       searchResults: searchResults,
     );
   }
@@ -304,7 +302,6 @@ const $SearchUserState = _$SearchUserStateTearOff();
 
 /// @nodoc
 mixin _$SearchUserState {
-  String get searchString => throw _privateConstructorUsedError;
   KtList<User> get searchResults => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -317,7 +314,7 @@ abstract class $SearchUserStateCopyWith<$Res> {
   factory $SearchUserStateCopyWith(
           SearchUserState value, $Res Function(SearchUserState) then) =
       _$SearchUserStateCopyWithImpl<$Res>;
-  $Res call({String searchString, KtList<User> searchResults});
+  $Res call({KtList<User> searchResults});
 }
 
 /// @nodoc
@@ -331,14 +328,9 @@ class _$SearchUserStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? searchString = freezed,
     Object? searchResults = freezed,
   }) {
     return _then(_value.copyWith(
-      searchString: searchString == freezed
-          ? _value.searchString
-          : searchString // ignore: cast_nullable_to_non_nullable
-              as String,
       searchResults: searchResults == freezed
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
@@ -354,7 +346,7 @@ abstract class _$SearchUserStateCopyWith<$Res>
           _SearchUserState value, $Res Function(_SearchUserState) then) =
       __$SearchUserStateCopyWithImpl<$Res>;
   @override
-  $Res call({String searchString, KtList<User> searchResults});
+  $Res call({KtList<User> searchResults});
 }
 
 /// @nodoc
@@ -370,14 +362,9 @@ class __$SearchUserStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? searchString = freezed,
     Object? searchResults = freezed,
   }) {
     return _then(_SearchUserState(
-      searchString: searchString == freezed
-          ? _value.searchString
-          : searchString // ignore: cast_nullable_to_non_nullable
-              as String,
       searchResults: searchResults == freezed
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
@@ -389,26 +376,20 @@ class __$SearchUserStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SearchUserState implements _SearchUserState {
-  const _$_SearchUserState(
-      {required this.searchString, required this.searchResults});
+  const _$_SearchUserState({required this.searchResults});
 
-  @override
-  final String searchString;
   @override
   final KtList<User> searchResults;
 
   @override
   String toString() {
-    return 'SearchUserState(searchString: $searchString, searchResults: $searchResults)';
+    return 'SearchUserState(searchResults: $searchResults)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SearchUserState &&
-            (identical(other.searchString, searchString) ||
-                const DeepCollectionEquality()
-                    .equals(other.searchString, searchString)) &&
             (identical(other.searchResults, searchResults) ||
                 const DeepCollectionEquality()
                     .equals(other.searchResults, searchResults)));
@@ -416,9 +397,7 @@ class _$_SearchUserState implements _SearchUserState {
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(searchString) ^
-      const DeepCollectionEquality().hash(searchResults);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(searchResults);
 
   @JsonKey(ignore: true)
   @override
@@ -427,12 +406,9 @@ class _$_SearchUserState implements _SearchUserState {
 }
 
 abstract class _SearchUserState implements SearchUserState {
-  const factory _SearchUserState(
-      {required String searchString,
-      required KtList<User> searchResults}) = _$_SearchUserState;
+  const factory _SearchUserState({required KtList<User> searchResults}) =
+      _$_SearchUserState;
 
-  @override
-  String get searchString => throw _privateConstructorUsedError;
   @override
   KtList<User> get searchResults => throw _privateConstructorUsedError;
   @override
