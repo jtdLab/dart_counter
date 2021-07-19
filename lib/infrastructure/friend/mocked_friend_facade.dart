@@ -87,19 +87,57 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Future<Either<FriendFailure, User>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<User>>> searchUserByUsername({
     required String username,
   }) {
     if (fail) {
       return Future.value(left(const FriendFailure.unexpected()));
     } else {
-      return Future.value(
-        right(
-          User.dummy().copyWith(
-            username: Username(username),
+      if (Username('${username}xxxx').isValid()) {
+        return Future.value(
+          right(
+            KtList.from([
+              User.dummy().copyWith(
+                username: Username('${username}1999'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username}2000'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username}3000'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username}4044'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username}5008'),
+              ),
+            ]),
           ),
-        ),
-      );
+        );
+      } else {
+        return Future.value(
+          right(
+            KtList.from([
+              User.dummy().copyWith(
+                username: Username('${username.substring(0,5)}1999'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username.substring(0,5)}2000'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username.substring(0,5)}3000'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username.substring(0,5)}4044'),
+              ),
+              User.dummy().copyWith(
+                username: Username('${username.substring(0,5)}5008'),
+              ),
+            ]),
+          ),
+        );
+      }
     }
   }
 

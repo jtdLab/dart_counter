@@ -42,7 +42,7 @@ class FriendFacade implements IFriendFacade {
   }
 
   @override
-  Future<Either<FriendFailure, User>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<User>>> searchUserByUsername({
     required String username,
   }) {
     // TODO: implement searchUserByUsername

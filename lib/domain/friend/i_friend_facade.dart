@@ -7,7 +7,7 @@ import 'package:kt_dart/kt.dart';
 import 'friend_request.dart';
 
 abstract class IFriendFacade {
-  Future<Either<FriendFailure, User>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<User>>> searchUserByUsername({
     required String username,
   });
   Future<Either<FriendFailure, Unit>> addFriend({

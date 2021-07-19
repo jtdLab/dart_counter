@@ -16,27 +16,27 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SignUpEventTearOff {
   const _$SignUpEventTearOff();
 
-  EmailChanged emailChanged(String emailString) {
+  EmailChanged emailChanged(String newEmailString) {
     return EmailChanged(
-      emailString,
+      newEmailString,
     );
   }
 
-  UsernameChanged usernameChanged(String usernameString) {
+  UsernameChanged usernameChanged(String newUsernameString) {
     return UsernameChanged(
-      usernameString,
+      newUsernameString,
     );
   }
 
-  PasswordChanged passwordChanged(String passwordString) {
+  PasswordChanged passwordChanged(String newPasswordString) {
     return PasswordChanged(
-      passwordString,
+      newPasswordString,
     );
   }
 
-  PasswordAgainChanged passwordAgainChanged(String passwordAgainString) {
+  PasswordAgainChanged passwordAgainChanged(String newPasswordAgainString) {
     return PasswordAgainChanged(
-      passwordAgainString,
+      newPasswordAgainString,
     );
   }
 
@@ -52,19 +52,20 @@ const $SignUpEvent = _$SignUpEventTearOff();
 mixin _$SignUpEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) =>
@@ -111,7 +112,7 @@ abstract class $EmailChangedCopyWith<$Res> {
   factory $EmailChangedCopyWith(
           EmailChanged value, $Res Function(EmailChanged) then) =
       _$EmailChangedCopyWithImpl<$Res>;
-  $Res call({String emailString});
+  $Res call({String newEmailString});
 }
 
 /// @nodoc
@@ -126,12 +127,12 @@ class _$EmailChangedCopyWithImpl<$Res> extends _$SignUpEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? emailString = freezed,
+    Object? newEmailString = freezed,
   }) {
     return _then(EmailChanged(
-      emailString == freezed
-          ? _value.emailString
-          : emailString // ignore: cast_nullable_to_non_nullable
+      newEmailString == freezed
+          ? _value.newEmailString
+          : newEmailString // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -140,28 +141,29 @@ class _$EmailChangedCopyWithImpl<$Res> extends _$SignUpEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EmailChanged implements EmailChanged {
-  const _$EmailChanged(this.emailString);
+  const _$EmailChanged(this.newEmailString);
 
   @override
-  final String emailString;
+  final String newEmailString;
 
   @override
   String toString() {
-    return 'SignUpEvent.emailChanged(emailString: $emailString)';
+    return 'SignUpEvent.emailChanged(newEmailString: $newEmailString)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is EmailChanged &&
-            (identical(other.emailString, emailString) ||
+            (identical(other.newEmailString, newEmailString) ||
                 const DeepCollectionEquality()
-                    .equals(other.emailString, emailString)));
+                    .equals(other.newEmailString, newEmailString)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(emailString);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(newEmailString);
 
   @JsonKey(ignore: true)
   @override
@@ -171,27 +173,28 @@ class _$EmailChanged implements EmailChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) {
-    return emailChanged(emailString);
+    return emailChanged(newEmailString);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
-      return emailChanged(emailString);
+      return emailChanged(newEmailString);
     }
     return orElse();
   }
@@ -226,9 +229,9 @@ class _$EmailChanged implements EmailChanged {
 }
 
 abstract class EmailChanged implements SignUpEvent {
-  const factory EmailChanged(String emailString) = _$EmailChanged;
+  const factory EmailChanged(String newEmailString) = _$EmailChanged;
 
-  String get emailString => throw _privateConstructorUsedError;
+  String get newEmailString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EmailChangedCopyWith<EmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -239,7 +242,7 @@ abstract class $UsernameChangedCopyWith<$Res> {
   factory $UsernameChangedCopyWith(
           UsernameChanged value, $Res Function(UsernameChanged) then) =
       _$UsernameChangedCopyWithImpl<$Res>;
-  $Res call({String usernameString});
+  $Res call({String newUsernameString});
 }
 
 /// @nodoc
@@ -255,12 +258,12 @@ class _$UsernameChangedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? usernameString = freezed,
+    Object? newUsernameString = freezed,
   }) {
     return _then(UsernameChanged(
-      usernameString == freezed
-          ? _value.usernameString
-          : usernameString // ignore: cast_nullable_to_non_nullable
+      newUsernameString == freezed
+          ? _value.newUsernameString
+          : newUsernameString // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -269,29 +272,29 @@ class _$UsernameChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UsernameChanged implements UsernameChanged {
-  const _$UsernameChanged(this.usernameString);
+  const _$UsernameChanged(this.newUsernameString);
 
   @override
-  final String usernameString;
+  final String newUsernameString;
 
   @override
   String toString() {
-    return 'SignUpEvent.usernameChanged(usernameString: $usernameString)';
+    return 'SignUpEvent.usernameChanged(newUsernameString: $newUsernameString)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UsernameChanged &&
-            (identical(other.usernameString, usernameString) ||
+            (identical(other.newUsernameString, newUsernameString) ||
                 const DeepCollectionEquality()
-                    .equals(other.usernameString, usernameString)));
+                    .equals(other.newUsernameString, newUsernameString)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(usernameString);
+      const DeepCollectionEquality().hash(newUsernameString);
 
   @JsonKey(ignore: true)
   @override
@@ -301,27 +304,28 @@ class _$UsernameChanged implements UsernameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) {
-    return usernameChanged(usernameString);
+    return usernameChanged(newUsernameString);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) {
     if (usernameChanged != null) {
-      return usernameChanged(usernameString);
+      return usernameChanged(newUsernameString);
     }
     return orElse();
   }
@@ -356,9 +360,9 @@ class _$UsernameChanged implements UsernameChanged {
 }
 
 abstract class UsernameChanged implements SignUpEvent {
-  const factory UsernameChanged(String usernameString) = _$UsernameChanged;
+  const factory UsernameChanged(String newUsernameString) = _$UsernameChanged;
 
-  String get usernameString => throw _privateConstructorUsedError;
+  String get newUsernameString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -369,7 +373,7 @@ abstract class $PasswordChangedCopyWith<$Res> {
   factory $PasswordChangedCopyWith(
           PasswordChanged value, $Res Function(PasswordChanged) then) =
       _$PasswordChangedCopyWithImpl<$Res>;
-  $Res call({String passwordString});
+  $Res call({String newPasswordString});
 }
 
 /// @nodoc
@@ -385,12 +389,12 @@ class _$PasswordChangedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? passwordString = freezed,
+    Object? newPasswordString = freezed,
   }) {
     return _then(PasswordChanged(
-      passwordString == freezed
-          ? _value.passwordString
-          : passwordString // ignore: cast_nullable_to_non_nullable
+      newPasswordString == freezed
+          ? _value.newPasswordString
+          : newPasswordString // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -399,29 +403,29 @@ class _$PasswordChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PasswordChanged implements PasswordChanged {
-  const _$PasswordChanged(this.passwordString);
+  const _$PasswordChanged(this.newPasswordString);
 
   @override
-  final String passwordString;
+  final String newPasswordString;
 
   @override
   String toString() {
-    return 'SignUpEvent.passwordChanged(passwordString: $passwordString)';
+    return 'SignUpEvent.passwordChanged(newPasswordString: $newPasswordString)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PasswordChanged &&
-            (identical(other.passwordString, passwordString) ||
+            (identical(other.newPasswordString, newPasswordString) ||
                 const DeepCollectionEquality()
-                    .equals(other.passwordString, passwordString)));
+                    .equals(other.newPasswordString, newPasswordString)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(passwordString);
+      const DeepCollectionEquality().hash(newPasswordString);
 
   @JsonKey(ignore: true)
   @override
@@ -431,27 +435,28 @@ class _$PasswordChanged implements PasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) {
-    return passwordChanged(passwordString);
+    return passwordChanged(newPasswordString);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
-      return passwordChanged(passwordString);
+      return passwordChanged(newPasswordString);
     }
     return orElse();
   }
@@ -486,9 +491,9 @@ class _$PasswordChanged implements PasswordChanged {
 }
 
 abstract class PasswordChanged implements SignUpEvent {
-  const factory PasswordChanged(String passwordString) = _$PasswordChanged;
+  const factory PasswordChanged(String newPasswordString) = _$PasswordChanged;
 
-  String get passwordString => throw _privateConstructorUsedError;
+  String get newPasswordString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -499,7 +504,7 @@ abstract class $PasswordAgainChangedCopyWith<$Res> {
   factory $PasswordAgainChangedCopyWith(PasswordAgainChanged value,
           $Res Function(PasswordAgainChanged) then) =
       _$PasswordAgainChangedCopyWithImpl<$Res>;
-  $Res call({String passwordAgainString});
+  $Res call({String newPasswordAgainString});
 }
 
 /// @nodoc
@@ -515,12 +520,12 @@ class _$PasswordAgainChangedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? passwordAgainString = freezed,
+    Object? newPasswordAgainString = freezed,
   }) {
     return _then(PasswordAgainChanged(
-      passwordAgainString == freezed
-          ? _value.passwordAgainString
-          : passwordAgainString // ignore: cast_nullable_to_non_nullable
+      newPasswordAgainString == freezed
+          ? _value.newPasswordAgainString
+          : newPasswordAgainString // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -529,29 +534,29 @@ class _$PasswordAgainChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PasswordAgainChanged implements PasswordAgainChanged {
-  const _$PasswordAgainChanged(this.passwordAgainString);
+  const _$PasswordAgainChanged(this.newPasswordAgainString);
 
   @override
-  final String passwordAgainString;
+  final String newPasswordAgainString;
 
   @override
   String toString() {
-    return 'SignUpEvent.passwordAgainChanged(passwordAgainString: $passwordAgainString)';
+    return 'SignUpEvent.passwordAgainChanged(newPasswordAgainString: $newPasswordAgainString)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PasswordAgainChanged &&
-            (identical(other.passwordAgainString, passwordAgainString) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordAgainString, passwordAgainString)));
+            (identical(other.newPasswordAgainString, newPasswordAgainString) ||
+                const DeepCollectionEquality().equals(
+                    other.newPasswordAgainString, newPasswordAgainString)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(passwordAgainString);
+      const DeepCollectionEquality().hash(newPasswordAgainString);
 
   @JsonKey(ignore: true)
   @override
@@ -562,27 +567,28 @@ class _$PasswordAgainChanged implements PasswordAgainChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) {
-    return passwordAgainChanged(passwordAgainString);
+    return passwordAgainChanged(newPasswordAgainString);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) {
     if (passwordAgainChanged != null) {
-      return passwordAgainChanged(passwordAgainString);
+      return passwordAgainChanged(newPasswordAgainString);
     }
     return orElse();
   }
@@ -617,10 +623,10 @@ class _$PasswordAgainChanged implements PasswordAgainChanged {
 }
 
 abstract class PasswordAgainChanged implements SignUpEvent {
-  const factory PasswordAgainChanged(String passwordAgainString) =
+  const factory PasswordAgainChanged(String newPasswordAgainString) =
       _$PasswordAgainChanged;
 
-  String get passwordAgainString => throw _privateConstructorUsedError;
+  String get newPasswordAgainString => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PasswordAgainChangedCopyWith<PasswordAgainChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -665,10 +671,11 @@ class _$SignUpPressed implements SignUpPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String emailString) emailChanged,
-    required TResult Function(String usernameString) usernameChanged,
-    required TResult Function(String passwordString) passwordChanged,
-    required TResult Function(String passwordAgainString) passwordAgainChanged,
+    required TResult Function(String newEmailString) emailChanged,
+    required TResult Function(String newUsernameString) usernameChanged,
+    required TResult Function(String newPasswordString) passwordChanged,
+    required TResult Function(String newPasswordAgainString)
+        passwordAgainChanged,
     required TResult Function() signUpPressed,
   }) {
     return signUpPressed();
@@ -677,10 +684,10 @@ class _$SignUpPressed implements SignUpPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String emailString)? emailChanged,
-    TResult Function(String usernameString)? usernameChanged,
-    TResult Function(String passwordString)? passwordChanged,
-    TResult Function(String passwordAgainString)? passwordAgainChanged,
+    TResult Function(String newEmailString)? emailChanged,
+    TResult Function(String newUsernameString)? usernameChanged,
+    TResult Function(String newPasswordString)? passwordChanged,
+    TResult Function(String newPasswordAgainString)? passwordAgainChanged,
     TResult Function()? signUpPressed,
     required TResult orElse(),
   }) {

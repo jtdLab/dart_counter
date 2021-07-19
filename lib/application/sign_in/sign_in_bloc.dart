@@ -39,7 +39,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     EmailChanged event,
   ) async* {
     yield state.copyWith(
-      email: EmailAddress(event.emailString),
+      email: EmailAddress(event.newEmailString),
       authFailure: null,
     );
   }
@@ -48,7 +48,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     PasswordChanged event,
   ) async* {
     yield state.copyWith(
-      password: Password(event.passwordString),
+      password: Password(event.newPasswordString),
       authFailure: null,
     );
   }
