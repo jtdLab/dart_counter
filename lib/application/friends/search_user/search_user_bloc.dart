@@ -59,7 +59,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
   ) {
     // TODO debounces all events but only changeSearchString should be debounced
     return events
-        .debounceTime(const Duration(milliseconds: 500))
+        .debounceTime(const Duration(milliseconds: 350))
         .switchMap(transitionFn);
   }
 }

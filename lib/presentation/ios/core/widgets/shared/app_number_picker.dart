@@ -27,11 +27,11 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
       onVerticalDragUpdate: (details) {
         if (details.delta.dy > 0) {
           setState(() {
-            onIncrementPressed();
+            onDecrementPressed();
           });
         } else {
           setState(() {
-            onDecrementPressed();
+            onIncrementPressed();
           });
         }
       },
