@@ -7,7 +7,7 @@ class DartsGerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.account.tr().toUpperCase(),
+        'dartsger'.toUpperCase(),
         maxFontSize: 14,
         minFontSize: 8,
         maxLines: 1,
@@ -18,7 +18,7 @@ class DartsGerCard extends StatelessWidget {
       ),
       children: [
         DartsGerCardItem(
-          title: LocaleKeys.privacyAndLegal.tr().toUpperCase(),
+          title: LocaleKeys.privacyPolicy.tr().toUpperCase(),
           onPressed: () => context.router.push(const PrivacyPolicyPageRoute()),
         ),
         DartsGerCardItem(

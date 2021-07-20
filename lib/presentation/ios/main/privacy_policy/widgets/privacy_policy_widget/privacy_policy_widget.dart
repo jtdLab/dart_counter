@@ -30,7 +30,8 @@ class PrivacyPolicyWidget extends StatelessWidget {
           ),
         ),
         Text(
-          LocaleKeys.privacyAndLegal.tr().toUpperCase(),
+          LocaleKeys.privacyPolicy.tr().toUpperCase(),
+          textAlign: TextAlign.center,
         ),
         const AppSpacer.large(),
         Padding(

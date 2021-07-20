@@ -66,6 +66,7 @@ abstract class  LocaleKeys {
   static const overview = 'overview';
   static const contact = 'contact';
   static const privacyAndLegal = 'privacyAndLegal';
+  static const privacyPolicy = 'privacyPolicy';
   static const createGame = 'createGame';
   static const player = 'player';
   static const addPlayer = 'addPlayer';
