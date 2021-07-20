@@ -1,1 +1,1 @@
-export 'search_user_widget.dart';
+export 'search_user_widget/search_user_widget.dart';

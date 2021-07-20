@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
@@ -57,9 +58,21 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     Stream<SearchUserEvent> events,
     transitionFn,
   ) {
-    // TODO debounces all events but only changeSearchString should be debounced
-    return events
-        .debounceTime(const Duration(milliseconds: 350))
-        .switchMap(transitionFn);
+    // Split into two streams, one which we will debounce
+    final splitEvents = StreamSplitter.splitFrom(events, 2);
+
+    final inputEvents = splitEvents[0]
+        // filter to only include events that we want to debounce
+        .where((event) => event is SearchStringChanged)
+        .debounceTime(const Duration(milliseconds: 300));
+
+    // Do reverse of filter above (note the `!` in `is!`)
+    final otherEvents =
+        splitEvents[1].where((event) => event is! SearchStringChanged);
+
+    // This has debounced SearchInputChanged, plus all other events
+    final finalStream = StreamGroup.merge([inputEvents, otherEvents]);
+
+    return finalStream.switchMap(transitionFn);
   }
 }

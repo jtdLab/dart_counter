@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/friends/search_user/search_user_bloc.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class SearchUserModal extends StatelessWidget {

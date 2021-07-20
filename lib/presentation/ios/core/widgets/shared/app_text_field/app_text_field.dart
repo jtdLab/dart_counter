@@ -16,6 +16,8 @@ class AppTextField extends StatefulWidget {
   final VoidCallback? onEditingComplete;
   final bool? valid;
   final String? errorMessage;
+  final bool showClear;
+  final VoidCallback? onClear;
 
   const AppTextField({
     this.text = '',
@@ -30,6 +32,8 @@ class AppTextField extends StatefulWidget {
     this.onEditingComplete,
     this.valid,
     this.errorMessage,
+    this.showClear = false,
+    this.onClear,
   });
 
   @override
@@ -84,6 +88,18 @@ class _AppTextFieldState extends State<AppTextField> {
                           ),
                   ),
                 ),
+                if (widget.showClear && _controller.text.isNotEmpty) ...[
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: AppIconButton(
+                      icon: Image.asset(AppImages.xMarkBlackNew),
+                      onPressed: () {
+                        _controller.clear();
+                        widget.onClear?.call();
+                      },
+                    ),
+                  ),
+                ],
                 Visibility(
                   visible: !(widget.valid ?? true),
                   child: const Align(
