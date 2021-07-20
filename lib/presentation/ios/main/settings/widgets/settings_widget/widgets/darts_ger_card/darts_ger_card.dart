@@ -1,4 +1,5 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/privacy_policy/privacy_policy_page.dart';
 import 'widgets/widgets.dart';
 
 class DartsGerCard extends StatelessWidget {
@@ -18,11 +19,11 @@ class DartsGerCard extends StatelessWidget {
       children: [
         DartsGerCardItem(
           title: LocaleKeys.privacyAndLegal.tr().toUpperCase(),
-          onPressed: () => context.router.push(const LegalPageRoute()),
+          onPressed: () => context.router.push(const PrivacyPolicyPageRoute()),
         ),
         DartsGerCardItem(
           title: LocaleKeys.contact.tr().toUpperCase(),
-          onPressed: () => context.router.push(const ImpressumPageRoute()),
+          onPressed: () => context.router.push(const ContactPageRoute()),
         ),
       ],
     );

@@ -1,8 +1,8 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class ImpressumPage extends StatelessWidget {
-  const ImpressumPage({
+class PrivacyPolicyPage extends StatelessWidget {
+  const PrivacyPolicyPage({
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +12,7 @@ class ImpressumPage extends StatelessWidget {
       navigationBar: AppNavigationBar(
         leading: BackButton(),
       ),
-      child: ImpressumWidget(),
+      child: PrivacyPolicyWidget(),
     );
   }
 }

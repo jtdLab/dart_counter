@@ -8,6 +8,7 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import 'auth/auth_flow.dart' as _i3;
+import 'main/contact/contact_page.dart' as _i9;
 import 'main/friends/friends_page.dart' as _i11;
 import 'main/game/create_game/create_game_page.dart' as _i17;
 import 'main/game/game_flow.dart' as _i14;
@@ -19,11 +20,10 @@ import 'main/game_history/game_history_flow.dart' as _i13;
 import 'main/game_history/game_history_overview/game_history_overview_page.dart'
     as _i15;
 import 'main/home/home_page.dart' as _i6;
-import 'main/impressum/impressum_page.dart' as _i9;
 import 'main/invitations/invitations_page.dart' as _i10;
-import 'main/legal/legal_page.dart' as _i8;
 import 'main/loading/loading_page.dart' as _i5;
 import 'main/main_flow.dart' as _i4;
+import 'main/privacy_policy/privacy_policy_page.dart' as _i8;
 import 'main/profile/profile_page.dart' as _i12;
 import 'main/settings/settings_page.dart' as _i7;
 
@@ -66,15 +66,15 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return const _i7.SettingsPage();
         }),
-    LegalPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    PrivacyPolicyPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.LegalPage();
+          return const _i8.PrivacyPolicyPage();
         }),
-    ImpressumPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    ContactPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i9.ImpressumPage();
+          return const _i9.ContactPage();
         }),
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
@@ -140,8 +140,9 @@ class Router extends _i1.RootStackRouter {
           _i1.RouteConfig(LoadingPageRoute.name, path: ''),
           _i1.RouteConfig(HomePageRoute.name, path: 'home-page'),
           _i1.RouteConfig(SettingsPageRoute.name, path: 'settings-page'),
-          _i1.RouteConfig(LegalPageRoute.name, path: 'legal-page'),
-          _i1.RouteConfig(ImpressumPageRoute.name, path: 'impressum-page'),
+          _i1.RouteConfig(PrivacyPolicyPageRoute.name,
+              path: 'privacy-policy-page'),
+          _i1.RouteConfig(ContactPageRoute.name, path: 'contact-page'),
           _i1.RouteConfig(InvitationsPageRoute.name, path: 'invitations-page'),
           _i1.RouteConfig(FriendsPageRoute.name, path: 'friends-page'),
           _i1.RouteConfig(ProfilePageRoute.name, path: 'profile-page'),
@@ -192,16 +193,16 @@ class SettingsPageRoute extends _i1.PageRouteInfo {
   static const String name = 'SettingsPageRoute';
 }
 
-class LegalPageRoute extends _i1.PageRouteInfo {
-  const LegalPageRoute() : super(name, path: 'legal-page');
+class PrivacyPolicyPageRoute extends _i1.PageRouteInfo {
+  const PrivacyPolicyPageRoute() : super(name, path: 'privacy-policy-page');
 
-  static const String name = 'LegalPageRoute';
+  static const String name = 'PrivacyPolicyPageRoute';
 }
 
-class ImpressumPageRoute extends _i1.PageRouteInfo {
-  const ImpressumPageRoute() : super(name, path: 'impressum-page');
+class ContactPageRoute extends _i1.PageRouteInfo {
+  const ContactPageRoute() : super(name, path: 'contact-page');
 
-  static const String name = 'ImpressumPageRoute';
+  static const String name = 'ContactPageRoute';
 }
 
 class InvitationsPageRoute extends _i1.PageRouteInfo {

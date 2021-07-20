@@ -1,8 +1,8 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class LegalPage extends StatelessWidget {
-  const LegalPage({
+class ContactPage extends StatelessWidget {
+  const ContactPage({
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +12,7 @@ class LegalPage extends StatelessWidget {
       navigationBar: AppNavigationBar(
         leading: BackButton(),
       ),
-      child: LegalWidget(),
+      child: ContactWidget(),
     );
   }
 }
