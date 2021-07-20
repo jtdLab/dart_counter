@@ -69,7 +69,10 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   Stream<InGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(game: event.game);
+    yield state.copyWith(
+      game: event.game,
+      showCheckoutDetails: false,
+    );
   }
 
   @override

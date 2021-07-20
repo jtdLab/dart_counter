@@ -179,7 +179,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i51.SettingsBloc>(
       () => _i51.SettingsBloc(get<_i10.IAuthFacade>(), get<_i31.UserBloc>()));
   gh.lazySingleton<_i52.CheckoutDetailsBloc>(() => _i52.CheckoutDetailsBloc(
-      get<_i18.IPlayFacade>(), get<_i45.InputRowBloc>()));
+      get<_i18.IPlayFacade>(),
+      get<_i45.InputRowBloc>(),
+      get<_i44.InGameBloc>()));
   gh.lazySingleton<_i53.CreateGameBloc>(
       () => _i53.CreateGameBloc(get<_i18.IPlayFacade>(), get<_i39.GameBloc>()));
   return get;
