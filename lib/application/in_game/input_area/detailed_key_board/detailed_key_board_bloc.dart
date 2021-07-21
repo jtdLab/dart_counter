@@ -99,10 +99,9 @@ class DetailedKeyBoardBloc
   }
 
   Stream<DetailedKeyBoardState> _mapUndoDartPressedToState() async* {
-    final darts = _inputRowBloc.state.darts?.toMutableList();
-    if (darts == null) {
-      throw UnexpectedStateError();
-    }
+    final darts = _inputRowBloc.state.darts?.toMutableList() ??
+        const KtList<Dart>.empty().toMutableList();
+
     if (darts.isNotEmpty()) {
       final newDarts = darts..removeAt(darts.size - 1);
       _inputRowBloc.add(
