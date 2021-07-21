@@ -23,7 +23,12 @@ class OfflinePlayerItem extends StatelessWidget {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
         final index = state.game.players.indexOf(player as Player);
-        final isDismissible = state.game.players.size > 1;
+        late final bool isDismissible;
+        if (state.game.players.asList().any((player) => player is DartBot)) {
+          isDismissible = state.game.players.size > 2;
+        } else {
+          isDismissible = state.game.players.size > 1;
+        }
 
         return Column(
           children: [

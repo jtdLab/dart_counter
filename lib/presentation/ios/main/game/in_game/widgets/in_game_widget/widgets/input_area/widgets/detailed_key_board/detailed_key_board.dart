@@ -16,17 +16,10 @@ class DetailedKeyBoard extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-           const InputRow(),
+          const InputRow(),
           AppRow(
             spacing: size6(context),
             children: [
-              Expanded(
-                child: KeyBoardButton(
-                  fontSize: 20,
-                  onPressed: () {},
-                  text: '15',
-                ),
-              ),
               Expanded(
                 child: KeyBoardButton(
                   fontSize: 20,
@@ -62,18 +55,18 @@ class DetailedKeyBoard extends StatelessWidget {
                   text: '20',
                 ),
               ),
+              Expanded(
+                child: KeyBoardButton(
+                  fontSize: 20,
+                  onPressed: () {},
+                  text: '25',
+                ),
+              ),
             ],
           ),
           AppRow(
             spacing: size6(context),
             children: [
-              Expanded(
-                child: KeyBoardButton(
-                  fontSize: 20,
-                  onPressed: () {},
-                  text: '9',
-                ),
-              ),
               Expanded(
                 child: KeyBoardButton(
                   fontSize: 20,
@@ -109,18 +102,18 @@ class DetailedKeyBoard extends StatelessWidget {
                   text: '14',
                 ),
               ),
+              Expanded(
+                child: KeyBoardButton(
+                  fontSize: 20,
+                  onPressed: () {},
+                  text: '15',
+                ),
+              ),
             ],
           ),
           AppRow(
             spacing: size6(context),
             children: [
-              Expanded(
-                child: KeyBoardButton(
-                  fontSize: 20,
-                  onPressed: () {},
-                  text: '3',
-                ),
-              ),
               Expanded(
                 child: KeyBoardButton(
                   fontSize: 20,
@@ -156,38 +149,71 @@ class DetailedKeyBoard extends StatelessWidget {
                   text: '8',
                 ),
               ),
+              Expanded(
+                child: KeyBoardButton(
+                  fontSize: 20,
+                  onPressed: () {},
+                  text: '9',
+                ),
+              ),
             ],
           ),
           AppRow(
             spacing: size6(context),
             children: [
               Expanded(
-                flex: 2,
-                child: KeyBoardButton(
-                  onPressed: () {},
-                  fontSize: 18,
-                  text: LocaleKeys.check.tr().toUpperCase(),
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    Expanded(
+                      child: KeyBoardButton(
+                        fontSize: 20,
+                        onPressed: () {},
+                        text: '0',
+                      ),
+                    ),
+                    Expanded(
+                      child: KeyBoardButton(
+                        fontSize: 20,
+                        onPressed: () {},
+                        text: '1',
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
-                child: KeyBoardButton(
-                  fontSize: 20,
-                  onPressed: () {},
-                  text: '1',
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    Expanded(
+                      child: KeyBoardButton(
+                        fontSize: 20,
+                        onPressed: () {},
+                        text: '2',
+                      ),
+                    ),
+                    Expanded(
+                      child: KeyBoardButton(
+                        fontSize: 20,
+                        onPressed: () {},
+                        text: '3',
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
-                child: KeyBoardButton(
-                  fontSize: 20,
-                  onPressed: () {},
-                  text: '2',
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: KeyBoardButton(
-                  onPressed: () {},
-                  child: Image.asset(AppImages.chevronBackNew),
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    Expanded(
+                      child: KeyBoardButton(
+                        onPressed: () {},
+                        child: Image.asset(AppImages.chevronBackNew),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

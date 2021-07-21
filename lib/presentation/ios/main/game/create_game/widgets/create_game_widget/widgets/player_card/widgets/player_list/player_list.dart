@@ -25,7 +25,7 @@ class PlayerList extends StatelessWidget {
             },
             itemBuilder: (context, index) {
               final player = players[index];
-
+              // TODO bug where multiple widgets with same global key
               if (player is DartBot) {
                 return DartBotItem(
                   key: ValueKey(player),
