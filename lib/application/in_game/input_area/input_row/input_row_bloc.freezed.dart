@@ -24,9 +24,10 @@ class _$InputRowEventTearOff {
     return const PerformThrowPressed();
   }
 
-  InputUpdated inputUpdated({required int newInput}) {
+  InputUpdated inputUpdated({required int newInput, KtList<Dart>? darts}) {
     return InputUpdated(
       newInput: newInput,
+      darts: darts,
     );
   }
 }
@@ -40,14 +41,14 @@ mixin _$InputRowEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int newInput) inputUpdated,
+    required TResult Function(int newInput, KtList<Dart>? darts) inputUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int newInput)? inputUpdated,
+    TResult Function(int newInput, KtList<Dart>? darts)? inputUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +128,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int newInput) inputUpdated,
+    required TResult Function(int newInput, KtList<Dart>? darts) inputUpdated,
   }) {
     return undoThrowPressed();
   }
@@ -137,7 +138,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int newInput)? inputUpdated,
+    TResult Function(int newInput, KtList<Dart>? darts)? inputUpdated,
     required TResult orElse(),
   }) {
     if (undoThrowPressed != null) {
@@ -217,7 +218,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int newInput) inputUpdated,
+    required TResult Function(int newInput, KtList<Dart>? darts) inputUpdated,
   }) {
     return performThrowPressed();
   }
@@ -227,7 +228,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int newInput)? inputUpdated,
+    TResult Function(int newInput, KtList<Dart>? darts)? inputUpdated,
     required TResult orElse(),
   }) {
     if (performThrowPressed != null) {
@@ -270,7 +271,7 @@ abstract class $InputUpdatedCopyWith<$Res> {
   factory $InputUpdatedCopyWith(
           InputUpdated value, $Res Function(InputUpdated) then) =
       _$InputUpdatedCopyWithImpl<$Res>;
-  $Res call({int newInput});
+  $Res call({int newInput, KtList<Dart>? darts});
 }
 
 /// @nodoc
@@ -286,12 +287,17 @@ class _$InputUpdatedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? newInput = freezed,
+    Object? darts = freezed,
   }) {
     return _then(InputUpdated(
       newInput: newInput == freezed
           ? _value.newInput
           : newInput // ignore: cast_nullable_to_non_nullable
               as int,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as KtList<Dart>?,
     ));
   }
 }
@@ -299,14 +305,16 @@ class _$InputUpdatedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InputUpdated implements InputUpdated {
-  const _$InputUpdated({required this.newInput});
+  const _$InputUpdated({required this.newInput, this.darts});
 
   @override
   final int newInput;
+  @override
+  final KtList<Dart>? darts;
 
   @override
   String toString() {
-    return 'InputRowEvent.inputUpdated(newInput: $newInput)';
+    return 'InputRowEvent.inputUpdated(newInput: $newInput, darts: $darts)';
   }
 
   @override
@@ -315,12 +323,16 @@ class _$InputUpdated implements InputUpdated {
         (other is InputUpdated &&
             (identical(other.newInput, newInput) ||
                 const DeepCollectionEquality()
-                    .equals(other.newInput, newInput)));
+                    .equals(other.newInput, newInput)) &&
+            (identical(other.darts, darts) ||
+                const DeepCollectionEquality().equals(other.darts, darts)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newInput);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(newInput) ^
+      const DeepCollectionEquality().hash(darts);
 
   @JsonKey(ignore: true)
   @override
@@ -332,9 +344,9 @@ class _$InputUpdated implements InputUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int newInput) inputUpdated,
+    required TResult Function(int newInput, KtList<Dart>? darts) inputUpdated,
   }) {
-    return inputUpdated(newInput);
+    return inputUpdated(newInput, darts);
   }
 
   @override
@@ -342,11 +354,11 @@ class _$InputUpdated implements InputUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int newInput)? inputUpdated,
+    TResult Function(int newInput, KtList<Dart>? darts)? inputUpdated,
     required TResult orElse(),
   }) {
     if (inputUpdated != null) {
-      return inputUpdated(newInput);
+      return inputUpdated(newInput, darts);
     }
     return orElse();
   }
@@ -377,9 +389,11 @@ class _$InputUpdated implements InputUpdated {
 }
 
 abstract class InputUpdated implements InputRowEvent {
-  const factory InputUpdated({required int newInput}) = _$InputUpdated;
+  const factory InputUpdated({required int newInput, KtList<Dart>? darts}) =
+      _$InputUpdated;
 
   int get newInput => throw _privateConstructorUsedError;
+  KtList<Dart>? get darts => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InputUpdatedCopyWith<InputUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,9 +403,10 @@ abstract class InputUpdated implements InputRowEvent {
 class _$InputRowStateTearOff {
   const _$InputRowStateTearOff();
 
-  _InputRowState call({required int input}) {
+  _InputRowState call({required int input, KtList<Dart>? darts}) {
     return _InputRowState(
       input: input,
+      darts: darts,
     );
   }
 }
@@ -402,6 +417,7 @@ const $InputRowState = _$InputRowStateTearOff();
 /// @nodoc
 mixin _$InputRowState {
   int get input => throw _privateConstructorUsedError;
+  KtList<Dart>? get darts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InputRowStateCopyWith<InputRowState> get copyWith =>
@@ -413,7 +429,7 @@ abstract class $InputRowStateCopyWith<$Res> {
   factory $InputRowStateCopyWith(
           InputRowState value, $Res Function(InputRowState) then) =
       _$InputRowStateCopyWithImpl<$Res>;
-  $Res call({int input});
+  $Res call({int input, KtList<Dart>? darts});
 }
 
 /// @nodoc
@@ -428,12 +444,17 @@ class _$InputRowStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? input = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_value.copyWith(
       input: input == freezed
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
               as int,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as KtList<Dart>?,
     ));
   }
 }
@@ -445,7 +466,7 @@ abstract class _$InputRowStateCopyWith<$Res>
           _InputRowState value, $Res Function(_InputRowState) then) =
       __$InputRowStateCopyWithImpl<$Res>;
   @override
-  $Res call({int input});
+  $Res call({int input, KtList<Dart>? darts});
 }
 
 /// @nodoc
@@ -462,12 +483,17 @@ class __$InputRowStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? input = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_InputRowState(
       input: input == freezed
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
               as int,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as KtList<Dart>?,
     ));
   }
 }
@@ -475,14 +501,16 @@ class __$InputRowStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_InputRowState implements _InputRowState {
-  const _$_InputRowState({required this.input});
+  const _$_InputRowState({required this.input, this.darts});
 
   @override
   final int input;
+  @override
+  final KtList<Dart>? darts;
 
   @override
   String toString() {
-    return 'InputRowState(input: $input)';
+    return 'InputRowState(input: $input, darts: $darts)';
   }
 
   @override
@@ -490,12 +518,16 @@ class _$_InputRowState implements _InputRowState {
     return identical(this, other) ||
         (other is _InputRowState &&
             (identical(other.input, input) ||
-                const DeepCollectionEquality().equals(other.input, input)));
+                const DeepCollectionEquality().equals(other.input, input)) &&
+            (identical(other.darts, darts) ||
+                const DeepCollectionEquality().equals(other.darts, darts)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(input);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(input) ^
+      const DeepCollectionEquality().hash(darts);
 
   @JsonKey(ignore: true)
   @override
@@ -504,10 +536,13 @@ class _$_InputRowState implements _InputRowState {
 }
 
 abstract class _InputRowState implements InputRowState {
-  const factory _InputRowState({required int input}) = _$_InputRowState;
+  const factory _InputRowState({required int input, KtList<Dart>? darts}) =
+      _$_InputRowState;
 
   @override
   int get input => throw _privateConstructorUsedError;
+  @override
+  KtList<Dart>? get darts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$InputRowStateCopyWith<_InputRowState> get copyWith =>

@@ -30,7 +30,14 @@ class DetailedKeyBoardBloc
     this._inputRowBloc,
   ) : super(
           DetailedKeyBoardState.initial(),
-        );
+        ) {
+    _inputRowBloc.add(
+      const InputRowEvent.inputUpdated(
+        newInput: 0,
+        darts: KtList.empty(),
+      ),
+    );
+  }
 
   @override
   Stream<DetailedKeyBoardState> mapEventToState(
@@ -46,16 +53,23 @@ class DetailedKeyBoardBloc
   Stream<DetailedKeyBoardState> _mapDartPressedToState(
     DartPressed event,
   ) async* {
+    var darts = _inputRowBloc.state.darts ?? const KtList.empty();
+
     final pointsLeftCurrentTurn =
         _inGameBloc.state.game.currentTurn().pointsLeft;
 
     // TODO calc more granular
-    if (state.darts.size < 3) {
+    if (darts.size < 3) {
       final focusedValue = event.value;
       if (focusedValue == 0) {
         const dart = Dart(type: DartType.s, value: 0);
-        final newDarts = state.darts.toMutableList()..add(dart);
-        yield state.copyWith(darts: newDarts);
+        final newDarts = darts.toMutableList()..add(dart);
+        _inputRowBloc.add(
+          InputRowEvent.inputUpdated(
+            newInput: _inputRowBloc.state.input,
+            darts: newDarts,
+          ),
+        );
       } else {
         yield state.copyWith(focusedValue: focusedValue);
       }
@@ -65,33 +79,40 @@ class DetailedKeyBoardBloc
   Stream<DetailedKeyBoardState> _mapDartDetailPressedToState(
     DartDetailPressed event,
   ) async* {
+    final darts = _inputRowBloc.state.darts ?? const KtList.empty();
     final value = state.focusedValue;
     if (value == null) {
       throw UnexpectedStateError();
     }
+
     final dart = Dart(type: event.type, value: value);
-    final newDarts = state.darts.toMutableList()..add(dart);
+    final newDarts = darts.toMutableList()..add(dart);
     _inputRowBloc.add(
       InputRowEvent.inputUpdated(
         newInput: newDarts.foldRight(0, (dart, acc) => acc + dart.points()),
+        darts: newDarts,
       ),
     );
     yield state.copyWith(
       focusedValue: null,
-      darts: newDarts,
     );
   }
 
   Stream<DetailedKeyBoardState> _mapUndoDartPressedToState() async* {
-    final darts = state.darts.toMutableList();
+    final darts = _inputRowBloc.state.darts?.toMutableList();
+    if (darts == null) {
+      throw UnexpectedStateError();
+    }
     if (darts.isNotEmpty()) {
       final newDarts = darts..removeAt(darts.size - 1);
       _inputRowBloc.add(
         InputRowEvent.inputUpdated(
           newInput: newDarts.foldRight(0, (dart, acc) => acc + dart.points()),
+          darts: newDarts,
         ),
       );
-      yield state.copyWith(darts: newDarts);
+      // todo correct ?
+      yield state.copyWith(focusedValue: null);
     }
   }
 }
