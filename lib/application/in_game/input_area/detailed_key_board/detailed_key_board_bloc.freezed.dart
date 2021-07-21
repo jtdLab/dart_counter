@@ -27,6 +27,10 @@ class _$DetailedKeyBoardEventTearOff {
       type: type,
     );
   }
+
+  UndoDartPressed undoDartPressed() {
+    return const UndoDartPressed();
+  }
 }
 
 /// @nodoc
@@ -38,12 +42,14 @@ mixin _$DetailedKeyBoardEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int value) dartPressed,
     required TResult Function(DartType type) dartDetailPressed,
+    required TResult Function() undoDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int value)? dartPressed,
     TResult Function(DartType type)? dartDetailPressed,
+    TResult Function()? undoDartPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,12 +57,14 @@ mixin _$DetailedKeyBoardEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(DartPressed value) dartPressed,
     required TResult Function(DartDetailPressed value) dartDetailPressed,
+    required TResult Function(UndoDartPressed value) undoDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DartPressed value)? dartPressed,
     TResult Function(DartDetailPressed value)? dartDetailPressed,
+    TResult Function(UndoDartPressed value)? undoDartPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +154,7 @@ class _$DartPressed implements DartPressed {
   TResult when<TResult extends Object?>({
     required TResult Function(int value) dartPressed,
     required TResult Function(DartType type) dartDetailPressed,
+    required TResult Function() undoDartPressed,
   }) {
     return dartPressed(value);
   }
@@ -155,6 +164,7 @@ class _$DartPressed implements DartPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int value)? dartPressed,
     TResult Function(DartType type)? dartDetailPressed,
+    TResult Function()? undoDartPressed,
     required TResult orElse(),
   }) {
     if (dartPressed != null) {
@@ -168,6 +178,7 @@ class _$DartPressed implements DartPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(DartPressed value) dartPressed,
     required TResult Function(DartDetailPressed value) dartDetailPressed,
+    required TResult Function(UndoDartPressed value) undoDartPressed,
   }) {
     return dartPressed(this);
   }
@@ -177,6 +188,7 @@ class _$DartPressed implements DartPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DartPressed value)? dartPressed,
     TResult Function(DartDetailPressed value)? dartDetailPressed,
+    TResult Function(UndoDartPressed value)? undoDartPressed,
     required TResult orElse(),
   }) {
     if (dartPressed != null) {
@@ -262,6 +274,7 @@ class _$DartDetailPressed implements DartDetailPressed {
   TResult when<TResult extends Object?>({
     required TResult Function(int value) dartPressed,
     required TResult Function(DartType type) dartDetailPressed,
+    required TResult Function() undoDartPressed,
   }) {
     return dartDetailPressed(type);
   }
@@ -271,6 +284,7 @@ class _$DartDetailPressed implements DartDetailPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int value)? dartPressed,
     TResult Function(DartType type)? dartDetailPressed,
+    TResult Function()? undoDartPressed,
     required TResult orElse(),
   }) {
     if (dartDetailPressed != null) {
@@ -284,6 +298,7 @@ class _$DartDetailPressed implements DartDetailPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(DartPressed value) dartPressed,
     required TResult Function(DartDetailPressed value) dartDetailPressed,
+    required TResult Function(UndoDartPressed value) undoDartPressed,
   }) {
     return dartDetailPressed(this);
   }
@@ -293,6 +308,7 @@ class _$DartDetailPressed implements DartDetailPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DartPressed value)? dartPressed,
     TResult Function(DartDetailPressed value)? dartDetailPressed,
+    TResult Function(UndoDartPressed value)? undoDartPressed,
     required TResult orElse(),
   }) {
     if (dartDetailPressed != null) {
@@ -310,6 +326,96 @@ abstract class DartDetailPressed implements DetailedKeyBoardEvent {
   @JsonKey(ignore: true)
   $DartDetailPressedCopyWith<DartDetailPressed> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UndoDartPressedCopyWith<$Res> {
+  factory $UndoDartPressedCopyWith(
+          UndoDartPressed value, $Res Function(UndoDartPressed) then) =
+      _$UndoDartPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UndoDartPressedCopyWithImpl<$Res>
+    extends _$DetailedKeyBoardEventCopyWithImpl<$Res>
+    implements $UndoDartPressedCopyWith<$Res> {
+  _$UndoDartPressedCopyWithImpl(
+      UndoDartPressed _value, $Res Function(UndoDartPressed) _then)
+      : super(_value, (v) => _then(v as UndoDartPressed));
+
+  @override
+  UndoDartPressed get _value => super._value as UndoDartPressed;
+}
+
+/// @nodoc
+
+class _$UndoDartPressed implements UndoDartPressed {
+  const _$UndoDartPressed();
+
+  @override
+  String toString() {
+    return 'DetailedKeyBoardEvent.undoDartPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UndoDartPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int value) dartPressed,
+    required TResult Function(DartType type) dartDetailPressed,
+    required TResult Function() undoDartPressed,
+  }) {
+    return undoDartPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int value)? dartPressed,
+    TResult Function(DartType type)? dartDetailPressed,
+    TResult Function()? undoDartPressed,
+    required TResult orElse(),
+  }) {
+    if (undoDartPressed != null) {
+      return undoDartPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DartPressed value) dartPressed,
+    required TResult Function(DartDetailPressed value) dartDetailPressed,
+    required TResult Function(UndoDartPressed value) undoDartPressed,
+  }) {
+    return undoDartPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DartPressed value)? dartPressed,
+    TResult Function(DartDetailPressed value)? dartDetailPressed,
+    TResult Function(UndoDartPressed value)? undoDartPressed,
+    required TResult orElse(),
+  }) {
+    if (undoDartPressed != null) {
+      return undoDartPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UndoDartPressed implements DetailedKeyBoardEvent {
+  const factory UndoDartPressed() = _$UndoDartPressed;
 }
 
 /// @nodoc

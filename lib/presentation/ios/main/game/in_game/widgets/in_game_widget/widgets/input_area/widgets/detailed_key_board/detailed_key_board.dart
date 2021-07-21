@@ -1,8 +1,7 @@
 import 'package:dart_counter/application/in_game/input_area/detailed_key_board/detailed_key_board_bloc.dart';
 import 'package:dart_counter/domain/play/dart.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
+
 import 'widgets/widgets.dart';
 
 class DetailedKeyBoard extends StatelessWidget {
@@ -853,7 +852,11 @@ class DetailedKeyBoard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: KeyBoardButton(
-                            onPressed: () {}, // TODO remove on dart
+                            onPressed: () => context
+                                .read<DetailedKeyBoardBloc>()
+                                .add(
+                                  const DetailedKeyBoardEvent.undoDartPressed(),
+                                ),
                             child: Image.asset(AppImages.chevronBackNew),
                           ),
                         ),

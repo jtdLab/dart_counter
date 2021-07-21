@@ -39,6 +39,7 @@ class DetailedKeyBoardBloc
     yield* event.map(
       dartPressed: (event) => _mapDartPressedToState(event),
       dartDetailPressed: (event) => _mapDartDetailPressedToState(event),
+      undoDartPressed: (_) => _mapUndoDartPressedToState(),
     );
   }
 
@@ -73,5 +74,18 @@ class DetailedKeyBoardBloc
       focusedValue: null,
       darts: newDarts,
     );
+  }
+
+  Stream<DetailedKeyBoardState> _mapUndoDartPressedToState() async* {
+    final darts = state.darts.toMutableList();
+    if (darts.isNotEmpty()) {
+      final newDarts = darts..removeAt(darts.size - 1);
+      _inputRowBloc.add(
+        InputRowEvent.inputUpdated(
+          newInput: newDarts.foldRight(0, (dart, acc) => acc + dart.points()),
+        ),
+      );
+      yield state.copyWith(darts: newDarts);
+    }
   }
 }
