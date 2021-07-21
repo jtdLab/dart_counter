@@ -12,7 +12,6 @@ class OpticalKeyboard extends StatelessWidget {
     return AppColumn(
       spacing: size6(context),
       children: [
-        const InputRow(),
         SizedBox(
           width: 4 * size55(context) + 3 * size6(context),
           height: 4 * size55(context) + 3 * size6(context),

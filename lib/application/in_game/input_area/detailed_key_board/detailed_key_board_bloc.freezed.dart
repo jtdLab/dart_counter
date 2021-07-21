@@ -316,9 +316,11 @@ abstract class DartDetailPressed implements DetailedKeyBoardEvent {
 class _$DetailedKeyBoardStateTearOff {
   const _$DetailedKeyBoardStateTearOff();
 
-  _DetailedKeyBoardState call({int? focusedValue}) {
+  _DetailedKeyBoardState call(
+      {int? focusedValue, required KtList<Dart> darts}) {
     return _DetailedKeyBoardState(
       focusedValue: focusedValue,
+      darts: darts,
     );
   }
 }
@@ -329,6 +331,7 @@ const $DetailedKeyBoardState = _$DetailedKeyBoardStateTearOff();
 /// @nodoc
 mixin _$DetailedKeyBoardState {
   int? get focusedValue => throw _privateConstructorUsedError;
+  KtList<Dart> get darts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailedKeyBoardStateCopyWith<DetailedKeyBoardState> get copyWith =>
@@ -340,7 +343,7 @@ abstract class $DetailedKeyBoardStateCopyWith<$Res> {
   factory $DetailedKeyBoardStateCopyWith(DetailedKeyBoardState value,
           $Res Function(DetailedKeyBoardState) then) =
       _$DetailedKeyBoardStateCopyWithImpl<$Res>;
-  $Res call({int? focusedValue});
+  $Res call({int? focusedValue, KtList<Dart> darts});
 }
 
 /// @nodoc
@@ -355,12 +358,17 @@ class _$DetailedKeyBoardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? focusedValue = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_value.copyWith(
       focusedValue: focusedValue == freezed
           ? _value.focusedValue
           : focusedValue // ignore: cast_nullable_to_non_nullable
               as int?,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as KtList<Dart>,
     ));
   }
 }
@@ -372,7 +380,7 @@ abstract class _$DetailedKeyBoardStateCopyWith<$Res>
           $Res Function(_DetailedKeyBoardState) then) =
       __$DetailedKeyBoardStateCopyWithImpl<$Res>;
   @override
-  $Res call({int? focusedValue});
+  $Res call({int? focusedValue, KtList<Dart> darts});
 }
 
 /// @nodoc
@@ -389,12 +397,17 @@ class __$DetailedKeyBoardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? focusedValue = freezed,
+    Object? darts = freezed,
   }) {
     return _then(_DetailedKeyBoardState(
       focusedValue: focusedValue == freezed
           ? _value.focusedValue
           : focusedValue // ignore: cast_nullable_to_non_nullable
               as int?,
+      darts: darts == freezed
+          ? _value.darts
+          : darts // ignore: cast_nullable_to_non_nullable
+              as KtList<Dart>,
     ));
   }
 }
@@ -402,14 +415,16 @@ class __$DetailedKeyBoardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DetailedKeyBoardState implements _DetailedKeyBoardState {
-  const _$_DetailedKeyBoardState({this.focusedValue});
+  const _$_DetailedKeyBoardState({this.focusedValue, required this.darts});
 
   @override
   final int? focusedValue;
+  @override
+  final KtList<Dart> darts;
 
   @override
   String toString() {
-    return 'DetailedKeyBoardState(focusedValue: $focusedValue)';
+    return 'DetailedKeyBoardState(focusedValue: $focusedValue, darts: $darts)';
   }
 
   @override
@@ -418,12 +433,16 @@ class _$_DetailedKeyBoardState implements _DetailedKeyBoardState {
         (other is _DetailedKeyBoardState &&
             (identical(other.focusedValue, focusedValue) ||
                 const DeepCollectionEquality()
-                    .equals(other.focusedValue, focusedValue)));
+                    .equals(other.focusedValue, focusedValue)) &&
+            (identical(other.darts, darts) ||
+                const DeepCollectionEquality().equals(other.darts, darts)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(focusedValue);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(focusedValue) ^
+      const DeepCollectionEquality().hash(darts);
 
   @JsonKey(ignore: true)
   @override
@@ -433,11 +452,14 @@ class _$_DetailedKeyBoardState implements _DetailedKeyBoardState {
 }
 
 abstract class _DetailedKeyBoardState implements DetailedKeyBoardState {
-  const factory _DetailedKeyBoardState({int? focusedValue}) =
-      _$_DetailedKeyBoardState;
+  const factory _DetailedKeyBoardState(
+      {int? focusedValue,
+      required KtList<Dart> darts}) = _$_DetailedKeyBoardState;
 
   @override
   int? get focusedValue => throw _privateConstructorUsedError;
+  @override
+  KtList<Dart> get darts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DetailedKeyBoardStateCopyWith<_DetailedKeyBoardState> get copyWith =>

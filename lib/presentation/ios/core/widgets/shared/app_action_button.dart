@@ -10,6 +10,7 @@ class AppActionButton extends StatelessWidget {
   final Color fontColor;
   final double? fontSize;
   final BorderRadius borderRadius;
+  final Color borderColor;
   final Widget? icon;
   final String? text;
   final VoidCallback? onPressed;
@@ -21,6 +22,7 @@ class AppActionButton extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(0),
     ),
+    this.borderColor = AppColors.black,
     this.icon,
     this.text,
     this.onPressed,
@@ -33,6 +35,7 @@ class AppActionButton extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(0),
     ),
+    this.borderColor = AppColors.black,
     this.icon,
     this.text,
     this.onPressed,
@@ -45,6 +48,7 @@ class AppActionButton extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(0),
     ),
+    this.borderColor = AppColors.black,
     this.icon,
     this.text,
     this.onPressed,
@@ -56,6 +60,7 @@ class AppActionButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       minSize: 1,
       onPressed: onPressed,
+      disabledColor: AppColors.white,
       borderRadius: borderRadius,
       color: color,
       child: Container(
@@ -67,6 +72,9 @@ class AppActionButton extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: border4(context),
+            color: onPressed == null
+                ? CupertinoColors.quaternarySystemFill
+                : borderColor,
           ),
         ),
         child: Row(
@@ -88,7 +96,9 @@ class AppActionButton extends StatelessWidget {
                 maxLines: 1,
                 style: TextStyle(
                   fontSize: fontSize,
-                  color: fontColor,
+                  color: onPressed == null
+                      ? CupertinoColors.quaternarySystemFill
+                      : fontColor,
                 ),
               ),
           ],

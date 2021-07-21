@@ -13,8 +13,9 @@ class InputArea extends StatelessWidget {
     return AppColumn(
       spacing: size6(context),
       children: [
+        const InputRow(),
         SizedBox(
-          height: 5 * size55(context) + 4 * size6(context),
+          height: 4 * size55(context) + 3 * size6(context),
           child: PageView(
             children: [
               BlocProvider(
