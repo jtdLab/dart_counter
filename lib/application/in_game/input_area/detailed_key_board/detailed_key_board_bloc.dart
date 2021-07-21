@@ -46,13 +46,19 @@ class DetailedKeyBoardBloc
   Stream<DetailedKeyBoardState> _mapDartPressedToState(
     DartPressed event,
   ) async* {
-    final focusedValue = event.value;
-    if (focusedValue == 0) {
-      const dart = Dart(type: DartType.s, value: 0);
-      final newDarts = state.darts.toMutableList()..add(dart);
-      yield state.copyWith(darts: newDarts);
-    } else {
-      yield state.copyWith(focusedValue: focusedValue);
+    final pointsLeftCurrentTurn =
+        _inGameBloc.state.game.currentTurn().pointsLeft;
+
+    // TODO calc more granular
+    if (state.darts.size < 3) {
+      final focusedValue = event.value;
+      if (focusedValue == 0) {
+        const dart = Dart(type: DartType.s, value: 0);
+        final newDarts = state.darts.toMutableList()..add(dart);
+        yield state.copyWith(darts: newDarts);
+      } else {
+        yield state.copyWith(focusedValue: focusedValue);
+      }
     }
   }
 
