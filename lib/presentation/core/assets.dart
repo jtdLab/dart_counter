@@ -2,6 +2,10 @@ import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
 abstract class AppImages {
+  static const flightWhiteOne = 'assets/images/png/flightWhiteOne.png';
+  static const flightWhiteTwo = 'assets/images/png/flightWhiteTwo.png';
+  static const flightWhiteThree = 'assets/images/png/flightWhiteThree.png';
+
   static const infoDarkNew = 'assets/images/png/info_dark_new.png';
   static const micro = 'assets/images/png/micro.png';
 
@@ -9,24 +13,19 @@ abstract class AppImages {
   static const xMarkBlackNew = 'assets/images/png/x_mark_black_new.png';
   static const checkMarkLightUncheckedNew =
       'assets/images/png/check_mark_light_unchecked_new.png';
-  static const checkMarkLightNew =
-      'assets/images/png/check_mark_light_new.png';
+  static const checkMarkLightNew = 'assets/images/png/check_mark_light_new.png';
   static const chevronGreenForwardNew =
       'assets/images/png/chevron_green_forward_new.png';
-  static const chevronRedBackNew =
-      'assets/images/png/chevron_red_back_new.png';
+  static const chevronRedBackNew = 'assets/images/png/chevron_red_back_new.png';
 
   static const chevronDownSmallNew =
       'assets/images/png/chevron_down_small_new.png';
-  static const chevronUpSmallNew =
-      'assets/images/png/chevron_up_small_new.png';
+  static const chevronUpSmallNew = 'assets/images/png/chevron_up_small_new.png';
   static const xMarkFilledNew = 'assets/images/png/x_mark_filled_new.png';
-  static const checkMarkDarkNew =
-      'assets/images/png/check_mark_dark_new.png';
+  static const checkMarkDarkNew = 'assets/images/png/check_mark_dark_new.png';
   static const acceptNew = 'assets/images/png/accept_new.png';
   static const addNew = 'assets/images/png/add_new.png';
-  static const chevronForwardNew =
-      'assets/images/png/chevron_forward_new.png';
+  static const chevronForwardNew = 'assets/images/png/chevron_forward_new.png';
   static const chevronYellowBackNew =
       'assets/images/png/chevron_yellow_back_new.png';
   static const chevronYellowForwardNew =
@@ -42,8 +41,7 @@ abstract class AppImages {
   static const targetNew = 'assets/images/png/target_new.png';
   static const trendDownNew = 'assets/images/png/trend_down_new.png';
   static const trendUpNew = 'assets/images/png/trend_up_new.png';
-  static const checkMarkQuadNew =
-      'assets/images/png/check_mark_quad_new.png';
+  static const checkMarkQuadNew = 'assets/images/png/check_mark_quad_new.png';
   static const uncheckedNew = 'assets/images/png/unchecked_new.png';
   static const playersNew = 'assets/images/png/players_new.png';
   static const robotNew = 'assets/images/png/robot_new.png';
