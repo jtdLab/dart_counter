@@ -15,6 +15,7 @@ class SettingsWidget extends StatelessWidget {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) {
         final photoUrl = state.user.profile.photoUrl;
+
         return Column(
           children: [
             CupertinoButton(
