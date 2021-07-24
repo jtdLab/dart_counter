@@ -4,6 +4,12 @@ export 'package:flutter/cupertino.dart' hide Orientation, Router;
 // Material colors + Reorderable list
 export 'package:flutter/material.dart' show Colors, ReorderableListView;
 
+// funcional programming helpers
+export 'package:dartz/dartz.dart' hide State, emptyMap, emptySet;
+
+// kt immutable
+export 'package:kt_dart/kt.dart';
+
 // Badges
 export 'package:badges/badges.dart';
 

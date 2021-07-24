@@ -22,7 +22,8 @@ class AppPage extends StatelessWidget {
       child: CupertinoPageScaffold(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+            padding:
+                const EdgeInsets.fromLTRB(40, 20, 40, 0), // TODO bottom padding
             child: Column(
               children: [
                 navigationBar ?? Container(),
