@@ -5,8 +5,8 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 class SignInPage extends StatelessWidget {
-  final PageController
-      pageController; // TODO provide it and dont pass it via constructor ?
+  // TODO provide it and dont pass it via constructor ?
+  final PageController pageController;
 
   const SignInPage({
     Key? key,

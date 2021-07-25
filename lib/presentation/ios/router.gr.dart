@@ -8,24 +8,25 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import 'auth/auth_flow.dart' as _i3;
-import 'main/contact/contact_page.dart' as _i9;
-import 'main/friends/friends_page.dart' as _i11;
-import 'main/game/create_game/create_game_page.dart' as _i17;
-import 'main/game/game_flow.dart' as _i14;
-import 'main/game/in_game/in_game_page.dart' as _i18;
-import 'main/game/post_game/post_game_page.dart' as _i19;
+import 'main/contact/contact_page.dart' as _i10;
+import 'main/friends/friends_page.dart' as _i12;
+import 'main/game/create_game/create_game_page.dart' as _i18;
+import 'main/game/game_flow.dart' as _i15;
+import 'main/game/in_game/in_game_page.dart' as _i19;
+import 'main/game/post_game/post_game_page.dart' as _i20;
 import 'main/game_history/game_history_details/game_history_details_page.dart'
-    as _i16;
-import 'main/game_history/game_history_flow.dart' as _i13;
+    as _i17;
+import 'main/game_history/game_history_flow.dart' as _i14;
 import 'main/game_history/game_history_overview/game_history_overview_page.dart'
-    as _i15;
-import 'main/home/home_page.dart' as _i6;
-import 'main/invitations/invitations_page.dart' as _i10;
-import 'main/loading/loading_page.dart' as _i5;
-import 'main/main_flow.dart' as _i4;
-import 'main/privacy_policy/privacy_policy_page.dart' as _i8;
-import 'main/profile/profile_page.dart' as _i12;
-import 'main/settings/settings_page.dart' as _i7;
+    as _i16;
+import 'main/home/home_page.dart' as _i7;
+import 'main/invitations/invitations_page.dart' as _i11;
+import 'main/loading/loading_page.dart' as _i6;
+import 'main/main_flow.dart' as _i5;
+import 'main/privacy_policy/privacy_policy_page.dart' as _i9;
+import 'main/profile/profile_page.dart' as _i13;
+import 'main/settings/settings_page.dart' as _i8;
+import 'router.dart' as _i4;
 
 class Router extends _i1.RootStackRouter {
   Router([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -38,98 +39,111 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.AuthFlow();
         },
+        customRouteBuilder: _i4.customRouteBuilder,
         opaque: true,
         barrierDismissible: false),
     MainFlowRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.MainFlow();
+          return const _i5.MainFlow();
         },
         opaque: true,
         barrierDismissible: false),
     LoadingPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.LoadingPage();
+          return const _i6.LoadingPage();
         },
         opaque: true,
         barrierDismissible: false),
     HomePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.HomePage();
+          return _i7.HomePage();
         },
         opaque: true,
         barrierDismissible: false),
-    SettingsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    SettingsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.SettingsPage();
-        }),
+          return const _i8.SettingsPage();
+        },
+        customRouteBuilder: _i4.customRouteBuilder,
+        opaque: true,
+        barrierDismissible: false),
     PrivacyPolicyPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.PrivacyPolicyPage();
+          return const _i9.PrivacyPolicyPage();
         }),
     ContactPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i9.ContactPage();
+          return const _i10.ContactPage();
         }),
     InvitationsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i10.InvitationsPage();
+          return const _i11.InvitationsPage();
         }),
-    FriendsPageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    FriendsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i11.FriendsPage();
-        }),
+          return const _i12.FriendsPage();
+        },
+        customRouteBuilder: _i4.customRouteBuilder,
+        opaque: true,
+        barrierDismissible: false),
     ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i12.ProfilePage();
+          return const _i13.ProfilePage();
         }),
     GameHistoryFlowRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i13.GameHistoryFlow();
+          return const _i14.GameHistoryFlow();
         }),
     GameFlowRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i14.GameFlow();
+          return const _i15.GameFlow();
         }),
     GameHistoryOverviewPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i15.GameHistoryOverviewPage();
+          return const _i16.GameHistoryOverviewPage();
         },
         opaque: true,
         barrierDismissible: false),
     GameHistoryDetailsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.GameHistoryDetailsPage();
+          return const _i17.GameHistoryDetailsPage();
         },
         reverseDurationInMilliseconds: 0,
         opaque: true,
         barrierDismissible: false),
-    CreateGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+    CreateGamePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i17.CreateGamePage();
-        }),
-    InGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+          return const _i18.CreateGamePage();
+        },
+        customRouteBuilder: _i4.customRouteBuilder,
+        opaque: true,
+        barrierDismissible: false),
+    InGamePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i18.InGamePage();
-        }),
+          return const _i19.InGamePage();
+        },
+        customRouteBuilder: _i4.customRouteBuilder,
+        opaque: true,
+        barrierDismissible: false),
     PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i19.PostGamePage();
+          return const _i20.PostGamePage();
         })
   };
 

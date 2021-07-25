@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SpeechInputAreaEventTearOff {
   const _$SpeechInputAreaEventTearOff();
 
-  _Started started() {
-    return const _Started();
+  UndoThrowPressed undoThrowPressed() {
+    return const UndoThrowPressed();
   }
 }
 
@@ -28,23 +28,23 @@ const $SpeechInputAreaEvent = _$SpeechInputAreaEventTearOff();
 mixin _$SpeechInputAreaEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() undoThrowPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? undoThrowPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(UndoThrowPressed value) undoThrowPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,35 +68,37 @@ class _$SpeechInputAreaEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class $UndoThrowPressedCopyWith<$Res> {
+  factory $UndoThrowPressedCopyWith(
+          UndoThrowPressed value, $Res Function(UndoThrowPressed) then) =
+      _$UndoThrowPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res>
+class _$UndoThrowPressedCopyWithImpl<$Res>
     extends _$SpeechInputAreaEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+    implements $UndoThrowPressedCopyWith<$Res> {
+  _$UndoThrowPressedCopyWithImpl(
+      UndoThrowPressed _value, $Res Function(UndoThrowPressed) _then)
+      : super(_value, (v) => _then(v as UndoThrowPressed));
 
   @override
-  _Started get _value => super._value as _Started;
+  UndoThrowPressed get _value => super._value as UndoThrowPressed;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$UndoThrowPressed implements UndoThrowPressed {
+  const _$UndoThrowPressed();
 
   @override
   String toString() {
-    return 'SpeechInputAreaEvent.started()';
+    return 'SpeechInputAreaEvent.undoThrowPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) || (other is UndoThrowPressed);
   }
 
   @override
@@ -105,19 +107,19 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() undoThrowPressed,
   }) {
-    return started();
+    return undoThrowPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? undoThrowPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (undoThrowPressed != null) {
+      return undoThrowPressed();
     }
     return orElse();
   }
@@ -125,26 +127,26 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(UndoThrowPressed value) undoThrowPressed,
   }) {
-    return started(this);
+    return undoThrowPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (undoThrowPressed != null) {
+      return undoThrowPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements SpeechInputAreaEvent {
-  const factory _Started() = _$_Started;
+abstract class UndoThrowPressed implements SpeechInputAreaEvent {
+  const factory UndoThrowPressed() = _$UndoThrowPressed;
 }
 
 /// @nodoc

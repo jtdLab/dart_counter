@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:flutter/widgets.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -18,9 +21,23 @@ import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';
 
-@CupertinoAutoRouter(
+// route builder for pages with modal views
+Route<T> customRouteBuilder<T>(
+  BuildContext context,
+  Widget widget,
+  CustomPage page,
+) =>
+    MaterialWithModalsPageRoute<T>(
+      builder: (context) => widget,
+      settings: page,
+      maintainState: page.maintainState,
+      fullscreenDialog: page.fullscreenDialog,
+    );
+
+@CustomAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
+      customRouteBuilder: customRouteBuilder,
       page: AuthFlow,
     ),
     CustomRoute(
@@ -33,7 +50,8 @@ import 'main/settings/settings_page.dart';
         CustomRoute(
           page: HomePage,
         ),
-        CupertinoRoute(
+        CustomRoute(
+          customRouteBuilder: customRouteBuilder,
           page: SettingsPage,
         ),
         CupertinoRoute(
@@ -45,7 +63,8 @@ import 'main/settings/settings_page.dart';
         CupertinoRoute(
           page: InvitationsPage,
         ),
-        CupertinoRoute(
+        CustomRoute(
+          customRouteBuilder: customRouteBuilder,
           page: FriendsPage,
         ),
         CupertinoRoute(
@@ -67,11 +86,13 @@ import 'main/settings/settings_page.dart';
         CupertinoRoute(
           page: GameFlow,
           children: [
-            CupertinoRoute(
+            CustomRoute(
               initial: true,
+              customRouteBuilder: customRouteBuilder,
               page: CreateGamePage,
             ),
-            CupertinoRoute(
+            CustomRoute(
+              customRouteBuilder: customRouteBuilder,
               page: InGamePage,
             ),
             CupertinoRoute(
