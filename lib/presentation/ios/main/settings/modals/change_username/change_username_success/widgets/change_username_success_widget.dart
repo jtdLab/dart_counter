@@ -14,20 +14,20 @@ class ChangeUsernameSuccessWidget extends StatelessWidget {
         // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
-            small: 70,
-            normal: 70,
-            large: 70,
-            extraLarge: 70,
+            small: 50,
+            normal: 60,
+            large: 69,
+            extraLarge: 78,
           ),
         ),
         const LogoDisplayer(),
         // TODO  size for diffrent size classes
         const AppSpacer.custom(
           mobileSize: ResponsiveDouble(
-            small: 120,
-            normal: 120,
-            large: 120,
-            extraLarge: 120,
+            small: 96,
+            normal: 110,
+            large: 123,
+            extraLarge: 140,
           ),
         ),
         SizedBox(

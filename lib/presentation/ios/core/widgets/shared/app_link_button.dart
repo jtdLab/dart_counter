@@ -16,7 +16,8 @@ class AppLinkButton extends StatelessWidget {
       onPressed: onPressed,
       child: AutoSizeText(
         text.toUpperCase(),
-        maxFontSize: 12,
+        maxFontSize: 10,
+        minFontSize: 6,
         maxLines: 1,
         style: CupertinoTheme.of(context)
             .textTheme

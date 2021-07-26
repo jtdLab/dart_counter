@@ -27,7 +27,22 @@ class ChangePasswordInitialPage extends StatelessWidget {
       },
       child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: const ChangePasswordInitialWidget(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+            return SingleChildScrollView(
+              physics: bottomInsets == 0
+                  ? const NeverScrollableScrollPhysics()
+                  : null,
+              child: ConstrainedBox(
+                constraints: constraints.copyWith(
+                  maxHeight: constraints.maxHeight + bottomInsets,
+                ),
+                child: const ChangePasswordInitialWidget(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

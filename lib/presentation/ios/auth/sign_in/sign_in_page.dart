@@ -40,8 +40,23 @@ class SignInPage extends StatelessWidget {
         ],
         child: AppPage(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: SignInWidget(
-            pageController: pageController,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+              return SingleChildScrollView(
+                physics: bottomInsets == 0
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
+                child: ConstrainedBox(
+                  constraints: constraints.copyWith(
+                    maxHeight: constraints.maxHeight + bottomInsets,
+                  ),
+                  child: SignInWidget(
+                    pageController: pageController,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

@@ -33,7 +33,10 @@ class SettingsPage extends StatelessWidget {
                   LocaleKeys.settings.tr().toUpperCase(),
                 ),
               ),
-              child: const SettingsWidget(),
+
+              child: const SingleChildScrollView(
+                child: SettingsWidget(),
+              ),
             );
           },
         ),

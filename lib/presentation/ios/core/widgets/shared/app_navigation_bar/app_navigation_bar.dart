@@ -14,12 +14,17 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        leading ?? _emptyBox(context),
-        middle ?? const Spacer(),
-        trailing ?? _emptyBox(context)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            leading ?? _emptyBox(context),
+            middle ?? const Spacer(),
+            trailing ?? _emptyBox(context)
+          ],
+        ),
+        const AppSpacer.large(),
       ],
     );
   }

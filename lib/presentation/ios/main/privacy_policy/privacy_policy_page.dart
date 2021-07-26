@@ -8,11 +8,16 @@ class PrivacyPolicyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
+    return AppPage(
       navigationBar: AppNavigationBar(
-        leading: BackButton(),
+        middle: Text(
+          LocaleKeys.privacyPolicy.tr().toUpperCase(),
+        ),
+        leading: const BackButton(),
       ),
-      child: PrivacyPolicyWidget(),
+      child: const SingleChildScrollView(
+        child: PrivacyPolicyWidget(),
+      ),
     );
   }
 }

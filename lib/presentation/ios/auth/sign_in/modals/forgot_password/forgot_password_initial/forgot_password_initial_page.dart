@@ -24,12 +24,28 @@ class ForogotPasswordInitialPage extends StatelessWidget {
           invalidEmail: () => showToast(
             LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
           ),
-          orElse: () => showToast('AutFailure happended'), // TODO catch other errors also
+          orElse: () =>
+              showToast('AutFailure happended'), // TODO catch other errors also
         );
       },
       child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: const ForgotPasswordInitialWidget(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+            return SingleChildScrollView(
+              physics: bottomInsets == 0
+                  ? const NeverScrollableScrollPhysics()
+                  : null,
+              child: ConstrainedBox(
+                constraints: constraints.copyWith(
+                  maxHeight: constraints.maxHeight + bottomInsets,
+                ),
+                child: const ForgotPasswordInitialWidget(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

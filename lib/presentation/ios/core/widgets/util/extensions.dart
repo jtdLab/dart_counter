@@ -61,7 +61,7 @@ extension ResponsiveDoubleX on Widget {
         mobile: const ResponsiveDouble(
           small: 3.5,
           normal: 4,
-          large: 4,
+          large: 4.5,
           extraLarge: 5,
         ),
       );
@@ -69,10 +69,10 @@ extension ResponsiveDoubleX on Widget {
   double size6(BuildContext context) => responsiveDouble(
         context: context,
         mobile: const ResponsiveDouble(
-          small: 6,
+          small: 5,
           normal: 6,
-          large: 6,
-          extraLarge: 6,
+          large: 7,
+          extraLarge: 8,
         ),
       );
 
@@ -129,30 +129,30 @@ extension ResponsiveDoubleX on Widget {
   double size55(BuildContext context) => responsiveDouble(
         context: context,
         mobile: const ResponsiveDouble(
-          small: 55,
+          small: 47,
           normal: 55,
-          large: 55,
-          extraLarge: 55,
+          large: 61,
+          extraLarge: 70,
         ),
       );
 
   double size70(BuildContext context) => responsiveDouble(
         context: context,
         mobile: const ResponsiveDouble(
-          small: 70,
+          small: 62,
           normal: 70,
-          large: 70,
-          extraLarge: 70,
+          large: 79,
+          extraLarge: 88,
         ),
       );
 
   double size150(BuildContext context) => responsiveDouble(
         context: context,
         mobile: const ResponsiveDouble(
-          small: 150,
+          small: 100,
           normal: 150,
-          large: 150,
-          extraLarge: 150,
+          large: 175,
+          extraLarge: 190,
         ),
       );
 }

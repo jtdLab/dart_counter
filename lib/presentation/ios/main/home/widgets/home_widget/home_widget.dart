@@ -16,9 +16,9 @@ class HomeWidget extends StatelessWidget {
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-            const Spacer(),
+            const Spacer(flex: 2),
             const NameDisplayer(),
-            const Spacer(),
+            const Spacer(flex: 2),
             PlayOnlineButton(),
             const AppSpacer.normal(),
             PlayOfflineButton(),

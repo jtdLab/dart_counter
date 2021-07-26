@@ -3,7 +3,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 
 class AppPage extends StatelessWidget {
   final VoidCallback? onTap;
-  final double? maxHeight;
+  final double? maxHeight; // TODO remove
   final AppNavigationBar? navigationBar;
   final Widget child;
 
@@ -22,27 +22,12 @@ class AppPage extends StatelessWidget {
       child: CupertinoPageScaffold(
         child: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.fromLTRB(40, 20, 40, 0), // TODO bottom padding
+            padding: const EdgeInsets.fromLTRB(40, 20, 40, 5), // TODO responsive
             child: Column(
               children: [
                 navigationBar ?? Container(),
-                const AppSpacer.large(),
                 Expanded(
-                  child: LayoutBuilder(
-                    builder: (context, boxConstraints) => SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: boxConstraints.maxHeight,
-                          maxHeight: maxHeight ??
-                              (boxConstraints.maxHeight < 574
-                                  ? 574
-                                  : boxConstraints.maxHeight),
-                        ),
-                        child: child,
-                      ),
-                    ),
-                  ),
+                  child: child,
                 ),
               ],
             ),
