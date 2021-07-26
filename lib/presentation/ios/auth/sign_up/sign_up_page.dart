@@ -4,6 +4,7 @@ import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO fix bug on textfocus
 class SignUpPage extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
   final PageController pageController;

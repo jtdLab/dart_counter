@@ -23,26 +23,14 @@ class ReceivedInvitationsCard extends StatelessWidget {
                 .copyWith(color: AppColors.white),
           ),
           children: [
-            SizedBox(
-              height: 3 * size70(context) + 2 * size6(context),
-              child: ListView.builder(
-                itemCount: gameInvitations.size,
-                itemBuilder: (context, index) {
-                  final gameInvitation = gameInvitations[index];
-                  return Column(
-                    children: [
-                      ReceivedInvitationsItem(
-                        name: gameInvitation.from.getOrCrash(),
-                      ),
-                      if (index < gameInvitations.size - 1)
-                        SizedBox(
-                          height: size6(context),
-                        )
-                    ],
-                  );
-                },
-              ),
-            )
+            for (int index = 0; index < gameInvitations.size; index++)
+              Column(
+                children: [
+                  ReceivedInvitationsItem(
+                    name: gameInvitations[index].from.getOrCrash(),
+                  ),
+                ],
+              )
           ],
         );
       },

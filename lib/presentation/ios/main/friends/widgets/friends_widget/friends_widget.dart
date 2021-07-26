@@ -8,10 +8,12 @@ class FriendsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return AppColumn(
+      spacing: size12(context),
       children: const [
+        AppSpacer.small(),
         FriendRequestCard(),
+        AppSpacer.small(),
         FriendsCard(),
       ],
     );

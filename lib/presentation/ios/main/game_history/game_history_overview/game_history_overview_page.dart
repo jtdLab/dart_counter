@@ -15,7 +15,9 @@ class GameHistoryOverviewPage extends StatelessWidget {
           LocaleKeys.gameHistory.tr().toUpperCase(),
         ),
       ),
-      child: const GameHistoryOverviewWidget(),
+      child: const SingleChildScrollView(
+        child: GameHistoryOverviewWidget(),
+      ),
     );
   }
 }

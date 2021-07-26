@@ -27,7 +27,7 @@ class TakesCard extends StatelessWidget {
       ),
       children: [
         AppCardItem.custom(
-          height: size150(context),
+          height: size150(context) + 43, //TODO
           content: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [

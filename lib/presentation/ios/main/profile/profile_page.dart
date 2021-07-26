@@ -18,7 +18,9 @@ class ProfilePage extends StatelessWidget {
           middle: NameDisplayer(),
           trailing: GameHistoryButton(),
         ),
-        child: ProfileWidget(),
+        child: SingleChildScrollView(
+          child: ProfileWidget(),
+        ),
       ),
     );
   }

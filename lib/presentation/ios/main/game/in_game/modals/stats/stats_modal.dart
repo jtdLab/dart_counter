@@ -13,7 +13,9 @@ class StatsModal extends StatelessWidget {
     return BlocBuilder<StatsBloc, StatsState>(
       builder: (context, state) {
         return const AppPage(
-          child: StatsWidget(),
+          child: SingleChildScrollView(
+            child: StatsWidget(),
+          ),
         );
       },
     );

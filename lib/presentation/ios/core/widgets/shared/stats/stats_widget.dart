@@ -9,8 +9,8 @@ class StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return AppColumn(
+      spacing: size12(context),
       children: const [
         GeneralStatsCard(),
         AverrageCard(),

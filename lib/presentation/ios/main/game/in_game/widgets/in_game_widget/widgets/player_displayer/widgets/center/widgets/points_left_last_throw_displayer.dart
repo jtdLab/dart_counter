@@ -22,25 +22,35 @@ class PointsLeftLastThrowDisplayer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    player.pointsLeft.toString(),
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .textStyle
-                        .copyWith(fontSize: 40),
-                  ),
-                ],
+              Expanded(
+                flex: 5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      player.pointsLeft.toString(),
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .textStyle
+                          .copyWith(fontSize: 40),
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    player.lastPoints?.toString() ?? '--',
-                  ),
-                ],
+              Expanded(
+                flex: 2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      player.lastPoints?.toString() ?? '--',
+                      maxLines: 1,
+                      maxFontSize: 13,
+                      minFontSize: 6,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

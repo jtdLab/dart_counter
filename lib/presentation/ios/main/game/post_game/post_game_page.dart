@@ -20,7 +20,9 @@ class PostGamePage extends StatelessWidget {
             ),
           ),
         ),
-        child: const PostGameWidget(),
+        child: const SingleChildScrollView(
+          child: PostGameWidget(),
+        ),
       ),
     );
   }

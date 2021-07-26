@@ -12,6 +12,7 @@ class AverrageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final game;
+
     return AppCard(
       headerBodySpacing: size6(context),
       leading: AutoSizeText(
@@ -26,7 +27,7 @@ class AverrageCard extends StatelessWidget {
       ),
       children: [
         AppCardItem.custom(
-          height: size70(context) + size12(context), // TODO
+          height: size70(context) + size12(context) + 1, // TODO
           content: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

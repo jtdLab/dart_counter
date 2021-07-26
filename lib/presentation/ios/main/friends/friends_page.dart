@@ -3,7 +3,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'modals/modals.dart';
 import 'widgets/widgets.dart';
 
-
 class FriendsPage extends StatelessWidget {
   const FriendsPage({
     Key? key,
@@ -12,7 +11,6 @@ class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      maxHeight: 900,
       onTap: () => FocusScope.of(context).unfocus(),
       navigationBar: AppNavigationBar(
         leading: const BackButton(),
@@ -27,7 +25,9 @@ class FriendsPage extends StatelessWidget {
           ),
         ),
       ),
-      child: const FriendsWidget(),
+      child: const SingleChildScrollView(
+        child: FriendsWidget(),
+      ),
     );
   }
 }

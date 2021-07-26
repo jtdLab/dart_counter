@@ -7,6 +7,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'modals/modals.dart';
 import 'widgets/widgets.dart';
 
+// TODO responsiveness
 class InGamePage extends StatelessWidget {
   const InGamePage({
     Key? key,
@@ -53,7 +54,15 @@ class InGamePage extends StatelessWidget {
               ),
               trailing: const StatsButton(),
             ),
-            child: const InGameWidget(),
+            child: LayoutBuilder(
+              builder: (context, constraints) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: constraints.copyWith(
+                      maxHeight: constraints.maxHeight + 55),
+                  child: const InGameWidget(),
+                ),
+              ),
+            ),
           );
         },
       ),

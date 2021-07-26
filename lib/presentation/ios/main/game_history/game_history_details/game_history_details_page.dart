@@ -21,7 +21,9 @@ class GameHistoryDetailsPage extends StatelessWidget {
               game.description().toUpperCase(),
             ),
           ),
-          child: GameHistoryDetailsWidget(),
+          child: SingleChildScrollView(
+            child: GameHistoryDetailsWidget(),
+          ),
         );
       },
     );

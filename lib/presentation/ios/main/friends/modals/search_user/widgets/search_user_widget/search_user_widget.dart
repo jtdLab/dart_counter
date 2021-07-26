@@ -3,14 +3,6 @@ import 'package:dart_counter/application/friends/search_user/search_user_bloc.da
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class Item {
-  final String name;
-
-  const Item({
-    required this.name,
-  });
-}
-
 class SearchUserWidget extends StatefulWidget {
   const SearchUserWidget({
     Key? key,
@@ -44,17 +36,38 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
                     );
               },
             ),
-            if (searchResults.isEmpty()) ...[
-              const Expanded(
-                child: Center(
-                  child: Text('No results'),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) => SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: constraints.copyWith(
+                      maxHeight: constraints.maxHeight +
+                          MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: Builder(
+                      builder: (context) {
+                        if (searchResults.isEmpty()) {
+                          return const Center(
+                            child: Text('No results'), // TODO translate
+                          );
+                        } else {
+                          return AppColumn(
+                            spacing: widget.size6(context),
+                            children: searchResults
+                                .map(
+                                  (item) => UserItem(
+                                    name: item.username.getOrCrash(),
+                                  ),
+                                )
+                                .asList(),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ),
-              )
-            ] else
-              for (final searchResult in searchResults.iter)
-                UserItem(
-                  name: searchResult.username.getOrCrash(),
-                )
+              ),
+            ),
           ],
         );
       },

@@ -12,8 +12,9 @@ class SearchUserModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SearchUserBloc>(),
-      child: const AppPage(
-        child: SearchUserWidget(),
+      child: AppPage(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: const SearchUserWidget(),
       ),
     );
   }

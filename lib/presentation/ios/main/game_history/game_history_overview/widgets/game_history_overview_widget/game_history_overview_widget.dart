@@ -20,8 +20,8 @@ class GameHistoryOverviewWidget extends StatelessWidget {
           );
         }
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        return AppColumn(
+          spacing: size12(context),
           children: [
             for (final game in games.iter) GameHistoryCard(game: game),
           ],

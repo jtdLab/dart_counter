@@ -26,14 +26,12 @@ class SettingsPage extends StatelessWidget {
                   newState.localeChanged),
           builder: (context, state) {
             return AppPage(
-              maxHeight: 800, // TODO calc this responsively
               navigationBar: AppNavigationBar(
                 leading: const BackButton(),
                 middle: Text(
                   LocaleKeys.settings.tr().toUpperCase(),
                 ),
               ),
-
               child: const SingleChildScrollView(
                 child: SettingsWidget(),
               ),

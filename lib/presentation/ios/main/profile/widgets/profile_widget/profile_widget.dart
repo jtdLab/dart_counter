@@ -13,16 +13,16 @@ class ProfileWidget extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         final photoUrl = state.user.profile.photoUrl;
-        
+
         return Column(
           children: [
-            const Spacer(),
+            const AppSpacer.large(),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-            const Spacer(),
+            const AppSpacer.large(),
             const CareerStatsDisplayer(),
-            const Spacer(),
+            const AppSpacer.large(),
           ],
         );
       },
