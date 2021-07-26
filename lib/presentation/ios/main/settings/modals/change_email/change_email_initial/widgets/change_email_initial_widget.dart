@@ -43,6 +43,7 @@ class ChangeEmailInitialWidget extends StatelessWidget {
         AppTextField(
           placeholder: LocaleKeys.email.tr().toUpperCase(),
           textInputAction: TextInputAction.done,
+          keyboardType: TextInputType.emailAddress,
           onEditingComplete: () => node.unfocus(),
           onChanged: (newEmailString) => context.read<ChangeEmailBloc>().add(
                 ChangeEmailEvent.newEmailChanged(

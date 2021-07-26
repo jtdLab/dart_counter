@@ -43,6 +43,7 @@ class InGamePage extends StatelessWidget {
         builder: (context, state) {
           final game = state.game;
           return AppPage(
+            //padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
             navigationBar: AppNavigationBar(
               leading: CancelButton(
                 onPressed: () => context

@@ -22,6 +22,12 @@ Future<void> main() async {
     customRefinedBreakpoints: const RefinedBreakpoints(mobileNormal: 360),
   );
   WidgetsFlutterBinding.ensureInitialized();
+  /**
+   * await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+   */
   await EasyLocalization.ensureInitialized();
   configureInjection(Environment.test);
   await Firebase.initializeApp();

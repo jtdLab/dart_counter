@@ -43,6 +43,7 @@ class ForgotPasswordInitialWidget extends StatelessWidget {
         AppTextField(
           placeholder: LocaleKeys.email.tr(),
           textInputAction: TextInputAction.done,
+          keyboardType: TextInputType.emailAddress,
           onEditingComplete: () => node.unfocus(),
           onChanged: (emailString) => context
               .read<ForgotPasswordBloc>()

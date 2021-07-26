@@ -26,6 +26,7 @@ class CreateGamePage extends StatelessWidget {
         },
         child: AppPage(
           onTap: () => FocusScope.of(context).unfocus(),
+          //padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
           navigationBar: AppNavigationBar(
             leading: Builder(
               builder: (context) => CancelButton(

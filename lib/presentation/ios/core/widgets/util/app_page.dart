@@ -3,6 +3,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 
 class AppPage extends StatelessWidget {
   final VoidCallback? onTap;
+  final EdgeInsets padding;
 
   final AppNavigationBar? navigationBar;
   final Widget child;
@@ -12,6 +13,7 @@ class AppPage extends StatelessWidget {
     this.navigationBar,
     required this.child,
     this.onTap,
+    this.padding = const EdgeInsets.fromLTRB(40, 20, 40, 5), // TODO responsive
   }) : super(key: key);
 
   @override
@@ -21,8 +23,7 @@ class AppPage extends StatelessWidget {
       child: CupertinoPageScaffold(
         child: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.fromLTRB(40, 20, 40, 5), // TODO responsive
+            padding: padding,
             child: Column(
               children: [
                 navigationBar ?? Container(),

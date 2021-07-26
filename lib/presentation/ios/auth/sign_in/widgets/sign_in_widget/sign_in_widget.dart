@@ -43,6 +43,7 @@ class SignInWidget extends StatelessWidget {
             AppTextField(
               placeholder: LocaleKeys.email.tr(),
               textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (emailString) => context.read<SignInBloc>().add(
                     SignInEvent.emailChanged(emailString),

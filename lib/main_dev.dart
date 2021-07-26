@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:dart_counter/injection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,6 +19,12 @@ Future<void> main() async {
     customRefinedBreakpoints: const RefinedBreakpoints(mobileNormal: 360),
   );
   WidgetsFlutterBinding.ensureInitialized();
+  /**
+   * await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+   */
   await EasyLocalization.ensureInitialized();
   configureInjection(Environment.dev);
   await Firebase.initializeApp();
