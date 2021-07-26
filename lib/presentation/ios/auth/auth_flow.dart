@@ -11,14 +11,12 @@ class AuthFlow extends HookWidget {
   Widget build(BuildContext context) {
     final PageController pageController = usePageController();
 
-    return CupertinoPageScaffold(
-      child: PageView(
-        controller: pageController,
-        children: [
-          SignInPage(pageController: pageController),
-          SignUpPage(pageController: pageController),
-        ],
-      ),
+    return PageView(
+      controller: pageController,
+      children: [
+        SignInPage(pageController: pageController),
+        SignUpPage(pageController: pageController),
+      ],
     );
   }
 }

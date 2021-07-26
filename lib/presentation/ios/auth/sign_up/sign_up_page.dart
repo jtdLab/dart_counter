@@ -2,6 +2,7 @@ import 'package:dart_counter/application/core/auth/auth_bloc.dart';
 import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'widgets/widgets.dart';
 
 // TODO fix bug on textfocus
@@ -41,6 +42,7 @@ class SignUpPage extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+
               return SingleChildScrollView(
                 physics: bottomInsets == 0
                     ? const NeverScrollableScrollPhysics()

@@ -3,6 +3,7 @@ import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'widgets/widgets.dart';
+
 // TODO fix bug on textfocus
 class SignInPage extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
@@ -43,18 +44,17 @@ class SignInPage extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+
               return SingleChildScrollView(
                 physics: bottomInsets == 0
                     ? const NeverScrollableScrollPhysics()
                     : null,
                 child: ConstrainedBox(
-                  constraints:
-                      constraints.copyWith(maxHeight: constraints.maxHeight),
-                  child: Container(
-                    color: AppColors.red,
-                    child: SignInWidget(
-                      pageController: pageController,
-                    ),
+                  constraints: constraints.copyWith(
+                    maxHeight: constraints.maxHeight + bottomInsets,
+                  ),
+                  child: SignInWidget(
+                    pageController: pageController,
                   ),
                 ),
               );
