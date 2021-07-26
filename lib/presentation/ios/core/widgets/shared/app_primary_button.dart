@@ -4,6 +4,7 @@ class AppPrimaryButton extends StatelessWidget {
   final String text;
   final BorderRadius borderRadius;
   final VoidCallback? onPressed;
+  final Color fontColor;
   final Color color;
 
   const AppPrimaryButton({
@@ -11,6 +12,7 @@ class AppPrimaryButton extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(
       Radius.circular(0),
     ),
+    this.fontColor = AppColors.white,
     this.onPressed,
     this.color = AppColors.black,
   });
@@ -29,6 +31,9 @@ class AppPrimaryButton extends StatelessWidget {
             text.toUpperCase(),
             maxLines: 1,
             maxFontSize: 14,
+            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                  color: fontColor,
+                ),
           ),
         ),
       ),

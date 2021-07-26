@@ -21,6 +21,7 @@ class AppWidget extends StatelessWidget {
       ),
       theme: const CupertinoThemeData(
         primaryColor: AppColors.black,
+        primaryContrastingColor: AppColors.white,
         scaffoldBackgroundColor: AppColors.white,
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
