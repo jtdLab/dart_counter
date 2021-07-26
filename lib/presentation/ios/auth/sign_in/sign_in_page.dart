@@ -4,7 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'widgets/widgets.dart';
 
-// TODO fix bug on textfocus
 class SignInPage extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
   final PageController pageController;
