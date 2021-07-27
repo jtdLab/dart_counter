@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/widgets.dart';
 
