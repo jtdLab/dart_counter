@@ -33,6 +33,7 @@ class CreateGamePage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
+                    reverseTransitionDuration: const Duration(),
                     opaque: false,
                     pageBuilder: (context, _, __) => BlocProvider(
                       create: (context) => getIt<CreateGameBloc>(),
