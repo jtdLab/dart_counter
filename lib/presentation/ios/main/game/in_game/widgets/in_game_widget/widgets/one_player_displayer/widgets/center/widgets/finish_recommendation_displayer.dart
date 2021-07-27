@@ -11,7 +11,7 @@ class FinishRecommendationDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
       builder: (context, state) {
-        final finishRecommendation = state.player.finishRecommendation;
+        final finishRecommendation = state.players[0].finishRecommendation;
 
         return Container(
           height: 25,

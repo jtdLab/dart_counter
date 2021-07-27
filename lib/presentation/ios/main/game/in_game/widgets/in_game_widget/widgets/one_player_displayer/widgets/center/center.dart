@@ -11,15 +11,8 @@ class Center extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        AppIconButton(
-          onPressed: () => context
-              .read<PlayerDisplayerBloc>()
-              .add(const PlayerDisplayerEvent.previousPlayerPressed()),
-          padding: EdgeInsets.zero,
-          icon: Image.asset(AppImages.chevronYellowBackNew),
-        ),
         SizedBox(
           width: size150(context),
           height: size150(context),
@@ -33,13 +26,6 @@ class Center extends StatelessWidget {
               FinishRecommendationDisplayer(),
             ],
           ),
-        ),
-        AppIconButton(
-          onPressed: () => context
-              .read<PlayerDisplayerBloc>()
-              .add(const PlayerDisplayerEvent.nextPlayerPressed()),
-          padding: EdgeInsets.zero,
-          icon: Image.asset(AppImages.chevronYellowForwardNew),
         ),
       ],
     );

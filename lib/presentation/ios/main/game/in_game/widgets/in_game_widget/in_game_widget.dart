@@ -1,3 +1,4 @@
+import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
@@ -13,8 +14,20 @@ class InGameWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: Container(
-            color: AppColors.blue,
+          child: BlocBuilder<InGameBloc, InGameState>(
+            builder: (context, state) {
+              final game = state.game;
+
+              if (game.players.size == 1) {
+                return const OnePlayerDisplayer();
+              } else if (game.players.size == 2) {
+                return const TwoPlayerDisplayer();
+              } else if (game.players.size == 3) {
+                return const ThreePlayerDisplayer();
+              } else {
+                return const FourPlayerDisplayer();
+              }
+            },
           ),
         ),
         const AppSpacer.normal(),

@@ -33,7 +33,7 @@ class Footer extends StatelessWidget {
           ),
           BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
             builder: (context, state) {
-              final player = state.player;
+              final player = state.players[0];
 
               final dartsThrown = player.dartsThrownCurrentLeg;
               final average = player.stats.average;

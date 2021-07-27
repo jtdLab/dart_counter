@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
       builder: (context, state) {
-        final player = state.player;
+        final player = state.players[0];
         
         return SizedBox(
           height: size70(context),

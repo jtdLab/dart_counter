@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'player_displayer_event.dart';
 part 'player_displayer_state.dart';
@@ -22,14 +23,14 @@ class PlayerDisplayerBloc
     this._inGameBloc,
   ) : super(
           PlayerDisplayerState(
-            player: _inGameBloc.state.game.currentTurn(),
+            players: _inGameBloc.state.game.players,
           ),
         ) {
     _gameSubscription = _inGameBloc.stream.map((state) => state.game).listen(
       (game) {
         add(
-          PlayerDisplayerEvent.currentPlayerUpdated(
-            newPlayer: game.currentTurn(),
+          PlayerDisplayerEvent.playersReceived(
+            players: game.players,
           ),
         );
       },
@@ -43,34 +44,14 @@ class PlayerDisplayerBloc
     PlayerDisplayerEvent event,
   ) async* {
     yield* event.map(
-      previousPlayerPressed: (_) => _mapPreviousPlayerPressedToState(),
-      nextPlayerPressed: (_) => _mapNextPlayerPressedToState(),
-      currentPlayerUpdated: (event) => _mapCurrentPlayerUpdatedToState(event),
+      playersReceived: (event) => _mapPlayersReceivedToState(event),
     );
   }
 
-  Stream<PlayerDisplayerState> _mapPreviousPlayerPressedToState() async* {
-    final game = _inGameBloc.state.game;
-    final size = game.players.size;
-    final indexCurrentSelected = game.players.indexOf(state.player);
-    final indexPrev = (indexCurrentSelected - 1) % size;
-    final prev = game.players.get(indexPrev);
-    yield PlayerDisplayerState(player: prev);
-  }
-
-  Stream<PlayerDisplayerState> _mapNextPlayerPressedToState() async* {
-    final game = _inGameBloc.state.game;
-    final size = game.players.size;
-    final indexCurrentSelected = game.players.indexOf(state.player);
-    final indexNext = (indexCurrentSelected + 1) % size;
-    final next = game.players.get(indexNext);
-    yield PlayerDisplayerState(player: next);
-  }
-
-  Stream<PlayerDisplayerState> _mapCurrentPlayerUpdatedToState(
-    CurrentPlayerUpdated event,
+  Stream<PlayerDisplayerState> _mapPlayersReceivedToState(
+    PlayersReceived event,
   ) async* {
-    yield PlayerDisplayerState(player: event.newPlayer);
+    yield PlayerDisplayerState(players: event.players);
   }
 
   @override

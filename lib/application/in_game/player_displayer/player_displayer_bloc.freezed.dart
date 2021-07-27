@@ -16,17 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PlayerDisplayerEventTearOff {
   const _$PlayerDisplayerEventTearOff();
 
-  PreviousPressed previousPlayerPressed() {
-    return const PreviousPressed();
-  }
-
-  NextPressed nextPlayerPressed() {
-    return const NextPressed();
-  }
-
-  CurrentPlayerUpdated currentPlayerUpdated({required Player newPlayer}) {
-    return CurrentPlayerUpdated(
-      newPlayer: newPlayer,
+  PlayersReceived playersReceived({required KtList<Player> players}) {
+    return PlayersReceived(
+      players: players,
     );
   }
 }
@@ -36,35 +28,33 @@ const $PlayerDisplayerEvent = _$PlayerDisplayerEventTearOff();
 
 /// @nodoc
 mixin _$PlayerDisplayerEvent {
+  KtList<Player> get players => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() previousPlayerPressed,
-    required TResult Function() nextPlayerPressed,
-    required TResult Function(Player newPlayer) currentPlayerUpdated,
+    required TResult Function(KtList<Player> players) playersReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? previousPlayerPressed,
-    TResult Function()? nextPlayerPressed,
-    TResult Function(Player newPlayer)? currentPlayerUpdated,
+    TResult Function(KtList<Player> players)? playersReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PreviousPressed value) previousPlayerPressed,
-    required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
+    required TResult Function(PlayersReceived value) playersReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PreviousPressed value)? previousPlayerPressed,
-    TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
+    TResult Function(PlayersReceived value)? playersReceived,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PlayerDisplayerEventCopyWith<PlayerDisplayerEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +63,7 @@ abstract class $PlayerDisplayerEventCopyWith<$Res> {
   factory $PlayerDisplayerEventCopyWith(PlayerDisplayerEvent value,
           $Res Function(PlayerDisplayerEvent) then) =
       _$PlayerDisplayerEventCopyWithImpl<$Res>;
+  $Res call({KtList<Player> players});
 }
 
 /// @nodoc
@@ -83,272 +74,100 @@ class _$PlayerDisplayerEventCopyWithImpl<$Res>
   final PlayerDisplayerEvent _value;
   // ignore: unused_field
   final $Res Function(PlayerDisplayerEvent) _then;
-}
-
-/// @nodoc
-abstract class $PreviousPressedCopyWith<$Res> {
-  factory $PreviousPressedCopyWith(
-          PreviousPressed value, $Res Function(PreviousPressed) then) =
-      _$PreviousPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$PreviousPressedCopyWithImpl<$Res>
-    extends _$PlayerDisplayerEventCopyWithImpl<$Res>
-    implements $PreviousPressedCopyWith<$Res> {
-  _$PreviousPressedCopyWithImpl(
-      PreviousPressed _value, $Res Function(PreviousPressed) _then)
-      : super(_value, (v) => _then(v as PreviousPressed));
-
-  @override
-  PreviousPressed get _value => super._value as PreviousPressed;
-}
-
-/// @nodoc
-
-class _$PreviousPressed implements PreviousPressed {
-  const _$PreviousPressed();
-
-  @override
-  String toString() {
-    return 'PlayerDisplayerEvent.previousPlayerPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PreviousPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() previousPlayerPressed,
-    required TResult Function() nextPlayerPressed,
-    required TResult Function(Player newPlayer) currentPlayerUpdated,
-  }) {
-    return previousPlayerPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? previousPlayerPressed,
-    TResult Function()? nextPlayerPressed,
-    TResult Function(Player newPlayer)? currentPlayerUpdated,
-    required TResult orElse(),
-  }) {
-    if (previousPlayerPressed != null) {
-      return previousPlayerPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PreviousPressed value) previousPlayerPressed,
-    required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
-  }) {
-    return previousPlayerPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PreviousPressed value)? previousPlayerPressed,
-    TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
-    required TResult orElse(),
-  }) {
-    if (previousPlayerPressed != null) {
-      return previousPlayerPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PreviousPressed implements PlayerDisplayerEvent {
-  const factory PreviousPressed() = _$PreviousPressed;
-}
-
-/// @nodoc
-abstract class $NextPressedCopyWith<$Res> {
-  factory $NextPressedCopyWith(
-          NextPressed value, $Res Function(NextPressed) then) =
-      _$NextPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$NextPressedCopyWithImpl<$Res>
-    extends _$PlayerDisplayerEventCopyWithImpl<$Res>
-    implements $NextPressedCopyWith<$Res> {
-  _$NextPressedCopyWithImpl(
-      NextPressed _value, $Res Function(NextPressed) _then)
-      : super(_value, (v) => _then(v as NextPressed));
-
-  @override
-  NextPressed get _value => super._value as NextPressed;
-}
-
-/// @nodoc
-
-class _$NextPressed implements NextPressed {
-  const _$NextPressed();
-
-  @override
-  String toString() {
-    return 'PlayerDisplayerEvent.nextPlayerPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NextPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() previousPlayerPressed,
-    required TResult Function() nextPlayerPressed,
-    required TResult Function(Player newPlayer) currentPlayerUpdated,
-  }) {
-    return nextPlayerPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? previousPlayerPressed,
-    TResult Function()? nextPlayerPressed,
-    TResult Function(Player newPlayer)? currentPlayerUpdated,
-    required TResult orElse(),
-  }) {
-    if (nextPlayerPressed != null) {
-      return nextPlayerPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PreviousPressed value) previousPlayerPressed,
-    required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
-  }) {
-    return nextPlayerPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PreviousPressed value)? previousPlayerPressed,
-    TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
-    required TResult orElse(),
-  }) {
-    if (nextPlayerPressed != null) {
-      return nextPlayerPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class NextPressed implements PlayerDisplayerEvent {
-  const factory NextPressed() = _$NextPressed;
-}
-
-/// @nodoc
-abstract class $CurrentPlayerUpdatedCopyWith<$Res> {
-  factory $CurrentPlayerUpdatedCopyWith(CurrentPlayerUpdated value,
-          $Res Function(CurrentPlayerUpdated) then) =
-      _$CurrentPlayerUpdatedCopyWithImpl<$Res>;
-  $Res call({Player newPlayer});
-}
-
-/// @nodoc
-class _$CurrentPlayerUpdatedCopyWithImpl<$Res>
-    extends _$PlayerDisplayerEventCopyWithImpl<$Res>
-    implements $CurrentPlayerUpdatedCopyWith<$Res> {
-  _$CurrentPlayerUpdatedCopyWithImpl(
-      CurrentPlayerUpdated _value, $Res Function(CurrentPlayerUpdated) _then)
-      : super(_value, (v) => _then(v as CurrentPlayerUpdated));
-
-  @override
-  CurrentPlayerUpdated get _value => super._value as CurrentPlayerUpdated;
 
   @override
   $Res call({
-    Object? newPlayer = freezed,
+    Object? players = freezed,
   }) {
-    return _then(CurrentPlayerUpdated(
-      newPlayer: newPlayer == freezed
-          ? _value.newPlayer
-          : newPlayer // ignore: cast_nullable_to_non_nullable
-              as Player,
+    return _then(_value.copyWith(
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as KtList<Player>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $PlayersReceivedCopyWith<$Res>
+    implements $PlayerDisplayerEventCopyWith<$Res> {
+  factory $PlayersReceivedCopyWith(
+          PlayersReceived value, $Res Function(PlayersReceived) then) =
+      _$PlayersReceivedCopyWithImpl<$Res>;
+  @override
+  $Res call({KtList<Player> players});
+}
+
+/// @nodoc
+class _$PlayersReceivedCopyWithImpl<$Res>
+    extends _$PlayerDisplayerEventCopyWithImpl<$Res>
+    implements $PlayersReceivedCopyWith<$Res> {
+  _$PlayersReceivedCopyWithImpl(
+      PlayersReceived _value, $Res Function(PlayersReceived) _then)
+      : super(_value, (v) => _then(v as PlayersReceived));
+
+  @override
+  PlayersReceived get _value => super._value as PlayersReceived;
+
+  @override
+  $Res call({
+    Object? players = freezed,
+  }) {
+    return _then(PlayersReceived(
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as KtList<Player>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CurrentPlayerUpdated implements CurrentPlayerUpdated {
-  const _$CurrentPlayerUpdated({required this.newPlayer});
+class _$PlayersReceived implements PlayersReceived {
+  const _$PlayersReceived({required this.players});
 
   @override
-  final Player newPlayer;
+  final KtList<Player> players;
 
   @override
   String toString() {
-    return 'PlayerDisplayerEvent.currentPlayerUpdated(newPlayer: $newPlayer)';
+    return 'PlayerDisplayerEvent.playersReceived(players: $players)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CurrentPlayerUpdated &&
-            (identical(other.newPlayer, newPlayer) ||
-                const DeepCollectionEquality()
-                    .equals(other.newPlayer, newPlayer)));
+        (other is PlayersReceived &&
+            (identical(other.players, players) ||
+                const DeepCollectionEquality().equals(other.players, players)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newPlayer);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(players);
 
   @JsonKey(ignore: true)
   @override
-  $CurrentPlayerUpdatedCopyWith<CurrentPlayerUpdated> get copyWith =>
-      _$CurrentPlayerUpdatedCopyWithImpl<CurrentPlayerUpdated>(
-          this, _$identity);
+  $PlayersReceivedCopyWith<PlayersReceived> get copyWith =>
+      _$PlayersReceivedCopyWithImpl<PlayersReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() previousPlayerPressed,
-    required TResult Function() nextPlayerPressed,
-    required TResult Function(Player newPlayer) currentPlayerUpdated,
+    required TResult Function(KtList<Player> players) playersReceived,
   }) {
-    return currentPlayerUpdated(newPlayer);
+    return playersReceived(players);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? previousPlayerPressed,
-    TResult Function()? nextPlayerPressed,
-    TResult Function(Player newPlayer)? currentPlayerUpdated,
+    TResult Function(KtList<Player> players)? playersReceived,
     required TResult orElse(),
   }) {
-    if (currentPlayerUpdated != null) {
-      return currentPlayerUpdated(newPlayer);
+    if (playersReceived != null) {
+      return playersReceived(players);
     }
     return orElse();
   }
@@ -356,35 +175,33 @@ class _$CurrentPlayerUpdated implements CurrentPlayerUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PreviousPressed value) previousPlayerPressed,
-    required TResult Function(NextPressed value) nextPlayerPressed,
-    required TResult Function(CurrentPlayerUpdated value) currentPlayerUpdated,
+    required TResult Function(PlayersReceived value) playersReceived,
   }) {
-    return currentPlayerUpdated(this);
+    return playersReceived(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PreviousPressed value)? previousPlayerPressed,
-    TResult Function(NextPressed value)? nextPlayerPressed,
-    TResult Function(CurrentPlayerUpdated value)? currentPlayerUpdated,
+    TResult Function(PlayersReceived value)? playersReceived,
     required TResult orElse(),
   }) {
-    if (currentPlayerUpdated != null) {
-      return currentPlayerUpdated(this);
+    if (playersReceived != null) {
+      return playersReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class CurrentPlayerUpdated implements PlayerDisplayerEvent {
-  const factory CurrentPlayerUpdated({required Player newPlayer}) =
-      _$CurrentPlayerUpdated;
+abstract class PlayersReceived implements PlayerDisplayerEvent {
+  const factory PlayersReceived({required KtList<Player> players}) =
+      _$PlayersReceived;
 
-  Player get newPlayer => throw _privateConstructorUsedError;
+  @override
+  KtList<Player> get players => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $CurrentPlayerUpdatedCopyWith<CurrentPlayerUpdated> get copyWith =>
+  $PlayersReceivedCopyWith<PlayersReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -392,9 +209,9 @@ abstract class CurrentPlayerUpdated implements PlayerDisplayerEvent {
 class _$PlayerDisplayerStateTearOff {
   const _$PlayerDisplayerStateTearOff();
 
-  _PlayerDisplayerState call({required Player player}) {
+  _PlayerDisplayerState call({required KtList<Player> players}) {
     return _PlayerDisplayerState(
-      player: player,
+      players: players,
     );
   }
 }
@@ -404,7 +221,7 @@ const $PlayerDisplayerState = _$PlayerDisplayerStateTearOff();
 
 /// @nodoc
 mixin _$PlayerDisplayerState {
-  Player get player => throw _privateConstructorUsedError;
+  KtList<Player> get players => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerDisplayerStateCopyWith<PlayerDisplayerState> get copyWith =>
@@ -416,7 +233,7 @@ abstract class $PlayerDisplayerStateCopyWith<$Res> {
   factory $PlayerDisplayerStateCopyWith(PlayerDisplayerState value,
           $Res Function(PlayerDisplayerState) then) =
       _$PlayerDisplayerStateCopyWithImpl<$Res>;
-  $Res call({Player player});
+  $Res call({KtList<Player> players});
 }
 
 /// @nodoc
@@ -430,13 +247,13 @@ class _$PlayerDisplayerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? player = freezed,
+    Object? players = freezed,
   }) {
     return _then(_value.copyWith(
-      player: player == freezed
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
-              as Player,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as KtList<Player>,
     ));
   }
 }
@@ -448,7 +265,7 @@ abstract class _$PlayerDisplayerStateCopyWith<$Res>
           $Res Function(_PlayerDisplayerState) then) =
       __$PlayerDisplayerStateCopyWithImpl<$Res>;
   @override
-  $Res call({Player player});
+  $Res call({KtList<Player> players});
 }
 
 /// @nodoc
@@ -464,13 +281,13 @@ class __$PlayerDisplayerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? player = freezed,
+    Object? players = freezed,
   }) {
     return _then(_PlayerDisplayerState(
-      player: player == freezed
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
-              as Player,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as KtList<Player>,
     ));
   }
 }
@@ -478,27 +295,27 @@ class __$PlayerDisplayerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PlayerDisplayerState implements _PlayerDisplayerState {
-  const _$_PlayerDisplayerState({required this.player});
+  const _$_PlayerDisplayerState({required this.players});
 
   @override
-  final Player player;
+  final KtList<Player> players;
 
   @override
   String toString() {
-    return 'PlayerDisplayerState(player: $player)';
+    return 'PlayerDisplayerState(players: $players)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PlayerDisplayerState &&
-            (identical(other.player, player) ||
-                const DeepCollectionEquality().equals(other.player, player)));
+            (identical(other.players, players) ||
+                const DeepCollectionEquality().equals(other.players, players)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(player);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(players);
 
   @JsonKey(ignore: true)
   @override
@@ -508,11 +325,11 @@ class _$_PlayerDisplayerState implements _PlayerDisplayerState {
 }
 
 abstract class _PlayerDisplayerState implements PlayerDisplayerState {
-  const factory _PlayerDisplayerState({required Player player}) =
+  const factory _PlayerDisplayerState({required KtList<Player> players}) =
       _$_PlayerDisplayerState;
 
   @override
-  Player get player => throw _privateConstructorUsedError;
+  KtList<Player> get players => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerDisplayerStateCopyWith<_PlayerDisplayerState> get copyWith =>

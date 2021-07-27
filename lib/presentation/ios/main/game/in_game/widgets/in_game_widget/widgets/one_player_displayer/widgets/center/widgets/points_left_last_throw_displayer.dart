@@ -11,7 +11,7 @@ class PointsLeftLastThrowDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
       builder: (context, state) {
-        final player = state.player;
+        final player = state.players[0];
 
         return Container(
           decoration: BoxDecoration(
