@@ -38,7 +38,7 @@ class YouReallyWantToCancelGameDialog extends StatelessWidget {
                 spacing: size6(context),
                 children: [
                   Expanded(
-                    child: AppActionButton.small(
+                    child: AppActionButton.normal(
                       color: AppColors.green,
                       fontColor: AppColors.white,
                       onPressed: onYesPressed,
@@ -46,7 +46,7 @@ class YouReallyWantToCancelGameDialog extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: AppActionButton.small(
+                    child: AppActionButton.normal(
                       color: AppColors.red,
                       fontColor: AppColors.white,
                       onPressed: () => context.router.pop(),

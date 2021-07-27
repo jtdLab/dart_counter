@@ -45,7 +45,6 @@ class InGamePage extends StatelessWidget {
         builder: (context, state) {
           final game = state.game;
           return AppPage(
-            //padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
             navigationBar: AppNavigationBar(
               leading: CancelButton(
                 onPressed: () {
@@ -72,16 +71,7 @@ class InGamePage extends StatelessWidget {
               ),
               trailing: const StatsButton(),
             ),
-            child: LayoutBuilder(
-              builder: (context, constraints) => SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: constraints.copyWith(
-                    maxHeight: constraints.maxHeight + 55, // TODO
-                  ),
-                  child: const InGameWidget(),
-                ),
-              ),
-            ),
+            child: const InGameWidget(),
           );
         },
       ),
