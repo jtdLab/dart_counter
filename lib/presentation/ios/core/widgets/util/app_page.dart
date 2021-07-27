@@ -3,6 +3,8 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 
 class AppPage extends StatelessWidget {
   final VoidCallback? onTap;
+
+  final Color? backgroundColor;
   final EdgeInsets padding;
 
   final AppNavigationBar? navigationBar;
@@ -13,6 +15,7 @@ class AppPage extends StatelessWidget {
     this.navigationBar,
     required this.child,
     this.onTap,
+    this.backgroundColor,
     this.padding = const EdgeInsets.fromLTRB(40, 20, 40, 5), // TODO responsive
   }) : super(key: key);
 
@@ -21,6 +24,7 @@ class AppPage extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CupertinoPageScaffold(
+        backgroundColor: backgroundColor,
         child: SafeArea(
           child: Padding(
             padding: padding,

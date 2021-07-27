@@ -3,6 +3,7 @@ import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/game/shared/you_really_want_to_cancel_game_dialog.dart';
 import 'widgets/widgets.dart';
 
 class CreateGamePage extends StatelessWidget {
@@ -28,12 +29,25 @@ class CreateGamePage extends StatelessWidget {
           onTap: () => FocusScope.of(context).unfocus(),
           //padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
           navigationBar: AppNavigationBar(
-            leading: Builder(
-              builder: (context) => CancelButton(
-                onPressed: () => context
-                    .read<CreateGameBloc>()
-                    .add(const CreateGameEvent.gameCanceled()),
-              ),
+            leading: CancelButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (context, _, __) => BlocProvider(
+                      create: (context) => getIt<CreateGameBloc>(),
+                      child: Builder(
+                        builder: (context) => YouReallyWantToCancelGameDialog(
+                          onYesPressed: () =>
+                              context.read<CreateGameBloc>().add(
+                                    const CreateGameEvent.gameCanceled(),
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
             middle: Text(
               LocaleKeys.createGame.tr().toUpperCase(),
