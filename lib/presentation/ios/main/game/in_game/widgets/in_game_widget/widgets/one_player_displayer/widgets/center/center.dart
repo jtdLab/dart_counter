@@ -13,9 +13,11 @@ class Center extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(
-          width: size150(context),
-          height: size150(context),
+        const Spacer(
+          flex: 4,
+        ),
+        Expanded(
+          flex: 7,
           child: AppColumn(
             spacing: size6(context),
             children: const [
@@ -26,6 +28,9 @@ class Center extends StatelessWidget {
               FinishRecommendationDisplayer(),
             ],
           ),
+        ),
+        const Spacer(
+          flex: 4,
         ),
       ],
     );

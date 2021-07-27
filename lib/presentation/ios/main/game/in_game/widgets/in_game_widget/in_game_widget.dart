@@ -9,8 +9,8 @@ class InGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return AppColumn(
+      spacing: size6(context),
       children: [
         Expanded(
           flex: 45,
@@ -30,7 +30,6 @@ class InGameWidget extends StatelessWidget {
             },
           ),
         ),
-        const AppSpacer.normal(),
         Expanded(
           flex: 55,
           child: PageView(

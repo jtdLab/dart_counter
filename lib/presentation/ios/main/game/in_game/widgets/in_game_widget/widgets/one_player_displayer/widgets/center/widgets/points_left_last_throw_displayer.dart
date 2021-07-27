@@ -23,33 +23,27 @@ class PointsLeftLastThrowDisplayer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                flex: 5,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      player.pointsLeft.toString(),
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .textStyle
-                          .copyWith(fontSize: 40),
-                      maxLines: 1,
-                    ),
-                  ],
+                flex: 6,
+                child: Center(
+                  child: AutoSizeText(
+                    player.pointsLeft.toString(),
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(fontSize: 40),
+                    maxLines: 1,
+                  ),
                 ),
               ),
               Expanded(
                 flex: 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      player.lastPoints?.toString() ?? '--',
-                      maxLines: 1,
-                      maxFontSize: 13,
-                      minFontSize: 6,
-                    ),
-                  ],
+                child: Center(
+                  child: AutoSizeText(
+                    player.lastPoints?.toString() ?? '--',
+                    maxLines: 1,
+                    maxFontSize: 13,
+                    minFontSize: 6,
+                  ),
                 ),
               ),
             ],

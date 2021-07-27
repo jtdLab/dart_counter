@@ -14,28 +14,30 @@ class LegsSetsDisplayer extends StatelessWidget {
         final player = state.players[0];
 
         return Container(
-          height: 25,
           color: AppColors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              if (player.wonSets != null) ...[
+          child: Padding(
+            padding: EdgeInsets.all(size6(context) / 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                if (player.wonSets != null) ...[
+                  Text(
+                    'S:${player.wonSets}',
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(color: AppColors.white),
+                  ),
+                ],
                 Text(
-                  'S:${player.wonSets}',
+                  'L:${player.wonLegsCurrentSet}',
                   style: CupertinoTheme.of(context)
                       .textTheme
                       .textStyle
                       .copyWith(color: AppColors.white),
                 ),
               ],
-              Text(
-                'L:${player.wonLegsCurrentSet}',
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(color: AppColors.white),
-              ),
-            ],
+            ),
           ),
         );
       },

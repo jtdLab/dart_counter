@@ -176,7 +176,7 @@ class ThrowValidator {
         return 3;
       }
     } else {
-      throw Error();
+      throw Error(); // TODO
     }
   }
 

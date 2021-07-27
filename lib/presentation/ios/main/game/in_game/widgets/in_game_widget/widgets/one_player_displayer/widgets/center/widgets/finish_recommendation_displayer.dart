@@ -14,18 +14,22 @@ class FinishRecommendationDisplayer extends StatelessWidget {
         final finishRecommendation = state.players[0].finishRecommendation;
 
         return Container(
-          height: 25,
           color: AppColors.orangeNew,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              if (finishRecommendation != null) ...[
-                for (int i = 0; i < finishRecommendation.size; i++)
-                  Text(
-                    finishRecommendation.get(i),
-                  ),
-              ]
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(size6(context) / 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                if (finishRecommendation != null) ...[
+                  for (int i = 0; i < finishRecommendation.size; i++)
+                    Text(
+                      finishRecommendation.get(i),
+                    ),
+                ] else ... [
+                  const Text(''),
+                ]
+              ],
+            ),
           ),
         );
       },
