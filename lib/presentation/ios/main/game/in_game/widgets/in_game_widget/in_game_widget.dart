@@ -11,15 +11,21 @@ class InGameWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const PlayerDisplayer(),
+        Expanded(
+          flex: 45,
+          child: Container(
+            color: AppColors.blue,
+          ),
+        ),
         const AppSpacer.normal(),
         Expanded(
+          flex: 55,
           child: PageView(
             children: const [
               StandardInputArea(),
               DetailedInputArea(),
               SpeechInputArea(),
-              OpticalInputArea(),
+              //OpticalInputArea(),
             ],
           ),
         ),

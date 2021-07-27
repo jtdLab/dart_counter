@@ -16,15 +16,17 @@ class DetailedKeyBoard extends StatelessWidget {
     return BlocBuilder<DetailedInputAreaBloc, DetailedInputAreaState>(
       builder: (context, state) {
         return GestureDetector(
-          onTap: () => context.read<DetailedInputAreaBloc>().add(const DetailedInputAreaEvent.unfocused()),
+          onTap: () => context
+              .read<DetailedInputAreaBloc>()
+              .add(const DetailedInputAreaEvent.unfocused()),
           child: AppColumn(
             spacing: size6(context),
             children: [
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+              Expanded(
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       onPressed: state.focusedValue == null
                           ? () => _dartPressed(
@@ -48,9 +50,7 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'S17'
                               : '16'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 16
                           ? AppColors.red
@@ -86,9 +86,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'S18'
                                   : '17'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 16
                           ? AppColors.orangeNew
@@ -133,9 +131,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                       ? 'S19'
                                       : '18'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 18
                           ? AppColors.orangeNew
@@ -171,9 +167,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'S20'
                                   : '19'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 19
                           ? AppColors.orangeNew
@@ -209,9 +203,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'S25'
                                   : '20'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 20
                           ? AppColors.orangeNew
@@ -240,14 +232,14 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'D25'
                               : '25'),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+              Expanded(
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       onPressed: state.focusedValue == null
                           ? () => _dartPressed(
@@ -271,9 +263,7 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'S11'
                               : '10'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 10
                           ? AppColors.red
@@ -309,9 +299,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'S12'
                                   : '11'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 10
                           ? AppColors.orangeNew
@@ -356,9 +344,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                       ? 'S13'
                                       : '12'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 12
                           ? AppColors.orangeNew
@@ -401,9 +387,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                       ? 'S15'
                                       : '13'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 13
                           ? AppColors.orangeNew
@@ -441,9 +425,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'D15'
                                   : '14'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 14
                           ? AppColors.orangeNew
@@ -472,14 +454,14 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'T15'
                               : '15'),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+              Expanded(
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       onPressed: state.focusedValue == null
                           ? () => _dartPressed(
@@ -503,9 +485,7 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'S5'
                               : '4'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 4
                           ? AppColors.red
@@ -541,9 +521,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'S6'
                                   : '5'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 4
                           ? AppColors.orangeNew
@@ -588,9 +566,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                       ? 'S7'
                                       : '6'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 6
                           ? AppColors.orangeNew
@@ -633,9 +609,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                       ? 'S9'
                                       : '7'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 7
                           ? AppColors.orangeNew
@@ -673,9 +647,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                   ? 'D9'
                                   : '8'),
                     ),
-                  ),
-                  Expanded(
-                    child: DetailedKeyBoardButton(
+                    DetailedKeyBoardButton(
                       fontSize: 14,
                       color: state.focusedValue == 8
                           ? AppColors.orangeNew
@@ -704,18 +676,18 @@ class DetailedKeyBoard extends StatelessWidget {
                               ? 'T9'
                               : '9'),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: AppRow(
-                      spacing: size6(context),
-                      children: [
-                        Expanded(
-                          child: DetailedKeyBoardButton(
+              Expanded(
+                child: AppRow(
+                  spacing: size6(context),
+                  children: [
+                    Expanded(
+                      child: AppRow(
+                        spacing: size6(context),
+                        children: [
+                          DetailedKeyBoardButton(
                             fontSize: 14,
                             onPressed: state.focusedValue == null
                                 ? () => _dartPressed(
@@ -731,9 +703,7 @@ class DetailedKeyBoard extends StatelessWidget {
                             textOrIcon:
                                 left(state.focusedValue == 1 ? 'S1' : '0'),
                           ),
-                        ),
-                        Expanded(
-                          child: DetailedKeyBoardButton(
+                          DetailedKeyBoardButton(
                             fontSize: 14,
                             color: state.focusedValue == 1
                                 ? AppColors.red
@@ -767,16 +737,14 @@ class DetailedKeyBoard extends StatelessWidget {
                                         ? 'S3'
                                         : '1'),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: AppRow(
-                      spacing: size6(context),
-                      children: [
-                        Expanded(
-                          child: DetailedKeyBoardButton(
+                    Expanded(
+                      child: AppRow(
+                        spacing: size6(context),
+                        children: [
+                          DetailedKeyBoardButton(
                             fontSize: 14,
                             color: state.focusedValue == 1
                                 ? AppColors.orangeNew
@@ -814,9 +782,7 @@ class DetailedKeyBoard extends StatelessWidget {
                                         ? 'D3'
                                         : '2'),
                           ),
-                        ),
-                        Expanded(
-                          child: DetailedKeyBoardButton(
+                          DetailedKeyBoardButton(
                             fontSize: 14,
                             color: state.focusedValue == 2
                                 ? AppColors.orangeNew
@@ -845,16 +811,14 @@ class DetailedKeyBoard extends StatelessWidget {
                                     ? 'T3'
                                     : '3'),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: AppRow(
-                      spacing: size6(context),
-                      children: [
-                        Expanded(
-                          child: DetailedKeyBoardButton(
+                    Expanded(
+                      child: AppRow(
+                        spacing: size6(context),
+                        children: [
+                          DetailedKeyBoardButton(
                             onPressed: () =>
                                 context.read<DetailedInputAreaBloc>().add(
                                       const DetailedInputAreaEvent
@@ -864,11 +828,11 @@ class DetailedKeyBoard extends StatelessWidget {
                               Image.asset(AppImages.chevronBackNew),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

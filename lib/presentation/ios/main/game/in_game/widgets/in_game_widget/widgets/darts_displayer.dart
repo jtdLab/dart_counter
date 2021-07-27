@@ -12,7 +12,6 @@ class DartsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 2 * size12(context),
       color: AppColors.black,
       child: AppRow(
         spacing: size6(context),

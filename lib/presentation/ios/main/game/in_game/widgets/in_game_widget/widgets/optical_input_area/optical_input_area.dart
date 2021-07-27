@@ -3,6 +3,7 @@ import 'package:dart_counter/application/in_game/optical_input_area/optical_inpu
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO make responsive
 class OpticalInputArea extends StatelessWidget {
   const OpticalInputArea({
     Key? key,

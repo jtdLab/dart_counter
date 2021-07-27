@@ -1,7 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 
-// NEEDE
 class KeyBoardButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double fontSize;
@@ -9,8 +8,8 @@ class KeyBoardButton extends StatelessWidget {
   final Widget? child;
 
   const KeyBoardButton({
-    this.onPressed,
     Key? key,
+    this.onPressed,
     this.fontSize = 28,
     this.text,
     this.child,
@@ -20,7 +19,7 @@ class KeyBoardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (text != null) {
-      return AppActionButton.normal(
+      return AppActionButton.flexible(
         fontSize: fontSize,
         color: AppColors.white,
         onPressed: onPressed,
@@ -28,7 +27,7 @@ class KeyBoardButton extends StatelessWidget {
       );
     }
     if (child != null) {
-      return AppActionButton.normal(
+      return AppActionButton.flexible(
         color: AppColors.white,
         onPressed: onPressed,
         icon: child,

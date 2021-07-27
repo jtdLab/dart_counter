@@ -11,7 +11,6 @@ class InputPointsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size55(context),
       decoration: BoxDecoration(
         border: Border.all(
           width: border4(context),
@@ -20,7 +19,7 @@ class InputPointsDisplayer extends StatelessWidget {
       child: Center(
         child: Text(
           input.toString(),
-          style: const TextStyle(fontSize: 28),
+          style: const TextStyle(fontSize: 28), // TODO
         ),
       ),
     );

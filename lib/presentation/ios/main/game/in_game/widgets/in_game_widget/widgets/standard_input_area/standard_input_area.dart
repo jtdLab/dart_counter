@@ -3,6 +3,7 @@ import 'package:dart_counter/application/in_game/standard_input_area/standard_in
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
+// TODO flex factors
 class StandardInputArea extends StatelessWidget {
   const StandardInputArea({
     Key? key,
@@ -15,28 +16,36 @@ class StandardInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-          AppSpacer.custom(
-            mobileSize: ResponsiveDouble(
-              small: 2 * size12(context),
-              normal: 2 * size12(context),
-              large: 2 * size12(context),
-              extraLarge: 2 * size12(context),
+          Expanded(
+            flex: 10,
+            child: AppColumn(
+              spacing: size6(context),
+              children: [
+                const Spacer(
+                  flex: 10,
+                ),
+                BlocBuilder<StandardInputAreaBloc, StandardInputAreaState>(
+                  builder: (context, state) => Expanded(
+                    flex: 30,
+                    child: InputRow(
+                      onUndoPressed: () => context
+                          .read<StandardInputAreaBloc>()
+                          .add(const StandardInputAreaEvent.undoThrowPressed()),
+                      input: state.input,
+                      onPerformThrowPressed: () => context
+                          .read<StandardInputAreaBloc>()
+                          .add(const StandardInputAreaEvent
+                              .performThrowPressed()),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          BlocBuilder<StandardInputAreaBloc, StandardInputAreaState>(
-            builder: (context, state) {
-              return InputRow(
-                onUndoPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.undoThrowPressed()),
-                input: state.input,
-                onPerformThrowPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.performThrowPressed()),
-              );
-            },
-          ),
-          const StandardKeyBoard(),
+          const Expanded(
+            flex: 30,
+            child: StandardKeyBoard(),
+          )
         ],
       ),
     );

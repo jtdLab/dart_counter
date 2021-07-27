@@ -15,7 +15,6 @@ class DoButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: Container(
-        height: size55(context),
         decoration: BoxDecoration(
           border: Border.all(
             color: AppColors.green,

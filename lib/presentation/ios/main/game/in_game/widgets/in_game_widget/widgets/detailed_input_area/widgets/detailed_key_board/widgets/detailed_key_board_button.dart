@@ -19,7 +19,7 @@ class DetailedKeyBoardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return textOrIcon.fold(
-      (text) => AppActionButton.normal(
+      (text) => AppActionButton.flexible(
         fontSize: fontSize,
         color: AppColors.white,
         onPressed: onPressed,
@@ -27,7 +27,7 @@ class DetailedKeyBoardButton extends StatelessWidget {
         fontColor: color,
         borderColor: color,
       ),
-      (icon) => AppActionButton.normal(
+      (icon) => AppActionButton.flexible(
         fontSize: fontSize,
         color: AppColors.white,
         onPressed: onPressed,
