@@ -38,6 +38,7 @@ class DetailedInputAreaBloc
       undoThrowPressed: (_) => _mapUndoThrowPressedToState(),
       performThrowPressed: (_) => _mapPerformThrowPressedToState(),
       dartPressed: (event) => _mapDartPressedToState(event),
+      unfocused: (_) => _mapUnfocusedToState(),
       dartDetailPressed: (event) => _mapDartDetailPressedToState(event),
       undoDartPressed: (_) => _mapUndoDartPressedToState(),
     );
@@ -115,6 +116,12 @@ class DetailedInputAreaBloc
         );
       }
     }
+  }
+
+  Stream<DetailedInputAreaState> _mapUnfocusedToState() async* {
+    yield state.copyWith(
+      focusedValue: null,
+    );
   }
 
   Stream<DetailedInputAreaState> _mapDartDetailPressedToState(
