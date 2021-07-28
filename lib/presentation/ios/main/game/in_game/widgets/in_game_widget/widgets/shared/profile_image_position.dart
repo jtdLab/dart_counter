@@ -1,0 +1,1 @@
+enum ProfileImagePosition { left, right }

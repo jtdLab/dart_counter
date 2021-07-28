@@ -25,7 +25,7 @@ class FinishRecommendationDisplayer extends StatelessWidget {
                     Text(
                       finishRecommendation.get(i),
                     ),
-                ] else ... [
+                ] else ...[
                   const Text(''),
                 ]
               ],

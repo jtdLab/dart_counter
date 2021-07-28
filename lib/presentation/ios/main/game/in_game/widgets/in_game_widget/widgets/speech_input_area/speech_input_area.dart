@@ -4,7 +4,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
 // TODO import
-import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/undo_button.dart';
+import 'package:dart_counter/presentation/ios/main/game/in_game/widgets/in_game_widget/widgets/shared/undo_button.dart';
 
 // TODO flex factors
 class SpeechInputArea extends StatelessWidget {

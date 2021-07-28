@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
+// TODO responsive
 class DartsDisplayer extends StatelessWidget {
   final KtList<Dart> darts;
 
@@ -18,7 +19,7 @@ class DartsDisplayer extends StatelessWidget {
         children: [
           const Spacer(),
           Image.asset(AppImages.flightWhiteOne),
-          Text(
+          AutoSizeText(
             _mapDartToString(
               dart: darts.size > 0 ? darts.get(0) : null,
             ),
@@ -28,7 +29,7 @@ class DartsDisplayer extends StatelessWidget {
           ),
           const Spacer(),
           Image.asset(AppImages.flightWhiteTwo),
-          Text(
+          AutoSizeText(
             _mapDartToString(
               dart: darts.size > 1 ? darts.get(1) : null,
             ),
@@ -38,7 +39,7 @@ class DartsDisplayer extends StatelessWidget {
           ),
           const Spacer(),
           Image.asset(AppImages.flightWhiteThree),
-          Text(
+          AutoSizeText(
             _mapDartToString(
               dart: darts.size > 2 ? darts.get(2) : null,
             ),
