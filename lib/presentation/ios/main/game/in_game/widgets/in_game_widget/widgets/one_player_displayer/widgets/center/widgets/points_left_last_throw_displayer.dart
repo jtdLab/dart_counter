@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
+import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -9,9 +9,9 @@ class PointsLeftLastThrowDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
+    return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final player = state.players[0];
+        final player = state.game.players[0];
 
         return Container(
           decoration: BoxDecoration(

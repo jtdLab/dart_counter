@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/in_game/player_displayer/player_displayer_bloc.dart';
+import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -9,9 +9,9 @@ class FinishRecommendationDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayerDisplayerBloc, PlayerDisplayerState>(
+    return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final finishRecommendation = state.players[0].finishRecommendation;
+        final finishRecommendation = state.game.players[0].finishRecommendation;
 
         return Container(
           color: AppColors.orangeNew,

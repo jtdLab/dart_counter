@@ -43,6 +43,7 @@ class PlayerItemSmall extends StatelessWidget {
             Expanded(
               flex: 17,
               child: _PointsLeftLastThrowDisplayer(
+                isCurrentTurn: player.isCurrentTurn,
                 pointsLeft: player.pointsLeft,
                 lastPoints: player.lastPoints,
               ),
@@ -59,7 +60,6 @@ class PlayerItemSmall extends StatelessWidget {
     );
   }
 }
-
 
 class _Header extends StatelessWidget {
   final Color color;
@@ -167,11 +167,13 @@ class _LegsSetsDisplayer extends StatelessWidget {
 }
 
 class _PointsLeftLastThrowDisplayer extends StatelessWidget {
+  final bool isCurrentTurn;
   final int pointsLeft;
   final int? lastPoints;
 
   const _PointsLeftLastThrowDisplayer({
     Key? key,
+    required this.isCurrentTurn,
     required this.pointsLeft,
     this.lastPoints,
   }) : super(key: key);
@@ -180,6 +182,7 @@ class _PointsLeftLastThrowDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: isCurrentTurn ? AppColors.black : AppColors.white,
         border: Border(
           bottom: BorderSide(width: border4(context)),
         ),
@@ -192,10 +195,10 @@ class _PointsLeftLastThrowDisplayer extends StatelessWidget {
             child: Center(
               child: AutoSizeText(
                 pointsLeft.toString(),
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(fontSize: 40),
+                style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                      fontSize: 40,
+                      color: isCurrentTurn ? AppColors.white : AppColors.black,
+                    ),
                 maxLines: 1,
               ),
             ),
@@ -208,6 +211,10 @@ class _PointsLeftLastThrowDisplayer extends StatelessWidget {
                 maxLines: 1,
                 maxFontSize: 13,
                 minFontSize: 1,
+                style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                      fontSize: 13,
+                      color: isCurrentTurn ? AppColors.white : AppColors.black,
+                    ),
               ),
             ),
           ),

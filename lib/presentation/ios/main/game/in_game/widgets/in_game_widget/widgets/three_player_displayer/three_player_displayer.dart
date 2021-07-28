@@ -28,11 +28,11 @@ class ThreePlayerDisplayer extends StatelessWidget {
                 spacing: size6(context),
                 children: [
                   PlayerItemSmall(
-                    player: players[1],
+                    player: players[2],
                     profileImagePosition: ProfileImagePosition.right,
                   ),
                   PlayerItemSmall(
-                    player: players[2],
+                    player: players[1],
                     profileImagePosition: ProfileImagePosition.right,
                   ),
                 ],

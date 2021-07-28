@@ -33,6 +33,7 @@ class PlayerItem extends StatelessWidget {
             Expanded(
               flex: 6,
               child: _LegsSetsDisplayer(
+                isCurrentTurn: player.isCurrentTurn,
                 wonSets: player.wonSets,
                 wonLegsCurrentSet: player.wonLegsCurrentSet,
               ),
@@ -53,6 +54,7 @@ class PlayerItem extends StatelessWidget {
             Expanded(
               flex: 18,
               child: _StatsDisplayer(
+                isCurrentTurn: player.isCurrentTurn,
                 dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
                 average: player.stats.average,
                 checkoutPercentage: player.stats.checkoutPercentage,
@@ -125,11 +127,13 @@ class _Header extends StatelessWidget {
 }
 
 class _LegsSetsDisplayer extends StatelessWidget {
+  final bool isCurrentTurn;
   final int? wonSets;
   final int wonLegsCurrentSet;
 
   const _LegsSetsDisplayer({
     Key? key,
+    required this.isCurrentTurn,
     this.wonSets,
     required this.wonLegsCurrentSet,
   }) : super(key: key);
@@ -137,7 +141,12 @@ class _LegsSetsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.black,
+      decoration: BoxDecoration(
+        color: isCurrentTurn ? AppColors.black : AppColors.white,
+        border: Border(
+          top: BorderSide(width: border4(context)),
+        ),
+      ),
       child: Padding(
         padding: EdgeInsets.all(size6(context) / 4),
         child: Row(
@@ -146,18 +155,16 @@ class _LegsSetsDisplayer extends StatelessWidget {
             if (wonSets != null) ...[
               AutoSizeText(
                 'S:$wonSets',
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(color: AppColors.white),
+                style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                      color: isCurrentTurn ? AppColors.white : AppColors.black,
+                    ),
               ),
             ],
             AutoSizeText(
               'L:$wonLegsCurrentSet',
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
+              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                    color: isCurrentTurn ? AppColors.white : AppColors.black,
+                  ),
             ),
           ],
         ),
@@ -181,6 +188,7 @@ class _PointsLeftLastThrowDisplayer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
+          top: BorderSide(width: border4(context)),
           bottom: BorderSide(width: border4(context)),
         ),
       ),
@@ -250,12 +258,14 @@ class _FinishRecommendationDisplayer extends StatelessWidget {
 }
 
 class _StatsDisplayer extends StatelessWidget {
+  final bool isCurrentTurn;
   final int dartsThrownCurrentLeg;
   final double average;
   final double checkoutPercentage;
 
   const _StatsDisplayer({
     Key? key,
+    required this.isCurrentTurn,
     required this.dartsThrownCurrentLeg,
     required this.average,
     required this.checkoutPercentage,
@@ -264,14 +274,21 @@ class _StatsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.black,
+      decoration: BoxDecoration(
+        color: isCurrentTurn ? AppColors.black : AppColors.white,
+        border: Border(
+          top: BorderSide(width: border4(context)),
+        ),
+      ),
       child: Row(
         children: [
           const Spacer(),
           Expanded(
             flex: 5,
             child: _StatDisplayer(
-              icon: AppImages.flightWhite,
+              isCurrentTurn: isCurrentTurn,
+              icon:
+                  isCurrentTurn ? AppImages.flightWhite : AppImages.flightBlack,
               value: dartsThrownCurrentLeg.toString(),
             ),
           ),
@@ -279,7 +296,10 @@ class _StatsDisplayer extends StatelessWidget {
           Expanded(
             flex: 5,
             child: _StatDisplayer(
-              icon: AppImages.averageWhite,
+              isCurrentTurn: isCurrentTurn,
+              icon: isCurrentTurn
+                  ? AppImages.averageWhite
+                  : AppImages.averageBlack,
               value: average.toStringAsFixed(2),
             ),
           ),
@@ -287,7 +307,10 @@ class _StatsDisplayer extends StatelessWidget {
           Expanded(
             flex: 5,
             child: _StatDisplayer(
-              icon: AppImages.checkoutPercentageWhite,
+              isCurrentTurn: isCurrentTurn,
+              icon: isCurrentTurn
+                  ? AppImages.checkoutPercentageWhite
+                  : AppImages.checkoutPercentageBlack,
               value: checkoutPercentage.toStringAsFixed(2),
             ),
           ),
@@ -299,11 +322,13 @@ class _StatsDisplayer extends StatelessWidget {
 }
 
 class _StatDisplayer extends StatelessWidget {
+  final bool isCurrentTurn;
   final String icon;
   final String? value;
 
   const _StatDisplayer({
     Key? key,
+    required this.isCurrentTurn,
     required this.icon,
     this.value,
   }) : super(key: key);
@@ -334,10 +359,13 @@ class _StatDisplayer extends StatelessWidget {
                 flex: 3,
                 child: AutoSizeText(
                   value ?? '-',
-                  style:
-                      CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                            color: AppColors.white,
-                          ),
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(
+                        color:
+                            isCurrentTurn ? AppColors.white : AppColors.black,
+                      ),
                   maxLines: 1,
                   minFontSize: 4,
                 ),
