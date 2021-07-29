@@ -23,7 +23,7 @@ class ThrowDto with _$ThrowDto {
     return ThrowDto(
       points: t.points,
       dartsThrown: t.dartsThrown,
-      dartsOnDouble: t.dartsThrown,
+      dartsOnDouble: t.dartsOnDouble,
       darts: t.darts?.iter.map((dart) => DartDto.fromDomain(dart)).toList(),
     );
   }
@@ -32,7 +32,7 @@ class ThrowDto with _$ThrowDto {
     return ThrowDto(
       points: t.points,
       dartsThrown: t.dartsThrown,
-      dartsOnDouble: t.dartsThrown,
+      dartsOnDouble: t.dartsOnDouble,
       darts: t.darts?.map((dart) => DartDto.fromExternal(dart)).toList(),
     );
   }
@@ -41,7 +41,7 @@ class ThrowDto with _$ThrowDto {
     return dart.Throw(
       points,
       dartsThrown: dartsThrown,
-      dartsOnDouble: dartsThrown,
+      dartsOnDouble: dartsOnDouble,
       darts: darts?.map((dart) => dart.toExternal()).toList(),
     );
   }

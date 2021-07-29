@@ -35,6 +35,14 @@ class PlayFacade implements IPlayFacade {
 
         if (gameExisting) {
           _game!.addDartBot();
+          _gameStreamController.add(
+            right(
+              GameDto.fromExternal(_game!).toDomain().copyWith(
+                    online: _online!,
+                    createdAt: _createdAt!,
+                  ),
+            ),
+          );
           return right(unit);
         }
       }
@@ -55,6 +63,14 @@ class PlayFacade implements IPlayFacade {
         if (gameExisting) {
           final bool playerAdded = _game!.addPlayer();
           // TODO maybe return playfailure if adding failed
+          _gameStreamController.add(
+            right(
+              GameDto.fromExternal(_game!).toDomain().copyWith(
+                    online: _online!,
+                    createdAt: _createdAt!,
+                  ),
+            ),
+          );
           return right(unit);
         }
       }
@@ -74,6 +90,15 @@ class PlayFacade implements IPlayFacade {
 
         if (gameExisting) {
           _game!.cancel();
+          _gameStreamController.add(
+            right(
+              GameDto.fromExternal(_game!).toDomain().copyWith(
+                    online: _online!,
+                    createdAt: _createdAt!,
+                  ),
+            ),
+          );
+          _game = null;
           return right(unit);
         }
       }
@@ -102,11 +127,18 @@ class PlayFacade implements IPlayFacade {
 
         if (gameNotExisting) {
           _game = dart.Game();
+          _gameStreamController.add(
+            right(
+              GameDto.fromExternal(_game!).toDomain().copyWith(
+                    online: _online!,
+                    createdAt: _createdAt!,
+                  ),
+            ),
+          );
           return right(unit);
         } else {
           if (_game!.status == dart.Status.finished) {
             _game = dart.Game();
-
             _gameStreamController.add(
               right(
                 GameDto.fromExternal(_game!).toDomain().copyWith(
