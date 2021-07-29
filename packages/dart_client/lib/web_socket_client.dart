@@ -8,7 +8,10 @@ class WebSocketClient {
 
   WebSocketClient(this._host, this._port);
 
-  Stream<String> get received => _webSocket == null ? Stream<String>.empty() : _webSocket!.map((message) => message as String);
+// TODO error
+  Stream<String> get received => _webSocket == null
+      ? throw Error()
+      : _webSocket!.map((message) => message as String);
 
   Future<bool> connect() async {
     bool connected = false;
@@ -33,6 +36,7 @@ class WebSocketClient {
   void send(String json) {
     if (_webSocket != null) {
       _webSocket?.add(json);
+      print('Sent $json');
     } else {
       print("Couldn't send message! -- Not connected to a Server");
     }

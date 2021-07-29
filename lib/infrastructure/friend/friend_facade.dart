@@ -18,7 +18,7 @@ import 'friend_request_dto.dart';
 @LazySingleton(as: IFriendFacade)
 class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
-  final SocialClient _socialClient;
+  final AbstractSocialClient _socialClient;
 
   FriendFacade(
     this._firestore,

@@ -1,4 +1,6 @@
 import 'package:dart_client/dart_client.dart';
+import 'package:dart_client/packets/incoming/response_packet.dart';
+import 'package:dart_client/packets/outgoing/request_packet.dart';
 import 'package:dart_client/packets/packet.dart';
 
 class Container {
@@ -6,16 +8,20 @@ class Container {
   final String type;
   late final Packet? payload;
 
-  Container(this.type, this.payload) :timestamp = DateTime.now().millisecondsSinceEpoch;
+  Container(this.type, this.payload)
+      : timestamp = DateTime.now().millisecondsSinceEpoch;
 
-  Container.fromJson(Map<String, dynamic> json) :
-    timestamp = json['timestamp'],
-    type = json['type'] {
+  Container.fromJson(Map<String, dynamic> json)
+      : timestamp = json['timestamp'],
+        type = json['type'] {
     payload = _payloadFromJsonString(json['payload']);
   }
 
-  Map<String, dynamic> toJson() =>
-      {'timestamp': timestamp, 'type': type, 'payload': payload};
+  Map<String, dynamic> toJson() => {
+        'timestamp': timestamp,
+        'type': type,
+        'payload': (payload as RequestPacket).toJson(),
+      };
 
   Packet? _payloadFromJsonString(json) {
     switch (type) {
@@ -26,7 +32,7 @@ class Container {
       case 'playerExited':
         return PlayerExitedPacket.fromJson(json);
       default:
-         return null;
+        return null;
     }
   }
 

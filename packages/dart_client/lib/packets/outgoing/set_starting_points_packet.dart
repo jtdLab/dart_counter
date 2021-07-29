@@ -4,4 +4,11 @@ class SetStartingPointsPacket extends RequestPacket {
   final int startingPoints;
 
   SetStartingPointsPacket(this.startingPoints);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'startingPoints': startingPoints,
+    };
+  }
 }

@@ -34,8 +34,11 @@ class JsonEncoder {
       type = 'undoThrow';
     }
 
-    if (type == null) throw Error(); // happens only if new packet type is not added to this method
+    if (type == null)
+      throw Error(); // happens only if new packet type is not added to this method
     Container container = Container(type, packet);
-    return jsonEncode(container);
+    return jsonEncode(
+      container,
+    );
   }
 }

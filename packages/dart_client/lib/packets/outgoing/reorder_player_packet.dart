@@ -5,4 +5,12 @@ class ReorderPlayerPacket extends RequestPacket {
   final int newIndex;
 
   ReorderPlayerPacket(this.oldIndex, this.newIndex);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'oldIndex': oldIndex,
+      'newIndex': newIndex,
+    };
+  }
 }

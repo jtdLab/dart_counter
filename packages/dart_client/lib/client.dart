@@ -16,7 +16,7 @@ abstract class AbstractDartClient {
 
   void reorderPlayer(int oldIndex, int newIndex);
 
-  void removePlayer(int id);
+  void removePlayer(int index);
 
   void setStartingPoints(int startingPoints);
 

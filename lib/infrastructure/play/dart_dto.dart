@@ -36,6 +36,17 @@ class DartDto with _$DartDto {
     );
   }
 
+  dart.Dart toExternal() {
+    return dart.Dart(
+      type == 'single'
+          ? dart.DartType.s
+          : type == 'double'
+              ? dart.DartType.d
+              : dart.DartType.t,
+      value,
+    );
+  }
+
   Dart toDomain() {
     return Dart(
       type: type == 'single'

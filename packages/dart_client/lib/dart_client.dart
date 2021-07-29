@@ -1,5 +1,7 @@
 library dart_client;
 
+import 'dart:convert';
+
 import 'package:dart_client/json/decoder.dart';
 import 'package:dart_client/json/encoder.dart';
 import 'package:dart_client/packets/incoming/response_packet.dart';

@@ -37,6 +37,15 @@ class ThrowDto with _$ThrowDto {
     );
   }
 
+  dart.Throw toExternal() {
+    return dart.Throw(
+      points,
+      dartsThrown: dartsThrown,
+      dartsOnDouble: dartsThrown,
+      darts: darts?.map((dart) => dart.toExternal()).toList(),
+    );
+  }
+
   Throw toDomain() {
     return Throw(
       points: points,
