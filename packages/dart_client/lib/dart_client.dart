@@ -14,6 +14,7 @@ part 'client.dart';
 /// enums
 part 'enums/mode.dart';
 part 'enums/type.dart';
+part 'enums/status.dart';
 
 /// ##### packets #####
 
@@ -21,8 +22,11 @@ part 'enums/type.dart';
 part 'packets/incoming/player_exited_packet.dart';
 part 'packets/incoming/player_joined_packet.dart';
 part 'packets/incoming/snapshot_packet.dart';
+part 'packets/incoming/create_game_response_packet.dart';
+
 
 /// outgoing
+part 'packets/outgoing/auth_request_packet.dart';
 part 'packets/outgoing/cancel_game_packet.dart';
 part 'packets/outgoing/create_game_packet.dart';
 part 'packets/outgoing/invite_player_packet.dart';

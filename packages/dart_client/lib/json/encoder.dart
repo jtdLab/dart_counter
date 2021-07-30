@@ -8,7 +8,9 @@ class JsonEncoder {
   static String encode(RequestPacket packet) {
     String? type;
 
-    if (packet is CancelGamePacket) {
+    if (packet is AuthRequestPacket) {
+      type = 'authRequest';
+    } else if (packet is CancelGamePacket) {
       type = 'cancelGame';
     } else if (packet is CreateGamePacket) {
       type = 'createGame';

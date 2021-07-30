@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 class WebSocketClient {
@@ -6,19 +7,22 @@ class WebSocketClient {
 
   WebSocket? _webSocket;
 
+  StreamController<String> _dataController = StreamController();
+
   WebSocketClient(this._host, this._port);
 
-// TODO error
-  Stream<String> get received => _webSocket == null
-      ? throw Error()
-      : _webSocket!.map((message) => message as String);
+  Stream<String> get received => _dataController.stream;
 
   Future<bool> connect() async {
     bool connected = false;
+
     try {
       _webSocket = await WebSocket.connect('ws://$_host:$_port/');
       _webSocket?.pingInterval = Duration(seconds: 5);
       connected = true;
+      _webSocket?.listen((data) {
+        _dataController.add(data as String);
+      });
       print('Connected to -- ws://$_host:$_port/');
     } catch (e) {
       print('Connection failed! -- ws://$_host:$_port/ not reachable');

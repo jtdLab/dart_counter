@@ -1,36 +1,39 @@
 import 'package:dart_client/dart_client.dart';
-import 'package:dart_client/packets/incoming/response_packet.dart';
 import 'package:dart_client/packets/outgoing/request_packet.dart';
 import 'package:dart_client/packets/packet.dart';
 
 class Container {
   final int timestamp;
-  final String type;
+  final String payloadType;
   late final Packet? payload;
 
-  Container(this.type, this.payload)
+  Container(this.payloadType, this.payload)
       : timestamp = DateTime.now().millisecondsSinceEpoch;
 
   Container.fromJson(Map<String, dynamic> json)
-      : timestamp = json['timestamp'],
-        type = json['type'] {
+      : timestamp = 88888888, // TODO
+        payloadType = json['payloadType'] {
     payload = _payloadFromJsonString(json['payload']);
   }
 
   Map<String, dynamic> toJson() => {
         'timestamp': timestamp,
-        'type': type,
+        'payloadType': payloadType,
         'payload': (payload as RequestPacket).toJson(),
       };
 
   Packet? _payloadFromJsonString(json) {
-    switch (type) {
+    switch (payloadType) {
       case 'snapshot':
         return SnapshotPacket.fromJson(json);
       case 'playerJoined':
         return PlayerJoinedPacket.fromJson(json);
       case 'playerExited':
         return PlayerExitedPacket.fromJson(json);
+      case 'createGameResponse':
+        return CreateGameResponsePacket.fromJson(json);
+      case 'authResponse':
+        return AuthResponsePacket.fromJson(json);
       default:
         return null;
     }
@@ -38,6 +41,6 @@ class Container {
 
   @override
   String toString() {
-    return 'Container{timestamp: $timestamp, type: $type, payload: $payload}';
+    return 'Container{timestamp: $timestamp, payloadType: $payloadType, payload: $payload}';
   }
 }

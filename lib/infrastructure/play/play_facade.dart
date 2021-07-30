@@ -1,12 +1,16 @@
 import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as dart;
 import 'package:dartz/dartz.dart';
+import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -85,6 +89,7 @@ class PlayFacade implements IPlayFacade {
       if (_online!) {
         _dartClient.cancelGame();
         await _dartClient.disconnect();
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -117,7 +122,22 @@ class PlayFacade implements IPlayFacade {
       if (_online!) {
         final success = await _dartClient.connect();
         if (success) {
+          _dartClient.received
+              .where((packet) =>
+                  packet is dc.SnapshotPacket ||
+                  packet is dc.CreateGameResponsePacket)
+              .map(
+            (packet) {
+              if (packet is dc.SnapshotPacket) {
+                return _fromGameSnapshot(packet.gameSnapshot);
+              } else {
+                return _fromGameSnapshot(
+                    (packet as dc.CreateGameResponsePacket).snapshot);
+              }
+            },
+          ).listen((game) => _gameStreamController.add(right(game)));
           _dartClient.createGame();
+          return right(unit);
         } else {
           // TODO couldnt connect to server
           return left(const PlayFailure.error());
@@ -191,6 +211,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.performThrow(t.points, t.dartsThrown, t.dartsOnDouble);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -241,6 +262,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.removePlayer(index);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -268,6 +290,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.reorderPlayer(oldIndex, newIndex);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -319,6 +342,7 @@ class PlayFacade implements IPlayFacade {
       if (_online!) {
         _dartClient
             .setMode(mode == Mode.firstTo ? dc.Mode.firstTo : dc.Mode.bestOf);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -346,6 +370,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.setSize(size);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -372,6 +397,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.setStartingPoints(startingPoints);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -398,6 +424,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.setType(type == Type.legs ? dc.Type.legs : dc.Type.sets);
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -422,6 +449,7 @@ class PlayFacade implements IPlayFacade {
     if (_online != null) {
       if (_online!) {
         _dartClient.startGame();
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -447,6 +475,7 @@ class PlayFacade implements IPlayFacade {
       if (_online!) {
         // TODO undoThrow if game host else ignore and only ur throw can be undone
         _dartClient.undoThrow();
+        return right(unit);
       } else {
         final gameExisting = _game != null;
 
@@ -524,5 +553,43 @@ class PlayFacade implements IPlayFacade {
   @override
   Stream<Either<PlayFailure, Game>> watchGame() {
     return _gameStreamController.stream;
+  }
+
+  Game _fromGameSnapshot(dc.GameSnapshot gameSnapshot) {
+    return Game(
+      id: UniqueId.fromUniqueString('dummyId'),
+      createdAt: DateTime.now(),
+      online: true,
+      status: gameSnapshot.status == dc.Status.pending
+          ? Status.pending
+          : gameSnapshot.status == dc.Status.running
+              ? Status.running
+              : gameSnapshot.status == dc.Status.canceled
+                  ? Status.canceled
+                  : Status.finished,
+      mode: gameSnapshot.config.mode == dc.Mode.firstTo
+          ? Mode.firstTo
+          : Mode.bestOf,
+      size: gameSnapshot.config.size,
+      type: gameSnapshot.config.type == dc.Type.legs ? Type.legs : Type.sets,
+      startingPoints: gameSnapshot.config.startingPoints,
+      players: KtList.from(
+        gameSnapshot.players.map(
+          (player) => _fromPlayerSnapshot(player),
+        ),
+      ),
+    );
+  }
+
+  Player _fromPlayerSnapshot(dc.PlayerSnapshot playerSnapshot) {
+    return OnlinePlayer(
+      id: UniqueId.fromUniqueString(
+        faker.randomGenerator.string(20, min: 20),
+      ),
+      name: playerSnapshot.name,
+      userId: UniqueId.fromUniqueString(
+        faker.randomGenerator.string(20, min: 20),
+      ),
+    ) as Player;
   }
 }

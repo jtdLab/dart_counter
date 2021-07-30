@@ -47,7 +47,11 @@ class DartClient implements AbstractDartClient {
 
   @override
   Future<bool> connect() async {
-    return _webSocketClient.connect();
+    final connected = await _webSocketClient.connect();
+    if(connected) {
+      _sendPacket(AuthRequestPacket('dummyToken')); // TODO
+    }
+    return connected;
   }
 
   @override
