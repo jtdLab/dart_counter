@@ -39,6 +39,7 @@ class WebSocketClient implements IWebSocketClient {
       connected = true;
       _webSocket?.listen((data) {
         _dataController.add(data as String);
+        print('Received $data');
       });
       print('Connected to -- ws://$host:$port/');
     } catch (e) {

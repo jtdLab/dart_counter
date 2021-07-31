@@ -26,7 +26,7 @@ part 'container.freezed.dart';
 @freezed
 class Container with _$Container {
   const factory Container({
-    required int timeStamp,
+    required int timestamp,
     required String payloadType,
     Packet? payload,
   }) = _Container;
@@ -37,7 +37,7 @@ class Container with _$Container {
     required Packet packet,
   }) {
     return Container(
-      timeStamp: DateTime.now().millisecondsSinceEpoch,
+      timestamp: DateTime.now().millisecondsSinceEpoch,
       payloadType: _payloadTypeOf(packet),
       payload: packet,
     );
@@ -79,13 +79,13 @@ class Container with _$Container {
   }
 
   factory Container.fromJson(Map<String, dynamic> json) {
-    final timeStamp = json['timeStamp'] as int;
+    final timestamp = 888; //json['timestamp'] as int; TODO
     final payloadType = json['payloadType'] as String;
     final Map<String, dynamic> payloadJson =
         json['payload'] as Map<String, dynamic>;
 
     Container container = Container(
-      timeStamp: timeStamp,
+      timestamp: timestamp,
       payloadType: payloadType,
     );
 
@@ -118,15 +118,15 @@ class Container with _$Container {
 
   Map<String, dynamic> toJson() {
     final json = {
-      'timeStamp': timeStamp,
+      'timestamp': timestamp,
       'payloadType': payloadType,
       'payload': null,
     };
 
     if (payload != null) {
       switch (payloadType) {
-        case Packet.authResponse:
-          json['payload'] = (payload as AuthResponsePacket).toJson();
+        case Packet.authRequest:
+          json['payload'] = (payload as AuthRequestPacket).toJson();
           break;
         case Packet.cancelGame:
           json['payload'] = (payload as CancelGamePacket).toJson();

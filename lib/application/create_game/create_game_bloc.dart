@@ -239,7 +239,6 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   Stream<CreateGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    print(event.game);
     yield state.copyWith(game: event.game);
   }
 

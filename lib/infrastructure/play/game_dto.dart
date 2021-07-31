@@ -3,6 +3,7 @@ import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/infrastructure/play/player_dto.dart';
 import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_client/dart_client.dart' as dc;
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
@@ -72,6 +73,29 @@ class GameDto with _$GameDto {
           }
         },
       ).toList(),
+    );
+  }
+
+  factory GameDto.fromClient(dc.Game game) {
+    final faker = Faker();
+    return GameDto(
+      id: game.id,
+      createdAt: game.createdAt,
+      online: true,
+      status: game.status == dc.Status.pending
+          ? 'pending'
+          : game.status == dc.Status.running
+              ? 'running'
+              : game.status == dc.Status.canceled
+                  ? 'canceled'
+                  : 'finished',
+      mode: game.mode == dc.Mode.firstTo ? 'firstTo' : 'bestOf',
+      size: game.size,
+      type: game.type == dc.Type.legs ? 'legs' : 'sets',
+      startingPoints: game.startingPoints,
+      players: game.players
+          .map((player) => OnlinePlayerDto.fromClient(player) as PlayerDto)
+          .asList(),
     );
   }
 

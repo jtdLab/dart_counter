@@ -3,6 +3,7 @@ import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
 import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_client/dart_client.dart' as dc;
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -275,6 +276,24 @@ class OnlinePlayerDto with _$OnlinePlayerDto {
             )
           : const KtList.empty(),
       userId: UniqueId.fromUniqueString(userId),
+    );
+  }
+
+  factory OnlinePlayerDto.fromClient(dc.Player player) {
+    return OnlinePlayerDto(
+      id: player.id,
+      name: player.name,
+      isCurrentTurn: player.isCurrentTurn,
+      won: player.won,
+      wonSets: player.wonSets,
+      wonLegsCurrentSet: player.wonLegsCurrentSet,
+      pointsLeft: player.pointsLeft,
+      finishRecommendation: player.finishRecommendation?.asList(),
+      lastPoints: player.lastPoints,
+      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
+      stats: player.stats == null ? null : StatsDto?.fromClient(player.stats!),
+      sets: player.sets?.map((set) => SetDto.fromClient(set)).asList(),
+      userId: player.userId,
     );
   }
 

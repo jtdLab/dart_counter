@@ -17,9 +17,9 @@ class _$ContainerTearOff {
   const _$ContainerTearOff();
 
   _Container call(
-      {required int timeStamp, required String payloadType, Packet? payload}) {
+      {required int timestamp, required String payloadType, Packet? payload}) {
     return _Container(
-      timeStamp: timeStamp,
+      timestamp: timestamp,
       payloadType: payloadType,
       payload: payload,
     );
@@ -31,7 +31,7 @@ const $Container = _$ContainerTearOff();
 
 /// @nodoc
 mixin _$Container {
-  int get timeStamp => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
   String get payloadType => throw _privateConstructorUsedError;
   Packet? get payload => throw _privateConstructorUsedError;
 
@@ -44,7 +44,7 @@ mixin _$Container {
 abstract class $ContainerCopyWith<$Res> {
   factory $ContainerCopyWith(Container value, $Res Function(Container) then) =
       _$ContainerCopyWithImpl<$Res>;
-  $Res call({int timeStamp, String payloadType, Packet? payload});
+  $Res call({int timestamp, String payloadType, Packet? payload});
 }
 
 /// @nodoc
@@ -57,14 +57,14 @@ class _$ContainerCopyWithImpl<$Res> implements $ContainerCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? timeStamp = freezed,
+    Object? timestamp = freezed,
     Object? payloadType = freezed,
     Object? payload = freezed,
   }) {
     return _then(_value.copyWith(
-      timeStamp: timeStamp == freezed
-          ? _value.timeStamp
-          : timeStamp // ignore: cast_nullable_to_non_nullable
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
               as int,
       payloadType: payloadType == freezed
           ? _value.payloadType
@@ -84,7 +84,7 @@ abstract class _$ContainerCopyWith<$Res> implements $ContainerCopyWith<$Res> {
           _Container value, $Res Function(_Container) then) =
       __$ContainerCopyWithImpl<$Res>;
   @override
-  $Res call({int timeStamp, String payloadType, Packet? payload});
+  $Res call({int timestamp, String payloadType, Packet? payload});
 }
 
 /// @nodoc
@@ -98,14 +98,14 @@ class __$ContainerCopyWithImpl<$Res> extends _$ContainerCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? timeStamp = freezed,
+    Object? timestamp = freezed,
     Object? payloadType = freezed,
     Object? payload = freezed,
   }) {
     return _then(_Container(
-      timeStamp: timeStamp == freezed
-          ? _value.timeStamp
-          : timeStamp // ignore: cast_nullable_to_non_nullable
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
               as int,
       payloadType: payloadType == freezed
           ? _value.payloadType
@@ -123,11 +123,11 @@ class __$ContainerCopyWithImpl<$Res> extends _$ContainerCopyWithImpl<$Res>
 
 class _$_Container extends _Container {
   const _$_Container(
-      {required this.timeStamp, required this.payloadType, this.payload})
+      {required this.timestamp, required this.payloadType, this.payload})
       : super._();
 
   @override
-  final int timeStamp;
+  final int timestamp;
   @override
   final String payloadType;
   @override
@@ -135,16 +135,16 @@ class _$_Container extends _Container {
 
   @override
   String toString() {
-    return 'Container(timeStamp: $timeStamp, payloadType: $payloadType, payload: $payload)';
+    return 'Container(timestamp: $timestamp, payloadType: $payloadType, payload: $payload)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Container &&
-            (identical(other.timeStamp, timeStamp) ||
+            (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
-                    .equals(other.timeStamp, timeStamp)) &&
+                    .equals(other.timestamp, timestamp)) &&
             (identical(other.payloadType, payloadType) ||
                 const DeepCollectionEquality()
                     .equals(other.payloadType, payloadType)) &&
@@ -155,7 +155,7 @@ class _$_Container extends _Container {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(timeStamp) ^
+      const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(payloadType) ^
       const DeepCollectionEquality().hash(payload);
 
@@ -167,13 +167,13 @@ class _$_Container extends _Container {
 
 abstract class _Container extends Container {
   const factory _Container(
-      {required int timeStamp,
+      {required int timestamp,
       required String payloadType,
       Packet? payload}) = _$_Container;
   const _Container._() : super._();
 
   @override
-  int get timeStamp => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
   @override
   String get payloadType => throw _privateConstructorUsedError;
   @override

@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_client/dart_client.dart' as dc;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -43,6 +44,15 @@ class ThrowDto with _$ThrowDto {
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
       darts: darts?.map((dart) => dart.toExternal()).toList(),
+    );
+  }
+
+  factory ThrowDto.fromClient(dc.Throw t) {
+    return ThrowDto(
+      points: t.points,
+      dartsThrown: t.dartsThrown,
+      dartsOnDouble: t.dartsOnDouble,
+      darts: t.darts?.map((dart) => DartDto.fromClient(dart)).asList(),
     );
   }
 

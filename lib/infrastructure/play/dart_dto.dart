@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_client/dart_client.dart' as dc;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart_dto.freezed.dart';
@@ -33,6 +34,17 @@ class DartDto with _$DartDto {
               ? 'double'
               : 'triple',
       value: d.points,
+    );
+  }
+
+  factory DartDto.fromClient(dc.Dart d) {
+    return DartDto(
+      type: d.type == dc.DartType.s
+          ? 'single'
+          : d.type == dc.DartType.d
+              ? 'double'
+              : 'triple',
+      value: d.points(),
     );
   }
 

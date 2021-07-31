@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_client/dart_client.dart' as dc;
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -59,6 +60,31 @@ class StatsDto with _$StatsDto {
   }
 
   factory StatsDto.fromExternal(dart.Stats stats) {
+    return StatsDto(
+      average: stats.average,
+      checkoutPercentage: stats.checkoutPercentage,
+      firstNineAverage: stats.firstNineAverage,
+      bestLegDartsThrown: stats.bestLegDartsThrown,
+      bestLegAverage: stats.bestLegAverage,
+      worstLegDartsThrown: stats.worstLegDartsThrown,
+      worstLegAverage: stats.worstLegAverage,
+      averageDartsPerLeg: stats.averageDartsPerLeg,
+      firstDartAverage: stats.firstDartAverage,
+      secondDartAverage: stats.secondDartAverage,
+      thirdDartAverage: stats.thirdDartAverage,
+      highestFinish: stats.highestFinish,
+      fourtyPlus: stats.fourtyPlus,
+      sixtyPlus: stats.sixtyPlus,
+      eightyPlus: stats.eightyPlus,
+      hundredPlus: stats.hundredPlus,
+      hundredTwentyPlus: stats.hundredTwentyPlus,
+      hundredFourtyPlus: stats.hundredFourtyPlus,
+      hundredSixtyPlus: stats.hundredSixtyPlus,
+      hundredEighty: stats.hundredEighty,
+    );
+  }
+
+  factory StatsDto.fromClient(dc.Stats stats) {
     return StatsDto(
       average: stats.average,
       checkoutPercentage: stats.checkoutPercentage,
