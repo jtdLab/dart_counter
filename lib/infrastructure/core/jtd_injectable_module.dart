@@ -5,7 +5,7 @@ import 'package:social_client/social_client.dart';
 @module
 abstract class JtdInjectableModule {
   @lazySingleton
-  AbstractDartClient get dartClient => DartClient("localhost", 7777);
+  IDartClient get dartClient => DartClient(host: "localhost", port: 7777);
 
   @lazySingleton
   AbstractSocialClient get socialClient => SocialClient("localhost", 6969);

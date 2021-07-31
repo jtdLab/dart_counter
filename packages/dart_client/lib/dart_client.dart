@@ -1,42 +1,11 @@
 library dart_client;
 
-import 'dart:convert';
+export 'domain/dart.dart';
+export 'domain/game.dart';
+export 'domain/leg.dart';
+export 'domain/player.dart';
+export 'domain/set.dart';
+export 'domain/stats.dart';
+export 'domain/throw.dart';
 
-import 'package:dart_client/json/decoder.dart';
-import 'package:dart_client/json/encoder.dart';
-import 'package:dart_client/packets/incoming/response_packet.dart';
-import 'package:dart_client/packets/outgoing/request_packet.dart';
-import 'package:dart_client/web_socket_client.dart';
-
-/// client
-part 'client.dart';
-
-/// enums
-part 'enums/mode.dart';
-part 'enums/type.dart';
-part 'enums/status.dart';
-
-/// ##### packets #####
-
-/// incoming
-part 'packets/incoming/player_exited_packet.dart';
-part 'packets/incoming/player_joined_packet.dart';
-part 'packets/incoming/snapshot_packet.dart';
-part 'packets/incoming/create_game_response_packet.dart';
-
-
-/// outgoing
-part 'packets/outgoing/auth_request_packet.dart';
-part 'packets/outgoing/cancel_game_packet.dart';
-part 'packets/outgoing/create_game_packet.dart';
-part 'packets/outgoing/invite_player_packet.dart';
-part 'packets/outgoing/join_game_packet.dart';
-part 'packets/outgoing/perform_throw_packet.dart';
-part 'packets/outgoing/remove_player_packet.dart';
-part 'packets/outgoing/reorder_player_packet.dart';
-part 'packets/outgoing/set_mode_packet.dart';
-part 'packets/outgoing/set_size_packet.dart';
-part 'packets/outgoing/set_starting_points_packet.dart';
-part 'packets/outgoing/set_type_packet.dart';
-part 'packets/outgoing/start_game_packet.dart';
-part 'packets/outgoing/undo_throw_packet.dart';
+export 'client.dart';

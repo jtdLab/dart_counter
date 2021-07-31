@@ -23,7 +23,7 @@ class PlayFacade implements IPlayFacade {
   final BehaviorSubject<Either<PlayFailure, Game>> _gameStreamController =
       BehaviorSubject();
 
-  final dc.AbstractDartClient _dartClient;
+  final dc.IDartClient _dartClient;
 
   dart.Game? _game;
   bool? _online;
@@ -196,7 +196,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.joinGame(gameCode);
+        _dartClient.joinGame(gameCode: gameCode);
         return right(unit);
       }
     }
@@ -210,7 +210,14 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.performThrow(t.points, t.dartsThrown, t.dartsOnDouble);
+        _dartClient.performThrow(
+          t: dc.Throw(
+            points: t.points,
+            dartsThrown: t.dartsThrown,
+            dartsOnDouble: t.dartsOnDouble,
+            // TODO darts:
+          ),
+        );
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -261,7 +268,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.removePlayer(index);
+        _dartClient.removePlayer(index: index);
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -289,7 +296,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.reorderPlayer(oldIndex, newIndex);
+        _dartClient.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -340,8 +347,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient
-            .setMode(mode == Mode.firstTo ? dc.Mode.firstTo : dc.Mode.bestOf);
+        _dartClient.setMode(mode: dc.Mode.firstTo);
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -369,7 +375,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.setSize(size);
+        _dartClient.setSize(size: size);
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -396,7 +402,7 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.setStartingPoints(startingPoints);
+        _dartClient.setStartingPoints(startingPoints: startingPoints);
         return right(unit);
       } else {
         final gameExisting = _game != null;
@@ -423,7 +429,8 @@ class PlayFacade implements IPlayFacade {
   }) async {
     if (_online != null) {
       if (_online!) {
-        _dartClient.setType(type == Type.legs ? dc.Type.legs : dc.Type.sets);
+        _dartClient.setType(
+            type: type == Type.legs ? dc.Type.legs : dc.Type.sets);
         return right(unit);
       } else {
         final gameExisting = _game != null;
