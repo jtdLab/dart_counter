@@ -22,7 +22,7 @@ class _$CreateGameResponsePacketTearOff {
   const _$CreateGameResponsePacketTearOff();
 
   _CreateGameResponsePacket call(
-      {required bool successful, GameDto? snapshot}) {
+      {required bool successful, GameSnapshotDto? snapshot}) {
     return _CreateGameResponsePacket(
       successful: successful,
       snapshot: snapshot,
@@ -40,7 +40,7 @@ const $CreateGameResponsePacket = _$CreateGameResponsePacketTearOff();
 /// @nodoc
 mixin _$CreateGameResponsePacket {
   bool get successful => throw _privateConstructorUsedError;
-  GameDto? get snapshot => throw _privateConstructorUsedError;
+  GameSnapshotDto? get snapshot => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,9 +53,9 @@ abstract class $CreateGameResponsePacketCopyWith<$Res> {
   factory $CreateGameResponsePacketCopyWith(CreateGameResponsePacket value,
           $Res Function(CreateGameResponsePacket) then) =
       _$CreateGameResponsePacketCopyWithImpl<$Res>;
-  $Res call({bool successful, GameDto? snapshot});
+  $Res call({bool successful, GameSnapshotDto? snapshot});
 
-  $GameDtoCopyWith<$Res>? get snapshot;
+  $GameSnapshotDtoCopyWith<$Res>? get snapshot;
 }
 
 /// @nodoc
@@ -80,17 +80,17 @@ class _$CreateGameResponsePacketCopyWithImpl<$Res>
       snapshot: snapshot == freezed
           ? _value.snapshot
           : snapshot // ignore: cast_nullable_to_non_nullable
-              as GameDto?,
+              as GameSnapshotDto?,
     ));
   }
 
   @override
-  $GameDtoCopyWith<$Res>? get snapshot {
+  $GameSnapshotDtoCopyWith<$Res>? get snapshot {
     if (_value.snapshot == null) {
       return null;
     }
 
-    return $GameDtoCopyWith<$Res>(_value.snapshot!, (value) {
+    return $GameSnapshotDtoCopyWith<$Res>(_value.snapshot!, (value) {
       return _then(_value.copyWith(snapshot: value));
     });
   }
@@ -103,10 +103,10 @@ abstract class _$CreateGameResponsePacketCopyWith<$Res>
           $Res Function(_CreateGameResponsePacket) then) =
       __$CreateGameResponsePacketCopyWithImpl<$Res>;
   @override
-  $Res call({bool successful, GameDto? snapshot});
+  $Res call({bool successful, GameSnapshotDto? snapshot});
 
   @override
-  $GameDtoCopyWith<$Res>? get snapshot;
+  $GameSnapshotDtoCopyWith<$Res>? get snapshot;
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$CreateGameResponsePacketCopyWithImpl<$Res>
       snapshot: snapshot == freezed
           ? _value.snapshot
           : snapshot // ignore: cast_nullable_to_non_nullable
-              as GameDto?,
+              as GameSnapshotDto?,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$_CreateGameResponsePacket extends _CreateGameResponsePacket {
   @override
   final bool successful;
   @override
-  final GameDto? snapshot;
+  final GameSnapshotDto? snapshot;
 
   @override
   String toString() {
@@ -193,7 +193,7 @@ abstract class _CreateGameResponsePacket extends CreateGameResponsePacket
     implements ResponsePacket {
   const factory _CreateGameResponsePacket(
       {required bool successful,
-      GameDto? snapshot}) = _$_CreateGameResponsePacket;
+      GameSnapshotDto? snapshot}) = _$_CreateGameResponsePacket;
   const _CreateGameResponsePacket._() : super._();
 
   factory _CreateGameResponsePacket.fromJson(Map<String, dynamic> json) =
@@ -202,7 +202,7 @@ abstract class _CreateGameResponsePacket extends CreateGameResponsePacket
   @override
   bool get successful => throw _privateConstructorUsedError;
   @override
-  GameDto? get snapshot => throw _privateConstructorUsedError;
+  GameSnapshotDto? get snapshot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CreateGameResponsePacketCopyWith<_CreateGameResponsePacket> get copyWith =>

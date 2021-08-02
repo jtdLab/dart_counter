@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'game.dart';
+part of 'game_snapshot_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,22 +12,22 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-/// @nodoc
-class _$GameTearOff {
-  const _$GameTearOff();
+GameSnapshotDto _$GameSnapshotDtoFromJson(Map<String, dynamic> json) {
+  return _GameSnapshotDto.fromJson(json);
+}
 
-  _Game call(
-      {required String id,
-      required DateTime createdAt,
-      required Status status,
-      required Mode mode,
+/// @nodoc
+class _$GameSnapshotDtoTearOff {
+  const _$GameSnapshotDtoTearOff();
+
+  _GameSnapshotDto call(
+      {required String status,
+      required String mode,
       required int size,
-      required Type type,
+      required String type,
       required int startingPoints,
-      required KtList<Player> players}) {
-    return _Game(
-      id: id,
-      createdAt: createdAt,
+      required List<PlayerSnapshotDto> players}) {
+    return _GameSnapshotDto(
       status: status,
       mode: mode,
       size: size,
@@ -36,53 +36,55 @@ class _$GameTearOff {
       players: players,
     );
   }
+
+  GameSnapshotDto fromJson(Map<String, Object> json) {
+    return GameSnapshotDto.fromJson(json);
+  }
 }
 
 /// @nodoc
-const $Game = _$GameTearOff();
+const $GameSnapshotDto = _$GameSnapshotDtoTearOff();
 
 /// @nodoc
-mixin _$Game {
-  String get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  Status get status => throw _privateConstructorUsedError;
-  Mode get mode => throw _privateConstructorUsedError;
+mixin _$GameSnapshotDto {
+  String get status => throw _privateConstructorUsedError;
+  String get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
-  Type get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  KtList<Player> get players => throw _privateConstructorUsedError;
+  List<PlayerSnapshotDto> get players => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
+  $GameSnapshotDtoCopyWith<GameSnapshotDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameCopyWith<$Res> {
-  factory $GameCopyWith(Game value, $Res Function(Game) then) =
-      _$GameCopyWithImpl<$Res>;
+abstract class $GameSnapshotDtoCopyWith<$Res> {
+  factory $GameSnapshotDtoCopyWith(
+          GameSnapshotDto value, $Res Function(GameSnapshotDto) then) =
+      _$GameSnapshotDtoCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      DateTime createdAt,
-      Status status,
-      Mode mode,
+      {String status,
+      String mode,
       int size,
-      Type type,
+      String type,
       int startingPoints,
-      KtList<Player> players});
+      List<PlayerSnapshotDto> players});
 }
 
 /// @nodoc
-class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
-  _$GameCopyWithImpl(this._value, this._then);
+class _$GameSnapshotDtoCopyWithImpl<$Res>
+    implements $GameSnapshotDtoCopyWith<$Res> {
+  _$GameSnapshotDtoCopyWithImpl(this._value, this._then);
 
-  final Game _value;
+  final GameSnapshotDto _value;
   // ignore: unused_field
-  final $Res Function(Game) _then;
+  final $Res Function(GameSnapshotDto) _then;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -91,22 +93,14 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
     Object? players = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Status,
+              as String,
       mode: mode == freezed
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
-              as Mode,
+              as String,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -114,7 +108,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type,
+              as String,
       startingPoints: startingPoints == freezed
           ? _value.startingPoints
           : startingPoints // ignore: cast_nullable_to_non_nullable
@@ -122,40 +116,40 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<Player>,
+              as List<PlayerSnapshotDto>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
-  factory _$GameCopyWith(_Game value, $Res Function(_Game) then) =
-      __$GameCopyWithImpl<$Res>;
+abstract class _$GameSnapshotDtoCopyWith<$Res>
+    implements $GameSnapshotDtoCopyWith<$Res> {
+  factory _$GameSnapshotDtoCopyWith(
+          _GameSnapshotDto value, $Res Function(_GameSnapshotDto) then) =
+      __$GameSnapshotDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      DateTime createdAt,
-      Status status,
-      Mode mode,
+      {String status,
+      String mode,
       int size,
-      Type type,
+      String type,
       int startingPoints,
-      KtList<Player> players});
+      List<PlayerSnapshotDto> players});
 }
 
 /// @nodoc
-class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
-    implements _$GameCopyWith<$Res> {
-  __$GameCopyWithImpl(_Game _value, $Res Function(_Game) _then)
-      : super(_value, (v) => _then(v as _Game));
+class __$GameSnapshotDtoCopyWithImpl<$Res>
+    extends _$GameSnapshotDtoCopyWithImpl<$Res>
+    implements _$GameSnapshotDtoCopyWith<$Res> {
+  __$GameSnapshotDtoCopyWithImpl(
+      _GameSnapshotDto _value, $Res Function(_GameSnapshotDto) _then)
+      : super(_value, (v) => _then(v as _GameSnapshotDto));
 
   @override
-  _Game get _value => super._value as _Game;
+  _GameSnapshotDto get _value => super._value as _GameSnapshotDto;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -163,23 +157,15 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
     Object? startingPoints = freezed,
     Object? players = freezed,
   }) {
-    return _then(_Game(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+    return _then(_GameSnapshotDto(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Status,
+              as String,
       mode: mode == freezed
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
-              as Mode,
+              as String,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -187,7 +173,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type,
+              as String,
       startingPoints: startingPoints == freezed
           ? _value.startingPoints
           : startingPoints // ignore: cast_nullable_to_non_nullable
@@ -195,55 +181,48 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<Player>,
+              as List<PlayerSnapshotDto>,
     ));
   }
 }
 
 /// @nodoc
-
-class _$_Game implements _Game {
-  const _$_Game(
-      {required this.id,
-      required this.createdAt,
-      required this.status,
+@JsonSerializable()
+class _$_GameSnapshotDto extends _GameSnapshotDto {
+  const _$_GameSnapshotDto(
+      {required this.status,
       required this.mode,
       required this.size,
       required this.type,
       required this.startingPoints,
-      required this.players});
+      required this.players})
+      : super._();
+
+  factory _$_GameSnapshotDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_GameSnapshotDtoFromJson(json);
 
   @override
-  final String id;
+  final String status;
   @override
-  final DateTime createdAt;
-  @override
-  final Status status;
-  @override
-  final Mode mode;
+  final String mode;
   @override
   final int size;
   @override
-  final Type type;
+  final String type;
   @override
   final int startingPoints;
   @override
-  final KtList<Player> players;
+  final List<PlayerSnapshotDto> players;
 
   @override
   String toString() {
-    return 'Game(id: $id, createdAt: $createdAt, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'GameSnapshotDto(status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Game &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
+        (other is _GameSnapshotDto &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.mode, mode) ||
@@ -262,8 +241,6 @@ class _$_Game implements _Game {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(size) ^
@@ -273,38 +250,42 @@ class _$_Game implements _Game {
 
   @JsonKey(ignore: true)
   @override
-  _$GameCopyWith<_Game> get copyWith =>
-      __$GameCopyWithImpl<_Game>(this, _$identity);
+  _$GameSnapshotDtoCopyWith<_GameSnapshotDto> get copyWith =>
+      __$GameSnapshotDtoCopyWithImpl<_GameSnapshotDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_GameSnapshotDtoToJson(this);
+  }
 }
 
-abstract class _Game implements Game {
-  const factory _Game(
-      {required String id,
-      required DateTime createdAt,
-      required Status status,
-      required Mode mode,
+abstract class _GameSnapshotDto extends GameSnapshotDto {
+  const factory _GameSnapshotDto(
+      {required String status,
+      required String mode,
       required int size,
-      required Type type,
+      required String type,
       required int startingPoints,
-      required KtList<Player> players}) = _$_Game;
+      required List<PlayerSnapshotDto> players}) = _$_GameSnapshotDto;
+  const _GameSnapshotDto._() : super._();
+
+  factory _GameSnapshotDto.fromJson(Map<String, dynamic> json) =
+      _$_GameSnapshotDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @override
-  Status get status => throw _privateConstructorUsedError;
-  @override
-  Mode get mode => throw _privateConstructorUsedError;
+  String get mode => throw _privateConstructorUsedError;
   @override
   int get size => throw _privateConstructorUsedError;
   @override
-  Type get type => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   @override
   int get startingPoints => throw _privateConstructorUsedError;
   @override
-  KtList<Player> get players => throw _privateConstructorUsedError;
+  List<PlayerSnapshotDto> get players => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GameCopyWith<_Game> get copyWith => throw _privateConstructorUsedError;
+  _$GameSnapshotDtoCopyWith<_GameSnapshotDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

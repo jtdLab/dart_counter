@@ -20,7 +20,7 @@ SnapshotPacket _$SnapshotPacketFromJson(Map<String, dynamic> json) {
 class _$SnapshotPacketTearOff {
   const _$SnapshotPacketTearOff();
 
-  _SnapshotPacket call({required GameDto snapshot}) {
+  _SnapshotPacket call({required GameSnapshotDto snapshot}) {
     return _SnapshotPacket(
       snapshot: snapshot,
     );
@@ -36,7 +36,7 @@ const $SnapshotPacket = _$SnapshotPacketTearOff();
 
 /// @nodoc
 mixin _$SnapshotPacket {
-  GameDto get snapshot => throw _privateConstructorUsedError;
+  GameSnapshotDto get snapshot => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +49,9 @@ abstract class $SnapshotPacketCopyWith<$Res> {
   factory $SnapshotPacketCopyWith(
           SnapshotPacket value, $Res Function(SnapshotPacket) then) =
       _$SnapshotPacketCopyWithImpl<$Res>;
-  $Res call({GameDto snapshot});
+  $Res call({GameSnapshotDto snapshot});
 
-  $GameDtoCopyWith<$Res> get snapshot;
+  $GameSnapshotDtoCopyWith<$Res> get snapshot;
 }
 
 /// @nodoc
@@ -71,13 +71,13 @@ class _$SnapshotPacketCopyWithImpl<$Res>
       snapshot: snapshot == freezed
           ? _value.snapshot
           : snapshot // ignore: cast_nullable_to_non_nullable
-              as GameDto,
+              as GameSnapshotDto,
     ));
   }
 
   @override
-  $GameDtoCopyWith<$Res> get snapshot {
-    return $GameDtoCopyWith<$Res>(_value.snapshot, (value) {
+  $GameSnapshotDtoCopyWith<$Res> get snapshot {
+    return $GameSnapshotDtoCopyWith<$Res>(_value.snapshot, (value) {
       return _then(_value.copyWith(snapshot: value));
     });
   }
@@ -90,10 +90,10 @@ abstract class _$SnapshotPacketCopyWith<$Res>
           _SnapshotPacket value, $Res Function(_SnapshotPacket) then) =
       __$SnapshotPacketCopyWithImpl<$Res>;
   @override
-  $Res call({GameDto snapshot});
+  $Res call({GameSnapshotDto snapshot});
 
   @override
-  $GameDtoCopyWith<$Res> get snapshot;
+  $GameSnapshotDtoCopyWith<$Res> get snapshot;
 }
 
 /// @nodoc
@@ -115,7 +115,7 @@ class __$SnapshotPacketCopyWithImpl<$Res>
       snapshot: snapshot == freezed
           ? _value.snapshot
           : snapshot // ignore: cast_nullable_to_non_nullable
-              as GameDto,
+              as GameSnapshotDto,
     ));
   }
 }
@@ -130,7 +130,7 @@ class _$_SnapshotPacket extends _SnapshotPacket {
       _$_$_SnapshotPacketFromJson(json);
 
   @override
-  final GameDto snapshot;
+  final GameSnapshotDto snapshot;
 
   @override
   String toString() {
@@ -163,7 +163,7 @@ class _$_SnapshotPacket extends _SnapshotPacket {
 
 abstract class _SnapshotPacket extends SnapshotPacket
     implements ResponsePacket {
-  const factory _SnapshotPacket({required GameDto snapshot}) =
+  const factory _SnapshotPacket({required GameSnapshotDto snapshot}) =
       _$_SnapshotPacket;
   const _SnapshotPacket._() : super._();
 
@@ -171,7 +171,7 @@ abstract class _SnapshotPacket extends SnapshotPacket
       _$_SnapshotPacket.fromJson;
 
   @override
-  GameDto get snapshot => throw _privateConstructorUsedError;
+  GameSnapshotDto get snapshot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SnapshotPacketCopyWith<_SnapshotPacket> get copyWith =>

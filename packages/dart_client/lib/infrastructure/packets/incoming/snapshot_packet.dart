@@ -1,4 +1,5 @@
 import 'package:dart_client/infrastructure/game_dto.dart';
+import 'package:dart_client/infrastructure/game_snapshot_dto.dart';
 import 'package:dart_client/infrastructure/packets/incoming/response_packet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,7 @@ part 'snapshot_packet.g.dart';
 class SnapshotPacket with _$SnapshotPacket {
   @Implements(ResponsePacket)
   const factory SnapshotPacket({
-    required GameDto snapshot,
+    required GameSnapshotDto snapshot,
   }) = _SnapshotPacket;
 
   const SnapshotPacket._();

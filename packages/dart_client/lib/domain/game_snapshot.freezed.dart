@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'game.dart';
+part of 'game_snapshot.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,21 +13,17 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$GameTearOff {
-  const _$GameTearOff();
+class _$GameSnapshotTearOff {
+  const _$GameSnapshotTearOff();
 
-  _Game call(
-      {required String id,
-      required DateTime createdAt,
-      required Status status,
+  _GameSnapshot call(
+      {required Status status,
       required Mode mode,
       required int size,
       required Type type,
       required int startingPoints,
-      required KtList<Player> players}) {
-    return _Game(
-      id: id,
-      createdAt: createdAt,
+      required KtList<PlayerSnapshot> players}) {
+    return _GameSnapshot(
       status: status,
       mode: mode,
       size: size,
@@ -39,50 +35,46 @@ class _$GameTearOff {
 }
 
 /// @nodoc
-const $Game = _$GameTearOff();
+const $GameSnapshot = _$GameSnapshotTearOff();
 
 /// @nodoc
-mixin _$Game {
-  String get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+mixin _$GameSnapshot {
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
   Type get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  KtList<Player> get players => throw _privateConstructorUsedError;
+  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
+  $GameSnapshotCopyWith<GameSnapshot> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameCopyWith<$Res> {
-  factory $GameCopyWith(Game value, $Res Function(Game) then) =
-      _$GameCopyWithImpl<$Res>;
+abstract class $GameSnapshotCopyWith<$Res> {
+  factory $GameSnapshotCopyWith(
+          GameSnapshot value, $Res Function(GameSnapshot) then) =
+      _$GameSnapshotCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      DateTime createdAt,
-      Status status,
+      {Status status,
       Mode mode,
       int size,
       Type type,
       int startingPoints,
-      KtList<Player> players});
+      KtList<PlayerSnapshot> players});
 }
 
 /// @nodoc
-class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
-  _$GameCopyWithImpl(this._value, this._then);
+class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
+  _$GameSnapshotCopyWithImpl(this._value, this._then);
 
-  final Game _value;
+  final GameSnapshot _value;
   // ignore: unused_field
-  final $Res Function(Game) _then;
+  final $Res Function(GameSnapshot) _then;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -91,14 +83,6 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
     Object? players = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -122,40 +106,39 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<Player>,
+              as KtList<PlayerSnapshot>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
-  factory _$GameCopyWith(_Game value, $Res Function(_Game) then) =
-      __$GameCopyWithImpl<$Res>;
+abstract class _$GameSnapshotCopyWith<$Res>
+    implements $GameSnapshotCopyWith<$Res> {
+  factory _$GameSnapshotCopyWith(
+          _GameSnapshot value, $Res Function(_GameSnapshot) then) =
+      __$GameSnapshotCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      DateTime createdAt,
-      Status status,
+      {Status status,
       Mode mode,
       int size,
       Type type,
       int startingPoints,
-      KtList<Player> players});
+      KtList<PlayerSnapshot> players});
 }
 
 /// @nodoc
-class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
-    implements _$GameCopyWith<$Res> {
-  __$GameCopyWithImpl(_Game _value, $Res Function(_Game) _then)
-      : super(_value, (v) => _then(v as _Game));
+class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
+    implements _$GameSnapshotCopyWith<$Res> {
+  __$GameSnapshotCopyWithImpl(
+      _GameSnapshot _value, $Res Function(_GameSnapshot) _then)
+      : super(_value, (v) => _then(v as _GameSnapshot));
 
   @override
-  _Game get _value => super._value as _Game;
+  _GameSnapshot get _value => super._value as _GameSnapshot;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? createdAt = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -163,15 +146,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
     Object? startingPoints = freezed,
     Object? players = freezed,
   }) {
-    return _then(_Game(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+    return _then(_GameSnapshot(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -195,28 +170,22 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<Player>,
+              as KtList<PlayerSnapshot>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Game implements _Game {
-  const _$_Game(
-      {required this.id,
-      required this.createdAt,
-      required this.status,
+class _$_GameSnapshot implements _GameSnapshot {
+  const _$_GameSnapshot(
+      {required this.status,
       required this.mode,
       required this.size,
       required this.type,
       required this.startingPoints,
       required this.players});
 
-  @override
-  final String id;
-  @override
-  final DateTime createdAt;
   @override
   final Status status;
   @override
@@ -228,22 +197,17 @@ class _$_Game implements _Game {
   @override
   final int startingPoints;
   @override
-  final KtList<Player> players;
+  final KtList<PlayerSnapshot> players;
 
   @override
   String toString() {
-    return 'Game(id: $id, createdAt: $createdAt, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'GameSnapshot(status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Game &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
+        (other is _GameSnapshot &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.mode, mode) ||
@@ -262,8 +226,6 @@ class _$_Game implements _Game {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(size) ^
@@ -273,25 +235,19 @@ class _$_Game implements _Game {
 
   @JsonKey(ignore: true)
   @override
-  _$GameCopyWith<_Game> get copyWith =>
-      __$GameCopyWithImpl<_Game>(this, _$identity);
+  _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>
+      __$GameSnapshotCopyWithImpl<_GameSnapshot>(this, _$identity);
 }
 
-abstract class _Game implements Game {
-  const factory _Game(
-      {required String id,
-      required DateTime createdAt,
-      required Status status,
+abstract class _GameSnapshot implements GameSnapshot {
+  const factory _GameSnapshot(
+      {required Status status,
       required Mode mode,
       required int size,
       required Type type,
       required int startingPoints,
-      required KtList<Player> players}) = _$_Game;
+      required KtList<PlayerSnapshot> players}) = _$_GameSnapshot;
 
-  @override
-  String get id => throw _privateConstructorUsedError;
-  @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   Status get status => throw _privateConstructorUsedError;
   @override
@@ -303,8 +259,9 @@ abstract class _Game implements Game {
   @override
   int get startingPoints => throw _privateConstructorUsedError;
   @override
-  KtList<Player> get players => throw _privateConstructorUsedError;
+  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GameCopyWith<_Game> get copyWith => throw _privateConstructorUsedError;
+  _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>
+      throw _privateConstructorUsedError;
 }

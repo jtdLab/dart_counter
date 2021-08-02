@@ -1,4 +1,4 @@
-import 'package:dart_client/domain/game.dart';
+import 'package:dart_client/domain/type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'request_packet.dart';

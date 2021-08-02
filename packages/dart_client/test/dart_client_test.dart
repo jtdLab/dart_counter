@@ -1,14 +1,10 @@
-import 'package:dart_client/domain/dart.dart';
-import 'package:dart_client/domain/game.dart';
-import 'package:dart_client/domain/leg.dart';
-import 'package:dart_client/domain/player.dart';
-import 'package:dart_client/domain/set.dart';
-import 'package:dart_client/domain/stats.dart';
-import 'package:dart_client/domain/throw.dart';
+import 'package:dart_client/dart_client.dart';
 import 'package:dart_client/infrastructure/dart_dto.dart';
 import 'package:dart_client/infrastructure/game_dto.dart';
+import 'package:dart_client/infrastructure/game_snapshot_dto.dart';
 import 'package:dart_client/infrastructure/leg_dto.dart';
 import 'package:dart_client/infrastructure/player_dto.dart';
+import 'package:dart_client/infrastructure/player_snapshot_dto.dart';
 import 'package:dart_client/infrastructure/set_dto.dart';
 import 'package:dart_client/infrastructure/stats_dto.dart';
 import 'package:dart_client/infrastructure/throw_dto.dart';
@@ -1518,6 +1514,554 @@ void main() {
         startingPoints: 501,
         players: [
           PlayerDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            userId: 'dummyUserId',
+          ),
+        ],
+      );
+      expect(dto, expectedDto);
+    });
+  });
+
+  group('PlayerSnapshot', () {
+    test('(Json -> Dto)', () {
+      // Arrange
+      final json = {
+        'id': 'dummyId',
+        'name': 'dummyName',
+        'isCurrentTurn': true,
+        'won': false,
+        'wonSets': 2,
+        'wonLegsCurrentSet': 2,
+        'pointsLeft': 2,
+        'finishRecommendation': ['T2', 'T2', 'D2'],
+        'lastPoints': 2,
+        'dartsThrownCurrentLeg': 12,
+        'stats': {
+          'average': 11.11,
+          'checkoutPercentage': 11.11,
+          'firstNineAverage': 11.11,
+          'bestLegDartsThrown': 11,
+          'bestLegAverage': 11.11,
+          'worstLegDartsThrown': 11,
+          'worstLegAverage': 11.11,
+          'averageDartsPerLeg': 11.11,
+          'highestFinish': 11,
+          'firstDartAverage': 11.11,
+          'secondDartAverage': 11.11,
+          'thirdDartAverage': 11.11,
+          'fourtyPlus': 11,
+          'sixtyPlus': 11,
+          'eightyPlus': 11,
+          'hundredPlus': 11,
+          'hundredTwentyPlus': 11,
+          'hundredFourtyPlus': 11,
+          'hundredSixtyPlus': 11,
+          'hundredEighty': 11,
+        },
+        'userId': 'dummyUserId',
+      };
+      final jsonNull = {
+        'id': 'dummyId',
+        'name': 'dummyName',
+        'isCurrentTurn': null,
+        'won': null,
+        'wonSets': null,
+        'wonLegsCurrentSet': null,
+        'pointsLeft': null,
+        'finishRecommendation': null,
+        'lastPoints': null,
+        'dartsThrownCurrentLeg': null,
+        'stats': null,
+        'userId': 'dummyUserId',
+      };
+      // Act
+      final dto = PlayerSnapshotDto.fromJson(json);
+      final dtoNull = PlayerSnapshotDto.fromJson(jsonNull);
+      // Assert
+      final expectedDto = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: ['T2', 'T2', 'D2'],
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: StatsDto(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final expectedDtoNull = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      expect(dto, expectedDto);
+      expect(dtoNull, expectedDtoNull);
+    });
+
+    test('(Dto -> Json)', () {
+      // Arrange
+      final dto = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: ['T2', 'T2', 'D2'],
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: StatsDto(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final dtoNull = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      // Act
+      final json = dto.toJson();
+      final jsonNull = dtoNull.toJson();
+      // Assert
+      final expectedJson = {
+        'id': 'dummyId',
+        'name': 'dummyName',
+        'isCurrentTurn': true,
+        'won': false,
+        'wonSets': 2,
+        'wonLegsCurrentSet': 2,
+        'pointsLeft': 2,
+        'finishRecommendation': ['T2', 'T2', 'D2'],
+        'lastPoints': 2,
+        'dartsThrownCurrentLeg': 12,
+        'stats': {
+          'average': 11.11,
+          'checkoutPercentage': 11.11,
+          'firstNineAverage': 11.11,
+          'bestLegDartsThrown': 11,
+          'bestLegAverage': 11.11,
+          'worstLegDartsThrown': 11,
+          'worstLegAverage': 11.11,
+          'averageDartsPerLeg': 11.11,
+          'highestFinish': 11,
+          'firstDartAverage': 11.11,
+          'secondDartAverage': 11.11,
+          'thirdDartAverage': 11.11,
+          'fourtyPlus': 11,
+          'sixtyPlus': 11,
+          'eightyPlus': 11,
+          'hundredPlus': 11,
+          'hundredTwentyPlus': 11,
+          'hundredFourtyPlus': 11,
+          'hundredSixtyPlus': 11,
+          'hundredEighty': 11,
+        },
+        'userId': 'dummyUserId',
+      };
+      final expectedJsonNull = {
+        'id': 'dummyId',
+        'name': 'dummyName',
+        'isCurrentTurn': null,
+        'won': null,
+        'wonSets': null,
+        'wonLegsCurrentSet': null,
+        'pointsLeft': null,
+        'finishRecommendation': null,
+        'lastPoints': null,
+        'dartsThrownCurrentLeg': null,
+        'stats': null,
+        'userId': 'dummyUserId',
+      };
+      expect(json, expectedJson);
+      expect(jsonNull, expectedJsonNull);
+    });
+
+    test('(Dto -> Domain)', () {
+      // Arrange
+      final dto = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: ['T2', 'T2', 'D2'],
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: StatsDto(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final dtoNull = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      // Act
+      final domain = dto.toDomain();
+      final domainNull = dtoNull.toDomain();
+      // Assert
+      final expectedDomain = PlayerSnapshot(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: KtList.from(['T2', 'T2', 'D2']),
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: Stats(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final expectedDomainNull = PlayerSnapshot(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      expect(domain, expectedDomain);
+      expect(domainNull, expectedDomainNull);
+    });
+
+    test('(Domain -> Dto)', () {
+      // Arrange
+      final domain = PlayerSnapshot(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: KtList.from(['T2', 'T2', 'D2']),
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: Stats(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final domainNull = PlayerSnapshot(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      // Act
+      final dto = PlayerSnapshotDto.fromDomain(domain);
+      final dtoNull = PlayerSnapshotDto.fromDomain(domainNull);
+      // Assert
+      final expectedDto = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        isCurrentTurn: true,
+        won: false,
+        wonSets: 2,
+        wonLegsCurrentSet: 2,
+        pointsLeft: 2,
+        finishRecommendation: ['T2', 'T2', 'D2'],
+        lastPoints: 2,
+        dartsThrownCurrentLeg: 12,
+        stats: StatsDto(
+          average: 11.11,
+          checkoutPercentage: 11.11,
+          firstNineAverage: 11.11,
+          bestLegDartsThrown: 11,
+          bestLegAverage: 11.11,
+          worstLegDartsThrown: 11,
+          worstLegAverage: 11.11,
+          averageDartsPerLeg: 11.11,
+          highestFinish: 11,
+          firstDartAverage: 11.11,
+          secondDartAverage: 11.11,
+          thirdDartAverage: 11.11,
+          fourtyPlus: 11,
+          sixtyPlus: 11,
+          eightyPlus: 11,
+          hundredPlus: 11,
+          hundredTwentyPlus: 11,
+          hundredFourtyPlus: 11,
+          hundredSixtyPlus: 11,
+          hundredEighty: 11,
+        ),
+        userId: 'dummyUserId',
+      );
+      final expectedDtoNull = PlayerSnapshotDto(
+        id: 'dummyId',
+        name: 'dummyName',
+        userId: 'dummyUserId',
+      );
+      expect(dto, expectedDto);
+      expect(dtoNull, expectedDtoNull);
+    });
+  });
+
+  group('GameSnapshot', () {
+    test('(Json -> Dto)', () {
+      // Arrange
+      final json = {
+        'status': 'running',
+        'mode': 'firstTo',
+        'size': 2,
+        'type': 'legs',
+        'startingPoints': 501,
+        'players': [
+          {
+            'id': 'dummyId',
+            'name': 'dummyName',
+            'isCurrentTurn': null,
+            'won': null,
+            'wonSets': null,
+            'wonLegsCurrentSet': null,
+            'pointsLeft': null,
+            'finishRecommendation': null,
+            'lastPoints': null,
+            'dartsThrownCurrentLeg': null,
+            'stats': null,
+            'userId': 'dummyUserId',
+          },
+        ],
+      };
+      // Act
+      final dto = GameSnapshotDto.fromJson(json);
+      // Assert
+      final expectedDto = GameSnapshotDto(
+        status: 'running',
+        mode: 'firstTo',
+        size: 2,
+        type: 'legs',
+        startingPoints: 501,
+        players: [
+          PlayerSnapshotDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            userId: 'dummyUserId',
+          ),
+        ],
+      );
+      expect(dto, expectedDto);
+    });
+
+    test('(Dto -> Json)', () {
+      // Arrange
+      final dto = GameSnapshotDto(
+        status: 'running',
+        mode: 'firstTo',
+        size: 2,
+        type: 'legs',
+        startingPoints: 501,
+        players: [
+          PlayerSnapshotDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            userId: 'dummyUserId',
+          ),
+        ],
+      );
+      // Act
+      final json = dto.toJson();
+      // Assert
+      final expectedJson = {
+        'status': 'running',
+        'mode': 'firstTo',
+        'size': 2,
+        'type': 'legs',
+        'startingPoints': 501,
+        'players': [
+          {
+            'id': 'dummyId',
+            'name': 'dummyName',
+            'isCurrentTurn': null,
+            'won': null,
+            'wonSets': null,
+            'wonLegsCurrentSet': null,
+            'pointsLeft': null,
+            'finishRecommendation': null,
+            'lastPoints': null,
+            'dartsThrownCurrentLeg': null,
+            'stats': null,
+            'userId': 'dummyUserId',
+          },
+        ],
+      };
+      expect(json, expectedJson);
+    });
+
+    test('(Dto -> Domain)', () {
+      // Arrange
+      final dto = GameSnapshotDto(
+        status: 'running',
+        mode: 'firstTo',
+        size: 2,
+        type: 'legs',
+        startingPoints: 501,
+        players: [
+          PlayerSnapshotDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            userId: 'dummyUserId',
+          ),
+        ],
+      );
+      // Act
+      final domain = dto.toDomain();
+      // Assert
+      final expectedDomain = GameSnapshot(
+        status: Status.running,
+        mode: Mode.firstTo,
+        size: 2,
+        type: Type.legs,
+        startingPoints: 501,
+        players: KtList.from(
+          [
+            PlayerSnapshot(
+              id: 'dummyId',
+              name: 'dummyName',
+              userId: 'dummyUserId',
+            ),
+          ],
+        ),
+      );
+      expect(domain, expectedDomain);
+    });
+
+    test('(Domain -> Dto)', () {
+      // Arrange
+      final domain = GameSnapshot(
+        status: Status.running,
+        mode: Mode.firstTo,
+        size: 2,
+        type: Type.legs,
+        startingPoints: 501,
+        players: KtList.from(
+          [
+            PlayerSnapshot(
+              id: 'dummyId',
+              name: 'dummyName',
+              userId: 'dummyUserId',
+            ),
+          ],
+        ),
+      );
+      // Act
+      final dto = GameSnapshotDto.fromDomain(domain);
+      // Assert
+      final expectedDto = GameSnapshotDto(
+        status: 'running',
+        mode: 'firstTo',
+        size: 2,
+        type: 'legs',
+        startingPoints: 501,
+        players: [
+          PlayerSnapshotDto(
             id: 'dummyId',
             name: 'dummyName',
             userId: 'dummyUserId',

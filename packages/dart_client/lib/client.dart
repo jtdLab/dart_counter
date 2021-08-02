@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dart_client/domain/game_snapshot.dart';
 import 'package:dart_client/domain/throw.dart';
+import 'package:dart_client/domain/type.dart';
 import 'package:dart_client/infrastructure/packets/incoming/create_game_response_packet.dart';
 import 'package:dart_client/infrastructure/packets/packet.dart';
 
-import 'domain/game.dart';
+import 'domain/mode.dart';
 import 'infrastructure/container.dart';
 import 'infrastructure/packets/incoming/response_packet.dart';
 import 'infrastructure/packets/incoming/snapshot_packet.dart';
@@ -31,7 +33,7 @@ abstract class IDartClient {
   // TODO define better interface
   Stream<ResponsePacket> get received;
 
-  Stream<Game> watchGame();
+  Stream<GameSnapshot> watchGame();
 
   Future<bool> connect({
     required String idToken,
@@ -89,7 +91,7 @@ abstract class IDartClient {
 class DartClient implements IDartClient {
   final WebSocketClient _webSocketClient;
 
-  final StreamController<Game> _gameController;
+  final StreamController<GameSnapshot> _gameController;
 
   DartClient({
     required String host,
@@ -102,7 +104,7 @@ class DartClient implements IDartClient {
       throw UnimplementedError(); // TODO implement
 
   @override
-  Stream<Game> watchGame() {
+  Stream<GameSnapshot> watchGame() {
     return _gameController.stream;
   }
 

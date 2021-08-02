@@ -8,7 +8,8 @@ part of 'snapshot_packet.dart';
 
 _$_SnapshotPacket _$_$_SnapshotPacketFromJson(Map<String, dynamic> json) {
   return _$_SnapshotPacket(
-    snapshot: GameDto.fromJson(json['snapshot'] as Map<String, dynamic>),
+    snapshot:
+        GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
   );
 }
 

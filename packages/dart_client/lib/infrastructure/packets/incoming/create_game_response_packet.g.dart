@@ -12,7 +12,7 @@ _$_CreateGameResponsePacket _$_$_CreateGameResponsePacketFromJson(
     successful: json['successful'] as bool,
     snapshot: json['snapshot'] == null
         ? null
-        : GameDto.fromJson(json['snapshot'] as Map<String, dynamic>),
+        : GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
   );
 }
 
