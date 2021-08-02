@@ -120,10 +120,14 @@ class PlayFacade implements IPlayFacade {
         final success = await _dartClient.connect(idToken: 'dummyId'); // TODO
         if (success) {
           // TODO safe this subscription and cancel on game cancel
-          _dartClient.watchGame().listen((game) {
-            _gameStreamController.add(
+          _dartClient.watchGame().listen((gameSnapshot) {
+            // TODO
+            print(gameSnapshot);
+            /**
+             * _gameStreamController.add(
               right(GameDto.fromClient(game).toDomain()),
             );
+             */
           });
           _dartClient.createGame();
           return right(unit);
