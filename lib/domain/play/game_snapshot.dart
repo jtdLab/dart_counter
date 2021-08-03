@@ -7,7 +7,7 @@ import 'status.dart';
 import 'type.dart';
 
 part 'game_snapshot.freezed.dart';
-
+// TODO provide methods needed like hasDartBot etc.
 abstract class GameSnapshot {
   Status get status;
   Mode get mode;

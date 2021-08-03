@@ -9,6 +9,7 @@ import 'type.dart';
 
 part 'game.freezed.dart';
 
+// TODO refactor to be used only as a storage object and not as the game snapshot
 @freezed
 class Game with _$Game {
   const factory Game({
