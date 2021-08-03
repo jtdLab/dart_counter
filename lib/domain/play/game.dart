@@ -65,7 +65,7 @@ class Game with _$Game {
           701,
         ]),
         players: KtList.from([
-          OfflinePlayer.dummy() as Player,
+          OfflinePlayer.dummy(),
         ]),
       );
 }

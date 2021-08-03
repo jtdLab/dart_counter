@@ -294,7 +294,7 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(PlayerDto)
+@Implements(AbstractOfflinePlayerDto)
 class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   const _$_OfflinePlayerDto(
       {required this.id,
@@ -408,7 +408,8 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   }
 }
 
-abstract class _OfflinePlayerDto extends OfflinePlayerDto implements PlayerDto {
+abstract class _OfflinePlayerDto extends OfflinePlayerDto
+    implements AbstractOfflinePlayerDto {
   const factory _OfflinePlayerDto(
       {required String id,
       required String name,
@@ -754,7 +755,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(PlayerDto)
+@Implements(AbstractOfflinePlayerDto)
 class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
       {required this.id,
@@ -874,7 +875,8 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   }
 }
 
-abstract class _OnlinePlayerDto extends OnlinePlayerDto implements PlayerDto {
+abstract class _OnlinePlayerDto extends OnlinePlayerDto
+    implements AbstractOfflinePlayerDto {
   const factory _OnlinePlayerDto(
       {required String id,
       required String name,
@@ -1220,7 +1222,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(PlayerDto)
+@Implements(AbstractPlayerDto)
 class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
       {required this.id,
@@ -1341,7 +1343,7 @@ class _$_DartBotDto extends _DartBotDto {
   }
 }
 
-abstract class _DartBotDto extends DartBotDto implements PlayerDto {
+abstract class _DartBotDto extends DartBotDto implements AbstractPlayerDto {
   const factory _DartBotDto(
       {required String id,
       required String name,

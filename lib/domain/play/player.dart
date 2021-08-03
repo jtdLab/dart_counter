@@ -133,7 +133,7 @@ class OnlinePlayer with _$OnlinePlayer implements Player {
 }
 
 @freezed
-class DartBot with _$DartBot implements Player{
+class DartBot with _$DartBot implements Player {
   @Implements(Player)
   const factory DartBot({
     required UniqueId id,

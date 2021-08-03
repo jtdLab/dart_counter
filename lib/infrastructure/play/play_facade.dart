@@ -1,4 +1,5 @@
 import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
@@ -6,7 +7,7 @@ import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_game/dart_game.dart' as dart;
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -22,7 +23,7 @@ class PlayFacade implements IPlayFacade {
 
   final dc.IDartClient _dartClient;
 
-  dart.Game? _game;
+  ex.Game? _game;
   bool? _online;
   DateTime? _createdAt;
 
@@ -139,7 +140,7 @@ class PlayFacade implements IPlayFacade {
         final gameNotExisting = _game == null;
 
         if (gameNotExisting) {
-          _game = dart.Game();
+          _game = ex.Game();
           _gameStreamController.add(
             right(
               GameDto.fromExternal(_game!).toDomain().copyWith(
@@ -150,8 +151,8 @@ class PlayFacade implements IPlayFacade {
           );
           return right(unit);
         } else {
-          if (_game!.status == dart.Status.finished) {
-            _game = dart.Game();
+          if (_game!.status == ex.Status.finished) {
+            _game = ex.Game();
             _gameStreamController.add(
               right(
                 GameDto.fromExternal(_game!).toDomain().copyWith(
@@ -346,8 +347,8 @@ class PlayFacade implements IPlayFacade {
         final gameExisting = _game != null;
 
         if (gameExisting) {
-          _game!.setMode(
-              mode == Mode.firstTo ? dart.Mode.firstTo : dart.Mode.bestOf);
+          _game!
+              .setMode(mode == Mode.firstTo ? ex.Mode.firstTo : ex.Mode.bestOf);
 
           _gameStreamController.add(
             right(
@@ -429,7 +430,7 @@ class PlayFacade implements IPlayFacade {
         final gameExisting = _game != null;
 
         if (gameExisting) {
-          _game!.setType(type == Type.legs ? dart.Type.legs : dart.Type.sets);
+          _game!.setType(type == Type.legs ? ex.Type.legs : ex.Type.sets);
 
           _gameStreamController.add(
             right(
@@ -520,7 +521,7 @@ class PlayFacade implements IPlayFacade {
 
   @override
   int minDartsThrown({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.minDartsThrown(
+    return ex.ThrowValidator.minDartsThrown(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -528,7 +529,7 @@ class PlayFacade implements IPlayFacade {
 
   @override
   int maxDartsThrown({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.maxDartsThrown(
+    return ex.ThrowValidator.maxDartsThrown(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -536,7 +537,7 @@ class PlayFacade implements IPlayFacade {
 
   @override
   int minDartsOnDouble({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.minDartsOnDouble(
+    return ex.ThrowValidator.minDartsOnDouble(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -544,7 +545,7 @@ class PlayFacade implements IPlayFacade {
 
   @override
   int maxDartsOnDouble({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.maxDartsOnDouble(
+    return ex.ThrowValidator.maxDartsOnDouble(
       points: points,
       pointsLeft: pointsLeft,
     );

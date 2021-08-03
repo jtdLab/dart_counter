@@ -1,9 +1,9 @@
+import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
-import 'package:dart_game/dart_game.dart' as ex;
-import 'package:dart_client/dart_client.dart' as dc;
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -13,7 +13,7 @@ import 'stats_dto.dart';
 part 'player_dto.freezed.dart';
 part 'player_dto.g.dart';
 
-abstract class PlayerDto {
+abstract class AbstractPlayerDto {
   String get id;
   String get name;
   bool? get isCurrentTurn;
@@ -26,93 +26,44 @@ abstract class PlayerDto {
   int? get dartsThrownCurrentLeg;
   StatsDto? get stats;
   List<SetDto>? get sets;
-  Map<String, dynamic> toJson();
 }
 
-// TODO
-class PlayerDtoConverter
-    implements JsonConverter<PlayerDto, Map<String, dynamic>> {
-  const PlayerDtoConverter();
+abstract class AbstractOfflinePlayerDto extends AbstractPlayerDto {}
+
+class AbstractPlayerDtoConverter
+    implements JsonConverter<AbstractPlayerDto, Map<String, dynamic>> {
+  const AbstractPlayerDtoConverter();
 
   @override
-  PlayerDto fromJson(Map<String, dynamic> json) {
-    try {
-      final id = json['id'] as String;
-      final name = json['name'] as String;
-      final isCurrentTurn = json['isCurrentTurn'] as bool?;
-      final won = json['won'] as bool?;
-      final wonSets = json['wonSets'] as int?;
-      final wonLegsCurrentSet = json['wonLegsCurrentSet'] as int?;
-      final pointsLeft = json['pointsLeft'] as int?;
-      final finishRecommendation =
-          json['finishRecommendation'] as List<String>?; // TODO
-      final lastPoints = json['lastPoints'] as int?;
-      final dartsThrownCurrentLeg = json['dartsThrownCurrentLeg'] as int?;
-      final stats = StatsDto.fromJson(json['stats'] as Map<String, dynamic>);
-      final sets = json['sets'] as List<SetDto>?; // TODO
-
-      if (json['userId'] != null) {
-        final userId = json['userId'] as String;
-        return OnlinePlayerDto(
-          id: id,
-          name: name,
-          isCurrentTurn: isCurrentTurn,
-          won: won,
-          wonSets: wonSets,
-          wonLegsCurrentSet: wonLegsCurrentSet,
-          pointsLeft: pointsLeft,
-          finishRecommendation: finishRecommendation,
-          lastPoints: lastPoints,
-          dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-          stats: stats,
-          sets: sets,
-          userId: userId,
-        ) as PlayerDto;
-      } else if (json['targetAverage'] != null) {
-        final targetAverage = json['targetAverage'] as int;
-        return DartBotDto(
-          id: id,
-          name: name,
-          isCurrentTurn: isCurrentTurn,
-          won: won,
-          wonSets: wonSets,
-          wonLegsCurrentSet: wonLegsCurrentSet,
-          pointsLeft: pointsLeft,
-          finishRecommendation: finishRecommendation,
-          lastPoints: lastPoints,
-          dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-          stats: stats,
-          sets: sets,
-          targetAverage: targetAverage,
-        ) as PlayerDto;
-      } else {
-        return OfflinePlayerDto(
-          id: id,
-          name: name,
-          isCurrentTurn: isCurrentTurn,
-          won: won,
-          wonSets: wonSets,
-          wonLegsCurrentSet: wonLegsCurrentSet,
-          pointsLeft: pointsLeft,
-          finishRecommendation: finishRecommendation,
-          lastPoints: lastPoints,
-          dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-          stats: stats,
-          sets: sets,
-        ) as PlayerDto;
-      }
-    } catch (e) {
-      throw Exception('Error pasring PlayerDto from JSON');
+  AbstractPlayerDto fromJson(Map<String, dynamic> json) {
+    if (json['userId'] != null) {
+      return OnlinePlayerDto.fromJson(json);
+    } else if (json['targetAverage'] != null) {
+      return DartBotDto.fromJson(json);
+    } else {
+      return OfflinePlayerDto.fromJson(json);
     }
   }
 
   @override
-  Map<String, dynamic> toJson(PlayerDto data) => data.toJson();
+  Map<String, dynamic> toJson(AbstractPlayerDto abstractPlayerDto) {
+    if (abstractPlayerDto is OfflinePlayerDto) {
+      return abstractPlayerDto.toJson();
+    } else if (abstractPlayerDto is DartBotDto) {
+      return abstractPlayerDto.toJson();
+    } else if (abstractPlayerDto is OnlinePlayerDto) {
+      return abstractPlayerDto.toJson();
+    } else {
+      throw Error(); // TODO
+    }
+  }
 }
 
 @freezed
-class OfflinePlayerDto with _$OfflinePlayerDto {
-  @Implements(PlayerDto)
+class OfflinePlayerDto
+    with _$OfflinePlayerDto
+    implements AbstractOfflinePlayerDto {
+  @Implements(AbstractOfflinePlayerDto)
   const factory OfflinePlayerDto({
     required String id,
     required String name,
@@ -205,8 +156,10 @@ class OfflinePlayerDto with _$OfflinePlayerDto {
 }
 
 @freezed
-class OnlinePlayerDto with _$OnlinePlayerDto {
-  @Implements(PlayerDto)
+class OnlinePlayerDto
+    with _$OnlinePlayerDto
+    implements AbstractOfflinePlayerDto {
+  @Implements(AbstractOfflinePlayerDto)
   const factory OnlinePlayerDto({
     required String id,
     required String name,
@@ -303,8 +256,8 @@ class OnlinePlayerDto with _$OnlinePlayerDto {
 }
 
 @freezed
-class DartBotDto with _$DartBotDto {
-  @Implements(PlayerDto)
+class DartBotDto with _$DartBotDto implements AbstractPlayerDto {
+  @Implements(AbstractPlayerDto)
   const factory DartBotDto({
     required String id,
     required String name,

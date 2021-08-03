@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:dart_game/dart_game.dart' as ex;
+
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
@@ -7,7 +9,7 @@ import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/infrastructure/play/game_dto.dart';
-import 'package:dart_game/dart_game.dart' as dart;
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -26,7 +28,7 @@ class MockedPlayFacade implements IPlayFacade {
     this._userFacade,
   );
 
-  dart.Game? _game;
+  ex.Game? _game;
   bool? _online;
   DateTime? _createdAt;
 
@@ -111,7 +113,7 @@ class MockedPlayFacade implements IPlayFacade {
       // TODO link user to the player
       _online = online;
       _createdAt = DateTime.now();
-      _game = dart.Game();
+      _game = ex.Game();
       _gameStreamController.add(
         right(
           GameDto.fromExternal(_game!).toDomain().copyWith(
@@ -421,7 +423,7 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   int minDartsThrown({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.minDartsThrown(
+    return ex.ThrowValidator.minDartsThrown(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -429,7 +431,7 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   int maxDartsThrown({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.maxDartsThrown(
+    return ex.ThrowValidator.maxDartsThrown(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -437,7 +439,7 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   int minDartsOnDouble({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.minDartsOnDouble(
+    return ex.ThrowValidator.minDartsOnDouble(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -445,7 +447,7 @@ class MockedPlayFacade implements IPlayFacade {
 
   @override
   int maxDartsOnDouble({required int points, required int pointsLeft}) {
-    return dart.ThrowValidator.maxDartsOnDouble(
+    return ex.ThrowValidator.maxDartsOnDouble(
       points: points,
       pointsLeft: pointsLeft,
     );
@@ -456,25 +458,25 @@ class MockedPlayFacade implements IPlayFacade {
     return _gameStreamController.stream;
   }
 
-  dart.Throw _toExternalThrow(Throw t) => dart.Throw(
+  ex.Throw _toExternalThrow(Throw t) => ex.Throw(
         t.points,
         dartsThrown: t.dartsThrown,
         dartsOnDouble: t.dartsOnDouble,
       );
 
-  dart.Mode _toExternalMode(Mode mode) {
+  ex.Mode _toExternalMode(Mode mode) {
     if (mode == Mode.bestOf) {
-      return dart.Mode.bestOf;
+      return ex.Mode.bestOf;
     } else {
-      return dart.Mode.firstTo;
+      return ex.Mode.firstTo;
     }
   }
 
-  dart.Type _toExternalType(Type type) {
+  ex.Type _toExternalType(Type type) {
     if (type == Type.legs) {
-      return dart.Type.legs;
+      return ex.Type.legs;
     } else {
-      return dart.Type.sets;
+      return ex.Type.sets;
     }
   }
 }

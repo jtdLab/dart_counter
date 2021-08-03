@@ -1,6 +1,6 @@
-import 'package:dart_counter/domain/play/dart.dart';
-import 'package:dart_game/dart_game.dart' as dart;
 import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_game/dart_game.dart' as ex;
+import 'package:dart_counter/domain/play/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart_dto.freezed.dart';
@@ -26,11 +26,11 @@ class DartDto with _$DartDto {
     );
   }
 
-  factory DartDto.fromExternal(dart.Dart d) {
+  factory DartDto.fromExternal(ex.Dart d) {
     return DartDto(
-      type: d.type == dart.DartType.s
+      type: d.type == ex.DartType.s
           ? 'single'
-          : d.type == dart.DartType.d
+          : d.type == ex.DartType.d
               ? 'double'
               : 'triple',
       value: d.points,
@@ -48,13 +48,13 @@ class DartDto with _$DartDto {
     );
   }
 
-  dart.Dart toExternal() {
-    return dart.Dart(
+  ex.Dart toExternal() {
+    return ex.Dart(
       type == 'single'
-          ? dart.DartType.s
+          ? ex.DartType.s
           : type == 'double'
-              ? dart.DartType.d
-              : dart.DartType.t,
+              ? ex.DartType.d
+              : ex.DartType.t,
       value,
     );
   }

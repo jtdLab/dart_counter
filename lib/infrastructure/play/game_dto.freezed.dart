@@ -29,7 +29,7 @@ class _$GameDtoTearOff {
       required int size,
       required String type,
       required int startingPoints,
-      @PlayerDtoConverter() required List<PlayerDto> players}) {
+      @AbstractPlayerDtoConverter() required List<AbstractPlayerDto> players}) {
     return _GameDto(
       id: id,
       createdAt: createdAt,
@@ -61,8 +61,8 @@ mixin _$GameDto {
   int get size => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  @PlayerDtoConverter()
-  List<PlayerDto> get players => throw _privateConstructorUsedError;
+  @AbstractPlayerDtoConverter()
+  List<AbstractPlayerDto> get players => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -82,7 +82,7 @@ abstract class $GameDtoCopyWith<$Res> {
       int size,
       String type,
       int startingPoints,
-      @PlayerDtoConverter() List<PlayerDto> players});
+      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<PlayerDto>,
+              as List<AbstractPlayerDto>,
     ));
   }
 }
@@ -160,7 +160,7 @@ abstract class _$GameDtoCopyWith<$Res> implements $GameDtoCopyWith<$Res> {
       int size,
       String type,
       int startingPoints,
-      @PlayerDtoConverter() List<PlayerDto> players});
+      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
 }
 
 /// @nodoc
@@ -220,7 +220,7 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<PlayerDto>,
+              as List<AbstractPlayerDto>,
     ));
   }
 }
@@ -237,7 +237,7 @@ class _$_GameDto extends _GameDto {
       required this.size,
       required this.type,
       required this.startingPoints,
-      @PlayerDtoConverter() required this.players})
+      @AbstractPlayerDtoConverter() required this.players})
       : super._();
 
   factory _$_GameDto.fromJson(Map<String, dynamic> json) =>
@@ -260,8 +260,8 @@ class _$_GameDto extends _GameDto {
   @override
   final int startingPoints;
   @override
-  @PlayerDtoConverter()
-  final List<PlayerDto> players;
+  @AbstractPlayerDtoConverter()
+  final List<AbstractPlayerDto> players;
 
   @override
   String toString() {
@@ -328,7 +328,8 @@ abstract class _GameDto extends GameDto {
       required int size,
       required String type,
       required int startingPoints,
-      @PlayerDtoConverter() required List<PlayerDto> players}) = _$_GameDto;
+      @AbstractPlayerDtoConverter()
+          required List<AbstractPlayerDto> players}) = _$_GameDto;
   const _GameDto._() : super._();
 
   factory _GameDto.fromJson(Map<String, dynamic> json) = _$_GameDto.fromJson;
@@ -350,8 +351,8 @@ abstract class _GameDto extends GameDto {
   @override
   int get startingPoints => throw _privateConstructorUsedError;
   @override
-  @PlayerDtoConverter()
-  List<PlayerDto> get players => throw _privateConstructorUsedError;
+  @AbstractPlayerDtoConverter()
+  List<AbstractPlayerDto> get players => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameDtoCopyWith<_GameDto> get copyWith =>

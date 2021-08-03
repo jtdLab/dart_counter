@@ -1,7 +1,7 @@
+import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/play/set.dart';
 import 'package:dart_counter/infrastructure/play/leg_dto.dart';
-import 'package:dart_game/dart_game.dart' as dart;
-import 'package:dart_client/dart_client.dart' as dc;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -22,7 +22,7 @@ class SetDto with _$SetDto {
     );
   }
 
-  factory SetDto.fromExternal(dart.Set set) {
+  factory SetDto.fromExternal(ex.Set set) {
     return SetDto(
       legs: set.legs.map((leg) => LegDto.fromExternal(leg)).toList(),
     );

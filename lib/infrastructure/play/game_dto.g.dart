@@ -17,8 +17,8 @@ _$_GameDto _$_$_GameDtoFromJson(Map<String, dynamic> json) {
     type: json['type'] as String,
     startingPoints: json['startingPoints'] as int,
     players: (json['players'] as List<dynamic>)
-        .map((e) =>
-            const PlayerDtoConverter().fromJson(e as Map<String, dynamic>))
+        .map((e) => const AbstractPlayerDtoConverter()
+            .fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -33,6 +33,7 @@ Map<String, dynamic> _$_$_GameDtoToJson(_$_GameDto instance) =>
       'size': instance.size,
       'type': instance.type,
       'startingPoints': instance.startingPoints,
-      'players':
-          instance.players.map(const PlayerDtoConverter().toJson).toList(),
+      'players': instance.players
+          .map(const AbstractPlayerDtoConverter().toJson)
+          .toList(),
     };
