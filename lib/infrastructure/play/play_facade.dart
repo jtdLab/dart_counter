@@ -1,4 +1,6 @@
 import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_counter/domain/play/mode.dart';
+import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game.dart';

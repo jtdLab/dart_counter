@@ -4,6 +4,8 @@ import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dartz/dartz.dart';
 
 import 'game.dart';
+import 'mode.dart';
+import 'type.dart';
 
 abstract class IPlayFacade {
   Stream<Either<PlayFailure, Game>> watchGame();

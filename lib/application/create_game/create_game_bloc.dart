@@ -6,6 +6,8 @@ import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/game/game_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/i_play_facade.dart';
+import 'package:dart_counter/domain/play/mode.dart';
+import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

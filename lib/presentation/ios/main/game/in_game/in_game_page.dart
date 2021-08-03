@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/play/status.dart';
 
 import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';

@@ -1,4 +1,5 @@
-import 'package:dart_counter/domain/play/game.dart';
+
+import 'package:dart_counter/domain/play/status.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 

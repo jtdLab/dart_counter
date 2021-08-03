@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import 'game.dart'
-    show Status, Mode, Type; // TODO only import enums from extra files
+import 'mode.dart';
 import 'player_snapshot.dart';
+import 'status.dart';
+import 'type.dart';
 
 part 'game_snapshot.freezed.dart';
 
