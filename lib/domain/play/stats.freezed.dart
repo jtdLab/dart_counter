@@ -17,9 +17,9 @@ class _$StatsTearOff {
   const _$StatsTearOff();
 
   _Stats call(
-      {required double average,
-      required double checkoutPercentage,
-      required double firstNineAverage,
+      {double average = 0,
+      double checkoutPercentage = 0,
+      double firstNineAverage = 0,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -29,14 +29,14 @@ class _$StatsTearOff {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) {
+      int fourtyPlus = 0,
+      int sixtyPlus = 0,
+      int eightyPlus = 0,
+      int hundredPlus = 0,
+      int hundredTwentyPlus = 0,
+      int hundredFourtyPlus = 0,
+      int hundredSixtyPlus = 0,
+      int hundredEighty = 0}) {
     return _Stats(
       average: average,
       checkoutPercentage: checkoutPercentage,
@@ -384,9 +384,9 @@ class __$StatsCopyWithImpl<$Res> extends _$StatsCopyWithImpl<$Res>
 
 class _$_Stats implements _Stats {
   const _$_Stats(
-      {required this.average,
-      required this.checkoutPercentage,
-      required this.firstNineAverage,
+      {this.average = 0,
+      this.checkoutPercentage = 0,
+      this.firstNineAverage = 0,
       this.bestLegDartsThrown,
       this.bestLegAverage,
       this.worstLegDartsThrown,
@@ -396,19 +396,22 @@ class _$_Stats implements _Stats {
       this.firstDartAverage,
       this.secondDartAverage,
       this.thirdDartAverage,
-      required this.fourtyPlus,
-      required this.sixtyPlus,
-      required this.eightyPlus,
-      required this.hundredPlus,
-      required this.hundredTwentyPlus,
-      required this.hundredFourtyPlus,
-      required this.hundredSixtyPlus,
-      required this.hundredEighty});
+      this.fourtyPlus = 0,
+      this.sixtyPlus = 0,
+      this.eightyPlus = 0,
+      this.hundredPlus = 0,
+      this.hundredTwentyPlus = 0,
+      this.hundredFourtyPlus = 0,
+      this.hundredSixtyPlus = 0,
+      this.hundredEighty = 0});
 
+  @JsonKey(defaultValue: 0)
   @override
   final double average;
+  @JsonKey(defaultValue: 0)
   @override
   final double checkoutPercentage;
+  @JsonKey(defaultValue: 0)
   @override
   final double firstNineAverage;
   @override
@@ -429,20 +432,28 @@ class _$_Stats implements _Stats {
   final double? secondDartAverage;
   @override
   final double? thirdDartAverage;
+  @JsonKey(defaultValue: 0)
   @override
   final int fourtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int sixtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int eightyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredTwentyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredFourtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredSixtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredEighty;
 
@@ -549,9 +560,9 @@ class _$_Stats implements _Stats {
 
 abstract class _Stats implements Stats {
   const factory _Stats(
-      {required double average,
-      required double checkoutPercentage,
-      required double firstNineAverage,
+      {double average,
+      double checkoutPercentage,
+      double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -561,14 +572,14 @@ abstract class _Stats implements Stats {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) = _$_Stats;
+      int fourtyPlus,
+      int sixtyPlus,
+      int eightyPlus,
+      int hundredPlus,
+      int hundredTwentyPlus,
+      int hundredFourtyPlus,
+      int hundredSixtyPlus,
+      int hundredEighty}) = _$_Stats;
 
   @override
   double get average => throw _privateConstructorUsedError;

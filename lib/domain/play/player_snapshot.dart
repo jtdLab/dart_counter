@@ -1,13 +1,12 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/play/set.dart';
 import 'package:dart_counter/domain/play/stats.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-part 'player.freezed.dart';
+part 'player_snapshot.freezed.dart';
 
-abstract class Player {
+abstract class PlayerSnapshot {
   UniqueId get id;
   String get name;
   bool get isCurrentTurn;
@@ -19,36 +18,28 @@ abstract class Player {
   int? get lastPoints;
   int get dartsThrownCurrentLeg;
   Stats get stats;
-  KtList<Set> get sets;
 }
 
 @freezed
-class OfflinePlayer with _$OfflinePlayer implements Player {
-  @Implements(Player)
-  const factory OfflinePlayer({
+class OfflinePlayerSnapshot
+    with _$OfflinePlayerSnapshot
+    implements PlayerSnapshot {
+  @Implements(PlayerSnapshot)
+  const factory OfflinePlayerSnapshot({
     required UniqueId id,
     required String name,
-    @Default(false)
-        bool isCurrentTurn,
-    @Default(false)
-        bool won,
+    @Default(false) bool isCurrentTurn,
+    @Default(false) bool won,
     int? wonSets,
-    @Default(0)
-        int wonLegsCurrentSet,
-    @Default(0)
-        int pointsLeft,
+    @Default(0) int wonLegsCurrentSet,
+    @Default(0) int pointsLeft,
     KtList<String>? finishRecommendation,
     int? lastPoints,
-    @Default(0)
-        int dartsThrownCurrentLeg,
-    @Default(
-      Stats(),
-    )
-        Stats stats,
-    required KtList<Set> sets,
-  }) = _OfflinePlayer;
+    @Default(0) int dartsThrownCurrentLeg,
+    @Default(Stats()) Stats stats,
+  }) = _OfflinePlayerSnapshot;
 
-  factory OfflinePlayer.dummy() => OfflinePlayer(
+  factory OfflinePlayerSnapshot.dummy() => OfflinePlayerSnapshot(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
@@ -69,16 +60,15 @@ class OfflinePlayer with _$OfflinePlayer implements Player {
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
       );
 }
 
 @freezed
-class OnlinePlayer with _$OnlinePlayer implements Player {
-  @Implements(Player)
-  const factory OnlinePlayer({
+class OnlinePlayerSnapshot
+    with _$OnlinePlayerSnapshot
+    implements PlayerSnapshot {
+  @Implements(PlayerSnapshot)
+  const factory OnlinePlayerSnapshot({
     required UniqueId id,
     required String name,
     @Default(false)
@@ -98,11 +88,10 @@ class OnlinePlayer with _$OnlinePlayer implements Player {
       Stats(),
     )
         Stats stats,
-    required KtList<Set> sets,
     required UniqueId userId,
-  }) = _OnlinePlayer;
+  }) = _OnlinePlayerSnapshot;
 
-  factory OnlinePlayer.dummy() => OnlinePlayer(
+  factory OnlinePlayerSnapshot.dummy() => OnlinePlayerSnapshot(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
@@ -123,9 +112,6 @@ class OnlinePlayer with _$OnlinePlayer implements Player {
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
         userId: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
@@ -133,9 +119,9 @@ class OnlinePlayer with _$OnlinePlayer implements Player {
 }
 
 @freezed
-class DartBot with _$DartBot implements Player{
-  @Implements(Player)
-  const factory DartBot({
+class DartBotSnapshot with _$DartBotSnapshot implements PlayerSnapshot {
+  @Implements(PlayerSnapshot)
+  const factory DartBotSnapshot({
     required UniqueId id,
     required String name,
     @Default(false)
@@ -155,12 +141,11 @@ class DartBot with _$DartBot implements Player{
       Stats(),
     )
         Stats stats,
-    required KtList<Set> sets,
-    @Default(0)
+    @Default(1)
         int targetAverage,
-  }) = _DartBot;
+  }) = _DartBotSnapshot;
 
-  factory DartBot.dummy() => DartBot(
+  factory DartBotSnapshot.dummy() => DartBotSnapshot(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
@@ -181,8 +166,5 @@ class DartBot with _$DartBot implements Player{
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
       );
 }

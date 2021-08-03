@@ -1,9 +1,12 @@
+import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 void main() {
-  runApp(
+  /**
+   * runApp(
     const MyApp(),
   );
+   */
 }
 
 class MyApp extends StatelessWidget {

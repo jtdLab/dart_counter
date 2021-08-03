@@ -2,7 +2,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
-import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_client/dart_client.dart' as dc;
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -29,6 +29,7 @@ abstract class PlayerDto {
   Map<String, dynamic> toJson();
 }
 
+// TODO
 class PlayerDtoConverter
     implements JsonConverter<PlayerDto, Map<String, dynamic>> {
   const PlayerDtoConverter();
@@ -146,7 +147,7 @@ class OfflinePlayerDto with _$OfflinePlayerDto {
     );
   }
 
-  factory OfflinePlayerDto.fromExternal(dart.Player player) {
+  factory OfflinePlayerDto.fromExternal(ex.Player player) {
     return OfflinePlayerDto(
       id: player.id,
       name: player.name,
@@ -377,7 +378,7 @@ class DartBotDto with _$DartBotDto {
     );
   }
 
-  factory DartBotDto.fromExternal(dart.DartBot dartBot) {
+  factory DartBotDto.fromExternal(ex.DartBot dartBot) {
     final faker = Faker();
     return DartBotDto(
       id: faker.randomGenerator.string(28, min: 28),

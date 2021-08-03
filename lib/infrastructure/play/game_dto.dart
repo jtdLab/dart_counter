@@ -2,7 +2,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/infrastructure/play/player_dto.dart';
-import 'package:dart_game/dart_game.dart' as dart;
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_client/dart_client.dart' as dc;
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,7 +10,7 @@ import 'package:kt_dart/collection.dart';
 
 part 'game_dto.freezed.dart';
 part 'game_dto.g.dart';
-
+// TODO remove string splits
 @freezed
 class GameDto with _$GameDto {
   const factory GameDto({
@@ -53,7 +53,7 @@ class GameDto with _$GameDto {
     );
   }
 
-  factory GameDto.fromExternal(dart.Game game) {
+  factory GameDto.fromExternal(ex.Game game) {
     final faker = Faker();
     return GameDto(
       id: faker.randomGenerator.string(28, min: 28),
@@ -66,7 +66,7 @@ class GameDto with _$GameDto {
       startingPoints: game.config.startingPoints,
       players: game.players.map(
         (player) {
-          if (player is dart.DartBot) {
+          if (player is ex.DartBot) {
             return DartBotDto.fromExternal(player) as PlayerDto;
           } else {
             return OfflinePlayerDto.fromExternal(player) as PlayerDto;
