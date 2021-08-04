@@ -4,7 +4,6 @@ import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/type.dart';
-import 'package:dart_counter/infrastructure/play/player_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';

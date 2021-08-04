@@ -2,7 +2,6 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dartz/dartz.dart';
 
-import 'game.dart';
 import 'mode.dart';
 import 'play_failure.dart';
 import 'throw.dart';
