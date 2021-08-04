@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/domain/play/player_snapshot.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
@@ -10,7 +11,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class OnlinePlayerItem extends StatelessWidget {
-  final OnlinePlayer player;
+  final OnlinePlayerSnapshot player;
 
   const OnlinePlayerItem({
     required Key key,
@@ -21,7 +22,7 @@ class OnlinePlayerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final index = state.game.players.indexOf(player as Player);
+        final index = state.game.players.indexOf(player);
       
         late final bool isDismissible;
         if (state.game.players.asList().any((player) => player is DartBot)) {

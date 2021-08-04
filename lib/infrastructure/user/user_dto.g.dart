@@ -15,10 +15,10 @@ _$_UserDto _$_$_UserDtoFromJson(Map<String, dynamic> json) {
     careerStatsOffline: CareerStatsDto.fromJson(
         json['careerStatsOffline'] as Map<String, dynamic>),
     gameHistoryOnline: (json['gameHistoryOnline'] as List<dynamic>)
-        .map((e) => GameDto.fromJson(e as Map<String, dynamic>))
+        .map((e) => OnlineGameDto.fromJson(e as Map<String, dynamic>))
         .toList(),
     gameHistoryOffline: (json['gameHistoryOffline'] as List<dynamic>)
-        .map((e) => GameDto.fromJson(e as Map<String, dynamic>))
+        .map((e) => OfflineGameDto.fromJson(e as Map<String, dynamic>))
         .toList(),
     createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
   );

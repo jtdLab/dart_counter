@@ -1,8 +1,14 @@
 import 'package:dart_client/dart_client.dart' as dc
     show GameSnapshot, Status, Mode, Type;
+import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/mode.dart';
+import 'package:dart_counter/domain/play/status.dart';
+import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/infrastructure/play/player_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
+
 import 'player_snapshot_dto.dart';
 
 part 'game_snapshot_dto.freezed.dart';
@@ -54,6 +60,35 @@ class OfflineGameSnapshotDto
           }
         },
       ).toList(),
+    );
+  }
+
+  OfflineGameSnapshot toDomain() {
+    return OfflineGameSnapshot(
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
+      size: size,
+      type: type == 'legs' ? Type.legs : Type.sets,
+      startingPoints: startingPoints,
+      players: KtList.from(
+        players.map(
+          (player) {
+            if (player is OfflinePlayerSnapshotDto) {
+              return player.toDomain();
+            } else if (player is DartBotSnapshotDto) {
+              return player.toDomain();
+            } else {
+              throw Error(); // TODO
+            }
+          },
+        ),
+      ),
     );
   }
 }

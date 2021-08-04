@@ -14,61 +14,64 @@ import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:social_client/social_client.dart' as _i3;
 
-import 'application/core/auth/auth_bloc.dart' as _i31;
-import 'application/core/friends/friends_bloc.dart' as _i37;
-import 'application/core/game/game_bloc.dart' as _i38;
-import 'application/core/invitations/invitations_bloc.dart' as _i24;
-import 'application/core/user/user_bloc.dart' as _i30;
-import 'application/create_game/create_game_bloc.dart' as _i50;
-import 'application/friends/search_user/search_user_bloc.dart' as _i26;
-import 'application/game_history/game_history_bloc.dart' as _i39;
-import 'application/home/home_bloc.dart' as _i40;
+import 'application/core/auth/auth_bloc.dart' as _i35;
+import 'application/core/friends/friends_bloc.dart' as _i42;
+import 'application/core/invitations/invitations_bloc.dart' as _i26;
+import 'application/core/play/play_bloc.dart' as _i28;
+import 'application/core/user/user_bloc.dart' as _i34;
+import 'application/create_game/create_game_bloc.dart' as _i39;
+import 'application/friends/search_user/search_user_bloc.dart' as _i30;
+import 'application/game_history/game_history_bloc.dart' as _i43;
+import 'application/home/home_bloc.dart' as _i44;
 import 'application/in_game/checkout_details/checkout_details_bloc.dart'
-    as _i49;
+    as _i53;
 import 'application/in_game/detailed_input_area/detailed_input_area_bloc.dart'
-    as _i51;
-import 'application/in_game/in_game_bloc.dart' as _i42;
+    as _i54;
+import 'application/in_game/in_game_bloc.dart' as _i47;
 import 'application/in_game/optical_input_area/optical_input_area_bloc.dart'
-    as _i43;
-import 'application/in_game/speech_input_area/speech_input_area_bloc.dart'
-    as _i47;
-import 'application/in_game/standard_input_area/standard_input_area_bloc.dart'
     as _i48;
-import 'application/in_game/stats/stats_bloc.dart' as _i29;
-import 'application/invitations/invitations_bloc.dart' as _i25;
-import 'application/post_game/post_game_bloc.dart' as _i44;
-import 'application/profile/profile_bloc.dart' as _i45;
-import 'application/settings/change_email/change_email_bloc.dart' as _i32;
-import 'application/settings/change_password/change_password_bloc.dart' as _i33;
-import 'application/settings/change_username/change_username_bloc.dart' as _i34;
+import 'application/in_game/speech_input_area/speech_input_area_bloc.dart'
+    as _i51;
+import 'application/in_game/standard_input_area/standard_input_area_bloc.dart'
+    as _i52;
+import 'application/in_game/stats/stats_bloc.dart' as _i33;
+import 'application/invitations/invitations_bloc.dart' as _i27;
+import 'application/post_game/post_game_bloc.dart' as _i29;
+import 'application/profile/profile_bloc.dart' as _i49;
+import 'application/settings/change_email/change_email_bloc.dart' as _i36;
+import 'application/settings/change_password/change_password_bloc.dart' as _i37;
+import 'application/settings/change_username/change_username_bloc.dart' as _i38;
 import 'application/settings/edit_profile_image/edit_profile_image_bloc.dart'
-    as _i35;
-import 'application/settings/settings_bloc.dart' as _i46;
-import 'application/sign_in/forgot_password/forgot_password_bloc.dart' as _i36;
-import 'application/sign_in/sign_in_bloc.dart' as _i27;
-import 'application/sign_up/sign_up_bloc.dart' as _i28;
+    as _i40;
+import 'application/settings/settings_bloc.dart' as _i50;
+import 'application/sign_in/forgot_password/forgot_password_bloc.dart' as _i41;
+import 'application/sign_in/sign_in_bloc.dart' as _i31;
+import 'application/sign_up/sign_up_bloc.dart' as _i32;
 import 'domain/auth/i_auth_facade.dart' as _i9;
 import 'domain/friend/i_friend_facade.dart' as _i13;
 import 'domain/game_invitation/i_game_invitation_facade.dart' as _i16;
-import 'domain/play/i_play_facade.dart' as _i19;
-import 'domain/user/i_user_facade.dart' as _i21;
-import 'infrastructure/auth/firebase_auth_facade.dart' as _i11;
-import 'infrastructure/auth/mocked_auth_facade.dart' as _i10;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i53;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i52;
+import 'domain/play/i_play_offline_facade.dart' as _i19;
+import 'domain/play/i_play_online_facade.dart' as _i21;
+import 'domain/user/i_user_facade.dart' as _i23;
+import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
+import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i56;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i55;
 import 'infrastructure/friend/friend_facade.dart' as _i15;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i14;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i18;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
     as _i17;
-import 'infrastructure/play/mocked_play_faced.dart' as _i41;
-import 'infrastructure/play/play_facade.dart' as _i20;
-import 'infrastructure/user/mocked_user_facade.dart' as _i23;
-import 'infrastructure/user/user_facade.dart' as _i22;
+import 'infrastructure/play/mocked_play_offline_facade.dart' as _i45;
+import 'infrastructure/play/mocked_play_online_facade.dart' as _i46;
+import 'infrastructure/play/play_offline_facade.dart' as _i20;
+import 'infrastructure/play/play_online_facade.dart' as _i22;
+import 'infrastructure/user/mocked_user_facade.dart' as _i24;
+import 'infrastructure/user/user_facade.dart' as _i25;
 
-const String _dev = 'dev';
 const String _test = 'test';
 const String _prod = 'prod';
+const String _dev = 'dev';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -89,12 +92,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i8.GoogleSignIn>(
       () => fireBaseInjectableModule.googleSignIn);
-  gh.lazySingleton<_i9.IAuthFacade>(() => _i10.MockedAuthFacade(),
-      registerFor: {_dev});
   gh.lazySingleton<_i9.IAuthFacade>(
-      () => _i11.FirebaseAuthFacade(get<_i4.FirebaseAuth>(),
+      () => _i10.FirebaseAuthFacade(get<_i4.FirebaseAuth>(),
           get<_i8.GoogleSignIn>(), get<_i5.FirebaseFirestore>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i9.IAuthFacade>(() => _i11.MockedAuthFacade(),
+      registerFor: {_dev});
   gh.lazySingleton<_i12.IDartClient>(() => jtdInjectableModule.dartClient);
   gh.lazySingleton<_i13.IFriendFacade>(() => _i14.MockedFriendFacade(),
       registerFor: {_dev});
@@ -108,80 +111,84 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i16.IGameInvitationFacade>(
       () => _i18.GameInvitationFacade(get<_i5.FirebaseFirestore>()),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i19.IPlayFacade>(
-      () => _i20.PlayFacade(get<_i12.IDartClient>()),
+  gh.lazySingleton<_i19.IPlayOfflineFacade>(() => _i20.PlayOfflineFacade(),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i21.IUserFacade>(
-      () => _i22.UserFacade(
+  gh.lazySingleton<_i21.IPlayOnlineFacade>(
+      () => _i22.PlayOnlineFacade(get<_i12.IDartClient>()),
+      registerFor: {_test, _prod});
+  gh.lazySingleton<_i23.IUserFacade>(() => _i24.MockedUserFacade(),
+      registerFor: {_dev});
+  gh.lazySingleton<_i23.IUserFacade>(
+      () => _i25.UserFacade(
           get<_i5.FirebaseFirestore>(),
           get<_i7.FirebaseStorage>(),
           get<_i9.IAuthFacade>(),
           get<_i6.FirebaseFunctions>()),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i21.IUserFacade>(() => _i23.MockedUserFacade(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i24.InvitationsBloc>(
-      () => _i24.InvitationsBloc(get<_i16.IGameInvitationFacade>()));
-  gh.factory<_i25.InvitationsBloc>(() => _i25.InvitationsBloc(
-      get<_i16.IGameInvitationFacade>(), get<_i24.InvitationsBloc>()));
-  gh.lazySingleton<_i26.SearchUserBloc>(
-      () => _i26.SearchUserBloc(get<_i13.IFriendFacade>()));
-  gh.lazySingleton<_i27.SignInBloc>(
-      () => _i27.SignInBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i28.SignUpBloc>(
-      () => _i28.SignUpBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i29.StatsBloc>(
-      () => _i29.StatsBloc(get<_i19.IPlayFacade>()));
-  gh.lazySingleton<_i30.UserBloc>(() => _i30.UserBloc(get<_i21.IUserFacade>()));
-  gh.lazySingleton<_i31.AuthBloc>(() => _i31.AuthBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i32.ChangeEmailBloc>(
-      () => _i32.ChangeEmailBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i33.ChangePasswordBloc>(
-      () => _i33.ChangePasswordBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i34.ChangeUsernameBloc>(
-      () => _i34.ChangeUsernameBloc(get<_i21.IUserFacade>()));
-  gh.lazySingleton<_i35.EditProfileImageBloc>(
-      () => _i35.EditProfileImageBloc(get<_i21.IUserFacade>()));
-  gh.lazySingleton<_i36.ForgotPasswordBloc>(
-      () => _i36.ForgotPasswordBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i37.FriendsBloc>(
-      () => _i37.FriendsBloc(get<_i13.IFriendFacade>()));
-  gh.lazySingleton<_i38.GameBloc>(() => _i38.GameBloc(get<_i19.IPlayFacade>()));
-  gh.lazySingleton<_i39.GameHistoryBloc>(
-      () => _i39.GameHistoryBloc(get<_i30.UserBloc>()));
-  gh.lazySingleton<_i40.HomeBloc>(() => _i40.HomeBloc(
+  gh.lazySingleton<_i26.InvitationsBloc>(
+      () => _i26.InvitationsBloc(get<_i16.IGameInvitationFacade>()));
+  gh.factory<_i27.InvitationsBloc>(() => _i27.InvitationsBloc(
+      get<_i16.IGameInvitationFacade>(), get<_i26.InvitationsBloc>()));
+  gh.lazySingleton<_i28.PlayBloc>(() => _i28.PlayBloc(
+      get<_i19.IPlayOfflineFacade>(), get<_i19.IPlayOfflineFacade>()));
+  gh.lazySingleton<_i29.PostGameBloc>(
+      () => _i29.PostGameBloc(get<_i28.PlayBloc>()));
+  gh.lazySingleton<_i30.SearchUserBloc>(
+      () => _i30.SearchUserBloc(get<_i13.IFriendFacade>()));
+  gh.lazySingleton<_i31.SignInBloc>(
+      () => _i31.SignInBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i32.SignUpBloc>(
+      () => _i32.SignUpBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i33.StatsBloc>(() => _i33.StatsBloc());
+  gh.lazySingleton<_i34.UserBloc>(() => _i34.UserBloc(get<_i23.IUserFacade>()));
+  gh.lazySingleton<_i35.AuthBloc>(() => _i35.AuthBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i36.ChangeEmailBloc>(
+      () => _i36.ChangeEmailBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i37.ChangePasswordBloc>(
+      () => _i37.ChangePasswordBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i38.ChangeUsernameBloc>(
+      () => _i38.ChangeUsernameBloc(get<_i23.IUserFacade>()));
+  gh.lazySingleton<_i39.CreateGameBloc>(
+      () => _i39.CreateGameBloc(get<_i28.PlayBloc>()));
+  gh.lazySingleton<_i40.EditProfileImageBloc>(
+      () => _i40.EditProfileImageBloc(get<_i23.IUserFacade>()));
+  gh.lazySingleton<_i41.ForgotPasswordBloc>(
+      () => _i41.ForgotPasswordBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i42.FriendsBloc>(
+      () => _i42.FriendsBloc(get<_i13.IFriendFacade>()));
+  gh.lazySingleton<_i43.GameHistoryBloc>(
+      () => _i43.GameHistoryBloc(get<_i34.UserBloc>()));
+  gh.lazySingleton<_i44.HomeBloc>(() => _i44.HomeBloc(
       get<_i16.IGameInvitationFacade>(),
       get<_i13.IFriendFacade>(),
-      get<_i19.IPlayFacade>(),
-      get<_i30.UserBloc>(),
-      get<_i38.GameBloc>(),
-      get<_i24.InvitationsBloc>(),
-      get<_i37.FriendsBloc>()));
-  gh.lazySingleton<_i19.IPlayFacade>(
-      () => _i41.MockedPlayFacade(get<_i21.IUserFacade>()),
+      get<_i34.UserBloc>(),
+      get<_i28.PlayBloc>(),
+      get<_i26.InvitationsBloc>(),
+      get<_i42.FriendsBloc>()));
+  gh.lazySingleton<_i19.IPlayOfflineFacade>(
+      () => _i45.MockedPlayOfflineFacade(get<_i23.IUserFacade>()),
       registerFor: {_dev});
-  gh.lazySingleton<_i42.InGameBloc>(
-      () => _i42.InGameBloc(get<_i19.IPlayFacade>(), get<_i38.GameBloc>()));
-  gh.lazySingleton<_i43.OpticalInputAreaBloc>(() => _i43.OpticalInputAreaBloc(
-      get<_i19.IPlayFacade>(), get<_i42.InGameBloc>()));
-  gh.lazySingleton<_i44.PostGameBloc>(
-      () => _i44.PostGameBloc(get<_i38.GameBloc>()));
-  gh.factory<_i45.ProfileBloc>(() => _i45.ProfileBloc(get<_i30.UserBloc>()));
-  gh.factory<_i46.SettingsBloc>(
-      () => _i46.SettingsBloc(get<_i9.IAuthFacade>(), get<_i30.UserBloc>()));
-  gh.lazySingleton<_i47.SpeechInputAreaBloc>(() => _i47.SpeechInputAreaBloc(
-      get<_i19.IPlayFacade>(), get<_i42.InGameBloc>()));
-  gh.lazySingleton<_i48.StandardInputAreaBloc>(() => _i48.StandardInputAreaBloc(
-      get<_i19.IPlayFacade>(), get<_i42.InGameBloc>()));
-  gh.lazySingleton<_i49.CheckoutDetailsBloc>(() => _i49.CheckoutDetailsBloc(
-      get<_i19.IPlayFacade>(), get<_i42.InGameBloc>()));
-  gh.lazySingleton<_i50.CreateGameBloc>(
-      () => _i50.CreateGameBloc(get<_i19.IPlayFacade>(), get<_i38.GameBloc>()));
-  gh.lazySingleton<_i51.DetailedInputAreaBloc>(() => _i51.DetailedInputAreaBloc(
-      get<_i19.IPlayFacade>(), get<_i42.InGameBloc>()));
+  gh.lazySingleton<_i21.IPlayOnlineFacade>(
+      () => _i46.MockedPlayOnlineFacade(get<_i23.IUserFacade>()),
+      registerFor: {_dev});
+  gh.lazySingleton<_i47.InGameBloc>(
+      () => _i47.InGameBloc(get<_i28.PlayBloc>()));
+  gh.lazySingleton<_i48.OpticalInputAreaBloc>(
+      () => _i48.OpticalInputAreaBloc(get<_i47.InGameBloc>()));
+  gh.factory<_i49.ProfileBloc>(() => _i49.ProfileBloc(get<_i34.UserBloc>()));
+  gh.factory<_i50.SettingsBloc>(
+      () => _i50.SettingsBloc(get<_i9.IAuthFacade>(), get<_i34.UserBloc>()));
+  gh.lazySingleton<_i51.SpeechInputAreaBloc>(
+      () => _i51.SpeechInputAreaBloc(get<_i47.InGameBloc>()));
+  gh.lazySingleton<_i52.StandardInputAreaBloc>(
+      () => _i52.StandardInputAreaBloc(get<_i47.InGameBloc>()));
+  gh.lazySingleton<_i53.CheckoutDetailsBloc>(
+      () => _i53.CheckoutDetailsBloc(get<_i47.InGameBloc>()));
+  gh.lazySingleton<_i54.DetailedInputAreaBloc>(
+      () => _i54.DetailedInputAreaBloc(get<_i47.InGameBloc>()));
   return get;
 }
 
-class _$JtdInjectableModule extends _i52.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i55.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i53.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i56.FireBaseInjectableModule {}

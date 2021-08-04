@@ -20,7 +20,7 @@ class _$FriendTearOff {
       {required UniqueId id,
       required Profile profile,
       required CareerStats careerStatsOnline,
-      required List10<Game> gameHistoryOnline}) {
+      required List10<OnlineGame> gameHistoryOnline}) {
     return _Friend(
       id: id,
       profile: profile,
@@ -38,7 +38,8 @@ mixin _$Friend {
   UniqueId get id => throw _privateConstructorUsedError;
   Profile get profile => throw _privateConstructorUsedError;
   CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
-  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List10<OnlineGame> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FriendCopyWith<Friend> get copyWith => throw _privateConstructorUsedError;
@@ -52,7 +53,7 @@ abstract class $FriendCopyWith<$Res> {
       {UniqueId id,
       Profile profile,
       CareerStats careerStatsOnline,
-      List10<Game> gameHistoryOnline});
+      List10<OnlineGame> gameHistoryOnline});
 
   $ProfileCopyWith<$Res> get profile;
   $CareerStatsCopyWith<$Res> get careerStatsOnline;
@@ -89,7 +90,7 @@ class _$FriendCopyWithImpl<$Res> implements $FriendCopyWith<$Res> {
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OnlineGame>,
     ));
   }
 
@@ -117,7 +118,7 @@ abstract class _$FriendCopyWith<$Res> implements $FriendCopyWith<$Res> {
       {UniqueId id,
       Profile profile,
       CareerStats careerStatsOnline,
-      List10<Game> gameHistoryOnline});
+      List10<OnlineGame> gameHistoryOnline});
 
   @override
   $ProfileCopyWith<$Res> get profile;
@@ -157,7 +158,7 @@ class __$FriendCopyWithImpl<$Res> extends _$FriendCopyWithImpl<$Res>
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OnlineGame>,
     ));
   }
 }
@@ -178,7 +179,7 @@ class _$_Friend implements _Friend {
   @override
   final CareerStats careerStatsOnline;
   @override
-  final List10<Game> gameHistoryOnline;
+  final List10<OnlineGame> gameHistoryOnline;
 
   @override
   String toString() {
@@ -221,7 +222,7 @@ abstract class _Friend implements Friend {
       {required UniqueId id,
       required Profile profile,
       required CareerStats careerStatsOnline,
-      required List10<Game> gameHistoryOnline}) = _$_Friend;
+      required List10<OnlineGame> gameHistoryOnline}) = _$_Friend;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -230,7 +231,8 @@ abstract class _Friend implements Friend {
   @override
   CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
   @override
-  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List10<OnlineGame> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendCopyWith<_Friend> get copyWith => throw _privateConstructorUsedError;

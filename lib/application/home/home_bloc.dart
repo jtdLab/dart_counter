@@ -4,13 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/friends/friends_bloc.dart';
-import 'package:dart_counter/application/core/game/game_bloc.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart';
 import 'package:dart_counter/application/core/user/user_bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
-import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/domain/play/i_play_facade.dart';
+import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -23,19 +22,17 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   final IGameInvitationFacade _gameInvitationFacade;
   final IFriendFacade _friendFacade;
-  final IPlayFacade _playFacade;
 
   final UserBloc _userBloc;
-  final GameBloc _gameBloc;
+  final PlayBloc _playBloc;
   final InvitationsBloc _invitationsBloc;
   final FriendsBloc _friendsBloc;
 
   HomeBloc(
     this._gameInvitationFacade,
     this._friendFacade,
-    this._playFacade,
     this._userBloc,
-    this._gameBloc,
+    this._playBloc,
     this._invitationsBloc,
     this._friendsBloc,
   ) : super(
@@ -63,7 +60,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       add(HomeEvent.userReceived(user: user));
     });
 
-    _gameSubscription = _gameBloc.stream.map((state) {
+    _gameSubscription = _playBloc.stream.map((state) {
       return state.map(
         loading: (_) => throw UnexpectedStateError(),
         success: (success) => success.game,
@@ -77,7 +74,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
   StreamSubscription<User>? _userSubscription;
 
-  StreamSubscription<Game>? _gameSubscription;
+  StreamSubscription<GameSnapshot>? _gameSubscription;
 
   StreamSubscription<int>? _unreadInvitationsSubscription;
 
@@ -88,7 +85,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     HomeEvent event,
   ) async* {
     yield* event.map(
-      gameCreated: (event) => _mapGameCreatedToState(),
       goToInvitationsPressed: (_) => _mapGoToInvitationsPressedToState(),
       goToFriendsPressed: (_) => _mapGoToFriendsPressedToState(),
       createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
@@ -102,10 +98,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     );
   }
 
-  Stream<HomeState> _mapGameCreatedToState() async* {
-    // TODO rly needed
-  }
-
   Stream<HomeState> _mapGoToInvitationsPressedToState() async* {
     _gameInvitationFacade.markGameInvitationsAsRead();
   }
@@ -115,23 +107,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
-    // TODO implement
-    // TODO load
-    final failurOrUnit = await _playFacade.createGame(online: true);
-    /**
-     * failurOrUnit.fold(
-      (failure) => throw Error(),
-      (_) => add(const HomeEvent.gameCreated()),
+    _playBloc.add(
+      const PlayEvent.gameCreated(online: true),
     );
-     */
   }
 
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
-    // TODO implement
-    final failurOrUnit = await _playFacade.createGame(online: false);
-    /**
-     * _signedInUidController.valueWrapper.value
-     */
+    _playBloc.add(
+      const PlayEvent.gameCreated(online: false),
+    );
   }
 
   Stream<HomeState> _mapUserReceivedToEvent(

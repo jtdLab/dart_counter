@@ -1,18 +1,17 @@
-import 'package:dart_counter/domain/friend/friend.dart';
-import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dartz/dartz.dart';
 
 import 'game.dart';
 import 'mode.dart';
+import 'play_failure.dart';
+import 'throw.dart';
 import 'type.dart';
 
-abstract class IPlayFacade {
-  Stream<Either<PlayFailure, Game>> watchGame();
+abstract class IPlayOfflineFacade {
+  Stream<Either<PlayFailure, OfflineGameSnapshot>> watchGame();
 
-  Future<Either<PlayFailure, Unit>> createGame({
-    required bool online,
-  });
+  Future<Either<PlayFailure, Unit>> createGame();
+
   Future<Either<PlayFailure, Unit>> reorderPlayer({
     required int oldIndex,
     required int newIndex,
@@ -48,29 +47,5 @@ abstract class IPlayFacade {
   Future<Either<PlayFailure, Unit>> updateName({
     required int index,
     required String newName,
-  });
-
-  Future<Either<PlayFailure, Unit>> joinGame({
-    required int gameCode,
-  });
-  Future<Either<PlayFailure, Unit>> inviteFriend({
-    required Friend friend,
-  });
-
-  int minDartsThrown({
-    required int points,
-    required int pointsLeft,
-  });
-  int maxDartsThrown({
-    required int points,
-    required int pointsLeft,
-  });
-  int minDartsOnDouble({
-    required int points,
-    required int pointsLeft,
-  });
-  int maxDartsOnDouble({
-    required int points,
-    required int pointsLeft,
   });
 }

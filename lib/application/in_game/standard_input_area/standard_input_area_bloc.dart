@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
-import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:dart_counter/domain/play/helpers.dart' as helpers;
 
 part 'standard_input_area_event.dart';
 part 'standard_input_area_state.dart';
@@ -16,12 +16,9 @@ part 'standard_input_area_bloc.freezed.dart';
 class StandardInputAreaBloc
     extends Bloc<StandardInputAreaEvent, StandardInputAreaState>
     with AutoResetLazySingleton {
-  final IPlayFacade _playFacade;
-
   final InGameBloc _inGameBloc;
 
   StandardInputAreaBloc(
-    this._playFacade,
     this._inGameBloc,
   ) : super(
           StandardInputAreaState.initial(),
@@ -41,27 +38,27 @@ class StandardInputAreaBloc
   }
 
   Stream<StandardInputAreaState> _mapUndoThrowPressedToState() async* {
-    await _playFacade.undoThrow();
+    _inGameBloc.add(const InGameEvent.undoThrowPressed());
   }
 
   Stream<StandardInputAreaState> _mapPerformThrowPressedToState() async* {
     final pointsLeftCurrentTurn =
         _inGameBloc.state.game.currentTurn().pointsLeft;
 
-    final minDartsThrown = _playFacade.minDartsThrown(
+    final minDartsThrown = helpers.minDartsThrown(
       points: state.input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsThrown = _playFacade.maxDartsThrown(
+    final maxDartsThrown = helpers.maxDartsThrown(
       points: state.input,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
-    final minDartsOnDouble = _playFacade.minDartsOnDouble(
+    final minDartsOnDouble = helpers.minDartsOnDouble(
       points: state.input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+    final maxDartsOnDouble = helpers.maxDartsOnDouble(
       points: state.input,
       pointsLeft: pointsLeftCurrentTurn,
     );
@@ -72,11 +69,13 @@ class StandardInputAreaBloc
     if (showCheckoutDetails) {
       _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
     } else {
-      _playFacade.performThrow(
-        t: Throw(
-          points: state.input,
-          dartsThrown: minDartsThrown,
-          dartsOnDouble: minDartsOnDouble,
+      _inGameBloc.add(
+        InGameEvent.performThrowPressed(
+          t: Throw(
+            points: state.input,
+            dartsThrown: minDartsThrown,
+            dartsOnDouble: minDartsOnDouble,
+          ),
         ),
       );
       yield state.copyWith(
@@ -95,20 +94,20 @@ class StandardInputAreaBloc
         input: pointsLeftCurrentTurn,
       );
 
-      final minDartsThrown = _playFacade.minDartsThrown(
+      final minDartsThrown = helpers.minDartsThrown(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
-      final maxDartsThrown = _playFacade.maxDartsThrown(
+      final maxDartsThrown = helpers.maxDartsThrown(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
 
-      final minDartsOnDouble = _playFacade.minDartsOnDouble(
+      final minDartsOnDouble = helpers.minDartsOnDouble(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
-      final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+      final maxDartsOnDouble = helpers.maxDartsOnDouble(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
@@ -119,11 +118,13 @@ class StandardInputAreaBloc
       if (showCheckoutDetails) {
         _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
       } else {
-        _playFacade.performThrow(
-          t: Throw(
-            points: pointsLeftCurrentTurn,
-            dartsThrown: 3,
-            dartsOnDouble: 1,
+        _inGameBloc.add(
+          InGameEvent.performThrowPressed(
+            t: Throw(
+              points: pointsLeftCurrentTurn,
+              dartsThrown: 3,
+              dartsOnDouble: 1,
+            ),
           ),
         );
         yield state.copyWith(

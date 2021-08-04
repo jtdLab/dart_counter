@@ -27,8 +27,8 @@ class _$UserDtoTearOff {
       required ProfileDto profile,
       required CareerStatsDto careerStatsOnline,
       required CareerStatsDto careerStatsOffline,
-      required List<GameDto> gameHistoryOnline,
-      required List<GameDto> gameHistoryOffline,
+      required List<OnlineGameDto> gameHistoryOnline,
+      required List<OfflineGameDto> gameHistoryOffline,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
           FieldValue? createdAt}) {
@@ -61,8 +61,10 @@ mixin _$UserDto {
   ProfileDto get profile => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
-  List<GameDto> get gameHistoryOnline => throw _privateConstructorUsedError;
-  List<GameDto> get gameHistoryOffline => throw _privateConstructorUsedError;
+  List<OnlineGameDto> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
+  List<OfflineGameDto> get gameHistoryOffline =>
+      throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
   FieldValue? get createdAt => throw _privateConstructorUsedError;
@@ -83,8 +85,8 @@ abstract class $UserDtoCopyWith<$Res> {
       ProfileDto profile,
       CareerStatsDto careerStatsOnline,
       CareerStatsDto careerStatsOffline,
-      List<GameDto> gameHistoryOnline,
-      List<GameDto> gameHistoryOffline,
+      List<OnlineGameDto> gameHistoryOnline,
+      List<OfflineGameDto> gameHistoryOffline,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
           FieldValue? createdAt});
@@ -137,11 +139,11 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OnlineGameDto>,
       gameHistoryOffline: gameHistoryOffline == freezed
           ? _value.gameHistoryOffline
           : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OfflineGameDto>,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -183,8 +185,8 @@ abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       ProfileDto profile,
       CareerStatsDto careerStatsOnline,
       CareerStatsDto careerStatsOffline,
-      List<GameDto> gameHistoryOnline,
-      List<GameDto> gameHistoryOffline,
+      List<OnlineGameDto> gameHistoryOnline,
+      List<OfflineGameDto> gameHistoryOffline,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
           FieldValue? createdAt});
@@ -241,11 +243,11 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OnlineGameDto>,
       gameHistoryOffline: gameHistoryOffline == freezed
           ? _value.gameHistoryOffline
           : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OfflineGameDto>,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -286,9 +288,9 @@ class _$_UserDto extends _UserDto {
   @override
   final CareerStatsDto careerStatsOffline;
   @override
-  final List<GameDto> gameHistoryOnline;
+  final List<OnlineGameDto> gameHistoryOnline;
   @override
-  final List<GameDto> gameHistoryOffline;
+  final List<OfflineGameDto> gameHistoryOffline;
   @override
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
@@ -359,8 +361,8 @@ abstract class _UserDto extends UserDto {
       required ProfileDto profile,
       required CareerStatsDto careerStatsOnline,
       required CareerStatsDto careerStatsOffline,
-      required List<GameDto> gameHistoryOnline,
-      required List<GameDto> gameHistoryOffline,
+      required List<OnlineGameDto> gameHistoryOnline,
+      required List<OfflineGameDto> gameHistoryOffline,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
           FieldValue? createdAt}) = _$_UserDto;
@@ -380,9 +382,11 @@ abstract class _UserDto extends UserDto {
   @override
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
   @override
-  List<GameDto> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List<OnlineGameDto> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
   @override
-  List<GameDto> get gameHistoryOffline => throw _privateConstructorUsedError;
+  List<OfflineGameDto> get gameHistoryOffline =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()

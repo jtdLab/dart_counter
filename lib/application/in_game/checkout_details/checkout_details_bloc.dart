@@ -4,10 +4,10 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
-import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:dart_counter/domain/play/helpers.dart' as helpers;
 
 part 'checkout_details_bloc.freezed.dart';
 part 'checkout_details_event.dart';
@@ -17,42 +17,39 @@ part 'checkout_details_state.dart';
 class CheckoutDetailsBloc
     extends Bloc<CheckoutDetailsEvent, CheckoutDetailsState>
     with AutoResetLazySingleton {
-  final IPlayFacade _playFacade;
-
   final InGameBloc _inGameBloc;
 
   CheckoutDetailsBloc(
-    this._playFacade,
     this._inGameBloc,
   ) : super(
           CheckoutDetailsState(
-            minDartsThrown: _playFacade.minDartsThrown(
+            minDartsThrown: helpers.minDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
               pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
             ),
-            maxDartsThrown: _playFacade.maxDartsThrown(
+            maxDartsThrown: helpers.maxDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
               pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
             ),
-            minDartsOnDouble: _playFacade.minDartsOnDouble(
+            minDartsOnDouble: helpers.minDartsOnDouble(
               points: 0, // TODO _inputRowBloc.state.input,
               pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
             ),
             maxDartsOnDouble: min(
-              _playFacade.maxDartsOnDouble(
+              helpers.maxDartsOnDouble(
                 points: 0, // TODO _inputRowBloc.state.input,
                 pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
               ),
-              _playFacade.minDartsThrown(
+              helpers.minDartsThrown(
                 points: 0, // TODO _inputRowBloc.state.input,
                 pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
               ),
             ),
-            selectedDartsThrown: _playFacade.minDartsThrown(
+            selectedDartsThrown: helpers.minDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
               pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
             ),
-            selectedDartsOnDouble: _playFacade.minDartsOnDouble(
+            selectedDartsOnDouble: helpers.minDartsOnDouble(
               points: 0, // TODO _inputRowBloc.state.input,
               pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
             ),
@@ -83,8 +80,8 @@ class CheckoutDetailsBloc
     }
 
     final newMaxDartsOnDouble = min(
-        _playFacade.maxDartsOnDouble(
-          points:  0, // TODO _inputRowBloc.state.input,
+        helpers.maxDartsOnDouble(
+          points: 0, // TODO _inputRowBloc.state.input,
           pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
         ),
         newSelectedDartsThrown);
@@ -105,12 +102,14 @@ class CheckoutDetailsBloc
   }
 
   Stream<CheckoutDetailsState> _mapConfirmPressedToState() async* {
-    _playFacade.performThrow(
-      t: Throw(
-        points:  0, // TODO _inputRowBloc.state.input,
-        dartsThrown: state.selectedDartsThrown,
-        dartsOnDouble: state.selectedDartsOnDouble,
-        //darts: null // TODO
+    _inGameBloc.add(
+      InGameEvent.performThrowPressed(
+        t: Throw(
+          points: 0, // TODO _inputRowBloc.state.input,
+          dartsThrown: state.selectedDartsThrown,
+          dartsOnDouble: state.selectedDartsOnDouble,
+          //darts: null // TODO
+        ),
       ),
     );
 

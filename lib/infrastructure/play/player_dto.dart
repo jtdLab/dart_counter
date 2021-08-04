@@ -59,6 +59,32 @@ class AbstractPlayerDtoConverter
   }
 }
 
+class AbstractOfflinePlayerDtoConverter
+    implements JsonConverter<AbstractOfflinePlayerDto, Map<String, dynamic>> {
+  const AbstractOfflinePlayerDtoConverter();
+
+  @override
+  AbstractOfflinePlayerDto fromJson(Map<String, dynamic> json) {
+    if (json['targetAverage'] != null) {
+      return DartBotDto.fromJson(json);
+    } else {
+      return OfflinePlayerDto.fromJson(json);
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJson(
+      AbstractOfflinePlayerDto abstractOfflinePlayerDto) {
+    if (abstractOfflinePlayerDto is OfflinePlayerDto) {
+      return abstractOfflinePlayerDto.toJson();
+    } else if (abstractOfflinePlayerDto is DartBotDto) {
+      return abstractOfflinePlayerDto.toJson();
+    } else {
+      throw Error(); // TODO
+    }
+  }
+}
+
 @freezed
 class OfflinePlayerDto
     with _$OfflinePlayerDto
@@ -156,108 +182,8 @@ class OfflinePlayerDto
 }
 
 @freezed
-class OnlinePlayerDto
-    with _$OnlinePlayerDto
-    implements AbstractOfflinePlayerDto {
+class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
   @Implements(AbstractOfflinePlayerDto)
-  const factory OnlinePlayerDto({
-    required String id,
-    required String name,
-    bool? isCurrentTurn,
-    bool? won,
-    int? wonSets,
-    int? wonLegsCurrentSet,
-    int? pointsLeft,
-    List<String>? finishRecommendation,
-    int? lastPoints,
-    int? dartsThrownCurrentLeg,
-    StatsDto? stats,
-    List<SetDto>? sets,
-    required String userId,
-  }) = _OnlinePlayerDto;
-
-  const OnlinePlayerDto._();
-
-  factory OnlinePlayerDto.fromDomain(OnlinePlayer player) {
-    return OnlinePlayerDto(
-      id: player.id.getOrCrash(),
-      name: player.name,
-      isCurrentTurn: player.isCurrentTurn,
-      won: player.won,
-      wonSets: player.wonSets,
-      wonLegsCurrentSet: player.wonLegsCurrentSet,
-      pointsLeft: player.pointsLeft,
-      finishRecommendation: player.finishRecommendation?.asList(),
-      lastPoints: player.lastPoints,
-      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: StatsDto.fromDomain(player.stats),
-      sets: player.sets.map((set) => SetDto.fromDomain(set)).asList(),
-      userId: player.userId.getOrCrash(),
-    );
-  }
-
-  OnlinePlayer toDomain() {
-    return OnlinePlayer(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      isCurrentTurn: isCurrentTurn ?? false,
-      won: won ?? false,
-      wonSets: wonSets,
-      wonLegsCurrentSet: wonLegsCurrentSet ?? 0,
-      pointsLeft: pointsLeft ?? 0,
-      finishRecommendation: finishRecommendation != null
-          ? KtList.from(finishRecommendation!)
-          : null,
-      lastPoints: lastPoints,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
-      stats: stats?.toDomain() ??
-          const Stats(
-            average: 0.00,
-            checkoutPercentage: 0.00,
-            firstNineAverage: 0.00,
-            fourtyPlus: 0,
-            sixtyPlus: 0,
-            eightyPlus: 0,
-            hundredPlus: 0,
-            hundredTwentyPlus: 0,
-            hundredFourtyPlus: 0,
-            hundredSixtyPlus: 0,
-            hundredEighty: 0,
-          ),
-      sets: sets != null
-          ? KtList.from(
-              sets!.map((setDto) => setDto.toDomain()),
-            )
-          : const KtList.empty(),
-      userId: UniqueId.fromUniqueString(userId),
-    );
-  }
-
-  factory OnlinePlayerDto.fromClient(dc.Player player) {
-    return OnlinePlayerDto(
-      id: player.id,
-      name: player.name,
-      isCurrentTurn: player.isCurrentTurn,
-      won: player.won,
-      wonSets: player.wonSets,
-      wonLegsCurrentSet: player.wonLegsCurrentSet,
-      pointsLeft: player.pointsLeft,
-      finishRecommendation: player.finishRecommendation?.asList(),
-      lastPoints: player.lastPoints,
-      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: player.stats == null ? null : StatsDto?.fromClient(player.stats!),
-      sets: player.sets?.map((set) => SetDto.fromClient(set)).asList(),
-      userId: player.userId,
-    );
-  }
-
-  factory OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
-      _$OnlinePlayerDtoFromJson(json);
-}
-
-@freezed
-class DartBotDto with _$DartBotDto implements AbstractPlayerDto {
-  @Implements(AbstractPlayerDto)
   const factory DartBotDto({
     required String id,
     required String name,
@@ -352,4 +278,104 @@ class DartBotDto with _$DartBotDto implements AbstractPlayerDto {
 
   factory DartBotDto.fromJson(Map<String, dynamic> json) =>
       _$DartBotDtoFromJson(json);
+}
+
+@freezed
+class OnlinePlayerDto
+    with _$OnlinePlayerDto
+    implements AbstractPlayerDto {
+  @Implements(AbstractPlayerDto)
+  const factory OnlinePlayerDto({
+    required String id,
+    required String name,
+    bool? isCurrentTurn,
+    bool? won,
+    int? wonSets,
+    int? wonLegsCurrentSet,
+    int? pointsLeft,
+    List<String>? finishRecommendation,
+    int? lastPoints,
+    int? dartsThrownCurrentLeg,
+    StatsDto? stats,
+    List<SetDto>? sets,
+    required String userId,
+  }) = _OnlinePlayerDto;
+
+  const OnlinePlayerDto._();
+
+  factory OnlinePlayerDto.fromDomain(OnlinePlayer player) {
+    return OnlinePlayerDto(
+      id: player.id.getOrCrash(),
+      name: player.name,
+      isCurrentTurn: player.isCurrentTurn,
+      won: player.won,
+      wonSets: player.wonSets,
+      wonLegsCurrentSet: player.wonLegsCurrentSet,
+      pointsLeft: player.pointsLeft,
+      finishRecommendation: player.finishRecommendation?.asList(),
+      lastPoints: player.lastPoints,
+      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
+      stats: StatsDto.fromDomain(player.stats),
+      sets: player.sets.map((set) => SetDto.fromDomain(set)).asList(),
+      userId: player.userId.getOrCrash(),
+    );
+  }
+
+  OnlinePlayer toDomain() {
+    return OnlinePlayer(
+      id: UniqueId.fromUniqueString(id),
+      name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
+      won: won ?? false,
+      wonSets: wonSets,
+      wonLegsCurrentSet: wonLegsCurrentSet ?? 0,
+      pointsLeft: pointsLeft ?? 0,
+      finishRecommendation: finishRecommendation != null
+          ? KtList.from(finishRecommendation!)
+          : null,
+      lastPoints: lastPoints,
+      dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
+      stats: stats?.toDomain() ??
+          const Stats(
+            average: 0.00,
+            checkoutPercentage: 0.00,
+            firstNineAverage: 0.00,
+            fourtyPlus: 0,
+            sixtyPlus: 0,
+            eightyPlus: 0,
+            hundredPlus: 0,
+            hundredTwentyPlus: 0,
+            hundredFourtyPlus: 0,
+            hundredSixtyPlus: 0,
+            hundredEighty: 0,
+          ),
+      sets: sets != null
+          ? KtList.from(
+              sets!.map((setDto) => setDto.toDomain()),
+            )
+          : const KtList.empty(),
+      userId: UniqueId.fromUniqueString(userId),
+    );
+  }
+
+  factory OnlinePlayerDto.fromClient(dc.Player player) {
+    return OnlinePlayerDto(
+      id: player.id,
+      name: player.name,
+      isCurrentTurn: player.isCurrentTurn,
+      won: player.won,
+      wonSets: player.wonSets,
+      wonLegsCurrentSet: player.wonLegsCurrentSet,
+      pointsLeft: player.pointsLeft,
+      finishRecommendation: player.finishRecommendation?.asList(),
+      lastPoints: player.lastPoints,
+      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
+      stats: player.stats == null ? null : StatsDto?.fromClient(player.stats!),
+      sets: player.sets?.map((set) => SetDto.fromClient(set)).asList(),
+      userId: player.userId,
+    );
+  }
+
+  factory OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
+      _$OnlinePlayerDtoFromJson(json);
 }

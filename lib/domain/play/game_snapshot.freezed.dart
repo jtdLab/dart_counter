@@ -22,7 +22,7 @@ class _$OfflineGameSnapshotTearOff {
       required int size,
       required Type type,
       required int startingPoints,
-      required KtList<PlayerSnapshot> players}) {
+      required KtList<AbstractOfflinePlayerSnapshot> players}) {
     return _OfflineGameSnapshot(
       status: status,
       mode: mode,
@@ -44,7 +44,8 @@ mixin _$OfflineGameSnapshot {
   int get size => throw _privateConstructorUsedError;
   Type get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
+  KtList<AbstractOfflinePlayerSnapshot> get players =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OfflineGameSnapshotCopyWith<OfflineGameSnapshot> get copyWith =>
@@ -62,7 +63,7 @@ abstract class $OfflineGameSnapshotCopyWith<$Res> {
       int size,
       Type type,
       int startingPoints,
-      KtList<PlayerSnapshot> players});
+      KtList<AbstractOfflinePlayerSnapshot> players});
 }
 
 /// @nodoc
@@ -107,7 +108,7 @@ class _$OfflineGameSnapshotCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<PlayerSnapshot>,
+              as KtList<AbstractOfflinePlayerSnapshot>,
     ));
   }
 }
@@ -125,7 +126,7 @@ abstract class _$OfflineGameSnapshotCopyWith<$Res>
       int size,
       Type type,
       int startingPoints,
-      KtList<PlayerSnapshot> players});
+      KtList<AbstractOfflinePlayerSnapshot> players});
 }
 
 /// @nodoc
@@ -172,21 +173,23 @@ class __$OfflineGameSnapshotCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<PlayerSnapshot>,
+              as KtList<AbstractOfflinePlayerSnapshot>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_OfflineGameSnapshot implements _OfflineGameSnapshot {
+@Implements(GameSnapshot)
+class _$_OfflineGameSnapshot extends _OfflineGameSnapshot {
   const _$_OfflineGameSnapshot(
       {required this.status,
       required this.mode,
       required this.size,
       required this.type,
       required this.startingPoints,
-      required this.players});
+      required this.players})
+      : super._();
 
   @override
   final Status status;
@@ -199,7 +202,7 @@ class _$_OfflineGameSnapshot implements _OfflineGameSnapshot {
   @override
   final int startingPoints;
   @override
-  final KtList<PlayerSnapshot> players;
+  final KtList<AbstractOfflinePlayerSnapshot> players;
 
   @override
   String toString() {
@@ -242,14 +245,17 @@ class _$_OfflineGameSnapshot implements _OfflineGameSnapshot {
           this, _$identity);
 }
 
-abstract class _OfflineGameSnapshot implements OfflineGameSnapshot {
+abstract class _OfflineGameSnapshot extends OfflineGameSnapshot
+    implements GameSnapshot {
   const factory _OfflineGameSnapshot(
-      {required Status status,
-      required Mode mode,
-      required int size,
-      required Type type,
-      required int startingPoints,
-      required KtList<PlayerSnapshot> players}) = _$_OfflineGameSnapshot;
+          {required Status status,
+          required Mode mode,
+          required int size,
+          required Type type,
+          required int startingPoints,
+          required KtList<AbstractOfflinePlayerSnapshot> players}) =
+      _$_OfflineGameSnapshot;
+  const _OfflineGameSnapshot._() : super._();
 
   @override
   Status get status => throw _privateConstructorUsedError;
@@ -262,7 +268,8 @@ abstract class _OfflineGameSnapshot implements OfflineGameSnapshot {
   @override
   int get startingPoints => throw _privateConstructorUsedError;
   @override
-  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
+  KtList<AbstractOfflinePlayerSnapshot> get players =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameSnapshotCopyWith<_OfflineGameSnapshot> get copyWith =>
@@ -437,14 +444,16 @@ class __$OnlineGameSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnlineGameSnapshot implements _OnlineGameSnapshot {
+@Implements(GameSnapshot)
+class _$_OnlineGameSnapshot extends _OnlineGameSnapshot {
   const _$_OnlineGameSnapshot(
       {required this.status,
       required this.mode,
       required this.size,
       required this.type,
       required this.startingPoints,
-      required this.players});
+      required this.players})
+      : super._();
 
   @override
   final Status status;
@@ -499,7 +508,8 @@ class _$_OnlineGameSnapshot implements _OnlineGameSnapshot {
       __$OnlineGameSnapshotCopyWithImpl<_OnlineGameSnapshot>(this, _$identity);
 }
 
-abstract class _OnlineGameSnapshot implements OnlineGameSnapshot {
+abstract class _OnlineGameSnapshot extends OnlineGameSnapshot
+    implements GameSnapshot {
   const factory _OnlineGameSnapshot(
       {required Status status,
       required Mode mode,
@@ -507,6 +517,7 @@ abstract class _OnlineGameSnapshot implements OnlineGameSnapshot {
       required Type type,
       required int startingPoints,
       required KtList<OnlinePlayerSnapshot> players}) = _$_OnlineGameSnapshot;
+  const _OnlineGameSnapshot._() : super._();
 
   @override
   Status get status => throw _privateConstructorUsedError;

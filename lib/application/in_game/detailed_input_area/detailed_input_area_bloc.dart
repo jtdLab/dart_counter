@@ -5,11 +5,11 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/domain/play/dart.dart';
-import 'package:dart_counter/domain/play/i_play_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:dart_counter/domain/play/helpers.dart' as helpers;
 
 part 'detailed_input_area_event.dart';
 part 'detailed_input_area_state.dart';
@@ -19,12 +19,9 @@ part 'detailed_input_area_bloc.freezed.dart';
 class DetailedInputAreaBloc
     extends Bloc<DetailedInputAreaEvent, DetailedInputAreaState>
     with AutoResetLazySingleton {
-  final IPlayFacade _playFacade;
-
   final InGameBloc _inGameBloc;
 
   DetailedInputAreaBloc(
-    this._playFacade,
     this._inGameBloc,
   ) : super(
           DetailedInputAreaState.initial(),
@@ -45,7 +42,7 @@ class DetailedInputAreaBloc
   }
 
   Stream<DetailedInputAreaState> _mapUndoThrowPressedToState() async* {
-    await _playFacade.undoThrow();
+    _inGameBloc.add(const InGameEvent.undoThrowPressed());
   }
 
   Stream<DetailedInputAreaState> _mapPerformThrowPressedToState() async* {
@@ -55,20 +52,20 @@ class DetailedInputAreaBloc
     final input =
         state.darts.foldRight(0, (dart, int acc) => acc + dart.points());
 
-    final minDartsThrown = _playFacade.minDartsThrown(
+    final minDartsThrown = helpers.minDartsThrown(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsThrown = _playFacade.maxDartsThrown(
+    final maxDartsThrown = helpers.maxDartsThrown(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
-    final minDartsOnDouble = _playFacade.minDartsOnDouble(
+    final minDartsOnDouble = helpers.minDartsOnDouble(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsOnDouble = _playFacade.maxDartsOnDouble(
+    final maxDartsOnDouble = helpers.maxDartsOnDouble(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
@@ -79,12 +76,14 @@ class DetailedInputAreaBloc
     if (showCheckoutDetails) {
       _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
     } else {
-      _playFacade.performThrow(
-        t: Throw(
-          points: input,
-          dartsThrown: minDartsThrown,
-          dartsOnDouble: minDartsOnDouble,
-          darts: state.darts,
+      _inGameBloc.add(
+        InGameEvent.performThrowPressed(
+          t: Throw(
+            points: input,
+            dartsThrown: minDartsThrown,
+            dartsOnDouble: minDartsOnDouble,
+            darts: state.darts,
+          ),
         ),
       );
       yield state.copyWith(

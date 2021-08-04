@@ -4,7 +4,7 @@ part of 'home_bloc.dart';
 class HomeState with _$HomeState {
   const factory HomeState({
     required User user,
-    Game? game,
+    GameSnapshot? game,
     required int unreadInvitations,
     required int unreadFriendRequests,
   }) = _HomeState;

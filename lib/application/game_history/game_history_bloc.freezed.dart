@@ -203,8 +203,6 @@ abstract class $GameSelectedCopyWith<$Res> {
           GameSelected value, $Res Function(GameSelected) then) =
       _$GameSelectedCopyWithImpl<$Res>;
   $Res call({Game game});
-
-  $GameCopyWith<$Res> get game;
 }
 
 /// @nodoc
@@ -228,13 +226,6 @@ class _$GameSelectedCopyWithImpl<$Res>
           : game // ignore: cast_nullable_to_non_nullable
               as Game,
     ));
-  }
-
-  @override
-  $GameCopyWith<$Res> get game {
-    return $GameCopyWith<$Res>(_value.game, (value) {
-      return _then(_value.copyWith(game: value));
-    });
   }
 }
 
@@ -354,8 +345,6 @@ abstract class $GameHistoryStateCopyWith<$Res> {
           GameHistoryState value, $Res Function(GameHistoryState) then) =
       _$GameHistoryStateCopyWithImpl<$Res>;
   $Res call({List10<Game> gameHistory, Game? selectedGame});
-
-  $GameCopyWith<$Res>? get selectedGame;
 }
 
 /// @nodoc
@@ -383,17 +372,6 @@ class _$GameHistoryStateCopyWithImpl<$Res>
               as Game?,
     ));
   }
-
-  @override
-  $GameCopyWith<$Res>? get selectedGame {
-    if (_value.selectedGame == null) {
-      return null;
-    }
-
-    return $GameCopyWith<$Res>(_value.selectedGame!, (value) {
-      return _then(_value.copyWith(selectedGame: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -404,9 +382,6 @@ abstract class _$GameHistoryStateCopyWith<$Res>
       __$GameHistoryStateCopyWithImpl<$Res>;
   @override
   $Res call({List10<Game> gameHistory, Game? selectedGame});
-
-  @override
-  $GameCopyWith<$Res>? get selectedGame;
 }
 
 /// @nodoc

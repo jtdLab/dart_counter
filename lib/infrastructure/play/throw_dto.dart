@@ -62,7 +62,24 @@ class ThrowDto with _$ThrowDto {
       points: points,
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
-      darts: KtList.from(darts?.map((dart) => dart.toDomain()) ?? []),
+      darts: darts == null
+          ? null
+          : KtList.from(
+              darts!.map((dart) => dart.toDomain()),
+            ),
+    );
+  }
+
+  dc.Throw toClient() {
+    return dc.Throw(
+      points: points,
+      dartsThrown: dartsThrown,
+      dartsOnDouble: dartsOnDouble,
+      darts: darts == null
+          ? null
+          : KtList.from(
+              darts!.map((dart) => dart.toClient()),
+            ),
     );
   }
 

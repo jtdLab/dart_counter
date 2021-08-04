@@ -2,7 +2,6 @@ part of 'home_bloc.dart';
 
 @freezed
 class HomeEvent with _$HomeEvent {
-  const factory HomeEvent.gameCreated() = GameCreated;
   const factory HomeEvent.goToInvitationsPressed() = GoToInvitationsPressed;
   const factory HomeEvent.goToFriendsPressed() = GoToFriendsPressed;
   const factory HomeEvent.createOnlineGamePressed() = CreateOnlineGamePressed;
@@ -11,7 +10,7 @@ class HomeEvent with _$HomeEvent {
     required User user,
   }) = UserReceived;
   const factory HomeEvent.gameReceived({
-    required Game game,
+    required GameSnapshot game,
   }) = GameReceived;
   const factory HomeEvent.unreadInvitationsReceived({
     required int unreadInvitations,

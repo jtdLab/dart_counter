@@ -24,7 +24,7 @@ class _$FriendDtoTearOff {
       {@JsonKey(ignore: true) String? id,
       required ProfileDto profile,
       required CareerStatsDto careerStatsOnline,
-      required List<GameDto> gameHistoryOnline}) {
+      required List<OnlineGameDto> gameHistoryOnline}) {
     return _FriendDto(
       id: id,
       profile: profile,
@@ -48,7 +48,8 @@ mixin _$FriendDto {
       throw _privateConstructorUsedError; // TODO ignore and nullable fix
   ProfileDto get profile => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
-  List<GameDto> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List<OnlineGameDto> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +65,7 @@ abstract class $FriendDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String? id,
       ProfileDto profile,
       CareerStatsDto careerStatsOnline,
-      List<GameDto> gameHistoryOnline});
+      List<OnlineGameDto> gameHistoryOnline});
 
   $ProfileDtoCopyWith<$Res> get profile;
   $CareerStatsDtoCopyWith<$Res> get careerStatsOnline;
@@ -101,7 +102,7 @@ class _$FriendDtoCopyWithImpl<$Res> implements $FriendDtoCopyWith<$Res> {
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OnlineGameDto>,
     ));
   }
 
@@ -130,7 +131,7 @@ abstract class _$FriendDtoCopyWith<$Res> implements $FriendDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String? id,
       ProfileDto profile,
       CareerStatsDto careerStatsOnline,
-      List<GameDto> gameHistoryOnline});
+      List<OnlineGameDto> gameHistoryOnline});
 
   @override
   $ProfileDtoCopyWith<$Res> get profile;
@@ -170,7 +171,7 @@ class __$FriendDtoCopyWithImpl<$Res> extends _$FriendDtoCopyWithImpl<$Res>
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<GameDto>,
+              as List<OnlineGameDto>,
     ));
   }
 }
@@ -196,7 +197,7 @@ class _$_FriendDto extends _FriendDto {
   @override
   final CareerStatsDto careerStatsOnline;
   @override
-  final List<GameDto> gameHistoryOnline;
+  final List<OnlineGameDto> gameHistoryOnline;
 
   @override
   String toString() {
@@ -244,7 +245,7 @@ abstract class _FriendDto extends FriendDto {
       {@JsonKey(ignore: true) String? id,
       required ProfileDto profile,
       required CareerStatsDto careerStatsOnline,
-      required List<GameDto> gameHistoryOnline}) = _$_FriendDto;
+      required List<OnlineGameDto> gameHistoryOnline}) = _$_FriendDto;
   const _FriendDto._() : super._();
 
   factory _FriendDto.fromJson(Map<String, dynamic> json) =
@@ -258,7 +259,8 @@ abstract class _FriendDto extends FriendDto {
   @override
   CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
   @override
-  List<GameDto> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List<OnlineGameDto> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendDtoCopyWith<_FriendDto> get copyWith =>

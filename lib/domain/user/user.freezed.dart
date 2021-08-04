@@ -22,8 +22,8 @@ class _$UserTearOff {
       required Profile profile,
       required CareerStats careerStatsOnline,
       required CareerStats careerStatsOffline,
-      required List10<Game> gameHistoryOnline,
-      required List10<Game> gameHistoryOffline}) {
+      required List10<OnlineGame> gameHistoryOnline,
+      required List10<OfflineGame> gameHistoryOffline}) {
     return _User(
       id: id,
       emailAddress: emailAddress,
@@ -46,8 +46,10 @@ mixin _$User {
   Profile get profile => throw _privateConstructorUsedError;
   CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
   CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
-  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
-  List10<Game> get gameHistoryOffline => throw _privateConstructorUsedError;
+  List10<OnlineGame> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
+  List10<OfflineGame> get gameHistoryOffline =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -63,8 +65,8 @@ abstract class $UserCopyWith<$Res> {
       Profile profile,
       CareerStats careerStatsOnline,
       CareerStats careerStatsOffline,
-      List10<Game> gameHistoryOnline,
-      List10<Game> gameHistoryOffline});
+      List10<OnlineGame> gameHistoryOnline,
+      List10<OfflineGame> gameHistoryOffline});
 
   $ProfileCopyWith<$Res> get profile;
   $CareerStatsCopyWith<$Res> get careerStatsOnline;
@@ -113,11 +115,11 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OnlineGame>,
       gameHistoryOffline: gameHistoryOffline == freezed
           ? _value.gameHistoryOffline
           : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OfflineGame>,
     ));
   }
 
@@ -154,8 +156,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       Profile profile,
       CareerStats careerStatsOnline,
       CareerStats careerStatsOffline,
-      List10<Game> gameHistoryOnline,
-      List10<Game> gameHistoryOffline});
+      List10<OnlineGame> gameHistoryOnline,
+      List10<OfflineGame> gameHistoryOffline});
 
   @override
   $ProfileCopyWith<$Res> get profile;
@@ -208,11 +210,11 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       gameHistoryOnline: gameHistoryOnline == freezed
           ? _value.gameHistoryOnline
           : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OnlineGame>,
       gameHistoryOffline: gameHistoryOffline == freezed
           ? _value.gameHistoryOffline
           : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<OfflineGame>,
     ));
   }
 }
@@ -240,9 +242,9 @@ class _$_User implements _User {
   @override
   final CareerStats careerStatsOffline;
   @override
-  final List10<Game> gameHistoryOnline;
+  final List10<OnlineGame> gameHistoryOnline;
   @override
-  final List10<Game> gameHistoryOffline;
+  final List10<OfflineGame> gameHistoryOffline;
 
   @override
   String toString() {
@@ -299,8 +301,8 @@ abstract class _User implements User {
       required Profile profile,
       required CareerStats careerStatsOnline,
       required CareerStats careerStatsOffline,
-      required List10<Game> gameHistoryOnline,
-      required List10<Game> gameHistoryOffline}) = _$_User;
+      required List10<OnlineGame> gameHistoryOnline,
+      required List10<OfflineGame> gameHistoryOffline}) = _$_User;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -313,9 +315,11 @@ abstract class _User implements User {
   @override
   CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
   @override
-  List10<Game> get gameHistoryOnline => throw _privateConstructorUsedError;
+  List10<OnlineGame> get gameHistoryOnline =>
+      throw _privateConstructorUsedError;
   @override
-  List10<Game> get gameHistoryOffline => throw _privateConstructorUsedError;
+  List10<OfflineGame> get gameHistoryOffline =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

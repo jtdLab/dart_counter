@@ -21,8 +21,8 @@ class UserDto with _$UserDto {
     required ProfileDto profile,
     required CareerStatsDto careerStatsOnline,
     required CareerStatsDto careerStatsOffline,
-    required List<GameDto> gameHistoryOnline,
-    required List<GameDto> gameHistoryOffline,
+    required List<OnlineGameDto> gameHistoryOnline,
+    required List<OfflineGameDto> gameHistoryOffline,
     @JsonKey(includeIfNull: false)
     @ServerTimestampConverter()
         FieldValue? createdAt,
@@ -39,11 +39,11 @@ class UserDto with _$UserDto {
       careerStatsOffline: CareerStatsDto.fromDomain(user.careerStatsOffline),
       gameHistoryOnline: user.gameHistoryOnline
           .getOrCrash()
-          .map((game) => GameDto.fromDomain(game))
+          .map((game) => OnlineGameDto.fromDomain(game))
           .asList(),
       gameHistoryOffline: user.gameHistoryOffline
           .getOrCrash()
-          .map((game) => GameDto.fromDomain(game))
+          .map((game) => OfflineGameDto.fromDomain(game))
           .asList(),
       createdAt: FieldValue.serverTimestamp(),
     );
@@ -73,12 +73,4 @@ class UserDto with _$UserDto {
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
-
-  /**
-   * factory UserDto.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data();
-    if (data == null) throw Error(); // TODO specify error
-    return UserDto.fromJson(data).copyWith(id: doc.id);
-  }
-   */
 }

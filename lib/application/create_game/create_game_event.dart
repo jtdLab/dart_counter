@@ -28,16 +28,12 @@ class CreateGameEvent with _$CreateGameEvent {
     required Type newType,
   }) = TypeUpdated;
   const factory CreateGameEvent.gameStarted() = GameStarted;
-  const factory CreateGameEvent.throwPerformed({
-    required Throw t,
-  }) = ThrowPerformed;
-  const factory CreateGameEvent.throwUndone() = ThrowUndone;
   const factory CreateGameEvent.dartBotAdded() = DartBotAdded;
   const factory CreateGameEvent.dartBotRemoved() = DartBotRemoved;
   const factory CreateGameEvent.dartBotTargetAverageUpdated({
     required int newTargetAverage,
   }) = DartBotTargetAverageUpdated;
   const factory CreateGameEvent.gameReceived({
-    required Game game,
+    required GameSnapshot game,
   }) = GameReceived;
 }

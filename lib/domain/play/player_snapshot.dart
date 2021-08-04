@@ -6,7 +6,7 @@ import 'package:kt_dart/kt.dart';
 
 part 'player_snapshot.freezed.dart';
 
-abstract class PlayerSnapshot {
+abstract class AbstractPlayerSnapshot {
   UniqueId get id;
   String get name;
   bool get isCurrentTurn;
@@ -20,11 +20,13 @@ abstract class PlayerSnapshot {
   Stats get stats;
 }
 
+abstract class AbstractOfflinePlayerSnapshot extends AbstractPlayerSnapshot {}
+
 @freezed
 class OfflinePlayerSnapshot
     with _$OfflinePlayerSnapshot
-    implements PlayerSnapshot {
-  @Implements(PlayerSnapshot)
+    implements AbstractOfflinePlayerSnapshot {
+  @Implements(AbstractOfflinePlayerSnapshot)
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
     required String name,
@@ -64,10 +66,63 @@ class OfflinePlayerSnapshot
 }
 
 @freezed
+class DartBotSnapshot
+    with _$DartBotSnapshot
+    implements AbstractOfflinePlayerSnapshot {
+  @Implements(AbstractOfflinePlayerSnapshot)
+  const factory DartBotSnapshot({
+    required UniqueId id,
+    required String name,
+    @Default(false)
+        bool isCurrentTurn,
+    @Default(false)
+        bool won,
+    int? wonSets,
+    @Default(0)
+        int wonLegsCurrentSet,
+    @Default(0)
+        int pointsLeft,
+    KtList<String>? finishRecommendation,
+    int? lastPoints,
+    @Default(0)
+        int dartsThrownCurrentLeg,
+    @Default(
+      Stats(),
+    )
+        Stats stats,
+    @Default(1)
+        int targetAverage,
+  }) = _DartBotSnapshot;
+
+  factory DartBotSnapshot.dummy() => DartBotSnapshot(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        name: faker.randomGenerator.element([
+          'David88',
+          'mrjosch',
+          'SebiAbi69',
+          'HoeHoe',
+          'Soldier48',
+          'Needs',
+          'egesit',
+          'AnisAbi',
+        ]),
+        isCurrentTurn: true,
+        won: false,
+        wonLegsCurrentSet: 0,
+        pointsLeft: 261,
+        lastPoints: 120,
+        dartsThrownCurrentLeg: 6,
+        stats: Stats.dummy(),
+      );
+}
+
+@freezed
 class OnlinePlayerSnapshot
     with _$OnlinePlayerSnapshot
-    implements PlayerSnapshot {
-  @Implements(PlayerSnapshot)
+    implements AbstractPlayerSnapshot {
+  @Implements(AbstractPlayerSnapshot)
   const factory OnlinePlayerSnapshot({
     required UniqueId id,
     required String name,
@@ -115,56 +170,5 @@ class OnlinePlayerSnapshot
         userId: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
-      );
-}
-
-@freezed
-class DartBotSnapshot with _$DartBotSnapshot implements PlayerSnapshot {
-  @Implements(PlayerSnapshot)
-  const factory DartBotSnapshot({
-    required UniqueId id,
-    required String name,
-    @Default(false)
-        bool isCurrentTurn,
-    @Default(false)
-        bool won,
-    int? wonSets,
-    @Default(0)
-        int wonLegsCurrentSet,
-    @Default(0)
-        int pointsLeft,
-    KtList<String>? finishRecommendation,
-    int? lastPoints,
-    @Default(0)
-        int dartsThrownCurrentLeg,
-    @Default(
-      Stats(),
-    )
-        Stats stats,
-    @Default(1)
-        int targetAverage,
-  }) = _DartBotSnapshot;
-
-  factory DartBotSnapshot.dummy() => DartBotSnapshot(
-        id: UniqueId.fromUniqueString(
-          faker.randomGenerator.string(28, min: 28),
-        ),
-        name: faker.randomGenerator.element([
-          'David88',
-          'mrjosch',
-          'SebiAbi69',
-          'HoeHoe',
-          'Soldier48',
-          'Needs',
-          'egesit',
-          'AnisAbi',
-        ]),
-        isCurrentTurn: true,
-        won: false,
-        wonLegsCurrentSet: 0,
-        pointsLeft: 261,
-        lastPoints: 120,
-        dartsThrownCurrentLeg: 6,
-        stats: Stats.dummy(),
       );
 }

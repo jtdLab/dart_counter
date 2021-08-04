@@ -7,7 +7,7 @@ import 'package:kt_dart/kt.dart';
 
 part 'player.freezed.dart';
 
-abstract class Player {
+abstract class AbstractPlayer {
   UniqueId get id;
   String get name;
   bool get isCurrentTurn;
@@ -22,9 +22,11 @@ abstract class Player {
   KtList<Set> get sets;
 }
 
+abstract class AbstractOfflinePlayer extends AbstractPlayer {}
+
 @freezed
-class OfflinePlayer with _$OfflinePlayer implements Player {
-  @Implements(Player)
+class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
+  @Implements(AbstractOfflinePlayer)
   const factory OfflinePlayer({
     required UniqueId id,
     required String name,
@@ -76,8 +78,63 @@ class OfflinePlayer with _$OfflinePlayer implements Player {
 }
 
 @freezed
-class OnlinePlayer with _$OnlinePlayer implements Player {
-  @Implements(Player)
+class DartBot with _$DartBot implements AbstractOfflinePlayer {
+  @Implements(AbstractOfflinePlayer)
+  const factory DartBot({
+    required UniqueId id,
+    required String name,
+    @Default(false)
+        bool isCurrentTurn,
+    @Default(false)
+        bool won,
+    int? wonSets,
+    @Default(0)
+        int wonLegsCurrentSet,
+    @Default(0)
+        int pointsLeft,
+    KtList<String>? finishRecommendation,
+    int? lastPoints,
+    @Default(0)
+        int dartsThrownCurrentLeg,
+    @Default(
+      Stats(),
+    )
+        Stats stats,
+    required KtList<Set> sets,
+    @Default(0)
+        int targetAverage,
+  }) = _DartBot;
+
+  factory DartBot.dummy() => DartBot(
+        id: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        name: faker.randomGenerator.element([
+          'David88',
+          'mrjosch',
+          'SebiAbi69',
+          'HoeHoe',
+          'Soldier48',
+          'Needs',
+          'egesit',
+          'AnisAbi',
+        ]),
+        isCurrentTurn: true,
+        won: false,
+        wonLegsCurrentSet: 0,
+        pointsLeft: 261,
+        lastPoints: 120,
+        dartsThrownCurrentLeg: 6,
+        stats: Stats.dummy(),
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
+      );
+}
+
+@freezed
+class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
+  @Implements(AbstractPlayer)
   const factory OnlinePlayer({
     required UniqueId id,
     required String name,
@@ -128,61 +185,6 @@ class OnlinePlayer with _$OnlinePlayer implements Player {
         ),
         userId: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
-        ),
-      );
-}
-
-@freezed
-class DartBot with _$DartBot implements Player {
-  @Implements(Player)
-  const factory DartBot({
-    required UniqueId id,
-    required String name,
-    @Default(false)
-        bool isCurrentTurn,
-    @Default(false)
-        bool won,
-    int? wonSets,
-    @Default(0)
-        int wonLegsCurrentSet,
-    @Default(0)
-        int pointsLeft,
-    KtList<String>? finishRecommendation,
-    int? lastPoints,
-    @Default(0)
-        int dartsThrownCurrentLeg,
-    @Default(
-      Stats(),
-    )
-        Stats stats,
-    required KtList<Set> sets,
-    @Default(0)
-        int targetAverage,
-  }) = _DartBot;
-
-  factory DartBot.dummy() => DartBot(
-        id: UniqueId.fromUniqueString(
-          faker.randomGenerator.string(28, min: 28),
-        ),
-        name: faker.randomGenerator.element([
-          'David88',
-          'mrjosch',
-          'SebiAbi69',
-          'HoeHoe',
-          'Soldier48',
-          'Needs',
-          'egesit',
-          'AnisAbi',
-        ]),
-        isCurrentTurn: true,
-        won: false,
-        wonLegsCurrentSet: 0,
-        pointsLeft: 261,
-        lastPoints: 120,
-        dartsThrownCurrentLeg: 6,
-        stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
         ),
       );
 }

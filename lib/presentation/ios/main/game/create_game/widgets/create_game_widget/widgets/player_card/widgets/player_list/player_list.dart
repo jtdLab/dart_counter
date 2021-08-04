@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/play/player.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
+import 'package:dart_counter/domain/play/player_snapshot.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
@@ -26,19 +27,19 @@ class PlayerList extends StatelessWidget {
             itemBuilder: (context, index) {
               final player = players[index];
               // TODO bug where multiple widgets with same global key
-              if (player is DartBot) {
+              if (player is DartBotSnapshot) {
                 return DartBotItem(
                   key: ValueKey(player),
                 );
-              } else if (player is OfflinePlayer) {
+              } else if (player is OfflinePlayerSnapshot) {
                 return OfflinePlayerItem(
                   key: ValueKey(player),
-                  player: player as OfflinePlayer,
+                  player: player,
                 );
               } else {
                 return OnlinePlayerItem(
                   key: ValueKey(player),
-                  player: player as OnlinePlayer,
+                  player: player as OnlinePlayerSnapshot,
                 );
               }
             },

@@ -1,11 +1,11 @@
-import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 import 'profile_image_position.dart';
 
 class PlayerItem extends StatelessWidget {
   final ProfileImagePosition profileImagePosition;
-  final Player player;
+  final AbstractPlayerSnapshot player;
 
   const PlayerItem({
     Key? key,

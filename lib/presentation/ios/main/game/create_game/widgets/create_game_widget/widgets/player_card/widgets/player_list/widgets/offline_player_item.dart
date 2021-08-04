@@ -1,17 +1,17 @@
 import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/domain/play/player_snapshot.dart';
 
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
-
-import 'package:dart_counter/presentation/ios/main/game/create_game/modals/modals.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
+import 'package:dart_counter/presentation/ios/main/game/create_game/modals/modals.dart';
 
 class OfflinePlayerItem extends StatelessWidget {
-  final OfflinePlayer player;
+  final OfflinePlayerSnapshot player;
 
   const OfflinePlayerItem({
     required Key key,
@@ -22,7 +22,7 @@ class OfflinePlayerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final index = state.game.players.indexOf(player as Player);
+        final index = state.game.players.indexOf(player);
         late final bool isDismissible;
         if (state.game.players.asList().any((player) => player is DartBot)) {
           isDismissible = state.game.players.size > 2;

@@ -70,6 +70,17 @@ class DartDto with _$DartDto {
     );
   }
 
+  dc.Dart toClient() {
+    return dc.Dart(
+      type: type == 'single'
+          ? dc.DartType.s
+          : type == 'double'
+              ? dc.DartType.d
+              : dc.DartType.t,
+      value: value,
+    );
+  }
+
   factory DartDto.fromJson(Map<String, dynamic> json) =>
       _$DartDtoFromJson(json);
 }

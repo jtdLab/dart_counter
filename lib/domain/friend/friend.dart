@@ -14,7 +14,7 @@ class Friend with _$Friend {
     required UniqueId id,
     required Profile profile,
     required CareerStats careerStatsOnline,
-    required List10<Game> gameHistoryOnline,
+    required List10<OnlineGame> gameHistoryOnline,
   }) = _Friend;
 
   factory Friend.dummy() => Friend(
@@ -23,11 +23,11 @@ class Friend with _$Friend {
         careerStatsOnline: CareerStats.dummy(),
         gameHistoryOnline: List10(
           KtList.from([
-            Game.dummy(),
-            Game.dummy(),
-            Game.dummy(),
-            Game.dummy(),
-            Game.dummy(),
+            OnlineGame.dummy(),
+            OnlineGame.dummy(),
+            OnlineGame.dummy(),
+            OnlineGame.dummy(),
+            OnlineGame.dummy(),
           ]),
         ),
       );

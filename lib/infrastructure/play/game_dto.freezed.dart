@@ -12,28 +12,26 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GameDto _$GameDtoFromJson(Map<String, dynamic> json) {
-  return _GameDto.fromJson(json);
+OnlineGameDto _$OnlineGameDtoFromJson(Map<String, dynamic> json) {
+  return _OnlineGameDto.fromJson(json);
 }
 
 /// @nodoc
-class _$GameDtoTearOff {
-  const _$GameDtoTearOff();
+class _$OnlineGameDtoTearOff {
+  const _$OnlineGameDtoTearOff();
 
-  _GameDto call(
+  _OnlineGameDto call(
       {required String id,
-      required DateTime createdAt,
-      required bool online,
+      required int createdAt,
       required String status,
       required String mode,
       required int size,
       required String type,
       required int startingPoints,
-      @AbstractPlayerDtoConverter() required List<AbstractPlayerDto> players}) {
-    return _GameDto(
+      required List<OnlinePlayerDto> players}) {
+    return _OnlineGameDto(
       id: id,
       createdAt: createdAt,
-      online: online,
       status: status,
       mode: mode,
       size: size,
@@ -43,61 +41,60 @@ class _$GameDtoTearOff {
     );
   }
 
-  GameDto fromJson(Map<String, Object> json) {
-    return GameDto.fromJson(json);
+  OnlineGameDto fromJson(Map<String, Object> json) {
+    return OnlineGameDto.fromJson(json);
   }
 }
 
 /// @nodoc
-const $GameDto = _$GameDtoTearOff();
+const $OnlineGameDto = _$OnlineGameDtoTearOff();
 
 /// @nodoc
-mixin _$GameDto {
+mixin _$OnlineGameDto {
   String get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  bool get online => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  @AbstractPlayerDtoConverter()
-  List<AbstractPlayerDto> get players => throw _privateConstructorUsedError;
+  List<OnlinePlayerDto> get players => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameDtoCopyWith<GameDto> get copyWith => throw _privateConstructorUsedError;
+  $OnlineGameDtoCopyWith<OnlineGameDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameDtoCopyWith<$Res> {
-  factory $GameDtoCopyWith(GameDto value, $Res Function(GameDto) then) =
-      _$GameDtoCopyWithImpl<$Res>;
+abstract class $OnlineGameDtoCopyWith<$Res> {
+  factory $OnlineGameDtoCopyWith(
+          OnlineGameDto value, $Res Function(OnlineGameDto) then) =
+      _$OnlineGameDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      DateTime createdAt,
-      bool online,
+      int createdAt,
       String status,
       String mode,
       int size,
       String type,
       int startingPoints,
-      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
+      List<OnlinePlayerDto> players});
 }
 
 /// @nodoc
-class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
-  _$GameDtoCopyWithImpl(this._value, this._then);
+class _$OnlineGameDtoCopyWithImpl<$Res>
+    implements $OnlineGameDtoCopyWith<$Res> {
+  _$OnlineGameDtoCopyWithImpl(this._value, this._then);
 
-  final GameDto _value;
+  final OnlineGameDto _value;
   // ignore: unused_field
-  final $Res Function(GameDto) _then;
+  final $Res Function(OnlineGameDto) _then;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
-    Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -113,11 +110,7 @@ class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      online: online == freezed
-          ? _value.online
-          : online // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -141,42 +134,44 @@ class _$GameDtoCopyWithImpl<$Res> implements $GameDtoCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractPlayerDto>,
+              as List<OnlinePlayerDto>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$GameDtoCopyWith<$Res> implements $GameDtoCopyWith<$Res> {
-  factory _$GameDtoCopyWith(_GameDto value, $Res Function(_GameDto) then) =
-      __$GameDtoCopyWithImpl<$Res>;
+abstract class _$OnlineGameDtoCopyWith<$Res>
+    implements $OnlineGameDtoCopyWith<$Res> {
+  factory _$OnlineGameDtoCopyWith(
+          _OnlineGameDto value, $Res Function(_OnlineGameDto) then) =
+      __$OnlineGameDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
-      DateTime createdAt,
-      bool online,
+      int createdAt,
       String status,
       String mode,
       int size,
       String type,
       int startingPoints,
-      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
+      List<OnlinePlayerDto> players});
 }
 
 /// @nodoc
-class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
-    implements _$GameDtoCopyWith<$Res> {
-  __$GameDtoCopyWithImpl(_GameDto _value, $Res Function(_GameDto) _then)
-      : super(_value, (v) => _then(v as _GameDto));
+class __$OnlineGameDtoCopyWithImpl<$Res>
+    extends _$OnlineGameDtoCopyWithImpl<$Res>
+    implements _$OnlineGameDtoCopyWith<$Res> {
+  __$OnlineGameDtoCopyWithImpl(
+      _OnlineGameDto _value, $Res Function(_OnlineGameDto) _then)
+      : super(_value, (v) => _then(v as _OnlineGameDto));
 
   @override
-  _GameDto get _value => super._value as _GameDto;
+  _OnlineGameDto get _value => super._value as _OnlineGameDto;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
-    Object? online = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -184,7 +179,7 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
     Object? startingPoints = freezed,
     Object? players = freezed,
   }) {
-    return _then(_GameDto(
+    return _then(_OnlineGameDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -192,11 +187,7 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      online: online == freezed
-          ? _value.online
-          : online // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -220,35 +211,33 @@ class __$GameDtoCopyWithImpl<$Res> extends _$GameDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractPlayerDto>,
+              as List<OnlinePlayerDto>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_GameDto extends _GameDto {
-  const _$_GameDto(
+@Implements(GameDto)
+class _$_OnlineGameDto extends _OnlineGameDto {
+  const _$_OnlineGameDto(
       {required this.id,
       required this.createdAt,
-      required this.online,
       required this.status,
       required this.mode,
       required this.size,
       required this.type,
       required this.startingPoints,
-      @AbstractPlayerDtoConverter() required this.players})
+      required this.players})
       : super._();
 
-  factory _$_GameDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_GameDtoFromJson(json);
+  factory _$_OnlineGameDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_OnlineGameDtoFromJson(json);
 
   @override
   final String id;
   @override
-  final DateTime createdAt;
-  @override
-  final bool online;
+  final int createdAt;
   @override
   final String status;
   @override
@@ -260,25 +249,22 @@ class _$_GameDto extends _GameDto {
   @override
   final int startingPoints;
   @override
-  @AbstractPlayerDtoConverter()
-  final List<AbstractPlayerDto> players;
+  final List<OnlinePlayerDto> players;
 
   @override
   String toString() {
-    return 'GameDto(id: $id, createdAt: $createdAt, online: $online, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'OnlineGameDto(id: $id, createdAt: $createdAt, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameDto &&
+        (other is _OnlineGameDto &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)) &&
-            (identical(other.online, online) ||
-                const DeepCollectionEquality().equals(other.online, online)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.mode, mode) ||
@@ -299,7 +285,6 @@ class _$_GameDto extends _GameDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(online) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(size) ^
@@ -309,37 +294,34 @@ class _$_GameDto extends _GameDto {
 
   @JsonKey(ignore: true)
   @override
-  _$GameDtoCopyWith<_GameDto> get copyWith =>
-      __$GameDtoCopyWithImpl<_GameDto>(this, _$identity);
+  _$OnlineGameDtoCopyWith<_OnlineGameDto> get copyWith =>
+      __$OnlineGameDtoCopyWithImpl<_OnlineGameDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GameDtoToJson(this);
+    return _$_$_OnlineGameDtoToJson(this);
   }
 }
 
-abstract class _GameDto extends GameDto {
-  const factory _GameDto(
+abstract class _OnlineGameDto extends OnlineGameDto implements GameDto {
+  const factory _OnlineGameDto(
       {required String id,
-      required DateTime createdAt,
-      required bool online,
+      required int createdAt,
       required String status,
       required String mode,
       required int size,
       required String type,
       required int startingPoints,
-      @AbstractPlayerDtoConverter()
-          required List<AbstractPlayerDto> players}) = _$_GameDto;
-  const _GameDto._() : super._();
+      required List<OnlinePlayerDto> players}) = _$_OnlineGameDto;
+  const _OnlineGameDto._() : super._();
 
-  factory _GameDto.fromJson(Map<String, dynamic> json) = _$_GameDto.fromJson;
+  factory _OnlineGameDto.fromJson(Map<String, dynamic> json) =
+      _$_OnlineGameDto.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @override
-  bool get online => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
   @override
   String get status => throw _privateConstructorUsedError;
   @override
@@ -351,10 +333,346 @@ abstract class _GameDto extends GameDto {
   @override
   int get startingPoints => throw _privateConstructorUsedError;
   @override
-  @AbstractPlayerDtoConverter()
-  List<AbstractPlayerDto> get players => throw _privateConstructorUsedError;
+  List<OnlinePlayerDto> get players => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GameDtoCopyWith<_GameDto> get copyWith =>
+  _$OnlineGameDtoCopyWith<_OnlineGameDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OfflineGameDto _$OfflineGameDtoFromJson(Map<String, dynamic> json) {
+  return _OfflineGameDto.fromJson(json);
+}
+
+/// @nodoc
+class _$OfflineGameDtoTearOff {
+  const _$OfflineGameDtoTearOff();
+
+  _OfflineGameDto call(
+      {required String id,
+      required int createdAt,
+      required String status,
+      required String mode,
+      required int size,
+      required String type,
+      required int startingPoints,
+      @AbstractOfflinePlayerDtoConverter()
+          required List<AbstractOfflinePlayerDto> players}) {
+    return _OfflineGameDto(
+      id: id,
+      createdAt: createdAt,
+      status: status,
+      mode: mode,
+      size: size,
+      type: type,
+      startingPoints: startingPoints,
+      players: players,
+    );
+  }
+
+  OfflineGameDto fromJson(Map<String, Object> json) {
+    return OfflineGameDto.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $OfflineGameDto = _$OfflineGameDtoTearOff();
+
+/// @nodoc
+mixin _$OfflineGameDto {
+  String get id => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get mode => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  int get startingPoints => throw _privateConstructorUsedError;
+  @AbstractOfflinePlayerDtoConverter()
+  List<AbstractOfflinePlayerDto> get players =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OfflineGameDtoCopyWith<OfflineGameDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OfflineGameDtoCopyWith<$Res> {
+  factory $OfflineGameDtoCopyWith(
+          OfflineGameDto value, $Res Function(OfflineGameDto) then) =
+      _$OfflineGameDtoCopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      int createdAt,
+      String status,
+      String mode,
+      int size,
+      String type,
+      int startingPoints,
+      @AbstractOfflinePlayerDtoConverter()
+          List<AbstractOfflinePlayerDto> players});
+}
+
+/// @nodoc
+class _$OfflineGameDtoCopyWithImpl<$Res>
+    implements $OfflineGameDtoCopyWith<$Res> {
+  _$OfflineGameDtoCopyWithImpl(this._value, this._then);
+
+  final OfflineGameDto _value;
+  // ignore: unused_field
+  final $Res Function(OfflineGameDto) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? createdAt = freezed,
+    Object? status = freezed,
+    Object? mode = freezed,
+    Object? size = freezed,
+    Object? type = freezed,
+    Object? startingPoints = freezed,
+    Object? players = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      startingPoints: startingPoints == freezed
+          ? _value.startingPoints
+          : startingPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<AbstractOfflinePlayerDto>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$OfflineGameDtoCopyWith<$Res>
+    implements $OfflineGameDtoCopyWith<$Res> {
+  factory _$OfflineGameDtoCopyWith(
+          _OfflineGameDto value, $Res Function(_OfflineGameDto) then) =
+      __$OfflineGameDtoCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      int createdAt,
+      String status,
+      String mode,
+      int size,
+      String type,
+      int startingPoints,
+      @AbstractOfflinePlayerDtoConverter()
+          List<AbstractOfflinePlayerDto> players});
+}
+
+/// @nodoc
+class __$OfflineGameDtoCopyWithImpl<$Res>
+    extends _$OfflineGameDtoCopyWithImpl<$Res>
+    implements _$OfflineGameDtoCopyWith<$Res> {
+  __$OfflineGameDtoCopyWithImpl(
+      _OfflineGameDto _value, $Res Function(_OfflineGameDto) _then)
+      : super(_value, (v) => _then(v as _OfflineGameDto));
+
+  @override
+  _OfflineGameDto get _value => super._value as _OfflineGameDto;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? createdAt = freezed,
+    Object? status = freezed,
+    Object? mode = freezed,
+    Object? size = freezed,
+    Object? type = freezed,
+    Object? startingPoints = freezed,
+    Object? players = freezed,
+  }) {
+    return _then(_OfflineGameDto(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: mode == freezed
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      startingPoints: startingPoints == freezed
+          ? _value.startingPoints
+          : startingPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<AbstractOfflinePlayerDto>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@Implements(GameDto)
+class _$_OfflineGameDto extends _OfflineGameDto {
+  const _$_OfflineGameDto(
+      {required this.id,
+      required this.createdAt,
+      required this.status,
+      required this.mode,
+      required this.size,
+      required this.type,
+      required this.startingPoints,
+      @AbstractOfflinePlayerDtoConverter() required this.players})
+      : super._();
+
+  factory _$_OfflineGameDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_OfflineGameDtoFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final int createdAt;
+  @override
+  final String status;
+  @override
+  final String mode;
+  @override
+  final int size;
+  @override
+  final String type;
+  @override
+  final int startingPoints;
+  @override
+  @AbstractOfflinePlayerDtoConverter()
+  final List<AbstractOfflinePlayerDto> players;
+
+  @override
+  String toString() {
+    return 'OfflineGameDto(id: $id, createdAt: $createdAt, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OfflineGameDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.mode, mode) ||
+                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.size, size) ||
+                const DeepCollectionEquality().equals(other.size, size)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.startingPoints, startingPoints) ||
+                const DeepCollectionEquality()
+                    .equals(other.startingPoints, startingPoints)) &&
+            (identical(other.players, players) ||
+                const DeepCollectionEquality().equals(other.players, players)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(size) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(startingPoints) ^
+      const DeepCollectionEquality().hash(players);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OfflineGameDtoCopyWith<_OfflineGameDto> get copyWith =>
+      __$OfflineGameDtoCopyWithImpl<_OfflineGameDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_OfflineGameDtoToJson(this);
+  }
+}
+
+abstract class _OfflineGameDto extends OfflineGameDto implements GameDto {
+  const factory _OfflineGameDto(
+      {required String id,
+      required int createdAt,
+      required String status,
+      required String mode,
+      required int size,
+      required String type,
+      required int startingPoints,
+      @AbstractOfflinePlayerDtoConverter()
+          required List<AbstractOfflinePlayerDto> players}) = _$_OfflineGameDto;
+  const _OfflineGameDto._() : super._();
+
+  factory _OfflineGameDto.fromJson(Map<String, dynamic> json) =
+      _$_OfflineGameDto.fromJson;
+
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  int get createdAt => throw _privateConstructorUsedError;
+  @override
+  String get status => throw _privateConstructorUsedError;
+  @override
+  String get mode => throw _privateConstructorUsedError;
+  @override
+  int get size => throw _privateConstructorUsedError;
+  @override
+  String get type => throw _privateConstructorUsedError;
+  @override
+  int get startingPoints => throw _privateConstructorUsedError;
+  @override
+  @AbstractOfflinePlayerDtoConverter()
+  List<AbstractOfflinePlayerDto> get players =>
+      throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$OfflineGameDtoCopyWith<_OfflineGameDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -15,7 +15,7 @@ class FriendDto with _$FriendDto {
     @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
     required ProfileDto profile,
     required CareerStatsDto careerStatsOnline,
-    required List<GameDto> gameHistoryOnline,
+    required List<OnlineGameDto> gameHistoryOnline,
   }) = _FriendDto;
 
   const FriendDto._();
@@ -27,7 +27,7 @@ class FriendDto with _$FriendDto {
       careerStatsOnline: CareerStatsDto.fromDomain(friend.careerStatsOnline),
       gameHistoryOnline: friend.gameHistoryOnline
           .getOrCrash()
-          .map((game) => GameDto.fromDomain(game))
+          .map((game) => OnlineGameDto.fromDomain(game))
           .asList(),
     );
   }

@@ -16,8 +16,8 @@ class User with _$User {
     required Profile profile,
     required CareerStats careerStatsOnline,
     required CareerStats careerStatsOffline,
-    required List10<Game> gameHistoryOnline,
-    required List10<Game> gameHistoryOffline,
+    required List10<OnlineGame> gameHistoryOnline,
+    required List10<OfflineGame> gameHistoryOffline,
   }) = _User;
 
   factory User.dummy() {
@@ -31,20 +31,20 @@ class User with _$User {
       careerStatsOnline: CareerStats.dummy(),
       gameHistoryOnline: List10(
         KtList.from([
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
+          OnlineGame.dummy(),
+          OnlineGame.dummy(),
+          OnlineGame.dummy(),
+          OnlineGame.dummy(),
+          OnlineGame.dummy(),
         ]).sortedByDescending((game) => game.createdAt),
       ),
       gameHistoryOffline: List10(
         KtList.from([
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
-          Game.dummy(),
+          OfflineGame.dummy(),
+          OfflineGame.dummy(),
+          OfflineGame.dummy(),
+          OfflineGame.dummy(),
+          OfflineGame.dummy(),
         ]).sortedByDescending((game) => game.createdAt),
       ),
     );

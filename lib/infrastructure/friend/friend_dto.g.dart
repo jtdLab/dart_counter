@@ -12,7 +12,7 @@ _$_FriendDto _$_$_FriendDtoFromJson(Map<String, dynamic> json) {
     careerStatsOnline: CareerStatsDto.fromJson(
         json['careerStatsOnline'] as Map<String, dynamic>),
     gameHistoryOnline: (json['gameHistoryOnline'] as List<dynamic>)
-        .map((e) => GameDto.fromJson(e as Map<String, dynamic>))
+        .map((e) => OnlineGameDto.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

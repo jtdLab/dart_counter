@@ -1,13 +1,11 @@
-import 'package:dart_counter/domain/play/player.dart';
-
+import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 import 'profile_image_position.dart'; // TODO maybe with part statement player items files extend
 
 class PlayerItemSmall extends StatelessWidget {
   final ProfileImagePosition profileImagePosition;
-  final Player player;
+  final AbstractPlayerSnapshot player;
 
   const PlayerItemSmall({
     Key? key,

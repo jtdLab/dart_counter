@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/application/core/game/game_bloc.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,19 +16,19 @@ part 'post_game_state.dart';
 @lazySingleton
 class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
     with AutoResetLazySingleton {
-  final GameBloc _gameBloc;
+  final PlayBloc _playBloc;
 
   PostGameBloc(
-    this._gameBloc,
+    this._playBloc,
   ) : super(
           PostGameState(
-            game: _gameBloc.state.map(
+            game: _playBloc.state.map(
               loading: (_) => throw UnexpectedStateError(),
               success: (success) => success.game,
             ),
           ),
         ) {
-    _gameSubscription = _gameBloc.stream.map((state) {
+    _gameSubscription = _playBloc.stream.map((state) {
       return state.map(
         loading: (_) => throw UnexpectedStateError(),
         success: (success) => success.game,
@@ -37,7 +38,7 @@ class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
     });
   }
 
-  StreamSubscription<Game>? _gameSubscription;
+  StreamSubscription<GameSnapshot>? _gameSubscription;
 
   @override
   Stream<PostGameState> mapEventToState(

@@ -1,4 +1,5 @@
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
+import 'package:dart_counter/domain/play/game_snapshot.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
@@ -15,7 +16,7 @@ class DartBotCard extends StatelessWidget {
       builder: (context, state) {
         final game = state.game;
         return Visibility(
-          visible: !game.online,
+          visible: game is! OnlineGameSnapshot,
           child: AppCard(
             leading: AutoSizeText(
               LocaleKeys.dartBot.tr().toUpperCase(),

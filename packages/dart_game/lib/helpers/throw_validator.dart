@@ -165,7 +165,8 @@ class ThrowValidator {
         isTwoDartFinish(points) ||
         isThreeDartFinish(points);
   }
-
+}
+/*
   static int minDartsThrown({required int points, required int pointsLeft}) {
     if (validatePoints(points, pointsLeft)) {
       if (points == pointsLeft && isTwoDartFinish(pointsLeft)) {
@@ -219,7 +220,8 @@ class ThrowValidator {
   }
 }
 
-/*
+
+
 validateThrow(Throw(points), pointsLeft)
        || validateThrow(Throw(points, dartsOnDouble:  1), pointsLeft)
        || validateThrow(Throw(points, dartsOnDouble:  2), pointsLeft)
@@ -227,4 +229,5 @@ validateThrow(Throw(points), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 2, dartsOnDouble: 1), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 2, dartsOnDouble: 2), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 1, dartsOnDouble:  1), pointsLeft);
+  
  */
