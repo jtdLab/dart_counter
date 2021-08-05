@@ -1,5 +1,6 @@
 import 'package:dart_counter/application/core/friends/friends_bloc.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/core/user/user_bloc.dart';
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -30,6 +31,9 @@ class MainFlow extends StatelessWidget {
             ..add(
               const FriendsEvent.watchStarted(),
             ),
+        ),
+        BlocProvider(
+          create: (context) => getIt<PlayBloc>(),
         ),
       ],
       child: const AutoRouter(),
