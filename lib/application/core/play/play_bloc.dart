@@ -87,7 +87,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
     final online = event.online;
     yield PlayState.loading(online: online);
 
-    if(online) {
+    if (online) {
       await _playOnlineFacade.createGame();
     } else {
       await _playOfflineFacade.createGame();
@@ -102,13 +102,14 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
 
     if (online) {
       // TODO failure or unit
-      await _playOnlineFacade.createGame();
+      await _playOnlineFacade.cancelGame();
     } else {
       // TODO failure or unit
-      await _playOfflineFacade.createGame();
+      await _playOfflineFacade.cancelGame();
     }
 
-    yield const PlayState.loading();
+
+    //yield const PlayState.loading();
   }
 
   Stream<PlayState> _mapPlayerReorderedToState(
@@ -367,11 +368,14 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
     GameReceived event,
   ) async* {
     yield state.map(
-      loading: (loading) => PlayState.success(
-        online: loading
-            .online!, // TODO ! will throw but maybe UnexpectedStateError is better here
-        game: event.game,
-      ),
+      loading: (loading) {
+        final online = loading.online;
+        if (online == null) {
+          return PlayState.loading(online: online);
+        } else {
+          return PlayState.success(online: online, game: event.game);
+        }
+      },
       success: (success) => success.copyWith(
         game: event.game,
       ),
