@@ -130,7 +130,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i27.InvitationsBloc>(() => _i27.InvitationsBloc(
       get<_i16.IGameInvitationFacade>(), get<_i26.InvitationsBloc>()));
   gh.lazySingleton<_i28.PlayBloc>(() => _i28.PlayBloc(
-      get<_i19.IPlayOfflineFacade>(), get<_i19.IPlayOfflineFacade>()));
+      get<_i19.IPlayOfflineFacade>(), get<_i21.IPlayOnlineFacade>()));
   gh.lazySingleton<_i29.PostGameBloc>(
       () => _i29.PostGameBloc(get<_i28.PlayBloc>()));
   gh.lazySingleton<_i30.SearchUserBloc>(

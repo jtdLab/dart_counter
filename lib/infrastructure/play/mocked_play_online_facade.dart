@@ -36,31 +36,6 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   );
 
   @override
-  Future<Either<PlayFailure, Unit>> addPlayer() {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.addPlayer();
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
-  }
-
-  @override
   Future<Either<PlayFailure, Unit>> cancelGame() {
     if (fail) {
       // TODO specify error
@@ -110,6 +85,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
     throw UnimplementedError();
   }
 
+  @override
   Future<Either<PlayFailure, Unit>> inviteFriend({
     required Friend friend,
   }) {
