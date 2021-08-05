@@ -62,11 +62,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
     _gameSubscription = _playBloc.stream.map((state) {
       return state.map(
-        loading: (_) => throw UnexpectedStateError(),
+        loading: (_) => null,
         success: (success) => success.game,
       );
     }).listen((game) {
-      add(HomeEvent.gameReceived(game: game));
+      if (game != null) {
+        add(HomeEvent.gameReceived(game: game));
+      }
     });
 
     // TODO _unreadInvitationsSubscription ODER _unreadFriendRequestsSubscription
@@ -74,7 +76,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
   StreamSubscription<User>? _userSubscription;
 
-  StreamSubscription<GameSnapshot>? _gameSubscription;
+  StreamSubscription<GameSnapshot?>? _gameSubscription;
 
   StreamSubscription<int>? _unreadInvitationsSubscription;
 

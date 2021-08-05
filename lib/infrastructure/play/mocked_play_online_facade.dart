@@ -93,20 +93,13 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
         left(const PlayFailure.error()),
       );
     } else {
-      if (_game != null) {
-        _game = _game = ex.Game();
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
+      _game = _game = ex.Game();
+      _gameStreamController.add(
+        right(
+          _toOnlineGameSnapshot(_game!),
+        ),
+      );
+      return Future.value(right(unit));
     }
   }
 

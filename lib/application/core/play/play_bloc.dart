@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
-import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/domain/play/type.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -87,6 +86,12 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
 
     final online = event.online;
     yield PlayState.loading(online: online);
+
+    if(online) {
+      await _playOnlineFacade.createGame();
+    } else {
+      await _playOfflineFacade.createGame();
+    }
   }
 
   Stream<PlayState> _mapGameCanceledToState() async* {
