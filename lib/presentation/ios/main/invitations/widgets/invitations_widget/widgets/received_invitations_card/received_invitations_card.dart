@@ -27,7 +27,7 @@ class ReceivedInvitationsCard extends StatelessWidget {
               Column(
                 children: [
                   ReceivedInvitationsItem(
-                    name: gameInvitations[index].from.getOrCrash(),
+                    gameInvitation: gameInvitations[index],
                   ),
                 ],
               )

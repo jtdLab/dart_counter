@@ -4,8 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart'
     as ib;
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
+import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -17,11 +20,15 @@ part 'invitations_bloc.freezed.dart';
 @injectable
 class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   final IGameInvitationFacade _gameInvitationFacade; // TODO rly needed
+  final IPlayOnlineFacade _playOnlineFacade;
+  final PlayBloc _playBloc;
 
   final ib.InvitationsBloc _invitationsBloc;
 
   InvitationsBloc(
     this._gameInvitationFacade,
+    this._playOnlineFacade,
+    this._playBloc,
     this._invitationsBloc,
   ) : super(
           InvitationsState(
@@ -54,12 +61,25 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
       add(InvitationsEvent.sentGameInvitationsReceived(
           gameInvitations: invitations));
     });
+
+    _gameSubscription = _playBloc.stream.map((state) {
+      return state.map(
+        loading: (_) => null,
+        success: (success) => success.game,
+      );
+    }).listen((game) {
+      if (game != null) {
+        add(InvitationsEvent.gameReceived(game: game));
+      }
+    });
   }
 
   StreamSubscription<KtList<GameInvitation>>?
       _receivedGameInvitationsSubscription;
 
   StreamSubscription<KtList<GameInvitation>>? _sentGameInvitationsSubscription;
+
+  StreamSubscription<GameSnapshot?>? _gameSubscription;
 
   @override
   Stream<InvitationsState> mapEventToState(
@@ -70,6 +90,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
           _mapReceivedGameInvitationsReceivedToState(event),
       sentGameInvitationsReceived: (event) =>
           _mapSentGameInvitationsReceivedToState(event),
+      gameReceived: (event) => _mapGameReceivedToState(event),
       accepted: (event) => _mapAcceptedToState(event),
       declined: (event) => _mapDeclinedToState(event),
       newInvitationsRead: (_) => _mapNewInvitationsReadToState(),
@@ -123,9 +144,18 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     */
   }
 
+  Stream<InvitationsState> _mapGameReceivedToState(
+    GameReceived event,
+  ) async* {
+    yield state.copyWith(game: event.game);
+  }
+
   Stream<InvitationsState> _mapAcceptedToState(Accepted event) async* {
-    // TODO implement
-    throw UnimplementedError();
+    final lobbyCode = event.gameInvitation.lobbyCode;
+    _playBloc.add(const PlayEvent.gameJoined());
+    await Future.delayed(const Duration(milliseconds: 100)); // TODO unclean
+    await _playOnlineFacade.joinGame(gameCode: lobbyCode);
+    //_gameInvitationFacade.accept(invitation: event.gameInvitation);
   }
 
   Stream<InvitationsState> _mapDeclinedToState(Declined event) async* {

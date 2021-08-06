@@ -13,13 +13,20 @@ class InvitationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<InvitationsBloc>(),
-      child: AppPage(
-        navigationBar: AppNavigationBar(
-          leading: const BackButton(),
-          middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
-        ),
-        child: const SingleChildScrollView(
-          child: InvitationsWidget(),
+      child: BlocListener<InvitationsBloc, InvitationsState>(
+        listener: (context, state) {
+          if (state.game != null) {
+            context.router.replaceAll([const GameFlowRoute()]);
+          }
+        },
+        child: AppPage(
+          navigationBar: AppNavigationBar(
+            leading: const BackButton(),
+            middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
+          ),
+          child: const SingleChildScrollView(
+            child: InvitationsWidget(),
+          ),
         ),
       ),
     );

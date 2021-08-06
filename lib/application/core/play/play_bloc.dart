@@ -38,6 +38,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   ) async* {
     yield* event.map(
       gameCreated: (event) => _mapGameCreatedToState(event),
+      gameJoined: (event) => _mapGameJoinedState(),
       gameCanceled: (_) => _mapGameCanceledToState(),
       playerReordered: (event) => _mapPlayerReorderedToState(event),
       playerAdded: (_) => _mapPlayerAddedToState(),
@@ -93,6 +94,26 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
     } else {
       await _playOfflineFacade.createGame();
     }
+  }
+
+  Stream<PlayState> _mapGameJoinedState() async* {
+    _playOnlineFacade.watchGame().listen(
+      (failureOrGame) {
+        failureOrGame.fold(
+          (failure) => add(
+            PlayEvent.failureReceived(
+              failure: failure,
+            ),
+          ),
+          (game) => add(
+            PlayEvent.gameReceived(
+              game: game,
+            ),
+          ),
+        );
+      },
+    );
+    yield const PlayState.loading(online: true);
   }
 
   Stream<PlayState> _mapGameCanceledToState() async* {

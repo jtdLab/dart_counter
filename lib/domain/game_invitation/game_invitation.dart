@@ -29,7 +29,7 @@ class GameInvitation with _$GameInvitation {
             'Marwinn8',
           ]),
         ),
-        lobbyCode: faker.randomGenerator.integer(9999, min: 1000),
+        lobbyCode: 1000,//faker.randomGenerator.integer(9999, min: 1000),
         read: false,
       );
 }

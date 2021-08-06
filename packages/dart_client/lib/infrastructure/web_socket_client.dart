@@ -19,7 +19,7 @@ class WebSocketClient implements IWebSocketClient {
 
   WebSocket? _webSocket;
 
-  final StreamController<String> _dataController = StreamController();
+  final StreamController<String> _dataController = StreamController.broadcast();
 
   WebSocketClient({
     required this.host,

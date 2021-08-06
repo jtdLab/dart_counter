@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:dart_client/dart_client.dart' as dc;
-import 'package:dart_counter/infrastructure/play/throw_dto.dart';
-import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
@@ -10,6 +8,8 @@ import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,7 +24,17 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
 
   DateTime? _createdAt; // TODO use or remove
 
-  PlayOnlineFacade(this._dartClient);
+  PlayOnlineFacade(this._dartClient) {
+    _dartClient.watchGame().listen(
+      (game) {
+        _gameStreamController.add(
+          right(
+            OnlineGameSnapshotDto.fromClient(game).toDomain(),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Future<Either<PlayFailure, Unit>> cancelGame() async {
@@ -36,8 +46,8 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   @override
   Future<Either<PlayFailure, Unit>> createGame() async {
     // TODO await result from client and return failure if happend
-    _dartClient.connect(idToken: 'idToken'); // TODO real id token
-    _dartClient.createGame();
+    await _dartClient.connect(idToken: 'idToken'); // TODO real id token
+    _dartClient.createGame(); // TODO await
     return right(unit);
   }
 
@@ -54,8 +64,9 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> joinGame({
     required int gameCode,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.joinGame(gameCode: gameCode);
+      // TODO await result from client and return failure if happend
+    await _dartClient.connect(idToken: 'idToken'); // TODO real id token
+    _dartClient.joinGame(gameCode: gameCode); // TODO await
     return right(unit);
   }
 

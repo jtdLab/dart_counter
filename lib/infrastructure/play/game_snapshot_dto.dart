@@ -129,4 +129,25 @@ class OnlineGameSnapshotDto
           .asList(),
     );
   }
+
+  OnlineGameSnapshot toDomain() {
+    return OnlineGameSnapshot(
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
+      size: size,
+      type: type == 'legs' ? Type.legs : Type.sets,
+      startingPoints: startingPoints,
+      players: KtList.from(
+        players.map(
+          (player) => player.toDomain(),
+        ),
+      ),
+    );
+  }
 }

@@ -30,6 +30,12 @@ class _$InvitationsEventTearOff {
     );
   }
 
+  GameReceived gameReceived({required GameSnapshot game}) {
+    return GameReceived(
+      game: game,
+    );
+  }
+
   Accepted accepted({required GameInvitation gameInvitation}) {
     return Accepted(
       gameInvitation: gameInvitation,
@@ -58,6 +64,7 @@ mixin _$InvitationsEvent {
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -69,6 +76,7 @@ mixin _$InvitationsEvent {
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -81,6 +89,7 @@ mixin _$InvitationsEvent {
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -92,6 +101,7 @@ mixin _$InvitationsEvent {
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -193,6 +203,7 @@ class _$ReceivedGameInvitationsReceived
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -207,6 +218,7 @@ class _$ReceivedGameInvitationsReceived
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -225,6 +237,7 @@ class _$ReceivedGameInvitationsReceived
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -239,6 +252,7 @@ class _$ReceivedGameInvitationsReceived
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -337,6 +351,7 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -351,6 +366,7 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -369,6 +385,7 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -383,6 +400,7 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -405,6 +423,146 @@ abstract class SentGameInvitationsReceived implements InvitationsEvent {
   @JsonKey(ignore: true)
   $SentGameInvitationsReceivedCopyWith<SentGameInvitationsReceived>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameReceivedCopyWith<$Res> {
+  factory $GameReceivedCopyWith(
+          GameReceived value, $Res Function(GameReceived) then) =
+      _$GameReceivedCopyWithImpl<$Res>;
+  $Res call({GameSnapshot game});
+}
+
+/// @nodoc
+class _$GameReceivedCopyWithImpl<$Res>
+    extends _$InvitationsEventCopyWithImpl<$Res>
+    implements $GameReceivedCopyWith<$Res> {
+  _$GameReceivedCopyWithImpl(
+      GameReceived _value, $Res Function(GameReceived) _then)
+      : super(_value, (v) => _then(v as GameReceived));
+
+  @override
+  GameReceived get _value => super._value as GameReceived;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+  }) {
+    return _then(GameReceived(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GameReceived implements GameReceived {
+  const _$GameReceived({required this.game});
+
+  @override
+  final GameSnapshot game;
+
+  @override
+  String toString() {
+    return 'InvitationsEvent.gameReceived(game: $game)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameReceived &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(KtList<GameInvitation> gameInvitations)
+        receivedGameInvitationsReceived,
+    required TResult Function(KtList<GameInvitation> gameInvitations)
+        sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameInvitation gameInvitation) accepted,
+    required TResult Function(GameInvitation gameInvitation) declined,
+    required TResult Function() newInvitationsRead,
+  }) {
+    return gameReceived(game);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+    TResult Function()? newInvitationsRead,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(game);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ReceivedGameInvitationsReceived value)
+        receivedGameInvitationsReceived,
+    required TResult Function(SentGameInvitationsReceived value)
+        sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(Accepted value) accepted,
+    required TResult Function(Declined value) declined,
+    required TResult Function(NewInvitationsRead value) newInvitationsRead,
+  }) {
+    return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+    TResult Function(NewInvitationsRead value)? newInvitationsRead,
+    required TResult orElse(),
+  }) {
+    if (gameReceived != null) {
+      return gameReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameReceived implements InvitationsEvent {
+  const factory GameReceived({required GameSnapshot game}) = _$GameReceived;
+
+  GameSnapshot get game => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameReceivedCopyWith<GameReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -484,6 +642,7 @@ class _$Accepted implements Accepted {
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -498,6 +657,7 @@ class _$Accepted implements Accepted {
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -516,6 +676,7 @@ class _$Accepted implements Accepted {
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -530,6 +691,7 @@ class _$Accepted implements Accepted {
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -628,6 +790,7 @@ class _$Declined implements Declined {
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -642,6 +805,7 @@ class _$Declined implements Declined {
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -660,6 +824,7 @@ class _$Declined implements Declined {
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -674,6 +839,7 @@ class _$Declined implements Declined {
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -739,6 +905,7 @@ class _$NewInvitationsRead implements NewInvitationsRead {
         receivedGameInvitationsReceived,
     required TResult Function(KtList<GameInvitation> gameInvitations)
         sentGameInvitationsReceived,
+    required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
     required TResult Function() newInvitationsRead,
@@ -753,6 +920,7 @@ class _$NewInvitationsRead implements NewInvitationsRead {
         receivedGameInvitationsReceived,
     TResult Function(KtList<GameInvitation> gameInvitations)?
         sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
     TResult Function()? newInvitationsRead,
@@ -771,6 +939,7 @@ class _$NewInvitationsRead implements NewInvitationsRead {
         receivedGameInvitationsReceived,
     required TResult Function(SentGameInvitationsReceived value)
         sentGameInvitationsReceived,
+    required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
     required TResult Function(NewInvitationsRead value) newInvitationsRead,
@@ -785,6 +954,7 @@ class _$NewInvitationsRead implements NewInvitationsRead {
         receivedGameInvitationsReceived,
     TResult Function(SentGameInvitationsReceived value)?
         sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
     TResult Function(NewInvitationsRead value)? newInvitationsRead,
@@ -807,10 +977,12 @@ class _$InvitationsStateTearOff {
 
   _InvitationsState call(
       {required KtList<GameInvitation> receivedGameInvitations,
-      required KtList<GameInvitation> sentGameInvitations}) {
+      required KtList<GameInvitation> sentGameInvitations,
+      GameSnapshot? game}) {
     return _InvitationsState(
       receivedGameInvitations: receivedGameInvitations,
       sentGameInvitations: sentGameInvitations,
+      game: game,
     );
   }
 }
@@ -824,6 +996,7 @@ mixin _$InvitationsState {
       throw _privateConstructorUsedError;
   KtList<GameInvitation> get sentGameInvitations =>
       throw _privateConstructorUsedError;
+  GameSnapshot? get game => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvitationsStateCopyWith<InvitationsState> get copyWith =>
@@ -837,7 +1010,8 @@ abstract class $InvitationsStateCopyWith<$Res> {
       _$InvitationsStateCopyWithImpl<$Res>;
   $Res call(
       {KtList<GameInvitation> receivedGameInvitations,
-      KtList<GameInvitation> sentGameInvitations});
+      KtList<GameInvitation> sentGameInvitations,
+      GameSnapshot? game});
 }
 
 /// @nodoc
@@ -853,6 +1027,7 @@ class _$InvitationsStateCopyWithImpl<$Res>
   $Res call({
     Object? receivedGameInvitations = freezed,
     Object? sentGameInvitations = freezed,
+    Object? game = freezed,
   }) {
     return _then(_value.copyWith(
       receivedGameInvitations: receivedGameInvitations == freezed
@@ -863,6 +1038,10 @@ class _$InvitationsStateCopyWithImpl<$Res>
           ? _value.sentGameInvitations
           : sentGameInvitations // ignore: cast_nullable_to_non_nullable
               as KtList<GameInvitation>,
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot?,
     ));
   }
 }
@@ -876,7 +1055,8 @@ abstract class _$InvitationsStateCopyWith<$Res>
   @override
   $Res call(
       {KtList<GameInvitation> receivedGameInvitations,
-      KtList<GameInvitation> sentGameInvitations});
+      KtList<GameInvitation> sentGameInvitations,
+      GameSnapshot? game});
 }
 
 /// @nodoc
@@ -894,6 +1074,7 @@ class __$InvitationsStateCopyWithImpl<$Res>
   $Res call({
     Object? receivedGameInvitations = freezed,
     Object? sentGameInvitations = freezed,
+    Object? game = freezed,
   }) {
     return _then(_InvitationsState(
       receivedGameInvitations: receivedGameInvitations == freezed
@@ -904,6 +1085,10 @@ class __$InvitationsStateCopyWithImpl<$Res>
           ? _value.sentGameInvitations
           : sentGameInvitations // ignore: cast_nullable_to_non_nullable
               as KtList<GameInvitation>,
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot?,
     ));
   }
 }
@@ -913,16 +1098,19 @@ class __$InvitationsStateCopyWithImpl<$Res>
 class _$_InvitationsState implements _InvitationsState {
   const _$_InvitationsState(
       {required this.receivedGameInvitations,
-      required this.sentGameInvitations});
+      required this.sentGameInvitations,
+      this.game});
 
   @override
   final KtList<GameInvitation> receivedGameInvitations;
   @override
   final KtList<GameInvitation> sentGameInvitations;
+  @override
+  final GameSnapshot? game;
 
   @override
   String toString() {
-    return 'InvitationsState(receivedGameInvitations: $receivedGameInvitations, sentGameInvitations: $sentGameInvitations)';
+    return 'InvitationsState(receivedGameInvitations: $receivedGameInvitations, sentGameInvitations: $sentGameInvitations, game: $game)';
   }
 
   @override
@@ -935,14 +1123,17 @@ class _$_InvitationsState implements _InvitationsState {
                     other.receivedGameInvitations, receivedGameInvitations)) &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
                 const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)));
+                    .equals(other.sentGameInvitations, sentGameInvitations)) &&
+            (identical(other.game, game) ||
+                const DeepCollectionEquality().equals(other.game, game)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(receivedGameInvitations) ^
-      const DeepCollectionEquality().hash(sentGameInvitations);
+      const DeepCollectionEquality().hash(sentGameInvitations) ^
+      const DeepCollectionEquality().hash(game);
 
   @JsonKey(ignore: true)
   @override
@@ -952,9 +1143,9 @@ class _$_InvitationsState implements _InvitationsState {
 
 abstract class _InvitationsState implements InvitationsState {
   const factory _InvitationsState(
-          {required KtList<GameInvitation> receivedGameInvitations,
-          required KtList<GameInvitation> sentGameInvitations}) =
-      _$_InvitationsState;
+      {required KtList<GameInvitation> receivedGameInvitations,
+      required KtList<GameInvitation> sentGameInvitations,
+      GameSnapshot? game}) = _$_InvitationsState;
 
   @override
   KtList<GameInvitation> get receivedGameInvitations =>
@@ -962,6 +1153,8 @@ abstract class _InvitationsState implements InvitationsState {
   @override
   KtList<GameInvitation> get sentGameInvitations =>
       throw _privateConstructorUsedError;
+  @override
+  GameSnapshot? get game => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$InvitationsStateCopyWith<_InvitationsState> get copyWith =>

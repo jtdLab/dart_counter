@@ -4,7 +4,8 @@ import 'package:dart_client/infrastructure/packets/incoming/player_joined_packet
 import 'package:dart_client/infrastructure/packets/outgoing/auth_request_packet.dart';
 import 'package:dart_client/infrastructure/packets/outgoing/cancel_game_packet.dart';
 import 'package:dart_client/infrastructure/packets/outgoing/create_game_packet.dart';
-import 'package:dart_client/infrastructure/packets/outgoing/invite_player_packet.dart';
+import 'package:dart_client/infrastructure/packets/outgoing/invite_to_game_packet.dart';
+
 import 'package:dart_client/infrastructure/packets/outgoing/join_game_packet.dart';
 import 'package:dart_client/infrastructure/packets/outgoing/perform_throw_packet.dart';
 import 'package:dart_client/infrastructure/packets/outgoing/remove_player_packet.dart';
@@ -50,8 +51,8 @@ class Container with _$Container {
       return Packet.cancelGame;
     } else if (packet is CreateGamePacket) {
       return Packet.createGame;
-    } else if (packet is InvitePlayerPacket) {
-      return Packet.invitePlayer;
+    } else if (packet is InviteToGamePacket) {
+      return Packet.inviteToGame;
     } else if (packet is JoinGamePacket) {
       return Packet.joinGame;
     } else if (packet is PerformThrowPacket) {
@@ -134,8 +135,8 @@ class Container with _$Container {
         case Packet.createGame:
           json['payload'] = (payload as CreateGamePacket).toJson();
           break;
-        case Packet.invitePlayer:
-          json['payload'] = (payload as InvitePlayerPacket).toJson();
+        case Packet.inviteToGame:
+          json['payload'] = (payload as InviteToGamePacket).toJson();
           break;
         case Packet.joinGame:
           json['payload'] = (payload as JoinGamePacket).toJson();

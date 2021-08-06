@@ -4,17 +4,20 @@ import 'dart:convert';
 import 'package:dart_client/domain/game_snapshot.dart';
 import 'package:dart_client/domain/throw.dart';
 import 'package:dart_client/domain/type.dart';
+import 'package:dart_client/infrastructure/packets/incoming/auth_response_packet.dart';
 import 'package:dart_client/infrastructure/packets/incoming/create_game_response_packet.dart';
+import 'package:dart_client/infrastructure/packets/outgoing/invite_to_game_packet.dart';
 import 'package:dart_client/infrastructure/packets/packet.dart';
 
 import 'domain/mode.dart';
 import 'infrastructure/container.dart';
+import 'infrastructure/packets/incoming/join_game_response_packet.dart';
 import 'infrastructure/packets/incoming/response_packet.dart';
 import 'infrastructure/packets/incoming/snapshot_packet.dart';
 import 'infrastructure/packets/outgoing/auth_request_packet.dart';
 import 'infrastructure/packets/outgoing/cancel_game_packet.dart';
 import 'infrastructure/packets/outgoing/create_game_packet.dart';
-import 'infrastructure/packets/outgoing/invite_player_packet.dart';
+
 import 'infrastructure/packets/outgoing/join_game_packet.dart';
 import 'infrastructure/packets/outgoing/perform_throw_packet.dart';
 import 'infrastructure/packets/outgoing/remove_player_packet.dart';
@@ -108,11 +111,13 @@ class DartClient implements IDartClient {
     return _gameController.stream;
   }
 
+  // TODO impl cleaner
   @override
   Future<bool> connect({
     required String idToken,
   }) async {
     final connected = await _webSocketClient.connect();
+    bool authed = false;
     if (connected) {
       _webSocketClient.received.listen((string) {
         try {
@@ -124,12 +129,16 @@ class DartClient implements IDartClient {
           print('invalid container received');
         }
       });
+      print(DateTime.now());
       _sendPacket(
         packet: AuthRequestPacket(idToken: idToken) as RequestPacket,
       );
+
+      authed = await _waitForAuth();
+      print(DateTime.now());
     }
-    return connected;
-    // TODO get auth result and return bool if authentication successful
+
+    return authed;
   }
 
   @override
@@ -158,7 +167,7 @@ class DartClient implements IDartClient {
     required String uid,
   }) {
     _sendPacket(
-      packet: InvitePlayerPacket(uid: uid) as RequestPacket,
+      packet: InviteToGamePacket(uid: uid) as RequestPacket,
     );
   }
 
@@ -251,6 +260,49 @@ class DartClient implements IDartClient {
     );
   }
 
+  // TODO impl cleaner
+  Future<bool> _waitForAuth() async {
+    return _webSocketClient.received.firstWhere(
+      (string) {
+        try {
+          Container container = Container.fromJson(
+            jsonDecode(string) as Map<String, dynamic>,
+          );
+          if (container.payloadType == 'authResponse') {
+            final authResponse = container.payload;
+            if (authResponse != null) {
+              if (authResponse is AuthResponsePacket) {
+                return true;
+              }
+            }
+          }
+        } on Error catch (_) {
+          print('invalid container received');
+        }
+        return false;
+      },
+    ).then(
+      (string) {
+        try {
+          Container container = Container.fromJson(
+            jsonDecode(string) as Map<String, dynamic>,
+          );
+          if (container.payloadType == 'authResponse') {
+            final authResponse = container.payload;
+            if (authResponse != null) {
+              if (authResponse is AuthResponsePacket) {
+                return (authResponse as AuthResponsePacket).successful;
+              }
+            }
+          }
+        } on Error catch (_) {
+          print('invalid container received');
+        }
+        return false;
+      },
+    ).timeout(const Duration(milliseconds: 3000), onTimeout: () => false);
+  }
+
   void _onContainerReceived({
     required Container container,
   }) {
@@ -262,6 +314,19 @@ class DartClient implements IDartClient {
         break;
       case Packet.createGameResponse:
         final game = (container.payload as CreateGameResponsePacket)
+            .snapshot
+            ?.toDomain();
+        if (game != null) {
+          _gameController.add(
+            game,
+          );
+        }
+        break;
+      case Packet.inviteToGameResponse:
+        // TODO implement
+        break;
+      case Packet.joinGameResponse:
+        final game = (container.payload as JoinGameResponsePacket)
             .snapshot
             ?.toDomain();
         if (game != null) {

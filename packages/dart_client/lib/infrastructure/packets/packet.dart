@@ -3,6 +3,8 @@ abstract class Packet {
   // incoming
   static const authResponse = 'authResponse';
   static const createGameResponse = 'createGameResponse';
+   static const inviteToGameResponse = 'inviteToGameResponse';
+  static const joinGameResponse = 'joinGameResponse';
   static const playerExited = 'playerExited';
   static const playerJoined = 'playerJoined';
   static const snapshot = 'snapshot';
@@ -11,7 +13,7 @@ abstract class Packet {
   static const authRequest = 'authRequest';
   static const cancelGame = 'cancelGame';
   static const createGame = 'createGame';
-  static const invitePlayer = 'invitePlayer';
+  static const inviteToGame = 'inviteToGame';
   static const joinGame = 'joinGame';
   static const performThrow = 'performThrow';
   static const removePlayer = 'removePlayer';

@@ -1,14 +1,18 @@
+import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
+
+import 'package:dart_counter/application/invitations/invitations_bloc.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
 class ReceivedInvitationsItem extends StatelessWidget {
-  final String name;
+  final GameInvitation gameInvitation;
 
   const ReceivedInvitationsItem({
     Key? key,
-    required this.name,
+    required this.gameInvitation,
   }) : super(key: key);
 
   @override
@@ -21,14 +25,16 @@ class ReceivedInvitationsItem extends StatelessWidget {
             imageName: AppImages.photoPlaceholderNew,
           ),
           Text(
-            name.toUpperCase(),
+            gameInvitation.from.getOrCrash().toUpperCase(),
           ),
           Row(
             children: [
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
-                onPressed: () {}, // TODO call accept invitation
+                onPressed: () => context.read<InvitationsBloc>().add(
+                      InvitationsEvent.accepted(gameInvitation: gameInvitation),
+                    ),
               ),
               const AppSpacer.normal(
                 orientation: Orientation.horizontal,
