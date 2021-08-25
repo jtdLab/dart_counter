@@ -23,68 +23,6 @@ abstract class GameDto {
 }
 
 @freezed
-class OnlineGameDto with _$OnlineGameDto implements GameDto {
-  @Implements(GameDto)
-  const factory OnlineGameDto({
-    required String id,
-    required int createdAt,
-    required String status,
-    required String mode,
-    required int size,
-    required String type,
-    required int startingPoints,
-    required List<OnlinePlayerDto> players,
-  }) = _OnlineGameDto;
-
-  const OnlineGameDto._();
-
-  factory OnlineGameDto.fromDomain(OnlineGame game) {
-    return OnlineGameDto(
-      id: game.id.getOrCrash(),
-      createdAt: game.createdAt.millisecondsSinceEpoch,
-      status: game.status == Status.pending
-          ? 'pending'
-          : game.status == Status.running
-              ? 'running'
-              : game.status == Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == Mode.firstTo ? 'firstTo' : 'bestOf',
-      size: game.size,
-      type: game.type == Type.legs ? 'legs' : 'sets',
-      startingPoints: game.startingPoints,
-      players: game.players
-          .map((player) => OnlinePlayerDto.fromDomain(player))
-          .asList(),
-    );
-  }
-
-  OnlineGame toDomain() {
-    return OnlineGame(
-      id: UniqueId.fromUniqueString(id),
-      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
-      size: size,
-      type: type == 'legs' ? Type.legs : Type.sets,
-      startingPoints: startingPoints,
-      players: KtList.from(
-        players.map((player) => player.toDomain()),
-      ),
-    );
-  }
-
-  factory OnlineGameDto.fromJson(Map<String, dynamic> json) =>
-      _$OnlineGameDtoFromJson(json);
-}
-
-@freezed
 class OfflineGameDto with _$OfflineGameDto implements GameDto {
   @Implements(GameDto)
   const factory OfflineGameDto({
@@ -116,17 +54,17 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
       size: game.size,
       type: game.type == Type.legs ? 'legs' : 'sets',
       startingPoints: game.startingPoints,
-      players: game.players
-          .map((player) {
-            if (player is OfflinePlayer) {
-              return OfflinePlayerDto.fromDomain(player);
-            } else if (player is DartBot) {
-              return DartBotDto.fromDomain(player);
-            } else {
-              throw Error();
-            }
-          },)
-          .asList(),
+      players: game.players.map(
+        (player) {
+          if (player is OfflinePlayer) {
+            return OfflinePlayerDto.fromDomain(player);
+          } else if (player is DartBot) {
+            return DartBotDto.fromDomain(player);
+          } else {
+            throw Error();
+          }
+        },
+      ).asList(),
     );
   }
 
@@ -163,4 +101,69 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
 
   factory OfflineGameDto.fromJson(Map<String, dynamic> json) =>
       _$OfflineGameDtoFromJson(json);
+}
+
+@freezed
+class OnlineGameDto with _$OnlineGameDto implements GameDto {
+  @Implements(GameDto)
+  const factory OnlineGameDto({
+    required String id,
+    required int createdAt,
+    required String ownerId,
+    required String status,
+    required String mode,
+    required int size,
+    required String type,
+    required int startingPoints,
+    required List<OnlinePlayerDto> players,
+  }) = _OnlineGameDto;
+
+  const OnlineGameDto._();
+
+  factory OnlineGameDto.fromDomain(OnlineGame game) {
+    return OnlineGameDto(
+      id: game.id.getOrCrash(),
+      createdAt: game.createdAt.millisecondsSinceEpoch,
+      ownerId: game.ownerId.getOrCrash(),
+      status: game.status == Status.pending
+          ? 'pending'
+          : game.status == Status.running
+              ? 'running'
+              : game.status == Status.canceled
+                  ? 'canceled'
+                  : 'finished',
+      mode: game.mode == Mode.firstTo ? 'firstTo' : 'bestOf',
+      size: game.size,
+      type: game.type == Type.legs ? 'legs' : 'sets',
+      startingPoints: game.startingPoints,
+      players: game.players
+          .map((player) => OnlinePlayerDto.fromDomain(player))
+          .asList(),
+    );
+  }
+
+  OnlineGame toDomain() {
+    return OnlineGame(
+      id: UniqueId.fromUniqueString(id),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
+      ownerId: UniqueId.fromUniqueString(ownerId),
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
+      size: size,
+      type: type == 'legs' ? Type.legs : Type.sets,
+      startingPoints: startingPoints,
+      players: KtList.from(
+        players.map((player) => player.toDomain()),
+      ),
+    );
+  }
+
+  factory OnlineGameDto.fromJson(Map<String, dynamic> json) =>
+      _$OnlineGameDtoFromJson(json);
 }

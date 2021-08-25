@@ -89,6 +89,7 @@ class OnlineGame with _$OnlineGame implements Game {
   const factory OnlineGame({
     required UniqueId id,
     required DateTime createdAt,
+    required UniqueId ownerId,
     required Status status,
     required Mode mode,
     required int size,
@@ -114,6 +115,9 @@ class OnlineGame with _$OnlineGame implements Game {
         ),
         createdAt: DateTime.now().subtract(
           Duration(seconds: faker.randomGenerator.integer(1000000)),
+        ),
+        ownerId: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
         ),
         status: Status.pending,
         mode: faker.randomGenerator.element([

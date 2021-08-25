@@ -327,6 +327,7 @@ class _$OnlineGameTearOff {
   _OnlineGame call(
       {required UniqueId id,
       required DateTime createdAt,
+      required UniqueId ownerId,
       required Status status,
       required Mode mode,
       required int size,
@@ -336,6 +337,7 @@ class _$OnlineGameTearOff {
     return _OnlineGame(
       id: id,
       createdAt: createdAt,
+      ownerId: ownerId,
       status: status,
       mode: mode,
       size: size,
@@ -353,6 +355,7 @@ const $OnlineGame = _$OnlineGameTearOff();
 mixin _$OnlineGame {
   UniqueId get id => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  UniqueId get ownerId => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
@@ -373,6 +376,7 @@ abstract class $OnlineGameCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       DateTime createdAt,
+      UniqueId ownerId,
       Status status,
       Mode mode,
       int size,
@@ -393,6 +397,7 @@ class _$OnlineGameCopyWithImpl<$Res> implements $OnlineGameCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
+    Object? ownerId = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -409,6 +414,10 @@ class _$OnlineGameCopyWithImpl<$Res> implements $OnlineGameCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -446,6 +455,7 @@ abstract class _$OnlineGameCopyWith<$Res> implements $OnlineGameCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       DateTime createdAt,
+      UniqueId ownerId,
       Status status,
       Mode mode,
       int size,
@@ -468,6 +478,7 @@ class __$OnlineGameCopyWithImpl<$Res> extends _$OnlineGameCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
+    Object? ownerId = freezed,
     Object? status = freezed,
     Object? mode = freezed,
     Object? size = freezed,
@@ -484,6 +495,10 @@ class __$OnlineGameCopyWithImpl<$Res> extends _$OnlineGameCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -519,6 +534,7 @@ class _$_OnlineGame extends _OnlineGame {
   const _$_OnlineGame(
       {required this.id,
       required this.createdAt,
+      required this.ownerId,
       required this.status,
       required this.mode,
       required this.size,
@@ -531,6 +547,8 @@ class _$_OnlineGame extends _OnlineGame {
   final UniqueId id;
   @override
   final DateTime createdAt;
+  @override
+  final UniqueId ownerId;
   @override
   final Status status;
   @override
@@ -546,7 +564,7 @@ class _$_OnlineGame extends _OnlineGame {
 
   @override
   String toString() {
-    return 'OnlineGame(id: $id, createdAt: $createdAt, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
+    return 'OnlineGame(id: $id, createdAt: $createdAt, ownerId: $ownerId, status: $status, mode: $mode, size: $size, type: $type, startingPoints: $startingPoints, players: $players)';
   }
 
   @override
@@ -558,6 +576,9 @@ class _$_OnlineGame extends _OnlineGame {
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)) &&
+            (identical(other.ownerId, ownerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.ownerId, ownerId)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.mode, mode) ||
@@ -578,6 +599,7 @@ class _$_OnlineGame extends _OnlineGame {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(ownerId) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(size) ^
@@ -595,6 +617,7 @@ abstract class _OnlineGame extends OnlineGame implements Game {
   const factory _OnlineGame(
       {required UniqueId id,
       required DateTime createdAt,
+      required UniqueId ownerId,
       required Status status,
       required Mode mode,
       required int size,
@@ -607,6 +630,8 @@ abstract class _OnlineGame extends OnlineGame implements Game {
   UniqueId get id => throw _privateConstructorUsedError;
   @override
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  UniqueId get ownerId => throw _privateConstructorUsedError;
   @override
   Status get status => throw _privateConstructorUsedError;
   @override
