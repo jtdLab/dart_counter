@@ -1,4 +1,3 @@
-import 'package:dart_client/domain/game.dart';
 import 'package:dart_client/domain/mode.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

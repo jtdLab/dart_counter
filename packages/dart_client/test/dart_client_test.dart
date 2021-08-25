@@ -1,9 +1,7 @@
 import 'package:dart_client/dart_client.dart';
 import 'package:dart_client/infrastructure/dart_dto.dart';
-import 'package:dart_client/infrastructure/game_dto.dart';
 import 'package:dart_client/infrastructure/game_snapshot_dto.dart';
 import 'package:dart_client/infrastructure/leg_dto.dart';
-import 'package:dart_client/infrastructure/player_dto.dart';
 import 'package:dart_client/infrastructure/player_snapshot_dto.dart';
 import 'package:dart_client/infrastructure/set_dto.dart';
 import 'package:dart_client/infrastructure/stats_dto.dart';
@@ -822,6 +820,8 @@ void main() {
     });
   });
 
+  // TODO maybe remove
+/* 
   group('Player', () {
     test('(Json -> Dto)', () {
       // Arrange
@@ -1523,7 +1523,7 @@ void main() {
       expect(dto, expectedDto);
     });
   });
-
+ */
   group('PlayerSnapshot', () {
     test('(Json -> Dto)', () {
       // Arrange
