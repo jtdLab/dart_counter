@@ -12,7 +12,7 @@ class GameInvitationDto with _$GameInvitationDto {
   const factory GameInvitationDto({
     @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
     required String from,
-    required int lobbyCode,
+    required String lobbyCode,
     required bool read,
     @JsonKey(includeIfNull: false)
     @ServerTimestampConverter()

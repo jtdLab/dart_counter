@@ -39,7 +39,7 @@ abstract class IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> undoThrow();
 
   Future<Either<PlayFailure, Unit>> joinGame({
-    required int gameCode,
+    required String gameCode,
   });
   Future<Either<PlayFailure, Unit>> inviteFriend({
     required Friend friend,

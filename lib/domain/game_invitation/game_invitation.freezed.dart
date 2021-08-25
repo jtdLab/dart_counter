@@ -19,7 +19,7 @@ class _$GameInvitationTearOff {
   _GameInvitation call(
       {required UniqueId id,
       required Username from,
-      required int lobbyCode,
+      required String lobbyCode,
       required bool read}) {
     return _GameInvitation(
       id: id,
@@ -37,7 +37,7 @@ const $GameInvitation = _$GameInvitationTearOff();
 mixin _$GameInvitation {
   UniqueId get id => throw _privateConstructorUsedError;
   Username get from => throw _privateConstructorUsedError;
-  int get lobbyCode => throw _privateConstructorUsedError;
+  String get lobbyCode => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $GameInvitationCopyWith<$Res> {
   factory $GameInvitationCopyWith(
           GameInvitation value, $Res Function(GameInvitation) then) =
       _$GameInvitationCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Username from, int lobbyCode, bool read});
+  $Res call({UniqueId id, Username from, String lobbyCode, bool read});
 }
 
 /// @nodoc
@@ -81,7 +81,7 @@ class _$GameInvitationCopyWithImpl<$Res>
       lobbyCode: lobbyCode == freezed
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ abstract class _$GameInvitationCopyWith<$Res>
           _GameInvitation value, $Res Function(_GameInvitation) then) =
       __$GameInvitationCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Username from, int lobbyCode, bool read});
+  $Res call({UniqueId id, Username from, String lobbyCode, bool read});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$GameInvitationCopyWithImpl<$Res>
       lobbyCode: lobbyCode == freezed
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class _$_GameInvitation implements _GameInvitation {
   @override
   final Username from;
   @override
-  final int lobbyCode;
+  final String lobbyCode;
   @override
   final bool read;
 
@@ -195,7 +195,7 @@ abstract class _GameInvitation implements GameInvitation {
   const factory _GameInvitation(
       {required UniqueId id,
       required Username from,
-      required int lobbyCode,
+      required String lobbyCode,
       required bool read}) = _$_GameInvitation;
 
   @override
@@ -203,7 +203,7 @@ abstract class _GameInvitation implements GameInvitation {
   @override
   Username get from => throw _privateConstructorUsedError;
   @override
-  int get lobbyCode => throw _privateConstructorUsedError;
+  String get lobbyCode => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
   @override

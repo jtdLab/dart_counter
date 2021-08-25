@@ -1,5 +1,9 @@
-import 'dart:async';
+/**
+ * import 'dart:async';
 import 'dart:convert';
+import 'package:dart_client/infrastructure/game_snapshot_dto.dart';
+import 'package:dart_client/infrastructure/web_socket_client.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:dart_client/domain/game_snapshot.dart';
 import 'package:dart_client/domain/throw.dart';
@@ -9,98 +13,17 @@ import 'package:dart_client/infrastructure/packets/incoming/create_game_response
 import 'package:dart_client/infrastructure/packets/outgoing/invite_to_game_packet.dart';
 import 'package:dart_client/infrastructure/packets/packet.dart';
 
-import 'domain/mode.dart';
-import 'infrastructure/container.dart';
-import 'infrastructure/packets/incoming/join_game_response_packet.dart';
-import 'infrastructure/packets/incoming/response_packet.dart';
-import 'infrastructure/packets/incoming/snapshot_packet.dart';
-import 'infrastructure/packets/outgoing/auth_request_packet.dart';
-import 'infrastructure/packets/outgoing/cancel_game_packet.dart';
-import 'infrastructure/packets/outgoing/create_game_packet.dart';
-
-import 'infrastructure/packets/outgoing/join_game_packet.dart';
-import 'infrastructure/packets/outgoing/perform_throw_packet.dart';
-import 'infrastructure/packets/outgoing/remove_player_packet.dart';
-import 'infrastructure/packets/outgoing/reorder_player_packet.dart';
-import 'infrastructure/packets/outgoing/request_packet.dart';
-import 'infrastructure/packets/outgoing/set_mode_packet.dart';
-import 'infrastructure/packets/outgoing/set_size_packet.dart';
-import 'infrastructure/packets/outgoing/set_starting_points_packet.dart';
-import 'infrastructure/packets/outgoing/set_type_packet.dart';
-import 'infrastructure/packets/outgoing/start_game_packet.dart';
-import 'infrastructure/packets/outgoing/undo_throw_packet.dart';
-import 'infrastructure/throw_dto.dart';
-import 'infrastructure/web_socket_client.dart';
-
-abstract class IDartClient {
-  // TODO define better interface
-  Stream<ResponsePacket> get received;
-
-  Stream<GameSnapshot> watchGame();
-
-  Future<bool> connect({
-    required String idToken,
-  });
-
-  Future<bool> disconnect();
-
-  void createGame();
-
-  void joinGame({
-    required int gameCode,
-  });
-
-  void invitePlayer({
-    required String uid,
-  });
-
-  void reorderPlayer({
-    required int oldIndex,
-    required int newIndex,
-  });
-
-  void removePlayer({
-    required int index,
-  });
-
-  void setStartingPoints({
-    required int startingPoints,
-  });
-
-  void setMode({
-    required Mode mode,
-  });
-
-  void setSize({
-    required int size,
-  });
-
-  void setType({
-    required Type type,
-  });
-
-  void startGame();
-
-  void cancelGame();
-
-  void performThrow({
-    required Throw t,
-  });
-
-  void undoThrow();
-}
-
 // TODO implement tests
-class DartClient implements IDartClient {
+class OldClient implements IClient {
   final WebSocketClient _webSocketClient;
 
   final StreamController<GameSnapshot> _gameController;
 
-  DartClient({
+  JavaClient({
     required String host,
     required int port,
   })   : this._webSocketClient = WebSocketClient(host: host, port: port),
-        _gameController = StreamController();
+        _gameController = StreamController.broadcast();
 
   @override
   Stream<ResponsePacket> get received =>
@@ -116,7 +39,8 @@ class DartClient implements IDartClient {
   Future<bool> connect({
     required String idToken,
   }) async {
-    final connected = await _webSocketClient.connect();
+    final connected =
+        await _webSocketClient.connect(path: 'idToken', token: idToken); // TODO
     bool authed = false;
     if (connected) {
       _webSocketClient.received.listen((string) {
@@ -155,11 +79,10 @@ class DartClient implements IDartClient {
 
   @override
   void joinGame({
-    required int gameCode,
+    required String gameCode,
   }) {
-    _sendPacket(
-      packet: JoinGamePacket(gameCode: gameCode) as RequestPacket,
-    );
+    // TODO
+    throw UnimplementedError();
   }
 
   @override
@@ -326,9 +249,8 @@ class DartClient implements IDartClient {
         // TODO implement
         break;
       case Packet.joinGameResponse:
-        final game = (container.payload as JoinGameResponsePacket)
-            .snapshot
-            ?.toDomain();
+        final game =
+            (container.payload as JoinGameResponsePacket).snapshot?.toDomain();
         if (game != null) {
           _gameController.add(
             game,
@@ -359,3 +281,5 @@ class DartClient implements IDartClient {
     );
   }
 }
+
+ */

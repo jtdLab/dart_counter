@@ -7,6 +7,8 @@ abstract class IAuthFacade {
 
   UniqueId? getSignedInUid();
 
+  Future<String?> getIdToken();
+
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
     required EmailAddress emailAddress,
     required Username username,

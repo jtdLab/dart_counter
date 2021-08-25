@@ -79,7 +79,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   Future<Either<PlayFailure, Unit>> joinGame({
-    required int gameCode,
+    required String gameCode,
   }) {
     // TODO implement
     throw UnimplementedError();

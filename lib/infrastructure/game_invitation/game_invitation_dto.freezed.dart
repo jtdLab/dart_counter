@@ -24,7 +24,7 @@ class _$GameInvitationDtoTearOff {
       {@JsonKey(ignore: true)
           String? id,
       required String from,
-      required int lobbyCode,
+      required String lobbyCode,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -52,7 +52,7 @@ mixin _$GameInvitationDto {
   String? get id =>
       throw _privateConstructorUsedError; // TODO ignore and nullable fix
   String get from => throw _privateConstructorUsedError;
-  int get lobbyCode => throw _privateConstructorUsedError;
+  String get lobbyCode => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
@@ -73,7 +73,7 @@ abstract class $GameInvitationDtoCopyWith<$Res> {
       {@JsonKey(ignore: true)
           String? id,
       String from,
-      int lobbyCode,
+      String lobbyCode,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -109,7 +109,7 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
       lobbyCode: lobbyCode == freezed
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ abstract class _$GameInvitationDtoCopyWith<$Res>
       {@JsonKey(ignore: true)
           String? id,
       String from,
-      int lobbyCode,
+      String lobbyCode,
       bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -171,7 +171,7 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
       lobbyCode: lobbyCode == freezed
           ? _value.lobbyCode
           : lobbyCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   @override // TODO ignore and nullable fix
   final String from;
   @override
-  final int lobbyCode;
+  final String lobbyCode;
   @override
   final bool read;
   @override
@@ -263,7 +263,7 @@ abstract class _GameInvitationDto extends GameInvitationDto {
       {@JsonKey(ignore: true)
           String? id,
       required String from,
-      required int lobbyCode,
+      required String lobbyCode,
       required bool read,
       @JsonKey(includeIfNull: false)
       @ServerTimestampConverter()
@@ -279,7 +279,7 @@ abstract class _GameInvitationDto extends GameInvitationDto {
   @override // TODO ignore and nullable fix
   String get from => throw _privateConstructorUsedError;
   @override
-  int get lobbyCode => throw _privateConstructorUsedError;
+  String get lobbyCode => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
   @override

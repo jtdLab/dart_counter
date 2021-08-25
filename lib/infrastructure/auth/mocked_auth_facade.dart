@@ -24,6 +24,11 @@ class MockedAuthFacade implements IAuthFacade {
   }
 
   @override
+  Future<String?> getIdToken() async {
+    return Future.value(getSignedInUid() != null ? 'dummIdToken' : null);
+  }
+
+  @override
   UniqueId? getSignedInUid() {
     if (fail) {
       return null;

@@ -9,7 +9,7 @@ part of 'game_invitation_dto.dart';
 _$_GameInvitationDto _$_$_GameInvitationDtoFromJson(Map<String, dynamic> json) {
   return _$_GameInvitationDto(
     from: json['from'] as String,
-    lobbyCode: json['lobbyCode'] as int,
+    lobbyCode: json['lobbyCode'] as String,
     read: json['read'] as bool,
     createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
   );

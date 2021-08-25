@@ -9,7 +9,7 @@ class GameInvitation with _$GameInvitation {
   const factory GameInvitation({
     required UniqueId id,
     required Username from,
-    required int lobbyCode,
+    required String lobbyCode,
     required bool read,
   }) = _GameInvitation;
 
@@ -29,7 +29,7 @@ class GameInvitation with _$GameInvitation {
             'Marwinn8',
           ]),
         ),
-        lobbyCode: 1000,//faker.randomGenerator.integer(9999, min: 1000),
+        lobbyCode: 'sdfsjfisfjfdsj',//faker.randomGenerator.integer(9999, min: 1000),
         read: false,
       );
 }

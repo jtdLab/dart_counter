@@ -13,4 +13,4 @@ export 'domain/type.dart';
 export 'domain/player_snapshot.dart';
 export 'domain/game_snapshot.dart';
 
-export 'client.dart';
+export 'clients/client.dart';

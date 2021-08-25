@@ -27,6 +27,7 @@ class Player {
   /// PRIVATE
   ///
 
+
   /// computed properties for interface
 
   bool get _isCurrentTurn => _game._currentTurn == this;

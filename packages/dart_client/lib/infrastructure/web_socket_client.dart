@@ -1,19 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-abstract class IWebSocketClient {
-  Stream<String> get received;
-
-  Future<bool> connect();
-
-  Future<bool> disconnect();
-
-  void send({
-    required String json,
-  });
-}
-
-class WebSocketClient implements IWebSocketClient {
+class WebSocketClient {
   final String host;
   final int port;
 
@@ -26,11 +14,12 @@ class WebSocketClient implements IWebSocketClient {
     required this.port,
   });
 
-  @override
   Stream<String> get received => _dataController.stream;
 
-  @override
-  Future<bool> connect() async {
+  Future<bool> connect({
+    required String token,
+    required String path,
+  }) async {
     bool connected = false;
 
     try {
@@ -48,7 +37,6 @@ class WebSocketClient implements IWebSocketClient {
     return connected;
   }
 
-  @override
   Future<bool> disconnect() async {
     await _webSocket?.close();
     _webSocket = null;
@@ -56,7 +44,6 @@ class WebSocketClient implements IWebSocketClient {
     return true;
   }
 
-  @override
   void send({
     required String json,
   }) {

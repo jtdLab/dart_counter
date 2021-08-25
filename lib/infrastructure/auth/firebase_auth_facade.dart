@@ -60,6 +60,11 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
+  Future<String?> getIdToken() async {
+    return _firebaseAuth.currentUser?.getIdToken();
+  }
+
+  @override
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
       {required EmailAddress emailAddress,
       required Username username,

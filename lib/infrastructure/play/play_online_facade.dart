@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
@@ -17,14 +18,16 @@ import 'package:injectable/injectable.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOnlineFacade)
 class PlayOnlineFacade implements IPlayOnlineFacade {
-  final dc.IDartClient _dartClient;
+  final dc.Client _dartClient;
+  final IAuthFacade _authFacade;
 
   final StreamController<Either<PlayFailure, OnlineGameSnapshot>>
       _gameStreamController = StreamController.broadcast();
 
-  DateTime? _createdAt; // TODO use or remove
-
-  PlayOnlineFacade(this._dartClient) {
+  PlayOnlineFacade(
+    this._dartClient,
+    this._authFacade,
+  ) {
     _dartClient.watchGame().listen(
       (game) {
         _gameStreamController.add(
@@ -38,56 +41,83 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
 
   @override
   Future<Either<PlayFailure, Unit>> cancelGame() async {
-    // TODO await result from client and return failure if happend
-    _dartClient.cancelGame();
-    return right(unit);
+    final successful = await _dartClient.cancelGame();
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> createGame() async {
-    // TODO await result from client and return failure if happend
-    await _dartClient.connect(idToken: 'idToken'); // TODO real id token
-    _dartClient.createGame(); // TODO await
-    return right(unit);
+    final idToken = await _authFacade.getIdToken();
+    if (idToken == null) {
+      return left(const PlayFailure.error());
+    }
+
+    final connected = await _dartClient.connect(idToken: idToken);
+    if (connected) {
+      final successful = await _dartClient.createGame();
+      if (successful) {
+        return right(unit);
+      }
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> inviteFriend({
     required Friend friend,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.invitePlayer(uid: friend.id.getOrCrash());
-    return right(unit);
+    final successful =
+        await _dartClient.invitePlayer(uid: friend.id.getOrCrash());
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> joinGame({
-    required int gameCode,
+    required String gameCode,
   }) async {
-      // TODO await result from client and return failure if happend
-    await _dartClient.connect(idToken: 'idToken'); // TODO real id token
-    _dartClient.joinGame(gameCode: gameCode); // TODO await
-    return right(unit);
+    final idToken = await _authFacade.getIdToken();
+    if (idToken == null) {
+      return left(const PlayFailure.error());
+    }
+    final connected = await _dartClient.connect(idToken: idToken);
+    if (connected) {
+      final successful = await _dartClient.joinGame(gameId: gameCode);
+      if (successful) {
+        return right(unit);
+      }
+    }
+
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> performThrow({
     required Throw t,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.performThrow(
+    final successful = await _dartClient.performThrow(
       t: ThrowDto.fromDomain(t).toClient(),
     );
-    return right(unit);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> removePlayer({
     required int index,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.removePlayer(index: index);
-    return right(unit);
+    final successful = await _dartClient.removePlayer(index: index);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
@@ -95,60 +125,77 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
     required int oldIndex,
     required int newIndex,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
-    return right(unit);
+    final successful =
+        await _dartClient.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setMode({
     required Mode mode,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.setMode(
+    final successful = await _dartClient.setMode(
         mode: mode == Mode.firstTo ? dc.Mode.firstTo : dc.Mode.bestOf);
-    return right(unit);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setSize({
     required int size,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.setSize(size: size);
-    return right(unit);
+    final successful = await _dartClient.setSize(size: size);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setStartingPoints({
     required int startingPoints,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.setStartingPoints(startingPoints: startingPoints);
-    return right(unit);
+    final successful =
+        await _dartClient.setStartingPoints(startingPoints: startingPoints);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setType({
     required Type type,
   }) async {
-    // TODO await result from client and return failure if happend
-    _dartClient.setType(type: type == Type.legs ? dc.Type.legs : dc.Type.sets);
-    return right(unit);
+    final successful = await _dartClient.setType(
+        type: type == Type.legs ? dc.Type.legs : dc.Type.sets);
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> startGame() async {
-    // TODO await result from client and return failure if happend
-    _dartClient.startGame();
-    return right(unit);
+    final successful = await _dartClient.startGame();
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override
   Future<Either<PlayFailure, Unit>> undoThrow() async {
-    // TODO await result from client and return failure if happend
-    _dartClient.undoThrow();
-    return right(unit);
+    final successful = await _dartClient.undoThrow();
+    if (successful) {
+      return right(unit);
+    }
+    return left(const PlayFailure.error());
   }
 
   @override

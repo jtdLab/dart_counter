@@ -281,11 +281,6 @@ class Game {
     }
   }
 
-  void _prevTurn() {
-    // update CurrentTurn
-    _turnIndex = (_turnIndex - 1) % _players.length;
-  }
-
   @override
   String toString() {
     return 'Game{status: $status, config: $config, players: $players}';
