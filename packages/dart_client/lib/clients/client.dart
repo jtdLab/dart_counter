@@ -82,6 +82,7 @@ class Client implements IClient {
     try {
       if (res.statusCode == 201) {
         _token = jsonDecode(res.body)['accessToken'] as String;
+        print('JWT: $_token');
         return true;
       }
     } on Error {}

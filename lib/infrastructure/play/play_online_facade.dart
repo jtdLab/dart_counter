@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
@@ -29,10 +30,15 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
     this._authFacade,
   ) {
     _dartClient.watchGame().listen(
-      (game) {
+      (game) async {
+        final snapshot = OnlineGameSnapshotDto.fromClient(game).toDomain();
+        if (snapshot.status == Status.canceled ||
+            snapshot.status == Status.finished) {
+          await _dartClient.disconnect();
+        }
         _gameStreamController.add(
           right(
-            OnlineGameSnapshotDto.fromClient(game).toDomain(),
+            snapshot,
           ),
         );
       },
