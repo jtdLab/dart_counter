@@ -7,6 +7,8 @@ class Set {
 
   bool get won => _won;
   Stats get stats => _stats;
+  int get startingPoints => _startingPoints;
+  int get legsNeededToWin => _legsNeededToWin;
 
   final List<Leg> legs;
 

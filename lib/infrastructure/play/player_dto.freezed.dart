@@ -21,30 +21,10 @@ class _$OfflinePlayerDtoTearOff {
   const _$OfflinePlayerDtoTearOff();
 
   _OfflinePlayerDto call(
-      {required String id,
-      required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets}) {
+      {required String id, required String name, required List<SetDto> sets}) {
     return _OfflinePlayerDto(
       id: id,
       name: name,
-      isCurrentTurn: isCurrentTurn,
-      won: won,
-      wonSets: wonSets,
-      wonLegsCurrentSet: wonLegsCurrentSet,
-      pointsLeft: pointsLeft,
-      finishRecommendation: finishRecommendation,
-      lastPoints: lastPoints,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-      stats: stats,
       sets: sets,
     );
   }
@@ -61,16 +41,7 @@ const $OfflinePlayerDto = _$OfflinePlayerDtoTearOff();
 mixin _$OfflinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  bool? get won => throw _privateConstructorUsedError;
-  int? get wonSets => throw _privateConstructorUsedError;
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  int? get lastPoints => throw _privateConstructorUsedError;
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,21 +54,7 @@ abstract class $OfflinePlayerDtoCopyWith<$Res> {
   factory $OfflinePlayerDtoCopyWith(
           OfflinePlayerDto value, $Res Function(OfflinePlayerDto) then) =
       _$OfflinePlayerDtoCopyWithImpl<$Res>;
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets});
-
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -113,15 +70,6 @@ class _$OfflinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
   }) {
     return _then(_value.copyWith(
@@ -133,58 +81,11 @@ class _$OfflinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
+              as List<SetDto>,
     ));
-  }
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats {
-    if (_value.stats == null) {
-      return null;
-    }
-
-    return $StatsDtoCopyWith<$Res>(_value.stats!, (value) {
-      return _then(_value.copyWith(stats: value));
-    });
   }
 }
 
@@ -195,22 +96,7 @@ abstract class _$OfflinePlayerDtoCopyWith<$Res>
           _OfflinePlayerDto value, $Res Function(_OfflinePlayerDto) then) =
       __$OfflinePlayerDtoCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets});
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -228,15 +114,6 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
   }) {
     return _then(_OfflinePlayerDto(
@@ -248,46 +125,10 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
+              as List<SetDto>,
     ));
   }
 }
@@ -297,18 +138,7 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
 @Implements(AbstractOfflinePlayerDto)
 class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   const _$_OfflinePlayerDto(
-      {required this.id,
-      required this.name,
-      this.isCurrentTurn,
-      this.won,
-      this.wonSets,
-      this.wonLegsCurrentSet,
-      this.pointsLeft,
-      this.finishRecommendation,
-      this.lastPoints,
-      this.dartsThrownCurrentLeg,
-      this.stats,
-      this.sets})
+      {required this.id, required this.name, required this.sets})
       : super._();
 
   factory _$_OfflinePlayerDto.fromJson(Map<String, dynamic> json) =>
@@ -319,29 +149,11 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   @override
   final String name;
   @override
-  final bool? isCurrentTurn;
-  @override
-  final bool? won;
-  @override
-  final int? wonSets;
-  @override
-  final int? wonLegsCurrentSet;
-  @override
-  final int? pointsLeft;
-  @override
-  final List<String>? finishRecommendation;
-  @override
-  final int? lastPoints;
-  @override
-  final int? dartsThrownCurrentLeg;
-  @override
-  final StatsDto? stats;
-  @override
-  final List<SetDto>? sets;
+  final List<SetDto> sets;
 
   @override
   String toString() {
-    return 'OfflinePlayerDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, sets: $sets)';
+    return 'OfflinePlayerDto(id: $id, name: $name, sets: $sets)';
   }
 
   @override
@@ -352,31 +164,6 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.wonSets, wonSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonSets, wonSets)) &&
-            (identical(other.wonLegsCurrentSet, wonLegsCurrentSet) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsCurrentSet, wonLegsCurrentSet)) &&
-            (identical(other.pointsLeft, pointsLeft) ||
-                const DeepCollectionEquality()
-                    .equals(other.pointsLeft, pointsLeft)) &&
-            (identical(other.finishRecommendation, finishRecommendation) ||
-                const DeepCollectionEquality().equals(
-                    other.finishRecommendation, finishRecommendation)) &&
-            (identical(other.lastPoints, lastPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastPoints, lastPoints)) &&
-            (identical(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) ||
-                const DeepCollectionEquality().equals(
-                    other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
             (identical(other.sets, sets) ||
                 const DeepCollectionEquality().equals(other.sets, sets)));
   }
@@ -386,15 +173,6 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonSets) ^
-      const DeepCollectionEquality().hash(wonLegsCurrentSet) ^
-      const DeepCollectionEquality().hash(pointsLeft) ^
-      const DeepCollectionEquality().hash(finishRecommendation) ^
-      const DeepCollectionEquality().hash(lastPoints) ^
-      const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
       const DeepCollectionEquality().hash(sets);
 
   @JsonKey(ignore: true)
@@ -413,16 +191,7 @@ abstract class _OfflinePlayerDto extends OfflinePlayerDto
   const factory _OfflinePlayerDto(
       {required String id,
       required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets}) = _$_OfflinePlayerDto;
+      required List<SetDto> sets}) = _$_OfflinePlayerDto;
   const _OfflinePlayerDto._() : super._();
 
   factory _OfflinePlayerDto.fromJson(Map<String, dynamic> json) =
@@ -433,25 +202,7 @@ abstract class _OfflinePlayerDto extends OfflinePlayerDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  @override
-  bool? get won => throw _privateConstructorUsedError;
-  @override
-  int? get wonSets => throw _privateConstructorUsedError;
-  @override
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  @override
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  @override
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  @override
-  int? get lastPoints => throw _privateConstructorUsedError;
-  @override
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  @override
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  @override
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OfflinePlayerDtoCopyWith<_OfflinePlayerDto> get copyWith =>
@@ -467,33 +218,11 @@ class _$DartBotDtoTearOff {
   const _$DartBotDtoTearOff();
 
   _DartBotDto call(
-      {required String id,
-      required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      required int targetAverage}) {
+      {required String id, required String name, required List<SetDto> sets}) {
     return _DartBotDto(
       id: id,
       name: name,
-      isCurrentTurn: isCurrentTurn,
-      won: won,
-      wonSets: wonSets,
-      wonLegsCurrentSet: wonLegsCurrentSet,
-      pointsLeft: pointsLeft,
-      finishRecommendation: finishRecommendation,
-      lastPoints: lastPoints,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-      stats: stats,
       sets: sets,
-      targetAverage: targetAverage,
     );
   }
 
@@ -509,17 +238,7 @@ const $DartBotDto = _$DartBotDtoTearOff();
 mixin _$DartBotDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  bool? get won => throw _privateConstructorUsedError;
-  int? get wonSets => throw _privateConstructorUsedError;
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  int? get lastPoints => throw _privateConstructorUsedError;
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
-  int get targetAverage => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -532,22 +251,7 @@ abstract class $DartBotDtoCopyWith<$Res> {
   factory $DartBotDtoCopyWith(
           DartBotDto value, $Res Function(DartBotDto) then) =
       _$DartBotDtoCopyWithImpl<$Res>;
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      int targetAverage});
-
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -562,17 +266,7 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
-    Object? targetAverage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -583,62 +277,11 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
-      targetAverage: targetAverage == freezed
-          ? _value.targetAverage
-          : targetAverage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<SetDto>,
     ));
-  }
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats {
-    if (_value.stats == null) {
-      return null;
-    }
-
-    return $StatsDtoCopyWith<$Res>(_value.stats!, (value) {
-      return _then(_value.copyWith(stats: value));
-    });
   }
 }
 
@@ -648,23 +291,7 @@ abstract class _$DartBotDtoCopyWith<$Res> implements $DartBotDtoCopyWith<$Res> {
           _DartBotDto value, $Res Function(_DartBotDto) then) =
       __$DartBotDtoCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      int targetAverage});
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -681,17 +308,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
-    Object? targetAverage = freezed,
   }) {
     return _then(_DartBotDto(
       id: id == freezed
@@ -702,50 +319,10 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
-      targetAverage: targetAverage == freezed
-          ? _value.targetAverage
-          : targetAverage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<SetDto>,
     ));
   }
 }
@@ -755,19 +332,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
 @Implements(AbstractOfflinePlayerDto)
 class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
-      {required this.id,
-      required this.name,
-      this.isCurrentTurn,
-      this.won,
-      this.wonSets,
-      this.wonLegsCurrentSet,
-      this.pointsLeft,
-      this.finishRecommendation,
-      this.lastPoints,
-      this.dartsThrownCurrentLeg,
-      this.stats,
-      this.sets,
-      required this.targetAverage})
+      {required this.id, required this.name, required this.sets})
       : super._();
 
   factory _$_DartBotDto.fromJson(Map<String, dynamic> json) =>
@@ -778,31 +343,11 @@ class _$_DartBotDto extends _DartBotDto {
   @override
   final String name;
   @override
-  final bool? isCurrentTurn;
-  @override
-  final bool? won;
-  @override
-  final int? wonSets;
-  @override
-  final int? wonLegsCurrentSet;
-  @override
-  final int? pointsLeft;
-  @override
-  final List<String>? finishRecommendation;
-  @override
-  final int? lastPoints;
-  @override
-  final int? dartsThrownCurrentLeg;
-  @override
-  final StatsDto? stats;
-  @override
-  final List<SetDto>? sets;
-  @override
-  final int targetAverage;
+  final List<SetDto> sets;
 
   @override
   String toString() {
-    return 'DartBotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, sets: $sets, targetAverage: $targetAverage)';
+    return 'DartBotDto(id: $id, name: $name, sets: $sets)';
   }
 
   @override
@@ -813,36 +358,8 @@ class _$_DartBotDto extends _DartBotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.wonSets, wonSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonSets, wonSets)) &&
-            (identical(other.wonLegsCurrentSet, wonLegsCurrentSet) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsCurrentSet, wonLegsCurrentSet)) &&
-            (identical(other.pointsLeft, pointsLeft) ||
-                const DeepCollectionEquality()
-                    .equals(other.pointsLeft, pointsLeft)) &&
-            (identical(other.finishRecommendation, finishRecommendation) ||
-                const DeepCollectionEquality().equals(
-                    other.finishRecommendation, finishRecommendation)) &&
-            (identical(other.lastPoints, lastPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastPoints, lastPoints)) &&
-            (identical(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) ||
-                const DeepCollectionEquality().equals(
-                    other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
             (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)) &&
-            (identical(other.targetAverage, targetAverage) ||
-                const DeepCollectionEquality()
-                    .equals(other.targetAverage, targetAverage)));
+                const DeepCollectionEquality().equals(other.sets, sets)));
   }
 
   @override
@@ -850,17 +367,7 @@ class _$_DartBotDto extends _DartBotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonSets) ^
-      const DeepCollectionEquality().hash(wonLegsCurrentSet) ^
-      const DeepCollectionEquality().hash(pointsLeft) ^
-      const DeepCollectionEquality().hash(finishRecommendation) ^
-      const DeepCollectionEquality().hash(lastPoints) ^
-      const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
-      const DeepCollectionEquality().hash(sets) ^
-      const DeepCollectionEquality().hash(targetAverage);
+      const DeepCollectionEquality().hash(sets);
 
   @JsonKey(ignore: true)
   @override
@@ -878,17 +385,7 @@ abstract class _DartBotDto extends DartBotDto
   const factory _DartBotDto(
       {required String id,
       required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      required int targetAverage}) = _$_DartBotDto;
+      required List<SetDto> sets}) = _$_DartBotDto;
   const _DartBotDto._() : super._();
 
   factory _DartBotDto.fromJson(Map<String, dynamic> json) =
@@ -899,27 +396,7 @@ abstract class _DartBotDto extends DartBotDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  @override
-  bool? get won => throw _privateConstructorUsedError;
-  @override
-  int? get wonSets => throw _privateConstructorUsedError;
-  @override
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  @override
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  @override
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  @override
-  int? get lastPoints => throw _privateConstructorUsedError;
-  @override
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  @override
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  @override
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
-  @override
-  int get targetAverage => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DartBotDtoCopyWith<_DartBotDto> get copyWith =>
@@ -935,33 +412,11 @@ class _$OnlinePlayerDtoTearOff {
   const _$OnlinePlayerDtoTearOff();
 
   _OnlinePlayerDto call(
-      {required String id,
-      required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      required String userId}) {
+      {required String id, required String name, required List<SetDto> sets}) {
     return _OnlinePlayerDto(
       id: id,
       name: name,
-      isCurrentTurn: isCurrentTurn,
-      won: won,
-      wonSets: wonSets,
-      wonLegsCurrentSet: wonLegsCurrentSet,
-      pointsLeft: pointsLeft,
-      finishRecommendation: finishRecommendation,
-      lastPoints: lastPoints,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg,
-      stats: stats,
       sets: sets,
-      userId: userId,
     );
   }
 
@@ -977,17 +432,7 @@ const $OnlinePlayerDto = _$OnlinePlayerDtoTearOff();
 mixin _$OnlinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  bool? get won => throw _privateConstructorUsedError;
-  int? get wonSets => throw _privateConstructorUsedError;
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  int? get lastPoints => throw _privateConstructorUsedError;
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1000,22 +445,7 @@ abstract class $OnlinePlayerDtoCopyWith<$Res> {
   factory $OnlinePlayerDtoCopyWith(
           OnlinePlayerDto value, $Res Function(OnlinePlayerDto) then) =
       _$OnlinePlayerDtoCopyWithImpl<$Res>;
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      String userId});
-
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -1031,17 +461,7 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -1052,62 +472,11 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<SetDto>,
     ));
-  }
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats {
-    if (_value.stats == null) {
-      return null;
-    }
-
-    return $StatsDtoCopyWith<$Res>(_value.stats!, (value) {
-      return _then(_value.copyWith(stats: value));
-    });
   }
 }
 
@@ -1118,23 +487,7 @@ abstract class _$OnlinePlayerDtoCopyWith<$Res>
           _OnlinePlayerDto value, $Res Function(_OnlinePlayerDto) then) =
       __$OnlinePlayerDtoCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id,
-      String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      String userId});
-
-  @override
-  $StatsDtoCopyWith<$Res>? get stats;
+  $Res call({String id, String name, List<SetDto> sets});
 }
 
 /// @nodoc
@@ -1152,17 +505,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? isCurrentTurn = freezed,
-    Object? won = freezed,
-    Object? wonSets = freezed,
-    Object? wonLegsCurrentSet = freezed,
-    Object? pointsLeft = freezed,
-    Object? finishRecommendation = freezed,
-    Object? lastPoints = freezed,
-    Object? dartsThrownCurrentLeg = freezed,
-    Object? stats = freezed,
     Object? sets = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_OnlinePlayerDto(
       id: id == freezed
@@ -1173,50 +516,10 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isCurrentTurn: isCurrentTurn == freezed
-          ? _value.isCurrentTurn
-          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      won: won == freezed
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wonSets: wonSets == freezed
-          ? _value.wonSets
-          : wonSets // ignore: cast_nullable_to_non_nullable
-              as int?,
-      wonLegsCurrentSet: wonLegsCurrentSet == freezed
-          ? _value.wonLegsCurrentSet
-          : wonLegsCurrentSet // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pointsLeft: pointsLeft == freezed
-          ? _value.pointsLeft
-          : pointsLeft // ignore: cast_nullable_to_non_nullable
-              as int?,
-      finishRecommendation: finishRecommendation == freezed
-          ? _value.finishRecommendation
-          : finishRecommendation // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      lastPoints: lastPoints == freezed
-          ? _value.lastPoints
-          : lastPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dartsThrownCurrentLeg: dartsThrownCurrentLeg == freezed
-          ? _value.dartsThrownCurrentLeg
-          : dartsThrownCurrentLeg // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stats: stats == freezed
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as StatsDto?,
       sets: sets == freezed
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<SetDto>,
     ));
   }
 }
@@ -1226,19 +529,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
 @Implements(AbstractPlayerDto)
 class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
-      {required this.id,
-      required this.name,
-      this.isCurrentTurn,
-      this.won,
-      this.wonSets,
-      this.wonLegsCurrentSet,
-      this.pointsLeft,
-      this.finishRecommendation,
-      this.lastPoints,
-      this.dartsThrownCurrentLeg,
-      this.stats,
-      this.sets,
-      required this.userId})
+      {required this.id, required this.name, required this.sets})
       : super._();
 
   factory _$_OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
@@ -1249,31 +540,11 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   @override
   final String name;
   @override
-  final bool? isCurrentTurn;
-  @override
-  final bool? won;
-  @override
-  final int? wonSets;
-  @override
-  final int? wonLegsCurrentSet;
-  @override
-  final int? pointsLeft;
-  @override
-  final List<String>? finishRecommendation;
-  @override
-  final int? lastPoints;
-  @override
-  final int? dartsThrownCurrentLeg;
-  @override
-  final StatsDto? stats;
-  @override
-  final List<SetDto>? sets;
-  @override
-  final String userId;
+  final List<SetDto> sets;
 
   @override
   String toString() {
-    return 'OnlinePlayerDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, sets: $sets, userId: $userId)';
+    return 'OnlinePlayerDto(id: $id, name: $name, sets: $sets)';
   }
 
   @override
@@ -1284,35 +555,8 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.wonSets, wonSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonSets, wonSets)) &&
-            (identical(other.wonLegsCurrentSet, wonLegsCurrentSet) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsCurrentSet, wonLegsCurrentSet)) &&
-            (identical(other.pointsLeft, pointsLeft) ||
-                const DeepCollectionEquality()
-                    .equals(other.pointsLeft, pointsLeft)) &&
-            (identical(other.finishRecommendation, finishRecommendation) ||
-                const DeepCollectionEquality().equals(
-                    other.finishRecommendation, finishRecommendation)) &&
-            (identical(other.lastPoints, lastPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastPoints, lastPoints)) &&
-            (identical(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) ||
-                const DeepCollectionEquality().equals(
-                    other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
             (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.sets, sets)));
   }
 
   @override
@@ -1320,17 +564,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonSets) ^
-      const DeepCollectionEquality().hash(wonLegsCurrentSet) ^
-      const DeepCollectionEquality().hash(pointsLeft) ^
-      const DeepCollectionEquality().hash(finishRecommendation) ^
-      const DeepCollectionEquality().hash(lastPoints) ^
-      const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
-      const DeepCollectionEquality().hash(sets) ^
-      const DeepCollectionEquality().hash(userId);
+      const DeepCollectionEquality().hash(sets);
 
   @JsonKey(ignore: true)
   @override
@@ -1348,17 +582,7 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   const factory _OnlinePlayerDto(
       {required String id,
       required String name,
-      bool? isCurrentTurn,
-      bool? won,
-      int? wonSets,
-      int? wonLegsCurrentSet,
-      int? pointsLeft,
-      List<String>? finishRecommendation,
-      int? lastPoints,
-      int? dartsThrownCurrentLeg,
-      StatsDto? stats,
-      List<SetDto>? sets,
-      required String userId}) = _$_OnlinePlayerDto;
+      required List<SetDto> sets}) = _$_OnlinePlayerDto;
   const _OnlinePlayerDto._() : super._();
 
   factory _OnlinePlayerDto.fromJson(Map<String, dynamic> json) =
@@ -1369,27 +593,7 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  @override
-  bool? get won => throw _privateConstructorUsedError;
-  @override
-  int? get wonSets => throw _privateConstructorUsedError;
-  @override
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
-  @override
-  int? get pointsLeft => throw _privateConstructorUsedError;
-  @override
-  List<String>? get finishRecommendation => throw _privateConstructorUsedError;
-  @override
-  int? get lastPoints => throw _privateConstructorUsedError;
-  @override
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  @override
-  StatsDto? get stats => throw _privateConstructorUsedError;
-  @override
-  List<SetDto>? get sets => throw _privateConstructorUsedError;
-  @override
-  String get userId => throw _privateConstructorUsedError;
+  List<SetDto> get sets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerDtoCopyWith<_OnlinePlayerDto> get copyWith =>

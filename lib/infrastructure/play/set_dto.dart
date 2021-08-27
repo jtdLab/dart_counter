@@ -11,33 +11,44 @@ part 'set_dto.g.dart';
 @freezed
 class SetDto with _$SetDto {
   const factory SetDto({
+    required int startingPoints,
+    required int legsNeededToWin,
     required List<LegDto> legs,
   }) = _SetDto;
 
   const SetDto._();
 
-  factory SetDto.fromDomain(Set set) {
+  /* factory SetDto.fromDomain(Set set) {
     return SetDto(
       legs: set.legs.asList().map((leg) => LegDto.fromDomain(leg)).toList(),
     );
-  }
+  } */
 
   factory SetDto.fromExternal(ex.Set set) {
     return SetDto(
+      startingPoints: set.startingPoints,
+      legsNeededToWin: set.legsNeededToWin,
       legs: set.legs.map((leg) => LegDto.fromExternal(leg)).toList(),
     );
   }
 
-  factory SetDto.fromClient(dc.Set set) {
+/*   factory SetDto.fromClient(dc.Set set) {
     return SetDto(
       legs: set.legs.map((leg) => LegDto.fromClient(leg)).asList(),
     );
-  }
+  } */
 
   Set toDomain() {
     return Set(
       legs: KtList.from(legs.map((legDto) => legDto.toDomain())),
     );
+  }
+
+  ex.Set toExternal() {
+    return ex.Set(startingPoints, legsNeededToWin)
+      ..legs.addAll(
+        legs.map((legDto) => legDto.toExternal()),
+      );
   }
 
   factory SetDto.fromJson(Map<String, dynamic> json) => _$SetDtoFromJson(json);

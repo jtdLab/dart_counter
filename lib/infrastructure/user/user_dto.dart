@@ -37,7 +37,11 @@ class UserDto with _$UserDto {
       profile: ProfileDto.fromDomain(user.profile),
       careerStatsOnline: CareerStatsDto.fromDomain(user.careerStatsOnline),
       careerStatsOffline: CareerStatsDto.fromDomain(user.careerStatsOffline),
-      gameHistoryOnline: user.gameHistoryOnline
+      gameHistoryOnline: [],
+      gameHistoryOffline: [],
+      // TODO
+      /**
+       * gameHistoryOnline: user.gameHistoryOnline
           .getOrCrash()
           .map((game) => OnlineGameDto.fromDomain(game))
           .asList(),
@@ -45,6 +49,7 @@ class UserDto with _$UserDto {
           .getOrCrash()
           .map((game) => OfflineGameDto.fromDomain(game))
           .asList(),
+       */
       createdAt: FieldValue.serverTimestamp(),
     );
   }

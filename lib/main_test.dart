@@ -36,7 +36,7 @@ Future<void> main() async {
   FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-
+  
   runApp(
     AppWidget(),
   );

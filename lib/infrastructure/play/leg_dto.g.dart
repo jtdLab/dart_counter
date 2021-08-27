@@ -8,6 +8,7 @@ part of 'leg_dto.dart';
 
 _$_LegDto _$_$_LegDtoFromJson(Map<String, dynamic> json) {
   return _$_LegDto(
+    startingPoints: json['startingPoints'] as int,
     throws: (json['throws'] as List<dynamic>)
         .map((e) => ThrowDto.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -15,5 +16,6 @@ _$_LegDto _$_$_LegDtoFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_LegDtoToJson(_$_LegDto instance) => <String, dynamic>{
+      'startingPoints': instance.startingPoints,
       'throws': instance.throws.map((e) => e.toJson()).toList(),
     };

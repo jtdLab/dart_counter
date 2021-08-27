@@ -10,7 +10,8 @@ part 'player.freezed.dart';
 abstract class AbstractPlayer {
   UniqueId get id;
   String get name;
-  bool get isCurrentTurn;
+  KtList<Set> get sets;
+
   bool get won;
   int? get wonSets;
   int get wonLegsCurrentSet;
@@ -19,7 +20,6 @@ abstract class AbstractPlayer {
   int? get lastPoints;
   int get dartsThrownCurrentLeg;
   Stats get stats;
-  KtList<Set> get sets;
 }
 
 abstract class AbstractOfflinePlayer extends AbstractPlayer {}
@@ -30,8 +30,7 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
   const factory OfflinePlayer({
     required UniqueId id,
     required String name,
-    @Default(false)
-        bool isCurrentTurn,
+    required KtList<Set> sets,
     @Default(false)
         bool won,
     int? wonSets,
@@ -47,7 +46,6 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
       Stats(),
     )
         Stats stats,
-    required KtList<Set> sets,
   }) = _OfflinePlayer;
 
   factory OfflinePlayer.dummy() => OfflinePlayer(
@@ -64,16 +62,15 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
           'egesit',
           'AnisAbi',
         ]),
-        isCurrentTurn: true,
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
         won: false,
         wonLegsCurrentSet: 0,
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
       );
 }
 
@@ -83,8 +80,7 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
   const factory DartBot({
     required UniqueId id,
     required String name,
-    @Default(false)
-        bool isCurrentTurn,
+    required KtList<Set> sets,
     @Default(false)
         bool won,
     int? wonSets,
@@ -100,15 +96,10 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
       Stats(),
     )
         Stats stats,
-    required KtList<Set> sets,
-    @Default(0)
-        int targetAverage,
   }) = _DartBot;
 
   factory DartBot.dummy() => DartBot(
-        id: UniqueId.fromUniqueString(
-          faker.randomGenerator.string(28, min: 28),
-        ),
+        id: UniqueId.fromUniqueString('dartBot'),
         name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
@@ -119,16 +110,15 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
           'egesit',
           'AnisAbi',
         ]),
-        isCurrentTurn: true,
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
         won: false,
         wonLegsCurrentSet: 0,
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
       );
 }
 
@@ -138,8 +128,7 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
   const factory OnlinePlayer({
     required UniqueId id,
     required String name,
-    @Default(false)
-        bool isCurrentTurn,
+    required KtList<Set> sets,
     @Default(false)
         bool won,
     int? wonSets,
@@ -155,8 +144,6 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
       Stats(),
     )
         Stats stats,
-    required KtList<Set> sets,
-    required UniqueId userId,
   }) = _OnlinePlayer;
 
   factory OnlinePlayer.dummy() => OnlinePlayer(
@@ -173,18 +160,14 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
           'egesit',
           'AnisAbi',
         ]),
-        isCurrentTurn: true,
+        sets: KtList.from(
+          faker.randomGenerator.amount((i) => Set.dummy(), 9),
+        ),
         won: false,
         wonLegsCurrentSet: 0,
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: Stats.dummy(),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
-        userId: UniqueId.fromUniqueString(
-          faker.randomGenerator.string(28, min: 28),
-        ),
       );
 }

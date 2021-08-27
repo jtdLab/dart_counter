@@ -1,7 +1,6 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/mode.dart';
-import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/infrastructure/play/player_dto.dart';
@@ -39,7 +38,7 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
 
   const OfflineGameDto._();
 
-  factory OfflineGameDto.fromDomain(OfflineGame game) {
+/*   factory OfflineGameDto.fromDomain(OfflineGame game) {
     return OfflineGameDto(
       id: game.id.getOrCrash(),
       createdAt: game.createdAt.millisecondsSinceEpoch,
@@ -54,7 +53,8 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
       size: game.size,
       type: game.type == Type.legs ? 'legs' : 'sets',
       startingPoints: game.startingPoints,
-      players: game.players.map(
+      players: [],
+      /* players: game.players.map(
         (player) {
           if (player is OfflinePlayer) {
             return OfflinePlayerDto.fromDomain(player);
@@ -64,10 +64,11 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
             throw Error();
           }
         },
-      ).asList(),
+      ).asList(), */
     );
   }
-
+ */
+  
   OfflineGame toDomain() {
     return OfflineGame(
       id: UniqueId.fromUniqueString(id),
@@ -87,8 +88,10 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
         players.map(
           (player) {
             if (player is OfflinePlayerDto) {
+              
               return player.toDomain();
             } else if (player is DartBotDto) {
+
               return player.toDomain();
             } else {
               throw Error();
@@ -120,7 +123,7 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
 
   const OnlineGameDto._();
 
-  factory OnlineGameDto.fromDomain(OnlineGame game) {
+/*   factory OnlineGameDto.fromDomain(OnlineGame game) {
     return OnlineGameDto(
       id: game.id.getOrCrash(),
       createdAt: game.createdAt.millisecondsSinceEpoch,
@@ -141,6 +144,7 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
           .asList(),
     );
   }
+ */
 
   OnlineGame toDomain() {
     return OnlineGame(
@@ -159,7 +163,11 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
       type: type == 'legs' ? Type.legs : Type.sets,
       startingPoints: startingPoints,
       players: KtList.from(
-        players.map((player) => player.toDomain()),
+        players.map(
+          (player) {
+            return player.toDomain();
+          },
+        ),
       ),
     );
   }

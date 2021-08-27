@@ -19,7 +19,6 @@ abstract class Game {
   int get startingPoints;
   KtList<AbstractPlayer> get players;
   String description();
-  AbstractPlayer currentTurn();
 }
 
 @freezed
@@ -38,22 +37,9 @@ class OfflineGame with _$OfflineGame implements Game {
 
   const OfflineGame._();
 
-  bool hasDartBot() {
-    if (players.size < 2) {
-      return false;
-    }
-
-    return players.any((player) => player is DartBot);
-  }
-
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  AbstractOfflinePlayer currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory OfflineGame.dummy() => OfflineGame(
         id: UniqueId.fromUniqueString(
@@ -103,11 +89,6 @@ class OnlineGame with _$OnlineGame implements Game {
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  OnlinePlayer currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory OnlineGame.dummy() => OnlineGame(
         id: UniqueId.fromUniqueString(

@@ -7,6 +7,7 @@ class Leg {
 
   bool get won => _won;
   Stats get stats => _stats;
+  int get startingPoints => _startingPoints;
 
   final List<Throw> throws;
 

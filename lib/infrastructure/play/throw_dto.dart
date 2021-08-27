@@ -28,7 +28,7 @@ class ThrowDto with _$ThrowDto {
       dartsOnDouble: t.dartsOnDouble,
       darts: t.darts?.iter.map((dart) => DartDto.fromDomain(dart)).toList(),
     );
-  }
+  } 
 
   factory ThrowDto.fromExternal(ex.Throw t) {
     return ThrowDto(
@@ -47,7 +47,7 @@ class ThrowDto with _$ThrowDto {
       darts: darts?.map((dart) => dart.toExternal()).toList(),
     );
   }
-
+ 
   factory ThrowDto.fromClient(dc.Throw t) {
     return ThrowDto(
       points: t.points,
@@ -81,7 +81,7 @@ class ThrowDto with _$ThrowDto {
               darts!.map((dart) => dart.toClient()),
             ),
     );
-  }
+  } 
 
   factory ThrowDto.fromJson(Map<String, dynamic> json) =>
       _$ThrowDtoFromJson(json);

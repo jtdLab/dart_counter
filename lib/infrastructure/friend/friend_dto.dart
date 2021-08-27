@@ -25,10 +25,13 @@ class FriendDto with _$FriendDto {
       id: friend.id.getOrCrash(),
       profile: ProfileDto.fromDomain(friend.profile),
       careerStatsOnline: CareerStatsDto.fromDomain(friend.careerStatsOnline),
-      gameHistoryOnline: friend.gameHistoryOnline
+      gameHistoryOnline: [],
+      /**
+       * gameHistoryOnline: friend.gameHistoryOnline
           .getOrCrash()
           .map((game) => OnlineGameDto.fromDomain(game))
           .asList(),
+       */
     );
   }
 
