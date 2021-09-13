@@ -33,7 +33,7 @@ class DartDto with _$DartDto {
           : d.type == ex.DartType.d
               ? 'double'
               : 'triple',
-      value: d.points,
+      value: d.value,
     );
   }
 
@@ -44,18 +44,7 @@ class DartDto with _$DartDto {
           : d.type == dc.DartType.d
               ? 'double'
               : 'triple',
-      value: d.points(),
-    );
-  }
-
-  ex.Dart toExternal() {
-    return ex.Dart(
-      type == 'single'
-          ? ex.DartType.s
-          : type == 'double'
-              ? ex.DartType.d
-              : ex.DartType.t,
-      value,
+      value: d.value,
     );
   }
 
@@ -66,6 +55,17 @@ class DartDto with _$DartDto {
           : type == 'double'
               ? DartType.d
               : DartType.t,
+      value: value,
+    );
+  }
+
+  ex.Dart toExternal() {
+    return ex.Dart(
+      type: type == 'single'
+          ? ex.DartType.s
+          : type == 'double'
+              ? ex.DartType.d
+              : ex.DartType.t,
       value: value,
     );
   }

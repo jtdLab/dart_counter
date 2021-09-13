@@ -21,7 +21,7 @@ abstract class AbstractPlayerSnapshotDto {
   List<String>? get finishRecommendation;
   int? get lastPoints;
   int? get dartsThrownCurrentLeg;
-  StatsDto? get stats;
+  PlayerStatsDto? get stats;
 }
 
 abstract class AbstractOfflinePlayerSnapshotDto
@@ -43,7 +43,7 @@ class OfflinePlayerSnapshotDto
     List<String>? finishRecommendation,
     int? lastPoints,
     int? dartsThrownCurrentLeg,
-    StatsDto? stats,
+    PlayerStatsDto? stats,
   }) = _OfflinePlayerSnapshotDto;
 
   const OfflinePlayerSnapshotDto._();
@@ -51,7 +51,7 @@ class OfflinePlayerSnapshotDto
   factory OfflinePlayerSnapshotDto.fromExternal(ex.Player player) {
     return OfflinePlayerSnapshotDto(
       id: player.id,
-      name: player.name,
+      name: player.name ?? 'Player N', // TODO
       isCurrentTurn: player.isCurrentTurn,
       won: player.won,
       wonSets: player.wonSets,
@@ -60,7 +60,7 @@ class OfflinePlayerSnapshotDto
       finishRecommendation: player.finishRecommendation,
       lastPoints: player.lastPoints,
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: StatsDto.fromExternal(player.stats),
+      stats: PlayerStatsDto.fromExternal(player.stats),
     );
   }
 
@@ -78,7 +78,7 @@ class OfflinePlayerSnapshotDto
           : KtList.from(finishRecommendation!),
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
-      stats: stats?.toDomain() ?? const Stats(),
+      stats: stats?.toDomain() ?? const PlayerStats(),
     );
   }
 }
@@ -99,7 +99,7 @@ class DartBotSnapshotDto
     List<String>? finishRecommendation,
     int? lastPoints,
     int? dartsThrownCurrentLeg,
-    StatsDto? stats,
+    PlayerStatsDto? stats,
     required int targetAverage,
   }) = _DartBotSnapshotDto;
 
@@ -117,7 +117,7 @@ class DartBotSnapshotDto
       finishRecommendation: dartBot.finishRecommendation,
       lastPoints: dartBot.lastPoints,
       dartsThrownCurrentLeg: dartBot.dartsThrownCurrentLeg,
-      stats: StatsDto.fromExternal(dartBot.stats),
+      stats: PlayerStatsDto.fromExternal(dartBot.stats),
       targetAverage: dartBot.targetAverage,
     );
   }
@@ -136,7 +136,7 @@ class DartBotSnapshotDto
           : KtList.from(finishRecommendation!),
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
-      stats: stats?.toDomain() ?? const Stats(),
+      stats: stats?.toDomain() ?? const PlayerStats(),
       targetAverage: targetAverage,
     );
   }
@@ -158,7 +158,7 @@ class OnlinePlayerSnapshotDto
     List<String>? finishRecommendation,
     int? lastPoints,
     int? dartsThrownCurrentLeg,
-    StatsDto? stats,
+    PlayerStatsDto? stats,
     required String userId,
   }) = _OnlinePlayerSnapshotDto;
 
@@ -178,7 +178,7 @@ class OnlinePlayerSnapshotDto
       dartsThrownCurrentLeg: playerSnapshot.dartsThrownCurrentLeg,
       stats: playerSnapshot.stats == null
           ? null
-          : StatsDto.fromClient(playerSnapshot.stats!),
+          : PlayerStatsDto.fromClient(playerSnapshot.stats!),
       userId: playerSnapshot.userId,
     );
   }
@@ -197,7 +197,7 @@ class OnlinePlayerSnapshotDto
           : KtList.from(finishRecommendation!),
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
-      stats: stats?.toDomain() ?? const Stats(),
+      stats: stats?.toDomain() ?? const PlayerStats(),
       userId: UniqueId.fromUniqueString(userId),
     );
   }

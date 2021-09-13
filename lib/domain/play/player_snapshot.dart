@@ -17,7 +17,7 @@ abstract class AbstractPlayerSnapshot {
   KtList<String>? get finishRecommendation;
   int? get lastPoints;
   int get dartsThrownCurrentLeg;
-  Stats get stats;
+  PlayerStats get stats;
 }
 
 abstract class AbstractOfflinePlayerSnapshot extends AbstractPlayerSnapshot {}
@@ -38,7 +38,7 @@ class OfflinePlayerSnapshot
     KtList<String>? finishRecommendation,
     int? lastPoints,
     @Default(0) int dartsThrownCurrentLeg,
-    @Default(Stats()) Stats stats,
+    @Default(PlayerStats()) PlayerStats stats,
   }) = _OfflinePlayerSnapshot;
 
   factory OfflinePlayerSnapshot.dummy() => OfflinePlayerSnapshot(
@@ -61,7 +61,7 @@ class OfflinePlayerSnapshot
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
-        stats: Stats.dummy(),
+        stats: PlayerStats.dummy(),
       );
 }
 
@@ -87,9 +87,9 @@ class DartBotSnapshot
     @Default(0)
         int dartsThrownCurrentLeg,
     @Default(
-      Stats(),
+      PlayerStats(),
     )
-        Stats stats,
+        PlayerStats stats,
     @Default(1)
         int targetAverage,
   }) = _DartBotSnapshot;
@@ -114,7 +114,7 @@ class DartBotSnapshot
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
-        stats: Stats.dummy(),
+        stats: PlayerStats.dummy(),
       );
 }
 
@@ -140,9 +140,9 @@ class OnlinePlayerSnapshot
     @Default(0)
         int dartsThrownCurrentLeg,
     @Default(
-      Stats(),
+      PlayerStats(),
     )
-        Stats stats,
+        PlayerStats stats,
     required UniqueId userId,
   }) = _OnlinePlayerSnapshot;
 
@@ -166,7 +166,7 @@ class OnlinePlayerSnapshot
         pointsLeft: 261,
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
-        stats: Stats.dummy(),
+        stats: PlayerStats.dummy(),
         userId: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),

@@ -46,10 +46,10 @@ class OfflineGameSnapshotDto
               : game.status == ex.Status.canceled
                   ? 'canceled'
                   : 'finished',
-      mode: game.config.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
-      size: game.config.size,
-      type: game.config.type == ex.Type.legs ? 'legs' : 'sets',
-      startingPoints: game.config.startingPoints,
+      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
+      size: game.size,
+      type: game.type == ex.Type.legs ? 'legs' : 'sets',
+      startingPoints: game.startingPoints,
       players: game.players.map<AbstractOfflinePlayerSnapshotDto>(
         (player) {
           if (player is ex.DartBot) {

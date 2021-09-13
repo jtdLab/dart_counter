@@ -27,7 +27,7 @@ class _$OfflinePlayerSnapshotTearOff {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg = 0,
-      Stats stats = const Stats()}) {
+      PlayerStats stats = const PlayerStats()}) {
     return _OfflinePlayerSnapshot(
       id: id,
       name: name,
@@ -60,7 +60,7 @@ mixin _$OfflinePlayerSnapshot {
       throw _privateConstructorUsedError;
   int? get lastPoints => throw _privateConstructorUsedError;
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OfflinePlayerSnapshotCopyWith<OfflinePlayerSnapshot> get copyWith =>
@@ -83,9 +83,9 @@ abstract class $OfflinePlayerSnapshotCopyWith<$Res> {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats});
+      PlayerStats stats});
 
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -155,13 +155,13 @@ class _$OfflinePlayerSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
     ));
   }
 
   @override
-  $StatsCopyWith<$Res> get stats {
-    return $StatsCopyWith<$Res>(_value.stats, (value) {
+  $PlayerStatsCopyWith<$Res> get stats {
+    return $PlayerStatsCopyWith<$Res>(_value.stats, (value) {
       return _then(_value.copyWith(stats: value));
     });
   }
@@ -185,10 +185,10 @@ abstract class _$OfflinePlayerSnapshotCopyWith<$Res>
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats});
+      PlayerStats stats});
 
   @override
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -260,7 +260,7 @@ class __$OfflinePlayerSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
     ));
   }
 }
@@ -280,7 +280,7 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
       this.finishRecommendation,
       this.lastPoints,
       this.dartsThrownCurrentLeg = 0,
-      this.stats = const Stats()});
+      this.stats = const PlayerStats()});
 
   @override
   final UniqueId id;
@@ -307,9 +307,9 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   @JsonKey(defaultValue: 0)
   @override
   final int dartsThrownCurrentLeg;
-  @JsonKey(defaultValue: const Stats())
+  @JsonKey(defaultValue: const PlayerStats())
   @override
-  final Stats stats;
+  final PlayerStats stats;
 
   @override
   String toString() {
@@ -386,7 +386,7 @@ abstract class _OfflinePlayerSnapshot
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats}) = _$_OfflinePlayerSnapshot;
+      PlayerStats stats}) = _$_OfflinePlayerSnapshot;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -410,7 +410,7 @@ abstract class _OfflinePlayerSnapshot
   @override
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OfflinePlayerSnapshotCopyWith<_OfflinePlayerSnapshot> get copyWith =>
@@ -432,7 +432,7 @@ class _$DartBotSnapshotTearOff {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg = 0,
-      Stats stats = const Stats(),
+      PlayerStats stats = const PlayerStats(),
       int targetAverage = 1}) {
     return _DartBotSnapshot(
       id: id,
@@ -467,7 +467,7 @@ mixin _$DartBotSnapshot {
       throw _privateConstructorUsedError;
   int? get lastPoints => throw _privateConstructorUsedError;
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
   int get targetAverage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -491,10 +491,10 @@ abstract class $DartBotSnapshotCopyWith<$Res> {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       int targetAverage});
 
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -565,7 +565,7 @@ class _$DartBotSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
       targetAverage: targetAverage == freezed
           ? _value.targetAverage
           : targetAverage // ignore: cast_nullable_to_non_nullable
@@ -574,8 +574,8 @@ class _$DartBotSnapshotCopyWithImpl<$Res>
   }
 
   @override
-  $StatsCopyWith<$Res> get stats {
-    return $StatsCopyWith<$Res>(_value.stats, (value) {
+  $PlayerStatsCopyWith<$Res> get stats {
+    return $PlayerStatsCopyWith<$Res>(_value.stats, (value) {
       return _then(_value.copyWith(stats: value));
     });
   }
@@ -599,11 +599,11 @@ abstract class _$DartBotSnapshotCopyWith<$Res>
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       int targetAverage});
 
   @override
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -676,7 +676,7 @@ class __$DartBotSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
       targetAverage: targetAverage == freezed
           ? _value.targetAverage
           : targetAverage // ignore: cast_nullable_to_non_nullable
@@ -700,7 +700,7 @@ class _$_DartBotSnapshot implements _DartBotSnapshot {
       this.finishRecommendation,
       this.lastPoints,
       this.dartsThrownCurrentLeg = 0,
-      this.stats = const Stats(),
+      this.stats = const PlayerStats(),
       this.targetAverage = 1});
 
   @override
@@ -728,9 +728,9 @@ class _$_DartBotSnapshot implements _DartBotSnapshot {
   @JsonKey(defaultValue: 0)
   @override
   final int dartsThrownCurrentLeg;
-  @JsonKey(defaultValue: const Stats())
+  @JsonKey(defaultValue: const PlayerStats())
   @override
-  final Stats stats;
+  final PlayerStats stats;
   @JsonKey(defaultValue: 1)
   @override
   final int targetAverage;
@@ -813,7 +813,7 @@ abstract class _DartBotSnapshot
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       int targetAverage}) = _$_DartBotSnapshot;
 
   @override
@@ -838,7 +838,7 @@ abstract class _DartBotSnapshot
   @override
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
   @override
   int get targetAverage => throw _privateConstructorUsedError;
   @override
@@ -862,7 +862,7 @@ class _$OnlinePlayerSnapshotTearOff {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg = 0,
-      Stats stats = const Stats(),
+      PlayerStats stats = const PlayerStats(),
       required UniqueId userId}) {
     return _OnlinePlayerSnapshot(
       id: id,
@@ -897,7 +897,7 @@ mixin _$OnlinePlayerSnapshot {
       throw _privateConstructorUsedError;
   int? get lastPoints => throw _privateConstructorUsedError;
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
   UniqueId get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -921,10 +921,10 @@ abstract class $OnlinePlayerSnapshotCopyWith<$Res> {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       UniqueId userId});
 
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -995,7 +995,7 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -1004,8 +1004,8 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
   }
 
   @override
-  $StatsCopyWith<$Res> get stats {
-    return $StatsCopyWith<$Res>(_value.stats, (value) {
+  $PlayerStatsCopyWith<$Res> get stats {
+    return $PlayerStatsCopyWith<$Res>(_value.stats, (value) {
       return _then(_value.copyWith(stats: value));
     });
   }
@@ -1029,11 +1029,11 @@ abstract class _$OnlinePlayerSnapshotCopyWith<$Res>
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       UniqueId userId});
 
   @override
-  $StatsCopyWith<$Res> get stats;
+  $PlayerStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
@@ -1106,7 +1106,7 @@ class __$OnlinePlayerSnapshotCopyWithImpl<$Res>
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
-              as Stats,
+              as PlayerStats,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -1130,7 +1130,7 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
       this.finishRecommendation,
       this.lastPoints,
       this.dartsThrownCurrentLeg = 0,
-      this.stats = const Stats(),
+      this.stats = const PlayerStats(),
       required this.userId});
 
   @override
@@ -1158,9 +1158,9 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
   @JsonKey(defaultValue: 0)
   @override
   final int dartsThrownCurrentLeg;
-  @JsonKey(defaultValue: const Stats())
+  @JsonKey(defaultValue: const PlayerStats())
   @override
-  final Stats stats;
+  final PlayerStats stats;
   @override
   final UniqueId userId;
 
@@ -1242,7 +1242,7 @@ abstract class _OnlinePlayerSnapshot
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      Stats stats,
+      PlayerStats stats,
       required UniqueId userId}) = _$_OnlinePlayerSnapshot;
 
   @override
@@ -1267,7 +1267,7 @@ abstract class _OnlinePlayerSnapshot
   @override
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
-  Stats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats => throw _privateConstructorUsedError;
   @override
   UniqueId get userId => throw _privateConstructorUsedError;
   @override

@@ -1,27 +1,18 @@
 library dart_game;
 
 import 'dart:math';
+import 'package:collection/collection.dart';
+import 'package:dart_game/util/throw_generator.dart';
+import 'package:dartz/dartz.dart';
+import 'package:uuid/uuid.dart';
 
-part 'enums/language.dart';
+part 'util/dart_utils.dart';
+part 'util/finish_recommendation.dart';
 
-/// enums
-part 'enums/mode.dart';
-part 'enums/status.dart';
-part 'enums/type.dart';
-part 'enums/dart_type.dart';
-
-/// helpers
-part 'helpers/finishes.dart';
-part 'helpers/throw_generator.dart';
-part 'helpers/throw_validator.dart';
-
-/// model
-part 'model/config.dart';
-part 'model/dartbot.dart';
-part 'model/game.dart';
-part 'model/leg.dart';
-part 'model/player.dart';
-part 'model/set.dart';
-part 'model/stats.dart';
-part 'model/throw.dart';
-part 'model/dart.dart';
+part 'core/dart.dart';
+part 'core/dartbot.dart';
+part 'core/game.dart';
+part 'core/leg.dart';
+part 'core/player.dart';
+part 'core/set.dart';
+part 'core/throw.dart';

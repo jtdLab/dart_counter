@@ -5,7 +5,9 @@ import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/infrastructure/play/player_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:kt_dart/kt.dart';
+import 'package:uuid/uuid.dart';
 
 part 'game_dto.freezed.dart';
 part 'game_dto.g.dart';
@@ -38,37 +40,33 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
 
   const OfflineGameDto._();
 
-/*   factory OfflineGameDto.fromDomain(OfflineGame game) {
+  factory OfflineGameDto.fromExternal(ex.Game game) {
     return OfflineGameDto(
-      id: game.id.getOrCrash(),
-      createdAt: game.createdAt.millisecondsSinceEpoch,
-      status: game.status == Status.pending
+      id: const Uuid().v1(),
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      status: game.status == ex.Status.pending
           ? 'pending'
-          : game.status == Status.running
+          : game.status == ex.Status.running
               ? 'running'
-              : game.status == Status.canceled
+              : game.status == ex.Status.canceled
                   ? 'canceled'
                   : 'finished',
-      mode: game.mode == Mode.firstTo ? 'firstTo' : 'bestOf',
+      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
       size: game.size,
-      type: game.type == Type.legs ? 'legs' : 'sets',
+      type: game.type == ex.Type.legs ? 'legs' : 'sets',
       startingPoints: game.startingPoints,
-      players: [],
-      /* players: game.players.map(
+      players: game.players.map(
         (player) {
-          if (player is OfflinePlayer) {
-            return OfflinePlayerDto.fromDomain(player);
-          } else if (player is DartBot) {
-            return DartBotDto.fromDomain(player);
+          if (player is ex.DartBot) {
+            return DartBotDto.fromExternal(player);
           } else {
-            throw Error();
+            return OfflinePlayerDto.fromExternal(player);
           }
         },
-      ).asList(), */
+      ).toList(),
     );
   }
- */
-  
+
   OfflineGame toDomain() {
     return OfflineGame(
       id: UniqueId.fromUniqueString(id),
@@ -88,10 +86,8 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
         players.map(
           (player) {
             if (player is OfflinePlayerDto) {
-              
               return player.toDomain();
             } else if (player is DartBotDto) {
-
               return player.toDomain();
             } else {
               throw Error();
@@ -123,29 +119,6 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
 
   const OnlineGameDto._();
 
-/*   factory OnlineGameDto.fromDomain(OnlineGame game) {
-    return OnlineGameDto(
-      id: game.id.getOrCrash(),
-      createdAt: game.createdAt.millisecondsSinceEpoch,
-      ownerId: game.ownerId.getOrCrash(),
-      status: game.status == Status.pending
-          ? 'pending'
-          : game.status == Status.running
-              ? 'running'
-              : game.status == Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == Mode.firstTo ? 'firstTo' : 'bestOf',
-      size: game.size,
-      type: game.type == Type.legs ? 'legs' : 'sets',
-      startingPoints: game.startingPoints,
-      players: game.players
-          .map((player) => OnlinePlayerDto.fromDomain(player))
-          .asList(),
-    );
-  }
- */
-
   OnlineGame toDomain() {
     return OnlineGame(
       id: UniqueId.fromUniqueString(id),
@@ -163,11 +136,7 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
       type: type == 'legs' ? Type.legs : Type.sets,
       startingPoints: startingPoints,
       players: KtList.from(
-        players.map(
-          (player) {
-            return player.toDomain();
-          },
-        ),
+        players.map((player) => player.toDomain()),
       ),
     );
   }

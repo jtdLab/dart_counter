@@ -94,7 +94,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required Throw t,
   }) {
     if (_game != null) {
-      _game!.performThrow(ThrowDto.fromDomain(t).toExternal());
+      _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -132,7 +132,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required int index,
   }) {
     if (_game != null) {
-      _game!.removePlayer(index);
+      _game!.removePlayer(index: index);
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -153,7 +153,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required int newIndex,
   }) {
     if (_game != null) {
-      _game!.reorderPlayer(oldIndex, newIndex);
+      _game!.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -173,7 +173,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required int targetAverage,
   }) {
     if (_game != null) {
-      _game!.setDartBotTargetAverage(targetAverage);
+      _game!.dartBotTargetAverage = targetAverage;
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -193,9 +193,9 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required Mode mode,
   }) {
     if (_game != null) {
-      _game!.setMode(mode == Mode.firstTo
+      _game!.mode = mode == Mode.firstTo
           ? ex.Mode.firstTo
-          : ex.Mode.bestOf); // TODO this should be done in enum Mode
+          : ex.Mode.bestOf; // TODO this should be done in enum Mode
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -215,7 +215,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required int size,
   }) {
     if (_game != null) {
-      _game!.setSize(size);
+      _game!.size = size;
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -235,7 +235,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required int startingPoints,
   }) {
     if (_game != null) {
-      _game!.setStartingPoints(startingPoints);
+      _game!.startingPoints = startingPoints;
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
@@ -255,9 +255,9 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
     required Type type,
   }) {
     if (_game != null) {
-      _game!.setType(type == Type.legs
+      _game!.type = type == Type.legs
           ? ex.Type.legs
-          : ex.Type.sets); // TODO should be done in enum Type
+          : ex.Type.sets; // TODO should be done in enum Type
       _gameStreamController.add(
         right(
           OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),

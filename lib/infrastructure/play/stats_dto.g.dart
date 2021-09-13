@@ -6,8 +6,8 @@ part of 'stats_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StatsDto _$_$_StatsDtoFromJson(Map<String, dynamic> json) {
-  return _$_StatsDto(
+_$_PlayerStatsDto _$_$_PlayerStatsDtoFromJson(Map<String, dynamic> json) {
+  return _$_PlayerStatsDto(
     average: (json['average'] as num).toDouble(),
     checkoutPercentage: (json['checkoutPercentage'] as num).toDouble(),
     firstNineAverage: (json['firstNineAverage'] as num).toDouble(),
@@ -31,7 +31,7 @@ _$_StatsDto _$_$_StatsDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_StatsDtoToJson(_$_StatsDto instance) =>
+Map<String, dynamic> _$_$_PlayerStatsDtoToJson(_$_PlayerStatsDto instance) =>
     <String, dynamic>{
       'average': instance.average,
       'checkoutPercentage': instance.checkoutPercentage,

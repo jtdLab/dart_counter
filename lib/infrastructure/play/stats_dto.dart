@@ -7,8 +7,8 @@ part 'stats_dto.freezed.dart';
 part 'stats_dto.g.dart';
 
 @freezed
-class StatsDto with _$StatsDto {
-  const factory StatsDto({
+class PlayerStatsDto with _$PlayerStatsDto {
+  const factory PlayerStatsDto({
     required double average,
     required double checkoutPercentage,
     required double firstNineAverage,
@@ -29,12 +29,12 @@ class StatsDto with _$StatsDto {
     required int hundredFourtyPlus,
     required int hundredSixtyPlus,
     required int hundredEighty,
-  }) = _StatsDto;
+  }) = _PlayerStatsDto;
 
-  const StatsDto._();
+  const PlayerStatsDto._();
 
-  factory StatsDto.fromDomain(Stats stats) {
-    return StatsDto(
+  factory PlayerStatsDto.fromDomain(PlayerStats stats) {
+    return PlayerStatsDto(
       average: stats.average,
       checkoutPercentage: stats.checkoutPercentage,
       firstNineAverage: stats.firstNineAverage,
@@ -58,8 +58,10 @@ class StatsDto with _$StatsDto {
     );
   }
 
-  factory StatsDto.fromExternal(ex.Stats stats) {
-    return StatsDto(
+// TODO remove or keep
+/**
+ *   factory PlayerStatsDto.fromExternal(ex.Stats stats) {
+    return PlayerStatsDto(
       average: stats.average,
       checkoutPercentage: stats.checkoutPercentage,
       firstNineAverage: stats.firstNineAverage,
@@ -83,8 +85,9 @@ class StatsDto with _$StatsDto {
     );
   }
 
-  factory StatsDto.fromClient(dc.Stats stats) {
-    return StatsDto(
+ */
+  factory PlayerStatsDto.fromClient(dc.Stats stats) {
+    return PlayerStatsDto(
       average: stats.average,
       checkoutPercentage: stats.checkoutPercentage,
       firstNineAverage: stats.firstNineAverage,
@@ -108,8 +111,8 @@ class StatsDto with _$StatsDto {
     );
   }
 
-  Stats toDomain() {
-    return Stats(
+  PlayerStats toDomain() {
+    return PlayerStats(
       average: average,
       checkoutPercentage: checkoutPercentage,
       firstNineAverage: firstNineAverage,
@@ -133,6 +136,6 @@ class StatsDto with _$StatsDto {
     );
   }
 
-  factory StatsDto.fromJson(Map<String, dynamic> json) =>
-      _$StatsDtoFromJson(json);
+  factory PlayerStatsDto.fromJson(Map<String, dynamic> json) =>
+      _$PlayerStatsDtoFromJson(json);
 }

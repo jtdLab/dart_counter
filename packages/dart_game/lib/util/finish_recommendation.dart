@@ -1,7 +1,20 @@
-part of dart_game;
+part of '../dart_game.dart';
 
-class Finishes {
-  static List<String>? get(int? points) {
+class FinishRecommendation {
+  /// Returns the finishing path recommended for [points].
+  ///
+  /// ```dart
+  /// getFor(points: 170) == ['T20', 'T20', 'D25']
+  /// getFor(points: 100) == ['T20', 'D20']
+  /// getFor(points: 2) == ['D1']
+  ///
+  /// getFor(points: 180) == null
+  /// getFor(points: 159) == null
+  /// getFor(points: 1) == null
+  /// ```
+  static List<String>? getFor({
+    int? points,
+  }) {
     switch (points) {
       case 2:
         return ['D1'];
@@ -66,7 +79,7 @@ class Finishes {
       case 32:
         return ['D16'];
       case 33:
-        return ['1', 'D6'];
+        return ['1', 'D16'];
       case 34:
         return ['D17'];
       case 35:
@@ -164,7 +177,7 @@ class Finishes {
       case 81:
         return ['T19', 'D12'];
       case 82:
-        return ['BULL', 'D16'];
+        return ['D25', 'D16'];
       case 83:
         return ['T17', 'D16'];
       case 84:
@@ -264,13 +277,13 @@ class Finishes {
       case 131:
         return ['T20', 'T13', 'D16'];
       case 132:
-        return ['BULL', 'T14', 'D20'];
+        return ['D25', 'T14', 'D20'];
       case 133:
         return ['T20', 'T19', 'D8'];
       case 134:
         return ['T20', 'T14', 'D16'];
       case 135:
-        return ['BULL', 'T15', 'D20'];
+        return ['D25', 'T15', 'D20'];
       case 136:
         return ['T20', 'T20', 'D8'];
       case 137:
@@ -317,30 +330,16 @@ class Finishes {
         return ['T20', 'T19', 'D20'];
       case 158:
         return ['T20', 'T20', 'D19'];
-      case 159:
-        return null;
       case 160:
         return ['T20', 'T20', 'D20'];
       case 161:
-        return ['T20', 'T17', 'BULL'];
-      case 162:
-        return null;
-      case 163:
-        return null;
+        return ['T20', 'T17', 'D25'];
       case 164:
-        return ['T20', 'T18', 'BULL'];
-      case 165:
-        return null;
-      case 166:
-        return null;
+        return ['T20', 'T18', 'D25'];
       case 167:
-        return ['T20', 'T19', 'BULL'];
-      case 168:
-        return null;
-      case 169:
-        return null;
+        return ['T20', 'T19', 'D25'];
       case 170:
-        return ['T20', 'T20', 'BULL'];
+        return ['T20', 'T20', 'D25'];
     }
 
     return null;

@@ -1,6 +1,5 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/player.dart';
-import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,8 +14,6 @@ abstract class AbstractPlayerDto {
   String get id;
   String get name;
   List<SetDto> get sets;
-
-  StatsDto stats();
 }
 
 abstract class AbstractOfflinePlayerDto extends AbstractPlayerDto {}
@@ -90,65 +87,27 @@ class OfflinePlayerDto
   }) = _OfflinePlayerDto;
 
   const OfflinePlayerDto._();
-/* 
-  factory OfflinePlayerDto.fromDomain(OfflinePlayer player) {
-    return OfflinePlayerDto(
-      id: player.id.getOrCrash(),
-      name: player.name,
-      sets: player.sets.map((set) => SetDto.fromDomain(set)).asList(),
-      won: player.won,
-      wonSets: player.wonSets,
-      wonLegsCurrentSet: player.wonLegsCurrentSet,
-      pointsLeft: player.pointsLeft,
-      finishRecommendation: player.finishRecommendation?.asList(),
-      lastPoints: player.lastPoints,
-      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: StatsDto.fromDomain(player.stats),
-    );
-  }
- */
+
   factory OfflinePlayerDto.fromExternal(ex.Player player) {
     return OfflinePlayerDto(
       id: player.id,
-      name: player.name,
+      name: player.name ?? 'Player N', // TODO
       sets: player.sets.map((set) => SetDto.fromExternal(set)).toList(),
     );
   }
 
   OfflinePlayer toDomain() {
+    // TODO implement
     return OfflinePlayer(
       id: UniqueId.fromUniqueString(id),
       name: name,
-      sets: KtList.from(sets.map((setDto) => setDto.toDomain())),
-      won: false,
-      wonSets: 0,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 0,
-      finishRecommendation: null,
-      lastPoints: 0,
-      dartsThrownCurrentLeg: 0,
-      stats: const Stats(
-        average: 0.00,
-        checkoutPercentage: 0.00,
-        firstNineAverage: 0.00,
-        fourtyPlus: 0,
-        sixtyPlus: 0,
-        eightyPlus: 0,
-        hundredPlus: 0,
-        hundredTwentyPlus: 0,
-        hundredFourtyPlus: 0,
-        hundredSixtyPlus: 0,
-        hundredEighty: 0,
-      ),
+      sets: KtList.from(sets.map((set) => set.toDomain())),
+      stats: _stats().toDomain(),
     );
   }
 
-  ex.Player toExternal() {
-    throw UnimplementedError();
-  }
-
-  @override
-  StatsDto stats() {
+  PlayerStatsDto _stats() {
+    // TODO implement
     throw UnimplementedError();
   }
 
@@ -166,23 +125,7 @@ class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
   }) = _DartBotDto;
 
   const DartBotDto._();
-/* 
-  factory DartBotDto.fromDomain(DartBot dartBot) {
-    return DartBotDto(
-      id: dartBot.id.getOrCrash(),
-      name: dartBot.name,
-      sets: dartBot.sets.map((set) => SetDto.fromDomain(set)).asList(),
-      won: dartBot.won,
-      wonSets: dartBot.wonSets,
-      wonLegsCurrentSet: dartBot.wonLegsCurrentSet,
-      pointsLeft: dartBot.pointsLeft,
-      finishRecommendation: dartBot.finishRecommendation?.asList(),
-      lastPoints: dartBot.lastPoints,
-      dartsThrownCurrentLeg: dartBot.dartsThrownCurrentLeg,
-      stats: StatsDto.fromDomain(dartBot.stats),
-    );
-  }
- */
+
   factory DartBotDto.fromExternal(ex.DartBot dartBot) {
     return DartBotDto(
       id: 'dartBot',
@@ -192,39 +135,12 @@ class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
   }
 
   DartBot toDomain() {
-    return DartBot(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      sets: KtList.from(sets.map((setDto) => setDto.toDomain())),
-      won: false,
-      wonSets: 0,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 0,
-      finishRecommendation: null,
-      lastPoints: 0,
-      dartsThrownCurrentLeg: 0,
-      stats: const Stats(
-        average: 0.00,
-        checkoutPercentage: 0.00,
-        firstNineAverage: 0.00,
-        fourtyPlus: 0,
-        sixtyPlus: 0,
-        eightyPlus: 0,
-        hundredPlus: 0,
-        hundredTwentyPlus: 0,
-        hundredFourtyPlus: 0,
-        hundredSixtyPlus: 0,
-        hundredEighty: 0,
-      ),
-    );
-  }
-
-  ex.Player toExternal() {
+    // TODO implement
     throw UnimplementedError();
   }
 
-  @override
-  StatsDto stats() {
+  PlayerStatsDto _stats() {
+    // TODO implement
     throw UnimplementedError();
   }
 
@@ -242,23 +158,7 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
   }) = _OnlinePlayerDto;
 
   const OnlinePlayerDto._();
-/* 
-  factory OnlinePlayerDto.fromDomain(OnlinePlayer player) {
-    return OnlinePlayerDto(
-      id: player.id.getOrCrash(),
-      name: player.name,
-      sets: player.sets.map((set) => SetDto.fromDomain(set)).asList(),
-      won: player.won,
-      wonSets: player.wonSets,
-      wonLegsCurrentSet: player.wonLegsCurrentSet,
-      pointsLeft: player.pointsLeft,
-      finishRecommendation: player.finishRecommendation?.asList(),
-      lastPoints: player.lastPoints,
-      dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: StatsDto.fromDomain(player.stats),
-    );
-  }
- */
+
   OnlinePlayer toDomain() {
     return OnlinePlayer(
       id: UniqueId.fromUniqueString(id),
@@ -267,34 +167,10 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
         sets.map((setDto) => setDto.toDomain()),
       ),
       won: false,
-      wonSets: 0,
-      wonLegsCurrentSet: 0,
-      pointsLeft: 0,
-      finishRecommendation: null,
-      lastPoints: 0,
-      dartsThrownCurrentLeg: 0,
-      stats: const Stats(
-        average: 0.00,
-        checkoutPercentage: 0.00,
-        firstNineAverage: 0.00,
-        fourtyPlus: 0,
-        sixtyPlus: 0,
-        eightyPlus: 0,
-        hundredPlus: 0,
-        hundredTwentyPlus: 0,
-        hundredFourtyPlus: 0,
-        hundredSixtyPlus: 0,
-        hundredEighty: 0,
-      ),
     );
   }
 
-  ex.Player toExternal() {
-    throw UnimplementedError();
-  }
-
-  @override
-  StatsDto stats() {
+  PlayerStatsDto _stats() {
     throw UnimplementedError();
   }
 
