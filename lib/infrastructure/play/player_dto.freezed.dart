@@ -21,11 +21,14 @@ class _$OfflinePlayerDtoTearOff {
   const _$OfflinePlayerDtoTearOff();
 
   _OfflinePlayerDto call(
-      {required String id, required String name, required List<SetDto> sets}) {
+      {required String id,
+      required String name,
+      @LegsOrSetsConverter()
+          required Either<List<LegDto>, List<SetDto>> legsOrSets}) {
     return _OfflinePlayerDto(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
     );
   }
 
@@ -41,7 +44,9 @@ const $OfflinePlayerDto = _$OfflinePlayerDtoTearOff();
 mixin _$OfflinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +59,10 @@ abstract class $OfflinePlayerDtoCopyWith<$Res> {
   factory $OfflinePlayerDtoCopyWith(
           OfflinePlayerDto value, $Res Function(OfflinePlayerDto) then) =
       _$OfflinePlayerDtoCopyWithImpl<$Res>;
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -70,7 +78,7 @@ class _$OfflinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -81,10 +89,10 @@ class _$OfflinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -96,7 +104,10 @@ abstract class _$OfflinePlayerDtoCopyWith<$Res>
           _OfflinePlayerDto value, $Res Function(_OfflinePlayerDto) then) =
       __$OfflinePlayerDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -114,7 +125,7 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_OfflinePlayerDto(
       id: id == freezed
@@ -125,10 +136,10 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -138,7 +149,9 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
 @Implements(AbstractOfflinePlayerDto)
 class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   const _$_OfflinePlayerDto(
-      {required this.id, required this.name, required this.sets})
+      {required this.id,
+      required this.name,
+      @LegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
   factory _$_OfflinePlayerDto.fromJson(Map<String, dynamic> json) =>
@@ -149,11 +162,12 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   @override
   final String name;
   @override
-  final List<SetDto> sets;
+  @LegsOrSetsConverter()
+  final Either<List<LegDto>, List<SetDto>> legsOrSets;
 
   @override
   String toString() {
-    return 'OfflinePlayerDto(id: $id, name: $name, sets: $sets)';
+    return 'OfflinePlayerDto(id: $id, name: $name, legsOrSets: $legsOrSets)';
   }
 
   @override
@@ -164,8 +178,9 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)));
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)));
   }
 
   @override
@@ -173,7 +188,7 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets);
+      const DeepCollectionEquality().hash(legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -189,9 +204,11 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
 abstract class _OfflinePlayerDto extends OfflinePlayerDto
     implements AbstractOfflinePlayerDto {
   const factory _OfflinePlayerDto(
-      {required String id,
-      required String name,
-      required List<SetDto> sets}) = _$_OfflinePlayerDto;
+          {required String id,
+          required String name,
+          @LegsOrSetsConverter()
+              required Either<List<LegDto>, List<SetDto>> legsOrSets}) =
+      _$_OfflinePlayerDto;
   const _OfflinePlayerDto._() : super._();
 
   factory _OfflinePlayerDto.fromJson(Map<String, dynamic> json) =
@@ -202,7 +219,9 @@ abstract class _OfflinePlayerDto extends OfflinePlayerDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OfflinePlayerDtoCopyWith<_OfflinePlayerDto> get copyWith =>
@@ -218,11 +237,14 @@ class _$DartBotDtoTearOff {
   const _$DartBotDtoTearOff();
 
   _DartBotDto call(
-      {required String id, required String name, required List<SetDto> sets}) {
+      {required String id,
+      required String name,
+      @LegsOrSetsConverter()
+          required Either<List<LegDto>, List<SetDto>> legsOrSets}) {
     return _DartBotDto(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
     );
   }
 
@@ -238,7 +260,9 @@ const $DartBotDto = _$DartBotDtoTearOff();
 mixin _$DartBotDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -251,7 +275,10 @@ abstract class $DartBotDtoCopyWith<$Res> {
   factory $DartBotDtoCopyWith(
           DartBotDto value, $Res Function(DartBotDto) then) =
       _$DartBotDtoCopyWithImpl<$Res>;
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -266,7 +293,7 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -277,10 +304,10 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -291,7 +318,10 @@ abstract class _$DartBotDtoCopyWith<$Res> implements $DartBotDtoCopyWith<$Res> {
           _DartBotDto value, $Res Function(_DartBotDto) then) =
       __$DartBotDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -308,7 +338,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_DartBotDto(
       id: id == freezed
@@ -319,10 +349,10 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -332,7 +362,9 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
 @Implements(AbstractOfflinePlayerDto)
 class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
-      {required this.id, required this.name, required this.sets})
+      {required this.id,
+      required this.name,
+      @LegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
   factory _$_DartBotDto.fromJson(Map<String, dynamic> json) =>
@@ -343,11 +375,12 @@ class _$_DartBotDto extends _DartBotDto {
   @override
   final String name;
   @override
-  final List<SetDto> sets;
+  @LegsOrSetsConverter()
+  final Either<List<LegDto>, List<SetDto>> legsOrSets;
 
   @override
   String toString() {
-    return 'DartBotDto(id: $id, name: $name, sets: $sets)';
+    return 'DartBotDto(id: $id, name: $name, legsOrSets: $legsOrSets)';
   }
 
   @override
@@ -358,8 +391,9 @@ class _$_DartBotDto extends _DartBotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)));
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)));
   }
 
   @override
@@ -367,7 +401,7 @@ class _$_DartBotDto extends _DartBotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets);
+      const DeepCollectionEquality().hash(legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -383,9 +417,11 @@ class _$_DartBotDto extends _DartBotDto {
 abstract class _DartBotDto extends DartBotDto
     implements AbstractOfflinePlayerDto {
   const factory _DartBotDto(
-      {required String id,
-      required String name,
-      required List<SetDto> sets}) = _$_DartBotDto;
+          {required String id,
+          required String name,
+          @LegsOrSetsConverter()
+              required Either<List<LegDto>, List<SetDto>> legsOrSets}) =
+      _$_DartBotDto;
   const _DartBotDto._() : super._();
 
   factory _DartBotDto.fromJson(Map<String, dynamic> json) =
@@ -396,7 +432,9 @@ abstract class _DartBotDto extends DartBotDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DartBotDtoCopyWith<_DartBotDto> get copyWith =>
@@ -412,11 +450,14 @@ class _$OnlinePlayerDtoTearOff {
   const _$OnlinePlayerDtoTearOff();
 
   _OnlinePlayerDto call(
-      {required String id, required String name, required List<SetDto> sets}) {
+      {required String id,
+      required String name,
+      @LegsOrSetsConverter()
+          required Either<List<LegDto>, List<SetDto>> legsOrSets}) {
     return _OnlinePlayerDto(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
     );
   }
 
@@ -432,7 +473,9 @@ const $OnlinePlayerDto = _$OnlinePlayerDtoTearOff();
 mixin _$OnlinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -445,7 +488,10 @@ abstract class $OnlinePlayerDtoCopyWith<$Res> {
   factory $OnlinePlayerDtoCopyWith(
           OnlinePlayerDto value, $Res Function(OnlinePlayerDto) then) =
       _$OnlinePlayerDtoCopyWithImpl<$Res>;
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -461,7 +507,7 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -472,10 +518,10 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -487,7 +533,10 @@ abstract class _$OnlinePlayerDtoCopyWith<$Res>
           _OnlinePlayerDto value, $Res Function(_OnlinePlayerDto) then) =
       __$OnlinePlayerDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, List<SetDto> sets});
+  $Res call(
+      {String id,
+      String name,
+      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
 }
 
 /// @nodoc
@@ -505,7 +554,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
   }) {
     return _then(_OnlinePlayerDto(
       id: id == freezed
@@ -516,10 +565,10 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as List<SetDto>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<List<LegDto>, List<SetDto>>,
     ));
   }
 }
@@ -529,7 +578,9 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
 @Implements(AbstractPlayerDto)
 class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
-      {required this.id, required this.name, required this.sets})
+      {required this.id,
+      required this.name,
+      @LegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
   factory _$_OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
@@ -540,11 +591,12 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   @override
   final String name;
   @override
-  final List<SetDto> sets;
+  @LegsOrSetsConverter()
+  final Either<List<LegDto>, List<SetDto>> legsOrSets;
 
   @override
   String toString() {
-    return 'OnlinePlayerDto(id: $id, name: $name, sets: $sets)';
+    return 'OnlinePlayerDto(id: $id, name: $name, legsOrSets: $legsOrSets)';
   }
 
   @override
@@ -555,8 +607,9 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)));
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)));
   }
 
   @override
@@ -564,7 +617,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets);
+      const DeepCollectionEquality().hash(legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -580,9 +633,11 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
 abstract class _OnlinePlayerDto extends OnlinePlayerDto
     implements AbstractPlayerDto {
   const factory _OnlinePlayerDto(
-      {required String id,
-      required String name,
-      required List<SetDto> sets}) = _$_OnlinePlayerDto;
+          {required String id,
+          required String name,
+          @LegsOrSetsConverter()
+              required Either<List<LegDto>, List<SetDto>> legsOrSets}) =
+      _$_OnlinePlayerDto;
   const _OnlinePlayerDto._() : super._();
 
   factory _OnlinePlayerDto.fromJson(Map<String, dynamic> json) =
@@ -593,7 +648,9 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  List<SetDto> get sets => throw _privateConstructorUsedError;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerDtoCopyWith<_OnlinePlayerDto> get copyWith =>

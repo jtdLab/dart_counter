@@ -60,7 +60,28 @@ class OfflinePlayerSnapshotDto
       finishRecommendation: player.finishRecommendation,
       lastPoints: player.lastPoints,
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-      stats: PlayerStatsDto.fromExternal(player.stats),
+      stats: PlayerStatsDto(
+        average: player.average ?? 0,
+        checkoutPercentage: player.checkoutPercentage ?? 0,
+        firstNineAverage: player.firstNineAverage ?? 0,
+        bestLegDartsThrown: player.bestLegDartsThrown,
+        bestLegAverage: player.bestLegAverage,
+        worstLegDartsThrown: player.worstLegDartsThrown,
+        worstLegAverage: player.worstLegAverage,
+        averageDartsPerLeg: player.averageDartsPerLeg,
+        firstDartAverage: player.firstDartAverage,
+        secondDartAverage: player.secondDartAverage,
+        thirdDartAverage: player.thirdDartAverage,
+        highestFinish: player.highestFinish,
+        fourtyPlus: player.fourtyPlus ?? 0,
+        sixtyPlus: player.sixtyPlus ?? 0,
+        eightyPlus: player.eightyPlus ?? 0,
+        hundredPlus: player.hundredPlus ?? 0,
+        hundredTwentyPlus: player.hundredTwentyPlus ?? 0,
+        hundredFourtyPlus: player.hundredFourtyPlus ?? 0,
+        hundredSixtyPlus: player.hundredSixtyPlus ?? 0,
+        hundredEighty: player.hundredEighty ?? 0,
+      ),
     );
   }
 
@@ -108,7 +129,7 @@ class DartBotSnapshotDto
   factory DartBotSnapshotDto.fromExternal(ex.DartBot dartBot) {
     return DartBotSnapshotDto(
       id: dartBot.id,
-      name: dartBot.name,
+      name: 'Dartbot', // TODO
       isCurrentTurn: dartBot.isCurrentTurn,
       won: dartBot.won,
       wonSets: dartBot.wonSets,
@@ -117,7 +138,28 @@ class DartBotSnapshotDto
       finishRecommendation: dartBot.finishRecommendation,
       lastPoints: dartBot.lastPoints,
       dartsThrownCurrentLeg: dartBot.dartsThrownCurrentLeg,
-      stats: PlayerStatsDto.fromExternal(dartBot.stats),
+      stats: PlayerStatsDto(
+        average: dartBot.average ?? 0,
+        checkoutPercentage: dartBot.checkoutPercentage ?? 0,
+        firstNineAverage: dartBot.firstNineAverage ?? 0,
+        bestLegDartsThrown: dartBot.bestLegDartsThrown,
+        bestLegAverage: dartBot.bestLegAverage,
+        worstLegDartsThrown: dartBot.worstLegDartsThrown,
+        worstLegAverage: dartBot.worstLegAverage,
+        averageDartsPerLeg: dartBot.averageDartsPerLeg,
+        firstDartAverage: dartBot.firstDartAverage,
+        secondDartAverage: dartBot.secondDartAverage,
+        thirdDartAverage: dartBot.thirdDartAverage,
+        highestFinish: dartBot.highestFinish,
+        fourtyPlus: dartBot.fourtyPlus ?? 0,
+        sixtyPlus: dartBot.sixtyPlus ?? 0,
+        eightyPlus: dartBot.eightyPlus ?? 0,
+        hundredPlus: dartBot.hundredPlus ?? 0,
+        hundredTwentyPlus: dartBot.hundredTwentyPlus ?? 0,
+        hundredFourtyPlus: dartBot.hundredFourtyPlus ?? 0,
+        hundredSixtyPlus: dartBot.hundredSixtyPlus ?? 0,
+        hundredEighty: dartBot.hundredEighty ?? 0,
+      ),
       targetAverage: dartBot.targetAverage,
     );
   }

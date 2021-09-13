@@ -1,16 +1,19 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/set.dart';
 import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
+
+import 'leg.dart';
 
 part 'player.freezed.dart';
 
 abstract class AbstractPlayer {
   UniqueId get id;
   String get name;
-  KtList<Set> get sets;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets;
 
   bool get won;
   int get wonLegsOrSets;
@@ -25,7 +28,7 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
   const factory OfflinePlayer({
     required UniqueId id,
     required String name,
-    required KtList<Set> sets,
+    required Either<KtList<Leg>, KtList<Set>> legsOrSets,
     @Default(false)
         bool won,
     @Default(0)
@@ -50,9 +53,17 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
           'egesit',
           'AnisAbi',
         ]),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
+        legsOrSets: faker.randomGenerator.boolean()
+            ? left(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Leg.dummy(), 9),
+                ),
+              )
+            : right(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Set.dummy(), 9),
+                ),
+              ),
         won: false,
         wonLegsOrSets: 0,
         stats: PlayerStats.dummy(),
@@ -65,7 +76,7 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
   const factory DartBot({
     required UniqueId id,
     required String name,
-    required KtList<Set> sets,
+    required Either<KtList<Leg>, KtList<Set>> legsOrSets,
     @Default(false)
         bool won,
     @Default(0)
@@ -88,9 +99,17 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
           'egesit',
           'AnisAbi',
         ]),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
+        legsOrSets: faker.randomGenerator.boolean()
+            ? left(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Leg.dummy(), 9),
+                ),
+              )
+            : right(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Set.dummy(), 9),
+                ),
+              ),
         won: false,
         wonLegsOrSets: 0,
         stats: PlayerStats.dummy(),
@@ -103,7 +122,7 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
   const factory OnlinePlayer({
     required UniqueId id,
     required String name,
-    required KtList<Set> sets,
+    required Either<KtList<Leg>, KtList<Set>> legsOrSets,
     @Default(false)
         bool won,
     @Default(0)
@@ -128,9 +147,17 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
           'egesit',
           'AnisAbi',
         ]),
-        sets: KtList.from(
-          faker.randomGenerator.amount((i) => Set.dummy(), 9),
-        ),
+        legsOrSets: faker.randomGenerator.boolean()
+            ? left(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Leg.dummy(), 9),
+                ),
+              )
+            : right(
+                KtList.from(
+                  faker.randomGenerator.amount((i) => Set.dummy(), 9),
+                ),
+              ),
         won: false,
         wonLegsOrSets: 0,
         stats: PlayerStats.dummy(),

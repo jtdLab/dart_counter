@@ -1,7 +1,9 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/infrastructure/play/leg_dto.dart';
 import 'package:dart_counter/infrastructure/play/set_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -10,10 +12,28 @@ import 'stats_dto.dart';
 part 'player_dto.freezed.dart';
 part 'player_dto.g.dart';
 
+class LegsOrSetsConverter
+    implements
+        JsonConverter<Either<List<LegDto>, List<SetDto>>,
+            Map<String, dynamic>> {
+  const LegsOrSetsConverter();
+
+  @override
+  Either<List<LegDto>, List<SetDto>> fromJson(Map<String, dynamic> json) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson(Either<List<LegDto>, List<SetDto>> either) {
+    throw UnimplementedError();
+  }
+}
+
 abstract class AbstractPlayerDto {
   String get id;
   String get name;
-  List<SetDto> get sets;
+  @LegsOrSetsConverter()
+  Either<List<LegDto>, List<SetDto>> get legsOrSets;
 }
 
 abstract class AbstractOfflinePlayerDto extends AbstractPlayerDto {}
@@ -83,7 +103,8 @@ class OfflinePlayerDto
   const factory OfflinePlayerDto({
     required String id,
     required String name,
-    required List<SetDto> sets,
+    @LegsOrSetsConverter()
+        required Either<List<LegDto>, List<SetDto>> legsOrSets,
   }) = _OfflinePlayerDto;
 
   const OfflinePlayerDto._();
@@ -92,16 +113,25 @@ class OfflinePlayerDto
     return OfflinePlayerDto(
       id: player.id,
       name: player.name ?? 'Player N', // TODO
-      sets: player.sets.map((set) => SetDto.fromExternal(set)).toList(),
+      legsOrSets: player.legsOrSets!.fold(
+        (legs) => left(legs.map((leg) => LegDto.fromExternal(leg)).toList()),
+        (sets) => right(sets.map((set) => SetDto.fromExternal(set)).toList()),
+      ),
     );
   }
 
   OfflinePlayer toDomain() {
-    // TODO implement
     return OfflinePlayer(
-      id: UniqueId.fromUniqueString(id),
+      id: UniqueId.fromUniqueString(this.id),
       name: name,
-      sets: KtList.from(sets.map((set) => set.toDomain())),
+      legsOrSets: legsOrSets.fold(
+        (legDtos) => left(
+          KtList.from(legDtos.map((legDto) => legDto.toDomain())),
+        ),
+        (setDtos) => right(
+          KtList.from(setDtos.map((setDto) => setDto.toDomain())),
+        ),
+      ),
       stats: _stats().toDomain(),
     );
   }
@@ -121,7 +151,8 @@ class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
   const factory DartBotDto({
     required String id,
     required String name,
-    required List<SetDto> sets,
+    @LegsOrSetsConverter()
+        required Either<List<LegDto>, List<SetDto>> legsOrSets,
   }) = _DartBotDto;
 
   const DartBotDto._();
@@ -130,7 +161,10 @@ class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
     return DartBotDto(
       id: 'dartBot',
       name: 'Dartbot',
-      sets: dartBot.sets.map((set) => SetDto.fromExternal(set)).toList(),
+      legsOrSets: dartBot.legsOrSets!.fold(
+        (legs) => left(legs.map((leg) => LegDto.fromExternal(leg)).toList()),
+        (sets) => right(sets.map((set) => SetDto.fromExternal(set)).toList()),
+      ),
     );
   }
 
@@ -154,17 +188,23 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
   const factory OnlinePlayerDto({
     required String id,
     required String name,
-    required List<SetDto> sets,
+    @LegsOrSetsConverter()
+        required Either<List<LegDto>, List<SetDto>> legsOrSets,
   }) = _OnlinePlayerDto;
 
   const OnlinePlayerDto._();
 
   OnlinePlayer toDomain() {
     return OnlinePlayer(
-      id: UniqueId.fromUniqueString(id),
+      id: UniqueId.fromUniqueString(this.id),
       name: name,
-      sets: KtList.from(
-        sets.map((setDto) => setDto.toDomain()),
+      legsOrSets: legsOrSets.fold(
+        (legDtos) => left(
+          KtList.from(legDtos.map((legDto) => legDto.toDomain())),
+        ),
+        (setDtos) => right(
+          KtList.from(setDtos.map((setDto) => setDto.toDomain())),
+        ),
       ),
       won: false,
     );

@@ -10,9 +10,8 @@ _$_OfflinePlayerDto _$_$_OfflinePlayerDtoFromJson(Map<String, dynamic> json) {
   return _$_OfflinePlayerDto(
     id: json['id'] as String,
     name: json['name'] as String,
-    sets: (json['sets'] as List<dynamic>)
-        .map((e) => SetDto.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    legsOrSets: const LegsOrSetsConverter()
+        .fromJson(json['legsOrSets'] as Map<String, dynamic>),
   );
 }
 
@@ -21,16 +20,15 @@ Map<String, dynamic> _$_$_OfflinePlayerDtoToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'sets': instance.sets.map((e) => e.toJson()).toList(),
+      'legsOrSets': const LegsOrSetsConverter().toJson(instance.legsOrSets),
     };
 
 _$_DartBotDto _$_$_DartBotDtoFromJson(Map<String, dynamic> json) {
   return _$_DartBotDto(
     id: json['id'] as String,
     name: json['name'] as String,
-    sets: (json['sets'] as List<dynamic>)
-        .map((e) => SetDto.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    legsOrSets: const LegsOrSetsConverter()
+        .fromJson(json['legsOrSets'] as Map<String, dynamic>),
   );
 }
 
@@ -38,16 +36,15 @@ Map<String, dynamic> _$_$_DartBotDtoToJson(_$_DartBotDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'sets': instance.sets.map((e) => e.toJson()).toList(),
+      'legsOrSets': const LegsOrSetsConverter().toJson(instance.legsOrSets),
     };
 
 _$_OnlinePlayerDto _$_$_OnlinePlayerDtoFromJson(Map<String, dynamic> json) {
   return _$_OnlinePlayerDto(
     id: json['id'] as String,
     name: json['name'] as String,
-    sets: (json['sets'] as List<dynamic>)
-        .map((e) => SetDto.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    legsOrSets: const LegsOrSetsConverter()
+        .fromJson(json['legsOrSets'] as Map<String, dynamic>),
   );
 }
 
@@ -55,5 +52,5 @@ Map<String, dynamic> _$_$_OnlinePlayerDtoToJson(_$_OnlinePlayerDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'sets': instance.sets.map((e) => e.toJson()).toList(),
+      'legsOrSets': const LegsOrSetsConverter().toJson(instance.legsOrSets),
     };

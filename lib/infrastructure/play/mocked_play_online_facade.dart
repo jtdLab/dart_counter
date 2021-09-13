@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
+import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
@@ -186,10 +187,9 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       );
     } else {
       if (_game != null) {
-        _game!.setMode(
-            mode: mode == Mode.firstTo
-                ? ex.Mode.firstTo
-                : ex.Mode.bestOf); // TODO this should be done in enum Mode
+        _game!.mode = mode == Mode.firstTo
+            ? ex.Mode.firstTo
+            : ex.Mode.bestOf; // TODO this should be done in enum Mode
         _gameStreamController.add(
           right(
             _toOnlineGameSnapshot(_game!),
@@ -216,7 +216,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       );
     } else {
       if (_game != null) {
-        _game!.setSize(size: size);
+        _game!.size = size;
         _gameStreamController.add(
           right(
             _toOnlineGameSnapshot(_game!),
@@ -243,7 +243,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       );
     } else {
       if (_game != null) {
-        _game!.setStartingPoints(startingPoints: startingPoints);
+        _game!.startingPoints = startingPoints;
         _gameStreamController.add(
           right(
             _toOnlineGameSnapshot(_game!),
@@ -270,10 +270,9 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       );
     } else {
       if (_game != null) {
-        _game!.setType(
-            type: type == Type.legs
-                ? ex.Type.legs
-                : ex.Type.sets); // TODO should be done in enum Type
+        _game!.type = type == Type.legs
+            ? ex.Type.legs
+            : ex.Type.sets; // TODO should be done in enum Type
         _gameStreamController.add(
           right(
             _toOnlineGameSnapshot(_game!),
@@ -367,10 +366,10 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
 
   OnlinePlayerSnapshot _toOnlinePlayerSnapshot(ex.Player player) {
     return OnlinePlayerSnapshot(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      name: player.name,
-      isCurrentTurn: player.isCurrentTurn,
-      won: player.won,
+      id: UniqueId.fromUniqueString(player.id),
+      name: player.name ?? 'Player N', // TODO
+      isCurrentTurn: player.isCurrentTurn ?? false, // TODO
+      won: player.won ?? false, // TODO
       wonSets: player.wonSets,
       wonLegsCurrentSet: player.wonLegsCurrentSet ?? 0,
       pointsLeft: player.pointsLeft ?? 1,
@@ -379,9 +378,31 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
           : KtList.from(player.finishRecommendation!),
       lastPoints: player.lastPoints,
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg ?? 0,
-      stats: PlayerStatsDto.fromExternal(player.stats).toDomain(),
-      userId:
-          UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      stats: PlayerStats(
+        average: player.average ?? 0,
+        checkoutPercentage: player.checkoutPercentage ?? 0,
+        firstNineAverage: player.firstNineAverage ?? 0,
+        bestLegDartsThrown: player.bestLegDartsThrown,
+        bestLegAverage: player.bestLegAverage,
+        worstLegDartsThrown: player.worstLegDartsThrown,
+        worstLegAverage: player.worstLegAverage,
+        averageDartsPerLeg: player.averageDartsPerLeg,
+        firstDartAverage: player.firstDartAverage,
+        secondDartAverage: player.secondDartAverage,
+        thirdDartAverage: player.thirdDartAverage,
+        highestFinish: player.highestFinish,
+        fourtyPlus: player.fourtyPlus ?? 0,
+        sixtyPlus: player.sixtyPlus ?? 0,
+        eightyPlus: player.eightyPlus ?? 0,
+        hundredPlus: player.hundredPlus ?? 0,
+        hundredTwentyPlus: player.hundredTwentyPlus ?? 0,
+        hundredFourtyPlus: player.hundredFourtyPlus ?? 0,
+        hundredSixtyPlus: player.hundredSixtyPlus ?? 0,
+        hundredEighty: player.hundredEighty ?? 0,
+      ),
+      userId: UniqueId.fromUniqueString(
+        faker.randomGenerator.string(28, min: 28),
+      ),
     );
   }
 }

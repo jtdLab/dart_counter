@@ -19,14 +19,14 @@ class _$OfflinePlayerTearOff {
   _OfflinePlayer call(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won = false,
       int wonLegsOrSets = 0,
       PlayerStats stats = const PlayerStats()}) {
     return _OfflinePlayer(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
       won: won,
       wonLegsOrSets: wonLegsOrSets,
       stats: stats,
@@ -41,7 +41,8 @@ const $OfflinePlayer = _$OfflinePlayerTearOff();
 mixin _$OfflinePlayer {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int get wonLegsOrSets => throw _privateConstructorUsedError;
   PlayerStats get stats => throw _privateConstructorUsedError;
@@ -59,7 +60,7 @@ abstract class $OfflinePlayerCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -80,7 +81,7 @@ class _$OfflinePlayerCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -94,10 +95,10 @@ class _$OfflinePlayerCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -131,7 +132,7 @@ abstract class _$OfflinePlayerCopyWith<$Res>
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -155,7 +156,7 @@ class __$OfflinePlayerCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -169,10 +170,10 @@ class __$OfflinePlayerCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -196,7 +197,7 @@ class _$_OfflinePlayer implements _OfflinePlayer {
   const _$_OfflinePlayer(
       {required this.id,
       required this.name,
-      required this.sets,
+      required this.legsOrSets,
       this.won = false,
       this.wonLegsOrSets = 0,
       this.stats = const PlayerStats()});
@@ -206,7 +207,7 @@ class _$_OfflinePlayer implements _OfflinePlayer {
   @override
   final String name;
   @override
-  final KtList<Set> sets;
+  final Either<KtList<Leg>, KtList<Set>> legsOrSets;
   @JsonKey(defaultValue: false)
   @override
   final bool won;
@@ -219,7 +220,7 @@ class _$_OfflinePlayer implements _OfflinePlayer {
 
   @override
   String toString() {
-    return 'OfflinePlayer(id: $id, name: $name, sets: $sets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
+    return 'OfflinePlayer(id: $id, name: $name, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
   }
 
   @override
@@ -230,8 +231,9 @@ class _$_OfflinePlayer implements _OfflinePlayer {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)) &&
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)) &&
             (identical(other.won, won) ||
                 const DeepCollectionEquality().equals(other.won, won)) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
@@ -246,7 +248,7 @@ class _$_OfflinePlayer implements _OfflinePlayer {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets) ^
+      const DeepCollectionEquality().hash(legsOrSets) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonLegsOrSets) ^
       const DeepCollectionEquality().hash(stats);
@@ -261,7 +263,7 @@ abstract class _OfflinePlayer implements OfflinePlayer, AbstractOfflinePlayer {
   const factory _OfflinePlayer(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats}) = _$_OfflinePlayer;
@@ -271,7 +273,8 @@ abstract class _OfflinePlayer implements OfflinePlayer, AbstractOfflinePlayer {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   bool get won => throw _privateConstructorUsedError;
   @override
@@ -291,14 +294,14 @@ class _$DartBotTearOff {
   _DartBot call(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won = false,
       int wonLegsOrSets = 0,
       PlayerStats stats = const PlayerStats()}) {
     return _DartBot(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
       won: won,
       wonLegsOrSets: wonLegsOrSets,
       stats: stats,
@@ -313,7 +316,8 @@ const $DartBot = _$DartBotTearOff();
 mixin _$DartBot {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int get wonLegsOrSets => throw _privateConstructorUsedError;
   PlayerStats get stats => throw _privateConstructorUsedError;
@@ -329,7 +333,7 @@ abstract class $DartBotCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -349,7 +353,7 @@ class _$DartBotCopyWithImpl<$Res> implements $DartBotCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -363,10 +367,10 @@ class _$DartBotCopyWithImpl<$Res> implements $DartBotCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -398,7 +402,7 @@ abstract class _$DartBotCopyWith<$Res> implements $DartBotCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -420,7 +424,7 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -434,10 +438,10 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -461,7 +465,7 @@ class _$_DartBot implements _DartBot {
   const _$_DartBot(
       {required this.id,
       required this.name,
-      required this.sets,
+      required this.legsOrSets,
       this.won = false,
       this.wonLegsOrSets = 0,
       this.stats = const PlayerStats()});
@@ -471,7 +475,7 @@ class _$_DartBot implements _DartBot {
   @override
   final String name;
   @override
-  final KtList<Set> sets;
+  final Either<KtList<Leg>, KtList<Set>> legsOrSets;
   @JsonKey(defaultValue: false)
   @override
   final bool won;
@@ -484,7 +488,7 @@ class _$_DartBot implements _DartBot {
 
   @override
   String toString() {
-    return 'DartBot(id: $id, name: $name, sets: $sets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
+    return 'DartBot(id: $id, name: $name, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
   }
 
   @override
@@ -495,8 +499,9 @@ class _$_DartBot implements _DartBot {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)) &&
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)) &&
             (identical(other.won, won) ||
                 const DeepCollectionEquality().equals(other.won, won)) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
@@ -511,7 +516,7 @@ class _$_DartBot implements _DartBot {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets) ^
+      const DeepCollectionEquality().hash(legsOrSets) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonLegsOrSets) ^
       const DeepCollectionEquality().hash(stats);
@@ -526,7 +531,7 @@ abstract class _DartBot implements DartBot, AbstractOfflinePlayer {
   const factory _DartBot(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats}) = _$_DartBot;
@@ -536,7 +541,8 @@ abstract class _DartBot implements DartBot, AbstractOfflinePlayer {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   bool get won => throw _privateConstructorUsedError;
   @override
@@ -556,14 +562,14 @@ class _$OnlinePlayerTearOff {
   _OnlinePlayer call(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won = false,
       int wonLegsOrSets = 0,
       PlayerStats stats = const PlayerStats()}) {
     return _OnlinePlayer(
       id: id,
       name: name,
-      sets: sets,
+      legsOrSets: legsOrSets,
       won: won,
       wonLegsOrSets: wonLegsOrSets,
       stats: stats,
@@ -578,7 +584,8 @@ const $OnlinePlayer = _$OnlinePlayerTearOff();
 mixin _$OnlinePlayer {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int get wonLegsOrSets => throw _privateConstructorUsedError;
   PlayerStats get stats => throw _privateConstructorUsedError;
@@ -596,7 +603,7 @@ abstract class $OnlinePlayerCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -616,7 +623,7 @@ class _$OnlinePlayerCopyWithImpl<$Res> implements $OnlinePlayerCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -630,10 +637,10 @@ class _$OnlinePlayerCopyWithImpl<$Res> implements $OnlinePlayerCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -667,7 +674,7 @@ abstract class _$OnlinePlayerCopyWith<$Res>
   $Res call(
       {UniqueId id,
       String name,
-      KtList<Set> sets,
+      Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats});
@@ -690,7 +697,7 @@ class __$OnlinePlayerCopyWithImpl<$Res> extends _$OnlinePlayerCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? sets = freezed,
+    Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
@@ -704,10 +711,10 @@ class __$OnlinePlayerCopyWithImpl<$Res> extends _$OnlinePlayerCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      sets: sets == freezed
-          ? _value.sets
-          : sets // ignore: cast_nullable_to_non_nullable
-              as KtList<Set>,
+      legsOrSets: legsOrSets == freezed
+          ? _value.legsOrSets
+          : legsOrSets // ignore: cast_nullable_to_non_nullable
+              as Either<KtList<Leg>, KtList<Set>>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
@@ -731,7 +738,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   const _$_OnlinePlayer(
       {required this.id,
       required this.name,
-      required this.sets,
+      required this.legsOrSets,
       this.won = false,
       this.wonLegsOrSets = 0,
       this.stats = const PlayerStats()});
@@ -741,7 +748,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   @override
   final String name;
   @override
-  final KtList<Set> sets;
+  final Either<KtList<Leg>, KtList<Set>> legsOrSets;
   @JsonKey(defaultValue: false)
   @override
   final bool won;
@@ -754,7 +761,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
 
   @override
   String toString() {
-    return 'OnlinePlayer(id: $id, name: $name, sets: $sets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
+    return 'OnlinePlayer(id: $id, name: $name, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
   }
 
   @override
@@ -765,8 +772,9 @@ class _$_OnlinePlayer implements _OnlinePlayer {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sets, sets) ||
-                const DeepCollectionEquality().equals(other.sets, sets)) &&
+            (identical(other.legsOrSets, legsOrSets) ||
+                const DeepCollectionEquality()
+                    .equals(other.legsOrSets, legsOrSets)) &&
             (identical(other.won, won) ||
                 const DeepCollectionEquality().equals(other.won, won)) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
@@ -781,7 +789,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(sets) ^
+      const DeepCollectionEquality().hash(legsOrSets) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonLegsOrSets) ^
       const DeepCollectionEquality().hash(stats);
@@ -796,7 +804,7 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
   const factory _OnlinePlayer(
       {required UniqueId id,
       required String name,
-      required KtList<Set> sets,
+      required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
       PlayerStats stats}) = _$_OnlinePlayer;
@@ -806,7 +814,8 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  KtList<Set> get sets => throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
+      throw _privateConstructorUsedError;
   @override
   bool get won => throw _privateConstructorUsedError;
   @override
