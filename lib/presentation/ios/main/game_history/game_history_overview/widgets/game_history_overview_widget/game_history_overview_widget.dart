@@ -12,19 +12,30 @@ class GameHistoryOverviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameHistoryBloc, GameHistoryState>(
       builder: (context, state) {
-        final games = state.gameHistory.getOrCrash();
+        return state.map(
+          loadInProgress: (_) => const LoadingWidget(),
+          loadSuccess: (loadSucess) {
+            final games = loadSucess.gameHistory.getOrCrash();
 
-        if (games.size == 0) {
-          return Center(
-            child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
-          );
-        }
+            if (games.size == 0) {
+              return Center(
+                child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
+              );
+            }
 
-        return AppColumn(
-          spacing: size12(context),
-          children: [
-            for (final game in games.iter) GameHistoryCard(game: game),
-          ],
+            return AppColumn(
+              spacing: size12(context),
+              children: [
+                for (final game in games.iter) GameHistoryCard(game: game),
+              ],
+            );
+          },
+          loadFailure: (_) {
+            // TODO real error displayer
+            return const Center(
+              child: Text('Could not load games.'),
+            );
+          },
         );
       },
     );

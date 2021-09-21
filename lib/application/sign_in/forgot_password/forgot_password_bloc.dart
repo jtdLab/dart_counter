@@ -44,7 +44,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     final isEmailValid = state.email.isValid();
     if (isEmailValid) {
       yield state.copyWith(isSubmitting: true);
-      authFailure = (await _authFacade.resetPassword(
+      authFailure = (await _authFacade.sendPasswordResetEmail(
         emailAddress: state.email,
       ))
           .fold(

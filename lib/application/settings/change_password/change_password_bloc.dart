@@ -5,6 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,10 +17,10 @@ part 'change_password_state.dart';
 @lazySingleton
 class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IUserFacade _userFacade;
 
   ChangePasswordBloc(
-    this._authFacade,
+    this._userFacade,
   ) : super(
           ChangePasswordState.initial(),
         );
@@ -63,7 +64,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
 
   // TODO more granular error handling
   Stream<ChangePasswordState> _mapConfirmPressedToState() async* {
-    AuthFailure? authFailure;
+    UserFailure? userFailure;
     final isOldPasswordValid = state.oldPassword.isValid();
     final isNewPasswordValid = state.newPassword.isValid();
     final isNewPasswordAgainValid = state.newPasswordAgain.isValid();
@@ -73,7 +74,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         isNewPasswordAgainValid &&
         newPasswordsEqual) {
       yield state.copyWith(isSubmitting: true);
-      authFailure = (await _authFacade.updatePassword(
+      userFailure = (await _userFacade.updatePassword(
         oldPassword: state.oldPassword,
         newPassword: state.newPassword,
       ))
@@ -82,13 +83,13 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         (_) => null,
       );
     } else {
-      authFailure = const AuthFailure.serverError();
+      userFailure = const UserFailure.failure();
     }
     yield state.copyWith(
       showErrorMessages: true,
       isSubmitting: false,
-      successful: authFailure == null,
-      authFailure: authFailure,
+      successful: userFailure == null,
+      userFailure: userFailure,
     );
   }
 }

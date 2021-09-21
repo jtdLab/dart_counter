@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
@@ -10,139 +11,88 @@ import 'package:rxdart/subjects.dart';
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthFacade)
 class MockedAuthFacade implements IAuthFacade {
-  bool fail = false; // toggle to simulate working / notworking endpoint
+  final BehaviorSubject<bool> _authenticatedController;
 
-  final BehaviorSubject<UniqueId?> _signedInUidController;
-
-  MockedAuthFacade() : _signedInUidController = BehaviorSubject() {
-    _signedInUidController.add(UniqueId.fromUniqueString('dummyUid'));
-  }
+  MockedAuthFacade() : _authenticatedController = BehaviorSubject();
 
   @override
-  Stream<UniqueId?> watchSignedInUid() {
-    return _signedInUidController.stream;
-  }
+  bool isAuthenticated() =>
+      _authenticatedController.valueWrapper?.value ?? false;
 
   @override
-  Future<String?> getIdToken() async {
-    return Future.value(getSignedInUid() != null ? 'dummIdToken' : null);
-  }
+  Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
 
   @override
-  UniqueId? getSignedInUid() {
-    if (fail) {
-      return null;
-    } else {
-      return _signedInUidController.valueWrapper?.value;
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> resetPassword(
-      {required EmailAddress emailAddress}) {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      final emailAddressIsValid = emailAddress.isValid();
-
-      if (emailAddressIsValid) {
-        return Future.value(right(unit));
-      } else {
-        return Future.value(
-          left(const AuthFailure.invalidEmailAndPasswordCombination()),
-        );
+  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
+    required EmailAddress emailAddress,
+    required Username username,
+    required Password password,
+  }) async {
+    if (hasNetworkConnection) {
+      if (emailAddress.isValid() && username.isValid() && password.isValid()) {
+        _authenticatedController.add(true);
+        return right(unit);
       }
     }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithApple() {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      _signedInUidController.add(
-        UniqueId.fromUniqueString('dummyUid'),
-      );
-      return Future.value(right(unit));
+  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
+    required EmailAddress emailAddress,
+    required Password password,
+  }) async {
+    if (hasNetworkConnection) {
+      if (emailAddress.isValid() && password.isValid()) {
+        _authenticatedController.add(true);
+        return right(unit);
+      }
     }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithFacebook() {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      _signedInUidController.add(
-        UniqueId.fromUniqueString('dummyUid'),
-      );
-      return Future.value(right(unit));
+  Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
     }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithGoogle() {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      _signedInUidController.add(
-        UniqueId.fromUniqueString('dummyUid'),
-      );
-      return Future.value(right(unit));
+  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
     }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<void> signOut() {
-    _signedInUidController.add(null);
-    return Future.value();
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      _signedInUidController.add(
-        UniqueId.fromUniqueString('dummyUid'),
-      );
-      return Future.value(right(unit));
+  Future<Either<AuthFailure, Unit>> signInWithApple() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
     }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
-      {required EmailAddress emailAddress,
-      required Username username,
-      required Password password}) {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      _signedInUidController.add(
-        UniqueId.fromUniqueString('dummyUid'),
-      );
-      return Future.value(right(unit));
-    }
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    _authenticatedController.add(false);
+    return right(unit);
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> updateEmailAddress({
-    required EmailAddress newEmailAddress,
-  }) {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      return Future.value(right(unit));
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+    required EmailAddress emailAddress,
+  }) async {
+    if (hasNetworkConnection) {
+      if (emailAddress.isValid()) {
+        return right(unit);
+      }
     }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> updatePassword(
-      {required Password oldPassword, required Password newPassword}) {
-    if (fail) {
-      return Future.value(left(const AuthFailure.serverError()));
-    } else {
-      return Future.value(right(unit));
-    }
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 }

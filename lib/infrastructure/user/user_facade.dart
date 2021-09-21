@@ -1,20 +1,24 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart';
 import 'package:injectable/injectable.dart';
+import 'package:social_client/social_client.dart';
 import 'package:rxdart/rxdart.dart';
+
+// TODO idToken
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -22,174 +26,157 @@ import 'package:rxdart/rxdart.dart';
 class UserFacade implements IUserFacade {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
-  final IAuthFacade _authFacade;
-  final FirebaseFunctions _functions;
+  final auth.FirebaseAuth _auth;
+  final SocialClient _socialClient;
 
   UserFacade(
     this._firestore,
     this._storage,
-    this._authFacade,
-    this._functions,
+    this._auth,
+    this._socialClient,
   );
 
   @override
-  Stream<Either<UserFailure, User>> watchCurrentUser() async* {
-    final uid = _authFacade.getSignedInUid();
-
-    if (uid == null) {
-      yield left(const UserFailure.failure()); // TODO not authenticated
-    }
-
-    final userDoc = await _firestore.userDocument();
-    yield* userDoc.snapshots().map<Either<UserFailure, User>>((docSnapshot) {
-      final data = docSnapshot.data() as Map<String, dynamic>?;
-
-      if (data == null) {
-        return left(const UserFailure.failure());
-      }
-
-      final user =
-          UserDto.fromJson(data).copyWith(id: uid!.getOrCrash()).toDomain();
-      return right(user);
-    }).onErrorReturnWith((e) {
-      if (e is FirebaseException && e.code == 'permission-denied') {
-        return left(const UserFailure.insufficientPermission());
-      } else {
-        return left(const UserFailure.failure());
-      }
-    });
-  }
-
-  @override
-  Future<Either<UserFailure, User>> readCurrentUser() async {
+  Stream<Either<UserFailure, User>> watchUser() async* {
+    final DocumentReference<Object?> userDoc;
     try {
-      final uid = _authFacade.getSignedInUid();
-      if (uid == null) {
-        return left(const UserFailure.failure()); // TODO not authenticated
-      }
+      userDoc = _firestore.userDocument();
+    } catch (e) {
+      rethrow;
+    }
 
-      final userDoc = await _firestore.userDocument();
-      final data = (await userDoc.get()).data() as Map<String, dynamic>?;
+    yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
+      final idToken = await _auth.currentUser!.getIdToken();
+      return right(
+        UserDto.fromFirestore(doc).toDomain(idToken: idToken),
+      );
+    }).onErrorReturnWith(
+      (error) => left(const UserFailure.unableToLoadData()),
+    );
+  }
 
-      if (data == null) {
-        return left(const UserFailure.failure());
-      }
+  @override
+  Future<Either<UserFailure, User>> fetchUser() async {
+    final DocumentReference<Object?> userDoc;
+    try {
+      userDoc = _firestore.userDocument();
+    } catch (e) {
+      rethrow;
+    }
 
-      final user =
-          UserDto.fromJson(data).copyWith(id: uid.getOrCrash()).toDomain();
-      return right(user);
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return left(const UserFailure.insufficientPermission());
-      } else {
-        return left(const UserFailure.failure());
-      }
+    try {
+      final doc = await userDoc.get();
+      final idToken = await _auth.currentUser!.getIdToken();
+      return right(
+        UserDto.fromFirestore(doc).toDomain(idToken: idToken),
+      );
+    } catch (e) {
+      print(e);
+      return left(const UserFailure.unableToLoadData()); // TODO name better
     }
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updatePhoto({
-    required File rawData,
+  Future<Either<UserFailure, Unit>> updateProfilePhoto({
+    required File newPhoto,
   }) async {
+    final decodedImage = decodeImage(newPhoto.readAsBytesSync());
+    if (decodedImage == null) {
+      throw NotDecodableImageError();
+    }
+
     try {
-      final uid = _authFacade.getSignedInUid();
-      if (uid == null) {
-        return left(const UserFailure.failure()); // TODO not authenticated
-      }
-
-      final decodedImage = decodeImage(rawData.readAsBytesSync());
-      if (decodedImage == null) {
-        // TODO unable to read image from file
-        return left(const UserFailure.failure());
-      }
-
-      final ref = _storage.ref('profilePhotos/${uid.getOrCrash()}');
-
+      final photoRef = _storage.profilePhotoReference();
       final thumbnail = copyResize(decodedImage, width: 120);
-      await ref.putData(Uint8List.fromList(encodePng(thumbnail)),
-          SettableMetadata(contentType: 'image/png'));
-
-      final photoUrl = await ref.getDownloadURL();
-      final userDoc = await _firestore.userDocument();
-      userDoc.update({'profile.photoUrl': photoUrl});
-
+      await photoRef.putData(
+        Uint8List.fromList(encodePng(thumbnail)),
+        SettableMetadata(contentType: 'image/png'),
+      );
+      final photoUrl = await photoRef.getDownloadURL();
+      final userDoc = _firestore.userDocument();
+      await userDoc.update({'profile.photoUrl': photoUrl});
       return right(unit);
-    } on FirebaseException {
-      return left(const UserFailure.failure());
+    } catch (e) {
+      print(e);
+      return left(const UserFailure.failure()); // TODO name better
     }
   }
 
   @override
-  Future<Either<UserFailure, Unit>> deletePhoto() async {
-    final uid = _authFacade.getSignedInUid();
-    if (uid == null) {
-      return left(const UserFailure.failure()); // TODO not authenticated
+  Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
+    try {
+      final photosRef = _storage.profilePhotoReference();
+      await photosRef.delete();
+
+      final userDoc = _firestore.userDocument();
+      userDoc.update({'profile.photoUrl': null});
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const UserFailure.failure()); // TODO name better
     }
-
-    final ref = _storage.ref('profilePhotos/${uid.getOrCrash()}');
-    await ref.delete();
-
-    final userDoc = await _firestore.userDocument();
-    userDoc.update({'profile.photoUrl': null});
-
-    return right(unit);
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   }) async {
-    // check if valid username
-    if (newUsername.isValid()) {
-      try {
-        // check if username is available via cloud function
-        final callable = _functions.httpsCallable('isUsernameAvailable');
-        final results = await callable({'username': newUsername.getOrCrash()});
-        final isAvailable = results.data as bool;
-        if (isAvailable) {
-          // update username in database
-          final userDoc = await _firestore.userDocument();
-          await userDoc.update({'profile.username': newUsername.getOrCrash()});
-          return right(unit);
-        } else {
-          // TODO name not available
-          return left(const UserFailure.failure());
-        }
-      } on Exception {
-        // TODO check for specific erorrs
-        return left(const UserFailure.failure());
-      }
-    } else {
-      // TODO
-      return left(const UserFailure.failure());
+    if (!newUsername.isValid()) {
+      return left(const UserFailure.failure()); // TODO name better
     }
+
+    final success = await _socialClient.updateName(
+      newName: newUsername.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    }
+
+    return left(const UserFailure.failure()); // TODO name better
   }
 
-  Future<Either<UserFailure, String>> _findEmailAddressByUsername({
-    required String username,
+  @override
+  Future<Either<UserFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
   }) async {
-    throw UnimplementedError();
-    /**
-  *  // TODO
-    try {
-      final usersCollection = await _firestore.usersCollection();
-      final querySnapshot = await usersCollection
-          .where('profile.username', isEqualTo: username)
-          .limit(1)
-          .get();
-
-      if (querySnapshot.docs.isEmpty) {
-        return left(const UserFailure.unableToRead());
-      }
-
-      return right(querySnapshot.docs[0].data()['emailAddress'] as String);
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return left(const UserFailure.insufficientPermission());
-      } else {
-        return left(const UserFailure.unexpected());
-      }
+    if (!newEmailAddress.isValid()) {
+      return left(const UserFailure.failure()); // TODO name better
     }
-      */
+    final success = await _socialClient.updateEmail(
+      newEmail: newEmailAddress.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    }
+
+    return left(const UserFailure.failure()); // TODO name better
+  }
+
+  @override
+  Future<Either<UserFailure, Unit>> updatePassword({
+    required Password oldPassword,
+    required Password newPassword,
+  }) async {
+    if (!oldPassword.isValid()) {
+      return left(const UserFailure.failure()); // TODO name better
+    }
+    if (!newPassword.isValid()) {
+      return left(const UserFailure.failure()); // TODO name better
+    }
+
+    try {
+      final user = _auth.currentUser!;
+      final credential = auth.EmailAuthProvider.credential(
+        email: user.email!,
+        password: oldPassword.getOrCrash(),
+      );
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword.getOrCrash());
+      return right(unit);
+    } catch (e) {
+      return left(const UserFailure.failure());
+    }
   }
 }

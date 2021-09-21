@@ -32,79 +32,17 @@ class Dart with _$Dart {
   }
 
   factory Dart.dummy() {
+    final type = faker.randomGenerator.element([
+      DartType.s,
+      DartType.d,
+      DartType.t,
+    ]);
     return Dart(
-      type: faker.randomGenerator.element([
-        DartType.s,
-        DartType.d,
-        DartType.t,
-      ]),
-      value: faker.randomGenerator.element([
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20
-          ] +
-          [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20
-          ].map((e) => e * 2).toList() +
-          [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20
-          ].map((e) => e * 3).toList() +
-          [25, 50]),
+      type: type,
+      value: faker.randomGenerator.element(
+        (List.generate(20, (index) => index + 1).toList()) +
+            (type == DartType.t ? [25] : []),
+      ),
     );
   }
 }

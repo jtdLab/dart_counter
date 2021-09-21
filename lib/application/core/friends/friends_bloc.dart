@@ -19,17 +19,21 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     with AutoResetLazySingleton {
   final IFriendFacade _friendFacade;
 
-  FriendsBloc(
-    this._friendFacade,
-  ) : super(
-          const FriendsState.loading(),
-        );
-
   StreamSubscription<Either<FriendFailure, KtList<FriendRequest>>>?
       _receivedFriendRequestSubscription;
 
-  StreamSubscription<Either<FriendFailure, int>>?
-      _unreadFriendRequestSubscription;
+  StreamSubscription<Either<FriendFailure, KtList<FriendRequest>>>?
+      _sentFriendRequestSubscription;
+
+  FriendsBloc(
+    this._friendFacade,
+  ) : super(
+          const FriendsState.loadInProgress(),
+        ) {
+    add(
+      const FriendsEvent.watchStarted(),
+    );
+  }
 
   @override
   Stream<FriendsState> mapEventToState(
@@ -37,17 +41,18 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
   ) async* {
     yield* event.map(
       watchStarted: (_) => _mapWatchStartedToState(),
-      friendRequestsReceived: (event) =>
-          _mapFriendRequestsReceivedToState(event),
-      unreadFriendRequestsReceived: (event) =>
-          _mapUnreadFriendRequestsReceivedToState(event),
+      receivedFriendRequestsReceived: (event) =>
+          _mapReceivedFriendRequestsReceivedToState(event),
+      sentFriendRequestsReceived: (event) =>
+          _mapSentFriendRequestsReceivedToState(event),
       failureReceived: (event) => _mapFailureReceivedToState(event),
     );
   }
 
   Stream<FriendsState> _mapWatchStartedToState() async* {
-    _receivedFriendRequestSubscription =
-        _friendFacade.watchFriendRequests().listen((failureOrFriendRequests) {
+    _receivedFriendRequestSubscription = _friendFacade
+        .watchReceivedFriendRequests()
+        .listen((failureOrFriendRequests) {
       failureOrFriendRequests.fold(
         (failure) => add(
           FriendsEvent.failureReceived(
@@ -55,88 +60,99 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
           ),
         ),
         (friendRequests) => add(
-          FriendsEvent.friendRequestsReceived(
+          FriendsEvent.receivedFriendRequestsReceived(
             friendRequests: friendRequests,
           ),
         ),
       );
     });
 
-    _unreadFriendRequestSubscription = _friendFacade
-        .watchUnreadFriendRequests()
-        .listen((failureOrUnreadFriendRequests) {
-      failureOrUnreadFriendRequests.fold(
+    _sentFriendRequestSubscription = _friendFacade
+        .watchSentFriendRequests()
+        .listen((failureOrFriendRequests) {
+      failureOrFriendRequests.fold(
         (failure) => add(
           FriendsEvent.failureReceived(
             failure: failure,
           ),
         ),
-        (unreadFriendRequests) => add(
-          FriendsEvent.unreadFriendRequestsReceived(
-            unreadFriendRequests: unreadFriendRequests,
+        (friendRequests) => add(
+          FriendsEvent.sentFriendRequestsReceived(
+            friendRequests: friendRequests,
           ),
         ),
       );
     });
   }
 
-  Stream<FriendsState> _mapFriendRequestsReceivedToState(
-    FriendRequestsReceived event,
+  Stream<FriendsState> _mapReceivedFriendRequestsReceivedToState(
+    ReceivedFriendRequestsReceived event,
   ) async* {
+    final receivedFriendRequests = event.friendRequests;
+
     yield state.map(
-      loading: (loading) {
-        final allReceived = loading.unreadFriendRequests != null;
-        if (allReceived) {
-          return FriendsState.success(
-            friendRequests: event.friendRequests,
-            unreadFriendRequests: loading.unreadFriendRequests!,
-          );
-        } else {
-          return loading.copyWith(
-            friendRequests: event.friendRequests,
+      loadInProgress: (loadInProgress) {
+        final sentFriendRequests = loadInProgress.sentFriendRequests;
+        if (sentFriendRequests != null) {
+          return FriendsState.loadSuccess(
+            receivedFriendRequests: receivedFriendRequests,
+            sentFriendRequests: sentFriendRequests,
+            unreadFriendRequests: receivedFriendRequests.iter
+                .where((element) => !element.read)
+                .length,
           );
         }
+
+        return loadInProgress.copyWith(
+          receivedFriendRequests: receivedFriendRequests,
+        );
       },
-      success: (success) => success.copyWith(
-        friendRequests: event.friendRequests,
+      loadSuccess: (success) => success.copyWith(
+        receivedFriendRequests: receivedFriendRequests,
       ),
+      loadFailure: (loadFailure) => loadFailure, // TODO is that good solution
     );
   }
 
-  Stream<FriendsState> _mapUnreadFriendRequestsReceivedToState(
-    UnreadFriendRequestsReceived event,
+  Stream<FriendsState> _mapSentFriendRequestsReceivedToState(
+    SentFriendRequestsReceived event,
   ) async* {
+    final sentFriendRequests = event.friendRequests;
+
     yield state.map(
-      loading: (loading) {
-        final allReceived = loading.friendRequests != null;
-        if (allReceived) {
-          return FriendsState.success(
-            friendRequests: loading.friendRequests!,
-            unreadFriendRequests: event.unreadFriendRequests,
-          );
-        } else {
-          return loading.copyWith(
-            unreadFriendRequests: event.unreadFriendRequests,
+      loadInProgress: (loadInProgress) {
+        final receivedFriendRequests = loadInProgress.receivedFriendRequests;
+        if (receivedFriendRequests != null) {
+          return FriendsState.loadSuccess(
+            receivedFriendRequests: receivedFriendRequests,
+            sentFriendRequests: sentFriendRequests,
+            unreadFriendRequests: receivedFriendRequests.iter
+                .where((element) => !element.read)
+                .length,
           );
         }
+
+        return loadInProgress.copyWith(
+          sentFriendRequests: sentFriendRequests,
+        );
       },
-      success: (success) => success.copyWith(
-        unreadFriendRequests: event.unreadFriendRequests,
+      loadSuccess: (success) => success.copyWith(
+        sentFriendRequests: sentFriendRequests,
       ),
+      loadFailure: (loadFailure) => loadFailure, // TODO is that good solution
     );
   }
 
   Stream<FriendsState> _mapFailureReceivedToState(
     FailureReceived event,
   ) async* {
-    // TODO implement
-    // switch over failure types
+    yield FriendsState.loadFailure(failure: event.failure);
   }
 
   @override
   Future<void> close() {
     _receivedFriendRequestSubscription?.cancel();
-    _unreadFriendRequestSubscription?.cancel();
+    _sentFriendRequestSubscription?.cancel();
     return super.close();
   }
 }

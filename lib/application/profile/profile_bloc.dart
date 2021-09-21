@@ -15,27 +15,29 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserBloc _userBloc;
 
+  StreamSubscription<User>? _userSubscription;
+
   ProfileBloc(
     this._userBloc,
   ) : super(
-          ProfileState(
+          ProfileState.initial(
             user: _userBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.user,
+              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
+              loadSuccess: (success) => success.user,
+              loadFailure: (_) => throw UnexpectedStateError(), // TODO
             ),
           ),
         ) {
     _userSubscription = _userBloc.stream.map((state) {
       return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.user,
+        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
+        loadSuccess: (success) => success.user,
+        loadFailure: (_) => throw UnexpectedStateError(), // TODO
       );
     }).listen((user) {
       add(ProfileEvent.userReceived(user: user));
     });
   }
-
-  StreamSubscription<User>? _userSubscription;
 
   @override
   Stream<ProfileState> mapEventToState(
@@ -49,7 +51,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> _mapWatchUserReceivedToState(
     UserReceived event,
   ) async* {
-    yield ProfileState(user: event.user);
+    yield ProfileState.initial(user: event.user);
   }
 
   @override

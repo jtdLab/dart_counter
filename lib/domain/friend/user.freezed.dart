@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$UserTearOff {
   const _$UserTearOff();
 
-  _User call({required UniqueId id, required Username username}) {
+  _User call({required UniqueId id, required Profile profile}) {
     return _User(
       id: id,
-      username: username,
+      profile: profile,
     );
   }
 }
@@ -30,7 +30,7 @@ const $User = _$UserTearOff();
 /// @nodoc
 mixin _$User {
   UniqueId get id => throw _privateConstructorUsedError;
-  Username get username => throw _privateConstructorUsedError;
+  Profile get profile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -40,7 +40,9 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Username username});
+  $Res call({UniqueId id, Profile profile});
+
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -54,18 +56,25 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as Username,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Profile,
     ));
+  }
+
+  @override
+  $ProfileCopyWith<$Res> get profile {
+    return $ProfileCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
   }
 }
 
@@ -74,7 +83,10 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Username username});
+  $Res call({UniqueId id, Profile profile});
+
+  @override
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -89,17 +101,17 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_User(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as Username,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Profile,
     ));
   }
 }
@@ -107,16 +119,16 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_User implements _User {
-  const _$_User({required this.id, required this.username});
+  const _$_User({required this.id, required this.profile});
 
   @override
   final UniqueId id;
   @override
-  final Username username;
+  final Profile profile;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username)';
+    return 'User(id: $id, profile: $profile)';
   }
 
   @override
@@ -125,16 +137,15 @@ class _$_User implements _User {
         (other is _User &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(other.profile, profile)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(username);
+      const DeepCollectionEquality().hash(profile);
 
   @JsonKey(ignore: true)
   @override
@@ -143,13 +154,13 @@ class _$_User implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User({required UniqueId id, required Username username}) =
+  const factory _User({required UniqueId id, required Profile profile}) =
       _$_User;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
   @override
-  Username get username => throw _privateConstructorUsedError;
+  Profile get profile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

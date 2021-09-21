@@ -11,7 +11,8 @@ class NameDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final username = state.user.profile.username.getOrCrash();
+        final username =
+            (state as HomeLoadSuccess).user.profile.username.getOrCrash();
 
         return Container(
           height: size40(context),

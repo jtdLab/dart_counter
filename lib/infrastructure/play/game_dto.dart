@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/mode.dart';
@@ -98,6 +99,16 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
     );
   }
 
+  factory OfflineGameDto.fromFirestore(DocumentSnapshot doc) {
+    final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+    json.addAll({
+      'id': doc.id,
+    });
+
+    return OfflineGameDto.fromJson(json);
+  }
+
   factory OfflineGameDto.fromJson(Map<String, dynamic> json) =>
       _$OfflineGameDtoFromJson(json);
 }
@@ -139,6 +150,16 @@ class OnlineGameDto with _$OnlineGameDto implements GameDto {
         players.map((player) => player.toDomain()),
       ),
     );
+  }
+
+  factory OnlineGameDto.fromFirestore(DocumentSnapshot doc) {
+    final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+    json.addAll({
+      'id': doc.id,
+    });
+
+    return OnlineGameDto.fromJson(json);
   }
 
   factory OnlineGameDto.fromJson(Map<String, dynamic> json) =>

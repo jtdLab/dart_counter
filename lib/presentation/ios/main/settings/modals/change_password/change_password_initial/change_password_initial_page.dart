@@ -13,13 +13,13 @@ class ChangePasswordInitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ChangePasswordBloc, ChangePasswordState>(
       listenWhen: (oldState, newState) =>
-          newState.successful || newState.authFailure != null,
+          newState.successful || newState.userFailure!= null,
       listener: (context, state) {
         if (state.successful) {
           Navigator.pushReplacementNamed(context, ChangePasswordFlow.success);
           return;
         }
-        state.authFailure?.maybeWhen(
+        state.userFailure?.maybeWhen(
           orElse: () => showToast(
             'AuthFailure happended',
           ), // TODO catch other errors also

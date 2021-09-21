@@ -19,20 +19,21 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
     with AutoResetLazySingleton {
   final IGameInvitationFacade _gameInvitationFacade;
 
-  InvitationsBloc(
-    this._gameInvitationFacade,
-  ) : super(
-          const InvitationsState.loading(),
-        );
-
   StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
       _receivedInvitationsSubscription;
 
   StreamSubscription<Either<GameInvitationFailure, KtList<GameInvitation>>>?
       _sentInvitationsSubscription;
 
-  StreamSubscription<Either<GameInvitationFailure, int>>?
-      _unreadInvitationsSubscription;
+  InvitationsBloc(
+    this._gameInvitationFacade,
+  ) : super(
+          const InvitationsState.loadInProgress(),
+        ) {
+    add(
+      const InvitationsEvent.watchStarted(),
+    );
+  }
 
   @override
   Stream<InvitationsState> mapEventToState(
@@ -44,8 +45,6 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
           _mapReceivedInvitationsReceivedToState(event),
       sentInvitationsReceived: (event) =>
           _mapSentInvitationsReceivedToState(event),
-      unreadInvitationsReceived: (event) =>
-          _mapUnreadInvitationsReceivedToState(event),
       failureReceived: (event) => _mapFailureReceivedToState(event),
     );
   }
@@ -84,112 +83,76 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState>
         ),
       );
     });
-
-    _unreadInvitationsSubscription = _gameInvitationFacade
-        .watchUnreadInvitations()
-        .listen((failureOrUnreadInvitations) {
-      failureOrUnreadInvitations.fold(
-        (failure) => add(
-          InvitationsEvent.failureReceived(
-            failure: failure,
-          ),
-        ),
-        (unreadInvitations) => add(
-          InvitationsEvent.unreadInvitationsReceived(
-            unreadInvitations: unreadInvitations,
-          ),
-        ),
-      );
-    });
   }
 
   Stream<InvitationsState> _mapReceivedInvitationsReceivedToState(
     ReceivedInvitationsReceived event,
   ) async* {
+    final receivedInvitations = event.invitations;
+
     yield state.map(
-      loading: (loading) {
-        final allReceived = loading.sentInvitations != null &&
-            loading.unreadInvitations != null;
-        if (allReceived) {
-          return InvitationsState.success(
-            receivedInvitations: event.invitations,
-            sentInvitations: loading.sentInvitations!,
-            unreadInvitations: loading.unreadInvitations!,
-          );
-        } else {
-          return loading.copyWith(
-            receivedInvitations: event.invitations,
+      loadInProgress: (loadInProgress) {
+        final sentInvitations = loadInProgress.sentInvitations;
+        if (sentInvitations != null) {
+          return InvitationsState.loadSuccess(
+            receivedInvitations: receivedInvitations,
+            sentInvitations: sentInvitations,
+            unreadInvitations: receivedInvitations.iter
+                .where((element) => !element.read)
+                .length,
           );
         }
+
+        return loadInProgress.copyWith(
+          receivedInvitations: receivedInvitations,
+        );
       },
-      success: (success) => success.copyWith(
-        receivedInvitations: event.invitations,
+      loadSuccess: (success) => success.copyWith(
+        receivedInvitations: receivedInvitations,
       ),
+      loadFailure: (loadFailure) => loadFailure, // TODO is that good solution
     );
   }
 
   Stream<InvitationsState> _mapSentInvitationsReceivedToState(
     SentInvitationsReceived event,
   ) async* {
-    yield state.map(
-      loading: (loading) {
-        final allReceived = loading.receivedInvitations != null &&
-            loading.unreadInvitations != null;
-        if (allReceived) {
-          return InvitationsState.success(
-            receivedInvitations: loading.receivedInvitations!,
-            sentInvitations: event.invitations,
-            unreadInvitations: loading.unreadInvitations!,
-          );
-        } else {
-          return loading.copyWith(
-            sentInvitations: event.invitations,
-          );
-        }
-      },
-      success: (success) => success.copyWith(
-        sentInvitations: event.invitations,
-      ),
-    );
-  }
+    final sentInvitations = event.invitations;
 
-  Stream<InvitationsState> _mapUnreadInvitationsReceivedToState(
-    UnreadInvitationsReceived event,
-  ) async* {
     yield state.map(
-      loading: (loading) {
-        final allReceived = loading.receivedInvitations != null &&
-            loading.sentInvitations != null;
-        if (allReceived) {
-          return InvitationsState.success(
-            receivedInvitations: loading.receivedInvitations!,
-            sentInvitations: loading.sentInvitations!,
-            unreadInvitations: event.unreadInvitations,
-          );
-        } else {
-          return loading.copyWith(
-            unreadInvitations: event.unreadInvitations,
+      loadInProgress: (loadInProgress) {
+        final receivedInvitations = loadInProgress.receivedInvitations;
+        if (receivedInvitations != null) {
+          return InvitationsState.loadSuccess(
+            receivedInvitations: receivedInvitations,
+            sentInvitations: sentInvitations,
+            unreadInvitations: receivedInvitations.iter
+                .where((element) => !element.read)
+                .length,
           );
         }
+
+        return loadInProgress.copyWith(
+          sentInvitations: sentInvitations,
+        );
       },
-      success: (success) => success.copyWith(
-        unreadInvitations: event.unreadInvitations,
+      loadSuccess: (success) => success.copyWith(
+        sentInvitations: sentInvitations,
       ),
+      loadFailure: (loadFailure) => loadFailure, // TODO is that good solution
     );
   }
 
   Stream<InvitationsState> _mapFailureReceivedToState(
     FailureReceived event,
   ) async* {
-    // TODO implement
-    // switch over failure types
+    yield InvitationsState.loadFailure(failure: event.failure);
   }
 
   @override
   Future<void> close() {
     _receivedInvitationsSubscription?.cancel();
     _sentInvitationsSubscription?.cancel();
-    _unreadInvitationsSubscription?.cancel();
     return super.close();
   }
 }

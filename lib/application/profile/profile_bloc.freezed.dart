@@ -218,8 +218,8 @@ abstract class UserReceived implements ProfileEvent {
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
-  _ProfileState call({required User user}) {
-    return _ProfileState(
+  ProfileInitial initial({required User user}) {
+    return ProfileInitial(
       user: user,
     );
   }
@@ -231,6 +231,29 @@ const $ProfileState = _$ProfileStateTearOff();
 /// @nodoc
 mixin _$ProfileState {
   User get user => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProfileInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProfileInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -276,11 +299,11 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ProfileStateCopyWith<$Res>
+abstract class $ProfileInitialCopyWith<$Res>
     implements $ProfileStateCopyWith<$Res> {
-  factory _$ProfileStateCopyWith(
-          _ProfileState value, $Res Function(_ProfileState) then) =
-      __$ProfileStateCopyWithImpl<$Res>;
+  factory $ProfileInitialCopyWith(
+          ProfileInitial value, $Res Function(ProfileInitial) then) =
+      _$ProfileInitialCopyWithImpl<$Res>;
   @override
   $Res call({User user});
 
@@ -289,20 +312,21 @@ abstract class _$ProfileStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$ProfileStateCopyWith<$Res> {
-  __$ProfileStateCopyWithImpl(
-      _ProfileState _value, $Res Function(_ProfileState) _then)
-      : super(_value, (v) => _then(v as _ProfileState));
+class _$ProfileInitialCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements $ProfileInitialCopyWith<$Res> {
+  _$ProfileInitialCopyWithImpl(
+      ProfileInitial _value, $Res Function(ProfileInitial) _then)
+      : super(_value, (v) => _then(v as ProfileInitial));
 
   @override
-  _ProfileState get _value => super._value as _ProfileState;
+  ProfileInitial get _value => super._value as ProfileInitial;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(_ProfileState(
+    return _then(ProfileInitial(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -313,21 +337,21 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProfileState implements _ProfileState {
-  const _$_ProfileState({required this.user});
+class _$ProfileInitial implements ProfileInitial {
+  const _$ProfileInitial({required this.user});
 
   @override
   final User user;
 
   @override
   String toString() {
-    return 'ProfileState(user: $user)';
+    return 'ProfileState.initial(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProfileState &&
+        (other is ProfileInitial &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
@@ -338,17 +362,57 @@ class _$_ProfileState implements _ProfileState {
 
   @JsonKey(ignore: true)
   @override
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
-      __$ProfileStateCopyWithImpl<_ProfileState>(this, _$identity);
+  $ProfileInitialCopyWith<ProfileInitial> get copyWith =>
+      _$ProfileInitialCopyWithImpl<ProfileInitial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) initial,
+  }) {
+    return initial(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProfileInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProfileInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState({required User user}) = _$_ProfileState;
+abstract class ProfileInitial implements ProfileState {
+  const factory ProfileInitial({required User user}) = _$ProfileInitial;
 
   @override
   User get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
+  $ProfileInitialCopyWith<ProfileInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

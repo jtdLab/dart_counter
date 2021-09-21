@@ -9,323 +9,185 @@ import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'game_snapshot_dto.dart';
 import 'throw_dto.dart';
 
+@Environment(Environment.dev)
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOfflineFacade)
 class PlayOfflineFacade implements IPlayOfflineFacade {
+  final BehaviorSubject<Either<PlayFailure, OfflineGameSnapshot>>
+      _gameController;
+
   ex.Game? _game;
-
-  final StreamController<Either<PlayFailure, OfflineGameSnapshot>>
-      _gameStreamController = StreamController.broadcast();
-
   DateTime? _createdAt; // TODO needed
 
-  @override
-  Future<Either<PlayFailure, Unit>> addDartBot() {
-    if (_game != null) {
-      _game!.addDartBot();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
-  }
+  // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
+
+  PlayOfflineFacade() : _gameController = BehaviorSubject();
 
   @override
-  Future<Either<PlayFailure, Unit>> addPlayer() {
-    if (_game != null) {
-      _game!.addPlayer();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
-  }
-
-  @override
-  Future<Either<PlayFailure, Unit>> cancelGame() {
-    if (_game != null) {
-      _game!.cancel();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
-  }
-
-  @override
-  Future<Either<PlayFailure, Unit>> createGame() {
-    _game = _game = ex.Game();
-    _gameStreamController.add(
-      right(
-        OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-      ),
+  Either<PlayFailure, Unit> addDartBot() {
+    return _tryPerform(
+      action: () => _game!.addDartBot(),
     );
-    return Future.value(right(unit));
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> performThrow({
+  Either<PlayFailure, Unit> addPlayer() {
+    return _tryPerform(
+      action: () => _game!.addPlayer(),
+    );
+  }
+
+  @override
+  Either<PlayFailure, Unit> cancelGame() {
+    return _tryPerform(
+      action: () => _game!.cancel(),
+    );
+  }
+
+  @override
+  Either<PlayFailure, Unit> createGame() {
+    return _tryPerform(
+      action: () => _game = _game = ex.Game(),
+    );
+  }
+
+  @override
+  Either<PlayFailure, Unit> performThrow({
     required Throw t,
   }) {
-    if (_game != null) {
-      _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.performThrow(
+        t: ThrowDto.fromDomain(t).toExternal(),
+      ),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> removeDartBot() {
-    if (_game != null) {
-      _game!.removeDartBot();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+  Either<PlayFailure, Unit> removeDartBot() {
+    return _tryPerform(
+      action: () => _game!.removeDartBot(),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> removePlayer({
+  Either<PlayFailure, Unit> removePlayer({
     required int index,
   }) {
-    if (_game != null) {
-      _game!.removePlayer(index: index);
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.removePlayer(index: index),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> reorderPlayer({
+  Either<PlayFailure, Unit> reorderPlayer({
     required int oldIndex,
     required int newIndex,
   }) {
-    if (_game != null) {
-      _game!.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.reorderPlayer(
+        oldIndex: oldIndex,
+        newIndex: newIndex,
+      ),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> setDartBotTargetAverage({
+  Either<PlayFailure, Unit> setDartBotTargetAverage({
     required int targetAverage,
   }) {
-    if (_game != null) {
-      _game!.dartBotTargetAverage = targetAverage;
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.dartBotTargetAverage = targetAverage,
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> setMode({
+  Either<PlayFailure, Unit> setMode({
     required Mode mode,
   }) {
-    if (_game != null) {
-      _game!.mode = mode == Mode.firstTo
-          ? ex.Mode.firstTo
-          : ex.Mode.bestOf; // TODO this should be done in enum Mode
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () =>
+          _game!.mode = mode == Mode.firstTo ? ex.Mode.firstTo : ex.Mode.bestOf,
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> setSize({
+  Either<PlayFailure, Unit> setSize({
     required int size,
   }) {
-    if (_game != null) {
-      _game!.size = size;
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.size = size,
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> setStartingPoints({
+  Either<PlayFailure, Unit> setStartingPoints({
     required int startingPoints,
   }) {
-    if (_game != null) {
-      _game!.startingPoints = startingPoints;
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.startingPoints = startingPoints,
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> setType({
+  Either<PlayFailure, Unit> setType({
     required Type type,
   }) {
-    if (_game != null) {
-      _game!.type = type == Type.legs
-          ? ex.Type.legs
-          : ex.Type.sets; // TODO should be done in enum Type
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () =>
+          _game!.type = type == Type.legs ? ex.Type.legs : ex.Type.sets,
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> startGame() {
-    if (_game != null) {
-      _game!.start();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+  Either<PlayFailure, Unit> startGame() {
+    return _tryPerform(
+      action: () => _game!.start(),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> undoThrow() {
-    if (_game != null) {
-      _game!.undoThrow();
-      _gameStreamController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
-      );
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+  Either<PlayFailure, Unit> undoThrow() {
+    return _tryPerform(
+      action: () => _game!.undoThrow(),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> updateName({
+  Either<PlayFailure, Unit> updateName({
     required int index,
     required String newName,
   }) {
-    if (_game != null) {
-      _game!.players[index].name = newName;
-      return Future.value(right(unit));
-    } else {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    }
+    return _tryPerform(
+      action: () => _game!.players[index].name = newName,
+    );
   }
 
   @override
   Stream<Either<PlayFailure, OfflineGameSnapshot>> watchGame() {
-    return _gameStreamController.stream;
+    return _gameController.stream;
+  }
+
+  // TODO involve return type bool of action instead of void
+  /// Trys to Perform [action].
+  Either<PlayFailure, Unit> _tryPerform({
+    required void Function() action,
+  }) {
+    if (_game != null) {
+      action();
+      _gameController.add(
+        right(
+          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
+        ),
+      );
+      return right(unit);
+    }
+
+    return left(const PlayFailure.error()); // TODO name better
   }
 }

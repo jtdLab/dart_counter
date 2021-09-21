@@ -4,30 +4,107 @@ import 'package:dart_counter/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+/// App specific extensions on firebase firestore
 extension FirestoreX on FirebaseFirestore {
-  Future<DocumentReference> userDocument() async {
-    final id = getIt<FirebaseAuth>().currentUser?.uid;
-    if (id == null) throw NotAuthenticatedError();
-    return FirebaseFirestore.instance.collection('users').doc(id);
+  /// Returns a reference to the user document of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  DocumentReference userDocument() {
+    final uid = getIt<FirebaseAuth>().currentUser?.uid;
+
+    if (uid == null) {
+      throw NotAuthenticatedError();
+    } else {
+      return getIt<FirebaseFirestore>().collection('users').doc(uid);
+    }
+  }
+
+  /// Returns a reference to the gameHistoryOffline collection of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  CollectionReference gameHistoryOfflineCollection() {
+    try {
+      return userDocument().collection('gameHistoryOffline');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Returns a reference to the receivedGameInvitations collection of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  CollectionReference receivedGameInvitationsCollection() {
+    try {
+      return userDocument().collection('receivedGamedInvitations');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Returns a reference to the sentGameInvitations collection of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  CollectionReference sentGameInvitationsCollection() {
+    try {
+      return userDocument().collection('sentGamedInvitations');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Returns a reference to the receivedFriendRequests collection of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  CollectionReference receivedFriendRequestsCollection() {
+    try {
+      return userDocument().collection('receivedFriendRequests');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Returns a reference to the sentFriendRequests collection of the app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if app user is not signed in.
+  CollectionReference sentFriendRequestsCollection() {
+    try {
+      return userDocument().collection('sentFriendRequests');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Returns a reference to the gameHistoryOnline collection of the user with [uid].
+  CollectionReference gameHistoryOnlineCollection({
+    required String uid,
+  }) {
+    return getIt<FirebaseFirestore>()
+        .collection('users')
+        .doc(uid)
+        .collection('gameHistoryOnline');
+  }
+
+  /// Returns a reference to the profiles collection.
+  CollectionReference profilesCollection() {
+    return getIt<FirebaseFirestore>().collection('profiles');
   }
 }
 
-extension DocumentReferenceX on DocumentReference {
-  CollectionReference get friendRequestsCollection =>
-      collection('friendRequests');
-  CollectionReference get gameInvitationsCollection =>
-      collection('gameInvitations');
-}
-
-class ServerTimestampConverter implements JsonConverter<FieldValue?, Object?> {
+/// Helps dealing with firestore timestamps.
+// TODO more doc
+class ServerTimestampConverter implements JsonConverter<String?, Object?> {
   const ServerTimestampConverter();
 
   @override
-  FieldValue? fromJson(Object? json) {
-    return FieldValue.serverTimestamp();
+  String? fromJson(Object? json) {
+    if (json == null) {
+      return null;
+    }
+    final map = json as Map<String, dynamic>;
+    return map['createdAt'] as String;
+    //return FieldValue.serverTimestamp(); // TODO
   }
 
   @override
-  Object? toJson(FieldValue? fieldValue) =>
-      fieldValue ?? FieldValue.serverTimestamp();
+  Object? toJson(_) => FieldValue.serverTimestamp();
 }

@@ -1,6 +1,10 @@
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
+import 'package:dart_counter/main_dev.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -10,126 +14,172 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.dev)
 @LazySingleton(as: IGameInvitationFacade)
 class MockedGameInvitationFacade implements IGameInvitationFacade {
-  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _receivedInvitationsController = BehaviorSubject();
+  final IAuthFacade _authFacade;
 
   final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _sentInvitationsController = BehaviorSubject();
+      _receivedGameInvitationsController;
 
-  final BehaviorSubject<Either<GameInvitationFailure, int>>
-      _unreadInvitationsController = BehaviorSubject();
+  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _sentGameInvitationsController;
 
-  bool fail = false; // toggle to simulate working / notworking endpoint
+  List<GameInvitation> _receivedGameInvitations;
+  List<GameInvitation> _sentGameInvitations;
 
-  MockedGameInvitationFacade() {
-    _receivedInvitationsController.add(
-      fail
-          ? left(const GameInvitationFailure.unexpected())
-          : right(
-              KtList.from(
-                [
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                ],
-              ),
-            ),
-    );
+  MockedGameInvitationFacade(
+    this._authFacade,
+  )   : _receivedGameInvitationsController = BehaviorSubject()
+          ..add(
+            hasNetworkConnection
+                ? right(
+                    KtList.from(
+                      [
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                      ],
+                    ),
+                  )
+                : left(const GameInvitationFailure.unexpected()),
+          ),
+        _sentGameInvitationsController = BehaviorSubject()
+          ..add(
+            hasNetworkConnection
+                ? right(
+                    KtList.from(
+                      [
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                        GameInvitation.dummy(),
+                      ],
+                    ),
+                  )
+                : left(const GameInvitationFailure.unexpected()),
+          ),
+        _receivedGameInvitations = [],
+        _sentGameInvitations = [];
 
-    _sentInvitationsController.add(
-      fail
-          ? left(const GameInvitationFailure.unexpected())
-          : right(
-              KtList.from(
-                [
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                ],
-              ),
-            ),
-    );
+  @override
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchReceivedInvitations() {
+    if (_authFacade.isAuthenticated()) {
+      return _receivedGameInvitationsController.stream;
+    }
 
-    _unreadInvitationsController.add(
-      _receivedInvitationsController.valueWrapper!.value.fold(
-        (failure) => left(const GameInvitationFailure.unexpected()),
-        (invitations) {
-          final unreadInvitations =
-              invitations.filter((invitation) => !invitation.read).size;
-          return right(unreadInvitations);
-        },
-      ),
-    );
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>>
+      markReceivedInvitationsAsRead() async {
+    if (_authFacade.isAuthenticated()) {
+      _receivedGameInvitations = _receivedGameInvitations
+          .map(
+            (invitation) => invitation.copyWith(read: true),
+          )
+          .toList();
+      return right(unit);
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchSentInvitations() {
+    if (_authFacade.isAuthenticated()) {
+      return _sentGameInvitationsController.stream;
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
+    required UniqueId gameId,
+    required UniqueId toId,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _sentGameInvitations.add(
+          GameInvitation.dummy().copyWith(
+            gameId: gameId,
+            toId: toId,
+          ),
+        );
+        _sentGameInvitationsController.add(
+          right(_sentGameInvitations.toImmutableList()),
+        );
+        return right(unit);
+      }
+
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> cancel({
+    required GameInvitation invitation,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _sentGameInvitations.removeWhere((element) => element == invitation);
+        _sentGameInvitationsController.add(
+          right(_sentGameInvitations.toImmutableList()),
+        );
+        return right(unit);
+      }
+
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
   }
 
   @override
   Future<Either<GameInvitationFailure, Unit>> accept({
     required GameInvitation invitation,
-  }) {
-    if (fail) {
-      return Future.value(left(const GameInvitationFailure.unexpected()));
-    } else {
-      return Future.value(right(unit));
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _removeFromReceivedGameInvitations(invitation);
+        return right(unit);
+      }
+
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
+
+    throw NotAuthenticatedError();
   }
 
   @override
   Future<Either<GameInvitationFailure, Unit>> decline({
     required GameInvitation invitation,
-  }) {
-    if (fail) {
-      return Future.value(left(const GameInvitationFailure.unexpected()));
-    } else {
-      return Future.value(right(unit));
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _removeFromReceivedGameInvitations(invitation);
+        return right(unit);
+      }
+
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
+
+    throw NotAuthenticatedError();
   }
 
-  @override
-  Future<Either<GameInvitationFailure, Unit>> send({
-    required GameInvitation invitation,
-  }) {
-    if (fail) {
-      return Future.value(left(const GameInvitationFailure.unexpected()));
-    } else {
-      return Future.value(right(unit));
-    }
-  }
-
-  @override
-  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations() {
-    return _receivedInvitationsController.stream;
-  }
-
-  @override
-  ValueStream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations() {
-    return _sentInvitationsController.stream;
-  }
-
-  @override
-  ValueStream<Either<GameInvitationFailure, int>> watchUnreadInvitations() {
-    return _unreadInvitationsController.stream;
-  }
-
-  @override
-  void markGameInvitationsAsRead() {
-    final failureOrInvitations =
-        _receivedInvitationsController.valueWrapper?.value;
-    if (failureOrInvitations != null) {
-      failureOrInvitations.fold(
-        (failure) {},
-        (invitations) {
-          final readInvitations =
-              invitations.map((invitation) => invitation.copyWith(read: true));
-          _receivedInvitationsController.add(right(readInvitations));
-          _unreadInvitationsController.add(right(0));
-        },
-      );
-    }
+  /// Removes [invitation] from the receivedGameInvitations and emits event.
+  void _removeFromReceivedGameInvitations(GameInvitation invitation) {
+    _receivedGameInvitations.removeWhere(
+      (element) => element == invitation,
+    );
+    _receivedGameInvitationsController.add(
+      right(_receivedGameInvitations.toImmutableList()),
+    );
   }
 }

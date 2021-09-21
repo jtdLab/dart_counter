@@ -34,7 +34,7 @@ class EditProfileImageBloc
   }
 
   Stream<EditProfileImageState> _mapDeletePressedToState() async* {
-    _userFacade.deletePhoto();
+    _userFacade.deleteProfilePhoto();
   }
 
   Stream<EditProfileImageState> _mapTakePressedToState() async* {
@@ -43,7 +43,7 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updatePhoto(rawData: file);
+    _userFacade.updateProfilePhoto(newPhoto: file);
   }
 
   Stream<EditProfileImageState> _mapChoosePressedToState() async* {
@@ -53,6 +53,6 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updatePhoto(rawData: file);
+    _userFacade.updateProfilePhoto(newPhoto: file);
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
@@ -12,83 +11,49 @@ import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
-import 'package:dart_counter/infrastructure/play/stats_dto.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
+import 'package:dart_counter/main_dev.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IPlayOnlineFacade)
 class MockedPlayOnlineFacade implements IPlayOnlineFacade {
-  bool fail = false; // toggle to simulate working / not working endpoint
-
-  final StreamController<Either<PlayFailure, OnlineGameSnapshot>>
-      _gameStreamController = StreamController.broadcast();
-
   final IUserFacade _userFacade; // TODO use or remove
+
+  final BehaviorSubject<Either<PlayFailure, OnlineGameSnapshot>>
+      _gameController;
+
+  // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
+  // add all needed fields to generated online game
 
   ex.Game? _game;
 
   MockedPlayOnlineFacade(
     this._userFacade,
-  );
+  ) : _gameController = BehaviorSubject();
 
   @override
   Future<Either<PlayFailure, Unit>> cancelGame() {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.cancel();
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.cancel(),
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> createGame() {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      _game = _game = ex.Game();
-      _gameStreamController.add(
-        right(
-          _toOnlineGameSnapshot(_game!),
-        ),
-      );
-      return Future.value(right(unit));
-    }
-  }
-
-  Future<Either<PlayFailure, Unit>> joinGame({
-    required String gameCode,
-  }) {
-    // TODO implement
-    throw UnimplementedError();
+    return _tryPerform(
+      action: () => _game = _game = ex.Game(),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> inviteFriend({
-    required Friend friend,
+  Future<Either<PlayFailure, Unit>> joinGame({
+    required UniqueId gameId,
   }) {
     // TODO implement
     throw UnimplementedError();
@@ -98,54 +63,20 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> performThrow({
     required Throw t,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.performThrow(
+        t: ThrowDto.fromDomain(t).toExternal(),
+      ),
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> removePlayer({
     required int index,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.removePlayer(index: index);
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.removePlayer(index: index),
+    );
   }
 
   @override
@@ -153,196 +84,92 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
     required int oldIndex,
     required int newIndex,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.reorderPlayer(
+        oldIndex: oldIndex,
+        newIndex: newIndex,
+      ),
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setMode({
     required Mode mode,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.mode = mode == Mode.firstTo
-            ? ex.Mode.firstTo
-            : ex.Mode.bestOf; // TODO this should be done in enum Mode
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () =>
+          _game!.mode = mode == Mode.firstTo ? ex.Mode.firstTo : ex.Mode.bestOf,
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setSize({
     required int size,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.size = size;
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.size = size,
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setStartingPoints({
     required int startingPoints,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.startingPoints = startingPoints;
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.startingPoints = startingPoints,
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> setType({
     required Type type,
   }) {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.type = type == Type.legs
-            ? ex.Type.legs
-            : ex.Type.sets; // TODO should be done in enum Type
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () =>
+          _game!.type = type == Type.legs ? ex.Type.legs : ex.Type.sets,
+    );
   }
 
   @override
   Future<Either<PlayFailure, Unit>> startGame() {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.start();
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+    return _tryPerform(
+      action: () => _game!.start(),
+    );
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> undoThrow() {
-    if (fail) {
-      // TODO specify error
-      return Future.value(
-        left(const PlayFailure.error()),
-      );
-    } else {
-      if (_game != null) {
-        _game!.undoThrow();
-        _gameStreamController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
-        );
-        return Future.value(right(unit));
-      } else {
-        // TODO specify error
-        return Future.value(
-          left(const PlayFailure.error()),
-        );
-      }
-    }
+  Future<Either<PlayFailure, Unit>> undoThrow() async {
+    return _tryPerform(
+      action: () => _game!.undoThrow(),
+    );
   }
 
   @override
   Stream<Either<PlayFailure, OnlineGameSnapshot>> watchGame() {
-    return _gameStreamController.stream;
+    return _gameController.stream;
   }
 
+  // TODO involve return type bool of action instead of void
+  /// Trys to Perform [action].
+  Future<Either<PlayFailure, Unit>> _tryPerform({
+    required void Function() action,
+  }) async {
+    if (hasNetworkConnection) {
+      if (_game != null) {
+        action();
+        _gameController.add(
+          right(
+            _toOnlineGameSnapshot(_game!),
+          ),
+        );
+        return right(unit);
+      }
+    }
+
+    return left(const PlayFailure.error()); // TODO name better
+  }
+
+  /// Converts an external game and fils in dummy data for online game specific fields.
   OnlineGameSnapshot _toOnlineGameSnapshot(ex.Game game) {
     return OnlineGameSnapshot(
       status: game.status == ex.Status.pending
@@ -364,6 +191,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
     );
   }
 
+  /// Converts an external player and fils in dummy data for online player specific fields.
   OnlinePlayerSnapshot _toOnlinePlayerSnapshot(ex.Player player) {
     return OnlinePlayerSnapshot(
       id: UniqueId.fromUniqueString(player.id),

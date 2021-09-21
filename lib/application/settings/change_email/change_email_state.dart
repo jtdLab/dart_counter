@@ -7,7 +7,7 @@ class ChangeEmailState with _$ChangeEmailState {
     required bool showErrorMessages,
     required bool isSubmitting,
     required bool successful,
-    AuthFailure? authFailure,
+    UserFailure? userFailure,
   }) = _ChangeEmailState;
 
   factory ChangeEmailState.initial() => ChangeEmailState(

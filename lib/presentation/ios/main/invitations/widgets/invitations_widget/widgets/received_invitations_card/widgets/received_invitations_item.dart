@@ -25,7 +25,7 @@ class ReceivedInvitationsItem extends StatelessWidget {
             imageName: AppImages.photoPlaceholderNew,
           ),
           Text(
-            gameInvitation.from.getOrCrash().toUpperCase(),
+            gameInvitation.fromName.getOrCrash().toUpperCase(),
           ),
           Row(
             children: [

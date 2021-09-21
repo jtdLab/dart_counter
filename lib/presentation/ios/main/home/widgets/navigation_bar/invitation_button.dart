@@ -12,7 +12,7 @@ class InvitationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadReceivedInvitations = state.unreadInvitations;
+        final unreadReceivedInvitations = (state as HomeLoadSuccess).unreadInvitations;
 
         if (unreadReceivedInvitations == 0) {
           return AppNavigationBarButton(

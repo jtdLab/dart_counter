@@ -10,13 +10,13 @@ part 'game_invitation_dto.g.dart';
 @freezed
 class GameInvitationDto with _$GameInvitationDto {
   const factory GameInvitationDto({
-    @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
-    required String from,
-    required String lobbyCode,
+    required String id,
+    required String gameId,
+    required String toId,
+    required String fromId,
+    required String fromName,
     required bool read,
-    @JsonKey(includeIfNull: false)
-    @ServerTimestampConverter()
-        FieldValue? createdAt,
+    @ServerTimestampConverter() String? createdAt,
   }) = _GameInvitationDto;
 
   const GameInvitationDto._();
@@ -24,26 +24,34 @@ class GameInvitationDto with _$GameInvitationDto {
   factory GameInvitationDto.fromDomain(GameInvitation invitation) {
     return GameInvitationDto(
       id: invitation.id.getOrCrash(),
-      from: invitation.from.getOrCrash(),
-      lobbyCode: invitation.lobbyCode,
+      gameId: invitation.gameId.getOrCrash(),
+      toId: invitation.toId.getOrCrash(),
+      fromId: invitation.fromId.getOrCrash(),
+      fromName: invitation.fromName.getOrCrash(),
       read: invitation.read,
     );
   }
 
   GameInvitation toDomain() {
     return GameInvitation(
-      id: UniqueId.fromUniqueString(id!),
-      from: Username(from),
-      lobbyCode: lobbyCode,
+      id: UniqueId.fromUniqueString(id),
+      gameId: UniqueId.fromUniqueString(gameId),
+      toId: UniqueId.fromUniqueString(toId),
+      fromId: UniqueId.fromUniqueString(fromId),
+      fromName: Username(fromName),
       read: read,
+      createdAt: DateTime.parse(createdAt!), // TODO
     );
   }
 
   factory GameInvitationDto.fromFirestore(DocumentSnapshot doc) {
-    // TODO ! operator could make problems
+    final json = (doc.data() ?? {}) as Map<String, dynamic>;
 
-    return GameInvitationDto.fromJson((doc.data() as Map<String, dynamic>?)!)
-        .copyWith(id: doc.id);
+    json.addAll({
+      'id': doc.id,
+    });
+
+    return GameInvitationDto.fromJson(json);
   }
 
   factory GameInvitationDto.fromJson(Map<String, dynamic> json) =>

@@ -8,16 +8,28 @@ part 'game_invitation.freezed.dart';
 class GameInvitation with _$GameInvitation {
   const factory GameInvitation({
     required UniqueId id,
-    required Username from,
-    required String lobbyCode,
+    required UniqueId gameId,
+    required UniqueId toId,
+    required UniqueId fromId,
+    required Username fromName,
     required bool read,
+    required DateTime createdAt,
   }) = _GameInvitation;
 
   factory GameInvitation.dummy() => GameInvitation(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
-        from: Username(
+        gameId: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        toId: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        fromId: UniqueId.fromUniqueString(
+          faker.randomGenerator.string(28, min: 28),
+        ),
+        fromName: Username(
           faker.randomGenerator.element([
             'SyxGott',
             'Kelb37',
@@ -29,7 +41,7 @@ class GameInvitation with _$GameInvitation {
             'Marwinn8',
           ]),
         ),
-        lobbyCode: 'sdfsjfisfjfdsj',//faker.randomGenerator.integer(9999, min: 1000),
-        read: false,
+        read: faker.randomGenerator.boolean(),
+        createdAt: DateTime.now(),
       );
 }

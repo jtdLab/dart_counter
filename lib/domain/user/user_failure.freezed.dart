@@ -20,6 +20,10 @@ class _$UserFailureTearOff {
     return const _Failure();
   }
 
+  _UnableToLoadData unableToLoadData() {
+    return const _UnableToLoadData();
+  }
+
   _InsufficientPermission insufficientPermission() {
     return const _InsufficientPermission();
   }
@@ -37,6 +41,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() unableToLoadData,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
   }) =>
@@ -44,6 +49,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? unableToLoadData,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     required TResult orElse(),
@@ -52,6 +58,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_UnableToLoadData value) unableToLoadData,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -60,6 +67,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_UnableToLoadData value)? unableToLoadData,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     required TResult orElse(),
@@ -121,6 +129,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() unableToLoadData,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
   }) {
@@ -131,6 +140,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? unableToLoadData,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     required TResult orElse(),
@@ -145,6 +155,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_UnableToLoadData value) unableToLoadData,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -156,6 +167,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_UnableToLoadData value)? unableToLoadData,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     required TResult orElse(),
@@ -169,6 +181,101 @@ class _$_Failure implements _Failure {
 
 abstract class _Failure implements UserFailure {
   const factory _Failure() = _$_Failure;
+}
+
+/// @nodoc
+abstract class _$UnableToLoadDataCopyWith<$Res> {
+  factory _$UnableToLoadDataCopyWith(
+          _UnableToLoadData value, $Res Function(_UnableToLoadData) then) =
+      __$UnableToLoadDataCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnableToLoadDataCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res>
+    implements _$UnableToLoadDataCopyWith<$Res> {
+  __$UnableToLoadDataCopyWithImpl(
+      _UnableToLoadData _value, $Res Function(_UnableToLoadData) _then)
+      : super(_value, (v) => _then(v as _UnableToLoadData));
+
+  @override
+  _UnableToLoadData get _value => super._value as _UnableToLoadData;
+}
+
+/// @nodoc
+
+class _$_UnableToLoadData implements _UnableToLoadData {
+  const _$_UnableToLoadData();
+
+  @override
+  String toString() {
+    return 'UserFailure.unableToLoadData()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UnableToLoadData);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() failure,
+    required TResult Function() unableToLoadData,
+    required TResult Function() insufficientPermission,
+    required TResult Function() invalidUsername,
+  }) {
+    return unableToLoadData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? failure,
+    TResult Function()? unableToLoadData,
+    TResult Function()? insufficientPermission,
+    TResult Function()? invalidUsername,
+    required TResult orElse(),
+  }) {
+    if (unableToLoadData != null) {
+      return unableToLoadData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_InvalidUsername value) invalidUsername,
+  }) {
+    return unableToLoadData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    required TResult orElse(),
+  }) {
+    if (unableToLoadData != null) {
+      return unableToLoadData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UnableToLoadData implements UserFailure {
+  const factory _UnableToLoadData() = _$_UnableToLoadData;
 }
 
 /// @nodoc
@@ -212,6 +319,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() unableToLoadData,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
   }) {
@@ -222,6 +330,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? unableToLoadData,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     required TResult orElse(),
@@ -236,6 +345,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_UnableToLoadData value) unableToLoadData,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -247,6 +357,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_UnableToLoadData value)? unableToLoadData,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     required TResult orElse(),
@@ -303,6 +414,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
+    required TResult Function() unableToLoadData,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
   }) {
@@ -313,6 +425,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
+    TResult Function()? unableToLoadData,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     required TResult orElse(),
@@ -327,6 +440,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
+    required TResult Function(_UnableToLoadData value) unableToLoadData,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -338,6 +452,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
+    TResult Function(_UnableToLoadData value)? unableToLoadData,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     required TResult orElse(),

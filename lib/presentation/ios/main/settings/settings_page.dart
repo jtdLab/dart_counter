@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
       create: (context) => getIt<SettingsBloc>(),
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is SignedOut) {
+          if (state is Unauthenticated) {
             context.router.replace(const AuthFlowRoute());
           }
         },

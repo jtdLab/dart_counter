@@ -21,7 +21,7 @@ class SignInPage extends StatelessWidget {
         listeners: [
           BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
-              if (state is SignedIn) {
+              if (state is Authenticated) {
                 context.router.replace(const MainFlowRoute());
               }
             },

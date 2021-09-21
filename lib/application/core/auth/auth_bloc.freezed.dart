@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-  SignedInUidReceived signedInUidReceived({required UniqueId? uid}) {
-    return SignedInUidReceived(
-      uid: uid,
+  AuthenticationChanged authenticationChanged({required bool isAuthenticated}) {
+    return AuthenticationChanged(
+      isAuthenticated: isAuthenticated,
     );
   }
 }
@@ -28,27 +28,28 @@ const $AuthEvent = _$AuthEventTearOff();
 
 /// @nodoc
 mixin _$AuthEvent {
-  UniqueId? get uid => throw _privateConstructorUsedError;
+  bool get isAuthenticated => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UniqueId? uid) signedInUidReceived,
+    required TResult Function(bool isAuthenticated) authenticationChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UniqueId? uid)? signedInUidReceived,
+    TResult Function(bool isAuthenticated)? authenticationChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SignedInUidReceived value) signedInUidReceived,
+    required TResult Function(AuthenticationChanged value)
+        authenticationChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignedInUidReceived value)? signedInUidReceived,
+    TResult Function(AuthenticationChanged value)? authenticationChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +63,7 @@ mixin _$AuthEvent {
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res>;
-  $Res call({UniqueId? uid});
+  $Res call({bool isAuthenticated});
 }
 
 /// @nodoc
@@ -75,97 +76,100 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uid = freezed,
+    Object? isAuthenticated = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+      isAuthenticated: isAuthenticated == freezed
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class $SignedInUidReceivedCopyWith<$Res>
+abstract class $AuthenticationChangedCopyWith<$Res>
     implements $AuthEventCopyWith<$Res> {
-  factory $SignedInUidReceivedCopyWith(
-          SignedInUidReceived value, $Res Function(SignedInUidReceived) then) =
-      _$SignedInUidReceivedCopyWithImpl<$Res>;
+  factory $AuthenticationChangedCopyWith(AuthenticationChanged value,
+          $Res Function(AuthenticationChanged) then) =
+      _$AuthenticationChangedCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId? uid});
+  $Res call({bool isAuthenticated});
 }
 
 /// @nodoc
-class _$SignedInUidReceivedCopyWithImpl<$Res>
+class _$AuthenticationChangedCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res>
-    implements $SignedInUidReceivedCopyWith<$Res> {
-  _$SignedInUidReceivedCopyWithImpl(
-      SignedInUidReceived _value, $Res Function(SignedInUidReceived) _then)
-      : super(_value, (v) => _then(v as SignedInUidReceived));
+    implements $AuthenticationChangedCopyWith<$Res> {
+  _$AuthenticationChangedCopyWithImpl(
+      AuthenticationChanged _value, $Res Function(AuthenticationChanged) _then)
+      : super(_value, (v) => _then(v as AuthenticationChanged));
 
   @override
-  SignedInUidReceived get _value => super._value as SignedInUidReceived;
+  AuthenticationChanged get _value => super._value as AuthenticationChanged;
 
   @override
   $Res call({
-    Object? uid = freezed,
+    Object? isAuthenticated = freezed,
   }) {
-    return _then(SignedInUidReceived(
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as UniqueId?,
+    return _then(AuthenticationChanged(
+      isAuthenticated: isAuthenticated == freezed
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SignedInUidReceived implements SignedInUidReceived {
-  const _$SignedInUidReceived({required this.uid});
+class _$AuthenticationChanged implements AuthenticationChanged {
+  const _$AuthenticationChanged({required this.isAuthenticated});
 
   @override
-  final UniqueId? uid;
+  final bool isAuthenticated;
 
   @override
   String toString() {
-    return 'AuthEvent.signedInUidReceived(uid: $uid)';
+    return 'AuthEvent.authenticationChanged(isAuthenticated: $isAuthenticated)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SignedInUidReceived &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)));
+        (other is AuthenticationChanged &&
+            (identical(other.isAuthenticated, isAuthenticated) ||
+                const DeepCollectionEquality()
+                    .equals(other.isAuthenticated, isAuthenticated)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(uid);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isAuthenticated);
 
   @JsonKey(ignore: true)
   @override
-  $SignedInUidReceivedCopyWith<SignedInUidReceived> get copyWith =>
-      _$SignedInUidReceivedCopyWithImpl<SignedInUidReceived>(this, _$identity);
+  $AuthenticationChangedCopyWith<AuthenticationChanged> get copyWith =>
+      _$AuthenticationChangedCopyWithImpl<AuthenticationChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UniqueId? uid) signedInUidReceived,
+    required TResult Function(bool isAuthenticated) authenticationChanged,
   }) {
-    return signedInUidReceived(uid);
+    return authenticationChanged(isAuthenticated);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UniqueId? uid)? signedInUidReceived,
+    TResult Function(bool isAuthenticated)? authenticationChanged,
     required TResult orElse(),
   }) {
-    if (signedInUidReceived != null) {
-      return signedInUidReceived(uid);
+    if (authenticationChanged != null) {
+      return authenticationChanged(isAuthenticated);
     }
     return orElse();
   }
@@ -173,33 +177,34 @@ class _$SignedInUidReceived implements SignedInUidReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SignedInUidReceived value) signedInUidReceived,
+    required TResult Function(AuthenticationChanged value)
+        authenticationChanged,
   }) {
-    return signedInUidReceived(this);
+    return authenticationChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignedInUidReceived value)? signedInUidReceived,
+    TResult Function(AuthenticationChanged value)? authenticationChanged,
     required TResult orElse(),
   }) {
-    if (signedInUidReceived != null) {
-      return signedInUidReceived(this);
+    if (authenticationChanged != null) {
+      return authenticationChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class SignedInUidReceived implements AuthEvent {
-  const factory SignedInUidReceived({required UniqueId? uid}) =
-      _$SignedInUidReceived;
+abstract class AuthenticationChanged implements AuthEvent {
+  const factory AuthenticationChanged({required bool isAuthenticated}) =
+      _$AuthenticationChanged;
 
   @override
-  UniqueId? get uid => throw _privateConstructorUsedError;
+  bool get isAuthenticated => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SignedInUidReceivedCopyWith<SignedInUidReceived> get copyWith =>
+  $AuthenticationChangedCopyWith<AuthenticationChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -207,12 +212,12 @@ abstract class SignedInUidReceived implements AuthEvent {
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  SignedOut signedOut() {
-    return const SignedOut();
+  Authenticated authenticated() {
+    return const Authenticated();
   }
 
-  SignedIn signedIn() {
-    return const SignedIn();
+  Unauthenticated unauthenticated() {
+    return const Unauthenticated();
   }
 }
 
@@ -223,27 +228,27 @@ const $AuthState = _$AuthStateTearOff();
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() signedOut,
-    required TResult Function() signedIn,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? signedOut,
-    TResult Function()? signedIn,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SignedOut value) signedOut,
-    required TResult Function(SignedIn value) signedIn,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignedOut value)? signedOut,
-    TResult Function(SignedIn value)? signedIn,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -265,34 +270,36 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $SignedOutCopyWith<$Res> {
-  factory $SignedOutCopyWith(SignedOut value, $Res Function(SignedOut) then) =
-      _$SignedOutCopyWithImpl<$Res>;
+abstract class $AuthenticatedCopyWith<$Res> {
+  factory $AuthenticatedCopyWith(
+          Authenticated value, $Res Function(Authenticated) then) =
+      _$AuthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $SignedOutCopyWith<$Res> {
-  _$SignedOutCopyWithImpl(SignedOut _value, $Res Function(SignedOut) _then)
-      : super(_value, (v) => _then(v as SignedOut));
+class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $AuthenticatedCopyWith<$Res> {
+  _$AuthenticatedCopyWithImpl(
+      Authenticated _value, $Res Function(Authenticated) _then)
+      : super(_value, (v) => _then(v as Authenticated));
 
   @override
-  SignedOut get _value => super._value as SignedOut;
+  Authenticated get _value => super._value as Authenticated;
 }
 
 /// @nodoc
 
-class _$SignedOut implements SignedOut {
-  const _$SignedOut();
+class _$Authenticated implements Authenticated {
+  const _$Authenticated();
 
   @override
   String toString() {
-    return 'AuthState.signedOut()';
+    return 'AuthState.authenticated()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignedOut);
+    return identical(this, other) || (other is Authenticated);
   }
 
   @override
@@ -301,21 +308,21 @@ class _$SignedOut implements SignedOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() signedOut,
-    required TResult Function() signedIn,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
   }) {
-    return signedOut();
+    return authenticated();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? signedOut,
-    TResult Function()? signedIn,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
-    if (signedOut != null) {
-      return signedOut();
+    if (authenticated != null) {
+      return authenticated();
     }
     return orElse();
   }
@@ -323,59 +330,61 @@ class _$SignedOut implements SignedOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SignedOut value) signedOut,
-    required TResult Function(SignedIn value) signedIn,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
-    return signedOut(this);
+    return authenticated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignedOut value)? signedOut,
-    TResult Function(SignedIn value)? signedIn,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
-    if (signedOut != null) {
-      return signedOut(this);
+    if (authenticated != null) {
+      return authenticated(this);
     }
     return orElse();
   }
 }
 
-abstract class SignedOut implements AuthState {
-  const factory SignedOut() = _$SignedOut;
+abstract class Authenticated implements AuthState {
+  const factory Authenticated() = _$Authenticated;
 }
 
 /// @nodoc
-abstract class $SignedInCopyWith<$Res> {
-  factory $SignedInCopyWith(SignedIn value, $Res Function(SignedIn) then) =
-      _$SignedInCopyWithImpl<$Res>;
+abstract class $UnauthenticatedCopyWith<$Res> {
+  factory $UnauthenticatedCopyWith(
+          Unauthenticated value, $Res Function(Unauthenticated) then) =
+      _$UnauthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $SignedInCopyWith<$Res> {
-  _$SignedInCopyWithImpl(SignedIn _value, $Res Function(SignedIn) _then)
-      : super(_value, (v) => _then(v as SignedIn));
+class _$UnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $UnauthenticatedCopyWith<$Res> {
+  _$UnauthenticatedCopyWithImpl(
+      Unauthenticated _value, $Res Function(Unauthenticated) _then)
+      : super(_value, (v) => _then(v as Unauthenticated));
 
   @override
-  SignedIn get _value => super._value as SignedIn;
+  Unauthenticated get _value => super._value as Unauthenticated;
 }
 
 /// @nodoc
 
-class _$SignedIn implements SignedIn {
-  const _$SignedIn();
+class _$Unauthenticated implements Unauthenticated {
+  const _$Unauthenticated();
 
   @override
   String toString() {
-    return 'AuthState.signedIn()';
+    return 'AuthState.unauthenticated()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignedIn);
+    return identical(this, other) || (other is Unauthenticated);
   }
 
   @override
@@ -384,21 +393,21 @@ class _$SignedIn implements SignedIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() signedOut,
-    required TResult Function() signedIn,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
   }) {
-    return signedIn();
+    return unauthenticated();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? signedOut,
-    TResult Function()? signedIn,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
-    if (signedIn != null) {
-      return signedIn();
+    if (unauthenticated != null) {
+      return unauthenticated();
     }
     return orElse();
   }
@@ -406,26 +415,26 @@ class _$SignedIn implements SignedIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SignedOut value) signedOut,
-    required TResult Function(SignedIn value) signedIn,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
   }) {
-    return signedIn(this);
+    return unauthenticated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignedOut value)? signedOut,
-    TResult Function(SignedIn value)? signedIn,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
-    if (signedIn != null) {
-      return signedIn(this);
+    if (unauthenticated != null) {
+      return unauthenticated(this);
     }
     return orElse();
   }
 }
 
-abstract class SignedIn implements AuthState {
-  const factory SignedIn() = _$SignedIn;
+abstract class Unauthenticated implements AuthState {
+  const factory Unauthenticated() = _$Unauthenticated;
 }

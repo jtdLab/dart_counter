@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
-part 'auth_bloc.freezed.dart';
 
 @lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
@@ -18,41 +17,42 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
   AuthBloc(
     this._authFacade,
   ) : super(
-          _authFacade.getSignedInUid() != null
-              ? const AuthState.signedIn()
-              : const AuthState.signedOut(),
+          _authFacade.isAuthenticated()
+              ? const AuthState.authenticated()
+              : const AuthState.unauthenticated(),
         ) {
-    _signedInUidSubscription = _authFacade.watchSignedInUid().listen((uid) {
-      add(AuthEvent.signedInUidReceived(uid: uid));
+    _isAuthenticatedSubscription =
+        _authFacade.watchIsAuthenticated().listen((isAuthenticated) {
+      add(AuthEvent.authenticationChanged(isAuthenticated: isAuthenticated));
     });
   }
 
-  StreamSubscription<UniqueId?>? _signedInUidSubscription;
+  StreamSubscription<bool>? _isAuthenticatedSubscription;
 
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
     yield* event.map(
-      signedInUidReceived: (event) => _mapSignedInUidReceivedToState(event),
+      authenticationChanged: (event) => _mapAuthenticationChangedToState(event),
     );
   }
 
-  Stream<AuthState> _mapSignedInUidReceivedToState(
-    SignedInUidReceived event,
+  Stream<AuthState> _mapAuthenticationChangedToState(
+    AuthenticationChanged event,
   ) async* {
-    final uid = event.uid;
+    final isAuthenticated = event.isAuthenticated;
 
-    if (uid != null) {
-      yield const AuthState.signedIn();
+    if (isAuthenticated) {
+      yield const AuthState.authenticated();
     } else {
-      yield const AuthState.signedOut();
+      yield const AuthState.unauthenticated();
     }
   }
 
   @override
   Future<void> close() {
-    _signedInUidSubscription?.cancel();
+    _isAuthenticatedSubscription?.cancel();
     return super.close();
   }
 }

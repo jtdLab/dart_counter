@@ -1227,12 +1227,21 @@ abstract class UnreadFriendRequestsReceived implements HomeEvent {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  _HomeState call(
+  HomeLoadInProgress loadInProgress(
+      {User? user, int? unreadInvitations, int? unreadFriendRequests}) {
+    return HomeLoadInProgress(
+      user: user,
+      unreadInvitations: unreadInvitations,
+      unreadFriendRequests: unreadFriendRequests,
+    );
+  }
+
+  HomeLoadSuccess loadSuccess(
       {required User user,
       GameSnapshot? game,
       required int unreadInvitations,
       required int unreadFriendRequests}) {
-    return _HomeState(
+    return HomeLoadSuccess(
       user: user,
       game: game,
       unreadInvitations: unreadInvitations,
@@ -1246,13 +1255,39 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  User get user => throw _privateConstructorUsedError;
-  GameSnapshot? get game => throw _privateConstructorUsedError;
-  int get unreadInvitations => throw _privateConstructorUsedError;
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)
+        loadInProgress,
+    required TResult Function(User user, GameSnapshot? game,
+            int unreadInvitations, int unreadFriendRequests)
+        loadSuccess,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)?
+        loadInProgress,
+    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
+            int unreadFriendRequests)?
+        loadSuccess,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -1260,6 +1295,188 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._value, this._then);
+
+  final HomeState _value;
+  // ignore: unused_field
+  final $Res Function(HomeState) _then;
+}
+
+/// @nodoc
+abstract class $HomeLoadInProgressCopyWith<$Res> {
+  factory $HomeLoadInProgressCopyWith(
+          HomeLoadInProgress value, $Res Function(HomeLoadInProgress) then) =
+      _$HomeLoadInProgressCopyWithImpl<$Res>;
+  $Res call({User? user, int? unreadInvitations, int? unreadFriendRequests});
+
+  $UserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class _$HomeLoadInProgressCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements $HomeLoadInProgressCopyWith<$Res> {
+  _$HomeLoadInProgressCopyWithImpl(
+      HomeLoadInProgress _value, $Res Function(HomeLoadInProgress) _then)
+      : super(_value, (v) => _then(v as HomeLoadInProgress));
+
+  @override
+  HomeLoadInProgress get _value => super._value as HomeLoadInProgress;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+    Object? unreadInvitations = freezed,
+    Object? unreadFriendRequests = freezed,
+  }) {
+    return _then(HomeLoadInProgress(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      unreadInvitations: unreadInvitations == freezed
+          ? _value.unreadInvitations
+          : unreadInvitations // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unreadFriendRequests: unreadFriendRequests == freezed
+          ? _value.unreadFriendRequests
+          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$HomeLoadInProgress implements HomeLoadInProgress {
+  const _$HomeLoadInProgress(
+      {this.user, this.unreadInvitations, this.unreadFriendRequests});
+
+  @override
+  final User? user;
+  @override
+  final int? unreadInvitations;
+  @override
+  final int? unreadFriendRequests;
+
+  @override
+  String toString() {
+    return 'HomeState.loadInProgress(user: $user, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is HomeLoadInProgress &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.unreadInvitations, unreadInvitations) ||
+                const DeepCollectionEquality()
+                    .equals(other.unreadInvitations, unreadInvitations)) &&
+            (identical(other.unreadFriendRequests, unreadFriendRequests) ||
+                const DeepCollectionEquality()
+                    .equals(other.unreadFriendRequests, unreadFriendRequests)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(unreadInvitations) ^
+      const DeepCollectionEquality().hash(unreadFriendRequests);
+
+  @JsonKey(ignore: true)
+  @override
+  $HomeLoadInProgressCopyWith<HomeLoadInProgress> get copyWith =>
+      _$HomeLoadInProgressCopyWithImpl<HomeLoadInProgress>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)
+        loadInProgress,
+    required TResult Function(User user, GameSnapshot? game,
+            int unreadInvitations, int unreadFriendRequests)
+        loadSuccess,
+  }) {
+    return loadInProgress(user, unreadInvitations, unreadFriendRequests);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)?
+        loadInProgress,
+    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
+            int unreadFriendRequests)?
+        loadSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(user, unreadInvitations, unreadFriendRequests);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeLoadInProgress implements HomeState {
+  const factory HomeLoadInProgress(
+      {User? user,
+      int? unreadInvitations,
+      int? unreadFriendRequests}) = _$HomeLoadInProgress;
+
+  User? get user => throw _privateConstructorUsedError;
+  int? get unreadInvitations => throw _privateConstructorUsedError;
+  int? get unreadFriendRequests => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HomeLoadInProgressCopyWith<HomeLoadInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeLoadSuccessCopyWith<$Res> {
+  factory $HomeLoadSuccessCopyWith(
+          HomeLoadSuccess value, $Res Function(HomeLoadSuccess) then) =
+      _$HomeLoadSuccessCopyWithImpl<$Res>;
   $Res call(
       {User user,
       GameSnapshot? game,
@@ -1270,12 +1487,14 @@ abstract class $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
+class _$HomeLoadSuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $HomeLoadSuccessCopyWith<$Res> {
+  _$HomeLoadSuccessCopyWithImpl(
+      HomeLoadSuccess _value, $Res Function(HomeLoadSuccess) _then)
+      : super(_value, (v) => _then(v as HomeLoadSuccess));
 
-  final HomeState _value;
-  // ignore: unused_field
-  final $Res Function(HomeState) _then;
+  @override
+  HomeLoadSuccess get _value => super._value as HomeLoadSuccess;
 
   @override
   $Res call({
@@ -1284,7 +1503,7 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
     Object? unreadInvitations = freezed,
     Object? unreadFriendRequests = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(HomeLoadSuccess(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1313,62 +1532,9 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$HomeStateCopyWith(
-          _HomeState value, $Res Function(_HomeState) then) =
-      __$HomeStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {User user,
-      GameSnapshot? game,
-      int unreadInvitations,
-      int unreadFriendRequests});
 
-  @override
-  $UserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$HomeStateCopyWith<$Res> {
-  __$HomeStateCopyWithImpl(_HomeState _value, $Res Function(_HomeState) _then)
-      : super(_value, (v) => _then(v as _HomeState));
-
-  @override
-  _HomeState get _value => super._value as _HomeState;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? game = freezed,
-    Object? unreadInvitations = freezed,
-    Object? unreadFriendRequests = freezed,
-  }) {
-    return _then(_HomeState(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
-      unreadInvitations: unreadInvitations == freezed
-          ? _value.unreadInvitations
-          : unreadInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
-      unreadFriendRequests: unreadFriendRequests == freezed
-          ? _value.unreadFriendRequests
-          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_HomeState implements _HomeState {
-  const _$_HomeState(
+class _$HomeLoadSuccess implements HomeLoadSuccess {
+  const _$HomeLoadSuccess(
       {required this.user,
       this.game,
       required this.unreadInvitations,
@@ -1385,13 +1551,13 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(user: $user, game: $game, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests)';
+    return 'HomeState.loadSuccess(user: $user, game: $game, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HomeState &&
+        (other is HomeLoadSuccess &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.game, game) ||
@@ -1414,27 +1580,74 @@ class _$_HomeState implements _HomeState {
 
   @JsonKey(ignore: true)
   @override
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
-      __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
+  $HomeLoadSuccessCopyWith<HomeLoadSuccess> get copyWith =>
+      _$HomeLoadSuccessCopyWithImpl<HomeLoadSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)
+        loadInProgress,
+    required TResult Function(User user, GameSnapshot? game,
+            int unreadInvitations, int unreadFriendRequests)
+        loadSuccess,
+  }) {
+    return loadSuccess(user, game, unreadInvitations, unreadFriendRequests);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            User? user, int? unreadInvitations, int? unreadFriendRequests)?
+        loadInProgress,
+    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
+            int unreadFriendRequests)?
+        loadSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(user, game, unreadInvitations, unreadFriendRequests);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+  }) {
+    return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState(
+abstract class HomeLoadSuccess implements HomeState {
+  const factory HomeLoadSuccess(
       {required User user,
       GameSnapshot? game,
       required int unreadInvitations,
-      required int unreadFriendRequests}) = _$_HomeState;
+      required int unreadFriendRequests}) = _$HomeLoadSuccess;
 
-  @override
   User get user => throw _privateConstructorUsedError;
-  @override
   GameSnapshot? get game => throw _privateConstructorUsedError;
-  @override
   int get unreadInvitations => throw _privateConstructorUsedError;
-  @override
   int get unreadFriendRequests => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
+  $HomeLoadSuccessCopyWith<HomeLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -17,13 +17,17 @@ part 'user_bloc.freezed.dart';
 class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   final IUserFacade _userFacade;
 
+  StreamSubscription<Either<UserFailure, User>>? _userSubscription;
+
   UserBloc(
     this._userFacade,
   ) : super(
-          const UserState.loading(),
-        );
-
-  StreamSubscription<Either<UserFailure, User>>? _userSubscription;
+          const UserState.loadInProgress(),
+        ) {
+    add(
+      const UserEvent.watchStarted(),
+    );
+  }
 
   @override
   Stream<UserState> mapEventToState(
@@ -37,8 +41,8 @@ class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   }
 
   Stream<UserState> _mapWatchStartedToState() async* {
-    _userSubscription = _userFacade.watchCurrentUser().listen((failureOrUser) {
-      failureOrUser.fold(
+    _userSubscription = _userFacade.watchUser().listen((failureOrUser) {
+      return failureOrUser.fold(
         (failure) => add(
           UserEvent.failureReceived(
             failure: failure,
@@ -56,7 +60,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   Stream<UserState> _mapUserReceivedToState(
     UserReceived event,
   ) async* {
-    yield UserState.success(
+    yield UserState.loadSuccess(
       user: event.user,
     );
   }
@@ -64,8 +68,9 @@ class UserBloc extends Bloc<UserEvent, UserState> with AutoResetLazySingleton {
   Stream<UserState> _mapFailureReceivedToState(
     FailureReceived event,
   ) async* {
-    // TODO implement
-    // switch over failure types
+    yield UserState.loadFailure(
+      failure: event.failure,
+    );
   }
 
   @override

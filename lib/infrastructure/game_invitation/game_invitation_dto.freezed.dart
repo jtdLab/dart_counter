@@ -21,18 +21,19 @@ class _$GameInvitationDtoTearOff {
   const _$GameInvitationDtoTearOff();
 
   _GameInvitationDto call(
-      {@JsonKey(ignore: true)
-          String? id,
-      required String from,
-      required String lobbyCode,
+      {required String id,
+      required String gameId,
+      required String toId,
+      required String fromId,
+      required String fromName,
       required bool read,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt}) {
+      @ServerTimestampConverter() String? createdAt}) {
     return _GameInvitationDto(
       id: id,
-      from: from,
-      lobbyCode: lobbyCode,
+      gameId: gameId,
+      toId: toId,
+      fromId: fromId,
+      fromName: fromName,
       read: read,
       createdAt: createdAt,
     );
@@ -48,15 +49,14 @@ const $GameInvitationDto = _$GameInvitationDtoTearOff();
 
 /// @nodoc
 mixin _$GameInvitationDto {
-  @JsonKey(ignore: true)
-  String? get id =>
-      throw _privateConstructorUsedError; // TODO ignore and nullable fix
-  String get from => throw _privateConstructorUsedError;
-  String get lobbyCode => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get gameId => throw _privateConstructorUsedError;
+  String get toId => throw _privateConstructorUsedError;
+  String get fromId => throw _privateConstructorUsedError;
+  String get fromName => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  FieldValue? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,14 +70,13 @@ abstract class $GameInvitationDtoCopyWith<$Res> {
           GameInvitationDto value, $Res Function(GameInvitationDto) then) =
       _$GameInvitationDtoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true)
-          String? id,
-      String from,
-      String lobbyCode,
+      {String id,
+      String gameId,
+      String toId,
+      String fromId,
+      String fromName,
       bool read,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt});
+      @ServerTimestampConverter() String? createdAt});
 }
 
 /// @nodoc
@@ -92,8 +91,10 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? from = freezed,
-    Object? lobbyCode = freezed,
+    Object? gameId = freezed,
+    Object? toId = freezed,
+    Object? fromId = freezed,
+    Object? fromName = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -101,14 +102,22 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      from: from == freezed
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
               as String,
-      lobbyCode: lobbyCode == freezed
-          ? _value.lobbyCode
-          : lobbyCode // ignore: cast_nullable_to_non_nullable
+      gameId: gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as String,
+      toId: toId == freezed
+          ? _value.toId
+          : toId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromId: fromId == freezed
+          ? _value.fromId
+          : fromId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromName: fromName == freezed
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
               as String,
       read: read == freezed
           ? _value.read
@@ -117,7 +126,7 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
+              as String?,
     ));
   }
 }
@@ -130,14 +139,13 @@ abstract class _$GameInvitationDtoCopyWith<$Res>
       __$GameInvitationDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true)
-          String? id,
-      String from,
-      String lobbyCode,
+      {String id,
+      String gameId,
+      String toId,
+      String fromId,
+      String fromName,
       bool read,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt});
+      @ServerTimestampConverter() String? createdAt});
 }
 
 /// @nodoc
@@ -154,8 +162,10 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? from = freezed,
-    Object? lobbyCode = freezed,
+    Object? gameId = freezed,
+    Object? toId = freezed,
+    Object? fromId = freezed,
+    Object? fromName = freezed,
     Object? read = freezed,
     Object? createdAt = freezed,
   }) {
@@ -163,14 +173,22 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      from: from == freezed
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
               as String,
-      lobbyCode: lobbyCode == freezed
-          ? _value.lobbyCode
-          : lobbyCode // ignore: cast_nullable_to_non_nullable
+      gameId: gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as String,
+      toId: toId == freezed
+          ? _value.toId
+          : toId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromId: fromId == freezed
+          ? _value.fromId
+          : fromId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromName: fromName == freezed
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
               as String,
       read: read == freezed
           ? _value.read
@@ -179,7 +197,7 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
+              as String?,
     ));
   }
 }
@@ -188,36 +206,37 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GameInvitationDto extends _GameInvitationDto {
   const _$_GameInvitationDto(
-      {@JsonKey(ignore: true)
-          this.id,
-      required this.from,
-      required this.lobbyCode,
+      {required this.id,
+      required this.gameId,
+      required this.toId,
+      required this.fromId,
+      required this.fromName,
       required this.read,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          this.createdAt})
+      @ServerTimestampConverter() this.createdAt})
       : super._();
 
   factory _$_GameInvitationDto.fromJson(Map<String, dynamic> json) =>
       _$_$_GameInvitationDtoFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
-  final String? id;
-  @override // TODO ignore and nullable fix
-  final String from;
+  final String id;
   @override
-  final String lobbyCode;
+  final String gameId;
+  @override
+  final String toId;
+  @override
+  final String fromId;
+  @override
+  final String fromName;
   @override
   final bool read;
   @override
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  final FieldValue? createdAt;
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'GameInvitationDto(id: $id, from: $from, lobbyCode: $lobbyCode, read: $read, createdAt: $createdAt)';
+    return 'GameInvitationDto(id: $id, gameId: $gameId, toId: $toId, fromId: $fromId, fromName: $fromName, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -226,11 +245,15 @@ class _$_GameInvitationDto extends _GameInvitationDto {
         (other is _GameInvitationDto &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.lobbyCode, lobbyCode) ||
+            (identical(other.gameId, gameId) ||
+                const DeepCollectionEquality().equals(other.gameId, gameId)) &&
+            (identical(other.toId, toId) ||
+                const DeepCollectionEquality().equals(other.toId, toId)) &&
+            (identical(other.fromId, fromId) ||
+                const DeepCollectionEquality().equals(other.fromId, fromId)) &&
+            (identical(other.fromName, fromName) ||
                 const DeepCollectionEquality()
-                    .equals(other.lobbyCode, lobbyCode)) &&
+                    .equals(other.fromName, fromName)) &&
             (identical(other.read, read) ||
                 const DeepCollectionEquality().equals(other.read, read)) &&
             (identical(other.createdAt, createdAt) ||
@@ -242,8 +265,10 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(lobbyCode) ^
+      const DeepCollectionEquality().hash(gameId) ^
+      const DeepCollectionEquality().hash(toId) ^
+      const DeepCollectionEquality().hash(fromId) ^
+      const DeepCollectionEquality().hash(fromName) ^
       const DeepCollectionEquality().hash(read) ^
       const DeepCollectionEquality().hash(createdAt);
 
@@ -260,32 +285,33 @@ class _$_GameInvitationDto extends _GameInvitationDto {
 
 abstract class _GameInvitationDto extends GameInvitationDto {
   const factory _GameInvitationDto(
-      {@JsonKey(ignore: true)
-          String? id,
-      required String from,
-      required String lobbyCode,
+      {required String id,
+      required String gameId,
+      required String toId,
+      required String fromId,
+      required String fromName,
       required bool read,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt}) = _$_GameInvitationDto;
+      @ServerTimestampConverter() String? createdAt}) = _$_GameInvitationDto;
   const _GameInvitationDto._() : super._();
 
   factory _GameInvitationDto.fromJson(Map<String, dynamic> json) =
       _$_GameInvitationDto.fromJson;
 
   @override
-  @JsonKey(ignore: true)
-  String? get id => throw _privateConstructorUsedError;
-  @override // TODO ignore and nullable fix
-  String get from => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get lobbyCode => throw _privateConstructorUsedError;
+  String get gameId => throw _privateConstructorUsedError;
+  @override
+  String get toId => throw _privateConstructorUsedError;
+  @override
+  String get fromId => throw _privateConstructorUsedError;
+  @override
+  String get fromName => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  FieldValue? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameInvitationDtoCopyWith<_GameInvitationDto> get copyWith =>

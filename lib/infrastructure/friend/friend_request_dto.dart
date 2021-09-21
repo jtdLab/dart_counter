@@ -10,12 +10,12 @@ part 'friend_request_dto.g.dart';
 @freezed
 class FriendRequestDto with _$FriendRequestDto {
   const factory FriendRequestDto({
-    @JsonKey(ignore: true) String? id, // TODO ignore and nullable fix
-    required String from,
+    required String id,
+    required String toId,
+    required String fromId,
+    required String fromName,
     required bool read,
-    @JsonKey(includeIfNull: false)
-    @ServerTimestampConverter()
-        FieldValue? createdAt,
+    @ServerTimestampConverter() String? createdAt,
   }) = _FriendRequestDto;
 
   const FriendRequestDto._();
@@ -23,23 +23,32 @@ class FriendRequestDto with _$FriendRequestDto {
   factory FriendRequestDto.fromDomain(FriendRequest friendRequest) {
     return FriendRequestDto(
       id: friendRequest.id.getOrCrash(),
-      from: friendRequest.from.getOrCrash(),
+      toId: friendRequest.toId.getOrCrash(),
+      fromId: friendRequest.fromId.getOrCrash(),
+      fromName: friendRequest.fromName.getOrCrash(),
       read: friendRequest.read,
     );
   }
 
   FriendRequest toDomain() {
     return FriendRequest(
-      id: UniqueId.fromUniqueString(id!),
-      from: Username(from),
+      id: UniqueId.fromUniqueString(id),
+      toId: UniqueId.fromUniqueString(toId),
+      fromId: UniqueId.fromUniqueString(fromId),
+      fromName: Username(fromName),
       read: read,
+      createdAt: DateTime.parse(createdAt!), // TODO
     );
   }
 
   factory FriendRequestDto.fromFirestore(DocumentSnapshot doc) {
-    // TODO ! operator could make problems
+    final json = (doc.data() ?? {}) as Map<String, dynamic>;
 
-    return FriendRequestDto.fromJson((doc.data() as Map<String, dynamic>?)!).copyWith(id: doc.id);
+    json.addAll({
+      'id': doc.id,
+    });
+
+    return FriendRequestDto.fromJson(json);
   }
 
   factory FriendRequestDto.fromJson(Map<String, dynamic> json) =>

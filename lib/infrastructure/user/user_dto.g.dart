@@ -8,41 +8,25 @@ part of 'user_dto.dart';
 
 _$_UserDto _$_$_UserDtoFromJson(Map<String, dynamic> json) {
   return _$_UserDto(
-    emailAddress: json['emailAddress'] as String,
+    id: json['id'] as String,
+    idToken: json['idToken'] as String?,
+    email: json['email'] as String,
     profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
-    careerStatsOnline: CareerStatsDto.fromJson(
-        json['careerStatsOnline'] as Map<String, dynamic>),
+    friends:
+        (json['friends'] as List<dynamic>).map((e) => e as String).toList(),
     careerStatsOffline: CareerStatsDto.fromJson(
         json['careerStatsOffline'] as Map<String, dynamic>),
-    gameHistoryOnline: (json['gameHistoryOnline'] as List<dynamic>)
-        .map((e) => OnlineGameDto.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    gameHistoryOffline: (json['gameHistoryOffline'] as List<dynamic>)
-        .map((e) => OfflineGameDto.fromJson(e as Map<String, dynamic>))
-        .toList(),
     createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
   );
 }
 
-Map<String, dynamic> _$_$_UserDtoToJson(_$_UserDto instance) {
-  final val = <String, dynamic>{
-    'emailAddress': instance.emailAddress,
-    'profile': instance.profile.toJson(),
-    'careerStatsOnline': instance.careerStatsOnline.toJson(),
-    'careerStatsOffline': instance.careerStatsOffline.toJson(),
-    'gameHistoryOnline':
-        instance.gameHistoryOnline.map((e) => e.toJson()).toList(),
-    'gameHistoryOffline':
-        instance.gameHistoryOffline.map((e) => e.toJson()).toList(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'createdAt', const ServerTimestampConverter().toJson(instance.createdAt));
-  return val;
-}
+Map<String, dynamic> _$_$_UserDtoToJson(_$_UserDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'idToken': instance.idToken,
+      'email': instance.email,
+      'profile': instance.profile.toJson(),
+      'friends': instance.friends,
+      'careerStatsOffline': instance.careerStatsOffline.toJson(),
+      'createdAt': const ServerTimestampConverter().toJson(instance.createdAt),
+    };

@@ -10,11 +10,11 @@ import 'package:dart_client/infrastructure/socket_io_client.dart';
 import 'package:dart_client/infrastructure/throw_dto.dart';
 import 'package:http/http.dart' as http;
 
-import 'i_client.dart';
+import 'i_dart_client.dart';
 
 // TODO emit more events currently only emitting gamesnaphots
 
-class Client implements IClient {
+class DartClient implements IDartClient {
   final String host;
   final int port;
 
@@ -35,7 +35,7 @@ class Client implements IClient {
 
   final StreamController<GameSnapshot> _gameController;
 
-  Client({
+  DartClient({
     required this.host,
     required this.port,
   })   : this._socketIoClient = SocketIoClient(host: host, port: port),
@@ -136,14 +136,6 @@ class Client implements IClient {
       return true;
     }
     return false;
-  }
-
-  @override
-  Future<bool> invitePlayer({
-    required String uid,
-  }) {
-    // TODO: implement invitePlayer
-    throw UnimplementedError();
   }
 
   @override
@@ -391,7 +383,8 @@ class Client implements IClient {
   _checkMemberOfGame() {
     if (_gameId == null) {
       return throw Exception(
-          'You are not part of a game - Create or join one first');
+        'You are not part of a game - Create or join one first',
+      );
     }
   }
 

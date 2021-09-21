@@ -2,13 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/friends/friends_bloc.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart';
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/core/user/user_bloc.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,67 +17,103 @@ part 'home_state.dart';
 
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
-  final IGameInvitationFacade _gameInvitationFacade;
-  final IFriendFacade _friendFacade;
-
+  //final IUserFacade _userFacade;
   final UserBloc _userBloc;
-  final PlayBloc _playBloc;
+  //final IGameInvitationFacade _invitationFacade;
   final InvitationsBloc _invitationsBloc;
+  //final IFriendFacade _friendFacade;
   final FriendsBloc _friendsBloc;
+  final PlayBloc _playBloc;
+
+  StreamSubscription? _userSubscription;
+  StreamSubscription? _unreadInvitationsSubscription;
+  StreamSubscription? _unreadFriendRequestsSubscription;
+  StreamSubscription? _gameSubscription;
 
   HomeBloc(
-    this._gameInvitationFacade,
-    this._friendFacade,
     this._userBloc,
-    this._playBloc,
     this._invitationsBloc,
     this._friendsBloc,
-  ) : super(
-          HomeState(
-            user: _userBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.user,
-            ),
-            unreadInvitations: _invitationsBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.unreadInvitations,
-            ),
-            unreadFriendRequests: _friendsBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.unreadFriendRequests,
-            ),
+    this._playBloc,
+  ) : super(const HomeState.loadInProgress()) {
+    _userSubscription = _userBloc.stream.listen(
+      (state) => state.map(
+        loadInProgress: (_) {},
+        loadSuccess: (success) => add(
+          HomeEvent.userReceived(user: success.user),
+        ),
+        loadFailure: (_) => throw Error(), // TODO
+      ),
+    );
+
+    _unreadInvitationsSubscription = _invitationsBloc.stream.listen(
+      (state) => state.map(
+        loadInProgress: (_) {},
+        loadSuccess: (success) => add(
+          HomeEvent.unreadInvitationsReceived(
+            unreadInvitations: success.unreadInvitations,
           ),
-        ) {
-    _userSubscription = _userBloc.stream.map((state) {
-      return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.user,
+        ),
+        loadFailure: (_) => throw Error(), // TODO
+      ),
+    );
+
+    _unreadFriendRequestsSubscription = _friendsBloc.stream.listen(
+      (state) => state.map(
+        loadInProgress: (_) {},
+        loadSuccess: (success) => add(
+          HomeEvent.unreadFriendRequestsReceived(
+            unreadFriendRequests: success.unreadFriendRequests,
+          ),
+        ),
+        loadFailure: (_) => throw Error(), // TODO
+      ),
+    );
+
+    /**
+    _userSubscription = _userFacade.watchUser().listen((failureOrUser) {
+      return failureOrUser.fold(
+        (failure) => throw Error(), // TODO
+        (user) => add(HomeEvent.userReceived(user: user)),
       );
-    }).listen((user) {
-      add(HomeEvent.userReceived(user: user));
     });
 
-    _gameSubscription = _playBloc.stream.map((state) {
-      return state.map(
-        loading: (_) => null,
-        success: (success) => success.game,
+    _unreadInvitationsSubscription = _invitationFacade
+        .watchReceivedInvitations()
+        .listen((failureOrInvitations) {
+      return failureOrInvitations.fold(
+        (failure) => throw Error(), // TODO
+        (invitations) => add(
+          HomeEvent.unreadInvitationsReceived(
+            unreadInvitations:
+                invitations.iter.where((element) => !element.read).length,
+          ),
+        ),
       );
-    }).listen((game) {
-      if (game != null) {
-        add(HomeEvent.gameReceived(game: game));
-      }
     });
 
-    // TODO _unreadInvitationsSubscription ODER _unreadFriendRequestsSubscription
+    _unreadFriendRequestsSubscription = _friendFacade
+        .watchReceivedFriendRequests()
+        .listen((failureOrFriendRequests) {
+      return failureOrFriendRequests.fold(
+        (failure) => throw Error(), // TODO
+        (friendRequests) => add(
+          HomeEvent.unreadFriendRequestsReceived(
+            unreadFriendRequests:
+                friendRequests.iter.where((element) => !element.read).length,
+          ),
+        ),
+      );
+    });
+    */
+
+    _gameSubscription = _playBloc.stream.listen(
+      (state) => state.map(
+        loading: (_) => throw Error(), // TODO rly an error
+        success: (success) => add(HomeEvent.gameReceived(game: success.game)),
+      ),
+    );
   }
-
-  StreamSubscription<User>? _userSubscription;
-
-  StreamSubscription<GameSnapshot?>? _gameSubscription;
-
-  StreamSubscription<int>? _unreadInvitationsSubscription;
-
-  StreamSubscription<int>? _unreadFriendRequestsSubscription;
 
   @override
   Stream<HomeState> mapEventToState(
@@ -101,11 +134,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapGoToInvitationsPressedToState() async* {
-    _gameInvitationFacade.markGameInvitationsAsRead();
+    // TODO remove maybe
   }
 
   Stream<HomeState> _mapGoToFriendsPressedToState() async* {
-    _friendFacade.markFriendRequestsAsRead();
+    // TODO remove maybe
   }
 
   Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
@@ -123,33 +156,92 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   Stream<HomeState> _mapUserReceivedToEvent(
     UserReceived event,
   ) async* {
-    yield state.copyWith(user: event.user);
+    final user = event.user;
+
+    yield state.map(
+      loadInProgress: (loadInProgress) {
+        final unreadInvitations = loadInProgress.unreadInvitations;
+        final unreadFriendRequests = loadInProgress.unreadFriendRequests;
+        if (unreadInvitations != null && unreadFriendRequests != null) {
+          return HomeState.loadSuccess(
+            user: user,
+            unreadInvitations: unreadInvitations,
+            unreadFriendRequests: unreadFriendRequests,
+          );
+        }
+
+        return loadInProgress.copyWith(user: user);
+      },
+      loadSuccess: (loadSuccess) => loadSuccess.copyWith(user: user),
+    );
   }
 
   Stream<HomeState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(game: event.game);
+    // TODO implement
+    throw UnimplementedError();
   }
 
   Stream<HomeState> _mapUnreadInvitationsReceivedToEvent(
     UnreadInvitationsReceived event,
   ) async* {
-    yield state.copyWith(unreadInvitations: event.unreadInvitations);
+    final unreadInvitations = event.unreadInvitations;
+
+    yield state.map(
+      loadInProgress: (loadInProgress) {
+        final user = loadInProgress.user;
+        final unreadFriendRequests = loadInProgress.unreadFriendRequests;
+        if (user != null && unreadFriendRequests != null) {
+          return HomeState.loadSuccess(
+            user: user,
+            unreadInvitations: unreadInvitations,
+            unreadFriendRequests: unreadFriendRequests,
+          );
+        }
+
+        return loadInProgress.copyWith(unreadInvitations: unreadInvitations);
+      },
+      loadSuccess: (loadSuccess) => loadSuccess.copyWith(
+        unreadInvitations: unreadInvitations,
+      ),
+    );
   }
 
   Stream<HomeState> _mapUnreadFriendRequestsReceivedToEvent(
     UnreadFriendRequestsReceived event,
   ) async* {
-    yield state.copyWith(unreadFriendRequests: event.unreadFriendRequests);
+    final unreadFriendRequests = event.unreadFriendRequests;
+
+    yield state.map(
+      loadInProgress: (loadInProgress) {
+        final user = loadInProgress.user;
+        final unreadInvitations = loadInProgress.unreadInvitations;
+
+        if (user != null && unreadInvitations != null) {
+          return HomeState.loadSuccess(
+            user: user,
+            unreadInvitations: unreadInvitations,
+            unreadFriendRequests: unreadFriendRequests,
+          );
+        }
+
+        return loadInProgress.copyWith(
+          unreadFriendRequests: unreadFriendRequests,
+        );
+      },
+      loadSuccess: (loadSuccess) => loadSuccess.copyWith(
+        unreadFriendRequests: unreadFriendRequests,
+      ),
+    );
   }
 
   @override
   Future<void> close() {
     _userSubscription?.cancel();
-    _gameSubscription?.cancel();
     _unreadInvitationsSubscription?.cancel();
     _unreadFriendRequestsSubscription?.cancel();
+    _gameSubscription?.cancel();
     return super.close();
   }
 }

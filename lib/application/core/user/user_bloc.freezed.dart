@@ -435,13 +435,19 @@ abstract class FailureReceived implements UserEvent {
 class _$UserStateTearOff {
   const _$UserStateTearOff();
 
-  Loading loading() {
-    return const Loading();
+  UserLoadInProgress loadInProgress() {
+    return const UserLoadInProgress();
   }
 
-  Success success({required User user}) {
-    return Success(
+  UserLoadSuccess loadSuccess({required User user}) {
+    return UserLoadSuccess(
       user: user,
+    );
+  }
+
+  UserLoadFailure loadFailure({required UserFailure failure}) {
+    return UserLoadFailure(
+      failure: failure,
     );
   }
 }
@@ -453,27 +459,31 @@ const $UserState = _$UserStateTearOff();
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function() loadInProgress,
+    required TResult Function(User user) loadSuccess,
+    required TResult Function(UserFailure failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function()? loadInProgress,
+    TResult Function(User user)? loadSuccess,
+    TResult Function(UserFailure failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(UserLoadInProgress value) loadInProgress,
+    required TResult Function(UserLoadSuccess value) loadSuccess,
+    required TResult Function(UserLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(UserLoadInProgress value)? loadInProgress,
+    TResult Function(UserLoadSuccess value)? loadSuccess,
+    TResult Function(UserLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -495,34 +505,37 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class $UserLoadInProgressCopyWith<$Res> {
+  factory $UserLoadInProgressCopyWith(
+          UserLoadInProgress value, $Res Function(UserLoadInProgress) then) =
+      _$UserLoadInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class _$UserLoadInProgressCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res>
+    implements $UserLoadInProgressCopyWith<$Res> {
+  _$UserLoadInProgressCopyWithImpl(
+      UserLoadInProgress _value, $Res Function(UserLoadInProgress) _then)
+      : super(_value, (v) => _then(v as UserLoadInProgress));
 
   @override
-  Loading get _value => super._value as Loading;
+  UserLoadInProgress get _value => super._value as UserLoadInProgress;
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$UserLoadInProgress implements UserLoadInProgress {
+  const _$UserLoadInProgress();
 
   @override
   String toString() {
-    return 'UserState.loading()';
+    return 'UserState.loadInProgress()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) || (other is UserLoadInProgress);
   }
 
   @override
@@ -531,21 +544,23 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function() loadInProgress,
+    required TResult Function(User user) loadSuccess,
+    required TResult Function(UserFailure failure) loadFailure,
   }) {
-    return loading();
+    return loadInProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function()? loadInProgress,
+    TResult Function(User user)? loadSuccess,
+    TResult Function(UserFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (loadInProgress != null) {
+      return loadInProgress();
     }
     return orElse();
   }
@@ -553,53 +568,57 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(UserLoadInProgress value) loadInProgress,
+    required TResult Function(UserLoadSuccess value) loadSuccess,
+    required TResult Function(UserLoadFailure value) loadFailure,
   }) {
-    return loading(this);
+    return loadInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(UserLoadInProgress value)? loadInProgress,
+    TResult Function(UserLoadSuccess value)? loadSuccess,
+    TResult Function(UserLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (loadInProgress != null) {
+      return loadInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements UserState {
-  const factory Loading() = _$Loading;
+abstract class UserLoadInProgress implements UserState {
+  const factory UserLoadInProgress() = _$UserLoadInProgress;
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
+abstract class $UserLoadSuccessCopyWith<$Res> {
+  factory $UserLoadSuccessCopyWith(
+          UserLoadSuccess value, $Res Function(UserLoadSuccess) then) =
+      _$UserLoadSuccessCopyWithImpl<$Res>;
   $Res call({User user});
 
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
+class _$UserLoadSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $UserLoadSuccessCopyWith<$Res> {
+  _$UserLoadSuccessCopyWithImpl(
+      UserLoadSuccess _value, $Res Function(UserLoadSuccess) _then)
+      : super(_value, (v) => _then(v as UserLoadSuccess));
 
   @override
-  Success get _value => super._value as Success;
+  UserLoadSuccess get _value => super._value as UserLoadSuccess;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(Success(
+    return _then(UserLoadSuccess(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -617,21 +636,21 @@ class _$SuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success({required this.user});
+class _$UserLoadSuccess implements UserLoadSuccess {
+  const _$UserLoadSuccess({required this.user});
 
   @override
   final User user;
 
   @override
   String toString() {
-    return 'UserState.success(user: $user)';
+    return 'UserState.loadSuccess(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Success &&
+        (other is UserLoadSuccess &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
@@ -642,27 +661,29 @@ class _$Success implements Success {
 
   @JsonKey(ignore: true)
   @override
-  $SuccessCopyWith<Success> get copyWith =>
-      _$SuccessCopyWithImpl<Success>(this, _$identity);
+  $UserLoadSuccessCopyWith<UserLoadSuccess> get copyWith =>
+      _$UserLoadSuccessCopyWithImpl<UserLoadSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function() loadInProgress,
+    required TResult Function(User user) loadSuccess,
+    required TResult Function(UserFailure failure) loadFailure,
   }) {
-    return success(user);
+    return loadSuccess(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function()? loadInProgress,
+    TResult Function(User user)? loadSuccess,
+    TResult Function(UserFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(user);
+    if (loadSuccess != null) {
+      return loadSuccess(user);
     }
     return orElse();
   }
@@ -670,30 +691,162 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(UserLoadInProgress value) loadInProgress,
+    required TResult Function(UserLoadSuccess value) loadSuccess,
+    required TResult Function(UserLoadFailure value) loadFailure,
   }) {
-    return success(this);
+    return loadSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(UserLoadInProgress value)? loadInProgress,
+    TResult Function(UserLoadSuccess value)? loadSuccess,
+    TResult Function(UserLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loadSuccess != null) {
+      return loadSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class Success implements UserState {
-  const factory Success({required User user}) = _$Success;
+abstract class UserLoadSuccess implements UserState {
+  const factory UserLoadSuccess({required User user}) = _$UserLoadSuccess;
 
   User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
+  $UserLoadSuccessCopyWith<UserLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserLoadFailureCopyWith<$Res> {
+  factory $UserLoadFailureCopyWith(
+          UserLoadFailure value, $Res Function(UserLoadFailure) then) =
+      _$UserLoadFailureCopyWithImpl<$Res>;
+  $Res call({UserFailure failure});
+
+  $UserFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class _$UserLoadFailureCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $UserLoadFailureCopyWith<$Res> {
+  _$UserLoadFailureCopyWithImpl(
+      UserLoadFailure _value, $Res Function(UserLoadFailure) _then)
+      : super(_value, (v) => _then(v as UserLoadFailure));
+
+  @override
+  UserLoadFailure get _value => super._value as UserLoadFailure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(UserLoadFailure(
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as UserFailure,
+    ));
+  }
+
+  @override
+  $UserFailureCopyWith<$Res> get failure {
+    return $UserFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UserLoadFailure implements UserLoadFailure {
+  const _$UserLoadFailure({required this.failure});
+
+  @override
+  final UserFailure failure;
+
+  @override
+  String toString() {
+    return 'UserState.loadFailure(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserLoadFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserLoadFailureCopyWith<UserLoadFailure> get copyWith =>
+      _$UserLoadFailureCopyWithImpl<UserLoadFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(User user) loadSuccess,
+    required TResult Function(UserFailure failure) loadFailure,
+  }) {
+    return loadFailure(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(User user)? loadSuccess,
+    TResult Function(UserFailure failure)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoadInProgress value) loadInProgress,
+    required TResult Function(UserLoadSuccess value) loadSuccess,
+    required TResult Function(UserLoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoadInProgress value)? loadInProgress,
+    TResult Function(UserLoadSuccess value)? loadSuccess,
+    TResult Function(UserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserLoadFailure implements UserState {
+  const factory UserLoadFailure({required UserFailure failure}) =
+      _$UserLoadFailure;
+
+  UserFailure get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserLoadFailureCopyWith<UserLoadFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

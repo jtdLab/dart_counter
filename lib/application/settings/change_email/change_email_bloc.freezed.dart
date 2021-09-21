@@ -291,13 +291,13 @@ class _$ChangeEmailStateTearOff {
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
-      AuthFailure? authFailure}) {
+      UserFailure? userFailure}) {
     return _ChangeEmailState(
       newEmail: newEmail,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       successful: successful,
-      authFailure: authFailure,
+      userFailure: userFailure,
     );
   }
 }
@@ -311,7 +311,7 @@ mixin _$ChangeEmailState {
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get successful => throw _privateConstructorUsedError;
-  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  UserFailure? get userFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChangeEmailStateCopyWith<ChangeEmailState> get copyWith =>
@@ -328,9 +328,9 @@ abstract class $ChangeEmailStateCopyWith<$Res> {
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
-      AuthFailure? authFailure});
+      UserFailure? userFailure});
 
-  $AuthFailureCopyWith<$Res>? get authFailure;
+  $UserFailureCopyWith<$Res>? get userFailure;
 }
 
 /// @nodoc
@@ -348,7 +348,7 @@ class _$ChangeEmailStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
-    Object? authFailure = freezed,
+    Object? userFailure = freezed,
   }) {
     return _then(_value.copyWith(
       newEmail: newEmail == freezed
@@ -367,21 +367,21 @@ class _$ChangeEmailStateCopyWithImpl<$Res>
           ? _value.successful
           : successful // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailure: authFailure == freezed
-          ? _value.authFailure
-          : authFailure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
+      userFailure: userFailure == freezed
+          ? _value.userFailure
+          : userFailure // ignore: cast_nullable_to_non_nullable
+              as UserFailure?,
     ));
   }
 
   @override
-  $AuthFailureCopyWith<$Res>? get authFailure {
-    if (_value.authFailure == null) {
+  $UserFailureCopyWith<$Res>? get userFailure {
+    if (_value.userFailure == null) {
       return null;
     }
 
-    return $AuthFailureCopyWith<$Res>(_value.authFailure!, (value) {
-      return _then(_value.copyWith(authFailure: value));
+    return $UserFailureCopyWith<$Res>(_value.userFailure!, (value) {
+      return _then(_value.copyWith(userFailure: value));
     });
   }
 }
@@ -398,10 +398,10 @@ abstract class _$ChangeEmailStateCopyWith<$Res>
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
-      AuthFailure? authFailure});
+      UserFailure? userFailure});
 
   @override
-  $AuthFailureCopyWith<$Res>? get authFailure;
+  $UserFailureCopyWith<$Res>? get userFailure;
 }
 
 /// @nodoc
@@ -421,7 +421,7 @@ class __$ChangeEmailStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
-    Object? authFailure = freezed,
+    Object? userFailure = freezed,
   }) {
     return _then(_ChangeEmailState(
       newEmail: newEmail == freezed
@@ -440,10 +440,10 @@ class __$ChangeEmailStateCopyWithImpl<$Res>
           ? _value.successful
           : successful // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailure: authFailure == freezed
-          ? _value.authFailure
-          : authFailure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
+      userFailure: userFailure == freezed
+          ? _value.userFailure
+          : userFailure // ignore: cast_nullable_to_non_nullable
+              as UserFailure?,
     ));
   }
 }
@@ -456,7 +456,7 @@ class _$_ChangeEmailState implements _ChangeEmailState {
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.successful,
-      this.authFailure});
+      this.userFailure});
 
   @override
   final EmailAddress newEmail;
@@ -467,11 +467,11 @@ class _$_ChangeEmailState implements _ChangeEmailState {
   @override
   final bool successful;
   @override
-  final AuthFailure? authFailure;
+  final UserFailure? userFailure;
 
   @override
   String toString() {
-    return 'ChangeEmailState(newEmail: $newEmail, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, authFailure: $authFailure)';
+    return 'ChangeEmailState(newEmail: $newEmail, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, userFailure: $userFailure)';
   }
 
   @override
@@ -490,9 +490,9 @@ class _$_ChangeEmailState implements _ChangeEmailState {
             (identical(other.successful, successful) ||
                 const DeepCollectionEquality()
                     .equals(other.successful, successful)) &&
-            (identical(other.authFailure, authFailure) ||
+            (identical(other.userFailure, userFailure) ||
                 const DeepCollectionEquality()
-                    .equals(other.authFailure, authFailure)));
+                    .equals(other.userFailure, userFailure)));
   }
 
   @override
@@ -502,7 +502,7 @@ class _$_ChangeEmailState implements _ChangeEmailState {
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(authFailure);
+      const DeepCollectionEquality().hash(userFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -516,7 +516,7 @@ abstract class _ChangeEmailState implements ChangeEmailState {
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
-      AuthFailure? authFailure}) = _$_ChangeEmailState;
+      UserFailure? userFailure}) = _$_ChangeEmailState;
 
   @override
   EmailAddress get newEmail => throw _privateConstructorUsedError;
@@ -527,7 +527,7 @@ abstract class _ChangeEmailState implements ChangeEmailState {
   @override
   bool get successful => throw _privateConstructorUsedError;
   @override
-  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  UserFailure? get userFailure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>

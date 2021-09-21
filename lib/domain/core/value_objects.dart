@@ -101,16 +101,10 @@ class UniqueId extends ValueObject<String> {
     );
   }
 
-  factory UniqueId.generated() {
-    final faker = Faker();
-    return UniqueId._(
-      right(faker.randomGenerator.string(28, min: 28)),
-    );
-  }
-
   const UniqueId._(this.value);
 }
 
+// maybe dont use kt list instead take list
 class List10<T> extends ValueObject<KtList<T>> {
   @override
   final Either<ValueFailure<KtList<T>>, KtList<T>> value;

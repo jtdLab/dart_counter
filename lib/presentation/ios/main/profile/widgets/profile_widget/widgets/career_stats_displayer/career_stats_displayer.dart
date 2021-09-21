@@ -12,7 +12,8 @@ class CareerStatsDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        final careerStatsOnline = state.user.careerStatsOnline;
+        final careerStatsOnline =
+            (state as ProfileInitial).user.profile.careerStatsOnline;
 
         return AppColumn(
           spacing: size6(context),

@@ -12,7 +12,7 @@ class FriendButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadFriendRequests = state.unreadFriendRequests;
+        final unreadFriendRequests = (state as HomeLoadSuccess).unreadFriendRequests;
 
         if (unreadFriendRequests == 0) {
           return AppNavigationBarButton(

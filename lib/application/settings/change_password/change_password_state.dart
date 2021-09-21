@@ -9,7 +9,7 @@ class ChangePasswordState with _$ChangePasswordState {
     required bool showErrorMessages,
     required bool isSubmitting,
     required bool successful,
-    AuthFailure? authFailure,
+    UserFailure? userFailure,
   }) = _ChangePasswordState;
 
   factory ChangePasswordState.initial() => ChangePasswordState(

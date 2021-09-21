@@ -1,164 +1,133 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/user/career_stats.dart';
-import 'package:dart_counter/domain/user/profile.dart';
-import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/infrastructure/friend/friend_request_dto.dart';
-import 'package:dart_counter/infrastructure/game_invitation/game_invitation_dto.dart';
-import 'package:dart_counter/infrastructure/user/user_dto.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:social_client/social_client.dart';
+
+// TODO init user data in firestore on auth provider sign in like fb, google etc.
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
-  final FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
-  final FirebaseFirestore _firebaseFirestore;
+  final SocialClient _socialClient;
 
   FirebaseAuthFacade(
-    this._firebaseAuth,
+    this._auth,
     this._googleSignIn,
-    this._firebaseFirestore,
+    this._socialClient,
   );
 
   @override
-  Stream<UniqueId?> watchSignedInUid() {
-    return _firebaseAuth.authStateChanges().map(
-      (user) {
-        if (user != null) {
-          return UniqueId.fromUniqueString(user.uid);
-        } else {
-          return null;
-        }
-      },
+  bool isAuthenticated() => _auth.currentUser?.uid != null;
+
+  @override
+  Stream<bool> watchIsAuthenticated() => _auth.authStateChanges().map(
+        (user) => user?.uid != null,
+      );
+
+  @override
+  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
+    required EmailAddress emailAddress,
+    required Username username,
+    required Password password,
+  }) async {
+    if (!emailAddress.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+
+    if (!username.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+
+    if (!password.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+
+    final success = await _socialClient.createUser(
+      email: emailAddress.getOrCrash(),
+      username: username.getOrCrash(),
+      password: password.getOrCrash(),
     );
-  }
 
-  @override
-  UniqueId? getSignedInUid() {
-    final uidString = _firebaseAuth.currentUser?.uid;
-    if (uidString == null) {
-      return null;
-    }
-    return UniqueId.fromUniqueString(uidString);
-  }
-
-  @override
-  Future<String?> getIdToken() async {
-    return _firebaseAuth.currentUser?.getIdToken();
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword(
-      {required EmailAddress emailAddress,
-      required Username username,
-      required Password password}) async {
-    final emailAddressStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailAddressStr,
-        password: passwordStr,
-      );
-
-      final userDoc = await _firebaseFirestore.userDocument();
-      final user = User(
-        id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid),
+    if (success) {
+      return singInWithEmailAndPassword(
         emailAddress: emailAddress,
-        profile: Profile(
-          username: username,
-        ),
-        careerStatsOnline: CareerStats.initial(),
-        careerStatsOffline: CareerStats.initial(),
-        gameHistoryOnline: List10.empty(),
-        gameHistoryOffline: List10.empty(),
+        password: password,
       );
-
-      await userDoc.set(UserDto.fromDomain(user).toJson());
-      await userDoc.gameInvitationsCollection
-          .add(GameInvitationDto.fromDomain(GameInvitation.dummy()).toJson());
-
-      await userDoc.friendRequestsCollection
-          .add(FriendRequestDto.fromDomain(FriendRequest.dummy()).toJson());
-
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        return left(const AuthFailure.emailAlreadyInUse());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
     }
+
+    return left(const AuthFailure.serverError()); // TODO name better
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
-    final emailAddressStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
+  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
+    required EmailAddress emailAddress,
+    required Password password,
+  }) async {
+    if (!emailAddress.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+
+    if (!password.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
 
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddressStr,
-        password: passwordStr,
+      await _auth.signInWithEmailAndPassword(
+        email: emailAddress.getOrCrash(),
+        password: password.getOrCrash(),
       );
       return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError()); // TODO name better
     }
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult result =
+        await FacebookAuth.instance.login(); // TODO CRASH HERE
+    final AccessToken? accessToken = result.accessToken;
+    if (accessToken == null) {
+      return left(const AuthFailure.serverError()); // name better
+    }
+
     try {
-      // Trigger the sign-in flow
-      final LoginResult result =
-          await FacebookAuth.instance.login(); // TODO: CRASH HERE
-      final AccessToken? accessToken = result.accessToken;
-      if (accessToken == null) {
-        return left(const AuthFailure.serverError()); // TODO specify
-      }
       // Create a credential from the access token
       final facebookAuthCredential =
           FacebookAuthProvider.credential(accessToken.token);
 
       // Once signed in, return the UserCredential
-      await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      await _auth.signInWithCredential(facebookAuthCredential);
 
       return right(unit);
-    } on FirebaseAuthException catch (_) {
-      return left(const AuthFailure.serverError()); // TODO specify
+    } catch (e) {
+      return left(const AuthFailure.serverError()); // TODO name better
     }
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    try {
-      final googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) {
-        return left(const AuthFailure.cancelledByUser());
-      }
+    final googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) {
+      return left(const AuthFailure.cancelledByUser());
+    }
 
+    try {
       final googleAuthentication = await googleUser.authentication;
 
       final authCredential = GoogleAuthProvider.credential(
@@ -166,18 +135,19 @@ class FirebaseAuthFacade implements IAuthFacade {
         accessToken: googleAuthentication.accessToken,
       );
 
-      await _firebaseAuth.signInWithCredential(authCredential);
+      await _auth.signInWithCredential(authCredential);
 
       return right(unit);
-    } on FirebaseAuthException catch (_) {
-      return left(const AuthFailure.serverError()); // TODO specify
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError()); // TODO name better
     }
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
     try {
-// To prevent replay attacks with the credential returned from Apple, we
+      // To prevent replay attacks with the credential returned from Apple, we
       // include a nonce in the credential request. When signing in in with
       // Firebase, the nonce in the id token returned by Apple, is expected to
       // match the sha256 hash of `rawNonce`.
@@ -203,65 +173,40 @@ class FirebaseAuthFacade implements IAuthFacade {
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
       await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return right(unit);
-    } on FirebaseAuthException {
-      return left(const AuthFailure.serverError()); // TODO specify
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError()); // TODO name better
     }
   }
 
   @override
-  Future<void> signOut() => Future.wait(
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    try {
+      await Future.wait(
         [
           _googleSignIn.signOut(),
-          _firebaseAuth.signOut(),
+          _auth.signOut(),
         ],
       );
-
-// TODO error handling
-  @override
-  Future<Either<AuthFailure, Unit>> updateEmailAddress({
-    required EmailAddress newEmailAddress,
-  }) async {
-    final isNewEmailAddressValid = newEmailAddress.isValid();
-
-    if (isNewEmailAddressValid) {
-      final user = _firebaseAuth.currentUser;
-      if (user == null) {
-        return left(const AuthFailure.serverError());
-        // TODO not auth error
-      }
-
-      try {
-        await user.updateEmail(newEmailAddress.getOrCrash());
-        return right(unit);
-      } on FirebaseAuthException {
-        // TODO
-      }
-    } else {
-      // return invalid email
-
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError()); // TODO name better
     }
-    return left(const AuthFailure.serverError());
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> updatePassword(
-      {required Password oldPassword, required Password newPassword}) {
-    throw UnimplementedError(); // TODO: implement
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> resetPassword(
-      {required EmailAddress emailAddress}) async {
-    final emailAddressIsValid = emailAddress.isValid();
-
-    if (emailAddressIsValid) {
-      await _firebaseAuth.sendPasswordResetEmail(
-          email: emailAddress.getOrCrash());
-      return Future.value(right(unit));
-    } else {
-      return Future.value(
-        left(const AuthFailure.invalidEmailAndPasswordCombination()),
-      );
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+    required EmailAddress emailAddress,
+  }) async {
+    if (!emailAddress.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+    try {
+      await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
+      return right(unit);
+    } catch (e) {
+      return left(const AuthFailure.serverError()); // TODO name better
     }
   }
 

@@ -8,25 +8,22 @@ part of 'friend_request_dto.dart';
 
 _$_FriendRequestDto _$_$_FriendRequestDtoFromJson(Map<String, dynamic> json) {
   return _$_FriendRequestDto(
-    from: json['from'] as String,
+    id: json['id'] as String,
+    toId: json['toId'] as String,
+    fromId: json['fromId'] as String,
+    fromName: json['fromName'] as String,
     read: json['read'] as bool,
     createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
   );
 }
 
-Map<String, dynamic> _$_$_FriendRequestDtoToJson(_$_FriendRequestDto instance) {
-  final val = <String, dynamic>{
-    'from': instance.from,
-    'read': instance.read,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'createdAt', const ServerTimestampConverter().toJson(instance.createdAt));
-  return val;
-}
+Map<String, dynamic> _$_$_FriendRequestDtoToJson(
+        _$_FriendRequestDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'toId': instance.toId,
+      'fromId': instance.fromId,
+      'fromName': instance.fromName,
+      'read': instance.read,
+      'createdAt': const ServerTimestampConverter().toJson(instance.createdAt),
+    };

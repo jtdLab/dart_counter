@@ -16,10 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameHistoryEventTearOff {
   const _$GameHistoryEventTearOff();
 
-  GameHistoryReceived gameHistoryReceived({required List10<Game> gameHistory}) {
-    return GameHistoryReceived(
-      gameHistory: gameHistory,
-    );
+  FetchGameHistoryOfflineRequested fetchGameHistoryOfflineRequested() {
+    return const FetchGameHistoryOfflineRequested();
+  }
+
+  FetchGameHistoryOnlineRequested fetchGameHistoryOnlineRequested() {
+    return const FetchGameHistoryOnlineRequested();
   }
 
   GameSelected gameSelected({required Game game}) {
@@ -36,26 +38,34 @@ const $GameHistoryEvent = _$GameHistoryEventTearOff();
 mixin _$GameHistoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function() fetchGameHistoryOfflineRequested,
+    required TResult Function() fetchGameHistoryOnlineRequested,
     required TResult Function(Game game) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
     TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(FetchGameHistoryOfflineRequested value)
+        fetchGameHistoryOfflineRequested,
+    required TResult Function(FetchGameHistoryOnlineRequested value)
+        fetchGameHistoryOnlineRequested,
     required TResult Function(GameSelected value) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
     TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) =>
@@ -80,86 +90,67 @@ class _$GameHistoryEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GameHistoryReceivedCopyWith<$Res> {
-  factory $GameHistoryReceivedCopyWith(
-          GameHistoryReceived value, $Res Function(GameHistoryReceived) then) =
-      _$GameHistoryReceivedCopyWithImpl<$Res>;
-  $Res call({List10<Game> gameHistory});
+abstract class $FetchGameHistoryOfflineRequestedCopyWith<$Res> {
+  factory $FetchGameHistoryOfflineRequestedCopyWith(
+          FetchGameHistoryOfflineRequested value,
+          $Res Function(FetchGameHistoryOfflineRequested) then) =
+      _$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GameHistoryReceivedCopyWithImpl<$Res>
+class _$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $GameHistoryReceivedCopyWith<$Res> {
-  _$GameHistoryReceivedCopyWithImpl(
-      GameHistoryReceived _value, $Res Function(GameHistoryReceived) _then)
-      : super(_value, (v) => _then(v as GameHistoryReceived));
+    implements $FetchGameHistoryOfflineRequestedCopyWith<$Res> {
+  _$FetchGameHistoryOfflineRequestedCopyWithImpl(
+      FetchGameHistoryOfflineRequested _value,
+      $Res Function(FetchGameHistoryOfflineRequested) _then)
+      : super(_value, (v) => _then(v as FetchGameHistoryOfflineRequested));
 
   @override
-  GameHistoryReceived get _value => super._value as GameHistoryReceived;
-
-  @override
-  $Res call({
-    Object? gameHistory = freezed,
-  }) {
-    return _then(GameHistoryReceived(
-      gameHistory: gameHistory == freezed
-          ? _value.gameHistory
-          : gameHistory // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
-    ));
-  }
+  FetchGameHistoryOfflineRequested get _value =>
+      super._value as FetchGameHistoryOfflineRequested;
 }
 
 /// @nodoc
 
-class _$GameHistoryReceived implements GameHistoryReceived {
-  const _$GameHistoryReceived({required this.gameHistory});
-
-  @override
-  final List10<Game> gameHistory;
+class _$FetchGameHistoryOfflineRequested
+    implements FetchGameHistoryOfflineRequested {
+  const _$FetchGameHistoryOfflineRequested();
 
   @override
   String toString() {
-    return 'GameHistoryEvent.gameHistoryReceived(gameHistory: $gameHistory)';
+    return 'GameHistoryEvent.fetchGameHistoryOfflineRequested()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameHistoryReceived &&
-            (identical(other.gameHistory, gameHistory) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameHistory, gameHistory)));
+        (other is FetchGameHistoryOfflineRequested);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameHistory);
-
-  @JsonKey(ignore: true)
-  @override
-  $GameHistoryReceivedCopyWith<GameHistoryReceived> get copyWith =>
-      _$GameHistoryReceivedCopyWithImpl<GameHistoryReceived>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function() fetchGameHistoryOfflineRequested,
+    required TResult Function() fetchGameHistoryOnlineRequested,
     required TResult Function(Game game) gameSelected,
   }) {
-    return gameHistoryReceived(gameHistory);
+    return fetchGameHistoryOfflineRequested();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
     TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) {
-    if (gameHistoryReceived != null) {
-      return gameHistoryReceived(gameHistory);
+    if (fetchGameHistoryOfflineRequested != null) {
+      return fetchGameHistoryOfflineRequested();
     }
     return orElse();
   }
@@ -167,34 +158,134 @@ class _$GameHistoryReceived implements GameHistoryReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(FetchGameHistoryOfflineRequested value)
+        fetchGameHistoryOfflineRequested,
+    required TResult Function(FetchGameHistoryOnlineRequested value)
+        fetchGameHistoryOnlineRequested,
     required TResult Function(GameSelected value) gameSelected,
   }) {
-    return gameHistoryReceived(this);
+    return fetchGameHistoryOfflineRequested(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
     TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
-    if (gameHistoryReceived != null) {
-      return gameHistoryReceived(this);
+    if (fetchGameHistoryOfflineRequested != null) {
+      return fetchGameHistoryOfflineRequested(this);
     }
     return orElse();
   }
 }
 
-abstract class GameHistoryReceived implements GameHistoryEvent {
-  const factory GameHistoryReceived({required List10<Game> gameHistory}) =
-      _$GameHistoryReceived;
+abstract class FetchGameHistoryOfflineRequested implements GameHistoryEvent {
+  const factory FetchGameHistoryOfflineRequested() =
+      _$FetchGameHistoryOfflineRequested;
+}
 
-  List10<Game> get gameHistory => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $GameHistoryReceivedCopyWith<GameHistoryReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class $FetchGameHistoryOnlineRequestedCopyWith<$Res> {
+  factory $FetchGameHistoryOnlineRequestedCopyWith(
+          FetchGameHistoryOnlineRequested value,
+          $Res Function(FetchGameHistoryOnlineRequested) then) =
+      _$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>
+    extends _$GameHistoryEventCopyWithImpl<$Res>
+    implements $FetchGameHistoryOnlineRequestedCopyWith<$Res> {
+  _$FetchGameHistoryOnlineRequestedCopyWithImpl(
+      FetchGameHistoryOnlineRequested _value,
+      $Res Function(FetchGameHistoryOnlineRequested) _then)
+      : super(_value, (v) => _then(v as FetchGameHistoryOnlineRequested));
+
+  @override
+  FetchGameHistoryOnlineRequested get _value =>
+      super._value as FetchGameHistoryOnlineRequested;
+}
+
+/// @nodoc
+
+class _$FetchGameHistoryOnlineRequested
+    implements FetchGameHistoryOnlineRequested {
+  const _$FetchGameHistoryOnlineRequested();
+
+  @override
+  String toString() {
+    return 'GameHistoryEvent.fetchGameHistoryOnlineRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FetchGameHistoryOnlineRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchGameHistoryOfflineRequested,
+    required TResult Function() fetchGameHistoryOnlineRequested,
+    required TResult Function(Game game) gameSelected,
+  }) {
+    return fetchGameHistoryOnlineRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
+    TResult Function(Game game)? gameSelected,
+    required TResult orElse(),
+  }) {
+    if (fetchGameHistoryOnlineRequested != null) {
+      return fetchGameHistoryOnlineRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchGameHistoryOfflineRequested value)
+        fetchGameHistoryOfflineRequested,
+    required TResult Function(FetchGameHistoryOnlineRequested value)
+        fetchGameHistoryOnlineRequested,
+    required TResult Function(GameSelected value) gameSelected,
+  }) {
+    return fetchGameHistoryOnlineRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
+    TResult Function(GameSelected value)? gameSelected,
+    required TResult orElse(),
+  }) {
+    if (fetchGameHistoryOnlineRequested != null) {
+      return fetchGameHistoryOnlineRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FetchGameHistoryOnlineRequested implements GameHistoryEvent {
+  const factory FetchGameHistoryOnlineRequested() =
+      _$FetchGameHistoryOnlineRequested;
 }
 
 /// @nodoc
@@ -262,7 +353,8 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List10<Game> gameHistory) gameHistoryReceived,
+    required TResult Function() fetchGameHistoryOfflineRequested,
+    required TResult Function() fetchGameHistoryOnlineRequested,
     required TResult Function(Game game) gameSelected,
   }) {
     return gameSelected(game);
@@ -271,7 +363,8 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List10<Game> gameHistory)? gameHistoryReceived,
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
     TResult Function(Game game)? gameSelected,
     required TResult orElse(),
   }) {
@@ -284,7 +377,10 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GameHistoryReceived value) gameHistoryReceived,
+    required TResult Function(FetchGameHistoryOfflineRequested value)
+        fetchGameHistoryOfflineRequested,
+    required TResult Function(FetchGameHistoryOnlineRequested value)
+        fetchGameHistoryOnlineRequested,
     required TResult Function(GameSelected value) gameSelected,
   }) {
     return gameSelected(this);
@@ -293,7 +389,10 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GameHistoryReceived value)? gameHistoryReceived,
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
     TResult Function(GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
@@ -317,11 +416,21 @@ abstract class GameSelected implements GameHistoryEvent {
 class _$GameHistoryStateTearOff {
   const _$GameHistoryStateTearOff();
 
-  _GameHistoryState call(
+  GameHistoryLoadInProgress loadInProgress() {
+    return const GameHistoryLoadInProgress();
+  }
+
+  GameHistoryLoadSuccess loadSuccess(
       {required List10<Game> gameHistory, Game? selectedGame}) {
-    return _GameHistoryState(
+    return GameHistoryLoadSuccess(
       gameHistory: gameHistory,
       selectedGame: selectedGame,
+    );
+  }
+
+  GameHistoryLoadFailure loadFailure({required Object failure}) {
+    return GameHistoryLoadFailure(
+      failure: failure,
     );
   }
 }
@@ -331,11 +440,36 @@ const $GameHistoryState = _$GameHistoryStateTearOff();
 
 /// @nodoc
 mixin _$GameHistoryState {
-  List10<Game> get gameHistory => throw _privateConstructorUsedError;
-  Game? get selectedGame => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $GameHistoryStateCopyWith<GameHistoryState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+        loadSuccess,
+    required TResult Function(Object failure) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameHistoryLoadInProgress value) loadInProgress,
+    required TResult Function(GameHistoryLoadSuccess value) loadSuccess,
+    required TResult Function(GameHistoryLoadFailure value) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -344,7 +478,6 @@ abstract class $GameHistoryStateCopyWith<$Res> {
   factory $GameHistoryStateCopyWith(
           GameHistoryState value, $Res Function(GameHistoryState) then) =
       _$GameHistoryStateCopyWithImpl<$Res>;
-  $Res call({List10<Game> gameHistory, Game? selectedGame});
 }
 
 /// @nodoc
@@ -355,52 +488,125 @@ class _$GameHistoryStateCopyWithImpl<$Res>
   final GameHistoryState _value;
   // ignore: unused_field
   final $Res Function(GameHistoryState) _then;
-
-  @override
-  $Res call({
-    Object? gameHistory = freezed,
-    Object? selectedGame = freezed,
-  }) {
-    return _then(_value.copyWith(
-      gameHistory: gameHistory == freezed
-          ? _value.gameHistory
-          : gameHistory // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
-      selectedGame: selectedGame == freezed
-          ? _value.selectedGame
-          : selectedGame // ignore: cast_nullable_to_non_nullable
-              as Game?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$GameHistoryStateCopyWith<$Res>
-    implements $GameHistoryStateCopyWith<$Res> {
-  factory _$GameHistoryStateCopyWith(
-          _GameHistoryState value, $Res Function(_GameHistoryState) then) =
-      __$GameHistoryStateCopyWithImpl<$Res>;
+abstract class $GameHistoryLoadInProgressCopyWith<$Res> {
+  factory $GameHistoryLoadInProgressCopyWith(GameHistoryLoadInProgress value,
+          $Res Function(GameHistoryLoadInProgress) then) =
+      _$GameHistoryLoadInProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GameHistoryLoadInProgressCopyWithImpl<$Res>
+    extends _$GameHistoryStateCopyWithImpl<$Res>
+    implements $GameHistoryLoadInProgressCopyWith<$Res> {
+  _$GameHistoryLoadInProgressCopyWithImpl(GameHistoryLoadInProgress _value,
+      $Res Function(GameHistoryLoadInProgress) _then)
+      : super(_value, (v) => _then(v as GameHistoryLoadInProgress));
+
   @override
+  GameHistoryLoadInProgress get _value =>
+      super._value as GameHistoryLoadInProgress;
+}
+
+/// @nodoc
+
+class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
+  const _$GameHistoryLoadInProgress();
+
+  @override
+  String toString() {
+    return 'GameHistoryState.loadInProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GameHistoryLoadInProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+        loadSuccess,
+    required TResult Function(Object failure) loadFailure,
+  }) {
+    return loadInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameHistoryLoadInProgress value) loadInProgress,
+    required TResult Function(GameHistoryLoadSuccess value) loadSuccess,
+    required TResult Function(GameHistoryLoadFailure value) loadFailure,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameHistoryLoadInProgress implements GameHistoryState {
+  const factory GameHistoryLoadInProgress() = _$GameHistoryLoadInProgress;
+}
+
+/// @nodoc
+abstract class $GameHistoryLoadSuccessCopyWith<$Res> {
+  factory $GameHistoryLoadSuccessCopyWith(GameHistoryLoadSuccess value,
+          $Res Function(GameHistoryLoadSuccess) then) =
+      _$GameHistoryLoadSuccessCopyWithImpl<$Res>;
   $Res call({List10<Game> gameHistory, Game? selectedGame});
 }
 
 /// @nodoc
-class __$GameHistoryStateCopyWithImpl<$Res>
+class _$GameHistoryLoadSuccessCopyWithImpl<$Res>
     extends _$GameHistoryStateCopyWithImpl<$Res>
-    implements _$GameHistoryStateCopyWith<$Res> {
-  __$GameHistoryStateCopyWithImpl(
-      _GameHistoryState _value, $Res Function(_GameHistoryState) _then)
-      : super(_value, (v) => _then(v as _GameHistoryState));
+    implements $GameHistoryLoadSuccessCopyWith<$Res> {
+  _$GameHistoryLoadSuccessCopyWithImpl(GameHistoryLoadSuccess _value,
+      $Res Function(GameHistoryLoadSuccess) _then)
+      : super(_value, (v) => _then(v as GameHistoryLoadSuccess));
 
   @override
-  _GameHistoryState get _value => super._value as _GameHistoryState;
+  GameHistoryLoadSuccess get _value => super._value as GameHistoryLoadSuccess;
 
   @override
   $Res call({
     Object? gameHistory = freezed,
     Object? selectedGame = freezed,
   }) {
-    return _then(_GameHistoryState(
+    return _then(GameHistoryLoadSuccess(
       gameHistory: gameHistory == freezed
           ? _value.gameHistory
           : gameHistory // ignore: cast_nullable_to_non_nullable
@@ -415,8 +621,9 @@ class __$GameHistoryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameHistoryState implements _GameHistoryState {
-  const _$_GameHistoryState({required this.gameHistory, this.selectedGame});
+class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
+  const _$GameHistoryLoadSuccess(
+      {required this.gameHistory, this.selectedGame});
 
   @override
   final List10<Game> gameHistory;
@@ -425,13 +632,13 @@ class _$_GameHistoryState implements _GameHistoryState {
 
   @override
   String toString() {
-    return 'GameHistoryState(gameHistory: $gameHistory, selectedGame: $selectedGame)';
+    return 'GameHistoryState.loadSuccess(gameHistory: $gameHistory, selectedGame: $selectedGame)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameHistoryState &&
+        (other is GameHistoryLoadSuccess &&
             (identical(other.gameHistory, gameHistory) ||
                 const DeepCollectionEquality()
                     .equals(other.gameHistory, gameHistory)) &&
@@ -448,21 +655,191 @@ class _$_GameHistoryState implements _GameHistoryState {
 
   @JsonKey(ignore: true)
   @override
-  _$GameHistoryStateCopyWith<_GameHistoryState> get copyWith =>
-      __$GameHistoryStateCopyWithImpl<_GameHistoryState>(this, _$identity);
+  $GameHistoryLoadSuccessCopyWith<GameHistoryLoadSuccess> get copyWith =>
+      _$GameHistoryLoadSuccessCopyWithImpl<GameHistoryLoadSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+        loadSuccess,
+    required TResult Function(Object failure) loadFailure,
+  }) {
+    return loadSuccess(gameHistory, selectedGame);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(gameHistory, selectedGame);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameHistoryLoadInProgress value) loadInProgress,
+    required TResult Function(GameHistoryLoadSuccess value) loadSuccess,
+    required TResult Function(GameHistoryLoadFailure value) loadFailure,
+  }) {
+    return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _GameHistoryState implements GameHistoryState {
-  const factory _GameHistoryState(
+abstract class GameHistoryLoadSuccess implements GameHistoryState {
+  const factory GameHistoryLoadSuccess(
       {required List10<Game> gameHistory,
-      Game? selectedGame}) = _$_GameHistoryState;
+      Game? selectedGame}) = _$GameHistoryLoadSuccess;
+
+  List10<Game> get gameHistory => throw _privateConstructorUsedError;
+  Game? get selectedGame => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameHistoryLoadSuccessCopyWith<GameHistoryLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameHistoryLoadFailureCopyWith<$Res> {
+  factory $GameHistoryLoadFailureCopyWith(GameHistoryLoadFailure value,
+          $Res Function(GameHistoryLoadFailure) then) =
+      _$GameHistoryLoadFailureCopyWithImpl<$Res>;
+  $Res call({Object failure});
+}
+
+/// @nodoc
+class _$GameHistoryLoadFailureCopyWithImpl<$Res>
+    extends _$GameHistoryStateCopyWithImpl<$Res>
+    implements $GameHistoryLoadFailureCopyWith<$Res> {
+  _$GameHistoryLoadFailureCopyWithImpl(GameHistoryLoadFailure _value,
+      $Res Function(GameHistoryLoadFailure) _then)
+      : super(_value, (v) => _then(v as GameHistoryLoadFailure));
 
   @override
-  List10<Game> get gameHistory => throw _privateConstructorUsedError;
+  GameHistoryLoadFailure get _value => super._value as GameHistoryLoadFailure;
+
   @override
-  Game? get selectedGame => throw _privateConstructorUsedError;
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(GameHistoryLoadFailure(
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
+  const _$GameHistoryLoadFailure({required this.failure});
+
   @override
+  final Object failure;
+
+  @override
+  String toString() {
+    return 'GameHistoryState.loadFailure(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameHistoryLoadFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
   @JsonKey(ignore: true)
-  _$GameHistoryStateCopyWith<_GameHistoryState> get copyWith =>
+  @override
+  $GameHistoryLoadFailureCopyWith<GameHistoryLoadFailure> get copyWith =>
+      _$GameHistoryLoadFailureCopyWithImpl<GameHistoryLoadFailure>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+        loadSuccess,
+    required TResult Function(Object failure) loadFailure,
+  }) {
+    return loadFailure(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameHistoryLoadInProgress value) loadInProgress,
+    required TResult Function(GameHistoryLoadSuccess value) loadSuccess,
+    required TResult Function(GameHistoryLoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameHistoryLoadFailure implements GameHistoryState {
+  const factory GameHistoryLoadFailure({required Object failure}) =
+      _$GameHistoryLoadFailure;
+
+  Object get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameHistoryLoadFailureCopyWith<GameHistoryLoadFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

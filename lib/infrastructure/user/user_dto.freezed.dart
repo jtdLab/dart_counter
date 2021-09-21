@@ -21,25 +21,20 @@ class _$UserDtoTearOff {
   const _$UserDtoTearOff();
 
   _UserDto call(
-      {@JsonKey(ignore: true)
-          String? id,
-      required String emailAddress,
+      {required String id,
+      String? idToken,
+      required String email,
       required ProfileDto profile,
-      required CareerStatsDto careerStatsOnline,
+      required List<String> friends,
       required CareerStatsDto careerStatsOffline,
-      required List<OnlineGameDto> gameHistoryOnline,
-      required List<OfflineGameDto> gameHistoryOffline,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt}) {
+      @ServerTimestampConverter() String? createdAt}) {
     return _UserDto(
       id: id,
-      emailAddress: emailAddress,
+      idToken: idToken,
+      email: email,
       profile: profile,
-      careerStatsOnline: careerStatsOnline,
+      friends: friends,
       careerStatsOffline: careerStatsOffline,
-      gameHistoryOnline: gameHistoryOnline,
-      gameHistoryOffline: gameHistoryOffline,
       createdAt: createdAt,
     );
   }
@@ -54,20 +49,14 @@ const $UserDto = _$UserDtoTearOff();
 
 /// @nodoc
 mixin _$UserDto {
-  @JsonKey(ignore: true)
-  String? get id =>
-      throw _privateConstructorUsedError; // TODO ignore and nullable fix
-  String get emailAddress => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String? get idToken => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   ProfileDto get profile => throw _privateConstructorUsedError;
-  CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
+  List<String> get friends => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
-  List<OnlineGameDto> get gameHistoryOnline =>
-      throw _privateConstructorUsedError;
-  List<OfflineGameDto> get gameHistoryOffline =>
-      throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  FieldValue? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -79,20 +68,15 @@ abstract class $UserDtoCopyWith<$Res> {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
       _$UserDtoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true)
-          String? id,
-      String emailAddress,
+      {String id,
+      String? idToken,
+      String email,
       ProfileDto profile,
-      CareerStatsDto careerStatsOnline,
+      List<String> friends,
       CareerStatsDto careerStatsOffline,
-      List<OnlineGameDto> gameHistoryOnline,
-      List<OfflineGameDto> gameHistoryOffline,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt});
+      @ServerTimestampConverter() String? createdAt});
 
   $ProfileDtoCopyWith<$Res> get profile;
-  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline;
   $CareerStatsDtoCopyWith<$Res> get careerStatsOffline;
 }
 
@@ -107,47 +91,42 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? emailAddress = freezed,
+    Object? idToken = freezed,
+    Object? email = freezed,
     Object? profile = freezed,
-    Object? careerStatsOnline = freezed,
+    Object? friends = freezed,
     Object? careerStatsOffline = freezed,
-    Object? gameHistoryOnline = freezed,
-    Object? gameHistoryOffline = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      idToken: idToken == freezed
+          ? _value.idToken
+          : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailAddress: emailAddress == freezed
-          ? _value.emailAddress
-          : emailAddress // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileDto,
-      careerStatsOnline: careerStatsOnline == freezed
-          ? _value.careerStatsOnline
-          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
-              as CareerStatsDto,
+      friends: friends == freezed
+          ? _value.friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       careerStatsOffline: careerStatsOffline == freezed
           ? _value.careerStatsOffline
           : careerStatsOffline // ignore: cast_nullable_to_non_nullable
               as CareerStatsDto,
-      gameHistoryOnline: gameHistoryOnline == freezed
-          ? _value.gameHistoryOnline
-          : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<OnlineGameDto>,
-      gameHistoryOffline: gameHistoryOffline == freezed
-          ? _value.gameHistoryOffline
-          : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List<OfflineGameDto>,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
+              as String?,
     ));
   }
 
@@ -155,13 +134,6 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
   $ProfileDtoCopyWith<$Res> get profile {
     return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value));
-    });
-  }
-
-  @override
-  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline {
-    return $CareerStatsDtoCopyWith<$Res>(_value.careerStatsOnline, (value) {
-      return _then(_value.copyWith(careerStatsOnline: value));
     });
   }
 
@@ -179,22 +151,16 @@ abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       __$UserDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true)
-          String? id,
-      String emailAddress,
+      {String id,
+      String? idToken,
+      String email,
       ProfileDto profile,
-      CareerStatsDto careerStatsOnline,
+      List<String> friends,
       CareerStatsDto careerStatsOffline,
-      List<OnlineGameDto> gameHistoryOnline,
-      List<OfflineGameDto> gameHistoryOffline,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt});
+      @ServerTimestampConverter() String? createdAt});
 
   @override
   $ProfileDtoCopyWith<$Res> get profile;
-  @override
-  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline;
   @override
   $CareerStatsDtoCopyWith<$Res> get careerStatsOffline;
 }
@@ -211,47 +177,42 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? emailAddress = freezed,
+    Object? idToken = freezed,
+    Object? email = freezed,
     Object? profile = freezed,
-    Object? careerStatsOnline = freezed,
+    Object? friends = freezed,
     Object? careerStatsOffline = freezed,
-    Object? gameHistoryOnline = freezed,
-    Object? gameHistoryOffline = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_UserDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      idToken: idToken == freezed
+          ? _value.idToken
+          : idToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailAddress: emailAddress == freezed
-          ? _value.emailAddress
-          : emailAddress // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       profile: profile == freezed
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileDto,
-      careerStatsOnline: careerStatsOnline == freezed
-          ? _value.careerStatsOnline
-          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
-              as CareerStatsDto,
+      friends: friends == freezed
+          ? _value.friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       careerStatsOffline: careerStatsOffline == freezed
           ? _value.careerStatsOffline
           : careerStatsOffline // ignore: cast_nullable_to_non_nullable
               as CareerStatsDto,
-      gameHistoryOnline: gameHistoryOnline == freezed
-          ? _value.gameHistoryOnline
-          : gameHistoryOnline // ignore: cast_nullable_to_non_nullable
-              as List<OnlineGameDto>,
-      gameHistoryOffline: gameHistoryOffline == freezed
-          ? _value.gameHistoryOffline
-          : gameHistoryOffline // ignore: cast_nullable_to_non_nullable
-              as List<OfflineGameDto>,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as FieldValue?,
+              as String?,
     ));
   }
 }
@@ -260,45 +221,37 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserDto extends _UserDto {
   const _$_UserDto(
-      {@JsonKey(ignore: true)
-          this.id,
-      required this.emailAddress,
+      {required this.id,
+      this.idToken,
+      required this.email,
       required this.profile,
-      required this.careerStatsOnline,
+      required this.friends,
       required this.careerStatsOffline,
-      required this.gameHistoryOnline,
-      required this.gameHistoryOffline,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          this.createdAt})
+      @ServerTimestampConverter() this.createdAt})
       : super._();
 
   factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
       _$_$_UserDtoFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
-  final String? id;
-  @override // TODO ignore and nullable fix
-  final String emailAddress;
+  final String id;
+  @override
+  final String? idToken;
+  @override
+  final String email;
   @override
   final ProfileDto profile;
   @override
-  final CareerStatsDto careerStatsOnline;
+  final List<String> friends;
   @override
   final CareerStatsDto careerStatsOffline;
   @override
-  final List<OnlineGameDto> gameHistoryOnline;
-  @override
-  final List<OfflineGameDto> gameHistoryOffline;
-  @override
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  final FieldValue? createdAt;
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'UserDto(id: $id, emailAddress: $emailAddress, profile: $profile, careerStatsOnline: $careerStatsOnline, careerStatsOffline: $careerStatsOffline, gameHistoryOnline: $gameHistoryOnline, gameHistoryOffline: $gameHistoryOffline, createdAt: $createdAt)';
+    return 'UserDto(id: $id, idToken: $idToken, email: $email, profile: $profile, friends: $friends, careerStatsOffline: $careerStatsOffline, createdAt: $createdAt)';
   }
 
   @override
@@ -307,24 +260,20 @@ class _$_UserDto extends _UserDto {
         (other is _UserDto &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.emailAddress, emailAddress) ||
+            (identical(other.idToken, idToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.emailAddress, emailAddress)) &&
+                    .equals(other.idToken, idToken)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.profile, profile) ||
                 const DeepCollectionEquality()
                     .equals(other.profile, profile)) &&
-            (identical(other.careerStatsOnline, careerStatsOnline) ||
+            (identical(other.friends, friends) ||
                 const DeepCollectionEquality()
-                    .equals(other.careerStatsOnline, careerStatsOnline)) &&
+                    .equals(other.friends, friends)) &&
             (identical(other.careerStatsOffline, careerStatsOffline) ||
                 const DeepCollectionEquality()
                     .equals(other.careerStatsOffline, careerStatsOffline)) &&
-            (identical(other.gameHistoryOnline, gameHistoryOnline) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameHistoryOnline, gameHistoryOnline)) &&
-            (identical(other.gameHistoryOffline, gameHistoryOffline) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameHistoryOffline, gameHistoryOffline)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)));
@@ -334,12 +283,11 @@ class _$_UserDto extends _UserDto {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(idToken) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(careerStatsOnline) ^
+      const DeepCollectionEquality().hash(friends) ^
       const DeepCollectionEquality().hash(careerStatsOffline) ^
-      const DeepCollectionEquality().hash(gameHistoryOnline) ^
-      const DeepCollectionEquality().hash(gameHistoryOffline) ^
       const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
@@ -355,42 +303,32 @@ class _$_UserDto extends _UserDto {
 
 abstract class _UserDto extends UserDto {
   const factory _UserDto(
-      {@JsonKey(ignore: true)
-          String? id,
-      required String emailAddress,
+      {required String id,
+      String? idToken,
+      required String email,
       required ProfileDto profile,
-      required CareerStatsDto careerStatsOnline,
+      required List<String> friends,
       required CareerStatsDto careerStatsOffline,
-      required List<OnlineGameDto> gameHistoryOnline,
-      required List<OfflineGameDto> gameHistoryOffline,
-      @JsonKey(includeIfNull: false)
-      @ServerTimestampConverter()
-          FieldValue? createdAt}) = _$_UserDto;
+      @ServerTimestampConverter() String? createdAt}) = _$_UserDto;
   const _UserDto._() : super._();
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
 
   @override
-  @JsonKey(ignore: true)
-  String? get id => throw _privateConstructorUsedError;
-  @override // TODO ignore and nullable fix
-  String get emailAddress => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String? get idToken => throw _privateConstructorUsedError;
+  @override
+  String get email => throw _privateConstructorUsedError;
   @override
   ProfileDto get profile => throw _privateConstructorUsedError;
   @override
-  CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
+  List<String> get friends => throw _privateConstructorUsedError;
   @override
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
   @override
-  List<OnlineGameDto> get gameHistoryOnline =>
-      throw _privateConstructorUsedError;
-  @override
-  List<OfflineGameDto> get gameHistoryOffline =>
-      throw _privateConstructorUsedError;
-  @override
-  @JsonKey(includeIfNull: false)
   @ServerTimestampConverter()
-  FieldValue? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserDtoCopyWith<_UserDto> get copyWith =>

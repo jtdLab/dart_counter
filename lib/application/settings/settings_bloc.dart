@@ -16,8 +16,9 @@ part 'settings_bloc.freezed.dart';
 @injectable
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final IAuthFacade _authFacade;
-
   final UserBloc _userBloc;
+
+  StreamSubscription<User>? _userSubscription;
 
   SettingsBloc(
     this._authFacade,
@@ -25,23 +26,23 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) : super(
           SettingsState(
             user: _userBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.user,
+              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
+              loadSuccess: (success) => success.user,
+              loadFailure: (_) => throw UnexpectedStateError(), // TODO
             ),
             localeChanged: false,
           ),
         ) {
     _userSubscription = _userBloc.stream.map((state) {
       return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.user,
+        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
+        loadSuccess: (success) => success.user,
+        loadFailure: (_) => throw UnexpectedStateError(), // TODO
       );
     }).listen((user) {
       add(SettingsEvent.userReceived(user: user));
     });
   }
-
-  StreamSubscription<User>? _userSubscription;
 
   @override
   Stream<SettingsState> mapEventToState(
@@ -61,7 +62,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   Stream<SettingsState> _mapLocaleChangedToState() async* {
-    // TODO only work around cause easylocalisation doesnt rebuilt properly
+    // TODO only work around cause easylocalization doesnt rebuilt properly
     yield state.copyWith(localeChanged: true);
     yield state.copyWith(localeChanged: false);
   }

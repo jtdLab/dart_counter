@@ -8,31 +8,40 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<HomeBloc>(),
-      child: BlocListener<HomeBloc, HomeState>(
+      child: BlocConsumer<HomeBloc, HomeState>(
+        listenWhen: (oldState, newState) => newState is HomeLoadSuccess,
         listener: (context, state) {
-          if (state.game != null) {
+          final game = (state as HomeLoadSuccess).game;
+          if (game != null) {
             context.router.replace(const GameFlowRoute());
           }
         },
-        child: AppPage(
-          navigationBar: AppNavigationBar(
-            leading: const SettingsButton(),
-            trailing: Row(
-              children: const [
-                InvitationButton(),
-                AppSpacer.large(
-                  orientation: Orientation.horizontal,
+        builder: (context, state) {
+          return state.map(
+            loadInProgress: (_) => const LoadingWidget(),
+            loadSuccess: (_) {
+              return AppPage(
+                navigationBar: AppNavigationBar(
+                  leading: const SettingsButton(),
+                  trailing: Row(
+                    children: const [
+                      InvitationButton(),
+                      AppSpacer.large(
+                        orientation: Orientation.horizontal,
+                      ),
+                      FriendButton(),
+                      AppSpacer.large(
+                        orientation: Orientation.horizontal,
+                      ),
+                      StatsButton(),
+                    ],
+                  ),
                 ),
-                FriendButton(),
-                AppSpacer.large(
-                  orientation: Orientation.horizontal,
-                ),
-                StatsButton(),
-              ],
-            ),
-          ),
-          child: HomeWidget(),
-        ),
+                child: HomeWidget(),
+              );
+            },
+          );
+        },
       ),
     );
   }

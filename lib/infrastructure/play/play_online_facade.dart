@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:dart_client/dart_client.dart' as dc;
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/friend/friend.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
@@ -10,25 +9,28 @@ import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
+
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOnlineFacade)
 class PlayOnlineFacade implements IPlayOnlineFacade {
-  final dc.Client _dartClient;
-  final IAuthFacade _authFacade;
+  final dc.DartClient _dartClient;
+  final IUserFacade _userFacade;
 
-  final StreamController<Either<PlayFailure, OnlineGameSnapshot>>
-      _gameStreamController = StreamController.broadcast();
+  final BehaviorSubject<Either<PlayFailure, OnlineGameSnapshot>>
+      _gameController;
 
   PlayOnlineFacade(
     this._dartClient,
-    this._authFacade,
-  ) {
+    this._userFacade,
+  ) : _gameController = BehaviorSubject() {
     _dartClient.watchGame().listen(
       (game) async {
         final snapshot = OnlineGameSnapshotDto.fromClient(game).toDomain();
@@ -36,7 +38,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
             snapshot.status == Status.finished) {
           await _dartClient.disconnect();
         }
-        _gameStreamController.add(
+        _gameController.add(
           right(
             snapshot,
           ),
@@ -56,7 +58,11 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
 
   @override
   Future<Either<PlayFailure, Unit>> createGame() async {
-    final idToken = await _authFacade.getIdToken();
+    final user = await _userFacade.fetchUser();
+    final idToken = user.fold(
+      (failure) => null,
+      (user) => user.idToken,
+    );
     if (idToken == null) {
       return left(const PlayFailure.error());
     }
@@ -72,28 +78,22 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> inviteFriend({
-    required Friend friend,
-  }) async {
-    final successful =
-        await _dartClient.invitePlayer(uid: friend.id.getOrCrash());
-    if (successful) {
-      return right(unit);
-    }
-    return left(const PlayFailure.error());
-  }
-
-  @override
   Future<Either<PlayFailure, Unit>> joinGame({
-    required String gameCode,
+    required UniqueId gameId,
   }) async {
-    final idToken = await _authFacade.getIdToken();
+    final user = await _userFacade.fetchUser();
+    final idToken = user.fold(
+      (failure) => null,
+      (user) => user.idToken,
+    );
     if (idToken == null) {
       return left(const PlayFailure.error());
     }
     final connected = await _dartClient.connect(idToken: idToken);
     if (connected) {
-      final successful = await _dartClient.joinGame(gameId: gameCode);
+      final successful = await _dartClient.joinGame(
+        gameId: gameId.getOrCrash(),
+      );
       if (successful) {
         return right(unit);
       }
@@ -206,6 +206,6 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
 
   @override
   Stream<Either<PlayFailure, OnlineGameSnapshot>> watchGame() {
-    return _gameStreamController.stream;
+    return _gameController.stream;
   }
 }

@@ -17,11 +17,19 @@ class _$FriendRequestTearOff {
   const _$FriendRequestTearOff();
 
   _FriendRequest call(
-      {required UniqueId id, required Username from, required bool read}) {
+      {required UniqueId id,
+      required UniqueId toId,
+      required UniqueId fromId,
+      required Username fromName,
+      required bool read,
+      required DateTime createdAt}) {
     return _FriendRequest(
       id: id,
-      from: from,
+      toId: toId,
+      fromId: fromId,
+      fromName: fromName,
       read: read,
+      createdAt: createdAt,
     );
   }
 }
@@ -32,8 +40,11 @@ const $FriendRequest = _$FriendRequestTearOff();
 /// @nodoc
 mixin _$FriendRequest {
   UniqueId get id => throw _privateConstructorUsedError;
-  Username get from => throw _privateConstructorUsedError;
+  UniqueId get toId => throw _privateConstructorUsedError;
+  UniqueId get fromId => throw _privateConstructorUsedError;
+  Username get fromName => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FriendRequestCopyWith<FriendRequest> get copyWith =>
@@ -45,7 +56,13 @@ abstract class $FriendRequestCopyWith<$Res> {
   factory $FriendRequestCopyWith(
           FriendRequest value, $Res Function(FriendRequest) then) =
       _$FriendRequestCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Username from, bool read});
+  $Res call(
+      {UniqueId id,
+      UniqueId toId,
+      UniqueId fromId,
+      Username fromName,
+      bool read,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -60,22 +77,37 @@ class _$FriendRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? from = freezed,
+    Object? toId = freezed,
+    Object? fromId = freezed,
+    Object? fromName = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      from: from == freezed
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
+      toId: toId == freezed
+          ? _value.toId
+          : toId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      fromId: fromId == freezed
+          ? _value.fromId
+          : fromId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      fromName: fromName == freezed
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
               as Username,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -87,7 +119,13 @@ abstract class _$FriendRequestCopyWith<$Res>
           _FriendRequest value, $Res Function(_FriendRequest) then) =
       __$FriendRequestCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Username from, bool read});
+  $Res call(
+      {UniqueId id,
+      UniqueId toId,
+      UniqueId fromId,
+      Username fromName,
+      bool read,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -104,22 +142,37 @@ class __$FriendRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? from = freezed,
+    Object? toId = freezed,
+    Object? fromId = freezed,
+    Object? fromName = freezed,
     Object? read = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_FriendRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      from: from == freezed
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
+      toId: toId == freezed
+          ? _value.toId
+          : toId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      fromId: fromId == freezed
+          ? _value.fromId
+          : fromId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      fromName: fromName == freezed
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
               as Username,
       read: read == freezed
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -128,18 +181,29 @@ class __$FriendRequestCopyWithImpl<$Res>
 
 class _$_FriendRequest implements _FriendRequest {
   const _$_FriendRequest(
-      {required this.id, required this.from, required this.read});
+      {required this.id,
+      required this.toId,
+      required this.fromId,
+      required this.fromName,
+      required this.read,
+      required this.createdAt});
 
   @override
   final UniqueId id;
   @override
-  final Username from;
+  final UniqueId toId;
+  @override
+  final UniqueId fromId;
+  @override
+  final Username fromName;
   @override
   final bool read;
+  @override
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'FriendRequest(id: $id, from: $from, read: $read)';
+    return 'FriendRequest(id: $id, toId: $toId, fromId: $fromId, fromName: $fromName, read: $read, createdAt: $createdAt)';
   }
 
   @override
@@ -148,18 +212,29 @@ class _$_FriendRequest implements _FriendRequest {
         (other is _FriendRequest &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
+            (identical(other.toId, toId) ||
+                const DeepCollectionEquality().equals(other.toId, toId)) &&
+            (identical(other.fromId, fromId) ||
+                const DeepCollectionEquality().equals(other.fromId, fromId)) &&
+            (identical(other.fromName, fromName) ||
+                const DeepCollectionEquality()
+                    .equals(other.fromName, fromName)) &&
             (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)));
+                const DeepCollectionEquality().equals(other.read, read)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(read);
+      const DeepCollectionEquality().hash(toId) ^
+      const DeepCollectionEquality().hash(fromId) ^
+      const DeepCollectionEquality().hash(fromName) ^
+      const DeepCollectionEquality().hash(read) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -170,15 +245,24 @@ class _$_FriendRequest implements _FriendRequest {
 abstract class _FriendRequest implements FriendRequest {
   const factory _FriendRequest(
       {required UniqueId id,
-      required Username from,
-      required bool read}) = _$_FriendRequest;
+      required UniqueId toId,
+      required UniqueId fromId,
+      required Username fromName,
+      required bool read,
+      required DateTime createdAt}) = _$_FriendRequest;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
   @override
-  Username get from => throw _privateConstructorUsedError;
+  UniqueId get toId => throw _privateConstructorUsedError;
+  @override
+  UniqueId get fromId => throw _privateConstructorUsedError;
+  @override
+  Username get fromName => throw _privateConstructorUsedError;
   @override
   bool get read => throw _privateConstructorUsedError;
+  @override
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendRequestCopyWith<_FriendRequest> get copyWith =>

@@ -14,7 +14,6 @@ import 'main/game_history/game_history_flow.dart';
 import 'main/game_history/game_history_overview/game_history_overview_page.dart';
 import 'main/home/home_page.dart';
 import 'main/invitations/invitations_page.dart';
-import 'main/loading/loading_page.dart';
 import 'main/main_flow.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
@@ -44,9 +43,6 @@ Route<T> customRouteBuilder<T>(
       children: [
         CustomRoute(
           initial: true,
-          page: LoadingPage,
-        ),
-        CustomRoute(
           page: HomePage,
         ),
         CustomRoute(

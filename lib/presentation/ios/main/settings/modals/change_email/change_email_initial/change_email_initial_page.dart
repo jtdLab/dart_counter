@@ -13,18 +13,20 @@ class ChangeEmailInitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ChangeEmailBloc, ChangeEmailState>(
       listenWhen: (oldState, newState) =>
-          newState.successful || newState.authFailure != null,
+          newState.successful || newState.userFailure != null,
       listener: (context, state) {
         if (state.successful) {
           Navigator.pushReplacementNamed(context, ChangeEmailFlow.success);
           return;
         }
-        state.authFailure?.maybeWhen(
+        state.userFailure?.maybeWhen(
+          /* TODO
           invalidEmail: () => showToast(
             LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
           ),
+          */
           orElse: () =>
-              showToast('AutFailure happended'), // TODO catch other errors also
+              showToast('UserFailure happended'), // TODO catch other errors also
         );
       },
       child: AppPage(

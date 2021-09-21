@@ -1,176 +1,287 @@
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
-import 'package:dart_counter/domain/friend/friend.dart';
+import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
-import 'package:injectable/injectable.dart';
-import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/friend/user.dart';
+import 'package:dart_counter/domain/friend/user_search_result.dart';
+import 'package:dart_counter/domain/user/profile.dart';
+import 'package:dart_counter/main_dev.dart';
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendFacade)
 class MockedFriendFacade implements IFriendFacade {
+  final IAuthFacade _authFacade;
+
+  final BehaviorSubject<Either<FriendFailure, KtList<User>>> _friendsController;
+
   final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _friendRequestController = BehaviorSubject();
+      _receivedFriendRequestController;
 
-  final BehaviorSubject<Either<FriendFailure, KtList<Friend>>>
-      _friendsController = BehaviorSubject();
+  final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+      _sentFriendRequestController;
 
-  final BehaviorSubject<Either<FriendFailure, int>>
-      _unreadFriendRequestController = BehaviorSubject();
+  final List<User> _friends;
+  List<FriendRequest> _receivedFriendRequests;
+  final List<FriendRequest> _sentFriendRequests;
+  final List<UserSearchResult> _userSearchResults;
 
-  MockedFriendFacade() {
-    _friendRequestController.add(
-      fail
-          ? left(const FriendFailure.unexpected())
-          : right(
-              KtList.from(
-                [
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                ],
-              ),
-            ),
-    );
-
-    _friendsController.add(
-      fail
-          ? left(const FriendFailure.unexpected())
-          : right(
-              KtList.from(
-                [
-                  Friend.dummy(),
-                  Friend.dummy(),
-                ],
-              ),
-            ),
-    );
-
-    _unreadFriendRequestController.add(
-      _friendRequestController.valueWrapper!.value.fold(
-        (failure) => left(const FriendFailure.unexpected()),
-        (friendRequests) {
-          final unreadFriendRequests = friendRequests
-              .filter((friendRequest) => !friendRequest.read)
-              .size;
-          return right(unreadFriendRequests);
-        },
-      ),
-    );
-  }
-
-  bool fail = false; // toggle to simulate working / notworking endpoint
+  MockedFriendFacade(
+    this._authFacade,
+  )   : _receivedFriendRequestController = BehaviorSubject()
+          ..add(
+            hasNetworkConnection
+                ? right(
+                    KtList.from(
+                      [
+                        FriendRequest.dummy(),
+                        FriendRequest.dummy(),
+                        FriendRequest.dummy(),
+                      ],
+                    ),
+                  )
+                : left(const FriendFailure.unexpected()),
+          ), // TODO name better
+        _sentFriendRequestController = BehaviorSubject()
+          ..add(
+            hasNetworkConnection
+                ? right(
+                    KtList.from(
+                      [
+                        FriendRequest.dummy(),
+                        FriendRequest.dummy(),
+                        FriendRequest.dummy(),
+                      ],
+                    ),
+                  )
+                : left(const FriendFailure.unexpected()), // TODO name better
+          ),
+        _friendsController = BehaviorSubject()
+          ..add(
+            hasNetworkConnection
+                ? right(
+                    KtList.from(
+                      [
+                        User.dummy(),
+                        User.dummy(),
+                      ],
+                    ),
+                  )
+                : left(const FriendFailure.unexpected()), // TODO name better
+          ),
+        _receivedFriendRequests = [],
+        _sentFriendRequests = [],
+        _friends = [],
+        _userSearchResults = [];
 
   @override
-  Future<Either<FriendFailure, Unit>> addFriend({
-    required User user,
-  }) {
-    if (fail) {
-      return Future.value(left(const FriendFailure.unexpected()));
-    } else {
-      return Future.value(right(unit));
+  Stream<Either<FriendFailure, KtList<User>>> watchFriends() {
+    if (_authFacade.isAuthenticated()) {
+      return _friendsController.stream;
     }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchReceivedFriendRequests() {
+    if (_authFacade.isAuthenticated()) {
+      return _receivedFriendRequestController.stream;
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
+    if (_authFacade.isAuthenticated()) {
+      _receivedFriendRequests = _receivedFriendRequests
+          .map(
+            (friendRequest) => friendRequest.copyWith(read: true),
+          )
+          .toList();
+      return right(unit);
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchSentFriendRequests() {
+    if (_authFacade.isAuthenticated()) {
+      return _sentFriendRequestController.stream;
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> sendFriendRequest({
+    required UniqueId toId,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _sentFriendRequests.add(
+          FriendRequest.dummy().copyWith(toId: toId),
+        );
+        _sentFriendRequestController.add(
+          right(_sentFriendRequests.toImmutableList()),
+        );
+        return right(unit);
+      }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> cancelFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _sentFriendRequests.removeWhere((element) => element == friendRequest);
+        _sentFriendRequestController.add(
+          right(_sentFriendRequests.toImmutableList()),
+        );
+        return right(unit);
+      }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> acceptFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _removeFromReceivedFriendRequests(friendRequest);
+
+        final newFriend = User.dummy().copyWith(
+          id: friendRequest.fromId,
+          profile: Profile.dummy().copyWith(username: friendRequest.fromName),
+        );
+        _friends.add(newFriend);
+
+        _friendsController.add(right(_friends.toImmutableList()));
+        return right(unit);
+      }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> declineFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _removeFromReceivedFriendRequests(friendRequest);
+        return right(unit);
+      }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
+    }
+
+    throw NotAuthenticatedError();
   }
 
   @override
   Future<Either<FriendFailure, Unit>> removeFriend({
-    required Friend friend,
-  }) {
-    if (fail) {
-      return Future.value(left(const FriendFailure.unexpected()));
-    } else {
-      return Future.value(right(unit));
-    }
-  }
-
-  @override
-  Future<Either<FriendFailure, KtList<User>>> searchUserByUsername({
-    required String username,
-  }) {
-    if (fail) {
-      return Future.value(left(const FriendFailure.unexpected()));
-    } else {
-      if (Username('${username}xxxx').isValid()) {
-        return Future.value(
-          right(
-            KtList.from([
-              User.dummy().copyWith(
-                username: Username('${username}1999'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username}2000'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username}3000'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username}4044'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username}5008'),
-              ),
-            ]),
-          ),
-        );
-      } else {
-        return Future.value(
-          right(
-            KtList.from([
-              User.dummy().copyWith(
-                username: Username('${username.substring(0,5)}1999'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username.substring(0,5)}2000'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username.substring(0,5)}3000'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username.substring(0,5)}4044'),
-              ),
-              User.dummy().copyWith(
-                username: Username('${username.substring(0,5)}5008'),
-              ),
-            ]),
-          ),
-        );
+    required User friend,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        _friends.removeWhere((element) => element == friend);
+        _friendsController.add(right(_friends.toImmutableList()));
+        return right(unit);
       }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
     }
+
+    throw NotAuthenticatedError();
   }
 
   @override
-  ValueStream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchFriendRequests() {
-    return _friendRequestController.stream;
-  }
+  Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
+    required String username,
+    UserSearchResult? lastVisible,
+    int limit = 5,
+  }) async {
+    if (_authFacade.isAuthenticated()) {
+      if (hasNetworkConnection) {
+        if (_userSearchResults.isNotEmpty) {
+          final name = _userSearchResults.last.username.getOrCrash();
+          if (username == name) {
+            _userSearchResults.clear();
+          }
 
-  @override
-  ValueStream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
-    return _friendsController.stream;
-  }
+          if (lastVisible == null) {
+            _userSearchResults.clear();
+          } else {
+            final index = _userSearchResults.indexOf(lastVisible);
+            _userSearchResults.removeRange(
+              index + 1,
+              _userSearchResults.length - 1,
+            );
+          }
+        }
 
-  @override
-  ValueStream<Either<FriendFailure, int>> watchUnreadFriendRequests() {
-    return _unreadFriendRequestController.stream;
-  }
+        if (Username('$username-xxx').isValid()) {
+          _userSearchResults.addAll(
+            List.generate(
+              limit,
+              (index) => UserSearchResult.dummy().copyWith(
+                username: Username(
+                  '$username-${100 + _userSearchResults.length + index}',
+                ),
+              ),
+            ),
+          );
+        } else {
+          _userSearchResults.addAll(
+            List.generate(
+              limit,
+              (index) => UserSearchResult.dummy().copyWith(
+                username: Username(
+                  '${username.substring(0, 5)}-${100 + _userSearchResults.length + index}',
+                ),
+              ),
+            ),
+          );
+        }
 
-  @override
-  void markFriendRequestsAsRead() {
-    final failureOrFriendRequests =
-        _friendRequestController.valueWrapper?.value;
-    if (failureOrFriendRequests != null) {
-      failureOrFriendRequests.fold(
-        (failure) {},
-        (friendRequests) {
-          final readFriendRequests = friendRequests
-              .map((friendRequest) => friendRequest.copyWith(read: true));
-          _friendRequestController.add(right(readFriendRequests));
-          _unreadFriendRequestController.add(right(0));
-        },
-      );
+        return right(_userSearchResults.toImmutableList());
+      }
+
+      return left(const FriendFailure.unexpected()); // TODO name better
     }
+
+    throw NotAuthenticatedError();
+  }
+
+  /// Removes [friendRequest] from the receivedFriendRequests and emits event.
+  void _removeFromReceivedFriendRequests(FriendRequest friendRequest) {
+    _receivedFriendRequests.removeWhere((element) => element == friendRequest);
+    _receivedFriendRequestController.add(
+      right(_receivedFriendRequests.toImmutableList()),
+    );
   }
 }

@@ -8,11 +8,13 @@ part of 'user_dto.dart';
 
 _$_UserDto _$_$_UserDtoFromJson(Map<String, dynamic> json) {
   return _$_UserDto(
-    username: json['username'] as String,
+    id: json['id'] as String,
+    profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_UserDtoToJson(_$_UserDto instance) =>
     <String, dynamic>{
-      'username': instance.username,
+      'id': instance.id,
+      'profile': instance.profile.toJson(),
     };

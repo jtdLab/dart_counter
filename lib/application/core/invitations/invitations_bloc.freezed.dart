@@ -34,13 +34,6 @@ class _$InvitationsEventTearOff {
     );
   }
 
-  UnreadInvitationsReceived unreadInvitationsReceived(
-      {required int unreadInvitations}) {
-    return UnreadInvitationsReceived(
-      unreadInvitations: unreadInvitations,
-    );
-  }
-
   FailureReceived failureReceived({required GameInvitationFailure failure}) {
     return FailureReceived(
       failure: failure,
@@ -60,7 +53,6 @@ mixin _$InvitationsEvent {
         receivedInvitationsReceived,
     required TResult Function(KtList<GameInvitation> invitations)
         sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
     required TResult Function(GameInvitationFailure failure) failureReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +63,6 @@ mixin _$InvitationsEvent {
         receivedInvitationsReceived,
     TResult Function(KtList<GameInvitation> invitations)?
         sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
     TResult Function(GameInvitationFailure failure)? failureReceived,
     required TResult orElse(),
   }) =>
@@ -83,8 +74,6 @@ mixin _$InvitationsEvent {
         receivedInvitationsReceived,
     required TResult Function(SentInvitationsReceived value)
         sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
     required TResult Function(FailureReceived value) failureReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -94,8 +83,6 @@ mixin _$InvitationsEvent {
     TResult Function(ReceivedInvitationsReceived value)?
         receivedInvitationsReceived,
     TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
     TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) =>
@@ -164,7 +151,6 @@ class _$WatchStarted implements WatchStarted {
         receivedInvitationsReceived,
     required TResult Function(KtList<GameInvitation> invitations)
         sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
     required TResult Function(GameInvitationFailure failure) failureReceived,
   }) {
     return watchStarted();
@@ -178,7 +164,6 @@ class _$WatchStarted implements WatchStarted {
         receivedInvitationsReceived,
     TResult Function(KtList<GameInvitation> invitations)?
         sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
     TResult Function(GameInvitationFailure failure)? failureReceived,
     required TResult orElse(),
   }) {
@@ -196,8 +181,6 @@ class _$WatchStarted implements WatchStarted {
         receivedInvitationsReceived,
     required TResult Function(SentInvitationsReceived value)
         sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return watchStarted(this);
@@ -210,8 +193,6 @@ class _$WatchStarted implements WatchStarted {
     TResult Function(ReceivedInvitationsReceived value)?
         receivedInvitationsReceived,
     TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
     TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
@@ -300,7 +281,6 @@ class _$ReceivedInvitationsReceived implements ReceivedInvitationsReceived {
         receivedInvitationsReceived,
     required TResult Function(KtList<GameInvitation> invitations)
         sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
     required TResult Function(GameInvitationFailure failure) failureReceived,
   }) {
     return receivedInvitationsReceived(invitations);
@@ -314,7 +294,6 @@ class _$ReceivedInvitationsReceived implements ReceivedInvitationsReceived {
         receivedInvitationsReceived,
     TResult Function(KtList<GameInvitation> invitations)?
         sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
     TResult Function(GameInvitationFailure failure)? failureReceived,
     required TResult orElse(),
   }) {
@@ -332,8 +311,6 @@ class _$ReceivedInvitationsReceived implements ReceivedInvitationsReceived {
         receivedInvitationsReceived,
     required TResult Function(SentInvitationsReceived value)
         sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return receivedInvitationsReceived(this);
@@ -346,8 +323,6 @@ class _$ReceivedInvitationsReceived implements ReceivedInvitationsReceived {
     TResult Function(ReceivedInvitationsReceived value)?
         receivedInvitationsReceived,
     TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
     TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
@@ -441,7 +416,6 @@ class _$SentInvitationsReceived implements SentInvitationsReceived {
         receivedInvitationsReceived,
     required TResult Function(KtList<GameInvitation> invitations)
         sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
     required TResult Function(GameInvitationFailure failure) failureReceived,
   }) {
     return sentInvitationsReceived(invitations);
@@ -455,7 +429,6 @@ class _$SentInvitationsReceived implements SentInvitationsReceived {
         receivedInvitationsReceived,
     TResult Function(KtList<GameInvitation> invitations)?
         sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
     TResult Function(GameInvitationFailure failure)? failureReceived,
     required TResult orElse(),
   }) {
@@ -473,8 +446,6 @@ class _$SentInvitationsReceived implements SentInvitationsReceived {
         receivedInvitationsReceived,
     required TResult Function(SentInvitationsReceived value)
         sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return sentInvitationsReceived(this);
@@ -487,8 +458,6 @@ class _$SentInvitationsReceived implements SentInvitationsReceived {
     TResult Function(ReceivedInvitationsReceived value)?
         receivedInvitationsReceived,
     TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
     TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
@@ -507,148 +476,6 @@ abstract class SentInvitationsReceived implements InvitationsEvent {
   KtList<GameInvitation> get invitations => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SentInvitationsReceivedCopyWith<SentInvitationsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UnreadInvitationsReceivedCopyWith<$Res> {
-  factory $UnreadInvitationsReceivedCopyWith(UnreadInvitationsReceived value,
-          $Res Function(UnreadInvitationsReceived) then) =
-      _$UnreadInvitationsReceivedCopyWithImpl<$Res>;
-  $Res call({int unreadInvitations});
-}
-
-/// @nodoc
-class _$UnreadInvitationsReceivedCopyWithImpl<$Res>
-    extends _$InvitationsEventCopyWithImpl<$Res>
-    implements $UnreadInvitationsReceivedCopyWith<$Res> {
-  _$UnreadInvitationsReceivedCopyWithImpl(UnreadInvitationsReceived _value,
-      $Res Function(UnreadInvitationsReceived) _then)
-      : super(_value, (v) => _then(v as UnreadInvitationsReceived));
-
-  @override
-  UnreadInvitationsReceived get _value =>
-      super._value as UnreadInvitationsReceived;
-
-  @override
-  $Res call({
-    Object? unreadInvitations = freezed,
-  }) {
-    return _then(UnreadInvitationsReceived(
-      unreadInvitations: unreadInvitations == freezed
-          ? _value.unreadInvitations
-          : unreadInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UnreadInvitationsReceived implements UnreadInvitationsReceived {
-  const _$UnreadInvitationsReceived({required this.unreadInvitations});
-
-  @override
-  final int unreadInvitations;
-
-  @override
-  String toString() {
-    return 'InvitationsEvent.unreadInvitationsReceived(unreadInvitations: $unreadInvitations)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UnreadInvitationsReceived &&
-            (identical(other.unreadInvitations, unreadInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.unreadInvitations, unreadInvitations)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(unreadInvitations);
-
-  @JsonKey(ignore: true)
-  @override
-  $UnreadInvitationsReceivedCopyWith<UnreadInvitationsReceived> get copyWith =>
-      _$UnreadInvitationsReceivedCopyWithImpl<UnreadInvitationsReceived>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
-    required TResult Function(KtList<GameInvitation> invitations)
-        receivedInvitationsReceived,
-    required TResult Function(KtList<GameInvitation> invitations)
-        sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
-    required TResult Function(GameInvitationFailure failure) failureReceived,
-  }) {
-    return unreadInvitationsReceived(unreadInvitations);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
-    TResult Function(KtList<GameInvitation> invitations)?
-        receivedInvitationsReceived,
-    TResult Function(KtList<GameInvitation> invitations)?
-        sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
-    TResult Function(GameInvitationFailure failure)? failureReceived,
-    required TResult orElse(),
-  }) {
-    if (unreadInvitationsReceived != null) {
-      return unreadInvitationsReceived(unreadInvitations);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(WatchStarted value) watchStarted,
-    required TResult Function(ReceivedInvitationsReceived value)
-        receivedInvitationsReceived,
-    required TResult Function(SentInvitationsReceived value)
-        sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
-    required TResult Function(FailureReceived value) failureReceived,
-  }) {
-    return unreadInvitationsReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchStarted value)? watchStarted,
-    TResult Function(ReceivedInvitationsReceived value)?
-        receivedInvitationsReceived,
-    TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
-    TResult Function(FailureReceived value)? failureReceived,
-    required TResult orElse(),
-  }) {
-    if (unreadInvitationsReceived != null) {
-      return unreadInvitationsReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UnreadInvitationsReceived implements InvitationsEvent {
-  const factory UnreadInvitationsReceived({required int unreadInvitations}) =
-      _$UnreadInvitationsReceived;
-
-  int get unreadInvitations => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UnreadInvitationsReceivedCopyWith<UnreadInvitationsReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -731,7 +558,6 @@ class _$FailureReceived implements FailureReceived {
         receivedInvitationsReceived,
     required TResult Function(KtList<GameInvitation> invitations)
         sentInvitationsReceived,
-    required TResult Function(int unreadInvitations) unreadInvitationsReceived,
     required TResult Function(GameInvitationFailure failure) failureReceived,
   }) {
     return failureReceived(failure);
@@ -745,7 +571,6 @@ class _$FailureReceived implements FailureReceived {
         receivedInvitationsReceived,
     TResult Function(KtList<GameInvitation> invitations)?
         sentInvitationsReceived,
-    TResult Function(int unreadInvitations)? unreadInvitationsReceived,
     TResult Function(GameInvitationFailure failure)? failureReceived,
     required TResult orElse(),
   }) {
@@ -763,8 +588,6 @@ class _$FailureReceived implements FailureReceived {
         receivedInvitationsReceived,
     required TResult Function(SentInvitationsReceived value)
         sentInvitationsReceived,
-    required TResult Function(UnreadInvitationsReceived value)
-        unreadInvitationsReceived,
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return failureReceived(this);
@@ -777,8 +600,6 @@ class _$FailureReceived implements FailureReceived {
     TResult Function(ReceivedInvitationsReceived value)?
         receivedInvitationsReceived,
     TResult Function(SentInvitationsReceived value)? sentInvitationsReceived,
-    TResult Function(UnreadInvitationsReceived value)?
-        unreadInvitationsReceived,
     TResult Function(FailureReceived value)? failureReceived,
     required TResult orElse(),
   }) {
@@ -803,25 +624,29 @@ abstract class FailureReceived implements InvitationsEvent {
 class _$InvitationsStateTearOff {
   const _$InvitationsStateTearOff();
 
-  Loading loading(
+  InvitationsLoadInProgress loadInProgress(
       {KtList<GameInvitation>? receivedInvitations,
-      KtList<GameInvitation>? sentInvitations,
-      int? unreadInvitations}) {
-    return Loading(
+      KtList<GameInvitation>? sentInvitations}) {
+    return InvitationsLoadInProgress(
+      receivedInvitations: receivedInvitations,
+      sentInvitations: sentInvitations,
+    );
+  }
+
+  InvitationsLoadSuccess loadSuccess(
+      {required KtList<GameInvitation> receivedInvitations,
+      required KtList<GameInvitation> sentInvitations,
+      required int unreadInvitations}) {
+    return InvitationsLoadSuccess(
       receivedInvitations: receivedInvitations,
       sentInvitations: sentInvitations,
       unreadInvitations: unreadInvitations,
     );
   }
 
-  Success success(
-      {required KtList<GameInvitation> receivedInvitations,
-      required KtList<GameInvitation> sentInvitations,
-      required int unreadInvitations}) {
-    return Success(
-      receivedInvitations: receivedInvitations,
-      sentInvitations: sentInvitations,
-      unreadInvitations: unreadInvitations,
+  InvitationsLoadFailure loadFailure({required GameInvitationFailure failure}) {
+    return InvitationsLoadFailure(
+      failure: failure,
     );
   }
 }
@@ -834,34 +659,38 @@ mixin _$InvitationsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)
-        loading,
+            KtList<GameInvitation>? sentInvitations)
+        loadInProgress,
     required TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)
-        success,
+        loadSuccess,
+    required TResult Function(GameInvitationFailure failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)?
-        loading,
+            KtList<GameInvitation>? sentInvitations)?
+        loadInProgress,
     TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)?
-        success,
+        loadSuccess,
+    TResult Function(GameInvitationFailure failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(InvitationsLoadInProgress value) loadInProgress,
+    required TResult Function(InvitationsLoadSuccess value) loadSuccess,
+    required TResult Function(InvitationsLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(InvitationsLoadInProgress value)? loadInProgress,
+    TResult Function(InvitationsLoadSuccess value)? loadSuccess,
+    TResult Function(InvitationsLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -885,31 +714,33 @@ class _$InvitationsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class $InvitationsLoadInProgressCopyWith<$Res> {
+  factory $InvitationsLoadInProgressCopyWith(InvitationsLoadInProgress value,
+          $Res Function(InvitationsLoadInProgress) then) =
+      _$InvitationsLoadInProgressCopyWithImpl<$Res>;
   $Res call(
       {KtList<GameInvitation>? receivedInvitations,
-      KtList<GameInvitation>? sentInvitations,
-      int? unreadInvitations});
+      KtList<GameInvitation>? sentInvitations});
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$InvitationsStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class _$InvitationsLoadInProgressCopyWithImpl<$Res>
+    extends _$InvitationsStateCopyWithImpl<$Res>
+    implements $InvitationsLoadInProgressCopyWith<$Res> {
+  _$InvitationsLoadInProgressCopyWithImpl(InvitationsLoadInProgress _value,
+      $Res Function(InvitationsLoadInProgress) _then)
+      : super(_value, (v) => _then(v as InvitationsLoadInProgress));
 
   @override
-  Loading get _value => super._value as Loading;
+  InvitationsLoadInProgress get _value =>
+      super._value as InvitationsLoadInProgress;
 
   @override
   $Res call({
     Object? receivedInvitations = freezed,
     Object? sentInvitations = freezed,
-    Object? unreadInvitations = freezed,
   }) {
-    return _then(Loading(
+    return _then(InvitationsLoadInProgress(
       receivedInvitations: receivedInvitations == freezed
           ? _value.receivedInvitations
           : receivedInvitations // ignore: cast_nullable_to_non_nullable
@@ -918,85 +749,78 @@ class _$LoadingCopyWithImpl<$Res> extends _$InvitationsStateCopyWithImpl<$Res>
           ? _value.sentInvitations
           : sentInvitations // ignore: cast_nullable_to_non_nullable
               as KtList<GameInvitation>?,
-      unreadInvitations: unreadInvitations == freezed
-          ? _value.unreadInvitations
-          : unreadInvitations // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading(
-      {this.receivedInvitations, this.sentInvitations, this.unreadInvitations});
+class _$InvitationsLoadInProgress implements InvitationsLoadInProgress {
+  const _$InvitationsLoadInProgress(
+      {this.receivedInvitations, this.sentInvitations});
 
   @override
   final KtList<GameInvitation>? receivedInvitations;
   @override
   final KtList<GameInvitation>? sentInvitations;
-  @override
-  final int? unreadInvitations;
 
   @override
   String toString() {
-    return 'InvitationsState.loading(receivedInvitations: $receivedInvitations, sentInvitations: $sentInvitations, unreadInvitations: $unreadInvitations)';
+    return 'InvitationsState.loadInProgress(receivedInvitations: $receivedInvitations, sentInvitations: $sentInvitations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Loading &&
+        (other is InvitationsLoadInProgress &&
             (identical(other.receivedInvitations, receivedInvitations) ||
                 const DeepCollectionEquality()
                     .equals(other.receivedInvitations, receivedInvitations)) &&
             (identical(other.sentInvitations, sentInvitations) ||
                 const DeepCollectionEquality()
-                    .equals(other.sentInvitations, sentInvitations)) &&
-            (identical(other.unreadInvitations, unreadInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.unreadInvitations, unreadInvitations)));
+                    .equals(other.sentInvitations, sentInvitations)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(receivedInvitations) ^
-      const DeepCollectionEquality().hash(sentInvitations) ^
-      const DeepCollectionEquality().hash(unreadInvitations);
+      const DeepCollectionEquality().hash(sentInvitations);
 
   @JsonKey(ignore: true)
   @override
-  $LoadingCopyWith<Loading> get copyWith =>
-      _$LoadingCopyWithImpl<Loading>(this, _$identity);
+  $InvitationsLoadInProgressCopyWith<InvitationsLoadInProgress> get copyWith =>
+      _$InvitationsLoadInProgressCopyWithImpl<InvitationsLoadInProgress>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)
-        loading,
+            KtList<GameInvitation>? sentInvitations)
+        loadInProgress,
     required TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)
-        success,
+        loadSuccess,
+    required TResult Function(GameInvitationFailure failure) loadFailure,
   }) {
-    return loading(receivedInvitations, sentInvitations, unreadInvitations);
+    return loadInProgress(receivedInvitations, sentInvitations);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)?
-        loading,
+            KtList<GameInvitation>? sentInvitations)?
+        loadInProgress,
     TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)?
-        success,
+        loadSuccess,
+    TResult Function(GameInvitationFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(receivedInvitations, sentInvitations, unreadInvitations);
+    if (loadInProgress != null) {
+      return loadInProgress(receivedInvitations, sentInvitations);
     }
     return orElse();
   }
@@ -1004,45 +828,47 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(InvitationsLoadInProgress value) loadInProgress,
+    required TResult Function(InvitationsLoadSuccess value) loadSuccess,
+    required TResult Function(InvitationsLoadFailure value) loadFailure,
   }) {
-    return loading(this);
+    return loadInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(InvitationsLoadInProgress value)? loadInProgress,
+    TResult Function(InvitationsLoadSuccess value)? loadSuccess,
+    TResult Function(InvitationsLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (loadInProgress != null) {
+      return loadInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements InvitationsState {
-  const factory Loading(
+abstract class InvitationsLoadInProgress implements InvitationsState {
+  const factory InvitationsLoadInProgress(
       {KtList<GameInvitation>? receivedInvitations,
-      KtList<GameInvitation>? sentInvitations,
-      int? unreadInvitations}) = _$Loading;
+      KtList<GameInvitation>? sentInvitations}) = _$InvitationsLoadInProgress;
 
   KtList<GameInvitation>? get receivedInvitations =>
       throw _privateConstructorUsedError;
   KtList<GameInvitation>? get sentInvitations =>
       throw _privateConstructorUsedError;
-  int? get unreadInvitations => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoadingCopyWith<Loading> get copyWith => throw _privateConstructorUsedError;
+  $InvitationsLoadInProgressCopyWith<InvitationsLoadInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
+abstract class $InvitationsLoadSuccessCopyWith<$Res> {
+  factory $InvitationsLoadSuccessCopyWith(InvitationsLoadSuccess value,
+          $Res Function(InvitationsLoadSuccess) then) =
+      _$InvitationsLoadSuccessCopyWithImpl<$Res>;
   $Res call(
       {KtList<GameInvitation> receivedInvitations,
       KtList<GameInvitation> sentInvitations,
@@ -1050,13 +876,15 @@ abstract class $SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$InvitationsStateCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
+class _$InvitationsLoadSuccessCopyWithImpl<$Res>
+    extends _$InvitationsStateCopyWithImpl<$Res>
+    implements $InvitationsLoadSuccessCopyWith<$Res> {
+  _$InvitationsLoadSuccessCopyWithImpl(InvitationsLoadSuccess _value,
+      $Res Function(InvitationsLoadSuccess) _then)
+      : super(_value, (v) => _then(v as InvitationsLoadSuccess));
 
   @override
-  Success get _value => super._value as Success;
+  InvitationsLoadSuccess get _value => super._value as InvitationsLoadSuccess;
 
   @override
   $Res call({
@@ -1064,7 +892,7 @@ class _$SuccessCopyWithImpl<$Res> extends _$InvitationsStateCopyWithImpl<$Res>
     Object? sentInvitations = freezed,
     Object? unreadInvitations = freezed,
   }) {
-    return _then(Success(
+    return _then(InvitationsLoadSuccess(
       receivedInvitations: receivedInvitations == freezed
           ? _value.receivedInvitations
           : receivedInvitations // ignore: cast_nullable_to_non_nullable
@@ -1083,8 +911,8 @@ class _$SuccessCopyWithImpl<$Res> extends _$InvitationsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success(
+class _$InvitationsLoadSuccess implements InvitationsLoadSuccess {
+  const _$InvitationsLoadSuccess(
       {required this.receivedInvitations,
       required this.sentInvitations,
       required this.unreadInvitations});
@@ -1098,13 +926,13 @@ class _$Success implements Success {
 
   @override
   String toString() {
-    return 'InvitationsState.success(receivedInvitations: $receivedInvitations, sentInvitations: $sentInvitations, unreadInvitations: $unreadInvitations)';
+    return 'InvitationsState.loadSuccess(receivedInvitations: $receivedInvitations, sentInvitations: $sentInvitations, unreadInvitations: $unreadInvitations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Success &&
+        (other is InvitationsLoadSuccess &&
             (identical(other.receivedInvitations, receivedInvitations) ||
                 const DeepCollectionEquality()
                     .equals(other.receivedInvitations, receivedInvitations)) &&
@@ -1125,35 +953,39 @@ class _$Success implements Success {
 
   @JsonKey(ignore: true)
   @override
-  $SuccessCopyWith<Success> get copyWith =>
-      _$SuccessCopyWithImpl<Success>(this, _$identity);
+  $InvitationsLoadSuccessCopyWith<InvitationsLoadSuccess> get copyWith =>
+      _$InvitationsLoadSuccessCopyWithImpl<InvitationsLoadSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)
-        loading,
+            KtList<GameInvitation>? sentInvitations)
+        loadInProgress,
     required TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)
-        success,
+        loadSuccess,
+    required TResult Function(GameInvitationFailure failure) loadFailure,
   }) {
-    return success(receivedInvitations, sentInvitations, unreadInvitations);
+    return loadSuccess(receivedInvitations, sentInvitations, unreadInvitations);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation>? receivedInvitations,
-            KtList<GameInvitation>? sentInvitations, int? unreadInvitations)?
-        loading,
+            KtList<GameInvitation>? sentInvitations)?
+        loadInProgress,
     TResult Function(KtList<GameInvitation> receivedInvitations,
             KtList<GameInvitation> sentInvitations, int unreadInvitations)?
-        success,
+        loadSuccess,
+    TResult Function(GameInvitationFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(receivedInvitations, sentInvitations, unreadInvitations);
+    if (loadSuccess != null) {
+      return loadSuccess(
+          receivedInvitations, sentInvitations, unreadInvitations);
     }
     return orElse();
   }
@@ -1161,31 +993,33 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(InvitationsLoadInProgress value) loadInProgress,
+    required TResult Function(InvitationsLoadSuccess value) loadSuccess,
+    required TResult Function(InvitationsLoadFailure value) loadFailure,
   }) {
-    return success(this);
+    return loadSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(InvitationsLoadInProgress value)? loadInProgress,
+    TResult Function(InvitationsLoadSuccess value)? loadSuccess,
+    TResult Function(InvitationsLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loadSuccess != null) {
+      return loadSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class Success implements InvitationsState {
-  const factory Success(
+abstract class InvitationsLoadSuccess implements InvitationsState {
+  const factory InvitationsLoadSuccess(
       {required KtList<GameInvitation> receivedInvitations,
       required KtList<GameInvitation> sentInvitations,
-      required int unreadInvitations}) = _$Success;
+      required int unreadInvitations}) = _$InvitationsLoadSuccess;
 
   KtList<GameInvitation> get receivedInvitations =>
       throw _privateConstructorUsedError;
@@ -1193,5 +1027,145 @@ abstract class Success implements InvitationsState {
       throw _privateConstructorUsedError;
   int get unreadInvitations => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
+  $InvitationsLoadSuccessCopyWith<InvitationsLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InvitationsLoadFailureCopyWith<$Res> {
+  factory $InvitationsLoadFailureCopyWith(InvitationsLoadFailure value,
+          $Res Function(InvitationsLoadFailure) then) =
+      _$InvitationsLoadFailureCopyWithImpl<$Res>;
+  $Res call({GameInvitationFailure failure});
+
+  $GameInvitationFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class _$InvitationsLoadFailureCopyWithImpl<$Res>
+    extends _$InvitationsStateCopyWithImpl<$Res>
+    implements $InvitationsLoadFailureCopyWith<$Res> {
+  _$InvitationsLoadFailureCopyWithImpl(InvitationsLoadFailure _value,
+      $Res Function(InvitationsLoadFailure) _then)
+      : super(_value, (v) => _then(v as InvitationsLoadFailure));
+
+  @override
+  InvitationsLoadFailure get _value => super._value as InvitationsLoadFailure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(InvitationsLoadFailure(
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as GameInvitationFailure,
+    ));
+  }
+
+  @override
+  $GameInvitationFailureCopyWith<$Res> get failure {
+    return $GameInvitationFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InvitationsLoadFailure implements InvitationsLoadFailure {
+  const _$InvitationsLoadFailure({required this.failure});
+
+  @override
+  final GameInvitationFailure failure;
+
+  @override
+  String toString() {
+    return 'InvitationsState.loadFailure(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvitationsLoadFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvitationsLoadFailureCopyWith<InvitationsLoadFailure> get copyWith =>
+      _$InvitationsLoadFailureCopyWithImpl<InvitationsLoadFailure>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(KtList<GameInvitation>? receivedInvitations,
+            KtList<GameInvitation>? sentInvitations)
+        loadInProgress,
+    required TResult Function(KtList<GameInvitation> receivedInvitations,
+            KtList<GameInvitation> sentInvitations, int unreadInvitations)
+        loadSuccess,
+    required TResult Function(GameInvitationFailure failure) loadFailure,
+  }) {
+    return loadFailure(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation>? receivedInvitations,
+            KtList<GameInvitation>? sentInvitations)?
+        loadInProgress,
+    TResult Function(KtList<GameInvitation> receivedInvitations,
+            KtList<GameInvitation> sentInvitations, int unreadInvitations)?
+        loadSuccess,
+    TResult Function(GameInvitationFailure failure)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvitationsLoadInProgress value) loadInProgress,
+    required TResult Function(InvitationsLoadSuccess value) loadSuccess,
+    required TResult Function(InvitationsLoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvitationsLoadInProgress value)? loadInProgress,
+    TResult Function(InvitationsLoadSuccess value)? loadSuccess,
+    TResult Function(InvitationsLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvitationsLoadFailure implements InvitationsState {
+  const factory InvitationsLoadFailure(
+      {required GameInvitationFailure failure}) = _$InvitationsLoadFailure;
+
+  GameInvitationFailure get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InvitationsLoadFailureCopyWith<InvitationsLoadFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

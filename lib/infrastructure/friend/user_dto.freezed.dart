@@ -20,10 +20,10 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) {
 class _$UserDtoTearOff {
   const _$UserDtoTearOff();
 
-  _UserDto call({@JsonKey(ignore: true) String? id, required String username}) {
+  _UserDto call({required String id, required ProfileDto profile}) {
     return _UserDto(
       id: id,
-      username: username,
+      profile: profile,
     );
   }
 
@@ -37,10 +37,8 @@ const $UserDto = _$UserDtoTearOff();
 
 /// @nodoc
 mixin _$UserDto {
-  @JsonKey(ignore: true)
-  String? get id =>
-      throw _privateConstructorUsedError; // TODO ignore and nullable fix
-  String get username => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  ProfileDto get profile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +49,9 @@ mixin _$UserDto {
 abstract class $UserDtoCopyWith<$Res> {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
       _$UserDtoCopyWithImpl<$Res>;
-  $Res call({@JsonKey(ignore: true) String? id, String username});
+  $Res call({String id, ProfileDto profile});
+
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -65,18 +65,25 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileDto,
     ));
+  }
+
+  @override
+  $ProfileDtoCopyWith<$Res> get profile {
+    return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
   }
 }
 
@@ -85,7 +92,10 @@ abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) then) =
       __$UserDtoCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(ignore: true) String? id, String username});
+  $Res call({String id, ProfileDto profile});
+
+  @override
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -100,17 +110,17 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_UserDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileDto,
     ));
   }
 }
@@ -118,21 +128,19 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserDto extends _UserDto {
-  const _$_UserDto({@JsonKey(ignore: true) this.id, required this.username})
-      : super._();
+  const _$_UserDto({required this.id, required this.profile}) : super._();
 
   factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
       _$_$_UserDtoFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
-  final String? id;
-  @override // TODO ignore and nullable fix
-  final String username;
+  final String id;
+  @override
+  final ProfileDto profile;
 
   @override
   String toString() {
-    return 'UserDto(id: $id, username: $username)';
+    return 'UserDto(id: $id, profile: $profile)';
   }
 
   @override
@@ -141,16 +149,15 @@ class _$_UserDto extends _UserDto {
         (other is _UserDto &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(other.profile, profile)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(username);
+      const DeepCollectionEquality().hash(profile);
 
   @JsonKey(ignore: true)
   @override
@@ -164,18 +171,16 @@ class _$_UserDto extends _UserDto {
 }
 
 abstract class _UserDto extends UserDto {
-  const factory _UserDto(
-      {@JsonKey(ignore: true) String? id,
-      required String username}) = _$_UserDto;
+  const factory _UserDto({required String id, required ProfileDto profile}) =
+      _$_UserDto;
   const _UserDto._() : super._();
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
 
   @override
-  @JsonKey(ignore: true)
-  String? get id => throw _privateConstructorUsedError;
-  @override // TODO ignore and nullable fix
-  String get username => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  @override
+  ProfileDto get profile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserDtoCopyWith<_UserDto> get copyWith =>

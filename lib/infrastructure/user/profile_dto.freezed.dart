@@ -20,10 +20,14 @@ ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) {
 class _$ProfileDtoTearOff {
   const _$ProfileDtoTearOff();
 
-  _ProfileDto call({required String? photoUrl, required String username}) {
+  _ProfileDto call(
+      {required String? photoUrl,
+      required String name,
+      required CareerStatsDto careerStatsOnline}) {
     return _ProfileDto(
       photoUrl: photoUrl,
-      username: username,
+      name: name,
+      careerStatsOnline: careerStatsOnline,
     );
   }
 
@@ -38,7 +42,8 @@ const $ProfileDto = _$ProfileDtoTearOff();
 /// @nodoc
 mixin _$ProfileDto {
   String? get photoUrl => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +56,9 @@ abstract class $ProfileDtoCopyWith<$Res> {
   factory $ProfileDtoCopyWith(
           ProfileDto value, $Res Function(ProfileDto) then) =
       _$ProfileDtoCopyWithImpl<$Res>;
-  $Res call({String? photoUrl, String username});
+  $Res call({String? photoUrl, String name, CareerStatsDto careerStatsOnline});
+
+  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline;
 }
 
 /// @nodoc
@@ -65,18 +72,30 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? photoUrl = freezed,
-    Object? username = freezed,
+    Object? name = freezed,
+    Object? careerStatsOnline = freezed,
   }) {
     return _then(_value.copyWith(
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStatsDto,
     ));
+  }
+
+  @override
+  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline {
+    return $CareerStatsDtoCopyWith<$Res>(_value.careerStatsOnline, (value) {
+      return _then(_value.copyWith(careerStatsOnline: value));
+    });
   }
 }
 
@@ -86,7 +105,10 @@ abstract class _$ProfileDtoCopyWith<$Res> implements $ProfileDtoCopyWith<$Res> {
           _ProfileDto value, $Res Function(_ProfileDto) then) =
       __$ProfileDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String? photoUrl, String username});
+  $Res call({String? photoUrl, String name, CareerStatsDto careerStatsOnline});
+
+  @override
+  $CareerStatsDtoCopyWith<$Res> get careerStatsOnline;
 }
 
 /// @nodoc
@@ -102,17 +124,22 @@ class __$ProfileDtoCopyWithImpl<$Res> extends _$ProfileDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? photoUrl = freezed,
-    Object? username = freezed,
+    Object? name = freezed,
+    Object? careerStatsOnline = freezed,
   }) {
     return _then(_ProfileDto(
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStatsDto,
     ));
   }
 }
@@ -120,7 +147,10 @@ class __$ProfileDtoCopyWithImpl<$Res> extends _$ProfileDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProfileDto extends _ProfileDto {
-  const _$_ProfileDto({required this.photoUrl, required this.username})
+  const _$_ProfileDto(
+      {required this.photoUrl,
+      required this.name,
+      required this.careerStatsOnline})
       : super._();
 
   factory _$_ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -129,11 +159,13 @@ class _$_ProfileDto extends _ProfileDto {
   @override
   final String? photoUrl;
   @override
-  final String username;
+  final String name;
+  @override
+  final CareerStatsDto careerStatsOnline;
 
   @override
   String toString() {
-    return 'ProfileDto(photoUrl: $photoUrl, username: $username)';
+    return 'ProfileDto(photoUrl: $photoUrl, name: $name, careerStatsOnline: $careerStatsOnline)';
   }
 
   @override
@@ -143,16 +175,19 @@ class _$_ProfileDto extends _ProfileDto {
             (identical(other.photoUrl, photoUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.photoUrl, photoUrl)) &&
-            (identical(other.username, username) ||
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.careerStatsOnline, careerStatsOnline) ||
                 const DeepCollectionEquality()
-                    .equals(other.username, username)));
+                    .equals(other.careerStatsOnline, careerStatsOnline)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(username);
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(careerStatsOnline);
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +202,9 @@ class _$_ProfileDto extends _ProfileDto {
 
 abstract class _ProfileDto extends ProfileDto {
   const factory _ProfileDto(
-      {required String? photoUrl, required String username}) = _$_ProfileDto;
+      {required String? photoUrl,
+      required String name,
+      required CareerStatsDto careerStatsOnline}) = _$_ProfileDto;
   const _ProfileDto._() : super._();
 
   factory _ProfileDto.fromJson(Map<String, dynamic> json) =
@@ -176,7 +213,9 @@ abstract class _ProfileDto extends ProfileDto {
   @override
   String? get photoUrl => throw _privateConstructorUsedError;
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  @override
+  CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProfileDtoCopyWith<_ProfileDto> get copyWith =>

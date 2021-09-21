@@ -8,7 +8,7 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final photoUrl = state.user.profile.photoUrl;
+        final photoUrl = (state as HomeLoadSuccess).user.profile.photoUrl;
 
         return Column(
           children: [

@@ -3,7 +3,7 @@ import 'package:dart_client/domain/mode.dart';
 import 'package:dart_client/domain/type.dart';
 import 'package:dart_client/domain/throw.dart';
 
-abstract class IClient {
+abstract class IDartClient {
   Stream<GameSnapshot> watchGame();
 
   Future<bool> connect({
@@ -16,10 +16,6 @@ abstract class IClient {
 
   Future<bool> joinGame({
     required String gameId,
-  });
-
-  Future<bool> invitePlayer({
-    required String uid,
   });
 
   Future<bool> reorderPlayer({

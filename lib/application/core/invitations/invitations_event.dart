@@ -9,9 +9,6 @@ class InvitationsEvent with _$InvitationsEvent {
   const factory InvitationsEvent.sentInvitationsReceived({
     required KtList<GameInvitation> invitations,
   }) = SentInvitationsReceived;
-  const factory InvitationsEvent.unreadInvitationsReceived({
-    required int unreadInvitations,
-  }) = UnreadInvitationsReceived;
   const factory InvitationsEvent.failureReceived({
     required GameInvitationFailure failure,
   }) = FailureReceived;

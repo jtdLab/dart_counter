@@ -15,22 +15,13 @@ class MainFlow extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<UserBloc>()
-            ..add(
-              const UserEvent.watchStarted(),
-            ),
+          create: (context) => getIt<UserBloc>(),
         ),
         BlocProvider(
-          create: (context) => getIt<InvitationsBloc>()
-            ..add(
-              const InvitationsEvent.watchStarted(),
-            ),
+          create: (context) => getIt<InvitationsBloc>(),
         ),
         BlocProvider(
-          create: (context) => getIt<FriendsBloc>()
-            ..add(
-              const FriendsEvent.watchStarted(),
-            ),
+          create: (context) => getIt<FriendsBloc>(),
         ),
         BlocProvider(
           create: (context) => getIt<PlayBloc>(),

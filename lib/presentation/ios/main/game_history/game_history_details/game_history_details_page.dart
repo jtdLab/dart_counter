@@ -12,7 +12,7 @@ class GameHistoryDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameHistoryBloc, GameHistoryState>(
       builder: (context, state) {
-        final game = state.selectedGame!; // TODO ! needed
+        final game = (state as GameHistoryLoadSuccess).selectedGame!;
 
         return AppPage(
           navigationBar: AppNavigationBar(

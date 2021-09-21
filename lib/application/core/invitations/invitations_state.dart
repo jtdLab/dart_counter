@@ -2,14 +2,16 @@ part of 'invitations_bloc.dart';
 
 @freezed
 class InvitationsState with _$InvitationsState {
-  const factory InvitationsState.loading({
+  const factory InvitationsState.loadInProgress({
     KtList<GameInvitation>? receivedInvitations,
     KtList<GameInvitation>? sentInvitations,
-    int? unreadInvitations,
-  }) = Loading;
-  const factory InvitationsState.success({
+  }) = InvitationsLoadInProgress;
+  const factory InvitationsState.loadSuccess({
     required KtList<GameInvitation> receivedInvitations,
     required KtList<GameInvitation> sentInvitations,
     required int unreadInvitations,
-  }) = Success;
+  }) = InvitationsLoadSuccess;
+  const factory InvitationsState.loadFailure({
+    required GameInvitationFailure failure,
+  }) = InvitationsLoadFailure;
 }

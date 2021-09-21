@@ -8,15 +8,14 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp.router(
-    
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(
         initialRoutes: context.read<AuthBloc>().state.when(
-              signedOut: () => [const AuthFlowRoute()],
-              signedIn: () => [const MainFlowRoute()],
+              authenticated: () => [const MainFlowRoute()],
+              unauthenticated: () => [const AuthFlowRoute()],
             ),
       ),
       theme: const CupertinoThemeData(

@@ -39,12 +39,13 @@ Future<void> main() async {
 
   final idToken = await FirebaseAuth.instance.currentUser!.getIdToken();
 
-  Client client = Client(host: 'localhost', port: 7777);
+  DartClient client = DartClient(host: 'localhost', port: 7777);
   client.watchGame().listen((event) {
     
   });
   await client.connect(idToken: idToken);
   client.joinGame(gameId: '3J3Kg2gW23R30K4c');
+
 
   // runApp(
   //   AppWidget(),

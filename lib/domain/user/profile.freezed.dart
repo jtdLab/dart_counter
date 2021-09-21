@@ -16,10 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileTearOff {
   const _$ProfileTearOff();
 
-  _Profile call({String? photoUrl, required Username username}) {
+  _Profile call(
+      {String? photoUrl,
+      required Username username,
+      required CareerStats careerStatsOnline}) {
     return _Profile(
       photoUrl: photoUrl,
       username: username,
+      careerStatsOnline: careerStatsOnline,
     );
   }
 }
@@ -31,6 +35,7 @@ const $Profile = _$ProfileTearOff();
 mixin _$Profile {
   String? get photoUrl => throw _privateConstructorUsedError;
   Username get username => throw _privateConstructorUsedError;
+  CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
@@ -40,7 +45,10 @@ mixin _$Profile {
 abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res>;
-  $Res call({String? photoUrl, Username username});
+  $Res call(
+      {String? photoUrl, Username username, CareerStats careerStatsOnline});
+
+  $CareerStatsCopyWith<$Res> get careerStatsOnline;
 }
 
 /// @nodoc
@@ -55,6 +63,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
   $Res call({
     Object? photoUrl = freezed,
     Object? username = freezed,
+    Object? careerStatsOnline = freezed,
   }) {
     return _then(_value.copyWith(
       photoUrl: photoUrl == freezed
@@ -65,7 +74,18 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as Username,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
     ));
+  }
+
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOnline {
+    return $CareerStatsCopyWith<$Res>(_value.careerStatsOnline, (value) {
+      return _then(_value.copyWith(careerStatsOnline: value));
+    });
   }
 }
 
@@ -74,7 +94,11 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   factory _$ProfileCopyWith(_Profile value, $Res Function(_Profile) then) =
       __$ProfileCopyWithImpl<$Res>;
   @override
-  $Res call({String? photoUrl, Username username});
+  $Res call(
+      {String? photoUrl, Username username, CareerStats careerStatsOnline});
+
+  @override
+  $CareerStatsCopyWith<$Res> get careerStatsOnline;
 }
 
 /// @nodoc
@@ -90,6 +114,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
   $Res call({
     Object? photoUrl = freezed,
     Object? username = freezed,
+    Object? careerStatsOnline = freezed,
   }) {
     return _then(_Profile(
       photoUrl: photoUrl == freezed
@@ -100,6 +125,10 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as Username,
+      careerStatsOnline: careerStatsOnline == freezed
+          ? _value.careerStatsOnline
+          : careerStatsOnline // ignore: cast_nullable_to_non_nullable
+              as CareerStats,
     ));
   }
 }
@@ -107,16 +136,19 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Profile implements _Profile {
-  const _$_Profile({this.photoUrl, required this.username});
+  const _$_Profile(
+      {this.photoUrl, required this.username, required this.careerStatsOnline});
 
   @override
   final String? photoUrl;
   @override
   final Username username;
+  @override
+  final CareerStats careerStatsOnline;
 
   @override
   String toString() {
-    return 'Profile(photoUrl: $photoUrl, username: $username)';
+    return 'Profile(photoUrl: $photoUrl, username: $username, careerStatsOnline: $careerStatsOnline)';
   }
 
   @override
@@ -128,14 +160,18 @@ class _$_Profile implements _Profile {
                     .equals(other.photoUrl, photoUrl)) &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
-                    .equals(other.username, username)));
+                    .equals(other.username, username)) &&
+            (identical(other.careerStatsOnline, careerStatsOnline) ||
+                const DeepCollectionEquality()
+                    .equals(other.careerStatsOnline, careerStatsOnline)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(username);
+      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(careerStatsOnline);
 
   @JsonKey(ignore: true)
   @override
@@ -144,13 +180,17 @@ class _$_Profile implements _Profile {
 }
 
 abstract class _Profile implements Profile {
-  const factory _Profile({String? photoUrl, required Username username}) =
-      _$_Profile;
+  const factory _Profile(
+      {String? photoUrl,
+      required Username username,
+      required CareerStats careerStatsOnline}) = _$_Profile;
 
   @override
   String? get photoUrl => throw _privateConstructorUsedError;
   @override
   Username get username => throw _privateConstructorUsedError;
+  @override
+  CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProfileCopyWith<_Profile> get copyWith =>

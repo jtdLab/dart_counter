@@ -1,10 +1,9 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kt_dart/collection.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'user.freezed.dart';
 
@@ -12,12 +11,11 @@ part 'user.freezed.dart';
 class User with _$User {
   const factory User({
     required UniqueId id,
+    required String idToken,
     required EmailAddress emailAddress,
     required Profile profile,
-    required CareerStats careerStatsOnline,
+    required KtList<UniqueId> friendIds,
     required CareerStats careerStatsOffline,
-    required List10<OnlineGame> gameHistoryOnline,
-    required List10<OfflineGame> gameHistoryOffline,
   }) = _User;
 
   factory User.dummy() {
@@ -25,28 +23,15 @@ class User with _$User {
       id: UniqueId.fromUniqueString(
         faker.randomGenerator.string(28, min: 28),
       ),
+      idToken: faker.randomGenerator.string(28, min: 28),
       emailAddress: EmailAddress(faker.internet.email()),
       profile: Profile.dummy(),
+      friendIds: KtList.from([
+        UniqueId.fromUniqueString('dummyFriendId1'),
+        UniqueId.fromUniqueString('dummyFriendId2'),
+        UniqueId.fromUniqueString('dummyFriendId3'),
+      ]),
       careerStatsOffline: CareerStats.dummy(),
-      careerStatsOnline: CareerStats.dummy(),
-      gameHistoryOnline: List10(
-        KtList.from([
-          OnlineGame.dummy(),
-          OnlineGame.dummy(),
-          OnlineGame.dummy(),
-          OnlineGame.dummy(),
-          OnlineGame.dummy(),
-        ]).sortedByDescending((game) => game.createdAt),
-      ),
-      gameHistoryOffline: List10(
-        KtList.from([
-          OfflineGame.dummy(),
-          OfflineGame.dummy(),
-          OfflineGame.dummy(),
-          OfflineGame.dummy(),
-          OfflineGame.dummy(),
-        ]).sortedByDescending((game) => game.createdAt),
-      ),
     );
   }
 }

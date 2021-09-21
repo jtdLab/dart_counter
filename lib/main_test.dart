@@ -15,6 +15,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'presentation/core/app_widget/app_widget.dart';
 import 'presentation/core/de_messages.dart';
 
+
+
 Future<void> main() async {
   timeago.setLocaleMessages('de', DeMessages());
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
