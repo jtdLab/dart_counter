@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
@@ -39,7 +40,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   ) async* {
     yield* event.map(
       gameCreated: (event) => _mapGameCreatedToState(event),
-      gameJoined: (event) => _mapGameJoinedState(),
+      gameJoined: (event) => _mapGameJoinedState(event),
       gameCanceled: (_) => _mapGameCanceledToState(),
       playerReordered: (event) => _mapPlayerReorderedToState(event),
       playerAdded: (_) => _mapPlayerAddedToState(),
@@ -93,11 +94,18 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
     if (online) {
       await _playOnlineFacade.createGame();
     } else {
-      await _playOfflineFacade.createGame();
+      _playOfflineFacade.createGame();
     }
   }
 
-  Stream<PlayState> _mapGameJoinedState() async* {
+  Stream<PlayState> _mapGameJoinedState(
+    GameJoined event,
+  ) async* {
+    yield const PlayState.loading(online: true);
+
+    final gameId = event.gameId;
+    await _playOnlineFacade.joinGame(gameId: gameId);
+
     _playOnlineFacade.watchGame().listen(
       (failureOrGame) {
         failureOrGame.fold(
@@ -114,7 +122,6 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
         );
       },
     );
-    yield const PlayState.loading(online: true);
   }
 
   Stream<PlayState> _mapGameCanceledToState() async* {
@@ -128,7 +135,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
       await _playOnlineFacade.cancelGame();
     } else {
       // TODO failure or unit
-      await _playOfflineFacade.cancelGame();
+      _playOfflineFacade.cancelGame();
     }
 
     //yield const PlayState.loading();

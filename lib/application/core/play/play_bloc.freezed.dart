@@ -22,8 +22,10 @@ class _$PlayEventTearOff {
     );
   }
 
-  GameJoined gameJoined() {
-    return const GameJoined();
+  GameJoined gameJoined({required UniqueId gameId}) {
+    return GameJoined(
+      gameId: gameId,
+    );
   }
 
   GameCanceled gameCanceled() {
@@ -131,7 +133,7 @@ mixin _$PlayEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -154,7 +156,7 @@ mixin _$PlayEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -307,7 +309,7 @@ class _$GameCreated implements GameCreated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -333,7 +335,7 @@ class _$GameCreated implements GameCreated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -433,6 +435,7 @@ abstract class $GameJoinedCopyWith<$Res> {
   factory $GameJoinedCopyWith(
           GameJoined value, $Res Function(GameJoined) then) =
       _$GameJoinedCopyWithImpl<$Res>;
+  $Res call({UniqueId gameId});
 }
 
 /// @nodoc
@@ -443,31 +446,55 @@ class _$GameJoinedCopyWithImpl<$Res> extends _$PlayEventCopyWithImpl<$Res>
 
   @override
   GameJoined get _value => super._value as GameJoined;
+
+  @override
+  $Res call({
+    Object? gameId = freezed,
+  }) {
+    return _then(GameJoined(
+      gameId: gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GameJoined implements GameJoined {
-  const _$GameJoined();
+  const _$GameJoined({required this.gameId});
+
+  @override
+  final UniqueId gameId;
 
   @override
   String toString() {
-    return 'PlayEvent.gameJoined()';
+    return 'PlayEvent.gameJoined(gameId: $gameId)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameJoined);
+    return identical(this, other) ||
+        (other is GameJoined &&
+            (identical(other.gameId, gameId) ||
+                const DeepCollectionEquality().equals(other.gameId, gameId)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameId);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameJoinedCopyWith<GameJoined> get copyWith =>
+      _$GameJoinedCopyWithImpl<GameJoined>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -486,14 +513,14 @@ class _$GameJoined implements GameJoined {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(PlayFailure failure) failureReceived,
   }) {
-    return gameJoined();
+    return gameJoined(gameId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -514,7 +541,7 @@ class _$GameJoined implements GameJoined {
     required TResult orElse(),
   }) {
     if (gameJoined != null) {
-      return gameJoined();
+      return gameJoined(gameId);
     }
     return orElse();
   }
@@ -580,7 +607,12 @@ class _$GameJoined implements GameJoined {
 }
 
 abstract class GameJoined implements PlayEvent {
-  const factory GameJoined() = _$GameJoined;
+  const factory GameJoined({required UniqueId gameId}) = _$GameJoined;
+
+  UniqueId get gameId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameJoinedCopyWith<GameJoined> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -623,7 +655,7 @@ class _$GameCanceled implements GameCanceled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -649,7 +681,7 @@ class _$GameCanceled implements GameCanceled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -817,7 +849,7 @@ class _$PlayerReordered implements PlayerReordered {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -843,7 +875,7 @@ class _$PlayerReordered implements PlayerReordered {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -980,7 +1012,7 @@ class _$PlayerAdded implements PlayerAdded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1006,7 +1038,7 @@ class _$PlayerAdded implements PlayerAdded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1161,7 +1193,7 @@ class _$PlayerRemoved implements PlayerRemoved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1187,7 +1219,7 @@ class _$PlayerRemoved implements PlayerRemoved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1359,7 +1391,7 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1385,7 +1417,7 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1551,7 +1583,7 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1577,7 +1609,7 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1738,7 +1770,7 @@ class _$ModeUpdated implements ModeUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1764,7 +1796,7 @@ class _$ModeUpdated implements ModeUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1924,7 +1956,7 @@ class _$SizeUpdated implements SizeUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1950,7 +1982,7 @@ class _$SizeUpdated implements SizeUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2110,7 +2142,7 @@ class _$TypeUpdated implements TypeUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2136,7 +2168,7 @@ class _$TypeUpdated implements TypeUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2271,7 +2303,7 @@ class _$GameStarted implements GameStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2297,7 +2329,7 @@ class _$GameStarted implements GameStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2461,7 +2493,7 @@ class _$ThrowPerformed implements ThrowPerformed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2487,7 +2519,7 @@ class _$ThrowPerformed implements ThrowPerformed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2622,7 +2654,7 @@ class _$ThrowUndone implements ThrowUndone {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2648,7 +2680,7 @@ class _$ThrowUndone implements ThrowUndone {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2778,7 +2810,7 @@ class _$DartBotAdded implements DartBotAdded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2804,7 +2836,7 @@ class _$DartBotAdded implements DartBotAdded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2934,7 +2966,7 @@ class _$DartBotRemoved implements DartBotRemoved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2960,7 +2992,7 @@ class _$DartBotRemoved implements DartBotRemoved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -3121,7 +3153,7 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -3147,7 +3179,7 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -3308,7 +3340,7 @@ class _$GameReceived implements GameReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -3334,7 +3366,7 @@ class _$GameReceived implements GameReceived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -3503,7 +3535,7 @@ class _$FailureReceived implements FailureReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
-    required TResult Function() gameJoined,
+    required TResult Function(UniqueId gameId) gameJoined,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -3529,7 +3561,7 @@ class _$FailureReceived implements FailureReceived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
-    TResult Function()? gameJoined,
+    TResult Function(UniqueId gameId)? gameJoined,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,

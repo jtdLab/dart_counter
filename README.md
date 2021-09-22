@@ -39,4 +39,5 @@ flutter pub run easy_localization:generate -S assets/languages
 // TODO implement playonline facade cleanr with error throwing etc
 // TODO implement macked playonline + play offline facade with behaivor sobject holding ex.game
 
-// TODO in apppage add bool for fullscreen loading animation
+// TODO in apppage widget add bool for fullscreen loading animation make loading part of apppage
+// TODO organize presentation layer better use 'part of' and _ to organize subwidgets into seperate files and scope their visibility

@@ -5,7 +5,9 @@ class PlayEvent with _$PlayEvent {
   const factory PlayEvent.gameCreated({
     required bool online,
   }) = GameCreated;
-  const factory PlayEvent.gameJoined() = GameJoined;
+  const factory PlayEvent.gameJoined({
+    required UniqueId gameId,
+  }) = GameJoined;
   const factory PlayEvent.gameCanceled() = GameCanceled;
   const factory PlayEvent.playerReordered({
     required int oldIndex,

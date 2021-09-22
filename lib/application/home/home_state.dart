@@ -14,4 +14,12 @@ class HomeState with _$HomeState {
     required int unreadInvitations,
     required int unreadFriendRequests,
   }) = HomeLoadSuccess;
+
+  /**
+   * const factory HomeState.createGameInProgress() = HomeCreateGameInProgress;
+
+  const factory HomeState.createGameSuccess() = HomeCreateGameSuccess;
+
+  const factory HomeState.createGameFailure() = HomeCreateGameFailure;
+   */
 }

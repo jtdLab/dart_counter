@@ -45,18 +45,26 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> createGame() {
-    return _tryPerform(
-      action: () => _game = _game = ex.Game(),
-    );
+  Future<Either<PlayFailure, Unit>> createGame() async {
+    if (hasNetworkConnection) {
+      _game = _game = ex.Game();
+      _gameController.add(
+        right(
+          _toOnlineGameSnapshot(_game!),
+        ),
+      );
+
+      return right(unit);
+    }
+
+    return left(const PlayFailure.error()); // TODO name better
   }
 
   @override
   Future<Either<PlayFailure, Unit>> joinGame({
     required UniqueId gameId,
   }) {
-    // TODO implement
-    throw UnimplementedError();
+    return createGame();
   }
 
   @override
@@ -162,6 +170,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
             _toOnlineGameSnapshot(_game!),
           ),
         );
+
         return right(unit);
       }
     }

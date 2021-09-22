@@ -16,51 +16,53 @@ import 'package:rxdart/rxdart.dart';
 class MockedGameInvitationFacade implements IGameInvitationFacade {
   final IAuthFacade _authFacade;
 
-  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+  late final BehaviorSubject<
+          Either<GameInvitationFailure, KtList<GameInvitation>>>
       _receivedGameInvitationsController;
 
-  final BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+  late final BehaviorSubject<
+          Either<GameInvitationFailure, KtList<GameInvitation>>>
       _sentGameInvitationsController;
 
-  List<GameInvitation> _receivedGameInvitations;
-  List<GameInvitation> _sentGameInvitations;
+  late List<GameInvitation> _receivedGameInvitations;
+  late List<GameInvitation> _sentGameInvitations;
 
   MockedGameInvitationFacade(
     this._authFacade,
-  )   : _receivedGameInvitationsController = BehaviorSubject()
-          ..add(
-            hasNetworkConnection
-                ? right(
-                    KtList.from(
-                      [
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                      ],
-                    ),
-                  )
-                : left(const GameInvitationFailure.unexpected()),
-          ),
-        _sentGameInvitationsController = BehaviorSubject()
-          ..add(
-            hasNetworkConnection
-                ? right(
-                    KtList.from(
-                      [
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                        GameInvitation.dummy(),
-                      ],
-                    ),
-                  )
-                : left(const GameInvitationFailure.unexpected()),
-          ),
-        _receivedGameInvitations = [],
-        _sentGameInvitations = [];
+  ) {
+    _receivedGameInvitations = [
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+    ];
+
+    _sentGameInvitations = [
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+      GameInvitation.dummy(),
+    ];
+
+    _receivedGameInvitationsController = BehaviorSubject()
+      ..add(
+        hasNetworkConnection
+            ? right(
+                KtList.from(_receivedGameInvitations),
+              )
+            : left(const GameInvitationFailure.unexpected()),
+      );
+    _sentGameInvitationsController = BehaviorSubject()
+      ..add(
+        hasNetworkConnection
+            ? right(
+                KtList.from(_sentGameInvitations),
+              )
+            : left(const GameInvitationFailure.unexpected()),
+      );
+  }
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>

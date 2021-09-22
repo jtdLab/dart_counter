@@ -20,11 +20,12 @@ class MockedUserFacade implements IUserFacade {
 
   final BehaviorSubject<Either<UserFailure, User>> _userController;
 
-  User _user = User.dummy();
+  User _user;
 
   MockedUserFacade(
     this._authFacade,
-  ) : _userController = BehaviorSubject() {
+  )   : _userController = BehaviorSubject(),
+        _user = User.dummy() {
     _authFacade.watchIsAuthenticated().listen((isAuthenticated) {
       _userController.add(right(_user));
     });

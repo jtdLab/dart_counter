@@ -6,6 +6,7 @@ import 'package:dart_counter/application/core/friends/friends_bloc.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/core/user/user_bloc.dart';
+import 'package:dart_counter/domain/connectivity/i_connectivity_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -28,7 +29,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   StreamSubscription? _userSubscription;
   StreamSubscription? _unreadInvitationsSubscription;
   StreamSubscription? _unreadFriendRequestsSubscription;
-  StreamSubscription? _gameSubscription;
 
   HomeBloc(
     this._userBloc,
@@ -106,13 +106,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       );
     });
     */
-
-    _gameSubscription = _playBloc.stream.listen(
-      (state) => state.map(
-        loading: (_) => throw Error(), // TODO rly an error
-        success: (success) => add(HomeEvent.gameReceived(game: success.game)),
-      ),
-    );
   }
 
   @override
@@ -145,6 +138,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     _playBloc.add(
       const PlayEvent.gameCreated(online: true),
     );
+
+    // TODO AKNKHKHDKHDSKHDSKDSH HIER HILEE
+    final failureOrGame = (await _playBloc.stream.firstWhere(
+      (element) => element is Success,
+    ) as Success)
+        .game;
   }
 
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
@@ -241,7 +240,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     _userSubscription?.cancel();
     _unreadInvitationsSubscription?.cancel();
     _unreadFriendRequestsSubscription?.cancel();
-    _gameSubscription?.cancel();
     return super.close();
   }
 }

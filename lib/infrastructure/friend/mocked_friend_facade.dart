@@ -18,66 +18,63 @@ import 'package:rxdart/rxdart.dart';
 class MockedFriendFacade implements IFriendFacade {
   final IAuthFacade _authFacade;
 
-  final BehaviorSubject<Either<FriendFailure, KtList<User>>> _friendsController;
+  late final BehaviorSubject<Either<FriendFailure, KtList<User>>>
+      _friendsController;
 
-  final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+  late final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _receivedFriendRequestController;
 
-  final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+  late final BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _sentFriendRequestController;
 
-  final List<User> _friends;
-  List<FriendRequest> _receivedFriendRequests;
-  final List<FriendRequest> _sentFriendRequests;
+  late List<User> _friends;
+  late List<FriendRequest> _receivedFriendRequests;
+  late List<FriendRequest> _sentFriendRequests;
   final List<UserSearchResult> _userSearchResults;
 
   MockedFriendFacade(
     this._authFacade,
-  )   : _receivedFriendRequestController = BehaviorSubject()
-          ..add(
-            hasNetworkConnection
-                ? right(
-                    KtList.from(
-                      [
-                        FriendRequest.dummy(),
-                        FriendRequest.dummy(),
-                        FriendRequest.dummy(),
-                      ],
-                    ),
-                  )
-                : left(const FriendFailure.unexpected()),
-          ), // TODO name better
-        _sentFriendRequestController = BehaviorSubject()
-          ..add(
-            hasNetworkConnection
-                ? right(
-                    KtList.from(
-                      [
-                        FriendRequest.dummy(),
-                        FriendRequest.dummy(),
-                        FriendRequest.dummy(),
-                      ],
-                    ),
-                  )
-                : left(const FriendFailure.unexpected()), // TODO name better
-          ),
-        _friendsController = BehaviorSubject()
-          ..add(
-            hasNetworkConnection
-                ? right(
-                    KtList.from(
-                      [
-                        User.dummy(),
-                        User.dummy(),
-                      ],
-                    ),
-                  )
-                : left(const FriendFailure.unexpected()), // TODO name better
-          ),
-        _receivedFriendRequests = [],
-        _sentFriendRequests = [],
-        _friends = [],
-        _userSearchResults = [];
+  ) : _userSearchResults = [] {
+    _receivedFriendRequests = [
+      FriendRequest.dummy(),
+      FriendRequest.dummy(),
+      FriendRequest.dummy(),
+    ];
+    _sentFriendRequests = [
+      FriendRequest.dummy(),
+      FriendRequest.dummy(),
+      FriendRequest.dummy(),
+    ];
+    _friends = [
+      User.dummy(),
+      User.dummy(),
+    ];
+
+    _receivedFriendRequestController = BehaviorSubject()
+      ..add(
+        hasNetworkConnection
+            ? right(
+                KtList.from(_receivedFriendRequests),
+              )
+            : left(const FriendFailure.unexpected()), // TODO name better
+      );
+    _sentFriendRequestController = BehaviorSubject()
+      ..add(
+        hasNetworkConnection
+            ? right(
+                KtList.from(_sentFriendRequests),
+              )
+            : left(const FriendFailure.unexpected()), // TODO name better
+      );
+    _friendsController = BehaviorSubject()
+      ..add(
+        hasNetworkConnection
+            ? right(
+                KtList.from(_friends),
+              )
+            : left(const FriendFailure.unexpected()), // TODO name better
+      );
+  }
 
   @override
   Stream<Either<FriendFailure, KtList<User>>> watchFriends() {

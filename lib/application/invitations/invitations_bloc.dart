@@ -5,6 +5,7 @@ import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/invitations/invitations_bloc.dart'
     as ib;
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/domain/connectivity/i_connectivity_facade.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
@@ -57,8 +58,11 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         loadFailure: (_) => throw UnexpectedStateError(), // TODO
       );
     }).listen((invitations) {
-      add(InvitationsEvent.receivedGameInvitationsReceived(
-          gameInvitations: invitations));
+      add(
+        InvitationsEvent.receivedGameInvitationsReceived(
+          gameInvitations: invitations,
+        ),
+      );
     });
 
     _sentGameInvitationsSubscription = _invitationsBloc.stream.map((state) {
@@ -68,8 +72,11 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         loadFailure: (_) => throw UnexpectedStateError(), // TODO
       );
     }).listen((invitations) {
-      add(InvitationsEvent.sentGameInvitationsReceived(
-          gameInvitations: invitations));
+      add(
+        InvitationsEvent.sentGameInvitationsReceived(
+          gameInvitations: invitations,
+        ),
+      );
     });
 
     _gameSubscription = _playBloc.stream.map((state) {
@@ -102,9 +109,12 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
 
   // TODO rly needed to call facade for other or just use state
   Stream<InvitationsState> _mapReceivedGameInvitationsReceivedToState(
-      ReceivedGameInvitationsReceived event) async* {
-    // TODO implement
-    throw UnimplementedError();
+    ReceivedGameInvitationsReceived event,
+  ) async* {
+    final invitations = event.gameInvitations;
+
+    yield state.copyWith(receivedGameInvitations: invitations);
+
     /**
     *  final wrapper = _gameInvitationFacade.watchSentInvitations().valueWrapper;
     if (wrapper != null) {
@@ -125,9 +135,11 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
 
   // TODO rly needed to call facade for other or just use state
   Stream<InvitationsState> _mapSentGameInvitationsReceivedToState(
-      SentGameInvitationsReceived event) async* {
-    // TODO implement
-    throw UnimplementedError();
+    SentGameInvitationsReceived event,
+  ) async* {
+    final invitations = event.gameInvitations;
+
+    yield state.copyWith(sentGameInvitations: invitations);
     /**
     *  final wrapper =
         _gameInvitationFacade.watchReceivedInvitations().valueWrapper;
@@ -153,12 +165,12 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     yield state.copyWith(game: event.game);
   }
 
-  Stream<InvitationsState> _mapAcceptedToState(Accepted event) async* {
+  Stream<InvitationsState> _mapAcceptedToState(
+    Accepted event,
+  ) async* {
     final gameId = event.gameInvitation.gameId;
-    _playBloc.add(const PlayEvent.gameJoined());
-    await Future.delayed(const Duration(milliseconds: 100)); // TODO unclean
-    await _playOnlineFacade.joinGame(gameId: gameId);
-    //_gameInvitationFacade.accept(invitation: event.gameInvitation);
+    _playBloc.add(PlayEvent.gameJoined(gameId: gameId));
+    await _gameInvitationFacade.accept(invitation: event.gameInvitation);
   }
 
   Stream<InvitationsState> _mapDeclinedToState(Declined event) async* {
@@ -186,6 +198,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   Future<void> close() {
     _receivedGameInvitationsSubscription?.cancel();
     _sentGameInvitationsSubscription?.cancel();
+
     return super.close();
   }
 }
