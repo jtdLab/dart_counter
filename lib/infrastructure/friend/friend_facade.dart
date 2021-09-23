@@ -25,11 +25,51 @@ class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
+  final BehaviorSubject<KtList<User>> _friendsController;
+  final BehaviorSubject<KtList<FriendRequest>>
+      _receivedFriendRequestsController;
+  final BehaviorSubject<KtList<FriendRequest>> _sentFriendRequestsController;
+
   FriendFacade(
     this._userFacade,
     this._firestore,
     this._socialClient,
-  );
+  )   : _friendsController = BehaviorSubject(),
+        _receivedFriendRequestsController = BehaviorSubject(),
+        _sentFriendRequestsController = BehaviorSubject();
+
+  @override
+  KtList<User> getFriends() {
+    final friends = _friendsController.value;
+
+    if (friends == null) {
+      throw Error(); // TODO
+    }
+
+    return friends;
+  }
+
+  @override
+  KtList<FriendRequest> getReceivedFriendRequests() {
+    final receivedFriendRequests = _receivedFriendRequestsController.value;
+
+    if (receivedFriendRequests == null) {
+      throw Error(); // TODO
+    }
+
+    return receivedFriendRequests;
+  }
+
+  @override
+  KtList<FriendRequest> getSentFriendRequests() {
+    final sentFriendRequests = _sentFriendRequestsController.value;
+
+    if (sentFriendRequests == null) {
+      throw Error(); // TODO
+    }
+
+    return sentFriendRequests;
+  }
 
   // TODO implement more efficient and add pagination
   @override
@@ -53,7 +93,9 @@ class FriendFacade implements IFriendFacade {
             friends.add(UserDto.fromFirestore(doc).toDomain());
           }
 
-          return right(friends.toImmutableList());
+          final immutableFriends = friends.toImmutableList();
+          _friendsController.add(immutableFriends);
+          return right(immutableFriends);
         },
       );
     }).onErrorReturnWith((error) => left(const FriendFailure.unexpected()));
@@ -66,14 +108,17 @@ class FriendFacade implements IFriendFacade {
     yield* collection
         .orderBy('createdAt', descending: true)
         .snapshots()
-        .map(
-          (snapshot) => right<FriendFailure, KtList<FriendRequest>>(
-            snapshot.docs
-                .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
-          ),
-        )
-        .onErrorReturnWith((e) {
+        .map((snapshot) {
+      final receivedFriendRequests = snapshot.docs
+          .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
+          .toImmutableList();
+      _receivedFriendRequestsController.add(
+        receivedFriendRequests, // TODO better pls single source of truth
+      );
+      return right<FriendFailure, KtList<FriendRequest>>(
+        receivedFriendRequests,
+      );
+    }).onErrorReturnWith((e) {
       return left(const FriendFailure.unexpected());
     });
   }
@@ -91,7 +136,7 @@ class FriendFacade implements IFriendFacade {
       final querySnapshot = await collection
           .where('read', isNotEqualTo: true)
           .get(const GetOptions(source: Source.cache));
-          
+
       for (final doc in querySnapshot.docs) {
         await collection.doc(doc.id).update({'read': true});
       }
@@ -110,14 +155,17 @@ class FriendFacade implements IFriendFacade {
     yield* collection
         .orderBy('createdAt', descending: true)
         .snapshots()
-        .map(
-          (snapshot) => right<FriendFailure, KtList<FriendRequest>>(
-            snapshot.docs
-                .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
-          ),
-        )
-        .onErrorReturnWith((e) {
+        .map((snapshot) {
+      final sentFriendRequests = snapshot.docs
+          .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
+          .toImmutableList();
+      _sentFriendRequestsController.add(
+        sentFriendRequests, // TODO better pls single source of truth
+      );
+      return right<FriendFailure, KtList<FriendRequest>>(
+        sentFriendRequests,
+      );
+    }).onErrorReturnWith((e) {
       return left(const FriendFailure.unexpected());
     });
   }

@@ -41,3 +41,6 @@ flutter pub run easy_localization:generate -S assets/languages
 
 // TODO in apppage widget add bool for fullscreen loading animation make loading part of apppage
 // TODO organize presentation layer better use 'part of' and _ to organize subwidgets into seperate files and scope their visibility
+
+// in user invitations and friend facades us the behaivour subject as single source of truth
+// to does user facade even need to listen to server or is a single fetch enough when updated on cleint correctly if email change or someting like this THIS MIGHT BE BULLSHIT xD

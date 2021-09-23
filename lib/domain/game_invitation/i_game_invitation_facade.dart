@@ -7,6 +7,16 @@ import 'package:kt_dart/kt.dart';
 
 /// Domain interface for all actions related to the inviting process of games.
 abstract class IGameInvitationFacade {
+  /// Returns the received game invitations of the app-user.
+  ///
+  /// Throws [Error] if the app-user is not signed in or received friend request are not loaded.
+  KtList<GameInvitation> getReceivedGameInvitations(); // TODO good ?
+
+  /// Returns the received game invitations of the app-user.
+  ///
+  /// Throws [Error] if the app-user is not signed in or sent friend request are not loaded.
+  KtList<GameInvitation> getSentGameInvitations(); // TODO good ?
+
   /// Returns a stream of the received invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.

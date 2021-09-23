@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/application/core/invitations/invitations_bloc.dart'
-    as ib;
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/connectivity/i_connectivity_facade.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
@@ -20,61 +18,45 @@ part 'invitations_bloc.freezed.dart';
 
 @injectable
 class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
-  final IGameInvitationFacade _gameInvitationFacade; // TODO rly needed
-  final IPlayOnlineFacade _playOnlineFacade;
+  final IGameInvitationFacade _gameInvitationFacade;
   final PlayBloc _playBloc;
-  final ib.InvitationsBloc _invitationsBloc;
 
-  StreamSubscription<KtList<GameInvitation>>?
-      _receivedGameInvitationsSubscription;
-
-  StreamSubscription<KtList<GameInvitation>>? _sentGameInvitationsSubscription;
-
-  StreamSubscription<GameSnapshot?>? _gameSubscription;
+  StreamSubscription? _receivedGameInvitationsSubscription;
+  StreamSubscription? _sentGameInvitationsSubscription;
+  StreamSubscription? _gameSubscription;
 
   InvitationsBloc(
     this._gameInvitationFacade,
-    this._playOnlineFacade,
     this._playBloc,
-    this._invitationsBloc,
   ) : super(
           InvitationsState(
-            receivedGameInvitations: _invitationsBloc.state.map(
-              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-              loadSuccess: (success) => success.receivedInvitations,
-              loadFailure: (_) => throw UnexpectedStateError(), // TODO
-            ),
-            sentGameInvitations: _invitationsBloc.state.map(
-              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-              loadSuccess: (success) => success.sentInvitations,
-              loadFailure: (_) => throw UnexpectedStateError(), // TODO
-            ),
+            receivedGameInvitations:
+                _gameInvitationFacade.getReceivedGameInvitations(),
+            sentGameInvitations: _gameInvitationFacade.getSentGameInvitations(),
           ),
         ) {
-    _receivedGameInvitationsSubscription = _invitationsBloc.stream.map((state) {
-      return state.map(
-        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-        loadSuccess: (success) => success.receivedInvitations,
-        loadFailure: (_) => throw UnexpectedStateError(), // TODO
-      );
-    }).listen((invitations) {
-      add(
-        InvitationsEvent.receivedGameInvitationsReceived(
-          gameInvitations: invitations,
+    _receivedGameInvitationsSubscription = _gameInvitationFacade
+        .watchReceivedInvitations()
+        .listen((failureOrInvitations) {
+      failureOrInvitations.fold(
+        (failure) => throw Error(), // TODO failure
+        (invitations) => add(
+          InvitationsEvent.receivedGameInvitationsReceived(
+            gameInvitations: invitations,
+          ),
         ),
       );
     });
 
-    _sentGameInvitationsSubscription = _invitationsBloc.stream.map((state) {
-      return state.map(
-        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-        loadSuccess: (success) => success.sentInvitations,
-        loadFailure: (_) => throw UnexpectedStateError(), // TODO
-      );
-    }).listen((invitations) {
-      add(
-        InvitationsEvent.sentGameInvitationsReceived(
-          gameInvitations: invitations,
+    _sentGameInvitationsSubscription = _gameInvitationFacade
+        .watchSentInvitations()
+        .listen((failureOrInvitations) {
+      failureOrInvitations.fold(
+        (failure) => throw Error(), // TODO failure
+        (invitations) => add(
+          InvitationsEvent.sentGameInvitationsReceived(
+            gameInvitations: invitations,
+          ),
         ),
       );
     });

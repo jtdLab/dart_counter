@@ -32,6 +32,9 @@ class MockedUserFacade implements IUserFacade {
   }
 
   @override
+  User getUser() => _user;
+
+  @override
   Stream<Either<UserFailure, User>> watchUser() {
     if (_authFacade.isAuthenticated()) {
       return _userController.stream;

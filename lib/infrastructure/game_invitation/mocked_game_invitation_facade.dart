@@ -65,6 +65,14 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
+  KtList<GameInvitation> getReceivedGameInvitations() =>
+      _receivedGameInvitations.toImmutableList();
+
+  @override
+  KtList<GameInvitation> getSentGameInvitations() =>
+      _sentGameInvitations.toImmutableList();
+
+  @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedInvitations() {
     if (_authFacade.isAuthenticated()) {

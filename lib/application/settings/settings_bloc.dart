@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/application/core/user/user_bloc.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,31 +16,24 @@ part 'settings_bloc.freezed.dart';
 @injectable
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final IAuthFacade _authFacade;
-  final UserBloc _userBloc;
+  final IUserFacade _userFacade;
 
-  StreamSubscription<User>? _userSubscription;
+  StreamSubscription? _userSubscription;
 
   SettingsBloc(
     this._authFacade,
-    this._userBloc,
+    this._userFacade,
   ) : super(
           SettingsState(
-            user: _userBloc.state.map(
-              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-              loadSuccess: (success) => success.user,
-              loadFailure: (_) => throw UnexpectedStateError(), // TODO
-            ),
+            user: _userFacade.getUser(),
             localeChanged: false,
           ),
         ) {
-    _userSubscription = _userBloc.stream.map((state) {
-      return state.map(
-        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-        loadSuccess: (success) => success.user,
-        loadFailure: (_) => throw UnexpectedStateError(), // TODO
+    _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
+      return failurOrUser.fold(
+        (failure) => throw Error(), // TODO failure
+        (user) => add(SettingsEvent.userReceived(user: user)),
       );
-    }).listen((user) {
-      add(SettingsEvent.userReceived(user: user));
     });
   }
 

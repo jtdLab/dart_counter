@@ -77,6 +77,17 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
+  KtList<User> getFriends() => _friends.toImmutableList();
+
+  @override
+  KtList<FriendRequest> getReceivedFriendRequests() =>
+      _receivedFriendRequests.toImmutableList();
+
+  @override
+  KtList<FriendRequest> getSentFriendRequests() =>
+      _sentFriendRequests.toImmutableList();
+
+  @override
   Stream<Either<FriendFailure, KtList<User>>> watchFriends() {
     if (_authFacade.isAuthenticated()) {
       return _friendsController.stream;

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/application/core/friends/friends_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/domain/friend/i_friend_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/type.dart';
@@ -19,11 +19,11 @@ part 'create_game_state.dart';
 class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
     with AutoResetLazySingleton {
   final PlayBloc _playBloc;
-  final FriendsBloc _friendsBloc;
+  final IFriendFacade _friendFacade;
 
   CreateGameBloc(
     this._playBloc,
-    this._friendsBloc,
+    this._friendFacade,
   ) : super(
           CreateGameState(
             game: _playBloc.state.map(

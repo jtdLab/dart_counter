@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/application/core/user/user_bloc.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,29 +13,20 @@ part 'profile_state.dart';
 
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final UserBloc _userBloc;
+  final IUserFacade _userFacade;
 
-  StreamSubscription<User>? _userSubscription;
+  StreamSubscription? _userSubscription;
 
   ProfileBloc(
-    this._userBloc,
+    this._userFacade,
   ) : super(
-          ProfileState.initial(
-            user: _userBloc.state.map(
-              loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-              loadSuccess: (success) => success.user,
-              loadFailure: (_) => throw UnexpectedStateError(), // TODO
-            ),
-          ),
+          ProfileState.initial(user: _userFacade.getUser()),
         ) {
-    _userSubscription = _userBloc.stream.map((state) {
-      return state.map(
-        loadInProgress: (_) => throw UnexpectedStateError(), // TODO
-        loadSuccess: (success) => success.user,
-        loadFailure: (_) => throw UnexpectedStateError(), // TODO
+    _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
+      return failurOrUser.fold(
+        (failure) => throw Error(), // TODO failure
+        (user) => add(ProfileEvent.userReceived(user: user)),
       );
-    }).listen((user) {
-      add(ProfileEvent.userReceived(user: user));
     });
   }
 

@@ -21,33 +21,64 @@ class GameInvitationFacade implements IGameInvitationFacade {
   final DartClient _dartClient;
   final SocialClient _socialClient;
 
+  final BehaviorSubject<KtList<GameInvitation>> _receivedInvitationsController;
+  final BehaviorSubject<KtList<GameInvitation>> _sentInvitationsController;
+
   GameInvitationFacade(
     this._firestore,
     this._socialClient,
     this._dartClient,
-  );
+  )   : _receivedInvitationsController = BehaviorSubject(),
+        _sentInvitationsController = BehaviorSubject();
+
+  @override
+  KtList<GameInvitation> getReceivedGameInvitations() {
+    final receivedGameInvitations = _receivedInvitationsController.value;
+
+    if (receivedGameInvitations == null) {
+      throw Error(); // TODO
+    }
+
+    return receivedGameInvitations;
+  }
+
+  @override
+  KtList<GameInvitation> getSentGameInvitations() {
+    final sentGameInvitations = _sentInvitationsController.value;
+
+    if (sentGameInvitations == null) {
+      throw Error(); // TODO
+    }
+
+    return sentGameInvitations;
+  }
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedInvitations() async* {
     final collection = _firestore.receivedGameInvitationsCollection();
+
     yield* collection
         .orderBy('createdAt', descending: true)
         .snapshots()
-        .map(
-          (snapshot) => right<GameInvitationFailure, KtList<GameInvitation>>(
-            snapshot.docs
-                .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
-          ),
-        )
-        .onErrorReturnWith((e) {
+        .map((snapshot) {
+      final receivedGameInvitations = snapshot.docs
+          .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
+          .toImmutableList();
+      _receivedInvitationsController.add(
+        receivedGameInvitations, // TODO better pls single source of truth
+      );
+      return right<GameInvitationFailure, KtList<GameInvitation>>(
+        receivedGameInvitations,
+      );
+    }).onErrorReturnWith((e) {
       return left(const GameInvitationFailure.unexpected());
     });
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> markReceivedInvitationsAsRead() async {
+  Future<Either<GameInvitationFailure, Unit>>
+      markReceivedInvitationsAsRead() async {
     final CollectionReference<Object?> collection;
     try {
       collection = _firestore.receivedGameInvitationsCollection();
@@ -59,7 +90,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
       final querySnapshot = await collection
           .where('read', isNotEqualTo: true)
           .get(const GetOptions(source: Source.cache));
-          
+
       for (final doc in querySnapshot.docs) {
         await collection.doc(doc.id).update({'read': true});
       }
@@ -75,17 +106,21 @@ class GameInvitationFacade implements IGameInvitationFacade {
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchSentInvitations() async* {
     final collection = _firestore.sentGameInvitationsCollection();
+
     yield* collection
         .orderBy('createdAt', descending: true)
         .snapshots()
-        .map(
-          (snapshot) => right<GameInvitationFailure, KtList<GameInvitation>>(
-            snapshot.docs
-                .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
-          ),
-        )
-        .onErrorReturnWith((e) {
+        .map((snapshot) {
+      final sentGameInvitations = snapshot.docs
+          .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
+          .toImmutableList();
+      _sentInvitationsController.add(
+        sentGameInvitations, // TODO better pls single source of truth
+      );
+      return right<GameInvitationFailure, KtList<GameInvitation>>(
+        sentGameInvitations,
+      );
+    }).onErrorReturnWith((e) {
       return left(const GameInvitationFailure.unexpected());
     });
   }

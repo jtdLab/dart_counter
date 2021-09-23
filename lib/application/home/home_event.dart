@@ -18,4 +18,7 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.unreadFriendRequestsReceived({
     required int unreadFriendRequests,
   }) = UnreadFriendRequestsReceived;
+   const factory HomeEvent.failurReceived({
+    required Object failure,
+  }) = FailureReceived;
 }

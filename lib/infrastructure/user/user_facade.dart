@@ -29,12 +29,24 @@ class UserFacade implements IUserFacade {
   final auth.FirebaseAuth _auth;
   final SocialClient _socialClient;
 
+  final BehaviorSubject<User> _userController;
+
   UserFacade(
     this._firestore,
     this._storage,
     this._auth,
     this._socialClient,
-  );
+  ) : _userController = BehaviorSubject();
+
+  @override
+  User getUser() {
+    final user = _userController.value;
+    if (user == null) {
+      throw Error(); // TODO
+    }
+
+    return user;
+  }
 
   @override
   Stream<Either<UserFailure, User>> watchUser() async* {
@@ -47,9 +59,9 @@ class UserFacade implements IUserFacade {
 
     yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
       final idToken = await _auth.currentUser!.getIdToken();
-      return right(
-        UserDto.fromFirestore(doc).toDomain(idToken: idToken),
-      );
+      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken);
+      _userController.add(user); // TODO better pls single source of truth
+      return right(user);
     }).onErrorReturnWith(
       (error) => left(const UserFailure.unableToLoadData()),
     );
@@ -67,9 +79,9 @@ class UserFacade implements IUserFacade {
     try {
       final doc = await userDoc.get();
       final idToken = await _auth.currentUser!.getIdToken();
-      return right(
-        UserDto.fromFirestore(doc).toDomain(idToken: idToken),
-      );
+      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken);
+      _userController.add(user); // TODO better pls single source of truth
+      return right(user);
     } catch (e) {
       print(e);
       return left(const UserFailure.unableToLoadData()); // TODO name better

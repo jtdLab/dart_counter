@@ -10,6 +10,12 @@ class NotDecodableImageError extends Error {}
 
 /// Domain interface for all actions related to the user of the app.
 abstract class IUserFacade {
+  /// Returns the signed in user.
+  ///
+  /// Throws [Error] if the user is not signed in or loaded.
+  /// 
+  User getUser(); // TODO good ?
+
   /// Returns a stream of the signed in user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.

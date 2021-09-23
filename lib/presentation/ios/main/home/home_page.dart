@@ -1,6 +1,6 @@
 import 'package:dart_counter/application/home/home_bloc.dart';
-
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
 import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,6 +40,9 @@ class HomePage extends StatelessWidget {
                 child: HomeWidget(),
               );
             },
+            failure: (_) => const Center(
+              child: Text('Error loading TODO'),
+            ),
           );
         },
       ),
