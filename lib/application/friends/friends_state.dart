@@ -4,3 +4,4 @@ part of 'friends_bloc.dart';
 class FriendsState with _$FriendsState {
   const factory FriendsState.initial() = _Initial;
 }
+

@@ -12,16 +12,12 @@ class FriendButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadFriendRequests = (state as HomeLoadSuccess).unreadFriendRequests;
+        final unreadFriendRequests =
+            (state as HomeLoadSuccess).unreadFriendRequests;
 
         if (unreadFriendRequests == 0) {
           return AppNavigationBarButton(
-            onPressed: () {
-              context
-                  .read<HomeBloc>()
-                  .add(const HomeEvent.goToFriendsPressed());
-              context.router.push(const FriendsPageRoute());
-            },
+            onPressed: () => context.router.push(const FriendsPageRoute()),
             child: Image.asset(
               AppImages.playerNew,
               fit: BoxFit.fitHeight,
@@ -38,12 +34,7 @@ class FriendButton extends StatelessWidget {
               top: -13,
             ),
             child: AppNavigationBarButton(
-              onPressed: () {
-                context
-                    .read<HomeBloc>()
-                    .add(const HomeEvent.goToFriendsPressed());
-                context.router.push(const FriendsPageRoute());
-              },
+              onPressed: () => context.router.push(const FriendsPageRoute()),
               child: Image.asset(
                 AppImages.playerNew,
                 fit: BoxFit.fitHeight,

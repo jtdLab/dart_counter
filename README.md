@@ -49,3 +49,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // TODO maybe make friends and inviations mock facade like user facade to use behaivor subject as single sourece of truth
 
 // TODO update comments in facades related to failure or real return value
+
+// Blocs failure not object concrete type pls
+
+// normalize naming

@@ -8,3 +8,4 @@ class InvitationsState with _$InvitationsState {
     GameSnapshot? game,
   }) = _InvitationsState;
 }
+

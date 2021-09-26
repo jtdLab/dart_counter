@@ -33,7 +33,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     this._friendFacade,
     this._playBloc,
   ) : super(
-    // TODO initial state function
           _userFacade.getUser()?.fold(
                     (failure) => HomeState.failure(failure: failure),
                     (user) => _invitationFacade
@@ -96,18 +95,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     HomeEvent event,
   ) async* {
     yield* event.map(
-        watchStarted: (_) => _mapWatchStartedToState(),
-        goToInvitationsPressed: (_) => _mapGoToInvitationsPressedToState(),
-        goToFriendsPressed: (_) => _mapGoToFriendsPressedToState(),
-        createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
-        createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
-        userReceived: (event) => _mapUserReceivedToState(event),
-        gameReceived: (event) => _mapGameReceivedToState(event),
-        unreadInvitationsReceived: (event) =>
-            _mapUnreadInvitationsReceivedToState(event),
-        unreadFriendRequestsReceived: (event) =>
-            _mapUnreadFriendRequestsReceivedToState(event),
-        failureReceived: (event) => _mapFailureReceivedToState(event));
+      watchStarted: (_) => _mapWatchStartedToState(),
+      createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
+      createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
+      gameReceived: (event) => _mapGameReceivedToState(event),
+      userReceived: (event) => _mapUserReceivedToState(event),
+      unreadInvitationsReceived: (event) =>
+          _mapUnreadInvitationsReceivedToState(event),
+      unreadFriendRequestsReceived: (event) =>
+          _mapUnreadFriendRequestsReceivedToState(event),
+      failureReceived: (event) => _mapFailureReceivedToState(event),
+    );
   }
 
   Stream<HomeState> _mapWatchStartedToState() async* {
@@ -148,25 +146,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
             );
   }
 
-  Stream<HomeState> _mapGoToInvitationsPressedToState() async* {
-    // TODO remove maybe
-  }
-
-  Stream<HomeState> _mapGoToFriendsPressedToState() async* {
-    // TODO remove maybe
-  }
-
   Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
     _playBloc.add(
       const PlayEvent.gameCreated(online: true),
     );
 
-    // TODO AKNKHKHDKHDSKHDSKDSH HIER HILEE
     final failureOrGame = (await _playBloc.stream.firstWhere(
       (element) => element is Success,
     ) as Success)
         .game;
   }
+
 
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
     _playBloc.add(
@@ -174,33 +164,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     );
   }
 
+  Stream<HomeState> _mapGameReceivedToState(
+    GameReceived event,
+  ) async* {
+    // TODO playing impl it better with super bloc or not ?
+    throw UnimplementedError();
+  }
+
   Stream<HomeState> _mapUserReceivedToState(
     UserReceived event,
   ) async* {
     final user = event.user;
-
-    /**
-   *   final state = this.state;
-    if (state is HomeLoadInProgress) {
-      final unreadInvitations = state.unreadInvitations;
-      final unreadFriendRequests = state.unreadFriendRequests;
-      if (unreadInvitations != null && unreadFriendRequests != null) {
-          print('c');
-            Future.delayed(const Duration(seconds: 5));
-        yield HomeState.loadSuccess(
-          user: user,
-          unreadInvitations: unreadInvitations,
-          unreadFriendRequests: unreadFriendRequests,
-        );
-      }
-
-      yield state.copyWith(user: user);
-    } else if (state is HomeLoadSuccess) {
-      yield state.copyWith(user: user);
-    } else {
-      yield HomeState.loadInProgress(user: user);
-    }
-    */
 
     yield state.map(
       loadInProgress: (loadInProgress) {
@@ -221,42 +195,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     );
   }
 
-  Stream<HomeState> _mapGameReceivedToState(
-    GameReceived event,
-  ) async* {
-    // TODO implement
-    throw UnimplementedError();
-  }
-
   Stream<HomeState> _mapUnreadInvitationsReceivedToState(
     UnreadInvitationsReceived event,
   ) async* {
     final unreadInvitations = event.unreadInvitations;
-
-    /**
-     * final state = this.state;
-    if (state is HomeLoadInProgress) {
-      final user = state.user;
-      final unreadFriendRequests = state.unreadFriendRequests;
-      if (user != null && unreadFriendRequests != null) {
-        print('b');
-        Future.delayed(const Duration(seconds: 5));
-        yield HomeState.loadSuccess(
-          user: user,
-          unreadInvitations: unreadInvitations,
-          unreadFriendRequests: unreadFriendRequests,
-        );
-      }
-
-      yield state.copyWith(unreadInvitations: unreadInvitations);
-    } else if (state is HomeLoadSuccess) {
-      yield state.copyWith(
-        unreadInvitations: unreadInvitations,
-      );
-    } else {
-      yield HomeState.loadInProgress(unreadInvitations: unreadInvitations);
-    }
-     */
 
     yield state.map(
       loadInProgress: (loadInProgress) {
@@ -283,37 +225,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     UnreadFriendRequestsReceived event,
   ) async* {
     final unreadFriendRequests = event.unreadFriendRequests;
-
-/**
- * 
-    final state = this.state;
-    if (state is HomeLoadInProgress) {
-      final user = state.user;
-      final unreadInvitations = state.unreadInvitations;
-
-      if (user != null && unreadInvitations != null) {
-        print('a');
-        Future.delayed(const Duration(seconds: 5));
-        yield HomeState.loadSuccess(
-          user: user,
-          unreadInvitations: unreadInvitations,
-          unreadFriendRequests: unreadFriendRequests,
-        );
-      }
-
-      yield state.copyWith(
-        unreadFriendRequests: unreadFriendRequests,
-      );
-    } else if (state is HomeLoadSuccess) {
-      yield state.copyWith(
-        unreadFriendRequests: unreadFriendRequests,
-      );
-    } else {
-      yield HomeState.loadInProgress(
-          unreadFriendRequests: unreadFriendRequests);
-    }
-
- */
 
     yield state.map(
       loadInProgress: (loadInProgress) {

@@ -12,16 +12,12 @@ class InvitationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadReceivedInvitations = (state as HomeLoadSuccess).unreadInvitations;
+        final unreadReceivedInvitations =
+            (state as HomeLoadSuccess).unreadInvitations;
 
         if (unreadReceivedInvitations == 0) {
           return AppNavigationBarButton(
-            onPressed: () {
-              context
-                  .read<HomeBloc>()
-                  .add(const HomeEvent.goToInvitationsPressed());
-              context.router.push(const InvitationsPageRoute());
-            },
+            onPressed: () => context.router.push(const InvitationsPageRoute()),
             child: Image.asset(
               AppImages.messageNew,
               fit: BoxFit.fitHeight,
@@ -40,12 +36,8 @@ class InvitationButton extends StatelessWidget {
               top: -13,
             ),
             child: AppNavigationBarButton(
-              onPressed: () {
-                context
-                    .read<HomeBloc>()
-                    .add(const HomeEvent.goToInvitationsPressed());
-                context.router.push(const InvitationsPageRoute());
-              },
+              onPressed: () =>
+                  context.router.push(const InvitationsPageRoute()),
               child: Image.asset(
                 AppImages.messageNew,
                 fit: BoxFit.fitHeight,

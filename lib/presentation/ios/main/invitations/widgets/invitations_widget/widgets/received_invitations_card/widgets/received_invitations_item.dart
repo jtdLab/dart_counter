@@ -42,7 +42,9 @@ class ReceivedInvitationsItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
-                onPressed: () {}, // TODO call decline invitation
+                onPressed: () => context.read<InvitationsBloc>().add(
+                      InvitationsEvent.declined(gameInvitation: gameInvitation),
+                    ),
               ),
             ],
           ),

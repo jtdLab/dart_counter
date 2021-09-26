@@ -11,9 +11,10 @@ class InvitationsEvent with _$InvitationsEvent {
   const factory InvitationsEvent.gameReceived({
     required GameSnapshot game,
   }) = GameReceived;
-  const factory InvitationsEvent.accepted(
-      {required GameInvitation gameInvitation}) = Accepted;
-  const factory InvitationsEvent.declined(
-      {required GameInvitation gameInvitation}) = Declined;
-  const factory InvitationsEvent.newInvitationsRead() = NewInvitationsRead;
+  const factory InvitationsEvent.accepted({
+    required GameInvitation gameInvitation,
+  }) = Accepted;
+  const factory InvitationsEvent.declined({
+    required GameInvitation gameInvitation,
+  }) = Declined;
 }

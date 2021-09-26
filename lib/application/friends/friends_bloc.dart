@@ -10,6 +10,7 @@ part 'friends_bloc.freezed.dart';
 class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
   FriendsBloc() : super(_Initial());
 
+
   @override
   Stream<FriendsState> mapEventToState(
     FriendsEvent event,

@@ -47,10 +47,6 @@ class _$InvitationsEventTearOff {
       gameInvitation: gameInvitation,
     );
   }
-
-  NewInvitationsRead newInvitationsRead() {
-    return const NewInvitationsRead();
-  }
 }
 
 /// @nodoc
@@ -67,7 +63,6 @@ mixin _$InvitationsEvent {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,7 +74,6 @@ mixin _$InvitationsEvent {
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -92,7 +86,6 @@ mixin _$InvitationsEvent {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,7 +97,6 @@ mixin _$InvitationsEvent {
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -206,7 +198,6 @@ class _$ReceivedGameInvitationsReceived
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) {
     return receivedGameInvitationsReceived(gameInvitations);
   }
@@ -221,7 +212,6 @@ class _$ReceivedGameInvitationsReceived
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (receivedGameInvitationsReceived != null) {
@@ -240,7 +230,6 @@ class _$ReceivedGameInvitationsReceived
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) {
     return receivedGameInvitationsReceived(this);
   }
@@ -255,7 +244,6 @@ class _$ReceivedGameInvitationsReceived
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (receivedGameInvitationsReceived != null) {
@@ -354,7 +342,6 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) {
     return sentGameInvitationsReceived(gameInvitations);
   }
@@ -369,7 +356,6 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (sentGameInvitationsReceived != null) {
@@ -388,7 +374,6 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) {
     return sentGameInvitationsReceived(this);
   }
@@ -403,7 +388,6 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (sentGameInvitationsReceived != null) {
@@ -497,7 +481,6 @@ class _$GameReceived implements GameReceived {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) {
     return gameReceived(game);
   }
@@ -512,7 +495,6 @@ class _$GameReceived implements GameReceived {
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -531,7 +513,6 @@ class _$GameReceived implements GameReceived {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) {
     return gameReceived(this);
   }
@@ -546,7 +527,6 @@ class _$GameReceived implements GameReceived {
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -645,7 +625,6 @@ class _$Accepted implements Accepted {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) {
     return accepted(gameInvitation);
   }
@@ -660,7 +639,6 @@ class _$Accepted implements Accepted {
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (accepted != null) {
@@ -679,7 +657,6 @@ class _$Accepted implements Accepted {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) {
     return accepted(this);
   }
@@ -694,7 +671,6 @@ class _$Accepted implements Accepted {
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (accepted != null) {
@@ -793,7 +769,6 @@ class _$Declined implements Declined {
     required TResult Function(GameSnapshot game) gameReceived,
     required TResult Function(GameInvitation gameInvitation) accepted,
     required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
   }) {
     return declined(gameInvitation);
   }
@@ -808,7 +783,6 @@ class _$Declined implements Declined {
     TResult Function(GameSnapshot game)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? accepted,
     TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (declined != null) {
@@ -827,7 +801,6 @@ class _$Declined implements Declined {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
   }) {
     return declined(this);
   }
@@ -842,7 +815,6 @@ class _$Declined implements Declined {
     TResult Function(GameReceived value)? gameReceived,
     TResult Function(Accepted value)? accepted,
     TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
     required TResult orElse(),
   }) {
     if (declined != null) {
@@ -859,116 +831,6 @@ abstract class Declined implements InvitationsEvent {
   @JsonKey(ignore: true)
   $DeclinedCopyWith<Declined> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $NewInvitationsReadCopyWith<$Res> {
-  factory $NewInvitationsReadCopyWith(
-          NewInvitationsRead value, $Res Function(NewInvitationsRead) then) =
-      _$NewInvitationsReadCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$NewInvitationsReadCopyWithImpl<$Res>
-    extends _$InvitationsEventCopyWithImpl<$Res>
-    implements $NewInvitationsReadCopyWith<$Res> {
-  _$NewInvitationsReadCopyWithImpl(
-      NewInvitationsRead _value, $Res Function(NewInvitationsRead) _then)
-      : super(_value, (v) => _then(v as NewInvitationsRead));
-
-  @override
-  NewInvitationsRead get _value => super._value as NewInvitationsRead;
-}
-
-/// @nodoc
-
-class _$NewInvitationsRead implements NewInvitationsRead {
-  const _$NewInvitationsRead();
-
-  @override
-  String toString() {
-    return 'InvitationsEvent.newInvitationsRead()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NewInvitationsRead);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        receivedGameInvitationsReceived,
-    required TResult Function(KtList<GameInvitation> gameInvitations)
-        sentGameInvitationsReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
-    required TResult Function(GameInvitation gameInvitation) accepted,
-    required TResult Function(GameInvitation gameInvitation) declined,
-    required TResult Function() newInvitationsRead,
-  }) {
-    return newInvitationsRead();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        receivedGameInvitationsReceived,
-    TResult Function(KtList<GameInvitation> gameInvitations)?
-        sentGameInvitationsReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
-    TResult Function(GameInvitation gameInvitation)? accepted,
-    TResult Function(GameInvitation gameInvitation)? declined,
-    TResult Function()? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (newInvitationsRead != null) {
-      return newInvitationsRead();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ReceivedGameInvitationsReceived value)
-        receivedGameInvitationsReceived,
-    required TResult Function(SentGameInvitationsReceived value)
-        sentGameInvitationsReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(Accepted value) accepted,
-    required TResult Function(Declined value) declined,
-    required TResult Function(NewInvitationsRead value) newInvitationsRead,
-  }) {
-    return newInvitationsRead(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ReceivedGameInvitationsReceived value)?
-        receivedGameInvitationsReceived,
-    TResult Function(SentGameInvitationsReceived value)?
-        sentGameInvitationsReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(Accepted value)? accepted,
-    TResult Function(Declined value)? declined,
-    TResult Function(NewInvitationsRead value)? newInvitationsRead,
-    required TResult orElse(),
-  }) {
-    if (newInvitationsRead != null) {
-      return newInvitationsRead(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class NewInvitationsRead implements InvitationsEvent {
-  const factory NewInvitationsRead() = _$NewInvitationsRead;
 }
 
 /// @nodoc
