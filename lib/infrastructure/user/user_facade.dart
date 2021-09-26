@@ -47,12 +47,9 @@ class UserFacade implements IUserFacade {
   }
 
   @override
-  Either<UserFailure, User> getUser() {
+  Either<UserFailure, User>? getUser() {
     _checkAuth();
     final failureOrUser = _userController.value;
-    if (failureOrUser == null) {
-      return left(const UserFailure.failure());
-    }
 
     return failureOrUser;
   }

@@ -13,18 +13,18 @@ abstract class IFriendFacade {
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<User>> getFriends(); // TODO good?
+  Either<FriendFailure, KtList<User>>? getFriends(); // TODO good?
 
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<FriendRequest>>
+  Either<FriendFailure, KtList<FriendRequest>>?
       getReceivedFriendRequests(); // TODO good?
 
   /// Returns the sent friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<FriendRequest>>
+  Either<FriendFailure, KtList<FriendRequest>>?
       getSentFriendRequests(); // TODO good?
 
   // TODO IS THIS A GOOD INTERFACE ??? CONCERNS: live data needed because friendship can be

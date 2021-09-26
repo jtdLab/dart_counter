@@ -50,29 +50,19 @@ class GameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getReceivedGameInvitations() {
     _checkAuth();
-    final failureOrInvitations = _receivedInvitationsController.value;
 
-    if (failureOrInvitations == null) {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-
-    return failureOrInvitations;
+    return _receivedInvitationsController.value;
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getSentGameInvitations() {
     _checkAuth();
-    final sentGameInvitations = _sentInvitationsController.value;
 
-    if (sentGameInvitations == null) {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-
-    return sentGameInvitations;
+    return _sentInvitationsController.value;
   }
 
   @override

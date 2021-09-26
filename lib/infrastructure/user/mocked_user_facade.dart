@@ -37,10 +37,10 @@ class MockedUserFacade implements IUserFacade {
   }
 
   @override
-  Either<UserFailure, User> getUser() {
+  Either<UserFailure, User>? getUser() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _userController.value!;
+      return _userController.value;
     }
 
     return left(const UserFailure.failure()); // TODO name better

@@ -62,24 +62,22 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getReceivedGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      final receivedInvitations = _receivedGameInvitationsController.value!;
-      return receivedInvitations;
+      return _receivedGameInvitationsController.value;
     }
 
     return left(const GameInvitationFailure.unexpected());
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getSentGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentInvitations = _sentGameInvitationsController.value!;
-      return sentInvitations;
+      return _sentGameInvitationsController.value;
     }
 
     return left(const GameInvitationFailure.unexpected());

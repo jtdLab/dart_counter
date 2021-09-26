@@ -10,13 +10,13 @@ abstract class IGameInvitationFacade {
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getReceivedGameInvitations(); // TODO good ?
 
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
       getSentGameInvitations(); // TODO good ?
 
   /// Returns a stream of the received invitations of the app-user.

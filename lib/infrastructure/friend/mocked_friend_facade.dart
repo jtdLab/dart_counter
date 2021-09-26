@@ -77,33 +77,30 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Either<FriendFailure, KtList<User>> getFriends() {
+  Either<FriendFailure, KtList<User>>? getFriends() {
     _checkAuth();
     if (hasNetworkConnection) {
-      final friends = _friendsController.value!;
-      return friends;
+      return _friendsController.value;
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      final receivedFriendRequests = _receivedFriendRequestController.value!;
-      return receivedFriendRequests;
+      return _receivedFriendRequestController.value;
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value!;
-      return sentFriendRequests;
+      return _sentFriendRequestController.value;
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better

@@ -13,7 +13,7 @@ abstract class IUserFacade {
   /// Returns the signed in user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.
-  Either<UserFailure, User> getUser(); // TODO good ?
+  Either<UserFailure, User>? getUser(); // TODO good ?
 
   /// Returns a stream of the signed in user.
   ///

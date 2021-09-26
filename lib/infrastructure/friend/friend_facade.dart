@@ -60,39 +60,24 @@ class FriendFacade implements IFriendFacade {
   }
 
   @override
-  Either<FriendFailure, KtList<User>> getFriends() {
+  Either<FriendFailure, KtList<User>>? getFriends() {
     _checkAuth();
-    final failureOrFriends = _friendsController.value;
 
-    if (failureOrFriends == null) {
-      return left(const FriendFailure.unexpected()); // TODO name better
-    }
-
-    return failureOrFriends;
+    return _friendsController.value;
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
     _checkAuth();
-    final failureOrFriendRequests = _receivedFriendRequestsController.value;
 
-    if (failureOrFriendRequests == null) {
-      return left(const FriendFailure.unexpected()); // TODO name better
-    }
-
-    return failureOrFriendRequests;
+    return _receivedFriendRequestsController.value;
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
     _checkAuth();
-    final failureOrFriendRequests = _sentFriendRequestsController.value;
 
-    if (failureOrFriendRequests == null) {
-      return left(const FriendFailure.unexpected()); // TODO name better
-    }
-
-    return failureOrFriendRequests;
+    return _sentFriendRequestsController.value;
   }
 
   // TODO implement more efficient and add pagination

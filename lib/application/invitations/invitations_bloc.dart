@@ -31,15 +31,17 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   ) : super(
           InvitationsState(
             receivedGameInvitations:
-                _gameInvitationFacade.getReceivedGameInvitations().fold(
-                      (failure) => throw Error(),
-                      (invitations) => invitations,
-                    ),
+                _gameInvitationFacade.getReceivedGameInvitations()?.fold(
+                          (failure) => throw Error(),
+                          (invitations) => invitations,
+                        ) ??
+                    (throw Error()),
             sentGameInvitations:
-                _gameInvitationFacade.getSentGameInvitations().fold(
-                      (failure) => throw Error(),
-                      (invitations) => invitations,
-                    ),
+                _gameInvitationFacade.getSentGameInvitations()?.fold(
+                          (failure) => throw Error(),
+                          (invitations) => invitations,
+                        ) ??
+                    (throw Error()),
           ),
         ) {
     _receivedGameInvitationsSubscription = _gameInvitationFacade

@@ -32,7 +32,62 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     this._invitationFacade,
     this._friendFacade,
     this._playBloc,
-  ) : super(const HomeState.loadInProgress()) {
+  ) : super(
+    // TODO initial state function
+          _userFacade.getUser()?.fold(
+                    (failure) => HomeState.failure(failure: failure),
+                    (user) => _invitationFacade
+                        .getReceivedGameInvitations()
+                        ?.fold(
+                          (failure) => HomeState.failure(failure: failure),
+                          (receivedInvitations) => _invitationFacade
+                              .getSentGameInvitations()
+                              ?.fold(
+                                (failure) =>
+                                    HomeState.failure(failure: failure),
+                                (sentInvitations) => _friendFacade
+                                    .getFriends()
+                                    ?.fold(
+                                      (failure) =>
+                                          HomeState.failure(failure: failure),
+                                      (friends) => _friendFacade
+                                          .getReceivedFriendRequests()
+                                          ?.fold(
+                                            (failure) => HomeState.failure(
+                                              failure: failure,
+                                            ),
+                                            (receivedFriendRequests) =>
+                                                _friendFacade
+                                                    .getSentFriendRequests()
+                                                    ?.fold(
+                                                      (failure) =>
+                                                          HomeState.failure(
+                                                        failure: failure,
+                                                      ),
+                                                      (sentFriendRequests) => HomeState.loadSuccess(
+                                                          user: user,
+                                                          unreadInvitations:
+                                                              receivedInvitations
+                                                                  .iter
+                                                                  .where((element) =>
+                                                                      !element
+                                                                          .read)
+                                                                  .length,
+                                                          unreadFriendRequests:
+                                                              receivedFriendRequests
+                                                                  .iter
+                                                                  .where((element) =>
+                                                                      !element
+                                                                          .read)
+                                                                  .length),
+                                                    ),
+                                          ),
+                                    ),
+                              ),
+                        ),
+                  ) ??
+              const HomeState.loadInProgress(),
+        ) {
     add(const HomeEvent.watchStarted());
   }
 

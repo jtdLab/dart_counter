@@ -24,13 +24,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     this._authFacade,
     this._userFacade,
   ) : super(
-          _userFacade.getUser().fold(
-                (failure) => throw Error(),
-                (user) => SettingsState(
-                  user: user,
-                  localeChanged: false,
-                ),
-              ),
+          _userFacade.getUser()?.fold(
+                    (failure) => throw Error(),
+                    (user) => SettingsState(
+                      user: user,
+                      localeChanged: false,
+                    ),
+                  ) ??
+              (throw Error()),
         ) {
     _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
       return failurOrUser.fold(
