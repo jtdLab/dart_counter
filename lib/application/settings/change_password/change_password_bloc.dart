@@ -17,10 +17,10 @@ part 'change_password_state.dart';
 @lazySingleton
 class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
+  final IAuthFacade _authFacade;
 
   ChangePasswordBloc(
-    this._userFacade,
+    this._authFacade,
   ) : super(
           ChangePasswordState.initial(),
         );
@@ -64,7 +64,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
 
   // TODO more granular error handling
   Stream<ChangePasswordState> _mapConfirmPressedToState() async* {
-    UserFailure? userFailure;
+    AuthFailure? authFailure;
     final isOldPasswordValid = state.oldPassword.isValid();
     final isNewPasswordValid = state.newPassword.isValid();
     final isNewPasswordAgainValid = state.newPasswordAgain.isValid();
@@ -74,7 +74,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         isNewPasswordAgainValid &&
         newPasswordsEqual) {
       yield state.copyWith(isSubmitting: true);
-      userFailure = (await _userFacade.updatePassword(
+      authFailure = (await _authFacade.updatePassword(
         oldPassword: state.oldPassword,
         newPassword: state.newPassword,
       ))
@@ -83,13 +83,13 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         (_) => null,
       );
     } else {
-      userFailure = const UserFailure.failure();
+      authFailure = const AuthFailure.serverError();
     }
     yield state.copyWith(
       showErrorMessages: true,
       isSubmitting: false,
-      successful: userFailure == null,
-      userFailure: userFailure,
+      successful: authFailure == null,
+      authFailure: authFailure,
     );
   }
 }

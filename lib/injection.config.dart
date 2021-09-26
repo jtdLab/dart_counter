@@ -55,8 +55,8 @@ import 'domain/play/i_play_online_facade.dart' as _i43;
 import 'domain/user/i_user_facade.dart' as _i24;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i40;
 import 'infrastructure/auth/mocked_auth_facade.dart' as _i11;
-import 'infrastructure/connectivity/connectivity_facade.dart' as _i14;
-import 'infrastructure/connectivity/mocked_connectivity_facade.dart' as _i13;
+import 'infrastructure/connectivity/connectivity_facade.dart' as _i13;
+import 'infrastructure/connectivity/mocked_connectivity_facade.dart' as _i14;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i59;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i58;
 import 'infrastructure/friend/friend_facade.dart' as _i41;
@@ -98,11 +98,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i10.IAuthFacade>(() => _i11.MockedAuthFacade(),
       registerFor: {_dev});
   gh.lazySingleton<_i12.IConnectivityFacade>(
-      () => _i13.MockedConnectivityFacade(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i12.IConnectivityFacade>(
-      () => _i14.ConnectivityFacade(get<_i3.Connectivity>()),
+      () => _i13.ConnectivityFacade(get<_i3.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i12.IConnectivityFacade>(
+      () => _i14.MockedConnectivityFacade(),
+      registerFor: {_dev});
   gh.lazySingleton<_i15.IFriendFacade>(
       () => _i16.MockedFriendFacade(get<_i10.IAuthFacade>()),
       registerFor: {_dev});
@@ -135,7 +135,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i34.ChangeEmailBloc>(
       () => _i34.ChangeEmailBloc(get<_i24.IUserFacade>()));
   gh.lazySingleton<_i35.ChangePasswordBloc>(
-      () => _i35.ChangePasswordBloc(get<_i24.IUserFacade>()));
+      () => _i35.ChangePasswordBloc(get<_i10.IAuthFacade>()));
   gh.lazySingleton<_i36.ChangeUsernameBloc>(
       () => _i36.ChangeUsernameBloc(get<_i24.IUserFacade>()));
   gh.lazySingleton<_i37.EditProfileImageBloc>(
@@ -167,7 +167,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i46.UserFacade(
           get<_i6.FirebaseFirestore>(),
           get<_i8.FirebaseStorage>(),
-          get<_i5.FirebaseAuth>(),
+          get<_i10.IAuthFacade>(),
           get<_i31.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i47.PlayBloc>(() => _i47.PlayBloc(

@@ -33,9 +33,33 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     this._friendFacade,
     this._playBloc,
   ) : super(const HomeState.loadInProgress()) {
+    add(const HomeEvent.watchStarted());
+  }
+
+  @override
+  Stream<HomeState> mapEventToState(
+    HomeEvent event,
+  ) async* {
+    yield* event.map(
+        watchStarted: (_) => _mapWatchStartedToState(),
+        goToInvitationsPressed: (_) => _mapGoToInvitationsPressedToState(),
+        goToFriendsPressed: (_) => _mapGoToFriendsPressedToState(),
+        createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
+        createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
+        userReceived: (event) => _mapUserReceivedToState(event),
+        gameReceived: (event) => _mapGameReceivedToState(event),
+        unreadInvitationsReceived: (event) =>
+            _mapUnreadInvitationsReceivedToState(event),
+        unreadFriendRequestsReceived: (event) =>
+            _mapUnreadFriendRequestsReceivedToState(event),
+        failureReceived: (event) => _mapFailureReceivedToState(event));
+  }
+
+  Stream<HomeState> _mapWatchStartedToState() async* {
+    await Future.delayed(const Duration(milliseconds: 500));
     _userSubscription = _userFacade.watchUser().listen(
           (failureOrUser) => failureOrUser.fold(
-            (failure) => add(HomeEvent.failurReceived(failure: failure)),
+            (failure) => add(HomeEvent.failureReceived(failure: failure)),
             (user) => add(HomeEvent.userReceived(user: user)),
           ),
         );
@@ -43,7 +67,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     _unreadInvitationsSubscription =
         _invitationFacade.watchReceivedInvitations().listen(
               (failureOrInvitations) => failureOrInvitations.fold(
-                (failure) => add(HomeEvent.failurReceived(failure: failure)),
+                (failure) => add(HomeEvent.failureReceived(failure: failure)),
                 (invitations) => add(
                   HomeEvent.unreadInvitationsReceived(
                     unreadInvitations: invitations.iter
@@ -57,7 +81,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     _unreadFriendRequestsSubscription =
         _friendFacade.watchReceivedFriendRequests().listen(
               (failureOrFriendRequests) => failureOrFriendRequests.fold(
-                (failure) => add(HomeEvent.failurReceived(failure: failure)),
+                (failure) => add(HomeEvent.failureReceived(failure: failure)),
                 (friendRequests) => add(
                   HomeEvent.unreadFriendRequestsReceived(
                     unreadFriendRequests: friendRequests.iter
@@ -67,24 +91,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
                 ),
               ),
             );
-  }
-
-  @override
-  Stream<HomeState> mapEventToState(
-    HomeEvent event,
-  ) async* {
-    yield* event.map(
-        goToInvitationsPressed: (_) => _mapGoToInvitationsPressedToState(),
-        goToFriendsPressed: (_) => _mapGoToFriendsPressedToState(),
-        createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
-        createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
-        userReceived: (event) => _mapUserReceivedToState(event),
-        gameReceived: (event) => _mapGameReceivedToState(event),
-        unreadInvitationsReceived: (event) =>
-            _mapUnreadInvitationsReceivedToState(event),
-        unreadFriendRequestsReceived: (event) =>
-            _mapUnreadFriendRequestsReceivedToState(event),
-        failurReceived: (event) => _mapFailureReceivedToState(event));
   }
 
   Stream<HomeState> _mapGoToInvitationsPressedToState() async* {
@@ -118,6 +124,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   ) async* {
     final user = event.user;
 
+    /**
+   *   final state = this.state;
+    if (state is HomeLoadInProgress) {
+      final unreadInvitations = state.unreadInvitations;
+      final unreadFriendRequests = state.unreadFriendRequests;
+      if (unreadInvitations != null && unreadFriendRequests != null) {
+          print('c');
+            Future.delayed(const Duration(seconds: 5));
+        yield HomeState.loadSuccess(
+          user: user,
+          unreadInvitations: unreadInvitations,
+          unreadFriendRequests: unreadFriendRequests,
+        );
+      }
+
+      yield state.copyWith(user: user);
+    } else if (state is HomeLoadSuccess) {
+      yield state.copyWith(user: user);
+    } else {
+      yield HomeState.loadInProgress(user: user);
+    }
+    */
+
     yield state.map(
       loadInProgress: (loadInProgress) {
         final unreadInvitations = loadInProgress.unreadInvitations;
@@ -133,7 +162,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
         return loadInProgress.copyWith(user: user);
       },
       loadSuccess: (loadSuccess) => loadSuccess.copyWith(user: user),
-      failure: (_) => HomeState.loadInProgress(user: user),
+      failure: (failure) => failure,
     );
   }
 
@@ -148,6 +177,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     UnreadInvitationsReceived event,
   ) async* {
     final unreadInvitations = event.unreadInvitations;
+
+    /**
+     * final state = this.state;
+    if (state is HomeLoadInProgress) {
+      final user = state.user;
+      final unreadFriendRequests = state.unreadFriendRequests;
+      if (user != null && unreadFriendRequests != null) {
+        print('b');
+        Future.delayed(const Duration(seconds: 5));
+        yield HomeState.loadSuccess(
+          user: user,
+          unreadInvitations: unreadInvitations,
+          unreadFriendRequests: unreadFriendRequests,
+        );
+      }
+
+      yield state.copyWith(unreadInvitations: unreadInvitations);
+    } else if (state is HomeLoadSuccess) {
+      yield state.copyWith(
+        unreadInvitations: unreadInvitations,
+      );
+    } else {
+      yield HomeState.loadInProgress(unreadInvitations: unreadInvitations);
+    }
+     */
 
     yield state.map(
       loadInProgress: (loadInProgress) {
@@ -166,8 +220,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       loadSuccess: (loadSuccess) => loadSuccess.copyWith(
         unreadInvitations: unreadInvitations,
       ),
-      failure: (_) =>
-          HomeState.loadInProgress(unreadInvitations: unreadInvitations),
+      failure: (failure) => failure,
     );
   }
 
@@ -175,6 +228,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     UnreadFriendRequestsReceived event,
   ) async* {
     final unreadFriendRequests = event.unreadFriendRequests;
+
+/**
+ * 
+    final state = this.state;
+    if (state is HomeLoadInProgress) {
+      final user = state.user;
+      final unreadInvitations = state.unreadInvitations;
+
+      if (user != null && unreadInvitations != null) {
+        print('a');
+        Future.delayed(const Duration(seconds: 5));
+        yield HomeState.loadSuccess(
+          user: user,
+          unreadInvitations: unreadInvitations,
+          unreadFriendRequests: unreadFriendRequests,
+        );
+      }
+
+      yield state.copyWith(
+        unreadFriendRequests: unreadFriendRequests,
+      );
+    } else if (state is HomeLoadSuccess) {
+      yield state.copyWith(
+        unreadFriendRequests: unreadFriendRequests,
+      );
+    } else {
+      yield HomeState.loadInProgress(
+          unreadFriendRequests: unreadFriendRequests);
+    }
+
+ */
 
     yield state.map(
       loadInProgress: (loadInProgress) {
@@ -196,8 +280,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       loadSuccess: (loadSuccess) => loadSuccess.copyWith(
         unreadFriendRequests: unreadFriendRequests,
       ),
-      failure: (_) =>
-          HomeState.loadInProgress(unreadFriendRequests: unreadFriendRequests),
+      failure: (failure) => failure,
     );
   }
 

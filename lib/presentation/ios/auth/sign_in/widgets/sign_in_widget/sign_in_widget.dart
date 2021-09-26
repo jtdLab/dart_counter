@@ -58,12 +58,30 @@ class SignInWidget extends StatelessWidget {
                     SignInEvent.passwordChanged(passwordString),
                   ),
             ),
-            AppPrimaryButton(
-              text: LocaleKeys.signIn.tr(),
-              onPressed: () => context.read<SignInBloc>().add(
-                    const SignInEvent.signInPressed(),
+            if (state.isSubmitting) ...[
+              SizedBox(
+                width: double.infinity,
+                height: size55(context),
+                child: Container(
+                  color: AppColors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Lottie.asset(
+                      AppAnimations.loading_circle_white,
+                      width: size12(context),
+                      height: size12(context),
+                    ),
                   ),
-            ),
+                ),
+              )
+            ] else ...[
+              AppPrimaryButton(
+                text: LocaleKeys.signIn.tr(),
+                onPressed: () => context.read<SignInBloc>().add(
+                      const SignInEvent.signInPressed(),
+                    ),
+              ),
+            ],
             const AppSpacer.small(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -20,7 +20,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(
     this._userFacade,
   ) : super(
-          ProfileState.initial(user: _userFacade.getUser()),
+          _userFacade.getUser().fold(
+                (failure) => throw Error(),
+                (user) => ProfileState.initial(user: user),
+              ),
         ) {
     _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
       return failurOrUser.fold(

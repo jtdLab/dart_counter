@@ -16,7 +16,6 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOnlineFacade)
@@ -58,7 +57,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
 
   @override
   Future<Either<PlayFailure, Unit>> createGame() async {
-    final user = await _userFacade.fetchUser();
+    final user = _userFacade.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,
@@ -81,7 +80,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> joinGame({
     required UniqueId gameId,
   }) async {
-    final user = await _userFacade.fetchUser();
+    final user = _userFacade.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,

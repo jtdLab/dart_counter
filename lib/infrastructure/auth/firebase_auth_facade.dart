@@ -30,6 +30,28 @@ class FirebaseAuthFacade implements IAuthFacade {
   );
 
   @override
+  UniqueId? userId() {
+    final uid = _auth.currentUser?.uid;
+
+    if (uid == null) {
+      return null;
+    }
+
+    return UniqueId.fromUniqueString(uid);
+  }
+
+  @override
+  Future<String>? idToken() async {
+    final user = _auth.currentUser;
+
+    if (user == null) {
+      return Future.value(null);
+    }
+
+    return user.getIdToken();
+  }
+
+  @override
   bool isAuthenticated() => _auth.currentUser?.uid != null;
 
   @override
@@ -207,6 +229,32 @@ class FirebaseAuthFacade implements IAuthFacade {
       return right(unit);
     } catch (e) {
       return left(const AuthFailure.serverError()); // TODO name better
+    }
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> updatePassword({
+    required Password oldPassword,
+    required Password newPassword,
+  }) async {
+    if (!oldPassword.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+    if (!newPassword.isValid()) {
+      return left(const AuthFailure.serverError()); // TODO name better
+    }
+
+    try {
+      final user = _auth.currentUser!;
+      final credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: oldPassword.getOrCrash(),
+      );
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword.getOrCrash());
+      return right(unit);
+    } catch (e) {
+      return left(const AuthFailure.serverError());
     }
   }
 

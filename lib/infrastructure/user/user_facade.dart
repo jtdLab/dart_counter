@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -11,14 +13,11 @@ import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart';
 import 'package:injectable/injectable.dart';
-import 'package:social_client/social_client.dart';
 import 'package:rxdart/rxdart.dart';
-
-// TODO idToken
+import 'package:social_client/social_client.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -26,26 +25,36 @@ import 'package:rxdart/rxdart.dart';
 class UserFacade implements IUserFacade {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
-  final auth.FirebaseAuth _auth;
+  final IAuthFacade _authFacade;
   final SocialClient _socialClient;
 
-  final BehaviorSubject<User> _userController;
+  BehaviorSubject<Either<UserFailure, User>> _userController;
 
   UserFacade(
     this._firestore,
     this._storage,
-    this._auth,
+    this._authFacade,
     this._socialClient,
-  ) : _userController = BehaviorSubject();
+  ) : _userController = BehaviorSubject() {
+    _authFacade.watchIsAuthenticated().listen((event) async {
+      await _userController.close(); // TODO
+      _userController = BehaviorSubject();
+      _userController.addStream(watchUser());
+    });
+  }
 
   @override
-  User getUser() {
-    final user = _userController.value;
-    if (user == null) {
-      throw Error(); // TODO
+  Either<UserFailure, User> getUser() {
+    if (_authFacade.isAuthenticated()) {
+      final user = _userController.value;
+      if (user == null) {
+        throw Error(); // TODO
+      }
+
+      return user;
     }
 
-    return user;
+    throw NotAuthenticatedError();
   }
 
   @override
@@ -58,34 +67,12 @@ class UserFacade implements IUserFacade {
     }
 
     yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
-      final idToken = await _auth.currentUser!.getIdToken();
+      final idToken = await _authFacade.idToken()!;
       final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken);
-      _userController.add(user); // TODO better pls single source of truth
       return right(user);
     }).onErrorReturnWith(
       (error) => left(const UserFailure.unableToLoadData()),
     );
-  }
-
-  @override
-  Future<Either<UserFailure, User>> fetchUser() async {
-    final DocumentReference<Object?> userDoc;
-    try {
-      userDoc = _firestore.userDocument();
-    } catch (e) {
-      rethrow;
-    }
-
-    try {
-      final doc = await userDoc.get();
-      final idToken = await _auth.currentUser!.getIdToken();
-      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken);
-      _userController.add(user); // TODO better pls single source of truth
-      return right(user);
-    } catch (e) {
-      print(e);
-      return left(const UserFailure.unableToLoadData()); // TODO name better
-    }
   }
 
   @override
@@ -164,31 +151,5 @@ class UserFacade implements IUserFacade {
     }
 
     return left(const UserFailure.failure()); // TODO name better
-  }
-
-  @override
-  Future<Either<UserFailure, Unit>> updatePassword({
-    required Password oldPassword,
-    required Password newPassword,
-  }) async {
-    if (!oldPassword.isValid()) {
-      return left(const UserFailure.failure()); // TODO name better
-    }
-    if (!newPassword.isValid()) {
-      return left(const UserFailure.failure()); // TODO name better
-    }
-
-    try {
-      final user = _auth.currentUser!;
-      final credential = auth.EmailAuthProvider.credential(
-        email: user.email!,
-        password: oldPassword.getOrCrash(),
-      );
-      await user.reauthenticateWithCredential(credential);
-      await user.updatePassword(newPassword.getOrCrash());
-      return right(unit);
-    } catch (e) {
-      return left(const UserFailure.failure());
-    }
   }
 }

@@ -20,41 +20,31 @@ class MockedUserFacade implements IUserFacade {
 
   final BehaviorSubject<Either<UserFailure, User>> _userController;
 
-  User _user;
-
   MockedUserFacade(
     this._authFacade,
-  )   : _userController = BehaviorSubject(),
-        _user = User.dummy() {
+  ) : _userController = BehaviorSubject() {
     _authFacade.watchIsAuthenticated().listen((isAuthenticated) {
-      _userController.add(right(_user));
+      _userController.add(right(User.dummy()));
     });
   }
 
   @override
-  User getUser() => _user;
-
-  @override
-  Stream<Either<UserFailure, User>> watchUser() {
+  Either<UserFailure, User> getUser() {
     if (_authFacade.isAuthenticated()) {
-      return _userController.stream;
+      if (hasNetworkConnection) {
+        return _userController.value!;
+      }
+
+      return left(const UserFailure.failure()); // TODO name better
     }
 
     throw NotAuthenticatedError();
   }
 
   @override
-  Future<Either<UserFailure, User>> fetchUser() async {
+  Stream<Either<UserFailure, User>> watchUser() {
     if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        if (_authFacade.isAuthenticated()) {
-          return right(_user);
-        } else {
-          throw NotAuthenticatedError();
-        }
-      }
-
-      return left(const UserFailure.failure()); // TODO name better
+      return _userController.stream; // TODO does this emit on subscribe
     }
 
     throw NotAuthenticatedError();
@@ -66,11 +56,15 @@ class MockedUserFacade implements IUserFacade {
   }) async {
     if (_authFacade.isAuthenticated()) {
       if (hasNetworkConnection) {
-        final newProfile = _user.profile.copyWith(
+        final user = _userController.value!.toOption().toNullable()!;
+        final newProfile = user.profile.copyWith(
           photoUrl: faker.image.image(width: 200, height: 200),
         );
-        _user = _user.copyWith(profile: newProfile);
-        _userController.add(right(_user));
+        _userController.add(
+          right(
+            user.copyWith(profile: newProfile),
+          ),
+        );
         return right(unit);
       }
 
@@ -84,9 +78,13 @@ class MockedUserFacade implements IUserFacade {
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     if (_authFacade.isAuthenticated()) {
       if (hasNetworkConnection) {
-        final newProfile = _user.profile.copyWith(photoUrl: null);
-        _user = _user.copyWith(profile: newProfile);
-        _userController.add(right(_user));
+        final user = _userController.value!.toOption().toNullable()!;
+        final newProfile = user.profile.copyWith(photoUrl: null);
+        _userController.add(
+          right(
+            user.copyWith(profile: newProfile),
+          ),
+        );
         return right(unit);
       }
 
@@ -104,9 +102,13 @@ class MockedUserFacade implements IUserFacade {
       if (hasNetworkConnection) {
         if (newUsername.isValid()) {
           if (_authFacade.isAuthenticated()) {
-            final newProfile = _user.profile.copyWith(username: newUsername);
-            _user = _user.copyWith(profile: newProfile);
-            _userController.add(right(_user));
+            final user = _userController.value!.toOption().toNullable()!;
+            final newProfile = user.profile.copyWith(username: newUsername);
+            _userController.add(
+              right(
+                user.copyWith(profile: newProfile),
+              ),
+            );
             return right(unit);
           }
         }
@@ -126,28 +128,12 @@ class MockedUserFacade implements IUserFacade {
       if (hasNetworkConnection) {
         if (newEmailAddress.isValid()) {
           if (_authFacade.isAuthenticated()) {
-            _user = _user.copyWith(emailAddress: newEmailAddress);
-            _userController.add(right(_user));
-            return right(unit);
-          }
-        }
-      }
-
-      return left(const UserFailure.failure()); // TODO name better
-    }
-
-    throw NotAuthenticatedError();
-  }
-
-  @override
-  Future<Either<UserFailure, Unit>> updatePassword({
-    required Password oldPassword,
-    required Password newPassword,
-  }) async {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        if (oldPassword.isValid() && newPassword.isValid()) {
-          if (oldPassword.getOrCrash() == newPassword.getOrCrash()) {
+            final user = _userController.value!.toOption().toNullable()!;
+            _userController.add(
+              right(
+                user.copyWith(emailAddress: newEmailAddress),
+              ),
+            );
             return right(unit);
           }
         }

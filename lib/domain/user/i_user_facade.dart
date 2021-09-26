@@ -13,18 +13,14 @@ abstract class IUserFacade {
   /// Returns the signed in user.
   ///
   /// Throws [Error] if the user is not signed in or loaded.
-  /// 
-  User getUser(); // TODO good ?
+  ///
+  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  Either<UserFailure, User> getUser(); // TODO good ?
 
   /// Returns a stream of the signed in user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.
   Stream<Either<UserFailure, User>> watchUser();
-
-  /// Returns the signed in user.
-  ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
-  Future<Either<UserFailure, User>> fetchUser();
 
   /// Updates the profile photo of the user.
   ///
@@ -51,13 +47,5 @@ abstract class IUserFacade {
   /// Throws [NotAuthenticatedError] if the user is not signed in.
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
-  });
-
-  /// Updates the password of the user.
-  ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
-  Future<Either<UserFailure, Unit>> updatePassword({
-    required Password oldPassword,
-    required Password newPassword,
   });
 }

@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+
 part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -63,11 +64,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
 
     if (isEmailValid && isPasswordValid) {
-      authFailure = (await _authFacade.singInWithEmailAndPassword(
+      await Future.delayed(const Duration(seconds: 1));
+      final signInResult = await _authFacade.singInWithEmailAndPassword(
         emailAddress: state.email,
         password: state.password,
-      ))
-          .fold(
+      );
+      authFailure = signInResult.fold(
         (failure) => failure,
         (_) => null,
       );
@@ -76,16 +78,17 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     }
 
     yield state.copyWith(
-      isSubmitting: false,
+      isSubmitting: authFailure == null,
       showErrorMessages: true,
       authFailure: authFailure,
     );
   }
 
   Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
-    final authFailure = (await _authFacade.signInWithFacebook()).fold(
+    final signInResult = await _authFacade.signInWithFacebook();
+    final authFailure = signInResult.fold(
       (failure) => failure,
-      (r) => null,
+      (_) => null,
     );
     yield state.copyWith(
       isSubmitting: false,
@@ -95,9 +98,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }
 
   Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
-    final authFailure = (await _authFacade.signInWithGoogle()).fold(
+    final signInResult = await _authFacade.signInWithGoogle();
+    final authFailure = signInResult.fold(
       (failure) => failure,
-      (r) => null,
+      (_) => null,
     );
     yield state.copyWith(
       isSubmitting: false,
@@ -107,9 +111,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }
 
   Stream<SignInState> _mapSignInWithApplePressedToState() async* {
-    final authFailure = (await _authFacade.signInWithApple()).fold(
+    final signInResult = await _authFacade.signInWithApple();
+    final authFailure = signInResult.fold(
       (failure) => failure,
-      (r) => null,
+      (_) => null,
     );
     yield state.copyWith(
       isSubmitting: false,

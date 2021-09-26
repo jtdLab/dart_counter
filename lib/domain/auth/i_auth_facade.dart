@@ -1,9 +1,16 @@
+import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 
 /// Domain interface for all actions related to authentication.
 abstract class IAuthFacade {
+  /// Returns the id of the app-user if authenticated or `null` if not authenticated.
+  UniqueId? userId();
+
+  /// Returns the idToken of the app-user if authenticated or `null` if not authenticated.
+  Future<String>? idToken();
+
   /// Returns `true` if the app-user is authenticated.
   bool isAuthenticated();
 
@@ -38,5 +45,13 @@ abstract class IAuthFacade {
   /// Sends a password-reset-email the users email address.
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
     required EmailAddress emailAddress,
+  });
+
+  /// Updates the password of the user.
+  ///
+  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  Future<Either<AuthFailure, Unit>> updatePassword({
+    required Password oldPassword,
+    required Password newPassword,
   });
 }

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/injection.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// App specific extensions on firebase firestore
@@ -10,12 +10,14 @@ extension FirestoreX on FirebaseFirestore {
   ///
   /// Throws [NotAuthenticatedError] if app user is not signed in.
   DocumentReference userDocument() {
-    final uid = getIt<FirebaseAuth>().currentUser?.uid;
+    final uid = getIt<IAuthFacade>().userId();
 
     if (uid == null) {
       throw NotAuthenticatedError();
     } else {
-      return getIt<FirebaseFirestore>().collection('users').doc(uid);
+      return getIt<FirebaseFirestore>()
+          .collection('users')
+          .doc(uid.getOrCrash());
     }
   }
 

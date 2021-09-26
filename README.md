@@ -44,3 +44,5 @@ flutter pub run easy_localization:generate -S assets/languages
 
 // in user invitations and friend facades us the behaivour subject as single source of truth
 // to does user facade even need to listen to server or is a single fetch enough when updated on cleint correctly if email change or someting like this THIS MIGHT BE BULLSHIT xD
+
+// TODO social sign in in mocked auth facade popover

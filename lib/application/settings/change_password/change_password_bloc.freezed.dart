@@ -595,7 +595,7 @@ class _$ChangePasswordStateTearOff {
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
-      UserFailure? userFailure}) {
+      AuthFailure? authFailure}) {
     return _ChangePasswordState(
       oldPassword: oldPassword,
       newPassword: newPassword,
@@ -603,7 +603,7 @@ class _$ChangePasswordStateTearOff {
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       successful: successful,
-      userFailure: userFailure,
+      authFailure: authFailure,
     );
   }
 }
@@ -619,7 +619,7 @@ mixin _$ChangePasswordState {
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get successful => throw _privateConstructorUsedError;
-  UserFailure? get userFailure => throw _privateConstructorUsedError;
+  AuthFailure? get authFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChangePasswordStateCopyWith<ChangePasswordState> get copyWith =>
@@ -638,9 +638,9 @@ abstract class $ChangePasswordStateCopyWith<$Res> {
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
-      UserFailure? userFailure});
+      AuthFailure? authFailure});
 
-  $UserFailureCopyWith<$Res>? get userFailure;
+  $AuthFailureCopyWith<$Res>? get authFailure;
 }
 
 /// @nodoc
@@ -660,7 +660,7 @@ class _$ChangePasswordStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
-    Object? userFailure = freezed,
+    Object? authFailure = freezed,
   }) {
     return _then(_value.copyWith(
       oldPassword: oldPassword == freezed
@@ -687,21 +687,21 @@ class _$ChangePasswordStateCopyWithImpl<$Res>
           ? _value.successful
           : successful // ignore: cast_nullable_to_non_nullable
               as bool,
-      userFailure: userFailure == freezed
-          ? _value.userFailure
-          : userFailure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
+      authFailure: authFailure == freezed
+          ? _value.authFailure
+          : authFailure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure?,
     ));
   }
 
   @override
-  $UserFailureCopyWith<$Res>? get userFailure {
-    if (_value.userFailure == null) {
+  $AuthFailureCopyWith<$Res>? get authFailure {
+    if (_value.authFailure == null) {
       return null;
     }
 
-    return $UserFailureCopyWith<$Res>(_value.userFailure!, (value) {
-      return _then(_value.copyWith(userFailure: value));
+    return $AuthFailureCopyWith<$Res>(_value.authFailure!, (value) {
+      return _then(_value.copyWith(authFailure: value));
     });
   }
 }
@@ -720,10 +720,10 @@ abstract class _$ChangePasswordStateCopyWith<$Res>
       bool showErrorMessages,
       bool isSubmitting,
       bool successful,
-      UserFailure? userFailure});
+      AuthFailure? authFailure});
 
   @override
-  $UserFailureCopyWith<$Res>? get userFailure;
+  $AuthFailureCopyWith<$Res>? get authFailure;
 }
 
 /// @nodoc
@@ -745,7 +745,7 @@ class __$ChangePasswordStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? successful = freezed,
-    Object? userFailure = freezed,
+    Object? authFailure = freezed,
   }) {
     return _then(_ChangePasswordState(
       oldPassword: oldPassword == freezed
@@ -772,10 +772,10 @@ class __$ChangePasswordStateCopyWithImpl<$Res>
           ? _value.successful
           : successful // ignore: cast_nullable_to_non_nullable
               as bool,
-      userFailure: userFailure == freezed
-          ? _value.userFailure
-          : userFailure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
+      authFailure: authFailure == freezed
+          ? _value.authFailure
+          : authFailure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure?,
     ));
   }
 }
@@ -790,7 +790,7 @@ class _$_ChangePasswordState implements _ChangePasswordState {
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.successful,
-      this.userFailure});
+      this.authFailure});
 
   @override
   final Password oldPassword;
@@ -805,11 +805,11 @@ class _$_ChangePasswordState implements _ChangePasswordState {
   @override
   final bool successful;
   @override
-  final UserFailure? userFailure;
+  final AuthFailure? authFailure;
 
   @override
   String toString() {
-    return 'ChangePasswordState(oldPassword: $oldPassword, newPassword: $newPassword, newPasswordAgain: $newPasswordAgain, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, userFailure: $userFailure)';
+    return 'ChangePasswordState(oldPassword: $oldPassword, newPassword: $newPassword, newPasswordAgain: $newPasswordAgain, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, authFailure: $authFailure)';
   }
 
   @override
@@ -834,9 +834,9 @@ class _$_ChangePasswordState implements _ChangePasswordState {
             (identical(other.successful, successful) ||
                 const DeepCollectionEquality()
                     .equals(other.successful, successful)) &&
-            (identical(other.userFailure, userFailure) ||
+            (identical(other.authFailure, authFailure) ||
                 const DeepCollectionEquality()
-                    .equals(other.userFailure, userFailure)));
+                    .equals(other.authFailure, authFailure)));
   }
 
   @override
@@ -848,7 +848,7 @@ class _$_ChangePasswordState implements _ChangePasswordState {
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(userFailure);
+      const DeepCollectionEquality().hash(authFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -865,7 +865,7 @@ abstract class _ChangePasswordState implements ChangePasswordState {
       required bool showErrorMessages,
       required bool isSubmitting,
       required bool successful,
-      UserFailure? userFailure}) = _$_ChangePasswordState;
+      AuthFailure? authFailure}) = _$_ChangePasswordState;
 
   @override
   Password get oldPassword => throw _privateConstructorUsedError;
@@ -880,7 +880,7 @@ abstract class _ChangePasswordState implements ChangePasswordState {
   @override
   bool get successful => throw _privateConstructorUsedError;
   @override
-  UserFailure? get userFailure => throw _privateConstructorUsedError;
+  AuthFailure? get authFailure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ChangePasswordStateCopyWith<_ChangePasswordState> get copyWith =>

@@ -77,24 +77,31 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     final isPasswordValid = state.password.isValid();
     final isPasswordAgainValid = state.passwordAgain.isValid();
     final passwordsMatch = state.password == state.passwordAgain;
+    yield state.copyWith(
+      isSubmitting: true,
+      authFailure: null,
+    );
 
     if (isEmailValid &&
         isUsernameValid &&
         isPasswordValid &&
         isPasswordAgainValid &&
         passwordsMatch) {
-      yield state.copyWith(
-        isSubmitting: true,
-      );
-      authFailure = (await _authFacade.singUpWithEmailAndUsernameAndPassword(
+      await Future.delayed(const Duration(seconds: 1));
+      final signUpResult =
+          await _authFacade.singUpWithEmailAndUsernameAndPassword(
         emailAddress: state.email,
         username: state.username,
         password: state.password,
-      ))
-          .fold(
+      );
+      authFailure = signUpResult.fold(
         (failure) => failure,
         (_) => null,
       );
+
+      if (authFailure == null) {
+        return;
+      }
     }
 
     yield state.copyWith(

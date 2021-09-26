@@ -89,12 +89,30 @@ class SignUpWidget extends StatelessWidget {
                       state.password == state.passwordAgain),
               errorMessage: LocaleKeys.errorPasswordsDontMatch.tr(),
             ),
-            AppPrimaryButton(
-              text: LocaleKeys.signUp.tr(),
-              onPressed: () => context
-                  .read<SignUpBloc>()
-                  .add(const SignUpEvent.signUpPressed()),
-            ),
+            if (state.isSubmitting) ...[
+              SizedBox(
+                width: double.infinity,
+                height: size55(context),
+                child: Container(
+                  color: AppColors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Lottie.asset(
+                      AppAnimations.loading_circle_white,
+                      width: size12(context),
+                      height: size12(context),
+                    ),
+                  ),
+                ),
+              )
+            ] else ...[
+              AppPrimaryButton(
+                text: LocaleKeys.signUp.tr(),
+                onPressed: () => context
+                    .read<SignUpBloc>()
+                    .add(const SignUpEvent.signUpPressed()),
+              ),
+            ],
             const AppSpacer.small(),
             AppLinkButton(
               text: LocaleKeys.signIn.tr(),

@@ -17,31 +17,33 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return state.map(
-            loadInProgress: (_) => const LoadingWidget(),
-            loadSuccess: (_) {
-              return AppPage(
-                navigationBar: AppNavigationBar(
-                  leading: const SettingsButton(),
-                  trailing: Row(
-                    children: const [
-                      InvitationButton(),
-                      AppSpacer.large(
-                        orientation: Orientation.horizontal,
-                      ),
-                      FriendButton(),
-                      AppSpacer.large(
-                        orientation: Orientation.horizontal,
-                      ),
-                      StatsButton(),
-                    ],
-                  ),
+          return AppPage(
+            navigationBar: state.map(
+              loadInProgress: (_) => null,
+              loadSuccess: (_) => AppNavigationBar(
+                leading: const SettingsButton(),
+                trailing: Row(
+                  children: const [
+                    InvitationButton(),
+                    AppSpacer.large(
+                      orientation: Orientation.horizontal,
+                    ),
+                    FriendButton(),
+                    AppSpacer.large(
+                      orientation: Orientation.horizontal,
+                    ),
+                    StatsButton(),
+                  ],
                 ),
-                child: HomeWidget(),
-              );
-            },
-            failure: (_) => const Center(
-              child: Text('Error loading TODO'),
+              ),
+              failure: (_) => null,
+            ),
+            child: state.map(
+              loadInProgress: (_) => const LoadingWidget(),
+              loadSuccess: (_) => HomeWidget(),
+              failure: (_) => const Center(
+                child: Text('Error loading TODO'),
+              ),
             ),
           );
         },

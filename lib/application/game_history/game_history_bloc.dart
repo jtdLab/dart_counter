@@ -56,7 +56,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   }
 
   Stream<GameHistoryState> _mapFetchGameHistoryOnlineRequestedToState() async* {
-    final failureOrUser = await _userFacade.fetchUser();
+    final failureOrUser = _userFacade.getUser();
     final uid = failureOrUser.fold(
       (failure) => throw Error(), // TODO failure here pls
       (user) => user.id,
