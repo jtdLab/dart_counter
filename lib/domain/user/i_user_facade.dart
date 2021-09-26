@@ -12,8 +12,6 @@ class NotDecodableImageError extends Error {}
 abstract class IUserFacade {
   /// Returns the signed in user.
   ///
-  /// Throws [Error] if the user is not signed in or loaded.
-  ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.
   Either<UserFailure, User> getUser(); // TODO good ?
 

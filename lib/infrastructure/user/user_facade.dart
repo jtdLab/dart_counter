@@ -36,29 +36,30 @@ class UserFacade implements IUserFacade {
     this._authFacade,
     this._socialClient,
   ) : _userController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((event) async {
-      await _userController.close(); // TODO
-      _userController = BehaviorSubject();
-      _userController.addStream(watchUser());
+    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+      if (isAuthenticated) {
+        _userController = BehaviorSubject();
+        _userController.addStream(watchUser());
+      } else {
+        await _userController.close(); // TODO needed
+      }
     });
   }
 
   @override
   Either<UserFailure, User> getUser() {
-    if (_authFacade.isAuthenticated()) {
-      final user = _userController.value;
-      if (user == null) {
-        throw Error(); // TODO
-      }
-
-      return user;
+    _checkAuth();
+    final failureOrUser = _userController.value;
+    if (failureOrUser == null) {
+      return left(const UserFailure.failure());
     }
 
-    throw NotAuthenticatedError();
+    return failureOrUser;
   }
 
   @override
   Stream<Either<UserFailure, User>> watchUser() async* {
+    _checkAuth();
     final DocumentReference<Object?> userDoc;
     try {
       userDoc = _firestore.userDocument();
@@ -79,6 +80,7 @@ class UserFacade implements IUserFacade {
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
     required File newPhoto,
   }) async {
+    _checkAuth();
     final decodedImage = decodeImage(newPhoto.readAsBytesSync());
     if (decodedImage == null) {
       throw NotDecodableImageError();
@@ -103,6 +105,7 @@ class UserFacade implements IUserFacade {
 
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
+    _checkAuth();
     try {
       final photosRef = _storage.profilePhotoReference();
       await photosRef.delete();
@@ -120,6 +123,7 @@ class UserFacade implements IUserFacade {
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   }) async {
+    _checkAuth();
     if (!newUsername.isValid()) {
       return left(const UserFailure.failure()); // TODO name better
     }
@@ -139,6 +143,7 @@ class UserFacade implements IUserFacade {
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
   }) async {
+    _checkAuth();
     if (!newEmailAddress.isValid()) {
       return left(const UserFailure.failure()); // TODO name better
     }
@@ -151,5 +156,12 @@ class UserFacade implements IUserFacade {
     }
 
     return left(const UserFailure.failure()); // TODO name better
+  }
+
+  /// Throws [NotAuthenticatedError] if app-user is not signed in.
+  void _checkAuth() {
+    if (!_authFacade.isAuthenticated()) {
+      throw NotAuthenticatedError();
+    }
   }
 }

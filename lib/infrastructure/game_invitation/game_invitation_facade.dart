@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_client/dart_client.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
@@ -18,37 +19,57 @@ import 'game_invitation_dto.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IGameInvitationFacade)
 class GameInvitationFacade implements IGameInvitationFacade {
+  final IAuthFacade _authFacade;
   final FirebaseFirestore _firestore;
   final DartClient _dartClient;
   final SocialClient _socialClient;
 
-  final BehaviorSubject<KtList<GameInvitation>> _receivedInvitationsController;
-  final BehaviorSubject<KtList<GameInvitation>> _sentInvitationsController;
+  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _receivedInvitationsController;
+  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _sentInvitationsController;
 
   GameInvitationFacade(
+    this._authFacade,
     this._firestore,
     this._socialClient,
     this._dartClient,
   )   : _receivedInvitationsController = BehaviorSubject(),
+        _sentInvitationsController = BehaviorSubject() {
+    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+      if (isAuthenticated) {
+        _receivedInvitationsController = BehaviorSubject();
+        _receivedInvitationsController.addStream(watchReceivedInvitations());
         _sentInvitationsController = BehaviorSubject();
-
-  @override
-  KtList<GameInvitation> getReceivedGameInvitations() {
-    final receivedGameInvitations = _receivedInvitationsController.value;
-
-    if (receivedGameInvitations == null) {
-      throw Error(); // TODO
-    }
-
-    return receivedGameInvitations;
+        _sentInvitationsController.addStream(watchSentInvitations());
+      } else {
+        await _receivedInvitationsController.close(); // TODO needed
+        await _sentInvitationsController.close(); // TODO needed
+      }
+    });
   }
 
   @override
-  KtList<GameInvitation> getSentGameInvitations() {
+  Either<GameInvitationFailure, KtList<GameInvitation>>
+      getReceivedGameInvitations() {
+    _checkAuth();
+    final failureOrInvitations = _receivedInvitationsController.value;
+
+    if (failureOrInvitations == null) {
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+
+    return failureOrInvitations;
+  }
+
+  @override
+  Either<GameInvitationFailure, KtList<GameInvitation>>
+      getSentGameInvitations() {
+    _checkAuth();
     final sentGameInvitations = _sentInvitationsController.value;
 
     if (sentGameInvitations == null) {
-      throw Error(); // TODO
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
 
     return sentGameInvitations;
@@ -57,6 +78,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedInvitations() async* {
+    _checkAuth();
     final collection = _firestore.receivedGameInvitationsCollection();
 
     yield* collection
@@ -66,9 +88,6 @@ class GameInvitationFacade implements IGameInvitationFacade {
       final receivedGameInvitations = snapshot.docs
           .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
           .toImmutableList();
-      _receivedInvitationsController.add(
-        receivedGameInvitations, // TODO better pls single source of truth
-      );
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         receivedGameInvitations,
       );
@@ -80,6 +99,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   @override
   Future<Either<GameInvitationFailure, Unit>>
       markReceivedInvitationsAsRead() async {
+    _checkAuth();
     final CollectionReference<Object?> collection;
     try {
       collection = _firestore.receivedGameInvitationsCollection();
@@ -106,6 +126,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchSentInvitations() async* {
+    _checkAuth();
     final collection = _firestore.sentGameInvitationsCollection();
 
     yield* collection
@@ -115,9 +136,6 @@ class GameInvitationFacade implements IGameInvitationFacade {
       final sentGameInvitations = snapshot.docs
           .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
           .toImmutableList();
-      _sentInvitationsController.add(
-        sentGameInvitations, // TODO better pls single source of truth
-      );
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         sentGameInvitations,
       );
@@ -131,6 +149,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
     required UniqueId gameId,
     required UniqueId toId,
   }) async {
+    _checkAuth();
     final success = await _socialClient.sendGameInvitation(
       toId: toId.getOrCrash(),
     );
@@ -146,6 +165,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   Future<Either<GameInvitationFailure, Unit>> cancel({
     required GameInvitation invitation,
   }) async {
+    _checkAuth();
     final success = await _socialClient.cancelGameInvitation(
       toId: invitation.toId.getOrCrash(),
     );
@@ -161,6 +181,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   Future<Either<GameInvitationFailure, Unit>> accept({
     required GameInvitation invitation,
   }) async {
+    _checkAuth();
     // TODO this should be in on call and handled server side
     bool success = await _dartClient.joinGame(
       gameId: invitation.gameId.getOrCrash(),
@@ -181,6 +202,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
   Future<Either<GameInvitationFailure, Unit>> decline({
     required GameInvitation invitation,
   }) async {
+    _checkAuth();
     final success = await _socialClient.declineGameInvitation(
       fromId: invitation.fromId.getOrCrash(),
     );
@@ -189,6 +211,13 @@ class GameInvitationFacade implements IGameInvitationFacade {
       return right(unit);
     } else {
       return left(const GameInvitationFailure.unexpected());
+    }
+  }
+
+  /// Throws [NotAuthenticatedError] if app-user is not signed in.
+  void _checkAuth() {
+    if (!_authFacade.isAuthenticated()) {
+      throw NotAuthenticatedError();
     }
   }
 }

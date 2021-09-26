@@ -149,12 +149,15 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i9.GoogleSignIn>(), get<_i31.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i15.IFriendFacade>(
-      () => _i41.FriendFacade(get<_i24.IUserFacade>(),
+      () => _i41.FriendFacade(get<_i10.IAuthFacade>(), get<_i24.IUserFacade>(),
           get<_i6.FirebaseFirestore>(), get<_i31.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i20.IGameInvitationFacade>(
-      () => _i42.GameInvitationFacade(get<_i6.FirebaseFirestore>(),
-          get<_i31.SocialClient>(), get<_i4.DartClient>()),
+      () => _i42.GameInvitationFacade(
+          get<_i10.IAuthFacade>(),
+          get<_i6.FirebaseFirestore>(),
+          get<_i31.SocialClient>(),
+          get<_i4.DartClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i43.IPlayOnlineFacade>(
       () => _i44.MockedPlayOnlineFacade(get<_i24.IUserFacade>()),

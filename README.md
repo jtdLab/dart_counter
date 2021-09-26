@@ -46,3 +46,4 @@ flutter pub run easy_localization:generate -S assets/languages
 // to does user facade even need to listen to server or is a single fetch enough when updated on cleint correctly if email change or someting like this THIS MIGHT BE BULLSHIT xD
 
 // TODO social sign in in mocked auth facade popover
+// TODO maybe make friends and inviations mock facade like user facade to use behaivor subject as single sourece of truth

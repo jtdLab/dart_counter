@@ -18,130 +18,128 @@ import 'package:rxdart/rxdart.dart';
 class MockedUserFacade implements IUserFacade {
   final IAuthFacade _authFacade;
 
-  final BehaviorSubject<Either<UserFailure, User>> _userController;
+  BehaviorSubject<Either<UserFailure, User>> _userController;
 
   MockedUserFacade(
     this._authFacade,
   ) : _userController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) {
-      _userController.add(right(User.dummy()));
+    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+      if (isAuthenticated) {
+        _userController = BehaviorSubject.seeded(
+          hasNetworkConnection
+              ? right(User.dummy())
+              : left(const UserFailure.failure()), // TODO name better
+        );
+      } else {
+        await _userController.close(); // TODO needed
+      }
     });
   }
 
   @override
   Either<UserFailure, User> getUser() {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        return _userController.value!;
-      }
-
-      return left(const UserFailure.failure()); // TODO name better
+    _checkAuth();
+    if (hasNetworkConnection) {
+      return _userController.value!;
     }
 
-    throw NotAuthenticatedError();
+    return left(const UserFailure.failure()); // TODO name better
   }
 
   @override
   Stream<Either<UserFailure, User>> watchUser() {
-    if (_authFacade.isAuthenticated()) {
-      return _userController.stream; // TODO does this emit on subscribe
-    }
+    _checkAuth();
 
-    throw NotAuthenticatedError();
+    return _userController.stream; // TODO does this emit on subscribe
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
     required File newPhoto,
   }) async {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        final user = _userController.value!.toOption().toNullable()!;
-        final newProfile = user.profile.copyWith(
-          photoUrl: faker.image.image(width: 200, height: 200),
-        );
-        _userController.add(
-          right(
-            user.copyWith(profile: newProfile),
-          ),
-        );
-        return right(unit);
-      }
-
-      return left(const UserFailure.failure()); // TODO name better
+    _checkAuth();
+    if (hasNetworkConnection) {
+      final user = _userController.value!.toOption().toNullable()!;
+      final newProfile = user.profile.copyWith(
+        photoUrl: faker.image.image(width: 200, height: 200),
+      );
+      _userController.add(
+        right(
+          user.copyWith(profile: newProfile),
+        ),
+      );
+      return right(unit);
     }
 
-    throw NotAuthenticatedError();
+    return left(const UserFailure.failure()); // TODO name better
   }
 
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        final user = _userController.value!.toOption().toNullable()!;
-        final newProfile = user.profile.copyWith(photoUrl: null);
-        _userController.add(
-          right(
-            user.copyWith(profile: newProfile),
-          ),
-        );
-        return right(unit);
-      }
-
-      return left(const UserFailure.failure()); // TODO name better
+    _checkAuth();
+    if (hasNetworkConnection) {
+      final user = _userController.value!.toOption().toNullable()!;
+      final newProfile = user.profile.copyWith(photoUrl: null);
+      _userController.add(
+        right(
+          user.copyWith(profile: newProfile),
+        ),
+      );
+      return right(unit);
     }
 
-    throw NotAuthenticatedError();
+    return left(const UserFailure.failure()); // TODO name better
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   }) async {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        if (newUsername.isValid()) {
-          if (_authFacade.isAuthenticated()) {
-            final user = _userController.value!.toOption().toNullable()!;
-            final newProfile = user.profile.copyWith(username: newUsername);
-            _userController.add(
-              right(
-                user.copyWith(profile: newProfile),
-              ),
-            );
-            return right(unit);
-          }
+    _checkAuth();
+    if (hasNetworkConnection) {
+      if (newUsername.isValid()) {
+        if (_authFacade.isAuthenticated()) {
+          final user = _userController.value!.toOption().toNullable()!;
+          final newProfile = user.profile.copyWith(username: newUsername);
+          _userController.add(
+            right(
+              user.copyWith(profile: newProfile),
+            ),
+          );
+          return right(unit);
         }
       }
-
-      return left(const UserFailure.failure()); // TODO name better
     }
 
-    throw NotAuthenticatedError();
+    return left(const UserFailure.failure()); // TODO name better
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
   }) async {
-    if (_authFacade.isAuthenticated()) {
-      if (hasNetworkConnection) {
-        if (newEmailAddress.isValid()) {
-          if (_authFacade.isAuthenticated()) {
-            final user = _userController.value!.toOption().toNullable()!;
-            _userController.add(
-              right(
-                user.copyWith(emailAddress: newEmailAddress),
-              ),
-            );
-            return right(unit);
-          }
+    _checkAuth();
+    if (hasNetworkConnection) {
+      if (newEmailAddress.isValid()) {
+        if (_authFacade.isAuthenticated()) {
+          final user = _userController.value!.toOption().toNullable()!;
+          _userController.add(
+            right(
+              user.copyWith(emailAddress: newEmailAddress),
+            ),
+          );
+          return right(unit);
         }
       }
-
-      return left(const UserFailure.failure()); // TODO name better
     }
 
-    throw NotAuthenticatedError();
+    return left(const UserFailure.failure()); // TODO name better
+  }
+
+  /// Throws [NotAuthenticatedError] if app-user is not signed in.
+  void _checkAuth() {
+    if (!_authFacade.isAuthenticated()) {
+      throw NotAuthenticatedError();
+    }
   }
 }
