@@ -37,15 +37,35 @@ Future<void> main() async {
   FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 
-  final idToken = await FirebaseAuth.instance.currentUser!.getIdToken();
+  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: 'jonas@web.de',
+    password: 'testtest',
+  );
+  //print(credential);
 
-  DartClient client = DartClient(host: 'localhost', port: 7777);
+  //final doc = await FirebaseFirestore.instance.collection('c').doc('d').get();
+
+  /**
+   * final doc = await FirebaseFirestore.instance
+      .collection('bengel')
+      .doc('afl')
+      .snapshots()
+     .listen((event) {
+       print(event.data());
+     });
+   */
+
+  //final idToken = await FirebaseAuth.instance.currentUser!.getIdToken();
+
+  /**
+   * DartClient client = DartClient(host: 'localhost', port: 7777);
   client.watchGame().listen((event) {
     
   });
   await client.connect(idToken: idToken);
   client.joinGame(gameId: '3J3Kg2gW23R30K4c');
 
+   */
 
   // runApp(
   //   AppWidget(),

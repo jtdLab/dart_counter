@@ -58,6 +58,11 @@ abstract class AppImages {
   static const playersNew = 'assets/images/png/players_new.png';
   static const robotNew = 'assets/images/png/robot_new.png';
 
+  static const chevronWhiteBackNew =
+      'assets/images/png/chevron_white_back_new.png';
+  static const chevronWhiteForwardNew =
+      'assets/images/png/chevron_white_forward_new.png';
+
   static const fbNew = 'assets/images/png/fb_new.png';
   static const igNew = 'assets/images/png/ig_new.png';
   static const googleNew = 'assets/images/png/google_new.png';

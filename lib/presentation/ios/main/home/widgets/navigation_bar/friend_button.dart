@@ -17,7 +17,8 @@ class FriendButton extends StatelessWidget {
 
         if (unreadFriendRequests == 0) {
           return AppNavigationBarButton(
-            onPressed: () => context.router.push(const FriendsPageRoute()),
+            onPressed: () =>
+                context.router.push(const FriendsFlowRoute()),
             child: Image.asset(
               AppImages.playerNew,
               fit: BoxFit.fitHeight,
@@ -34,7 +35,8 @@ class FriendButton extends StatelessWidget {
               top: -13,
             ),
             child: AppNavigationBarButton(
-              onPressed: () => context.router.push(const FriendsPageRoute()),
+              onPressed: () =>
+                  context.router.push(const FriendsFlowRoute()),
               child: Image.asset(
                 AppImages.playerNew,
                 fit: BoxFit.fitHeight,

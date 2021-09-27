@@ -1,8 +1,8 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class FriendsWidget extends StatelessWidget {
-  const FriendsWidget({
+class FriendsOverviewWidget extends StatelessWidget {
+  const FriendsOverviewWidget({
     Key? key,
   }) : super(key: key);
 

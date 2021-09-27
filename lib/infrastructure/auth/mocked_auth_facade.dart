@@ -7,7 +7,7 @@ import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/subjects.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthFacade)
@@ -30,7 +30,7 @@ class MockedAuthFacade implements IAuthFacade {
   }
 
   @override
-  bool isAuthenticated() => _authenticatedController.valueWrapper!.value;
+  bool isAuthenticated() => _authenticatedController.value ?? false;
 
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;

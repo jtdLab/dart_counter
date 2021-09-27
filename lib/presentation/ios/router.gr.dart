@@ -9,16 +9,18 @@ import 'package:flutter/material.dart' as _i2;
 
 import 'auth/auth_flow.dart' as _i3;
 import 'main/contact/contact_page.dart' as _i9;
-import 'main/friends/friends_page.dart' as _i11;
-import 'main/game/create_game/create_game_page.dart' as _i17;
+import 'main/friends/friends_flow.dart' as _i11;
+import 'main/friends/friends_overview/friends_overview_page.dart' as _i15;
+import 'main/friends/friends_profile/friends_profile_page.dart' as _i16;
+import 'main/game/create_game/create_game_page.dart' as _i19;
 import 'main/game/game_flow.dart' as _i14;
-import 'main/game/in_game/in_game_page.dart' as _i18;
-import 'main/game/post_game/post_game_page.dart' as _i19;
+import 'main/game/in_game/in_game_page.dart' as _i20;
+import 'main/game/post_game/post_game_page.dart' as _i21;
 import 'main/game_history/game_history_details/game_history_details_page.dart'
-    as _i16;
+    as _i18;
 import 'main/game_history/game_history_flow.dart' as _i13;
 import 'main/game_history/game_history_overview/game_history_overview_page.dart'
-    as _i15;
+    as _i17;
 import 'main/home/home_page.dart' as _i6;
 import 'main/invitations/invitations_page.dart' as _i10;
 import 'main/main_flow.dart' as _i5;
@@ -78,14 +80,11 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return const _i10.InvitationsPage();
         }),
-    FriendsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    FriendsFlowRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i11.FriendsPage();
-        },
-        customRouteBuilder: _i4.customRouteBuilder,
-        opaque: true,
-        barrierDismissible: false),
+          return const _i11.FriendsFlow();
+        }),
     ProfilePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -101,17 +100,33 @@ class Router extends _i1.RootStackRouter {
         builder: (_) {
           return const _i14.GameFlow();
         }),
+    FriendsOverviewPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i15.FriendsOverviewPage();
+        },
+        customRouteBuilder: _i4.customRouteBuilder,
+        opaque: true,
+        barrierDismissible: false),
+    FriendsProfilePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i16.FriendsProfilePage();
+        },
+        reverseDurationInMilliseconds: 0,
+        opaque: true,
+        barrierDismissible: false),
     GameHistoryOverviewPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i15.GameHistoryOverviewPage();
+          return const _i17.GameHistoryOverviewPage();
         },
         opaque: true,
         barrierDismissible: false),
     GameHistoryDetailsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.GameHistoryDetailsPage();
+          return const _i18.GameHistoryDetailsPage();
         },
         reverseDurationInMilliseconds: 0,
         opaque: true,
@@ -119,7 +134,7 @@ class Router extends _i1.RootStackRouter {
     CreateGamePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i17.CreateGamePage();
+          return const _i19.CreateGamePage();
         },
         customRouteBuilder: _i4.customRouteBuilder,
         opaque: true,
@@ -127,7 +142,7 @@ class Router extends _i1.RootStackRouter {
     InGamePageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i18.InGamePage();
+          return const _i20.InGamePage();
         },
         customRouteBuilder: _i4.customRouteBuilder,
         opaque: true,
@@ -135,7 +150,7 @@ class Router extends _i1.RootStackRouter {
     PostGamePageRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i19.PostGamePage();
+          return const _i21.PostGamePage();
         })
   };
 
@@ -149,7 +164,13 @@ class Router extends _i1.RootStackRouter {
               path: 'privacy-policy-page'),
           _i1.RouteConfig(ContactPageRoute.name, path: 'contact-page'),
           _i1.RouteConfig(InvitationsPageRoute.name, path: 'invitations-page'),
-          _i1.RouteConfig(FriendsPageRoute.name, path: 'friends-page'),
+          _i1.RouteConfig(FriendsFlowRoute.name,
+              path: 'friends-flow',
+              children: [
+                _i1.RouteConfig(FriendsOverviewPageRoute.name, path: ''),
+                _i1.RouteConfig(FriendsProfilePageRoute.name,
+                    path: 'friends-profile-page')
+              ]),
           _i1.RouteConfig(ProfilePageRoute.name, path: 'profile-page'),
           _i1.RouteConfig(GameHistoryFlowRoute.name,
               path: 'game-history-flow',
@@ -210,10 +231,11 @@ class InvitationsPageRoute extends _i1.PageRouteInfo {
   static const String name = 'InvitationsPageRoute';
 }
 
-class FriendsPageRoute extends _i1.PageRouteInfo {
-  const FriendsPageRoute() : super(name, path: 'friends-page');
+class FriendsFlowRoute extends _i1.PageRouteInfo {
+  const FriendsFlowRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: 'friends-flow', initialChildren: children);
 
-  static const String name = 'FriendsPageRoute';
+  static const String name = 'FriendsFlowRoute';
 }
 
 class ProfilePageRoute extends _i1.PageRouteInfo {
@@ -234,6 +256,18 @@ class GameFlowRoute extends _i1.PageRouteInfo {
       : super(name, path: 'game-flow', initialChildren: children);
 
   static const String name = 'GameFlowRoute';
+}
+
+class FriendsOverviewPageRoute extends _i1.PageRouteInfo {
+  const FriendsOverviewPageRoute() : super(name, path: '');
+
+  static const String name = 'FriendsOverviewPageRoute';
+}
+
+class FriendsProfilePageRoute extends _i1.PageRouteInfo {
+  const FriendsProfilePageRoute() : super(name, path: 'friends-profile-page');
+
+  static const String name = 'FriendsProfilePageRoute';
 }
 
 class GameHistoryOverviewPageRoute extends _i1.PageRouteInfo {

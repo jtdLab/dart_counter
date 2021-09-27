@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/friends/friends_flow.dart';
+import 'package:dart_counter/presentation/ios/main/friends/friends_overview/friends_overview_page.dart';
+import 'package:dart_counter/presentation/ios/main/friends/friends_profile/friends_profile_page.dart';
 import 'package:flutter/widgets.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
-import 'main/friends/friends_page.dart';
 import 'main/game/create_game/create_game_page.dart';
 import 'main/game/game_flow.dart';
 import 'main/game/in_game/in_game_page.dart';
@@ -58,9 +60,19 @@ Route<T> customRouteBuilder<T>(
         CupertinoRoute(
           page: InvitationsPage,
         ),
-        CustomRoute(
-          customRouteBuilder: customRouteBuilder,
-          page: FriendsPage,
+        CupertinoRoute(
+          page: FriendsFlow,
+          children: [
+            CustomRoute(
+              initial: true,
+              customRouteBuilder: customRouteBuilder,
+              page: FriendsOverviewPage,
+            ),
+            CustomRoute(
+              page: FriendsProfilePage,
+              reverseDurationInMilliseconds: 0,
+            ),
+          ],
         ),
         CupertinoRoute(
           page: ProfilePage,

@@ -53,3 +53,5 @@ flutter pub run easy_localization:generate -S assets/languages
 // Blocs failure not object concrete type pls
 
 // normalize naming
+
+// TODO privacy/visibility of bloc events/states and whole orga of presentation layer with privacy/visibility

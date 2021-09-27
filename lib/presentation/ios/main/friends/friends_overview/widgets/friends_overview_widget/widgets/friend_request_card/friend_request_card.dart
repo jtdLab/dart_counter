@@ -1,6 +1,9 @@
+import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/main/friends/widgets/friends_widget/widgets/friend_request_card/widgets/widgets.dart';
+
+import 'widgets/friend_request_card_item.dart';
+
 
 class FriendRequestCard extends StatelessWidget {
   const FriendRequestCard({
@@ -17,10 +20,10 @@ class FriendRequestCard extends StatelessWidget {
             .textStyle
             .copyWith(color: AppColors.white),
       ),
-      children: const [
-        FriendRequestCardItem(),
-        FriendRequestCardItem(),
-        FriendRequestCardItem(),
+      children: [
+        FriendRequestCardItem(friendRequest: FriendRequest.dummy()), // TODO
+        FriendRequestCardItem(friendRequest: FriendRequest.dummy()),
+        FriendRequestCardItem(friendRequest: FriendRequest.dummy()),
       ],
     );
   }

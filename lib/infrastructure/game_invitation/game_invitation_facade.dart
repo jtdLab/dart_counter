@@ -82,7 +82,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
         receivedGameInvitations,
       );
     }).onErrorReturnWith((e) {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unableToRead()); // TODO name better
     });
   }
 
@@ -130,7 +130,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
         sentGameInvitations,
       );
     }).onErrorReturnWith((e) {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     });
   }
 
@@ -147,7 +147,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
     if (success) {
       return right(unit);
     } else {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
 
@@ -163,7 +163,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
     if (success) {
       return right(unit);
     } else {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
 
@@ -184,7 +184,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
     if (success) {
       return right(unit);
     } else {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
 
@@ -200,7 +200,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
     if (success) {
       return right(unit);
     } else {
-      return left(const GameInvitationFailure.unexpected());
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
 

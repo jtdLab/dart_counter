@@ -157,7 +157,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
         .game;
   }
 
-
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
     _playBloc.add(
       const PlayEvent.gameCreated(online: false),
