@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'change_password_bloc.dart';
 
@@ -55,6 +56,14 @@ mixin _$ChangePasswordEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String oldPasswordString)? oldPasswordChanged,
+    TResult Function(String newPasswordString)? newPasswordChanged,
+    TResult Function(String newPasswordAgainString)? newPasswordAgainChanged,
+    TResult Function()? confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String oldPasswordString)? oldPasswordChanged,
     TResult Function(String newPasswordString)? newPasswordChanged,
@@ -70,6 +79,14 @@ mixin _$ChangePasswordEvent {
     required TResult Function(NewPasswordAgainChanged value)
         newPasswordAgainChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OldPasswordChanged value)? oldPasswordChanged,
+    TResult Function(NewPasswordChanged value)? newPasswordChanged,
+    TResult Function(NewPasswordAgainChanged value)? newPasswordAgainChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,6 +195,17 @@ class _$OldPasswordChanged implements OldPasswordChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String oldPasswordString)? oldPasswordChanged,
+    TResult Function(String newPasswordString)? newPasswordChanged,
+    TResult Function(String newPasswordAgainString)? newPasswordAgainChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return oldPasswordChanged?.call(oldPasswordString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String oldPasswordString)? oldPasswordChanged,
     TResult Function(String newPasswordString)? newPasswordChanged,
@@ -201,6 +229,17 @@ class _$OldPasswordChanged implements OldPasswordChanged {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return oldPasswordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OldPasswordChanged value)? oldPasswordChanged,
+    TResult Function(NewPasswordChanged value)? newPasswordChanged,
+    TResult Function(NewPasswordAgainChanged value)? newPasswordAgainChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return oldPasswordChanged?.call(this);
   }
 
   @override
@@ -307,6 +346,17 @@ class _$NewPasswordChanged implements NewPasswordChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String oldPasswordString)? oldPasswordChanged,
+    TResult Function(String newPasswordString)? newPasswordChanged,
+    TResult Function(String newPasswordAgainString)? newPasswordAgainChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return newPasswordChanged?.call(newPasswordString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String oldPasswordString)? oldPasswordChanged,
     TResult Function(String newPasswordString)? newPasswordChanged,
@@ -330,6 +380,17 @@ class _$NewPasswordChanged implements NewPasswordChanged {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return newPasswordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OldPasswordChanged value)? oldPasswordChanged,
+    TResult Function(NewPasswordChanged value)? newPasswordChanged,
+    TResult Function(NewPasswordAgainChanged value)? newPasswordAgainChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return newPasswordChanged?.call(this);
   }
 
   @override
@@ -437,6 +498,17 @@ class _$NewPasswordAgainChanged implements NewPasswordAgainChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String oldPasswordString)? oldPasswordChanged,
+    TResult Function(String newPasswordString)? newPasswordChanged,
+    TResult Function(String newPasswordAgainString)? newPasswordAgainChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return newPasswordAgainChanged?.call(newPasswordAgainString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String oldPasswordString)? oldPasswordChanged,
     TResult Function(String newPasswordString)? newPasswordChanged,
@@ -460,6 +532,17 @@ class _$NewPasswordAgainChanged implements NewPasswordAgainChanged {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return newPasswordAgainChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OldPasswordChanged value)? oldPasswordChanged,
+    TResult Function(NewPasswordChanged value)? newPasswordChanged,
+    TResult Function(NewPasswordAgainChanged value)? newPasswordAgainChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return newPasswordAgainChanged?.call(this);
   }
 
   @override
@@ -539,6 +622,17 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String oldPasswordString)? oldPasswordChanged,
+    TResult Function(String newPasswordString)? newPasswordChanged,
+    TResult Function(String newPasswordAgainString)? newPasswordAgainChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return confirmPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String oldPasswordString)? oldPasswordChanged,
     TResult Function(String newPasswordString)? newPasswordChanged,
@@ -562,6 +656,17 @@ class _$ConfirmPressed implements ConfirmPressed {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OldPasswordChanged value)? oldPasswordChanged,
+    TResult Function(NewPasswordChanged value)? newPasswordChanged,
+    TResult Function(NewPasswordAgainChanged value)? newPasswordAgainChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return confirmPressed?.call(this);
   }
 
   @override

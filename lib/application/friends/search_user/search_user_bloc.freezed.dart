@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'search_user_bloc.dart';
 
@@ -39,6 +40,12 @@ mixin _$SearchUserEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newSearchString)? searchStringChanged,
+    TResult Function()? clearSearchStringPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
     TResult Function()? clearSearchStringPressed,
@@ -50,6 +57,12 @@ mixin _$SearchUserEvent {
     required TResult Function(SearchStringChanged value) searchStringChanged,
     required TResult Function(ClearSearchStringPressed value)
         clearSearchStringPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchStringChanged value)? searchStringChanged,
+    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -153,6 +166,15 @@ class _$SearchStringChanged implements SearchStringChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newSearchString)? searchStringChanged,
+    TResult Function()? clearSearchStringPressed,
+  }) {
+    return searchStringChanged?.call(newSearchString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
     TResult Function()? clearSearchStringPressed,
@@ -172,6 +194,15 @@ class _$SearchStringChanged implements SearchStringChanged {
         clearSearchStringPressed,
   }) {
     return searchStringChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchStringChanged value)? searchStringChanged,
+    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+  }) {
+    return searchStringChanged?.call(this);
   }
 
   @override
@@ -247,6 +278,15 @@ class _$ClearSearchStringPressed implements ClearSearchStringPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newSearchString)? searchStringChanged,
+    TResult Function()? clearSearchStringPressed,
+  }) {
+    return clearSearchStringPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
     TResult Function()? clearSearchStringPressed,
@@ -266,6 +306,15 @@ class _$ClearSearchStringPressed implements ClearSearchStringPressed {
         clearSearchStringPressed,
   }) {
     return clearSearchStringPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchStringChanged value)? searchStringChanged,
+    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+  }) {
+    return clearSearchStringPressed?.call(this);
   }
 
   @override

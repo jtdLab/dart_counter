@@ -8,7 +8,6 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-
 part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';

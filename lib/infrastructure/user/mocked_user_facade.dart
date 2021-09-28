@@ -40,7 +40,11 @@ class MockedUserFacade implements IUserFacade {
   Either<UserFailure, User>? getUser() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _userController.value;
+      try {
+        return _userController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const UserFailure.failure()); // TODO name better
@@ -59,7 +63,7 @@ class MockedUserFacade implements IUserFacade {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final user = _userController.value!.toOption().toNullable()!;
+      final user = _userController.value.toOption().toNullable()!;
       final newProfile = user.profile.copyWith(
         photoUrl: faker.image.image(width: 200, height: 200),
       );
@@ -78,7 +82,7 @@ class MockedUserFacade implements IUserFacade {
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final user = _userController.value!.toOption().toNullable()!;
+      final user = _userController.value.toOption().toNullable()!;
       final newProfile = user.profile.copyWith(photoUrl: null);
       _userController.add(
         right(
@@ -99,7 +103,7 @@ class MockedUserFacade implements IUserFacade {
     if (hasNetworkConnection) {
       if (newUsername.isValid()) {
         if (_authFacade.isAuthenticated()) {
-          final user = _userController.value!.toOption().toNullable()!;
+          final user = _userController.value.toOption().toNullable()!;
           final newProfile = user.profile.copyWith(username: newUsername);
           _userController.add(
             right(
@@ -122,7 +126,7 @@ class MockedUserFacade implements IUserFacade {
     if (hasNetworkConnection) {
       if (newEmailAddress.isValid()) {
         if (_authFacade.isAuthenticated()) {
-          final user = _userController.value!.toOption().toNullable()!;
+          final user = _userController.value.toOption().toNullable()!;
           _userController.add(
             right(
               user.copyWith(emailAddress: newEmailAddress),

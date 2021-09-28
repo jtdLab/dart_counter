@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'settings_bloc.dart';
 
@@ -44,6 +45,13 @@ mixin _$SettingsEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+    TResult Function()? localeChanged,
+    TResult Function()? signOutPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     TResult Function()? localeChanged,
@@ -56,6 +64,13 @@ mixin _$SettingsEvent {
     required TResult Function(UserReceived value) userReceived,
     required TResult Function(LocaleChanged value) localeChanged,
     required TResult Function(SignOutPressed value) signOutPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(LocaleChanged value)? localeChanged,
+    TResult Function(SignOutPressed value)? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -167,6 +182,16 @@ class _$UserReceived implements UserReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+    TResult Function()? localeChanged,
+    TResult Function()? signOutPressed,
+  }) {
+    return userReceived?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     TResult Function()? localeChanged,
@@ -187,6 +212,16 @@ class _$UserReceived implements UserReceived {
     required TResult Function(SignOutPressed value) signOutPressed,
   }) {
     return userReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(LocaleChanged value)? localeChanged,
+    TResult Function(SignOutPressed value)? signOutPressed,
+  }) {
+    return userReceived?.call(this);
   }
 
   @override
@@ -262,6 +297,16 @@ class _$LocaleChanged implements LocaleChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+    TResult Function()? localeChanged,
+    TResult Function()? signOutPressed,
+  }) {
+    return localeChanged?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     TResult Function()? localeChanged,
@@ -282,6 +327,16 @@ class _$LocaleChanged implements LocaleChanged {
     required TResult Function(SignOutPressed value) signOutPressed,
   }) {
     return localeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(LocaleChanged value)? localeChanged,
+    TResult Function(SignOutPressed value)? signOutPressed,
+  }) {
+    return localeChanged?.call(this);
   }
 
   @override
@@ -352,6 +407,16 @@ class _$SignOutPressed implements SignOutPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+    TResult Function()? localeChanged,
+    TResult Function()? signOutPressed,
+  }) {
+    return signOutPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     TResult Function()? localeChanged,
@@ -372,6 +437,16 @@ class _$SignOutPressed implements SignOutPressed {
     required TResult Function(SignOutPressed value) signOutPressed,
   }) {
     return signOutPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
+    TResult Function(LocaleChanged value)? localeChanged,
+    TResult Function(SignOutPressed value)? signOutPressed,
+  }) {
+    return signOutPressed?.call(this);
   }
 
   @override

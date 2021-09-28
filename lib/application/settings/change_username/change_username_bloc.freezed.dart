@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'change_username_bloc.dart';
 
@@ -39,6 +40,12 @@ mixin _$ChangeUsernameEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newUsernameString)? newUsernameChanged,
+    TResult Function()? confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newUsernameString)? newUsernameChanged,
     TResult Function()? confirmPressed,
@@ -49,6 +56,12 @@ mixin _$ChangeUsernameEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(NewUsernameChanged value) newUsernameChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NewUsernameChanged value)? newUsernameChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -152,6 +165,15 @@ class _$NewUsernameChanged implements NewUsernameChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newUsernameString)? newUsernameChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return newUsernameChanged?.call(newUsernameString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newUsernameString)? newUsernameChanged,
     TResult Function()? confirmPressed,
@@ -170,6 +192,15 @@ class _$NewUsernameChanged implements NewUsernameChanged {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return newUsernameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NewUsernameChanged value)? newUsernameChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return newUsernameChanged?.call(this);
   }
 
   @override
@@ -244,6 +275,15 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String newUsernameString)? newUsernameChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return confirmPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newUsernameString)? newUsernameChanged,
     TResult Function()? confirmPressed,
@@ -262,6 +302,15 @@ class _$ConfirmPressed implements ConfirmPressed {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NewUsernameChanged value)? newUsernameChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return confirmPressed?.call(this);
   }
 
   @override

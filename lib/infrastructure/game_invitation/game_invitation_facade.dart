@@ -81,7 +81,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         receivedGameInvitations,
       );
-    }).onErrorReturnWith((e) {
+    }).onErrorReturnWith((e,s ) {
       return left(const GameInvitationFailure.unableToRead()); // TODO name better
     });
   }
@@ -129,7 +129,7 @@ class GameInvitationFacade implements IGameInvitationFacade {
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         sentGameInvitations,
       );
-    }).onErrorReturnWith((e) {
+    }).onErrorReturnWith((e, s) {
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     });
   }

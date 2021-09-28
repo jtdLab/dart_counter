@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
 
@@ -72,6 +73,16 @@ mixin _$ValueFailure<T> {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -90,6 +101,16 @@ mixin _$ValueFailure<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -219,6 +240,19 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return invalidEmail?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -245,6 +279,19 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return invalidEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return invalidEmail?.call(this);
   }
 
   @override
@@ -356,6 +403,19 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return shortUsername?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -382,6 +442,19 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return shortUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return shortUsername?.call(this);
   }
 
   @override
@@ -494,6 +567,19 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return invalidCharacters?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -520,6 +606,19 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return invalidCharacters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return invalidCharacters?.call(this);
   }
 
   @override
@@ -632,6 +731,19 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return shortPassword?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -658,6 +770,19 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return shortPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return shortPassword?.call(this);
   }
 
   @override
@@ -770,6 +895,19 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return invalidWhitespaces?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -796,6 +934,19 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return invalidWhitespaces(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return invalidWhitespaces?.call(this);
   }
 
   @override
@@ -919,6 +1070,19 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+  }) {
+    return listTooLong?.call(failedValue, max);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortUsername,
@@ -945,6 +1109,19 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     required TResult Function(_ListTooLong<T> value) listTooLong,
   }) {
     return listTooLong(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+  }) {
+    return listTooLong?.call(this);
   }
 
   @override

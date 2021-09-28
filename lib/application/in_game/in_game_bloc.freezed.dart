@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'in_game_bloc.dart';
 
@@ -56,6 +57,15 @@ mixin _$InGameEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -73,6 +83,16 @@ mixin _$InGameEvent {
     required TResult Function(ShowCheckoutDetailsRequested value)
         showCheckoutDetailsRequested,
     required TResult Function(GameReceived value) gameReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -154,6 +174,18 @@ class _$GameCanceled implements GameCanceled {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) {
+    return gameCanceled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -179,6 +211,19 @@ class _$GameCanceled implements GameCanceled {
     required TResult Function(GameReceived value) gameReceived,
   }) {
     return gameCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+  }) {
+    return gameCanceled?.call(this);
   }
 
   @override
@@ -254,6 +299,18 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) {
+    return undoThrowPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -279,6 +336,19 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     required TResult Function(GameReceived value) gameReceived,
   }) {
     return undoThrowPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+  }) {
+    return undoThrowPressed?.call(this);
   }
 
   @override
@@ -388,6 +458,18 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) {
+    return performThrowPressed?.call(t);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -413,6 +495,19 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     required TResult Function(GameReceived value) gameReceived,
   }) {
     return performThrowPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+  }) {
+    return performThrowPressed?.call(this);
   }
 
   @override
@@ -496,6 +591,18 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) {
+    return showCheckoutDetailsRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -521,6 +628,19 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
     required TResult Function(GameReceived value) gameReceived,
   }) {
     return showCheckoutDetailsRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+  }) {
+    return showCheckoutDetailsRequested?.call(this);
   }
 
   @override
@@ -620,6 +740,18 @@ class _$GameReceived implements GameReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCanceled,
+    TResult Function()? undoThrowPressed,
+    TResult Function(Throw t)? performThrowPressed,
+    TResult Function()? showCheckoutDetailsRequested,
+    TResult Function(GameSnapshot game)? gameReceived,
+  }) {
+    return gameReceived?.call(game);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? gameCanceled,
     TResult Function()? undoThrowPressed,
@@ -645,6 +777,19 @@ class _$GameReceived implements GameReceived {
     required TResult Function(GameReceived value) gameReceived,
   }) {
     return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsRequested value)?
+        showCheckoutDetailsRequested,
+    TResult Function(GameReceived value)? gameReceived,
+  }) {
+    return gameReceived?.call(this);
   }
 
   @override

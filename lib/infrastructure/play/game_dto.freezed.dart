@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'game_dto.dart';
 
@@ -237,7 +238,7 @@ class _$_OfflineGameDto extends _OfflineGameDto {
       : super._();
 
   factory _$_OfflineGameDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_OfflineGameDtoFromJson(json);
+      _$$_OfflineGameDtoFromJson(json);
 
   @override
   final String id;
@@ -305,7 +306,7 @@ class _$_OfflineGameDto extends _OfflineGameDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OfflineGameDtoToJson(this);
+    return _$$_OfflineGameDtoToJson(this);
   }
 }
 
@@ -585,7 +586,7 @@ class _$_OnlineGameDto extends _OnlineGameDto {
       : super._();
 
   factory _$_OnlineGameDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_OnlineGameDtoFromJson(json);
+      _$$_OnlineGameDtoFromJson(json);
 
   @override
   final String id;
@@ -658,7 +659,7 @@ class _$_OnlineGameDto extends _OnlineGameDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OnlineGameDtoToJson(this);
+    return _$$_OnlineGameDtoToJson(this);
   }
 }
 

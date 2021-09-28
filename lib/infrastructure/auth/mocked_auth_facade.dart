@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -21,7 +21,7 @@ class MockedAuthFacade implements IAuthFacade {
       isAuthenticated() ? UniqueId.fromUniqueString('dummyUid') : null;
 
   @override
-  Future<String>? idToken() async {
+  Future<String?> idToken() async {
     if (isAuthenticated()) {
       return 'dummyIdToken';
     }
@@ -30,7 +30,13 @@ class MockedAuthFacade implements IAuthFacade {
   }
 
   @override
-  bool isAuthenticated() => _authenticatedController.value ?? false;
+  bool isAuthenticated() {
+    try {
+      return _authenticatedController.value;
+    } catch (e) {
+      return false;
+    }
+  }
 
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;

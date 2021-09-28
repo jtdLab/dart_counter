@@ -25,6 +25,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // 7. refactor presentation layer
 // 8. optimize infrastructor layer depending on how good it works with application layer
 // e.g better failures, better binding between the 2 layers
+
 // 9. add chache to infrastructure layer
 // 10. add logging to whole app
 // 11. fix all TODOs
@@ -55,3 +56,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // normalize naming
 
 // TODO privacy/visibility of bloc events/states and whole orga of presentation layer with privacy/visibility
+
+TODO import flutter bloc not bloc in bloc
+
+// TODO handle error thrown by behaivour subject.value

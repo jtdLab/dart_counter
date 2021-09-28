@@ -106,7 +106,7 @@ class FriendFacade implements IFriendFacade {
           return right(friends.toImmutableList());
         },
       );
-    }).onErrorReturnWith((error) => left(const FriendFailure.unexpected()));
+    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
   }
 
   @override
@@ -124,9 +124,7 @@ class FriendFacade implements IFriendFacade {
       return right<FriendFailure, KtList<FriendRequest>>(
         receivedFriendRequests,
       );
-    }).onErrorReturnWith((e) {
-      return left(const FriendFailure.unexpected());
-    });
+    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
   }
 
   @override
@@ -171,7 +169,7 @@ class FriendFacade implements IFriendFacade {
       return right<FriendFailure, KtList<FriendRequest>>(
         sentFriendRequests,
       );
-    }).onErrorReturnWith((e) {
+    }).onErrorReturnWith((e, s) {
       return left(const FriendFailure.unexpected());
     });
   }

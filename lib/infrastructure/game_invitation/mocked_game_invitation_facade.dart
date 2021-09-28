@@ -1,11 +1,10 @@
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
+import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
 import 'package:dart_counter/main_dev.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -43,13 +42,15 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
         );
         _sentGameInvitationsController = BehaviorSubject.seeded(
           hasNetworkConnection
-              ? right([
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                ].toImmutableList())
+              ? right(
+                  [
+                    GameInvitation.dummy(),
+                    GameInvitation.dummy(),
+                    GameInvitation.dummy(),
+                    GameInvitation.dummy(),
+                    GameInvitation.dummy(),
+                  ].toImmutableList(),
+                )
               : left(
                   const GameInvitationFailure.unexpected(), // TODO name better
                 ),
@@ -66,7 +67,11 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
       getReceivedGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _receivedGameInvitationsController.value;
+      try {
+        return _receivedGameInvitationsController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const GameInvitationFailure.unexpected());
@@ -77,7 +82,11 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
       getSentGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _sentGameInvitationsController.value;
+      try {
+        return _sentGameInvitationsController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const GameInvitationFailure.unexpected());
@@ -95,7 +104,7 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
       markReceivedInvitationsAsRead() async {
     _checkAuth();
     final receivedInvitations =
-        _receivedGameInvitationsController.value!.toOption().toNullable()!;
+        _receivedGameInvitationsController.value.toOption().toNullable()!;
 
     _receivedGameInvitationsController.add(
       right(
@@ -125,7 +134,7 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
     _checkAuth();
     if (hasNetworkConnection) {
       final sentInvitations =
-          _sentGameInvitationsController.value!.toOption().toNullable()!;
+          _sentGameInvitationsController.value.toOption().toNullable()!;
 
       _sentGameInvitationsController.add(
         right(
@@ -151,7 +160,7 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentInvitations = _sentGameInvitationsController.value!
+      final sentInvitations = _sentGameInvitationsController.value
           .toOption()
           .toNullable()!
           .toMutableList()
@@ -198,7 +207,7 @@ class MockedGameInvitationFacade implements IGameInvitationFacade {
 
   /// Removes [invitation] from the receivedGameInvitations and emits event.
   void _removeFromReceivedGameInvitations(GameInvitation invitation) {
-    final receivedInvitations = _receivedGameInvitationsController.value!
+    final receivedInvitations = _receivedGameInvitationsController.value
         .toOption()
         .toNullable()!
         .toMutableList()

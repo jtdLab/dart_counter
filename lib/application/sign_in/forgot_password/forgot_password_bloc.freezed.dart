@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'forgot_password_bloc.dart';
 
@@ -39,6 +40,12 @@ mixin _$ForgotPasswordEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function()? confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String emailString)? emailChanged,
     TResult Function()? confirmPressed,
@@ -49,6 +56,12 @@ mixin _$ForgotPasswordEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(ConfirmPressed value) confirmPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -151,6 +164,15 @@ class _$EmailChanged implements EmailChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return emailChanged?.call(emailString);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String emailString)? emailChanged,
     TResult Function()? confirmPressed,
@@ -169,6 +191,15 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return emailChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return emailChanged?.call(this);
   }
 
   @override
@@ -242,6 +273,15 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function()? confirmPressed,
+  }) {
+    return confirmPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String emailString)? emailChanged,
     TResult Function()? confirmPressed,
@@ -260,6 +300,15 @@ class _$ConfirmPressed implements ConfirmPressed {
     required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return confirmPressed?.call(this);
   }
 
   @override

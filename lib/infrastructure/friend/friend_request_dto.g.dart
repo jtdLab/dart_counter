@@ -6,19 +6,17 @@ part of 'friend_request_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FriendRequestDto _$_$_FriendRequestDtoFromJson(Map<String, dynamic> json) {
-  return _$_FriendRequestDto(
-    id: json['id'] as String,
-    toId: json['toId'] as String,
-    fromId: json['fromId'] as String,
-    fromName: json['fromName'] as String,
-    read: json['read'] as bool,
-    createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
-  );
-}
+_$_FriendRequestDto _$$_FriendRequestDtoFromJson(Map<String, dynamic> json) =>
+    _$_FriendRequestDto(
+      id: json['id'] as String,
+      toId: json['toId'] as String,
+      fromId: json['fromId'] as String,
+      fromName: json['fromName'] as String,
+      read: json['read'] as bool,
+      createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
+    );
 
-Map<String, dynamic> _$_$_FriendRequestDtoToJson(
-        _$_FriendRequestDto instance) =>
+Map<String, dynamic> _$$_FriendRequestDtoToJson(_$_FriendRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'toId': instance.toId,

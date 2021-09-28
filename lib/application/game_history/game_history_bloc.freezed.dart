@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'game_history_bloc.dart';
 
@@ -44,6 +45,13 @@ mixin _$GameHistoryEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
+    TResult Function(Game game)? gameSelected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function()? fetchGameHistoryOnlineRequested,
@@ -58,6 +66,15 @@ mixin _$GameHistoryEvent {
     required TResult Function(FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
     required TResult Function(GameSelected value) gameSelected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
+    TResult Function(GameSelected value)? gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -143,6 +160,16 @@ class _$FetchGameHistoryOfflineRequested
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
+    TResult Function(Game game)? gameSelected,
+  }) {
+    return fetchGameHistoryOfflineRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function()? fetchGameHistoryOnlineRequested,
@@ -165,6 +192,18 @@ class _$FetchGameHistoryOfflineRequested
     required TResult Function(GameSelected value) gameSelected,
   }) {
     return fetchGameHistoryOfflineRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
+    TResult Function(GameSelected value)? gameSelected,
+  }) {
+    return fetchGameHistoryOfflineRequested?.call(this);
   }
 
   @override
@@ -242,6 +281,16 @@ class _$FetchGameHistoryOnlineRequested
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
+    TResult Function(Game game)? gameSelected,
+  }) {
+    return fetchGameHistoryOnlineRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function()? fetchGameHistoryOnlineRequested,
@@ -264,6 +313,18 @@ class _$FetchGameHistoryOnlineRequested
     required TResult Function(GameSelected value) gameSelected,
   }) {
     return fetchGameHistoryOnlineRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
+    TResult Function(GameSelected value)? gameSelected,
+  }) {
+    return fetchGameHistoryOnlineRequested?.call(this);
   }
 
   @override
@@ -362,6 +423,16 @@ class _$GameSelected implements GameSelected {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchGameHistoryOfflineRequested,
+    TResult Function()? fetchGameHistoryOnlineRequested,
+    TResult Function(Game game)? gameSelected,
+  }) {
+    return gameSelected?.call(game);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function()? fetchGameHistoryOnlineRequested,
@@ -384,6 +455,18 @@ class _$GameSelected implements GameSelected {
     required TResult Function(GameSelected value) gameSelected,
   }) {
     return gameSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FetchGameHistoryOfflineRequested value)?
+        fetchGameHistoryOfflineRequested,
+    TResult Function(FetchGameHistoryOnlineRequested value)?
+        fetchGameHistoryOnlineRequested,
+    TResult Function(GameSelected value)? gameSelected,
+  }) {
+    return gameSelected?.call(this);
   }
 
   @override
@@ -449,6 +532,13 @@ mixin _$GameHistoryState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
@@ -461,6 +551,13 @@ mixin _$GameHistoryState {
     required TResult Function(GameHistoryLoadInProgress value) loadInProgress,
     required TResult Function(GameHistoryLoadSuccess value) loadSuccess,
     required TResult Function(GameHistoryLoadFailure value) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -541,6 +638,16 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
@@ -561,6 +668,16 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
     required TResult Function(GameHistoryLoadFailure value) loadFailure,
   }) {
     return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+  }) {
+    return loadInProgress?.call(this);
   }
 
   @override
@@ -672,6 +789,16 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+  }) {
+    return loadSuccess?.call(gameHistory, selectedGame);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
@@ -692,6 +819,16 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
     required TResult Function(GameHistoryLoadFailure value) loadFailure,
   }) {
     return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+  }) {
+    return loadSuccess?.call(this);
   }
 
   @override
@@ -797,6 +934,16 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(Object failure)? loadFailure,
+  }) {
+    return loadFailure?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
@@ -817,6 +964,16 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
     required TResult Function(GameHistoryLoadFailure value) loadFailure,
   }) {
     return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameHistoryLoadInProgress value)? loadInProgress,
+    TResult Function(GameHistoryLoadSuccess value)? loadSuccess,
+    TResult Function(GameHistoryLoadFailure value)? loadFailure,
+  }) {
+    return loadFailure?.call(this);
   }
 
   @override

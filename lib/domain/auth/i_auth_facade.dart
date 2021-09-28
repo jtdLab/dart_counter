@@ -9,7 +9,7 @@ abstract class IAuthFacade {
   UniqueId? userId();
 
   /// Returns the idToken of the app-user if authenticated or `null` if not authenticated.
-  Future<String>? idToken();
+  Future<String?> idToken();
 
   /// Returns `true` if the app-user is authenticated.
   bool isAuthenticated();

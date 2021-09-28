@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player_dto.dart';
 
@@ -155,7 +156,7 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
       : super._();
 
   factory _$_OfflinePlayerDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_OfflinePlayerDtoFromJson(json);
+      _$$_OfflinePlayerDtoFromJson(json);
 
   @override
   final String id;
@@ -197,7 +198,7 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OfflinePlayerDtoToJson(this);
+    return _$$_OfflinePlayerDtoToJson(this);
   }
 }
 
@@ -368,7 +369,7 @@ class _$_DartBotDto extends _DartBotDto {
       : super._();
 
   factory _$_DartBotDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_DartBotDtoFromJson(json);
+      _$$_DartBotDtoFromJson(json);
 
   @override
   final String id;
@@ -410,7 +411,7 @@ class _$_DartBotDto extends _DartBotDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DartBotDtoToJson(this);
+    return _$$_DartBotDtoToJson(this);
   }
 }
 
@@ -584,7 +585,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
       : super._();
 
   factory _$_OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_OnlinePlayerDtoFromJson(json);
+      _$$_OnlinePlayerDtoFromJson(json);
 
   @override
   final String id;
@@ -626,7 +627,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OnlinePlayerDtoToJson(this);
+    return _$$_OnlinePlayerDtoToJson(this);
   }
 }
 

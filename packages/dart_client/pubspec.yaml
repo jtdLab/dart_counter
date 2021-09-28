@@ -4,17 +4,17 @@ version: 0.0.1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=2.5.1"
 
 dependencies:
   flutter:
     sdk: flutter
-  async: ^2.5.0
-  freezed_annotation: ^0.14.1
+  async: ^2.8.1
+  freezed_annotation: ^0.14.3
   dartz: ^0.10.0-nullsafety.1
   faker: ^2.0.0
-  kt_dart: ^0.9.0
-  rxdart: ^0.26.0
+  kt_dart: ^0.9.1
+  rxdart: ^0.27.2
   uuid: ^3.0.4
   socket_io_client: ^1.0.1
   http: ^0.13.3
@@ -22,9 +22,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: 
-  freezed: ^0.14.1
-  json_serializable: ^4.1.1
+  build_runner: 2.1.2
+  freezed: ^0.14.5
+  json_serializable: ^5.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

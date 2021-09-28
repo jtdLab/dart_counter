@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'play_bloc.dart';
 
@@ -154,6 +155,29 @@ mixin _$PlayEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -200,6 +224,30 @@ mixin _$PlayEvent {
         dartBotTargetAverageUpdated,
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(FailureReceived value) failureReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -333,6 +381,32 @@ class _$GameCreated implements GameCreated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return gameCreated?.call(online);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -387,6 +461,33 @@ class _$GameCreated implements GameCreated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return gameCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return gameCreated?.call(this);
   }
 
   @override
@@ -518,6 +619,32 @@ class _$GameJoined implements GameJoined {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return gameJoined?.call(gameId);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -572,6 +699,33 @@ class _$GameJoined implements GameJoined {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return gameJoined(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return gameJoined?.call(this);
   }
 
   @override
@@ -679,6 +833,32 @@ class _$GameCanceled implements GameCanceled {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return gameCanceled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -733,6 +913,33 @@ class _$GameCanceled implements GameCanceled {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return gameCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return gameCanceled?.call(this);
   }
 
   @override
@@ -873,6 +1080,32 @@ class _$PlayerReordered implements PlayerReordered {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return playerReordered?.call(oldIndex, newIndex);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -927,6 +1160,33 @@ class _$PlayerReordered implements PlayerReordered {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return playerReordered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return playerReordered?.call(this);
   }
 
   @override
@@ -1036,6 +1296,32 @@ class _$PlayerAdded implements PlayerAdded {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return playerAdded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -1090,6 +1376,33 @@ class _$PlayerAdded implements PlayerAdded {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return playerAdded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return playerAdded?.call(this);
   }
 
   @override
@@ -1217,6 +1530,32 @@ class _$PlayerRemoved implements PlayerRemoved {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return playerRemoved?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -1271,6 +1610,33 @@ class _$PlayerRemoved implements PlayerRemoved {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return playerRemoved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return playerRemoved?.call(this);
   }
 
   @override
@@ -1415,6 +1781,32 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return playerNameUpdated?.call(index, newName);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -1469,6 +1861,33 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return playerNameUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return playerNameUpdated?.call(this);
   }
 
   @override
@@ -1607,6 +2026,32 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return startingPointsUpdated?.call(newStartingPoints);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -1661,6 +2106,33 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return startingPointsUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return startingPointsUpdated?.call(this);
   }
 
   @override
@@ -1794,6 +2266,32 @@ class _$ModeUpdated implements ModeUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return modeUpdated?.call(newMode);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -1848,6 +2346,33 @@ class _$ModeUpdated implements ModeUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return modeUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return modeUpdated?.call(this);
   }
 
   @override
@@ -1980,6 +2505,32 @@ class _$SizeUpdated implements SizeUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return sizeUpdated?.call(newSize);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2034,6 +2585,33 @@ class _$SizeUpdated implements SizeUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return sizeUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return sizeUpdated?.call(this);
   }
 
   @override
@@ -2166,6 +2744,32 @@ class _$TypeUpdated implements TypeUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return typeUpdated?.call(newType);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2220,6 +2824,33 @@ class _$TypeUpdated implements TypeUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return typeUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return typeUpdated?.call(this);
   }
 
   @override
@@ -2327,6 +2958,32 @@ class _$GameStarted implements GameStarted {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return gameStarted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2381,6 +3038,33 @@ class _$GameStarted implements GameStarted {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return gameStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return gameStarted?.call(this);
   }
 
   @override
@@ -2517,6 +3201,32 @@ class _$ThrowPerformed implements ThrowPerformed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return throwPerformed?.call(t);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2571,6 +3281,33 @@ class _$ThrowPerformed implements ThrowPerformed {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return throwPerformed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return throwPerformed?.call(this);
   }
 
   @override
@@ -2678,6 +3415,32 @@ class _$ThrowUndone implements ThrowUndone {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return throwUndone?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2732,6 +3495,33 @@ class _$ThrowUndone implements ThrowUndone {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return throwUndone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return throwUndone?.call(this);
   }
 
   @override
@@ -2834,6 +3624,32 @@ class _$DartBotAdded implements DartBotAdded {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return dartBotAdded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -2888,6 +3704,33 @@ class _$DartBotAdded implements DartBotAdded {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return dartBotAdded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return dartBotAdded?.call(this);
   }
 
   @override
@@ -2990,6 +3833,32 @@ class _$DartBotRemoved implements DartBotRemoved {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return dartBotRemoved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -3044,6 +3913,33 @@ class _$DartBotRemoved implements DartBotRemoved {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return dartBotRemoved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return dartBotRemoved?.call(this);
   }
 
   @override
@@ -3177,6 +4073,32 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return dartBotTargetAverageUpdated?.call(newTargetAverage);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -3231,6 +4153,33 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return dartBotTargetAverageUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return dartBotTargetAverageUpdated?.call(this);
   }
 
   @override
@@ -3364,6 +4313,32 @@ class _$GameReceived implements GameReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return gameReceived?.call(game);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -3418,6 +4393,33 @@ class _$GameReceived implements GameReceived {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return gameReceived?.call(this);
   }
 
   @override
@@ -3559,6 +4561,32 @@ class _$FailureReceived implements FailureReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function(UniqueId gameId)? gameJoined,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function(Throw t)? throwPerformed,
+    TResult Function()? throwUndone,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(PlayFailure failure)? failureReceived,
+  }) {
+    return failureReceived?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function(UniqueId gameId)? gameJoined,
@@ -3613,6 +4641,33 @@ class _$FailureReceived implements FailureReceived {
     required TResult Function(FailureReceived value) failureReceived,
   }) {
     return failureReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameCreated value)? gameCreated,
+    TResult Function(GameJoined value)? gameJoined,
+    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(PlayerReordered value)? playerReordered,
+    TResult Function(PlayerAdded value)? playerAdded,
+    TResult Function(PlayerRemoved value)? playerRemoved,
+    TResult Function(PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(ModeUpdated value)? modeUpdated,
+    TResult Function(SizeUpdated value)? sizeUpdated,
+    TResult Function(TypeUpdated value)? typeUpdated,
+    TResult Function(GameStarted value)? gameStarted,
+    TResult Function(ThrowPerformed value)? throwPerformed,
+    TResult Function(ThrowUndone value)? throwUndone,
+    TResult Function(DartBotAdded value)? dartBotAdded,
+    TResult Function(DartBotRemoved value)? dartBotRemoved,
+    TResult Function(DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(FailureReceived value)? failureReceived,
+  }) {
+    return failureReceived?.call(this);
   }
 
   @override
@@ -3687,6 +4742,12 @@ mixin _$PlayState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool? online)? loading,
+    TResult Function(bool online, GameSnapshot game)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool? online)? loading,
     TResult Function(bool online, GameSnapshot game)? success,
@@ -3697,6 +4758,12 @@ mixin _$PlayState {
   TResult map<TResult extends Object?>({
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3793,6 +4860,15 @@ class _$Loading implements Loading {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool? online)? loading,
+    TResult Function(bool online, GameSnapshot game)? success,
+  }) {
+    return loading?.call(online);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool? online)? loading,
     TResult Function(bool online, GameSnapshot game)? success,
@@ -3811,6 +4887,15 @@ class _$Loading implements Loading {
     required TResult Function(Success value) success,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -3916,6 +5001,15 @@ class _$Success implements Success {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool? online)? loading,
+    TResult Function(bool online, GameSnapshot game)? success,
+  }) {
+    return success?.call(online, game);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool? online)? loading,
     TResult Function(bool online, GameSnapshot game)? success,
@@ -3934,6 +5028,15 @@ class _$Success implements Success {
     required TResult Function(Success value) success,
   }) {
     return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+  }) {
+    return success?.call(this);
   }
 
   @override

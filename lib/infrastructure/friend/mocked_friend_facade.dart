@@ -80,7 +80,11 @@ class MockedFriendFacade implements IFriendFacade {
   Either<FriendFailure, KtList<User>>? getFriends() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _friendsController.value;
+      try {
+        return _friendsController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
@@ -90,7 +94,11 @@ class MockedFriendFacade implements IFriendFacade {
   Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _receivedFriendRequestController.value;
+      try {
+        return _receivedFriendRequestController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
@@ -100,7 +108,11 @@ class MockedFriendFacade implements IFriendFacade {
   Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      return _sentFriendRequestController.value;
+      try {
+        return _sentFriendRequestController.value;
+      } catch (e) {
+        return null;
+      }
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
@@ -124,7 +136,7 @@ class MockedFriendFacade implements IFriendFacade {
     _checkAuth();
 
     final receivedFriendRequests =
-        _receivedFriendRequestController.value!.toOption().toNullable()!;
+        _receivedFriendRequestController.value.toOption().toNullable()!;
 
     _receivedFriendRequestController.add(
       right(
@@ -153,7 +165,7 @@ class MockedFriendFacade implements IFriendFacade {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value!
+      final sentFriendRequests = _sentFriendRequestController.value
           .toOption()
           .toNullable()!
           .toMutableList();
@@ -176,7 +188,7 @@ class MockedFriendFacade implements IFriendFacade {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value!
+      final sentFriendRequests = _sentFriendRequestController.value
           .toOption()
           .toNullable()!
           .toMutableList()
@@ -210,7 +222,7 @@ class MockedFriendFacade implements IFriendFacade {
       );
 
       final friends =
-          _friendsController.value!.toOption().toNullable()!.toMutableList();
+          _friendsController.value.toOption().toNullable()!.toMutableList();
       friends.add(newFriend);
 
       _friendsController.add(right(friends));
@@ -239,7 +251,7 @@ class MockedFriendFacade implements IFriendFacade {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final friends = _friendsController.value!
+      final friends = _friendsController.value
           .toOption()
           .toNullable()!
           .toMutableList()
@@ -323,7 +335,7 @@ class MockedFriendFacade implements IFriendFacade {
 
   /// Removes [friendRequest] from the receivedFriendRequests and emits event.
   void _removeFromReceivedFriendRequests(FriendRequest friendRequest) {
-    final receivedFriendRequests = _receivedFriendRequestController.value!
+    final receivedFriendRequests = _receivedFriendRequestController.value
         .toOption()
         .toNullable()!
         .toMutableList()

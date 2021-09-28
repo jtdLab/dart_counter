@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'more_bloc.dart';
 
@@ -43,6 +44,12 @@ mixin _$MoreEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User friend)? removePressed,
+    TResult Function(User friend)? showProfilePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User friend)? removePressed,
     TResult Function(User friend)? showProfilePressed,
@@ -53,6 +60,12 @@ mixin _$MoreEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(RemovePressed value) removePressed,
     required TResult Function(ShowProfilePressed value) showProfilePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(ShowProfilePressed value)? showProfilePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -182,6 +195,15 @@ class _$RemovePressed implements RemovePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User friend)? removePressed,
+    TResult Function(User friend)? showProfilePressed,
+  }) {
+    return removePressed?.call(friend);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User friend)? removePressed,
     TResult Function(User friend)? showProfilePressed,
@@ -200,6 +222,15 @@ class _$RemovePressed implements RemovePressed {
     required TResult Function(ShowProfilePressed value) showProfilePressed,
   }) {
     return removePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(ShowProfilePressed value)? showProfilePressed,
+  }) {
+    return removePressed?.call(this);
   }
 
   @override
@@ -305,6 +336,15 @@ class _$ShowProfilePressed implements ShowProfilePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User friend)? removePressed,
+    TResult Function(User friend)? showProfilePressed,
+  }) {
+    return showProfilePressed?.call(friend);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User friend)? removePressed,
     TResult Function(User friend)? showProfilePressed,
@@ -323,6 +363,15 @@ class _$ShowProfilePressed implements ShowProfilePressed {
     required TResult Function(ShowProfilePressed value) showProfilePressed,
   }) {
     return showProfilePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(ShowProfilePressed value)? showProfilePressed,
+  }) {
+    return showProfilePressed?.call(this);
   }
 
   @override
@@ -371,6 +420,11 @@ mixin _$MoreState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -379,6 +433,11 @@ mixin _$MoreState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -448,6 +507,14 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -464,6 +531,14 @@ class _$Initial implements Initial {
     required TResult Function(Initial value) initial,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+  }) {
+    return initial?.call(this);
   }
 
   @override

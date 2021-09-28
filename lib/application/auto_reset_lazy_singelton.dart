@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin AutoResetLazySingleton<E, S> on Bloc<E, S> {
   @override
-  Future<void> close() {
-    if (getIt.isRegistered<Bloc<E, S>>(instance: this)) {
-      getIt.resetLazySingleton<Bloc<E, S>>(instance: this);
+  Future<void> close() async {
+    if (getIt.isRegistered<Bloc<E, S>>()) {
+      await getIt.resetLazySingleton<Bloc<E, S>>();
     }
     return super.close();
   }

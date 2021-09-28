@@ -9,4 +9,3 @@ final getIt = GetIt.instance;
 void configureInjection(String env) {
   $initGetIt(getIt, environment: env);
 }
-

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'invitations_bloc.dart';
 
@@ -66,6 +67,17 @@ mixin _$InvitationsEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -86,6 +98,17 @@ mixin _$InvitationsEvent {
     required TResult Function(GameReceived value) gameReceived,
     required TResult Function(Accepted value) accepted,
     required TResult Function(Declined value) declined,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,6 +227,20 @@ class _$ReceivedGameInvitationsReceived
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) {
+    return receivedGameInvitationsReceived?.call(gameInvitations);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -232,6 +269,20 @@ class _$ReceivedGameInvitationsReceived
     required TResult Function(Declined value) declined,
   }) {
     return receivedGameInvitationsReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+  }) {
+    return receivedGameInvitationsReceived?.call(this);
   }
 
   @override
@@ -348,6 +399,20 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) {
+    return sentGameInvitationsReceived?.call(gameInvitations);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -376,6 +441,20 @@ class _$SentGameInvitationsReceived implements SentGameInvitationsReceived {
     required TResult Function(Declined value) declined,
   }) {
     return sentGameInvitationsReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+  }) {
+    return sentGameInvitationsReceived?.call(this);
   }
 
   @override
@@ -487,6 +566,20 @@ class _$GameReceived implements GameReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) {
+    return gameReceived?.call(game);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -515,6 +608,20 @@ class _$GameReceived implements GameReceived {
     required TResult Function(Declined value) declined,
   }) {
     return gameReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+  }) {
+    return gameReceived?.call(this);
   }
 
   @override
@@ -631,6 +738,20 @@ class _$Accepted implements Accepted {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) {
+    return accepted?.call(gameInvitation);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -659,6 +780,20 @@ class _$Accepted implements Accepted {
     required TResult Function(Declined value) declined,
   }) {
     return accepted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+  }) {
+    return accepted?.call(this);
   }
 
   @override
@@ -775,6 +910,20 @@ class _$Declined implements Declined {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        receivedGameInvitationsReceived,
+    TResult Function(KtList<GameInvitation> gameInvitations)?
+        sentGameInvitationsReceived,
+    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameInvitation gameInvitation)? accepted,
+    TResult Function(GameInvitation gameInvitation)? declined,
+  }) {
+    return declined?.call(gameInvitation);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KtList<GameInvitation> gameInvitations)?
         receivedGameInvitationsReceived,
@@ -803,6 +952,20 @@ class _$Declined implements Declined {
     required TResult Function(Declined value) declined,
   }) {
     return declined(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ReceivedGameInvitationsReceived value)?
+        receivedGameInvitationsReceived,
+    TResult Function(SentGameInvitationsReceived value)?
+        sentGameInvitationsReceived,
+    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(Accepted value)? accepted,
+    TResult Function(Declined value)? declined,
+  }) {
+    return declined?.call(this);
   }
 
   @override

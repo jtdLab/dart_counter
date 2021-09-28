@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'profile_bloc.dart';
 
@@ -36,6 +37,11 @@ mixin _$ProfileEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     required TResult orElse(),
@@ -44,6 +50,11 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserReceived value) userReceived,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -172,6 +183,14 @@ class _$UserReceived implements UserReceived {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userReceived,
+  }) {
+    return userReceived?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userReceived,
     required TResult orElse(),
@@ -188,6 +207,14 @@ class _$UserReceived implements UserReceived {
     required TResult Function(UserReceived value) userReceived,
   }) {
     return userReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserReceived value)? userReceived,
+  }) {
+    return userReceived?.call(this);
   }
 
   @override
@@ -238,6 +265,11 @@ mixin _$ProfileState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? initial,
     required TResult orElse(),
@@ -246,6 +278,11 @@ mixin _$ProfileState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProfileInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ProfileInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -375,6 +412,14 @@ class _$ProfileInitial implements ProfileInitial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? initial,
+  }) {
+    return initial?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? initial,
     required TResult orElse(),
@@ -391,6 +436,14 @@ class _$ProfileInitial implements ProfileInitial {
     required TResult Function(ProfileInitial value) initial,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ProfileInitial value)? initial,
+  }) {
+    return initial?.call(this);
   }
 
   @override

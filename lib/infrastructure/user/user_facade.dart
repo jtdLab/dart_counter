@@ -65,11 +65,11 @@ class UserFacade implements IUserFacade {
     }
 
     yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
-      final idToken = await _authFacade.idToken()!;
-      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken);
+      final idToken = await _authFacade.idToken();
+      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken!);
       return right(user);
     }).onErrorReturnWith(
-      (error) => left(const UserFailure.unableToLoadData()),
+      (e, s) => left(const UserFailure.unableToLoadData()),
     );
   }
 

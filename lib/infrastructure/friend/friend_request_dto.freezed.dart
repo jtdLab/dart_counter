@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'friend_request_dto.dart';
 
@@ -200,7 +201,7 @@ class _$_FriendRequestDto extends _FriendRequestDto {
       : super._();
 
   factory _$_FriendRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_FriendRequestDtoFromJson(json);
+      _$$_FriendRequestDtoFromJson(json);
 
   @override
   final String id;
@@ -258,7 +259,7 @@ class _$_FriendRequestDto extends _FriendRequestDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FriendRequestDtoToJson(this);
+    return _$$_FriendRequestDtoToJson(this);
   }
 }
 

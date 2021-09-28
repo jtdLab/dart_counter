@@ -41,7 +41,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<String>? idToken() async {
+  Future<String?> idToken() async {
     final user = _auth.currentUser;
 
     if (user == null) {

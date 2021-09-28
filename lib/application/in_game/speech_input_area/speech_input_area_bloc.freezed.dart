@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'speech_input_area_bloc.dart';
 
@@ -32,6 +33,11 @@ mixin _$SpeechInputAreaEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     required TResult orElse(),
@@ -40,6 +46,11 @@ mixin _$SpeechInputAreaEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UndoThrowPressed value) undoThrowPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +125,14 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+  }) {
+    return undoThrowPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     required TResult orElse(),
@@ -130,6 +149,14 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     required TResult Function(UndoThrowPressed value) undoThrowPressed,
   }) {
     return undoThrowPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+  }) {
+    return undoThrowPressed?.call(this);
   }
 
   @override
@@ -169,6 +196,11 @@ mixin _$SpeechInputAreaState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -177,6 +209,11 @@ mixin _$SpeechInputAreaState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -249,6 +286,14 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -265,6 +310,14 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+  }) {
+    return initial?.call(this);
   }
 
   @override

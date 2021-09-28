@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'standard_input_area_bloc.dart';
 
@@ -54,6 +55,15 @@ mixin _$StandardInputAreaEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -70,6 +80,15 @@ mixin _$StandardInputAreaEvent {
     required TResult Function(CheckPressed value) checkPressed,
     required TResult Function(ErasePressed value) erasePressed,
     required TResult Function(DigitPressed value) digitPressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -152,6 +171,18 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) {
+    return undoThrowPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -176,6 +207,18 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     required TResult Function(DigitPressed value) digitPressed,
   }) {
     return undoThrowPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
+  }) {
+    return undoThrowPressed?.call(this);
   }
 
   @override
@@ -250,6 +293,18 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) {
+    return performThrowPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -274,6 +329,18 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     required TResult Function(DigitPressed value) digitPressed,
   }) {
     return performThrowPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
+  }) {
+    return performThrowPressed?.call(this);
   }
 
   @override
@@ -348,6 +415,18 @@ class _$CheckPressed implements CheckPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) {
+    return checkPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -372,6 +451,18 @@ class _$CheckPressed implements CheckPressed {
     required TResult Function(DigitPressed value) digitPressed,
   }) {
     return checkPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
+  }) {
+    return checkPressed?.call(this);
   }
 
   @override
@@ -446,6 +537,18 @@ class _$ErasePressed implements ErasePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) {
+    return erasePressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -470,6 +573,18 @@ class _$ErasePressed implements ErasePressed {
     required TResult Function(DigitPressed value) digitPressed,
   }) {
     return erasePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
+  }) {
+    return erasePressed?.call(this);
   }
 
   @override
@@ -569,6 +684,18 @@ class _$DigitPressed implements DigitPressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? undoThrowPressed,
+    TResult Function()? performThrowPressed,
+    TResult Function()? checkPressed,
+    TResult Function()? erasePressed,
+    TResult Function(int digit)? digitPressed,
+  }) {
+    return digitPressed?.call(digit);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
@@ -593,6 +720,18 @@ class _$DigitPressed implements DigitPressed {
     required TResult Function(DigitPressed value) digitPressed,
   }) {
     return digitPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UndoThrowPressed value)? undoThrowPressed,
+    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(CheckPressed value)? checkPressed,
+    TResult Function(ErasePressed value)? erasePressed,
+    TResult Function(DigitPressed value)? digitPressed,
+  }) {
+    return digitPressed?.call(this);
   }
 
   @override

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'edit_profile_image_bloc.dart';
 
@@ -42,6 +43,13 @@ mixin _$EditProfileImageEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? deletePressed,
+    TResult Function()? takePressed,
+    TResult Function()? choosePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deletePressed,
     TResult Function()? takePressed,
@@ -54,6 +62,13 @@ mixin _$EditProfileImageEvent {
     required TResult Function(DeletePressed value) deletePressed,
     required TResult Function(TakePressed value) takePressed,
     required TResult Function(ChoosePressed value) choosePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -132,6 +147,16 @@ class _$DeletePressed implements DeletePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? deletePressed,
+    TResult Function()? takePressed,
+    TResult Function()? choosePressed,
+  }) {
+    return deletePressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deletePressed,
     TResult Function()? takePressed,
@@ -152,6 +177,16 @@ class _$DeletePressed implements DeletePressed {
     required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return deletePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
+  }) {
+    return deletePressed?.call(this);
   }
 
   @override
@@ -222,6 +257,16 @@ class _$TakePressed implements TakePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? deletePressed,
+    TResult Function()? takePressed,
+    TResult Function()? choosePressed,
+  }) {
+    return takePressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deletePressed,
     TResult Function()? takePressed,
@@ -242,6 +287,16 @@ class _$TakePressed implements TakePressed {
     required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return takePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
+  }) {
+    return takePressed?.call(this);
   }
 
   @override
@@ -312,6 +367,16 @@ class _$ChoosePressed implements ChoosePressed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? deletePressed,
+    TResult Function()? takePressed,
+    TResult Function()? choosePressed,
+  }) {
+    return choosePressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? deletePressed,
     TResult Function()? takePressed,
@@ -332,6 +397,16 @@ class _$ChoosePressed implements ChoosePressed {
     required TResult Function(ChoosePressed value) choosePressed,
   }) {
     return choosePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DeletePressed value)? deletePressed,
+    TResult Function(TakePressed value)? takePressed,
+    TResult Function(ChoosePressed value)? choosePressed,
+  }) {
+    return choosePressed?.call(this);
   }
 
   @override
@@ -373,6 +448,11 @@ mixin _$EditProfileImageState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -381,6 +461,11 @@ mixin _$EditProfileImageState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -453,6 +538,14 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     required TResult orElse(),
@@ -469,6 +562,14 @@ class _$Initial implements Initial {
     required TResult Function(Initial value) initial,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+  }) {
+    return initial?.call(this);
   }
 
   @override
