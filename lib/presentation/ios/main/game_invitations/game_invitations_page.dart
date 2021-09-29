@@ -4,8 +4,8 @@ import 'package:dart_counter/application/invitations/invitations_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class InvitationsPage extends StatelessWidget {
-  const InvitationsPage({
+class GameInvitationsPage extends StatelessWidget {
+  const GameInvitationsPage({
     Key? key,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class InvitationsPage extends StatelessWidget {
             middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
           ),
           child: const SingleChildScrollView(
-            child: InvitationsWidget(),
+            child: GameInvitationsWidget(),
           ),
         ),
       ),

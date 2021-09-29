@@ -21,8 +21,8 @@ import 'main/game_history/game_history_details/game_history_details_page.dart'
 import 'main/game_history/game_history_flow.dart' as _i10;
 import 'main/game_history/game_history_overview/game_history_overview_page.dart'
     as _i14;
+import 'main/game_invitations/game_invitations_page.dart' as _i7;
 import 'main/home/home_page.dart' as _i3;
-import 'main/invitations/invitations_page.dart' as _i7;
 import 'main/main_flow.dart' as _i2;
 import 'main/privacy_policy/privacy_policy_page.dart' as _i5;
 import 'main/profile/profile_page.dart' as _i9;
@@ -73,9 +73,9 @@ class Router extends _i19.RootStackRouter {
       return _i19.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i6.ContactPage());
     },
-    InvitationsPageRoute.name: (routeData) {
+    GameInvitationsPageRoute.name: (routeData) {
       return _i19.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i7.InvitationsPage());
+          routeData: routeData, child: const _i7.GameInvitationsPage());
     },
     FriendsFlowRoute.name: (routeData) {
       return _i19.CupertinoPageX<dynamic>(
@@ -155,7 +155,8 @@ class Router extends _i19.RootStackRouter {
           _i19.RouteConfig(PrivacyPolicyPageRoute.name,
               path: 'privacy-policy-page'),
           _i19.RouteConfig(ContactPageRoute.name, path: 'contact-page'),
-          _i19.RouteConfig(InvitationsPageRoute.name, path: 'invitations-page'),
+          _i19.RouteConfig(GameInvitationsPageRoute.name,
+              path: 'game-invitations-page'),
           _i19.RouteConfig(FriendsFlowRoute.name,
               path: 'friends-flow',
               children: [
@@ -223,11 +224,11 @@ class ContactPageRoute extends _i19.PageRouteInfo<void> {
   static const String name = 'ContactPageRoute';
 }
 
-/// generated route for [_i7.InvitationsPage]
-class InvitationsPageRoute extends _i19.PageRouteInfo<void> {
-  const InvitationsPageRoute() : super(name, path: 'invitations-page');
+/// generated route for [_i7.GameInvitationsPage]
+class GameInvitationsPageRoute extends _i19.PageRouteInfo<void> {
+  const GameInvitationsPageRoute() : super(name, path: 'game-invitations-page');
 
-  static const String name = 'InvitationsPageRoute';
+  static const String name = 'GameInvitationsPageRoute';
 }
 
 /// generated route for [_i8.FriendsFlow]

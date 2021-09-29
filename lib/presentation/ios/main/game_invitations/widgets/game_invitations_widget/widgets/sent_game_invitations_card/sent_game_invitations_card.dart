@@ -3,8 +3,8 @@ import 'package:dart_counter/application/invitations/invitations_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class ReceivedInvitationsCard extends StatelessWidget {
-  const ReceivedInvitationsCard({
+class SentGameInvitationsCard extends StatelessWidget {
+  const SentGameInvitationsCard({
     Key? key,
   }) : super(key: key);
 
@@ -12,11 +12,11 @@ class ReceivedInvitationsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InvitationsBloc, InvitationsState>(
       builder: (context, state) {
-        final gameInvitations = state.receivedGameInvitations;
+        final gameInvitations = state.sentGameInvitations;
 
         return AppCard(
           middle: Text(
-            LocaleKeys.received.tr().toUpperCase(),
+            LocaleKeys.sent.tr().toUpperCase(),
             style: CupertinoTheme.of(context)
                 .textTheme
                 .textStyle
@@ -26,8 +26,8 @@ class ReceivedInvitationsCard extends StatelessWidget {
             for (int index = 0; index < gameInvitations.size; index++)
               Column(
                 children: [
-                  ReceivedInvitationsItem(
-                    gameInvitation: gameInvitations[index],
+                  SentGameInvitationsItem(
+                    name: gameInvitations[index].fromName.getOrCrash(),
                   ),
                 ],
               )

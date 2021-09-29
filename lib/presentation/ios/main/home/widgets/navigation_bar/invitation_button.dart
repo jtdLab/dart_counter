@@ -17,7 +17,7 @@ class InvitationButton extends StatelessWidget {
 
         if (unreadReceivedInvitations == 0) {
           return AppNavigationBarButton(
-            onPressed: () => context.router.push(const InvitationsPageRoute()),
+            onPressed: () => context.router.push(const GameInvitationsPageRoute()),
             child: Image.asset(
               AppImages.messageNew,
               fit: BoxFit.fitHeight,
@@ -37,7 +37,7 @@ class InvitationButton extends StatelessWidget {
             ),
             child: AppNavigationBarButton(
               onPressed: () =>
-                  context.router.push(const InvitationsPageRoute()),
+                  context.router.push(const GameInvitationsPageRoute()),
               child: Image.asset(
                 AppImages.messageNew,
                 fit: BoxFit.fitHeight,

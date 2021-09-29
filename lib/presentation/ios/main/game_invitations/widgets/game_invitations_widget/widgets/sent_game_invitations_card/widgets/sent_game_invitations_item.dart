@@ -2,10 +2,10 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 
-class SentInvitationsItem extends StatelessWidget {
+class SentGameInvitationsItem extends StatelessWidget {
   final String name;
 
-  const SentInvitationsItem({
+  const SentGameInvitationsItem({
     Key? key,
     required this.name,
   }) : super(key: key);

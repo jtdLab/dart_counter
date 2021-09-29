@@ -1,8 +1,8 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'widgets/widgets.dart';
 
-class InvitationsWidget extends StatelessWidget {
-  const InvitationsWidget({
+class GameInvitationsWidget extends StatelessWidget {
+  const GameInvitationsWidget({
     Key? key,
   }) : super(key: key);
 
@@ -12,9 +12,9 @@ class InvitationsWidget extends StatelessWidget {
       spacing: size12(context),
       children: const [
         AppSpacer.small(),
-        ReceivedInvitationsCard(),
+        ReceivedGameInvitationsCard(),
         AppSpacer.small(),
-        SentInvitationsCard(),
+        SentGameInvitationsCard(),
       ],
     );
   }
