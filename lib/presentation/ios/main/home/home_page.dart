@@ -1,7 +1,18 @@
-import 'package:dart_counter/application/home/home_bloc.dart';
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-import 'widgets/widgets.dart';
+// BLOCS
+import 'package:dart_counter/application/home/home_bloc.dart';
+
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
+
+// LOCALE WIDGETS
+part 'widgets.dart';
 
 class HomePage extends StatelessWidget {
   @override
