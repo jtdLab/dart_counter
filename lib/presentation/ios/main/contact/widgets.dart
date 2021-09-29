@@ -1,5 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
+part of './contact_page.dart';
 
 class ContactWidget extends StatelessWidget {
   const ContactWidget({
