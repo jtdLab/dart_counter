@@ -3,8 +3,8 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
 import 'main/friends/friends_flow.dart';
-import 'main/friends/friends_overview/friends_overview_page.dart';
-import 'main/friends/friends_profile/friends_profile_page.dart';
+import 'main/friends/overview/overview_page.dart';
+import 'main/friends/profile/profile_page.dart';
 import 'main/game/create_game/create_game_page.dart';
 import 'main/game/game_flow.dart';
 import 'main/game/in_game/in_game_page.dart';
@@ -16,7 +16,7 @@ import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
-import 'main/profile/profile_page.dart';
+import 'main/profile/profile_page.dart' as profile;
 import 'main/settings/settings_page.dart';
 
 // route builder for pages with modal views
@@ -64,16 +64,16 @@ Route<T> customRouteBuilder<T>(
             CustomRoute(
               initial: true,
               customRouteBuilder: customRouteBuilder,
-              page: FriendsOverviewPage,
+              page: OverviewPage,
             ),
             CustomRoute(
-              page: FriendsProfilePage,
+              page: ProfilePage,
               reverseDurationInMilliseconds: 0,
             ),
           ],
         ),
         CupertinoRoute(
-          page: ProfilePage,
+          page: profile.ProfilePage,
         ),
         CupertinoRoute(
           page: GameHistoryFlow,

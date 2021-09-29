@@ -1,5 +1,8 @@
-import 'package:dart_counter/application/friends/friends_bloc.dart';
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOC
+import 'package:dart_counter/application/friends/friends_bloc.dart';
 
 class FriendsFlow extends StatelessWidget {
   const FriendsFlow({

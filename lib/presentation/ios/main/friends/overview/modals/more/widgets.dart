@@ -1,12 +1,8 @@
-import 'package:dart_counter/application/friends/friends_bloc.dart';
-import 'package:dart_counter/application/friends/more/more_bloc.dart';
-import 'package:dart_counter/domain/friend/user.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
+part of 'more_modal.dart';
 
 // TODO uses apppage one ebebne über
-class MoreWidget extends StatelessWidget {
-  const MoreWidget({
+class _MoreWidget extends StatelessWidget {
+  const _MoreWidget({
     Key? key,
   }) : super(key: key);
 

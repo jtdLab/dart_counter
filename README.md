@@ -80,3 +80,5 @@ SHARED WIDGETS
 LOCALE PAGES + WIDGETS
 
 // TODO sub pages part of flow or not => leads to parent flow having all other as part
+
+// TODO privacy in sub widgets and modals and pages

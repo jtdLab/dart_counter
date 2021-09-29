@@ -1,10 +1,7 @@
-import 'package:dart_counter/application/friends/search_user/search_user_bloc.dart';
+part of 'search_user_modal.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
-
-class SearchUserWidget extends StatefulWidget {
-  const SearchUserWidget({
+class _SearchUserWidget extends StatefulWidget {
+  const _SearchUserWidget({
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +9,7 @@ class SearchUserWidget extends StatefulWidget {
   _SearchUserWidgetState createState() => _SearchUserWidgetState();
 }
 
-class _SearchUserWidgetState extends State<SearchUserWidget> {
+class _SearchUserWidgetState extends State<_SearchUserWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchUserBloc, SearchUserState>(
@@ -55,7 +52,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
                             spacing: widget.size6(context),
                             children: searchResults
                                 .map(
-                                  (item) => UserItem(
+                                  (item) => _UserItem(
                                     name: item.username.getOrCrash(),
                                   ),
                                 )
@@ -71,6 +68,51 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
           ],
         );
       },
+    );
+  }
+}
+
+class _UserItem extends StatelessWidget {
+  final String name;
+
+  const _UserItem({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCardItem.large(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 16,
+            ),
+            child: AppRoundedImage.small(
+              imageName: AppImages.photoPlaceholderNew,
+            ),
+          ),
+          Text(
+            name.toUpperCase(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 16,
+            ),
+            child: AppIconButton(
+              onPressed: () {}, // TODO
+              icon: Image.asset(
+                AppImages.addNew,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
