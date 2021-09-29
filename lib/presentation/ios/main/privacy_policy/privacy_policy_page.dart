@@ -1,5 +1,13 @@
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
+
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
+
+// LOCALE WIDGETS
+part 'widgets.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   const PrivacyPolicyPage({
