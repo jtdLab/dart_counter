@@ -1,9 +1,7 @@
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
+part of '../forgot_password_modal.dart';
 
-class ForgotPasswordSuccessWidget extends StatelessWidget {
-  const ForgotPasswordSuccessWidget({
+class _SuccessWidget extends StatelessWidget {
+  const _SuccessWidget({
     Key? key,
   }) : super(key: key);
 

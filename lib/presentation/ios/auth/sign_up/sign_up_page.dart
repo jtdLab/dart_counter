@@ -1,8 +1,18 @@
-import 'package:dart_counter/application/core/auth/auth_bloc.dart';
-import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-import 'widgets/widgets.dart';
+// BLOCS
+import 'package:dart_counter/application/core/auth/auth_bloc.dart';
+import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
+
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_link_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
+
+// LOCAL WIDGETS
+part 'widgets.dart';
 
 class SignUpPage extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
@@ -49,7 +59,7 @@ class SignUpPage extends StatelessWidget {
                   constraints: constraints.copyWith(
                     maxHeight: constraints.maxHeight + bottomInsets,
                   ),
-                  child: SignUpWidget(
+                  child: _SignUpWidget(
                     pageController: pageController,
                   ),
                 ),

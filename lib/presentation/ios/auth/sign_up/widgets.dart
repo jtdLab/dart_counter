@@ -1,12 +1,9 @@
-import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
+part of './sign_up_page.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
-
-class SignUpWidget extends StatelessWidget {
+class _SignUpWidget extends StatelessWidget {
   final PageController pageController;
 
-  const SignUpWidget({
+  const _SignUpWidget({
     Key? key,
     required this.pageController,
   }) : super(key: key);

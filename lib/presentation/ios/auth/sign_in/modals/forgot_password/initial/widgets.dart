@@ -1,12 +1,7 @@
-import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
+part of '../forgot_password_modal.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
-
-class ForgotPasswordInitialWidget extends StatelessWidget {
-  const ForgotPasswordInitialWidget({
+class _InitialWidget extends StatelessWidget {
+  const _InitialWidget({
     Key? key,
   }) : super(key: key);
 

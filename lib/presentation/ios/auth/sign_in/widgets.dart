@@ -1,15 +1,10 @@
-import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
+part of './sign_in_page.dart';
 
-import 'package:dart_counter/presentation/ios/auth/sign_in/modals/modals.dart';
-
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
-
-class SignInWidget extends StatelessWidget {
+class _SignInWidget extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
   final PageController pageController;
 
-  const SignInWidget({
+  const _SignInWidget({
     Key? key,
     required this.pageController,
   }) : super(key: key);
@@ -92,7 +87,7 @@ class SignInWidget extends StatelessWidget {
                     showCupertinoModalBottomSheet(
                       expand: true,
                       context: context,
-                      builder: (context) => const ForgotPasswordFlow(),
+                      builder: (context) => const ForgotPasswordModal(),
                     );
                   },
                 ),

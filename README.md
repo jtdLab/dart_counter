@@ -29,8 +29,6 @@ flutter pub run easy_localization:generate -S assets/languages
 // 9. add chache to infrastructure layer
 // 10. add logging to whole app
 // 11. fix all TODOs
-// 12. update to flutter 2.5 + fix bugs related to that
-// 13. update all dependencies + fix bugs related to that
 // 14. write tests and optimize software structure for best testability
 
 // Join game and accept invitation are 2 different client side actions that have both to be send
@@ -59,4 +57,25 @@ flutter pub run easy_localization:generate -S assets/languages
 
 TODO import flutter bloc not bloc in bloc
 
-// TODO handle error thrown by behaivour subject.value
+TODO handle error thrown by behaivour subject.value
+
+
+# FLOW:
+CORE
+BLOCS
+PAGES
+
+# PAGE:
+CORE
+BLOCS
+MODALS
+SHARED WIDGETS
+LOCALE WIDGETS
+
+# MODAL:
+CORE
+BLOCS
+SHARED WIDGETS
+LOCALE PAGES + WIDGETS
+
+// TODO sub pages part of flow or not => leads to parent flow having all other as part

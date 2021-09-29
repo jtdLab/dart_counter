@@ -1,4 +1,7 @@
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// PAGES
 import 'sign_in/sign_in_page.dart';
 import 'sign_up/sign_up_page.dart';
 

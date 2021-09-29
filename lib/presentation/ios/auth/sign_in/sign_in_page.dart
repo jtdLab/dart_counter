@@ -1,9 +1,23 @@
-import 'package:dart_counter/application/core/auth/auth_bloc.dart';
-import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-import 'widgets/widgets.dart';
+// BLOCS
+import 'package:dart_counter/application/core/auth/auth_bloc.dart';
+import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
 
+// MODALS
+import 'modals/forgot_password/forgot_password_modal.dart';
+
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_link_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
+
+// LOCAL WIDGETS
+part 'widgets.dart';
+
+// TODO doc
 class SignInPage extends StatelessWidget {
   // TODO provide it and dont pass it via constructor ?
   final PageController pageController;
@@ -12,7 +26,6 @@ class SignInPage extends StatelessWidget {
     Key? key,
     required this.pageController,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +66,7 @@ class SignInPage extends StatelessWidget {
                   constraints: constraints.copyWith(
                     maxHeight: constraints.maxHeight + bottomInsets,
                   ),
-                  child: SignInWidget(
+                  child: _SignInWidget(
                     pageController: pageController,
                   ),
                 ),
