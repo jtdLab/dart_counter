@@ -15,6 +15,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
 
+// LOCALE WIDGETS
 part 'widgets.dart';
 
 class GameInvitationsPage extends StatelessWidget {
