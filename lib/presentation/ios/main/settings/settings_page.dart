@@ -1,8 +1,27 @@
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOC
 import 'package:dart_counter/application/core/auth/auth_bloc.dart';
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
+// MODALS
+import 'modals/edit_profile_image/edit_profile_image_modal.dart';
+import 'modals/change_username/change_username_modal.dart';
+import 'modals/change_password/change_password_modal.dart';
+import 'modals/change_email/change_email_modal.dart';
+
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
+
+// LOCALE WIDGETS
+part 'widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({

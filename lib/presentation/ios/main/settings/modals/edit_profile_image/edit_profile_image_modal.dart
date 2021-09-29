@@ -1,8 +1,16 @@
+// BLOC
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOC
 import 'package:dart_counter/application/settings/edit_profile_image/edit_profile_image_bloc.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
+// LOCALE WIDGETS
+part 'widgets.dart';
+
+// TODO use app page here
 class EditProfileImageModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
