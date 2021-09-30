@@ -1,7 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
+part of 'advanced_settings_modal.dart';
 
 // TODO refactor + responsive
 class AdvancedSettingsWidget extends StatelessWidget {

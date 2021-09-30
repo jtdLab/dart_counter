@@ -1,6 +1,11 @@
-import 'dart:math' as math;
-import 'dart:ui';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
+// OTHER
+import 'dart:math' as math;
+import 'package:dartz/dartz.dart' hide State;
+
+// BLOCS
 import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
@@ -8,26 +13,28 @@ import 'package:dart_counter/application/in_game/optical_input_area/optical_inpu
 import 'package:dart_counter/application/in_game/speech_input_area/speech_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/standard_input_area/standard_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
+
+// DOMAIN
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/status.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// MODALS
+import 'modals/checkout_details/checkout_details_modal.dart';
+import 'modals/stats/stats_modal.dart';
+
+// SHARED WIDGETS
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
-import 'package:dart_counter/presentation/ios/main/game/shared/you_really_want_to_cancel_game_dialog.dart';
-import 'package:dartz/dartz.dart' hide State;
 
-import 'modals/checkout_details/checkout_details_modal.dart';
-import 'modals/stats/stats_modal.dart';
-
+// LOCALE WIDGETS
+import '../shared.dart';
 part 'widgets.dart';
 
-// TODO responsiveness
+// TODO responsivness
 class InGamePage extends StatelessWidget {
   const InGamePage({
     Key? key,

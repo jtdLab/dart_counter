@@ -8,6 +8,6 @@ class _StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const st.StatsWidget();
+    return const StatsWidget();
   }
 }
