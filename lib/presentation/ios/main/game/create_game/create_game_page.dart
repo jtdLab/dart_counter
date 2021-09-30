@@ -25,9 +25,9 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_number_pic
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
+import '../shared.dart';
 
 // LOCAL WIDGETS
-import '../shared.dart';
 part 'widgets.dart';
 
 class CreateGamePage extends StatelessWidget {

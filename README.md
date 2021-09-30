@@ -11,7 +11,7 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 flutter pub run easy_localization:generate -S assets/languages
 
 ## TODOS
-
+// 5. determine failures in domain ref to 8.
 // 6. refactor application layer
 // 7. refactor presentation layer
 // 8. optimize infrastructor layer depending on how good it works with application layer
@@ -35,6 +35,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // privacy/visibility of bloc events/states and whole orga of presentation layer with privacy/visibility
 // import flutter bloc not bloc in bloc
 // handle error thrown by behaivour subject.value
+// maybe splitt big widgets.dart file into sub files with part and part of e.g ingame/widgets.dart
 
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 

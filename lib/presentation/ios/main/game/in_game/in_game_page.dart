@@ -29,9 +29,9 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
+import '../shared.dart';
 
 // LOCAL WIDGETS
-import '../shared.dart';
 part 'widgets.dart';
 
 // TODO responsivness
