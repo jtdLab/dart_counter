@@ -87,3 +87,5 @@ LOCALE PAGES + WIDGETS
 // TODO privacy in sub widgets and modals and pages
 
 // sub pageroute dublicate naming in router.dart generate
+
+// TODO LOCAL NOT LOCALE

@@ -1,10 +1,7 @@
-import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
+part of 'checkout_details_modal.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
-
-class CheckoutDetailsWidget extends StatelessWidget {
-  const CheckoutDetailsWidget({
+class _CheckoutDetailsWidget extends StatelessWidget {
+  const _CheckoutDetailsWidget({
     Key? key,
   }) : super(key: key);
 
@@ -38,7 +35,7 @@ class CheckoutDetailsWidget extends StatelessWidget {
                       children: [
                         for (int i = minDartsThrown; i <= maxDartsThrown; i++)
                           Expanded(
-                            child: CheckoutDetailsButton(
+                            child: _CheckoutDetailsButton(
                               selected: i == selectedDartsThrown,
                               onPressed: () =>
                                   context.read<CheckoutDetailsBloc>().add(
@@ -73,7 +70,7 @@ class CheckoutDetailsWidget extends StatelessWidget {
                             i <= maxDartsOnDouble;
                             i++)
                           Expanded(
-                            child: CheckoutDetailsButton(
+                            child: _CheckoutDetailsButton(
                               selected: i == selectedDartsOnDouble,
                               onPressed: () =>
                                   context.read<CheckoutDetailsBloc>().add(
@@ -106,5 +103,43 @@ class CheckoutDetailsWidget extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+// TODO keyboardbutton instead of this button
+class _CheckoutDetailsButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final double fontSize;
+  final String? text;
+  final Widget? child;
+  final bool selected;
+
+  const _CheckoutDetailsButton({
+    this.onPressed,
+    Key? key,
+    this.fontSize = 28,
+    this.text,
+    required this.selected,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (text != null) {
+      return AppActionButton.normal(
+        fontSize: fontSize,
+        color: selected ? AppColors.orangeNew : AppColors.white,
+        onPressed: onPressed,
+        text: text,
+      );
+    }
+    if (child != null) {
+      return AppActionButton.normal(
+        color: selected ? AppColors.orangeNew : AppColors.white,
+        onPressed: onPressed,
+        icon: child,
+      );
+    }
+    return Container();
   }
 }
