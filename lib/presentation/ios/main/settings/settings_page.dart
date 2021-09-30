@@ -52,7 +52,7 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               child: const SingleChildScrollView(
-                child: SettingsWidget(),
+                child: _SettingsWidget(),
               ),
             );
           },

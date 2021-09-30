@@ -43,7 +43,8 @@ class ChangeEmailModal extends StatelessWidget {
           ),
           */
             orElse: () => showToast(
-                'UserFailure happended'), // TODO catch other errors also
+              'UserFailure happended',
+            ), // TODO catch other errors also
           );
         },
         child: Navigator(

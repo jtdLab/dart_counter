@@ -1,5 +1,6 @@
 part of '../change_password_modal.dart';
 
+// BODY
 class _SuccessWidget extends StatelessWidget {
   const _SuccessWidget({
     Key? key,

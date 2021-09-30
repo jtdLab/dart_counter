@@ -1,5 +1,6 @@
 part of 'create_game_page.dart';
 
+// BODY
 class _CreateGameWidget extends StatelessWidget {
   const _CreateGameWidget({
     Key? key,

@@ -1,6 +1,6 @@
 part of 'in_game_page.dart';
 
-// Navbar
+// NAVBAR
 class _StatsButton extends StatelessWidget {
   const _StatsButton({
     Key? key,
@@ -26,7 +26,7 @@ class _StatsButton extends StatelessWidget {
   }
 }
 
-// Body
+// BODY
 class _InGameWidget extends StatelessWidget {
   const _InGameWidget({
     Key? key,

@@ -1,5 +1,6 @@
 part of './details_page.dart';
 
+// BODY
 class _DetailsWidget extends StatelessWidget {
   const _DetailsWidget({
     Key? key,

@@ -1,8 +1,9 @@
 part of 'advanced_settings_modal.dart';
 
+// BODY
 // TODO refactor + responsive
-class AdvancedSettingsWidget extends StatelessWidget {
-  const AdvancedSettingsWidget({
+class _AdvancedSettingsWidget extends StatelessWidget {
+  const _AdvancedSettingsWidget({
     Key? key,
   }) : super(key: key);
 

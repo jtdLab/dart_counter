@@ -1,8 +1,9 @@
 part of './edit_profile_image_modal.dart';
 
+// BODY
 // TODO uses apppage one ebebne über
-class EditProfileImageWidget extends StatelessWidget {
-  const EditProfileImageWidget({
+class _EditProfileImageWidget extends StatelessWidget {
+  const _EditProfileImageWidget({
     Key? key,
   }) : super(key: key);
 

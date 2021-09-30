@@ -29,11 +29,11 @@ class ProfilePage extends StatelessWidget {
       child: const AppPage(
         navigationBar: AppNavigationBar(
           leading: BackButton(),
-          middle: NameDisplayer(),
-          trailing: GameHistoryButton(),
+          middle: _NameDisplayer(),
+          trailing: _GameHistoryButton(),
         ),
         child: SingleChildScrollView(
-          child: FriendsProfileWidget(),
+          child: _FriendsProfileWidget(),
         ),
       ),
     );

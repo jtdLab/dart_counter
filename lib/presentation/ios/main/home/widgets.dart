@@ -1,8 +1,8 @@
 part of 'home_page.dart';
 
-// Navbar
-class FriendButton extends StatelessWidget {
-  const FriendButton({
+// NAVBAR
+class _FriendButton extends StatelessWidget {
+  const _FriendButton({
     Key? key,
   }) : super(key: key);
 
@@ -45,8 +45,8 @@ class FriendButton extends StatelessWidget {
   }
 }
 
-class InvitationButton extends StatelessWidget {
-  const InvitationButton({
+class _InvitationButton extends StatelessWidget {
+  const _InvitationButton({
     Key? key,
   }) : super(key: key);
 
@@ -93,8 +93,8 @@ class InvitationButton extends StatelessWidget {
   }
 }
 
-class SettingsButton extends StatelessWidget {
-  const SettingsButton({
+class _SettingsButton extends StatelessWidget {
+  const _SettingsButton({
     Key? key,
   }) : super(key: key);
 
@@ -109,8 +109,8 @@ class SettingsButton extends StatelessWidget {
   }
 }
 
-class StatsButton extends StatelessWidget {
-  const StatsButton({
+class _StatsButton extends StatelessWidget {
+  const _StatsButton({
     Key? key,
   }) : super(key: key);
 
@@ -125,8 +125,8 @@ class StatsButton extends StatelessWidget {
   }
 }
 
-// Body
-class HomeWidget extends StatelessWidget {
+// BODY
+class _HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -140,19 +140,19 @@ class HomeWidget extends StatelessWidget {
               photoUrl: photoUrl,
             ),
             const Spacer(flex: 2),
-            const NameDisplayer(),
+            const _NameDisplayer(),
             const Spacer(flex: 2),
-            PlayOnlineButton(),
+            _PlayOnlineButton(),
             const AppSpacer.normal(),
-            PlayOfflineButton(),
+            _PlayOfflineButton(),
             const AppSpacer.normal(),
-            TrainButton(),
+            _TrainButton(),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                InstagramButton(),
-                YoutubeButton(),
+                _InstagramButton(),
+                _YoutubeButton(),
               ],
             ),
             const Spacer(),
@@ -163,8 +163,8 @@ class HomeWidget extends StatelessWidget {
   }
 }
 
-class InstagramButton extends StatelessWidget {
-  const InstagramButton({
+class _InstagramButton extends StatelessWidget {
+  const _InstagramButton({
     Key? key,
   }) : super(key: key);
 
@@ -180,8 +180,8 @@ class InstagramButton extends StatelessWidget {
   }
 }
 
-class NameDisplayer extends StatelessWidget {
-  const NameDisplayer({
+class _NameDisplayer extends StatelessWidget {
+  const _NameDisplayer({
     Key? key,
   }) : super(key: key);
 
@@ -215,7 +215,7 @@ class NameDisplayer extends StatelessWidget {
   }
 }
 
-class PlayOfflineButton extends StatelessWidget {
+class _PlayOfflineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
@@ -230,7 +230,7 @@ class PlayOfflineButton extends StatelessWidget {
   }
 }
 
-class PlayOnlineButton extends StatelessWidget {
+class _PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
@@ -245,7 +245,7 @@ class PlayOnlineButton extends StatelessWidget {
   }
 }
 
-class TrainButton extends StatelessWidget {
+class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
@@ -257,8 +257,8 @@ class TrainButton extends StatelessWidget {
   }
 }
 
-class YoutubeButton extends StatelessWidget {
-  const YoutubeButton({
+class _YoutubeButton extends StatelessWidget {
+  const _YoutubeButton({
     Key? key,
   }) : super(key: key);
 

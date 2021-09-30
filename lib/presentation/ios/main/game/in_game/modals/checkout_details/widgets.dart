@@ -1,5 +1,6 @@
 part of 'checkout_details_modal.dart';
 
+// BODY
 class _CheckoutDetailsWidget extends StatelessWidget {
   const _CheckoutDetailsWidget({
     Key? key,

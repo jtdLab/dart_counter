@@ -1,7 +1,8 @@
 part of './settings_page.dart';
 
-class SettingsWidget extends StatelessWidget {
-  const SettingsWidget({
+// BODY
+class _SettingsWidget extends StatelessWidget {
+  const _SettingsWidget({
     Key? key,
   }) : super(key: key);
 
@@ -26,11 +27,11 @@ class SettingsWidget extends StatelessWidget {
               ),
             ),
             const AppSpacer.large(),
-            LanguageCard(),
+            _LanguageCard(),
             const AppSpacer.large(),
-            AccountCard(),
+            _AccountCard(),
             const AppSpacer.large(),
-            DartsGerCard(),
+            _DartsGerCard(),
             const AppSpacer.large(),
             AppPrimaryButton(
               text: LocaleKeys.signOut.tr(),
@@ -48,7 +49,7 @@ class SettingsWidget extends StatelessWidget {
   }
 }
 
-class LanguageCard extends StatelessWidget {
+class _LanguageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
@@ -63,10 +64,10 @@ class LanguageCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: const [
-        LanguageItem(
+        _LanguageItem(
           language: Locale('de'),
         ),
-        LanguageItem(
+        _LanguageItem(
           language: Locale('en'),
         ),
       ],
@@ -74,10 +75,10 @@ class LanguageCard extends StatelessWidget {
   }
 }
 
-class LanguageItem extends StatelessWidget {
+class _LanguageItem extends StatelessWidget {
   final Locale language;
 
-  const LanguageItem({
+  const _LanguageItem({
     Key? key,
     required this.language,
   }) : super(key: key);
@@ -88,13 +89,13 @@ class LanguageItem extends StatelessWidget {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          FlagDisplayer(
+          _FlagDisplayer(
             language: language,
           ),
           Text(
             language.toLanguageTag().toUpperCase(),
           ),
-          CheckBox(
+          _CheckBox(
             language: language,
           ),
         ],
@@ -103,10 +104,10 @@ class LanguageItem extends StatelessWidget {
   }
 }
 
-class FlagDisplayer extends StatelessWidget {
+class _FlagDisplayer extends StatelessWidget {
   final Locale language;
 
-  const FlagDisplayer({
+  const _FlagDisplayer({
     Key? key,
     required this.language,
   }) : super(key: key);
@@ -122,10 +123,10 @@ class FlagDisplayer extends StatelessWidget {
   }
 }
 
-class CheckBox extends StatelessWidget {
+class _CheckBox extends StatelessWidget {
   final Locale language;
 
-  const CheckBox({
+  const _CheckBox({
     Key? key,
     required this.language,
   }) : super(key: key);
@@ -155,7 +156,7 @@ class CheckBox extends StatelessWidget {
   }
 }
 
-class AccountCard extends StatelessWidget {
+class _AccountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
@@ -170,7 +171,7 @@ class AccountCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: [
-        AccountItem(
+        _AccountItem(
           title: LocaleKeys.username.tr(),
           onPressed: () {
             showCupertinoModalBottomSheet(
@@ -180,7 +181,7 @@ class AccountCard extends StatelessWidget {
             );
           },
         ),
-        AccountItem(
+        _AccountItem(
           title: LocaleKeys.password.tr(),
           onPressed: () {
             showCupertinoModalBottomSheet(
@@ -190,7 +191,7 @@ class AccountCard extends StatelessWidget {
             );
           },
         ),
-        AccountItem(
+        _AccountItem(
           title: LocaleKeys.email.tr(),
           onPressed: () {
             showCupertinoModalBottomSheet(
@@ -205,11 +206,11 @@ class AccountCard extends StatelessWidget {
   }
 }
 
-class AccountItem extends StatelessWidget {
+class _AccountItem extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const AccountItem({
+  const _AccountItem({
     Key? key,
     required this.title,
     required this.onPressed,
@@ -237,7 +238,7 @@ class AccountItem extends StatelessWidget {
   }
 }
 
-class DartsGerCard extends StatelessWidget {
+class _DartsGerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
@@ -252,11 +253,11 @@ class DartsGerCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: [
-        DartsGerCardItem(
+        _DartsGerCardItem(
           title: LocaleKeys.privacyPolicy.tr().toUpperCase(),
           onPressed: () => context.router.push(const PrivacyPolicyPageRoute()),
         ),
-        DartsGerCardItem(
+        _DartsGerCardItem(
           title: LocaleKeys.contact.tr().toUpperCase(),
           onPressed: () => context.router.push(const ContactPageRoute()),
         ),
@@ -265,11 +266,11 @@ class DartsGerCard extends StatelessWidget {
   }
 }
 
-class DartsGerCardItem extends StatelessWidget {
+class _DartsGerCardItem extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const DartsGerCardItem({
+  const _DartsGerCardItem({
     Key? key,
     required this.title,
     required this.onPressed,

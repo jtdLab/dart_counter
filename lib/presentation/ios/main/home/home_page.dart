@@ -32,18 +32,18 @@ class HomePage extends StatelessWidget {
             navigationBar: state.map(
               loadInProgress: (_) => null,
               loadSuccess: (_) => AppNavigationBar(
-                leading: const SettingsButton(),
+                leading: const _SettingsButton(),
                 trailing: Row(
                   children: const [
-                    InvitationButton(),
+                    _InvitationButton(),
                     AppSpacer.large(
                       orientation: Orientation.horizontal,
                     ),
-                    FriendButton(),
+                    _FriendButton(),
                     AppSpacer.large(
                       orientation: Orientation.horizontal,
                     ),
-                    StatsButton(),
+                    _StatsButton(),
                   ],
                 ),
               ),
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
             ),
             child: state.map(
               loadInProgress: (_) => const LoadingWidget(),
-              loadSuccess: (_) => HomeWidget(),
+              loadSuccess: (_) => _HomeWidget(),
               failure: (_) => const Center(
                 child: Text('Error loading TODO'),
               ),

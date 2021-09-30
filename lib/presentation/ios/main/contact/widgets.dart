@@ -1,7 +1,8 @@
 part of './contact_page.dart';
 
-class ContactWidget extends StatelessWidget {
-  const ContactWidget({
+// BODY
+class _ContactWidget extends StatelessWidget {
+  const _ContactWidget({
     Key? key,
   }) : super(key: key);
 

@@ -24,7 +24,7 @@ class PrivacyPolicyPage extends StatelessWidget {
         leading: const BackButton(),
       ),
       child: const SingleChildScrollView(
-        child: PrivacyPolicyWidget(),
+        child: _PrivacyPolicyWidget(),
       ),
     );
   }

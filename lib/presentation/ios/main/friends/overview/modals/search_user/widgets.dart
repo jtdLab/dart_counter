@@ -1,5 +1,6 @@
 part of 'search_user_modal.dart';
 
+// BODY
 class _SearchUserWidget extends StatefulWidget {
   const _SearchUserWidget({
     Key? key,

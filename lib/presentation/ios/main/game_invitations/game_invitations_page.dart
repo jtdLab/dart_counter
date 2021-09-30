@@ -39,7 +39,7 @@ class GameInvitationsPage extends StatelessWidget {
             middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
           ),
           child: const SingleChildScrollView(
-            child: GameInvitationsWidget(),
+            child: _GameInvitationsWidget(),
           ),
         ),
       ),

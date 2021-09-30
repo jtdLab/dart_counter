@@ -1,7 +1,8 @@
 part of './privacy_policy_page.dart';
 
-class PrivacyPolicyWidget extends StatelessWidget {
-  const PrivacyPolicyWidget({
+// BODY
+class _PrivacyPolicyWidget extends StatelessWidget {
+  const _PrivacyPolicyWidget({
     Key? key,
   }) : super(key: key);
 

@@ -1,8 +1,8 @@
 part of 'profile_page.dart';
 
-// Navbar
-class GameHistoryButton extends StatelessWidget {
-  const GameHistoryButton({
+// NAVBAR
+class _GameHistoryButton extends StatelessWidget {
+  const _GameHistoryButton({
     Key? key,
   }) : super(key: key);
 
@@ -17,8 +17,8 @@ class GameHistoryButton extends StatelessWidget {
   }
 }
 
-class NameDisplayer extends StatelessWidget {
-  const NameDisplayer({
+class _NameDisplayer extends StatelessWidget {
+  const _NameDisplayer({
     Key? key,
   }) : super(key: key);
 
@@ -36,9 +36,9 @@ class NameDisplayer extends StatelessWidget {
   }
 }
 
-// Body
-class FriendsProfileWidget extends StatelessWidget {
-  const FriendsProfileWidget({
+// BODY
+class _FriendsProfileWidget extends StatelessWidget {
+  const _FriendsProfileWidget({
     Key? key,
   }) : super(key: key);
 
@@ -55,7 +55,7 @@ class FriendsProfileWidget extends StatelessWidget {
               photoUrl: photoUrl,
             ),
             const AppSpacer.large(),
-            const CareerStatsDisplayer(),
+            const _CareerStatsDisplayer(),
             const AppSpacer.large(),
           ],
         );
@@ -64,8 +64,8 @@ class FriendsProfileWidget extends StatelessWidget {
   }
 }
 
-class CareerStatsDisplayer extends StatelessWidget {
-  const CareerStatsDisplayer({
+class _CareerStatsDisplayer extends StatelessWidget {
+  const _CareerStatsDisplayer({
     Key? key,
   }) : super(key: key);
 
@@ -79,38 +79,38 @@ class CareerStatsDisplayer extends StatelessWidget {
         return AppColumn(
           spacing: size6(context),
           children: [
-            CareerStatsItem(
+            _CareerStatsItem(
               title: LocaleKeys.averrage.tr().toUpperCase(),
               value: careerStatsOnline.average.toStringAsFixed(2),
               trend: careerStatsOnline.averageTrend,
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
               value: careerStatsOnline.checkoutPercentage.toStringAsFixed(2),
               trend: careerStatsOnline.checkoutPercentageTrend,
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               value: careerStatsOnline.firstNine.toStringAsFixed(2),
               title: LocaleKeys.firstNine.tr().toUpperCase(),
               trend: careerStatsOnline.firstNineTrend,
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               value: '19',
               title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
             ),
-            const CareerStatsItem(
+            const _CareerStatsItem(
               title: '180s',
               value: '156',
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               value: careerStatsOnline.games.toString(),
               title: LocaleKeys.games.tr().toUpperCase(),
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               value: careerStatsOnline.wins.toString(),
               title: LocaleKeys.wins.tr().toUpperCase(),
             ),
-            CareerStatsItem(
+            _CareerStatsItem(
               value: careerStatsOnline.defeats.toString(),
               title: LocaleKeys.defeats.tr().toUpperCase(),
             ),
@@ -121,12 +121,12 @@ class CareerStatsDisplayer extends StatelessWidget {
   }
 }
 
-class CareerStatsItem extends StatelessWidget {
+class _CareerStatsItem extends StatelessWidget {
   final String title;
   final String value;
   final Trend trend;
 
-  const CareerStatsItem({
+  const _CareerStatsItem({
     Key? key,
     required this.title,
     required this.value,
@@ -167,7 +167,7 @@ class CareerStatsItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     if (trend != Trend.none)
-                      TrendDisplayer(
+                      _TrendDisplayer(
                         trend: trend,
                       ),
                     Text(
@@ -188,10 +188,10 @@ class CareerStatsItem extends StatelessWidget {
   }
 }
 
-class TrendDisplayer extends StatelessWidget {
+class _TrendDisplayer extends StatelessWidget {
   final Trend trend;
 
-  const TrendDisplayer({
+  const _TrendDisplayer({
     Key? key,
     this.trend = Trend.none,
   }) : super(key: key);

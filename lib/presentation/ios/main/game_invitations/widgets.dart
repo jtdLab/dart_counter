@@ -1,7 +1,8 @@
 part of './game_invitations_page.dart';
 
-class GameInvitationsWidget extends StatelessWidget {
-  const GameInvitationsWidget({
+// BODY
+class _GameInvitationsWidget extends StatelessWidget {
+  const _GameInvitationsWidget({
     Key? key,
   }) : super(key: key);
 
@@ -11,16 +12,16 @@ class GameInvitationsWidget extends StatelessWidget {
       spacing: size12(context),
       children: const [
         AppSpacer.small(),
-        ReceivedGameInvitationsCard(),
+        _ReceivedGameInvitationsCard(),
         AppSpacer.small(),
-        SentGameInvitationsCard(),
+        _SentGameInvitationsCard(),
       ],
     );
   }
 }
 
-class ReceivedGameInvitationsCard extends StatelessWidget {
-  const ReceivedGameInvitationsCard({
+class _ReceivedGameInvitationsCard extends StatelessWidget {
+  const _ReceivedGameInvitationsCard({
     Key? key,
   }) : super(key: key);
 
@@ -42,7 +43,7 @@ class ReceivedGameInvitationsCard extends StatelessWidget {
             for (int index = 0; index < gameInvitations.size; index++)
               Column(
                 children: [
-                  ReceivedGameInvitationsItem(
+                  _ReceivedGameInvitationsItem(
                     gameInvitation: gameInvitations[index],
                   ),
                 ],
@@ -54,10 +55,10 @@ class ReceivedGameInvitationsCard extends StatelessWidget {
   }
 }
 
-class ReceivedGameInvitationsItem extends StatelessWidget {
+class _ReceivedGameInvitationsItem extends StatelessWidget {
   final GameInvitation gameInvitation;
 
-  const ReceivedGameInvitationsItem({
+  const _ReceivedGameInvitationsItem({
     Key? key,
     required this.gameInvitation,
   }) : super(key: key);
@@ -101,8 +102,8 @@ class ReceivedGameInvitationsItem extends StatelessWidget {
   }
 }
 
-class SentGameInvitationsCard extends StatelessWidget {
-  const SentGameInvitationsCard({
+class _SentGameInvitationsCard extends StatelessWidget {
+  const _SentGameInvitationsCard({
     Key? key,
   }) : super(key: key);
 
@@ -124,7 +125,7 @@ class SentGameInvitationsCard extends StatelessWidget {
             for (int index = 0; index < gameInvitations.size; index++)
               Column(
                 children: [
-                  SentGameInvitationsItem(
+                  _SentGameInvitationsItem(
                     name: gameInvitations[index].fromName.getOrCrash(),
                   ),
                 ],
@@ -136,10 +137,10 @@ class SentGameInvitationsCard extends StatelessWidget {
   }
 }
 
-class SentGameInvitationsItem extends StatelessWidget {
+class _SentGameInvitationsItem extends StatelessWidget {
   final String name;
 
-  const SentGameInvitationsItem({
+  const _SentGameInvitationsItem({
     Key? key,
     required this.name,
   }) : super(key: key);

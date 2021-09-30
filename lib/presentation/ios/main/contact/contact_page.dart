@@ -23,7 +23,7 @@ class ContactPage extends StatelessWidget {
         ),
         leading: const BackButton(),
       ),
-      child: const ContactWidget(),
+      child: const _ContactWidget(),
     );
   }
 }
