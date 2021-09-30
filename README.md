@@ -62,11 +62,13 @@ TODO handle error thrown by behaivour subject.value
 
 # FLOW:
 CORE
+3RD PARTY
 BLOCS
 PAGES
 
 # PAGE:
 CORE
+3RD PARTY
 BLOCS
 DOMAIN
 MODALS
@@ -75,6 +77,7 @@ LOCALE WIDGETS
 
 # MODAL:
 CORE
+3RD PARTY
 BLOCS
 SHARED WIDGETS
 LOCALE PAGES + WIDGETS
@@ -82,3 +85,5 @@ LOCALE PAGES + WIDGETS
 // TODO sub pages part of flow or not => leads to parent flow having all other as part
 
 // TODO privacy in sub widgets and modals and pages
+
+// sub pageroute dublicate naming in router.dart generate

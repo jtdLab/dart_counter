@@ -1,18 +1,49 @@
-import 'package:timeago/timeago.dart' as timeago;
+part of './overview_page.dart';
 
-import 'package:dart_counter/domain/play/game.dart';
+class _OverviewWidget extends StatelessWidget {
+  const _OverviewWidget({
+    Key? key,
+  }) : super(key: key);
 
-import 'package:dart_counter/application/game_history/game_history_bloc.dart';
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GameHistoryBloc, GameHistoryState>(
+      builder: (context, state) {
+        return state.map(
+          loadInProgress: (_) => const LoadingWidget(),
+          loadSuccess: (loadSucess) {
+            final games = loadSucess.gameHistory.getOrCrash();
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
+            if (games.size == 0) {
+              return Center(
+                child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
+              );
+            }
+
+            return AppColumn(
+              spacing: size12(context),
+              children: [
+                for (final game in games.iter) _GameHistoryCard(game: game),
+              ],
+            );
+          },
+          loadFailure: (_) {
+            // TODO real error displayer
+            return const Center(
+              child: Text('Could not load games.'),
+            );
+          },
+        );
+      },
+    );
+  }
+}
 
 // TODO only display game owners stats here atm the game owner is assumed to be players[0]
-class GameHistoryCard extends StatelessWidget {
+class _GameHistoryCard extends StatelessWidget {
   final Game game;
 
-  const GameHistoryCard({
+  const _GameHistoryCard({
     Key? key,
     required this.game,
   }) : super(key: key);
@@ -25,7 +56,7 @@ class GameHistoryCard extends StatelessWidget {
         context
             .read<GameHistoryBloc>()
             .add(GameHistoryEvent.gameSelected(game: game));
-        context.router.push(const GameHistoryDetailsPageRoute());
+        context.router.push(const DetailsPageRoute());
       },
       child: AppCard(
         headerBodySpacing: size6(context),

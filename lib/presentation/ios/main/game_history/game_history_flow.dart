@@ -1,6 +1,8 @@
-import 'package:dart_counter/application/game_history/game_history_bloc.dart';
-
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOCS
+import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
 class GameHistoryFlow extends StatelessWidget {
   const GameHistoryFlow({

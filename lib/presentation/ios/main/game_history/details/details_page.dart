@@ -1,10 +1,19 @@
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOCS
 import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'widgets/widgets.dart';
+// SHARED WIDGETS
+import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/stats/stats_widget.dart';
 
-class GameHistoryDetailsPage extends StatelessWidget {
-  const GameHistoryDetailsPage({
+// LOCALE WIDGETS
+part 'widgets.dart';
+
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({
     Key? key,
   }) : super(key: key);
 
@@ -21,8 +30,8 @@ class GameHistoryDetailsPage extends StatelessWidget {
               game.description().toUpperCase(),
             ),
           ),
-          child: SingleChildScrollView(
-            child: GameHistoryDetailsWidget(),
+          child: const SingleChildScrollView(
+            child: _DetailsWidget(),
           ),
         );
       },
