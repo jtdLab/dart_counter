@@ -1,7 +1,7 @@
 part of 'create_game_page.dart';
 
-class CreateGameWidget extends StatelessWidget {
-  const CreateGameWidget({
+class _CreateGameWidget extends StatelessWidget {
+  const _CreateGameWidget({
     Key? key,
   }) : super(key: key);
 
@@ -9,21 +9,21 @@ class CreateGameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        DartBotCard(),
+        _DartBotCard(),
         AppSpacer.large(),
-        PlayerCard(),
+        _PlayerCard(),
         AppSpacer.large(),
-        GameSettingsCard(),
+        _GameSettingsCard(),
         AppSpacer.normal(),
-        PlayButton(),
+        _PlayButton(),
       ],
     );
   }
 }
 
 // TODO abstand wenn kein dartbot zur playercard
-class DartBotCard extends StatelessWidget {
-  const DartBotCard({
+class _DartBotCard extends StatelessWidget {
+  const _DartBotCard({
     Key? key,
   }) : super(key: key);
 
@@ -45,7 +45,7 @@ class DartBotCard extends StatelessWidget {
                   .textStyle
                   .copyWith(color: AppColors.white),
             ),
-            trailing: const CheckBox(),
+            trailing: const _CheckBox(),
             children: game.hasDartBot()
                 ? [
                     AppNumberPicker(
@@ -65,8 +65,8 @@ class DartBotCard extends StatelessWidget {
   }
 }
 
-class CheckBox extends StatelessWidget {
-  const CheckBox({
+class _CheckBox extends StatelessWidget {
+  const _CheckBox({
     Key? key,
   }) : super(key: key);
 
@@ -102,8 +102,8 @@ class CheckBox extends StatelessWidget {
   }
 }
 
-class PlayerCard extends StatelessWidget {
-  const PlayerCard({
+class _PlayerCard extends StatelessWidget {
+  const _PlayerCard({
     Key? key,
   }) : super(key: key);
 
@@ -121,15 +121,15 @@ class PlayerCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: const [
-        PlayerList(),
-        AddPlayerButton(),
+        _PlayerList(),
+        _AddPlayerButton(),
       ],
     );
   }
 }
 
-class PlayerList extends StatelessWidget {
-  const PlayerList({
+class _PlayerList extends StatelessWidget {
+  const _PlayerList({
     Key? key,
   }) : super(key: key);
 
@@ -150,16 +150,16 @@ class PlayerList extends StatelessWidget {
               final player = players[index];
               // TODO bug where multiple widgets with same global key
               if (player is DartBotSnapshot) {
-                return DartBotItem(
+                return _DartBotItem(
                   key: ValueKey(player),
                 );
               } else if (player is OfflinePlayerSnapshot) {
-                return OfflinePlayerItem(
+                return _OfflinePlayerItem(
                   key: ValueKey(player),
                   player: player,
                 );
               } else {
-                return OnlinePlayerItem(
+                return _OnlinePlayerItem(
                   key: ValueKey(player),
                   player: player as OnlinePlayerSnapshot,
                 );
@@ -185,8 +185,8 @@ class PlayerList extends StatelessWidget {
   }
 }
 
-class DartBotItem extends StatelessWidget {
-  const DartBotItem({
+class _DartBotItem extends StatelessWidget {
+  const _DartBotItem({
     required Key key,
   }) : super(key: key);
 
@@ -247,10 +247,10 @@ class DartBotItem extends StatelessWidget {
   }
 }
 
-class OfflinePlayerItem extends StatelessWidget {
+class _OfflinePlayerItem extends StatelessWidget {
   final OfflinePlayerSnapshot player;
 
-  const OfflinePlayerItem({
+  const _OfflinePlayerItem({
     required Key key,
     required this.player,
   }) : super(key: key);
@@ -333,10 +333,10 @@ class OfflinePlayerItem extends StatelessWidget {
   }
 }
 
-class OnlinePlayerItem extends StatelessWidget {
+class _OnlinePlayerItem extends StatelessWidget {
   final OnlinePlayerSnapshot player;
 
-  const OnlinePlayerItem({
+  const _OnlinePlayerItem({
     required Key key,
     required this.player,
   }) : super(key: key);
@@ -405,8 +405,8 @@ class OnlinePlayerItem extends StatelessWidget {
   }
 }
 
-class AddPlayerButton extends StatelessWidget {
-  const AddPlayerButton({
+class _AddPlayerButton extends StatelessWidget {
+  const _AddPlayerButton({
     Key? key,
   }) : super(key: key);
 
@@ -421,8 +421,8 @@ class AddPlayerButton extends StatelessWidget {
   }
 }
 
-class GameSettingsCard extends StatelessWidget {
-  const GameSettingsCard({
+class _GameSettingsCard extends StatelessWidget {
+  const _GameSettingsCard({
     Key? key,
   }) : super(key: key);
 
@@ -440,17 +440,17 @@ class GameSettingsCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: const [
-        StartingPointsPicker(),
-        ModePicker(),
-        SizePicker(),
-        TypePicker(),
+        _StartingPointsPicker(),
+        _ModePicker(),
+        _SizePicker(),
+        _TypePicker(),
       ],
     );
   }
 }
 
-class StartingPointsPicker extends StatelessWidget {
-  const StartingPointsPicker({
+class _StartingPointsPicker extends StatelessWidget {
+  const _StartingPointsPicker({
     Key? key,
   }) : super(key: key);
 
@@ -509,8 +509,8 @@ class StartingPointsPicker extends StatelessWidget {
   }
 }
 
-class ModePicker extends StatelessWidget {
-  const ModePicker({
+class _ModePicker extends StatelessWidget {
+  const _ModePicker({
     Key? key,
   }) : super(key: key);
 
@@ -556,8 +556,8 @@ class ModePicker extends StatelessWidget {
   }
 }
 
-class SizePicker extends StatelessWidget {
-  const SizePicker({
+class _SizePicker extends StatelessWidget {
+  const _SizePicker({
     Key? key,
   }) : super(key: key);
 
@@ -571,8 +571,8 @@ class SizePicker extends StatelessWidget {
   }
 }
 
-class TypePicker extends StatelessWidget {
-  const TypePicker({
+class _TypePicker extends StatelessWidget {
+  const _TypePicker({
     Key? key,
   }) : super(key: key);
 
@@ -618,8 +618,8 @@ class TypePicker extends StatelessWidget {
   }
 }
 
-class PlayButton extends StatelessWidget {
-  const PlayButton({
+class _PlayButton extends StatelessWidget {
+  const _PlayButton({
     Key? key,
   }) : super(key: key);
 

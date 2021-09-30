@@ -10,7 +10,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/stats/stats_widget.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class PostGamePage extends StatelessWidget {

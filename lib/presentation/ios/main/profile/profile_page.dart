@@ -15,7 +15,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_but
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class ProfilePage extends StatelessWidget {

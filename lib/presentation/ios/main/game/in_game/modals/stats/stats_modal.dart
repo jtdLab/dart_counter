@@ -7,7 +7,7 @@ import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 // SHARED WIDGETS
 import 'package:dart_counter/presentation/ios/core/widgets/shared/stats/stats_widget.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class StatsModal extends StatelessWidget {

@@ -11,7 +11,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class HomePage extends StatelessWidget {

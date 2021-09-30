@@ -1,7 +1,7 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-// 3RD PARTY
+// OTHER
 import 'package:timeago/timeago.dart' as timeago;
 
 // BLOCS
@@ -17,7 +17,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class OverviewPage extends StatelessWidget {

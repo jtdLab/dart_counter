@@ -20,7 +20,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widge
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 class SettingsPage extends StatelessWidget {

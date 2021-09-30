@@ -7,7 +7,7 @@ import 'package:dart_counter/application/settings/edit_profile_image/edit_profil
 // SHARED WIDGETS
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 // TODO use app page here

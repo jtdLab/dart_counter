@@ -30,7 +30,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 import '../shared.dart';
 part 'widgets.dart';
 

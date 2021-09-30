@@ -11,7 +11,7 @@ import 'package:dart_counter/domain/friend/user.dart';
 // SHARED WIDGETS
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
 
-// LOCALE WIDGETS
+// LOCAL WIDGETS
 part 'widgets.dart';
 
 // TODO cupertino page here
