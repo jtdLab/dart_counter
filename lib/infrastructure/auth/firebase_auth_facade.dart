@@ -11,6 +11,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:social_client/clients/i_social_client.dart';
 import 'package:social_client/social_client.dart';
 
 @Environment(Environment.test)
@@ -77,18 +78,26 @@ class FirebaseAuthFacade implements IAuthFacade {
       return left(const AuthFailure.invalidPassword());
     }
 
-    // TODO return email or username alread in use
-    final success = await _socialClient.createUser(
-      email: emailAddress.getOrCrash(),
-      username: username.getOrCrash(),
-      password: password.getOrCrash(),
-    );
-
-    if (success) {
-      return singInWithEmailAndPassword(
-        emailAddress: emailAddress,
-        password: password,
+    final bool success;
+    try {
+      success = await _socialClient.createUser(
+        email: emailAddress.getOrCrash(),
+        username: username.getOrCrash(),
+        password: password.getOrCrash(),
       );
+
+      if (success) {
+        return singInWithEmailAndPassword(
+          emailAddress: emailAddress,
+          password: password,
+        );
+      }
+    } catch (e) {
+      if (e is EmailAlreadyInUseError) {
+        return left(const AuthFailure.emailAlreadyInUse());
+      } else if (e is UsernameAlreadyInUseError) {
+        return left(const AuthFailure.usernameAlreadyInUse());
+      }
     }
 
     return left(const AuthFailure.serverError());

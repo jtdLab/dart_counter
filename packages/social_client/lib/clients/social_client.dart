@@ -239,10 +239,20 @@ class SocialClient implements ISocialClient {
       }),
     );
 
+    if (res.statusCode == 400) {
+      final json = jsonDecode(res.body) as Map<String, dynamic>;
+      final error = json['message'];
+      if (error == 'email-already-in-use') {
+        throw EmailAlreadyInUseError();
+      } else if (error == 'username-already-in-use') {
+        throw UsernameAlreadyInUseError();
+      }
+    }
+
     return res.statusCode == 200;
   }
 
- /**
+  /**
   *  @override
   Future<String?> getEmailByUsername({
     required String username,
