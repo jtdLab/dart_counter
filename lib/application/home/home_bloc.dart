@@ -73,8 +73,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     );
 
     final failureOrGame = (await _playBloc.stream.firstWhere(
-      (element) => element is Success,
-    ) as Success)
+      (element) => element is PlayGameInProgress,
+    ) as PlayGameInProgress)
         .game;
   }
 

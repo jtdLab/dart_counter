@@ -3,11 +3,9 @@ import 'dart:async';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
-import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_game/dart_game.dart' as ex;
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -19,8 +17,7 @@ import 'throw_dto.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOfflineFacade)
 class PlayOfflineFacade implements IPlayOfflineFacade {
-  final BehaviorSubject<Either<PlayFailure, OfflineGameSnapshot>>
-      _gameController;
+  final BehaviorSubject<OfflineGameSnapshot> _gameController;
 
   ex.Game? _game;
   DateTime? _createdAt; // TODO needed
@@ -30,35 +27,35 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   PlayOfflineFacade() : _gameController = BehaviorSubject();
 
   @override
-  Either<PlayFailure, Unit> addDartBot() {
+  void addDartBot() {
     return _tryPerform(
       action: () => _game!.addDartBot(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> addPlayer() {
+  void addPlayer() {
     return _tryPerform(
       action: () => _game!.addPlayer(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> cancelGame() {
+  void cancelGame() {
     return _tryPerform(
       action: () => _game!.cancel(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> createGame() {
+  void createGame() {
     return _tryPerform(
       action: () => _game = _game = ex.Game(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> performThrow({
+  void performThrow({
     required Throw t,
   }) {
     return _tryPerform(
@@ -69,14 +66,14 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> removeDartBot() {
+  void removeDartBot() {
     return _tryPerform(
       action: () => _game!.removeDartBot(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> removePlayer({
+  void removePlayer({
     required int index,
   }) {
     return _tryPerform(
@@ -85,7 +82,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> reorderPlayer({
+  void reorderPlayer({
     required int oldIndex,
     required int newIndex,
   }) {
@@ -98,7 +95,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> setDartBotTargetAverage({
+  void setDartBotTargetAverage({
     required int targetAverage,
   }) {
     return _tryPerform(
@@ -107,7 +104,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> setMode({
+  void setMode({
     required Mode mode,
   }) {
     return _tryPerform(
@@ -117,7 +114,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> setSize({
+  void setSize({
     required int size,
   }) {
     return _tryPerform(
@@ -126,7 +123,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> setStartingPoints({
+  void setStartingPoints({
     required int startingPoints,
   }) {
     return _tryPerform(
@@ -135,7 +132,7 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> setType({
+  void setType({
     required Type type,
   }) {
     return _tryPerform(
@@ -145,21 +142,21 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Either<PlayFailure, Unit> startGame() {
+  void startGame() {
     return _tryPerform(
       action: () => _game!.start(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> undoThrow() {
+  void undoThrow() {
     return _tryPerform(
       action: () => _game!.undoThrow(),
     );
   }
 
   @override
-  Either<PlayFailure, Unit> updateName({
+  void updateName({
     required int index,
     required String newName,
   }) {
@@ -169,25 +166,20 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  Stream<Either<PlayFailure, OfflineGameSnapshot>> watchGame() {
+  Stream<OfflineGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 
   // TODO involve return type bool of action instead of void
   /// Trys to Perform [action].
-  Either<PlayFailure, Unit> _tryPerform({
+  void _tryPerform({
     required void Function() action,
   }) {
     if (_game != null) {
       action();
       _gameController.add(
-        right(
-          OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-        ),
+        OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
       );
-      return right(unit);
     }
-
-    return left(const PlayFailure.error()); // TODO name better
   }
 }

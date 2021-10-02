@@ -111,7 +111,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         );
 
         if (state is DataWatcherLoadFailure) {
-          authFailure = const AuthFailure.serverError();
+          authFailure = const AuthFailure.serverError(); // TODO data load error
         }
       }
     }

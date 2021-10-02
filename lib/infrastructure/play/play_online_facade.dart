@@ -23,8 +23,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   final dc.DartClient _dartClient;
   final IUserFacade _userFacade;
 
-  final BehaviorSubject<Either<PlayFailure, OnlineGameSnapshot>>
-      _gameController;
+  final BehaviorSubject<OnlineGameSnapshot> _gameController;
 
   PlayOnlineFacade(
     this._dartClient,
@@ -38,9 +37,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
           await _dartClient.disconnect();
         }
         _gameController.add(
-          right(
-            snapshot,
-          ),
+          snapshot,
         );
       },
     );
@@ -204,7 +201,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Stream<Either<PlayFailure, OnlineGameSnapshot>> watchGame() {
+  Stream<OnlineGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 }

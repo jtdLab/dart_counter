@@ -25,8 +25,7 @@ import 'package:rxdart/rxdart.dart';
 class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   final IUserFacade _userFacade; // TODO use or remove
 
-  final BehaviorSubject<Either<PlayFailure, OnlineGameSnapshot>>
-      _gameController;
+  final BehaviorSubject<OnlineGameSnapshot> _gameController;
 
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
   // add all needed fields to generated online game
@@ -49,9 +48,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
     if (hasNetworkConnection) {
       _game = _game = ex.Game();
       _gameController.add(
-        right(
-          _toOnlineGameSnapshot(_game!),
-        ),
+        _toOnlineGameSnapshot(_game!),
       );
 
       return right(unit);
@@ -153,7 +150,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Stream<Either<PlayFailure, OnlineGameSnapshot>> watchGame() {
+  Stream<OnlineGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 
@@ -166,14 +163,13 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       if (_game != null) {
         action();
         _gameController.add(
-          right(
-            _toOnlineGameSnapshot(_game!),
-          ),
+          _toOnlineGameSnapshot(_game!),
         );
 
         return right(unit);
       }
     }
+
 
     return left(const PlayFailure.error()); // TODO name better
   }

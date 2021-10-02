@@ -2,11 +2,11 @@ part of 'play_bloc.dart';
 
 @freezed
 class PlayState with _$PlayState {
-  const factory PlayState.loading({
+  const factory PlayState.initial({
     bool? online,
-  }) = Loading;
-  const factory PlayState.success({
+  }) = PlayInitial;
+  const factory PlayState.gameInProgress({
     required bool online,
     required GameSnapshot game,
-  }) = Success;
+  }) = PlayGameInProgress;
 }

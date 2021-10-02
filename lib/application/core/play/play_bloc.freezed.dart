@@ -4716,14 +4716,15 @@ abstract class FailureReceived implements PlayEvent {
 class _$PlayStateTearOff {
   const _$PlayStateTearOff();
 
-  Loading loading({bool? online}) {
-    return Loading(
+  PlayInitial initial({bool? online}) {
+    return PlayInitial(
       online: online,
     );
   }
 
-  Success success({required bool online, required GameSnapshot game}) {
-    return Success(
+  PlayGameInProgress gameInProgress(
+      {required bool online, required GameSnapshot game}) {
+    return PlayGameInProgress(
       online: online,
       game: game,
     );
@@ -4737,39 +4738,39 @@ const $PlayState = _$PlayStateTearOff();
 mixin _$PlayState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool? online) loading,
-    required TResult Function(bool online, GameSnapshot game) success,
+    required TResult Function(bool? online) initial,
+    required TResult Function(bool online, GameSnapshot game) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(PlayInitial value) initial,
+    required TResult Function(PlayGameInProgress value) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -4791,26 +4792,28 @@ class _$PlayStateCopyWithImpl<$Res> implements $PlayStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class $PlayInitialCopyWith<$Res> {
+  factory $PlayInitialCopyWith(
+          PlayInitial value, $Res Function(PlayInitial) then) =
+      _$PlayInitialCopyWithImpl<$Res>;
   $Res call({bool? online});
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class _$PlayInitialCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
+    implements $PlayInitialCopyWith<$Res> {
+  _$PlayInitialCopyWithImpl(
+      PlayInitial _value, $Res Function(PlayInitial) _then)
+      : super(_value, (v) => _then(v as PlayInitial));
 
   @override
-  Loading get _value => super._value as Loading;
+  PlayInitial get _value => super._value as PlayInitial;
 
   @override
   $Res call({
     Object? online = freezed,
   }) {
-    return _then(Loading(
+    return _then(PlayInitial(
       online: online == freezed
           ? _value.online
           : online // ignore: cast_nullable_to_non_nullable
@@ -4821,21 +4824,21 @@ class _$LoadingCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading({this.online});
+class _$PlayInitial implements PlayInitial {
+  const _$PlayInitial({this.online});
 
   @override
   final bool? online;
 
   @override
   String toString() {
-    return 'PlayState.loading(online: $online)';
+    return 'PlayState.initial(online: $online)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Loading &&
+        (other is PlayInitial &&
             (identical(other.online, online) ||
                 const DeepCollectionEquality().equals(other.online, online)));
   }
@@ -4846,36 +4849,36 @@ class _$Loading implements Loading {
 
   @JsonKey(ignore: true)
   @override
-  $LoadingCopyWith<Loading> get copyWith =>
-      _$LoadingCopyWithImpl<Loading>(this, _$identity);
+  $PlayInitialCopyWith<PlayInitial> get copyWith =>
+      _$PlayInitialCopyWithImpl<PlayInitial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool? online) loading,
-    required TResult Function(bool online, GameSnapshot game) success,
+    required TResult Function(bool? online) initial,
+    required TResult Function(bool online, GameSnapshot game) gameInProgress,
   }) {
-    return loading(online);
+    return initial(online);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
   }) {
-    return loading?.call(online);
+    return initial?.call(online);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(online);
+    if (initial != null) {
+      return initial(online);
     }
     return orElse();
   }
@@ -4883,65 +4886,69 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(PlayInitial value) initial,
+    required TResult Function(PlayGameInProgress value) gameInProgress,
   }) {
-    return loading(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
   }) {
-    return loading?.call(this);
+    return initial?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements PlayState {
-  const factory Loading({bool? online}) = _$Loading;
+abstract class PlayInitial implements PlayState {
+  const factory PlayInitial({bool? online}) = _$PlayInitial;
 
   bool? get online => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoadingCopyWith<Loading> get copyWith => throw _privateConstructorUsedError;
+  $PlayInitialCopyWith<PlayInitial> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
+abstract class $PlayGameInProgressCopyWith<$Res> {
+  factory $PlayGameInProgressCopyWith(
+          PlayGameInProgress value, $Res Function(PlayGameInProgress) then) =
+      _$PlayGameInProgressCopyWithImpl<$Res>;
   $Res call({bool online, GameSnapshot game});
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
+class _$PlayGameInProgressCopyWithImpl<$Res>
+    extends _$PlayStateCopyWithImpl<$Res>
+    implements $PlayGameInProgressCopyWith<$Res> {
+  _$PlayGameInProgressCopyWithImpl(
+      PlayGameInProgress _value, $Res Function(PlayGameInProgress) _then)
+      : super(_value, (v) => _then(v as PlayGameInProgress));
 
   @override
-  Success get _value => super._value as Success;
+  PlayGameInProgress get _value => super._value as PlayGameInProgress;
 
   @override
   $Res call({
     Object? online = freezed,
     Object? game = freezed,
   }) {
-    return _then(Success(
+    return _then(PlayGameInProgress(
       online: online == freezed
           ? _value.online
           : online // ignore: cast_nullable_to_non_nullable
@@ -4956,8 +4963,8 @@ class _$SuccessCopyWithImpl<$Res> extends _$PlayStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success({required this.online, required this.game});
+class _$PlayGameInProgress implements PlayGameInProgress {
+  const _$PlayGameInProgress({required this.online, required this.game});
 
   @override
   final bool online;
@@ -4966,13 +4973,13 @@ class _$Success implements Success {
 
   @override
   String toString() {
-    return 'PlayState.success(online: $online, game: $game)';
+    return 'PlayState.gameInProgress(online: $online, game: $game)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Success &&
+        (other is PlayGameInProgress &&
             (identical(other.online, online) ||
                 const DeepCollectionEquality().equals(other.online, online)) &&
             (identical(other.game, game) ||
@@ -4987,36 +4994,36 @@ class _$Success implements Success {
 
   @JsonKey(ignore: true)
   @override
-  $SuccessCopyWith<Success> get copyWith =>
-      _$SuccessCopyWithImpl<Success>(this, _$identity);
+  $PlayGameInProgressCopyWith<PlayGameInProgress> get copyWith =>
+      _$PlayGameInProgressCopyWithImpl<PlayGameInProgress>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool? online) loading,
-    required TResult Function(bool online, GameSnapshot game) success,
+    required TResult Function(bool? online) initial,
+    required TResult Function(bool online, GameSnapshot game) gameInProgress,
   }) {
-    return success(online, game);
+    return gameInProgress(online, game);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
   }) {
-    return success?.call(online, game);
+    return gameInProgress?.call(online, game);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool? online)? loading,
-    TResult Function(bool online, GameSnapshot game)? success,
+    TResult Function(bool? online)? initial,
+    TResult Function(bool online, GameSnapshot game)? gameInProgress,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(online, game);
+    if (gameInProgress != null) {
+      return gameInProgress(online, game);
     }
     return orElse();
   }
@@ -5024,41 +5031,43 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(PlayInitial value) initial,
+    required TResult Function(PlayGameInProgress value) gameInProgress,
   }) {
-    return success(this);
+    return gameInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
   }) {
-    return success?.call(this);
+    return gameInProgress?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(PlayInitial value)? initial,
+    TResult Function(PlayGameInProgress value)? gameInProgress,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (gameInProgress != null) {
+      return gameInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class Success implements PlayState {
-  const factory Success({required bool online, required GameSnapshot game}) =
-      _$Success;
+abstract class PlayGameInProgress implements PlayState {
+  const factory PlayGameInProgress(
+      {required bool online,
+      required GameSnapshot game}) = _$PlayGameInProgress;
 
   bool get online => throw _privateConstructorUsedError;
   GameSnapshot get game => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
+  $PlayGameInProgressCopyWith<PlayGameInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
 }
