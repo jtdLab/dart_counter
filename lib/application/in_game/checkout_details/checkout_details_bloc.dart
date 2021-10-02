@@ -25,33 +25,33 @@ class CheckoutDetailsBloc
           CheckoutDetailsState(
             minDartsThrown: helpers.minDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
-              pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+              pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsThrown: helpers.maxDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
-              pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+              pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             minDartsOnDouble: helpers.minDartsOnDouble(
               points: 0, // TODO _inputRowBloc.state.input,
-              pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+              pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsOnDouble: min(
               helpers.maxDartsOnDouble(
                 points: 0, // TODO _inputRowBloc.state.input,
-                pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+                pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
               helpers.minDartsThrown(
                 points: 0, // TODO _inputRowBloc.state.input,
-                pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+                pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
             ),
             selectedDartsThrown: helpers.minDartsThrown(
               points: 0, // TODO _inputRowBloc.state.input,
-              pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+              pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             selectedDartsOnDouble: helpers.minDartsOnDouble(
               points: 0, // TODO _inputRowBloc.state.input,
-              pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+              pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             confirmed: false,
           ),
@@ -82,7 +82,7 @@ class CheckoutDetailsBloc
     final newMaxDartsOnDouble = min(
         helpers.maxDartsOnDouble(
           points: 0, // TODO _inputRowBloc.state.input,
-          pointsLeft: _inGameBloc.state.game.currentTurn().pointsLeft,
+          pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
         ),
         newSelectedDartsThrown);
 

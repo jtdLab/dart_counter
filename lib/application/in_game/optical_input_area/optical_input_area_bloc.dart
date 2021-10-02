@@ -44,7 +44,7 @@ class OpticalInputAreaBloc
 
   Stream<OpticalInputAreaState> _mapPerformThrowPressedToState() async* {
     final pointsLeftCurrentTurn =
-        _inGameBloc.state.game.currentTurn().pointsLeft;
+        _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     final input =
         state.darts.foldRight(0, (dart, int acc) => acc + dart.points());
@@ -95,7 +95,7 @@ class OpticalInputAreaBloc
     final darts = state.darts;
 
     final pointsLeftCurrentTurn =
-        _inGameBloc.state.game.currentTurn().pointsLeft;
+        _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     // TODO calc more granular depending on game state and dart.points and pointsLeftCurrentTurn
     if (darts.size < 3) {

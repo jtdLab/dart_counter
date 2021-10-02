@@ -35,9 +35,9 @@ class _$InGameEventTearOff {
     return const ShowCheckoutDetailsRequested();
   }
 
-  GameReceived gameReceived({required GameSnapshot game}) {
+  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
     return GameReceived(
-      game: game,
+      gameSnapshot: gameSnapshot,
     );
   }
 }
@@ -53,7 +53,7 @@ mixin _$InGameEvent {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$InGameEvent {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,7 +71,7 @@ mixin _$InGameEvent {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,7 +167,7 @@ class _$GameCanceled implements GameCanceled {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameCanceled();
   }
@@ -179,7 +179,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameCanceled?.call();
   }
@@ -191,7 +191,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCanceled != null) {
@@ -292,7 +292,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return undoThrowPressed();
   }
@@ -304,7 +304,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return undoThrowPressed?.call();
   }
@@ -316,7 +316,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (undoThrowPressed != null) {
@@ -451,7 +451,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return performThrowPressed(t);
   }
@@ -463,7 +463,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return performThrowPressed?.call(t);
   }
@@ -475,7 +475,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (performThrowPressed != null) {
@@ -584,7 +584,7 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return showCheckoutDetailsRequested();
   }
@@ -596,7 +596,7 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return showCheckoutDetailsRequested?.call();
   }
@@ -608,7 +608,7 @@ class _$ShowCheckoutDetailsRequested implements ShowCheckoutDetailsRequested {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (showCheckoutDetailsRequested != null) {
@@ -670,7 +670,7 @@ abstract class $GameReceivedCopyWith<$Res> {
   factory $GameReceivedCopyWith(
           GameReceived value, $Res Function(GameReceived) then) =
       _$GameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot game});
+  $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -685,12 +685,12 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? game = freezed,
+    Object? gameSnapshot = freezed,
   }) {
     return _then(GameReceived(
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
               as GameSnapshot,
     ));
   }
@@ -699,27 +699,28 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GameReceived implements GameReceived {
-  const _$GameReceived({required this.game});
+  const _$GameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot game;
+  final GameSnapshot gameSnapshot;
 
   @override
   String toString() {
-    return 'InGameEvent.gameReceived(game: $game)';
+    return 'InGameEvent.gameReceived(gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GameReceived &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)));
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -733,9 +734,9 @@ class _$GameReceived implements GameReceived {
     required TResult Function() undoThrowPressed,
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function() showCheckoutDetailsRequested,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
-    return gameReceived(game);
+    return gameReceived(gameSnapshot);
   }
 
   @override
@@ -745,9 +746,9 @@ class _$GameReceived implements GameReceived {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
-    return gameReceived?.call(game);
+    return gameReceived?.call(gameSnapshot);
   }
 
   @override
@@ -757,11 +758,11 @@ class _$GameReceived implements GameReceived {
     TResult Function()? undoThrowPressed,
     TResult Function(Throw t)? performThrowPressed,
     TResult Function()? showCheckoutDetailsRequested,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
-      return gameReceived(game);
+      return gameReceived(gameSnapshot);
     }
     return orElse();
   }
@@ -811,9 +812,10 @@ class _$GameReceived implements GameReceived {
 }
 
 abstract class GameReceived implements InGameEvent {
-  const factory GameReceived({required GameSnapshot game}) = _$GameReceived;
+  const factory GameReceived({required GameSnapshot gameSnapshot}) =
+      _$GameReceived;
 
-  GameSnapshot get game => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -823,10 +825,10 @@ abstract class GameReceived implements InGameEvent {
 class _$InGameStateTearOff {
   const _$InGameStateTearOff();
 
-  _InGameState call(
-      {required GameSnapshot game, required bool showCheckoutDetails}) {
-    return _InGameState(
-      game: game,
+  InGameInitial initial(
+      {required GameSnapshot gameSnapshot, required bool showCheckoutDetails}) {
+    return InGameInitial(
+      gameSnapshot: gameSnapshot,
       showCheckoutDetails: showCheckoutDetails,
     );
   }
@@ -837,8 +839,45 @@ const $InGameState = _$InGameStateTearOff();
 
 /// @nodoc
 mixin _$InGameState {
-  GameSnapshot get game => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            GameSnapshot gameSnapshot, bool showCheckoutDetails)
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot, bool showCheckoutDetails)?
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot, bool showCheckoutDetails)?
+        initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InGameInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InGameInitial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InGameInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InGameStateCopyWith<InGameState> get copyWith =>
@@ -850,7 +889,7 @@ abstract class $InGameStateCopyWith<$Res> {
   factory $InGameStateCopyWith(
           InGameState value, $Res Function(InGameState) then) =
       _$InGameStateCopyWithImpl<$Res>;
-  $Res call({GameSnapshot game, bool showCheckoutDetails});
+  $Res call({GameSnapshot gameSnapshot, bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -863,13 +902,13 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? game = freezed,
+    Object? gameSnapshot = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
     return _then(_value.copyWith(
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
               as GameSnapshot,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
@@ -880,34 +919,34 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InGameStateCopyWith<$Res>
+abstract class $InGameInitialCopyWith<$Res>
     implements $InGameStateCopyWith<$Res> {
-  factory _$InGameStateCopyWith(
-          _InGameState value, $Res Function(_InGameState) then) =
-      __$InGameStateCopyWithImpl<$Res>;
+  factory $InGameInitialCopyWith(
+          InGameInitial value, $Res Function(InGameInitial) then) =
+      _$InGameInitialCopyWithImpl<$Res>;
   @override
-  $Res call({GameSnapshot game, bool showCheckoutDetails});
+  $Res call({GameSnapshot gameSnapshot, bool showCheckoutDetails});
 }
 
 /// @nodoc
-class __$InGameStateCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
-    implements _$InGameStateCopyWith<$Res> {
-  __$InGameStateCopyWithImpl(
-      _InGameState _value, $Res Function(_InGameState) _then)
-      : super(_value, (v) => _then(v as _InGameState));
+class _$InGameInitialCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
+    implements $InGameInitialCopyWith<$Res> {
+  _$InGameInitialCopyWithImpl(
+      InGameInitial _value, $Res Function(InGameInitial) _then)
+      : super(_value, (v) => _then(v as InGameInitial));
 
   @override
-  _InGameState get _value => super._value as _InGameState;
+  InGameInitial get _value => super._value as InGameInitial;
 
   @override
   $Res call({
-    Object? game = freezed,
+    Object? gameSnapshot = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
-    return _then(_InGameState(
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
+    return _then(InGameInitial(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
               as GameSnapshot,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
@@ -919,25 +958,27 @@ class __$InGameStateCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InGameState implements _InGameState {
-  const _$_InGameState({required this.game, required this.showCheckoutDetails});
+class _$InGameInitial implements InGameInitial {
+  const _$InGameInitial(
+      {required this.gameSnapshot, required this.showCheckoutDetails});
 
   @override
-  final GameSnapshot game;
+  final GameSnapshot gameSnapshot;
   @override
   final bool showCheckoutDetails;
 
   @override
   String toString() {
-    return 'InGameState(game: $game, showCheckoutDetails: $showCheckoutDetails)';
+    return 'InGameState.initial(gameSnapshot: $gameSnapshot, showCheckoutDetails: $showCheckoutDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InGameState &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)) &&
+        (other is InGameInitial &&
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)) &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.showCheckoutDetails, showCheckoutDetails)));
@@ -946,26 +987,86 @@ class _$_InGameState implements _InGameState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(game) ^
+      const DeepCollectionEquality().hash(gameSnapshot) ^
       const DeepCollectionEquality().hash(showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
-  _$InGameStateCopyWith<_InGameState> get copyWith =>
-      __$InGameStateCopyWithImpl<_InGameState>(this, _$identity);
-}
-
-abstract class _InGameState implements InGameState {
-  const factory _InGameState(
-      {required GameSnapshot game,
-      required bool showCheckoutDetails}) = _$_InGameState;
+  $InGameInitialCopyWith<InGameInitial> get copyWith =>
+      _$InGameInitialCopyWithImpl<InGameInitial>(this, _$identity);
 
   @override
-  GameSnapshot get game => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            GameSnapshot gameSnapshot, bool showCheckoutDetails)
+        initial,
+  }) {
+    return initial(gameSnapshot, showCheckoutDetails);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot, bool showCheckoutDetails)?
+        initial,
+  }) {
+    return initial?.call(gameSnapshot, showCheckoutDetails);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot, bool showCheckoutDetails)?
+        initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(gameSnapshot, showCheckoutDetails);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InGameInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InGameInitial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InGameInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InGameInitial implements InGameState {
+  const factory InGameInitial(
+      {required GameSnapshot gameSnapshot,
+      required bool showCheckoutDetails}) = _$InGameInitial;
+
+  @override
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   @override
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InGameStateCopyWith<_InGameState> get copyWith =>
+  $InGameInitialCopyWith<InGameInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

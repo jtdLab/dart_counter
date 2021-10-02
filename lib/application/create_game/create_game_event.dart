@@ -1,5 +1,6 @@
 part of 'create_game_bloc.dart';
 
+// TODO rename event to fel angelov naming convention
 @freezed
 class CreateGameEvent with _$CreateGameEvent {
   const factory CreateGameEvent.gameCanceled() = GameCanceled;

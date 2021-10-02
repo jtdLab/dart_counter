@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,31 +18,31 @@ part 'create_game_state.dart';
 @lazySingleton
 class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
     with AutoResetLazySingleton {
+  final IPlayOfflineFacade _playOfflineFacade;
+  final IPlayOnlineFacade _playOnlineFacade;
+
   final PlayBloc _playBloc;
-  final IFriendFacade _friendFacade;
+
+  StreamSubscription? _gameSnapshotsSubscription;
 
   CreateGameBloc(
+    this._playOfflineFacade,
+    this._playOnlineFacade,
     this._playBloc,
-    this._friendFacade,
   ) : super(
-          CreateGameState(
-            game: _playBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.game,
+          _playBloc.state.maybeMap(
+            gameInProgress: (gameInProgress) => CreateGameState.initial(
+              gameSnapshot: gameInProgress.gameSnapshot,
             ),
+            orElse: () => throw Error(), // TODO name better
           ),
         ) {
-    _gameSubscription = _playBloc.stream.map((state) {
-      return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.game,
-      );
-    }).listen((game) {
-      add(CreateGameEvent.gameReceived(game: game));
+    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
+      if (playState is PlayGameInProgress) {
+        add(CreateGameEvent.gameReceived(gameSnapshot: playState.gameSnapshot));
+      }
     });
   }
-
-  StreamSubscription<GameSnapshot>? _gameSubscription;
 
   @override
   Stream<CreateGameState> mapEventToState(
@@ -68,147 +68,212 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapGameCanceledToState() async* {
-    _playBloc.add(const PlayEvent.gameCanceled());
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (online) {
+        _playOnlineFacade.cancelGame();
+      } else {
+        _playOfflineFacade.cancelGame();
+      }
+    }
   }
 
   Stream<CreateGameState> _mapPlayerReorederedToState(
     PlayerReordered event,
   ) async* {
-    final oldIndex = event.oldIndex;
-    final newIndex = event.newIndex;
-    _playBloc.add(
-      PlayEvent.playerReordered(
-        oldIndex: oldIndex,
-        newIndex: newIndex,
-      ),
-    );
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      final oldIndex = event.oldIndex;
+      final newIndex = event.newIndex;
+
+      if (online) {
+        _playOnlineFacade.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
+      } else {
+        _playOfflineFacade.reorderPlayer(
+            oldIndex: oldIndex, newIndex: newIndex);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapPlayerAddedToState() async* {
-    final online = _playBloc.state.map(
-      loading: (_) => false,
-      success: (success) => success.online,
-    );
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    if (online) {
-      // TODO send invitation
-
+      if (online) {
+        // TODO send invitation
+      } else {
+        _playOfflineFacade.addPlayer();
+      }
     }
-
-    _playBloc.add(const PlayEvent.playerAdded());
   }
 
   Stream<CreateGameState> _mapPlayerRemovedToState(
     PlayerRemoved event,
   ) async* {
-    final index = event.index;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.playerRemoved(index: index),
-    );
+      final index = event.index;
+
+      if (online) {
+        _playOnlineFacade.removePlayer(index: index);
+      } else {
+        _playOfflineFacade.removePlayer(index: index);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapPlayerNameUpdatedToState(
     PlayerNameUpdated event,
   ) async* {
-    final index = event.index;
-    final newName = event.newName;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.playerNameUpdated(
-        index: index,
-        newName: newName,
-      ),
-    );
+      final index = event.index;
+      final newName = event.newName;
+
+      if (!online) {
+        _playOfflineFacade.updateName(index: index, newName: newName);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapStartingPointsUpdatedToState(
     StartingPointsUpdated event,
   ) async* {
-    final newStartingPoints = event.newStartingPoints;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.startingPointsUpdated(
-        newStartingPoints: newStartingPoints,
-      ),
-    );
+      final newStartingPoints = event.newStartingPoints;
+
+      if (online) {
+        _playOnlineFacade.setStartingPoints(startingPoints: newStartingPoints);
+      } else {
+        _playOfflineFacade.setStartingPoints(startingPoints: newStartingPoints);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapModeUpdatedToState(
     ModeUpdated event,
   ) async* {
-    final newMode = event.newMode;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.modeUpdated(
-        newMode: newMode,
-      ),
-    );
+      final newMode = event.newMode;
+
+      if (online) {
+        _playOnlineFacade.setMode(mode: newMode);
+      } else {
+        _playOfflineFacade.setMode(mode: newMode);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapSizeUpdatedToState(
     SizeUpdated event,
   ) async* {
-    final newSize = event.newSize;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.sizeUpdated(
-        newSize: newSize,
-      ),
-    );
+      final newSize = event.newSize;
+
+      if (online) {
+        _playOnlineFacade.setSize(size: newSize);
+      } else {
+        _playOfflineFacade.setSize(size: newSize);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapTypeUpdatedToState(
     TypeUpdated event,
   ) async* {
-    final newType = event.newType;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.typeUpdated(
-        newType: newType,
-      ),
-    );
+      final newType = event.newType;
+
+      if (online) {
+        _playOnlineFacade.setType(type: newType);
+      } else {
+        _playOfflineFacade.setType(type: newType);
+      }
+    }
   }
 
   Stream<CreateGameState> _mapGameStartedToState() async* {
-    _playBloc.add(
-      const PlayEvent.gameStarted(),
-    );
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (online) {
+        _playOnlineFacade.startGame();
+      } else {
+        _playOfflineFacade.startGame();
+      }
+    }
   }
 
   Stream<CreateGameState> _mapDartBotAddedToState() async* {
-    _playBloc.add(
-      const PlayEvent.dartBotAdded(),
-    );
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (!online) {
+        _playOfflineFacade.addDartBot();
+      }
+    }
   }
 
   Stream<CreateGameState> _mapDartBotRemovedToState() async* {
-    _playBloc.add(
-      const PlayEvent.dartBotRemoved(),
-    );
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (!online) {
+        _playOfflineFacade.removeDartBot();
+      }
+    }
   }
 
   Stream<CreateGameState> _mapDartBotTargetAverageSetToState(
     DartBotTargetAverageUpdated event,
   ) async* {
-    final newTargetAverage = event.newTargetAverage;
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
 
-    _playBloc.add(
-      PlayEvent.dartBotTargetAverageUpdated(
-        newTargetAverage: newTargetAverage,
-      ),
-    );
+      final newTargetAverage = event.newTargetAverage;
+
+      if (!online) {
+        _playOfflineFacade.setDartBotTargetAverage(
+          targetAverage: newTargetAverage,
+        );
+      }
+    }
   }
 
   Stream<CreateGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(game: event.game);
+    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   @override
   Future<void> close() {
-    _gameSubscription?.cancel();
+    _gameSnapshotsSubscription?.cancel();
     return super.close();
   }
 }

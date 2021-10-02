@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,30 +19,32 @@ part 'in_game_state.dart';
 @lazySingleton
 class InGameBloc extends Bloc<InGameEvent, InGameState>
     with AutoResetLazySingleton {
+  final IPlayOfflineFacade _playOfflineFacade;
+  final IPlayOnlineFacade _playOnlineFacade;
+
   final PlayBloc _playBloc;
 
+  StreamSubscription? _gameSnapshotsSubscription;
+
   InGameBloc(
+    this._playOfflineFacade,
+    this._playOnlineFacade,
     this._playBloc,
   ) : super(
-          InGameState(
-            game: _playBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.game,
+          _playBloc.state.maybeMap(
+            gameInProgress: (gameInProgress) => InGameState.initial(
+              gameSnapshot: gameInProgress.gameSnapshot,
+              showCheckoutDetails: false,
             ),
-            showCheckoutDetails: false,
+            orElse: () => throw Error(), // TODO name better
           ),
         ) {
-    _gameSubscription = _playBloc.stream.map((state) {
-      return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.game,
-      );
-    }).listen((game) {
-      add(InGameEvent.gameReceived(game: game));
+    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
+      if (playState is PlayGameInProgress) {
+        add(InGameEvent.gameReceived(gameSnapshot: playState.gameSnapshot));
+      }
     });
   }
-
-  StreamSubscription<GameSnapshot>? _gameSubscription;
 
   @override
   Stream<InGameState> mapEventToState(
@@ -58,27 +61,57 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   }
 
   Stream<InGameState> _mapGameCanceledToState() async* {
-    _playBloc.add(const PlayEvent.gameCanceled());
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (online) {
+        _playOnlineFacade.cancelGame();
+      } else {
+        _playOfflineFacade.cancelGame();
+      }
+    }
   }
 
   Stream<InGameState> _mapUndoThrowPressedToState() async* {
-    _playBloc.add(const PlayEvent.throwUndone());
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      if (online) {
+        _playOnlineFacade.undoThrow();
+      } else {
+        _playOfflineFacade.undoThrow();
+      }
+    }
   }
 
   Stream<InGameState> _mapPerformThrowPressedToState(
     PerformThrowPressed event,
   ) async* {
-    _playBloc.add(PlayEvent.throwPerformed(t: event.t));
+    final playState = _playBloc.state;
+    if (playState is PlayGameInProgress) {
+      final online = playState.gameSnapshot is OnlineGameSnapshot;
+
+      final t = event.t;
+
+      if (online) {
+        _playOnlineFacade.performThrow(t: t);
+      } else {
+        _playOfflineFacade.performThrow(t: t);
+      }
+    }
   }
 
   Stream<InGameState> _mapShowCheckoutDetailsRequestedToState() async* {
     yield state.copyWith(showCheckoutDetails: true);
   }
 
+  // TODO what is this implementation
   Stream<InGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    final players = event.game.players;
+    final players = event.gameSnapshot.players;
 
     if (players.size == 3) {
       final currentTurnIndex =
@@ -91,17 +124,17 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
           newPlayers.add(players[(i + currentTurnIndex) % players.size]);
         }
 
-        final game = event.game;
+        final game = event.gameSnapshot;
         if (game is OfflineGameSnapshot) {
           yield state.copyWith(
-            game: game.copyWith(
+            gameSnapshot: game.copyWith(
               players: newPlayers as KtList<AbstractOfflinePlayerSnapshot>,
             ),
             showCheckoutDetails: false,
           );
         } else if (game is OnlineGameSnapshot) {
           yield state.copyWith(
-            game: game.copyWith(
+            gameSnapshot: game.copyWith(
               players: newPlayers as KtList<OnlinePlayerSnapshot>,
             ),
             showCheckoutDetails: false,
@@ -110,7 +143,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       }
     } else {
       yield state.copyWith(
-        game: event.game,
+        gameSnapshot: event.gameSnapshot,
         showCheckoutDetails: false,
       );
     }
@@ -118,7 +151,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
 
   @override
   Future<void> close() {
-    _gameSubscription?.cancel();
+    _gameSnapshotsSubscription?.cancel();
     return super.close();
   }
 }

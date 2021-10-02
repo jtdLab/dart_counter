@@ -1,5 +1,6 @@
 part of 'in_game_bloc.dart';
 
+// TODO rename event to fel angelov naming convention
 @freezed
 class InGameEvent with _$InGameEvent {
   const factory InGameEvent.gameCanceled() = GameCanceled;
@@ -10,6 +11,6 @@ class InGameEvent with _$InGameEvent {
   const factory InGameEvent.showCheckoutDetailsRequested() =
       ShowCheckoutDetailsRequested;
   const factory InGameEvent.gameReceived({
-    required GameSnapshot game,
+    required GameSnapshot gameSnapshot,
   }) = GameReceived;
 }

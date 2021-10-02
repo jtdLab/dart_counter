@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
-import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,29 +16,31 @@ part 'post_game_state.dart';
 @lazySingleton
 class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
     with AutoResetLazySingleton {
+  final IPlayOfflineFacade _playOfflineFacade;
+  final IPlayOnlineFacade _playOnlineFacade;
+
   final PlayBloc _playBloc;
 
+  StreamSubscription? _gameSnapshotsSubscription;
+
   PostGameBloc(
+    this._playOfflineFacade,
+    this._playOnlineFacade,
     this._playBloc,
   ) : super(
-          PostGameState(
-            game: _playBloc.state.map(
-              loading: (_) => throw UnexpectedStateError(),
-              success: (success) => success.game,
+          _playBloc.state.maybeMap(
+            gameInProgress: (gameInProgress) => PostGameState.initial(
+              gameSnapshot: gameInProgress.gameSnapshot,
             ),
+            orElse: () => throw Error(), // TODO name better
           ),
         ) {
-    _gameSubscription = _playBloc.stream.map((state) {
-      return state.map(
-        loading: (_) => throw UnexpectedStateError(),
-        success: (success) => success.game,
-      );
-    }).listen((game) {
-      add(PostGameEvent.gameReceived(game: game));
+    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
+      if (playState is PlayGameInProgress) {
+        add(PostGameEvent.gameReceived(gameSnapshot: playState.gameSnapshot));
+      }
     });
   }
-
-  StreamSubscription<GameSnapshot>? _gameSubscription;
 
   @override
   Stream<PostGameState> mapEventToState(
@@ -52,12 +54,12 @@ class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
   Stream<PostGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(game: event.game);
+    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   @override
   Future<void> close() {
-    _gameSubscription?.cancel();
+    _gameSnapshotsSubscription?.cancel();
     return super.close();
   }
 }

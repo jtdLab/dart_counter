@@ -43,7 +43,7 @@ class StandardInputAreaBloc
 
   Stream<StandardInputAreaState> _mapPerformThrowPressedToState() async* {
     final pointsLeftCurrentTurn =
-        _inGameBloc.state.game.currentTurn().pointsLeft;
+        _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     final minDartsThrown = helpers.minDartsThrown(
       points: state.input,
@@ -86,7 +86,7 @@ class StandardInputAreaBloc
 
   Stream<StandardInputAreaState> _mapcheckPressedToState() async* {
     final pointsLeftCurrentTurn =
-        _inGameBloc.state.game.currentTurn().pointsLeft;
+        _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     final isFinish = pointsLeftCurrentTurn <= 170; // TODO real finish check
     if (isFinish) {

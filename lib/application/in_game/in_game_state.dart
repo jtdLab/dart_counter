@@ -2,8 +2,8 @@ part of 'in_game_bloc.dart';
 
 @freezed
 class InGameState with _$InGameState {
-  const factory InGameState({
-    required GameSnapshot game,
+  const factory InGameState.initial({
+    required GameSnapshot gameSnapshot,
     required bool showCheckoutDetails,
-  }) = _InGameState;
+  }) = InGameInitial;
 }

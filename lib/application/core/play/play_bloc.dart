@@ -73,18 +73,20 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   Stream<PlayState> _mapGameSnapshotReceivedToState(
     PlayGameSnapshotReceived event,
   ) async* {
-    yield state.map(
-      initial: (initial) => initial, // TODO log here
-      gameInProgress: (gameInProgress) {
+    yield* state.map(
+      initial: (initial) async* {
+        yield initial;
+      },
+      gameInProgress: (gameInProgress) async* {
         final gameSnapshot = event.gameSnapshot;
-        if (gameSnapshot.status == Status.canceled ||
-            gameSnapshot.status == Status.finished) {
-          return const PlayState.initial();
-        }
-
-        return gameInProgress.copyWith(
+        yield gameInProgress.copyWith(
           gameSnapshot: gameSnapshot,
         );
+
+        if (gameSnapshot.status == Status.canceled ||
+            gameSnapshot.status == Status.finished) {
+          yield const PlayState.initial();
+        }
       },
     );
   }

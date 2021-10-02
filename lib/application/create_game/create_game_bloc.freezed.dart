@@ -3070,8 +3070,8 @@ abstract class GameReceived implements CreateGameEvent {
 class _$CreateGameStateTearOff {
   const _$CreateGameStateTearOff();
 
-  _CreateGameState call({required GameSnapshot gameSnapshot}) {
-    return _CreateGameState(
+  CreateGameInitial initial({required GameSnapshot gameSnapshot}) {
+    return CreateGameInitial(
       gameSnapshot: gameSnapshot,
     );
   }
@@ -3083,6 +3083,39 @@ const $CreateGameState = _$CreateGameStateTearOff();
 /// @nodoc
 mixin _$CreateGameState {
   GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GameSnapshot gameSnapshot) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateGameInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateGameInitial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateGameInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateGameStateCopyWith<CreateGameState> get copyWith =>
@@ -3120,31 +3153,31 @@ class _$CreateGameStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreateGameStateCopyWith<$Res>
+abstract class $CreateGameInitialCopyWith<$Res>
     implements $CreateGameStateCopyWith<$Res> {
-  factory _$CreateGameStateCopyWith(
-          _CreateGameState value, $Res Function(_CreateGameState) then) =
-      __$CreateGameStateCopyWithImpl<$Res>;
+  factory $CreateGameInitialCopyWith(
+          CreateGameInitial value, $Res Function(CreateGameInitial) then) =
+      _$CreateGameInitialCopyWithImpl<$Res>;
   @override
   $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
-class __$CreateGameStateCopyWithImpl<$Res>
+class _$CreateGameInitialCopyWithImpl<$Res>
     extends _$CreateGameStateCopyWithImpl<$Res>
-    implements _$CreateGameStateCopyWith<$Res> {
-  __$CreateGameStateCopyWithImpl(
-      _CreateGameState _value, $Res Function(_CreateGameState) _then)
-      : super(_value, (v) => _then(v as _CreateGameState));
+    implements $CreateGameInitialCopyWith<$Res> {
+  _$CreateGameInitialCopyWithImpl(
+      CreateGameInitial _value, $Res Function(CreateGameInitial) _then)
+      : super(_value, (v) => _then(v as CreateGameInitial));
 
   @override
-  _CreateGameState get _value => super._value as _CreateGameState;
+  CreateGameInitial get _value => super._value as CreateGameInitial;
 
   @override
   $Res call({
     Object? gameSnapshot = freezed,
   }) {
-    return _then(_CreateGameState(
+    return _then(CreateGameInitial(
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -3155,21 +3188,21 @@ class __$CreateGameStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateGameState implements _CreateGameState {
-  const _$_CreateGameState({required this.gameSnapshot});
+class _$CreateGameInitial implements CreateGameInitial {
+  const _$CreateGameInitial({required this.gameSnapshot});
 
   @override
   final GameSnapshot gameSnapshot;
 
   @override
   String toString() {
-    return 'CreateGameState(gameSnapshot: $gameSnapshot)';
+    return 'CreateGameState.initial(gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CreateGameState &&
+        (other is CreateGameInitial &&
             (identical(other.gameSnapshot, gameSnapshot) ||
                 const DeepCollectionEquality()
                     .equals(other.gameSnapshot, gameSnapshot)));
@@ -3181,18 +3214,74 @@ class _$_CreateGameState implements _CreateGameState {
 
   @JsonKey(ignore: true)
   @override
-  _$CreateGameStateCopyWith<_CreateGameState> get copyWith =>
-      __$CreateGameStateCopyWithImpl<_CreateGameState>(this, _$identity);
+  $CreateGameInitialCopyWith<CreateGameInitial> get copyWith =>
+      _$CreateGameInitialCopyWithImpl<CreateGameInitial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GameSnapshot gameSnapshot) initial,
+  }) {
+    return initial(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot)? initial,
+  }) {
+    return initial?.call(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GameSnapshot gameSnapshot)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(gameSnapshot);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateGameInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CreateGameInitial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateGameInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _CreateGameState implements CreateGameState {
-  const factory _CreateGameState({required GameSnapshot gameSnapshot}) =
-      _$_CreateGameState;
+abstract class CreateGameInitial implements CreateGameState {
+  const factory CreateGameInitial({required GameSnapshot gameSnapshot}) =
+      _$CreateGameInitial;
 
   @override
   GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreateGameStateCopyWith<_CreateGameState> get copyWith =>
+  $CreateGameInitialCopyWith<CreateGameInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }
