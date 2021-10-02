@@ -26,7 +26,7 @@ class PostGamePage extends StatelessWidget {
         navigationBar: AppNavigationBar(
           middle: BlocBuilder<PostGameBloc, PostGameState>(
             builder: (context, state) => Text(
-              state.game.description().toUpperCase(),
+              state.gameSnapshot.description().toUpperCase(),
             ),
           ),
         ),

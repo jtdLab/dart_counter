@@ -41,13 +41,13 @@ class _InGameWidget extends StatelessWidget {
           flex: 45,
           child: BlocBuilder<InGameBloc, InGameState>(
             builder: (context, state) {
-              final game = state.game;
+              final gameSnapshot = state.gameSnapshot;
 
-              if (game.players.size == 1) {
+              if (gameSnapshot.players.size == 1) {
                 return const _OnePlayerDisplayer();
-              } else if (game.players.size == 2) {
+              } else if (gameSnapshot.players.size == 2) {
                 return const _TwoPlayerDisplayer();
-              } else if (game.players.size == 3) {
+              } else if (gameSnapshot.players.size == 3) {
                 return const _ThreePlayerDisplayer();
               } else {
                 return const _FourPlayerDisplayer();
@@ -108,7 +108,7 @@ class _OnePlayerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final player = state.game.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Stack(
           children: [
@@ -199,7 +199,7 @@ class _OnePlayerLegsSetsDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final player = state.game.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Container(
           color: AppColors.black,
@@ -242,7 +242,7 @@ class _OnePlayerPointsLeftLastThrowDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final player = state.game.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Container(
           decoration: BoxDecoration(
@@ -294,7 +294,7 @@ class _OnePlayerFinishRecommendationDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final finishRecommendation = state.game.players[0].finishRecommendation;
+        final finishRecommendation = state.gameSnapshot.players[0].finishRecommendation;
 
         return Container(
           color: AppColors.orangeNew,
@@ -333,7 +333,7 @@ class _OnePlayerFooter extends StatelessWidget {
         padding: EdgeInsets.all(size6(context)),
         child: BlocBuilder<InGameBloc, InGameState>(
           builder: (context, state) {
-            final player = state.game.players[0];
+            final player = state.gameSnapshot.players[0];
 
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -405,7 +405,7 @@ class _TwoPlayerDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final players = state.game.players;
+        final players = state.gameSnapshot.players;
 
         return AppRow(
           spacing: size6(context),
@@ -434,7 +434,7 @@ class _ThreePlayerDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final players = state.game.players;
+        final players = state.gameSnapshot.players;
 
         return AppRow(
           spacing: size6(context),
@@ -474,8 +474,8 @@ class _FourPlayerDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final currentTurn = state.game.currentTurn();
-        final players = state.game.players;
+        final currentTurn = state.gameSnapshot.currentTurn();
+        final players = state.gameSnapshot.players;
 
         return AppColumn(
           spacing: size6(context),

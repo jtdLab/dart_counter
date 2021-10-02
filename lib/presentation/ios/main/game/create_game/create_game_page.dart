@@ -41,7 +41,7 @@ class CreateGamePage extends StatelessWidget {
       create: (context) => getIt<CreateGameBloc>(),
       child: BlocListener<CreateGameBloc, CreateGameState>(
         listener: (context, state) {
-          final game = state.game;
+          final game = state.gameSnapshot;
 
           if (game.status == Status.canceled) {
             context.router.replace(const HomePageRoute());

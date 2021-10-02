@@ -32,9 +32,9 @@ class _DartBotCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final game = state.game;
+        final gameSnapshot = state.gameSnapshot;
         return Visibility(
-          visible: game is! OnlineGameSnapshot,
+          visible: gameSnapshot is! OnlineGameSnapshot,
           child: AppCard(
             leading: AutoSizeText(
               LocaleKeys.dartBot.tr().toUpperCase(),
@@ -47,7 +47,7 @@ class _DartBotCard extends StatelessWidget {
                   .copyWith(color: AppColors.white),
             ),
             trailing: const _CheckBox(),
-            children: game.hasDartBot()
+            children: gameSnapshot.hasDartBot()
                 ? [
                     AppNumberPicker(
                       onChanged: (value) => context.read<CreateGameBloc>().add(
@@ -75,9 +75,9 @@ class _CheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final game = state.game;
+        final gameSnapshot = state.gameSnapshot;
 
-        if (game.hasDartBot()) {
+        if (gameSnapshot.hasDartBot()) {
           return AppIconButton(
             padding: EdgeInsets.zero,
             onPressed: () => context
@@ -138,7 +138,7 @@ class _PlayerList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final players = state.game.players;
+        final players = state.gameSnapshot.players;
 
         return SizedBox(
           height:
@@ -195,7 +195,7 @@ class _DartBotItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final isDismissible = state.game.players.size > 1;
+        final isDismissible = state.gameSnapshot.players.size > 1;
 
         return Column(
           children: [
@@ -260,12 +260,12 @@ class _OfflinePlayerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final index = state.game.players.indexOf(player);
+        final index = state.gameSnapshot.players.indexOf(player);
         late final bool isDismissible;
-        if (state.game.players.asList().any((player) => player is DartBot)) {
-          isDismissible = state.game.players.size > 2;
+        if (state.gameSnapshot.players.asList().any((player) => player is DartBot)) {
+          isDismissible = state.gameSnapshot.players.size > 2;
         } else {
-          isDismissible = state.game.players.size > 1;
+          isDismissible = state.gameSnapshot.players.size > 1;
         }
 
         return Column(
@@ -346,13 +346,13 @@ class _OnlinePlayerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final index = state.game.players.indexOf(player);
+        final index = state.gameSnapshot.players.indexOf(player);
 
         late final bool isDismissible;
-        if (state.game.players.asList().any((player) => player is DartBot)) {
-          isDismissible = state.game.players.size > 2;
+        if (state.gameSnapshot.players.asList().any((player) => player is DartBot)) {
+          isDismissible = state.gameSnapshot.players.size > 2;
         } else {
-          isDismissible = state.game.players.size > 1;
+          isDismissible = state.gameSnapshot.players.size > 1;
         }
 
         return Column(
@@ -459,14 +459,14 @@ class _StartingPointsPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final game = state.game;
+        final gameSnapshot = state.gameSnapshot;
 
         return AppRow(
           spacing: size6(context),
           children: [
             Expanded(
               child: AppActionButton.normal(
-                color: game.startingPoints == 301
+                color: gameSnapshot.startingPoints == 301
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -479,7 +479,7 @@ class _StartingPointsPicker extends StatelessWidget {
             ),
             Expanded(
               child: AppActionButton.normal(
-                color: game.startingPoints == 501
+                color: gameSnapshot.startingPoints == 501
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -492,7 +492,7 @@ class _StartingPointsPicker extends StatelessWidget {
             ),
             Expanded(
               child: AppActionButton.normal(
-                color: game.startingPoints == 701
+                color: gameSnapshot.startingPoints == 701
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -519,14 +519,14 @@ class _ModePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final game = state.game;
+        final gameSnapshot = state.gameSnapshot;
 
         return AppRow(
           spacing: size6(context),
           children: [
             Expanded(
               child: AppActionButton.normal(
-                color: game.mode == Mode.firstTo
+                color: gameSnapshot.mode == Mode.firstTo
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -539,7 +539,7 @@ class _ModePicker extends StatelessWidget {
             ),
             Expanded(
               child: AppActionButton.normal(
-                color: game.mode == Mode.bestOf
+                color: gameSnapshot.mode == Mode.bestOf
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -581,14 +581,14 @@ class _TypePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
-        final game = state.game;
+        final gameSnapshot = state.gameSnapshot;
 
         return AppRow(
           spacing: size6(context),
           children: [
             Expanded(
               child: AppActionButton.normal(
-                color: game.type == Type.legs
+                color: gameSnapshot.type == Type.legs
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(
@@ -601,7 +601,7 @@ class _TypePicker extends StatelessWidget {
             ),
             Expanded(
               child: AppActionButton.normal(
-                color: game.type == Type.sets
+                color: gameSnapshot.type == Type.sets
                     ? AppColors.orangeNew
                     : AppColors.white,
                 onPressed: () => context.read<CreateGameBloc>().add(

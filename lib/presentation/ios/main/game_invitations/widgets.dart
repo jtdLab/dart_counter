@@ -81,7 +81,7 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () => context.read<InvitationsBloc>().add(
-                      InvitationsEvent.accepted(gameInvitation: gameInvitation),
+                      InvitationsEvent.invitationAccepted(gameInvitation: gameInvitation),
                     ),
               ),
               const AppSpacer.normal(
@@ -91,7 +91,7 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () => context.read<InvitationsBloc>().add(
-                      InvitationsEvent.declined(gameInvitation: gameInvitation),
+                      InvitationsEvent.invitationDeclined(gameInvitation: gameInvitation),
                     ),
               ),
             ],

@@ -29,7 +29,7 @@ class GameInvitationsPage extends StatelessWidget {
       create: (context) => getIt<InvitationsBloc>(),
       child: BlocListener<InvitationsBloc, InvitationsState>(
         listener: (context, state) {
-          if (state.game != null) {
+          if (state.gameSnapshot != null) {
             context.router.replaceAll([const GameFlowRoute()]);
           }
         },

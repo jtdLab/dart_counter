@@ -20,8 +20,8 @@ class HomePage extends StatelessWidget {
       create: (context) => getIt<HomeBloc>(),
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
-          final game = state.game;
-          if (game != null) {
+          final gameSnapshot = state.gameSnapshot;
+          if (gameSnapshot != null) {
             context.router.replace(const GameFlowRoute());
           }
         },

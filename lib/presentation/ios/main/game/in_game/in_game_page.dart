@@ -60,7 +60,7 @@ class InGamePage extends StatelessWidget {
             );
           }
 
-          final game = state.game;
+          final game = state.gameSnapshot;
           if (game.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (game.status == Status.finished) {
@@ -68,7 +68,7 @@ class InGamePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          final game = state.game;
+          final game = state.gameSnapshot;
           return AppPage(
             navigationBar: AppNavigationBar(
               leading: CancelButton(
