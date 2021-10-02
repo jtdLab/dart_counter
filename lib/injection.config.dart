@@ -187,8 +187,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i50.SignUpBloc(get<_i11.IAuthFacade>(), get<_i37.DataWatcherBloc>()));
   gh.lazySingleton<_i51.CreateGameBloc>(() =>
       _i51.CreateGameBloc(get<_i47.PlayBloc>(), get<_i16.IFriendFacade>()));
-  gh.lazySingleton<_i52.HomeBloc>(
-      () => _i52.HomeBloc(get<_i37.DataWatcherBloc>(), get<_i47.PlayBloc>()));
+  gh.lazySingleton<_i52.HomeBloc>(() => _i52.HomeBloc(
+      get<_i23.IPlayOfflineFacade>(),
+      get<_i44.IPlayOnlineFacade>(),
+      get<_i37.DataWatcherBloc>(),
+      get<_i47.PlayBloc>()));
   gh.lazySingleton<_i16.IFriendFacade>(
       () => _i53.FriendFacade(get<_i11.IAuthFacade>(), get<_i25.IUserFacade>(),
           get<_i7.FirebaseFirestore>(), get<_i31.SocialClient>()),
@@ -200,7 +203,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i55.InGameBloc>(
       () => _i55.InGameBloc(get<_i47.PlayBloc>()));
   gh.factory<_i56.InvitationsBloc>(() => _i56.InvitationsBloc(
-      get<_i21.IGameInvitationFacade>(), get<_i47.PlayBloc>()));
+      get<_i44.IPlayOnlineFacade>(),
+      get<_i21.IGameInvitationFacade>(),
+      get<_i37.DataWatcherBloc>(),
+      get<_i47.PlayBloc>()));
   gh.lazySingleton<_i57.OpticalInputAreaBloc>(
       () => _i57.OpticalInputAreaBloc(get<_i55.InGameBloc>()));
   gh.lazySingleton<_i58.SpeechInputAreaBloc>(

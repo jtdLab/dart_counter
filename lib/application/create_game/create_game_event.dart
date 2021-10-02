@@ -34,6 +34,6 @@ class CreateGameEvent with _$CreateGameEvent {
     required int newTargetAverage,
   }) = DartBotTargetAverageUpdated;
   const factory CreateGameEvent.gameReceived({
-    required GameSnapshot game,
+    required GameSnapshot gameSnapshot,
   }) = GameReceived;
 }

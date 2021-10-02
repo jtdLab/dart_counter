@@ -36,9 +36,9 @@ class _$HomeEventTearOff {
     );
   }
 
-  GameReceived gameReceived({required GameSnapshot game}) {
+  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
     return GameReceived(
-      game: game,
+      gameSnapshot: gameSnapshot,
     );
   }
 }
@@ -55,7 +55,7 @@ mixin _$HomeEvent {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,7 +65,7 @@ mixin _$HomeEvent {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,7 +75,7 @@ mixin _$HomeEvent {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,7 +168,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return createOnlineGamePressed();
   }
@@ -181,7 +181,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return createOnlineGamePressed?.call();
   }
@@ -194,7 +194,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (createOnlineGamePressed != null) {
@@ -293,7 +293,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return createOfflineGamePressed();
   }
@@ -306,7 +306,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return createOfflineGamePressed?.call();
   }
@@ -319,7 +319,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (createOfflineGamePressed != null) {
@@ -476,7 +476,7 @@ class _$DataReceived implements DataReceived {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
     return dataReceived(user, unreadInvitations, unreadFriendRequests);
   }
@@ -489,7 +489,7 @@ class _$DataReceived implements DataReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
     return dataReceived?.call(user, unreadInvitations, unreadFriendRequests);
   }
@@ -502,7 +502,7 @@ class _$DataReceived implements DataReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (dataReceived != null) {
@@ -570,7 +570,7 @@ abstract class $GameReceivedCopyWith<$Res> {
   factory $GameReceivedCopyWith(
           GameReceived value, $Res Function(GameReceived) then) =
       _$GameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot game});
+  $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -585,12 +585,12 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? game = freezed,
+    Object? gameSnapshot = freezed,
   }) {
     return _then(GameReceived(
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
               as GameSnapshot,
     ));
   }
@@ -599,27 +599,28 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GameReceived implements GameReceived {
-  const _$GameReceived({required this.game});
+  const _$GameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot game;
+  final GameSnapshot gameSnapshot;
 
   @override
   String toString() {
-    return 'HomeEvent.gameReceived(game: $game)';
+    return 'HomeEvent.gameReceived(gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GameReceived &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)));
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -634,9 +635,9 @@ class _$GameReceived implements GameReceived {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot game) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
   }) {
-    return gameReceived(game);
+    return gameReceived(gameSnapshot);
   }
 
   @override
@@ -647,9 +648,9 @@ class _$GameReceived implements GameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
   }) {
-    return gameReceived?.call(game);
+    return gameReceived?.call(gameSnapshot);
   }
 
   @override
@@ -660,11 +661,11 @@ class _$GameReceived implements GameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot game)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
-      return gameReceived(game);
+      return gameReceived(gameSnapshot);
     }
     return orElse();
   }
@@ -710,9 +711,10 @@ class _$GameReceived implements GameReceived {
 }
 
 abstract class GameReceived implements HomeEvent {
-  const factory GameReceived({required GameSnapshot game}) = _$GameReceived;
+  const factory GameReceived({required GameSnapshot gameSnapshot}) =
+      _$GameReceived;
 
-  GameSnapshot get game => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -724,14 +726,18 @@ class _$HomeStateTearOff {
 
   HomeInitial initial(
       {required User user,
-      GameSnapshot? game,
       required int unreadInvitations,
-      required int unreadFriendRequests}) {
+      required int unreadFriendRequests,
+      GameSnapshot? gameSnapshot,
+      required bool loading,
+      PlayFailure? failure}) {
     return HomeInitial(
       user: user,
-      game: game,
       unreadInvitations: unreadInvitations,
       unreadFriendRequests: unreadFriendRequests,
+      gameSnapshot: gameSnapshot,
+      loading: loading,
+      failure: failure,
     );
   }
 }
@@ -742,28 +748,35 @@ const $HomeState = _$HomeStateTearOff();
 /// @nodoc
 mixin _$HomeState {
   User get user => throw _privateConstructorUsedError;
-  GameSnapshot? get game => throw _privateConstructorUsedError;
   int get unreadInvitations => throw _privateConstructorUsedError;
   int get unreadFriendRequests => throw _privateConstructorUsedError;
+  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  PlayFailure? get failure => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user, GameSnapshot? game,
-            int unreadInvitations, int unreadFriendRequests)
+    required TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            GameSnapshot? gameSnapshot,
+            bool loading,
+            PlayFailure? failure)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
-            int unreadFriendRequests)?
+    TResult Function(User user, int unreadInvitations, int unreadFriendRequests,
+            GameSnapshot? gameSnapshot, bool loading, PlayFailure? failure)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
-            int unreadFriendRequests)?
+    TResult Function(User user, int unreadInvitations, int unreadFriendRequests,
+            GameSnapshot? gameSnapshot, bool loading, PlayFailure? failure)?
         initial,
     required TResult orElse(),
   }) =>
@@ -796,11 +809,14 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res>;
   $Res call(
       {User user,
-      GameSnapshot? game,
       int unreadInvitations,
-      int unreadFriendRequests});
+      int unreadFriendRequests,
+      GameSnapshot? gameSnapshot,
+      bool loading,
+      PlayFailure? failure});
 
   $UserCopyWith<$Res> get user;
+  $PlayFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -814,19 +830,17 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   $Res call({
     Object? user = freezed,
-    Object? game = freezed,
     Object? unreadInvitations = freezed,
     Object? unreadFriendRequests = freezed,
+    Object? gameSnapshot = freezed,
+    Object? loading = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
       unreadInvitations: unreadInvitations == freezed
           ? _value.unreadInvitations
           : unreadInvitations // ignore: cast_nullable_to_non_nullable
@@ -835,6 +849,18 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
           ? _value.unreadFriendRequests
           : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
               as int,
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot?,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as PlayFailure?,
     ));
   }
 
@@ -842,6 +868,17 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   $UserCopyWith<$Res> get user {
     return $UserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $PlayFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+
+    return $PlayFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value));
     });
   }
 }
@@ -854,12 +891,16 @@ abstract class $HomeInitialCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   $Res call(
       {User user,
-      GameSnapshot? game,
       int unreadInvitations,
-      int unreadFriendRequests});
+      int unreadFriendRequests,
+      GameSnapshot? gameSnapshot,
+      bool loading,
+      PlayFailure? failure});
 
   @override
   $UserCopyWith<$Res> get user;
+  @override
+  $PlayFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -875,19 +916,17 @@ class _$HomeInitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
-    Object? game = freezed,
     Object? unreadInvitations = freezed,
     Object? unreadFriendRequests = freezed,
+    Object? gameSnapshot = freezed,
+    Object? loading = freezed,
+    Object? failure = freezed,
   }) {
     return _then(HomeInitial(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-      game: game == freezed
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
       unreadInvitations: unreadInvitations == freezed
           ? _value.unreadInvitations
           : unreadInvitations // ignore: cast_nullable_to_non_nullable
@@ -896,6 +935,18 @@ class _$HomeInitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.unreadFriendRequests
           : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
               as int,
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot?,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as PlayFailure?,
     ));
   }
 }
@@ -905,22 +956,28 @@ class _$HomeInitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 class _$HomeInitial implements HomeInitial {
   const _$HomeInitial(
       {required this.user,
-      this.game,
       required this.unreadInvitations,
-      required this.unreadFriendRequests});
+      required this.unreadFriendRequests,
+      this.gameSnapshot,
+      required this.loading,
+      this.failure});
 
   @override
   final User user;
   @override
-  final GameSnapshot? game;
-  @override
   final int unreadInvitations;
   @override
   final int unreadFriendRequests;
+  @override
+  final GameSnapshot? gameSnapshot;
+  @override
+  final bool loading;
+  @override
+  final PlayFailure? failure;
 
   @override
   String toString() {
-    return 'HomeState.initial(user: $user, game: $game, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests)';
+    return 'HomeState.initial(user: $user, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests, gameSnapshot: $gameSnapshot, loading: $loading, failure: $failure)';
   }
 
   @override
@@ -929,23 +986,31 @@ class _$HomeInitial implements HomeInitial {
         (other is HomeInitial &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)) &&
             (identical(other.unreadInvitations, unreadInvitations) ||
                 const DeepCollectionEquality()
                     .equals(other.unreadInvitations, unreadInvitations)) &&
             (identical(other.unreadFriendRequests, unreadFriendRequests) ||
+                const DeepCollectionEquality().equals(
+                    other.unreadFriendRequests, unreadFriendRequests)) &&
+            (identical(other.gameSnapshot, gameSnapshot) ||
                 const DeepCollectionEquality()
-                    .equals(other.unreadFriendRequests, unreadFriendRequests)));
+                    .equals(other.gameSnapshot, gameSnapshot)) &&
+            (identical(other.loading, loading) ||
+                const DeepCollectionEquality()
+                    .equals(other.loading, loading)) &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(game) ^
       const DeepCollectionEquality().hash(unreadInvitations) ^
-      const DeepCollectionEquality().hash(unreadFriendRequests);
+      const DeepCollectionEquality().hash(unreadFriendRequests) ^
+      const DeepCollectionEquality().hash(gameSnapshot) ^
+      const DeepCollectionEquality().hash(loading) ^
+      const DeepCollectionEquality().hash(failure);
 
   @JsonKey(ignore: true)
   @override
@@ -955,33 +1020,41 @@ class _$HomeInitial implements HomeInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user, GameSnapshot? game,
-            int unreadInvitations, int unreadFriendRequests)
+    required TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            GameSnapshot? gameSnapshot,
+            bool loading,
+            PlayFailure? failure)
         initial,
   }) {
-    return initial(user, game, unreadInvitations, unreadFriendRequests);
+    return initial(user, unreadInvitations, unreadFriendRequests, gameSnapshot,
+        loading, failure);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
-            int unreadFriendRequests)?
+    TResult Function(User user, int unreadInvitations, int unreadFriendRequests,
+            GameSnapshot? gameSnapshot, bool loading, PlayFailure? failure)?
         initial,
   }) {
-    return initial?.call(user, game, unreadInvitations, unreadFriendRequests);
+    return initial?.call(user, unreadInvitations, unreadFriendRequests,
+        gameSnapshot, loading, failure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, GameSnapshot? game, int unreadInvitations,
-            int unreadFriendRequests)?
+    TResult Function(User user, int unreadInvitations, int unreadFriendRequests,
+            GameSnapshot? gameSnapshot, bool loading, PlayFailure? failure)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(user, game, unreadInvitations, unreadFriendRequests);
+      return initial(user, unreadInvitations, unreadFriendRequests,
+          gameSnapshot, loading, failure);
     }
     return orElse();
   }
@@ -1018,18 +1091,24 @@ class _$HomeInitial implements HomeInitial {
 abstract class HomeInitial implements HomeState {
   const factory HomeInitial(
       {required User user,
-      GameSnapshot? game,
       required int unreadInvitations,
-      required int unreadFriendRequests}) = _$HomeInitial;
+      required int unreadFriendRequests,
+      GameSnapshot? gameSnapshot,
+      required bool loading,
+      PlayFailure? failure}) = _$HomeInitial;
 
   @override
   User get user => throw _privateConstructorUsedError;
   @override
-  GameSnapshot? get game => throw _privateConstructorUsedError;
-  @override
   int get unreadInvitations => throw _privateConstructorUsedError;
   @override
   int get unreadFriendRequests => throw _privateConstructorUsedError;
+  @override
+  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  @override
+  bool get loading => throw _privateConstructorUsedError;
+  @override
+  PlayFailure? get failure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $HomeInitialCopyWith<HomeInitial> get copyWith =>

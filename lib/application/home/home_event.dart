@@ -10,6 +10,6 @@ class HomeEvent with _$HomeEvent {
     required int unreadFriendRequests,
   }) = DataReceived;
   const factory HomeEvent.gameReceived({
-    required GameSnapshot game,
+    required GameSnapshot gameSnapshot,
   }) = GameReceived;
 }

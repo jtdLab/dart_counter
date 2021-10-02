@@ -4,16 +4,10 @@ part of 'home_bloc.dart';
 class HomeState with _$HomeState {
   const factory HomeState.initial({
     required User user,
-    GameSnapshot? game,
     required int unreadInvitations,
     required int unreadFriendRequests,
+    GameSnapshot? gameSnapshot,
+    required bool loading,
+    PlayFailure? failure,
   }) = HomeInitial;
-
-  /**
-   * const factory HomeState.createGameInProgress() = HomeCreateGameInProgress;
-
-  const factory HomeState.createGameSuccess() = HomeCreateGameSuccess;
-
-  const factory HomeState.createGameFailure() = HomeCreateGameFailure;
-   */
 }
