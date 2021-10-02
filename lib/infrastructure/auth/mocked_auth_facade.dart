@@ -48,15 +48,15 @@ class MockedAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (hasNetworkConnection) {
-      if (emailAddress.isValid()) {
+      if (!emailAddress.isValid()) {
         return left(const AuthFailure.invalidEmail());
       }
 
-      if (username.isValid()) {
+      if (!username.isValid()) {
         return left(const AuthFailure.invalidUsername());
       }
 
-      if (password.isValid()) {
+      if (!password.isValid()) {
         return left(const AuthFailure.invalidPassword());
       }
 
@@ -73,11 +73,11 @@ class MockedAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (hasNetworkConnection) {
-      if (emailAddress.isValid()) {
+      if (!emailAddress.isValid()) {
         return left(const AuthFailure.invalidEmail());
       }
 
-      if (password.isValid()) {
+      if (!password.isValid()) {
         return left(const AuthFailure.invalidPassword());
       }
 

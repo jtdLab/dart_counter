@@ -8,7 +8,6 @@ import 'package:dart_counter/application/home/home_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
 
 // LOCAL WIDGETS
@@ -20,42 +19,31 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<HomeBloc>(),
       child: BlocConsumer<HomeBloc, HomeState>(
-        listenWhen: (oldState, newState) => newState is HomeLoadSuccess,
         listener: (context, state) {
-          final game = (state as HomeLoadSuccess).game;
+          final game = state.game;
           if (game != null) {
             context.router.replace(const GameFlowRoute());
           }
         },
         builder: (context, state) {
           return AppPage(
-            navigationBar: state.map(
-              loadInProgress: (_) => null,
-              loadSuccess: (_) => AppNavigationBar(
-                leading: const _SettingsButton(),
-                trailing: Row(
-                  children: const [
-                    _InvitationButton(),
-                    AppSpacer.large(
-                      orientation: Orientation.horizontal,
-                    ),
-                    _FriendButton(),
-                    AppSpacer.large(
-                      orientation: Orientation.horizontal,
-                    ),
-                    _StatsButton(),
-                  ],
-                ),
-              ),
-              failure: (_) => null,
-            ),
-            child: state.map(
-              loadInProgress: (_) => const LoadingWidget(),
-              loadSuccess: (_) => _HomeWidget(),
-              failure: (_) => const Center(
-                child: Text('Error loading TODO'),
+            navigationBar: AppNavigationBar(
+              leading: const _SettingsButton(),
+              trailing: Row(
+                children: const [
+                  _InvitationButton(),
+                  AppSpacer.large(
+                    orientation: Orientation.horizontal,
+                  ),
+                  _FriendButton(),
+                  AppSpacer.large(
+                    orientation: Orientation.horizontal,
+                  ),
+                  _StatsButton(),
+                ],
               ),
             ),
+            child: _HomeWidget(),
           );
         },
       ),

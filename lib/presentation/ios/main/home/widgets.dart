@@ -10,8 +10,7 @@ class _FriendButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadFriendRequests =
-            (state as HomeLoadSuccess).unreadFriendRequests;
+        final unreadFriendRequests = state.unreadFriendRequests;
 
         if (unreadFriendRequests == 0) {
           return AppNavigationBarButton(
@@ -54,8 +53,7 @@ class _InvitationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final unreadReceivedInvitations =
-            (state as HomeLoadSuccess).unreadInvitations;
+        final unreadReceivedInvitations = state.unreadInvitations;
 
         if (unreadReceivedInvitations == 0) {
           return AppNavigationBarButton(
@@ -131,7 +129,7 @@ class _HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final photoUrl = (state as HomeLoadSuccess).user.profile.photoUrl;
+        final photoUrl = state.user.profile.photoUrl;
 
         return Column(
           children: [
@@ -189,8 +187,7 @@ class _NameDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final username =
-            (state as HomeLoadSuccess).user.profile.username.getOrCrash();
+        final username = state.user.profile.username.getOrCrash();
 
         return Container(
           height: size40(context),

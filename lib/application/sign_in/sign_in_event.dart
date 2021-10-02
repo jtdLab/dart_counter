@@ -11,3 +11,4 @@ class SignInEvent with _$SignInEvent {
   const factory SignInEvent.signInWithGooglePressed() = SignInWithGooglePressed;
   const factory SignInEvent.signInWithApplePressed() = SignInWithApplePressed;
 }
+

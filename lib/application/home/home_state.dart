@@ -2,22 +2,12 @@ part of 'home_bloc.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState.loadInProgress({
-    User? user,
-    int? unreadInvitations,
-    int? unreadFriendRequests,
-  }) = HomeLoadInProgress;
-
-  const factory HomeState.loadSuccess({
+  const factory HomeState.initial({
     required User user,
     GameSnapshot? game,
     required int unreadInvitations,
     required int unreadFriendRequests,
-  }) = HomeLoadSuccess;
-
-  const factory HomeState.failure({
-    required Object failure,
-  }) = HomeFailure;
+  }) = HomeInitial;
 
   /**
    * const factory HomeState.createGameInProgress() = HomeCreateGameInProgress;
