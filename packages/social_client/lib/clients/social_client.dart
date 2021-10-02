@@ -242,6 +242,34 @@ class SocialClient implements ISocialClient {
     return res.statusCode == 200;
   }
 
+ /**
+  *  @override
+  Future<String?> getEmailByUsername({
+    required String username,
+    required String password,
+  }) async {
+    _checkAuthenticated();
+
+    final res = await http.patch(
+      _userEndpoint(method: 'getEmailByUsername'),
+      headers: _headers,
+      body: jsonEncode({
+        'name': username,
+        'password': password,
+      }),
+    );
+
+    if (res.statusCode == 200) {
+      final json = jsonDecode(res.body) as Map<String, dynamic>;
+      if (json.containsKey('email')) {
+        return json['email'];
+      }
+    }
+
+    return null;
+  }
+  */
+
   @override
   Future<bool> updateEmail({
     required String newEmail,

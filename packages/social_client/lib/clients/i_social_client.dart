@@ -1,3 +1,7 @@
+class EmailAlreadyInUseError extends Error {}
+class UsernameAlreadyInUseError extends Error {}
+class InvalidUsernameAndPasswordCombination extends Error {}
+
 abstract class ISocialClient {
   Future<bool> connect({
     required String idToken,
@@ -46,6 +50,15 @@ abstract class ISocialClient {
     required String username,
     required String password,
   });
+  
+/**
+ * 
+  /// Returns email of user if successful
+  Future<String?> getEmailByUsername({
+    required String username,
+    required String password,
+  });
+ */
 
   Future<bool> updateEmail({
     required String newEmail,

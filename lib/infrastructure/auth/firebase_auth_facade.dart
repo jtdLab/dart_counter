@@ -13,19 +13,19 @@ import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:social_client/social_client.dart';
 
-// TODO init user data in firestore on auth provider sign in like fb, google etc.
-
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final FacebookAuth _facebookAuth;
   final SocialClient _socialClient;
 
   FirebaseAuthFacade(
     this._auth,
     this._googleSignIn,
+    this._facebookAuth,
     this._socialClient,
   );
 
@@ -66,17 +66,18 @@ class FirebaseAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (!emailAddress.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidEmail());
     }
 
     if (!username.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidUsername());
     }
 
     if (!password.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidPassword());
     }
 
+    // TODO return email or username alread in use
     final success = await _socialClient.createUser(
       email: emailAddress.getOrCrash(),
       username: username.getOrCrash(),
@@ -90,7 +91,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -99,11 +100,11 @@ class FirebaseAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (!emailAddress.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidEmail());
     }
 
     if (!password.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidPassword());
     }
 
     try {
@@ -112,20 +113,54 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: password.getOrCrash(),
       );
       return right(unit);
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       print(e);
-      return left(const AuthFailure.serverError()); // TODO name better
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+      }
+
+      return left(const AuthFailure.serverError());
     }
   }
+
+/**
+ *   @override
+  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  }) async {
+    if (!username.isValid()) {
+      return left(const AuthFailure.invalidUsername());
+    }
+
+    if (!password.isValid()) {
+      return left(const AuthFailure.invalidPassword());
+    }
+
+    try {
+      // TODO call server endpoint and return invalid username password combination failure
+      // this return email 
+      // and sign in with email and password
+      final emailAddress  = EmailAddress.empty(); // TODO real email
+
+      return singInWithEmailAndPassword(
+        emailAddress: emailAddress,
+        password: password,
+      );
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError()); 
+    }
+  }
+ */
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
     // Trigger the sign-in flow
-    final LoginResult result =
-        await FacebookAuth.instance.login(); // TODO CRASH HERE
+    final LoginResult result = await _facebookAuth.login(); // TODO CRASH HERE
     final AccessToken? accessToken = result.accessToken;
     if (accessToken == null) {
-      return left(const AuthFailure.serverError()); // name better
+      return left(const AuthFailure.cancelledByUser());
     }
 
     try {
@@ -138,7 +173,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      print(e);
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -162,10 +198,11 @@ class FirebaseAuthFacade implements IAuthFacade {
       return right(unit);
     } catch (e) {
       print(e);
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.serverError());
     }
   }
 
+  // TODO detect cancelled by user
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
     try {
@@ -193,11 +230,11 @@ class FirebaseAuthFacade implements IAuthFacade {
 
       // Sign in the user with Firebase. If the nonce we generated earlier does
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
-      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      await _auth.signInWithCredential(oauthCredential);
       return right(unit);
     } catch (e) {
       print(e);
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -213,7 +250,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       return right(unit);
     } catch (e) {
       print(e);
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -222,13 +259,14 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
   }) async {
     if (!emailAddress.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidEmail());
     }
     try {
       await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      print(e);
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -238,10 +276,10 @@ class FirebaseAuthFacade implements IAuthFacade {
     required Password newPassword,
   }) async {
     if (!oldPassword.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidPassword());
     }
     if (!newPassword.isValid()) {
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.invalidPassword());
     }
 
     try {
@@ -254,6 +292,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await user.updatePassword(newPassword.getOrCrash());
       return right(unit);
     } catch (e) {
+      print(e);
       return left(const AuthFailure.serverError());
     }
   }

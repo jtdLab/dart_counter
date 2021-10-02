@@ -18,6 +18,14 @@ abstract class IAuthFacade {
   Stream<bool> watchIsAuthenticated();
 
   /// Signs a user up with [emailAddress], [username] and [password].
+  ///
+  /// Possible failures:
+  //  1. Email already in use
+  //  2. Username already in use
+  /// 3. Invalid email
+  /// 4. Invalid username
+  /// 5. Invalid password
+  /// 6. Server error
   Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
     required EmailAddress emailAddress,
     required Username username,
@@ -25,24 +33,63 @@ abstract class IAuthFacade {
   });
 
   /// Signs a user in with [emailAddress] and [password].
+  ///
+  /// Possible failures:
+  /// 1. Invalid email
+  /// 2. Invalid password
+  /// 3. Invalid email and password combination
+  /// 4. Server error
   Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
   });
 
+/**
+ *   /// Signs a user in with [username] and [password].
+  ///
+  /// Possible failures:
+  /// 1. Invalid username
+  /// 2. Invalid password
+  /// 3. Invalid username and password combination
+  /// 4. Server error
+  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  });
+ */
+
   /// Signs a user in with facebook.
+  ///
+  /// Possible failures:
+  /// 1. Canceled by user
+  /// 2. Server error
   Future<Either<AuthFailure, Unit>> signInWithFacebook();
 
   /// Signs a user in with google.
+  ///
+  /// Possible failures:
+  /// 1. Canceled by user
+  /// 2. Server error
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 
   /// Signs a user in with apple.
+  ///
+  /// Possible failures:
+  /// 1. Canceled by user
+  /// 2. Server error
   Future<Either<AuthFailure, Unit>> signInWithApple();
 
   /// Signs the user of the app out.
+  ///
+  /// Possible failures:
+  /// 1. Server error
   Future<Either<AuthFailure, Unit>> signOut();
 
   /// Sends a password-reset-email the users email address.
+  ///
+  /// Possible failures:
+  /// 1. Invalid email
+  /// 2. Server error
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
     required EmailAddress emailAddress,
   });
@@ -50,6 +97,10 @@ abstract class IAuthFacade {
   /// Updates the password of the user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.
+  ///
+  /// Possible failures:
+  /// 1. Invalid password
+  /// 2. Server error
   Future<Either<AuthFailure, Unit>> updatePassword({
     required Password oldPassword,
     required Password newPassword,

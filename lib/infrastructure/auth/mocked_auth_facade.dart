@@ -48,13 +48,23 @@ class MockedAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (hasNetworkConnection) {
-      if (emailAddress.isValid() && username.isValid() && password.isValid()) {
-        _authenticatedController.add(true);
-        return right(unit);
+      if (emailAddress.isValid()) {
+        return left(const AuthFailure.invalidEmail());
       }
+
+      if (username.isValid()) {
+        return left(const AuthFailure.invalidUsername());
+      }
+
+      if (password.isValid()) {
+        return left(const AuthFailure.invalidPassword());
+      }
+
+      _authenticatedController.add(true);
+      return right(unit);
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -63,14 +73,45 @@ class MockedAuthFacade implements IAuthFacade {
     required Password password,
   }) async {
     if (hasNetworkConnection) {
-      if (emailAddress.isValid() && password.isValid()) {
-        _authenticatedController.add(true);
-        return right(unit);
+      if (emailAddress.isValid()) {
+        return left(const AuthFailure.invalidEmail());
       }
+
+      if (password.isValid()) {
+        return left(const AuthFailure.invalidPassword());
+      }
+
+      _authenticatedController.add(true);
+      return right(unit);
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
+
+/**
+ * 
+  @override
+  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  }) async {
+    if (hasNetworkConnection) {
+      if (username.isValid()) {
+        return left(const AuthFailure.invalidUsername());
+      }
+
+      if (password.isValid()) {
+        return left(const AuthFailure.invalidPassword());
+      }
+
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+ */
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
@@ -79,7 +120,7 @@ class MockedAuthFacade implements IAuthFacade {
       return right(unit);
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -89,7 +130,7 @@ class MockedAuthFacade implements IAuthFacade {
       return right(unit);
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -99,13 +140,17 @@ class MockedAuthFacade implements IAuthFacade {
       return right(unit);
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signOut() async {
-    _authenticatedController.add(false);
-    return right(unit);
+    if (hasNetworkConnection) {
+      _authenticatedController.add(false);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -116,9 +161,11 @@ class MockedAuthFacade implements IAuthFacade {
       if (emailAddress.isValid()) {
         return right(unit);
       }
+
+      return left(const AuthFailure.invalidEmail());
     }
 
-    return left(const AuthFailure.serverError()); // TODO name better
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -129,13 +176,13 @@ class MockedAuthFacade implements IAuthFacade {
     if (isAuthenticated()) {
       if (hasNetworkConnection) {
         if (oldPassword.isValid() && newPassword.isValid()) {
-          if (oldPassword.getOrCrash() == newPassword.getOrCrash()) {
-            return right(unit);
-          }
+          return right(unit);
         }
+
+        return left(const AuthFailure.invalidPassword());
       }
 
-      return left(const AuthFailure.serverError()); // TODO name better
+      return left(const AuthFailure.serverError());
     }
 
     throw NotAuthenticatedError();
