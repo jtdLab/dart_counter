@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
@@ -18,7 +19,7 @@ import 'package:rxdart/rxdart.dart';
 class MockedFriendFacade implements IFriendFacade {
   final IAuthFacade _authFacade;
 
-  BehaviorSubject<Either<FriendFailure, KtList<User>>> _friendsController;
+  BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
 
   BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _receivedFriendRequestController;
@@ -39,8 +40,8 @@ class MockedFriendFacade implements IFriendFacade {
         _friendsController = BehaviorSubject.seeded(
           hasNetworkConnection
               ? right([
-                  User.dummy(),
-                  User.dummy(),
+                  Friend.dummy(),
+                  Friend.dummy(),
                 ].toImmutableList())
               : left(
                   const FriendFailure.unexpected(), // TODO name better
@@ -77,7 +78,7 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Either<FriendFailure, KtList<User>>? getFriends() {
+  Either<FriendFailure, KtList<Friend>>? getFriends() {
     _checkAuth();
     if (hasNetworkConnection) {
       try {
@@ -119,7 +120,7 @@ class MockedFriendFacade implements IFriendFacade {
   }
 
   @override
-  Stream<Either<FriendFailure, KtList<User>>> watchFriends() {
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
     return _friendsController.stream;
   }
@@ -216,7 +217,7 @@ class MockedFriendFacade implements IFriendFacade {
     if (hasNetworkConnection) {
       _removeFromReceivedFriendRequests(friendRequest);
 
-      final newFriend = User.dummy().copyWith(
+      final newFriend = Friend.dummy().copyWith(
         id: friendRequest.fromId,
         profile: Profile.dummy().copyWith(username: friendRequest.fromName),
       );
@@ -247,7 +248,7 @@ class MockedFriendFacade implements IFriendFacade {
 
   @override
   Future<Either<FriendFailure, Unit>> removeFriend({
-    required User friend,
+    required Friend friend,
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {

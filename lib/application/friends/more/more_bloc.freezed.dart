@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MoreEventTearOff {
   const _$MoreEventTearOff();
 
-  RemovePressed removePressed({required User friend}) {
+  RemovePressed removePressed({required Friend friend}) {
     return RemovePressed(
       friend: friend,
     );
   }
 
-  ShowProfilePressed showProfilePressed({required User friend}) {
+  ShowProfilePressed showProfilePressed({required Friend friend}) {
     return ShowProfilePressed(
       friend: friend,
     );
@@ -35,24 +35,24 @@ const $MoreEvent = _$MoreEventTearOff();
 
 /// @nodoc
 mixin _$MoreEvent {
-  User get friend => throw _privateConstructorUsedError;
+  Friend get friend => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User friend) removePressed,
-    required TResult Function(User friend) showProfilePressed,
+    required TResult Function(Friend friend) removePressed,
+    required TResult Function(Friend friend) showProfilePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,9 +85,9 @@ mixin _$MoreEvent {
 abstract class $MoreEventCopyWith<$Res> {
   factory $MoreEventCopyWith(MoreEvent value, $Res Function(MoreEvent) then) =
       _$MoreEventCopyWithImpl<$Res>;
-  $Res call({User friend});
+  $Res call({Friend friend});
 
-  $UserCopyWith<$Res> get friend;
+  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -106,13 +106,13 @@ class _$MoreEventCopyWithImpl<$Res> implements $MoreEventCopyWith<$Res> {
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
-              as User,
+              as Friend,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get friend {
-    return $UserCopyWith<$Res>(_value.friend, (value) {
+  $FriendCopyWith<$Res> get friend {
+    return $FriendCopyWith<$Res>(_value.friend, (value) {
       return _then(_value.copyWith(friend: value));
     });
   }
@@ -125,10 +125,10 @@ abstract class $RemovePressedCopyWith<$Res>
           RemovePressed value, $Res Function(RemovePressed) then) =
       _$RemovePressedCopyWithImpl<$Res>;
   @override
-  $Res call({User friend});
+  $Res call({Friend friend});
 
   @override
-  $UserCopyWith<$Res> get friend;
+  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -149,7 +149,7 @@ class _$RemovePressedCopyWithImpl<$Res> extends _$MoreEventCopyWithImpl<$Res>
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
-              as User,
+              as Friend,
     ));
   }
 }
@@ -160,7 +160,7 @@ class _$RemovePressed implements RemovePressed {
   const _$RemovePressed({required this.friend});
 
   @override
-  final User friend;
+  final Friend friend;
 
   @override
   String toString() {
@@ -187,8 +187,8 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User friend) removePressed,
-    required TResult Function(User friend) showProfilePressed,
+    required TResult Function(Friend friend) removePressed,
+    required TResult Function(Friend friend) showProfilePressed,
   }) {
     return removePressed(friend);
   }
@@ -196,8 +196,8 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
   }) {
     return removePressed?.call(friend);
   }
@@ -205,8 +205,8 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
     required TResult orElse(),
   }) {
     if (removePressed != null) {
@@ -248,10 +248,10 @@ class _$RemovePressed implements RemovePressed {
 }
 
 abstract class RemovePressed implements MoreEvent {
-  const factory RemovePressed({required User friend}) = _$RemovePressed;
+  const factory RemovePressed({required Friend friend}) = _$RemovePressed;
 
   @override
-  User get friend => throw _privateConstructorUsedError;
+  Friend get friend => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $RemovePressedCopyWith<RemovePressed> get copyWith =>
@@ -265,10 +265,10 @@ abstract class $ShowProfilePressedCopyWith<$Res>
           ShowProfilePressed value, $Res Function(ShowProfilePressed) then) =
       _$ShowProfilePressedCopyWithImpl<$Res>;
   @override
-  $Res call({User friend});
+  $Res call({Friend friend});
 
   @override
-  $UserCopyWith<$Res> get friend;
+  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -290,7 +290,7 @@ class _$ShowProfilePressedCopyWithImpl<$Res>
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
-              as User,
+              as Friend,
     ));
   }
 }
@@ -301,7 +301,7 @@ class _$ShowProfilePressed implements ShowProfilePressed {
   const _$ShowProfilePressed({required this.friend});
 
   @override
-  final User friend;
+  final Friend friend;
 
   @override
   String toString() {
@@ -328,8 +328,8 @@ class _$ShowProfilePressed implements ShowProfilePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User friend) removePressed,
-    required TResult Function(User friend) showProfilePressed,
+    required TResult Function(Friend friend) removePressed,
+    required TResult Function(Friend friend) showProfilePressed,
   }) {
     return showProfilePressed(friend);
   }
@@ -337,8 +337,8 @@ class _$ShowProfilePressed implements ShowProfilePressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
   }) {
     return showProfilePressed?.call(friend);
   }
@@ -346,8 +346,8 @@ class _$ShowProfilePressed implements ShowProfilePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User friend)? removePressed,
-    TResult Function(User friend)? showProfilePressed,
+    TResult Function(Friend friend)? removePressed,
+    TResult Function(Friend friend)? showProfilePressed,
     required TResult orElse(),
   }) {
     if (showProfilePressed != null) {
@@ -389,11 +389,11 @@ class _$ShowProfilePressed implements ShowProfilePressed {
 }
 
 abstract class ShowProfilePressed implements MoreEvent {
-  const factory ShowProfilePressed({required User friend}) =
+  const factory ShowProfilePressed({required Friend friend}) =
       _$ShowProfilePressed;
 
   @override
-  User get friend => throw _privateConstructorUsedError;
+  Friend get friend => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $ShowProfilePressedCopyWith<ShowProfilePressed> get copyWith =>

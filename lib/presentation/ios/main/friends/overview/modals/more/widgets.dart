@@ -24,10 +24,10 @@ class _MoreWidget extends StatelessWidget {
               text: 'Show Profile'.toUpperCase(),
               onPressed: () {
                 context.read<FriendsBloc>().add(FriendsEvent.friendSelected(
-                    friend: User.dummy())); // TODO real user
+                    friend: Friend.dummy())); // TODO real user
 
                 context.read<MoreBloc>().add(MoreEvent.showProfilePressed(
-                    friend: User.dummy())); // TODO real user
+                    friend: Friend.dummy())); // TODO real user
                 context.router.pop();
               },
             ),
@@ -36,7 +36,7 @@ class _MoreWidget extends StatelessWidget {
               text: 'Remove'.toUpperCase(),
               onPressed: () {
                 context.read<MoreBloc>().add(MoreEvent.removePressed(
-                    friend: User.dummy())); // TODO real user
+                    friend: Friend.dummy())); // TODO real user
                 context.router.pop();
               },
             ),

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FriendsEventTearOff {
   const _$FriendsEventTearOff();
 
-  FriendSelected friendSelected({required User friend}) {
+  FriendSelected friendSelected({required Friend friend}) {
     return FriendSelected(
       friend: friend,
     );
@@ -29,21 +29,21 @@ const $FriendsEvent = _$FriendsEventTearOff();
 
 /// @nodoc
 mixin _$FriendsEvent {
-  User get friend => throw _privateConstructorUsedError;
+  Friend get friend => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User friend) friendSelected,
+    required TResult Function(Friend friend) friendSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User friend)? friendSelected,
+    TResult Function(Friend friend)? friendSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User friend)? friendSelected,
+    TResult Function(Friend friend)? friendSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,9 +74,9 @@ abstract class $FriendsEventCopyWith<$Res> {
   factory $FriendsEventCopyWith(
           FriendsEvent value, $Res Function(FriendsEvent) then) =
       _$FriendsEventCopyWithImpl<$Res>;
-  $Res call({User friend});
+  $Res call({Friend friend});
 
-  $UserCopyWith<$Res> get friend;
+  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -95,13 +95,13 @@ class _$FriendsEventCopyWithImpl<$Res> implements $FriendsEventCopyWith<$Res> {
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
-              as User,
+              as Friend,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get friend {
-    return $UserCopyWith<$Res>(_value.friend, (value) {
+  $FriendCopyWith<$Res> get friend {
+    return $FriendCopyWith<$Res>(_value.friend, (value) {
       return _then(_value.copyWith(friend: value));
     });
   }
@@ -114,10 +114,10 @@ abstract class $FriendSelectedCopyWith<$Res>
           FriendSelected value, $Res Function(FriendSelected) then) =
       _$FriendSelectedCopyWithImpl<$Res>;
   @override
-  $Res call({User friend});
+  $Res call({Friend friend});
 
   @override
-  $UserCopyWith<$Res> get friend;
+  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class _$FriendSelectedCopyWithImpl<$Res>
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
-              as User,
+              as Friend,
     ));
   }
 }
@@ -150,7 +150,7 @@ class _$FriendSelected implements FriendSelected {
   const _$FriendSelected({required this.friend});
 
   @override
-  final User friend;
+  final Friend friend;
 
   @override
   String toString() {
@@ -177,7 +177,7 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User friend) friendSelected,
+    required TResult Function(Friend friend) friendSelected,
   }) {
     return friendSelected(friend);
   }
@@ -185,7 +185,7 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User friend)? friendSelected,
+    TResult Function(Friend friend)? friendSelected,
   }) {
     return friendSelected?.call(friend);
   }
@@ -193,7 +193,7 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User friend)? friendSelected,
+    TResult Function(Friend friend)? friendSelected,
     required TResult orElse(),
   }) {
     if (friendSelected != null) {
@@ -232,10 +232,10 @@ class _$FriendSelected implements FriendSelected {
 }
 
 abstract class FriendSelected implements FriendsEvent {
-  const factory FriendSelected({required User friend}) = _$FriendSelected;
+  const factory FriendSelected({required Friend friend}) = _$FriendSelected;
 
   @override
-  User get friend => throw _privateConstructorUsedError;
+  Friend get friend => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $FriendSelectedCopyWith<FriendSelected> get copyWith =>
@@ -247,10 +247,10 @@ class _$FriendsStateTearOff {
   const _$FriendsStateTearOff();
 
   _FriendsState call(
-      {required KtList<User> friends,
+      {required KtList<Friend> friends,
       required KtList<FriendRequest> receivedFriendRequests,
       required KtList<FriendRequest> sentFriendRequests,
-      User? selectedFriend}) {
+      Friend? selectedFriend}) {
     return _FriendsState(
       friends: friends,
       receivedFriendRequests: receivedFriendRequests,
@@ -265,12 +265,12 @@ const $FriendsState = _$FriendsStateTearOff();
 
 /// @nodoc
 mixin _$FriendsState {
-  KtList<User> get friends => throw _privateConstructorUsedError;
+  KtList<Friend> get friends => throw _privateConstructorUsedError;
   KtList<FriendRequest> get receivedFriendRequests =>
       throw _privateConstructorUsedError;
   KtList<FriendRequest> get sentFriendRequests =>
       throw _privateConstructorUsedError;
-  User? get selectedFriend => throw _privateConstructorUsedError;
+  Friend? get selectedFriend => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FriendsStateCopyWith<FriendsState> get copyWith =>
@@ -283,12 +283,12 @@ abstract class $FriendsStateCopyWith<$Res> {
           FriendsState value, $Res Function(FriendsState) then) =
       _$FriendsStateCopyWithImpl<$Res>;
   $Res call(
-      {KtList<User> friends,
+      {KtList<Friend> friends,
       KtList<FriendRequest> receivedFriendRequests,
       KtList<FriendRequest> sentFriendRequests,
-      User? selectedFriend});
+      Friend? selectedFriend});
 
-  $UserCopyWith<$Res>? get selectedFriend;
+  $FriendCopyWith<$Res>? get selectedFriend;
 }
 
 /// @nodoc
@@ -310,7 +310,7 @@ class _$FriendsStateCopyWithImpl<$Res> implements $FriendsStateCopyWith<$Res> {
       friends: friends == freezed
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
-              as KtList<User>,
+              as KtList<Friend>,
       receivedFriendRequests: receivedFriendRequests == freezed
           ? _value.receivedFriendRequests
           : receivedFriendRequests // ignore: cast_nullable_to_non_nullable
@@ -322,17 +322,17 @@ class _$FriendsStateCopyWithImpl<$Res> implements $FriendsStateCopyWith<$Res> {
       selectedFriend: selectedFriend == freezed
           ? _value.selectedFriend
           : selectedFriend // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as Friend?,
     ));
   }
 
   @override
-  $UserCopyWith<$Res>? get selectedFriend {
+  $FriendCopyWith<$Res>? get selectedFriend {
     if (_value.selectedFriend == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.selectedFriend!, (value) {
+    return $FriendCopyWith<$Res>(_value.selectedFriend!, (value) {
       return _then(_value.copyWith(selectedFriend: value));
     });
   }
@@ -346,13 +346,13 @@ abstract class _$FriendsStateCopyWith<$Res>
       __$FriendsStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {KtList<User> friends,
+      {KtList<Friend> friends,
       KtList<FriendRequest> receivedFriendRequests,
       KtList<FriendRequest> sentFriendRequests,
-      User? selectedFriend});
+      Friend? selectedFriend});
 
   @override
-  $UserCopyWith<$Res>? get selectedFriend;
+  $FriendCopyWith<$Res>? get selectedFriend;
 }
 
 /// @nodoc
@@ -376,7 +376,7 @@ class __$FriendsStateCopyWithImpl<$Res> extends _$FriendsStateCopyWithImpl<$Res>
       friends: friends == freezed
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
-              as KtList<User>,
+              as KtList<Friend>,
       receivedFriendRequests: receivedFriendRequests == freezed
           ? _value.receivedFriendRequests
           : receivedFriendRequests // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ class __$FriendsStateCopyWithImpl<$Res> extends _$FriendsStateCopyWithImpl<$Res>
       selectedFriend: selectedFriend == freezed
           ? _value.selectedFriend
           : selectedFriend // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as Friend?,
     ));
   }
 }
@@ -403,13 +403,13 @@ class _$_FriendsState implements _FriendsState {
       this.selectedFriend});
 
   @override
-  final KtList<User> friends;
+  final KtList<Friend> friends;
   @override
   final KtList<FriendRequest> receivedFriendRequests;
   @override
   final KtList<FriendRequest> sentFriendRequests;
   @override
-  final User? selectedFriend;
+  final Friend? selectedFriend;
 
   @override
   String toString() {
@@ -450,13 +450,13 @@ class _$_FriendsState implements _FriendsState {
 
 abstract class _FriendsState implements FriendsState {
   const factory _FriendsState(
-      {required KtList<User> friends,
+      {required KtList<Friend> friends,
       required KtList<FriendRequest> receivedFriendRequests,
       required KtList<FriendRequest> sentFriendRequests,
-      User? selectedFriend}) = _$_FriendsState;
+      Friend? selectedFriend}) = _$_FriendsState;
 
   @override
-  KtList<User> get friends => throw _privateConstructorUsedError;
+  KtList<Friend> get friends => throw _privateConstructorUsedError;
   @override
   KtList<FriendRequest> get receivedFriendRequests =>
       throw _privateConstructorUsedError;
@@ -464,7 +464,7 @@ abstract class _FriendsState implements FriendsState {
   KtList<FriendRequest> get sentFriendRequests =>
       throw _privateConstructorUsedError;
   @override
-  User? get selectedFriend => throw _privateConstructorUsedError;
+  Friend? get selectedFriend => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendsStateCopyWith<_FriendsState> get copyWith =>

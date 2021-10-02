@@ -6,6 +6,7 @@ import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 
+import 'friend.dart';
 import 'friend_request.dart';
 
 /// Domain interface for all actions related to friends/friendships of the app-user.
@@ -13,7 +14,7 @@ abstract class IFriendFacade {
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<User>>? getFriends(); // TODO good?
+  Either<FriendFailure, KtList<Friend>>? getFriends(); // TODO good?
 
   /// Returns the received friend requests of the app-user.
   ///
@@ -33,7 +34,7 @@ abstract class IFriendFacade {
   /// Returns a stream of all friends of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Stream<Either<FriendFailure, KtList<User>>> watchFriends();
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends();
 
   /// Returns a stream of the received friends requests of the app-user.
   ///
@@ -84,7 +85,7 @@ abstract class IFriendFacade {
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   Future<Either<FriendFailure, Unit>> removeFriend({
-    required User friend,
+    required Friend friend,
   });
 
 // TODO should throw error or failure if last visible wasnt received in previous successful

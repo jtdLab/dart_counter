@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
@@ -9,7 +10,6 @@ import 'package:dart_counter/domain/friend/user.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
-import 'package:dart_counter/infrastructure/friend/user_dto.dart';
 import 'package:dart_counter/infrastructure/friend/user_search_result_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -17,6 +17,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
+import 'friend_dto.dart';
 import 'friend_request_dto.dart';
 
 @Environment(Environment.test)
@@ -28,7 +29,7 @@ class FriendFacade implements IFriendFacade {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
-  BehaviorSubject<Either<FriendFailure, KtList<User>>> _friendsController;
+  BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
   BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _receivedFriendRequestsController;
   BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
@@ -60,7 +61,7 @@ class FriendFacade implements IFriendFacade {
   }
 
   @override
-  Either<FriendFailure, KtList<User>>? getFriends() {
+  Either<FriendFailure, KtList<Friend>>? getFriends() {
     _checkAuth();
 
     return _friendsController.value;
@@ -82,17 +83,17 @@ class FriendFacade implements IFriendFacade {
 
   // TODO implement more efficient and add pagination
   @override
-  Stream<Either<FriendFailure, KtList<User>>> watchFriends() {
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
     return _userFacade
         .watchUser()
-        .asyncMap<Either<FriendFailure, KtList<User>>>((failureOrUser) {
+        .asyncMap<Either<FriendFailure, KtList<Friend>>>((failureOrUser) {
       return failureOrUser.fold(
         (failure) => throw Error(), // TODO name better
         (user) async {
           final friendIds = user.friendIds;
 
-          final friends = <User>[];
+          final friends = <Friend>[];
 
           for (final friendId in friendIds.iter) {
             final doc = await _firestore
@@ -100,7 +101,7 @@ class FriendFacade implements IFriendFacade {
                 .doc(friendId.getOrCrash())
                 .get();
 
-            friends.add(UserDto.fromFirestore(doc).toDomain());
+            friends.add(FriendDto.fromFirestore(doc).toDomain());
           }
 
           return right(friends.toImmutableList());
@@ -241,7 +242,7 @@ class FriendFacade implements IFriendFacade {
 
   @override
   Future<Either<FriendFailure, Unit>> removeFriend({
-    required User friend,
+    required Friend friend,
   }) async {
     _checkAuth();
     final success = await _socialClient.removeFriend(

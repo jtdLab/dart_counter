@@ -6,7 +6,7 @@ import 'package:dart_counter/application/friends/friends_bloc.dart';
 import 'package:dart_counter/application/friends/more/more_bloc.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/friend/user.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 
 // SHARED WIDGETS
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';

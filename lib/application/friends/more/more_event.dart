@@ -3,9 +3,9 @@ part of 'more_bloc.dart';
 @freezed
 class MoreEvent with _$MoreEvent {
   const factory MoreEvent.removePressed({
-    required User friend,
+    required Friend friend,
   }) = RemovePressed;
   const factory MoreEvent.showProfilePressed({
-    required User friend,
+    required Friend friend,
   }) = ShowProfilePressed;
 }
