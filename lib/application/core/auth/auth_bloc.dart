@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
     this._authFacade,
   ) : super(
           _authFacade.isAuthenticated()
-              ? const AuthState.authenticated()
+              ? AuthState.authenticated(appUserId: _authFacade.userId()!)
               : const AuthState.unauthenticated(),
         ) {
     _isAuthenticatedSubscription =
@@ -44,7 +45,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
     final isAuthenticated = event.isAuthenticated;
 
     if (isAuthenticated) {
-      yield const AuthState.authenticated();
+      final appUserId = _authFacade.userId()!;
+      yield AuthState.authenticated(appUserId: appUserId);
     } else {
       yield const AuthState.unauthenticated();
     }

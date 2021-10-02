@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/application/core/auth/auth_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
@@ -22,10 +22,11 @@ part 'data_watcher_state.dart';
 @lazySingleton
 class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
   final IUserFacade _userFacade;
   final IGameInvitationFacade _gameInvitationFacade;
   final IFriendFacade _friendFacade;
+
+  final AuthBloc _authBloc;
 
   StreamSubscription? _authSubscription;
   StreamSubscription? _userSubscription;
@@ -36,17 +37,16 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   StreamSubscription? _sentFriendRequestsSubscription;
 
   DataWatcherBloc(
-    this._authFacade,
     this._userFacade,
     this._gameInvitationFacade,
     this._friendFacade,
+    this._authBloc,
   ) : super(const DataWatcherState.loadInProgress()) {
-    _authSubscription =
-        _authFacade.watchIsAuthenticated().listen((isAuthenticated) {
-      if (isAuthenticated) {
-        final uid = _authFacade.userId()!;
-
-        add(DataWatcherEvent.watchDataStarted(appUserId: uid));
+    _authSubscription = _authBloc.stream.listen((authState) {
+      if (authState is Authenticated) {
+        add(DataWatcherEvent.watchDataStarted(appUserId: authState.appUserId));
+      } else {
+        _cancelDataSubscriptions();
       }
     });
   }
@@ -372,15 +372,19 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     yield const DataWatcherState.loadFailure();
   }
 
-  @override
-  Future<void> close() {
-    _authSubscription?.cancel();
+  void _cancelDataSubscriptions() {
     _userSubscription?.cancel();
     _receivedGameInvitationsSubscription?.cancel();
     _sentGameInvitationsSubscription?.cancel();
     _friendsSubscription?.cancel();
     _receivedFriendRequestsSubscription?.cancel();
     _sentFriendRequestsSubscription?.cancel();
+  }
+
+  @override
+  Future<void> close() {
+    _cancelDataSubscriptions();
+    _authSubscription?.cancel();
     return super.close();
   }
 }

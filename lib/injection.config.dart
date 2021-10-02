@@ -145,10 +145,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i38.ChangeUsernameBloc>(
       () => _i38.ChangeUsernameBloc(get<_i25.IUserFacade>()));
   gh.lazySingleton<_i39.DataWatcherBloc>(() => _i39.DataWatcherBloc(
-      get<_i11.IAuthFacade>(),
       get<_i25.IUserFacade>(),
       get<_i21.IGameInvitationFacade>(),
-      get<_i16.IFriendFacade>()));
+      get<_i16.IFriendFacade>(),
+      get<_i35.AuthBloc>()));
   gh.lazySingleton<_i40.EditProfileImageBloc>(
       () => _i40.EditProfileImageBloc(get<_i25.IUserFacade>()));
   gh.lazySingleton<_i41.ForgotPasswordBloc>(
@@ -191,6 +191,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i25.IUserFacade>(),
       get<_i21.IGameInvitationFacade>(),
       get<_i16.IFriendFacade>(),
+      get<_i39.DataWatcherBloc>(),
       get<_i49.PlayBloc>()));
   gh.lazySingleton<_i16.IFriendFacade>(
       () => _i53.FriendFacade(get<_i11.IAuthFacade>(), get<_i25.IUserFacade>(),

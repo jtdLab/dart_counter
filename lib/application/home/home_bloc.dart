@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
@@ -21,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   final IGameInvitationFacade _invitationFacade;
   final IFriendFacade _friendFacade;
 
+  final DataWatcherBloc _dataWatcherBloc;
   final PlayBloc _playBloc;
 
   StreamSubscription? _userSubscription;
@@ -31,6 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     this._userFacade,
     this._invitationFacade,
     this._friendFacade,
+    this._dataWatcherBloc,
     this._playBloc,
   ) : super(
           _userFacade.getUser()?.fold(
