@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
@@ -19,28 +20,32 @@ part 'settings_bloc.freezed.dart';
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     with AutoResetLazySingleton {
   final IAuthFacade _authFacade;
-  final IUserFacade _userFacade;
 
-  StreamSubscription? _userSubscription;
+  final DataWatcherBloc _dataWatcherBloc;
+
+  StreamSubscription? _dataWatcherSubscription;
 
   SettingsBloc(
     this._authFacade,
-    this._userFacade,
+    this._dataWatcherBloc,
   ) : super(
-          _userFacade.getUser()?.fold(
-                    (failure) => throw Error(),
-                    (user) => SettingsState(
-                      user: user,
-                      localeChanged: false,
-                    ),
-                  ) ??
-              (throw Error()),
+          _dataWatcherBloc.state.maybeMap(
+            loadSuccess: (loadSuccess) => SettingsState.initial(
+              user: loadSuccess.user,
+              localeChanged: false,
+            ),
+            orElse: () => throw Error(), // TODO name better
+          ),
         ) {
-    _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
-      return failurOrUser.fold(
-        (failure) => throw Error(), // TODO failure
-        (user) => add(SettingsEvent.userReceived(user: user)),
-      );
+    _dataWatcherSubscription =
+        _dataWatcherBloc.stream.listen((dataWatcherState) {
+      if (dataWatcherState is DataWatcherLoadSuccess) {
+        add(
+          SettingsEvent.dataReceived(
+            user: dataWatcherState.user,
+          ),
+        );
+      }
     });
   }
 
@@ -49,20 +54,20 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     SettingsEvent event,
   ) async* {
     yield* event.map(
-      userReceived: (event) => _mapWatchUserReceivedToState(event),
+      dataReceived: (event) => _mapDataReceivedToState(event),
       localeChanged: (_) => _mapLocaleChangedToState(),
       signOutPressed: (_) => _mapSignOutPressedToState(),
     );
   }
 
-  Stream<SettingsState> _mapWatchUserReceivedToState(
-    UserReceived event,
+  Stream<SettingsState> _mapDataReceivedToState(
+    SettingsDataReceived event,
   ) async* {
     yield state.copyWith(user: event.user);
   }
 
   Stream<SettingsState> _mapLocaleChangedToState() async* {
-    // TODO only work around cause easylocalization doesnt rebuilt properly
+    // TODO only work around because easylocalization doesnt rebuilt properly
     yield state.copyWith(localeChanged: true);
     yield state.copyWith(localeChanged: false);
   }
@@ -73,8 +78,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
 
   @override
   Future<void> close() {
-    _userSubscription?.cancel();
-    
+    _dataWatcherSubscription?.cancel();
+
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SettingsBloc>()) {
       getIt.resetLazySingleton<SettingsBloc>();

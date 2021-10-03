@@ -17,7 +17,7 @@ part 'success/widgets.dart';
 
 class ChangeEmailModal extends StatelessWidget {
   // Routes of the flow
-  static const String intial = '/';
+  static const String initial = '/';
   static const String success = '/success';
 
   const ChangeEmailModal({
@@ -28,42 +28,44 @@ class ChangeEmailModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<ChangeEmailBloc>(),
-      child: BlocListener<ChangeEmailBloc, ChangeEmailState>(
-        listenWhen: (oldState, newState) =>
-            newState.successful || newState.userFailure != null,
-        listener: (context, state) {
-          if (state.successful) {
-            Navigator.pushReplacementNamed(context, success);
-            return;
+      child: Navigator(
+        initialRoute: initial,
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case initial:
+              return CupertinoPageRoute(
+                builder: (context) =>
+                    BlocListener<ChangeEmailBloc, ChangeEmailState>(
+                  listenWhen: (oldState, newState) =>
+                      newState.successful || newState.userFailure != null,
+                  listener: (context, state) {
+                    if (state.successful) {
+                      Navigator.pushReplacementNamed(
+                          context, ChangeEmailModal.success);
+                      return;
+                    }
+                    state.userFailure?.maybeWhen(
+                      /* TODO
+                      invalidEmail: () => showToast(
+                        LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
+                      ),
+                      */
+                      orElse: () => showToast(
+                        'UserFailure happended',
+                      ), // TODO catch other errors also
+                    );
+                  },
+                  child: const _InitialPage(),
+                ),
+              );
+            case success:
+              return PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    const _SuccessPage(),
+                transitionDuration: const Duration(),
+              );
           }
-          state.userFailure?.maybeWhen(
-            /* TODO
-          invalidEmail: () => showToast(
-            LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
-          ),
-          */
-            orElse: () => showToast(
-              'UserFailure happended',
-            ), // TODO catch other errors also
-          );
         },
-        child: Navigator(
-          initialRoute: '/',
-          onGenerateRoute: (settings) {
-            switch (settings.name) {
-              case intial:
-                return CupertinoPageRoute(
-                  builder: (context) => const _InitialPage(),
-                );
-              case success:
-                return PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) =>
-                      const _SuccessPage(),
-                  transitionDuration: const Duration(),
-                );
-            }
-          },
-        ),
       ),
     );
   }

@@ -71,7 +71,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     if (getIt.isRegistered<ChangeEmailBloc>()) {
       getIt.resetLazySingleton<ChangeEmailBloc>();
     }
-    
+
     return super.close();
   }
 }

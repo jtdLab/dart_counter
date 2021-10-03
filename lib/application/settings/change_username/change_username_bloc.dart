@@ -66,11 +66,11 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
 
   @override
   Future<void> close() {
-      // TODO should be done in AutoResetLazySingleton
+    // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangeUsernameBloc>()) {
       getIt.resetLazySingleton<ChangeUsernameBloc>();
     }
-    
+
     return super.close();
   }
 }

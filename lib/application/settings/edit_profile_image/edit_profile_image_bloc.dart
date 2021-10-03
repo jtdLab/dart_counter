@@ -39,7 +39,8 @@ class EditProfileImageBloc
   }
 
   Stream<EditProfileImageState> _mapTakePressedToState() async* {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile == null) {
       return;
     }
@@ -49,7 +50,7 @@ class EditProfileImageBloc
 
   Stream<EditProfileImageState> _mapChoosePressedToState() async* {
     final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile == null) {
       return;
     }
@@ -59,11 +60,11 @@ class EditProfileImageBloc
 
   @override
   Future<void> close() {
-      // TODO should be done in AutoResetLazySingleton
+    // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<EditProfileImageBloc>()) {
       getIt.resetLazySingleton<EditProfileImageBloc>();
     }
-    
+
     return super.close();
   }
 }

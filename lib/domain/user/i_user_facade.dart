@@ -20,6 +20,7 @@ abstract class IUserFacade {
   /// Throws [NotAuthenticatedError] if the user is not signed in.
   Stream<Either<UserFailure, User>> watchUser();
 
+  // TODO dont take a file here instead take bytes
   /// Updates the profile photo of the user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.

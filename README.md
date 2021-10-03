@@ -10,6 +10,14 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 flutter pub run easy_localization:generate -S assets/languages
 
+1. Settings + modals
+2. SearchUser
+3. Profile + all sub pages
+4. Play
+5. Trainings area
+
+// TODO CLEAN BLOC EVENT AND STATE VISIBILITY AND NAMING
+
 ## TODOS
 // 5. determine failures in domain ref to 8.
 // 6. refactor application layer
@@ -36,7 +44,8 @@ flutter pub run easy_localization:generate -S assets/languages
 // import flutter bloc not bloc in bloc
 // handle error thrown by behaivour subject.value
 // maybe splitt big widgets.dart file into sub files with part and part of e.g ingame/widgets.dart
-// BLOCS DISPOSING AND INJECTING REWORK
+
+
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 
 # FLOW:

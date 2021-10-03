@@ -18,7 +18,7 @@ part 'success/widgets.dart';
 // TODO custom navigator for modal is workaround because auto_route doesnt support modal bottom sheet
 class ForgotPasswordModal extends StatelessWidget {
   // Routes of the flow
-  static const String intial = '/';
+  static const String initial = '/';
   static const String success = '/success';
 
   const ForgotPasswordModal({
@@ -30,10 +30,10 @@ class ForgotPasswordModal extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<ForgotPasswordBloc>(),
       child: Navigator(
-        initialRoute: '/',
+        initialRoute: initial,
         onGenerateRoute: (settings) {
           switch (settings.name) {
-            case intial:
+            case initial:
               return CupertinoPageRoute(
                 builder: (context) =>
                     BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
@@ -41,10 +41,7 @@ class ForgotPasswordModal extends StatelessWidget {
                       newState.successful || newState.authFailure != null,
                   listener: (context, state) {
                     if (state.successful) {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        success,
-                      );
+                      Navigator.pushReplacementNamed(context, success);
                       return;
                     }
                     state.authFailure?.maybeWhen(

@@ -17,18 +17,18 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SettingsEventTearOff {
   const _$SettingsEventTearOff();
 
-  UserReceived userReceived({required User user}) {
-    return UserReceived(
+  SettingsDataReceived dataReceived({required User user}) {
+    return SettingsDataReceived(
       user: user,
     );
   }
 
-  LocaleChanged localeChanged() {
-    return const LocaleChanged();
+  SettingsLocaleChanged localeChanged() {
+    return const SettingsLocaleChanged();
   }
 
-  SignOutPressed signOutPressed() {
-    return const SignOutPressed();
+  SettingsSignOutPressed signOutPressed() {
+    return const SettingsSignOutPressed();
   }
 }
 
@@ -39,21 +39,21 @@ const $SettingsEvent = _$SettingsEventTearOff();
 mixin _$SettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function(User user) dataReceived,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -61,23 +61,23 @@ mixin _$SettingsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(LocaleChanged value) localeChanged,
-    required TResult Function(SignOutPressed value) signOutPressed,
+    required TResult Function(SettingsDataReceived value) dataReceived,
+    required TResult Function(SettingsLocaleChanged value) localeChanged,
+    required TResult Function(SettingsSignOutPressed value) signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -101,30 +101,31 @@ class _$SettingsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $UserReceivedCopyWith<$Res> {
-  factory $UserReceivedCopyWith(
-          UserReceived value, $Res Function(UserReceived) then) =
-      _$UserReceivedCopyWithImpl<$Res>;
+abstract class $SettingsDataReceivedCopyWith<$Res> {
+  factory $SettingsDataReceivedCopyWith(SettingsDataReceived value,
+          $Res Function(SettingsDataReceived) then) =
+      _$SettingsDataReceivedCopyWithImpl<$Res>;
   $Res call({User user});
 
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$UserReceivedCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
-    implements $UserReceivedCopyWith<$Res> {
-  _$UserReceivedCopyWithImpl(
-      UserReceived _value, $Res Function(UserReceived) _then)
-      : super(_value, (v) => _then(v as UserReceived));
+class _$SettingsDataReceivedCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res>
+    implements $SettingsDataReceivedCopyWith<$Res> {
+  _$SettingsDataReceivedCopyWithImpl(
+      SettingsDataReceived _value, $Res Function(SettingsDataReceived) _then)
+      : super(_value, (v) => _then(v as SettingsDataReceived));
 
   @override
-  UserReceived get _value => super._value as UserReceived;
+  SettingsDataReceived get _value => super._value as SettingsDataReceived;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(UserReceived(
+    return _then(SettingsDataReceived(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -142,21 +143,21 @@ class _$UserReceivedCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserReceived implements UserReceived {
-  const _$UserReceived({required this.user});
+class _$SettingsDataReceived implements SettingsDataReceived {
+  const _$SettingsDataReceived({required this.user});
 
   @override
   final User user;
 
   @override
   String toString() {
-    return 'SettingsEvent.userReceived(user: $user)';
+    return 'SettingsEvent.dataReceived(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserReceived &&
+        (other is SettingsDataReceived &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
@@ -167,39 +168,40 @@ class _$UserReceived implements UserReceived {
 
   @JsonKey(ignore: true)
   @override
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
+  $SettingsDataReceivedCopyWith<SettingsDataReceived> get copyWith =>
+      _$SettingsDataReceivedCopyWithImpl<SettingsDataReceived>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function(User user) dataReceived,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
-    return userReceived(user);
+    return dataReceived(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
-    return userReceived?.call(user);
+    return dataReceived?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(user);
+    if (dataReceived != null) {
+      return dataReceived(user);
     }
     return orElse();
   }
@@ -207,70 +209,71 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(LocaleChanged value) localeChanged,
-    required TResult Function(SignOutPressed value) signOutPressed,
+    required TResult Function(SettingsDataReceived value) dataReceived,
+    required TResult Function(SettingsLocaleChanged value) localeChanged,
+    required TResult Function(SettingsSignOutPressed value) signOutPressed,
   }) {
-    return userReceived(this);
+    return dataReceived(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
   }) {
-    return userReceived?.call(this);
+    return dataReceived?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(this);
+    if (dataReceived != null) {
+      return dataReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class UserReceived implements SettingsEvent {
-  const factory UserReceived({required User user}) = _$UserReceived;
+abstract class SettingsDataReceived implements SettingsEvent {
+  const factory SettingsDataReceived({required User user}) =
+      _$SettingsDataReceived;
 
   User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
+  $SettingsDataReceivedCopyWith<SettingsDataReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LocaleChangedCopyWith<$Res> {
-  factory $LocaleChangedCopyWith(
-          LocaleChanged value, $Res Function(LocaleChanged) then) =
-      _$LocaleChangedCopyWithImpl<$Res>;
+abstract class $SettingsLocaleChangedCopyWith<$Res> {
+  factory $SettingsLocaleChangedCopyWith(SettingsLocaleChanged value,
+          $Res Function(SettingsLocaleChanged) then) =
+      _$SettingsLocaleChangedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LocaleChangedCopyWithImpl<$Res>
+class _$SettingsLocaleChangedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements $LocaleChangedCopyWith<$Res> {
-  _$LocaleChangedCopyWithImpl(
-      LocaleChanged _value, $Res Function(LocaleChanged) _then)
-      : super(_value, (v) => _then(v as LocaleChanged));
+    implements $SettingsLocaleChangedCopyWith<$Res> {
+  _$SettingsLocaleChangedCopyWithImpl(
+      SettingsLocaleChanged _value, $Res Function(SettingsLocaleChanged) _then)
+      : super(_value, (v) => _then(v as SettingsLocaleChanged));
 
   @override
-  LocaleChanged get _value => super._value as LocaleChanged;
+  SettingsLocaleChanged get _value => super._value as SettingsLocaleChanged;
 }
 
 /// @nodoc
 
-class _$LocaleChanged implements LocaleChanged {
-  const _$LocaleChanged();
+class _$SettingsLocaleChanged implements SettingsLocaleChanged {
+  const _$SettingsLocaleChanged();
 
   @override
   String toString() {
@@ -279,7 +282,7 @@ class _$LocaleChanged implements LocaleChanged {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LocaleChanged);
+    return identical(this, other) || (other is SettingsLocaleChanged);
   }
 
   @override
@@ -288,7 +291,7 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function(User user) dataReceived,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -298,7 +301,7 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -308,7 +311,7 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -322,9 +325,9 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(LocaleChanged value) localeChanged,
-    required TResult Function(SignOutPressed value) signOutPressed,
+    required TResult Function(SettingsDataReceived value) dataReceived,
+    required TResult Function(SettingsLocaleChanged value) localeChanged,
+    required TResult Function(SettingsSignOutPressed value) signOutPressed,
   }) {
     return localeChanged(this);
   }
@@ -332,9 +335,9 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
   }) {
     return localeChanged?.call(this);
   }
@@ -342,9 +345,9 @@ class _$LocaleChanged implements LocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (localeChanged != null) {
@@ -354,33 +357,33 @@ class _$LocaleChanged implements LocaleChanged {
   }
 }
 
-abstract class LocaleChanged implements SettingsEvent {
-  const factory LocaleChanged() = _$LocaleChanged;
+abstract class SettingsLocaleChanged implements SettingsEvent {
+  const factory SettingsLocaleChanged() = _$SettingsLocaleChanged;
 }
 
 /// @nodoc
-abstract class $SignOutPressedCopyWith<$Res> {
-  factory $SignOutPressedCopyWith(
-          SignOutPressed value, $Res Function(SignOutPressed) then) =
-      _$SignOutPressedCopyWithImpl<$Res>;
+abstract class $SettingsSignOutPressedCopyWith<$Res> {
+  factory $SettingsSignOutPressedCopyWith(SettingsSignOutPressed value,
+          $Res Function(SettingsSignOutPressed) then) =
+      _$SettingsSignOutPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignOutPressedCopyWithImpl<$Res>
+class _$SettingsSignOutPressedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements $SignOutPressedCopyWith<$Res> {
-  _$SignOutPressedCopyWithImpl(
-      SignOutPressed _value, $Res Function(SignOutPressed) _then)
-      : super(_value, (v) => _then(v as SignOutPressed));
+    implements $SettingsSignOutPressedCopyWith<$Res> {
+  _$SettingsSignOutPressedCopyWithImpl(SettingsSignOutPressed _value,
+      $Res Function(SettingsSignOutPressed) _then)
+      : super(_value, (v) => _then(v as SettingsSignOutPressed));
 
   @override
-  SignOutPressed get _value => super._value as SignOutPressed;
+  SettingsSignOutPressed get _value => super._value as SettingsSignOutPressed;
 }
 
 /// @nodoc
 
-class _$SignOutPressed implements SignOutPressed {
-  const _$SignOutPressed();
+class _$SettingsSignOutPressed implements SettingsSignOutPressed {
+  const _$SettingsSignOutPressed();
 
   @override
   String toString() {
@@ -389,7 +392,7 @@ class _$SignOutPressed implements SignOutPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignOutPressed);
+    return identical(this, other) || (other is SettingsSignOutPressed);
   }
 
   @override
@@ -398,7 +401,7 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function(User user) dataReceived,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -408,7 +411,7 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -418,7 +421,7 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function(User user)? dataReceived,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -432,9 +435,9 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
-    required TResult Function(LocaleChanged value) localeChanged,
-    required TResult Function(SignOutPressed value) signOutPressed,
+    required TResult Function(SettingsDataReceived value) dataReceived,
+    required TResult Function(SettingsLocaleChanged value) localeChanged,
+    required TResult Function(SettingsSignOutPressed value) signOutPressed,
   }) {
     return signOutPressed(this);
   }
@@ -442,9 +445,9 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
   }) {
     return signOutPressed?.call(this);
   }
@@ -452,9 +455,9 @@ class _$SignOutPressed implements SignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
-    TResult Function(LocaleChanged value)? localeChanged,
-    TResult Function(SignOutPressed value)? signOutPressed,
+    TResult Function(SettingsDataReceived value)? dataReceived,
+    TResult Function(SettingsLocaleChanged value)? localeChanged,
+    TResult Function(SettingsSignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (signOutPressed != null) {
@@ -464,16 +467,16 @@ class _$SignOutPressed implements SignOutPressed {
   }
 }
 
-abstract class SignOutPressed implements SettingsEvent {
-  const factory SignOutPressed() = _$SignOutPressed;
+abstract class SettingsSignOutPressed implements SettingsEvent {
+  const factory SettingsSignOutPressed() = _$SettingsSignOutPressed;
 }
 
 /// @nodoc
 class _$SettingsStateTearOff {
   const _$SettingsStateTearOff();
 
-  _SettingsState call({required User user, required bool localeChanged}) {
-    return _SettingsState(
+  SettingsInitial initial({required User user, required bool localeChanged}) {
+    return SettingsInitial(
       user: user,
       localeChanged: localeChanged,
     );
@@ -487,6 +490,39 @@ const $SettingsState = _$SettingsStateTearOff();
 mixin _$SettingsState {
   User get user => throw _privateConstructorUsedError;
   bool get localeChanged => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user, bool localeChanged) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user, bool localeChanged)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user, bool localeChanged)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SettingsInitial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsStateCopyWith<SettingsState> get copyWith =>
@@ -538,11 +574,11 @@ class _$SettingsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SettingsStateCopyWith<$Res>
+abstract class $SettingsInitialCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$SettingsStateCopyWith(
-          _SettingsState value, $Res Function(_SettingsState) then) =
-      __$SettingsStateCopyWithImpl<$Res>;
+  factory $SettingsInitialCopyWith(
+          SettingsInitial value, $Res Function(SettingsInitial) then) =
+      _$SettingsInitialCopyWithImpl<$Res>;
   @override
   $Res call({User user, bool localeChanged});
 
@@ -551,22 +587,22 @@ abstract class _$SettingsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SettingsStateCopyWithImpl<$Res>
+class _$SettingsInitialCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$SettingsStateCopyWith<$Res> {
-  __$SettingsStateCopyWithImpl(
-      _SettingsState _value, $Res Function(_SettingsState) _then)
-      : super(_value, (v) => _then(v as _SettingsState));
+    implements $SettingsInitialCopyWith<$Res> {
+  _$SettingsInitialCopyWithImpl(
+      SettingsInitial _value, $Res Function(SettingsInitial) _then)
+      : super(_value, (v) => _then(v as SettingsInitial));
 
   @override
-  _SettingsState get _value => super._value as _SettingsState;
+  SettingsInitial get _value => super._value as SettingsInitial;
 
   @override
   $Res call({
     Object? user = freezed,
     Object? localeChanged = freezed,
   }) {
-    return _then(_SettingsState(
+    return _then(SettingsInitial(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -581,8 +617,8 @@ class __$SettingsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SettingsState implements _SettingsState {
-  const _$_SettingsState({required this.user, required this.localeChanged});
+class _$SettingsInitial implements SettingsInitial {
+  const _$SettingsInitial({required this.user, required this.localeChanged});
 
   @override
   final User user;
@@ -591,13 +627,13 @@ class _$_SettingsState implements _SettingsState {
 
   @override
   String toString() {
-    return 'SettingsState(user: $user, localeChanged: $localeChanged)';
+    return 'SettingsState.initial(user: $user, localeChanged: $localeChanged)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SettingsState &&
+        (other is SettingsInitial &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.localeChanged, localeChanged) ||
@@ -613,13 +649,69 @@ class _$_SettingsState implements _SettingsState {
 
   @JsonKey(ignore: true)
   @override
-  _$SettingsStateCopyWith<_SettingsState> get copyWith =>
-      __$SettingsStateCopyWithImpl<_SettingsState>(this, _$identity);
+  $SettingsInitialCopyWith<SettingsInitial> get copyWith =>
+      _$SettingsInitialCopyWithImpl<SettingsInitial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user, bool localeChanged) initial,
+  }) {
+    return initial(user, localeChanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user, bool localeChanged)? initial,
+  }) {
+    return initial?.call(user, localeChanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user, bool localeChanged)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(user, localeChanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SettingsInitial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _SettingsState implements SettingsState {
-  const factory _SettingsState(
-      {required User user, required bool localeChanged}) = _$_SettingsState;
+abstract class SettingsInitial implements SettingsState {
+  const factory SettingsInitial(
+      {required User user, required bool localeChanged}) = _$SettingsInitial;
 
   @override
   User get user => throw _privateConstructorUsedError;
@@ -627,6 +719,6 @@ abstract class _SettingsState implements SettingsState {
   bool get localeChanged => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SettingsStateCopyWith<_SettingsState> get copyWith =>
+  $SettingsInitialCopyWith<SettingsInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }
