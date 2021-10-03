@@ -42,11 +42,13 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
 
   Stream<ForgotPasswordState> _mapConfirmPressedToState() async* {
     AuthFailure? authFailure;
-    final isEmailValid = state.email.isValid();
-    if (isEmailValid) {
+    final email = state.email;
+
+    if (email.isValid()) {
       yield state.copyWith(isSubmitting: true);
+      await Future.delayed(const Duration(seconds: 1));
       authFailure = (await _authFacade.sendPasswordResetEmail(
-        emailAddress: state.email,
+        emailAddress: email,
       ))
           .fold(
         (failure) => failure,
@@ -69,7 +71,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     if (getIt.isRegistered<ForgotPasswordBloc>()) {
       getIt.resetLazySingleton<ForgotPasswordBloc>();
     }
-    
+
     return super.close();
   }
 }

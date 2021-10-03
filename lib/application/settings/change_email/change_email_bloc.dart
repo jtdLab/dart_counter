@@ -44,11 +44,12 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
   // TODO more granular error handling
   Stream<ChangeEmailState> _mapConfirmPressedToState() async* {
     UserFailure? userFailure;
-    final isNewEmailValid = state.newEmail.isValid();
-    if (isNewEmailValid) {
+    final newEmail = state.newEmail;
+    if (newEmail.isValid()) {
       yield state.copyWith(isSubmitting: true);
+      await Future.delayed(const Duration(seconds: 1));
       userFailure = (await _userFacade.updateEmailAddress(
-        newEmailAddress: state.newEmail,
+        newEmailAddress: newEmail,
       ))
           .fold(
         (failure) => failure,

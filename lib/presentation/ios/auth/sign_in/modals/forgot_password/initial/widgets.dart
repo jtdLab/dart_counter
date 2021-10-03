@@ -44,11 +44,33 @@ class _InitialWidget extends StatelessWidget {
               .read<ForgotPasswordBloc>()
               .add(ForgotPasswordEvent.emailChanged(emailString: emailString)),
         ),
-        AppPrimaryButton(
-          text: LocaleKeys.confirm.tr(),
-          onPressed: () => context
-              .read<ForgotPasswordBloc>()
-              .add(const ForgotPasswordEvent.confirmPressed()),
+        BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+          builder: (context, state) {
+            if (state.isSubmitting) {
+              return SizedBox(
+                width: double.infinity,
+                height: size55(context),
+                child: Container(
+                  color: AppColors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Lottie.asset(
+                      AppAnimations.loading_circle_white,
+                      width: size12(context),
+                      height: size12(context),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return AppPrimaryButton(
+                text: LocaleKeys.confirm.tr(),
+                onPressed: () => context
+                    .read<ForgotPasswordBloc>()
+                    .add(const ForgotPasswordEvent.confirmPressed()),
+              );
+            }
+          },
         ),
         const Spacer(),
       ],

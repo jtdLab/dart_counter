@@ -43,11 +43,13 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
   // TODO more granular error handling
   Stream<ChangeUsernameState> _mapConfirmPressedToState() async* {
     UserFailure? userFailure;
-    final isNewUsernameValid = state.newUsername.isValid();
-    if (isNewUsernameValid) {
+    final newUsername = state.newUsername;
+
+    if (newUsername.isValid()) {
       yield state.copyWith(isSubmitting: true);
+      await Future.delayed(const Duration(seconds: 1));
       userFailure = (await _userFacade.updateUsername(
-        newUsername: state.newUsername,
+        newUsername: newUsername,
       ))
           .fold(
         (failure) => failure,

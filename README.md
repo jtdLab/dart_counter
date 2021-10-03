@@ -10,7 +10,6 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 flutter pub run easy_localization:generate -S assets/languages
 
-1. Settings + modals
 2. SearchUser
 3. Profile + all sub pages
 4. Play

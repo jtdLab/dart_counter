@@ -273,6 +273,7 @@ class MockedFriendFacade implements IFriendFacade {
     return left(const FriendFailure.unexpected()); // TODO name better
   }
 
+  // TODO imple better
   @override
   Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
     required String username,

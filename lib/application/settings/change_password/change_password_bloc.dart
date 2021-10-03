@@ -64,18 +64,20 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   // TODO more granular error handling
   Stream<ChangePasswordState> _mapConfirmPressedToState() async* {
     AuthFailure? authFailure;
-    final isOldPasswordValid = state.oldPassword.isValid();
-    final isNewPasswordValid = state.newPassword.isValid();
-    final isNewPasswordAgainValid = state.newPasswordAgain.isValid();
-    final newPasswordsEqual = state.newPassword == state.newPasswordAgain;
-    if (isOldPasswordValid &&
-        isNewPasswordValid &&
-        isNewPasswordAgainValid &&
+
+    final oldPassword = state.oldPassword;
+    final newPassword = state.newPassword;
+    final newPasswordAgain = state.newPasswordAgain;
+    final newPasswordsEqual = newPassword == newPasswordAgain;
+    if (oldPassword.isValid() &&
+        newPassword.isValid() &&
+        newPasswordAgain.isValid() &&
         newPasswordsEqual) {
       yield state.copyWith(isSubmitting: true);
+      await Future.delayed(const Duration(seconds: 1));
       authFailure = (await _authFacade.updatePassword(
-        oldPassword: state.oldPassword,
-        newPassword: state.newPassword,
+        oldPassword: oldPassword,
+        newPassword: newPassword,
       ))
           .fold(
         (failure) => failure,

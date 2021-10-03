@@ -72,11 +72,33 @@ class _InitialWidget extends StatelessWidget {
                     ),
                   ),
         ),
-        AppPrimaryButton(
-          text: LocaleKeys.confirm.tr().toUpperCase(),
-          onPressed: () => context
-              .read<ChangePasswordBloc>()
-              .add(const ChangePasswordEvent.confirmPressed()),
+        BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
+          builder: (context, state) {
+            if (state.isSubmitting) {
+              return SizedBox(
+                width: double.infinity,
+                height: size55(context),
+                child: Container(
+                  color: AppColors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Lottie.asset(
+                      AppAnimations.loading_circle_white,
+                      width: size12(context),
+                      height: size12(context),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return AppPrimaryButton(
+                text: LocaleKeys.confirm.tr().toUpperCase(),
+                onPressed: () => context
+                    .read<ChangePasswordBloc>()
+                    .add(const ChangePasswordEvent.confirmPressed()),
+              );
+            }
+          },
         ),
         const Spacer(),
       ],
