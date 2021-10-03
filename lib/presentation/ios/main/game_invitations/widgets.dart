@@ -27,7 +27,7 @@ class _ReceivedGameInvitationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InvitationsBloc, InvitationsState>(
+    return BlocBuilder<GameInvitationsBloc, GameInvitationsState>(
       builder: (context, state) {
         final gameInvitations = state.receivedGameInvitations;
 
@@ -80,8 +80,8 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
-                onPressed: () => context.read<InvitationsBloc>().add(
-                      InvitationsEvent.invitationAccepted(gameInvitation: gameInvitation),
+                onPressed: () => context.read<GameInvitationsBloc>().add(
+                      GameInvitationsEvent.invitationAccepted(gameInvitation: gameInvitation),
                     ),
               ),
               const AppSpacer.normal(
@@ -90,8 +90,8 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
-                onPressed: () => context.read<InvitationsBloc>().add(
-                      InvitationsEvent.invitationDeclined(gameInvitation: gameInvitation),
+                onPressed: () => context.read<GameInvitationsBloc>().add(
+                      GameInvitationsEvent.invitationDeclined(gameInvitation: gameInvitation),
                     ),
               ),
             ],
@@ -109,7 +109,7 @@ class _SentGameInvitationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InvitationsBloc, InvitationsState>(
+    return BlocBuilder<GameInvitationsBloc, GameInvitationsState>(
       builder: (context, state) {
         final gameInvitations = state.sentGameInvitations;
 

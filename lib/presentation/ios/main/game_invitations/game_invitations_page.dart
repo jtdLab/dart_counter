@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/invitations/invitations_bloc.dart';
+import 'package:dart_counter/application/game_invitations/game_invitations_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
@@ -27,8 +27,8 @@ class GameInvitationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<InvitationsBloc>(),
-      child: BlocConsumer<InvitationsBloc, InvitationsState>(
+      create: (context) => getIt<GameInvitationsBloc>(),
+      child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
         listener: (context, state) {
           if (state.gameSnapshot != null) {
             context.router.replaceAll([const GameFlowRoute()]);

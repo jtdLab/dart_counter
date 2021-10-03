@@ -13,12 +13,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
-part 'invitations_bloc.freezed.dart';
-part 'invitations_event.dart';
-part 'invitations_state.dart';
+part 'game_invitations_bloc.freezed.dart';
+part 'game_invitations_event.dart';
+part 'game_invitations_state.dart';
 
 @injectable
-class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
+class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsState> {
   final IPlayOnlineFacade _playOnlineFacade;
   final IGameInvitationFacade _gameInvitationFacade;
 
@@ -28,14 +28,14 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   StreamSubscription? _dataWatcherSubscription;
   StreamSubscription? _gameSnapshotsSubscription;
 
-  InvitationsBloc(
+  GameInvitationsBloc(
     this._playOnlineFacade,
     this._gameInvitationFacade,
     this._dataWatcherBloc,
     this._playBloc,
   ) : super(
           _dataWatcherBloc.state.maybeMap(
-            loadSuccess: (loadSuccess) => InvitationsState.initial(
+            loadSuccess: (loadSuccess) => GameInvitationsState.initial(
               receivedGameInvitations: loadSuccess.receivedGameInvitations,
               sentGameInvitations: loadSuccess.sentGameInvitations,
               loading: false,
@@ -47,7 +47,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         _dataWatcherBloc.stream.listen((dataWatcherState) {
       if (dataWatcherState is DataWatcherLoadSuccess) {
         add(
-          InvitationsEvent.dataReceived(
+          GameInvitationsEvent.dataReceived(
             receivedGameInvitations: dataWatcherState.receivedGameInvitations,
             sentGameInvitations: dataWatcherState.sentGameInvitations,
           ),
@@ -58,7 +58,7 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
       if (playState is PlayGameInProgress) {
         final gameSnapshot = playState.gameSnapshot;
-        add(InvitationsEvent.gameReceived(gameSnapshot: gameSnapshot));
+        add(GameInvitationsEvent.gameReceived(gameSnapshot: gameSnapshot));
       }
     });
 
@@ -66,8 +66,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   }
 
   @override
-  Stream<InvitationsState> mapEventToState(
-    InvitationsEvent event,
+  Stream<GameInvitationsState> mapEventToState(
+    GameInvitationsEvent event,
   ) async* {
     yield* event.map(
       dataReceived: (event) => _mapDataReceivedToState(event),
@@ -77,8 +77,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     );
   }
 
-  Stream<InvitationsState> _mapDataReceivedToState(
-    InvitationsDataReceived event,
+  Stream<GameInvitationsState> _mapDataReceivedToState(
+    GameInvitationsDataReceived event,
   ) async* {
     yield state.copyWith(
       receivedGameInvitations: event.receivedGameInvitations,
@@ -86,8 +86,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     );
   }
 
-  Stream<InvitationsState> _mapInvitationAcceptedToState(
-    InvitationsInvitationAccepted event,
+  Stream<GameInvitationsState> _mapInvitationAcceptedToState(
+    GameInvitationsInvitationAccepted event,
   ) async* {
     final gameId = event.gameInvitation.gameId;
 
@@ -105,14 +105,14 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     );
   }
 
-  Stream<InvitationsState> _mapInvitationDeclinedToState(
-    InvitationsInvitationDeclined event,
+  Stream<GameInvitationsState> _mapInvitationDeclinedToState(
+    GameInvitationsInvitationDeclined event,
   ) async* {
     _gameInvitationFacade.decline(invitation: event.gameInvitation);
   }
 
-  Stream<InvitationsState> _mapGameReceivedToState(
-    InvitationsGameReceived event,
+  Stream<GameInvitationsState> _mapGameReceivedToState(
+    GameInvitationsGameReceived event,
   ) async* {
     yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
@@ -122,8 +122,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     _dataWatcherSubscription?.cancel();
     _gameSnapshotsSubscription?.cancel();
     // TODO should be done in AutoResetLazySingleton
-    if (getIt.isRegistered<InvitationsBloc>()) {
-      getIt.resetLazySingleton<InvitationsBloc>();
+    if (getIt.isRegistered<GameInvitationsBloc>()) {
+      getIt.resetLazySingleton<GameInvitationsBloc>();
     }
     return super.close();
   }
