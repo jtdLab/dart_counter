@@ -33,6 +33,10 @@ class _$PlayEventTearOff {
       gameSnapshot: gameSnapshot,
     );
   }
+
+  PlayResetRequested resetRequested() {
+    return const PlayResetRequested();
+  }
 }
 
 /// @nodoc
@@ -45,6 +49,7 @@ mixin _$PlayEvent {
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
     required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function() resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +57,7 @@ mixin _$PlayEvent {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +65,7 @@ mixin _$PlayEvent {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +75,7 @@ mixin _$PlayEvent {
     required TResult Function(PlayGameJoined value) gameJoined,
     required TResult Function(PlayGameSnapshotReceived value)
         gameSnapshotReceived,
+    required TResult Function(PlayResetRequested value) resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +83,7 @@ mixin _$PlayEvent {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +91,7 @@ mixin _$PlayEvent {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +179,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
     required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function() resetRequested,
   }) {
     return gameCreated(online);
   }
@@ -179,6 +190,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
   }) {
     return gameCreated?.call(online);
   }
@@ -189,6 +201,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
     if (gameCreated != null) {
@@ -204,6 +217,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     required TResult Function(PlayGameJoined value) gameJoined,
     required TResult Function(PlayGameSnapshotReceived value)
         gameSnapshotReceived,
+    required TResult Function(PlayResetRequested value) resetRequested,
   }) {
     return gameCreated(this);
   }
@@ -214,6 +228,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
   }) {
     return gameCreated?.call(this);
   }
@@ -224,6 +239,7 @@ class _$PlayGameCreated implements PlayGameCreated {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
     required TResult orElse(),
   }) {
     if (gameCreated != null) {
@@ -284,6 +300,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
     required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function() resetRequested,
   }) {
     return gameJoined();
   }
@@ -294,6 +311,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
   }) {
     return gameJoined?.call();
   }
@@ -304,6 +322,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
     if (gameJoined != null) {
@@ -319,6 +338,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     required TResult Function(PlayGameJoined value) gameJoined,
     required TResult Function(PlayGameSnapshotReceived value)
         gameSnapshotReceived,
+    required TResult Function(PlayResetRequested value) resetRequested,
   }) {
     return gameJoined(this);
   }
@@ -329,6 +349,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
   }) {
     return gameJoined?.call(this);
   }
@@ -339,6 +360,7 @@ class _$PlayGameJoined implements PlayGameJoined {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
     required TResult orElse(),
   }) {
     if (gameJoined != null) {
@@ -423,6 +445,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
     required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function() resetRequested,
   }) {
     return gameSnapshotReceived(gameSnapshot);
   }
@@ -433,6 +456,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
   }) {
     return gameSnapshotReceived?.call(gameSnapshot);
   }
@@ -443,6 +467,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
     TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
     if (gameSnapshotReceived != null) {
@@ -458,6 +483,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     required TResult Function(PlayGameJoined value) gameJoined,
     required TResult Function(PlayGameSnapshotReceived value)
         gameSnapshotReceived,
+    required TResult Function(PlayResetRequested value) resetRequested,
   }) {
     return gameSnapshotReceived(this);
   }
@@ -468,6 +494,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
   }) {
     return gameSnapshotReceived?.call(this);
   }
@@ -478,6 +505,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
     TResult Function(PlayGameCreated value)? gameCreated,
     TResult Function(PlayGameJoined value)? gameJoined,
     TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
     required TResult orElse(),
   }) {
     if (gameSnapshotReceived != null) {
@@ -495,6 +523,123 @@ abstract class PlayGameSnapshotReceived implements PlayEvent {
   @JsonKey(ignore: true)
   $PlayGameSnapshotReceivedCopyWith<PlayGameSnapshotReceived> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlayResetRequestedCopyWith<$Res> {
+  factory $PlayResetRequestedCopyWith(
+          PlayResetRequested value, $Res Function(PlayResetRequested) then) =
+      _$PlayResetRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$PlayResetRequestedCopyWithImpl<$Res>
+    extends _$PlayEventCopyWithImpl<$Res>
+    implements $PlayResetRequestedCopyWith<$Res> {
+  _$PlayResetRequestedCopyWithImpl(
+      PlayResetRequested _value, $Res Function(PlayResetRequested) _then)
+      : super(_value, (v) => _then(v as PlayResetRequested));
+
+  @override
+  PlayResetRequested get _value => super._value as PlayResetRequested;
+}
+
+/// @nodoc
+
+class _$PlayResetRequested implements PlayResetRequested {
+  const _$PlayResetRequested();
+
+  @override
+  String toString() {
+    return 'PlayEvent.resetRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is PlayResetRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool online) gameCreated,
+    required TResult Function() gameJoined,
+    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function() resetRequested,
+  }) {
+    return resetRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function()? gameJoined,
+    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
+  }) {
+    return resetRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool online)? gameCreated,
+    TResult Function()? gameJoined,
+    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function()? resetRequested,
+    required TResult orElse(),
+  }) {
+    if (resetRequested != null) {
+      return resetRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PlayGameCreated value) gameCreated,
+    required TResult Function(PlayGameJoined value) gameJoined,
+    required TResult Function(PlayGameSnapshotReceived value)
+        gameSnapshotReceived,
+    required TResult Function(PlayResetRequested value) resetRequested,
+  }) {
+    return resetRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayGameCreated value)? gameCreated,
+    TResult Function(PlayGameJoined value)? gameJoined,
+    TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
+  }) {
+    return resetRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PlayGameCreated value)? gameCreated,
+    TResult Function(PlayGameJoined value)? gameJoined,
+    TResult Function(PlayGameSnapshotReceived value)? gameSnapshotReceived,
+    TResult Function(PlayResetRequested value)? resetRequested,
+    required TResult orElse(),
+  }) {
+    if (resetRequested != null) {
+      return resetRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PlayResetRequested implements PlayEvent {
+  const factory PlayResetRequested() = _$PlayResetRequested;
 }
 
 /// @nodoc

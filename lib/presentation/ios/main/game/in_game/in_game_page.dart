@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
@@ -63,6 +64,7 @@ class InGamePage extends StatelessWidget {
           final game = state.gameSnapshot;
           if (game.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
+            getIt<PlayBloc>().add(const PlayEvent.resetRequested());
           } else if (game.status == Status.finished) {
             context.router.replace(const PostGamePageRoute());
           }

@@ -5,7 +5,6 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
-import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -36,6 +35,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
       gameCreated: (event) => _mapGameCreatedToState(event),
       gameJoined: (_) => _mapGameJoinedState(),
       gameSnapshotReceived: (event) => _mapGameSnapshotReceivedToState(event),
+      resetRequested: (_) => _mapResetRequestedToState(),
     );
   }
 
@@ -58,7 +58,6 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
       });
       gameSnapshot = await gameSnapshots.first;
     }
-
 
     yield PlayState.gameInProgress(gameSnapshot: gameSnapshot);
   }
@@ -84,13 +83,12 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
         yield gameInProgress.copyWith(
           gameSnapshot: gameSnapshot,
         );
-
-        if (gameSnapshot.status == Status.canceled ||
-            gameSnapshot.status == Status.finished) {
-          yield const PlayState.initial();
-        }
       },
     );
+  }
+
+  Stream<PlayState> _mapResetRequestedToState() async* {
+    yield const PlayState.initial();
   }
 
   @override

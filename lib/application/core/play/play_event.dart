@@ -9,4 +9,5 @@ class PlayEvent with _$PlayEvent {
   const factory PlayEvent.gameSnapshotReceived({
     required GameSnapshot gameSnapshot,
   }) = PlayGameSnapshotReceived;
+  const factory PlayEvent.resetRequested() = PlayResetRequested;
 }

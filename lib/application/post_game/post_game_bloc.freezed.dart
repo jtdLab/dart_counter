@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostGameEventTearOff {
   const _$PostGameEventTearOff();
 
-  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
-    return GameReceived(
+  _PostGameDummy dummy({required GameSnapshot gameSnapshot}) {
+    return _PostGameDummy(
       gameSnapshot: gameSnapshot,
     );
   }
@@ -33,33 +33,33 @@ mixin _$PostGameEvent {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) dummy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? dummy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? dummy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(_PostGameDummy value) dummy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(_PostGameDummy value)? dummy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(_PostGameDummy value)? dummy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -100,30 +100,31 @@ class _$PostGameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GameReceivedCopyWith<$Res>
+abstract class _$PostGameDummyCopyWith<$Res>
     implements $PostGameEventCopyWith<$Res> {
-  factory $GameReceivedCopyWith(
-          GameReceived value, $Res Function(GameReceived) then) =
-      _$GameReceivedCopyWithImpl<$Res>;
+  factory _$PostGameDummyCopyWith(
+          _PostGameDummy value, $Res Function(_PostGameDummy) then) =
+      __$PostGameDummyCopyWithImpl<$Res>;
   @override
   $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
-class _$GameReceivedCopyWithImpl<$Res> extends _$PostGameEventCopyWithImpl<$Res>
-    implements $GameReceivedCopyWith<$Res> {
-  _$GameReceivedCopyWithImpl(
-      GameReceived _value, $Res Function(GameReceived) _then)
-      : super(_value, (v) => _then(v as GameReceived));
+class __$PostGameDummyCopyWithImpl<$Res>
+    extends _$PostGameEventCopyWithImpl<$Res>
+    implements _$PostGameDummyCopyWith<$Res> {
+  __$PostGameDummyCopyWithImpl(
+      _PostGameDummy _value, $Res Function(_PostGameDummy) _then)
+      : super(_value, (v) => _then(v as _PostGameDummy));
 
   @override
-  GameReceived get _value => super._value as GameReceived;
+  _PostGameDummy get _value => super._value as _PostGameDummy;
 
   @override
   $Res call({
     Object? gameSnapshot = freezed,
   }) {
-    return _then(GameReceived(
+    return _then(_PostGameDummy(
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -134,21 +135,21 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$PostGameEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GameReceived implements GameReceived {
-  const _$GameReceived({required this.gameSnapshot});
+class _$_PostGameDummy implements _PostGameDummy {
+  const _$_PostGameDummy({required this.gameSnapshot});
 
   @override
   final GameSnapshot gameSnapshot;
 
   @override
   String toString() {
-    return 'PostGameEvent.gameReceived(gameSnapshot: $gameSnapshot)';
+    return 'PostGameEvent.dummy(gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameReceived &&
+        (other is _PostGameDummy &&
             (identical(other.gameSnapshot, gameSnapshot) ||
                 const DeepCollectionEquality()
                     .equals(other.gameSnapshot, gameSnapshot)));
@@ -160,33 +161,33 @@ class _$GameReceived implements GameReceived {
 
   @JsonKey(ignore: true)
   @override
-  $GameReceivedCopyWith<GameReceived> get copyWith =>
-      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
+  _$PostGameDummyCopyWith<_PostGameDummy> get copyWith =>
+      __$PostGameDummyCopyWithImpl<_PostGameDummy>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(GameSnapshot gameSnapshot) dummy,
   }) {
-    return gameReceived(gameSnapshot);
+    return dummy(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? dummy,
   }) {
-    return gameReceived?.call(gameSnapshot);
+    return dummy?.call(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(GameSnapshot gameSnapshot)? dummy,
     required TResult orElse(),
   }) {
-    if (gameReceived != null) {
-      return gameReceived(gameSnapshot);
+    if (dummy != null) {
+      return dummy(gameSnapshot);
     }
     return orElse();
   }
@@ -194,41 +195,41 @@ class _$GameReceived implements GameReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GameReceived value) gameReceived,
+    required TResult Function(_PostGameDummy value) dummy,
   }) {
-    return gameReceived(this);
+    return dummy(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(_PostGameDummy value)? dummy,
   }) {
-    return gameReceived?.call(this);
+    return dummy?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GameReceived value)? gameReceived,
+    TResult Function(_PostGameDummy value)? dummy,
     required TResult orElse(),
   }) {
-    if (gameReceived != null) {
-      return gameReceived(this);
+    if (dummy != null) {
+      return dummy(this);
     }
     return orElse();
   }
 }
 
-abstract class GameReceived implements PostGameEvent {
-  const factory GameReceived({required GameSnapshot gameSnapshot}) =
-      _$GameReceived;
+abstract class _PostGameDummy implements PostGameEvent {
+  const factory _PostGameDummy({required GameSnapshot gameSnapshot}) =
+      _$_PostGameDummy;
 
   @override
   GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $GameReceivedCopyWith<GameReceived> get copyWith =>
+  _$PostGameDummyCopyWith<_PostGameDummy> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
