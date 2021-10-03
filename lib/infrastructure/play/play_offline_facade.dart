@@ -49,8 +49,10 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
 
   @override
   void createGame() {
-    return _tryPerform(
-      action: () => _game = _game = ex.Game(),
+    _game = _game = ex.Game();
+
+    _gameController.add(
+      OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
     );
   }
 

@@ -126,7 +126,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_dev});
   gh.lazySingleton<_i27.MoreBloc>(
       () => _i27.MoreBloc(get<_i16.IFriendFacade>()));
-  gh.factory<_i28.ProfileBloc>(() => _i28.ProfileBloc(get<_i25.IUserFacade>()));
+  gh.lazySingleton<_i28.ProfileBloc>(
+      () => _i28.ProfileBloc(get<_i25.IUserFacade>()));
   gh.lazySingleton<_i29.SearchUserBloc>(
       () => _i29.SearchUserBloc(get<_i16.IFriendFacade>()));
   gh.factory<_i30.SettingsBloc>(() =>
@@ -191,7 +192,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i23.IPlayOfflineFacade>(),
       get<_i44.IPlayOnlineFacade>(),
       get<_i47.PlayBloc>()));
-  gh.factory<_i52.GameInvitationsBloc>(() => _i52.GameInvitationsBloc(
+  gh.lazySingleton<_i52.GameInvitationsBloc>(() => _i52.GameInvitationsBloc(
       get<_i44.IPlayOnlineFacade>(),
       get<_i21.IGameInvitationFacade>(),
       get<_i37.DataWatcherBloc>(),

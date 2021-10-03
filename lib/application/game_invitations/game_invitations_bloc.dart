@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
@@ -17,8 +18,8 @@ part 'game_invitations_bloc.freezed.dart';
 part 'game_invitations_event.dart';
 part 'game_invitations_state.dart';
 
-@injectable
-class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsState> {
+@lazySingleton
+class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsState> with AutoResetLazySingleton{
   final IPlayOnlineFacade _playOnlineFacade;
   final IGameInvitationFacade _gameInvitationFacade;
 

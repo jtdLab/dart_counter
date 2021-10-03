@@ -59,6 +59,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
       gameSnapshot = await gameSnapshots.first;
     }
 
+
     yield PlayState.gameInProgress(gameSnapshot: gameSnapshot);
   }
 

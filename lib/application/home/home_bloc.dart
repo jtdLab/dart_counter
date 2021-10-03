@@ -89,8 +89,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
     yield state.copyWith(loading: true);
 
+    await Future.delayed(const Duration(seconds: 1));
     final failureOrUnit = await _playOnlineFacade.createGame();
-    await Future.delayed(const Duration(milliseconds: 500));
+
     yield* failureOrUnit.fold(
       (failure) async* {
         yield state.copyWith(loading: false);
@@ -123,7 +124,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   Stream<HomeState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(loading: false, gameSnapshot: event.gameSnapshot);
+    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   @override

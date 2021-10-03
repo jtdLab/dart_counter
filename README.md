@@ -36,7 +36,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // import flutter bloc not bloc in bloc
 // handle error thrown by behaivour subject.value
 // maybe splitt big widgets.dart file into sub files with part and part of e.g ingame/widgets.dart
-
+// BLOCS DISPOSING AND INJECTING REWORK
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 
 # FLOW:
