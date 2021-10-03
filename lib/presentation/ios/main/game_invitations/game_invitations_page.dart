@@ -14,6 +14,7 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_butto
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
+import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
 
 // LOCAL WIDGETS
 part 'widgets.dart';
@@ -27,21 +28,27 @@ class GameInvitationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<InvitationsBloc>(),
-      child: BlocListener<InvitationsBloc, InvitationsState>(
+      child: BlocConsumer<InvitationsBloc, InvitationsState>(
         listener: (context, state) {
           if (state.gameSnapshot != null) {
             context.router.replaceAll([const GameFlowRoute()]);
           }
         },
-        child: AppPage(
-          navigationBar: AppNavigationBar(
-            leading: const BackButton(),
-            middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
-          ),
-          child: const SingleChildScrollView(
-            child: _GameInvitationsWidget(),
-          ),
-        ),
+        builder: (context, state) {
+          if (state.loading) {
+            return const AppPage(child: LoadingWidget());
+          }
+
+          return AppPage(
+            navigationBar: AppNavigationBar(
+              leading: const BackButton(),
+              middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
+            ),
+            child: const SingleChildScrollView(
+              child: _GameInvitationsWidget(),
+            ),
+          );
+        },
       ),
     );
   }

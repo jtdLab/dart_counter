@@ -70,9 +70,9 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   ) async* {
     yield* event.map(
       dataReceived: (event) => _mapDataReceivedToState(event),
-      gameReceived: (event) => _mapGameReceivedToState(event),
       invitationAccepted: (event) => _mapInvitationAcceptedToState(event),
       invitationDeclined: (event) => _mapInvitationDeclinedToState(event),
+      gameReceived: (event) => _mapGameReceivedToState(event),
     );
   }
 
@@ -83,12 +83,6 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
       receivedGameInvitations: event.receivedGameInvitations,
       sentGameInvitations: event.sentGameInvitations,
     );
-  }
-
-  Stream<InvitationsState> _mapGameReceivedToState(
-    InvitationsGameReceived event,
-  ) async* {
-    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   Stream<InvitationsState> _mapInvitationAcceptedToState(
@@ -104,8 +98,8 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
         yield state.copyWith(loading: false, failure: failure);
       },
       (_) async* {
+        _playBloc.add(const PlayEvent.gameJoined());
         await _gameInvitationFacade.accept(invitation: event.gameInvitation);
-        yield state.copyWith(loading: false);
       },
     );
   }
@@ -114,6 +108,12 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
     InvitationsInvitationDeclined event,
   ) async* {
     _gameInvitationFacade.decline(invitation: event.gameInvitation);
+  }
+
+  Stream<InvitationsState> _mapGameReceivedToState(
+    InvitationsGameReceived event,
+  ) async* {
+    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   @override

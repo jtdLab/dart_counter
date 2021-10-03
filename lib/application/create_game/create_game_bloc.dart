@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -268,12 +269,14 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   Stream<CreateGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(gameSnapshot: event.gameSnapshot);
+    final gameSnapshot = event.gameSnapshot;
+    yield state.copyWith(gameSnapshot: gameSnapshot);
   }
 
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+
     return super.close();
   }
 }

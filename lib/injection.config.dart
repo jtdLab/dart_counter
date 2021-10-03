@@ -65,8 +65,8 @@ import 'infrastructure/core/firebase_injectable_module.dart' as _i63;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i62;
 import 'infrastructure/friend/friend_facade.dart' as _i53;
 import 'infrastructure/friend/mocked_friend_facade.dart' as _i17;
-import 'infrastructure/game_history/game_history_facade.dart' as _i20;
-import 'infrastructure/game_history/mocked_game_history_facade.dart' as _i19;
+import 'infrastructure/game_history/game_history_facade.dart' as _i19;
+import 'infrastructure/game_history/mocked_game_history_facade.dart' as _i20;
 import 'infrastructure/game_invitation/game_invitation_facade.dart' as _i43;
 import 'infrastructure/game_invitation/mocked_game_invitation_facade.dart'
     as _i22;
@@ -111,11 +111,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i17.MockedFriendFacade(get<_i11.IAuthFacade>()),
       registerFor: {_dev});
   gh.lazySingleton<_i18.IGameHistoryFacade>(
-      () => _i19.MockedGameHistoryFacade(get<_i11.IAuthFacade>()),
-      registerFor: {_dev});
-  gh.lazySingleton<_i18.IGameHistoryFacade>(
-      () => _i20.GameHistoryFacade(get<_i7.FirebaseFirestore>()),
+      () => _i19.GameHistoryFacade(get<_i7.FirebaseFirestore>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i18.IGameHistoryFacade>(
+      () => _i20.MockedGameHistoryFacade(get<_i11.IAuthFacade>()),
+      registerFor: {_dev});
   gh.lazySingleton<_i21.IGameInvitationFacade>(
       () => _i22.MockedGameInvitationFacade(get<_i11.IAuthFacade>()),
       registerFor: {_dev});

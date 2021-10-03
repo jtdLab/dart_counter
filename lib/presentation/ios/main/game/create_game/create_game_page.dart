@@ -79,7 +79,7 @@ class CreateGamePage extends StatelessWidget {
             ),
           ),
           child: const SingleChildScrollView(
-            child:_CreateGameWidget(),
+            child: _CreateGameWidget(),
           ),
         ),
       ),
