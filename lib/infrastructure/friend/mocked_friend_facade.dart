@@ -41,7 +41,7 @@ class MockedFriendFacade implements IFriendFacade {
           hasNetworkConnection
               ? right(
                   faker.randomGenerator
-                      .amount((i) => Friend.dummy(), 20)
+                      .amount((i) => Friend.dummy(), 5)
                       .toImmutableList(),
                 )
               : left(
@@ -52,7 +52,7 @@ class MockedFriendFacade implements IFriendFacade {
           hasNetworkConnection
               ? right(
                   faker.randomGenerator
-                      .amount((i) => FriendRequest.dummy(), 20)
+                      .amount((i) => FriendRequest.dummy(), 5)
                       .toImmutableList(),
                 )
               : left(

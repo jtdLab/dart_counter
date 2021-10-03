@@ -100,27 +100,16 @@ class Router extends _i19.RootStackRouter {
           barrierDismissible: false);
     },
     FriendsProfilePageRoute.name: (routeData) {
-      return _i19.CustomPage<dynamic>(
-          routeData: routeData,
-          child: const _i13.ProfilePage(),
-          reverseDurationInMilliseconds: 0,
-          opaque: true,
-          barrierDismissible: false);
+      return _i19.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i13.ProfilePage());
     },
     OverviewPageRoute.name: (routeData) {
-      return _i19.CustomPage<dynamic>(
-          routeData: routeData,
-          child: const _i14.OverviewPage(),
-          opaque: true,
-          barrierDismissible: false);
+      return _i19.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i14.OverviewPage());
     },
     DetailsPageRoute.name: (routeData) {
-      return _i19.CustomPage<dynamic>(
-          routeData: routeData,
-          child: const _i15.DetailsPage(),
-          reverseDurationInMilliseconds: 0,
-          opaque: true,
-          barrierDismissible: false);
+      return _i19.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i15.DetailsPage());
     },
     CreateGamePageRoute.name: (routeData) {
       return _i19.CustomPage<dynamic>(

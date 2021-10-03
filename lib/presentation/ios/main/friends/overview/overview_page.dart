@@ -34,7 +34,7 @@ class OverviewPage extends StatelessWidget {
     return BlocListener<FriendsBloc, FriendsState>(
       listener: (context, state) {
         if (state.selectedFriend != null) {
-          context.router.navigate(const ProfilePageRoute());
+          context.router.push(const FriendsProfilePageRoute());
         }
       },
       child: AppPage(

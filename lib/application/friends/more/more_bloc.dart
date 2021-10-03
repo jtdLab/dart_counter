@@ -18,7 +18,6 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
     this._friendFacade,
   ) : super(const MoreState.initial()) {
     on<RemovePressed>((event, emit) {
-      print(event.runtimeType);
       _friendFacade.removeFriend(friend: event.friend);
     });
   }
@@ -29,7 +28,7 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
     if (getIt.isRegistered<MoreBloc>()) {
       getIt.resetLazySingleton<MoreBloc>();
     }
-    
+
     return super.close();
   }
 }

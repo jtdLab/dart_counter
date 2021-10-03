@@ -68,11 +68,10 @@ Route<T> customRouteBuilder<T>(
               customRouteBuilder: customRouteBuilder,
               page: friends_overview.OverviewPage,
             ),
-            CustomRoute(
+            CupertinoRoute(
               name: 'FriendsProfilePageRoute',
               path: 'friends-profile-page',
               page: friends_profile.ProfilePage,
-              reverseDurationInMilliseconds: 0,
             ),
           ],
         ),
@@ -82,13 +81,12 @@ Route<T> customRouteBuilder<T>(
         CupertinoRoute(
           page: GameHistoryFlow,
           children: [
-            CustomRoute(
+            CupertinoRoute(
               initial: true,
               page: game_history_overview.OverviewPage,
             ),
-            CustomRoute(
+            CupertinoRoute(
               page: game_history_details.DetailsPage,
-              reverseDurationInMilliseconds: 0,
             ),
           ],
         ),
