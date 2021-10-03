@@ -385,6 +385,11 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   Future<void> close() {
     _cancelDataSubscriptions();
     _authSubscription?.cancel();
+
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<DataWatcherBloc>()) {
+      getIt.resetLazySingleton<DataWatcherBloc>();
+    }
     return super.close();
   }
 }

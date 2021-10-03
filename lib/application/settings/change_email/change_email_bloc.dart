@@ -5,6 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -62,5 +63,14 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
       successful: userFailure == null,
       userFailure: userFailure,
     );
+  }
+
+  @override
+  Future<void> close() {
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<ChangeEmailBloc>()) {
+      getIt.resetLazySingleton<ChangeEmailBloc>();
+    }
+    return super.close();
   }
 }

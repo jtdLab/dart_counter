@@ -6,6 +6,7 @@ import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/status.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -94,6 +95,10 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<PlayBloc>()) {
+      getIt.resetLazySingleton<PlayBloc>();
+    }
     return super.close();
   }
 }

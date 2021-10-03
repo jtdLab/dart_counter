@@ -6,6 +6,7 @@ import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dar
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -84,7 +85,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
               element is DataWatcherLoadFailure,
         );
 
-        if(state is DataWatcherLoadFailure) {
+        if (state is DataWatcherLoadFailure) {
           authFailure = const AuthFailure.serverError();
         }
       }
@@ -136,5 +137,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       showErrorMessages: true,
       authFailure: authFailure,
     );
+  }
+
+  @override
+  Future<void> close() {
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<SignInBloc>()) {
+      getIt.resetLazySingleton<SignInBloc>();
+    }
+    return super.close();
   }
 }

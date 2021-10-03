@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -91,5 +92,14 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
       successful: authFailure == null,
       authFailure: authFailure,
     );
+  }
+
+  @override
+  Future<void> close() {
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<ChangePasswordBloc>()) {
+      getIt.resetLazySingleton<ChangePasswordBloc>();
+    }
+    return super.close();
   }
 }

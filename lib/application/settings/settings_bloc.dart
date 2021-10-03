@@ -5,6 +5,7 @@ import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -71,6 +72,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   @override
   Future<void> close() {
     _userSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<SettingsBloc>()) {
+      getIt.resetLazySingleton<SettingsBloc>();
+    }
     return super.close();
   }
 }

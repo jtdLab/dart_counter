@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -52,6 +53,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   @override
   Future<void> close() {
     _userSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<ProfileBloc>()) {
+      getIt.resetLazySingleton<ProfileBloc>();
+    }
     return super.close();
   }
 }

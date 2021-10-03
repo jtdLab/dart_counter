@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -55,6 +56,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
   @override
   Future<void> close() {
     _isAuthenticatedSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<AuthBloc>()) {
+      getIt.resetLazySingleton<AuthBloc>();
+    }
     return super.close();
   }
 }

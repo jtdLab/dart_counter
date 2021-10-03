@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dar
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -120,6 +121,10 @@ class InvitationsBloc extends Bloc<InvitationsEvent, InvitationsState> {
   Future<void> close() {
     _dataWatcherSubscription?.cancel();
     _gameSnapshotsSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<InvitationsBloc>()) {
+      getIt.resetLazySingleton<InvitationsBloc>();
+    }
     return super.close();
   }
 }

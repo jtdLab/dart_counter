@@ -6,6 +6,7 @@ import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -60,6 +61,10 @@ class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<PostGameBloc>()) {
+      getIt.resetLazySingleton<PostGameBloc>();
+    }
     return super.close();
   }
 }

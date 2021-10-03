@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -54,5 +55,14 @@ class EditProfileImageBloc
     }
     final file = File(pickedFile.path);
     _userFacade.updateProfilePhoto(newPhoto: file);
+  }
+
+  @override
+  Future<void> close() {
+      // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<EditProfileImageBloc>()) {
+      getIt.resetLazySingleton<EditProfileImageBloc>();
+    }
+    return super.close();
   }
 }

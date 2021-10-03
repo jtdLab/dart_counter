@@ -9,6 +9,7 @@ import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -129,6 +130,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   Future<void> close() {
     _dataWatcherSubscription?.cancel();
     _gameSnapshotsSubscription?.cancel();
+
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<HomeBloc>()) {
+      getIt.resetLazySingleton<HomeBloc>();
+    }
     return super.close();
   }
 }
