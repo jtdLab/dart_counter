@@ -31,11 +31,11 @@ class HomePage extends StatelessWidget {
               leading: const _SettingsButton(),
               trailing: Row(
                 children: const [
-                  _InvitationButton(),
+                  _GameInvitationsButton(),
                   AppSpacer.large(
                     orientation: Orientation.horizontal,
                   ),
-                  _FriendButton(),
+                  _FriendsButton(),
                   AppSpacer.large(
                     orientation: Orientation.horizontal,
                   ),

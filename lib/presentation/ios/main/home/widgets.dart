@@ -1,51 +1,24 @@
 part of 'home_page.dart';
 
 // NAVBAR
-class _FriendButton extends StatelessWidget {
-  const _FriendButton({
+class _SettingsButton extends StatelessWidget {
+  const _SettingsButton({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final unreadFriendRequests = state.unreadFriendRequests;
-
-        if (unreadFriendRequests == 0) {
-          return AppNavigationBarButton(
-            onPressed: () => context.router.push(const FriendsFlowRoute()),
-            child: Image.asset(
-              AppImages.playerNew,
-              fit: BoxFit.fitHeight,
-            ),
-          );
-        } else {
-          return Badge(
-            badgeContent: Text(
-              unreadFriendRequests.toString(),
-              style: const TextStyle(
-                  color: AppColors.white, fontWeight: FontWeight.bold),
-            ),
-            position: BadgePosition.topEnd(
-              top: -13,
-            ),
-            child: AppNavigationBarButton(
-              onPressed: () => context.router.push(const FriendsFlowRoute()),
-              child: Image.asset(
-                AppImages.playerNew,
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-          );
-        }
-      },
+    return AppNavigationBarButton(
+      onPressed: () => context.router.push(const SettingsPageRoute()),
+      child: Image.asset(
+        AppImages.settingsNew,
+      ),
     );
   }
 }
 
-class _InvitationButton extends StatelessWidget {
-  const _InvitationButton({
+class _GameInvitationsButton extends StatelessWidget {
+  const _GameInvitationsButton({
     Key? key,
   }) : super(key: key);
 
@@ -91,18 +64,45 @@ class _InvitationButton extends StatelessWidget {
   }
 }
 
-class _SettingsButton extends StatelessWidget {
-  const _SettingsButton({
+class _FriendsButton extends StatelessWidget {
+  const _FriendsButton({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppNavigationBarButton(
-      onPressed: () => context.router.push(const SettingsPageRoute()),
-      child: Image.asset(
-        AppImages.settingsNew,
-      ),
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        final unreadFriendRequests = state.unreadFriendRequests;
+
+        if (unreadFriendRequests == 0) {
+          return AppNavigationBarButton(
+            onPressed: () => context.router.push(const FriendsFlowRoute()),
+            child: Image.asset(
+              AppImages.playerNew,
+              fit: BoxFit.fitHeight,
+            ),
+          );
+        } else {
+          return Badge(
+            badgeContent: Text(
+              unreadFriendRequests.toString(),
+              style: const TextStyle(
+                  color: AppColors.white, fontWeight: FontWeight.bold),
+            ),
+            position: BadgePosition.topEnd(
+              top: -13,
+            ),
+            child: AppNavigationBarButton(
+              onPressed: () => context.router.push(const FriendsFlowRoute()),
+              child: Image.asset(
+                AppImages.playerNew,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }
@@ -161,23 +161,6 @@ class _HomeWidget extends StatelessWidget {
   }
 }
 
-class _InstagramButton extends StatelessWidget {
-  const _InstagramButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoButton(
-      onPressed: () async =>
-          await canLaunch('https://www.instagram.com/darts_ger/')
-              ? await launch('https://www.instagram.com/darts_ger/')
-              : throw 'Could not launch https://www.instagram.com/darts_ger/',
-      child: Image.asset(AppImages.igNew),
-    );
-  }
-}
-
 class _NameDisplayer extends StatelessWidget {
   const _NameDisplayer({
     Key? key,
@@ -212,21 +195,6 @@ class _NameDisplayer extends StatelessWidget {
   }
 }
 
-class _PlayOfflineButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AppActionButton.large(
-      onPressed: () => context
-          .read<HomeBloc>()
-          .add(const HomeEvent.createOfflineGamePressed()),
-      color: AppColors.white,
-      fontColor: AppColors.black,
-      icon: Image.asset(AppImages.robotNew),
-      text: '${LocaleKeys.play.tr()} ${LocaleKeys.offline.tr()}'.toUpperCase(),
-    );
-  }
-}
-
 class _PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -242,6 +210,21 @@ class _PlayOnlineButton extends StatelessWidget {
   }
 }
 
+class _PlayOfflineButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppActionButton.large(
+      onPressed: () => context
+          .read<HomeBloc>()
+          .add(const HomeEvent.createOfflineGamePressed()),
+      color: AppColors.white,
+      fontColor: AppColors.black,
+      icon: Image.asset(AppImages.robotNew),
+      text: '${LocaleKeys.play.tr()} ${LocaleKeys.offline.tr()}'.toUpperCase(),
+    );
+  }
+}
+
 class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -250,6 +233,23 @@ class _TrainButton extends StatelessWidget {
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.practice.tr().toUpperCase(),
+    );
+  }
+}
+
+class _InstagramButton extends StatelessWidget {
+  const _InstagramButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      onPressed: () async =>
+          await canLaunch('https://www.instagram.com/darts_ger/')
+              ? await launch('https://www.instagram.com/darts_ger/')
+              : throw 'Could not launch https://www.instagram.com/darts_ger/',
+      child: Image.asset(AppImages.igNew),
     );
   }
 }

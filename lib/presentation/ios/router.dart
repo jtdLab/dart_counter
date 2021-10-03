@@ -63,10 +63,14 @@ Route<T> customRouteBuilder<T>(
           children: [
             CustomRoute(
               initial: true,
+              name: 'FriendsOverviewPageRoute',
+              path: 'friends-overview-page',
               customRouteBuilder: customRouteBuilder,
               page: friends_overview.OverviewPage,
             ),
             CustomRoute(
+              name: 'FriendsProfilePageRoute',
+              path: 'friends-profile-page',
               page: friends_profile.ProfilePage,
               reverseDurationInMilliseconds: 0,
             ),
