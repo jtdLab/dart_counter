@@ -2,5 +2,7 @@ part of 'stats_bloc.dart';
 
 @freezed
 class StatsState with _$StatsState {
-  const factory StatsState.initial() = Initial; // TODO
+  const factory StatsState.initial({
+    required GameSnapshot gameSnapshot,
+  }) = StatsInitial;
 }

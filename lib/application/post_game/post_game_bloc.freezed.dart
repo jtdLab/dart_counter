@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostGameEventTearOff {
   const _$PostGameEventTearOff();
 
-  _PostGameDummy dummy({required GameSnapshot gameSnapshot}) {
-    return _PostGameDummy(
-      gameSnapshot: gameSnapshot,
-    );
+  _Started started() {
+    return const _Started();
   }
 }
 
@@ -29,43 +27,37 @@ const $PostGameEvent = _$PostGameEventTearOff();
 
 /// @nodoc
 mixin _$PostGameEvent {
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) dummy,
+    required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? dummy,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? dummy,
+    TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_PostGameDummy value) dummy,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_PostGameDummy value)? dummy,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PostGameDummy value)? dummy,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PostGameEventCopyWith<PostGameEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,7 +66,6 @@ abstract class $PostGameEventCopyWith<$Res> {
   factory $PostGameEventCopyWith(
           PostGameEvent value, $Res Function(PostGameEvent) then) =
       _$PostGameEventCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -85,109 +76,66 @@ class _$PostGameEventCopyWithImpl<$Res>
   final PostGameEvent _value;
   // ignore: unused_field
   final $Res Function(PostGameEvent) _then;
-
-  @override
-  $Res call({
-    Object? gameSnapshot = freezed,
-  }) {
-    return _then(_value.copyWith(
-      gameSnapshot: gameSnapshot == freezed
-          ? _value.gameSnapshot
-          : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$PostGameDummyCopyWith<$Res>
-    implements $PostGameEventCopyWith<$Res> {
-  factory _$PostGameDummyCopyWith(
-          _PostGameDummy value, $Res Function(_PostGameDummy) then) =
-      __$PostGameDummyCopyWithImpl<$Res>;
-  @override
-  $Res call({GameSnapshot gameSnapshot});
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$PostGameDummyCopyWithImpl<$Res>
-    extends _$PostGameEventCopyWithImpl<$Res>
-    implements _$PostGameDummyCopyWith<$Res> {
-  __$PostGameDummyCopyWithImpl(
-      _PostGameDummy _value, $Res Function(_PostGameDummy) _then)
-      : super(_value, (v) => _then(v as _PostGameDummy));
+class __$StartedCopyWithImpl<$Res> extends _$PostGameEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  _PostGameDummy get _value => super._value as _PostGameDummy;
-
-  @override
-  $Res call({
-    Object? gameSnapshot = freezed,
-  }) {
-    return _then(_PostGameDummy(
-      gameSnapshot: gameSnapshot == freezed
-          ? _value.gameSnapshot
-          : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
-    ));
-  }
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$_PostGameDummy implements _PostGameDummy {
-  const _$_PostGameDummy({required this.gameSnapshot});
-
-  @override
-  final GameSnapshot gameSnapshot;
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
-    return 'PostGameEvent.dummy(gameSnapshot: $gameSnapshot)';
+    return 'PostGameEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _PostGameDummy &&
-            (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+    return identical(this, other) || (other is _Started);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
-
-  @JsonKey(ignore: true)
-  @override
-  _$PostGameDummyCopyWith<_PostGameDummy> get copyWith =>
-      __$PostGameDummyCopyWithImpl<_PostGameDummy>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) dummy,
+    required TResult Function() started,
   }) {
-    return dummy(gameSnapshot);
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? dummy,
+    TResult Function()? started,
   }) {
-    return dummy?.call(gameSnapshot);
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? dummy,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
-    if (dummy != null) {
-      return dummy(gameSnapshot);
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -195,42 +143,34 @@ class _$_PostGameDummy implements _PostGameDummy {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_PostGameDummy value) dummy,
+    required TResult Function(_Started value) started,
   }) {
-    return dummy(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_PostGameDummy value)? dummy,
+    TResult Function(_Started value)? started,
   }) {
-    return dummy?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PostGameDummy value)? dummy,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
-    if (dummy != null) {
-      return dummy(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _PostGameDummy implements PostGameEvent {
-  const factory _PostGameDummy({required GameSnapshot gameSnapshot}) =
-      _$_PostGameDummy;
-
-  @override
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$PostGameDummyCopyWith<_PostGameDummy> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Started implements PostGameEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc

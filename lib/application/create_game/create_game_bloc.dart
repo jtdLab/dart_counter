@@ -95,7 +95,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
         _playOnlineFacade.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
       } else {
         _playOfflineFacade.reorderPlayer(
-            oldIndex: oldIndex, newIndex: newIndex);
+          oldIndex: oldIndex,
+          newIndex: newIndex,
+        );
       }
     }
   }
@@ -276,7 +278,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
-    
+
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<CreateGameBloc>()) {
       getIt.resetLazySingleton<CreateGameBloc>();

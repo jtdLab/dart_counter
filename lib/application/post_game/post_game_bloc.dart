@@ -12,6 +12,7 @@ part 'post_game_bloc.freezed.dart';
 part 'post_game_event.dart';
 part 'post_game_state.dart';
 
+// TODO is this bloc rly needed or can this just be provided in a simpler way
 @lazySingleton
 class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
     with AutoResetLazySingleton {

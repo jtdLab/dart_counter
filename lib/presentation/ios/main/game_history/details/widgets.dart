@@ -8,6 +8,13 @@ class _DetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const StatsWidget(); // TODO
+    return BlocBuilder<GameHistoryBloc, GameHistoryState>(
+      builder: (context, state) {
+        final players = (state as GameHistoryLoadSuccess).selectedGame!.players;
+
+        // TODO
+        return const Center(child: Text('TODO GAME HISTORY DETAILS'));
+      },
+    );
   }
 }

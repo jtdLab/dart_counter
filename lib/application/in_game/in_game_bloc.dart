@@ -6,12 +6,10 @@ import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
-import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kt_dart/kt.dart';
 
 part 'in_game_bloc.freezed.dart';
 part 'in_game_event.dart';
@@ -108,11 +106,13 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
     yield state.copyWith(showCheckoutDetails: true);
   }
 
-  // TODO what is this implementation
   Stream<InGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    final players = event.gameSnapshot.players;
+    yield state.copyWith(gameSnapshot: event.gameSnapshot);
+    // TODO what is this implementation
+    /**
+     * final players = event.gameSnapshot.players;
 
     if (players.size == 3) {
       final currentTurnIndex =
@@ -148,6 +148,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
         showCheckoutDetails: false,
       );
     }
+     */
   }
 
   @override

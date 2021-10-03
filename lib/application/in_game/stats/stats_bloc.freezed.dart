@@ -176,8 +176,10 @@ abstract class _Started implements StatsEvent {
 class _$StatsStateTearOff {
   const _$StatsStateTearOff();
 
-  Initial initial() {
-    return const Initial();
+  StatsInitial initial({required GameSnapshot gameSnapshot}) {
+    return StatsInitial(
+      gameSnapshot: gameSnapshot,
+    );
   }
 }
 
@@ -186,37 +188,43 @@ const $StatsState = _$StatsStateTearOff();
 
 /// @nodoc
 mixin _$StatsState {
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(GameSnapshot gameSnapshot) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(GameSnapshot gameSnapshot)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(GameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(StatsInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(StatsInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(StatsInitial value)? initial,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $StatsStateCopyWith<StatsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -225,6 +233,7 @@ abstract class $StatsStateCopyWith<$Res> {
   factory $StatsStateCopyWith(
           StatsState value, $Res Function(StatsState) then) =
       _$StatsStateCopyWithImpl<$Res>;
+  $Res call({GameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -234,66 +243,108 @@ class _$StatsStateCopyWithImpl<$Res> implements $StatsStateCopyWith<$Res> {
   final StatsState _value;
   // ignore: unused_field
   final $Res Function(StatsState) _then;
-}
-
-/// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
 
   @override
-  Initial get _value => super._value as Initial;
+  $Res call({
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(_value.copyWith(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $StatsInitialCopyWith<$Res>
+    implements $StatsStateCopyWith<$Res> {
+  factory $StatsInitialCopyWith(
+          StatsInitial value, $Res Function(StatsInitial) then) =
+      _$StatsInitialCopyWithImpl<$Res>;
+  @override
+  $Res call({GameSnapshot gameSnapshot});
+}
+
+/// @nodoc
+class _$StatsInitialCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
+    implements $StatsInitialCopyWith<$Res> {
+  _$StatsInitialCopyWithImpl(
+      StatsInitial _value, $Res Function(StatsInitial) _then)
+      : super(_value, (v) => _then(v as StatsInitial));
+
+  @override
+  StatsInitial get _value => super._value as StatsInitial;
+
+  @override
+  $Res call({
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(StatsInitial(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as GameSnapshot,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$StatsInitial implements StatsInitial {
+  const _$StatsInitial({required this.gameSnapshot});
+
+  @override
+  final GameSnapshot gameSnapshot;
 
   @override
   String toString() {
-    return 'StatsState.initial()';
+    return 'StatsState.initial(gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) ||
+        (other is StatsInitial &&
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+
+  @JsonKey(ignore: true)
+  @override
+  $StatsInitialCopyWith<StatsInitial> get copyWith =>
+      _$StatsInitialCopyWithImpl<StatsInitial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(GameSnapshot gameSnapshot) initial,
   }) {
-    return initial();
+    return initial(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(GameSnapshot gameSnapshot)? initial,
   }) {
-    return initial?.call();
+    return initial?.call(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(GameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(gameSnapshot);
     }
     return orElse();
   }
@@ -301,7 +352,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(StatsInitial value) initial,
   }) {
     return initial(this);
   }
@@ -309,7 +360,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(StatsInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -317,7 +368,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(StatsInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -327,6 +378,14 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements StatsState {
-  const factory Initial() = _$Initial;
+abstract class StatsInitial implements StatsState {
+  const factory StatsInitial({required GameSnapshot gameSnapshot}) =
+      _$StatsInitial;
+
+  @override
+  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $StatsInitialCopyWith<StatsInitial> get copyWith =>
+      throw _privateConstructorUsedError;
 }

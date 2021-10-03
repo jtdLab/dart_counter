@@ -1,7 +1,6 @@
 part of 'stats_modal.dart';
 
 // BODY
-// TODO refactor + content
 class _StatsWidget extends StatelessWidget {
   const _StatsWidget({
     Key? key,
@@ -9,6 +8,14 @@ class _StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const StatsWidget();
+    return BlocBuilder<StatsBloc, StatsState>(
+      builder: (context, state) {
+        final players = state.gameSnapshot.players;
+
+        return StatsWidget(
+          players: players,
+        );
+      },
+    );
   }
 }
