@@ -6,6 +6,7 @@ import 'package:dart_counter/application/friends/friends_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/friend/friend_request.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 
 // MODALS
 import 'modals/search_user/search_user_modal.dart';
@@ -22,7 +23,6 @@ import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.da
 
 // LOCAL WIDGETS
 part 'widgets.dart';
-
 
 class OverviewPage extends StatelessWidget {
   const OverviewPage({

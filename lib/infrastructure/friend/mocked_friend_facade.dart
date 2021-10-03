@@ -5,11 +5,11 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_facade.dart';
-import 'package:dart_counter/domain/friend/user.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
+import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
@@ -39,32 +39,33 @@ class MockedFriendFacade implements IFriendFacade {
       if (isAuthenticated) {
         _friendsController = BehaviorSubject.seeded(
           hasNetworkConnection
-              ? right([
-                  Friend.dummy(),
-                  Friend.dummy(),
-                ].toImmutableList())
+              ? right(
+                  faker.randomGenerator
+                      .amount((i) => Friend.dummy(), 20)
+                      .toImmutableList(),
+                )
               : left(
                   const FriendFailure.unexpected(), // TODO name better
                 ),
         );
         _receivedFriendRequestController = BehaviorSubject.seeded(
           hasNetworkConnection
-              ? right([
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                ].toImmutableList())
+              ? right(
+                  faker.randomGenerator
+                      .amount((i) => FriendRequest.dummy(), 20)
+                      .toImmutableList(),
+                )
               : left(
                   const FriendFailure.unexpected(), // TODO name better
                 ),
         );
         _sentFriendRequestController = BehaviorSubject.seeded(
           hasNetworkConnection
-              ? right([
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                  FriendRequest.dummy(),
-                ].toImmutableList())
+              ? right(
+                  faker.randomGenerator
+                      .amount((i) => FriendRequest.dummy(), 20)
+                      .toImmutableList(),
+                )
               : left(
                   const FriendFailure.unexpected(), // TODO name better
                 ),

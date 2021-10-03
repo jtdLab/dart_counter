@@ -27,19 +27,26 @@ class _FriendRequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      middle: Text(
-        'Received Friend Requests'.toUpperCase(), // TODO localkeys
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        _FriendRequestCardItem(friendRequest: FriendRequest.dummy()), // TODO
-        _FriendRequestCardItem(friendRequest: FriendRequest.dummy()),
-        _FriendRequestCardItem(friendRequest: FriendRequest.dummy()),
-      ],
+    return BlocBuilder<FriendsBloc, FriendsState>(
+      builder: (context, state) {
+        final receivedFriendRequests = state.receivedFriendRequests;
+
+        return AppCard(
+          middle: Text(
+            'Received Friend Requests'.toUpperCase(), // TODO localkeys
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
+          ),
+          children: receivedFriendRequests.iter
+              .map(
+                (friendRequest) =>
+                    _FriendRequestCardItem(friendRequest: friendRequest),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }
@@ -59,7 +66,7 @@ class _FriendRequestCardItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const AppRoundedImage.normal(
-            imageName: AppImages.photoPlaceholderNew,
+            imageName: AppImages.photoPlaceholderNew, // TODO real photo url
           ),
           Text(
             friendRequest.fromName.getOrCrash().toUpperCase(),
@@ -69,12 +76,11 @@ class _FriendRequestCardItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
-                onPressed: () {},
-                /**
-                 * onPressed: () => context.read<FriendsBloc>().add(
-                      FriendsEvent.accepted(friendRequest: friendRequest),
+                onPressed: () => context.read<FriendsBloc>().add(
+                      FriendsEvent.friendRequestAccepted(
+                        friendRequest: friendRequest,
+                      ),
                     ),
-                 */
               ),
               const AppSpacer.normal(
                 orientation: Orientation.horizontal,
@@ -82,12 +88,11 @@ class _FriendRequestCardItem extends StatelessWidget {
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
-                onPressed: () {},
-                /**
-                 * onPressed: () => context.read<FriendsBloc>().add(
-                      FriendsEvent.accepted(friendRequest: friendRequest),
+                onPressed: () => context.read<FriendsBloc>().add(
+                      FriendsEvent.friendRequestDeclined(
+                        friendRequest: friendRequest,
+                      ),
                     ),
-                 */
               ),
             ],
           ),
@@ -104,29 +109,35 @@ class _FriendsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      middle: Text(
-        LocaleKeys.friends.tr().toUpperCase(),
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: const [
-        _FriendsCardItem(),
-        _FriendsCardItem(),
-        _FriendsCardItem(),
-        _FriendsCardItem(),
-        _FriendsCardItem(),
-        _FriendsCardItem(),
-      ],
+    return BlocBuilder<FriendsBloc, FriendsState>(
+      builder: (context, state) {
+        final friends = state.friends;
+
+        return AppCard(
+          middle: Text(
+            LocaleKeys.friends.tr().toUpperCase(),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
+          ),
+          children: friends.iter
+              .map(
+                (friend) => _FriendsCardItem(friend: friend),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }
 
 class _FriendsCardItem extends StatelessWidget {
+  final Friend friend;
+
   const _FriendsCardItem({
     Key? key,
+    required this.friend,
   }) : super(key: key);
 
   @override
@@ -136,10 +147,10 @@ class _FriendsCardItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const AppRoundedImage.normal(
-            imageName: AppImages.photoPlaceholderNew,
+            imageName: AppImages.photoPlaceholderNew, // TODO real photo url
           ),
           Text(
-            'Anis Abi'.toUpperCase(),
+            friend.profile.username.getOrCrash().toUpperCase(),
           ),
           AppIconButton(
             padding: EdgeInsets.zero,
