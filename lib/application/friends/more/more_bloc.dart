@@ -29,6 +29,7 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
     if (getIt.isRegistered<MoreBloc>()) {
       getIt.resetLazySingleton<MoreBloc>();
     }
+    
     return super.close();
   }
 }

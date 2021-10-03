@@ -130,7 +130,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i28.ProfileBloc(get<_i25.IUserFacade>()));
   gh.lazySingleton<_i29.SearchUserBloc>(
       () => _i29.SearchUserBloc(get<_i16.IFriendFacade>()));
-  gh.factory<_i30.SettingsBloc>(() =>
+  gh.lazySingleton<_i30.SettingsBloc>(() =>
       _i30.SettingsBloc(get<_i11.IAuthFacade>(), get<_i25.IUserFacade>()));
   gh.lazySingleton<_i31.SocialClient>(() => jtdInjectableModule.socialClient);
   gh.lazySingleton<_i32.StatsBloc>(() => _i32.StatsBloc());

@@ -5,6 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -126,5 +127,15 @@ class OpticalInputAreaBloc
         darts: newDarts,
       );
     }
+  }
+
+  @override
+  Future<void> close() {
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<OpticalInputAreaBloc>()) {
+      getIt.resetLazySingleton<OpticalInputAreaBloc>();
+    }
+    
+    return super.close();
   }
 }

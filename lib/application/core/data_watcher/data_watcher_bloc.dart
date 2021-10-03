@@ -390,6 +390,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     if (getIt.isRegistered<DataWatcherBloc>()) {
       getIt.resetLazySingleton<DataWatcherBloc>();
     }
+    
     return super.close();
   }
 }

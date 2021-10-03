@@ -84,6 +84,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     if (getIt.isRegistered<SearchUserBloc>()) {
       getIt.resetLazySingleton<SearchUserBloc>();
     }
+    
     return super.close();
   }
 }

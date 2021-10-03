@@ -70,6 +70,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     if (getIt.isRegistered<ChangeUsernameBloc>()) {
       getIt.resetLazySingleton<ChangeUsernameBloc>();
     }
+    
     return super.close();
   }
 }

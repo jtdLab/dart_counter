@@ -88,6 +88,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     if (getIt.isRegistered<GameHistoryBloc>()) {
       getIt.resetLazySingleton<GameHistoryBloc>();
     }
+    
     return super.close();
   }
 }

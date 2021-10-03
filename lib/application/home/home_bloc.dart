@@ -136,6 +136,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     if (getIt.isRegistered<HomeBloc>()) {
       getIt.resetLazySingleton<HomeBloc>();
     }
+    
     return super.close();
   }
 }

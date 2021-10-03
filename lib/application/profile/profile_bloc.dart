@@ -53,10 +53,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with AutoResetLazySin
   @override
   Future<void> close() {
     _userSubscription?.cancel();
+    
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ProfileBloc>()) {
       getIt.resetLazySingleton<ProfileBloc>();
     }
+
     return super.close();
   }
 }

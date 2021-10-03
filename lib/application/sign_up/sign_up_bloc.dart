@@ -130,6 +130,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     if (getIt.isRegistered<SignUpBloc>()) {
       getIt.resetLazySingleton<SignUpBloc>();
     }
+    
     return super.close();
   }
 }

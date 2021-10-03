@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
@@ -14,8 +15,9 @@ part 'settings_event.dart';
 part 'settings_state.dart';
 part 'settings_bloc.freezed.dart';
 
-@injectable
-class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
+@lazySingleton
+class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
+    with AutoResetLazySingleton {
   final IAuthFacade _authFacade;
   final IUserFacade _userFacade;
 
@@ -72,10 +74,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   @override
   Future<void> close() {
     _userSubscription?.cancel();
+    
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SettingsBloc>()) {
       getIt.resetLazySingleton<SettingsBloc>();
     }
+
     return super.close();
   }
 }

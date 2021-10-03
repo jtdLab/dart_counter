@@ -41,6 +41,7 @@ class PostGameBloc extends Bloc<PostGameEvent, PostGameState>
     if (getIt.isRegistered<PostGameBloc>()) {
       getIt.resetLazySingleton<PostGameBloc>();
     }
+    
     return super.close();
   }
 }

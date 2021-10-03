@@ -276,10 +276,12 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+    
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<CreateGameBloc>()) {
       getIt.resetLazySingleton<CreateGameBloc>();
     }
+
     return super.close();
   }
 }

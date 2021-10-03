@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -152,6 +153,12 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+
+    // TODO should be done in AutoResetLazySingleton
+    if (getIt.isRegistered<InGameBloc>()) {
+      getIt.resetLazySingleton<InGameBloc>();
+    }
+
     return super.close();
   }
 }

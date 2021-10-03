@@ -94,10 +94,12 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
+    
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<PlayBloc>()) {
       getIt.resetLazySingleton<PlayBloc>();
     }
+
     return super.close();
   }
 }

@@ -63,6 +63,7 @@ class EditProfileImageBloc
     if (getIt.isRegistered<EditProfileImageBloc>()) {
       getIt.resetLazySingleton<EditProfileImageBloc>();
     }
+    
     return super.close();
   }
 }

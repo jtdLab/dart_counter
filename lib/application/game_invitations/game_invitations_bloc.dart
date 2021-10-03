@@ -122,10 +122,12 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
   Future<void> close() {
     _dataWatcherSubscription?.cancel();
     _gameSnapshotsSubscription?.cancel();
+
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<GameInvitationsBloc>()) {
       getIt.resetLazySingleton<GameInvitationsBloc>();
     }
+    
     return super.close();
   }
 }

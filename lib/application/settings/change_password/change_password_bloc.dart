@@ -100,6 +100,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     if (getIt.isRegistered<ChangePasswordBloc>()) {
       getIt.resetLazySingleton<ChangePasswordBloc>();
     }
+    
     return super.close();
   }
 }

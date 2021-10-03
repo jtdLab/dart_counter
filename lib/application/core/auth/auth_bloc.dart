@@ -56,10 +56,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
   @override
   Future<void> close() {
     _isAuthenticatedSubscription?.cancel();
+
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<AuthBloc>()) {
       getIt.resetLazySingleton<AuthBloc>();
     }
+    
     return super.close();
   }
 }

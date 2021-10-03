@@ -145,6 +145,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     if (getIt.isRegistered<SignInBloc>()) {
       getIt.resetLazySingleton<SignInBloc>();
     }
+    
     return super.close();
   }
 }

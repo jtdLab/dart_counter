@@ -69,6 +69,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     if (getIt.isRegistered<ForgotPasswordBloc>()) {
       getIt.resetLazySingleton<ForgotPasswordBloc>();
     }
+    
     return super.close();
   }
 }

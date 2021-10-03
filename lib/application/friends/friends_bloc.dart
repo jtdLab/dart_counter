@@ -101,6 +101,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     if (getIt.isRegistered<FriendsBloc>()) {
       getIt.resetLazySingleton<FriendsBloc>();
     }
+    
     return super.close();
   }
 }
