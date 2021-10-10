@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:dart_client/dart_client.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:easy_localization/easy_localization.dart';

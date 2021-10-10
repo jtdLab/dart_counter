@@ -1,9 +1,9 @@
-import 'package:dart_counter/presentation/core/assets.dart';
-import 'package:dart_counter/presentation/ios/core/helpers.dart';
-import 'package:flutter/cupertino.dart';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// OTHER
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:responsive_builder/responsive_builder.dart'
-    hide getValueForRefinedSize;
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ResponsiveDouble {
   final double small;
@@ -19,25 +19,78 @@ class ResponsiveDouble {
   });
 }
 
-// TODO maybe throw error when no tablet size is provided but running device is tablet
+T _getResponsiveValue<T>(
+  BuildContext context, {
+  required T defaultValue,
+  T? small,
+  T? normal,
+  T? large,
+  T? extraLarge,
+}) {
+  final refinedSize = getRefinedSize(MediaQuery.of(context).size);
+  if (refinedSize == RefinedSize.small) {
+    return small ?? defaultValue;
+  }
+  return getValueForRefinedSize(
+    context: context,
+    normal: normal ?? defaultValue,
+    large: large,
+    extraLarge: extraLarge,
+  );
+}
+
 extension ResponsiveDoubleX on Widget {
+  T responsiveValue<T>(
+    BuildContext context, {
+    required T defaultValue,
+    T? mobileSmall,
+    T? mobileNormal,
+    T? mobileLarge,
+    T? mobileExtraLarge,
+    T? tabletSmall,
+    T? tabletNormal,
+    T? tabletLarge,
+    T? tabletExtraLarge,
+  }) {
+    return getValueForScreenType(
+      context: context,
+      mobile: _getResponsiveValue(
+        context,
+        defaultValue: defaultValue,
+        small: mobileSmall,
+        normal: mobileNormal,
+        large: mobileLarge,
+        extraLarge: mobileExtraLarge,
+      ),
+      tablet: _getResponsiveValue(
+        context,
+        defaultValue: defaultValue,
+        small: tabletSmall,
+        normal: tabletNormal,
+        large: tabletLarge,
+        extraLarge: tabletExtraLarge,
+      ),
+    );
+  }
+
   // TODO not needed anymore if migrated to size () extension
-  double responsiveDouble(
-      {required BuildContext context,
-      required ResponsiveDouble mobile,
-      ResponsiveDouble? tablet}) {
+  double responsiveDouble({
+    required BuildContext context,
+    required ResponsiveDouble mobile,
+    ResponsiveDouble? tablet,
+  }) {
     return getValueForScreenType(
       context: context,
       mobile: getValueForRefinedSize<double>(
         context: context,
-        small: mobile.small,
+        //small: mobile.small,
         normal: mobile.normal,
         large: mobile.large,
         extraLarge: mobile.extraLarge,
       ),
       tablet: getValueForRefinedSize<double>(
         context: context,
-        small: tablet?.small ?? mobile.small,
+        //small: tablet?.small ?? mobile.small,
         normal: tablet?.normal ?? mobile.normal,
         large: tablet?.large ?? mobile.large,
         extraLarge: tablet?.extraLarge ?? mobile.extraLarge,
@@ -47,13 +100,14 @@ extension ResponsiveDoubleX on Widget {
 
   void showToast(String msg, {double fontSize = 16}) {
     Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 2,
-        backgroundColor: AppColors.red,
-        textColor: AppColors.white,
-        fontSize: fontSize);
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 2,
+      backgroundColor: AppColors.red,
+      textColor: AppColors.white,
+      fontSize: fontSize,
+    );
   }
 
   double border4(BuildContext context) => responsiveDouble(

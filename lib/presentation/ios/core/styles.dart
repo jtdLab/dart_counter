@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' show Colors;
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class CupertinoDarkTextStyles {
-  const CupertinoDarkTextStyles();
-
   static const headline1 = TextStyle(
     debugLabel: 'blackCupertino headline1',
     fontFamily: '.SF UI Display',
@@ -85,8 +82,6 @@ class CupertinoDarkTextStyles {
 }
 
 class CupertinoWhiteTextStyles {
-  const CupertinoWhiteTextStyles();
-
   static const headline1 = TextStyle(
     debugLabel: 'whiteCupertino headline1',
     fontFamily: '.SF UI Display',

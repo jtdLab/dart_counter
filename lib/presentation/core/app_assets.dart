@@ -1,13 +1,15 @@
-import 'dart:ui' show Color;
 import 'package:flutter/widgets.dart';
 
-abstract class AppImages {
+// Remove all not needed file 
 
+abstract class AppImages {
   static const averageBlack = 'assets/images/png/average_black.png';
   static const averageWhite = 'assets/images/png/average_white.png';
 
-  static const checkoutPercentageBlack = 'assets/images/png/checkout_percentage_black.png';
-  static const checkoutPercentageWhite = 'assets/images/png/checkout_percentage_white.png';
+  static const checkoutPercentageBlack =
+      'assets/images/png/checkout_percentage_black.png';
+  static const checkoutPercentageWhite =
+      'assets/images/png/checkout_percentage_white.png';
 
   static const flightBlack = 'assets/images/png/flight_black.png';
   static const flightWhite = 'assets/images/png/flight_white.png';

@@ -1,6 +1,8 @@
-import 'package:dart_counter/application/core/auth/auth_bloc.dart';
-
+// CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOCS
+import 'package:dart_counter/application/core/auth/auth_bloc.dart';
 
 final Router router = Router();
 
