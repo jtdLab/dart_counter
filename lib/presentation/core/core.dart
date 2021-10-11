@@ -1,8 +1,11 @@
-// App animtations
+// Global animtations
 export 'app_animations.dart';
 
-// App assets
+// Global assets
 export 'app_assets.dart';
+
+// Global shared widgets
+export 'shared/shared.dart';
 
 // Dependency injection
 export 'package:dart_counter/injection.dart';
@@ -30,6 +33,12 @@ export 'package:url_launcher/url_launcher.dart';
 
 // Hooks
 export 'package:flutter_hooks/flutter_hooks.dart' hide Dispose;
+
+// Responsive text
+export 'package:auto_size_text/auto_size_text.dart';
+
+// Modals
+export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // Lottie
 export 'package:lottie/lottie.dart';

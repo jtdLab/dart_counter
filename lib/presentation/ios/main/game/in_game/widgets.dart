@@ -9,6 +9,7 @@ class _StatsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      noPaddingRight: true,
       onPressed: () {
         showCupertinoModalBottomSheet(
           expand: true,
@@ -294,7 +295,8 @@ class _OnePlayerFinishRecommendationDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<InGameBloc, InGameState>(
       builder: (context, state) {
-        final finishRecommendation = state.gameSnapshot.players[0].finishRecommendation;
+        final finishRecommendation =
+            state.gameSnapshot.players[0].finishRecommendation;
 
         return Container(
           color: AppColors.orangeNew,

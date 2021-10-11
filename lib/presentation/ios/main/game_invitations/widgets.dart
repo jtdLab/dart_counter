@@ -10,11 +10,15 @@ class _GameInvitationsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppColumn(
       spacing: size12(context),
-      children: const [
-        AppSpacer.small(),
-        _ReceivedGameInvitationsCard(),
-        AppSpacer.small(),
-        _SentGameInvitationsCard(),
+      children: [
+        SizedBox(
+          height: spacerSmall(context),
+        ),
+        const _ReceivedGameInvitationsCard(),
+        SizedBox(
+          height: spacerSmall(context),
+        ),
+        const _SentGameInvitationsCard(),
       ],
     );
   }
@@ -81,17 +85,19 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
-                      GameInvitationsEvent.invitationAccepted(gameInvitation: gameInvitation),
+                      GameInvitationsEvent.invitationAccepted(
+                          gameInvitation: gameInvitation),
                     ),
               ),
-              const AppSpacer.normal(
-                orientation: Orientation.horizontal,
-              ),
+              SizedBox(
+                  width: spacerNormal(context),
+                ),
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
-                      GameInvitationsEvent.invitationDeclined(gameInvitation: gameInvitation),
+                      GameInvitationsEvent.invitationDeclined(
+                          gameInvitation: gameInvitation),
                     ),
               ),
             ],

@@ -53,7 +53,9 @@ class _CheckoutDetailsWidget extends StatelessWidget {
                   ],
                 ),
               ],
-              const AppSpacer.large(),
+              SizedBox(
+                height: spacerLarge(context),
+              ),
               if (minDartsOnDouble < maxDartsOnDouble) ...[
                 AppCard(
                   middle: Text(
@@ -88,7 +90,9 @@ class _CheckoutDetailsWidget extends StatelessWidget {
                   ],
                 ),
               ],
-              const AppSpacer.large(),
+              SizedBox(
+                height: spacerLarge(context),
+              ),
               AppPrimaryButton(
                 color: AppColors.orangeNew,
                 onPressed: () => context

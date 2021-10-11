@@ -9,14 +9,20 @@ class _CreateGameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        _DartBotCard(),
-        AppSpacer.large(),
-        _PlayerCard(),
-        AppSpacer.large(),
-        _GameSettingsCard(),
-        AppSpacer.normal(),
-        _PlayButton(),
+      children: [
+        const _DartBotCard(),
+        SizedBox(
+          height: spacerLarge(context),
+        ),
+        const _PlayerCard(),
+        SizedBox(
+          height: spacerLarge(context),
+        ),
+        const _GameSettingsCard(),
+        SizedBox(
+          height: spacerNormal(context),
+        ),
+        const _PlayButton(),
       ],
     );
   }
@@ -216,14 +222,18 @@ class _DartBotItem extends StatelessWidget {
               ),
               child: AppCardItem.large(
                 content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                     const AppRoundedImage.normal(
                       imageName: AppImages.robotNew,
                     ),
+                    const Spacer(),
                     Text(
                       LocaleKeys.dartBot.tr().toUpperCase(),
                     ),
+                    const Spacer(),
                     AppIconButton(
                       onPressed: () {
                         showCupertinoModalBottomSheet(
@@ -235,6 +245,9 @@ class _DartBotItem extends StatelessWidget {
                       icon: Image.asset(
                         AppImages.settingsNew,
                       ),
+                    ),
+                    SizedBox(
+                      width: spacerNormal(context),
                     ),
                   ],
                 ),
@@ -262,7 +275,9 @@ class _OfflinePlayerItem extends StatelessWidget {
       builder: (context, state) {
         final index = state.gameSnapshot.players.indexOf(player);
         late final bool isDismissible;
-        if (state.gameSnapshot.players.asList().any((player) => player is DartBot)) {
+        if (state.gameSnapshot.players
+            .asList()
+            .any((player) => player is DartBot)) {
           isDismissible = state.gameSnapshot.players.size > 2;
         } else {
           isDismissible = state.gameSnapshot.players.size > 1;
@@ -287,28 +302,38 @@ class _OfflinePlayerItem extends StatelessWidget {
                   ),
               child: AppCardItem.large(
                 content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                     const AppRoundedImage.normal(
                       imageName: AppImages.photoPlaceholderNew,
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                     Expanded(
-                      child: AppTextField(
-                        text: player.name,
-                        withErrorDisplayer: false,
-                        placeholder: LocaleKeys.name.tr().toUpperCase(),
-                        onChanged: (newName) =>
-                            context.read<CreateGameBloc>().add(
-                                  CreateGameEvent.playerNameUpdated(
-                                    index: index,
-                                    newName: newName,
-                                  ),
-                                ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppTextField(
+                            text: player.name,
+                            withErrorDisplayer: false,
+                            placeholder: LocaleKeys.name.tr().toUpperCase(),
+                            onChanged: (newName) =>
+                                context.read<CreateGameBloc>().add(
+                                      CreateGameEvent.playerNameUpdated(
+                                        index: index,
+                                        newName: newName,
+                                      ),
+                                    ),
+                          ),
+                        ],
                       ),
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                     AppIconButton(
                       onPressed: () {
                         showCupertinoModalBottomSheet(
@@ -321,7 +346,9 @@ class _OfflinePlayerItem extends StatelessWidget {
                         AppImages.settingsNew,
                       ),
                     ),
-                    const AppSpacer.normal(orientation: Orientation.horizontal),
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                   ],
                 ),
               ),
@@ -349,7 +376,9 @@ class _OnlinePlayerItem extends StatelessWidget {
         final index = state.gameSnapshot.players.indexOf(player);
 
         late final bool isDismissible;
-        if (state.gameSnapshot.players.asList().any((player) => player is DartBot)) {
+        if (state.gameSnapshot.players
+            .asList()
+            .any((player) => player is DartBot)) {
           isDismissible = state.gameSnapshot.players.size > 2;
         } else {
           isDismissible = state.gameSnapshot.players.size > 1;
@@ -374,14 +403,18 @@ class _OnlinePlayerItem extends StatelessWidget {
                   ),
               child: AppCardItem.large(
                 content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    SizedBox(
+                      width: spacerNormal(context),
+                    ),
                     const AppRoundedImage.normal(
                       imageName: AppImages.photoPlaceholderNew,
                     ),
+                    const Spacer(),
                     Text(
                       player.name.toUpperCase(),
                     ),
+                    const Spacer(),
                     AppIconButton(
                       onPressed: () {
                         showCupertinoModalBottomSheet(
@@ -393,6 +426,9 @@ class _OnlinePlayerItem extends StatelessWidget {
                       icon: Image.asset(
                         AppImages.settingsNew,
                       ),
+                    ),
+                    SizedBox(
+                      width: spacerNormal(context),
                     ),
                   ],
                 ),

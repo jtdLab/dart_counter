@@ -10,11 +10,15 @@ class _OverviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppColumn(
       spacing: size12(context),
-      children: const [
-        AppSpacer.small(),
-        _FriendRequestCard(),
-        AppSpacer.small(),
-        _FriendsCard(),
+      children: [
+        SizedBox(
+          height: spacerSmall(context),
+        ),
+        const _FriendRequestCard(),
+        SizedBox(
+          height: spacerSmall(context),
+        ),
+        const _FriendsCard(),
       ],
     );
   }
@@ -82,8 +86,8 @@ class _FriendRequestCardItem extends StatelessWidget {
                       ),
                     ),
               ),
-              const AppSpacer.normal(
-                orientation: Orientation.horizontal,
+              SizedBox(
+                width: spacerNormal(context),
               ),
               AppIconButton(
                 padding: EdgeInsets.zero,

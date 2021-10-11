@@ -24,12 +24,6 @@ import 'package:dart_counter/domain/play/status.dart';
 import 'modals/checkout_details/checkout_details_modal.dart';
 import 'modals/stats/stats_modal.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
 import '../shared.dart';
 
 // LOCAL WIDGETS
@@ -75,9 +69,10 @@ class InGamePage extends StatelessWidget {
             navigationBar: AppNavigationBar(
               leading: CancelButton(
                 onPressed: () {
+                  // show overlay 
                   Navigator.of(context).push(
                     PageRouteBuilder(
-                      reverseTransitionDuration: const Duration(),
+                      reverseTransitionDuration: Duration.zero,
                       opaque: false,
                       pageBuilder: (context, _, __) => BlocProvider(
                         create: (context) => getIt<InGameBloc>(),

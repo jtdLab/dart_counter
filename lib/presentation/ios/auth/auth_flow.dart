@@ -14,12 +14,15 @@ class AuthFlow extends HookWidget {
   Widget build(BuildContext context) {
     final PageController pageController = usePageController();
 
-    return PageView(
-      controller: pageController,
-      children: [
-        SignInPage(pageController: pageController),
-        SignUpPage(pageController: pageController),
-      ],
+    return ListenableProvider.value(
+      value: pageController,
+      child: PageView(
+        controller: pageController,
+        children: const [
+          SignInPage(),
+          SignUpPage(),
+        ],
+      ),
     );
   }
 }

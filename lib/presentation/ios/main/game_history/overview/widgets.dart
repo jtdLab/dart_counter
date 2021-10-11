@@ -88,8 +88,8 @@ class _GameHistoryCard extends StatelessWidget {
           AppCardItem.large(
             content: Row(
               children: [
-                const AppSpacer.normal(
-                  orientation: Orientation.horizontal,
+                SizedBox(
+                  width: spacerNormal(context),
                 ),
                 Image.asset(AppImages.starNew),
                 const Spacer(),
@@ -144,8 +144,8 @@ class _GameHistoryCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Image.asset(AppImages.chevronForwardNew),
-                const AppSpacer.normal(
-                  orientation: Orientation.horizontal,
+                SizedBox(
+                  width: spacerNormal(context),
                 ),
               ],
             ),

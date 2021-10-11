@@ -4,11 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/settings/change_email/change_email_bloc.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
-
 // LOCAL PAGES + WIDGETS
 part 'initial/initial_page.dart';
 part 'initial/widgets.dart';

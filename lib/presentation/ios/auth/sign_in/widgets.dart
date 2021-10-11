@@ -1,12 +1,8 @@
 part of './sign_in_page.dart';
 
 class _SignInWidget extends StatelessWidget {
-  // TODO provide it and dont pass it via constructor ?
-  final PageController pageController;
-
   const _SignInWidget({
     Key? key,
-    required this.pageController,
   }) : super(key: key);
 
   @override
@@ -14,26 +10,15 @@ class _SignInWidget extends StatelessWidget {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         final node = FocusScope.of(context);
+
         return Column(
           children: [
-            // TODO  size for diffrent size classes
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 50,
-                normal: 60,
-                large: 69,
-                extraLarge: 78,
-              ),
+            SizedBox(
+              height: modalLogoMarginTop(context),
             ),
             const LogoDisplayer(),
-            // TODO  size for diffrent size classes
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 96,
-                normal: 110,
-                large: 123,
-                extraLarge: 140,
-              ),
+            SizedBox(
+              height: modalLogoMarginBottom(context),
             ),
             AppTextField(
               placeholder: LocaleKeys.email.tr(),
@@ -53,31 +38,16 @@ class _SignInWidget extends StatelessWidget {
                     SignInEvent.passwordChanged(passwordString),
                   ),
             ),
-            if (state.isSubmitting) ...[
-              SizedBox(
-                width: double.infinity,
-                height: size55(context),
-                child: Container(
-                  color: AppColors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Lottie.asset(
-                      AppAnimations.loading_circle_white,
-                      width: size12(context),
-                      height: size12(context),
-                    ),
+            AppPrimaryButton(
+              isSubmitting: state.isSubmitting,
+              text: LocaleKeys.signIn.tr(),
+              onPressed: () => context.read<SignInBloc>().add(
+                    const SignInEvent.signInPressed(),
                   ),
-                ),
-              )
-            ] else ...[
-              AppPrimaryButton(
-                text: LocaleKeys.signIn.tr(),
-                onPressed: () => context.read<SignInBloc>().add(
-                      const SignInEvent.signInPressed(),
-                    ),
-              ),
-            ],
-            const AppSpacer.small(),
+            ),
+            SizedBox(
+              height: spacerSmall(context),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -94,11 +64,11 @@ class _SignInWidget extends StatelessWidget {
                 AppLinkButton(
                   text: LocaleKeys.signUpNow.tr(),
                   onPressed: () {
-                    pageController.animateToPage(
-                      1,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn,
-                    );
+                    context.read<PageController>().animateToPage(
+                          1,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
                   },
                 ),
               ],

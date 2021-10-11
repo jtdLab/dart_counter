@@ -4,11 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/logo_displayer.dart';
-
 // LOCAL PAGES + WIDGETS
 part 'initial/initial_page.dart';
 part 'initial/widgets.dart';
@@ -60,7 +55,7 @@ class ForgotPasswordModal extends StatelessWidget {
               return PageRouteBuilder(
                 pageBuilder: (context, animation1, animation2) =>
                     const _SuccessPage(),
-                transitionDuration: const Duration(), // TODO why 0 time
+                transitionDuration: Duration.zero,
               );
           }
         },

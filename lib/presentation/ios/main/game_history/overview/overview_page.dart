@@ -10,13 +10,6 @@ import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 // DOMAIN
 import 'package:dart_counter/domain/play/game.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 

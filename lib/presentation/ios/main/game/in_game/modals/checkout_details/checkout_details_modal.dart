@@ -4,11 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_primary_button.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 

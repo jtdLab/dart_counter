@@ -18,7 +18,9 @@ class _AdvancedSettingsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             AppCardItem.custom(
               height: size55(context),
               content: Center(
@@ -77,13 +79,8 @@ class _AdvancedSettingsWidget extends StatelessWidget {
               onPressed: () => context.router.pop(),
               text: LocaleKeys.done.tr().toUpperCase(),
             ),
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 40,
-                normal: 50,
-                large: 50,
-                extraLarge: 60,
-              ),
+            SizedBox(
+              height: detailedModalMarginBottom(context),
             ),
           ],
         ),

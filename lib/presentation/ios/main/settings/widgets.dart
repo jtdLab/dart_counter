@@ -26,13 +26,21 @@ class _SettingsWidget extends StatelessWidget {
                 photoUrl: photoUrl,
               ),
             ),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             _LanguageCard(),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             _AccountCard(),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             _DartsGerCard(),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             AppPrimaryButton(
               text: LocaleKeys.signOut.tr(),
               color: AppColors.red,

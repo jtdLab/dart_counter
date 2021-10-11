@@ -16,16 +16,6 @@ import 'package:dart_counter/domain/play/type.dart';
 // MODALS
 import 'modals/advanced_settings/advanced_settings_modal.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_number_picker.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_text_field/app_text_field.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/cancel_button.dart';
 import '../shared.dart';
 
 // LOCAL WIDGETS

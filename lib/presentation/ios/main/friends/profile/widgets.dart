@@ -50,13 +50,19 @@ class _FriendsProfileWidget extends StatelessWidget {
 
         return Column(
           children: [
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             const _CareerStatsDisplayer(),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
           ],
         );
       },

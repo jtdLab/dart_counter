@@ -18,7 +18,9 @@ class _EditProfileImageWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             AppPrimaryButton(
               text: LocaleKeys.deletePhoto.tr().toUpperCase(),
               color: AppColors.red,
@@ -51,13 +53,8 @@ class _EditProfileImageWidget extends StatelessWidget {
               text: LocaleKeys.done.tr().toUpperCase(),
               onPressed: () => context.router.pop(),
             ),
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 40,
-                normal: 50,
-                large: 50,
-                extraLarge: 60,
-              ),
+            SizedBox(
+              height: detailedModalMarginBottom(context),
             ),
           ],
         ),

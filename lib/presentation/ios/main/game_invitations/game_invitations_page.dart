@@ -7,15 +7,6 @@ import 'package:dart_counter/application/game_invitations/game_invitations_bloc.
 // DOMAIN
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 

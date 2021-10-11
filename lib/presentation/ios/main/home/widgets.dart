@@ -9,6 +9,7 @@ class _SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      noPaddingLeft: true,
       onPressed: () => context.router.push(const SettingsPageRoute()),
       child: Image.asset(
         AppImages.settingsNew,
@@ -34,27 +35,25 @@ class _GameInvitationsButton extends StatelessWidget {
                 context.router.push(const GameInvitationsPageRoute()),
             child: Image.asset(
               AppImages.messageNew,
-              fit: BoxFit.fitHeight,
             ),
           );
         } else {
-          return Badge(
-            badgeContent: Text(
-              unreadReceivedInvitations.toString(),
-              style: const TextStyle(
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
+          return AppNavigationBarButton(
+            onPressed: () =>
+                context.router.push(const GameInvitationsPageRoute()),
+            child: Badge(
+              badgeContent: Text(
+                unreadReceivedInvitations.toString(),
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            position: BadgePosition.topEnd(
-              top: -13,
-            ),
-            child: AppNavigationBarButton(
-              onPressed: () =>
-                  context.router.push(const GameInvitationsPageRoute()),
+              position: BadgePosition.topEnd(
+                top: -13,
+              ),
               child: Image.asset(
                 AppImages.messageNew,
-                fit: BoxFit.fitHeight,
               ),
             ),
           );
@@ -80,24 +79,22 @@ class _FriendsButton extends StatelessWidget {
             onPressed: () => context.router.push(const FriendsFlowRoute()),
             child: Image.asset(
               AppImages.playerNew,
-              fit: BoxFit.fitHeight,
             ),
           );
         } else {
-          return Badge(
-            badgeContent: Text(
-              unreadFriendRequests.toString(),
-              style: const TextStyle(
-                  color: AppColors.white, fontWeight: FontWeight.bold),
-            ),
-            position: BadgePosition.topEnd(
-              top: -13,
-            ),
-            child: AppNavigationBarButton(
-              onPressed: () => context.router.push(const FriendsFlowRoute()),
+          return AppNavigationBarButton(
+            onPressed: () => context.router.push(const FriendsFlowRoute()),
+            child: Badge(
+              badgeContent: Text(
+                unreadFriendRequests.toString(),
+                style: const TextStyle(
+                    color: AppColors.white, fontWeight: FontWeight.bold),
+              ),
+              position: BadgePosition.topEnd(
+                top: -13,
+              ),
               child: Image.asset(
                 AppImages.playerNew,
-                fit: BoxFit.fitHeight,
               ),
             ),
           );
@@ -115,6 +112,7 @@ class _StatsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      noPaddingRight: true,
       onPressed: () => context.router.push(const ProfilePageRoute()),
       child: Image.asset(
         AppImages.statsNew,
@@ -141,9 +139,13 @@ class _HomeWidget extends StatelessWidget {
             const _NameDisplayer(),
             const Spacer(flex: 2),
             _PlayOnlineButton(),
-            const AppSpacer.normal(),
+            SizedBox(
+              height: spacerNormal(context),
+            ),
             _PlayOfflineButton(),
-            const AppSpacer.normal(),
+            SizedBox(
+              height: spacerNormal(context),
+            ),
             _TrainButton(),
             const Spacer(),
             Row(

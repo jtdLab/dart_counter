@@ -36,9 +36,24 @@ Future<void> main() async {
   FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 
-  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-    email: 'jonas@web.de',
-    password: 'testtest',
+  
+
+  runApp(
+    CupertinoApp(
+      home: CupertinoPageScaffold(
+        child: Center(
+          child: Container(
+            color: AppColors.red,
+            child: AppNavigationBarButton(
+              onPressed: () {},
+              child: Image.asset(
+                AppImages.settingsNew,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
   );
   //print(credential);
 

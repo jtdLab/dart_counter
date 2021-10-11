@@ -11,24 +11,12 @@ class _InitialWidget extends StatelessWidget {
     final node = FocusScope.of(context);
     return Column(
       children: [
-        // TODO  size for diffrent size classes
-        const AppSpacer.custom(
-          mobileSize: ResponsiveDouble(
-            small: 50,
-            normal: 60,
-            large: 69,
-            extraLarge: 78,
-          ),
+        SizedBox(
+          height: modalLogoMarginTop(context),
         ),
         const LogoDisplayer(),
-        // TODO  size for diffrent size classes
-        const AppSpacer.custom(
-          mobileSize: ResponsiveDouble(
-            small: 96,
-            normal: 110,
-            large: 123,
-            extraLarge: 140,
-          ),
+        SizedBox(
+          height: modalLogoMarginBottom(context),
         ),
         SizedBox(
           height: 3 * (size40(context) + size12(context)),
@@ -49,30 +37,15 @@ class _InitialWidget extends StatelessWidget {
         ),
         BlocBuilder<ChangeUsernameBloc, ChangeUsernameState>(
           builder: (context, state) {
-            if (state.isSubmitting) {
-              return SizedBox(
-                width: double.infinity,
-                height: size55(context),
-                child: Container(
-                  color: AppColors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Lottie.asset(
-                      AppAnimations.loading_circle_white,
-                      width: size12(context),
-                      height: size12(context),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return AppPrimaryButton(
-                text: LocaleKeys.confirm.tr().toUpperCase(),
-                onPressed: () => context
-                    .read<ChangeUsernameBloc>()
-                    .add(const ChangeUsernameEvent.confirmPressed()),
-              );
-            }
+            final isSubmitting = state.isSubmitting;
+
+            return AppPrimaryButton(
+              isSubmitting: isSubmitting,
+              text: LocaleKeys.confirm.tr().toUpperCase(),
+              onPressed: () => context
+                  .read<ChangeUsernameBloc>()
+                  .add(const ChangeUsernameEvent.confirmPressed()),
+            );
           },
         ),
         const Spacer(),

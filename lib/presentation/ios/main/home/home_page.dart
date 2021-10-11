@@ -4,13 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/home/home_bloc.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_action_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/loading_widget.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/profile_image_displayer.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 
@@ -34,16 +27,10 @@ class HomePage extends StatelessWidget {
               navigationBar: AppNavigationBar(
                 leading: const _SettingsButton(),
                 trailing: Row(
-                  children: const [
-                    _GameInvitationsButton(),
-                    AppSpacer.large(
-                      orientation: Orientation.horizontal,
-                    ),
-                    _FriendsButton(),
-                    AppSpacer.large(
-                      orientation: Orientation.horizontal,
-                    ),
-                    _StatsButton(),
+                  children: [
+                    const _GameInvitationsButton(),
+                    const _FriendsButton(),
+                    const _StatsButton(),
                   ],
                 ),
               ),

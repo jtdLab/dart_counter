@@ -28,6 +28,7 @@ class _GameHistoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      noPaddingRight: true,
       onPressed: () => context.router.push(const GameHistoryFlowRoute()),
       child: Image.asset(
         AppImages.clockNew,
@@ -50,35 +51,29 @@ class _ProfileWidget extends StatelessWidget {
 
         return Column(
           children: [
-            const AppSpacer.small(),
+            SizedBox(
+              height: spacerSmall(context),
+            ),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-            const AppSpacer.large(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
             Container(
               height: size50(context),
               color: AppColors.black,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppNavigationBarButton(
-                      // TODO not navbarbutton here
-                      onPressed: () {},
-                      child: Image.asset(AppImages.chevronWhiteBackNew),
-                    ),
                     Text(
                       'Offline'.toUpperCase(),
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
                           .copyWith(color: AppColors.white),
-                    ),
-                    AppNavigationBarButton(
-                      // TODO not navbar button here
-                      onPressed: () {},
-                      child: Image.asset(AppImages.chevronWhiteForwardNew),
                     ),
                   ],
                 ),
@@ -94,9 +89,7 @@ class _ProfileWidget extends StatelessWidget {
                 ],
               ),
             ),
-          
             AppActionButton.normal(
-              
               text: 'Game History',
               onPressed: () {},
             ),
@@ -106,6 +99,7 @@ class _ProfileWidget extends StatelessWidget {
     );
   }
 }
+
 // TODO sort in and rename refactor
 class _PageX extends StatelessWidget {
   const _PageX({Key? key}) : super(key: key);
@@ -115,7 +109,9 @@ class _PageX extends StatelessWidget {
     return Column(
       children: [
         // TODO extract to widget
-        const AppSpacer.small(),
+        SizedBox(
+          height: spacerSmall(context),
+        ),
         const _CareerStatsDisplayer(),
       ],
     );

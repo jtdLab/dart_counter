@@ -1,11 +1,8 @@
 part of './sign_up_page.dart';
 
 class _SignUpWidget extends StatelessWidget {
-  final PageController pageController;
-
   const _SignUpWidget({
     Key? key,
-    required this.pageController,
   }) : super(key: key);
 
   @override
@@ -13,35 +10,24 @@ class _SignUpWidget extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         final node = FocusScope.of(context);
+
         return Column(
           children: [
-            // TODO  size for diffrent size classes
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 50,
-                normal: 60,
-                large: 69,
-                extraLarge: 78,
-              ),
+            SizedBox(
+              height: modalLogoMarginTop(context),
             ),
             const LogoDisplayer(),
-            // TODO  size for diffrent size classes
-            const AppSpacer.custom(
-              mobileSize: ResponsiveDouble(
-                small: 96,
-                normal: 110,
-                large: 123,
-                extraLarge: 140,
-              ),
+            SizedBox(
+              height: modalLogoMarginBottom(context),
             ),
             AppTextField(
               placeholder: LocaleKeys.email.tr(),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
-              onChanged: (emailStr) {
+              onChanged: (emailString) {
                 context.read<SignUpBloc>().add(
-                      SignUpEvent.emailChanged(emailStr),
+                      SignUpEvent.emailChanged(emailString),
                     );
               },
               valid: !state.showErrorMessages ||
@@ -86,39 +72,24 @@ class _SignUpWidget extends StatelessWidget {
                       state.password == state.passwordAgain),
               errorMessage: LocaleKeys.errorPasswordsDontMatch.tr(),
             ),
-            if (state.isSubmitting) ...[
-              SizedBox(
-                width: double.infinity,
-                height: size55(context),
-                child: Container(
-                  color: AppColors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Lottie.asset(
-                      AppAnimations.loading_circle_white,
-                      width: size12(context),
-                      height: size12(context),
-                    ),
-                  ),
-                ),
-              )
-            ] else ...[
-              AppPrimaryButton(
-                text: LocaleKeys.signUp.tr(),
-                onPressed: () => context
-                    .read<SignUpBloc>()
-                    .add(const SignUpEvent.signUpPressed()),
-              ),
-            ],
-            const AppSpacer.small(),
+            AppPrimaryButton(
+              isSubmitting: state.isSubmitting,
+              text: LocaleKeys.signUp.tr(),
+              onPressed: () => context
+                  .read<SignUpBloc>()
+                  .add(const SignUpEvent.signUpPressed()),
+            ),
+            SizedBox(
+              height: spacerSmall(context),
+            ),
             AppLinkButton(
               text: LocaleKeys.signIn.tr(),
               onPressed: () {
-                pageController.animateToPage(
-                  0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeIn,
-                );
+                context.read<PageController>().animateToPage(
+                      0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                    );
               },
             ),
             const Spacer(),

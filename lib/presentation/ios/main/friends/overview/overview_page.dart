@@ -12,15 +12,6 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'modals/search_user/search_user_modal.dart';
 import 'modals/more/more_modal.dart';
 
-// SHARED WIDGETS
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/app_card.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_card/widgets/app_card_item.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_icon_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/widgets/app_navigation_bar_button.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_rounded_image.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/back_button.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 
@@ -43,6 +34,7 @@ class OverviewPage extends StatelessWidget {
           leading: const BackButton(),
           middle: Text(LocaleKeys.friends.tr().toUpperCase()),
           trailing: AppNavigationBarButton(
+            noPaddingRight: true,
             onPressed: () => showCupertinoModalBottomSheet(
               context: context,
               builder: (context) => const SearchUserModal(),
