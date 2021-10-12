@@ -28,7 +28,6 @@ class _CreateGameWidget extends StatelessWidget {
   }
 }
 
-// TODO abstand wenn kein dartbot zur playercard
 class _DartBotCard extends StatelessWidget {
   const _DartBotCard({
     Key? key,
@@ -165,7 +164,7 @@ class _PlayerList extends StatelessWidget {
               // TODO bug where multiple widgets with same global key
               if (player is DartBotSnapshot) {
                 return _DartBotItem(
-                  key: ValueKey(player),
+                  key: ValueKey(player.id),
                   isDismissable: state.gameSnapshot.players.size > 1,
                 );
               } else if (player is OfflinePlayerSnapshot) {
@@ -173,7 +172,7 @@ class _PlayerList extends StatelessWidget {
                     ? state.gameSnapshot.players.size > 2
                     : state.gameSnapshot.players.size > 1;
                 return _OfflinePlayerItem(
-                  key: ValueKey(player),
+                  key: ValueKey(player.id),
                   index: index,
                   player: player,
                   isDismissable: isDismissable,
@@ -183,7 +182,7 @@ class _PlayerList extends StatelessWidget {
                     ? state.gameSnapshot.players.size > 2
                     : state.gameSnapshot.players.size > 1;
                 return _OnlinePlayerItem(
-                  key: ValueKey(player),
+                  key: ValueKey(player.id),
                   index: index,
                   player: player as OnlinePlayerSnapshot,
                   isDismissable: isDismissable,
@@ -324,7 +323,7 @@ class _OfflinePlayerItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppTextField(
-                        text: player.name,
+                        text: player.name ?? '',
                         withErrorDisplayer: false,
                         placeholder: LocaleKeys.name.tr().toUpperCase(),
                         onChanged: (newName) =>

@@ -8,7 +8,7 @@ part 'player_snapshot.freezed.dart';
 
 abstract class AbstractPlayerSnapshot {
   UniqueId get id;
-  String get name;
+  String? get name;
   bool get isCurrentTurn;
   bool get won;
   int? get wonSets;
@@ -29,7 +29,7 @@ class OfflinePlayerSnapshot
   @Implements(AbstractOfflinePlayerSnapshot)
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
-    required String name,
+    String? name,
     @Default(false) bool isCurrentTurn,
     @Default(false) bool won,
     int? wonSets,

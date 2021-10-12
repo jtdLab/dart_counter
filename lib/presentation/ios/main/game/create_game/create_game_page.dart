@@ -37,6 +37,20 @@ class CreateGamePage extends StatelessWidget {
             context.router.replace(const HomePageRoute());
             getIt<PlayBloc>().add(const PlayEvent.resetRequested());
           } else if (game.status == Status.running) {
+            int unNamedPlayerIndex = 1;
+            for (final player in game.players.iter) {
+              if (player.name == null) {
+                final index = game.players.indexOf(player);
+                context.read<CreateGameBloc>().add(
+                      CreateGameEvent.playerNameUpdated(
+                        index: index,
+                        newName: 'Player $unNamedPlayerIndex', // TODO localize
+                      ),
+                    );
+                unNamedPlayerIndex++;
+              }
+            }
+
             context.router.replace(const InGamePageRoute());
           }
         },

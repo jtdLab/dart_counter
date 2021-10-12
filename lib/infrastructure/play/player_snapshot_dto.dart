@@ -12,7 +12,7 @@ part 'player_snapshot_dto.freezed.dart';
 // TODO why need freezd classes to explicit implement interface e.g "implements AbstractPlayerSnapshotDto" this should be done by freezed already
 abstract class AbstractPlayerSnapshotDto {
   String get id;
-  String get name;
+  String? get name;
   bool? get isCurrentTurn;
   bool? get won;
   int? get wonSets;
@@ -34,7 +34,7 @@ class OfflinePlayerSnapshotDto
   @Implements(AbstractOfflinePlayerSnapshotDto)
   const factory OfflinePlayerSnapshotDto({
     required String id,
-    required String name,
+    String? name,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -51,7 +51,7 @@ class OfflinePlayerSnapshotDto
   factory OfflinePlayerSnapshotDto.fromExternal(ex.Player player) {
     return OfflinePlayerSnapshotDto(
       id: player.id,
-      name: player.name ?? 'Player N', // TODO
+      name: player.name,
       isCurrentTurn: player.isCurrentTurn,
       won: player.won,
       wonSets: player.wonSets,

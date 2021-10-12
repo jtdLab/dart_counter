@@ -129,7 +129,7 @@ class _OnePlayerHeader extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      player.name,
+                      player.name!,
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
@@ -2131,7 +2131,7 @@ class _PlayerItem extends StatelessWidget {
             Expanded(
               flex: 7,
               child: _PlayerItemHeader(
-                name: player.name,
+                name: player.name!,
               ),
             ),
             Expanded(
@@ -2509,7 +2509,7 @@ class _PlayerItemSmall extends StatelessWidget {
               flex: 5,
               child: _PlayerItemSmallHeader(
                 // TODO photorul
-                name: player.name,
+                name: player.name!,
               ),
             ),
             Expanded(

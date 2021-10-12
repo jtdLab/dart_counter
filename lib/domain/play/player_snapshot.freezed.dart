@@ -19,7 +19,7 @@ class _$OfflinePlayerSnapshotTearOff {
 
   _OfflinePlayerSnapshot call(
       {required UniqueId id,
-      required String name,
+      String? name,
       bool isCurrentTurn = false,
       bool won = false,
       int? wonSets,
@@ -51,7 +51,7 @@ const $OfflinePlayerSnapshot = _$OfflinePlayerSnapshotTearOff();
 /// @nodoc
 mixin _$OfflinePlayerSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -75,7 +75,7 @@ abstract class $OfflinePlayerSnapshotCopyWith<$Res> {
       _$OfflinePlayerSnapshotCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      String name,
+      String? name,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -120,7 +120,7 @@ class _$OfflinePlayerSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -177,7 +177,7 @@ abstract class _$OfflinePlayerSnapshotCopyWith<$Res>
   @override
   $Res call(
       {UniqueId id,
-      String name,
+      String? name,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -225,7 +225,7 @@ class __$OfflinePlayerSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -272,7 +272,7 @@ class __$OfflinePlayerSnapshotCopyWithImpl<$Res>
 class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   const _$_OfflinePlayerSnapshot(
       {required this.id,
-      required this.name,
+      this.name,
       this.isCurrentTurn = false,
       this.won = false,
       this.wonSets,
@@ -286,7 +286,7 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   @override
   final UniqueId id;
   @override
-  final String name;
+  final String? name;
   @JsonKey(defaultValue: false)
   @override
   final bool isCurrentTurn;
@@ -378,7 +378,7 @@ abstract class _OfflinePlayerSnapshot
     implements OfflinePlayerSnapshot, AbstractOfflinePlayerSnapshot {
   const factory _OfflinePlayerSnapshot(
       {required UniqueId id,
-      required String name,
+      String? name,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -392,7 +392,7 @@ abstract class _OfflinePlayerSnapshot
   @override
   UniqueId get id => throw _privateConstructorUsedError;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   @override
