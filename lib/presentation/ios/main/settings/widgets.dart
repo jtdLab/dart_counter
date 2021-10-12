@@ -94,6 +94,7 @@ class _LanguageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
+      minSize: 0,
       padding: EdgeInsets.zero,
       onPressed: () {
         // TODO should work without call to settins bloc if easy localizations rebuilts correctly on locale change
@@ -232,6 +233,7 @@ class _AccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
+      minSize: 0,
       padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: AppCardItem.small(
@@ -296,6 +298,7 @@ class _DartsGerCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
+      minSize: 0,
       padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: AppCardItem.small(

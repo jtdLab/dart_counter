@@ -77,23 +77,32 @@ class _SignInWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CupertinoButton(
-                  onPressed: () => context.read<SignInBloc>().add(
-                        const SignInEvent.signInWithFacebookPressed(),
-                      ),
-                  child: Image.asset(AppImages.fbNew),
+                Container(
+                  color: AppColors.red,
+                  child: CupertinoButton(
+                    onPressed: () => context.read<SignInBloc>().add(
+                          const SignInEvent.signInWithFacebookPressed(),
+                        ),
+                    child: Image.asset(AppImages.fbNew),
+                  ),
                 ),
-                CupertinoButton(
-                  onPressed: () => context.read<SignInBloc>().add(
-                        const SignInEvent.signInWithApplePressed(),
-                      ),
-                  child: Image.asset(AppImages.igNew),
+                Container(
+                  color: AppColors.red,
+                  child: CupertinoButton(
+                    onPressed: () => context.read<SignInBloc>().add(
+                          const SignInEvent.signInWithApplePressed(),
+                        ),
+                    child: Image.asset(AppImages.igNew),
+                  ),
                 ),
-                CupertinoButton(
-                  onPressed: () => context.read<SignInBloc>().add(
-                        const SignInEvent.signInWithGooglePressed(),
-                      ),
-                  child: Image.asset(AppImages.googleNew),
+                Container(
+                  color: AppColors.red,
+                  child: CupertinoButton(
+                    onPressed: () => context.read<SignInBloc>().add(
+                          const SignInEvent.signInWithGooglePressed(),
+                        ),
+                    child: Image.asset(AppImages.googleNew),
+                  ),
                 ),
               ],
             ),

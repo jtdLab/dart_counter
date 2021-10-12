@@ -20,8 +20,11 @@ class _InitialWidget extends StatelessWidget {
         ),
         SizedBox(
           height: 3 * (size40(context) + size12(context)),
-          child: Text(
+          child: AutoSizeText(
             LocaleKeys.changeEmail.tr().toUpperCase(),
+            maxLines: 1,
+            minFontSize: 8,
+            maxFontSize: maxFontSizeNormal(context),
           ),
         ),
         AppTextField(

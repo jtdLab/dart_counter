@@ -38,6 +38,18 @@ T responsiveValue<T>(
 // Global shared values used in the ios app.
 //
 
+double maxFontSizeSmall(BuildContext context) => responsiveValue(
+      context,
+      defaultValue: 10,
+      mobileSmall: 9,
+    );
+
+double maxFontSizeNormal(BuildContext context) => responsiveValue(
+      context,
+      defaultValue: 14,
+      mobileSmall: 11,
+    );
+
 double spacerSmall(BuildContext context) => responsiveValue(
       context,
       defaultValue: 8,
@@ -80,26 +92,27 @@ double spacerLarge(BuildContext context) => responsiveValue(
 double modalLogoMarginTop(BuildContext context) => responsiveValue(
       context,
       defaultValue: 69,
-      mobileSmall: 45,
-      mobileNormal: 55,
-      mobileLarge: 64,
-      mobileExtraLarge: 73,
-      tabletSmall: 80,
-      tabletNormal: 93,
-      tabletLarge: 106,
+      mobileSmall: 65,
+      mobileNormal: 65,
+      mobileLarge: 84,
+      mobileExtraLarge: 93,
+      tabletSmall: 97,
+      tabletNormal: 103,
+      tabletLarge: 110,
       tabletExtraLarge: 120,
     );
+
 
 double modalLogoMarginBottom(BuildContext context) => responsiveValue(
       context,
       defaultValue: 123,
-      mobileSmall: 96,
-      mobileNormal: 105,
-      mobileLarge: 123,
-      mobileExtraLarge: 140,
-      tabletSmall: 155,
-      tabletNormal: 168,
-      tabletLarge: 180,
+      mobileSmall: 76,
+      mobileNormal: 85,
+      mobileLarge: 130,
+      mobileExtraLarge: 145,
+      tabletSmall: 165,
+      tabletNormal: 175,
+      tabletLarge: 185,
       tabletExtraLarge: 200,
     );
 
