@@ -8,6 +8,7 @@ import 'package:dart_counter/application/game_invitations/game_invitations_bloc.
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 
 // LOCAL WIDGETS
+import './../shared.dart';
 part 'widgets.dart';
 
 class GameInvitationsPage extends StatelessWidget {

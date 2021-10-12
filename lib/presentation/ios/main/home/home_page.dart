@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/home/home_bloc.dart';
 
 // LOCAL WIDGETS
+import './../shared.dart';
 part 'widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,10 +28,10 @@ class HomePage extends StatelessWidget {
               navigationBar: AppNavigationBar(
                 leading: const _SettingsButton(),
                 trailing: Row(
-                  children: [
-                    const _GameInvitationsButton(),
-                    const _FriendsButton(),
-                    const _StatsButton(),
+                  children: const [
+                    _GameInvitationsButton(),
+                    _FriendsButton(),
+                    _StatsButton(),
                   ],
                 ),
               ),

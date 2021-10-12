@@ -72,7 +72,7 @@ class _AppSearchFieldState<T> extends State<AppSearchField<T>> {
   Widget build(BuildContext context) {
     return SizedBox(
       key: actionKey,
-      height: widget.size40(context),
+      height: size40(context),
       child: Stack(
         fit: StackFit.expand,
         children: [

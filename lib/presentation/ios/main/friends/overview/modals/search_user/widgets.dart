@@ -18,7 +18,7 @@ class _SearchUserWidgetState extends State<_SearchUserWidget> {
         final searchResults = state.searchResults;
 
         return AppColumn(
-          spacing: widget.size6(context),
+          spacing: size6(context),
           children: [
             AppTextField(
               onClear: () => context.read<SearchUserBloc>().add(
@@ -50,7 +50,7 @@ class _SearchUserWidgetState extends State<_SearchUserWidget> {
                           );
                         } else {
                           return AppColumn(
-                            spacing: widget.size6(context),
+                            spacing: size6(context),
                             children: searchResults
                                 .map(
                                   (item) => _UserItem(

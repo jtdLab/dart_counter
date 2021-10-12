@@ -16,9 +16,9 @@ import 'package:dart_counter/domain/play/type.dart';
 // MODALS
 import 'modals/advanced_settings/advanced_settings_modal.dart';
 
-import '../shared.dart';
-
 // LOCAL WIDGETS
+import '../shared.dart';
+import './../../shared.dart';
 part 'widgets.dart';
 
 class CreateGamePage extends StatelessWidget {

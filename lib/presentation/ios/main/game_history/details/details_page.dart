@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
 // LOCAL WIDGETS
+import './../../shared.dart';
 part 'widgets.dart';
 
 class DetailsPage extends StatelessWidget {

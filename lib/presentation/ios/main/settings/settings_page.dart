@@ -12,6 +12,7 @@ import 'modals/change_password/change_password_modal.dart';
 import 'modals/change_email/change_email_modal.dart';
 
 // LOCAL WIDGETS
+import './../shared.dart';
 part 'widgets.dart';
 
 class SettingsPage extends StatelessWidget {

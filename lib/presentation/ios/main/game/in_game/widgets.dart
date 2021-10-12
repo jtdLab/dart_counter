@@ -1949,7 +1949,7 @@ class _DartBoardState extends State<_DartBoard> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final radius = (4 * widget.size55(context) + 3 * widget.size6(context)) / 2;
+    final radius = (4 * size55(context) + 3 * size6(context)) / 2;
     center = Offset(radius, radius);
   }
 
@@ -1975,7 +1975,7 @@ class _DartBoardState extends State<_DartBoard> {
               } else {
                 scale = 1;
                 final radius =
-                    (4 * widget.size55(context) + 3 * widget.size6(context)) /
+                    (4 * size55(context) + 3 * size6(context)) /
                         2;
                 center = Offset(radius, radius);
               }

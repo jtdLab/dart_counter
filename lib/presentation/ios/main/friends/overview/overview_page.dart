@@ -13,6 +13,7 @@ import 'modals/search_user/search_user_modal.dart';
 import 'modals/more/more_modal.dart';
 
 // LOCAL WIDGETS
+import './../../shared.dart';
 part 'widgets.dart';
 
 class OverviewPage extends StatelessWidget {

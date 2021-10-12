@@ -1,6 +1,51 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
+class ProfileImageDisplayer extends StatelessWidget {
+  final String? photoUrl;
+
+  const ProfileImageDisplayer({
+    Key? key,
+    required this.photoUrl,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (photoUrl != null) {
+      return AppRoundedImage.extraLarge(
+        child: CachedNetworkImageProvider(
+          photoUrl!,
+        ),
+      );
+    } else {
+      return const AppRoundedImage.extraLarge(
+        imageName: AppImages.photoPlaceholderNew,
+      );
+    }
+  }
+}
+
+class BackButton extends StatelessWidget {
+  const BackButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppNavigationBarButton(
+      noPaddingLeft: true,
+      onPressed: () => context.router.pop(),
+      child: Image.asset(
+        AppImages.chevronBackNew,
+      ),
+    );
+  }
+}
+
+/**
+ * // CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
 // TODO is this rly a shared widget check closer scope
 class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
   final Color color;
@@ -52,6 +97,28 @@ class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+ */
+
+class CancelButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const CancelButton({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppNavigationBarButton(
+      noPaddingLeft: true,
+      onPressed: onPressed,
+      child: Image.asset(
+        AppImages.xMarkBlackNew,
       ),
     );
   }

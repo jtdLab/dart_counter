@@ -8,6 +8,7 @@ import 'package:dart_counter/application/profile/profile_bloc.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 
 // LOCAL WIDGETS
+import './../shared.dart';
 part 'widgets.dart';
 
 class ProfilePage extends StatelessWidget {

@@ -2,6 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // LOCAL WIDGETS
+import './../shared.dart';
 part 'widgets.dart';
 
 class ContactPage extends StatelessWidget {

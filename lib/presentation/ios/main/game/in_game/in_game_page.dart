@@ -24,9 +24,9 @@ import 'package:dart_counter/domain/play/status.dart';
 import 'modals/checkout_details/checkout_details_modal.dart';
 import 'modals/stats/stats_modal.dart';
 
-import '../shared.dart';
-
 // LOCAL WIDGETS
+import '../shared.dart';
+import './../../shared.dart';
 part 'widgets.dart';
 
 // TODO responsivness
@@ -69,7 +69,7 @@ class InGamePage extends StatelessWidget {
             navigationBar: AppNavigationBar(
               leading: CancelButton(
                 onPressed: () {
-                  // show overlay 
+                  // show overlay
                   Navigator.of(context).push(
                     PageRouteBuilder(
                       reverseTransitionDuration: Duration.zero,

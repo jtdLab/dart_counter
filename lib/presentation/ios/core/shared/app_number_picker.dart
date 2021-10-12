@@ -41,14 +41,14 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
           children: [
             if (widget.title != null) ...[
               SizedBox(
-                width: widget.spacerNormal(context),
+                width: spacerNormal(context),
               ),
               Text(widget.title!),
               const Spacer(),
             ],
             Text(number.toString()),
             SizedBox(
-              width: widget.spacerLarge(context),
+              width: spacerLarge(context),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +59,7 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
                   icon: Image.asset(AppImages.chevronUpSmallNew),
                 ),
                 SizedBox(
-                  height: widget.spacerSmall(context),
+                  height: spacerSmall(context),
                 ),
                 AppIconButton(
                   padding: EdgeInsets.zero,
@@ -70,7 +70,7 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
             ),
             if (widget.title != null) ...[
               SizedBox(
-                width: widget.spacerNormal(context),
+                width: spacerNormal(context),
               ),
             ],
           ],
