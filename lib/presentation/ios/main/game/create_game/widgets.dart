@@ -39,9 +39,11 @@ class _DartBotCard extends StatelessWidget {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
       builder: (context, state) {
         final gameSnapshot = state.gameSnapshot;
+
         return Visibility(
           visible: gameSnapshot is! OnlineGameSnapshot,
           child: AppCard(
+            headerBodySpacing: gameSnapshot.hasDartBot() ? null : 0,
             leading: AutoSizeText(
               LocaleKeys.dartBot.tr().toUpperCase(),
               minFontSize: 8,
@@ -52,7 +54,9 @@ class _DartBotCard extends StatelessWidget {
                   .textStyle
                   .copyWith(color: AppColors.white),
             ),
-            trailing: const _CheckBox(),
+            trailing: _DartBotCheckBox(
+              selected: gameSnapshot.hasDartBot(),
+            ),
             children: gameSnapshot.hasDartBot()
                 ? [
                     AppNumberPicker(
@@ -72,40 +76,37 @@ class _DartBotCard extends StatelessWidget {
   }
 }
 
-class _CheckBox extends StatelessWidget {
-  const _CheckBox({
+class _DartBotCheckBox extends StatelessWidget {
+  final bool selected;
+
+  const _DartBotCheckBox({
     Key? key,
+    required this.selected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateGameBloc, CreateGameState>(
-      builder: (context, state) {
-        final gameSnapshot = state.gameSnapshot;
-
-        if (gameSnapshot.hasDartBot()) {
-          return AppIconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => context
-                .read<CreateGameBloc>()
-                .add(const CreateGameEvent.dartBotRemoved()),
-            icon: Image.asset(
-              AppImages.checkMarkLightNew,
-            ),
-          );
-        } else {
-          return AppIconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => context
-                .read<CreateGameBloc>()
-                .add(const CreateGameEvent.dartBotAdded()),
-            icon: Image.asset(
-              AppImages.checkMarkLightUncheckedNew,
-            ),
-          );
-        }
-      },
-    );
+    if (selected) {
+      return AppIconButton(
+        padding: EdgeInsets.zero,
+        onPressed: () => context
+            .read<CreateGameBloc>()
+            .add(const CreateGameEvent.dartBotRemoved()),
+        icon: Image.asset(
+          AppImages.checkMarkLightNew,
+        ),
+      );
+    } else {
+      return AppIconButton(
+        padding: EdgeInsets.zero,
+        onPressed: () => context
+            .read<CreateGameBloc>()
+            .add(const CreateGameEvent.dartBotAdded()),
+        icon: Image.asset(
+          AppImages.checkMarkLightUncheckedNew,
+        ),
+      );
+    }
   }
 }
 
@@ -143,6 +144,11 @@ class _PlayerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CreateGameBloc, CreateGameState>(
+      buildWhen: (oldState, newState) {
+        final oldIds = oldState.gameSnapshot.players.map((p) => p.id);
+        final newIds = newState.gameSnapshot.players.map((p) => p.id);
+        return !(oldIds == newIds);
+      },
       builder: (context, state) {
         final players = state.gameSnapshot.players;
 
@@ -155,20 +161,32 @@ class _PlayerList extends StatelessWidget {
             },
             itemBuilder: (context, index) {
               final player = players[index];
+
               // TODO bug where multiple widgets with same global key
               if (player is DartBotSnapshot) {
                 return _DartBotItem(
                   key: ValueKey(player),
+                  isDismissable: state.gameSnapshot.players.size > 1,
                 );
               } else if (player is OfflinePlayerSnapshot) {
+                final isDismissable = state.gameSnapshot.hasDartBot()
+                    ? state.gameSnapshot.players.size > 2
+                    : state.gameSnapshot.players.size > 1;
                 return _OfflinePlayerItem(
                   key: ValueKey(player),
+                  index: index,
                   player: player,
+                  isDismissable: isDismissable,
                 );
               } else {
+                final isDismissable = state.gameSnapshot.hasDartBot()
+                    ? state.gameSnapshot.players.size > 2
+                    : state.gameSnapshot.players.size > 1;
                 return _OnlinePlayerItem(
                   key: ValueKey(player),
+                  index: index,
                   player: player as OnlinePlayerSnapshot,
+                  isDismissable: isDismissable,
                 );
               }
             },
@@ -193,251 +211,227 @@ class _PlayerList extends StatelessWidget {
 }
 
 class _DartBotItem extends StatelessWidget {
+  final bool isDismissable;
+
   const _DartBotItem({
     required Key key,
+    required this.isDismissable,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateGameBloc, CreateGameState>(
-      builder: (context, state) {
-        final isDismissible = state.gameSnapshot.players.size > 1;
-
-        return Column(
-          children: [
-            Dismissible(
-              key: key!,
-              direction: DismissDirection.endToStart,
-              confirmDismiss: (_) async {
-                if (isDismissible) {
-                  return true;
-                }
-                return false;
-              },
-              onDismissed: (_) => context
-                  .read<CreateGameBloc>()
-                  .add(const CreateGameEvent.dartBotRemoved()),
-              background: Container(
-                color: AppColors.red,
-              ),
-              child: AppCardItem.large(
-                content: Row(
-                  children: [
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                    const AppRoundedImage.normal(
-                      imageName: AppImages.robotNew,
-                    ),
-                    const Spacer(),
-                    Text(
-                      LocaleKeys.dartBot.tr().toUpperCase(),
-                    ),
-                    const Spacer(),
-                    AppIconButton(
-                      onPressed: () {
-                        showCupertinoModalBottomSheet(
-                          backgroundColor: Colors.white70,
-                          context: context,
-                          builder: (context) => AdvancedSettingsModal(),
-                        );
-                      },
-                      icon: Image.asset(
-                        AppImages.settingsNew,
-                      ),
-                    ),
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                  ],
+    return Column(
+      children: [
+        Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          confirmDismiss: (_) async {
+            if (isDismissable) {
+              return true;
+            }
+            return false;
+          },
+          onDismissed: (_) => context
+              .read<CreateGameBloc>()
+              .add(const CreateGameEvent.dartBotRemoved()),
+          background: Container(
+            color: AppColors.red,
+          ),
+          child: AppCardItem.large(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: spacerNormal(context),
                 ),
-              ),
+                const AppRoundedImage.normal(
+                  imageName: AppImages.robotNew,
+                ),
+                const Spacer(),
+                Text(
+                  LocaleKeys.dartBot.tr().toUpperCase(),
+                ),
+                const Spacer(),
+                AppIconButton(
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                      backgroundColor: Colors.white70,
+                      context: context,
+                      builder: (context) => AdvancedSettingsModal(),
+                    );
+                  },
+                  icon: Image.asset(
+                    AppImages.settingsNew,
+                  ),
+                ),
+                SizedBox(
+                  width: spacerNormal(context),
+                ),
+              ],
             ),
-            SizedBox(height: size6(context)),
-          ],
-        );
-      },
+          ),
+        ),
+        SizedBox(height: size6(context)),
+      ],
     );
   }
 }
 
 class _OfflinePlayerItem extends StatelessWidget {
+  final int index;
   final OfflinePlayerSnapshot player;
+  final bool isDismissable;
 
   const _OfflinePlayerItem({
     required Key key,
+    required this.index,
     required this.player,
+    required this.isDismissable,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateGameBloc, CreateGameState>(
-      builder: (context, state) {
-        final index = state.gameSnapshot.players.indexOf(player);
-        late final bool isDismissible;
-        if (state.gameSnapshot.players
-            .asList()
-            .any((player) => player is DartBot)) {
-          isDismissible = state.gameSnapshot.players.size > 2;
-        } else {
-          isDismissible = state.gameSnapshot.players.size > 1;
-        }
-
-        return Column(
-          children: [
-            Dismissible(
-              key: key!,
-              direction: DismissDirection.endToStart,
-              background: Container(
-                color: AppColors.red,
+    return Column(
+      children: [
+        Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          background: Container(
+            color: AppColors.red,
+          ),
+          confirmDismiss: (_) async {
+            if (isDismissable) {
+              return true;
+            }
+            return false;
+          },
+          onDismissed: (_) => context.read<CreateGameBloc>().add(
+                CreateGameEvent.playerRemoved(index: index),
               ),
-              confirmDismiss: (_) async {
-                if (isDismissible) {
-                  return true;
-                }
-                return false;
-              },
-              onDismissed: (_) => context.read<CreateGameBloc>().add(
-                    CreateGameEvent.playerRemoved(index: index),
-                  ),
-              child: AppCardItem.large(
-                content: Row(
-                  children: [
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                    const AppRoundedImage.normal(
-                      imageName: AppImages.photoPlaceholderNew,
-                    ),
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppTextField(
-                            text: player.name,
-                            withErrorDisplayer: false,
-                            placeholder: LocaleKeys.name.tr().toUpperCase(),
-                            onChanged: (newName) =>
-                                context.read<CreateGameBloc>().add(
-                                      CreateGameEvent.playerNameUpdated(
-                                        index: index,
-                                        newName: newName,
-                                      ),
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                    AppIconButton(
-                      onPressed: () {
-                        showCupertinoModalBottomSheet(
-                          backgroundColor: Colors.white70,
-                          context: context,
-                          builder: (context) => AdvancedSettingsModal(),
-                        );
-                      },
-                      icon: Image.asset(
-                        AppImages.settingsNew,
-                      ),
-                    ),
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                  ],
+          child: AppCardItem.large(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: spacerNormal(context),
                 ),
-              ),
+                const AppRoundedImage.normal(
+                  imageName: AppImages.photoPlaceholderNew,
+                ),
+                SizedBox(
+                  width: spacerNormal(context),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppTextField(
+                        text: player.name,
+                        withErrorDisplayer: false,
+                        placeholder: LocaleKeys.name.tr().toUpperCase(),
+                        onChanged: (newName) =>
+                            context.read<CreateGameBloc>().add(
+                                  CreateGameEvent.playerNameUpdated(
+                                    index: index,
+                                    newName: newName,
+                                  ),
+                                ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: spacerNormal(context),
+                ),
+                AppIconButton(
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                      backgroundColor: Colors.white70,
+                      context: context,
+                      builder: (context) => AdvancedSettingsModal(),
+                    );
+                  },
+                  icon: Image.asset(
+                    AppImages.settingsNew,
+                  ),
+                ),
+                SizedBox(
+                  width: spacerNormal(context),
+                ),
+              ],
             ),
-            SizedBox(height: size6(context)),
-          ],
-        );
-      },
+          ),
+        ),
+        SizedBox(height: size6(context)),
+      ],
     );
   }
 }
 
 class _OnlinePlayerItem extends StatelessWidget {
+  final int index;
   final OnlinePlayerSnapshot player;
+  final bool isDismissable;
 
   const _OnlinePlayerItem({
     required Key key,
+    required this.index,
     required this.player,
+    required this.isDismissable,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateGameBloc, CreateGameState>(
-      builder: (context, state) {
-        final index = state.gameSnapshot.players.indexOf(player);
-
-        late final bool isDismissible;
-        if (state.gameSnapshot.players
-            .asList()
-            .any((player) => player is DartBot)) {
-          isDismissible = state.gameSnapshot.players.size > 2;
-        } else {
-          isDismissible = state.gameSnapshot.players.size > 1;
-        }
-
-        return Column(
-          children: [
-            Dismissible(
-              key: key!,
-              direction: DismissDirection.endToStart,
-              background: Container(
-                color: AppColors.red,
+    return Column(
+      children: [
+        Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          background: Container(
+            color: AppColors.red,
+          ),
+          confirmDismiss: (_) async {
+            if (isDismissable) {
+              return true;
+            }
+            return false;
+          },
+          onDismissed: (_) => context.read<CreateGameBloc>().add(
+                CreateGameEvent.playerRemoved(index: index),
               ),
-              confirmDismiss: (_) async {
-                if (isDismissible) {
-                  return true;
-                }
-                return false;
-              },
-              onDismissed: (_) => context.read<CreateGameBloc>().add(
-                    CreateGameEvent.playerRemoved(index: index),
-                  ),
-              child: AppCardItem.large(
-                content: Row(
-                  children: [
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                    const AppRoundedImage.normal(
-                      imageName: AppImages.photoPlaceholderNew,
-                    ),
-                    const Spacer(),
-                    Text(
-                      player.name.toUpperCase(),
-                    ),
-                    const Spacer(),
-                    AppIconButton(
-                      onPressed: () {
-                        showCupertinoModalBottomSheet(
-                          backgroundColor: Colors.white70,
-                          context: context,
-                          builder: (context) => AdvancedSettingsModal(),
-                        );
-                      },
-                      icon: Image.asset(
-                        AppImages.settingsNew,
-                      ),
-                    ),
-                    SizedBox(
-                      width: spacerNormal(context),
-                    ),
-                  ],
+          child: AppCardItem.large(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: spacerNormal(context),
                 ),
-              ),
+                const AppRoundedImage.normal(
+                  imageName: AppImages.photoPlaceholderNew,
+                ),
+                const Spacer(),
+                Text(
+                  player.name.toUpperCase(),
+                ),
+                const Spacer(),
+                AppIconButton(
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                      backgroundColor: Colors.white70,
+                      context: context,
+                      builder: (context) => AdvancedSettingsModal(),
+                    );
+                  },
+                  icon: Image.asset(
+                    AppImages.settingsNew,
+                  ),
+                ),
+                SizedBox(
+                  width: spacerNormal(context),
+                ),
+              ],
             ),
-            SizedBox(height: size6(context)),
-          ],
-        );
-      },
+          ),
+        ),
+        SizedBox(height: size6(context)),
+      ],
     );
   }
 }

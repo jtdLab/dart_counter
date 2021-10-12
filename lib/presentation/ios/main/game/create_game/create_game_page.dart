@@ -8,7 +8,6 @@ import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 // DOMAIN
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/mode.dart';
-import 'package:dart_counter/domain/play/player.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/type.dart';
@@ -43,13 +42,12 @@ class CreateGamePage extends StatelessWidget {
         },
         child: AppPage(
           onTap: () => FocusScope.of(context).unfocus(),
-          //padding: const EdgeInsets.fromLTRB(10, 20, 10, 5),
           navigationBar: AppNavigationBar(
             leading: CancelButton(
               onPressed: () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
-                    reverseTransitionDuration: const Duration(),
+                    reverseTransitionDuration: Duration.zero,
                     opaque: false,
                     pageBuilder: (context, _, __) => BlocProvider(
                       create: (context) => getIt<CreateGameBloc>(),

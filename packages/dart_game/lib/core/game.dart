@@ -50,7 +50,7 @@ class Game {
     required int size,
     required Type type,
     required this.players,
-  })   : _status = status,
+  })  : _status = status,
         _startingPoints = startingPoints,
         _mode = mode,
         _size = size,
@@ -203,20 +203,21 @@ class Game {
         player._legsOrSetsNeededToWin =
             mode == Mode.firstTo ? size : (size / 2).round();
         player.isCurrentTurn = false;
-
-        if (player is DartBot) {
-          performThrow(
-            t: ThrowGenerator.generate(
-              startingPoints: startingPoints,
-              targetAverage: player.targetAverage,
-              pointsLeft: player.pointsLeft!,
-              dartsThrown: player._dartsThrown!,
-              average: player.average ?? 0,
-            ),
-          );
-        }
       }
-      players[0].isCurrentTurn = true;
+
+      final player = players[0];
+      if (player is DartBot) {
+        performThrow(
+          t: ThrowGenerator.generate(
+            startingPoints: startingPoints,
+            targetAverage: player.targetAverage,
+            pointsLeft: player.pointsLeft!,
+            dartsThrown: player._dartsThrown!,
+            average: player.average ?? 0,
+          ),
+        );
+      }
+      player.isCurrentTurn = true;
       return true;
     }
 

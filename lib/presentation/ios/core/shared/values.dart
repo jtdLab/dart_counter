@@ -105,15 +105,15 @@ double modalLogoMarginBottom(BuildContext context) => responsiveValue(
 
 double detailedModalMarginBottom(BuildContext context) => responsiveValue(
       context,
-      defaultValue: 50,
-      mobileSmall: 40,
-      mobileNormal: 50,
-      mobileLarge: 50,
-      mobileExtraLarge: 60,
-      tabletSmall: 70,
-      tabletNormal: 70,
-      tabletLarge: 75,
-      tabletExtraLarge: 80,
+      defaultValue: 10,
+      mobileSmall: 5,
+      mobileNormal: 10,
+      mobileLarge: 12,
+      mobileExtraLarge: 15,
+      tabletSmall: 15,
+      tabletNormal: 20,
+      tabletLarge: 23,
+      tabletExtraLarge: 26,
     );
 
 double border4(BuildContext context) => responsiveValue(

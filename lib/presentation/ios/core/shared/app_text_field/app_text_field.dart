@@ -39,7 +39,7 @@ class AppTextField extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
+    final controller = useTextEditingController(text: text);
 
     return Column(
       children: [

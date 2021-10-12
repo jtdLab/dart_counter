@@ -49,7 +49,7 @@ class AppPage extends StatelessWidget {
   // TODO
   EdgeInsets _padding(BuildContext context) => responsiveValue(
         context,
-        defaultValue: const EdgeInsets.fromLTRB(40, 20, 40, 5),
-        mobileSmall: const EdgeInsets.fromLTRB(30, 20, 30, 5),
+        defaultValue: const EdgeInsets.fromLTRB(40, 0, 40, 5),
+        mobileSmall: const EdgeInsets.fromLTRB(30, 0, 30, 5),
       );
 }
