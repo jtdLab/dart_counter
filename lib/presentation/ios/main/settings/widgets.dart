@@ -93,20 +93,30 @@ class _LanguageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCardItem.small(
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _FlagDisplayer(
-            language: language,
-          ),
-          Text(
-            language.toLanguageTag().toUpperCase(),
-          ),
-          _CheckBox(
-            language: language,
-          ),
-        ],
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        // TODO should work without call to settins bloc if easy localizations rebuilts correctly on locale change
+        context.setLocale(
+          language,
+        );
+        context.read<SettingsBloc>().add(const SettingsEvent.localeChanged());
+      },
+      child: AppCardItem.small(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _FlagDisplayer(
+              language: language,
+            ),
+            Text(
+              language.toLanguageTag().toUpperCase(),
+            ),
+            _CheckBox(
+              language: language,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -142,21 +152,16 @@ class _CheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (context.locale == language) {
-      return AppIconButton(
-        icon: Image.asset(
+      return Padding(
+        padding: EdgeInsets.all(size6(context)),
+        child: Image.asset(
           AppImages.checkMarkQuadNew,
         ),
       );
     } else {
-      return AppIconButton(
-        onPressed: () async {
-          // TODO should work without call to settins bloc if easy localizations rebuilts correctly on locale change
-          await context.setLocale(
-            language,
-          );
-          context.read<SettingsBloc>().add(const SettingsEvent.localeChanged());
-        },
-        icon: Image.asset(
+      return Padding(
+        padding: EdgeInsets.all(size6(context)),
+        child: Image.asset(
           AppImages.uncheckedNew,
         ),
       );
@@ -226,21 +231,25 @@ class _AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCardItem.small(
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(size6(context)),
-            child: Text(
-              title.toUpperCase(),
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      child: AppCardItem.small(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(size6(context)),
+              child: Text(
+                title.toUpperCase(),
+              ),
             ),
-          ),
-          AppIconButton(
-            onPressed: onPressed,
-            icon: Image.asset(AppImages.settingsNew),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(size6(context)),
+              child: Image.asset(AppImages.settingsNew),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -286,26 +295,30 @@ class _DartsGerCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCardItem.small(
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(size6(context)),
-              child: AutoSizeText(
-                title.toUpperCase(),
-                maxLines: 1,
-                maxFontSize: 14,
-                minFontSize: 8,
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      child: AppCardItem.small(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(size6(context)),
+                child: AutoSizeText(
+                  title.toUpperCase(),
+                  maxLines: 1,
+                  maxFontSize: 14,
+                  minFontSize: 8,
+                ),
               ),
             ),
-          ),
-          AppIconButton(
-            onPressed: onPressed,
-            icon: Image.asset(AppImages.infoDarkNew),
-          ),
-        ],
+            AppIconButton(
+              onPressed: onPressed,
+              icon: Image.asset(AppImages.infoDarkNew),
+            ),
+          ],
+        ),
       ),
     );
   }
