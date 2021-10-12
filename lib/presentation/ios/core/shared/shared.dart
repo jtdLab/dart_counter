@@ -13,4 +13,4 @@ export 'app_search_field.dart';
 export 'loading_widget.dart';
 export 'logo_displayer.dart';
 export 'values.dart';
-export '../extensions.dart';
+export '../toast_x.dart';
