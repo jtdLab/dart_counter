@@ -71,14 +71,18 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCardItem.large(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            width: spacerNormal(context),
+          ),
           const AppRoundedImage.normal(
             imageName: AppImages.photoPlaceholderNew,
           ),
+          const Spacer(),
           Text(
             gameInvitation.fromName.getOrCrash().toUpperCase(),
           ),
+          const Spacer(),
           Row(
             children: [
               AppIconButton(
@@ -86,18 +90,17 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
                 icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
                       GameInvitationsEvent.invitationAccepted(
-                          gameInvitation: gameInvitation),
+                        gameInvitation: gameInvitation,
+                      ),
                     ),
               ),
-              SizedBox(
-                  width: spacerNormal(context),
-                ),
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
                       GameInvitationsEvent.invitationDeclined(
-                          gameInvitation: gameInvitation),
+                        gameInvitation: gameInvitation,
+                      ),
                     ),
               ),
             ],
@@ -155,15 +158,22 @@ class _SentGameInvitationsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCardItem.large(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            width: spacerNormal(context),
+          ),
           const AppRoundedImage.normal(
             imageName: AppImages.photoPlaceholderNew,
           ),
+          const Spacer(),
           Text(
             name.toUpperCase(),
           ),
+          const Spacer(),
           Image.asset(AppImages.clockYellowNew),
+          SizedBox(
+            width: spacerNormal(context),
+          ),
         ],
       ),
     );

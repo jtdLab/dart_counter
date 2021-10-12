@@ -15,11 +15,10 @@ class AppIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding ?? EdgeInsets.all(size6(context)),
+    return Container(
+      color: AppColors.blue,
       child: CupertinoButton(
-        minSize: 0,
-        padding: EdgeInsets.zero,
+        padding: padding ?? EdgeInsets.all(size6(context)),
         onPressed: onPressed,
         child: icon,
       ),

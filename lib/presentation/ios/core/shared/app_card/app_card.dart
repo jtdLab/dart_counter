@@ -56,12 +56,8 @@ class AppCard extends StatelessWidget {
                       ),
                     if (trailing == null)
                       const Spacer()
-                    else
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size6(context)),
-                        child: trailing,
-                      ),
+                    else 
+                      trailing!,
                   ],
                 ),
               ),

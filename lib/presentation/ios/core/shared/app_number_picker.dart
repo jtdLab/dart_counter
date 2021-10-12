@@ -53,18 +53,20 @@ class _AppNumberPickerState extends State<AppNumberPicker> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppIconButton(
+                CupertinoButton(
+                  minSize: 0,
                   padding: EdgeInsets.zero,
                   onPressed: onIncrementPressed,
-                  icon: Image.asset(AppImages.chevronUpSmallNew),
+                  child: Image.asset(AppImages.chevronUpSmallNew),
                 ),
                 SizedBox(
                   height: spacerSmall(context),
                 ),
-                AppIconButton(
+                CupertinoButton(
+                  minSize: 0,
                   padding: EdgeInsets.zero,
                   onPressed: onDecrementPressed,
-                  icon: Image.asset(AppImages.chevronDownSmallNew),
+                  child: Image.asset(AppImages.chevronDownSmallNew),
                 ),
               ],
             ),

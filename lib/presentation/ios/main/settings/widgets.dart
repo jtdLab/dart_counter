@@ -313,9 +313,9 @@ class _DartsGerCardItem extends StatelessWidget {
                 ),
               ),
             ),
-            AppIconButton(
-              onPressed: onPressed,
-              icon: Image.asset(AppImages.infoDarkNew),
+            Padding(
+              padding: EdgeInsets.all(size6(context)),
+              child: Image.asset(AppImages.infoDarkNew),
             ),
           ],
         ),

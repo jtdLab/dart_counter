@@ -251,6 +251,7 @@ class _DartBotItem extends StatelessWidget {
                 ),
                 const Spacer(),
                 AppIconButton(
+                  padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
                     showCupertinoModalBottomSheet(
                       backgroundColor: Colors.white70,
@@ -261,9 +262,6 @@ class _DartBotItem extends StatelessWidget {
                   icon: Image.asset(
                     AppImages.settingsNew,
                   ),
-                ),
-                SizedBox(
-                  width: spacerNormal(context),
                 ),
               ],
             ),
@@ -341,6 +339,7 @@ class _OfflinePlayerItem extends StatelessWidget {
                   width: spacerNormal(context),
                 ),
                 AppIconButton(
+                  padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
                     showCupertinoModalBottomSheet(
                       backgroundColor: Colors.white70,
@@ -351,9 +350,6 @@ class _OfflinePlayerItem extends StatelessWidget {
                   icon: Image.asset(
                     AppImages.settingsNew,
                   ),
-                ),
-                SizedBox(
-                  width: spacerNormal(context),
                 ),
               ],
             ),
@@ -411,6 +407,7 @@ class _OnlinePlayerItem extends StatelessWidget {
                 ),
                 const Spacer(),
                 AppIconButton(
+                  padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
                     showCupertinoModalBottomSheet(
                       backgroundColor: Colors.white70,
@@ -421,9 +418,6 @@ class _OnlinePlayerItem extends StatelessWidget {
                   icon: Image.asset(
                     AppImages.settingsNew,
                   ),
-                ),
-                SizedBox(
-                  width: spacerNormal(context),
                 ),
               ],
             ),

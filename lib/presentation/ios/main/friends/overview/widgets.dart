@@ -67,14 +67,18 @@ class _FriendRequestCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCardItem.large(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            width: spacerNormal(context),
+          ),
           const AppRoundedImage.normal(
             imageName: AppImages.photoPlaceholderNew, // TODO real photo url
           ),
+          const Spacer(),
           Text(
             friendRequest.fromName.getOrCrash().toUpperCase(),
           ),
+          const Spacer(),
           Row(
             children: [
               AppIconButton(
@@ -148,14 +152,18 @@ class _FriendsCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCardItem.large(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            width: spacerNormal(context),
+          ),
           const AppRoundedImage.normal(
             imageName: AppImages.photoPlaceholderNew, // TODO real photo url
           ),
+          const Spacer(),
           Text(
             friend.profile.username.getOrCrash().toUpperCase(),
           ),
+          const Spacer(),
           AppIconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
