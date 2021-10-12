@@ -30,6 +30,8 @@ class CreateGamePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<CreateGameBloc>(),
       child: BlocListener<CreateGameBloc, CreateGameState>(
+        listenWhen: (oldState, newState) =>
+            oldState.gameSnapshot.status != newState.gameSnapshot.status,
         listener: (context, state) {
           final game = state.gameSnapshot;
 
@@ -37,6 +39,7 @@ class CreateGamePage extends StatelessWidget {
             context.router.replace(const HomePageRoute());
             getIt<PlayBloc>().add(const PlayEvent.resetRequested());
           } else if (game.status == Status.running) {
+            // give players without a name a name e.g 'Player 1', 'Player 2', ...
             int unNamedPlayerIndex = 1;
             for (final player in game.players.iter) {
               if (player.name == null) {
@@ -44,9 +47,11 @@ class CreateGamePage extends StatelessWidget {
                 context.read<CreateGameBloc>().add(
                       CreateGameEvent.playerNameUpdated(
                         index: index,
-                        newName: 'Player $unNamedPlayerIndex', // TODO localize
+                        newName:
+                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex', // TODO localize
                       ),
                     );
+                print(unNamedPlayerIndex);
                 unNamedPlayerIndex++;
               }
             }
