@@ -119,8 +119,8 @@ class OpticalInputAreaBloc
           ),
         );
       } else {
-        // TODO ?
-        final dart = Dart(type: event.type, value: event.value);
+        // TODO ? look detailed
+        final dart = Dart(type: event.type, value: focusedValue);
         final newDarts = darts.toMutableList()..add(dart);
         _inGameBloc.add(
           InGameEvent.inputOrDartsChanged(

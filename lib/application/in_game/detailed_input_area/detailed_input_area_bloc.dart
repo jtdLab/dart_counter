@@ -122,7 +122,7 @@ class DetailedInputAreaBloc
           ),
         );
       } else {
-        // TODO ??
+        // TODO ?? look optical
         yield state.copyWith(
           focusedValue: focusedValue,
         );
@@ -150,6 +150,9 @@ class DetailedInputAreaBloc
     final dart = Dart(type: event.type, value: value);
     final newDarts = darts.toMutableList()..add(dart);
 
+    yield state.copyWith(
+      focusedValue: null,
+    );
     _inGameBloc.add(
       InGameEvent.inputOrDartsChanged(
         newInputOrDarts: right(newDarts),
@@ -164,6 +167,9 @@ class DetailedInputAreaBloc
     if (darts.isNotEmpty()) {
       final newDarts = darts..removeAt(darts.size - 1);
 
+      yield state.copyWith(
+        focusedValue: null,
+      );
       _inGameBloc.add(
         InGameEvent.inputOrDartsChanged(
           newInputOrDarts: right(newDarts),

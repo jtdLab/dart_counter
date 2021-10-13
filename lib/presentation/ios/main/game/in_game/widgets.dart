@@ -928,7 +928,7 @@ class _DetailedInputArea extends StatelessWidget {
                       builder: (context, state) {
                         return Expanded(
                           child: _DartsDisplayer(
-                            darts: state.inputOrDarts.toOption().toNullable()!,
+                            darts: state.inputOrDarts.toOption().toNullable() ?? const KtList.empty(),
                           ),
                         );
                       },
