@@ -9,6 +9,7 @@ class AppPage extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final AppNavigationBar? navigationBar;
+  final EdgeInsets? padding;
   final Widget child;
 
   const AppPage({
@@ -16,6 +17,7 @@ class AppPage extends StatelessWidget {
     this.onTap,
     this.backgroundColor,
     this.navigationBar,
+    this.padding,
     required this.child,
   }) : super(key: key);
 
@@ -27,7 +29,7 @@ class AppPage extends StatelessWidget {
         backgroundColor: backgroundColor,
         child: SafeArea(
           child: Padding(
-            padding: _padding(context),
+            padding: padding ?? _padding(context),
             child: Column(
               children: [
                 if (navigationBar != null) ...[

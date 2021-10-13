@@ -87,7 +87,6 @@ class _DartBotCheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     if (selected) {
       return AppIconButton(
-        padding: EdgeInsets.zero,
         onPressed: () => context
             .read<CreateGameBloc>()
             .add(const CreateGameEvent.dartBotRemoved()),
@@ -97,7 +96,6 @@ class _DartBotCheckBox extends StatelessWidget {
       );
     } else {
       return AppIconButton(
-        padding: EdgeInsets.zero,
         onPressed: () => context
             .read<CreateGameBloc>()
             .add(const CreateGameEvent.dartBotAdded()),

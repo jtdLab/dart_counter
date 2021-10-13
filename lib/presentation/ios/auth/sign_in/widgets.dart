@@ -77,38 +77,52 @@ class _SignInWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  color: AppColors.red,
-                  child: CupertinoButton(
-                    onPressed: () => context.read<SignInBloc>().add(
-                          const SignInEvent.signInWithFacebookPressed(),
-                        ),
-                    child: Image.asset(AppImages.fbNew),
-                  ),
+                _SocialSignInButton(
+                  onPressed: () => context.read<SignInBloc>().add(
+                        const SignInEvent.signInWithFacebookPressed(),
+                      ),
+                  child: Image.asset(AppImages.fbNew),
                 ),
-                Container(
-                  color: AppColors.red,
-                  child: CupertinoButton(
-                    onPressed: () => context.read<SignInBloc>().add(
-                          const SignInEvent.signInWithApplePressed(),
-                        ),
-                    child: Image.asset(AppImages.igNew),
-                  ),
+                _SocialSignInButton(
+                  onPressed: () => context.read<SignInBloc>().add(
+                        const SignInEvent.signInWithApplePressed(),
+                      ),
+                  child: Image.asset(AppImages.igNew),
                 ),
-                Container(
-                  color: AppColors.red,
-                  child: CupertinoButton(
-                    onPressed: () => context.read<SignInBloc>().add(
-                          const SignInEvent.signInWithGooglePressed(),
-                        ),
-                    child: Image.asset(AppImages.googleNew),
-                  ),
+                _SocialSignInButton(
+                  onPressed: () => context.read<SignInBloc>().add(
+                        const SignInEvent.signInWithGooglePressed(),
+                      ),
+                  child: Image.asset(AppImages.googleNew),
                 ),
               ],
             ),
           ],
         );
       },
+    );
+  }
+}
+
+class _SocialSignInButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+
+  const _SocialSignInButton({
+    Key? key,
+    required this.onPressed,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      onPressed: onPressed,
+      child: SizedBox(
+        width: size40(context),
+        height: size40(context),
+        child: child,
+      ),
     );
   }
 }

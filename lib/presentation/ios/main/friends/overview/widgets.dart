@@ -82,7 +82,6 @@ class _FriendRequestCardItem extends StatelessWidget {
           Row(
             children: [
               AppIconButton(
-                padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () => context.read<FriendsBloc>().add(
                       FriendsEvent.friendRequestAccepted(
@@ -90,9 +89,7 @@ class _FriendRequestCardItem extends StatelessWidget {
                       ),
                     ),
               ),
-              
               AppIconButton(
-                padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () => context.read<FriendsBloc>().add(
                       FriendsEvent.friendRequestDeclined(
@@ -163,7 +160,6 @@ class _FriendsCardItem extends StatelessWidget {
           ),
           const Spacer(),
           AppIconButton(
-            padding: EdgeInsets.zero,
             onPressed: () {
               showCupertinoModalBottomSheet(
                 backgroundColor: Colors.white70,

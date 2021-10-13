@@ -86,7 +86,6 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
           Row(
             children: [
               AppIconButton(
-                padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.checkMarkDarkNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
                       GameInvitationsEvent.invitationAccepted(
@@ -95,7 +94,6 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
                     ),
               ),
               AppIconButton(
-                padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),
                 onPressed: () => context.read<GameInvitationsBloc>().add(
                       GameInvitationsEvent.invitationDeclined(

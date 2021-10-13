@@ -102,7 +102,6 @@ double modalLogoMarginTop(BuildContext context) => responsiveValue(
       tabletExtraLarge: 120,
     );
 
-
 double modalLogoMarginBottom(BuildContext context) => responsiveValue(
       context,
       defaultValue: 123,
@@ -129,6 +128,12 @@ double detailedModalMarginBottom(BuildContext context) => responsiveValue(
       tabletExtraLarge: 26,
     );
 
+EdgeInsets modalPagePadding(BuildContext context) => responsiveValue(
+      context,
+      defaultValue: const EdgeInsets.fromLTRB(40, 20, 40, 5),
+      mobileSmall: const EdgeInsets.fromLTRB(30, 20, 30, 5),
+    );
+
 double border4(BuildContext context) => responsiveValue(
       context,
       defaultValue: 4,
@@ -141,7 +146,7 @@ double border4(BuildContext context) => responsiveValue(
 double size6(BuildContext context) => responsiveValue(
       context,
       defaultValue: 6,
-      mobileSmall: 5,
+      mobileSmall: 4,
       mobileNormal: 6,
       mobileLarge: 7,
       mobileExtraLarge: 8,
