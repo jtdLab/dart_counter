@@ -133,9 +133,7 @@ class _OnePlayerHeader extends StatelessWidget {
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
-                          .copyWith(
-                            color: AppColors.white,
-                          ),
+                          .copyWith(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -262,7 +260,7 @@ class _OnePlayerPointsLeftLastThrowDisplayer extends StatelessWidget {
                     style: CupertinoTheme.of(context)
                         .textTheme
                         .textStyle
-                        .copyWith(fontSize: 40),
+                        .copyWith(fontSize: 40), // TODO
                     maxLines: 1,
                   ),
                 ),
@@ -387,9 +385,10 @@ class _OnePlayerStatDisplayer extends StatelessWidget {
           flex: 4,
           child: Text(
             value ?? '-',
-            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                  color: AppColors.white,
-                ),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
           ),
         ),
       ],
@@ -623,9 +622,7 @@ class _FourPlayerStatDisplayer extends StatelessWidget {
                         style: CupertinoTheme.of(context)
                             .textTheme
                             .textStyle
-                            .copyWith(
-                              color: AppColors.white,
-                            ),
+                            .copyWith(color: AppColors.white),
                         maxLines: 1,
                         minFontSize: 4,
                       ),
@@ -1974,9 +1971,7 @@ class _DartBoardState extends State<_DartBoard> {
                 center = tapPosition;
               } else {
                 scale = 1;
-                final radius =
-                    (4 * size55(context) + 3 * size6(context)) /
-                        2;
+                final radius = (4 * size55(context) + 3 * size6(context)) / 2;
                 center = Offset(radius, radius);
               }
             });
@@ -2204,9 +2199,7 @@ class _PlayerItemHeader extends StatelessWidget {
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
-                          .copyWith(
-                            color: AppColors.white,
-                          ),
+                          .copyWith(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -2307,7 +2300,7 @@ class _PlayerItemPointsLeftLastThrowDisplayer extends StatelessWidget {
                 style: CupertinoTheme.of(context)
                     .textTheme
                     .textStyle
-                    .copyWith(fontSize: 40),
+                    .copyWith(fontSize: 40), // TODO
                 maxLines: 1,
               ),
             ),
@@ -2573,9 +2566,7 @@ class _PlayerItemSmallHeader extends StatelessWidget {
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
-                          .copyWith(
-                            color: AppColors.white,
-                          ),
+                          .copyWith(color: AppColors.white),
                     ),
                   ),
                 ),
@@ -2675,7 +2666,7 @@ class _PlayerItemSmallPointsLeftLastThrowDisplayer extends StatelessWidget {
               child: AutoSizeText(
                 pointsLeft.toString(),
                 style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                      fontSize: 40,
+                      fontSize: 40, // TODO
                       color: isCurrentTurn ? AppColors.white : AppColors.black,
                     ),
                 maxLines: 1,
@@ -2758,9 +2749,10 @@ class _DartsDisplayer extends StatelessWidget {
             _mapDartToString(
               dart: darts.size > 0 ? darts.get(0) : null,
             ),
-            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                  color: AppColors.white,
-                ),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
           ),
           const Spacer(),
           Image.asset(AppImages.flightWhiteTwo),
@@ -2768,9 +2760,10 @@ class _DartsDisplayer extends StatelessWidget {
             _mapDartToString(
               dart: darts.size > 1 ? darts.get(1) : null,
             ),
-            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                  color: AppColors.white,
-                ),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
           ),
           const Spacer(),
           Image.asset(AppImages.flightWhiteThree),
@@ -2778,9 +2771,10 @@ class _DartsDisplayer extends StatelessWidget {
             _mapDartToString(
               dart: darts.size > 2 ? darts.get(2) : null,
             ),
-            style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                  color: AppColors.white,
-                ),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
           ),
           const Spacer(),
         ],

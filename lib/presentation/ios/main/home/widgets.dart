@@ -42,12 +42,15 @@ class _GameInvitationsButton extends StatelessWidget {
             onPressed: () =>
                 context.router.push(const GameInvitationsPageRoute()),
             child: Badge(
-              badgeContent: Text(
+              badgeContent: AutoSizeText(
                 unreadReceivedInvitations.toString(),
-                style: const TextStyle(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+                maxLines: 1,
+                minFontSize: maxFontSizeSmall(context),
+                maxFontSize: maxFontSizeNormal(context),
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.white),
               ),
               position: BadgePosition.topEnd(
                 top: -13,
@@ -183,8 +186,11 @@ class _NameDisplayer extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Text(
+            child: AutoSizeText(
               username.toUpperCase(),
+              maxLines: 1,
+              minFontSize: 8,
+              maxFontSize: maxFontSizeNormal(context),
               style: CupertinoTheme.of(context)
                   .textTheme
                   .textStyle

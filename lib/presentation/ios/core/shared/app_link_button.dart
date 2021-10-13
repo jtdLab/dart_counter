@@ -15,15 +15,13 @@ class AppLinkButton extends StatelessWidget {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: onPressed,
-      child: AutoSizeText(
+      child: Text(
         text.toUpperCase(),
-        minFontSize: 4,
-        maxFontSize: maxFontSizeSmall(context),
         maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.red),
+        style: TextStyle(
+          color: AppColors.red,
+          fontSize: maxFontSizeSmall(context),
+        ),
       ),
     );
   }

@@ -49,7 +49,7 @@ class AppPrimaryButton extends StatelessWidget {
               text.toUpperCase(),
               maxLines: 1,
               minFontSize: 8,
-              maxFontSize: maxFontSizeNormal(context), 
+              maxFontSize: maxFontSizeNormal(context),
               style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                     color: fontColor,
                   ),

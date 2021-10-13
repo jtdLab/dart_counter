@@ -99,6 +99,8 @@ class AppActionButton extends StatelessWidget {
                 AutoSizeText(
                   text!,
                   maxLines: 1,
+                  minFontSize: 8,
+                  maxFontSize: maxFontSizeNormal(context),
                   style: TextStyle(
                     fontSize: fontSize,
                     color: onPressed == null

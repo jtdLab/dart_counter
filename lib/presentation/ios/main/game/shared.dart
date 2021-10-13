@@ -30,10 +30,10 @@ class YouReallyWantToCancelGameDialog extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Spiel Abbrechen?',
-                    style:
-                        CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                              color: AppColors.white,
-                            ),
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(color: AppColors.white),
                   ),
                 ),
               ),
@@ -341,4 +341,3 @@ class TakesCard extends StatelessWidget {
     );
   }
 }
-

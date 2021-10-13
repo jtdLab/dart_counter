@@ -60,14 +60,10 @@ class AppTextField extends HookWidget {
                 textInputAction: textInputAction,
                 onEditingComplete: onEditingComplete,
                 onChanged: onChanged,
-                style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                      fontSize: maxFontSizeNormal(context),
-                    ),
-                placeholderStyle:
-                    CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                          color: AppColors.gray,
-                          fontSize: maxFontSizeNormal(context),
-                        ),
+                placeholderStyle: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.gray),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   border: withErrorDisplayer && !(valid ?? true)

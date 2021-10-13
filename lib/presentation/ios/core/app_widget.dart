@@ -10,6 +10,24 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp.router(
+      builder: (context, widget) {
+        final style = TextStyle(
+          fontWeight: FontWeight.w800,
+          fontSize: maxFontSizeNormal(context),
+          color: AppColors.black,
+        );
+
+        // need to provided default text style so text widgets can look up the text style
+        return CupertinoTheme(
+          data: CupertinoTheme.of(context).copyWith(
+            textTheme: CupertinoTextThemeData(textStyle: style),
+          ),
+          child: DefaultTextStyle(
+            style: style,
+            child: widget!,
+          ),
+        );
+      },
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -24,13 +42,6 @@ class AppWidget extends StatelessWidget {
         primaryColor: AppColors.black,
         primaryContrastingColor: AppColors.white,
         scaffoldBackgroundColor: AppColors.white,
-        textTheme: CupertinoTextThemeData(
-          textStyle: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 14,
-            color: AppColors.black,
-          ),
-        ),
       ),
     );
   }

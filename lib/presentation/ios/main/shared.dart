@@ -80,7 +80,7 @@ class PlayerProfileImageAndNameDisplayer extends StatelessWidget {
                     'Sebi Abi 69',
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                              color: AppColors.white,
+                              color: AppColors.white
                             ),
                   ),
                 ),
