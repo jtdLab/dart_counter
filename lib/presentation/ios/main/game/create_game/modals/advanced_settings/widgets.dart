@@ -41,6 +41,7 @@ class _AdvancedSettingsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppIconButton(
+                      padding: EdgeInsets.zero,
                       onPressed: () {}, // TODO
                       icon: Image.asset(AppImages.checkMarkDarkNew),
                     ),
@@ -60,6 +61,7 @@ class _AdvancedSettingsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppIconButton(
+                      padding: EdgeInsets.zero,
                       onPressed: () {}, // TODO
                       icon: Image.asset(AppImages.checkMarkDarkNew),
                     ),
