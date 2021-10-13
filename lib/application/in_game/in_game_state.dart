@@ -4,6 +4,6 @@ part of 'in_game_bloc.dart';
 class InGameState with _$InGameState {
   const factory InGameState.initial({
     required GameSnapshot gameSnapshot,
-    required bool showCheckoutDetails,
+    required int input,
   }) = InGameInitial;
 }

@@ -1,4 +1,59 @@
-import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_game/dart_game.dart' as ex;
+
+/// Returns `true` if [points] is valid when a player has [pointsLeft].
+bool validatePoints({
+  required int pointsLeft,
+  required int points,
+}) =>
+    ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
+
+/// Returns `true` if [points] is finishable.
+bool isFinish({
+  required int points,
+}) =>
+    ex.DartUtils.isFinish(points: points);
+
+/// Returns the min. possible dartsThrown depending on [pointsLeft] and [points].
+///
+/// {@template helpers_min_max_error}
+/// Throws [ArgumentError] if [pointsLeft] - [points] == 1, [points] are not possible,
+/// [point] == [pointsLeft] == a not finishable number or [points] > [pointsLeft].
+/// {@endtemplate}
+int minDartsThrown({
+  required int pointsLeft,
+  required int points,
+}) =>
+    ex.DartUtils.minDartsThrown(pointsLeft: pointsLeft, points: points);
+
+/// Returns the max. possible dartsThrown depending on [pointsLeft] and [points].
+///
+/// {@macro helpers_min_max_error}
+int maxDartsThrown({
+  required int pointsLeft,
+  required int points,
+}) =>
+    ex.DartUtils.maxDartsThrown(pointsLeft: pointsLeft, points: points);
+
+/// Returns the min. possible dartsOnDouble depending on [pointsLeft] and [points].
+///
+/// {@macro helpers_min_max_error}
+int minDartsOnDouble({
+  required int pointsLeft,
+  required int points,
+}) =>
+    ex.DartUtils.minDartsOnDouble(pointsLeft: pointsLeft, points: points);
+
+/// Returns the max. possible dartsOnDouble depending on [pointsLeft] and [points].
+///
+/// {@macro helpers_min_max_error}
+int maxDartsOnDouble({
+  required int pointsLeft,
+  required int points,
+}) =>
+    ex.DartUtils.maxDartsOnDouble(pointsLeft: pointsLeft, points: points);
+
+/**
+ * import 'package:dart_counter/domain/play/throw.dart';
 
 List<int> _oneDartFinishes = [
   2,
@@ -23,6 +78,7 @@ List<int> _oneDartFinishes = [
   40,
   50
 ];
+
 List<int> _twoDartFinishes = [
       3,
       5,
@@ -221,4 +277,6 @@ validateThrow(Throw(points), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 2, dartsOnDouble: 1), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 2, dartsOnDouble: 2), pointsLeft)
        || validateThrow(Throw(points, dartsThrown: 1, dartsOnDouble:  1), pointsLeft);
+ */
+
  */

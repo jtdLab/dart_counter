@@ -48,10 +48,9 @@ class CreateGamePage extends StatelessWidget {
                       CreateGameEvent.playerNameUpdated(
                         index: index,
                         newName:
-                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex', // TODO localize
+                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
                       ),
                     );
-                print(unNamedPlayerIndex);
                 unNamedPlayerIndex++;
               }
             }

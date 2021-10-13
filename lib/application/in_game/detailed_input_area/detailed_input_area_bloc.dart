@@ -75,7 +75,8 @@ class DetailedInputAreaBloc
         minDartsOnDouble == maxDartsOnDouble);
 
     if (showCheckoutDetails) {
-      _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+      yield state.copyWith(showCheckoutDetails: true);
+      yield state.copyWith(showCheckoutDetails: false);
     } else {
       _inGameBloc.add(
         InGameEvent.performThrowPressed(
@@ -89,6 +90,11 @@ class DetailedInputAreaBloc
       );
       yield state.copyWith(
         darts: const KtList.empty(),
+      );
+      _inGameBloc.add(
+        const InGameEvent.inputChanged(
+          newInput: 0,
+        ),
       );
     }
   }
@@ -109,6 +115,11 @@ class DetailedInputAreaBloc
         final newDarts = darts.toMutableList()..add(dart);
         yield state.copyWith(
           darts: newDarts,
+        );
+        _inGameBloc.add(
+          InGameEvent.inputChanged(
+            newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+          ),
         );
       } else {
         yield state.copyWith(
@@ -140,6 +151,11 @@ class DetailedInputAreaBloc
       focusedValue: null,
       darts: newDarts,
     );
+    _inGameBloc.add(
+      InGameEvent.inputChanged(
+        newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+      ),
+    );
   }
 
   Stream<DetailedInputAreaState> _mapUndoDartPressedToState() async* {
@@ -152,6 +168,11 @@ class DetailedInputAreaBloc
         focusedValue: null,
         darts: newDarts,
       );
+      _inGameBloc.add(
+        InGameEvent.inputChanged(
+          newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+        ),
+      );
     }
   }
 
@@ -161,7 +182,7 @@ class DetailedInputAreaBloc
     if (getIt.isRegistered<DetailedInputAreaBloc>()) {
       getIt.resetLazySingleton<DetailedInputAreaBloc>();
     }
-    
+
     return super.close();
   }
 }

@@ -11,16 +11,4 @@ class CheckoutDetailsState with _$CheckoutDetailsState {
     required int selectedDartsOnDouble,
     required bool confirmed,
   }) = _CheckoutDetailsState;
-
-  /** 
-   * factory CheckoutDetailsState.initial() => const CheckoutDetailsState(
-        minDartsThrown: 0,
-        maxDartsThrown: 0,
-        minDartsOnDouble: 0,
-        maxDartsOnDouble: 0,
-        selectedDartsThrown: 0,
-        selectedDartsOnDouble: 0,
-        confirmed: false,
-      );
-  */
 }

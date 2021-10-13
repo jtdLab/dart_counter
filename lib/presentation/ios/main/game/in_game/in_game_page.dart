@@ -41,20 +41,6 @@ class InGamePage extends StatelessWidget {
       create: (context) => getIt<InGameBloc>(),
       child: BlocConsumer<InGameBloc, InGameState>(
         listener: (context, state) {
-          final showCheckoutDetails =
-              context.read<InGameBloc>().state.showCheckoutDetails;
-
-          if (showCheckoutDetails) {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => BlocProvider(
-                create: (context) => getIt<CheckoutDetailsBloc>(),
-                child: const CheckoutDetailsModal(),
-              ),
-            );
-          }
-
           final game = state.gameSnapshot;
           if (game.status == Status.canceled) {
             context.router.replace(const HomePageRoute());

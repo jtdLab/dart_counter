@@ -25,39 +25,39 @@ class CheckoutDetailsBloc
   ) : super(
           CheckoutDetailsState(
             minDartsThrown: helpers.minDartsThrown(
-              points: 0, // TODO _inputRowBloc.state.input,
+              points: _inGameBloc.state.input,
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsThrown: helpers.maxDartsThrown(
-              points: 0, // TODO _inputRowBloc.state.input,
+              points: _inGameBloc.state.input,
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             minDartsOnDouble: helpers.minDartsOnDouble(
-              points: 0, // TODO _inputRowBloc.state.input,
+              points: _inGameBloc.state.input,
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsOnDouble: min(
               helpers.maxDartsOnDouble(
-                points: 0, // TODO _inputRowBloc.state.input,
+                points: _inGameBloc.state.input,
                 pointsLeft:
                     _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
               helpers.minDartsThrown(
-                points: 0, // TODO _inputRowBloc.state.input,
+                points: _inGameBloc.state.input,
                 pointsLeft:
                     _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
             ),
             selectedDartsThrown: helpers.minDartsThrown(
-              points: 0, // TODO _inputRowBloc.state.input,
+              points: _inGameBloc.state.input,
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             selectedDartsOnDouble: helpers.minDartsOnDouble(
-              points: 0, // TODO _inputRowBloc.state.input,
+              points: _inGameBloc.state.input,
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
@@ -113,15 +113,15 @@ class CheckoutDetailsBloc
     _inGameBloc.add(
       InGameEvent.performThrowPressed(
         t: Throw(
-          points: 0, // TODO _inputRowBloc.state.input,
+          points: _inGameBloc.state.input,
           dartsThrown: state.selectedDartsThrown,
           dartsOnDouble: state.selectedDartsOnDouble,
-          //darts: null // TODO
+          // TODO use darts here 2
         ),
       ),
     );
 
-    // TODO _inputRowBloc.add(const InputRowEvent.inputUpdated(newInput: 0));
+    _inGameBloc.add(const InGameEvent.inputChanged(newInput: 0));
 
     yield state.copyWith(
       confirmed: true,
@@ -134,7 +134,7 @@ class CheckoutDetailsBloc
     if (getIt.isRegistered<CheckoutDetailsBloc>()) {
       getIt.resetLazySingleton<CheckoutDetailsBloc>();
     }
-    
+
     return super.close();
   }
 }

@@ -8,8 +8,9 @@ class InGameEvent with _$InGameEvent {
   const factory InGameEvent.performThrowPressed({
     required Throw t,
   }) = PerformThrowPressed;
-  const factory InGameEvent.showCheckoutDetailsRequested() =
-      ShowCheckoutDetailsRequested;
+  const factory InGameEvent.inputChanged({
+    required int newInput,
+  }) = InputChanged;
   const factory InGameEvent.gameReceived({
     required GameSnapshot gameSnapshot,
   }) = GameReceived;

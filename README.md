@@ -45,6 +45,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // maybe splitt big widgets.dart file into sub files with part and part of e.g ingame/widgets.dart
 
 // TODO clean up font sizes and use only autosizeText
+// TODO atm input area blocs have to sync input value of ingamebloc thats not good
 
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 

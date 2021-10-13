@@ -5,9 +5,11 @@ class DetailedInputAreaState with _$DetailedInputAreaState {
   const factory DetailedInputAreaState({
     int? focusedValue,
     required KtList<Dart> darts,
+    required bool showCheckoutDetails,
   }) = _DetailedInputAreaState;
 
   factory DetailedInputAreaState.initial() => const DetailedInputAreaState(
         darts: KtList.empty(),
+        showCheckoutDetails: false
       );
 }

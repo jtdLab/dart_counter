@@ -68,7 +68,8 @@ class StandardInputAreaBloc
         minDartsOnDouble == maxDartsOnDouble);
 
     if (showCheckoutDetails) {
-      _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+      yield state.copyWith(showCheckoutDetails: true);
+      yield state.copyWith(showCheckoutDetails: false);
     } else {
       _inGameBloc.add(
         InGameEvent.performThrowPressed(
@@ -89,10 +90,15 @@ class StandardInputAreaBloc
     final pointsLeftCurrentTurn =
         _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
-    final isFinish = pointsLeftCurrentTurn <= 170; // TODO real finish check
+    final isFinish = helpers.isFinish(points: pointsLeftCurrentTurn);
     if (isFinish) {
       yield state.copyWith(
         input: pointsLeftCurrentTurn,
+      );
+      _inGameBloc.add(
+        InGameEvent.inputChanged(
+          newInput: pointsLeftCurrentTurn,
+        ),
       );
 
       final minDartsThrown = helpers.minDartsThrown(
@@ -117,7 +123,8 @@ class StandardInputAreaBloc
           minDartsOnDouble == maxDartsOnDouble);
 
       if (showCheckoutDetails) {
-        _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+        yield state.copyWith(showCheckoutDetails: true);
+        yield state.copyWith(showCheckoutDetails: false);
       } else {
         _inGameBloc.add(
           InGameEvent.performThrowPressed(
@@ -142,6 +149,11 @@ class StandardInputAreaBloc
       yield state.copyWith(
         input: 0,
       );
+      _inGameBloc.add(
+        const InGameEvent.inputChanged(
+          newInput: 0,
+        ),
+      );
     } else {
       final inputString = currentInput.toString();
       final newInput = int.parse(
@@ -150,23 +162,38 @@ class StandardInputAreaBloc
       yield state.copyWith(
         input: newInput,
       );
+      _inGameBloc.add(
+        InGameEvent.inputChanged(
+          newInput: newInput,
+        ),
+      );
     }
   }
 
   Stream<StandardInputAreaState> _mapDigitPressedToState(
     DigitPressed event,
   ) async* {
+    final pointsLeftCurrentTurn =
+        _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
+
     final currentInput = state.input;
     final newInput = int.parse(
       currentInput.toString() + event.digit.toString(),
     );
 
-    final valid = newInput <= 180;
-    // TODO validate more
+    final valid = helpers.validatePoints(
+      pointsLeft: pointsLeftCurrentTurn,
+      points: newInput,
+    );
 
     if (valid) {
       yield state.copyWith(
         input: newInput,
+      );
+      _inGameBloc.add(
+        InGameEvent.inputChanged(
+          newInput: newInput,
+        ),
       );
     }
   }
@@ -177,7 +204,7 @@ class StandardInputAreaBloc
     if (getIt.isRegistered<StandardInputAreaBloc>()) {
       getIt.resetLazySingleton<StandardInputAreaBloc>();
     }
-    
+
     return super.close();
   }
 }

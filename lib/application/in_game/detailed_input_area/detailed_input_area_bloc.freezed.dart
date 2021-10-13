@@ -964,10 +964,13 @@ class _$DetailedInputAreaStateTearOff {
   const _$DetailedInputAreaStateTearOff();
 
   _DetailedInputAreaState call(
-      {int? focusedValue, required KtList<Dart> darts}) {
+      {int? focusedValue,
+      required KtList<Dart> darts,
+      required bool showCheckoutDetails}) {
     return _DetailedInputAreaState(
       focusedValue: focusedValue,
       darts: darts,
+      showCheckoutDetails: showCheckoutDetails,
     );
   }
 }
@@ -979,6 +982,7 @@ const $DetailedInputAreaState = _$DetailedInputAreaStateTearOff();
 mixin _$DetailedInputAreaState {
   int? get focusedValue => throw _privateConstructorUsedError;
   KtList<Dart> get darts => throw _privateConstructorUsedError;
+  bool get showCheckoutDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailedInputAreaStateCopyWith<DetailedInputAreaState> get copyWith =>
@@ -990,7 +994,7 @@ abstract class $DetailedInputAreaStateCopyWith<$Res> {
   factory $DetailedInputAreaStateCopyWith(DetailedInputAreaState value,
           $Res Function(DetailedInputAreaState) then) =
       _$DetailedInputAreaStateCopyWithImpl<$Res>;
-  $Res call({int? focusedValue, KtList<Dart> darts});
+  $Res call({int? focusedValue, KtList<Dart> darts, bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -1006,6 +1010,7 @@ class _$DetailedInputAreaStateCopyWithImpl<$Res>
   $Res call({
     Object? focusedValue = freezed,
     Object? darts = freezed,
+    Object? showCheckoutDetails = freezed,
   }) {
     return _then(_value.copyWith(
       focusedValue: focusedValue == freezed
@@ -1016,6 +1021,10 @@ class _$DetailedInputAreaStateCopyWithImpl<$Res>
           ? _value.darts
           : darts // ignore: cast_nullable_to_non_nullable
               as KtList<Dart>,
+      showCheckoutDetails: showCheckoutDetails == freezed
+          ? _value.showCheckoutDetails
+          : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1027,7 +1036,7 @@ abstract class _$DetailedInputAreaStateCopyWith<$Res>
           $Res Function(_DetailedInputAreaState) then) =
       __$DetailedInputAreaStateCopyWithImpl<$Res>;
   @override
-  $Res call({int? focusedValue, KtList<Dart> darts});
+  $Res call({int? focusedValue, KtList<Dart> darts, bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -1045,6 +1054,7 @@ class __$DetailedInputAreaStateCopyWithImpl<$Res>
   $Res call({
     Object? focusedValue = freezed,
     Object? darts = freezed,
+    Object? showCheckoutDetails = freezed,
   }) {
     return _then(_DetailedInputAreaState(
       focusedValue: focusedValue == freezed
@@ -1055,6 +1065,10 @@ class __$DetailedInputAreaStateCopyWithImpl<$Res>
           ? _value.darts
           : darts // ignore: cast_nullable_to_non_nullable
               as KtList<Dart>,
+      showCheckoutDetails: showCheckoutDetails == freezed
+          ? _value.showCheckoutDetails
+          : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1062,16 +1076,21 @@ class __$DetailedInputAreaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DetailedInputAreaState implements _DetailedInputAreaState {
-  const _$_DetailedInputAreaState({this.focusedValue, required this.darts});
+  const _$_DetailedInputAreaState(
+      {this.focusedValue,
+      required this.darts,
+      required this.showCheckoutDetails});
 
   @override
   final int? focusedValue;
   @override
   final KtList<Dart> darts;
+  @override
+  final bool showCheckoutDetails;
 
   @override
   String toString() {
-    return 'DetailedInputAreaState(focusedValue: $focusedValue, darts: $darts)';
+    return 'DetailedInputAreaState(focusedValue: $focusedValue, darts: $darts, showCheckoutDetails: $showCheckoutDetails)';
   }
 
   @override
@@ -1082,14 +1101,18 @@ class _$_DetailedInputAreaState implements _DetailedInputAreaState {
                 const DeepCollectionEquality()
                     .equals(other.focusedValue, focusedValue)) &&
             (identical(other.darts, darts) ||
-                const DeepCollectionEquality().equals(other.darts, darts)));
+                const DeepCollectionEquality().equals(other.darts, darts)) &&
+            (identical(other.showCheckoutDetails, showCheckoutDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(focusedValue) ^
-      const DeepCollectionEquality().hash(darts);
+      const DeepCollectionEquality().hash(darts) ^
+      const DeepCollectionEquality().hash(showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -1101,12 +1124,15 @@ class _$_DetailedInputAreaState implements _DetailedInputAreaState {
 abstract class _DetailedInputAreaState implements DetailedInputAreaState {
   const factory _DetailedInputAreaState(
       {int? focusedValue,
-      required KtList<Dart> darts}) = _$_DetailedInputAreaState;
+      required KtList<Dart> darts,
+      required bool showCheckoutDetails}) = _$_DetailedInputAreaState;
 
   @override
   int? get focusedValue => throw _privateConstructorUsedError;
   @override
   KtList<Dart> get darts => throw _privateConstructorUsedError;
+  @override
+  bool get showCheckoutDetails => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DetailedInputAreaStateCopyWith<_DetailedInputAreaState> get copyWith =>

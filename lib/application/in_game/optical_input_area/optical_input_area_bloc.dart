@@ -72,7 +72,8 @@ class OpticalInputAreaBloc
         minDartsOnDouble == maxDartsOnDouble);
 
     if (showCheckoutDetails) {
-      _inGameBloc.add(const InGameEvent.showCheckoutDetailsRequested());
+      yield state.copyWith(showCheckoutDetails: true);
+      yield state.copyWith(showCheckoutDetails: false);
     } else {
       _inGameBloc.add(
         InGameEvent.performThrowPressed(
@@ -86,6 +87,11 @@ class OpticalInputAreaBloc
       );
       yield state.copyWith(
         darts: const KtList.empty(),
+      );
+      _inGameBloc.add(
+        const InGameEvent.inputChanged(
+          newInput: 0,
+        ),
       );
     }
   }
@@ -107,11 +113,21 @@ class OpticalInputAreaBloc
         yield state.copyWith(
           darts: newDarts,
         );
+        _inGameBloc.add(
+          InGameEvent.inputChanged(
+            newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+          ),
+        );
       } else {
         final dart = Dart(type: event.type, value: event.value);
         final newDarts = darts.toMutableList()..add(dart);
         yield state.copyWith(
           darts: newDarts,
+        );
+        _inGameBloc.add(
+          InGameEvent.inputChanged(
+            newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+          ),
         );
       }
     }
@@ -126,6 +142,11 @@ class OpticalInputAreaBloc
       yield state.copyWith(
         darts: newDarts,
       );
+      _inGameBloc.add(
+        InGameEvent.inputChanged(
+          newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+        ),
+      );
     }
   }
 
@@ -135,7 +156,7 @@ class OpticalInputAreaBloc
     if (getIt.isRegistered<OpticalInputAreaBloc>()) {
       getIt.resetLazySingleton<OpticalInputAreaBloc>();
     }
-    
+
     return super.close();
   }
 }

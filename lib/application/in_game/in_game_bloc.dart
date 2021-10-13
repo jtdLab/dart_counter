@@ -33,7 +33,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
           _playBloc.state.maybeMap(
             gameInProgress: (gameInProgress) => InGameState.initial(
               gameSnapshot: gameInProgress.gameSnapshot,
-              showCheckoutDetails: false,
+              input: 0,
             ),
             orElse: () => throw Error(), // TODO name better
           ),
@@ -53,8 +53,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       gameCanceled: (_) => _mapGameCanceledToState(),
       undoThrowPressed: (_) => _mapUndoThrowPressedToState(),
       performThrowPressed: (event) => _mapPerformThrowPressedToState(event),
-      showCheckoutDetailsRequested: (_) =>
-          _mapShowCheckoutDetailsRequestedToState(),
+      inputChanged: (event) => _mapInputChangedToState(event),
       gameReceived: (event) => _mapGameReceivedToState(event),
     );
   }
@@ -102,10 +101,6 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
     }
   }
 
-  Stream<InGameState> _mapShowCheckoutDetailsRequestedToState() async* {
-    yield state.copyWith(showCheckoutDetails: true);
-  }
-
   Stream<InGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
@@ -149,6 +144,12 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       );
     }
      */
+  }
+
+  Stream<InGameState> _mapInputChangedToState(
+    InputChanged event,
+  ) async* {
+    yield state.copyWith(input: event.newInput);
   }
 
   @override
