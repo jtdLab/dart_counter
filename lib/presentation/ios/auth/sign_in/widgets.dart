@@ -119,8 +119,8 @@ class _SocialSignInButton extends StatelessWidget {
     return CupertinoButton(
       onPressed: onPressed,
       child: SizedBox(
-        width: size40(context),
-        height: size40(context),
+        width: 3 * size12(context),
+        height: 3 * size12(context),
         child: child,
       ),
     );

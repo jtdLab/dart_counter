@@ -257,7 +257,11 @@ class _InstagramButton extends StatelessWidget {
           await canLaunch('https://www.instagram.com/darts_ger/')
               ? await launch('https://www.instagram.com/darts_ger/')
               : throw 'Could not launch https://www.instagram.com/darts_ger/',
-      child: Image.asset(AppImages.igNew),
+      child: SizedBox(
+        width: 3 * size12(context),
+        height: 3 * size12(context),
+        child: Image.asset(AppImages.igNew),
+      ),
     );
   }
 }
@@ -275,7 +279,13 @@ class _YoutubeButton extends StatelessWidget {
           ? await launch(
               'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
           : throw 'Could not launch https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ',
-      child: Image.asset(AppImages.googleNew),
+      child: SizedBox(
+        width: 3 * size12(context),
+        height: 3 * size12(context),
+        child: Image.asset(
+          AppImages.googleNew,
+        ),
+      ),
     );
   }
 }
