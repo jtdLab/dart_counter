@@ -7,6 +7,7 @@ import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -50,8 +51,11 @@ class DetailedInputAreaBloc
     final pointsLeftCurrentTurn =
         _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
-    final input =
-        state.darts.foldRight(0, (dart, int acc) => acc + dart.points());
+    final darts = _inGameBloc.state.inputOrDarts.toOption().toNullable()!;
+    final input = darts.iter.fold<int>(
+      0,
+      (acc, dart) => acc + dart.points(),
+    );
 
     final minDartsThrown = helpers.minDartsThrown(
       points: input,
@@ -84,16 +88,14 @@ class DetailedInputAreaBloc
             points: input,
             dartsThrown: minDartsThrown,
             dartsOnDouble: minDartsOnDouble,
-            darts: state.darts,
+            darts: darts,
           ),
         ),
       );
-      yield state.copyWith(
-        darts: const KtList.empty(),
-      );
+
       _inGameBloc.add(
-        const InGameEvent.inputChanged(
-          newInput: 0,
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: right(const KtList.empty()),
         ),
       );
     }
@@ -102,7 +104,7 @@ class DetailedInputAreaBloc
   Stream<DetailedInputAreaState> _mapDartPressedToState(
     DartPressed event,
   ) async* {
-    final darts = state.darts;
+    final darts = _inGameBloc.state.inputOrDarts.toOption().toNullable()!;
 
     final pointsLeftCurrentTurn =
         _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
@@ -113,15 +115,14 @@ class DetailedInputAreaBloc
       if (focusedValue == 0) {
         const dart = Dart(type: DartType.s, value: 0);
         final newDarts = darts.toMutableList()..add(dart);
-        yield state.copyWith(
-          darts: newDarts,
-        );
+
         _inGameBloc.add(
-          InGameEvent.inputChanged(
-            newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+          InGameEvent.inputOrDartsChanged(
+            newInputOrDarts: right(newDarts),
           ),
         );
       } else {
+        // TODO ??
         yield state.copyWith(
           focusedValue: focusedValue,
         );
@@ -138,7 +139,9 @@ class DetailedInputAreaBloc
   Stream<DetailedInputAreaState> _mapDartDetailPressedToState(
     DartDetailPressed event,
   ) async* {
-    final darts = state.darts;
+    final darts =
+        _inGameBloc.state.inputOrDarts.toOption().toNullable()!.toMutableList();
+
     final value = state.focusedValue;
     if (value == null) {
       throw UnexpectedStateError();
@@ -147,30 +150,23 @@ class DetailedInputAreaBloc
     final dart = Dart(type: event.type, value: value);
     final newDarts = darts.toMutableList()..add(dart);
 
-    yield state.copyWith(
-      focusedValue: null,
-      darts: newDarts,
-    );
     _inGameBloc.add(
-      InGameEvent.inputChanged(
-        newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+      InGameEvent.inputOrDartsChanged(
+        newInputOrDarts: right(newDarts),
       ),
     );
   }
 
   Stream<DetailedInputAreaState> _mapUndoDartPressedToState() async* {
-    final darts = state.darts.toMutableList();
+    final darts =
+        _inGameBloc.state.inputOrDarts.toOption().toNullable()!.toMutableList();
 
     if (darts.isNotEmpty()) {
       final newDarts = darts..removeAt(darts.size - 1);
 
-      yield state.copyWith(
-        focusedValue: null,
-        darts: newDarts,
-      );
       _inGameBloc.add(
-        InGameEvent.inputChanged(
-          newInput: newDarts.fold(0, (acc, dart) => acc + dart.points()),
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: right(newDarts),
         ),
       );
     }

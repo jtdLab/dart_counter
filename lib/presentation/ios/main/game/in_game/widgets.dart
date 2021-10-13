@@ -59,6 +59,31 @@ class _InGameWidget extends StatelessWidget {
         Expanded(
           flex: 55,
           child: PageView(
+            onPageChanged: (pageIndex) {
+              switch (pageIndex) {
+                case 0:
+                  context.read<InGameBloc>().add(
+                        InGameEvent.inputOrDartsChanged(
+                          newInputOrDarts: left(0),
+                        ),
+                      );
+                  break;
+                case 1:
+                  context.read<InGameBloc>().add(
+                        InGameEvent.inputOrDartsChanged(
+                          newInputOrDarts: right(const KtList.empty()),
+                        ),
+                      );
+                  break;
+                case 2:
+                  context.read<InGameBloc>().add(
+                        InGameEvent.inputOrDartsChanged(
+                          newInputOrDarts: right(const KtList.empty()),
+                        ),
+                      );
+                  break;
+              }
+            },
             children: const [
               _StandardInputArea(),
               _DetailedInputArea(),
@@ -650,56 +675,58 @@ class _StandardInputArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<StandardInputAreaBloc>(),
-      child: BlocListener<StandardInputAreaBloc, StandardInputAreaState>(
-        listener: (context, state) {
-          final showCheckoutDetails = state.showCheckoutDetails;
+      child: Builder(
+        builder: (context) =>
+            BlocListener<StandardInputAreaBloc, StandardInputAreaState>(
+          listener: (context, state) {
+            final showCheckoutDetails = state.showCheckoutDetails;
 
-          if (showCheckoutDetails) {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => BlocProvider(
-                create: (context) => getIt<CheckoutDetailsBloc>(),
-                child: const CheckoutDetailsModal(),
-              ),
-            );
-          }
-        },
-        child: AppColumn(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              flex: 10,
-              child: AppColumn(
-                spacing: size6(context),
-                children: [
-                  const Spacer(
-                    flex: 10,
-                  ),
-                  BlocBuilder<StandardInputAreaBloc, StandardInputAreaState>(
-                    builder: (context, state) => Expanded(
+            if (showCheckoutDetails) {
+              showCupertinoModalBottomSheet(
+                expand: true,
+                context: context,
+                builder: (context) => BlocProvider(
+                  create: (context) => getIt<CheckoutDetailsBloc>(),
+                  child: const CheckoutDetailsModal(),
+                ),
+              );
+            }
+          },
+          child: AppColumn(
+            spacing: size6(context),
+            children: [
+              Expanded(
+                flex: 10,
+                child: AppColumn(
+                  spacing: size6(context),
+                  children: [
+                    const Spacer(
+                      flex: 10,
+                    ),
+                    Expanded(
                       flex: 30,
                       child: _InputRow(
                         onUndoPressed: () => context
                             .read<StandardInputAreaBloc>()
-                            .add(const StandardInputAreaEvent
-                                .undoThrowPressed()),
-                        input: state.input,
-                        onPerformThrowPressed: () => context
-                            .read<StandardInputAreaBloc>()
-                            .add(const StandardInputAreaEvent
-                                .performThrowPressed()),
+                            .add(
+                              const StandardInputAreaEvent.undoThrowPressed(),
+                            ),
+                        onPerformThrowPressed: () =>
+                            context.read<StandardInputAreaBloc>().add(
+                                  const StandardInputAreaEvent
+                                      .performThrowPressed(),
+                                ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const Expanded(
-              flex: 30,
-              child: _StandardKeyBoard(),
-            )
-          ],
+              const Expanded(
+                flex: 30,
+                child: _StandardKeyBoard(),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -872,66 +899,62 @@ class _DetailedInputArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<DetailedInputAreaBloc>(),
-      child: BlocListener<DetailedInputAreaBloc, DetailedInputAreaState>(
-        listener: (context, state) {
-          final showCheckoutDetails = state.showCheckoutDetails;
+      child: Builder(
+        builder: (context) =>
+            BlocListener<DetailedInputAreaBloc, DetailedInputAreaState>(
+          listener: (context, state) {
+            final showCheckoutDetails = state.showCheckoutDetails;
 
-          if (showCheckoutDetails) {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => BlocProvider(
-                create: (context) => getIt<CheckoutDetailsBloc>(),
-                child: const CheckoutDetailsModal(),
+            if (showCheckoutDetails) {
+              showCupertinoModalBottomSheet(
+                expand: true,
+                context: context,
+                builder: (context) => BlocProvider(
+                  create: (context) => getIt<CheckoutDetailsBloc>(),
+                  child: const CheckoutDetailsModal(),
+                ),
+              );
+            }
+          },
+          child: AppColumn(
+            spacing: size6(context),
+            children: [
+              Expanded(
+                flex: flexTop,
+                child: AppColumn(
+                  spacing: size6(context),
+                  children: [
+                    BlocBuilder<InGameBloc, InGameState>(
+                      builder: (context, state) {
+                        return Expanded(
+                          child: _DartsDisplayer(
+                            darts: state.inputOrDarts.toOption().toNullable()!,
+                          ),
+                        );
+                      },
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: _InputRow(
+                        onUndoPressed: () => context
+                            .read<DetailedInputAreaBloc>()
+                            .add(const DetailedInputAreaEvent
+                                .undoThrowPressed()),
+                        onPerformThrowPressed: () => context
+                            .read<DetailedInputAreaBloc>()
+                            .add(const DetailedInputAreaEvent
+                                .performThrowPressed()),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            );
-          }
-        },
-        child: AppColumn(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              flex: flexTop,
-              child: AppColumn(
-                spacing: size6(context),
-                children: [
-                  BlocBuilder<DetailedInputAreaBloc, DetailedInputAreaState>(
-                    builder: (context, state) {
-                      return Expanded(
-                        flex: 1,
-                        child: _DartsDisplayer(
-                          darts: state.darts,
-                        ),
-                      );
-                    },
-                  ),
-                  BlocBuilder<DetailedInputAreaBloc, DetailedInputAreaState>(
-                    builder: (context, state) {
-                      return Expanded(
-                        flex: 3,
-                        child: _InputRow(
-                          onUndoPressed: () => context
-                              .read<DetailedInputAreaBloc>()
-                              .add(const DetailedInputAreaEvent
-                                  .undoThrowPressed()),
-                          input: state.darts
-                              .foldRight(0, (dart, acc) => acc + dart.points()),
-                          onPerformThrowPressed: () => context
-                              .read<DetailedInputAreaBloc>()
-                              .add(const DetailedInputAreaEvent
-                                  .performThrowPressed()),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              const Expanded(
+                flex: flexBottom,
+                child: _DetailedKeyBoard(),
               ),
-            ),
-            const Expanded(
-              flex: flexBottom,
-              child: _DetailedKeyBoard(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -1846,10 +1869,12 @@ class _SpeechInputArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<SpeechInputAreaBloc>(),
-      child: BlocListener<SpeechInputAreaBloc, SpeechInputAreaState>(
-        listener: (context, state) {
-          // TODO how to get darts on double speech ?
-          /**
+      child: Builder(
+        builder: (context) =>
+            BlocListener<SpeechInputAreaBloc, SpeechInputAreaState>(
+          listener: (context, state) {
+            // TODO how to get darts on double speech ?
+            /**
            * final showCheckoutDetails = state.showCheckoutDetails;
 
           if (showCheckoutDetails) {
@@ -1863,41 +1888,42 @@ class _SpeechInputArea extends StatelessWidget {
             );
           }
            */
-        },
-        child: AppColumn(
-          spacing: size6(context),
-          children: [
-            const Expanded(
-              flex: 3,
-              child: _SpeechKeyBoard(),
-            ),
-            Expanded(
-              child: AppColumn(
-                spacing: size6(context),
-                children: [
-                  const Spacer(),
-                  Expanded(
-                    flex: 3,
-                    child: AppRow(
-                      spacing: size6(context),
-                      children: [
-                        const Spacer(),
-                        Expanded(
-                          child: _UndoButton(
-                            onPressed: () => context
-                                .read<SpeechInputAreaBloc>()
-                                .add(const SpeechInputAreaEvent
-                                    .undoThrowPressed()),
-                          ),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                  ),
-                ],
+          },
+          child: AppColumn(
+            spacing: size6(context),
+            children: [
+              const Expanded(
+                flex: 3,
+                child: _SpeechKeyBoard(),
               ),
-            ),
-          ],
+              Expanded(
+                child: AppColumn(
+                  spacing: size6(context),
+                  children: [
+                    const Spacer(),
+                    Expanded(
+                      flex: 3,
+                      child: AppRow(
+                        spacing: size6(context),
+                        children: [
+                          const Spacer(),
+                          Expanded(
+                            child: _UndoButton(
+                              onPressed: () => context
+                                  .read<SpeechInputAreaBloc>()
+                                  .add(const SpeechInputAreaEvent
+                                      .undoThrowPressed()),
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1936,45 +1962,44 @@ class _OpticalInputArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<OpticalInputAreaBloc>(),
-      child: BlocListener<OpticalInputAreaBloc, OpticalInputAreaState>(
-        listener: (context, state) {
-          final showCheckoutDetails = state.showCheckoutDetails;
+      child: Builder(
+        builder: (context) =>
+            BlocListener<OpticalInputAreaBloc, OpticalInputAreaState>(
+          listener: (context, state) {
+            final showCheckoutDetails = state.showCheckoutDetails;
 
-          if (showCheckoutDetails) {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => BlocProvider(
-                create: (context) => getIt<CheckoutDetailsBloc>(),
-                child: const CheckoutDetailsModal(),
+            if (showCheckoutDetails) {
+              showCupertinoModalBottomSheet(
+                expand: true,
+                context: context,
+                builder: (context) => BlocProvider(
+                  create: (context) => getIt<CheckoutDetailsBloc>(),
+                  child: const CheckoutDetailsModal(),
+                ),
+              );
+            }
+          },
+          child: AppColumn(
+            spacing: size6(context),
+            children: [
+              BlocBuilder<InGameBloc, InGameState>(
+                builder: (context, state) => _DartsDisplayer(
+                  darts: state.inputOrDarts
+                      .toOption()
+                      .toNullable()!, // TODO maybe in the _DartDisplayer bloc builtit
+                ),
               ),
-            );
-          }
-        },
-        child: AppColumn(
-          spacing: size6(context),
-          children: [
-            BlocBuilder<OpticalInputAreaBloc, OpticalInputAreaState>(
-              builder: (context, state) => _DartsDisplayer(
-                darts: state.darts,
+              _InputRow(
+                onUndoPressed: () => context
+                    .read<OpticalInputAreaBloc>()
+                    .add(const OpticalInputAreaEvent.undoThrowPressed()),
+                onPerformThrowPressed: () => context
+                    .read<OpticalInputAreaBloc>()
+                    .add(const OpticalInputAreaEvent.performThrowPressed()),
               ),
-            ),
-            BlocBuilder<OpticalInputAreaBloc, OpticalInputAreaState>(
-              builder: (context, state) {
-                return _InputRow(
-                  onUndoPressed: () => context
-                      .read<OpticalInputAreaBloc>()
-                      .add(const OpticalInputAreaEvent.undoThrowPressed()),
-                  input: state.darts
-                      .foldRight(0, (dart, acc) => acc + dart.points()),
-                  onPerformThrowPressed: () => context
-                      .read<OpticalInputAreaBloc>()
-                      .add(const OpticalInputAreaEvent.performThrowPressed()),
-                );
-              },
-            ),
-            const _OpticalKeyBoard(),
-          ],
+              const _OpticalKeyBoard(),
+            ],
+          ),
         ),
       ),
     );
@@ -2878,37 +2903,43 @@ class _DartsDisplayer extends StatelessWidget {
 // TODO location in file strucuture
 class _InputRow extends StatelessWidget {
   final VoidCallback onUndoPressed;
-  final int input;
   final VoidCallback onPerformThrowPressed;
 
   const _InputRow({
     Key? key,
     required this.onUndoPressed,
-    required this.input,
     required this.onPerformThrowPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppRow(
-      spacing: size6(context),
-      children: [
-        Expanded(
-          child: _UndoButton(
-            onPressed: onUndoPressed,
-          ),
-        ),
-        Expanded(
-          child: _InputPointsDisplayer(
-            input: input,
-          ),
-        ),
-        Expanded(
-          child: _DoButton(
-            onPressed: onPerformThrowPressed,
-          ),
-        ),
-      ],
+    return BlocBuilder<InGameBloc, InGameState>(
+      builder: (context, state) {
+        return AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: _UndoButton(
+                onPressed: onUndoPressed,
+              ),
+            ),
+            Expanded(
+              child: _InputPointsDisplayer(
+                input: state.inputOrDarts.fold(
+                  (input) => input,
+                  (darts) =>
+                      darts.foldRight(0, (dart, acc) => acc + dart.points()),
+                ),
+              ),
+            ),
+            Expanded(
+              child: _DoButton(
+                onPressed: onPerformThrowPressed,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

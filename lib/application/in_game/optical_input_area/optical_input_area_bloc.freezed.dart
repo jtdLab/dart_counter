@@ -622,10 +622,8 @@ abstract class UndoDartPressed implements OpticalInputAreaEvent {
 class _$OpticalInputAreaStateTearOff {
   const _$OpticalInputAreaStateTearOff();
 
-  _OpticalInputAreaState call(
-      {required KtList<Dart> darts, required bool showCheckoutDetails}) {
+  _OpticalInputAreaState call({required bool showCheckoutDetails}) {
     return _OpticalInputAreaState(
-      darts: darts,
       showCheckoutDetails: showCheckoutDetails,
     );
   }
@@ -636,7 +634,6 @@ const $OpticalInputAreaState = _$OpticalInputAreaStateTearOff();
 
 /// @nodoc
 mixin _$OpticalInputAreaState {
-  KtList<Dart> get darts => throw _privateConstructorUsedError;
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -649,7 +646,7 @@ abstract class $OpticalInputAreaStateCopyWith<$Res> {
   factory $OpticalInputAreaStateCopyWith(OpticalInputAreaState value,
           $Res Function(OpticalInputAreaState) then) =
       _$OpticalInputAreaStateCopyWithImpl<$Res>;
-  $Res call({KtList<Dart> darts, bool showCheckoutDetails});
+  $Res call({bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -663,14 +660,9 @@ class _$OpticalInputAreaStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? darts = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
     return _then(_value.copyWith(
-      darts: darts == freezed
-          ? _value.darts
-          : darts // ignore: cast_nullable_to_non_nullable
-              as KtList<Dart>,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
@@ -686,7 +678,7 @@ abstract class _$OpticalInputAreaStateCopyWith<$Res>
           $Res Function(_OpticalInputAreaState) then) =
       __$OpticalInputAreaStateCopyWithImpl<$Res>;
   @override
-  $Res call({KtList<Dart> darts, bool showCheckoutDetails});
+  $Res call({bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -702,14 +694,9 @@ class __$OpticalInputAreaStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? darts = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
     return _then(_OpticalInputAreaState(
-      darts: darts == freezed
-          ? _value.darts
-          : darts // ignore: cast_nullable_to_non_nullable
-              as KtList<Dart>,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
@@ -721,25 +708,20 @@ class __$OpticalInputAreaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OpticalInputAreaState implements _OpticalInputAreaState {
-  const _$_OpticalInputAreaState(
-      {required this.darts, required this.showCheckoutDetails});
+  const _$_OpticalInputAreaState({required this.showCheckoutDetails});
 
-  @override
-  final KtList<Dart> darts;
   @override
   final bool showCheckoutDetails;
 
   @override
   String toString() {
-    return 'OpticalInputAreaState(darts: $darts, showCheckoutDetails: $showCheckoutDetails)';
+    return 'OpticalInputAreaState(showCheckoutDetails: $showCheckoutDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _OpticalInputAreaState &&
-            (identical(other.darts, darts) ||
-                const DeepCollectionEquality().equals(other.darts, darts)) &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.showCheckoutDetails, showCheckoutDetails)));
@@ -748,7 +730,6 @@ class _$_OpticalInputAreaState implements _OpticalInputAreaState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(darts) ^
       const DeepCollectionEquality().hash(showCheckoutDetails);
 
   @JsonKey(ignore: true)
@@ -759,12 +740,9 @@ class _$_OpticalInputAreaState implements _OpticalInputAreaState {
 }
 
 abstract class _OpticalInputAreaState implements OpticalInputAreaState {
-  const factory _OpticalInputAreaState(
-      {required KtList<Dart> darts,
-      required bool showCheckoutDetails}) = _$_OpticalInputAreaState;
+  const factory _OpticalInputAreaState({required bool showCheckoutDetails}) =
+      _$_OpticalInputAreaState;
 
-  @override
-  KtList<Dart> get darts => throw _privateConstructorUsedError;
   @override
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
   @override

@@ -25,39 +25,81 @@ class CheckoutDetailsBloc
   ) : super(
           CheckoutDetailsState(
             minDartsThrown: helpers.minDartsThrown(
-              points: _inGameBloc.state.input,
+              points: _inGameBloc.state.inputOrDarts.fold(
+                (input) => input,
+                (darts) => darts.iter.fold(
+                  0,
+                  (acc, dart) => acc + dart.points(),
+                ),
+              ),
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsThrown: helpers.maxDartsThrown(
-              points: _inGameBloc.state.input,
+              points: _inGameBloc.state.inputOrDarts.fold(
+                (input) => input,
+                (darts) => darts.iter.fold(
+                  0,
+                  (acc, dart) => acc + dart.points(),
+                ),
+              ),
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             minDartsOnDouble: helpers.minDartsOnDouble(
-              points: _inGameBloc.state.input,
+              points: _inGameBloc.state.inputOrDarts.fold(
+                (input) => input,
+                (darts) => darts.iter.fold(
+                  0,
+                  (acc, dart) => acc + dart.points(),
+                ),
+              ),
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             maxDartsOnDouble: min(
               helpers.maxDartsOnDouble(
-                points: _inGameBloc.state.input,
+                points: _inGameBloc.state.inputOrDarts.fold(
+                  (input) => input,
+                  (darts) => darts.iter.fold(
+                    0,
+                    (acc, dart) => acc + dart.points(),
+                  ),
+                ),
                 pointsLeft:
                     _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
               helpers.minDartsThrown(
-                points: _inGameBloc.state.input,
+                points: _inGameBloc.state.inputOrDarts.fold(
+                  (input) => input,
+                  (darts) => darts.iter.fold(
+                    0,
+                    (acc, dart) => acc + dart.points(),
+                  ),
+                ),
                 pointsLeft:
                     _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
               ),
             ),
             selectedDartsThrown: helpers.minDartsThrown(
-              points: _inGameBloc.state.input,
+              points: _inGameBloc.state.inputOrDarts.fold(
+                (input) => input,
+                (darts) => darts.iter.fold(
+                  0,
+                  (acc, dart) => acc + dart.points(),
+                ),
+              ),
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
             selectedDartsOnDouble: helpers.minDartsOnDouble(
-              points: _inGameBloc.state.input,
+              points: _inGameBloc.state.inputOrDarts.fold(
+                (input) => input,
+                (darts) => darts.iter.fold(
+                  0,
+                  (acc, dart) => acc + dart.points(),
+                ),
+              ),
               pointsLeft:
                   _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
             ),
@@ -88,11 +130,18 @@ class CheckoutDetailsBloc
     }
 
     final newMaxDartsOnDouble = min(
-        helpers.maxDartsOnDouble(
-          points: 0, // TODO _inputRowBloc.state.input,
-          pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
+      helpers.maxDartsOnDouble(
+        points: _inGameBloc.state.inputOrDarts.fold(
+          (input) => input,
+          (darts) => darts.iter.fold(
+            0,
+            (acc, dart) => acc + dart.points(),
+          ),
         ),
-        newSelectedDartsThrown);
+        pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
+      ),
+      newSelectedDartsThrown,
+    );
 
     yield state.copyWith(
       selectedDartsThrown: newSelectedDartsThrown,
@@ -113,15 +162,22 @@ class CheckoutDetailsBloc
     _inGameBloc.add(
       InGameEvent.performThrowPressed(
         t: Throw(
-          points: _inGameBloc.state.input,
+          points: _inGameBloc.state.inputOrDarts.fold(
+            (input) => input,
+            (darts) => darts.iter.fold(
+              0,
+              (acc, dart) => acc + dart.points(),
+            ),
+          ),
           dartsThrown: state.selectedDartsThrown,
           dartsOnDouble: state.selectedDartsOnDouble,
-          // TODO use darts here 2
+          darts: _inGameBloc.state.inputOrDarts.fold(
+            (input) => null,
+            (darts) => darts,
+          ),
         ),
       ),
     );
-
-    _inGameBloc.add(const InGameEvent.inputChanged(newInput: 0));
 
     yield state.copyWith(
       confirmed: true,

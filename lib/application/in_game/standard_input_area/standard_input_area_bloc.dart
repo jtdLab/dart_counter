@@ -5,6 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_counter/domain/play/helpers.dart' as helpers;
@@ -47,20 +48,20 @@ class StandardInputAreaBloc
         _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     final minDartsThrown = helpers.minDartsThrown(
-      points: state.input,
+      points: _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!,
       pointsLeft: pointsLeftCurrentTurn,
     );
     final maxDartsThrown = helpers.maxDartsThrown(
-      points: state.input,
+      points: _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
     final minDartsOnDouble = helpers.minDartsOnDouble(
-      points: state.input,
+      points: _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!,
       pointsLeft: pointsLeftCurrentTurn,
     );
     final maxDartsOnDouble = helpers.maxDartsOnDouble(
-      points: state.input,
+      points: _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
@@ -74,14 +75,12 @@ class StandardInputAreaBloc
       _inGameBloc.add(
         InGameEvent.performThrowPressed(
           t: Throw(
-            points: state.input,
+            points:
+                _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!,
             dartsThrown: minDartsThrown,
             dartsOnDouble: minDartsOnDouble,
           ),
         ),
-      );
-      yield state.copyWith(
-        input: 0,
       );
     }
   }
@@ -92,12 +91,9 @@ class StandardInputAreaBloc
 
     final isFinish = helpers.isFinish(points: pointsLeftCurrentTurn);
     if (isFinish) {
-      yield state.copyWith(
-        input: pointsLeftCurrentTurn,
-      );
       _inGameBloc.add(
-        InGameEvent.inputChanged(
-          newInput: pointsLeftCurrentTurn,
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: left(pointsLeftCurrentTurn),
         ),
       );
 
@@ -135,23 +131,18 @@ class StandardInputAreaBloc
             ),
           ),
         );
-        yield state.copyWith(
-          input: 0,
-        );
       }
     }
   }
 
   Stream<StandardInputAreaState> _mapErasePressedToState() async* {
-    final currentInput = state.input;
+    final currentInput =
+        _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!;
 
     if (currentInput < 10) {
-      yield state.copyWith(
-        input: 0,
-      );
       _inGameBloc.add(
-        const InGameEvent.inputChanged(
-          newInput: 0,
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: left(0),
         ),
       );
     } else {
@@ -159,12 +150,10 @@ class StandardInputAreaBloc
       final newInput = int.parse(
         inputString.substring(0, inputString.length - 1),
       );
-      yield state.copyWith(
-        input: newInput,
-      );
+
       _inGameBloc.add(
-        InGameEvent.inputChanged(
-          newInput: newInput,
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: left(newInput),
         ),
       );
     }
@@ -176,7 +165,8 @@ class StandardInputAreaBloc
     final pointsLeftCurrentTurn =
         _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
-    final currentInput = state.input;
+    final currentInput =
+        _inGameBloc.state.inputOrDarts.swap().toOption().toNullable()!;
     final newInput = int.parse(
       currentInput.toString() + event.digit.toString(),
     );
@@ -187,12 +177,9 @@ class StandardInputAreaBloc
     );
 
     if (valid) {
-      yield state.copyWith(
-        input: newInput,
-      );
       _inGameBloc.add(
-        InGameEvent.inputChanged(
-          newInput: newInput,
+        InGameEvent.inputOrDartsChanged(
+          newInputOrDarts: left(newInput),
         ),
       );
     }

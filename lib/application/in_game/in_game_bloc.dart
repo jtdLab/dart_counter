@@ -3,13 +3,16 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/injection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'in_game_bloc.freezed.dart';
 part 'in_game_event.dart';
@@ -33,7 +36,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
           _playBloc.state.maybeMap(
             gameInProgress: (gameInProgress) => InGameState.initial(
               gameSnapshot: gameInProgress.gameSnapshot,
-              input: 0,
+              inputOrDarts: left(0),
             ),
             orElse: () => throw Error(), // TODO name better
           ),
@@ -53,7 +56,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       gameCanceled: (_) => _mapGameCanceledToState(),
       undoThrowPressed: (_) => _mapUndoThrowPressedToState(),
       performThrowPressed: (event) => _mapPerformThrowPressedToState(event),
-      inputChanged: (event) => _mapInputChangedToState(event),
+      inputOrDartsChanged: (event) => _mapInputOrDartsChangedToState(event),
       gameReceived: (event) => _mapGameReceivedToState(event),
     );
   }
@@ -72,6 +75,8 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   }
 
   Stream<InGameState> _mapUndoThrowPressedToState() async* {
+    // TODO maybe add last throw and cut last input digit or if darts 
+    // remove last darts and preset inputOrDarts to this value
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
       final online = playState.gameSnapshot is OnlineGameSnapshot;
@@ -94,9 +99,14 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       final t = event.t;
 
       if (online) {
-        _playOnlineFacade.performThrow(t: t);
+        final failureOrUnit = await _playOnlineFacade.performThrow(t: t);
+        if (failureOrUnit.isRight()) {
+          yield state.copyWith(inputOrDarts: left(0));
+        }
       } else {
         _playOfflineFacade.performThrow(t: t);
+        // TODO wait for result if throw as sucess ful
+        yield state.copyWith(inputOrDarts: left(0));
       }
     }
   }
@@ -146,10 +156,10 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
      */
   }
 
-  Stream<InGameState> _mapInputChangedToState(
-    InputChanged event,
+  Stream<InGameState> _mapInputOrDartsChangedToState(
+    InputOrDartsChanged event,
   ) async* {
-    yield state.copyWith(input: event.newInput);
+    yield state.copyWith(inputOrDarts: event.newInputOrDarts);
   }
 
   @override

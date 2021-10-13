@@ -8,9 +8,9 @@ class InGameEvent with _$InGameEvent {
   const factory InGameEvent.performThrowPressed({
     required Throw t,
   }) = PerformThrowPressed;
-  const factory InGameEvent.inputChanged({
-    required int newInput,
-  }) = InputChanged;
+  const factory InGameEvent.inputOrDartsChanged({
+    required Either<int, KtList<Dart>> newInputOrDarts,
+  }) = InputOrDartsChanged;
   const factory InGameEvent.gameReceived({
     required GameSnapshot gameSnapshot,
   }) = GameReceived;

@@ -764,10 +764,8 @@ abstract class DigitPressed implements StandardInputAreaEvent {
 class _$StandardInputAreaStateTearOff {
   const _$StandardInputAreaStateTearOff();
 
-  _StandardInputAreaState call(
-      {required int input, required bool showCheckoutDetails}) {
+  _StandardInputAreaState call({required bool showCheckoutDetails}) {
     return _StandardInputAreaState(
-      input: input,
       showCheckoutDetails: showCheckoutDetails,
     );
   }
@@ -778,7 +776,6 @@ const $StandardInputAreaState = _$StandardInputAreaStateTearOff();
 
 /// @nodoc
 mixin _$StandardInputAreaState {
-  int get input => throw _privateConstructorUsedError;
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -791,7 +788,7 @@ abstract class $StandardInputAreaStateCopyWith<$Res> {
   factory $StandardInputAreaStateCopyWith(StandardInputAreaState value,
           $Res Function(StandardInputAreaState) then) =
       _$StandardInputAreaStateCopyWithImpl<$Res>;
-  $Res call({int input, bool showCheckoutDetails});
+  $Res call({bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -805,14 +802,9 @@ class _$StandardInputAreaStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? input = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
     return _then(_value.copyWith(
-      input: input == freezed
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as int,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
@@ -828,7 +820,7 @@ abstract class _$StandardInputAreaStateCopyWith<$Res>
           $Res Function(_StandardInputAreaState) then) =
       __$StandardInputAreaStateCopyWithImpl<$Res>;
   @override
-  $Res call({int input, bool showCheckoutDetails});
+  $Res call({bool showCheckoutDetails});
 }
 
 /// @nodoc
@@ -844,14 +836,9 @@ class __$StandardInputAreaStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? input = freezed,
     Object? showCheckoutDetails = freezed,
   }) {
     return _then(_StandardInputAreaState(
-      input: input == freezed
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as int,
       showCheckoutDetails: showCheckoutDetails == freezed
           ? _value.showCheckoutDetails
           : showCheckoutDetails // ignore: cast_nullable_to_non_nullable
@@ -863,25 +850,20 @@ class __$StandardInputAreaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_StandardInputAreaState implements _StandardInputAreaState {
-  const _$_StandardInputAreaState(
-      {required this.input, required this.showCheckoutDetails});
+  const _$_StandardInputAreaState({required this.showCheckoutDetails});
 
-  @override
-  final int input;
   @override
   final bool showCheckoutDetails;
 
   @override
   String toString() {
-    return 'StandardInputAreaState(input: $input, showCheckoutDetails: $showCheckoutDetails)';
+    return 'StandardInputAreaState(showCheckoutDetails: $showCheckoutDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _StandardInputAreaState &&
-            (identical(other.input, input) ||
-                const DeepCollectionEquality().equals(other.input, input)) &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
                 const DeepCollectionEquality()
                     .equals(other.showCheckoutDetails, showCheckoutDetails)));
@@ -890,7 +872,6 @@ class _$_StandardInputAreaState implements _StandardInputAreaState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(input) ^
       const DeepCollectionEquality().hash(showCheckoutDetails);
 
   @JsonKey(ignore: true)
@@ -901,12 +882,9 @@ class _$_StandardInputAreaState implements _StandardInputAreaState {
 }
 
 abstract class _StandardInputAreaState implements StandardInputAreaState {
-  const factory _StandardInputAreaState(
-      {required int input,
-      required bool showCheckoutDetails}) = _$_StandardInputAreaState;
+  const factory _StandardInputAreaState({required bool showCheckoutDetails}) =
+      _$_StandardInputAreaState;
 
-  @override
-  int get input => throw _privateConstructorUsedError;
   @override
   bool get showCheckoutDetails => throw _privateConstructorUsedError;
   @override
