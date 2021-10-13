@@ -18,11 +18,19 @@ class _SuccessWidget extends StatelessWidget {
         ),
         SizedBox(
           height: 4 * (size40(context) + size12(context)),
-          child: AutoSizeText(
-            LocaleKeys.emailSent.tr().toUpperCase(),
-            maxLines: 1,
-            minFontSize: 8,
-            maxFontSize: maxFontSizeNormal(context),
+          child: Column(
+            children: [
+              AutoSizeText(
+                LocaleKeys.emailSent.tr().toUpperCase(),
+                maxLines: 1,
+                minFontSize: 8,
+                maxFontSize: maxFontSizeNormal(context),
+              ),
+              SizedBox(
+                height: spacerLarge(context),
+              ),
+              Image.asset(AppImages.checkmarkNew)
+            ],
           ),
         ),
         AppPrimaryButton(

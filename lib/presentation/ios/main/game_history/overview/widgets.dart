@@ -60,7 +60,7 @@ class _GameHistoryCard extends StatelessWidget {
         context.router.push(const DetailsPageRoute());
       },
       child: AppCard(
-        headerBodySpacing: size6(context),
+        headerBodySpacing: 0,
         leading: AutoSizeText(
           game.description().toUpperCase(),
           minFontSize: 8,

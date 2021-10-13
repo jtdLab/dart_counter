@@ -51,14 +51,16 @@ class _ProfileWidget extends StatelessWidget {
 
         return Column(
           children: [
-            SizedBox(
+            /**
+          *    SizedBox(
               height: spacerSmall(context),
             ),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
+          */
             SizedBox(
-              height: spacerLarge(context),
+              height: spacerSmall(context),
             ),
             Container(
               height: size50(context),
@@ -82,10 +84,10 @@ class _ProfileWidget extends StatelessWidget {
             Container(
               height: 500,
               child: PageView(
-                children: [
-                  const _PageX(),
-                  const _PageX(),
-                  const _PageX(),
+                children: const [
+                  _PageX(),
+                  _PageX(),
+                  _PageX(),
                 ],
               ),
             ),
