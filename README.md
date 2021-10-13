@@ -44,6 +44,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // handle error thrown by behaivour subject.value
 // maybe splitt big widgets.dart file into sub files with part and part of e.g ingame/widgets.dart
 
+// TODO clean up font sizes and use only autosizeText
 
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 

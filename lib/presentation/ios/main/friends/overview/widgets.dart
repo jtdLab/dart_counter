@@ -90,9 +90,7 @@ class _FriendRequestCardItem extends StatelessWidget {
                       ),
                     ),
               ),
-              SizedBox(
-                width: spacerNormal(context),
-              ),
+              
               AppIconButton(
                 padding: EdgeInsets.zero,
                 icon: Image.asset(AppImages.xMarkFilledNew),

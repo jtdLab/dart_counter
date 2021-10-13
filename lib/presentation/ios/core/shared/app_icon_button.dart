@@ -20,7 +20,7 @@ class AppIconButton extends StatelessWidget {
       child: CupertinoButton(
         padding: padding ?? EdgeInsets.all(size6(context)),
         onPressed: onPressed,
-        child: icon,
+        child: icon, // TODO wrap with sized box to and give good size
       ),
     );
   }
