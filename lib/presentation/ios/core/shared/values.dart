@@ -130,8 +130,8 @@ double detailedModalMarginBottom(BuildContext context) => responsiveValue(
 
 EdgeInsets modalPagePadding(BuildContext context) => responsiveValue(
       context,
-      defaultValue: const EdgeInsets.fromLTRB(40, 20, 40, 5),
-      mobileSmall: const EdgeInsets.fromLTRB(30, 20, 30, 5),
+      defaultValue: const EdgeInsets.fromLTRB(20, 20, 20, 5),
+      mobileSmall: const EdgeInsets.fromLTRB(10, 20, 10, 5),
     );
 
 double border4(BuildContext context) => responsiveValue(

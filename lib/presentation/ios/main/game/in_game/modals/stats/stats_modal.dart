@@ -6,9 +6,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 import 'package:dart_counter/presentation/ios/main/shared.dart';
 
-// SHARED WIDGETS
-import './../../../shared.dart';
-
 // LOCAL WIDGETS
 part 'widgets.dart';
 
@@ -24,7 +21,7 @@ class StatsModal extends StatelessWidget {
         return AppPage(
           padding: modalPagePadding(context),
           //child: const SingleChildScrollView(
-            child: _StatsWidget(),
+          child: const _StatsWidget(),
           //),
         );
       },
