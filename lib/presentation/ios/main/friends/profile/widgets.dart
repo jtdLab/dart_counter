@@ -24,9 +24,9 @@ class _NameDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
+    return BlocBuilder<FriendsBloc, FriendsState>(
       builder: (context, state) {
-        final username = state.user.profile.username.getOrCrash();
+        final username = state.selectedFriend!.profile.username.getOrCrash();
 
         return Text(
           username.toUpperCase(),
@@ -44,9 +44,9 @@ class _FriendsProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
+    return BlocBuilder<FriendsBloc, FriendsState>(
       builder: (context, state) {
-        final photoUrl = state.user.profile.photoUrl;
+        final photoUrl = state.selectedFriend!.profile.photoUrl;
 
         return Column(
           children: [
@@ -77,10 +77,10 @@ class _CareerStatsDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
+    return BlocBuilder<FriendsBloc, FriendsState>(
       builder: (context, state) {
         final careerStatsOnline =
-            (state as ProfileInitial).user.profile.careerStatsOnline;
+            (state as FriendsInitial).selectedFriend!.profile.careerStatsOnline;
 
         return AppColumn(
           spacing: size6(context),
@@ -100,6 +100,7 @@ class _CareerStatsDisplayer extends StatelessWidget {
               title: LocaleKeys.firstNine.tr().toUpperCase(),
               trend: careerStatsOnline.firstNineTrend,
             ),
+            // TODO
             _CareerStatsItem(
               value: '19',
               title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),

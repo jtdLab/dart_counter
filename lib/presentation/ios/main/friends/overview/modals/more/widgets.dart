@@ -23,20 +23,15 @@ class _MoreWidget extends StatelessWidget {
             ),
             AppPrimaryButton(
               //text: LocaleKeys.takePhoto.tr().toUpperCase(),
-              text: 'Show Profile'.toUpperCase(),
+              text: 'Show Profile'.toUpperCase(), // TODO
               onPressed: () {
-                context.read<MoreBloc>().add(
-                      MoreEvent.showProfilePressed(
-                        friend:
-                            context.read<FriendsBloc>().state.selectedFriend!,
-                      ),
-                    ); // TODO real user
                 context.router.pop();
+                context.router.push(const FriendsProfilePageRoute());
               },
             ),
             AppPrimaryButton(
               // text: LocaleKeys.choosePhoto.tr().toUpperCase(),
-              text: 'Remove'.toUpperCase(),
+              text: 'Remove'.toUpperCase(), // TODO
               onPressed: () {
                 context.read<MoreBloc>().add(
                       MoreEvent.removePressed(

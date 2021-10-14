@@ -17,12 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MoreEventTearOff {
   const _$MoreEventTearOff();
 
-  ShowProfilePressed showProfilePressed({required Friend friend}) {
-    return ShowProfilePressed(
-      friend: friend,
-    );
-  }
-
   RemovePressed removePressed({required Friend friend}) {
     return RemovePressed(
       friend: friend,
@@ -39,38 +33,32 @@ mixin _$MoreEvent {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Friend friend) showProfilePressed,
     required TResult Function(Friend friend) removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
     TResult Function(Friend friend)? removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
     TResult Function(Friend friend)? removePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ShowProfilePressed value) showProfilePressed,
     required TResult Function(RemovePressed value) removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
     TResult Function(RemovePressed value)? removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
     TResult Function(RemovePressed value)? removePressed,
     required TResult orElse(),
   }) =>
@@ -116,148 +104,6 @@ class _$MoreEventCopyWithImpl<$Res> implements $MoreEventCopyWith<$Res> {
       return _then(_value.copyWith(friend: value));
     });
   }
-}
-
-/// @nodoc
-abstract class $ShowProfilePressedCopyWith<$Res>
-    implements $MoreEventCopyWith<$Res> {
-  factory $ShowProfilePressedCopyWith(
-          ShowProfilePressed value, $Res Function(ShowProfilePressed) then) =
-      _$ShowProfilePressedCopyWithImpl<$Res>;
-  @override
-  $Res call({Friend friend});
-
-  @override
-  $FriendCopyWith<$Res> get friend;
-}
-
-/// @nodoc
-class _$ShowProfilePressedCopyWithImpl<$Res>
-    extends _$MoreEventCopyWithImpl<$Res>
-    implements $ShowProfilePressedCopyWith<$Res> {
-  _$ShowProfilePressedCopyWithImpl(
-      ShowProfilePressed _value, $Res Function(ShowProfilePressed) _then)
-      : super(_value, (v) => _then(v as ShowProfilePressed));
-
-  @override
-  ShowProfilePressed get _value => super._value as ShowProfilePressed;
-
-  @override
-  $Res call({
-    Object? friend = freezed,
-  }) {
-    return _then(ShowProfilePressed(
-      friend: friend == freezed
-          ? _value.friend
-          : friend // ignore: cast_nullable_to_non_nullable
-              as Friend,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ShowProfilePressed implements ShowProfilePressed {
-  const _$ShowProfilePressed({required this.friend});
-
-  @override
-  final Friend friend;
-
-  @override
-  String toString() {
-    return 'MoreEvent.showProfilePressed(friend: $friend)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ShowProfilePressed &&
-            (identical(other.friend, friend) ||
-                const DeepCollectionEquality().equals(other.friend, friend)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friend);
-
-  @JsonKey(ignore: true)
-  @override
-  $ShowProfilePressedCopyWith<ShowProfilePressed> get copyWith =>
-      _$ShowProfilePressedCopyWithImpl<ShowProfilePressed>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Friend friend) showProfilePressed,
-    required TResult Function(Friend friend) removePressed,
-  }) {
-    return showProfilePressed(friend);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
-    TResult Function(Friend friend)? removePressed,
-  }) {
-    return showProfilePressed?.call(friend);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
-    TResult Function(Friend friend)? removePressed,
-    required TResult orElse(),
-  }) {
-    if (showProfilePressed != null) {
-      return showProfilePressed(friend);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ShowProfilePressed value) showProfilePressed,
-    required TResult Function(RemovePressed value) removePressed,
-  }) {
-    return showProfilePressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
-    TResult Function(RemovePressed value)? removePressed,
-  }) {
-    return showProfilePressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
-    TResult Function(RemovePressed value)? removePressed,
-    required TResult orElse(),
-  }) {
-    if (showProfilePressed != null) {
-      return showProfilePressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ShowProfilePressed implements MoreEvent {
-  const factory ShowProfilePressed({required Friend friend}) =
-      _$ShowProfilePressed;
-
-  @override
-  Friend get friend => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  $ShowProfilePressedCopyWith<ShowProfilePressed> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -329,7 +175,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Friend friend) showProfilePressed,
     required TResult Function(Friend friend) removePressed,
   }) {
     return removePressed(friend);
@@ -338,7 +183,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
     TResult Function(Friend friend)? removePressed,
   }) {
     return removePressed?.call(friend);
@@ -347,7 +191,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Friend friend)? showProfilePressed,
     TResult Function(Friend friend)? removePressed,
     required TResult orElse(),
   }) {
@@ -360,7 +203,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ShowProfilePressed value) showProfilePressed,
     required TResult Function(RemovePressed value) removePressed,
   }) {
     return removePressed(this);
@@ -369,7 +211,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
     TResult Function(RemovePressed value)? removePressed,
   }) {
     return removePressed?.call(this);
@@ -378,7 +219,6 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ShowProfilePressed value)? showProfilePressed,
     TResult Function(RemovePressed value)? removePressed,
     required TResult orElse(),
   }) {
