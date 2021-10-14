@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 import 'package:dart_counter/presentation/ios/main/shared.dart';
+import 'package:flutter/material.dart';
 
 // LOCAL WIDGETS
 part 'widgets.dart';

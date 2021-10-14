@@ -30,7 +30,7 @@ class _ProfileWidget extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     // needed cause pageControllers page cant be accessed before pageview is initialized
-    final pageIndex = useState(0);
+    final pageIndex = useState(0); // TODO move this to profile bloc
 
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
@@ -70,7 +70,8 @@ class _ProfileWidget extends HookWidget {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeOut,
                         ),
-                        icon: Image.asset(AppImages.chevronWhiteBackNew),
+                        icon: Image.asset(
+                            AppImages.chevronWhiteBackNew), // TODO icon size
                       ),
                     ),
                     const Spacer(),
@@ -99,7 +100,8 @@ class _ProfileWidget extends HookWidget {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeOut,
                         ),
-                        icon: Image.asset(AppImages.chevronWhiteForwardNew),
+                        icon: Image.asset(
+                            AppImages.chevronWhiteForwardNew), // TODO icon size
                       ),
                     ),
                   ],

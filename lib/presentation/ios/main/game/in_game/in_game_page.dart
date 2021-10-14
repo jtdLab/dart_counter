@@ -1,12 +1,11 @@
 // CORE
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
 import 'dart:math' as math;
-import 'package:dartz/dartz.dart' hide State;
 
 // BLOCS
+import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';

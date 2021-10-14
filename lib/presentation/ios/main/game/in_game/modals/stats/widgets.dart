@@ -14,11 +14,11 @@ class _StatsWidget extends StatelessWidget {
 
         return Column(
           children: [
-            // TODO ROTZ LAYOUT
             Expanded(
               flex: 9,
               child: Container(
                 decoration: BoxDecoration(
+                  color: AppColors.red,
                   border: Border.all(
                     width: border4(context),
                   ),
@@ -33,10 +33,7 @@ class _StatsWidget extends StatelessWidget {
                 ),
               ),
             ),
-            if (responsiveValue(context,
-                defaultValue: false, mobileLarge: true)) ...[
-              const Spacer(),
-            ]
+            const Spacer(),
           ],
         );
       },
