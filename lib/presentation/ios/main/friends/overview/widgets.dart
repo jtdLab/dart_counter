@@ -161,6 +161,12 @@ class _FriendsCardItem extends StatelessWidget {
           const Spacer(),
           AppIconButton(
             onPressed: () {
+              context.read<FriendsBloc>().add(
+                    FriendsEvent.friendSelected(
+                      friend: friend,
+                    ),
+                  ); // TODO real user
+
               showCupertinoModalBottomSheet(
                 backgroundColor: Colors.white70,
                 context: context,

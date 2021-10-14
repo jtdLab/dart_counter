@@ -25,15 +25,10 @@ class _MoreWidget extends StatelessWidget {
               //text: LocaleKeys.takePhoto.tr().toUpperCase(),
               text: 'Show Profile'.toUpperCase(),
               onPressed: () {
-                context.read<FriendsBloc>().add(
-                      FriendsEvent.friendSelected(
-                        friend: Friend.dummy(),
-                      ),
-                    ); // TODO real user
-
                 context.read<MoreBloc>().add(
                       MoreEvent.showProfilePressed(
-                        friend: Friend.dummy(),
+                        friend:
+                            context.read<FriendsBloc>().state.selectedFriend!,
                       ),
                     ); // TODO real user
                 context.router.pop();
@@ -45,7 +40,8 @@ class _MoreWidget extends StatelessWidget {
               onPressed: () {
                 context.read<MoreBloc>().add(
                       MoreEvent.removePressed(
-                        friend: Friend.dummy(),
+                        friend:
+                            context.read<FriendsBloc>().state.selectedFriend!,
                       ),
                     ); // TODO real user
                 context.router.pop();
