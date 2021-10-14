@@ -20,45 +20,34 @@ class _NameDisplayer extends StatelessWidget {
   }
 }
 
-class _GameHistoryButton extends StatelessWidget {
-  const _GameHistoryButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppNavigationBarButton(
-      noPaddingRight: true,
-      onPressed: () => context.router.push(const GameHistoryFlowRoute()),
-      child: Image.asset(
-        AppImages.clockNew,
-      ),
-    );
-  }
-}
-
 // BODY
-class _ProfileWidget extends StatelessWidget {
+class _ProfileWidget extends HookWidget {
   const _ProfileWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final pageController = usePageController();
+    // needed cause pageControllers page cant be accessed before pageview is initialized
+    final pageIndex = useState(0);
+
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        final photoUrl = state.user.profile.photoUrl;
+        final careerStatsAll = state.careerStatsAll;
+        final careerStatsOnline = state.user.profile.careerStatsOnline;
+        final careerStatsOffline = state.user.careerStatsOffline;
 
         return Column(
           children: [
             /**
-          *    SizedBox(
+            SizedBox(
               height: spacerSmall(context),
             ),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-          */
+            */
             SizedBox(
               height: spacerSmall(context),
             ),
@@ -70,109 +59,138 @@ class _ProfileWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Visibility(
+                      visible: pageIndex.value != 0,
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      child: AppIconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () => pageController.previousPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeOut,
+                        ),
+                        icon: Image.asset(AppImages.chevronWhiteBackNew),
+                      ),
+                    ),
+                    const Spacer(),
                     Text(
-                      'Offline'.toUpperCase(),
+                      pageIndex.value == 0
+                          ? LocaleKeys.general
+                              .tr()
+                              .toUpperCase() // TODO better string
+                          : pageIndex.value == 1
+                              ? LocaleKeys.online.tr().toUpperCase()
+                              : LocaleKeys.offline.tr().toUpperCase(),
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
                           .copyWith(color: AppColors.white),
                     ),
+                    const Spacer(),
+                    Visibility(
+                      visible: pageIndex.value != 2,
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      child: AppIconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () => pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeOut,
+                        ),
+                        icon: Image.asset(AppImages.chevronWhiteForwardNew),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            Container(
-              height: 500,
+            SizedBox(
+              height: spacerSmall(context),
+            ),
+            SizedBox(
+              height:
+                  spacerSmall(context) + 8 * (size6(context) + size50(context)),
               child: PageView(
-                children: const [
-                  _PageX(),
-                  _PageX(),
-                  _PageX(),
+                onPageChanged: (newPageIndex) {
+                  pageIndex.value = newPageIndex;
+                },
+                controller: pageController,
+                children: [
+                  _CareerStatsDisplayer(
+                    careerStats: careerStatsAll,
+                  ),
+                  _CareerStatsDisplayer(
+                    careerStats: careerStatsOnline,
+                  ),
+                  _CareerStatsDisplayer(
+                    careerStats: careerStatsOffline,
+                  ),
                 ],
               ),
             ),
             AppActionButton.normal(
-              text: 'Game History',
-              onPressed: () {},
+              text: LocaleKeys.gameHistory.tr().toUpperCase(),
+              onPressed: () =>
+                  context.router.push(const GameHistoryFlowRoute()),
             ),
           ],
         );
       },
-    );
-  }
-}
-
-// TODO sort in and rename refactor
-class _PageX extends StatelessWidget {
-  const _PageX({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // TODO extract to widget
-        SizedBox(
-          height: spacerSmall(context),
-        ),
-        const _CareerStatsDisplayer(),
-      ],
     );
   }
 }
 
 class _CareerStatsDisplayer extends StatelessWidget {
+  final CareerStats careerStats;
+
   const _CareerStatsDisplayer({
     Key? key,
+    required this.careerStats,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (context, state) {
-        final careerStatsOnline =
-            (state as ProfileInitial).user.profile.careerStatsOnline;
-
-        return AppColumn(
-          spacing: size6(context),
-          children: [
-            _CareerStatsItem(
-              title: LocaleKeys.averrage.tr().toUpperCase(),
-              value: careerStatsOnline.average.toStringAsFixed(2),
-              trend: careerStatsOnline.averageTrend,
-            ),
-            _CareerStatsItem(
-              title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
-              value: careerStatsOnline.checkoutPercentage.toStringAsFixed(2),
-              trend: careerStatsOnline.checkoutPercentageTrend,
-            ),
-            _CareerStatsItem(
-              value: careerStatsOnline.firstNine.toStringAsFixed(2),
-              title: LocaleKeys.firstNine.tr().toUpperCase(),
-              trend: careerStatsOnline.firstNineTrend,
-            ),
-            _CareerStatsItem(
-              value: '19',
-              title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
-            ),
-            const _CareerStatsItem(
-              title: '180s',
-              value: '156',
-            ),
-            _CareerStatsItem(
-              value: careerStatsOnline.games.toString(),
-              title: LocaleKeys.games.tr().toUpperCase(),
-            ),
-            _CareerStatsItem(
-              value: careerStatsOnline.wins.toString(),
-              title: LocaleKeys.wins.tr().toUpperCase(),
-            ),
-            _CareerStatsItem(
-              value: careerStatsOnline.defeats.toString(),
-              title: LocaleKeys.defeats.tr().toUpperCase(),
-            ),
-          ],
-        );
-      },
+    return AppColumn(
+      spacing: size6(context),
+      children: [
+        _CareerStatsItem(
+          title: LocaleKeys.averrage.tr().toUpperCase(),
+          value: careerStats.average.toStringAsFixed(2),
+          trend: careerStats.averageTrend,
+        ),
+        _CareerStatsItem(
+          title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+          value: careerStats.checkoutPercentage.toStringAsFixed(2),
+          trend: careerStats.checkoutPercentageTrend,
+        ),
+        _CareerStatsItem(
+          value: careerStats.firstNine.toStringAsFixed(2),
+          title: LocaleKeys.firstNine.tr().toUpperCase(),
+          trend: careerStats.firstNineTrend,
+        ),
+        _CareerStatsItem(
+          value: '19',
+          title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
+        ),
+        const _CareerStatsItem(
+          title: '180s',
+          value: '156',
+        ),
+        _CareerStatsItem(
+          value: careerStats.games.toString(),
+          title: LocaleKeys.games.tr().toUpperCase(),
+        ),
+        _CareerStatsItem(
+          value: careerStats.wins.toString(),
+          title: LocaleKeys.wins.tr().toUpperCase(),
+        ),
+        _CareerStatsItem(
+          value: careerStats.defeats.toString(),
+          title: LocaleKeys.defeats.tr().toUpperCase(),
+        ),
+      ],
     );
   }
 }

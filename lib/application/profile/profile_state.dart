@@ -4,5 +4,6 @@ part of 'profile_bloc.dart';
 class ProfileState with _$ProfileState {
   const factory ProfileState.initial({
     required User user,
+    required CareerStats careerStatsAll,
   }) = ProfileInitial;
 }

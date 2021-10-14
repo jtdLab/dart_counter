@@ -46,6 +46,7 @@ flutter pub run easy_localization:generate -S assets/languages
 
 // TODO clean up font sizes and use only autosizeText
 // TODO atm input area blocs have to sync input value of ingamebloc thats not good
+// If detailed keyboard checkout details modal gets shown for no reason look handy screenshot
 
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 

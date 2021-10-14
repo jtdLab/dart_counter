@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/injection.dart';
@@ -13,7 +14,8 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 @lazySingleton
-class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with AutoResetLazySingleton {
+class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
+    with AutoResetLazySingleton {
   final IUserFacade _userFacade;
 
   StreamSubscription? _userSubscription;
@@ -23,7 +25,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with AutoResetLazySin
   ) : super(
           _userFacade.getUser()?.fold(
                     (failure) => throw Error(),
-                    (user) => ProfileState.initial(user: user),
+                    (user) => ProfileState.initial(
+                      user: user,
+                      careerStatsAll: _calcCareerStatsAll(
+                        careerStatsOnline: user.profile.careerStatsOnline,
+                        careerStatsOffline: user.careerStatsOffline,
+                      ),
+                    ),
                   ) ??
               (throw Error()),
         ) {
@@ -47,13 +55,61 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with AutoResetLazySin
   Stream<ProfileState> _mapWatchUserReceivedToState(
     UserReceived event,
   ) async* {
-    yield ProfileState.initial(user: event.user);
+    final user = event.user;
+    yield ProfileState.initial(
+      user: user,
+      careerStatsAll: _calcCareerStatsAll(
+        careerStatsOnline: user.profile.careerStatsOnline,
+        careerStatsOffline: user.careerStatsOffline,
+      ),
+    );
+  }
+
+  static CareerStats _calcCareerStatsAll({
+    required CareerStats careerStatsOnline,
+    required CareerStats careerStatsOffline,
+  }) {
+    final onlineGames = careerStatsOnline.games;
+    final offlineGames = careerStatsOffline.games;
+    final allGames = onlineGames + offlineGames;
+
+    if (allGames == 0) {
+      return const CareerStats(
+        average: 0,
+        averageTrend: Trend.none,
+        checkoutPercentage: 0,
+        checkoutPercentageTrend: Trend.none,
+        firstNine: 0,
+        firstNineTrend: Trend.none,
+        games: 0,
+        wins: 0,
+        defeats: 0,
+      );
+    }
+
+    return CareerStats(
+      average: (careerStatsOnline.average * onlineGames +
+              careerStatsOffline.average * offlineGames) /
+          allGames,
+      averageTrend: Trend.none,
+      checkoutPercentage: (careerStatsOnline.checkoutPercentage * onlineGames +
+              careerStatsOffline.checkoutPercentage * offlineGames) /
+          allGames,
+      checkoutPercentageTrend: Trend.none,
+      firstNine: (careerStatsOnline.firstNine * onlineGames +
+              careerStatsOffline.firstNine * offlineGames) /
+          allGames,
+      firstNineTrend: Trend.none,
+      games: allGames,
+      wins: careerStatsOnline.wins + careerStatsOffline.wins,
+      defeats: careerStatsOnline.defeats + careerStatsOffline.defeats,
+    );
   }
 
   @override
   Future<void> close() {
     _userSubscription?.cancel();
-    
+
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ProfileBloc>()) {
       getIt.resetLazySingleton<ProfileBloc>();

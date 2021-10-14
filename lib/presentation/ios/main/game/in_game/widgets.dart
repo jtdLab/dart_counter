@@ -60,6 +60,7 @@ class _InGameWidget extends StatelessWidget {
           flex: 55,
           child: PageView(
             onPageChanged: (pageIndex) {
+              // TODO needed ?
               switch (pageIndex) {
                 case 0:
                   context.read<InGameBloc>().add(

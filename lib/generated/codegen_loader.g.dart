@@ -52,7 +52,7 @@ class CodegenLoader extends AssetLoader{
   "careerStats": "Karriere Statistiken",
   "checkoutPercentageShort": "Doppelquote",
   "firstNine": "First 9",
-  "games": "Spiel",
+  "games": "Spiele",
   "showGameHistory": "Spielverlauf anzeigen",
   "received": "Erhalten",
   "sent": "Gesendet",
