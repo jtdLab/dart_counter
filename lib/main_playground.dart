@@ -36,20 +36,34 @@ Future<void> main() async {
   FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 
-  
-
   runApp(
     CupertinoApp(
-      home: CupertinoPageScaffold(
-        child: Center(
-          child: Container(
-            color: AppColors.red,
-            child: AppNavigationBarButton(
-              onPressed: () {},
-              child: Image.asset(
-                AppImages.settingsNew,
+      home: AppPage(
+        child: Container(
+          color: AppColors.green,
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.red,
+                  border: Border.all(width: 4),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      color: AppColors.yellow,
+                    ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      color: AppColors.blue,
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

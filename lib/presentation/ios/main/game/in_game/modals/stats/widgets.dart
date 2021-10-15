@@ -12,34 +12,13 @@ class _StatsWidget extends StatelessWidget {
       builder: (context, state) {
         final players = state.gameSnapshot.players;
 
-        return Column(
-          children: [
-            Expanded(
-              flex: 9,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: border4(context),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    const _TitleColumn(),
-                    ...players.iter
-                        .map((player) => _PlayerColumn(player: player))
-                        .toList(),
-                  ],
-                ),
-              ),
-            ),
-            const Spacer(),
-          ],
-        );
+        return StatsWidget(players: players);
       },
     );
   }
 }
 
+/*
 class _TitleColumn extends StatelessWidget {
   const _TitleColumn({
     Key? key,
@@ -345,3 +324,4 @@ class _ColumnItem extends StatelessWidget {
     );
   }
 }
+*/
