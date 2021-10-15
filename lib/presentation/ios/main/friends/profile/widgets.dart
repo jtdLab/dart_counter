@@ -1,6 +1,7 @@
 part of 'profile_page.dart';
 
 // NAVBAR
+// TODO remove
 class _GameHistoryButton extends StatelessWidget {
   const _GameHistoryButton({
     Key? key,
@@ -61,7 +62,12 @@ class _FriendsProfileWidget extends StatelessWidget {
             ),
             const _CareerStatsDisplayer(),
             SizedBox(
-              height: spacerLarge(context),
+              height: spacerNormal(context),
+            ),
+            AppActionButton.normal(
+              text: LocaleKeys.gameHistory.tr().toUpperCase(),
+              onPressed: () =>
+                  context.router.push(const GameHistoryFlowRoute()),
             ),
           ],
         );

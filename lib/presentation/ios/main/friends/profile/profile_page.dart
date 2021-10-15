@@ -22,7 +22,6 @@ class ProfilePage extends StatelessWidget {
       navigationBar: AppNavigationBar(
         leading: BackButton(),
         middle: _NameDisplayer(),
-        trailing: _GameHistoryButton(),
       ),
       child: SingleChildScrollView(
         child: _FriendsProfileWidget(),

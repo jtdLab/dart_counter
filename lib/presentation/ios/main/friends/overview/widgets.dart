@@ -145,15 +145,23 @@ class _FriendsCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final photoUrl = friend.profile.photoUrl;
+
     return AppCardItem.large(
       content: Row(
         children: [
           SizedBox(
             width: spacerNormal(context),
           ),
-          const AppRoundedImage.normal(
-            imageName: AppImages.photoPlaceholderNew, // TODO real photo url
-          ),
+          if (photoUrl != null) ...[
+            AppRoundedImage.normal(
+              child: CachedNetworkImageProvider(photoUrl),
+            ),
+          ] else ...[
+            const AppRoundedImage.normal(
+              imageName: AppImages.photoPlaceholderNew,
+            ),
+          ],
           const Spacer(),
           Text(
             friend.profile.username.getOrCrash().toUpperCase(),

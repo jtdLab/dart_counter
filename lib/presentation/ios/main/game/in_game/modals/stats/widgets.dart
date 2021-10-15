@@ -18,7 +18,6 @@ class _StatsWidget extends StatelessWidget {
               flex: 9,
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.red,
                   border: Border.all(
                     width: border4(context),
                   ),
