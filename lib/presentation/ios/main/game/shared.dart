@@ -192,13 +192,30 @@ class _PlayerColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? photoUrl;
+
+    final player = this.player;
+    if (player is OfflinePlayerSnapshot) {
+      photoUrl = player.photoUrl;
+    } else if (player is OnlinePlayerSnapshot) {
+      photoUrl = player.photoUrl;
+    }
+
     return _Column(
       header: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const AppRoundedImage.small(
-            imageName: AppImages.photoPlaceholderNew, // TODO real photo
-          ),
+          if (photoUrl != null) ...[
+            AppRoundedImage.small(
+              child: CachedNetworkImageProvider(
+                photoUrl,
+              ),
+            ),
+          ] else ...[
+            const AppRoundedImage.small(
+              imageName: AppImages.photoPlaceholderNew,
+            ),
+          ],
           AutoSizeText(
             player.name!.toUpperCase(),
             minFontSize: 1,

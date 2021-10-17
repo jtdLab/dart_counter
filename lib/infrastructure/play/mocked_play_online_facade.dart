@@ -30,6 +30,8 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
   // add all needed fields to generated online game
 
+  final List<String?> _images = [];
+
   ex.Game? _game;
 
   MockedPlayOnlineFacade(
@@ -47,6 +49,10 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> createGame() async {
     if (hasNetworkConnection) {
       _game = _game = ex.Game();
+      _game!.players[0].name =
+          faker.randomGenerator.element(['Capi', 'Kolle', 'Mirco', 'Baltasar']);
+      _images.add(faker.image.image(width: 200, height: 200, random: true));
+
       _gameController.add(
         _toOnlineGameSnapshot(_game!),
       );
@@ -79,6 +85,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> removePlayer({
     required int index,
   }) {
+    _images.removeAt(index);
     return _tryPerform(
       action: () => _game!.removePlayer(index: index),
     );
@@ -89,6 +96,9 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
     required int oldIndex,
     required int newIndex,
   }) {
+    final temp = _images[newIndex];
+    _images[newIndex] = _images[oldIndex];
+    _images[oldIndex] = temp;
     return _tryPerform(
       action: () => _game!.reorderPlayer(
         oldIndex: oldIndex,
@@ -189,7 +199,9 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       startingPoints: game.startingPoints,
       players: KtList.from(
         game.players.map(
-          (player) => _toOnlinePlayerSnapshot(player),
+          (player) => _toOnlinePlayerSnapshot(player).copyWith(
+            photoUrl: _images[game.players.indexOf(player)],
+          ),
         ),
       ),
     );
@@ -199,7 +211,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   OnlinePlayerSnapshot _toOnlinePlayerSnapshot(ex.Player player) {
     return OnlinePlayerSnapshot(
       id: UniqueId.fromUniqueString(player.id),
-      name: player.name ?? 'Player N', // TODO
+      name: player.name ?? '',
       isCurrentTurn: player.isCurrentTurn ?? false, // TODO
       won: player.won ?? false, // TODO
       wonSets: player.wonSets,

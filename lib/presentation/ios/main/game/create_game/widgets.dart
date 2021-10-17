@@ -11,9 +11,6 @@ class _CreateGameWidget extends StatelessWidget {
     return Column(
       children: [
         const _DartBotCard(),
-        SizedBox(
-          height: spacerLarge(context),
-        ),
         const _PlayerCard(),
         SizedBox(
           height: spacerLarge(context),
@@ -41,33 +38,41 @@ class _DartBotCard extends StatelessWidget {
 
         return Visibility(
           visible: gameSnapshot is! OnlineGameSnapshot,
-          child: AppCard(
-            headerBodySpacing: gameSnapshot.hasDartBot() ? null : 0,
-            leading: AutoSizeText(
-              LocaleKeys.dartBot.tr().toUpperCase(),
-              minFontSize: 8,
-              maxFontSize: 14,
-              maxLines: 1,
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-            trailing: _DartBotCheckBox(
-              selected: gameSnapshot.hasDartBot(),
-            ),
-            children: gameSnapshot.hasDartBot()
-                ? [
-                    AppNumberPicker(
-                      onChanged: (value) => context.read<CreateGameBloc>().add(
-                            CreateGameEvent.dartBotTargetAverageUpdated(
-                              newTargetAverage: value,
-                            ),
-                          ),
-                      title: LocaleKeys.dartbotAverrage.tr().toUpperCase(),
-                    ),
-                  ]
-                : [],
+          child: Column(
+            children: [
+              AppCard(
+                headerBodySpacing: gameSnapshot.hasDartBot() ? null : 0,
+                leading: AutoSizeText(
+                  LocaleKeys.dartBot.tr().toUpperCase(),
+                  minFontSize: 8,
+                  maxFontSize: 14,
+                  maxLines: 1,
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(color: AppColors.white),
+                ),
+                trailing: _DartBotCheckBox(
+                  selected: gameSnapshot.hasDartBot(),
+                ),
+                children: gameSnapshot.hasDartBot()
+                    ? [
+                        AppNumberPicker(
+                          onChanged: (value) =>
+                              context.read<CreateGameBloc>().add(
+                                    CreateGameEvent.dartBotTargetAverageUpdated(
+                                      newTargetAverage: value,
+                                    ),
+                                  ),
+                          title: LocaleKeys.dartbotAverrage.tr().toUpperCase(),
+                        ),
+                      ]
+                    : [],
+              ),
+              SizedBox(
+                height: spacerLarge(context),
+              ),
+            ],
           ),
         );
       },
