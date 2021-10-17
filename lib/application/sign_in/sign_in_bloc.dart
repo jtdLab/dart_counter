@@ -70,7 +70,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
     if (isEmailValid && isPasswordValid) {
       yield* _signIn(
-        _authFacade.singInWithEmailAndPassword(
+        () => _authFacade.singInWithEmailAndPassword(
           emailAddress: state.email,
           password: state.password,
         ),
@@ -86,19 +86,19 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }
 
   Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
-    yield* _signIn(_authFacade.signInWithFacebook());
+    yield* _signIn(() => _authFacade.signInWithFacebook());
   }
 
   Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
-    yield* _signIn(_authFacade.signInWithGoogle());
+    yield* _signIn(() => _authFacade.signInWithGoogle());
   }
 
   Stream<SignInState> _mapSignInWithApplePressedToState() async* {
-    yield* _signIn(_authFacade.signInWithApple());
+    yield* _signIn(() => _authFacade.signInWithApple());
   }
 
   Stream<SignInState> _signIn(
-    Future<Either<AuthFailure, Unit>> signInFuture,
+    Future<Either<AuthFailure, Unit>> Function() signInFuture,
   ) async* {
     yield state.copyWith(
       isSubmitting: true,
@@ -107,13 +107,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
     await Future.delayed(const Duration(milliseconds: 500));
 
-    final signInResult = await signInFuture;
+    final signInResult = await signInFuture();
     AuthFailure? authFailure = signInResult.fold(
       (failure) => failure,
       (_) => null,
     );
 
     if (authFailure == null) {
+      // TODO missing load success most of the times
       final state = await _dataWatcherBloc.stream.firstWhere(
         (element) =>
             element is DataWatcherLoadSuccess ||
