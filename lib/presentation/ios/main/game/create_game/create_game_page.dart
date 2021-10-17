@@ -11,6 +11,7 @@ import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/presentation/ios/main/game/create_game/modals/add_player/add_player_modal.dart';
 
 // MODALS
 import 'modals/advanced_settings/advanced_settings_modal.dart';

@@ -130,9 +130,12 @@ class _PlayerCard extends StatelessWidget {
             .textStyle
             .copyWith(color: AppColors.white),
       ),
-      children: const [
-        _PlayerList(),
-        _AddPlayerButton(),
+      children: [
+        const _PlayerList(),
+        _AddPlayerButton(
+          isOnline: context.watch<CreateGameBloc>().state.gameSnapshot
+              is OnlineGameSnapshot,
+        ),
       ],
     );
   }
@@ -460,16 +463,28 @@ class _PlayerItem extends StatelessWidget {
 }
 
 class _AddPlayerButton extends StatelessWidget {
+  final bool isOnline;
+
   const _AddPlayerButton({
     Key? key,
+    required this.isOnline,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppActionButton.small(
-      onPressed: () => context
-          .read<CreateGameBloc>()
-          .add(const CreateGameEvent.playerAdded()),
+      onPressed: () {
+        if (isOnline) {
+          showCupertinoModalBottomSheet(
+            context: context,
+            builder: (context) => const AddPlayerModal(),
+          );
+        } else {
+          context
+              .read<CreateGameBloc>()
+              .add(const CreateGameEvent.playerAdded());
+        }
+      },
       text: LocaleKeys.addPlayer.tr().toUpperCase(),
     );
   }
