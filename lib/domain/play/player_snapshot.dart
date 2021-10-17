@@ -30,6 +30,7 @@ class OfflinePlayerSnapshot
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
     String? name,
+    String? photoUrl,
     @Default(false) bool isCurrentTurn,
     @Default(false) bool won,
     int? wonSets,
@@ -45,6 +46,7 @@ class OfflinePlayerSnapshot
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
+        photoUrl: faker.image.image(width: 200, height: 200, random: true),
         name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
@@ -126,6 +128,7 @@ class OnlinePlayerSnapshot
   const factory OnlinePlayerSnapshot({
     required UniqueId id,
     required String name,
+    String? photoUrl,
     @Default(false)
         bool isCurrentTurn,
     @Default(false)
@@ -143,13 +146,13 @@ class OnlinePlayerSnapshot
       PlayerStats(),
     )
         PlayerStats stats,
-    required UniqueId userId,
   }) = _OnlinePlayerSnapshot;
 
   factory OnlinePlayerSnapshot.dummy() => OnlinePlayerSnapshot(
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
+        photoUrl: faker.image.image(width: 200, height: 200, random: true),
         name: faker.randomGenerator.element([
           'David88',
           'mrjosch',
@@ -167,8 +170,5 @@ class OnlinePlayerSnapshot
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: PlayerStats.dummy(),
-        userId: UniqueId.fromUniqueString(
-          faker.randomGenerator.string(28, min: 28),
-        ),
       );
 }

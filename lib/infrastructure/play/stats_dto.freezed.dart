@@ -23,7 +23,7 @@ class _$PlayerStatsDtoTearOff {
 
   _PlayerStatsDto call(
       {required double average,
-      required double checkoutPercentage,
+      double? checkoutPercentage,
       required double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -77,7 +77,7 @@ const $PlayerStatsDto = _$PlayerStatsDtoTearOff();
 /// @nodoc
 mixin _$PlayerStatsDto {
   double get average => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   double get firstNineAverage => throw _privateConstructorUsedError;
   int? get bestLegDartsThrown => throw _privateConstructorUsedError;
   double? get bestLegAverage => throw _privateConstructorUsedError;
@@ -110,7 +110,7 @@ abstract class $PlayerStatsDtoCopyWith<$Res> {
       _$PlayerStatsDtoCopyWithImpl<$Res>;
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -171,7 +171,7 @@ class _$PlayerStatsDtoCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -257,7 +257,7 @@ abstract class _$PlayerStatsDtoCopyWith<$Res>
   @override
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -320,7 +320,7 @@ class __$PlayerStatsDtoCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -402,7 +402,7 @@ class __$PlayerStatsDtoCopyWithImpl<$Res>
 class _$_PlayerStatsDto extends _PlayerStatsDto {
   const _$_PlayerStatsDto(
       {required this.average,
-      required this.checkoutPercentage,
+      this.checkoutPercentage,
       required this.firstNineAverage,
       this.bestLegDartsThrown,
       this.bestLegAverage,
@@ -429,7 +429,7 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
   @override
   final double average;
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @override
   final double firstNineAverage;
   @override
@@ -576,7 +576,7 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
 abstract class _PlayerStatsDto extends PlayerStatsDto {
   const factory _PlayerStatsDto(
       {required double average,
-      required double checkoutPercentage,
+      double? checkoutPercentage,
       required double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -603,7 +603,7 @@ abstract class _PlayerStatsDto extends PlayerStatsDto {
   @override
   double get average => throw _privateConstructorUsedError;
   @override
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   @override
   double get firstNineAverage => throw _privateConstructorUsedError;
   @override

@@ -1006,13 +1006,15 @@ class _$SignInStateTearOff {
       required Password password,
       required bool showErrorMessages,
       required bool isSubmitting,
-      AuthFailure? authFailure}) {
+      AuthFailure? authFailure,
+      required bool isSignedIn}) {
     return _SignInState(
       email: email,
       password: password,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       authFailure: authFailure,
+      isSignedIn: isSignedIn,
     );
   }
 }
@@ -1027,6 +1029,7 @@ mixin _$SignInState {
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  bool get isSignedIn => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -1043,7 +1046,8 @@ abstract class $SignInStateCopyWith<$Res> {
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
-      AuthFailure? authFailure});
+      AuthFailure? authFailure,
+      bool isSignedIn});
 
   $AuthFailureCopyWith<$Res>? get authFailure;
 }
@@ -1063,6 +1067,7 @@ class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailure = freezed,
+    Object? isSignedIn = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
@@ -1085,6 +1090,10 @@ class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
           ? _value.authFailure
           : authFailure // ignore: cast_nullable_to_non_nullable
               as AuthFailure?,
+      isSignedIn: isSignedIn == freezed
+          ? _value.isSignedIn
+          : isSignedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -1112,7 +1121,8 @@ abstract class _$SignInStateCopyWith<$Res>
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
-      AuthFailure? authFailure});
+      AuthFailure? authFailure,
+      bool isSignedIn});
 
   @override
   $AuthFailureCopyWith<$Res>? get authFailure;
@@ -1135,6 +1145,7 @@ class __$SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailure = freezed,
+    Object? isSignedIn = freezed,
   }) {
     return _then(_SignInState(
       email: email == freezed
@@ -1157,6 +1168,10 @@ class __$SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
           ? _value.authFailure
           : authFailure // ignore: cast_nullable_to_non_nullable
               as AuthFailure?,
+      isSignedIn: isSignedIn == freezed
+          ? _value.isSignedIn
+          : isSignedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1169,7 +1184,8 @@ class _$_SignInState implements _SignInState {
       required this.password,
       required this.showErrorMessages,
       required this.isSubmitting,
-      this.authFailure});
+      this.authFailure,
+      required this.isSignedIn});
 
   @override
   final EmailAddress email;
@@ -1181,10 +1197,12 @@ class _$_SignInState implements _SignInState {
   final bool isSubmitting;
   @override
   final AuthFailure? authFailure;
+  @override
+  final bool isSignedIn;
 
   @override
   String toString() {
-    return 'SignInState(email: $email, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailure: $authFailure)';
+    return 'SignInState(email: $email, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailure: $authFailure, isSignedIn: $isSignedIn)';
   }
 
   @override
@@ -1204,7 +1222,10 @@ class _$_SignInState implements _SignInState {
                     .equals(other.isSubmitting, isSubmitting)) &&
             (identical(other.authFailure, authFailure) ||
                 const DeepCollectionEquality()
-                    .equals(other.authFailure, authFailure)));
+                    .equals(other.authFailure, authFailure)) &&
+            (identical(other.isSignedIn, isSignedIn) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSignedIn, isSignedIn)));
   }
 
   @override
@@ -1214,7 +1235,8 @@ class _$_SignInState implements _SignInState {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(authFailure);
+      const DeepCollectionEquality().hash(authFailure) ^
+      const DeepCollectionEquality().hash(isSignedIn);
 
   @JsonKey(ignore: true)
   @override
@@ -1228,7 +1250,8 @@ abstract class _SignInState implements SignInState {
       required Password password,
       required bool showErrorMessages,
       required bool isSubmitting,
-      AuthFailure? authFailure}) = _$_SignInState;
+      AuthFailure? authFailure,
+      required bool isSignedIn}) = _$_SignInState;
 
   @override
   EmailAddress get email => throw _privateConstructorUsedError;
@@ -1240,6 +1263,8 @@ abstract class _SignInState implements SignInState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
   AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  @override
+  bool get isSignedIn => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInStateCopyWith<_SignInState> get copyWith =>

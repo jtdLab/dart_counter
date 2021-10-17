@@ -17,7 +17,6 @@ part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-// TODO handle wrongl
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   final IPlayOfflineFacade _playOfflineFacade;
@@ -105,7 +104,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
-    _playOfflineFacade.createGame();
+    final appUser = (_dataWatcherBloc.state as DataWatcherLoadSuccess).user;
+
+    _playOfflineFacade.createGame(owner: appUser);
     _playBloc.add(
       const PlayEvent.gameCreated(online: false),
     );
@@ -136,7 +137,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     if (getIt.isRegistered<HomeBloc>()) {
       getIt.resetLazySingleton<HomeBloc>();
     }
-    
+
     return super.close();
   }
 }

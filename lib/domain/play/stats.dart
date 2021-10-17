@@ -7,7 +7,7 @@ part 'stats.freezed.dart';
 class LegStats with _$LegStats {
   const factory LegStats({
     @Default(0) double average,
-    @Default(0) double checkoutPercentage,
+    double? checkoutPercentage,
     @Default(0) double firstNineAverage,
     double? firstDartAverage,
     double? secondDartAverage,
@@ -24,7 +24,10 @@ class LegStats with _$LegStats {
 
   factory LegStats.dummy() => LegStats(
         average: faker.randomGenerator.decimal(scale: 80, min: 30),
-        checkoutPercentage: faker.randomGenerator.decimal(scale: 100),
+        checkoutPercentage: faker.randomGenerator.element([
+          null,
+          faker.randomGenerator.decimal(scale: 100),
+        ]),
         firstNineAverage: faker.randomGenerator.decimal(scale: 80, min: 40),
         fourtyPlus: faker.randomGenerator.integer(20, min: 5),
         sixtyPlus: faker.randomGenerator.integer(18, min: 4),
@@ -81,7 +84,7 @@ class SetStats with _$SetStats {
 class PlayerStats with _$PlayerStats {
   const factory PlayerStats({
     @Default(0) double average,
-    @Default(0) double checkoutPercentage,
+    double? checkoutPercentage,
     @Default(0) double firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,
@@ -104,7 +107,10 @@ class PlayerStats with _$PlayerStats {
 
   factory PlayerStats.dummy() => PlayerStats(
         average: faker.randomGenerator.decimal(scale: 80, min: 30),
-        checkoutPercentage: faker.randomGenerator.decimal(scale: 100),
+        checkoutPercentage: faker.randomGenerator.element([
+          null,
+          faker.randomGenerator.decimal(scale: 100),
+        ]),
         firstNineAverage: faker.randomGenerator.decimal(scale: 80, min: 40),
         fourtyPlus: faker.randomGenerator.integer(20, min: 5),
         sixtyPlus: faker.randomGenerator.integer(18, min: 4),

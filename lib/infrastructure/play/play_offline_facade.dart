@@ -5,6 +5,9 @@ import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/play/player_snapshot_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -20,6 +23,8 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   final BehaviorSubject<OfflineGameSnapshot> _gameController;
 
   ex.Game? _game;
+  User? _owner; // TODO better
+  String? _ownerPlayerId; // better
   DateTime? _createdAt; // TODO needed
 
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
@@ -48,12 +53,17 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  void createGame() {
-    _game = _game = ex.Game();
-
-    _gameController.add(
-      OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
+  void createGame({
+    required User owner,
+  }) {
+    _game = _game = ex.Game(
+      ownerName: owner.profile.username.getOrCrash(),
     );
+
+    _owner = owner;
+    _ownerPlayerId = _game!.players[0].id;
+
+    _emitSnpashot();
   }
 
   @override
@@ -179,9 +189,27 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }) {
     if (_game != null) {
       action();
-      _gameController.add(
-        OfflineGameSnapshotDto.fromExternal(_game!).toDomain(),
-      );
+      _emitSnpashot();
     }
+  }
+
+  void _emitSnpashot() {
+    final offlineGameSnapshotDto = OfflineGameSnapshotDto.fromExternal(_game!);
+
+    final playersWithPhotos = offlineGameSnapshotDto.players.map((player) {
+      if (player.id == _ownerPlayerId!) {
+        return (player as OfflinePlayerSnapshotDto)
+            .copyWith(photoUrl: _owner!.profile.photoUrl);
+      }
+      return player;
+    }).toList();
+
+    _gameController.add(
+      offlineGameSnapshotDto
+          .copyWith(
+            players: playersWithPhotos,
+          )
+          .toDomain(),
+    );
   }
 }

@@ -20,6 +20,7 @@ class _$OfflinePlayerSnapshotDtoTearOff {
   _OfflinePlayerSnapshotDto call(
       {required String id,
       String? name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -32,6 +33,7 @@ class _$OfflinePlayerSnapshotDtoTearOff {
     return _OfflinePlayerSnapshotDto(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn,
       won: won,
       wonSets: wonSets,
@@ -52,6 +54,7 @@ const $OfflinePlayerSnapshotDto = _$OfflinePlayerSnapshotDtoTearOff();
 mixin _$OfflinePlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   bool? get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -75,6 +78,7 @@ abstract class $OfflinePlayerSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -101,6 +105,7 @@ class _$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -119,6 +124,10 @@ class _$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -181,6 +190,7 @@ abstract class _$OfflinePlayerSnapshotDtoCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -211,6 +221,7 @@ class __$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -229,6 +240,10 @@ class __$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -277,6 +292,7 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
   const _$_OfflinePlayerSnapshotDto(
       {required this.id,
       this.name,
+      this.photoUrl,
       this.isCurrentTurn,
       this.won,
       this.wonSets,
@@ -292,6 +308,8 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
   final String id;
   @override
   final String? name;
+  @override
+  final String? photoUrl;
   @override
   final bool? isCurrentTurn;
   @override
@@ -313,7 +331,7 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
 
   @override
   String toString() {
-    return 'OfflinePlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
+    return 'OfflinePlayerSnapshotDto(id: $id, name: $name, photoUrl: $photoUrl, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
   }
 
   @override
@@ -324,6 +342,9 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.photoUrl, photoUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.photoUrl, photoUrl)) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 const DeepCollectionEquality()
                     .equals(other.isCurrentTurn, isCurrentTurn)) &&
@@ -356,6 +377,7 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(photoUrl) ^
       const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonSets) ^
@@ -378,6 +400,7 @@ abstract class _OfflinePlayerSnapshotDto extends OfflinePlayerSnapshotDto
   const factory _OfflinePlayerSnapshotDto(
       {required String id,
       String? name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -393,6 +416,8 @@ abstract class _OfflinePlayerSnapshotDto extends OfflinePlayerSnapshotDto
   String get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get photoUrl => throw _privateConstructorUsedError;
   @override
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   @override
@@ -851,6 +876,7 @@ class _$OnlinePlayerSnapshotDtoTearOff {
   _OnlinePlayerSnapshotDto call(
       {required String id,
       required String name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -859,11 +885,11 @@ class _$OnlinePlayerSnapshotDtoTearOff {
       List<String>? finishRecommendation,
       int? lastPoints,
       int? dartsThrownCurrentLeg,
-      PlayerStatsDto? stats,
-      required String userId}) {
+      PlayerStatsDto? stats}) {
     return _OnlinePlayerSnapshotDto(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn,
       won: won,
       wonSets: wonSets,
@@ -873,7 +899,6 @@ class _$OnlinePlayerSnapshotDtoTearOff {
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg,
       stats: stats,
-      userId: userId,
     );
   }
 }
@@ -885,6 +910,7 @@ const $OnlinePlayerSnapshotDto = _$OnlinePlayerSnapshotDtoTearOff();
 mixin _$OnlinePlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   bool? get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -894,7 +920,6 @@ mixin _$OnlinePlayerSnapshotDto {
   int? get lastPoints => throw _privateConstructorUsedError;
   int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   PlayerStatsDto? get stats => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OnlinePlayerSnapshotDtoCopyWith<OnlinePlayerSnapshotDto> get copyWith =>
@@ -909,6 +934,7 @@ abstract class $OnlinePlayerSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -917,8 +943,7 @@ abstract class $OnlinePlayerSnapshotDtoCopyWith<$Res> {
       List<String>? finishRecommendation,
       int? lastPoints,
       int? dartsThrownCurrentLeg,
-      PlayerStatsDto? stats,
-      String userId});
+      PlayerStatsDto? stats});
 
   $PlayerStatsDtoCopyWith<$Res>? get stats;
 }
@@ -936,6 +961,7 @@ class _$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -945,7 +971,6 @@ class _$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
     Object? lastPoints = freezed,
     Object? dartsThrownCurrentLeg = freezed,
     Object? stats = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -956,6 +981,10 @@ class _$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -992,10 +1021,6 @@ class _$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStatsDto?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 
@@ -1021,6 +1046,7 @@ abstract class _$OnlinePlayerSnapshotDtoCopyWith<$Res>
   $Res call(
       {String id,
       String name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -1029,8 +1055,7 @@ abstract class _$OnlinePlayerSnapshotDtoCopyWith<$Res>
       List<String>? finishRecommendation,
       int? lastPoints,
       int? dartsThrownCurrentLeg,
-      PlayerStatsDto? stats,
-      String userId});
+      PlayerStatsDto? stats});
 
   @override
   $PlayerStatsDtoCopyWith<$Res>? get stats;
@@ -1052,6 +1077,7 @@ class __$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -1061,7 +1087,6 @@ class __$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
     Object? lastPoints = freezed,
     Object? dartsThrownCurrentLeg = freezed,
     Object? stats = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_OnlinePlayerSnapshotDto(
       id: id == freezed
@@ -1072,6 +1097,10 @@ class __$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -1108,10 +1137,6 @@ class __$OnlinePlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStatsDto?,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -1123,6 +1148,7 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
   const _$_OnlinePlayerSnapshotDto(
       {required this.id,
       required this.name,
+      this.photoUrl,
       this.isCurrentTurn,
       this.won,
       this.wonSets,
@@ -1131,14 +1157,15 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
       this.finishRecommendation,
       this.lastPoints,
       this.dartsThrownCurrentLeg,
-      this.stats,
-      required this.userId})
+      this.stats})
       : super._();
 
   @override
   final String id;
   @override
   final String name;
+  @override
+  final String? photoUrl;
   @override
   final bool? isCurrentTurn;
   @override
@@ -1157,12 +1184,10 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
   final int? dartsThrownCurrentLeg;
   @override
   final PlayerStatsDto? stats;
-  @override
-  final String userId;
 
   @override
   String toString() {
-    return 'OnlinePlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, userId: $userId)';
+    return 'OnlinePlayerSnapshotDto(id: $id, name: $name, photoUrl: $photoUrl, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
   }
 
   @override
@@ -1173,6 +1198,9 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.photoUrl, photoUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.photoUrl, photoUrl)) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 const DeepCollectionEquality()
                     .equals(other.isCurrentTurn, isCurrentTurn)) &&
@@ -1197,9 +1225,7 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
                 const DeepCollectionEquality().equals(
                     other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
             (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.stats, stats)));
   }
 
   @override
@@ -1207,6 +1233,7 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(photoUrl) ^
       const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonSets) ^
@@ -1215,8 +1242,7 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
       const DeepCollectionEquality().hash(finishRecommendation) ^
       const DeepCollectionEquality().hash(lastPoints) ^
       const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
-      const DeepCollectionEquality().hash(userId);
+      const DeepCollectionEquality().hash(stats);
 
   @JsonKey(ignore: true)
   @override
@@ -1230,6 +1256,7 @@ abstract class _OnlinePlayerSnapshotDto extends OnlinePlayerSnapshotDto
   const factory _OnlinePlayerSnapshotDto(
       {required String id,
       required String name,
+      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -1238,14 +1265,15 @@ abstract class _OnlinePlayerSnapshotDto extends OnlinePlayerSnapshotDto
       List<String>? finishRecommendation,
       int? lastPoints,
       int? dartsThrownCurrentLeg,
-      PlayerStatsDto? stats,
-      required String userId}) = _$_OnlinePlayerSnapshotDto;
+      PlayerStatsDto? stats}) = _$_OnlinePlayerSnapshotDto;
   const _OnlinePlayerSnapshotDto._() : super._();
 
   @override
   String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  String? get photoUrl => throw _privateConstructorUsedError;
   @override
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   @override
@@ -1264,8 +1292,6 @@ abstract class _OnlinePlayerSnapshotDto extends OnlinePlayerSnapshotDto
   int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
   PlayerStatsDto? get stats => throw _privateConstructorUsedError;
-  @override
-  String get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerSnapshotDtoCopyWith<_OnlinePlayerSnapshotDto> get copyWith =>

@@ -8,6 +8,7 @@ class SignInState with _$SignInState {
     required bool showErrorMessages,
     required bool isSubmitting,
     AuthFailure? authFailure,
+    required bool isSignedIn,
   }) = _SignInState;
 
   factory SignInState.initial() => SignInState(
@@ -15,5 +16,6 @@ class SignInState with _$SignInState {
         password: Password(''),
         showErrorMessages: false,
         isSubmitting: false,
+        isSignedIn: false,
       );
 }

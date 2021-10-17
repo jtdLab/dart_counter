@@ -19,7 +19,7 @@ class _$LegStatsTearOff {
 
   _LegStats call(
       {double average = 0,
-      double checkoutPercentage = 0,
+      double? checkoutPercentage,
       double firstNineAverage = 0,
       double? firstDartAverage,
       double? secondDartAverage,
@@ -57,7 +57,7 @@ const $LegStats = _$LegStatsTearOff();
 /// @nodoc
 mixin _$LegStats {
   double get average => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   double get firstNineAverage => throw _privateConstructorUsedError;
   double? get firstDartAverage => throw _privateConstructorUsedError;
   double? get secondDartAverage => throw _privateConstructorUsedError;
@@ -82,7 +82,7 @@ abstract class $LegStatsCopyWith<$Res> {
       _$LegStatsCopyWithImpl<$Res>;
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
@@ -130,7 +130,7 @@ class _$LegStatsCopyWithImpl<$Res> implements $LegStatsCopyWith<$Res> {
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -190,7 +190,7 @@ abstract class _$LegStatsCopyWith<$Res> implements $LegStatsCopyWith<$Res> {
   @override
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
@@ -239,7 +239,7 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -297,7 +297,7 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
 class _$_LegStats implements _LegStats {
   const _$_LegStats(
       {this.average = 0,
-      this.checkoutPercentage = 0,
+      this.checkoutPercentage,
       this.firstNineAverage = 0,
       this.firstDartAverage,
       this.secondDartAverage,
@@ -314,9 +314,8 @@ class _$_LegStats implements _LegStats {
   @JsonKey(defaultValue: 0)
   @override
   final double average;
-  @JsonKey(defaultValue: 0)
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @JsonKey(defaultValue: 0)
   @override
   final double firstNineAverage;
@@ -431,7 +430,7 @@ class _$_LegStats implements _LegStats {
 abstract class _LegStats implements LegStats {
   const factory _LegStats(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
@@ -448,7 +447,7 @@ abstract class _LegStats implements LegStats {
   @override
   double get average => throw _privateConstructorUsedError;
   @override
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   @override
   double get firstNineAverage => throw _privateConstructorUsedError;
   @override
@@ -1101,7 +1100,7 @@ class _$PlayerStatsTearOff {
 
   _PlayerStats call(
       {double average = 0,
-      double checkoutPercentage = 0,
+      double? checkoutPercentage,
       double firstNineAverage = 0,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -1151,7 +1150,7 @@ const $PlayerStats = _$PlayerStatsTearOff();
 /// @nodoc
 mixin _$PlayerStats {
   double get average => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   double get firstNineAverage => throw _privateConstructorUsedError;
   int? get bestLegDartsThrown => throw _privateConstructorUsedError;
   double? get bestLegAverage => throw _privateConstructorUsedError;
@@ -1183,7 +1182,7 @@ abstract class $PlayerStatsCopyWith<$Res> {
       _$PlayerStatsCopyWithImpl<$Res>;
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -1243,7 +1242,7 @@ class _$PlayerStatsCopyWithImpl<$Res> implements $PlayerStatsCopyWith<$Res> {
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -1329,7 +1328,7 @@ abstract class _$PlayerStatsCopyWith<$Res>
   @override
   $Res call(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -1391,7 +1390,7 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -1473,7 +1472,7 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
 class _$_PlayerStats implements _PlayerStats {
   const _$_PlayerStats(
       {this.average = 0,
-      this.checkoutPercentage = 0,
+      this.checkoutPercentage,
       this.firstNineAverage = 0,
       this.bestLegDartsThrown,
       this.bestLegAverage,
@@ -1496,9 +1495,8 @@ class _$_PlayerStats implements _PlayerStats {
   @JsonKey(defaultValue: 0)
   @override
   final double average;
-  @JsonKey(defaultValue: 0)
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @JsonKey(defaultValue: 0)
   @override
   final double firstNineAverage;
@@ -1649,7 +1647,7 @@ class _$_PlayerStats implements _PlayerStats {
 abstract class _PlayerStats implements PlayerStats {
   const factory _PlayerStats(
       {double average,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -1672,7 +1670,7 @@ abstract class _PlayerStats implements PlayerStats {
   @override
   double get average => throw _privateConstructorUsedError;
   @override
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   @override
   double get firstNineAverage => throw _privateConstructorUsedError;
   @override

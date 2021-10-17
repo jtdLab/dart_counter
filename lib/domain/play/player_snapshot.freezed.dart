@@ -20,6 +20,7 @@ class _$OfflinePlayerSnapshotTearOff {
   _OfflinePlayerSnapshot call(
       {required UniqueId id,
       String? name,
+      String? photoUrl,
       bool isCurrentTurn = false,
       bool won = false,
       int? wonSets,
@@ -32,6 +33,7 @@ class _$OfflinePlayerSnapshotTearOff {
     return _OfflinePlayerSnapshot(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn,
       won: won,
       wonSets: wonSets,
@@ -52,6 +54,7 @@ const $OfflinePlayerSnapshot = _$OfflinePlayerSnapshotTearOff();
 mixin _$OfflinePlayerSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -76,6 +79,7 @@ abstract class $OfflinePlayerSnapshotCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String? name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -102,6 +106,7 @@ class _$OfflinePlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -120,6 +125,10 @@ class _$OfflinePlayerSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -178,6 +187,7 @@ abstract class _$OfflinePlayerSnapshotCopyWith<$Res>
   $Res call(
       {UniqueId id,
       String? name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -207,6 +217,7 @@ class __$OfflinePlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -225,6 +236,10 @@ class __$OfflinePlayerSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -273,6 +288,7 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   const _$_OfflinePlayerSnapshot(
       {required this.id,
       this.name,
+      this.photoUrl,
       this.isCurrentTurn = false,
       this.won = false,
       this.wonSets,
@@ -287,6 +303,8 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   final UniqueId id;
   @override
   final String? name;
+  @override
+  final String? photoUrl;
   @JsonKey(defaultValue: false)
   @override
   final bool isCurrentTurn;
@@ -314,7 +332,7 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
 
   @override
   String toString() {
-    return 'OfflinePlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
+    return 'OfflinePlayerSnapshot(id: $id, name: $name, photoUrl: $photoUrl, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
   }
 
   @override
@@ -325,6 +343,9 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.photoUrl, photoUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.photoUrl, photoUrl)) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 const DeepCollectionEquality()
                     .equals(other.isCurrentTurn, isCurrentTurn)) &&
@@ -357,6 +378,7 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(photoUrl) ^
       const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonSets) ^
@@ -379,6 +401,7 @@ abstract class _OfflinePlayerSnapshot
   const factory _OfflinePlayerSnapshot(
       {required UniqueId id,
       String? name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -393,6 +416,8 @@ abstract class _OfflinePlayerSnapshot
   UniqueId get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get photoUrl => throw _privateConstructorUsedError;
   @override
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   @override
@@ -855,6 +880,7 @@ class _$OnlinePlayerSnapshotTearOff {
   _OnlinePlayerSnapshot call(
       {required UniqueId id,
       required String name,
+      String? photoUrl,
       bool isCurrentTurn = false,
       bool won = false,
       int? wonSets,
@@ -863,11 +889,11 @@ class _$OnlinePlayerSnapshotTearOff {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg = 0,
-      PlayerStats stats = const PlayerStats(),
-      required UniqueId userId}) {
+      PlayerStats stats = const PlayerStats()}) {
     return _OnlinePlayerSnapshot(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn,
       won: won,
       wonSets: wonSets,
@@ -877,7 +903,6 @@ class _$OnlinePlayerSnapshotTearOff {
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg,
       stats: stats,
-      userId: userId,
     );
   }
 }
@@ -889,6 +914,7 @@ const $OnlinePlayerSnapshot = _$OnlinePlayerSnapshotTearOff();
 mixin _$OnlinePlayerSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -899,7 +925,6 @@ mixin _$OnlinePlayerSnapshot {
   int? get lastPoints => throw _privateConstructorUsedError;
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   PlayerStats get stats => throw _privateConstructorUsedError;
-  UniqueId get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OnlinePlayerSnapshotCopyWith<OnlinePlayerSnapshot> get copyWith =>
@@ -914,6 +939,7 @@ abstract class $OnlinePlayerSnapshotCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -922,8 +948,7 @@ abstract class $OnlinePlayerSnapshotCopyWith<$Res> {
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      PlayerStats stats,
-      UniqueId userId});
+      PlayerStats stats});
 
   $PlayerStatsCopyWith<$Res> get stats;
 }
@@ -941,6 +966,7 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -950,7 +976,6 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
     Object? lastPoints = freezed,
     Object? dartsThrownCurrentLeg = freezed,
     Object? stats = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -961,6 +986,10 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -997,10 +1026,6 @@ class _$OnlinePlayerSnapshotCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStats,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
     ));
   }
 
@@ -1022,6 +1047,7 @@ abstract class _$OnlinePlayerSnapshotCopyWith<$Res>
   $Res call(
       {UniqueId id,
       String name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -1030,8 +1056,7 @@ abstract class _$OnlinePlayerSnapshotCopyWith<$Res>
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      PlayerStats stats,
-      UniqueId userId});
+      PlayerStats stats});
 
   @override
   $PlayerStatsCopyWith<$Res> get stats;
@@ -1052,6 +1077,7 @@ class __$OnlinePlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -1061,7 +1087,6 @@ class __$OnlinePlayerSnapshotCopyWithImpl<$Res>
     Object? lastPoints = freezed,
     Object? dartsThrownCurrentLeg = freezed,
     Object? stats = freezed,
-    Object? userId = freezed,
   }) {
     return _then(_OnlinePlayerSnapshot(
       id: id == freezed
@@ -1072,6 +1097,10 @@ class __$OnlinePlayerSnapshotCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -1108,10 +1137,6 @@ class __$OnlinePlayerSnapshotCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStats,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
     ));
   }
 }
@@ -1123,6 +1148,7 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
   const _$_OnlinePlayerSnapshot(
       {required this.id,
       required this.name,
+      this.photoUrl,
       this.isCurrentTurn = false,
       this.won = false,
       this.wonSets,
@@ -1131,13 +1157,14 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
       this.finishRecommendation,
       this.lastPoints,
       this.dartsThrownCurrentLeg = 0,
-      this.stats = const PlayerStats(),
-      required this.userId});
+      this.stats = const PlayerStats()});
 
   @override
   final UniqueId id;
   @override
   final String name;
+  @override
+  final String? photoUrl;
   @JsonKey(defaultValue: false)
   @override
   final bool isCurrentTurn;
@@ -1162,12 +1189,10 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
   @JsonKey(defaultValue: const PlayerStats())
   @override
   final PlayerStats stats;
-  @override
-  final UniqueId userId;
 
   @override
   String toString() {
-    return 'OnlinePlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats, userId: $userId)';
+    return 'OnlinePlayerSnapshot(id: $id, name: $name, photoUrl: $photoUrl, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
   }
 
   @override
@@ -1178,6 +1203,9 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.photoUrl, photoUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.photoUrl, photoUrl)) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 const DeepCollectionEquality()
                     .equals(other.isCurrentTurn, isCurrentTurn)) &&
@@ -1202,9 +1230,7 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
                 const DeepCollectionEquality().equals(
                     other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
             (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.stats, stats)));
   }
 
   @override
@@ -1212,6 +1238,7 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(photoUrl) ^
       const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(won) ^
       const DeepCollectionEquality().hash(wonSets) ^
@@ -1220,8 +1247,7 @@ class _$_OnlinePlayerSnapshot implements _OnlinePlayerSnapshot {
       const DeepCollectionEquality().hash(finishRecommendation) ^
       const DeepCollectionEquality().hash(lastPoints) ^
       const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
-      const DeepCollectionEquality().hash(userId);
+      const DeepCollectionEquality().hash(stats);
 
   @JsonKey(ignore: true)
   @override
@@ -1235,6 +1261,7 @@ abstract class _OnlinePlayerSnapshot
   const factory _OnlinePlayerSnapshot(
       {required UniqueId id,
       required String name,
+      String? photoUrl,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -1243,13 +1270,14 @@ abstract class _OnlinePlayerSnapshot
       KtList<String>? finishRecommendation,
       int? lastPoints,
       int dartsThrownCurrentLeg,
-      PlayerStats stats,
-      required UniqueId userId}) = _$_OnlinePlayerSnapshot;
+      PlayerStats stats}) = _$_OnlinePlayerSnapshot;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  String? get photoUrl => throw _privateConstructorUsedError;
   @override
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   @override
@@ -1269,8 +1297,6 @@ abstract class _OnlinePlayerSnapshot
   int get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
   @override
   PlayerStats get stats => throw _privateConstructorUsedError;
-  @override
-  UniqueId get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerSnapshotCopyWith<_OnlinePlayerSnapshot> get copyWith =>

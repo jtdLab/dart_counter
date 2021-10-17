@@ -9,7 +9,7 @@ part of 'stats_dto.dart';
 _$_PlayerStatsDto _$$_PlayerStatsDtoFromJson(Map<String, dynamic> json) =>
     _$_PlayerStatsDto(
       average: (json['average'] as num).toDouble(),
-      checkoutPercentage: (json['checkoutPercentage'] as num).toDouble(),
+      checkoutPercentage: (json['checkoutPercentage'] as num?)?.toDouble(),
       firstNineAverage: (json['firstNineAverage'] as num).toDouble(),
       bestLegDartsThrown: json['bestLegDartsThrown'] as int?,
       bestLegAverage: (json['bestLegAverage'] as num?)?.toDouble(),

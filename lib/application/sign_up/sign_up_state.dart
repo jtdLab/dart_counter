@@ -10,6 +10,7 @@ class SignUpState with _$SignUpState {
     required bool showErrorMessages,
     required bool isSubmitting,
     AuthFailure? authFailure,
+    required bool isSignedUp
   }) = _SignUpState;
 
   factory SignUpState.initial() => SignUpState(
@@ -19,5 +20,6 @@ class SignUpState with _$SignUpState {
         passwordAgain: Password(''),
         showErrorMessages: false,
         isSubmitting: false,
+        isSignedUp: false,
       );
 }

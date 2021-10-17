@@ -8,7 +8,6 @@ enum AppRoundedImageSize {
   extraLarge,
 }
 
-
 class AppRoundedImage extends StatelessWidget {
   final AppRoundedImageSize size;
   final String? imageName;

@@ -35,6 +35,7 @@ class OfflinePlayerSnapshotDto
   const factory OfflinePlayerSnapshotDto({
     required String id,
     String? name,
+    String? photoUrl,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -62,7 +63,7 @@ class OfflinePlayerSnapshotDto
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
       stats: PlayerStatsDto(
         average: player.average ?? 0,
-        checkoutPercentage: player.checkoutPercentage ?? 0,
+        checkoutPercentage: player.checkoutPercentage,
         firstNineAverage: player.firstNineAverage ?? 0,
         bestLegDartsThrown: player.bestLegDartsThrown,
         bestLegAverage: player.bestLegAverage,
@@ -89,6 +90,7 @@ class OfflinePlayerSnapshotDto
     return OfflinePlayerSnapshot(
       id: UniqueId.fromUniqueString(this.id),
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn ?? false,
       won: won ?? false,
       wonSets: wonSets,
@@ -192,6 +194,7 @@ class OnlinePlayerSnapshotDto
   const factory OnlinePlayerSnapshotDto({
     required String id,
     required String name,
+    String? photoUrl,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -201,7 +204,6 @@ class OnlinePlayerSnapshotDto
     int? lastPoints,
     int? dartsThrownCurrentLeg,
     PlayerStatsDto? stats,
-    required String userId,
   }) = _OnlinePlayerSnapshotDto;
 
   const OnlinePlayerSnapshotDto._();
@@ -221,7 +223,6 @@ class OnlinePlayerSnapshotDto
       stats: playerSnapshot.stats == null
           ? null
           : PlayerStatsDto.fromClient(playerSnapshot.stats!),
-      userId: playerSnapshot.userId,
     );
   }
 
@@ -229,6 +230,7 @@ class OnlinePlayerSnapshotDto
     return OnlinePlayerSnapshot(
       id: UniqueId.fromUniqueString(this.id),
       name: name,
+      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn ?? false,
       won: won ?? false,
       wonSets: wonSets,
@@ -240,7 +242,6 @@ class OnlinePlayerSnapshotDto
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
       stats: stats?.toDomain() ?? const PlayerStats(),
-      userId: UniqueId.fromUniqueString(userId),
     );
   }
 }

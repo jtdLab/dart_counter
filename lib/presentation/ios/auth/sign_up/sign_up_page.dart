@@ -19,15 +19,13 @@ class SignUpPage extends StatelessWidget {
       create: (context) => getIt<SignUpBloc>(),
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is Authenticated) {
-                context.router.replace(const MainFlowRoute());
-              }
-            },
-          ),
           BlocListener<SignUpBloc, SignUpState>(
             listener: (context, state) {
+              if (state.isSignedUp) {
+                context.router.replace(const MainFlowRoute());
+                return;
+              }
+
               state.authFailure?.maybeWhen(
                 serverError: () => showToast(LocaleKeys.errorServer.tr()),
                 orElse: () {},

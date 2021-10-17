@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/user/user.dart';
 
 //import 'package:dart_counter/domain/core/errors.dart';
 
@@ -11,8 +12,10 @@ abstract class IPlayOfflineFacade {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<OfflineGameSnapshot> watchGame();
 
-  /// Creates a new game.
-  void createGame();
+  /// Creates a new game with [owner].
+  void createGame({
+    required User owner,
+  });
 
   /// Changes the position of a player from [oldIndex] to [newIndex].
   void reorderPlayer({

@@ -374,7 +374,9 @@ class _OnePlayerFooter extends StatelessWidget {
                 ),
                 _OnePlayerStatDisplayer(
                   icon: AppImages.checkoutPercentageWhite,
-                  value: player.stats.checkoutPercentage.toStringAsFixed(2),
+                  value: player.stats.checkoutPercentage != null
+                      ? player.stats.checkoutPercentage!.toStringAsFixed(2)
+                      : '-',
                 ),
               ],
             );
@@ -554,7 +556,7 @@ class _FourPlayerDisplayer extends StatelessWidget {
 class _FourPlayerStatsDisplayer extends StatelessWidget {
   final int dartsThrownCurrentLeg;
   final double average;
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
 
   const _FourPlayerStatsDisplayer({
     Key? key,
@@ -590,7 +592,9 @@ class _FourPlayerStatsDisplayer extends StatelessWidget {
             flex: 5,
             child: _FourPlayerStatDisplayer(
               icon: AppImages.checkoutPercentageWhite,
-              value: checkoutPercentage.toStringAsFixed(2),
+              value: checkoutPercentage != null
+                  ? checkoutPercentage!.toStringAsFixed(2)
+                  : '-',
             ),
           ),
           const Spacer(),
@@ -929,7 +933,8 @@ class _DetailedInputArea extends StatelessWidget {
                       builder: (context, state) {
                         return Expanded(
                           child: _DartsDisplayer(
-                            darts: state.inputOrDarts.toOption().toNullable() ?? const KtList.empty(),
+                            darts: state.inputOrDarts.toOption().toNullable() ??
+                                const KtList.empty(),
                           ),
                         );
                       },
@@ -2452,7 +2457,7 @@ class _PlayerItemStatsDisplayer extends StatelessWidget {
   final bool isCurrentTurn;
   final int dartsThrownCurrentLeg;
   final double average;
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
 
   const _PlayerItemStatsDisplayer({
     Key? key,
@@ -2502,7 +2507,9 @@ class _PlayerItemStatsDisplayer extends StatelessWidget {
               icon: isCurrentTurn
                   ? AppImages.checkoutPercentageWhite
                   : AppImages.checkoutPercentageBlack,
-              value: checkoutPercentage.toStringAsFixed(2),
+              value: checkoutPercentage != null
+                  ? checkoutPercentage!.toStringAsFixed(2)
+                  : '-',
             ),
           ),
           const Spacer(),

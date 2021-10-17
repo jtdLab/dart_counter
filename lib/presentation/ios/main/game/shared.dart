@@ -66,8 +66,7 @@ class YouReallyWantToCancelGameDialog extends StatelessWidget {
   }
 }
 
-/*
-class StatsWidget extends StatelessWidget {
+class StatsWidget extends StatefulWidget {
   final KtList<AbstractPlayerSnapshot> players;
 
   const StatsWidget({
@@ -75,283 +74,12 @@ class StatsWidget extends StatelessWidget {
     required this.players,
   }) : super(key: key);
 
-  // TODO use players
-
   @override
-  Widget build(BuildContext context) {
-    return AppColumn(
-      spacing: size12(context),
-      children: const [
-        GeneralStatsCard(),
-        AverrageCard(),
-        CheckoutCard(),
-        TakesCard(),
-      ],
-    );
-  }
+  State<StatsWidget> createState() => _StatsWidgetState();
 }
 
-// TODO refactor +  use game ???
-class AverrageCard extends StatelessWidget {
-  const AverrageCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final game;
-
-    return AppCard(
-      headerBodySpacing: size6(context),
-      leading: AutoSizeText(
-        LocaleKeys.averrage.tr().toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        AppCardItem.custom(
-          height: size70(context) + size12(context) + 1, // TODO
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.averrage.tr().toUpperCase(),
-                value: '0.00',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.firstNine.tr().toUpperCase(),
-                value: '0.00',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.bestLeg.tr().toUpperCase(),
-                value: '0.00',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.worstLeg.tr().toUpperCase(),
-                value: '0.00',
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// TODO refactor +  use game ???
-class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final game;
-
-    return AppCard(
-      headerBodySpacing: size6(context),
-      leading: AutoSizeText(
-        LocaleKeys.checkout.tr().toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        AppCardItem.custom(
-          height: size70(context),
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
-                value: '0.00',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
-                value: '0.00',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.hightestFinish.tr().toUpperCase(),
-                value: '0.00',
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class GameHistoryDetailsCardContentRow extends StatelessWidget {
-  final String title;
-  final String value;
-
-  const GameHistoryDetailsCardContentRow({
-    Key? key,
-    required this.title,
-    required this.value,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: size6(context),
-      ),
-      child: Row(
-        children: [
-          Text(title),
-          const Spacer(),
-          Text(value),
-        ],
-      ),
-    );
-  }
-}
-
-// TODO refactor +  use game ???
-class GeneralStatsCard extends StatelessWidget {
-  const GeneralStatsCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final game;
-    return AppCard(
-      headerBodySpacing: size6(context),
-      leading: AutoSizeText(
-        LocaleKeys.general.tr().toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      /*trailing: AutoSizeText(
-        'SEBI ABI 69',
-        maxLines: 1,
-        minFontSize: 8,
-        maxFontSize: 14,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),*/
-      children: [
-        AppCardItem.custom(
-          height: size70(context),
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.name.tr().toUpperCase(),
-                value: 'SEBI ABI 69',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.sets.tr().toUpperCase(),
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: LocaleKeys.legs.tr().toUpperCase(),
-                value: '0',
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// TODO refactor +  use game ???
-class TakesCard extends StatelessWidget {
-  const TakesCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final game;
-
-    return AppCard(
-      headerBodySpacing: size6(context),
-      leading: AutoSizeText(
-        'takes'.toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        AppCardItem.custom(
-          height: size150(context) + 43, //TODO
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              GameHistoryDetailsCardContentRow(
-                title: '40+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '60+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '80+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '100+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '120+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '140+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '160+',
-                value: '0',
-              ),
-              GameHistoryDetailsCardContentRow(
-                title: '180',
-                value: '0',
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-*/
-
-class StatsWidget extends StatelessWidget {
-  final KtList<AbstractPlayerSnapshot> players;
-
-  const StatsWidget({
-    Key? key,
-    required this.players,
-  }) : super(key: key);
+class _StatsWidgetState extends State<StatsWidget> {
+  final group = AutoSizeGroup();
 
   @override
   Widget build(BuildContext context) {
@@ -363,9 +91,16 @@ class StatsWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const _TitleColumn(),
-              ...players.iter
-                  .map((player) => _PlayerColumn(player: player))
+              _TitleColumn(
+                flex: widget.players.size > 2 ? 2 : 1,
+              ),
+              ...widget.players.iter
+                  .map(
+                    (player) => Provider.value(
+                      value: group,
+                      child: _PlayerColumn(player: player),
+                    ),
+                  )
                   .toList(),
             ],
           ),
@@ -376,24 +111,27 @@ class StatsWidget extends StatelessWidget {
 }
 
 class _TitleColumn extends StatelessWidget {
+  final int flex;
+
   const _TitleColumn({
     Key? key,
+    required this.flex,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return _Column(
-      flex: 2,
+      flex: flex,
       itemTextAlign: TextAlign.start,
       header: Center(
         child: Text(
-          'Kategorie'.toUpperCase(),
+          LocaleKeys.category.tr().toUpperCase(),
           style: CupertinoTheme.of(context)
               .textTheme
               .textStyle
               .copyWith(color: AppColors.white),
         ),
-      ), // TODO translate
+      ),
       headerItem1: LocaleKeys.sets.tr(),
       headerItem2: LocaleKeys.legs.tr(),
       subheader1: Center(
@@ -411,7 +149,7 @@ class _TitleColumn extends StatelessWidget {
       subHeader1Item4: LocaleKeys.worstLeg.tr(),
       subheader2: Center(
         child: Text(
-          'Checkout'.toUpperCase(), // TODO translate
+          LocaleKeys.checkout.tr().toUpperCase(),
           style: CupertinoTheme.of(context)
               .textTheme
               .textStyle
@@ -473,17 +211,20 @@ class _PlayerColumn extends StatelessWidget {
       ),
       headerItem1: player.wonSets != null ? player.wonSets.toString() : '-',
       headerItem2: player.wonLegsCurrentSet.toString(),
-      subHeader1Item1: player.stats.average.toString(),
-      subHeader1Item2: player.stats.firstNineAverage.toString(),
+      subHeader1Item1: player.stats.average.toStringAsFixed(2),
+      subHeader1Item2: player.stats.firstNineAverage.toStringAsFixed(2),
       subHeader1Item3: player.stats.bestLegAverage != null
-          ? player.stats.bestLegAverage.toString()
+          ? player.stats.bestLegAverage!.toStringAsFixed(2)
           : '-',
       subHeader1Item4: player.stats.worstLegAverage != null
-          ? player.stats.worstLegAverage.toString()
+          ? player.stats.worstLegAverage!.toStringAsFixed(2)
           : '-',
-      subHeader2Item1: player.stats.checkoutPercentage.toString(),
+      // TODO - when 0 darts on double
+      subHeader2Item1: player.stats.checkoutPercentage != null
+          ? player.stats.checkoutPercentage!.toStringAsFixed(2)
+          : '-',
       subHeader2Item2: player.stats.averageDartsPerLeg != null
-          ? player.stats.averageDartsPerLeg.toString()
+          ? player.stats.averageDartsPerLeg!.toStringAsFixed(2)
           : '-',
       subHeader2Item3: player.stats.highestFinish != null
           ? player.stats.highestFinish.toString()
@@ -667,16 +408,38 @@ class _ColumnItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AutoSizeGroup? group;
+    try {
+      group = context.read<AutoSizeGroup>();
+    } catch (_) {
+      group = null;
+    }
+
     return Container(
-      height: 2 * size12(context) + 5, // TODO responsive
+      height: _height(context),
       width: double.infinity,
       color: AppColors.white,
       child: Center(
-        child: Text(
-          text.toUpperCase(),
-          textAlign: textAlign,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: AutoSizeText(
+            text.toUpperCase(),
+            maxLines: 1,
+            minFontSize: 4,
+            textAlign: textAlign,
+            group: group,
+          ),
         ),
       ),
     );
   }
+
+  double _height(BuildContext context) => responsiveValue(
+        context,
+        defaultValue: 29,
+        mobileSmall: 21,
+        mobileNormal: 25,
+        mobileLarge: 29,
+        mobileExtraLarge: 33,
+      );
 }

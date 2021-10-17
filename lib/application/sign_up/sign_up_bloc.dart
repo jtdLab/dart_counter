@@ -112,16 +112,26 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         );
 
         if (state is DataWatcherLoadFailure) {
+          await _authFacade.signOut();
+          // TODO delete user or go to sign in -> user is created but sign in failed
           authFailure = const AuthFailure.serverError(); // TODO data load error
         }
       }
-    }
 
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailure: authFailure,
-    );
+      yield state.copyWith(
+        isSubmitting: authFailure == null,
+        showErrorMessages: true,
+        authFailure: authFailure,
+        isSignedUp: authFailure == null,
+      );
+    } else {
+      yield state.copyWith(
+        isSubmitting: false,
+        showErrorMessages: true,
+        authFailure: authFailure,
+        isSignedUp: false,
+      );
+    }
   }
 
   @override
@@ -130,7 +140,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     if (getIt.isRegistered<SignUpBloc>()) {
       getIt.resetLazySingleton<SignUpBloc>();
     }
-    
+
     return super.close();
   }
 }

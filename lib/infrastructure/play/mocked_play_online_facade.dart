@@ -170,7 +170,6 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       }
     }
 
-
     return left(const PlayFailure.error()); // TODO name better
   }
 
@@ -213,7 +212,7 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
       dartsThrownCurrentLeg: player.dartsThrownCurrentLeg ?? 0,
       stats: PlayerStats(
         average: player.average ?? 0,
-        checkoutPercentage: player.checkoutPercentage ?? 0,
+        checkoutPercentage: player.checkoutPercentage,
         firstNineAverage: player.firstNineAverage ?? 0,
         bestLegDartsThrown: player.bestLegDartsThrown,
         bestLegAverage: player.bestLegAverage,
@@ -232,9 +231,6 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
         hundredFourtyPlus: player.hundredFourtyPlus ?? 0,
         hundredSixtyPlus: player.hundredSixtyPlus ?? 0,
         hundredEighty: player.hundredEighty ?? 0,
-      ),
-      userId: UniqueId.fromUniqueString(
-        faker.randomGenerator.string(28, min: 28),
       ),
     );
   }

@@ -308,9 +308,17 @@ class _OfflinePlayerItem extends StatelessWidget {
                 SizedBox(
                   width: spacerNormal(context),
                 ),
-                const AppRoundedImage.normal(
-                  imageName: AppImages.photoPlaceholderNew,
-                ),
+                if (player.photoUrl != null) ...[
+                  AppRoundedImage.normal(
+                    child: CachedNetworkImageProvider(
+                      player.photoUrl!,
+                    ),
+                  ),
+                ] else ...[
+                  const AppRoundedImage.normal(
+                    imageName: AppImages.photoPlaceholderNew,
+                  ),
+                ],
                 SizedBox(
                   width: spacerNormal(context),
                 ),

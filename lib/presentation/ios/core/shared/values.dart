@@ -48,6 +48,7 @@ double maxFontSizeNormal(BuildContext context) => responsiveValue(
       context,
       defaultValue: 14,
       mobileSmall: 11,
+      mobileNormal: 14,
     );
 
 double spacerSmall(BuildContext context) => responsiveValue(

@@ -10,7 +10,7 @@ part 'stats_dto.g.dart';
 class PlayerStatsDto with _$PlayerStatsDto {
   const factory PlayerStatsDto({
     required double average,
-    required double checkoutPercentage,
+    double? checkoutPercentage,
     required double firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,

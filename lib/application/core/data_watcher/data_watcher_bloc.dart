@@ -74,8 +74,6 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   Stream<DataWatcherState> _mapWatchDataStartedToState(
     WatchDataStarted event,
   ) async* {
-    final appUserId = event.appUserId; // TODO use is in new facades interface
-
     _userSubscription = _userFacade.watchUser().listen((failureOrUser) {
       failureOrUser.fold(
         (failure) => add(const DataWatcherEvent.failureReceived()),
@@ -152,6 +150,13 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     UserReceived event,
   ) async* {
     final user = event.user;
+
+    final photoUrl = user.profile.photoUrl;
+
+    if (photoUrl != null) {
+      await _fetchImage(url: photoUrl);
+    }
+
     yield state.map(
       loadInProgress: (loadInProgress) {
         final receivedGameInvitations = loadInProgress.receivedGameInvitations;
@@ -381,6 +386,21 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     _sentFriendRequestsSubscription?.cancel();
   }
 
+  /// Loads and caches image located at [url].
+  Future<void> _fetchImage({
+    required String url,
+  }) async {
+    final Completer<void> completer = Completer<void>();
+    final provider = CachedNetworkImageProvider(url);
+    provider.resolve(ImageConfiguration.empty).addListener(
+      ImageStreamListener((image, synchronousCall) {
+        completer.complete();
+      }),
+    );
+
+    await completer.future;
+  }
+
   @override
   Future<void> close() {
     _cancelDataSubscriptions();
@@ -390,7 +410,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     if (getIt.isRegistered<DataWatcherBloc>()) {
       getIt.resetLazySingleton<DataWatcherBloc>();
     }
-    
+
     return super.close();
   }
 }
