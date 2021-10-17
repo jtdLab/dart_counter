@@ -70,7 +70,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
 
     if (isEmailValid && isPasswordValid) {
-      await Future.delayed(const Duration(seconds: 1));
+     await Future.delayed(const Duration(milliseconds: 500));
       final signInResult = await _authFacade.singInWithEmailAndPassword(
         emailAddress: state.email,
         password: state.password,

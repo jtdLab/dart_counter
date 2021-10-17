@@ -169,7 +169,16 @@ class _PlayerList extends StatelessWidget {
                 final isDismissable = state.gameSnapshot.hasDartBot()
                     ? state.gameSnapshot.players.size > 2
                     : state.gameSnapshot.players.size > 1;
-                return _OfflinePlayerItem(
+                if (player.photoUrl != null) {
+                  return _PlayerItem(
+                    key: ValueKey(player.id),
+                    index: index,
+                    offlinePlayerOrOnlinePlayer: left(player),
+                    isDismissable: false,
+                  );
+                }
+
+                return _EditablePlayerItem(
                   key: ValueKey(player.id),
                   index: index,
                   player: player,
@@ -179,10 +188,11 @@ class _PlayerList extends StatelessWidget {
                 final isDismissable = state.gameSnapshot.hasDartBot()
                     ? state.gameSnapshot.players.size > 2
                     : state.gameSnapshot.players.size > 1;
-                return _OnlinePlayerItem(
+                return _PlayerItem(
                   key: ValueKey(player.id),
                   index: index,
-                  player: player as OnlinePlayerSnapshot,
+                  offlinePlayerOrOnlinePlayer:
+                      right(player as OnlinePlayerSnapshot),
                   isDismissable: isDismissable,
                 );
               }
@@ -271,12 +281,12 @@ class _DartBotItem extends StatelessWidget {
   }
 }
 
-class _OfflinePlayerItem extends StatelessWidget {
+class _EditablePlayerItem extends StatelessWidget {
   final int index;
   final OfflinePlayerSnapshot player;
   final bool isDismissable;
 
-  const _OfflinePlayerItem({
+  const _EditablePlayerItem({
     required Key key,
     required this.index,
     required this.player,
@@ -308,17 +318,9 @@ class _OfflinePlayerItem extends StatelessWidget {
                 SizedBox(
                   width: spacerNormal(context),
                 ),
-                if (player.photoUrl != null) ...[
-                  AppRoundedImage.normal(
-                    child: CachedNetworkImageProvider(
-                      player.photoUrl!,
-                    ),
-                  ),
-                ] else ...[
-                  const AppRoundedImage.normal(
-                    imageName: AppImages.photoPlaceholderNew,
-                  ),
-                ],
+                const AppRoundedImage.normal(
+                  imageName: AppImages.photoPlaceholderNew,
+                ),
                 SizedBox(
                   width: spacerNormal(context),
                 ),
@@ -367,20 +369,26 @@ class _OfflinePlayerItem extends StatelessWidget {
   }
 }
 
-class _OnlinePlayerItem extends StatelessWidget {
+class _PlayerItem extends StatelessWidget {
   final int index;
-  final OnlinePlayerSnapshot player;
+  final Either<OfflinePlayerSnapshot, OnlinePlayerSnapshot>
+      offlinePlayerOrOnlinePlayer;
   final bool isDismissable;
 
-  const _OnlinePlayerItem({
+  const _PlayerItem({
     required Key key,
     required this.index,
-    required this.player,
+    required this.offlinePlayerOrOnlinePlayer,
     required this.isDismissable,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final photoUrl = offlinePlayerOrOnlinePlayer.fold(
+      (offlinePlayer) => offlinePlayer.photoUrl,
+      (onlinePlayer) => onlinePlayer.photoUrl,
+    );
+
     return Column(
       children: [
         Dismissible(
@@ -404,12 +412,23 @@ class _OnlinePlayerItem extends StatelessWidget {
                 SizedBox(
                   width: spacerNormal(context),
                 ),
-                const AppRoundedImage.normal(
-                  imageName: AppImages.photoPlaceholderNew,
-                ),
+                if (photoUrl != null) ...[
+                  AppRoundedImage.normal(
+                    child: CachedNetworkImageProvider(
+                      photoUrl,
+                    ),
+                  ),
+                ] else ...[
+                  const AppRoundedImage.normal(
+                    imageName: AppImages.photoPlaceholderNew,
+                  ),
+                ],
                 const Spacer(),
                 Text(
-                  player.name.toUpperCase(),
+                  offlinePlayerOrOnlinePlayer.fold(
+                    (offlinePlayer) => offlinePlayer.name!,
+                    (onlinePlayer) => onlinePlayer.name,
+                  ),
                 ),
                 const Spacer(),
                 AppIconButton(

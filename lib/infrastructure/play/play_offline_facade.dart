@@ -23,8 +23,8 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   final BehaviorSubject<OfflineGameSnapshot> _gameController;
 
   ex.Game? _game;
-  User? _owner; // TODO better
-  String? _ownerPlayerId; // better
+  User? _owner;
+  String? _ownerPlayerId;
   DateTime? _createdAt; // TODO needed
 
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream

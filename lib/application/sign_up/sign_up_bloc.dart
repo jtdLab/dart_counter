@@ -92,7 +92,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         isPasswordValid &&
         isPasswordAgainValid &&
         passwordsMatch) {
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 500));
       final signUpResult =
           await _authFacade.singUpWithEmailAndUsernameAndPassword(
         emailAddress: state.email,
