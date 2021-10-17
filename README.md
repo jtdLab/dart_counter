@@ -48,6 +48,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // TODO atm input area blocs have to sync input value of ingamebloc thats not good
 // If detailed keyboard checkout details modal gets shown for no reason look handy screenshot
 // clear cache on signout
+// TODO move owner/creator offline game to play bloc from facade
 
 ## IMPORT STRUCTURE OF PRESENTATION LAYER
 

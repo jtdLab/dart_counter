@@ -61,7 +61,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }
 
   Stream<SignInState> _mapSignInPressedToState() async* {
-    AuthFailure? authFailure;
     final isEmailValid = state.email.isValid();
     final isPasswordValid = state.password.isValid();
     yield state.copyWith(
@@ -70,31 +69,62 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
 
     if (isEmailValid && isPasswordValid) {
-     await Future.delayed(const Duration(milliseconds: 500));
-      final signInResult = await _authFacade.singInWithEmailAndPassword(
-        emailAddress: state.email,
-        password: state.password,
+      yield* _signIn(
+        _authFacade.singInWithEmailAndPassword(
+          emailAddress: state.email,
+          password: state.password,
+        ),
       );
-      authFailure = signInResult.fold(
-        (failure) => failure,
-        (_) => null,
-      );
-
-      if (authFailure == null) {
-        final state = await _dataWatcherBloc.stream.firstWhere(
-          (element) =>
-              element is DataWatcherLoadSuccess ||
-              element is DataWatcherLoadFailure,
-        );
-
-        if (state is DataWatcherLoadFailure) {
-          // couldnt load data
-          await _authFacade.signOut();
-          authFailure = const AuthFailure.serverError();
-        }
-      }
     } else {
-      authFailure = const AuthFailure.invalidEmailAndPasswordCombination();
+      yield state.copyWith(
+        isSubmitting: false,
+        showErrorMessages: true,
+        authFailure: const AuthFailure.invalidEmailAndPasswordCombination(),
+        isSignedIn: false,
+      );
+    }
+  }
+
+  Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
+    yield* _signIn(_authFacade.signInWithFacebook());
+  }
+
+  Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
+    yield* _signIn(_authFacade.signInWithGoogle());
+  }
+
+  Stream<SignInState> _mapSignInWithApplePressedToState() async* {
+    yield* _signIn(_authFacade.signInWithApple());
+  }
+
+  Stream<SignInState> _signIn(
+    Future<Either<AuthFailure, Unit>> signInFuture,
+  ) async* {
+    yield state.copyWith(
+      isSubmitting: true,
+      authFailure: null,
+    );
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final signInResult = await signInFuture;
+    AuthFailure? authFailure = signInResult.fold(
+      (failure) => failure,
+      (_) => null,
+    );
+
+    if (authFailure == null) {
+      final state = await _dataWatcherBloc.stream.firstWhere(
+        (element) =>
+            element is DataWatcherLoadSuccess ||
+            element is DataWatcherLoadFailure,
+      );
+
+      if (state is DataWatcherLoadFailure) {
+        // couldnt load data
+        await _authFacade.signOut();
+        authFailure = const AuthFailure.serverError();
+      }
     }
 
     yield state.copyWith(
@@ -102,45 +132,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       showErrorMessages: true,
       authFailure: authFailure,
       isSignedIn: authFailure == null,
-    );
-  }
-
-  Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
-    final signInResult = await _authFacade.signInWithFacebook();
-    final authFailure = signInResult.fold(
-      (failure) => failure,
-      (_) => null,
-    );
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailure: authFailure,
-    );
-  }
-
-  Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
-    final signInResult = await _authFacade.signInWithGoogle();
-    final authFailure = signInResult.fold(
-      (failure) => failure,
-      (_) => null,
-    );
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailure: authFailure,
-    );
-  }
-
-  Stream<SignInState> _mapSignInWithApplePressedToState() async* {
-    final signInResult = await _authFacade.signInWithApple();
-    final authFailure = signInResult.fold(
-      (failure) => failure,
-      (_) => null,
-    );
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailure: authFailure,
     );
   }
 
