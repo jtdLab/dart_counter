@@ -37,20 +37,18 @@ class _ProfileWidget extends HookWidget {
         final careerStatsAll = state.careerStatsAll;
         final careerStatsOnline = state.user.profile.careerStatsOnline;
         final careerStatsOffline = state.user.careerStatsOffline;
-        final userId = state.user.id;
+        final photoUrl = state.user.profile.photoUrl;
 
         return Column(
           children: [
-            /**
             SizedBox(
               height: spacerSmall(context),
             ),
             ProfileImageDisplayer(
               photoUrl: photoUrl,
             ),
-            */
             SizedBox(
-              height: spacerSmall(context),
+              height: spacerLarge(context),
             ),
             Container(
               height: size50(context),
@@ -115,7 +113,7 @@ class _ProfileWidget extends HookWidget {
             ),
             SizedBox(
               height:
-                  spacerSmall(context) + 8 * (size6(context) + size50(context)),
+                  spacerSmall(context) + 6 * (size6(context) + size50(context)), // TODO 8 eigneltich
               child: PageView(
                 onPageChanged: (newPageIndex) {
                   pageIndex.value = newPageIndex;
@@ -204,6 +202,8 @@ class _CareerStatsDisplayer extends StatelessWidget {
           title: LocaleKeys.firstNine.tr().toUpperCase(),
           trend: careerStats.firstNineTrend,
         ),
+        // TODO
+        /*
         _CareerStatsItem(
           value: '19',
           title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
@@ -212,6 +212,7 @@ class _CareerStatsDisplayer extends StatelessWidget {
           title: '180s',
           value: '156',
         ),
+        */
         _CareerStatsItem(
           value: careerStats.games.toString(),
           title: LocaleKeys.games.tr().toUpperCase(),
