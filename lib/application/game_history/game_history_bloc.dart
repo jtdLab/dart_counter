@@ -10,6 +10,7 @@ import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'game_history_event.dart';
 part 'game_history_state.dart';
@@ -24,10 +25,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   GameHistoryBloc(
     this._userFacade,
     this._gameHistoryFacade,
-  ) : super(const GameHistoryState.loadInProgress()) {
-    //add(const GameHistoryEvent.fetchGameHistoryOfflineRequested());
-    //add(const GameHistoryEvent.fetchGameHistoryOnlineRequested());
-  }
+  ) : super(const GameHistoryState.loadInProgress());
 
   @override
   Stream<GameHistoryState> mapEventToState(
@@ -45,8 +43,37 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   }
 
   Stream<GameHistoryState> _mapFetchGameHistoryAllRequestedToState() async* {
-    // TODO implement 
-    throw UnimplementedError();
+    final failureOrUser = _userFacade.getUser();
+    final uid = failureOrUser?.fold(
+          (failure) => throw Error(), // TODO failure here pls
+          (user) => user.id,
+        ) ??
+        (throw Error()); // TODO failure here pls
+
+    final failureOrOnlineGameHistory =
+        await _gameHistoryFacade.fetchGameHistoryOnline(uid: uid.getOrCrash());
+    final failureOrOfflineGameHistory =
+        await _gameHistoryFacade.fetchGameHistoryOffline();
+
+    yield failureOrOnlineGameHistory.fold(
+      (failure) => GameHistoryState.loadFailure(failure: failure),
+      (onlineGameHistory) => failureOrOfflineGameHistory.fold(
+        (failure) => GameHistoryState.loadFailure(failure: failure),
+        (offlineGameHistory) {
+          final allGameHistory = KtMutableList<Game>.empty();
+
+          allGameHistory.addAll(onlineGameHistory.getOrCrash());
+          allGameHistory.addAll(offlineGameHistory.getOrCrash());
+
+          allGameHistory.sortedByDescending((game) => game.createdAt);
+        
+
+          return GameHistoryState.loadSuccess(
+            gameHistory: List10(allGameHistory.take(10)),
+          );
+        },
+      ),
+    );
   }
 
   Stream<GameHistoryState>
