@@ -63,9 +63,9 @@ class OfflineGame with _$OfflineGame implements Game {
           501,
           701,
         ]),
-        players: KtList.from([
-          OfflinePlayer.dummy(),
-        ]),
+        players: faker.randomGenerator
+            .amount((i) => OfflinePlayer.dummy(), 4)
+            .toImmutableList(),
       );
 }
 
@@ -115,8 +115,8 @@ class OnlineGame with _$OnlineGame implements Game {
           501,
           701,
         ]),
-        players: KtList.from([
-          OnlinePlayer.dummy(),
-        ]),
+        players: faker.randomGenerator
+            .amount((i) => OnlinePlayer.dummy(), 4)
+            .toImmutableList(),
       );
 }
