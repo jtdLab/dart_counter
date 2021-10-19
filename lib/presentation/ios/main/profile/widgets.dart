@@ -37,6 +37,7 @@ class _ProfileWidget extends HookWidget {
         final careerStatsAll = state.careerStatsAll;
         final careerStatsOnline = state.user.profile.careerStatsOnline;
         final careerStatsOffline = state.user.careerStatsOffline;
+        final userId = state.user.id;
 
         return Column(
           children: [
@@ -101,7 +102,8 @@ class _ProfileWidget extends HookWidget {
                           curve: Curves.easeOut,
                         ),
                         icon: Image.asset(
-                            AppImages.chevronWhiteForwardNew), // TODO icon size
+                          AppImages.chevronWhiteForwardNew,
+                        ), // TODO icon size
                       ),
                     ),
                   ],
@@ -134,8 +136,38 @@ class _ProfileWidget extends HookWidget {
             ),
             AppActionButton.normal(
               text: LocaleKeys.gameHistory.tr().toUpperCase(),
-              onPressed: () =>
-                  context.router.push(const GameHistoryFlowRoute()),
+              onPressed: () {
+                if (pageIndex.value == 0) {
+                  context.router.push(
+                    GameHistoryFlowRoute(
+                      gameHistoryBloc: getIt<GameHistoryBloc>()
+                        ..add(
+                          const GameHistoryEvent.fetchGameHistoryAllRequested(),
+                        ),
+                    ),
+                  );
+                } else if (pageIndex.value == 1) {
+                  context.router.push(
+                    GameHistoryFlowRoute(
+                      gameHistoryBloc: getIt<GameHistoryBloc>()
+                        ..add(
+                          const GameHistoryEvent
+                              .fetchGameHistoryOnlineRequested(),
+                        ),
+                    ),
+                  );
+                } else {
+                  context.router.push(
+                    GameHistoryFlowRoute(
+                      gameHistoryBloc: getIt<GameHistoryBloc>()
+                        ..add(
+                          const GameHistoryEvent
+                              .fetchGameHistoryOfflineRequested(),
+                        ),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         );

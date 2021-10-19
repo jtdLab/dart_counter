@@ -75,7 +75,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   }
 
   Stream<InGameState> _mapUndoThrowPressedToState() async* {
-    // TODO maybe add last throw and cut last input digit or if darts 
+    // TODO maybe add last throw and cut last input digit or if darts
     // remove last darts and preset inputOrDarts to this value
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -114,7 +114,10 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   Stream<InGameState> _mapGameReceivedToState(
     GameReceived event,
   ) async* {
-    yield state.copyWith(gameSnapshot: event.gameSnapshot);
+    yield state.copyWith(
+      prevGameSnapshot: state.gameSnapshot,
+      gameSnapshot: event.gameSnapshot,
+    );
     // TODO what is this implementation
     /**
      * final players = event.gameSnapshot.players;

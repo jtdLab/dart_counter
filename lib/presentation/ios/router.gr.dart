@@ -7,7 +7,9 @@
 import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:flutter/material.dart' as _i20;
 
+import '../../application/game_history/game_history_bloc.dart' as _i23;
 import 'auth/auth_flow.dart' as _i1;
+import 'core/core.dart' as _i22;
 import 'main/contact/contact_page.dart' as _i6;
 import 'main/friends/friends_flow.dart' as _i8;
 import 'main/friends/overview/overview_page.dart' as _i12;
@@ -84,8 +86,11 @@ class Router extends _i19.RootStackRouter {
           routeData: routeData, child: const _i9.ProfilePage());
     },
     GameHistoryFlowRoute.name: (routeData) {
+      final args = routeData.argsAs<GameHistoryFlowRouteArgs>();
       return _i19.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i10.GameHistoryFlow());
+          routeData: routeData,
+          child: _i10.GameHistoryFlow(
+              key: args.key, gameHistoryBloc: args.gameHistoryBloc));
     },
     GameFlowRoute.name: (routeData) {
       return _i19.CupertinoPageX<dynamic>(
@@ -238,11 +243,27 @@ class ProfilePageRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for [_i10.GameHistoryFlow]
-class GameHistoryFlowRoute extends _i19.PageRouteInfo<void> {
-  const GameHistoryFlowRoute({List<_i19.PageRouteInfo>? children})
-      : super(name, path: 'game-history-flow', initialChildren: children);
+class GameHistoryFlowRoute
+    extends _i19.PageRouteInfo<GameHistoryFlowRouteArgs> {
+  GameHistoryFlowRoute(
+      {_i22.Key? key,
+      required _i23.GameHistoryBloc gameHistoryBloc,
+      List<_i19.PageRouteInfo>? children})
+      : super(name,
+            path: 'game-history-flow',
+            args: GameHistoryFlowRouteArgs(
+                key: key, gameHistoryBloc: gameHistoryBloc),
+            initialChildren: children);
 
   static const String name = 'GameHistoryFlowRoute';
+}
+
+class GameHistoryFlowRouteArgs {
+  const GameHistoryFlowRouteArgs({this.key, required this.gameHistoryBloc});
+
+  final _i22.Key? key;
+
+  final _i23.GameHistoryBloc gameHistoryBloc;
 }
 
 /// generated route for [_i11.GameFlow]

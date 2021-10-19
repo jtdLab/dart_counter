@@ -51,7 +51,7 @@ class _InGameWidget extends StatelessWidget {
               } else if (gameSnapshot.players.size == 3) {
                 return const _ThreePlayerDisplayer();
               } else {
-                return const _FourPlayerDisplayer();
+                return const _ThreePlayerDisplayer();
               }
             },
           ),
@@ -439,12 +439,16 @@ class _TwoPlayerDisplayer extends StatelessWidget {
         return AppRow(
           spacing: size6(context),
           children: [
-            _PlayerItem(
-              player: players[0],
+            Expanded(
+              child: _PlayerItem(
+                player: players[0],
+              ),
             ),
-            _PlayerItem(
-              profileImagePosition: ProfileImagePosition.right,
-              player: players[1],
+            Expanded(
+              child: _PlayerItem(
+                profileImagePosition: ProfileImagePosition.right,
+                player: players[1],
+              ),
             ),
           ],
         );
@@ -454,39 +458,135 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 }
 
 // THREE PLAYER DISPLAYER
-class _ThreePlayerDisplayer extends StatelessWidget {
+class _ThreePlayerDisplayer extends HookWidget {
   const _ThreePlayerDisplayer({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InGameBloc, InGameState>(
-      builder: (context, state) {
-        final players = state.gameSnapshot.players;
+    final controller = useScrollController();
 
-        return AppRow(
-          spacing: size6(context),
-          children: [
-            _PlayerItem(
-              player: players[0],
-            ),
-            Expanded(
-              child: AppColumn(
-                spacing: size6(context),
-                children: [
-                  _PlayerItemSmall(
-                    player: players[2],
-                    profileImagePosition: ProfileImagePosition.right,
-                  ),
-                  _PlayerItemSmall(
-                    player: players[1],
-                    profileImagePosition: ProfileImagePosition.right,
-                  ),
-                ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final itemExtent = constraints.maxHeight *
+            responsiveValue(context, defaultValue: 0.5, mobileNormal: 0.45);
+
+        return BlocConsumer<InGameBloc, InGameState>(
+          listenWhen: (oldState, newState) =>
+              oldState.gameSnapshot != newState.gameSnapshot,
+          // TODO listener doesnt work as intended
+          listener: (context, state) {
+            final prevGameSnapshot = state.prevGameSnapshot!;
+            final currentGameSnapshot = state.gameSnapshot;
+
+            bool allEqual = true;
+            for (int i = 0; i < prevGameSnapshot.players.size; i++) {
+              final prevPlayer = prevGameSnapshot.players[i];
+              final currentPlayer = currentGameSnapshot.players[i];
+
+              allEqual &= prevPlayer.wonLegsCurrentSet ==
+                  currentPlayer.wonLegsCurrentSet;
+            }
+            final newLeg = !allEqual;
+
+            final double offset;
+            if (newLeg) {
+              final prevCurrentTurnIndex = prevGameSnapshot.players
+                  .indexOf(prevGameSnapshot.currentTurn());
+              final currentCurrentTurnIndex = currentGameSnapshot.players
+                  .indexOf(currentGameSnapshot.currentTurn());
+
+              print('prevCurrentTurnIndex $prevCurrentTurnIndex');
+              print('currentCurrentTurnIndex $currentCurrentTurnIndex');
+
+              final int multiplier;
+              if (prevCurrentTurnIndex <= currentCurrentTurnIndex) {
+                multiplier = currentCurrentTurnIndex - prevCurrentTurnIndex;
+              } else {
+                multiplier =
+                    prevGameSnapshot.players.size - prevCurrentTurnIndex;
+              }
+
+              print('multiplier $multiplier');
+
+              offset = controller.offset + (multiplier * itemExtent);
+            } else {
+              bool allGreaterOrEqual = true;
+              for (int i = 0; i < prevGameSnapshot.players.size; i++) {
+                final prevPlayer = prevGameSnapshot.players[i];
+                final currentPlayer = currentGameSnapshot.players[i];
+
+                allGreaterOrEqual &= currentPlayer.dartsThrownCurrentLeg >=
+                    prevPlayer.dartsThrownCurrentLeg;
+              }
+              final throwUndone = !allGreaterOrEqual;
+
+              if (throwUndone) {
+                offset = controller.offset - itemExtent;
+              } else {
+                offset = controller.offset + itemExtent;
+              }
+            }
+
+            controller.animateTo(
+              offset,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOut,
+            );
+          },
+          builder: (context, state) {
+            final players = state.gameSnapshot.players;
+
+            return RotatedBox(
+              quarterTurns: -1,
+              child: ListWheelScrollView.useDelegate(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: controller,
+                itemExtent: itemExtent,
+                childDelegate: ListWheelChildLoopingListDelegate(
+                  children: players.iter.map(
+                    (player) {
+                      return SizedBox(
+                        width: constraints.maxWidth,
+                        height: itemExtent,
+                        child: RotatedBox(
+                          quarterTurns: 1,
+                          child: _PlayerItem(
+                            player: player,
+                          ),
+                        ),
+                      );
+                    },
+                  ).toList(),
+                ),
               ),
-            ),
-          ],
+            );
+
+            return AppRow(
+              spacing: size6(context),
+              children: [
+                _PlayerItem(
+                  player: players[0],
+                ),
+                Expanded(
+                  child: AppColumn(
+                    spacing: size6(context),
+                    children: [
+                      _PlayerItemSmall(
+                        player: players[2],
+                        profileImagePosition: ProfileImagePosition.right,
+                      ),
+                      _PlayerItemSmall(
+                        player: players[1],
+                        profileImagePosition: ProfileImagePosition.right,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -2213,53 +2313,51 @@ class _PlayerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: border4(context),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: border4(context),
+        ),
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            flex: 7,
+            child: _PlayerItemHeader(
+              name: player.name!,
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 7,
-              child: _PlayerItemHeader(
-                name: player.name!,
-              ),
+          Expanded(
+            flex: 6,
+            child: _PlayerItemLegsSetsDisplayer(
+              isCurrentTurn: player.isCurrentTurn,
+              wonSets: player.wonSets,
+              wonLegsCurrentSet: player.wonLegsCurrentSet,
             ),
-            Expanded(
-              flex: 6,
-              child: _PlayerItemLegsSetsDisplayer(
-                isCurrentTurn: player.isCurrentTurn,
-                wonSets: player.wonSets,
-                wonLegsCurrentSet: player.wonLegsCurrentSet,
-              ),
+          ),
+          Expanded(
+            flex: 30,
+            child: _PlayerItemPointsLeftLastThrowDisplayer(
+              pointsLeft: player.pointsLeft,
+              lastPoints: player.lastPoints,
             ),
-            Expanded(
-              flex: 30,
-              child: _PlayerItemPointsLeftLastThrowDisplayer(
-                pointsLeft: player.pointsLeft,
-                lastPoints: player.lastPoints,
-              ),
+          ),
+          Expanded(
+            flex: 6,
+            child: _PlayerItemFinishRecommendationDisplayer(
+              finishRecommendation: player.finishRecommendation,
             ),
-            Expanded(
-              flex: 6,
-              child: _PlayerItemFinishRecommendationDisplayer(
-                finishRecommendation: player.finishRecommendation,
-              ),
+          ),
+          Expanded(
+            flex: 18,
+            child: _PlayerItemStatsDisplayer(
+              isCurrentTurn: player.isCurrentTurn,
+              dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
+              average: player.stats.average,
+              checkoutPercentage: player.stats.checkoutPercentage,
             ),
-            Expanded(
-              flex: 18,
-              child: _PlayerItemStatsDisplayer(
-                isCurrentTurn: player.isCurrentTurn,
-                dartsThrownCurrentLeg: player.dartsThrownCurrentLeg,
-                average: player.stats.average,
-                checkoutPercentage: player.stats.checkoutPercentage,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -2547,6 +2645,13 @@ class _PlayerItemStatDisplayer extends StatelessWidget {
                   child: Image.asset(
                     icon,
                     fit: BoxFit.fill,
+                    errorBuilder: (_, __, ___) {
+                      return Image.asset(
+                        icon,
+                        fit: BoxFit.fill,
+                        errorBuilder: (_, __, ___) => const SizedBox(),
+                      );
+                    },
                   ),
                 ),
               ),

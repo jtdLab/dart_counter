@@ -1,22 +1,6 @@
 part of 'profile_page.dart';
 
 // NAVBAR
-// TODO remove
-class _GameHistoryButton extends StatelessWidget {
-  const _GameHistoryButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppNavigationBarButton(
-      onPressed: () => context.router.push(const GameHistoryFlowRoute()),
-      child: Image.asset(
-        AppImages.clockNew,
-      ),
-    );
-  }
-}
 
 class _NameDisplayer extends StatelessWidget {
   const _NameDisplayer({
@@ -48,6 +32,7 @@ class _FriendsProfileWidget extends StatelessWidget {
     return BlocBuilder<FriendsBloc, FriendsState>(
       builder: (context, state) {
         final photoUrl = state.selectedFriend!.profile.photoUrl;
+        final friendId = state.selectedFriend!.id;
 
         return Column(
           children: [
@@ -66,8 +51,16 @@ class _FriendsProfileWidget extends StatelessWidget {
             ),
             AppActionButton.normal(
               text: LocaleKeys.gameHistory.tr().toUpperCase(),
-              onPressed: () =>
-                  context.router.push(const GameHistoryFlowRoute()),
+              onPressed: () => context.router.push(
+                GameHistoryFlowRoute(
+                  gameHistoryBloc: getIt<GameHistoryBloc>()
+                    ..add(
+                      GameHistoryEvent.fetchGameHistoryOnlineRequested(
+                        userId: friendId,
+                      ),
+                    ),
+                ),
+              ),
             ),
           ],
         );
@@ -107,7 +100,8 @@ class _CareerStatsDisplayer extends StatelessWidget {
               trend: careerStatsOnline.firstNineTrend,
             ),
             // TODO
-            _CareerStatsItem(
+            /**
+            *  _CareerStatsItem(
               value: '19',
               title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
             ),
@@ -115,6 +109,7 @@ class _CareerStatsDisplayer extends StatelessWidget {
               title: '180s',
               value: '156',
             ),
+            */
             _CareerStatsItem(
               value: careerStatsOnline.games.toString(),
               title: LocaleKeys.games.tr().toUpperCase(),

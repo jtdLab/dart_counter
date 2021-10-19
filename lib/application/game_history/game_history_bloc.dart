@@ -26,7 +26,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     this._gameHistoryFacade,
   ) : super(const GameHistoryState.loadInProgress()) {
     //add(const GameHistoryEvent.fetchGameHistoryOfflineRequested());
-    add(const GameHistoryEvent.fetchGameHistoryOnlineRequested());
+    //add(const GameHistoryEvent.fetchGameHistoryOnlineRequested());
   }
 
   @override
@@ -34,35 +34,47 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     GameHistoryEvent event,
   ) async* {
     yield* event.map(
+      fetchGameHistoryAllRequested: (_) =>
+          _mapFetchGameHistoryAllRequestedToState(),
       fetchGameHistoryOfflineRequested: (_) =>
           _mapFetchGameHistoryOfflineRequestedToState(),
-      fetchGameHistoryOnlineRequested: (_) =>
-          _mapFetchGameHistoryOnlineRequestedToState(),
+      fetchGameHistoryOnlineRequested: (event) =>
+          _mapFetchGameHistoryOnlineRequestedToState(event),
       gameSelected: (event) => _mapGameSelectedToState(event),
     );
   }
 
+  Stream<GameHistoryState> _mapFetchGameHistoryAllRequestedToState() async* {
+    // TODO implement 
+    throw UnimplementedError();
+  }
+
   Stream<GameHistoryState>
       _mapFetchGameHistoryOfflineRequestedToState() async* {
-    // TODO intergrat offline gamehistory
-    /**
-     * final failureOrGameHistory =
+    final failureOrGameHistory =
         await _gameHistoryFacade.fetchGameHistoryOffline();
 
     yield failureOrGameHistory.fold(
       (failure) => GameHistoryState.loadFailure(failure: failure),
       (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
     );
-     */
   }
 
-  Stream<GameHistoryState> _mapFetchGameHistoryOnlineRequestedToState() async* {
-    final failureOrUser = _userFacade.getUser();
-    final uid = failureOrUser?.fold(
-          (failure) => throw Error(), // TODO failure here pls
-          (user) => user.id,
-        ) ??
-        (throw Error()); // TODO failure here pls
+  Stream<GameHistoryState> _mapFetchGameHistoryOnlineRequestedToState(
+    FetchGameHistoryOnlineRequested event,
+  ) async* {
+    final UniqueId uid;
+
+    if (event.userId == null) {
+      final failureOrUser = _userFacade.getUser();
+      uid = failureOrUser?.fold(
+            (failure) => throw Error(), // TODO failure here pls
+            (user) => user.id,
+          ) ??
+          (throw Error()); // TODO failure here pls
+    } else {
+      uid = event.userId!;
+    }
 
     final failureOrGameHistory =
         await _gameHistoryFacade.fetchGameHistoryOnline(uid: uid.getOrCrash());
@@ -88,7 +100,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     if (getIt.isRegistered<GameHistoryBloc>()) {
       getIt.resetLazySingleton<GameHistoryBloc>();
     }
-    
+
     return super.close();
   }
 }
