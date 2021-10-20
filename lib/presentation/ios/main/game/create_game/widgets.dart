@@ -462,6 +462,7 @@ class _PlayerItem extends StatelessWidget {
   }
 }
 
+// TODO share with training ??
 class _AddPlayerButton extends StatelessWidget {
   final bool isOnline;
 
@@ -687,6 +688,7 @@ class _TypePicker extends StatelessWidget {
   }
 }
 
+// TODO shared with training
 class _PlayButton extends StatelessWidget {
   const _PlayButton({
     Key? key,

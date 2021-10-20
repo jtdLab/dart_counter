@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,6 +9,7 @@ part 'player_snapshot_dto.freezed.dart';
 @freezed
 class PlayerSnapshotDto with _$PlayerSnapshotDto {
   const factory PlayerSnapshotDto({
+     required String id,
     required String? name,
     required int? targetValue,
     required int? points,
@@ -21,6 +23,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
 
   factory PlayerSnapshotDto.fromDomain(PlayerSnapshot playerSnapshot) {
     return PlayerSnapshotDto(
+      id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
       targetValue: playerSnapshot.targetValue,
       points: playerSnapshot.points,
@@ -48,6 +51,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
 
   PlayerSnapshot toDomain() {
     return PlayerSnapshot(
+      id: UniqueId.fromUniqueString(id),
       name: name,
       targetValue: targetValue ?? 1,
       points: points ?? 0,
