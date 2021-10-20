@@ -1,4 +1,4 @@
-part of '../dart_game.dart';
+part of '../../dart_game.dart';
 
 // TODO optimize multiple calls to the same getter in a method
 

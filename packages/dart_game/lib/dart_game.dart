@@ -9,10 +9,10 @@ import 'package:uuid/uuid.dart';
 part 'util/dart_utils.dart';
 part 'util/finish_recommendation.dart';
 
-part 'core/dart.dart';
-part 'core/dartbot.dart';
-part 'core/game.dart';
-part 'core/leg.dart';
-part 'core/player.dart';
-part 'core/set.dart';
-part 'core/throw.dart';
+part 'core/standard/dart.dart';
+part 'core/standard/dartbot.dart';
+part 'core/standard/game.dart';
+part 'core/standard/leg.dart';
+part 'core/standard/player.dart';
+part 'core/standard/set.dart';
+part 'core/standard/throw.dart';

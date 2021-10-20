@@ -1,4 +1,4 @@
-part of '../dart_game.dart';
+part of '../../dart_game.dart';
 
 // TODO optimize multiple calls to the same getter in a method
 // TODO only use private of other lib members or only us public props of other lib members but not mixed

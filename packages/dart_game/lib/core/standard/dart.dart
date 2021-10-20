@@ -1,4 +1,4 @@
-part of '../dart_game.dart';
+part of '../../dart_game.dart';
 
 /// The type of a [Dart]
 ///
