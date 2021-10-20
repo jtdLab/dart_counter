@@ -3,6 +3,10 @@ import 'package:flutter/widgets.dart';
 // Remove all not needed file 
 
 abstract class AppImages {
+  static const ascending = 'assets/images/png/ascending.png';
+  static const descending = 'assets/images/png/descending.png';
+  static const random = 'assets/images/png/random.png';
+
   static const averageBlack = 'assets/images/png/average_black.png';
   static const averageWhite = 'assets/images/png/average_white.png';
 
