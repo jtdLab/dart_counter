@@ -10,6 +10,10 @@ part 'create_training_event.dart';
 part 'create_training_state.dart';
 part 'create_training_bloc.freezed.dart';
 
+enum Type {
+  singles, doubles, score, bobs27
+}
+
 @lazySingleton
 class CreateTrainingBloc extends Bloc<CreateTrainingEvent, CreateTrainingState>
     with AutoResetLazySingleton {

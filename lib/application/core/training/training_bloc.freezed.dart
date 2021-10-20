@@ -17,10 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TrainingEventTearOff {
   const _$TrainingEventTearOff();
 
-  TrainingGameCreated gameCreated() {
-    return const TrainingGameCreated();
-  }
-
   TrainingGameSnapshotReceived gameSnapshotReceived(
       {required TrainingGameSnapshot gameSnapshot}) {
     return TrainingGameSnapshotReceived(
@@ -34,45 +30,45 @@ const $TrainingEvent = _$TrainingEventTearOff();
 
 /// @nodoc
 mixin _$TrainingEvent {
+  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() gameCreated,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? gameCreated,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? gameCreated,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrainingGameCreated value) gameCreated,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TrainingEventCopyWith<TrainingEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -81,6 +77,7 @@ abstract class $TrainingEventCopyWith<$Res> {
   factory $TrainingEventCopyWith(
           TrainingEvent value, $Res Function(TrainingEvent) then) =
       _$TrainingEventCopyWithImpl<$Res>;
+  $Res call({TrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -91,120 +88,28 @@ class _$TrainingEventCopyWithImpl<$Res>
   final TrainingEvent _value;
   // ignore: unused_field
   final $Res Function(TrainingEvent) _then;
+
+  @override
+  $Res call({
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(_value.copyWith(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as TrainingGameSnapshot,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $TrainingGameCreatedCopyWith<$Res> {
-  factory $TrainingGameCreatedCopyWith(
-          TrainingGameCreated value, $Res Function(TrainingGameCreated) then) =
-      _$TrainingGameCreatedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$TrainingGameCreatedCopyWithImpl<$Res>
-    extends _$TrainingEventCopyWithImpl<$Res>
-    implements $TrainingGameCreatedCopyWith<$Res> {
-  _$TrainingGameCreatedCopyWithImpl(
-      TrainingGameCreated _value, $Res Function(TrainingGameCreated) _then)
-      : super(_value, (v) => _then(v as TrainingGameCreated));
-
-  @override
-  TrainingGameCreated get _value => super._value as TrainingGameCreated;
-}
-
-/// @nodoc
-
-class _$TrainingGameCreated implements TrainingGameCreated {
-  const _$TrainingGameCreated();
-
-  @override
-  String toString() {
-    return 'TrainingEvent.gameCreated()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingGameCreated);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() gameCreated,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
-        gameSnapshotReceived,
-  }) {
-    return gameCreated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? gameCreated,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
-  }) {
-    return gameCreated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? gameCreated,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
-    required TResult orElse(),
-  }) {
-    if (gameCreated != null) {
-      return gameCreated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TrainingGameCreated value) gameCreated,
-    required TResult Function(TrainingGameSnapshotReceived value)
-        gameSnapshotReceived,
-  }) {
-    return gameCreated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
-    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
-  }) {
-    return gameCreated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
-    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
-    required TResult orElse(),
-  }) {
-    if (gameCreated != null) {
-      return gameCreated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TrainingGameCreated implements TrainingEvent {
-  const factory TrainingGameCreated() = _$TrainingGameCreated;
-}
-
-/// @nodoc
-abstract class $TrainingGameSnapshotReceivedCopyWith<$Res> {
+abstract class $TrainingGameSnapshotReceivedCopyWith<$Res>
+    implements $TrainingEventCopyWith<$Res> {
   factory $TrainingGameSnapshotReceivedCopyWith(
           TrainingGameSnapshotReceived value,
           $Res Function(TrainingGameSnapshotReceived) then) =
       _$TrainingGameSnapshotReceivedCopyWithImpl<$Res>;
+  @override
   $Res call({TrainingGameSnapshot gameSnapshot});
 }
 
@@ -269,7 +174,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() gameCreated,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -279,7 +183,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? gameCreated,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return gameSnapshotReceived?.call(gameSnapshot);
@@ -288,7 +191,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? gameCreated,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -301,7 +203,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrainingGameCreated value) gameCreated,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -311,7 +212,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return gameSnapshotReceived?.call(this);
@@ -320,7 +220,6 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrainingGameCreated value)? gameCreated,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -336,7 +235,9 @@ abstract class TrainingGameSnapshotReceived implements TrainingEvent {
           {required TrainingGameSnapshot gameSnapshot}) =
       _$TrainingGameSnapshotReceived;
 
+  @override
   TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $TrainingGameSnapshotReceivedCopyWith<TrainingGameSnapshotReceived>
       get copyWith => throw _privateConstructorUsedError;
