@@ -237,7 +237,7 @@ class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () {}, // TODO go to practice overview
+      onPressed: () => context.router.push(const TrainingFlowRoute()),
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.practice.tr().toUpperCase(),

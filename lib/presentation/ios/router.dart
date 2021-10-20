@@ -18,6 +18,10 @@ import 'main/main_flow.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';
+import 'main/training/create_training/create_training_page.dart';
+import 'main/training/in_training/in_training_page.dart';
+import 'main/training/post_training/post_training_page.dart';
+import 'main/training/training_flow.dart';
 
 // route builder for pages with modal views
 Route<T> customRouteBuilder<T>(
@@ -104,6 +108,21 @@ Route<T> customRouteBuilder<T>(
             ),
             CupertinoRoute(
               page: PostGamePage,
+            ),
+          ],
+        ),
+        CupertinoRoute(
+          page: TrainingFlow,
+          children: [
+            CupertinoRoute(
+              initial: true,
+              page: CreateTrainingPage,
+            ),
+            CupertinoRoute(
+              page: InTrainingPage,
+            ),
+            CupertinoRoute(
+              page: PostTrainingPage,
             ),
           ],
         ),
