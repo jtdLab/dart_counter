@@ -17,8 +17,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TrainingEventTearOff {
   const _$TrainingEventTearOff();
 
-  _Started started() {
-    return const _Started();
+  TrainingGameCreated gameCreated() {
+    return const TrainingGameCreated();
+  }
+
+  TrainingGameSnapshotReceived gameSnapshotReceived(
+      {required TrainingGameSnapshot gameSnapshot}) {
+    return TrainingGameSnapshotReceived(
+      gameSnapshot: gameSnapshot,
+    );
   }
 }
 
@@ -29,33 +36,41 @@ const $TrainingEvent = _$TrainingEventTearOff();
 mixin _$TrainingEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() gameCreated,
+    required TResult Function(TrainingGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(TrainingGameCreated value) gameCreated,
+    required TResult Function(TrainingGameSnapshotReceived value)
+        gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,34 +94,37 @@ class _$TrainingEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class $TrainingGameCreatedCopyWith<$Res> {
+  factory $TrainingGameCreatedCopyWith(
+          TrainingGameCreated value, $Res Function(TrainingGameCreated) then) =
+      _$TrainingGameCreatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$TrainingEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+class _$TrainingGameCreatedCopyWithImpl<$Res>
+    extends _$TrainingEventCopyWithImpl<$Res>
+    implements $TrainingGameCreatedCopyWith<$Res> {
+  _$TrainingGameCreatedCopyWithImpl(
+      TrainingGameCreated _value, $Res Function(TrainingGameCreated) _then)
+      : super(_value, (v) => _then(v as TrainingGameCreated));
 
   @override
-  _Started get _value => super._value as _Started;
+  TrainingGameCreated get _value => super._value as TrainingGameCreated;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$TrainingGameCreated implements TrainingGameCreated {
+  const _$TrainingGameCreated();
 
   @override
   String toString() {
-    return 'TrainingEvent.started()';
+    return 'TrainingEvent.gameCreated()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) || (other is TrainingGameCreated);
   }
 
   @override
@@ -115,27 +133,31 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() gameCreated,
+    required TResult Function(TrainingGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
   }) {
-    return started();
+    return gameCreated();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
-    return started?.call();
+    return gameCreated?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (gameCreated != null) {
+      return gameCreated();
     }
     return orElse();
   }
@@ -143,42 +165,196 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(TrainingGameCreated value) gameCreated,
+    required TResult Function(TrainingGameSnapshotReceived value)
+        gameSnapshotReceived,
   }) {
-    return started(this);
+    return gameCreated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
-    return started?.call(this);
+    return gameCreated?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (gameCreated != null) {
+      return gameCreated(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements TrainingEvent {
-  const factory _Started() = _$_Started;
+abstract class TrainingGameCreated implements TrainingEvent {
+  const factory TrainingGameCreated() = _$TrainingGameCreated;
+}
+
+/// @nodoc
+abstract class $TrainingGameSnapshotReceivedCopyWith<$Res> {
+  factory $TrainingGameSnapshotReceivedCopyWith(
+          TrainingGameSnapshotReceived value,
+          $Res Function(TrainingGameSnapshotReceived) then) =
+      _$TrainingGameSnapshotReceivedCopyWithImpl<$Res>;
+  $Res call({TrainingGameSnapshot gameSnapshot});
+}
+
+/// @nodoc
+class _$TrainingGameSnapshotReceivedCopyWithImpl<$Res>
+    extends _$TrainingEventCopyWithImpl<$Res>
+    implements $TrainingGameSnapshotReceivedCopyWith<$Res> {
+  _$TrainingGameSnapshotReceivedCopyWithImpl(
+      TrainingGameSnapshotReceived _value,
+      $Res Function(TrainingGameSnapshotReceived) _then)
+      : super(_value, (v) => _then(v as TrainingGameSnapshotReceived));
+
+  @override
+  TrainingGameSnapshotReceived get _value =>
+      super._value as TrainingGameSnapshotReceived;
+
+  @override
+  $Res call({
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(TrainingGameSnapshotReceived(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as TrainingGameSnapshot,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
+  const _$TrainingGameSnapshotReceived({required this.gameSnapshot});
+
+  @override
+  final TrainingGameSnapshot gameSnapshot;
+
+  @override
+  String toString() {
+    return 'TrainingEvent.gameSnapshotReceived(gameSnapshot: $gameSnapshot)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TrainingGameSnapshotReceived &&
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+
+  @JsonKey(ignore: true)
+  @override
+  $TrainingGameSnapshotReceivedCopyWith<TrainingGameSnapshotReceived>
+      get copyWith => _$TrainingGameSnapshotReceivedCopyWithImpl<
+          TrainingGameSnapshotReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() gameCreated,
+    required TResult Function(TrainingGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
+  }) {
+    return gameSnapshotReceived(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+  }) {
+    return gameSnapshotReceived?.call(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? gameCreated,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (gameSnapshotReceived != null) {
+      return gameSnapshotReceived(gameSnapshot);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TrainingGameCreated value) gameCreated,
+    required TResult Function(TrainingGameSnapshotReceived value)
+        gameSnapshotReceived,
+  }) {
+    return gameSnapshotReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
+  }) {
+    return gameSnapshotReceived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TrainingGameCreated value)? gameCreated,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (gameSnapshotReceived != null) {
+      return gameSnapshotReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TrainingGameSnapshotReceived implements TrainingEvent {
+  const factory TrainingGameSnapshotReceived(
+          {required TrainingGameSnapshot gameSnapshot}) =
+      _$TrainingGameSnapshotReceived;
+
+  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TrainingGameSnapshotReceivedCopyWith<TrainingGameSnapshotReceived>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$TrainingStateTearOff {
   const _$TrainingStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  TrainingInitial initial() {
+    return const TrainingInitial();
+  }
+
+  TrainingInProgress gameInProgress(
+      {required TrainingGameSnapshot gameSnapshot}) {
+    return TrainingInProgress(
+      gameSnapshot: gameSnapshot,
+    );
   }
 }
 
@@ -190,32 +366,38 @@ mixin _$TrainingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(TrainingGameSnapshot gameSnapshot) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(TrainingInitial value) initial,
+    required TResult Function(TrainingInProgress value) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -239,25 +421,28 @@ class _$TrainingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class $TrainingInitialCopyWith<$Res> {
+  factory $TrainingInitialCopyWith(
+          TrainingInitial value, $Res Function(TrainingInitial) then) =
+      _$TrainingInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$TrainingStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class _$TrainingInitialCopyWithImpl<$Res>
+    extends _$TrainingStateCopyWithImpl<$Res>
+    implements $TrainingInitialCopyWith<$Res> {
+  _$TrainingInitialCopyWithImpl(
+      TrainingInitial _value, $Res Function(TrainingInitial) _then)
+      : super(_value, (v) => _then(v as TrainingInitial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  TrainingInitial get _value => super._value as TrainingInitial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$TrainingInitial implements TrainingInitial {
+  const _$TrainingInitial();
 
   @override
   String toString() {
@@ -266,7 +451,7 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) || (other is TrainingInitial);
   }
 
   @override
@@ -276,6 +461,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(TrainingGameSnapshot gameSnapshot) gameInProgress,
   }) {
     return initial();
   }
@@ -284,6 +470,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
   }) {
     return initial?.call();
   }
@@ -292,6 +479,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -303,7 +491,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(TrainingInitial value) initial,
+    required TResult Function(TrainingInProgress value) gameInProgress,
   }) {
     return initial(this);
   }
@@ -311,7 +500,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
   }) {
     return initial?.call(this);
   }
@@ -319,7 +509,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -329,6 +520,142 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements TrainingState {
-  const factory _Initial() = _$_Initial;
+abstract class TrainingInitial implements TrainingState {
+  const factory TrainingInitial() = _$TrainingInitial;
+}
+
+/// @nodoc
+abstract class $TrainingInProgressCopyWith<$Res> {
+  factory $TrainingInProgressCopyWith(
+          TrainingInProgress value, $Res Function(TrainingInProgress) then) =
+      _$TrainingInProgressCopyWithImpl<$Res>;
+  $Res call({TrainingGameSnapshot gameSnapshot});
+}
+
+/// @nodoc
+class _$TrainingInProgressCopyWithImpl<$Res>
+    extends _$TrainingStateCopyWithImpl<$Res>
+    implements $TrainingInProgressCopyWith<$Res> {
+  _$TrainingInProgressCopyWithImpl(
+      TrainingInProgress _value, $Res Function(TrainingInProgress) _then)
+      : super(_value, (v) => _then(v as TrainingInProgress));
+
+  @override
+  TrainingInProgress get _value => super._value as TrainingInProgress;
+
+  @override
+  $Res call({
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(TrainingInProgress(
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as TrainingGameSnapshot,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TrainingInProgress implements TrainingInProgress {
+  const _$TrainingInProgress({required this.gameSnapshot});
+
+  @override
+  final TrainingGameSnapshot gameSnapshot;
+
+  @override
+  String toString() {
+    return 'TrainingState.gameInProgress(gameSnapshot: $gameSnapshot)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TrainingInProgress &&
+            (identical(other.gameSnapshot, gameSnapshot) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameSnapshot, gameSnapshot)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+
+  @JsonKey(ignore: true)
+  @override
+  $TrainingInProgressCopyWith<TrainingInProgress> get copyWith =>
+      _$TrainingInProgressCopyWithImpl<TrainingInProgress>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(TrainingGameSnapshot gameSnapshot) gameInProgress,
+  }) {
+    return gameInProgress(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
+  }) {
+    return gameInProgress?.call(gameSnapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameInProgress,
+    required TResult orElse(),
+  }) {
+    if (gameInProgress != null) {
+      return gameInProgress(gameSnapshot);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TrainingInitial value) initial,
+    required TResult Function(TrainingInProgress value) gameInProgress,
+  }) {
+    return gameInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
+  }) {
+    return gameInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TrainingInitial value)? initial,
+    TResult Function(TrainingInProgress value)? gameInProgress,
+    required TResult orElse(),
+  }) {
+    if (gameInProgress != null) {
+      return gameInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TrainingInProgress implements TrainingState {
+  const factory TrainingInProgress(
+      {required TrainingGameSnapshot gameSnapshot}) = _$TrainingInProgress;
+
+  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TrainingInProgressCopyWith<TrainingInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
 }

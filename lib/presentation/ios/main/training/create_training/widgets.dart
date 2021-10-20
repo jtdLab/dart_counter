@@ -159,8 +159,9 @@ class _EditablePlayerItem extends StatelessWidget {
             }
             return false;
           },
-          onDismissed: (_) => context.read<CreateTrainingBloc>(),
-          //.add(CreateGameEvent.playerRemoved(index: index)), TODO
+          onDismissed: (_) => context
+              .read<CreateTrainingBloc>()
+              .add(CreateTrainingEvent.playerRemoved(index: index)),
           child: AppCardItem.large(
             content: Row(
               children: [
@@ -181,13 +182,13 @@ class _EditablePlayerItem extends StatelessWidget {
                         text: player.name ?? '',
                         withErrorDisplayer: false,
                         placeholder: LocaleKeys.name.tr().toUpperCase(),
-                        onChanged: (newName) => context.read<
-                            CreateTrainingBloc>(), /*.add( // TODO
-                                  CreateGameEvent.playerNameUpdated(
+                        onChanged: (newName) =>
+                            context.read<CreateTrainingBloc>().add(
+                                  CreateTrainingEvent.playerNameUpdated(
                                     index: index,
                                     newName: newName,
                                   ),
-                                ),*/
+                                ),
                       ),
                     ],
                   ),
@@ -256,8 +257,9 @@ class _PlayerItem extends StatelessWidget {
             }
             return false;
           },
-          onDismissed: (_) => context.read<CreateTrainingBloc>(),
-          //.add(CreateGameEvent.playerRemoved(index: index)), TODO
+          onDismissed: (_) => context
+              .read<CreateTrainingBloc>()
+              .add(CreateTrainingEvent.playerRemoved(index: index)),
           child: AppCardItem.large(
             content: Row(
               children: [
@@ -317,8 +319,9 @@ class _AddPlayerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.small(
       onPressed: () {
-        context.read<
-            CreateTrainingBloc>(); //.add(const CreateGameEvent.playerAdded()); // TODO
+        context
+            .read<CreateTrainingBloc>()
+            .add(const CreateTrainingEvent.playerAdded());
       },
       text: LocaleKeys.addPlayer.tr().toUpperCase(),
     );
@@ -370,8 +373,9 @@ class _PlayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () => context.read<CreateTrainingBloc>(),
-      //.add(const CreateGameEvent.gameStarted()), // TODO
+      onPressed: () => context
+          .read<CreateTrainingBloc>()
+          .add(const CreateTrainingEvent.gameStarted()),
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.play.tr().toUpperCase(),
     );
