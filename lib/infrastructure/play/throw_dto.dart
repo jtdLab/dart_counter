@@ -67,6 +67,7 @@ class ThrowDto with _$ThrowDto {
       pointsOrDarts: darts == null
           ? left(points)
           : right(darts!.map((dart) => dart.toExternal()).toList()),
+      dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
     );
   }

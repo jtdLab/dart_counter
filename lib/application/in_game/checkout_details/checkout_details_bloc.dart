@@ -178,6 +178,7 @@ class CheckoutDetailsBloc
         ),
       ),
     );
+    
 
     yield state.copyWith(
       confirmed: true,
