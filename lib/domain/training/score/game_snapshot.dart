@@ -12,6 +12,7 @@ enum Mode { ascending, descending }
 
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
+  @Implements(TrainingGameSnapshot)
   const factory GameSnapshot({
     required Status status,
     required Mode mode,
