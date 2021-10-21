@@ -8,7 +8,7 @@ part 'game_snapshot.freezed.dart';
 
 enum Status { pending, running, canceled, finished }
 
-enum Mode { ascending, descending }
+enum Mode { ascending, descending, random }
 
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
@@ -18,4 +18,14 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required Mode mode,
     required KtList<PlayerSnapshot> players,
   }) = _GameSnapshot;
+
+  factory GameSnapshot.dummy() {
+    return GameSnapshot(
+      status: Status.pending,
+      mode: Mode.ascending,
+      players: faker.randomGenerator
+          .amount((i) => PlayerSnapshot.dummy(), 4)
+          .toImmutableList(),
+    );
+  }
 }

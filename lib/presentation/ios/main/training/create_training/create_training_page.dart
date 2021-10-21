@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 import 'package:dart_counter/domain/training/training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -16,44 +17,47 @@ class CreateTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: CancelButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              PageRouteBuilder(
-                reverseTransitionDuration: Duration.zero,
-                opaque: false,
-                pageBuilder: (context, _, __) =>
-                    // TODO
-                    /**BlocProvider(
+    return BlocProvider(
+      create: (context) => getIt<CreateTrainingBloc>(),
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: CancelButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  reverseTransitionDuration: Duration.zero,
+                  opaque: false,
+                  pageBuilder: (context, _, __) =>
+                      // TODO
+                      /**BlocProvider(
                   create: (context) => getIt<CreateTrainingBloc>(),
                   child:*/
-                    Builder(
-                  builder: (context) => YouReallyWantToCancelGameDialog(
-                    onYesPressed: () {},
+                      Builder(
+                    builder: (context) => YouReallyWantToCancelGameDialog(
+                      onYesPressed: () {},
+                    ),
                   ),
-                ),
-                // TODO
-                /**
+                  // TODO
+                  /**
                        * () => context.read<CreateGameBloc>().add(
                             const CreateGameEvent.gameCanceled(),
                           ),
                        */
-                //),
-              ),
+                  //),
+                ),
 
-              //),
-              //),
-            );
-          },
+                //),
+                //),
+              );
+            },
+          ),
+          middle: Text(
+            LocaleKeys.createGame.tr().toUpperCase(),
+          ),
         ),
-        middle: Text(
-          LocaleKeys.createGame.tr().toUpperCase(),
+        child: const SingleChildScrollView(
+          child: _CreateTrainingWidget(),
         ),
-      ),
-      child: const SingleChildScrollView(
-        child: _CreateTrainingWidget(),
       ),
     );
   }

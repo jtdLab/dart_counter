@@ -19,6 +19,9 @@ class _CreateTrainingWidget extends StatelessWidget {
           height: spacerLarge(context),
         ),
         const _OrderCard(),
+        SizedBox(
+          height: spacerLarge(context),
+        ),
         const _TakesCard(),
         SizedBox(
           height: spacerNormal(context),
@@ -336,7 +339,94 @@ class _ModusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final type = Type.singles;
+
+    return AppCard(
+      middle: AutoSizeText(
+        LocaleKeys.modus.tr().toUpperCase(),
+        minFontSize: 8,
+        maxFontSize: 14,
+        maxLines: 1,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(color: AppColors.white),
+      ),
+      children: [
+        AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: AppActionButton.normal(
+                color: type == Type.singles
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () {},
+                /**
+               *   onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.firstTo,
+                      ),
+                    ),
+               */
+                text: 'SINGLES', // TODO
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color: type == Type.doubles
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () {},
+                /**
+                *  onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.bestOf,
+                      ),
+                    ),
+                */
+                text: 'DOUBLES', // TODo
+              ),
+            ),
+          ],
+        ),
+        AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: AppActionButton.normal(
+                color:
+                    type == Type.score ? AppColors.orangeNew : AppColors.white,
+                onPressed: () {},
+                /**
+               *   onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.firstTo,
+                      ),
+                    ),
+               */
+                text: 'SCORE', // TODO
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color:
+                    type == Type.bobs27 ? AppColors.orangeNew : AppColors.white,
+                onPressed: () {},
+                /**
+                *  onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.bestOf,
+                      ),
+                    ),
+                */
+                text: 'BOBS27', // TODo
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
 
@@ -348,7 +438,75 @@ class _OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final mode = Mode
+        .ascending; // TODO this mode is from single game import from double and score pr unify it
+
+    return AppCard(
+      middle: AutoSizeText(
+        LocaleKeys.modus.tr().toUpperCase(),
+        minFontSize: 8,
+        maxFontSize: 14,
+        maxLines: 1,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(color: AppColors.white),
+      ),
+      children: [
+        AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: AppActionButton.normal(
+                color: mode == Mode.ascending
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () {},
+                /**
+               *   onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.firstTo,
+                      ),
+                    ),
+               */
+                icon: Image.asset(AppImages.ascending),
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color: mode == Mode.descending
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () {},
+                /**
+                *  onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.bestOf,
+                      ),
+                    ),
+                */
+                icon: Image.asset(AppImages.descending),
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color:
+                    mode == Mode.random ? AppColors.orangeNew : AppColors.white,
+                onPressed: () {},
+                /**
+                *  onPressed: () => context.read<CreateGameBloc>().add(
+                      const CreateGameEvent.modeUpdated(
+                        newMode: Mode.bestOf,
+                      ),
+                    ),
+                */
+                icon: Image.asset(AppImages.random),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
 
@@ -360,7 +518,21 @@ class _TakesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return AppCard(
+      middle: AutoSizeText(
+        'ANZAHL AUFNAHMEN', // TODO
+        minFontSize: 8,
+        maxFontSize: 14,
+        maxLines: 1,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(color: AppColors.white),
+      ),
+      children: const [
+        AppNumberPicker(),
+      ],
+    );
   }
 }
 

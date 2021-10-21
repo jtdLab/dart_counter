@@ -5,7 +5,7 @@ part of '../../../single_training_game.dart';
 /// Ascending means starting from 1 going up to 25.
 ///
 /// Descending means starting at 25 going down to 1.
-enum Mode { ascending, descending }
+enum Mode { ascending, descending, random }
 
 /// The status of a [Game]
 enum Status { pending, canceled, running, finished }

@@ -18,4 +18,18 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
     required int triples,
     required int missed,
   }) = _PlayerSnapshot;
+
+  factory PlayerSnapshot.dummy() {
+    return PlayerSnapshot(
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      name: faker.person.name(),
+      targetValue: faker.randomGenerator
+          .element(List.generate(20, (index) => index + 1)),
+      points: faker.randomGenerator.integer(300),
+      singles: faker.randomGenerator.integer(50),
+      doubles: faker.randomGenerator.integer(50),
+      triples: faker.randomGenerator.integer(50),
+      missed: faker.randomGenerator.integer(50),
+    );
+  }
 }

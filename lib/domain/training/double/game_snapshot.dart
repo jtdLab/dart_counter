@@ -8,7 +8,7 @@ part 'game_snapshot.freezed.dart';
 
 enum Status { pending, running, canceled, finished }
 
-enum Mode { ascending, descending }
+enum Mode { ascending, descending, random }
 
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
