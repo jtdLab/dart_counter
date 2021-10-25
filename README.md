@@ -18,6 +18,7 @@ flutter pub run easy_localization:generate -S assets/languages
 // TODO CLEAN BLOC EVENT AND STATE VISIBILITY AND NAMING
 
 ## TODOS
+
 // 5. determine failures in domain ref to 8.
 // 6. refactor application layer
 // 7. refactor presentation layer

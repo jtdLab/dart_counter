@@ -555,7 +555,8 @@ void main() {
       });
     });
 
-    group('singleHit', () {
+    /**
+ *     group('singleHit', () {
       test(
           'GIVEN runnig game '
           'WHEN singleHit() called '
@@ -786,6 +787,10 @@ void main() {
       });
     });
 
+ */
+
+    group('performHits()', () {});
+
     group('undoHits', () {
       test(
           'GIVEN runnig game with 3 hits '
@@ -806,10 +811,7 @@ void main() {
         final game =
             Game.fromData(status: status, mode: mode, players: players);
         game.start();
-        game.singleHit();
-        game.tripleHit();
-        game.singleHit();
-        game.commitHits();
+        game.performHits(Hit.single, Hit.triple, Hit.single);
 
         // Act
         game.undoHits();
@@ -841,7 +843,7 @@ void main() {
         game.start();
 
         // Act
-        final success = game.commitHits();
+        final success = game.undoHits();
 
         // Assert
         expect(success, false);

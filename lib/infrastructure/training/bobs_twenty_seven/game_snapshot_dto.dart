@@ -4,7 +4,7 @@ import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/player_sn
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:dart_game/bobs_twenty_seven_game.dart' as ex;
+import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 
 part 'game_snapshot_dto.freezed.dart';
 

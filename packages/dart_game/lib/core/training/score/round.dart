@@ -1,5 +1,5 @@
 part of '../../../score_training_game.dart';
 
-class Game {
+class Round {
   
 }

@@ -2,7 +2,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:dart_game/bobs_twenty_seven_game.dart' as ex;
+import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 
 part 'player_snapshot_dto.freezed.dart';
 

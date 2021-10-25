@@ -131,7 +131,18 @@ class Game {
     return false;
   }
 
-  /// Adds a single hit to the current turn for the current target single number.
+// TODO test
+  bool cancel() {
+    if (status == Status.pending || status == Status.running) {
+      status == Status.canceled;
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * /// Adds a single hit to the current turn for the current target single number.
   bool singleHit() {
     if (status == Status.running) {
       return _addHitToCurrentTurn(Hit.single);
@@ -193,6 +204,43 @@ class Game {
         _currentTurn!.isCurrentTurn = true;
         return true;
       }
+    }
+    return false;
+  }
+   */
+
+  // TODO test
+  /// Performs hits [hit1], [hit2] and [hit3] to the current turn and go to next turn.
+  bool performHits(
+    Hit hit1,
+    Hit hit2,
+    Hit hit3,
+  ) {
+    if (status == Status.running) {
+      _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
+
+      if (_turnIndex == players.length - 1) {
+        final targetValue;
+
+        if (mode == Mode.ascending) {
+          targetValue = _currentTurn!.rounds!.length + 1;
+        } else if (mode == Mode.descending) {
+          targetValue = 21 - _currentTurn!.rounds!.length; // TODo
+
+        } else {
+          // TODO random
+          throw UnimplementedError();
+        }
+
+        for (Player player in players) {
+          player._rounds?.add(Round(targetValue: targetValue));
+        }
+      }
+
+      _currentTurn!.isCurrentTurn = false;
+      _turnIndex = (_turnIndex! + 1) % players.length;
+      _currentTurn!.isCurrentTurn = true;
+      return true;
     }
     return false;
   }
