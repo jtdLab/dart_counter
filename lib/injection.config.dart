@@ -172,7 +172,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i32.ISingleTrainingService>(),
       get<_i19.IDoubleTrainingService>(),
       get<_i30.IScoreTrainingService>(),
-      get<_i14.IBobsTwentySevenService>()));
+      get<_i14.IBobsTwentySevenService>(),
+      get<_i34.IUserFacade>()));
   gh.lazySingleton<_i43.AuthBloc>(() => _i43.AuthBloc(get<_i12.IAuthFacade>()));
   gh.lazySingleton<_i44.BobsTwentySevenBloc>(
       () => _i44.BobsTwentySevenBloc(get<_i14.IBobsTwentySevenService>()));
