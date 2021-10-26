@@ -11,6 +11,7 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
   const factory PlayerSnapshot({
     required UniqueId id,
     required String? name,
+    required bool isCurrentTurn,
     required int targetValue,
     required int points,
     required int singles,
@@ -19,10 +20,27 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
     required int missed,
   }) = _PlayerSnapshot;
 
+  factory PlayerSnapshot.initial({
+    String? username,
+  }) {
+    return PlayerSnapshot(
+      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
+      name: username,
+      isCurrentTurn: false,
+      targetValue: 1,
+      points: 0,
+      singles: 0,
+      doubles: 0,
+      triples: 0,
+      missed: 0,
+    );
+  }
+
   factory PlayerSnapshot.dummy() {
     return PlayerSnapshot(
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       name: faker.person.name(),
+      isCurrentTurn: faker.randomGenerator.boolean(),
       targetValue: faker.randomGenerator
           .element(List.generate(20, (index) => index + 1)),
       points: faker.randomGenerator.integer(300),

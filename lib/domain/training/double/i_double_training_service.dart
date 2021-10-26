@@ -8,7 +8,7 @@ abstract class IDoubleTrainingService {
 
   void createGame({
     required User owner,
-    required List<String> users,
+    List<String?>? players,
   });
 
   void addPlayer();

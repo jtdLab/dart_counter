@@ -4,11 +4,10 @@ import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../mode.dart';
+import '../status.dart';
+
 part 'game_snapshot.freezed.dart';
-
-enum Status { pending, running, canceled, finished }
-
-enum Mode { ascending, descending }
 
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
@@ -17,5 +16,6 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required Status status,
     required Mode mode,
     required KtList<PlayerSnapshot> players,
+    required PlayerSnapshot owner,
   }) = _GameSnapshot;
 }

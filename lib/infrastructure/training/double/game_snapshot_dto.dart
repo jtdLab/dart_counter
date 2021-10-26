@@ -1,8 +1,9 @@
-
 import 'package:dart_counter/domain/training/double/game_snapshot.dart';
 import 'package:dart_counter/infrastructure/training/double/player_snapshot_dto.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_counter/domain/training/mode.dart';
+import 'package:dart_counter/domain/training/status.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:dart_game/double_training_game.dart' as ex;
 
@@ -14,9 +15,10 @@ class GameSnapshotDto with _$GameSnapshotDto {
     required String status,
     required String mode,
     required KtList<PlayerSnapshotDto> players,
+    required PlayerSnapshotDto owner,
   }) = _GameSnapshotDto;
 
-   const GameSnapshotDto._();
+  const GameSnapshotDto._();
 
   factory GameSnapshotDto.fromDomain(GameSnapshot gameSnapshot) {
     return GameSnapshotDto(
@@ -30,6 +32,7 @@ class GameSnapshotDto with _$GameSnapshotDto {
       mode: gameSnapshot.mode == Mode.ascending ? 'ascending' : 'descending',
       players: gameSnapshot.players
           .map((player) => PlayerSnapshotDto.fromDomain(player)),
+      owner: PlayerSnapshotDto.fromDomain(gameSnapshot.owner),
     );
   }
 
@@ -63,6 +66,7 @@ class GameSnapshotDto with _$GameSnapshotDto {
                   : Status.finished,
       mode: mode == 'ascending' ? Mode.ascending : Mode.descending,
       players: players.map((player) => player.toDomain()),
+      owner: owner.toDomain(),
     );
   }
 }

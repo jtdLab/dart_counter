@@ -7,7 +7,7 @@ abstract class IScoreTrainingService {
 
   void createGame({
     required User owner,
-    required List<String> users,
+    List<String?>? players,
   });
 
   void addPlayer();

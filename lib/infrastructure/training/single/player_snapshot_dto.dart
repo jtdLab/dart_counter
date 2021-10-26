@@ -11,6 +11,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
   const factory PlayerSnapshotDto({
     required String id,
     required String? name,
+    required bool? isCurrentTurn,
     required int? targetValue,
     required int? points,
     required int? singles,
@@ -25,6 +26,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     return PlayerSnapshotDto(
       id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
+      isCurrentTurn: playerSnapshot.isCurrentTurn,
       targetValue: playerSnapshot.targetValue,
       points: playerSnapshot.points,
       singles: playerSnapshot.singles,
@@ -38,6 +40,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     return PlayerSnapshotDto(
       id: player.id,
       name: player.name,
+      isCurrentTurn: player.isCurrentTurn,
       targetValue: player.currentTargetValue,
       points: player.points,
       singles: player.singles,
@@ -51,6 +54,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     return PlayerSnapshot(
       id: UniqueId.fromUniqueString(id),
       name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
       targetValue: targetValue ?? 1,
       points: points ?? 0,
       singles: singles ?? 0,

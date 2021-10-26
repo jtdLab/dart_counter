@@ -54,6 +54,7 @@ void main() {
             status: status,
             mode: mode,
             players: players,
+            owner: player1,
           );
 
           // Assert
@@ -99,15 +100,17 @@ void main() {
         // Arrange
         final status = Status.pending;
         final mode = Mode.ascending;
+        final owner = Player();
         final game = Game.fromData(
           status: status,
           mode: mode,
           players: [
-            Player(),
+            owner,
             Player(),
             Player(),
             Player(),
           ],
+          owner: owner,
         );
 
         // Act
@@ -124,15 +127,17 @@ void main() {
         // Arrange
         final status = Status.pending;
         final mode = Mode.ascending;
+        final owner = Player();
         final game = Game.fromData(
           status: status,
           mode: mode,
           players: [
-            Player(),
+            owner,
             Player(),
             Player(),
             Player(),
           ],
+          owner: owner,
         );
 
         // Act & Assert
@@ -146,12 +151,12 @@ void main() {
         // Arrange
         final status = Status.running;
         final mode = Mode.ascending;
+        final owner = Player();
         final game = Game.fromData(
           status: status,
           mode: mode,
-          players: [
-            Player(),
-          ],
+          players: [owner],
+          owner: owner,
         );
 
         // Act
@@ -168,12 +173,14 @@ void main() {
         // Arrange
         final status = Status.running;
         final mode = Mode.ascending;
+        final owner = Player();
         final game = Game.fromData(
           status: status,
           mode: mode,
           players: [
-            Player(),
+            owner,
           ],
+          owner: owner,
         );
 
         // Act & Assert
@@ -197,6 +204,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act
@@ -221,6 +229,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act & Assert
@@ -241,6 +250,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act
@@ -264,6 +274,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act & Assert
@@ -285,6 +296,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act
@@ -309,6 +321,7 @@ void main() {
           status: status,
           mode: mode,
           players: players,
+          owner: players[0],
         );
 
         // Act & Assert
@@ -336,6 +349,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act
@@ -365,6 +379,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -391,6 +406,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
         // Act & Assert
         expect(game.reorderPlayer(oldIndex: 0, newIndex: 0), false);
@@ -416,6 +432,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -441,6 +458,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -466,6 +484,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -491,6 +510,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -516,6 +536,7 @@ void main() {
             player1,
             player2,
           ],
+          owner: player1,
         );
 
         // Act & Assert
@@ -544,8 +565,12 @@ void main() {
         final players = [player1, player2];
 
         // Act
-        final game =
-            Game.fromData(status: status, mode: mode, players: players);
+        final game = Game.fromData(
+          status: status,
+          mode: mode,
+          players: players,
+          owner: player1,
+        );
 
         game.start();
 
@@ -808,8 +833,12 @@ void main() {
           name: 'dummyName2',
         );
         final players = [player1, player2];
-        final game =
-            Game.fromData(status: status, mode: mode, players: players);
+        final game = Game.fromData(
+          status: status,
+          mode: mode,
+          players: players,
+          owner: player1,
+        );
         game.start();
         game.performHits(Hit.single, Hit.triple, Hit.single);
 
@@ -838,8 +867,12 @@ void main() {
           name: 'dummyName2',
         );
         final players = [player1, player2];
-        final game =
-            Game.fromData(status: status, mode: mode, players: players);
+        final game = Game.fromData(
+          status: status,
+          mode: mode,
+          players: players,
+          owner: player1,
+        );
         game.start();
 
         // Act
@@ -877,7 +910,12 @@ void main() {
 
       // Act & Assert
       expect(
-        Game.fromData(status: status, mode: mode, players: players).toString(),
+        Game.fromData(
+          status: status,
+          mode: mode,
+          players: players,
+          owner: player1,
+        ).toString(),
         'Game{status: running, mode: ascending, players: $players}',
       );
     });

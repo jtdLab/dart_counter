@@ -25,7 +25,7 @@ class SingleTrainingService implements ISingleTrainingService {
   @override
   void createGame({
     required User owner,
-    required List<String> users,
+    List<String?>? players,
   }) {
     _game = _game = ex.Game(
       ownerName: owner.profile.username.getOrCrash(),

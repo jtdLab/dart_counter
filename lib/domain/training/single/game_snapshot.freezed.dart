@@ -20,11 +20,13 @@ class _$GameSnapshotTearOff {
   _GameSnapshot call(
       {required Status status,
       required Mode mode,
-      required KtList<PlayerSnapshot> players}) {
+      required KtList<PlayerSnapshot> players,
+      required PlayerSnapshot owner}) {
     return _GameSnapshot(
       status: status,
       mode: mode,
       players: players,
+      owner: owner,
     );
   }
 }
@@ -37,6 +39,7 @@ mixin _$GameSnapshot {
   Status get status => throw _privateConstructorUsedError;
   Mode get mode => throw _privateConstructorUsedError;
   KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
+  PlayerSnapshot get owner => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameSnapshotCopyWith<GameSnapshot> get copyWith =>
@@ -48,7 +51,13 @@ abstract class $GameSnapshotCopyWith<$Res> {
   factory $GameSnapshotCopyWith(
           GameSnapshot value, $Res Function(GameSnapshot) then) =
       _$GameSnapshotCopyWithImpl<$Res>;
-  $Res call({Status status, Mode mode, KtList<PlayerSnapshot> players});
+  $Res call(
+      {Status status,
+      Mode mode,
+      KtList<PlayerSnapshot> players,
+      PlayerSnapshot owner});
+
+  $PlayerSnapshotCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -64,6 +73,7 @@ class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
     Object? status = freezed,
     Object? mode = freezed,
     Object? players = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed
@@ -78,7 +88,18 @@ class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as KtList<PlayerSnapshot>,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as PlayerSnapshot,
     ));
+  }
+
+  @override
+  $PlayerSnapshotCopyWith<$Res> get owner {
+    return $PlayerSnapshotCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value));
+    });
   }
 }
 
@@ -89,7 +110,14 @@ abstract class _$GameSnapshotCopyWith<$Res>
           _GameSnapshot value, $Res Function(_GameSnapshot) then) =
       __$GameSnapshotCopyWithImpl<$Res>;
   @override
-  $Res call({Status status, Mode mode, KtList<PlayerSnapshot> players});
+  $Res call(
+      {Status status,
+      Mode mode,
+      KtList<PlayerSnapshot> players,
+      PlayerSnapshot owner});
+
+  @override
+  $PlayerSnapshotCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -107,6 +135,7 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
     Object? status = freezed,
     Object? mode = freezed,
     Object? players = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_GameSnapshot(
       status: status == freezed
@@ -121,6 +150,10 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as KtList<PlayerSnapshot>,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as PlayerSnapshot,
     ));
   }
 }
@@ -130,7 +163,10 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
 @Implements(TrainingGameSnapshot)
 class _$_GameSnapshot implements _GameSnapshot {
   const _$_GameSnapshot(
-      {required this.status, required this.mode, required this.players});
+      {required this.status,
+      required this.mode,
+      required this.players,
+      required this.owner});
 
   @override
   final Status status;
@@ -138,10 +174,12 @@ class _$_GameSnapshot implements _GameSnapshot {
   final Mode mode;
   @override
   final KtList<PlayerSnapshot> players;
+  @override
+  final PlayerSnapshot owner;
 
   @override
   String toString() {
-    return 'GameSnapshot(status: $status, mode: $mode, players: $players)';
+    return 'GameSnapshot(status: $status, mode: $mode, players: $players, owner: $owner)';
   }
 
   @override
@@ -153,7 +191,10 @@ class _$_GameSnapshot implements _GameSnapshot {
             (identical(other.mode, mode) ||
                 const DeepCollectionEquality().equals(other.mode, mode)) &&
             (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                const DeepCollectionEquality()
+                    .equals(other.players, players)) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)));
   }
 
   @override
@@ -161,7 +202,8 @@ class _$_GameSnapshot implements _GameSnapshot {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(players);
+      const DeepCollectionEquality().hash(players) ^
+      const DeepCollectionEquality().hash(owner);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +215,8 @@ abstract class _GameSnapshot implements GameSnapshot, TrainingGameSnapshot {
   const factory _GameSnapshot(
       {required Status status,
       required Mode mode,
-      required KtList<PlayerSnapshot> players}) = _$_GameSnapshot;
+      required KtList<PlayerSnapshot> players,
+      required PlayerSnapshot owner}) = _$_GameSnapshot;
 
   @override
   Status get status => throw _privateConstructorUsedError;
@@ -181,6 +224,8 @@ abstract class _GameSnapshot implements GameSnapshot, TrainingGameSnapshot {
   Mode get mode => throw _privateConstructorUsedError;
   @override
   KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
+  @override
+  PlayerSnapshot get owner => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>

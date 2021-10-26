@@ -21,6 +21,11 @@ class HomePage extends StatelessWidget {
           if (gameSnapshot != null) {
             context.router.replace(const GameFlowRoute());
           }
+
+          final trainingGameSnapshot = state.trainingGameSnapshot;
+          if (trainingGameSnapshot != null) {
+            context.router.replace(const TrainingFlowRoute());
+          }
         },
         builder: (context, state) {
           if (state.loading) {

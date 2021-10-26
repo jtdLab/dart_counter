@@ -9,36 +9,30 @@ class _CreateTrainingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrainingBloc, TrainingState>(
-      buildWhen: (oldState, newState) => newState is TrainingInProgress,
       builder: (context, state) {
-        return state.map(
-          initial: (_) => throw Error(),
-          gameInProgress: (gameInProgress) {
-            final type = gameInProgress.type;
+        final type = state.type;
 
-            return Column(
-              children: [
-                const _PlayerCard(),
-                SizedBox(
-                  height: spacerLarge(context),
-                ),
-                const _ModusCard(),
-                SizedBox(
-                  height: spacerLarge(context),
-                ),
-                if (type == Type.single || type == Type.double) ...[
-                  const _OrderCard(),
-                ],
-                if (type == Type.score) ...[
-                  const _TakesCard(),
-                ],
-                SizedBox(
-                  height: spacerNormal(context),
-                ),
-                const _PlayButton(),
-              ],
-            );
-          },
+        return Column(
+          children: [
+            const _PlayerCard(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
+            const _ModusCard(),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
+            if (type == Type.single || type == Type.double) ...[
+              const _OrderCard(),
+            ],
+            if (type == Type.score) ...[
+              const _TakesCard(),
+            ],
+            SizedBox(
+              height: spacerNormal(context),
+            ),
+            const _PlayButton(),
+          ],
         );
       },
     );
@@ -88,56 +82,53 @@ class _PlayerList extends StatelessWidget {
       },
       */
       builder: (context, state) {
-        return state.map(
-          initial: (_) => throw Error(),
-          gameInProgress: (gameInProgress) {
-            final players = gameInProgress.gameSnapshot.players;
+        final players = state.gameSnapshot.players;
 
-            return SizedBox(
-              height: players.size * size70(context) +
-                  players.size * size6(context),
-              child: ReorderableListView.builder(
-                proxyDecorator: (child, index, animation) {
-                  return child;
-                },
-                itemBuilder: (context, index) {
-                  final player = players[index];
+        return SizedBox(
+          height:
+              players.size * size70(context) + players.size * size6(context),
+          child: ReorderableListView.builder(
+            proxyDecorator: (child, index, animation) {
+              return child;
+            },
+            itemBuilder: (context, index) {
+              final player = players[index];
 
-                  // TODO bug where multiple widgets with same global key
-                  if (/**player is OfflinePlayerSnapshot */ true) {
-                    final isDismissable = players.size > 1;
-                    if (/**player.photoUrl != null */ false) {
-                      return _PlayerItem(
-                        key: ValueKey(player.id),
-                        index: index,
-                        player: player,
-                        isDismissable: false,
-                      );
-                    }
+              // TODO bug where multiple widgets with same global key
+              if (/**player is OfflinePlayerSnapshot */ true) {
+                final isDismissable = players.size > 1;
+                if (/**player.photoUrl != null */ false) {
+                  return _PlayerItem(
+                    key: ValueKey(player.id),
+                    index: index,
+                    player: player,
+                    isDismissable: false,
+                  );
+                }
 
-                    return _EditablePlayerItem(
-                      key: ValueKey(player.id),
-                      index: index,
-                      player: player,
-                      isDismissable: isDismissable,
-                    );
-                  } else {
-                    final isDismissable = players.size > 1;
-                    return _PlayerItem(
-                      key: ValueKey(player.id),
-                      index: index,
-                      player: player,
-                      isDismissable: isDismissable,
-                    );
-                  }
-                },
-                itemCount: players.size,
-                onReorder: (oldIndex, newIndex) {
-                  if (oldIndex < newIndex) {
-                    newIndex--;
-                  }
+                return _EditablePlayerItem(
+                  key: ValueKey(player.id),
+                  index: index,
+                  player: player,
+                  isDismissable: isDismissable,
+                );
+              } else {
+                final isDismissable = players.size > 1;
+                return _PlayerItem(
+                  key: ValueKey(player.id),
+                  index: index,
+                  player: player,
+                  isDismissable: isDismissable,
+                );
+              }
+            },
+            itemCount: players.size,
+            onReorder: (oldIndex, newIndex) {
+              if (oldIndex < newIndex) {
+                newIndex--;
+              }
 
-                  /**
+              /**
                   *  context.read<
                       CreateTrainingBloc>(); /*.add(
                     CreateGameEvent.playerReordered(
@@ -146,10 +137,8 @@ class _PlayerList extends StatelessWidget {
                     ),
                   );*/
                   */
-                },
-              ),
-            );
-          },
+            },
+          ),
         );
       },
     );

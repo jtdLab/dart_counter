@@ -20,7 +20,10 @@ class ScoreTrainingService implements IScoreTrainingService {
   }
 
   @override
-  void createGame({required User owner, required List<String> users}) {
+  void createGame({
+    required User owner,
+    List<String?>? players,
+  }) {
     // TODO: implement createGame
   }
 
@@ -59,5 +62,4 @@ class ScoreTrainingService implements IScoreTrainingService {
     // TODO: implement watchGame
     throw UnimplementedError();
   }
-
 }

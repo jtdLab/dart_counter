@@ -9,7 +9,7 @@ abstract class ISingleTrainingService {
 
   void createGame({
     required User owner,
-    required List<String> users,
+    List<String?>? players,
   });
 
   void addPlayer();

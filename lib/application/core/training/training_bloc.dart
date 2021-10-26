@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
+import 'package:dart_counter/domain/training/single/game_snapshot.dart'
+    as single;
+
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/training_game_snapshot.dart';
+import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -35,7 +38,17 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
     this._scoreTrainingService,
     this._bobsTwentySevenService,
     this._userFacade,
-  ) : super(const TrainingState.initial()) {
+  ) : super(
+          TrainingState.initial(
+            type: Type.single,
+            gameSnapshot: single.GameSnapshot.initial(
+              username: _userFacade.getUser()?.fold(
+                    (failure) => throw Error(),
+                    (user) => user.profile.username.getOrCrash(),
+                  ),
+            ),
+          ),
+        ) {
     on<TrainingCreated>((event, emit) async {
       if (state is TrainingInitial) {
         final gameSnapshots = _singleTrainingService.watchGame();
@@ -49,12 +62,12 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
             );
 
         if (user != null) {
-          _singleTrainingService.createGame(owner: user, users: List.empty());
+          _singleTrainingService.createGame(owner: user);
 
           final gameSnapshot = await gameSnapshots.first;
 
           emit(
-            TrainingState.gameInProgress(
+            TrainingState.initial(
               type: Type.single,
               gameSnapshot: gameSnapshot,
             ),
@@ -63,135 +76,118 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
       }
     });
     on<TrainingPlayerAdded>((event, emit) {
-      final state = this.state;
+      final type = state.type;
 
-      if (state is TrainingInProgress) {
-        final type = state.type;
-
-        switch (type) {
-          case Type.single:
-            _singleTrainingService.addPlayer();
-            break;
-          case Type.double:
-            _doubleTrainingService.addPlayer();
-            break;
-          case Type.score:
-            _scoreTrainingService.addPlayer();
-            break;
-          case Type.bobs27:
-            _bobsTwentySevenService.addPlayer();
-            break;
-        }
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.addPlayer();
+          break;
+        case Type.double:
+          _doubleTrainingService.addPlayer();
+          break;
+        case Type.score:
+          _scoreTrainingService.addPlayer();
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.addPlayer();
+          break;
       }
     });
     on<TrainingPlayerRemoved>((event, emit) {
-      final state = this.state;
+      final type = state.type;
+      final index = event.index;
 
-      if (state is TrainingInProgress) {
-        final type = state.type;
-        final index = event.index;
-
-        switch (type) {
-          case Type.single:
-            _singleTrainingService.removePlayer(index: index);
-            break;
-          case Type.double:
-            _doubleTrainingService.removePlayer(index: index);
-            break;
-          case Type.score:
-            _scoreTrainingService.removePlayer(index: index);
-            break;
-          case Type.bobs27:
-            _bobsTwentySevenService.removePlayer(index: index);
-            break;
-        }
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.removePlayer(index: index);
+          break;
+        case Type.double:
+          _doubleTrainingService.removePlayer(index: index);
+          break;
+        case Type.score:
+          _scoreTrainingService.removePlayer(index: index);
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.removePlayer(index: index);
+          break;
       }
     });
     on<TrainingPlayerReordered>((event, emit) {
-      final state = this.state;
+      final type = state.type;
+      final oldIndex = event.oldIndex;
+      final newIndex = event.newIndex;
 
-      if (state is TrainingInProgress) {
-        final type = state.type;
-        final oldIndex = event.oldIndex;
-        final newIndex = event.newIndex;
-
-        switch (type) {
-          case Type.single:
-            _singleTrainingService.reorderPlayer(
-              oldIndex: oldIndex,
-              newIndex: newIndex,
-            );
-            break;
-          case Type.double:
-            _doubleTrainingService.reorderPlayer(
-              oldIndex: oldIndex,
-              newIndex: newIndex,
-            );
-            break;
-          case Type.score:
-            _scoreTrainingService.reorderPlayer(
-              oldIndex: oldIndex,
-              newIndex: newIndex,
-            );
-            break;
-          case Type.bobs27:
-            _bobsTwentySevenService.reorderPlayer(
-              oldIndex: oldIndex,
-              newIndex: newIndex,
-            );
-            break;
-        }
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.reorderPlayer(
+            oldIndex: oldIndex,
+            newIndex: newIndex,
+          );
+          break;
+        case Type.double:
+          _doubleTrainingService.reorderPlayer(
+            oldIndex: oldIndex,
+            newIndex: newIndex,
+          );
+          break;
+        case Type.score:
+          _scoreTrainingService.reorderPlayer(
+            oldIndex: oldIndex,
+            newIndex: newIndex,
+          );
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.reorderPlayer(
+            oldIndex: oldIndex,
+            newIndex: newIndex,
+          );
+          break;
       }
     });
     on<TrainingPlayerNameUpdated>((event, emit) {
-      final state = this.state;
+      final type = state.type;
+      final index = event.index;
+      final newName = event.newName;
 
-      if (state is TrainingInProgress) {
-        final type = state.type;
-        final index = event.index;
-        final newName = event.newName;
-
-        switch (type) {
-          case Type.single:
-            _singleTrainingService.updateName(
-              index: index,
-              newName: newName,
-            );
-            break;
-          case Type.double:
-            _doubleTrainingService.updateName(
-              index: index,
-              newName: newName,
-            );
-            break;
-          case Type.score:
-            _scoreTrainingService.updateName(
-              index: index,
-              newName: newName,
-            );
-            break;
-          case Type.bobs27:
-            _bobsTwentySevenService.updateName(
-              index: index,
-              newName: newName,
-            );
-            break;
-        }
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.updateName(
+            index: index,
+            newName: newName,
+          );
+          break;
+        case Type.double:
+          _doubleTrainingService.updateName(
+            index: index,
+            newName: newName,
+          );
+          break;
+        case Type.score:
+          _scoreTrainingService.updateName(
+            index: index,
+            newName: newName,
+          );
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.updateName(
+            index: index,
+            newName: newName,
+          );
+          break;
       }
     });
     on<TrainingTypeChanged>((event, emit) {
-      final state = this.state;
+      final user = _userFacade.getUser()?.fold(
+            (failure) => null,
+            (user) => user,
+          );
 
-      if (state is TrainingInProgress) {
+      if (user != null) {
         _gameSnapshotsSubscription?.cancel();
 
         final currentType = state.type;
         final newType = event.newType;
-
-        final user = _userFacade.getUser()?.fold(
-              (failure) => null,
-              (user) => user,
-            );
+        final gameSnapshot = state.gameSnapshot;
 
         switch (currentType) {
           case Type.single:
@@ -208,81 +204,104 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
             break;
         }
 
-        if (user != null) {
-          switch (newType) {
-            case Type.single:
-              _gameSnapshotsSubscription =
-                  _singleTrainingService.watchGame().listen((gameSnapshot) {
-                add(
-                  TrainingEvent.gameSnapshotReceived(
-                    gameSnapshot: gameSnapshot,
-                  ),
-                );
-              });
-              _singleTrainingService.createGame(
-                owner: user,
-                users: List.empty(),
-              ); // TODO real users
-              break;
-            case Type.double:
-              _gameSnapshotsSubscription =
-                  _doubleTrainingService.watchGame().listen((gameSnapshot) {
-                add(
-                  TrainingEvent.gameSnapshotReceived(
-                    gameSnapshot: gameSnapshot,
-                  ),
-                );
-              });
-              _doubleTrainingService.createGame(
-                owner: user,
-                users: List.empty(),
-              ); // TODO real users
-              break;
-            case Type.score:
-              _gameSnapshotsSubscription =
-                  _scoreTrainingService.watchGame().listen((gameSnapshot) {
-                add(
-                  TrainingEvent.gameSnapshotReceived(
-                    gameSnapshot: gameSnapshot,
-                  ),
-                );
-              });
-              _scoreTrainingService.createGame(
-                owner: user,
-                users: List.empty(),
-              ); // TODO real users
-              break;
-            case Type.bobs27:
-              _gameSnapshotsSubscription =
-                  _bobsTwentySevenService.watchGame().listen((gameSnapshot) {
-                add(
-                  TrainingEvent.gameSnapshotReceived(
-                    gameSnapshot: gameSnapshot,
-                  ),
-                );
-              });
-              _bobsTwentySevenService.createGame(
-                owner: user,
-                users: List.empty(),
-              ); // TODO real users
-              break;
-          }
+        final players = gameSnapshot.players
+            .asList()
+            .where((player) => player != gameSnapshot.owner)
+            .map((player) => player.name)
+            .toList();
+
+        switch (newType) {
+          case Type.single:
+            _gameSnapshotsSubscription =
+                _singleTrainingService.watchGame().listen((gameSnapshot) {
+              add(
+                TrainingEvent.gameSnapshotReceived(
+                  gameSnapshot: gameSnapshot,
+                ),
+              );
+            });
+
+            _singleTrainingService.createGame(
+              owner: user,
+              players: players,
+            );
+            break;
+          case Type.double:
+            _gameSnapshotsSubscription =
+                _doubleTrainingService.watchGame().listen((gameSnapshot) {
+              add(
+                TrainingEvent.gameSnapshotReceived(
+                  gameSnapshot: gameSnapshot,
+                ),
+              );
+            });
+            _doubleTrainingService.createGame(
+              owner: user,
+              players: players,
+            );
+            break;
+          case Type.score:
+            _gameSnapshotsSubscription =
+                _scoreTrainingService.watchGame().listen((gameSnapshot) {
+              add(
+                TrainingEvent.gameSnapshotReceived(
+                  gameSnapshot: gameSnapshot,
+                ),
+              );
+            });
+            _scoreTrainingService.createGame(
+              owner: user,
+              players: players,
+            );
+            break;
+          case Type.bobs27:
+            _gameSnapshotsSubscription =
+                _bobsTwentySevenService.watchGame().listen((gameSnapshot) {
+              add(
+                TrainingEvent.gameSnapshotReceived(
+                  gameSnapshot: gameSnapshot,
+                ),
+              );
+            });
+            _bobsTwentySevenService.createGame(
+              owner: user,
+              players: players,
+            );
+            break;
         }
 
-        state.copyWith(type: newType);
+        emit(state.copyWith(type: newType));
+      }
+    });
+    on<TrainingCanceled>((event, emit) {
+      final type = state.type;
+
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.cancel();
+          break;
+        case Type.double:
+          _doubleTrainingService.cancel();
+          break;
+        case Type.score:
+          _scoreTrainingService.cancel();
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.cancel();
+          break;
       }
     });
     on<TrainingGameSnapshotReceived>((event, emit) {
       final gameSnapshot = event.gameSnapshot;
 
-      emit(
-        state.map(
-          initial: (_) => throw Error(),
-          gameInProgress: (gameInProgress) =>
-              gameInProgress.copyWith(gameSnapshot: gameSnapshot),
-        ),
-      );
+      emit(state.copyWith(gameSnapshot: gameSnapshot));
     });
+  }
+
+  @override
+  void onChange(Change<TrainingState> change) {
+    print(change.nextState);
+    super.onChange(change);
   }
 
   @override

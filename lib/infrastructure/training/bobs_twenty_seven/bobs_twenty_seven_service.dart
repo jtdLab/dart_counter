@@ -21,7 +21,10 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  void createGame({required User owner, required List<String> users}) {
+  void createGame({
+    required User owner,
+    List<String?>? players,
+  }) {
     // TODO: implement createGame
   }
 
@@ -60,5 +63,4 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     // TODO: implement watchGame
     throw UnimplementedError();
   }
-
 }

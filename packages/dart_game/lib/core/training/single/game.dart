@@ -14,6 +14,7 @@ class Game {
   Status get status => _status;
   Mode mode;
   final List<Player> players;
+  Player get owner => _owner;
 
   /// Creates a game with given [ownerName].
   Game({
@@ -28,7 +29,13 @@ class Game {
     required Status status,
     required this.mode,
     required this.players,
-  }) : _status = status;
+    required Player owner,
+  })  : _status = status,
+        _owner = owner {
+    if (!players.contains(owner)) {
+      throw ArgumentError.value(owner, 'Owner is not part of the players.');
+    }
+  }
 
   /// Adds a player with [name] to this game if pending and not full.
   ///
@@ -43,12 +50,16 @@ class Game {
   }) {
     if (status == Status.pending) {
       if (players.length < 4) {
-        players.add(
-          Player(
-            id: id,
-            name: name,
-          ),
+        final player = Player(
+          id: id,
+          name: name,
         );
+
+        if (players.isEmpty) {
+          _owner = player;
+        }
+
+        players.add(player);
 
         return true;
       }
@@ -64,6 +75,9 @@ class Game {
     required int index,
   }) {
     if (status == Status.pending) {
+      if (index == players.indexOf(owner)) {
+        return false;
+      }
       if (players.length > 1) {
         players.removeAt(index);
 
@@ -264,6 +278,7 @@ class Game {
 
   Status _status;
   int? _turnIndex;
+  late Player _owner;
 
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
 

@@ -20,6 +20,7 @@ class _$PlayerSnapshotDtoTearOff {
   _PlayerSnapshotDto call(
       {required String id,
       required String? name,
+      required bool? isCurrentTurn,
       required int? targetValue,
       required int? points,
       required int? singles,
@@ -29,6 +30,7 @@ class _$PlayerSnapshotDtoTearOff {
     return _PlayerSnapshotDto(
       id: id,
       name: name,
+      isCurrentTurn: isCurrentTurn,
       targetValue: targetValue,
       points: points,
       singles: singles,
@@ -46,6 +48,7 @@ const $PlayerSnapshotDto = _$PlayerSnapshotDtoTearOff();
 mixin _$PlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn => throw _privateConstructorUsedError;
   int? get targetValue => throw _privateConstructorUsedError;
   int? get points => throw _privateConstructorUsedError;
   int? get singles => throw _privateConstructorUsedError;
@@ -66,6 +69,7 @@ abstract class $PlayerSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
+      bool? isCurrentTurn,
       int? targetValue,
       int? points,
       int? singles,
@@ -87,6 +91,7 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
     Object? targetValue = freezed,
     Object? points = freezed,
     Object? singles = freezed,
@@ -103,6 +108,10 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
@@ -141,6 +150,7 @@ abstract class _$PlayerSnapshotDtoCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
+      bool? isCurrentTurn,
       int? targetValue,
       int? points,
       int? singles,
@@ -164,6 +174,7 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
     Object? targetValue = freezed,
     Object? points = freezed,
     Object? singles = freezed,
@@ -180,6 +191,10 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
@@ -214,6 +229,7 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   const _$_PlayerSnapshotDto(
       {required this.id,
       required this.name,
+      required this.isCurrentTurn,
       required this.targetValue,
       required this.points,
       required this.singles,
@@ -226,6 +242,8 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   final String id;
   @override
   final String? name;
+  @override
+  final bool? isCurrentTurn;
   @override
   final int? targetValue;
   @override
@@ -241,7 +259,7 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
 
   @override
   String toString() {
-    return 'PlayerSnapshotDto(id: $id, name: $name, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
+    return 'PlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
   }
 
   @override
@@ -252,6 +270,9 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.isCurrentTurn, isCurrentTurn) ||
+                const DeepCollectionEquality()
+                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
             (identical(other.targetValue, targetValue) ||
                 const DeepCollectionEquality()
                     .equals(other.targetValue, targetValue)) &&
@@ -275,6 +296,7 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(targetValue) ^
       const DeepCollectionEquality().hash(points) ^
       const DeepCollectionEquality().hash(singles) ^
@@ -292,6 +314,7 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const factory _PlayerSnapshotDto(
       {required String id,
       required String? name,
+      required bool? isCurrentTurn,
       required int? targetValue,
       required int? points,
       required int? singles,
@@ -304,6 +327,8 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
+  @override
+  bool? get isCurrentTurn => throw _privateConstructorUsedError;
   @override
   int? get targetValue => throw _privateConstructorUsedError;
   @override

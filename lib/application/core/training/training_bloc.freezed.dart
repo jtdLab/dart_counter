@@ -53,6 +53,10 @@ class _$TrainingEventTearOff {
     );
   }
 
+  TrainingCanceled trainingCanceled() {
+    return const TrainingCanceled();
+  }
+
   TrainingGameSnapshotReceived gameSnapshotReceived(
       {required TrainingGameSnapshot gameSnapshot}) {
     return TrainingGameSnapshotReceived(
@@ -74,6 +78,7 @@ mixin _$TrainingEvent {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) =>
@@ -86,6 +91,7 @@ mixin _$TrainingEvent {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -97,6 +103,7 @@ mixin _$TrainingEvent {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
@@ -110,6 +117,7 @@ mixin _$TrainingEvent {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) =>
@@ -122,6 +130,7 @@ mixin _$TrainingEvent {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +142,7 @@ mixin _$TrainingEvent {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) =>
@@ -202,6 +212,7 @@ class _$TrainingCreated implements TrainingCreated {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -217,6 +228,7 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return trainingCreated?.call();
@@ -231,6 +243,7 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -250,6 +263,7 @@ class _$TrainingCreated implements TrainingCreated {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -265,6 +279,7 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return trainingCreated?.call(this);
@@ -279,6 +294,7 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -339,6 +355,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -354,6 +371,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return playerAdded?.call();
@@ -368,6 +386,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -387,6 +406,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -402,6 +422,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return playerAdded?.call(this);
@@ -416,6 +437,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -502,6 +524,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -517,6 +540,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return playerRemoved?.call(index);
@@ -531,6 +555,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -550,6 +575,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -565,6 +591,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return playerRemoved?.call(this);
@@ -579,6 +606,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -685,6 +713,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -700,6 +729,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return playerReordered?.call(oldIndex, newIndex);
@@ -714,6 +744,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -733,6 +764,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -748,6 +780,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return playerReordered?.call(this);
@@ -762,6 +795,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -869,6 +903,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -884,6 +919,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return playerNameUpdated?.call(index, newName);
@@ -898,6 +934,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -917,6 +954,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -932,6 +970,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return playerNameUpdated?.call(this);
@@ -946,6 +985,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -1039,6 +1079,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -1054,6 +1095,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return typeChanged?.call(newType);
@@ -1068,6 +1110,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -1087,6 +1130,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -1102,6 +1146,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return typeChanged?.call(this);
@@ -1116,6 +1161,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -1134,6 +1180,149 @@ abstract class TrainingTypeChanged implements TrainingEvent {
   @JsonKey(ignore: true)
   $TrainingTypeChangedCopyWith<TrainingTypeChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TrainingCanceledCopyWith<$Res> {
+  factory $TrainingCanceledCopyWith(
+          TrainingCanceled value, $Res Function(TrainingCanceled) then) =
+      _$TrainingCanceledCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$TrainingCanceledCopyWithImpl<$Res>
+    extends _$TrainingEventCopyWithImpl<$Res>
+    implements $TrainingCanceledCopyWith<$Res> {
+  _$TrainingCanceledCopyWithImpl(
+      TrainingCanceled _value, $Res Function(TrainingCanceled) _then)
+      : super(_value, (v) => _then(v as TrainingCanceled));
+
+  @override
+  TrainingCanceled get _value => super._value as TrainingCanceled;
+}
+
+/// @nodoc
+
+class _$TrainingCanceled implements TrainingCanceled {
+  const _$TrainingCanceled();
+
+  @override
+  String toString() {
+    return 'TrainingEvent.trainingCanceled()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is TrainingCanceled);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() trainingCreated,
+    required TResult Function() playerAdded,
+    required TResult Function(int index) playerRemoved,
+    required TResult Function(int oldIndex, int newIndex) playerReordered,
+    required TResult Function(int index, String newName) playerNameUpdated,
+    required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
+    required TResult Function(TrainingGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
+  }) {
+    return trainingCanceled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? trainingCreated,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+  }) {
+    return trainingCanceled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? trainingCreated,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
+    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (trainingCanceled != null) {
+      return trainingCanceled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TrainingCreated value) trainingCreated,
+    required TResult Function(TrainingPlayerAdded value) playerAdded,
+    required TResult Function(TrainingPlayerRemoved value) playerRemoved,
+    required TResult Function(TrainingPlayerReordered value) playerReordered,
+    required TResult Function(TrainingPlayerNameUpdated value)
+        playerNameUpdated,
+    required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
+    required TResult Function(TrainingGameSnapshotReceived value)
+        gameSnapshotReceived,
+  }) {
+    return trainingCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TrainingCreated value)? trainingCreated,
+    TResult Function(TrainingPlayerAdded value)? playerAdded,
+    TResult Function(TrainingPlayerRemoved value)? playerRemoved,
+    TResult Function(TrainingPlayerReordered value)? playerReordered,
+    TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
+  }) {
+    return trainingCanceled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TrainingCreated value)? trainingCreated,
+    TResult Function(TrainingPlayerAdded value)? playerAdded,
+    TResult Function(TrainingPlayerRemoved value)? playerRemoved,
+    TResult Function(TrainingPlayerReordered value)? playerReordered,
+    TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
+    TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (trainingCanceled != null) {
+      return trainingCanceled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TrainingCanceled implements TrainingEvent {
+  const factory TrainingCanceled() = _$TrainingCanceled;
 }
 
 /// @nodoc
@@ -1212,6 +1401,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingCanceled,
     required TResult Function(TrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
@@ -1227,6 +1417,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
   }) {
     return gameSnapshotReceived?.call(gameSnapshot);
@@ -1241,6 +1432,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingCanceled,
     TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -1260,6 +1452,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     required TResult Function(TrainingPlayerNameUpdated value)
         playerNameUpdated,
     required TResult Function(TrainingTypeChanged value) typeChanged,
+    required TResult Function(TrainingCanceled value) trainingCanceled,
     required TResult Function(TrainingGameSnapshotReceived value)
         gameSnapshotReceived,
   }) {
@@ -1275,6 +1468,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
   }) {
     return gameSnapshotReceived?.call(this);
@@ -1289,6 +1483,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(TrainingPlayerReordered value)? playerReordered,
     TResult Function(TrainingPlayerNameUpdated value)? playerNameUpdated,
     TResult Function(TrainingTypeChanged value)? typeChanged,
+    TResult Function(TrainingCanceled value)? trainingCanceled,
     TResult Function(TrainingGameSnapshotReceived value)? gameSnapshotReceived,
     required TResult orElse(),
   }) {
@@ -1314,13 +1509,9 @@ abstract class TrainingGameSnapshotReceived implements TrainingEvent {
 class _$TrainingStateTearOff {
   const _$TrainingStateTearOff();
 
-  TrainingInitial initial() {
-    return const TrainingInitial();
-  }
-
-  TrainingInProgress gameInProgress(
+  TrainingInitial initial(
       {required Type type, required TrainingGameSnapshot gameSnapshot}) {
-    return TrainingInProgress(
+    return TrainingInitial(
       type: type,
       gameSnapshot: gameSnapshot,
     );
@@ -1332,46 +1523,45 @@ const $TrainingState = _$TrainingStateTearOff();
 
 /// @nodoc
 mixin _$TrainingState {
+  Type get type => throw _privateConstructorUsedError;
+  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(Type type, TrainingGameSnapshot gameSnapshot)
-        gameInProgress,
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
+    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
+    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(TrainingInitial value) initial,
-    required TResult Function(TrainingInProgress value) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TrainingStateCopyWith<TrainingState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1380,6 +1570,7 @@ abstract class $TrainingStateCopyWith<$Res> {
   factory $TrainingStateCopyWith(
           TrainingState value, $Res Function(TrainingState) then) =
       _$TrainingStateCopyWithImpl<$Res>;
+  $Res call({Type type, TrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -1390,13 +1581,33 @@ class _$TrainingStateCopyWithImpl<$Res>
   final TrainingState _value;
   // ignore: unused_field
   final $Res Function(TrainingState) _then;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? gameSnapshot = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
+      gameSnapshot: gameSnapshot == freezed
+          ? _value.gameSnapshot
+          : gameSnapshot // ignore: cast_nullable_to_non_nullable
+              as TrainingGameSnapshot,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $TrainingInitialCopyWith<$Res> {
+abstract class $TrainingInitialCopyWith<$Res>
+    implements $TrainingStateCopyWith<$Res> {
   factory $TrainingInitialCopyWith(
           TrainingInitial value, $Res Function(TrainingInitial) then) =
       _$TrainingInitialCopyWithImpl<$Res>;
+  @override
+  $Res call({Type type, TrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -1409,121 +1620,13 @@ class _$TrainingInitialCopyWithImpl<$Res>
 
   @override
   TrainingInitial get _value => super._value as TrainingInitial;
-}
-
-/// @nodoc
-
-class _$TrainingInitial implements TrainingInitial {
-  const _$TrainingInitial();
-
-  @override
-  String toString() {
-    return 'TrainingState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingInitial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Type type, TrainingGameSnapshot gameSnapshot)
-        gameInProgress,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TrainingInitial value) initial,
-    required TResult Function(TrainingInProgress value) gameInProgress,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TrainingInitial implements TrainingState {
-  const factory TrainingInitial() = _$TrainingInitial;
-}
-
-/// @nodoc
-abstract class $TrainingInProgressCopyWith<$Res> {
-  factory $TrainingInProgressCopyWith(
-          TrainingInProgress value, $Res Function(TrainingInProgress) then) =
-      _$TrainingInProgressCopyWithImpl<$Res>;
-  $Res call({Type type, TrainingGameSnapshot gameSnapshot});
-}
-
-/// @nodoc
-class _$TrainingInProgressCopyWithImpl<$Res>
-    extends _$TrainingStateCopyWithImpl<$Res>
-    implements $TrainingInProgressCopyWith<$Res> {
-  _$TrainingInProgressCopyWithImpl(
-      TrainingInProgress _value, $Res Function(TrainingInProgress) _then)
-      : super(_value, (v) => _then(v as TrainingInProgress));
-
-  @override
-  TrainingInProgress get _value => super._value as TrainingInProgress;
 
   @override
   $Res call({
     Object? type = freezed,
     Object? gameSnapshot = freezed,
   }) {
-    return _then(TrainingInProgress(
+    return _then(TrainingInitial(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1538,8 +1641,8 @@ class _$TrainingInProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TrainingInProgress implements TrainingInProgress {
-  const _$TrainingInProgress({required this.type, required this.gameSnapshot});
+class _$TrainingInitial implements TrainingInitial {
+  const _$TrainingInitial({required this.type, required this.gameSnapshot});
 
   @override
   final Type type;
@@ -1548,13 +1651,13 @@ class _$TrainingInProgress implements TrainingInProgress {
 
   @override
   String toString() {
-    return 'TrainingState.gameInProgress(type: $type, gameSnapshot: $gameSnapshot)';
+    return 'TrainingState.initial(type: $type, gameSnapshot: $gameSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingInProgress &&
+        (other is TrainingInitial &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.gameSnapshot, gameSnapshot) ||
@@ -1570,39 +1673,34 @@ class _$TrainingInProgress implements TrainingInProgress {
 
   @JsonKey(ignore: true)
   @override
-  $TrainingInProgressCopyWith<TrainingInProgress> get copyWith =>
-      _$TrainingInProgressCopyWithImpl<TrainingInProgress>(this, _$identity);
+  $TrainingInitialCopyWith<TrainingInitial> get copyWith =>
+      _$TrainingInitialCopyWithImpl<TrainingInitial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(Type type, TrainingGameSnapshot gameSnapshot)
-        gameInProgress,
+        initial,
   }) {
-    return gameInProgress(type, gameSnapshot);
+    return initial(type, gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
+    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
   }) {
-    return gameInProgress?.call(type, gameSnapshot);
+    return initial?.call(type, gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)?
-        gameInProgress,
+    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) {
-    if (gameInProgress != null) {
-      return gameInProgress(type, gameSnapshot);
+    if (initial != null) {
+      return initial(type, gameSnapshot);
     }
     return orElse();
   }
@@ -1611,42 +1709,42 @@ class _$TrainingInProgress implements TrainingInProgress {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(TrainingInitial value) initial,
-    required TResult Function(TrainingInProgress value) gameInProgress,
   }) {
-    return gameInProgress(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
   }) {
-    return gameInProgress?.call(this);
+    return initial?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TrainingInitial value)? initial,
-    TResult Function(TrainingInProgress value)? gameInProgress,
     required TResult orElse(),
   }) {
-    if (gameInProgress != null) {
-      return gameInProgress(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class TrainingInProgress implements TrainingState {
-  const factory TrainingInProgress(
+abstract class TrainingInitial implements TrainingState {
+  const factory TrainingInitial(
       {required Type type,
-      required TrainingGameSnapshot gameSnapshot}) = _$TrainingInProgress;
+      required TrainingGameSnapshot gameSnapshot}) = _$TrainingInitial;
 
+  @override
   Type get type => throw _privateConstructorUsedError;
+  @override
   TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $TrainingInProgressCopyWith<TrainingInProgress> get copyWith =>
+  $TrainingInitialCopyWith<TrainingInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

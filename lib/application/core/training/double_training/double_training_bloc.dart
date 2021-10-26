@@ -1,16 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/training/double/game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/hit.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
+import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
+part 'double_training_bloc.freezed.dart';
 part 'double_training_event.dart';
 part 'double_training_state.dart';
-part 'double_training_bloc.freezed.dart';
 
 @lazySingleton
 class DoubleTrainingBloc extends Bloc<DoubleTrainingEvent, DoubleTrainingState>

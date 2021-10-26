@@ -246,7 +246,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i28.IPlayOfflineFacade>(),
       get<_i56.IPlayOnlineFacade>(),
       get<_i48.DataWatcherBloc>(),
-      get<_i59.PlayBloc>()));
+      get<_i59.PlayBloc>(),
+      get<_i42.TrainingBloc>()));
   gh.lazySingleton<_i21.IFriendFacade>(
       () => _i68.FriendFacade(get<_i12.IAuthFacade>(), get<_i34.IUserFacade>(),
           get<_i8.FirebaseFirestore>(), get<_i41.SocialClient>()),

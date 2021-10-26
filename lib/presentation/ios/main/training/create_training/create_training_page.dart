@@ -6,10 +6,8 @@ import 'package:dart_counter/application/core/training/training_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/training/type.dart';
-
-// DOMAIN
-import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 import 'package:dart_counter/domain/training/training_player_snapshot.dart';
+import 'package:dart_counter/domain/training/mode.dart';
 
 // LOCAL WIDGETS
 import './../../shared.dart';
@@ -22,44 +20,36 @@ class CreateTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: CancelButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              PageRouteBuilder(
-                reverseTransitionDuration: Duration.zero,
-                opaque: false,
-                pageBuilder: (context, _, __) =>
-                    // TODO
-                    /**BlocProvider(
-                create: (context) => getIt<CreateTrainingBloc>(),
-                child:*/
-                    Builder(
-                  builder: (context) => YouReallyWantToCancelGameDialog(
-                    onYesPressed: () {},
+    return BlocListener<TrainingBloc, TrainingState>(
+      listener: (context, state) {},
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: CancelButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  reverseTransitionDuration: Duration.zero,
+                  opaque: false,
+                  pageBuilder: (context, _, __) => Builder(
+                    builder: (context) => YouReallyWantToCancelGameDialog(
+                      onYesPressed: () {
+                        context.read<TrainingBloc>().add(
+                              const TrainingEvent.trainingCanceled(),
+                            );
+                      },
+                    ),
                   ),
                 ),
-                // TODO
-                /**
-                     * () => context.read<CreateGameBloc>().add(
-                          const CreateGameEvent.gameCanceled(),
-                        ),
-                     */
-                //),
-              ),
-
-              //),
-              //),
-            );
-          },
+              );
+            },
+          ),
+          middle: Text(
+            LocaleKeys.createGame.tr().toUpperCase(),
+          ),
         ),
-        middle: Text(
-          LocaleKeys.createGame.tr().toUpperCase(),
+        child: const SingleChildScrollView(
+          child: _CreateTrainingWidget(),
         ),
-      ),
-      child: const SingleChildScrollView(
-        child: _CreateTrainingWidget(),
       ),
     );
   }

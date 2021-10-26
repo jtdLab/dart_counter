@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/training/single/game_snapshot.dart';
+import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/hit.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/injection.dart';

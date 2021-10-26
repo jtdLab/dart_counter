@@ -4,10 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
+import 'package:dart_counter/application/core/training/training_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/i_play_online_facade.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/domain/training/training_game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -24,15 +26,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
   final DataWatcherBloc _dataWatcherBloc;
   final PlayBloc _playBloc;
+  final TrainingBloc _trainingBloc;
 
   StreamSubscription? _dataWatcherSubscription;
   StreamSubscription? _gameSnapshotsSubscription;
+  StreamSubscription? _trainingGameSnapshotsSubscription;
 
   HomeBloc(
     this._playOfflineFacade,
     this._playOnlineFacade,
     this._dataWatcherBloc,
     this._playBloc,
+    this._trainingBloc,
   ) : super(
           _dataWatcherBloc.state.maybeMap(
             loadSuccess: (loadSuccess) => HomeState.initial(
@@ -71,6 +76,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
         add(HomeEvent.gameReceived(gameSnapshot: gameSnapshot));
       }
     });
+
+    _trainingGameSnapshotsSubscription =
+        _trainingBloc.stream.listen((trainingState) {
+      if (trainingState is TrainingInitial) {
+        final gameSnapshot = trainingState.gameSnapshot;
+        add(HomeEvent.trainingGameReceived(trainingGameSnapshot: gameSnapshot));
+      }
+    });
   }
 
   @override
@@ -82,6 +95,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
       dataReceived: (event) => _mapDataReceivedToState(event),
       gameReceived: (event) => _mapGameReceivedToState(event),
+      trainingGameReceived: (event) => _mapTrainingGameReceivedToState(event),
     );
   }
 
@@ -128,10 +142,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
+  Stream<HomeState> _mapTrainingGameReceivedToState(
+    TrainingGameReceived event,
+  ) async* {
+    yield state.copyWith(
+      trainingGameSnapshot: event.trainingGameSnapshot,
+    );
+  }
+
   @override
   Future<void> close() {
     _dataWatcherSubscription?.cancel();
     _gameSnapshotsSubscription?.cancel();
+    _trainingGameSnapshotsSubscription?.cancel();
 
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<HomeBloc>()) {

@@ -238,11 +238,6 @@ class _TrainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.large(
       onPressed: () {
-        getIt<TrainingBloc>().add(
-              TrainingEvent.gameSnapshotReceived(
-                gameSnapshot: GameSnapshot.dummy(),
-              ),
-            );
         context.router.push(const TrainingFlowRoute());
       },
       color: AppColors.black,

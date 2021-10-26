@@ -18,6 +18,7 @@ class TrainingEvent with _$TrainingEvent {
   const factory TrainingEvent.typeChanged({
     required Type newType,
   }) = TrainingTypeChanged;
+  const factory TrainingEvent.trainingCanceled() = TrainingCanceled;
   const factory TrainingEvent.gameSnapshotReceived({
     required TrainingGameSnapshot gameSnapshot,
   }) = TrainingGameSnapshotReceived;
