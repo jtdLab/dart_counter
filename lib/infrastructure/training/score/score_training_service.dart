@@ -59,7 +59,6 @@ class ScoreTrainingService implements IScoreTrainingService {
 
   @override
   Stream<GameSnapshot> watchGame() {
-    // TODO: implement watchGame
-    throw UnimplementedError();
+    return const Stream.empty();
   }
 }

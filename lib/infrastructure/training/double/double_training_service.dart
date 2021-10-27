@@ -29,17 +29,26 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }
 
   @override
-  void performHits({required Hit hit1, required Hit hit2, required Hit hit3}) {
+  void performHits({
+    required Hit hit1,
+    required Hit hit2,
+    required Hit hit3,
+  }) {
     // TODO: implement performHits
   }
 
   @override
-  void removePlayer({required int index}) {
+  void removePlayer({
+    required int index,
+  }) {
     // TODO: implement removePlayer
   }
 
   @override
-  void reorderPlayer({required int oldIndex, required int newIndex}) {
+  void reorderPlayer({
+    required int oldIndex,
+    required int newIndex,
+  }) {
     // TODO: implement reorderPlayer
   }
 
@@ -54,13 +63,15 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }
 
   @override
-  void updateName({required int index, required String newName}) {
+  void updateName({
+    required int index,
+    required String newName,
+  }) {
     // TODO: implement updateName
   }
 
   @override
   Stream<GameSnapshot> watchGame() {
-    // TODO: implement watchGame
-    throw UnimplementedError();
+    return const Stream.empty();
   }
 }

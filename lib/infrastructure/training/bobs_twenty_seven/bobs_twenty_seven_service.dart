@@ -60,7 +60,6 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
 
   @override
   Stream<GameSnapshot> watchGame() {
-    // TODO: implement watchGame
-    throw UnimplementedError();
+    return const Stream.empty();
   }
 }

@@ -9,6 +9,7 @@ class _CreateTrainingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrainingBloc, TrainingState>(
+      buildWhen: (oldState, newState) => oldState.type != newState.type,
       builder: (context, state) {
         final type = state.type;
 
@@ -74,14 +75,13 @@ class _PlayerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrainingBloc, TrainingState>(
-      /**
-      *  buildWhen: (oldState, newState) {
+      buildWhen: (oldState, newState) {
         final oldIds = oldState.gameSnapshot.players.map((p) => p.id);
         final newIds = newState.gameSnapshot.players.map((p) => p.id);
         return !(oldIds == newIds);
       },
-      */
       builder: (context, state) {
+        final owner = state.gameSnapshot.owner;
         final players = state.gameSnapshot.players;
 
         return SizedBox(
@@ -95,16 +95,17 @@ class _PlayerList extends StatelessWidget {
               final player = players[index];
 
               // TODO bug where multiple widgets with same global key
-              if (/**player is OfflinePlayerSnapshot */ true) {
+              if (player == owner) {
+                //final isDismissable = players.size > 1;
+
+                return _PlayerItem(
+                  key: ValueKey(player.id),
+                  index: index,
+                  player: player,
+                  isDismissable: false,
+                );
+              } else {
                 final isDismissable = players.size > 1;
-                if (/**player.photoUrl != null */ false) {
-                  return _PlayerItem(
-                    key: ValueKey(player.id),
-                    index: index,
-                    player: player,
-                    isDismissable: false,
-                  );
-                }
 
                 return _EditablePlayerItem(
                   key: ValueKey(player.id),
@@ -112,14 +113,16 @@ class _PlayerList extends StatelessWidget {
                   player: player,
                   isDismissable: isDismissable,
                 );
-              } else {
-                final isDismissable = players.size > 1;
+
+                /**
+                *  
                 return _PlayerItem(
                   key: ValueKey(player.id),
                   index: index,
                   player: player,
                   isDismissable: isDismissable,
                 );
+                */
               }
             },
             itemCount: players.size,
@@ -128,15 +131,12 @@ class _PlayerList extends StatelessWidget {
                 newIndex--;
               }
 
-              /**
-                  *  context.read<
-                      CreateTrainingBloc>(); /*.add(
-                    CreateGameEvent.playerReordered(
+              context.read<TrainingBloc>().add(
+                    TrainingEvent.playerReordered(
                       oldIndex: oldIndex,
                       newIndex: newIndex,
                     ),
-                  );*/
-                  */
+                  );
             },
           ),
         );
@@ -174,11 +174,9 @@ class _EditablePlayerItem extends StatelessWidget {
             return false;
           },
           onDismissed: (_) {
-            /**
-             * context
-              .read<CreateTrainingBloc>()
-              .add(CreateTrainingEvent.playerRemoved(index: index)),
-             */
+            context
+                .read<TrainingBloc>()
+                .add(TrainingEvent.playerRemoved(index: index));
           },
           child: AppCardItem.large(
             content: Row(
@@ -201,14 +199,12 @@ class _EditablePlayerItem extends StatelessWidget {
                         withErrorDisplayer: false,
                         placeholder: LocaleKeys.name.tr().toUpperCase(),
                         onChanged: (newName) {
-                          /**
-                           * context.read<CreateTrainingBloc>().add(
-                                  CreateTrainingEvent.playerNameUpdated(
-                                    index: index,
-                                    newName: newName,
-                                  ),
+                          context.read<TrainingBloc>().add(
+                                TrainingEvent.playerNameUpdated(
+                                  index: index,
+                                  newName: newName,
                                 ),
-                           */
+                              );
                         },
                       ),
                     ],
@@ -217,22 +213,6 @@ class _EditablePlayerItem extends StatelessWidget {
                 SizedBox(
                   width: spacerNormal(context),
                 ),
-                // TODO remove
-                /**
-                 * AppIconButton(
-                  padding: EdgeInsets.all(spacerNormal(context)),
-                  onPressed: () {
-                    showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => AdvancedSettingsModal(),
-                    );
-                  },
-                  icon: Image.asset(
-                    AppImages.settingsNew,
-                  ),
-                ),
-                 */
               ],
             ),
           ),
@@ -257,7 +237,7 @@ class _PlayerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final photoUrl = null;
+    final String? photoUrl = null;
     /**
     offlinePlayerOrOnlinePlayer.fold(
       (offlinePlayer) => offlinePlayer.photoUrl,
@@ -279,11 +259,9 @@ class _PlayerItem extends StatelessWidget {
             return false;
           },
           onDismissed: (_) {
-            /**
-             * context
-              .read<CreateTrainingBloc>()
-              .add(CreateTrainingEvent.playerRemoved(index: index)),
-             */
+            context
+                .read<TrainingBloc>()
+                .add(TrainingEvent.playerRemoved(index: index));
           },
           child: AppCardItem.large(
             content: Row(
@@ -292,13 +270,11 @@ class _PlayerItem extends StatelessWidget {
                   width: spacerNormal(context),
                 ),
                 if (photoUrl != null) ...[
-                  /**
-                   * AppRoundedImage.normal(
+                  AppRoundedImage.normal(
                     child: CachedNetworkImageProvider(
                       photoUrl,
                     ),
                   ),
-                   */
                 ] else ...[
                   const AppRoundedImage.normal(
                     imageName: AppImages.photoPlaceholderNew,
@@ -309,22 +285,6 @@ class _PlayerItem extends StatelessWidget {
                   player.name ?? '', // TODO
                 ),
                 const Spacer(),
-                // TODO remove ?
-                /**
-                 * AppIconButton(
-                  padding: EdgeInsets.all(spacerNormal(context)),
-                  onPressed: () {
-                    showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => AdvancedSettingsModal(),
-                    );
-                  },
-                  icon: Image.asset(
-                    AppImages.settingsNew,
-                  ),
-                ),
-                 */
               ],
             ),
           ),
@@ -344,11 +304,7 @@ class _AddPlayerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.small(
       onPressed: () {
-        /**
-        *  context
-            .read<CreateTrainingBloc>()
-            .add(const CreateTrainingEvent.playerAdded());
-        */
+        context.read<TrainingBloc>().add(const TrainingEvent.playerAdded());
       },
       text: LocaleKeys.addPlayer.tr().toUpperCase(),
     );
@@ -363,91 +319,96 @@ class _ModusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final type = Type.single; // TODO real
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      buildWhen: (oldState, newState) => oldState.type != newState.type,
+      builder: (context, state) {
+        final type = state.type;
 
-    return AppCard(
-      middle: AutoSizeText(
-        LocaleKeys.modus.tr().toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        AppRow(
-          spacing: size6(context),
+        return AppCard(
+          middle: AutoSizeText(
+            LocaleKeys.modus.tr().toUpperCase(),
+            minFontSize: 8,
+            maxFontSize: 14,
+            maxLines: 1,
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
+          ),
           children: [
-            Expanded(
-              child: AppActionButton.normal(
-                color:
-                    type == Type.single ? AppColors.orangeNew : AppColors.white,
-                onPressed: () {},
-                /**
-               *   onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.firstTo,
-                      ),
-                    ),
-               */
-                text: 'SINGLES', // TODO
-              ),
+            AppRow(
+              spacing: size6(context),
+              children: [
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: type == Type.single
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () {
+                      context.read<TrainingBloc>().add(
+                            const TrainingEvent.typeChanged(
+                              newType: Type.single,
+                            ),
+                          );
+                    },
+                    text: 'SINGLES', // TODO
+                  ),
+                ),
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: type == Type.double
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () {
+                      context.read<TrainingBloc>().add(
+                            const TrainingEvent.typeChanged(
+                              newType: Type.double,
+                            ),
+                          );
+                    },
+                    text: 'DOUBLES', // TODo
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: AppActionButton.normal(
-                color:
-                    type == Type.double ? AppColors.orangeNew : AppColors.white,
-                onPressed: () {},
-                /**
-                *  onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.bestOf,
-                      ),
-                    ),
-                */
-                text: 'DOUBLES', // TODo
-              ),
+            AppRow(
+              spacing: size6(context),
+              children: [
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: type == Type.score
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () {
+                      context.read<TrainingBloc>().add(
+                            const TrainingEvent.typeChanged(
+                              newType: Type.score,
+                            ),
+                          );
+                    },
+                    text: 'SCORE', // TODO
+                  ),
+                ),
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: type == Type.bobs27
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () {
+                      context.read<TrainingBloc>().add(
+                            const TrainingEvent.typeChanged(
+                              newType: Type.bobs27,
+                            ),
+                          );
+                    },
+                    text: 'BOBS27', // TODo
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-        AppRow(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              child: AppActionButton.normal(
-                color:
-                    type == Type.score ? AppColors.orangeNew : AppColors.white,
-                onPressed: () {},
-                /**
-               *   onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.firstTo,
-                      ),
-                    ),
-               */
-                text: 'SCORE', // TODO
-              ),
-            ),
-            Expanded(
-              child: AppActionButton.normal(
-                color:
-                    type == Type.bobs27 ? AppColors.orangeNew : AppColors.white,
-                onPressed: () {},
-                /**
-                *  onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.bestOf,
-                      ),
-                    ),
-                */
-                text: 'BOBS27', // TODo
-              ),
-            ),
-          ],
-        ),
-      ],
+        );
+      },
     );
   }
 }
@@ -460,74 +421,147 @@ class _OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mode = Mode
-        .ascending; // TODO this mode is from single game import from double and score pr unify it
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      buildWhen: (oldState, newState) =>
+          oldState.gameSnapshot != newState.gameSnapshot,
+      builder: (context, state) {
+        final gameSnapshot = state.gameSnapshot;
 
-    return AppCard(
-      middle: AutoSizeText(
-        LocaleKeys.modus.tr().toUpperCase(),
-        minFontSize: 8,
-        maxFontSize: 14,
-        maxLines: 1,
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .textStyle
-            .copyWith(color: AppColors.white),
-      ),
-      children: [
-        AppRow(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              child: AppActionButton.normal(
-                color: mode == Mode.ascending
-                    ? AppColors.orangeNew
-                    : AppColors.white,
-                onPressed: () {},
-                /**
+        if (gameSnapshot is single.GameSnapshot) {
+          final mode = gameSnapshot.mode;
+
+          return AppCard(
+            middle: AutoSizeText(
+              LocaleKeys.modus.tr().toUpperCase(),
+              minFontSize: 8,
+              maxFontSize: 14,
+              maxLines: 1,
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            ),
+            children: [
+              AppRow(
+                spacing: size6(context),
+                children: [
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.ascending
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                            const SingleTrainingEvent.modeChanged(
+                              newMode: Mode.ascending,
+                            ),
+                          ),
+                      icon: Image.asset(AppImages.ascending),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.descending
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                            const SingleTrainingEvent.modeChanged(
+                              newMode: Mode.descending,
+                            ),
+                          ),
+                      icon: Image.asset(AppImages.descending),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.random
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                            const SingleTrainingEvent.modeChanged(
+                              newMode: Mode.random,
+                            ),
+                          ),
+                      icon: Image.asset(AppImages.random),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        } else if (gameSnapshot is double.GameSnapshot) {
+          final mode = gameSnapshot.mode;
+
+          return AppCard(
+            middle: AutoSizeText(
+              LocaleKeys.modus.tr().toUpperCase(),
+              minFontSize: 8,
+              maxFontSize: 14,
+              maxLines: 1,
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            ),
+            children: [
+              AppRow(
+                spacing: size6(context),
+                children: [
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.ascending
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () {},
+                      /**
                *   onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.modeUpdated(
                         newMode: Mode.firstTo,
                       ),
                     ),
                */
-                icon: Image.asset(AppImages.ascending),
-              ),
-            ),
-            Expanded(
-              child: AppActionButton.normal(
-                color: mode == Mode.descending
-                    ? AppColors.orangeNew
-                    : AppColors.white,
-                onPressed: () {},
-                /**
+                      icon: Image.asset(AppImages.ascending),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.descending
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () {},
+                      /**
                 *  onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.modeUpdated(
                         newMode: Mode.bestOf,
                       ),
                     ),
                 */
-                icon: Image.asset(AppImages.descending),
-              ),
-            ),
-            Expanded(
-              child: AppActionButton.normal(
-                color:
-                    mode == Mode.random ? AppColors.orangeNew : AppColors.white,
-                onPressed: () {},
-                /**
+                      icon: Image.asset(AppImages.descending),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppActionButton.normal(
+                      color: mode == Mode.random
+                          ? AppColors.orangeNew
+                          : AppColors.white,
+                      onPressed: () {},
+                      /**
                 *  onPressed: () => context.read<CreateGameBloc>().add(
                       const CreateGameEvent.modeUpdated(
                         newMode: Mode.bestOf,
                       ),
                     ),
                 */
-                icon: Image.asset(AppImages.random),
+                      icon: Image.asset(AppImages.random),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          );
+        }
+
+        throw Error();
+      },
     );
   }
 }
@@ -552,7 +586,7 @@ class _TakesCard extends StatelessWidget {
             .copyWith(color: AppColors.white),
       ),
       children: const [
-        AppNumberPicker(),
+        AppNumberPicker(), // TODO
       ],
     );
   }
@@ -568,11 +602,7 @@ class _PlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.large(
       onPressed: () {
-        /**
-         * context
-          .read<CreateTrainingBloc>()
-          .add(const CreateTrainingEvent.gameStarted()),
-         */
+        context.read<TrainingBloc>().add(const TrainingEvent.trainingStarted());
       },
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.play.tr().toUpperCase(),

@@ -299,12 +299,6 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
   }
 
   @override
-  void onChange(Change<TrainingState> change) {
-    print(change.nextState);
-    super.onChange(change);
-  }
-
-  @override
   Future<void> close() {
     _gameSnapshotsSubscription?.cancel();
 
