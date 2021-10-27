@@ -20,21 +20,15 @@ class _$PlayerSnapshotDtoTearOff {
   _PlayerSnapshotDto call(
       {required String id,
       required String? name,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) {
+      required int? takesLeft,
+      required double? average,
+      required int? points}) {
     return _PlayerSnapshotDto(
       id: id,
       name: name,
-      targetValue: targetValue,
+      takesLeft: takesLeft,
+      average: average,
       points: points,
-      singles: singles,
-      doubles: doubles,
-      triples: triples,
-      missed: missed,
     );
   }
 }
@@ -46,12 +40,9 @@ const $PlayerSnapshotDto = _$PlayerSnapshotDtoTearOff();
 mixin _$PlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  int? get targetValue => throw _privateConstructorUsedError;
+  int? get takesLeft => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
   int? get points => throw _privateConstructorUsedError;
-  int? get singles => throw _privateConstructorUsedError;
-  int? get doubles => throw _privateConstructorUsedError;
-  int? get triples => throw _privateConstructorUsedError;
-  int? get missed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerSnapshotDtoCopyWith<PlayerSnapshotDto> get copyWith =>
@@ -64,14 +55,7 @@ abstract class $PlayerSnapshotDtoCopyWith<$Res> {
           PlayerSnapshotDto value, $Res Function(PlayerSnapshotDto) then) =
       _$PlayerSnapshotDtoCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String? name,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      {String id, String? name, int? takesLeft, double? average, int? points});
 }
 
 /// @nodoc
@@ -87,12 +71,9 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? targetValue = freezed,
+    Object? takesLeft = freezed,
+    Object? average = freezed,
     Object? points = freezed,
-    Object? singles = freezed,
-    Object? doubles = freezed,
-    Object? triples = freezed,
-    Object? missed = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -103,29 +84,17 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      targetValue: targetValue == freezed
-          ? _value.targetValue
-          : targetValue // ignore: cast_nullable_to_non_nullable
+      takesLeft: takesLeft == freezed
+          ? _value.takesLeft
+          : takesLeft // ignore: cast_nullable_to_non_nullable
               as int?,
+      average: average == freezed
+          ? _value.average
+          : average // ignore: cast_nullable_to_non_nullable
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      singles: singles == freezed
-          ? _value.singles
-          : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      doubles: doubles == freezed
-          ? _value.doubles
-          : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      triples: triples == freezed
-          ? _value.triples
-          : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
-      missed: missed == freezed
-          ? _value.missed
-          : missed // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -139,14 +108,7 @@ abstract class _$PlayerSnapshotDtoCopyWith<$Res>
       __$PlayerSnapshotDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String? name,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      {String id, String? name, int? takesLeft, double? average, int? points});
 }
 
 /// @nodoc
@@ -164,12 +126,9 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? targetValue = freezed,
+    Object? takesLeft = freezed,
+    Object? average = freezed,
     Object? points = freezed,
-    Object? singles = freezed,
-    Object? doubles = freezed,
-    Object? triples = freezed,
-    Object? missed = freezed,
   }) {
     return _then(_PlayerSnapshotDto(
       id: id == freezed
@@ -180,29 +139,17 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      targetValue: targetValue == freezed
-          ? _value.targetValue
-          : targetValue // ignore: cast_nullable_to_non_nullable
+      takesLeft: takesLeft == freezed
+          ? _value.takesLeft
+          : takesLeft // ignore: cast_nullable_to_non_nullable
               as int?,
+      average: average == freezed
+          ? _value.average
+          : average // ignore: cast_nullable_to_non_nullable
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      singles: singles == freezed
-          ? _value.singles
-          : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      doubles: doubles == freezed
-          ? _value.doubles
-          : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      triples: triples == freezed
-          ? _value.triples
-          : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
-      missed: missed == freezed
-          ? _value.missed
-          : missed // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -214,12 +161,9 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   const _$_PlayerSnapshotDto(
       {required this.id,
       required this.name,
-      required this.targetValue,
-      required this.points,
-      required this.singles,
-      required this.doubles,
-      required this.triples,
-      required this.missed})
+      required this.takesLeft,
+      required this.average,
+      required this.points})
       : super._();
 
   @override
@@ -227,21 +171,15 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   final String? name;
   @override
-  final int? targetValue;
+  final int? takesLeft;
+  @override
+  final double? average;
   @override
   final int? points;
-  @override
-  final int? singles;
-  @override
-  final int? doubles;
-  @override
-  final int? triples;
-  @override
-  final int? missed;
 
   @override
   String toString() {
-    return 'PlayerSnapshotDto(id: $id, name: $name, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
+    return 'PlayerSnapshotDto(id: $id, name: $name, takesLeft: $takesLeft, average: $average, points: $points)';
   }
 
   @override
@@ -252,22 +190,14 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.targetValue, targetValue) ||
+            (identical(other.takesLeft, takesLeft) ||
                 const DeepCollectionEquality()
-                    .equals(other.targetValue, targetValue)) &&
+                    .equals(other.takesLeft, takesLeft)) &&
+            (identical(other.average, average) ||
+                const DeepCollectionEquality()
+                    .equals(other.average, average)) &&
             (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
-            (identical(other.singles, singles) ||
-                const DeepCollectionEquality()
-                    .equals(other.singles, singles)) &&
-            (identical(other.doubles, doubles) ||
-                const DeepCollectionEquality()
-                    .equals(other.doubles, doubles)) &&
-            (identical(other.triples, triples) ||
-                const DeepCollectionEquality()
-                    .equals(other.triples, triples)) &&
-            (identical(other.missed, missed) ||
-                const DeepCollectionEquality().equals(other.missed, missed)));
+                const DeepCollectionEquality().equals(other.points, points)));
   }
 
   @override
@@ -275,12 +205,9 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(targetValue) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(singles) ^
-      const DeepCollectionEquality().hash(doubles) ^
-      const DeepCollectionEquality().hash(triples) ^
-      const DeepCollectionEquality().hash(missed);
+      const DeepCollectionEquality().hash(takesLeft) ^
+      const DeepCollectionEquality().hash(average) ^
+      const DeepCollectionEquality().hash(points);
 
   @JsonKey(ignore: true)
   @override
@@ -292,12 +219,9 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const factory _PlayerSnapshotDto(
       {required String id,
       required String? name,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) = _$_PlayerSnapshotDto;
+      required int? takesLeft,
+      required double? average,
+      required int? points}) = _$_PlayerSnapshotDto;
   const _PlayerSnapshotDto._() : super._();
 
   @override
@@ -305,17 +229,11 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
-  int? get targetValue => throw _privateConstructorUsedError;
+  int? get takesLeft => throw _privateConstructorUsedError;
+  @override
+  double? get average => throw _privateConstructorUsedError;
   @override
   int? get points => throw _privateConstructorUsedError;
-  @override
-  int? get singles => throw _privateConstructorUsedError;
-  @override
-  int? get doubles => throw _privateConstructorUsedError;
-  @override
-  int? get triples => throw _privateConstructorUsedError;
-  @override
-  int? get missed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>

@@ -19,12 +19,12 @@ class _$GameSnapshotTearOff {
 
   _GameSnapshot call(
       {required Status status,
-      required Mode mode,
+      required int numberOfTakes,
       required KtList<PlayerSnapshot> players,
       required PlayerSnapshot owner}) {
     return _GameSnapshot(
       status: status,
-      mode: mode,
+      numberOfTakes: numberOfTakes,
       players: players,
       owner: owner,
     );
@@ -37,7 +37,7 @@ const $GameSnapshot = _$GameSnapshotTearOff();
 /// @nodoc
 mixin _$GameSnapshot {
   Status get status => throw _privateConstructorUsedError;
-  Mode get mode => throw _privateConstructorUsedError;
+  int get numberOfTakes => throw _privateConstructorUsedError;
   KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
   PlayerSnapshot get owner => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $GameSnapshotCopyWith<$Res> {
       _$GameSnapshotCopyWithImpl<$Res>;
   $Res call(
       {Status status,
-      Mode mode,
+      int numberOfTakes,
       KtList<PlayerSnapshot> players,
       PlayerSnapshot owner});
 
@@ -71,7 +71,7 @@ class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
   @override
   $Res call({
     Object? status = freezed,
-    Object? mode = freezed,
+    Object? numberOfTakes = freezed,
     Object? players = freezed,
     Object? owner = freezed,
   }) {
@@ -80,10 +80,10 @@ class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as Mode,
+      numberOfTakes: numberOfTakes == freezed
+          ? _value.numberOfTakes
+          : numberOfTakes // ignore: cast_nullable_to_non_nullable
+              as int,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ abstract class _$GameSnapshotCopyWith<$Res>
   @override
   $Res call(
       {Status status,
-      Mode mode,
+      int numberOfTakes,
       KtList<PlayerSnapshot> players,
       PlayerSnapshot owner});
 
@@ -133,7 +133,7 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
-    Object? mode = freezed,
+    Object? numberOfTakes = freezed,
     Object? players = freezed,
     Object? owner = freezed,
   }) {
@@ -142,10 +142,10 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as Mode,
+      numberOfTakes: numberOfTakes == freezed
+          ? _value.numberOfTakes
+          : numberOfTakes // ignore: cast_nullable_to_non_nullable
+              as int,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -164,14 +164,14 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
 class _$_GameSnapshot implements _GameSnapshot {
   const _$_GameSnapshot(
       {required this.status,
-      required this.mode,
+      required this.numberOfTakes,
       required this.players,
       required this.owner});
 
   @override
   final Status status;
   @override
-  final Mode mode;
+  final int numberOfTakes;
   @override
   final KtList<PlayerSnapshot> players;
   @override
@@ -179,7 +179,7 @@ class _$_GameSnapshot implements _GameSnapshot {
 
   @override
   String toString() {
-    return 'GameSnapshot(status: $status, mode: $mode, players: $players, owner: $owner)';
+    return 'GameSnapshot(status: $status, numberOfTakes: $numberOfTakes, players: $players, owner: $owner)';
   }
 
   @override
@@ -188,8 +188,9 @@ class _$_GameSnapshot implements _GameSnapshot {
         (other is _GameSnapshot &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.numberOfTakes, numberOfTakes) ||
+                const DeepCollectionEquality()
+                    .equals(other.numberOfTakes, numberOfTakes)) &&
             (identical(other.players, players) ||
                 const DeepCollectionEquality()
                     .equals(other.players, players)) &&
@@ -201,7 +202,7 @@ class _$_GameSnapshot implements _GameSnapshot {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(numberOfTakes) ^
       const DeepCollectionEquality().hash(players) ^
       const DeepCollectionEquality().hash(owner);
 
@@ -214,14 +215,14 @@ class _$_GameSnapshot implements _GameSnapshot {
 abstract class _GameSnapshot implements GameSnapshot, TrainingGameSnapshot {
   const factory _GameSnapshot(
       {required Status status,
-      required Mode mode,
+      required int numberOfTakes,
       required KtList<PlayerSnapshot> players,
       required PlayerSnapshot owner}) = _$_GameSnapshot;
 
   @override
   Status get status => throw _privateConstructorUsedError;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  int get numberOfTakes => throw _privateConstructorUsedError;
   @override
   KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
   @override

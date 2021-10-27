@@ -19,12 +19,12 @@ class _$GameSnapshotDtoTearOff {
 
   _GameSnapshotDto call(
       {required String status,
-      required String mode,
+      required int numberOfTakes,
       required KtList<PlayerSnapshotDto> players,
       required PlayerSnapshotDto owner}) {
     return _GameSnapshotDto(
       status: status,
-      mode: mode,
+      numberOfTakes: numberOfTakes,
       players: players,
       owner: owner,
     );
@@ -37,7 +37,7 @@ const $GameSnapshotDto = _$GameSnapshotDtoTearOff();
 /// @nodoc
 mixin _$GameSnapshotDto {
   String get status => throw _privateConstructorUsedError;
-  String get mode => throw _privateConstructorUsedError;
+  int get numberOfTakes => throw _privateConstructorUsedError;
   KtList<PlayerSnapshotDto> get players => throw _privateConstructorUsedError;
   PlayerSnapshotDto get owner => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $GameSnapshotDtoCopyWith<$Res> {
       _$GameSnapshotDtoCopyWithImpl<$Res>;
   $Res call(
       {String status,
-      String mode,
+      int numberOfTakes,
       KtList<PlayerSnapshotDto> players,
       PlayerSnapshotDto owner});
 
@@ -72,7 +72,7 @@ class _$GameSnapshotDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
-    Object? mode = freezed,
+    Object? numberOfTakes = freezed,
     Object? players = freezed,
     Object? owner = freezed,
   }) {
@@ -81,10 +81,10 @@ class _$GameSnapshotDtoCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as String,
+      numberOfTakes: numberOfTakes == freezed
+          ? _value.numberOfTakes
+          : numberOfTakes // ignore: cast_nullable_to_non_nullable
+              as int,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ abstract class _$GameSnapshotDtoCopyWith<$Res>
   @override
   $Res call(
       {String status,
-      String mode,
+      int numberOfTakes,
       KtList<PlayerSnapshotDto> players,
       PlayerSnapshotDto owner});
 
@@ -135,7 +135,7 @@ class __$GameSnapshotDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
-    Object? mode = freezed,
+    Object? numberOfTakes = freezed,
     Object? players = freezed,
     Object? owner = freezed,
   }) {
@@ -144,10 +144,10 @@ class __$GameSnapshotDtoCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      mode: mode == freezed
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as String,
+      numberOfTakes: numberOfTakes == freezed
+          ? _value.numberOfTakes
+          : numberOfTakes // ignore: cast_nullable_to_non_nullable
+              as int,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -165,7 +165,7 @@ class __$GameSnapshotDtoCopyWithImpl<$Res>
 class _$_GameSnapshotDto extends _GameSnapshotDto {
   const _$_GameSnapshotDto(
       {required this.status,
-      required this.mode,
+      required this.numberOfTakes,
       required this.players,
       required this.owner})
       : super._();
@@ -173,7 +173,7 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
   @override
   final String status;
   @override
-  final String mode;
+  final int numberOfTakes;
   @override
   final KtList<PlayerSnapshotDto> players;
   @override
@@ -181,7 +181,7 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
 
   @override
   String toString() {
-    return 'GameSnapshotDto(status: $status, mode: $mode, players: $players, owner: $owner)';
+    return 'GameSnapshotDto(status: $status, numberOfTakes: $numberOfTakes, players: $players, owner: $owner)';
   }
 
   @override
@@ -190,8 +190,9 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
         (other is _GameSnapshotDto &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
+            (identical(other.numberOfTakes, numberOfTakes) ||
+                const DeepCollectionEquality()
+                    .equals(other.numberOfTakes, numberOfTakes)) &&
             (identical(other.players, players) ||
                 const DeepCollectionEquality()
                     .equals(other.players, players)) &&
@@ -203,7 +204,7 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
+      const DeepCollectionEquality().hash(numberOfTakes) ^
       const DeepCollectionEquality().hash(players) ^
       const DeepCollectionEquality().hash(owner);
 
@@ -216,7 +217,7 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
 abstract class _GameSnapshotDto extends GameSnapshotDto {
   const factory _GameSnapshotDto(
       {required String status,
-      required String mode,
+      required int numberOfTakes,
       required KtList<PlayerSnapshotDto> players,
       required PlayerSnapshotDto owner}) = _$_GameSnapshotDto;
   const _GameSnapshotDto._() : super._();
@@ -224,7 +225,7 @@ abstract class _GameSnapshotDto extends GameSnapshotDto {
   @override
   String get status => throw _privateConstructorUsedError;
   @override
-  String get mode => throw _privateConstructorUsedError;
+  int get numberOfTakes => throw _privateConstructorUsedError;
   @override
   KtList<PlayerSnapshotDto> get players => throw _privateConstructorUsedError;
   @override

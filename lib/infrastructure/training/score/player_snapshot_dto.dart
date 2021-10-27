@@ -11,12 +11,9 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
   const factory PlayerSnapshotDto({
     required String id,
     required String? name,
-    required int? targetValue,
+    required int? takesLeft,
+    required double? average,
     required int? points,
-    required int? singles,
-    required int? doubles,
-    required int? triples,
-    required int? missed,
   }) = _PlayerSnapshotDto;
 
   const PlayerSnapshotDto._();
@@ -25,40 +22,29 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     return PlayerSnapshotDto(
       id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
-      targetValue: playerSnapshot.targetValue,
+      takesLeft: playerSnapshot.takesLeft,
+      average: playerSnapshot.average,
       points: playerSnapshot.points,
-      singles: playerSnapshot.singles,
-      doubles: playerSnapshot.doubles,
-      triples: playerSnapshot.triples,
-      missed: playerSnapshot.missed,
     );
   }
 
-// TODO
-  /**
-   * factory PlayerSnapshotDto.fromExternal(ex.Player player) {
+  factory PlayerSnapshotDto.fromExternal(ex.Player player) {
     return PlayerSnapshotDto(
+      id: player.id,
       name: player.name,
-      targetValue: player.currentTargetValue,
+      takesLeft: player.takesLeft,
+      average: player.average,
       points: player.points,
-      singles: player.singles,
-      doubles: player.doubles,
-      triples: player.triples,
-      missed: player.missed,
     );
   }
-   */
 
   PlayerSnapshot toDomain() {
     return PlayerSnapshot(
       id: UniqueId.fromUniqueString(id),
       name: name,
-      targetValue: targetValue ?? 1,
+      takesLeft: takesLeft ?? 1,
+      average: average ?? 0,
       points: points ?? 0,
-      singles: singles ?? 0,
-      doubles: doubles ?? 0,
-      triples: triples ?? 0,
-      missed: missed ?? 0,
     );
   }
 }

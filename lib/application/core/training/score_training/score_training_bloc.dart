@@ -34,7 +34,7 @@ class ScoreTrainingBloc extends Bloc<ScoreTrainingEvent, ScoreTrainingState>
       emit(state.copyWith(points: 0));
     });
     on<_ScoreTrainingUndoPressed>((event, emit) {
-      _trainingService.undoHits();
+      _trainingService.undoThrow();
     });
     on<_ScoreTrainingDigitPressed>((event, emit) {
       final points = state.points;

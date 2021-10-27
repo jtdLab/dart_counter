@@ -31,6 +31,12 @@ class SingleTrainingService implements ISingleTrainingService {
       ownerName: owner.profile.username.getOrCrash(),
     );
 
+    if (players != null && players.length <= 3) {
+      for (final p in players) {
+        _game!.addPlayer(name: p);
+      }
+    }
+
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 

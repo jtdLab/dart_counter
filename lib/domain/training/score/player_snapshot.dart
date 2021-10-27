@@ -11,11 +11,8 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
   const factory PlayerSnapshot({
     required UniqueId id,
     required String? name,
-    required int targetValue,
+    required int takesLeft,
+    required double average,
     required int points,
-    required int singles,
-    required int doubles,
-    required int triples,
-    required int missed,
   }) = _PlayerSnapshot;
 }

@@ -18,7 +18,8 @@ class TrainingFlow extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<TrainingBloc>(),
+          create: (context) =>
+              getIt<TrainingBloc>()..add(const TrainingEvent.trainingCreated()),
         ),
         BlocProvider(
           create: (context) => getIt<SingleTrainingBloc>(),

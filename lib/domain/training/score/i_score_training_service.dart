@@ -35,5 +35,5 @@ abstract class IScoreTrainingService {
     required int points,
   });
 
-  void undoHits();
+  void undoThrow();
 }

@@ -296,6 +296,11 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
 
       emit(state.copyWith(gameSnapshot: gameSnapshot));
     });
+
+    _gameSnapshotsSubscription =
+        _singleTrainingService.watchGame().listen((gameSnapshot) {
+      add(TrainingEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
+    });
   }
 
   @override
