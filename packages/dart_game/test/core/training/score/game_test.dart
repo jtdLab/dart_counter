@@ -1,3 +1,4 @@
+import 'package:dart_game/core/status.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/score_training_game.dart';
 

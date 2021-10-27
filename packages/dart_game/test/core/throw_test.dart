@@ -563,9 +563,9 @@ void main() {
           // Arrange & Act
           final t = Throw.fromDarts(
             darts: [
-              Dart(type: DartType.t, value: 20),
-              Dart(type: DartType.t, value: 20),
-              Dart(type: DartType.t, value: 20),
+              Dart(type: DartType.triple, value: 20),
+              Dart(type: DartType.triple, value: 20),
+              Dart(type: DartType.triple, value: 20),
             ],
           );
 
@@ -581,9 +581,9 @@ void main() {
             'THEN assign props correctly.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.t, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.triple, value: 20),
           ];
           final dartsOnDouble = 0;
 
@@ -625,10 +625,10 @@ void main() {
             'THEN throw ArgumentError.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.s, value: 20),
-            Dart(type: DartType.s, value: 20),
-            Dart(type: DartType.s, value: 20),
-            Dart(type: DartType.s, value: 20),
+            Dart(type: DartType.single, value: 20),
+            Dart(type: DartType.single, value: 20),
+            Dart(type: DartType.single, value: 20),
+            Dart(type: DartType.single, value: 20),
           ];
 
           // Act & Assert
@@ -652,9 +652,9 @@ void main() {
           expect(
             () => Throw.fromDarts(
               darts: [
-                Dart(type: DartType.s, value: 20),
-                Dart(type: DartType.d, value: 20),
-                Dart(type: DartType.t, value: 20),
+                Dart(type: DartType.single, value: 20),
+                Dart(type: DartType.double, value: 20),
+                Dart(type: DartType.triple, value: 20),
               ],
               dartsOnDouble: dartsOnDouble,
             ),
@@ -673,9 +673,9 @@ void main() {
           expect(
             () => Throw.fromDarts(
               darts: [
-                Dart(type: DartType.s, value: 20),
-                Dart(type: DartType.d, value: 20),
-                Dart(type: DartType.t, value: 20),
+                Dart(type: DartType.single, value: 20),
+                Dart(type: DartType.double, value: 20),
+                Dart(type: DartType.triple, value: 20),
               ],
               dartsOnDouble: dartsOnDouble,
             ),
@@ -689,8 +689,8 @@ void main() {
             'THEN throw ArgumentError.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
           final dartsOnDouble = 3;
 
@@ -710,8 +710,8 @@ void main() {
             'THEN throw ArgumentError.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
           final dartsOnDouble = 0;
 
@@ -731,9 +731,9 @@ void main() {
             'THEN throw ArgumentError.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
           final dartsOnDouble = 2;
 
@@ -774,8 +774,8 @@ void main() {
             'THEN assign dartsThrown depending on darts.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
           final dartsOnDouble = 1;
           // Act
@@ -810,9 +810,9 @@ void main() {
             'THEN assign dartsOnDouble to 0.', () {
           // Arrange
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
 
           // Act
@@ -858,9 +858,9 @@ void main() {
           final dartsThrown = 2;
           final dartsOnDouble = 1;
           final darts = [
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.t, value: 20),
-            Dart(type: DartType.d, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.triple, value: 20),
+            Dart(type: DartType.double, value: 20),
           ];
 
           // Act
@@ -1270,9 +1270,9 @@ void main() {
         'THEN return correct string representation.', () {
       // Arrange
       final darts = [
-        Dart(type: DartType.t, value: 20),
-        Dart(type: DartType.t, value: 20),
-        Dart(type: DartType.t, value: 20),
+        Dart(type: DartType.triple, value: 20),
+        Dart(type: DartType.triple, value: 20),
+        Dart(type: DartType.triple, value: 20),
       ];
 
       // Act

@@ -33,7 +33,7 @@ class SingleTrainingService implements ISingleTrainingService {
 
     if (players != null && players.length <= 3) {
       for (final p in players) {
-        _game!.addPlayer(name: p);
+        _game!.addPlayer(player: ex.Player(name: p));
       }
     }
 
@@ -46,7 +46,7 @@ class SingleTrainingService implements ISingleTrainingService {
   @override
   void addPlayer() {
     return _tryPerform(
-      action: () => _game!.addPlayer(),
+      action: () => _game!.addPlayer(player: ex.Player()),
     );
   }
 

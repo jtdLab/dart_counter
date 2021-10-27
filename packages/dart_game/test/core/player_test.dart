@@ -2654,9 +2654,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.t, value: 20),
-                        Dart(type: DartType.t, value: 17),
-                        Dart(type: DartType.d, value: 5),
+                        Dart(type: DartType.triple, value: 20),
+                        Dart(type: DartType.triple, value: 17),
+                        Dart(type: DartType.double, value: 5),
                       ],
                       dartsOnDouble: 1,
                     ),
@@ -2668,9 +2668,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.s, value: 0),
-                        Dart(type: DartType.t, value: 10),
-                        Dart(type: DartType.t, value: 20),
+                        Dart(type: DartType.single, value: 0),
+                        Dart(type: DartType.triple, value: 10),
+                        Dart(type: DartType.triple, value: 20),
                       ],
                       dartsOnDouble: 0,
                     ),
@@ -2733,9 +2733,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),
@@ -2748,9 +2748,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.d, value: 20),
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
+                            Dart(type: DartType.double, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),
@@ -2805,7 +2805,7 @@ void main() {
                     Throw(points: 81),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.d, value: 20),
+                        Dart(type: DartType.double, value: 20),
                       ],
                       dartsOnDouble: 1,
                     ),
@@ -2836,9 +2836,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.t, value: 17),
-                        Dart(type: DartType.t, value: 10),
-                        Dart(type: DartType.d, value: 5),
+                        Dart(type: DartType.triple, value: 17),
+                        Dart(type: DartType.triple, value: 10),
+                        Dart(type: DartType.double, value: 5),
                       ],
                       dartsOnDouble: 1,
                     ),
@@ -2850,9 +2850,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.s, value: 0),
-                        Dart(type: DartType.t, value: 18),
-                        Dart(type: DartType.t, value: 20),
+                        Dart(type: DartType.single, value: 0),
+                        Dart(type: DartType.triple, value: 18),
+                        Dart(type: DartType.triple, value: 20),
                       ],
                       dartsOnDouble: 0,
                     ),
@@ -2915,9 +2915,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),
@@ -2930,9 +2930,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.d, value: 20),
-                            Dart(type: DartType.t, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.double, value: 20),
+                            Dart(type: DartType.triple, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),
@@ -3009,9 +3009,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.t, value: 20),
-                        Dart(type: DartType.t, value: 17),
-                        Dart(type: DartType.d, value: 5),
+                        Dart(type: DartType.triple, value: 20),
+                        Dart(type: DartType.triple, value: 17),
+                        Dart(type: DartType.double, value: 5),
                       ],
                       dartsOnDouble: 1,
                     ),
@@ -3023,9 +3023,9 @@ void main() {
                     Throw(points: 180),
                     Throw.fromDarts(
                       darts: [
-                        Dart(type: DartType.s, value: 0),
-                        Dart(type: DartType.t, value: 10),
-                        Dart(type: DartType.t, value: 20),
+                        Dart(type: DartType.single, value: 0),
+                        Dart(type: DartType.triple, value: 10),
+                        Dart(type: DartType.triple, value: 20),
                       ],
                       dartsOnDouble: 0,
                     ),
@@ -3088,9 +3088,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),
@@ -3103,9 +3103,9 @@ void main() {
                       throws: [
                         Throw.fromDarts(
                           darts: [
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.t, value: 20),
-                            Dart(type: DartType.d, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.triple, value: 20),
+                            Dart(type: DartType.double, value: 20),
                           ],
                           dartsOnDouble: 0,
                         ),

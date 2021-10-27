@@ -1,4 +1,5 @@
-part of '../../dart_game.dart';
+import 'package:dart_game/core/dart.dart';
+import 'package:dartz/dartz.dart';
 
 class Throw {
   late final int points;
@@ -130,7 +131,7 @@ class Throw {
     if (darts != null) {
       int maxPossibleDartsOnDouble = 0;
       for (Dart dart in darts.reversed) {
-        if (dart.type == DartType.d) {
+        if (dart.type == DartType.double) {
           maxPossibleDartsOnDouble += 1;
         } else {
           break;

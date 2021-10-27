@@ -6,7 +6,7 @@ void main() {
   group('playing some games', () {
     // TODO implement
   });
-  
+
   group('constructor', () {
     group('()', () {
       group('default args', () {
@@ -3799,7 +3799,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 2);
@@ -3823,7 +3823,7 @@ void main() {
         );
 
         // Act & Assert
-        expect(game.addPlayer(), true);
+        expect(game.addPlayer(player: Player()), true);
       });
 
       test(
@@ -3851,7 +3851,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 4);
@@ -3882,7 +3882,7 @@ void main() {
         );
 
         // Act & Assert
-        expect(game.addPlayer(), false);
+        expect(game.addPlayer(player: Player()), false);
       });
 
       test(
@@ -3916,7 +3916,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 1);
@@ -3953,7 +3953,7 @@ void main() {
         );
 
         // Act & Assert
-        expect(game.addPlayer(), false);
+        expect(game.addPlayer(player: Player()), false);
       });
     });
 
@@ -4643,7 +4643,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 1);

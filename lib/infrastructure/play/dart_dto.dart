@@ -28,9 +28,9 @@ class DartDto with _$DartDto {
 
   factory DartDto.fromExternal(ex.Dart d) {
     return DartDto(
-      type: d.type == ex.DartType.s
+      type: d.type == ex.DartType.single
           ? 'single'
-          : d.type == ex.DartType.d
+          : d.type == ex.DartType.double
               ? 'double'
               : 'triple',
       value: d.value,
@@ -62,10 +62,10 @@ class DartDto with _$DartDto {
   ex.Dart toExternal() {
     return ex.Dart(
       type: type == 'single'
-          ? ex.DartType.s
+          ? ex.DartType.single
           : type == 'double'
-              ? ex.DartType.d
-              : ex.DartType.t,
+              ? ex.DartType.double
+              : ex.DartType.triple,
       value: value,
     );
   }

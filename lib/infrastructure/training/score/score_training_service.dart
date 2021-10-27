@@ -23,7 +23,7 @@ class ScoreTrainingService implements IScoreTrainingService {
   @override
   void addPlayer() {
     return _tryPerform(
-      action: () => _game!.addPlayer(),
+      action: () => _game!.addPlayer(player: ex.Player()),
     );
   }
 
@@ -45,7 +45,7 @@ class ScoreTrainingService implements IScoreTrainingService {
 
     if (players != null && players.length <= 3) {
       for (final p in players) {
-        _game!.addPlayer(name: p);
+        _game!.addPlayer(player: ex.Player(name: p));
       }
     }
 

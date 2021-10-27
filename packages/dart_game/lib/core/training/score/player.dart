@@ -1,26 +1,23 @@
 part of '../../../score_training_game.dart';
 
-class Player {
-  final String id;
-  String? name;
-  bool? isCurrentTurn;
+class Player extends AbstractPlayer {
   List<int>? get throws => _throws;
-
 
   /// Creates an empty player with given [id] and [name].
   Player({
     String? id,
-    this.name,
-  }) : id = id ?? Uuid().v4();
+    String? name,
+  }) : super(id: id, name: name);
 
   Player.fromData({
-    required this.id,
-    this.name,
-    this.isCurrentTurn,
-    required int numberOfTakes,
+    String? id,
+    String? name,
+    bool? isCurrentTurn,
+    int? numberOfTakes,
     List<int>? throws,
   })  : _numberOfTakes = numberOfTakes,
-        _throws = throws;
+        _throws = throws,
+        super.fromData(id: id, name: name, isCurrentTurn: isCurrentTurn);
 
   /// The current value this player aims to hit.
   int? get takesLeft =>

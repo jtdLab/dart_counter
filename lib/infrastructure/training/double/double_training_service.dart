@@ -3,6 +3,7 @@ import 'package:dart_counter/domain/training/double/game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/training/double/game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/double/hit_x.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/double_training_game.dart' as ex;
 import 'package:rxdart/rxdart.dart';
@@ -23,7 +24,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
   @override
   void addPlayer() {
     return _tryPerform(
-      action: () => _game!.addPlayer(),
+      action: () => _game!.addPlayer(player: ex.Player()),
     );
   }
 
@@ -45,7 +46,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
 
     if (players != null && players.length <= 3) {
       for (final p in players) {
-        _game!.addPlayer(name: p);
+        _game!.addPlayer(player: ex.Player(name: p));
       }
     }
 

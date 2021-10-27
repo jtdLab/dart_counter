@@ -10,7 +10,7 @@ void main() {
             'WHEN new instance created '
             'THEN assign props correctly.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           final value = 20;
 
           // Act
@@ -28,7 +28,7 @@ void main() {
             'WHEN new instance created '
             'THEN throw ArgumentError.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           final value = 25;
 
           // Act & Assert
@@ -44,7 +44,7 @@ void main() {
             'WHEN new instance created '
             'THEN throw ArgumentError.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           for (int i = 21; i < 25; i++) {
             final value = i;
 
@@ -65,7 +65,7 @@ void main() {
             'WHEN new instance created '
             'THEN assign props correctly.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           final value = 20;
 
           // Act
@@ -83,7 +83,7 @@ void main() {
             'WHEN new instance created '
             'THEN throw ArgumentError.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           final value = 25;
 
           // Act & Assert
@@ -98,7 +98,7 @@ void main() {
             'WHEN new instance created '
             'THEN throw ArgumentError.', () {
           // Arrange
-          final type = DartType.t;
+          final type = DartType.triple;
           for (int i = 21; i < 25; i++) {
             final value = i;
 
@@ -121,7 +121,7 @@ void main() {
           'THEN return value.', () {
         // Arrange
         final value = 20;
-        final type = DartType.s;
+        final type = DartType.single;
         final dart = Dart(type: type, value: value);
 
         // Act & Assert
@@ -134,7 +134,7 @@ void main() {
           'THEN return 2 * value.', () {
         // Arrange
         final value = 20;
-        final type = DartType.d;
+        final type = DartType.double;
         final dart = Dart(type: type, value: value);
 
         // Act & Assert
@@ -147,7 +147,7 @@ void main() {
           'THEN return 3 * value.', () {
         // Arrange
         final value = 20;
-        final type = DartType.t;
+        final type = DartType.triple;
         final dart = Dart(type: type, value: value);
 
         // Act & Assert
@@ -163,7 +163,7 @@ void main() {
         'THEN return correct string representation.', () {
       // Arrange
       final value = 20;
-      final type = DartType.s;
+      final type = DartType.single;
 
       // Act & Assert
       expect(
@@ -178,7 +178,7 @@ void main() {
         'THEN return correct string representation.', () {
       // Arrange
       final value = 20;
-      final type = DartType.d;
+      final type = DartType.double;
 
       // Act & Assert
       expect(
@@ -193,7 +193,7 @@ void main() {
         'THEN return correct string representation.', () {
       // Arrange
       final value = 20;
-      final type = DartType.t;
+      final type = DartType.triple;
 
       // Act & Assert
       expect(

@@ -6,19 +6,14 @@ part of '../../dart_game.dart';
 /// The mode of a [Game]
 enum Mode { bestOf, firstTo }
 
-/// The status of a [Game]
-enum Status { pending, canceled, running, finished }
-
 /// The type of a [Game]
 enum Type { legs, sets }
 
-class Game {
-  Status get status => _status;
+class Game extends AbstractGame<Player> {
   int get startingPoints => _startingPoints;
   Mode get mode => _mode;
   int get size => _size;
   Type get type => _type;
-  final List<Player> players;
 
   /// Creates a game with given [ownerName], [startingPoints], [mode], [size] and [type].
   ///
@@ -29,13 +24,11 @@ class Game {
     Mode mode = Mode.firstTo,
     int size = 1,
     Type type = Type.legs,
-  })  : _status = Status.pending,
-        _startingPoints = startingPoints,
+  })  : _startingPoints = startingPoints,
         _mode = mode,
         _size = size,
         _type = type,
-        players = [] {
-    addPlayer(name: ownerName);
+        super(owner: Player(name: ownerName)) {
     _validate();
   }
 
@@ -49,98 +42,19 @@ class Game {
     required Mode mode,
     required int size,
     required Type type,
-    required this.players,
-  })  : _status = status,
-        _startingPoints = startingPoints,
+    required List<Player> players,
+    Player? owner,
+  })  : _startingPoints = startingPoints,
         _mode = mode,
         _size = size,
-        _type = type {
+        _type = type,
+        // TODO maybe remove this default to 1st player but tests use this constructor
+        super.fromData(
+            status: status, players: players, owner: owner ?? players[0]) {
     _validate();
     _startSetIndex = _calcStartSetIndex();
     _startLegIndex = _calcStartLegIndex();
     _turnIndex = _calcTurnIndex();
-  }
-
-  /// Adds a player with [name] to this game if pending and not full.
-  ///
-  /// If no [name] provided the player gets a generic name `'player n'`.
-  /// This means the first player with no provided name gets the name `'player 1'`
-  /// the second gets the name `'player 2'`.
-  ///
-  /// Returns `true` if added.
-  bool addPlayer({
-    String? id,
-    String? name,
-  }) {
-    if (status == Status.pending) {
-      if (players.length < 4) {
-        players.add(
-          Player(
-            id: id,
-            name: name,
-          ),
-        );
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /// Removes a player at [index] from a this game if pending and enough players remain.
-  ///
-  /// Returns `true` if removed.
-  bool removePlayer({
-    required int index,
-  }) {
-    if (status == Status.pending) {
-      if (players.length > 1 && !_hasDartBot ||
-          players.length > 2 && _hasDartBot) {
-        players.removeAt(index);
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /// Changes position of player at [oldIndex] to [newIndex] of this game if pending.
-  ///
-  /// Returns `true` if reordered.
-  bool reorderPlayer({
-    required int oldIndex,
-    required int newIndex,
-  }) {
-    if (oldIndex == newIndex) {
-      return false;
-    }
-
-    if (oldIndex < 0) {
-      return false;
-    }
-
-    if (newIndex < 0) {
-      return false;
-    }
-
-    if (oldIndex > players.length - 1) {
-      return false;
-    }
-
-    if (newIndex > players.length - 1) {
-      return false;
-    }
-
-    if (status == Status.pending) {
-      Player player = players.removeAt(oldIndex);
-      players.insert(newIndex, player);
-
-      return true;
-    }
-
-    return false;
   }
 
   /// Adds a dartBot to this game if doesnt have a darbot already and pending and not full.
@@ -178,7 +92,7 @@ class Game {
   /// Returns `true` if started.
   bool start() {
     if (status == Status.pending) {
-      _status = Status.running;
+      status = Status.running;
 
       if (type == Type.sets) {
         _startSetIndex = 0;
@@ -224,19 +138,6 @@ class Game {
     return false;
   }
 
-  /// Cancels this game if its pending or running.
-  ///
-  /// Returns `true` if canceled.
-  bool cancel() {
-    if (status == Status.pending || status == Status.running) {
-      _status = Status.canceled;
-
-      return true;
-    }
-
-    return false;
-  }
-
   /// Performs [t] on this game.
   ///
   /// Returns `true` if [t] was valid and throw was performed successfully.
@@ -258,7 +159,7 @@ class Game {
 
         if (currentTurn.won!) {
           // game finished
-          _status = Status.finished;
+          status = Status.finished;
         } else {
           // create new legs, sets if needed
           _currentTurn!._currentLegOrSet!.fold(
@@ -515,9 +416,6 @@ class Game {
    * ########## INTERNAL ##########
    * ##############################
    */
-
-  /// The status of this game.
-  Status _status;
 
   /// The startingPoints of this game.
   int _startingPoints;

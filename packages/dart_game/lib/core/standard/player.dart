@@ -2,29 +2,27 @@ part of '../../dart_game.dart';
 
 // TODO optimize multiple calls to the same getter in a method
 
-class Player {
-  final String id;
-  String? name;
-  bool? isCurrentTurn;
+class Player extends AbstractPlayer {
   Either<List<Leg>, List<Set>>? get legsOrSets => _legsOrSets;
 
   /// Creates an empty player with given [id] and [name].
   Player({
     String? id,
-    this.name,
-  }) : id = id ?? Uuid().v4();
+    String? name,
+  }) : super(id: id, name: name);
 
   /// Creates a player with given [id], [name], [legsOrSetsNeededToWin], [isCurrentTurn] and [legsOrSets].
   ///
   /// Throws [ArgumentError] if try to create invalid player.
   Player.fromData({
-    required this.id,
-    this.name,
+    String? id,
+    String? name,
+    bool? isCurrentTurn,
     int? legsOrSetsNeededToWin,
-    this.isCurrentTurn,
     Either<List<Leg>, List<Set>>? legsOrSets,
   })  : _legsOrSetsNeededToWin = legsOrSetsNeededToWin,
-        _legsOrSets = legsOrSets {
+        _legsOrSets = legsOrSets,
+        super.fromData(id: id, name: name, isCurrentTurn: isCurrentTurn) {
     _validate();
   }
 

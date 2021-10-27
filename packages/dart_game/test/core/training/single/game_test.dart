@@ -1,3 +1,6 @@
+import 'package:dart_game/core/status.dart';
+import 'package:dart_game/core/training/hit/hit.dart';
+import 'package:dart_game/core/training/hit/mode.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/single_training_game.dart';
 
@@ -76,7 +79,7 @@ void main() {
         final game = Game();
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 2);
@@ -90,7 +93,7 @@ void main() {
         final game = Game();
 
         // Act & Assert
-        expect(game.addPlayer(), true);
+        expect(game.addPlayer(player: Player()), true);
       });
 
       test(
@@ -114,7 +117,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 4);
@@ -141,7 +144,7 @@ void main() {
         );
 
         // Act & Assert
-        expect(game.addPlayer(), false);
+        expect(game.addPlayer(player: Player()), false);
       });
 
       test(
@@ -160,7 +163,7 @@ void main() {
         );
 
         // Act
-        game.addPlayer();
+        game.addPlayer(player: Player());
 
         // Assert
         expect(game.players.length, 1);
@@ -184,7 +187,7 @@ void main() {
         );
 
         // Act & Assert
-        expect(game.addPlayer(), false);
+        expect(game.addPlayer(player: Player()), false);
       });
     });
 

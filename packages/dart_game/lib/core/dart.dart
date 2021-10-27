@@ -1,12 +1,8 @@
-part of '../../dart_game.dart';
-
 /// The type of a [Dart]
-///
-/// s = single, d = double, t = triple
 enum DartType {
-  s,
-  d,
-  t,
+  single,
+  double,
+  triple,
 }
 
 class Dart {
@@ -42,9 +38,9 @@ class Dart {
   /// ```
   int get points {
     switch (type) {
-      case DartType.s:
+      case DartType.single:
         return value;
-      case DartType.d:
+      case DartType.double:
         return 2 * value;
       default:
         return 3 * value;
@@ -61,14 +57,14 @@ class Dart {
   ///
   /// Throws an [ArgumentError] in following cases:
   /// 1. [value] is not 0-25 or 25
-  /// 2. [value] is 25 and [type] is [DartType.t]
+  /// 2. [value] is 25 and [type] is [DartType.triple]
   void _validate() {
     if ((value < 0 || value > 25) ||
         (value == 21 || value == 22 || value == 23 || value == 24)) {
       throw ArgumentError.value(value, 'value', 'Value must be 1-20 or 25.');
     }
 
-    if (value == 25 && type == DartType.t) {
+    if (value == 25 && type == DartType.triple) {
       throw ArgumentError(
         'Type mustn`t be triple if value is 25.',
       );
@@ -77,9 +73,9 @@ class Dart {
 
   @override
   String toString() {
-    final typeString = type == DartType.s
+    final typeString = type == DartType.single
         ? 'single'
-        : type == DartType.d
+        : type == DartType.double
             ? 'double'
             : 'triple';
     return 'Dart{type: $typeString, value: $value}';
