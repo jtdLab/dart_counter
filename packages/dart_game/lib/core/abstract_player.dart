@@ -6,12 +6,13 @@ abstract class AbstractPlayer {
   String? name;
   bool? isCurrentTurn;
 
-  /// Creates an empty player with given [id] and [name].
+  /// Creates a player with given [id] and [name].
   AbstractPlayer({
     String? id,
     this.name,
   }) : id = id ?? Uuid().v4();
 
+  /// Creates a player with given [id], [name] and [isCurrentTurn].
   AbstractPlayer.fromData({
     String? id,
     required this.name,
@@ -19,7 +20,5 @@ abstract class AbstractPlayer {
   }) : id = id ?? Uuid().v4();
 
   @override
-  String toString() {
-    return 'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn}';
-  }
+  String toString();
 }

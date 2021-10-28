@@ -1,10 +1,86 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/score_training_game.dart';
 
-// TODO implement tests
-
 void main() {
-  group('constructor', () {});
+  group('constructor', () {
+    group('()', () {
+      test(
+          'GIVEN all args possible null '
+          'WHEN new instance created '
+          'THEN assign props correctly.', () {
+        // Arrange + Act
+        final player = Player();
+
+        // Assert
+        expect(player.id, isNotNull);
+        expect(player.name, null);
+        expect(player.isCurrentTurn, null);
+      });
+
+      test(
+          'GIVEN all args possible not null '
+          'WHEN new instance created '
+          'THEN assign props correctly.', () {
+        // Arrange
+        final id = 'dummyId';
+        final name = 'dummyName';
+
+        // Act
+        final player = Player(id: id, name: name);
+
+        // Assert
+        expect(player.id, id);
+        expect(player.name, name);
+        expect(player.isCurrentTurn, null);
+      });
+    });
+
+    group('fromData()', () {
+      test(
+          'GIVEN all args possible null '
+          'WHEN new instance created '
+          'THEN assign props correctly.', () {
+        // Arrange + Act
+        final player = Player.fromData();
+
+        // Assert
+        expect(player.id, isNotNull);
+        expect(player.name, null);
+        expect(player.isCurrentTurn, null);
+      });
+
+      test(
+          'GIVEN all args possible not null '
+          'WHEN new instance created '
+          'THEN assign props correctly.', () {
+        // Arrange
+        final id = 'dummyId';
+        final name = 'dummyName';
+        final isCurrentTurn = false;
+        final numberOfTakes = 15;
+        final throws = [
+          Throw(points: 180),
+          Throw(points: 150),
+          Throw(points: 99),
+        ];
+
+        // Act
+        final player = Player.fromData(
+          id: id,
+          name: name,
+          isCurrentTurn: isCurrentTurn,
+          numberOfTakes: numberOfTakes,
+          throws: throws,
+        );
+
+        // Assert
+        expect(player.id, id);
+        expect(player.name, name);
+        expect(player.isCurrentTurn, isCurrentTurn);
+        expect(player.throws, throws);
+      });
+    });
+  });
 
   group('getters', () {
     group('takesLeft', () {
@@ -32,10 +108,7 @@ void main() {
         );
 
         // Act + Assert
-        expect(
-          player.takesLeft,
-          numberOfTakes,
-        );
+        expect(player.takesLeft, numberOfTakes);
       });
 
       test(
@@ -46,15 +119,12 @@ void main() {
         final numberOfTakes = 88;
         final player = Player.fromData(
           id: 'dummyId',
-          throws: [33, 44, 139],
+          throws: [Throw(points: 33), Throw(points: 44), Throw(points: 130)],
           numberOfTakes: numberOfTakes,
         );
 
         // Act + Assert
-        expect(
-          player.takesLeft,
-          85,
-        );
+        expect(player.takesLeft, 85);
       });
     });
 
@@ -93,13 +163,25 @@ void main() {
         // Arrange
         final player = Player.fromData(
           id: 'dummyId',
-          throws: [50, 100, 150],
+          throws: [Throw(points: 50), Throw(points: 100), Throw(points: 150)],
           numberOfTakes: 5,
         );
 
         // Act + Assert
         expect(player.average, 100);
       });
+    });
+
+    group('firstDartAverage', () {
+      // TODO
+    });
+
+    group('secondDartAverage', () {
+      // TODO
+    });
+
+    group('thirdDartAverage', () {
+      // TODO
     });
 
     group('points', () {
@@ -117,7 +199,7 @@ void main() {
       test(
           'GIVEN 0 throws  '
           'WHEN get points '
-          'THEN return null.', () {
+          'THEN return 0.', () {
         // Arrange
 
         final player = Player.fromData(
@@ -137,7 +219,7 @@ void main() {
         // Arrange
         final player = Player.fromData(
           id: 'dummyId',
-          throws: [50, 100, 150],
+          throws: [Throw(points: 50), Throw(points: 100), Throw(points: 150)],
           numberOfTakes: 5,
         );
 
@@ -147,5 +229,36 @@ void main() {
     });
   });
 
-  group('toString()', () {});
+  group('toString()', () {
+    test(
+        'GIVEN a valid throw with darts'
+        'WHEN toString() called '
+        'THEN return correct string representation.', () {
+      // Arrange
+      final id = 'dummyId';
+      final name = 'dummyName';
+      final isCurrentTurn = false;
+      final numberOfTakes = 15;
+      final throws = [
+        Throw(points: 180),
+        Throw(points: 150),
+        Throw(points: 99),
+      ];
+
+      // Act
+      final player = Player.fromData(
+        id: id,
+        name: name,
+        isCurrentTurn: isCurrentTurn,
+        numberOfTakes: numberOfTakes,
+        throws: throws,
+      );
+
+      // Assert
+      expect(
+        player.toString(),
+        'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn, throws: $throws}',
+      );
+    });
+  });
 }

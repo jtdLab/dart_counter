@@ -107,6 +107,9 @@ class Player extends AbstractPlayer {
       ? _throws!.fold<int>(0, (acc, element) => acc + element.points)
       : null;
 
+  /// The amount of takes this player has in the game he is part of
+  /// 
+  /// This is set by the parent game on start.
   int? _numberOfTakes;
   List<Throw>? _throws;
 

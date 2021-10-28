@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:dart_game/util/finish_recommendation.dart';
 
 void main() {
   group('getFor', () {
@@ -64,17 +65,6 @@ void main() {
           );
         }
       }
-    });
-
-    test(
-        'GIVEN points = null '
-        'WHEN getFor called '
-        'THEN return null.', () {
-      // Arrange
-      final points = null;
-
-      // Act & Assert
-      expect(FinishRecommendation.getFor(points: points), null);
     });
 
     test(

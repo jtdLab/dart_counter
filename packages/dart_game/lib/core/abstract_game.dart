@@ -18,6 +18,7 @@ abstract class AbstractGame<T extends AbstractPlayer> {
   })  : status = Status.pending,
         players = [owner];
 
+  /// Creates a game with given [status], [players] and [owner].
   AbstractGame.fromData({
     required this.status,
     required this.players,
@@ -46,10 +47,6 @@ abstract class AbstractGame<T extends AbstractPlayer> {
   bool undoThrow();
 
   /// Adds a player with [name] to this game if pending and not full.
-  ///
-  /// If no [name] provided the player gets a generic name `'player n'`.
-  /// This means the first player with no provided name gets the name `'player 1'`
-  /// the second gets the name `'player 2'`.
   ///
   /// Returns `true` if added.
   bool addPlayer({
@@ -123,12 +120,18 @@ abstract class AbstractGame<T extends AbstractPlayer> {
     return false;
   }
 
+  /// Cancels this game.
+  ///
+  /// Returns `true` if canceled.
   bool cancel() {
     if (status == Status.pending || status == Status.running) {
-      status == Status.canceled;
+      status = Status.canceled;
       return true;
     }
 
     return false;
   }
+
+  @override
+  String toString();
 }

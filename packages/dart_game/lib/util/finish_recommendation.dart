@@ -11,7 +11,7 @@ class FinishRecommendation {
   /// getFor(points: 1) == null
   /// ```
   static List<String>? getFor({
-    int? points,
+    required int points,
   }) {
     switch (points) {
       case 2:

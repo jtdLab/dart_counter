@@ -132,7 +132,9 @@ class Player extends AbstractPlayer {
   ///
   /// Returns `null` if [pointsLeft] is not a finish.
   List<String>? get finishRecommendation => _isPartOfStartedGame
-      ? FinishRecommendation.getFor(points: pointsLeft)
+      ? pointsLeft != null
+          ? FinishRecommendation.getFor(points: pointsLeft!)
+          : null
       : null;
 
   /// Returns the dartsThrown of the current leg.
