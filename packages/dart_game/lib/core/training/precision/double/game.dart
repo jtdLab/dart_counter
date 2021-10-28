@@ -1,6 +1,6 @@
-part of '../../../../single_training_game.dart';
+part of '../../../../double_training_game.dart';
 
-class Game extends HitGame<Player> {
+class Game extends AbstractGame<Player> {
   Mode mode;
 
   /// Creates a game with given [ownerName] and [mode].
@@ -16,32 +16,67 @@ class Game extends HitGame<Player> {
     required Player owner,
   }) : super.fromData(status: status, players: players, owner: owner);
 
-  /// Starts this game and initializes the [players].
-  ///
-  /// Returns `true` if started.
+  @override
   bool start() {
     if (status == Status.pending) {
-      final targetValue = mode == Mode.ascending ? 1 : 20;
+      switch (mode) {
+        case Mode.ascending:
+          _targetValues = List.generate(20, (index) => index + 1) + [25];
+          break;
+        case Mode.descending:
+          _targetValues = (List.generate(20, (index) => index + 1) + [25])
+              .reversed
+              .toList();
+          break;
+        case Mode.random:
+          _targetValues = (List.generate(20, (index) => index + 1) + [25])
+            ..shuffle();
+          break;
+      }
 
       for (Player player in players) {
-        player._rounds = [Round(targetValue: targetValue)];
+        player._throws = [];
+        player._targetValue = _targetValues![0];
       }
 
       _turnIndex = 0;
       _currentTurn!.isCurrentTurn = true;
 
       status = Status.running;
+
       return true;
     }
+
     return false;
   }
 
-  /// Performs hits [hit1], [hit2] and [hit3] to the current turn and go to next turn.
-  bool performHits(
-    Hit hit1,
-    Hit hit2,
-    Hit hit3,
-  ) {
+  // TODO
+  @override
+  bool performThrow({
+    required Throw t,
+  }) {
+    final darts = t.darts;
+    if (darts == null) {
+      throw ArgumentError('Darts must not be null.');
+    }
+
+    if (t.dartsOnDouble != t.dartsThrown) {
+      throw ArgumentError('DartsOnDouble must be equal to dartsThrown.');
+    }
+
+    if (!(DartUtils.isOneDartFinish(points: t.points) || t.points == 0)) {
+      throw ArgumentError('Points must be a one-dart-finish or 0.');
+    }
+
+    final dartsThatHaveToBeMissed = darts.take(t.dartsThrown - 1);
+    for (final d in dartsThatHaveToBeMissed) {
+      if (d.points != 0) {
+        throw ArgumentError(
+          'Darts before the dart that was hit on the target double must have 0 points.',
+        );
+      }
+    }
+
     if (status == Status.running) {
       _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
 
@@ -71,8 +106,9 @@ class Game extends HitGame<Player> {
     return false;
   }
 
-  /// Undos the last round of the previous turn of this game.
-  bool undoHits() {
+  // TODO
+  @override
+  bool undoThrow() {
     if (status == Status.running) {
       final rounds = _currentTurn!._rounds;
       if (rounds != null) {
@@ -90,7 +126,9 @@ class Game extends HitGame<Player> {
 
   int? _turnIndex;
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
+  List<int>? _targetValues;
 
+  // TODO
   @override
   String toString() {
     return 'Game{status: ${status.toString().split('.')[1]}, mode: ${mode.toString().split('.')[1]}, players: $players}';

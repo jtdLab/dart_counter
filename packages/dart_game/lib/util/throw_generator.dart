@@ -1,7 +1,6 @@
 import 'dart:math';
-
-import 'package:dart_game/dart_game.dart';
-
+import '../core/throw.dart';
+import 'dart_utils.dart';
 // TODO generate throws with darts would be cool
 
 class ThrowGenerator {

@@ -1,18 +1,19 @@
 library single_trainig_game;
 
-// TODO fix exports and import here and in tests 
+// TODO fix exports and import here and in tests
 
 import 'package:dart_game/core/abstract_game.dart';
 import 'package:dart_game/core/abstract_player.dart';
+import 'package:dart_game/util/dart_utils.dart';
+import 'core/training/precision/mode.dart';
 import 'core/status.dart';
-import 'core/training/hit/mode.dart';
-import 'core/training/hit/hit.dart';
-import 'core/training/hit/hit_game.dart';
+import 'core/throw.dart';
+import 'core/dart.dart';
 
+export 'core/training/precision/mode.dart';
 export 'core/status.dart';
-export 'core/training/hit/mode.dart';
-export 'core/training/hit/hit.dart';
+export 'core/throw.dart';
+export 'core/dart.dart';
 
-part 'core/training/hit/single/game.dart';
-part 'core/training/hit/single/player.dart';
-part 'core/training/hit/single/round.dart';
+part 'core/training/precision/single/game.dart';
+part 'core/training/precision/single/player.dart';

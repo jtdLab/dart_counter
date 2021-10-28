@@ -1,6 +1,3 @@
-import 'package:dart_game/core/status.dart';
-import 'package:dart_game/core/training/hit/hit.dart';
-import 'package:dart_game/core/training/hit/mode.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/single_training_game.dart';
 

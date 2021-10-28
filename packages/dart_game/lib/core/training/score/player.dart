@@ -1,7 +1,7 @@
 part of '../../../score_training_game.dart';
 
 class Player extends AbstractPlayer {
-  List<int>? get throws => _throws;
+  List<Throw>? get throws => _throws;
 
   /// Creates an empty player with given [id] and [name].
   Player({
@@ -14,7 +14,7 @@ class Player extends AbstractPlayer {
     String? name,
     bool? isCurrentTurn,
     int? numberOfTakes,
-    List<int>? throws,
+    List<Throw>? throws,
   })  : _numberOfTakes = numberOfTakes,
         _throws = throws,
         super.fromData(id: id, name: name, isCurrentTurn: isCurrentTurn);
@@ -36,13 +36,79 @@ class Player extends AbstractPlayer {
     return points! / (_throws!.length);
   }
 
+  /// The average of the first dart of every throw of this player.
+  ///
+  /// Returns `null` if this leg has 0 throws with 1st dart provided.
+  double? get firstDartAverage {
+    if (_throws == null) {
+      return null;
+    }
+
+    int amount = 0;
+    int points = 0;
+    for (Throw t in _throws!) {
+      if (t.darts != null) {
+        Dart? firstDart = t.darts?[0];
+        if (firstDart != null) {
+          amount++;
+          points += firstDart.points;
+        }
+      }
+    }
+    return amount == 0 ? null : points / amount;
+  }
+
+  /// The average of the second dart of every throw of this player.
+  ///
+  /// Returns `null` if this leg has 0 throws with 2nd dart provided.
+  double? get secondDartAverage {
+    if (_throws == null) {
+      return null;
+    }
+
+    int amount = 0;
+    int points = 0;
+    for (Throw t in _throws!) {
+      if (t.darts != null) {
+        Dart? secondDart = t.darts?[1];
+        if (secondDart != null) {
+          amount++;
+          points += secondDart.points;
+        }
+      }
+    }
+    return amount == 0 ? null : points / amount;
+  }
+
+  /// The average of the third dart of every throw of this player.
+  ///
+  /// Returns `null` if this leg has 0 throws with 3rd dart provided.
+  double? get thirdDartAverage {
+    if (_throws == null) {
+      return null;
+    }
+
+    int amount = 0;
+    int points = 0;
+    for (Throw t in _throws!) {
+      if (t.darts != null) {
+        Dart? thirdDart = t.darts?[2];
+        if (thirdDart != null) {
+          amount++;
+          points += thirdDart.points;
+        }
+      }
+    }
+    return amount == 0 ? null : points / amount;
+  }
+
   /// The amount of points scored by this player.
   int? get points => _throws != null
-      ? _throws!.fold<int>(0, (acc, element) => acc + element)
+      ? _throws!.fold<int>(0, (acc, element) => acc + element.points)
       : null;
 
   int? _numberOfTakes;
-  List<int>? _throws;
+  List<Throw>? _throws;
 
   @override
   String toString() {

@@ -4,15 +4,17 @@ library bobs_twenty_seven_training_game;
 
 import 'package:dart_game/core/abstract_player.dart';
 import 'package:dart_game/core/abstract_game.dart';
-import 'package:dart_game/core/training/hit/hit_game.dart';
+
+import 'package:dart_game/util/dart_utils.dart';
+import 'core/training/precision/mode.dart';
 import 'core/status.dart';
-import 'core/training/hit/mode.dart';
-import 'core/training/hit/hit.dart';
+import 'core/throw.dart';
+import 'core/dart.dart';
 
+export 'core/training/precision/mode.dart';
 export 'core/status.dart';
-export 'core/training/hit/mode.dart';
-export 'core/training/hit/hit.dart';
+export 'core/throw.dart';
+export 'core/dart.dart';
 
-part 'core/training/hit/bobs_twenty_seven/game.dart';
-part 'core/training/hit/bobs_twenty_seven/player.dart';
-part 'core/training/hit/bobs_twenty_seven/round.dart';
+part 'core/training/precision/bobs_twenty_seven/game.dart';
+part 'core/training/precision/bobs_twenty_seven/player.dart';

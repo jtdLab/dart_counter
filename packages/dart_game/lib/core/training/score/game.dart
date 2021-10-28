@@ -16,9 +16,7 @@ class Game extends AbstractGame<Player> {
     required Player owner,
   }) : super.fromData(status: status, players: players, owner: owner);
 
-  /// Starts this game and initializes the [players].
-  ///
-  /// Returns `true` if started.
+  @override
   bool start() {
     if (status == Status.pending) {
       for (Player player in players) {
@@ -35,12 +33,21 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  /// Performs throw with [points].
+  // TODO
+  @override
   bool performThrow({
-    required int points,
+    required Throw t,
   }) {
+    if (t.dartsOnDouble != 0) {
+      throw ArgumentError('DartsOnDouble must be 0.');
+    }
+
+    if (t.dartsThrown != 3) {
+      throw ArgumentError('DartsThrown must be 3.');
+    }
+
     if (status == Status.running) {
-      _currentTurn!._throws!.add(points);
+      _currentTurn!._throws!.add(t);
 
       _currentTurn!.isCurrentTurn = false;
       _turnIndex = (_turnIndex! + 1) % players.length;
@@ -50,7 +57,8 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  /// Undos the last throw of the previous turn of this game.
+  // TODO
+  @override
   bool undoThrow() {
     if (status == Status.running) {
       if (_turnIndex == 0 && _currentTurn!._throws!.isEmpty) {
@@ -76,6 +84,7 @@ class Game extends AbstractGame<Player> {
   int? _turnIndex;
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
 
+  // TODO
   @override
   String toString() {
     return 'Game{status: ${status.toString().split('.')[1]}, numberOfTakes: $numberOfTakes, players: $players}';

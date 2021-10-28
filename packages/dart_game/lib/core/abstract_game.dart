@@ -1,5 +1,6 @@
 import 'abstract_player.dart';
 import 'status.dart';
+import 'throw.dart';
 
 /// Base class for a game which provides some standard fields and methods to start with.
 ///
@@ -27,7 +28,22 @@ abstract class AbstractGame<T extends AbstractPlayer> {
     }
   }
 
+  /// Starts this game and initializes the [players].
+  ///
+  /// Returns `true` if started.
   bool start();
+
+  /// Performs [t] on this game.
+  ///
+  /// Returns `true` if [t] was valid and throw was performed successfully.
+  bool performThrow({
+    required Throw t,
+  });
+
+  /// Undoes the last throw of this game.
+  ///
+  /// Returns `true` if undone.
+  bool undoThrow();
 
   /// Adds a player with [name] to this game if pending and not full.
   ///

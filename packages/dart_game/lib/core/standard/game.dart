@@ -57,39 +57,10 @@ class Game extends AbstractGame<Player> {
     _turnIndex = _calcTurnIndex();
   }
 
-  /// Adds a dartBot to this game if doesnt have a darbot already and pending and not full.
-  ///
-  /// Returns `true` if added.
-  bool addDartBot() {
-    if (status == Status.pending) {
-      if (!_hasDartBot && players.length < 4) {
-        players.add(DartBot());
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /// Removes a dartBot from a this game if pending and has dartBot.
-  ///
-  /// Returns `true` if removed.
-  bool removeDartBot() {
-    if (status == Status.pending) {
-      if (_hasDartBot) {
-        players.removeAt(_dartBotIndex);
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
   /// Starts this game and initializes the [players].
   ///
   /// Returns `true` if started.
+  @override
   bool start() {
     if (status == Status.pending) {
       status = Status.running;
@@ -141,6 +112,7 @@ class Game extends AbstractGame<Player> {
   /// Performs [t] on this game.
   ///
   /// Returns `true` if [t] was valid and throw was performed successfully.
+  @override
   bool performThrow({
     required Throw t,
   }) {
@@ -238,6 +210,7 @@ class Game extends AbstractGame<Player> {
   /// Undoes the last throw of this game.
   ///
   /// Returns `true` if undone.
+  @override
   bool undoThrow() {
     if (status == Status.running) {
       // remove leg or set if needed and update indices to previous turn
@@ -363,6 +336,36 @@ class Game extends AbstractGame<Player> {
       }
 
       return true;
+    }
+
+    return false;
+  }
+
+  /// Adds a dartBot to this game if doesnt have a darbot already and pending and not full.
+  ///
+  /// Returns `true` if added.
+  bool addDartBot() {
+    if (status == Status.pending) {
+      if (!_hasDartBot && players.length < 4) {
+        players.add(DartBot());
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /// Removes a dartBot from a this game if pending and has dartBot.
+  ///
+  /// Returns `true` if removed.
+  bool removeDartBot() {
+    if (status == Status.pending) {
+      if (_hasDartBot) {
+        players.removeAt(_dartBotIndex);
+
+        return true;
+      }
     }
 
     return false;

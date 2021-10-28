@@ -1,4 +1,4 @@
-part of '../dart_game.dart';
+import '../core/throw.dart';
 
 /// Contains some utility functions for dart games.
 class DartUtils {

@@ -1,47 +1,58 @@
-part of '../../../../double_training_game.dart';
+part of './../../../../bobs_twenty_seven_training_game.dart';
 
-class Game extends HitGame<Player> {
-  Mode mode;
+/**
+ * enum Mode { easy, hard }
+ */
 
+class Game extends AbstractGame<Player> {
   /// Creates a game with given [ownerName] and [mode].
   Game({
     String? ownerName,
-    this.mode = Mode.ascending,
   }) : super(owner: Player(name: ownerName));
 
   Game.fromData({
     required Status status,
-    required this.mode,
     required List<Player> players,
     required Player owner,
   }) : super.fromData(status: status, players: players, owner: owner);
 
-  /// Starts this game and initializes the [players].
-  ///
-  /// Returns `true` if started.
+  @override
   bool start() {
     if (status == Status.pending) {
-      final targetValue = mode == Mode.ascending ? 1 : 20;
-
       for (Player player in players) {
-        player._rounds = [Round(targetValue: targetValue)];
+        player._throws = [];
+        player._targetValue = 1;
+        player._isDisqualified = false;
       }
 
       _turnIndex = 0;
       _currentTurn!.isCurrentTurn = true;
 
       status = Status.running;
+
       return true;
     }
+
     return false;
   }
 
-  /// Performs hits [hit1], [hit2] and [hit3] to the current turn and go to next turn.
-  bool performHits(
-    Hit hit1,
-    Hit hit2,
-    Hit hit3,
-  ) {
+  // TODO
+  @override
+  bool performThrow({
+    required Throw t,
+  }) {
+    if (t.darts == null) {
+      throw ArgumentError('Darts must not be null.');
+    }
+
+    if (t.dartsThrown != 3) {
+      throw ArgumentError('DartsThrown must be 3.');
+    }
+
+    if (t.dartsOnDouble != 3) {
+      throw ArgumentError('DartsOnDouble must be 3.');
+    }
+
     if (status == Status.running) {
       _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
 
@@ -71,8 +82,9 @@ class Game extends HitGame<Player> {
     return false;
   }
 
-  /// Undos the last round of the previous turn of this game.
-  bool undoHits() {
+  // TODO
+  @override
+  bool undoThrow() {
     if (status == Status.running) {
       final rounds = _currentTurn!._rounds;
       if (rounds != null) {
@@ -91,8 +103,9 @@ class Game extends HitGame<Player> {
   int? _turnIndex;
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
 
+  // TODO
   @override
   String toString() {
-    return 'Game{status: ${status.toString().split('.')[1]}, mode: ${mode.toString().split('.')[1]}, players: $players}';
+    return 'Game{status: ${status.toString().split('.')[1]}, players: $players}';
   }
 }

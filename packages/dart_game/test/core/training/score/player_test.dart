@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/score_training_game.dart';
 
-// TODO constructor to string tests
+// TODO implement tests
 
 void main() {
+  group('constructor', () {});
+
   group('getters', () {
     group('takesLeft', () {
       test(
@@ -99,7 +101,7 @@ void main() {
         expect(player.average, 100);
       });
     });
-    
+
     group('points', () {
       test(
           'GIVEN throws is null '
@@ -144,4 +146,6 @@ void main() {
       });
     });
   });
+
+  group('toString()', () {});
 }

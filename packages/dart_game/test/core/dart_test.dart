@@ -1,5 +1,5 @@
+import 'package:dart_game/core/dart.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dart_game/dart_game.dart';
 
 void main() {
   group('constructor', () {

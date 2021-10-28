@@ -1,5 +1,3 @@
-part of '../dart_game.dart';
-
 class FinishRecommendation {
   /// Returns the finishing path recommended for [points].
   ///
