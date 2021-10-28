@@ -1,5 +1,7 @@
 library dart_game;
 
+// TODO fix exports and import here and in tests 
+
 import 'dart:math';
 import 'package:collection/collection.dart';
 import 'core/abstract_player.dart';

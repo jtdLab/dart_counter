@@ -1,5 +1,7 @@
 library score_trainig_game;
 
+// TODO fix exports and import here and in tests 
+
 import 'package:dart_game/core/abstract_player.dart';
 import 'package:dart_game/core/abstract_game.dart';
 import 'core/status.dart';

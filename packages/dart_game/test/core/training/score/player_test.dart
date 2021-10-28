@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_game/score_training_game.dart';
 
+// TODO constructor to string tests
+
 void main() {
   group('getters', () {
     group('takesLeft', () {

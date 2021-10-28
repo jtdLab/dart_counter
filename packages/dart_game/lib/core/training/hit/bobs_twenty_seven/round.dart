@@ -1,6 +1,6 @@
 part of './../../../../bobs_twenty_seven_training_game.dart';
 
-class Round extends AbstractRound {
+class Round {
   final int targetValue;
 
   List<Hit> hits;

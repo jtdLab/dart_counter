@@ -1,6 +1,6 @@
 part of '../../../../double_training_game.dart';
 
-class Round extends AbstractRound {
+class Round {
   final int targetValue;
 
   List<Hit> hits;

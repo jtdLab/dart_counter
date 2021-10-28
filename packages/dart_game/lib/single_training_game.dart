@@ -1,10 +1,9 @@
 library single_trainig_game;
 
-// TODO fix imports in tests
+// TODO fix exports and import here and in tests 
 
 import 'package:dart_game/core/abstract_game.dart';
 import 'package:dart_game/core/abstract_player.dart';
-import 'package:dart_game/core/training/hit/abstract_round.dart';
 import 'core/status.dart';
 import 'core/training/hit/mode.dart';
 import 'core/training/hit/hit.dart';
