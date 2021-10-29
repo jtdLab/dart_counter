@@ -923,17 +923,9 @@ class Player extends AbstractPlayer {
 
   @override
   String toString() {
-    return 'Player{id: $id, name: $name, won: $won, isCurrentTurn: $isCurrentTurn, wonSets: $wonSets, '
+    return 'Player{id: ${this.id}, name: $name, won: $won, isCurrentTurn: $isCurrentTurn, wonSets: $wonSets, '
         'wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, lastPoints: $lastPoints, '
         'finishRecommendation: $finishRecommendation, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, '
         'average: $average, checkoutPercentage: $checkoutPercentage}';
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Player && runtimeType == other.runtimeType && id == other.id;
-
-  @override
-  int get hashCode => id.hashCode;
 }

@@ -15,7 +15,7 @@ class Player extends AbstractPlayer {
     String? name,
     bool? isCurrentTurn,
     List<Throw>? throws,
-    int targetValue = 1,
+    int? targetValue,
   })  : _throws = throws,
         _targetValue = targetValue,
         super.fromData(id: id, name: name, isCurrentTurn: isCurrentTurn);
@@ -77,12 +77,12 @@ class Player extends AbstractPlayer {
                 (acc, dart) {
                   if (dart.points != 0) {
                     return dart.type == DartType.single
-                        ? 1
+                        ? acc + 1
                         : dart.type == DartType.double
-                            ? 2
-                            : 3;
+                            ? acc + 2
+                            : acc + 3;
                   }
-                  return 0;
+                  return acc;
                 },
               ),
         )
@@ -93,6 +93,6 @@ class Player extends AbstractPlayer {
 
   @override
   String toString() {
-    return 'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn, targetValue: $_targetValue, throws: $throws}';
+    return 'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn, throws: $throws, targetValue: $_targetValue}';
   }
 }

@@ -4098,43 +4098,4 @@ void main() {
       );
     });
   });
-
-  group('==', () {
-    test(
-        'GIVEN 2 players with same id'
-        'WHEN == called '
-        'THEN return true.', () {
-      // Arrange
-      final player1 = Player(id: 'dummyId1', name: 'dummyName1');
-      final player2 = Player(id: 'dummyId1', name: 'dummyName2');
-
-      // Act & Assert
-      expect(player1 == player2, true);
-    });
-
-    test(
-        'GIVEN 2 players with not same id'
-        'WHEN == called '
-        'THEN return false.', () {
-      // Arrange
-      final player1 = Player(id: 'dummyId1', name: 'dummyName1');
-      final player2 = Player(id: 'dummyId2', name: 'dummyName2');
-
-      // Act & Assert
-      expect(player1 == player2, false);
-    });
-  });
-
-  group('hashCode', () {
-    test(
-        'GIVEN - '
-        'WHEN get hashCode '
-        'THEN return the hashcode of the id.', () {
-      // Arrange
-      final player1 = Player(id: 'dummyId1', name: 'dummyName1');
-
-      // Act & Assert
-      expect(player1.hashCode, 'dummyId1'.hashCode);
-    });
-  });
 }

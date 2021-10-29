@@ -11,9 +11,9 @@ class Game extends AbstractGame<Player> {
 
   Game.fromData({
     required Status status,
-    required this.mode,
     required List<Player> players,
     required Player owner,
+    required this.mode,
   }) : super.fromData(status: status, players: players, owner: owner);
 
   @override
@@ -35,6 +35,7 @@ class Game extends AbstractGame<Player> {
       }
 
       for (Player player in players) {
+        player.isCurrentTurn = false;
         player._throws = [];
         player._targetValue = _targetValues![0];
       }
@@ -78,7 +79,8 @@ class Game extends AbstractGame<Player> {
     }
 
     if (status == Status.running) {
-      _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
+      /**
+      *  _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
 
       if (_turnIndex == players.length - 1) {
         final targetValue;
@@ -102,7 +104,9 @@ class Game extends AbstractGame<Player> {
       _turnIndex = (_turnIndex! + 1) % players.length;
       _currentTurn!.isCurrentTurn = true;
       return true;
+      */
     }
+
     return false;
   }
 
@@ -110,7 +114,8 @@ class Game extends AbstractGame<Player> {
   @override
   bool undoThrow() {
     if (status == Status.running) {
-      final rounds = _currentTurn!._rounds;
+      /**
+      *  final rounds = _currentTurn!._rounds;
       if (rounds != null) {
         if (rounds.length > 0) {
           rounds.removeLast();
@@ -120,7 +125,9 @@ class Game extends AbstractGame<Player> {
           return true;
         }
       }
+      */
     }
+
     return false;
   }
 
@@ -128,9 +135,8 @@ class Game extends AbstractGame<Player> {
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
   List<int>? _targetValues;
 
-  // TODO
   @override
   String toString() {
-    return 'Game{status: ${status.toString().split('.')[1]}, mode: ${mode.toString().split('.')[1]}, players: $players}';
+    return 'Game{status: ${status.toString().split('.')[1]}, players: $players, owner: $owner, mode: ${mode.toString().split('.')[1]}}';
   }
 }

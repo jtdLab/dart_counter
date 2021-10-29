@@ -21,8 +21,8 @@ class Dart {
     _validate();
   }
 
-  /// A dart with 0 points (type: single, value: 0)
-  static Dart missed = Dart(type: DartType.single, value: 0);
+  /// A dart with 0 points (type: double, value: 0)
+  static Dart missed = Dart(type: DartType.double, value: 0);
 
   /// {@macro dart_default_constructor}
   ///

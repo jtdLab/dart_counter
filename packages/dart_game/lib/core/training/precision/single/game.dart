@@ -11,9 +11,9 @@ class Game extends AbstractGame<Player> {
 
   Game.fromData({
     required Status status,
-    required this.mode,
     required List<Player> players,
     required Player owner,
+    required this.mode,
   }) : super.fromData(status: status, players: players, owner: owner);
 
   @override
@@ -35,6 +35,7 @@ class Game extends AbstractGame<Player> {
       }
 
       for (Player player in players) {
+        player.isCurrentTurn = false;
         player._throws = [];
         player._targetValue = _targetValues![0];
       }
@@ -50,7 +51,6 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  // TODO
   @override
   bool performThrow({
     required Throw t,
@@ -75,8 +75,39 @@ class Game extends AbstractGame<Player> {
         _currentTurn!._targetValue = _targetValues![index];
       }
 
+      if (_turnIndex == players.length - 1 && index == 21) {
+        // every player has done all his takes => finish game
+        status = Status.finished;
+      } else {
+        _currentTurn!.isCurrentTurn = false;
+        _turnIndex = (_turnIndex! + 1) % players.length;
+        _currentTurn!.isCurrentTurn = true;
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  @override
+  bool undoThrow() {
+    if (status == Status.running) {
+      if (_turnIndex == 0 && _currentTurn!._throws!.isEmpty) {
+        // no throw performed yet
+        return false;
+      }
+
       _currentTurn!.isCurrentTurn = false;
-      _turnIndex = (_turnIndex! + 1) % players.length;
+      _turnIndex = (_turnIndex! - 1) % players.length;
+
+      _currentTurn!._throws!.removeLast();
+
+      final index = _currentTurn!._throws!.length;
+      if (index <= 20) {
+        _currentTurn!._targetValue = _targetValues![index];
+      }
+
       _currentTurn!.isCurrentTurn = true;
 
       return true;
@@ -85,31 +116,12 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  // TODO
-  @override
-  bool undoThrow() {
-    if (status == Status.running) {
-      final rounds = _currentTurn!._rounds;
-      if (rounds != null) {
-        if (rounds.length > 0) {
-          rounds.removeLast();
-          _currentTurn!.isCurrentTurn = false;
-          _turnIndex = (_turnIndex! - 1) % players.length;
-          _currentTurn!.isCurrentTurn = true;
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   int? _turnIndex;
   Player? get _currentTurn => _turnIndex != null ? players[_turnIndex!] : null;
   List<int>? _targetValues;
 
-  // TODO
   @override
   String toString() {
-    return 'Game{status: ${status.toString().split('.')[1]}, mode: ${mode.toString().split('.')[1]}, players: $players}';
+    return 'Game{status: ${status.toString().split('.')[1]}, players: $players, owner: $owner, mode: ${mode.toString().split('.')[1]}}';
   }
 }

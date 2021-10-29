@@ -13,8 +13,8 @@ class Player extends AbstractPlayer {
     String? id,
     String? name,
     bool? isCurrentTurn,
-    int? numberOfTakes,
     List<Throw>? throws,
+    int? numberOfTakes,
   })  : _numberOfTakes = numberOfTakes,
         _throws = throws,
         super.fromData(id: id, name: name, isCurrentTurn: isCurrentTurn);
@@ -108,7 +108,7 @@ class Player extends AbstractPlayer {
       : null;
 
   /// The amount of takes this player has in the game he is part of
-  /// 
+  ///
   /// This is set by the parent game on start.
   int? _numberOfTakes;
   List<Throw>? _throws;

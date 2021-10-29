@@ -16,8 +16,8 @@ class Player extends AbstractPlayer {
     String? name,
     bool? isCurrentTurn,
     List<Throw>? throws,
-    int? targetValue = 1,
-    bool? isDisqualified = false,
+    int? targetValue,
+    bool? isDisqualified,
   })  : _throws = throws,
         _targetValue = targetValue,
         _isDisqualified = isDisqualified,
@@ -36,10 +36,13 @@ class Player extends AbstractPlayer {
     final dartsOnDouble = _throws!.fold<int>(
       0,
       (acc, t) =>
-          acc + t.darts!.where((dart) => dart.type == DartType.double).length,
+          acc +
+          t.darts!
+              .where((dart) => dart.type == DartType.double && dart.points != 0)
+              .length,
     );
 
-    return dartsOnDouble / 3 * _throws!.length;
+    return dartsOnDouble / (3 * _throws!.length);
   }
 
   /// The amount of points achived by this player.
@@ -48,14 +51,15 @@ class Player extends AbstractPlayer {
       int points = 27;
       for (int i = 0; i < _throws!.length; i++) {
         final t = _throws![i];
-        final doublesHit =
-            t.darts!.where((dart) => dart.type == DartType.double).length;
+        final doublesHit = t.darts!
+            .where((dart) => dart.type == DartType.double && dart.points != 0)
+            .length;
 
         final targetValue = i + 1;
         if (doublesHit == 0) {
           points -= targetValue;
         } else {
-          points += doublesHit * targetValue;
+          points += doublesHit * targetValue * 2;
         }
       }
 
@@ -72,14 +76,15 @@ class Player extends AbstractPlayer {
       int points = 27;
       for (int i = 0; i < _throws!.length; i++) {
         final t = _throws![i];
-        final doublesHit =
-            t.darts!.where((dart) => dart.type == DartType.double).length;
+        final doublesHit = t.darts!
+            .where((dart) => dart.type == DartType.double && dart.points != 0)
+            .length;
 
         final targetValue = i + 1;
         if (doublesHit == 0) {
           points -= targetValue;
         } else {
-          points += doublesHit * targetValue;
+          points += doublesHit * targetValue * 2;
         }
 
         if (points > maxPoints) {
@@ -99,6 +104,6 @@ class Player extends AbstractPlayer {
 
   @override
   String toString() {
-    return 'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isDisqualified: $_isDisqualified, targetValue: $_targetValue, throws: $throws}';
+    return 'Player{id: $id, name: $name, isCurrentTurn: $isCurrentTurn, throws: $throws, targetValue: $_targetValue, isDisqualified: $_isDisqualified}';
   }
 }

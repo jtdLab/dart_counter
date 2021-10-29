@@ -15,6 +15,7 @@ void main() {
         expect(player.id, isNotNull);
         expect(player.name, null);
         expect(player.isCurrentTurn, null);
+        expect(player.throws, null);
       });
 
       test(
@@ -32,6 +33,7 @@ void main() {
         expect(player.id, id);
         expect(player.name, name);
         expect(player.isCurrentTurn, null);
+        expect(player.throws, null);
       });
     });
 
@@ -47,6 +49,7 @@ void main() {
         expect(player.id, isNotNull);
         expect(player.name, null);
         expect(player.isCurrentTurn, null);
+        expect(player.throws, null);
       });
 
       test(
@@ -173,15 +176,198 @@ void main() {
     });
 
     group('firstDartAverage', () {
-      // TODO
+      test(
+          'GIVEN throws is null '
+          'WHEN get firstDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player();
+
+        // Act + Assert
+        expect(player.firstDartAverage, null);
+      });
+
+      test(
+          'GIVEN 0 first darts thrown '
+          'WHEN get firstDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.firstDartAverage, null);
+      });
+
+      test(
+          'GIVEN >0 first darts thrown '
+          'WHEN get firstDartAverage '
+          'THEN return correct firstDartAverage.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+              ],
+            ),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+              ],
+            ),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.firstDartAverage, 35);
+      });
     });
 
     group('secondDartAverage', () {
-      // TODO
+      test(
+          'GIVEN throws is null '
+          'WHEN get secondDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player();
+
+        // Act + Assert
+        expect(player.secondDartAverage, null);
+      });
+
+      test(
+          'GIVEN 0 first darts thrown '
+          'WHEN get secondDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.secondDartAverage, null);
+      });
+
+      test(
+          'GIVEN >0 first darts thrown '
+          'WHEN get secondDartAverage '
+          'THEN return correct secondDartAverage.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+              ],
+            ),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+              ],
+            ),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.secondDartAverage, 35);
+      });
     });
 
     group('thirdDartAverage', () {
-      // TODO
+      test(
+          'GIVEN throws is null '
+          'WHEN get thirdDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player();
+
+        // Act + Assert
+        expect(player.thirdDartAverage, null);
+      });
+
+      test(
+          'GIVEN 0 first darts thrown '
+          'WHEN get thirdDartAverage '
+          'THEN return null.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.thirdDartAverage, null);
+      });
+
+      test(
+          'GIVEN >0 first darts thrown '
+          'WHEN get thirdDartAverage '
+          'THEN return correct thirdDartAverage.', () {
+        // Arrange
+        final player = Player.fromData(
+          id: 'dummyId',
+          name: 'dummyName',
+          isCurrentTurn: true,
+          numberOfTakes: 10,
+          throws: [
+            Throw(points: 180),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+                Dart(type: DartType.triple, value: 20),
+              ],
+            ),
+            Throw.fromDarts(
+              darts: [
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+                Dart(type: DartType.single, value: 10),
+              ],
+            ),
+          ],
+        );
+
+        // Act + Assert
+        expect(player.thirdDartAverage, 35);
+      });
     });
 
     group('points', () {
@@ -231,7 +417,7 @@ void main() {
 
   group('toString()', () {
     test(
-        'GIVEN a valid throw with darts'
+        'GIVEN a player '
         'WHEN toString() called '
         'THEN return correct string representation.', () {
       // Arrange
@@ -250,8 +436,8 @@ void main() {
         id: id,
         name: name,
         isCurrentTurn: isCurrentTurn,
-        numberOfTakes: numberOfTakes,
         throws: throws,
+        numberOfTakes: numberOfTakes,
       );
 
       // Assert
