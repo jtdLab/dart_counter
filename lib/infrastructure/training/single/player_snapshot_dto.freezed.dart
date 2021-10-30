@@ -19,14 +19,14 @@ class _$PlayerSnapshotDtoTearOff {
 
   _PlayerSnapshotDto call(
       {required String id,
-      required String? name,
-      required bool? isCurrentTurn,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) {
+      String? name,
+      bool? isCurrentTurn,
+      int? targetValue,
+      int? points,
+      int? singles,
+      int? doubles,
+      int? triples,
+      int? missed}) {
     return _PlayerSnapshotDto(
       id: id,
       name: name,
@@ -228,14 +228,14 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
 class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   const _$_PlayerSnapshotDto(
       {required this.id,
-      required this.name,
-      required this.isCurrentTurn,
-      required this.targetValue,
-      required this.points,
-      required this.singles,
-      required this.doubles,
-      required this.triples,
-      required this.missed})
+      this.name,
+      this.isCurrentTurn,
+      this.targetValue,
+      this.points,
+      this.singles,
+      this.doubles,
+      this.triples,
+      this.missed})
       : super._();
 
   @override
@@ -313,14 +313,14 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
 abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const factory _PlayerSnapshotDto(
       {required String id,
-      required String? name,
-      required bool? isCurrentTurn,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) = _$_PlayerSnapshotDto;
+      String? name,
+      bool? isCurrentTurn,
+      int? targetValue,
+      int? points,
+      int? singles,
+      int? doubles,
+      int? triples,
+      int? missed}) = _$_PlayerSnapshotDto;
   const _PlayerSnapshotDto._() : super._();
 
   @override

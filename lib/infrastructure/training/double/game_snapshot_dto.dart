@@ -1,11 +1,10 @@
 import 'package:dart_counter/domain/training/double/game_snapshot.dart';
-import 'package:dart_counter/infrastructure/training/double/player_snapshot_dto.dart';
-import 'package:faker/faker.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/status.dart';
-import 'package:kt_dart/kt.dart';
+import 'package:dart_counter/infrastructure/training/double/player_snapshot_dto.dart';
 import 'package:dart_game/double_training_game.dart' as ex;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kt_dart/kt.dart';
 
 part 'game_snapshot_dto.freezed.dart';
 
@@ -29,16 +28,18 @@ class GameSnapshotDto with _$GameSnapshotDto {
               : gameSnapshot.status == Status.canceled
                   ? 'canceled'
                   : 'finished',
-      mode: gameSnapshot.mode == Mode.ascending ? 'ascending' : 'descending',
+      mode: gameSnapshot.mode == Mode.ascending
+          ? 'ascending'
+          : gameSnapshot.mode == Mode.descending
+              ? 'descending'
+              : 'random',
       players: gameSnapshot.players
           .map((player) => PlayerSnapshotDto.fromDomain(player)),
       owner: PlayerSnapshotDto.fromDomain(gameSnapshot.owner),
     );
   }
 
-// TODO
-  /**
-   * factory GameSnapshotDto.fromExternal(ex.Game game) {
+  factory GameSnapshotDto.fromExternal(ex.Game game) {
     return GameSnapshotDto(
       status: game.status == ex.Status.pending
           ? 'pending'
@@ -47,13 +48,17 @@ class GameSnapshotDto with _$GameSnapshotDto {
               : game.status == ex.Status.canceled
                   ? 'canceled'
                   : 'finished',
-      mode: game.mode == ex.Mode.ascending ? 'ascending' : 'descending',
+      mode: game.mode == ex.Mode.ascending
+          ? 'ascending'
+          : game.mode == ex.Mode.descending
+              ? 'descending'
+              : 'random',
       players: game.players
           .map((player) => PlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
+      owner: PlayerSnapshotDto.fromExternal(game.owner),
     );
   }
-   */
 
   GameSnapshot toDomain() {
     return GameSnapshot(
@@ -64,7 +69,11 @@ class GameSnapshotDto with _$GameSnapshotDto {
               : status == 'canceled'
                   ? Status.canceled
                   : Status.finished,
-      mode: mode == 'ascending' ? Mode.ascending : Mode.descending,
+      mode: mode == 'ascending'
+          ? Mode.ascending
+          : mode == 'descending'
+              ? Mode.descending
+              : Mode.random,
       players: players.map((player) => player.toDomain()),
       owner: owner.toDomain(),
     );

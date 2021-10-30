@@ -1,8 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/training/single/player_snapshot.dart';
-import 'package:faker/faker.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player_snapshot_dto.freezed.dart';
 
@@ -10,14 +9,14 @@ part 'player_snapshot_dto.freezed.dart';
 class PlayerSnapshotDto with _$PlayerSnapshotDto {
   const factory PlayerSnapshotDto({
     required String id,
-    required String? name,
-    required bool? isCurrentTurn,
-    required int? targetValue,
-    required int? points,
-    required int? singles,
-    required int? doubles,
-    required int? triples,
-    required int? missed,
+    String? name,
+    bool? isCurrentTurn,
+    int? targetValue,
+    int? points,
+    int? singles,
+    int? doubles,
+    int? triples,
+    int? missed,
   }) = _PlayerSnapshotDto;
 
   const PlayerSnapshotDto._();
@@ -41,7 +40,7 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
       id: player.id,
       name: player.name,
       isCurrentTurn: player.isCurrentTurn,
-      targetValue: player.currentTargetValue,
+      targetValue: player.targetValue,
       points: player.points,
       singles: player.singles,
       doubles: player.doubles,

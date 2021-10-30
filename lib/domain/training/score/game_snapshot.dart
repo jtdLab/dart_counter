@@ -16,4 +16,6 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required KtList<PlayerSnapshot> players,
     required PlayerSnapshot owner,
   }) = _GameSnapshot;
+
+  // TODO dummy
 }

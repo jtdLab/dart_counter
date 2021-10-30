@@ -10,12 +10,14 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
   @Implements(TrainingPlayerSnapshot)
   const factory PlayerSnapshot({
     required UniqueId id,
-    required String? name,
+    String? name,
+    required bool isCurrentTurn,
+    required bool isFinished,
     required int targetValue,
-    required int points,
-    required int singles,
-    required int doubles,
-    required int triples,
+    double? checkoutPercentage,
     required int missed,
+    required int dartsThrown,
   }) = _PlayerSnapshot;
+
+  // TODO dummy
 }

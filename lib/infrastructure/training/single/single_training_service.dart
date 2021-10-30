@@ -3,7 +3,6 @@ import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/training/single/game_snapshot_dto.dart';
-import 'package:dart_counter/infrastructure/training/single/hit_x.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:rxdart/rxdart.dart';
@@ -57,11 +56,10 @@ class SingleTrainingService implements ISingleTrainingService {
     required Hit hit3,
   }) {
     return _tryPerform(
-      action: () => _game!.performHits(
-        hit1.toExternal(),
-        hit2.toExternal(),
-        hit3.toExternal(),
-      ),
+      action: () {
+        // TODO implement
+        throw UnimplementedError();
+      },
     );
   }
 
@@ -104,7 +102,7 @@ class SingleTrainingService implements ISingleTrainingService {
   @override
   void undoHits() {
     return _tryPerform(
-      action: () => _game!.undoHits(),
+      action: () => _game!.undoThrow(),
     );
   }
 

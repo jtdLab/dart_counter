@@ -19,7 +19,7 @@ class _$PlayerSnapshotTearOff {
 
   _PlayerSnapshot call(
       {required UniqueId id,
-      required String? name,
+      String? name,
       required bool isCurrentTurn,
       required int targetValue,
       required int points,
@@ -229,7 +229,7 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
 class _$_PlayerSnapshot implements _PlayerSnapshot {
   const _$_PlayerSnapshot(
       {required this.id,
-      required this.name,
+      this.name,
       required this.isCurrentTurn,
       required this.targetValue,
       required this.points,
@@ -314,7 +314,7 @@ abstract class _PlayerSnapshot
     implements PlayerSnapshot, TrainingPlayerSnapshot {
   const factory _PlayerSnapshot(
       {required UniqueId id,
-      required String? name,
+      String? name,
       required bool isCurrentTurn,
       required int targetValue,
       required int points,

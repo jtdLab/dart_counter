@@ -74,8 +74,8 @@ import 'domain/training/single/i_single_training_service.dart' as _i32;
 import 'domain/user/i_user_facade.dart' as _i34;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i54;
 import 'infrastructure/auth/mocked_auth_facade.dart' as _i13;
-import 'infrastructure/connectivity/connectivity_facade.dart' as _i18;
-import 'infrastructure/connectivity/mocked_connectivity_facade.dart' as _i17;
+import 'infrastructure/connectivity/connectivity_facade.dart' as _i17;
+import 'infrastructure/connectivity/mocked_connectivity_facade.dart' as _i18;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i77;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i76;
 import 'infrastructure/friend/friend_facade.dart' as _i68;
@@ -126,11 +126,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i16.IConnectivityFacade>(
-      () => _i17.MockedConnectivityFacade(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i16.IConnectivityFacade>(
-      () => _i18.ConnectivityFacade(get<_i4.Connectivity>()),
+      () => _i17.ConnectivityFacade(get<_i4.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i16.IConnectivityFacade>(
+      () => _i18.MockedConnectivityFacade(),
+      registerFor: {_dev});
   gh.lazySingleton<_i19.IDoubleTrainingService>(
       () => _i20.DoubleTrainingService(),
       registerFor: {_dev, _test, _prod});

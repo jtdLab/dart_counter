@@ -19,22 +19,22 @@ class _$PlayerSnapshotDtoTearOff {
 
   _PlayerSnapshotDto call(
       {required String id,
-      required String? name,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) {
+      String? name,
+      bool? isCurrentTurn,
+      bool? isFinished,
+      int? targetValue,
+      double? checkoutPercentage,
+      int? missed,
+      int? dartsThrown}) {
     return _PlayerSnapshotDto(
       id: id,
       name: name,
+      isCurrentTurn: isCurrentTurn,
+      isFinished: isFinished,
       targetValue: targetValue,
-      points: points,
-      singles: singles,
-      doubles: doubles,
-      triples: triples,
+      checkoutPercentage: checkoutPercentage,
       missed: missed,
+      dartsThrown: dartsThrown,
     );
   }
 }
@@ -46,12 +46,12 @@ const $PlayerSnapshotDto = _$PlayerSnapshotDtoTearOff();
 mixin _$PlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool? get isFinished => throw _privateConstructorUsedError;
   int? get targetValue => throw _privateConstructorUsedError;
-  int? get points => throw _privateConstructorUsedError;
-  int? get singles => throw _privateConstructorUsedError;
-  int? get doubles => throw _privateConstructorUsedError;
-  int? get triples => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   int? get missed => throw _privateConstructorUsedError;
+  int? get dartsThrown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerSnapshotDtoCopyWith<PlayerSnapshotDto> get copyWith =>
@@ -66,12 +66,12 @@ abstract class $PlayerSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
+      bool? isCurrentTurn,
+      bool? isFinished,
       int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      double? checkoutPercentage,
+      int? missed,
+      int? dartsThrown});
 }
 
 /// @nodoc
@@ -87,12 +87,12 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
+    Object? isFinished = freezed,
     Object? targetValue = freezed,
-    Object? points = freezed,
-    Object? singles = freezed,
-    Object? doubles = freezed,
-    Object? triples = freezed,
+    Object? checkoutPercentage = freezed,
     Object? missed = freezed,
+    Object? dartsThrown = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -103,29 +103,29 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFinished: isFinished == freezed
+          ? _value.isFinished
+          : isFinished // ignore: cast_nullable_to_non_nullable
+              as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
               as int?,
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      singles: singles == freezed
-          ? _value.singles
-          : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      doubles: doubles == freezed
-          ? _value.doubles
-          : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      triples: triples == freezed
-          ? _value.triples
-          : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
+      checkoutPercentage: checkoutPercentage == freezed
+          ? _value.checkoutPercentage
+          : checkoutPercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
       missed: missed == freezed
           ? _value.missed
           : missed // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dartsThrown: dartsThrown == freezed
+          ? _value.dartsThrown
+          : dartsThrown // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -141,12 +141,12 @@ abstract class _$PlayerSnapshotDtoCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
+      bool? isCurrentTurn,
+      bool? isFinished,
       int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      double? checkoutPercentage,
+      int? missed,
+      int? dartsThrown});
 }
 
 /// @nodoc
@@ -164,12 +164,12 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
+    Object? isFinished = freezed,
     Object? targetValue = freezed,
-    Object? points = freezed,
-    Object? singles = freezed,
-    Object? doubles = freezed,
-    Object? triples = freezed,
+    Object? checkoutPercentage = freezed,
     Object? missed = freezed,
+    Object? dartsThrown = freezed,
   }) {
     return _then(_PlayerSnapshotDto(
       id: id == freezed
@@ -180,29 +180,29 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFinished: isFinished == freezed
+          ? _value.isFinished
+          : isFinished // ignore: cast_nullable_to_non_nullable
+              as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
               as int?,
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      singles: singles == freezed
-          ? _value.singles
-          : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      doubles: doubles == freezed
-          ? _value.doubles
-          : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
-      triples: triples == freezed
-          ? _value.triples
-          : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
+      checkoutPercentage: checkoutPercentage == freezed
+          ? _value.checkoutPercentage
+          : checkoutPercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
       missed: missed == freezed
           ? _value.missed
           : missed // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dartsThrown: dartsThrown == freezed
+          ? _value.dartsThrown
+          : dartsThrown // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -213,13 +213,13 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
 class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   const _$_PlayerSnapshotDto(
       {required this.id,
-      required this.name,
-      required this.targetValue,
-      required this.points,
-      required this.singles,
-      required this.doubles,
-      required this.triples,
-      required this.missed})
+      this.name,
+      this.isCurrentTurn,
+      this.isFinished,
+      this.targetValue,
+      this.checkoutPercentage,
+      this.missed,
+      this.dartsThrown})
       : super._();
 
   @override
@@ -227,21 +227,21 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   final String? name;
   @override
+  final bool? isCurrentTurn;
+  @override
+  final bool? isFinished;
+  @override
   final int? targetValue;
   @override
-  final int? points;
-  @override
-  final int? singles;
-  @override
-  final int? doubles;
-  @override
-  final int? triples;
+  final double? checkoutPercentage;
   @override
   final int? missed;
+  @override
+  final int? dartsThrown;
 
   @override
   String toString() {
-    return 'PlayerSnapshotDto(id: $id, name: $name, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
+    return 'PlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isFinished: $isFinished, targetValue: $targetValue, checkoutPercentage: $checkoutPercentage, missed: $missed, dartsThrown: $dartsThrown)';
   }
 
   @override
@@ -252,22 +252,23 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.isCurrentTurn, isCurrentTurn) ||
+                const DeepCollectionEquality()
+                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
+            (identical(other.isFinished, isFinished) ||
+                const DeepCollectionEquality()
+                    .equals(other.isFinished, isFinished)) &&
             (identical(other.targetValue, targetValue) ||
                 const DeepCollectionEquality()
                     .equals(other.targetValue, targetValue)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
-            (identical(other.singles, singles) ||
+            (identical(other.checkoutPercentage, checkoutPercentage) ||
                 const DeepCollectionEquality()
-                    .equals(other.singles, singles)) &&
-            (identical(other.doubles, doubles) ||
-                const DeepCollectionEquality()
-                    .equals(other.doubles, doubles)) &&
-            (identical(other.triples, triples) ||
-                const DeepCollectionEquality()
-                    .equals(other.triples, triples)) &&
+                    .equals(other.checkoutPercentage, checkoutPercentage)) &&
             (identical(other.missed, missed) ||
-                const DeepCollectionEquality().equals(other.missed, missed)));
+                const DeepCollectionEquality().equals(other.missed, missed)) &&
+            (identical(other.dartsThrown, dartsThrown) ||
+                const DeepCollectionEquality()
+                    .equals(other.dartsThrown, dartsThrown)));
   }
 
   @override
@@ -275,12 +276,12 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(isCurrentTurn) ^
+      const DeepCollectionEquality().hash(isFinished) ^
       const DeepCollectionEquality().hash(targetValue) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(singles) ^
-      const DeepCollectionEquality().hash(doubles) ^
-      const DeepCollectionEquality().hash(triples) ^
-      const DeepCollectionEquality().hash(missed);
+      const DeepCollectionEquality().hash(checkoutPercentage) ^
+      const DeepCollectionEquality().hash(missed) ^
+      const DeepCollectionEquality().hash(dartsThrown);
 
   @JsonKey(ignore: true)
   @override
@@ -291,13 +292,13 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
 abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const factory _PlayerSnapshotDto(
       {required String id,
-      required String? name,
-      required int? targetValue,
-      required int? points,
-      required int? singles,
-      required int? doubles,
-      required int? triples,
-      required int? missed}) = _$_PlayerSnapshotDto;
+      String? name,
+      bool? isCurrentTurn,
+      bool? isFinished,
+      int? targetValue,
+      double? checkoutPercentage,
+      int? missed,
+      int? dartsThrown}) = _$_PlayerSnapshotDto;
   const _PlayerSnapshotDto._() : super._();
 
   @override
@@ -305,17 +306,17 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
+  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  @override
+  bool? get isFinished => throw _privateConstructorUsedError;
+  @override
   int? get targetValue => throw _privateConstructorUsedError;
   @override
-  int? get points => throw _privateConstructorUsedError;
-  @override
-  int? get singles => throw _privateConstructorUsedError;
-  @override
-  int? get doubles => throw _privateConstructorUsedError;
-  @override
-  int? get triples => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   @override
   int? get missed => throw _privateConstructorUsedError;
+  @override
+  int? get dartsThrown => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>

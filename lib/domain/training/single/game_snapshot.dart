@@ -20,6 +20,7 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required PlayerSnapshot owner,
   }) = _GameSnapshot;
 
+  // TODO needed remove pls
   factory GameSnapshot.initial({
     String? username,
   }) {

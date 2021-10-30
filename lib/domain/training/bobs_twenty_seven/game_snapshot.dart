@@ -4,8 +4,8 @@ import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import '../mode.dart';
 import '../status.dart';
+import 'mode.dart';
 
 part 'game_snapshot.freezed.dart';
 
@@ -18,4 +18,6 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required KtList<PlayerSnapshot> players,
     required PlayerSnapshot owner,
   }) = _GameSnapshot;
+
+  // TODO dummy
 }

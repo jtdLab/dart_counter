@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/user/user.dart';
+
+import 'hit.dart';
 
 abstract class IBobsTwentySevenService {
   /// Returns a stream of the received snapshots of the current game of the app-user.

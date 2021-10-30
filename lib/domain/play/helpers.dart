@@ -1,17 +1,17 @@
-import 'package:dart_game/dart_game.dart' as ex;
+import 'package:dart_game/util/dart_utils.dart';
 
 /// Returns `true` if [points] is valid when a player has [pointsLeft].
 bool validatePoints({
   required int pointsLeft,
   required int points,
 }) =>
-    ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
+    DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
 
 /// Returns `true` if [points] is finishable.
 bool isFinish({
   required int points,
 }) =>
-    ex.DartUtils.isFinish(points: points);
+    DartUtils.isFinish(points: points);
 
 /// Returns the min. possible dartsThrown depending on [pointsLeft] and [points].
 ///
@@ -23,7 +23,7 @@ int minDartsThrown({
   required int pointsLeft,
   required int points,
 }) =>
-    ex.DartUtils.minDartsThrown(pointsLeft: pointsLeft, points: points);
+    DartUtils.minDartsThrown(pointsLeft: pointsLeft, points: points);
 
 /// Returns the max. possible dartsThrown depending on [pointsLeft] and [points].
 ///
@@ -32,7 +32,7 @@ int maxDartsThrown({
   required int pointsLeft,
   required int points,
 }) =>
-    ex.DartUtils.maxDartsThrown(pointsLeft: pointsLeft, points: points);
+    DartUtils.maxDartsThrown(pointsLeft: pointsLeft, points: points);
 
 /// Returns the min. possible dartsOnDouble depending on [pointsLeft] and [points].
 ///
@@ -41,7 +41,7 @@ int minDartsOnDouble({
   required int pointsLeft,
   required int points,
 }) =>
-    ex.DartUtils.minDartsOnDouble(pointsLeft: pointsLeft, points: points);
+    DartUtils.minDartsOnDouble(pointsLeft: pointsLeft, points: points);
 
 /// Returns the max. possible dartsOnDouble depending on [pointsLeft] and [points].
 ///
@@ -50,7 +50,7 @@ int maxDartsOnDouble({
   required int pointsLeft,
   required int points,
 }) =>
-    ex.DartUtils.maxDartsOnDouble(pointsLeft: pointsLeft, points: points);
+    DartUtils.maxDartsOnDouble(pointsLeft: pointsLeft, points: points);
 
 /**
  * import 'package:dart_counter/domain/play/throw.dart';

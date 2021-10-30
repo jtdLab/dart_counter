@@ -1,11 +1,11 @@
-import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/game_snapshot_dto.dart';
-import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/hit_x.dart';
-import 'package:injectable/injectable.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
+import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
@@ -63,11 +63,10 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     required Hit hit3,
   }) {
     return _tryPerform(
-      action: () => _game!.performHits(
-        hit1.toExternal(),
-        hit2.toExternal(),
-        hit3.toExternal(),
-      ),
+      action: () {
+        // TODO implement
+        throw UnimplementedError();
+      },
     );
   }
 
@@ -103,7 +102,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   @override
   void undoHits() {
     return _tryPerform(
-      action: () => _game!.undoHits(),
+      action: () => _game!.undoThrow(),
     );
   }
 

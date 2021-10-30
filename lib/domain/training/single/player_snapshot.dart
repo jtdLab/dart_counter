@@ -10,7 +10,7 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
   @Implements(TrainingPlayerSnapshot)
   const factory PlayerSnapshot({
     required UniqueId id,
-    required String? name,
+    String? name,
     required bool isCurrentTurn,
     required int targetValue,
     required int points,
@@ -20,6 +20,7 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
     required int missed,
   }) = _PlayerSnapshot;
 
+  // TODO needed remove pls
   factory PlayerSnapshot.initial({
     String? username,
   }) {

@@ -60,7 +60,10 @@ class ScoreTrainingService implements IScoreTrainingService {
     required int points,
   }) {
     return _tryPerform(
-      action: () => _game!.performThrow(points: points),
+      action: () {
+        // TODO implement
+        throw UnimplementedError();
+      },
     );
   }
 

@@ -19,16 +19,24 @@ class _$PlayerSnapshotTearOff {
 
   _PlayerSnapshot call(
       {required UniqueId id,
-      required String? name,
+      String? name,
+      required bool isCurrentTurn,
       required int takesLeft,
-      required double average,
-      required int points}) {
+      double? average,
+      required int points,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage}) {
     return _PlayerSnapshot(
       id: id,
       name: name,
+      isCurrentTurn: isCurrentTurn,
       takesLeft: takesLeft,
       average: average,
       points: points,
+      firstDartAverage: firstDartAverage,
+      secondDartAverage: secondDartAverage,
+      thirdDartAverage: thirdDartAverage,
     );
   }
 }
@@ -40,9 +48,13 @@ const $PlayerSnapshot = _$PlayerSnapshotTearOff();
 mixin _$PlayerSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  bool get isCurrentTurn => throw _privateConstructorUsedError;
   int get takesLeft => throw _privateConstructorUsedError;
-  double get average => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
   int get points => throw _privateConstructorUsedError;
+  double? get firstDartAverage => throw _privateConstructorUsedError;
+  double? get secondDartAverage => throw _privateConstructorUsedError;
+  double? get thirdDartAverage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerSnapshotCopyWith<PlayerSnapshot> get copyWith =>
@@ -55,7 +67,15 @@ abstract class $PlayerSnapshotCopyWith<$Res> {
           PlayerSnapshot value, $Res Function(PlayerSnapshot) then) =
       _$PlayerSnapshotCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, String? name, int takesLeft, double average, int points});
+      {UniqueId id,
+      String? name,
+      bool isCurrentTurn,
+      int takesLeft,
+      double? average,
+      int points,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage});
 }
 
 /// @nodoc
@@ -71,9 +91,13 @@ class _$PlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
     Object? takesLeft = freezed,
     Object? average = freezed,
     Object? points = freezed,
+    Object? firstDartAverage = freezed,
+    Object? secondDartAverage = freezed,
+    Object? thirdDartAverage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -84,6 +108,10 @@ class _$PlayerSnapshotCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool,
       takesLeft: takesLeft == freezed
           ? _value.takesLeft
           : takesLeft // ignore: cast_nullable_to_non_nullable
@@ -91,11 +119,23 @@ class _$PlayerSnapshotCopyWithImpl<$Res>
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as int,
+      firstDartAverage: firstDartAverage == freezed
+          ? _value.firstDartAverage
+          : firstDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      secondDartAverage: secondDartAverage == freezed
+          ? _value.secondDartAverage
+          : secondDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      thirdDartAverage: thirdDartAverage == freezed
+          ? _value.thirdDartAverage
+          : thirdDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -108,7 +148,15 @@ abstract class _$PlayerSnapshotCopyWith<$Res>
       __$PlayerSnapshotCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, String? name, int takesLeft, double average, int points});
+      {UniqueId id,
+      String? name,
+      bool isCurrentTurn,
+      int takesLeft,
+      double? average,
+      int points,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage});
 }
 
 /// @nodoc
@@ -126,9 +174,13 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? isCurrentTurn = freezed,
     Object? takesLeft = freezed,
     Object? average = freezed,
     Object? points = freezed,
+    Object? firstDartAverage = freezed,
+    Object? secondDartAverage = freezed,
+    Object? thirdDartAverage = freezed,
   }) {
     return _then(_PlayerSnapshot(
       id: id == freezed
@@ -139,6 +191,10 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCurrentTurn: isCurrentTurn == freezed
+          ? _value.isCurrentTurn
+          : isCurrentTurn // ignore: cast_nullable_to_non_nullable
+              as bool,
       takesLeft: takesLeft == freezed
           ? _value.takesLeft
           : takesLeft // ignore: cast_nullable_to_non_nullable
@@ -146,11 +202,23 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as int,
+      firstDartAverage: firstDartAverage == freezed
+          ? _value.firstDartAverage
+          : firstDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      secondDartAverage: secondDartAverage == freezed
+          ? _value.secondDartAverage
+          : secondDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      thirdDartAverage: thirdDartAverage == freezed
+          ? _value.thirdDartAverage
+          : thirdDartAverage // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -161,25 +229,37 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
 class _$_PlayerSnapshot implements _PlayerSnapshot {
   const _$_PlayerSnapshot(
       {required this.id,
-      required this.name,
+      this.name,
+      required this.isCurrentTurn,
       required this.takesLeft,
-      required this.average,
-      required this.points});
+      this.average,
+      required this.points,
+      this.firstDartAverage,
+      this.secondDartAverage,
+      this.thirdDartAverage});
 
   @override
   final UniqueId id;
   @override
   final String? name;
   @override
+  final bool isCurrentTurn;
+  @override
   final int takesLeft;
   @override
-  final double average;
+  final double? average;
   @override
   final int points;
+  @override
+  final double? firstDartAverage;
+  @override
+  final double? secondDartAverage;
+  @override
+  final double? thirdDartAverage;
 
   @override
   String toString() {
-    return 'PlayerSnapshot(id: $id, name: $name, takesLeft: $takesLeft, average: $average, points: $points)';
+    return 'PlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, takesLeft: $takesLeft, average: $average, points: $points, firstDartAverage: $firstDartAverage, secondDartAverage: $secondDartAverage, thirdDartAverage: $thirdDartAverage)';
   }
 
   @override
@@ -190,6 +270,9 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.isCurrentTurn, isCurrentTurn) ||
+                const DeepCollectionEquality()
+                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
             (identical(other.takesLeft, takesLeft) ||
                 const DeepCollectionEquality()
                     .equals(other.takesLeft, takesLeft)) &&
@@ -197,7 +280,16 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
                 const DeepCollectionEquality()
                     .equals(other.average, average)) &&
             (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)));
+                const DeepCollectionEquality().equals(other.points, points)) &&
+            (identical(other.firstDartAverage, firstDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstDartAverage, firstDartAverage)) &&
+            (identical(other.secondDartAverage, secondDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondDartAverage, secondDartAverage)) &&
+            (identical(other.thirdDartAverage, thirdDartAverage) ||
+                const DeepCollectionEquality()
+                    .equals(other.thirdDartAverage, thirdDartAverage)));
   }
 
   @override
@@ -205,9 +297,13 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(isCurrentTurn) ^
       const DeepCollectionEquality().hash(takesLeft) ^
       const DeepCollectionEquality().hash(average) ^
-      const DeepCollectionEquality().hash(points);
+      const DeepCollectionEquality().hash(points) ^
+      const DeepCollectionEquality().hash(firstDartAverage) ^
+      const DeepCollectionEquality().hash(secondDartAverage) ^
+      const DeepCollectionEquality().hash(thirdDartAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -219,21 +315,33 @@ abstract class _PlayerSnapshot
     implements PlayerSnapshot, TrainingPlayerSnapshot {
   const factory _PlayerSnapshot(
       {required UniqueId id,
-      required String? name,
+      String? name,
+      required bool isCurrentTurn,
       required int takesLeft,
-      required double average,
-      required int points}) = _$_PlayerSnapshot;
+      double? average,
+      required int points,
+      double? firstDartAverage,
+      double? secondDartAverage,
+      double? thirdDartAverage}) = _$_PlayerSnapshot;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
+  bool get isCurrentTurn => throw _privateConstructorUsedError;
+  @override
   int get takesLeft => throw _privateConstructorUsedError;
   @override
-  double get average => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
   @override
   int get points => throw _privateConstructorUsedError;
+  @override
+  double? get firstDartAverage => throw _privateConstructorUsedError;
+  @override
+  double? get secondDartAverage => throw _privateConstructorUsedError;
+  @override
+  double? get thirdDartAverage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotCopyWith<_PlayerSnapshot> get copyWith =>

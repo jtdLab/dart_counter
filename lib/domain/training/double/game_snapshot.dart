@@ -9,8 +9,6 @@ import '../status.dart';
 
 part 'game_snapshot.freezed.dart';
 
-
-
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
   @Implements(TrainingGameSnapshot)
@@ -20,4 +18,6 @@ class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
     required KtList<PlayerSnapshot> players,
     required PlayerSnapshot owner,
   }) = _GameSnapshot;
+
+  // TODO dummy
 }
