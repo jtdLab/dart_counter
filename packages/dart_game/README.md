@@ -2,6 +2,8 @@
 
 This package provides models for different types of dart games e.g. ClassicGame, DoubleTraining, ScoringTraining and more
 
+// TODO write real game play "integration" test for each game 
+
 Rules:
 
     leg:

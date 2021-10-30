@@ -1,6 +1,8 @@
 library bobs_twenty_seven_training_game;
 
 // IMPORTS
+import 'dart:math';
+
 import 'package:dart_game/core/abstract_game.dart';
 import 'package:dart_game/core/abstract_player.dart';
 

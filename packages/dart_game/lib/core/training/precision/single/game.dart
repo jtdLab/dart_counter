@@ -104,9 +104,7 @@ class Game extends AbstractGame<Player> {
       _currentTurn!._throws!.removeLast();
 
       final index = _currentTurn!._throws!.length;
-      if (index <= 20) {
-        _currentTurn!._targetValue = _targetValues![index];
-      }
+      _currentTurn!._targetValue = _targetValues![index];
 
       _currentTurn!.isCurrentTurn = true;
 

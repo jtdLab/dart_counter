@@ -1,6 +1,8 @@
 library double_trainig_game;
 
 // IMPORTS
+import 'dart:math';
+
 import 'package:dart_game/core/abstract_game.dart';
 import 'package:dart_game/core/abstract_player.dart';
 import 'package:dart_game/util/dart_utils.dart';

@@ -43,7 +43,6 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  // TODO
   @override
   bool performThrow({
     required Throw t,
@@ -52,63 +51,105 @@ class Game extends AbstractGame<Player> {
       throw ArgumentError('Darts must not be null.');
     }
 
-    if (t.dartsThrown != 3) {
-      throw ArgumentError('DartsThrown must be 3.');
-    }
-
     if (t.dartsOnDouble != 3) {
       throw ArgumentError('DartsOnDouble must be 3.');
     }
 
     if (status == Status.running) {
-      /**
-      *  _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
+      _currentTurn!._throws!.add(t);
 
-      if (_turnIndex == players.length - 1) {
-        final targetValue;
+      if (mode == Mode.hard) {
+        if (_currentTurn!.points! >= 0) {
+          final nextTargetValue = _currentTurn!._throws!.length + 1;
 
-        if (mode == Mode.ascending) {
-          targetValue = _currentTurn!.rounds!.length + 1;
-        } else if (mode == Mode.descending) {
-          targetValue = 21 - _currentTurn!.rounds!.length; // TODo
-
+          _currentTurn!._targetValue = nextTargetValue;
         } else {
-          // TODO random
-          throw UnimplementedError();
-        }
-
-        for (Player player in players) {
-          player._rounds?.add(Round(targetValue: targetValue));
+          // points <0 => disqualify player
+          _currentTurn!._isDisqualified = true;
         }
       }
 
-      _currentTurn!.isCurrentTurn = false;
-      _turnIndex = (_turnIndex! + 1) % players.length;
-      _currentTurn!.isCurrentTurn = true;
+      final disqualifiedPlayers =
+          players.where((player) => player.isDisqualified!);
+      final notDisqualifiedPlayers =
+          players.where((player) => !player.isDisqualified!);
+
+      final allPlayersAreDisqualified =
+          disqualifiedPlayers.length == players.length;
+      final allNotDisqualifiedHave21Throws = notDisqualifiedPlayers.fold<bool>(
+        true,
+        (acc, player) => acc &= player.throws!.length == 21,
+      );
+
+      if (allPlayersAreDisqualified || allNotDisqualifiedHave21Throws) {
+        // every player is disqualified or has done all his takes => finish game
+        status = Status.finished;
+      } else {
+        // update current turn◊
+        _currentTurn!.isCurrentTurn = false;
+        if (mode == Mode.hard) {
+          // recursive function to update turn index to next not disqualified player
+          void rec() {
+            _turnIndex = (_turnIndex! + 1) % players.length;
+            if (_currentTurn!.isDisqualified!) {
+              /// already finished => go next player
+              rec();
+            }
+          }
+
+          rec();
+        } else {
+          _turnIndex = (_turnIndex! + 1) % players.length;
+        }
+        _currentTurn!.isCurrentTurn = true;
+      }
+
       return true;
-      */
     }
 
     return false;
   }
 
-  // TODO
   @override
   bool undoThrow() {
     if (status == Status.running) {
-      /**
-      *  final rounds = _currentTurn!._rounds;
-      if (rounds != null) {
-        if (rounds.length > 0) {
-          rounds.removeLast();
-          _currentTurn!.isCurrentTurn = false;
-          _turnIndex = (_turnIndex! - 1) % players.length;
-          _currentTurn!.isCurrentTurn = true;
-          return true;
-        }
+      if (_turnIndex == 0 && _currentTurn!._throws!.isEmpty) {
+        // no throw performed yet
+        return false;
       }
-      */
+
+      final amountOfThrows = players.map((player) => player._throws!.length);
+      final maxAmountOfThrows = amountOfThrows.reduce((a, b) => max(a, b));
+
+      if (_currentTurn!._throws!.length == maxAmountOfThrows) {
+        final allEqual =
+            amountOfThrows.every((element) => element == amountOfThrows.first);
+        if (allEqual) {
+          _turnIndex = players.length - 1;
+        }
+
+        _currentTurn!._throws!.removeLast();
+
+        if (mode == Mode.hard) {
+          if (_currentTurn!.points! >= 0) {
+            // not longer disqualified
+            _currentTurn!._isDisqualified = false;
+          }
+        }
+
+        _currentTurn!._targetValue = _currentTurn!._throws!.length + 1;
+
+        _currentTurn!.isCurrentTurn = true;
+      } else {
+        _currentTurn!.isCurrentTurn = false;
+        _turnIndex = (_turnIndex! - 1) % players.length;
+
+        return undoThrow();
+      }
+
+      return true;
     }
+
     return false;
   }
 

@@ -38,6 +38,7 @@ class Game extends AbstractGame<Player> {
         player.isCurrentTurn = false;
         player._throws = [];
         player._targetValue = _targetValues![0];
+        player._isFinished = false;
       }
 
       _turnIndex = 0;
@@ -51,7 +52,6 @@ class Game extends AbstractGame<Player> {
     return false;
   }
 
-  // TODO
   @override
   bool performThrow({
     required Throw t,
@@ -65,67 +65,115 @@ class Game extends AbstractGame<Player> {
       throw ArgumentError('DartsOnDouble must be equal to dartsThrown.');
     }
 
-    if (!(DartUtils.isOneDartFinish(points: t.points) || t.points == 0)) {
-      throw ArgumentError('Points must be a one-dart-finish or 0.');
-    }
+    final dartsWithPointsNotZero = darts
+        .where((dart) => dart.type == DartType.double && dart.points != 0)
+        .toList();
 
-    final dartsThatHaveToBeMissed = darts.take(t.dartsThrown - 1);
-    for (final d in dartsThatHaveToBeMissed) {
-      if (d.points != 0) {
-        throw ArgumentError(
-          'Darts before the dart that was hit on the target double must have 0 points.',
-        );
-      }
+    if (dartsWithPointsNotZero.length > 1) {
+      throw ArgumentError(
+        'There must not be more than one dart with type double and points != 0.',
+      );
     }
 
     if (status == Status.running) {
-      /**
-      *  _currentTurn!._currentRound!.hits.addAll([hit1, hit2, hit3]);
-
-      if (_turnIndex == players.length - 1) {
-        final targetValue;
-
-        if (mode == Mode.ascending) {
-          targetValue = _currentTurn!.rounds!.length + 1;
-        } else if (mode == Mode.descending) {
-          targetValue = 21 - _currentTurn!.rounds!.length; // TODo
-
-        } else {
-          // TODO random
-          throw UnimplementedError();
-        }
-
-        for (Player player in players) {
-          player._rounds?.add(Round(targetValue: targetValue));
+      if (dartsWithPointsNotZero.length == 1) {
+        final dart = dartsWithPointsNotZero[0];
+        if (_currentTurn!.targetValue != dart.value) {
+          throw ArgumentError(
+            'The targetValue of current turn and the value of the dart hit on double must be equal.',
+          );
         }
       }
 
-      _currentTurn!.isCurrentTurn = false;
-      _turnIndex = (_turnIndex! + 1) % players.length;
-      _currentTurn!.isCurrentTurn = true;
+      // add throw
+      _currentTurn!._throws!.add(t);
+
+      // calc index of next target value
+      final index = _currentTurn!._throws!
+          .where(
+            (t) =>
+                t.darts!
+                    .where((dart) =>
+                        dart.type == DartType.double && dart.points != 0)
+                    .length ==
+                1,
+          )
+          .length;
+
+      // update targetValue if current turn didnt check every double already
+      if (index <= 20) {
+        _currentTurn!._targetValue = _targetValues![index];
+      } else {
+        // player is finished
+        _currentTurn!._isFinished = true;
+      }
+
+      if (players.fold(true, (acc, player) => acc &= player.isFinished!)) {
+        // every player has checked all doubles => finish game
+        status = Status.finished;
+      } else {
+        // recursive function to update turn index to next not finished player
+        void rec() {
+          _turnIndex = (_turnIndex! + 1) % players.length;
+          if (_currentTurn!.isFinished!) {
+            /// already finished => go next player
+            rec();
+          }
+        }
+
+        // update current turn
+        _currentTurn!.isCurrentTurn = false;
+        rec();
+        _currentTurn!.isCurrentTurn = true;
+      }
+
       return true;
-      */
     }
 
     return false;
   }
 
-  // TODO
   @override
   bool undoThrow() {
     if (status == Status.running) {
-      /**
-      *  final rounds = _currentTurn!._rounds;
-      if (rounds != null) {
-        if (rounds.length > 0) {
-          rounds.removeLast();
-          _currentTurn!.isCurrentTurn = false;
-          _turnIndex = (_turnIndex! - 1) % players.length;
-          _currentTurn!.isCurrentTurn = true;
-          return true;
-        }
+      if (_turnIndex == 0 && _currentTurn!._throws!.isEmpty) {
+        // no throw performed yet
+        return false;
       }
-      */
+
+      final amountOfThrows = players.map((player) => player._throws!.length);
+      final maxAmountOfThrows = amountOfThrows.reduce((a, b) => max(a, b));
+
+      if (_currentTurn!._throws!.length == maxAmountOfThrows) {
+        final allEqual =
+            amountOfThrows.every((element) => element == amountOfThrows.first);
+        if (allEqual) {
+          _turnIndex = players.length - 1;
+        }
+
+        _currentTurn!._throws!.removeLast();
+
+        final index = _currentTurn!._throws!
+            .where(
+              (t) =>
+                  t.darts!
+                      .where((dart) =>
+                          dart.type == DartType.double && dart.points != 0)
+                      .length ==
+                  1,
+            )
+            .length;
+        _currentTurn!._targetValue = _targetValues![index];
+
+        _currentTurn!.isCurrentTurn = true;
+      } else {
+        _currentTurn!.isCurrentTurn = false;
+        _turnIndex = (_turnIndex! - 1) % players.length;
+
+        return undoThrow();
+      }
+
+      return true;
     }
 
     return false;
