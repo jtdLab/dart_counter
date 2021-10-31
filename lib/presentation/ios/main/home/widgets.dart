@@ -238,7 +238,7 @@ class _TrainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.large(
       onPressed: () {
-        context.router.push(const TrainingFlowRoute());
+        context.router.replace(const TrainingFlowRoute());
       },
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),

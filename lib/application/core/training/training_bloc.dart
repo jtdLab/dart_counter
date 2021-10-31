@@ -10,9 +10,11 @@ import 'package:dart_counter/domain/training/single/game_snapshot.dart'
     as single;
 import 'package:dart_counter/domain/training/score/game_snapshot.dart' as score;
 
-import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart' as bobs27;
+import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart'
+    as bobs27;
 
-import 'package:dart_counter/domain/training/double/game_snapshot.dart' as double;
+import 'package:dart_counter/domain/training/double/game_snapshot.dart'
+    as double;
 
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/training_game_snapshot.dart';
@@ -57,11 +59,6 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
         ) {
     on<TrainingCreated>((event, emit) async {
       if (state is TrainingInitial) {
-        final gameSnapshots = _singleTrainingService.watchGame();
-        _gameSnapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
-          add(TrainingEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
-        });
-
         final user = _userFacade.getUser()?.fold(
               (failure) => null,
               (user) => user,
@@ -69,6 +66,11 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
 
         if (user != null) {
           _singleTrainingService.createGame(owner: user);
+
+          final gameSnapshots = _singleTrainingService.watchGame();
+          _gameSnapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
+            add(TrainingEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
+          });
 
           final gameSnapshot = await gameSnapshots.first;
 
@@ -319,7 +321,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
       final gameSnapshot = event.gameSnapshot;
 
       // TODO remove
-     /**
+      /**
       *  if (gameSnapshot is score.GameSnapshot) {
         print('score');
       }
