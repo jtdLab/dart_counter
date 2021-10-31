@@ -279,6 +279,24 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
         emit(state.copyWith(type: newType));
       }
     });
+    on<TrainingStarted>((event, emit) {
+      final type = state.type;
+
+      switch (type) {
+        case Type.single:
+          _singleTrainingService.start();
+          break;
+        case Type.double:
+          _doubleTrainingService.start();
+          break;
+        case Type.score:
+          _scoreTrainingService.start();
+          break;
+        case Type.bobs27:
+          _bobsTwentySevenService.start();
+          break;
+      }
+    });
     on<TrainingCanceled>((event, emit) {
       final type = state.type;
 

@@ -12,8 +12,8 @@ import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/training/training_player_snapshot.dart';
 import 'package:dart_counter/domain/training/single/game_snapshot.dart' as single;
 import 'package:dart_counter/domain/training/double/game_snapshot.dart' as double;
-import 'package:dart_counter/domain/training/score/game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/score/game_snapshot.dart' as score;
+import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart' as bobs27;
 import 'package:dart_counter/domain/training/mode.dart';
 
 
@@ -52,7 +52,7 @@ class CreateTrainingPage extends StatelessWidget {
             }
           }
 
-          context.router.replace(const InGamePageRoute());
+          context.router.replace(const InTrainingPageRoute());
         }
       },
       child: AppPage(
