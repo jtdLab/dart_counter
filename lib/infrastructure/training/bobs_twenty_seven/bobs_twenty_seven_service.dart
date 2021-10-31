@@ -64,8 +64,34 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }) {
     return _tryPerform(
       action: () {
-        // TODO implement
-        throw UnimplementedError();
+        final hits = [hit1, hit2, hit3];
+        final currentTurn =
+            _game!.players.where((player) => player.isCurrentTurn!).toList()[0];
+        final value = currentTurn.targetValue!;
+
+        final List<ex.Dart> darts = [];
+        for (final hit in hits) {
+          switch (hit) {
+            case Hit.double:
+              darts.add(
+                ex.Dart(
+                  type: ex.DartType.double,
+                  value: value,
+                ),
+              );
+              break;
+            case Hit.missed:
+              darts.add(ex.Dart.missed);
+              break;
+          }
+        }
+
+        _game!.performThrow(
+          t: ex.Throw.fromDarts(
+            darts: darts,
+            dartsOnDouble: 3,
+          ),
+        );
       },
     );
   }

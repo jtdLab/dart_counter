@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -28,7 +29,9 @@ class ScoreTrainingBloc extends Bloc<ScoreTrainingEvent, ScoreTrainingState>
     on<_ScoreTrainingPerformPressed>((event, emit) {
       final points = state.points;
 
-      _trainingService.performThrow(points: points);
+      _trainingService.performThrow(
+        t: Throw(points: points, dartsThrown: 0, dartsOnDouble: 0),
+      );
 
       // TODO only to this if perform hits was succesful
       emit(state.copyWith(points: 0));

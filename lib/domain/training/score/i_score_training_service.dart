@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/training/score/game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 
@@ -32,7 +33,7 @@ abstract class IScoreTrainingService {
   void start();
 
   void performThrow({
-    required int points,
+    required Throw t,
   });
 
   void undoThrow();

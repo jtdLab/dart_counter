@@ -1,6 +1,8 @@
+import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/training/score/game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/score/game_snapshot_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
@@ -57,12 +59,13 @@ class ScoreTrainingService implements IScoreTrainingService {
 
   @override
   void performThrow({
-    required int points,
+    required Throw t,
   }) {
     return _tryPerform(
       action: () {
-        // TODO implement
-        throw UnimplementedError();
+        _game!.performThrow(
+          t: ThrowDto.fromDomain(t).toExternal(),
+        );
       },
     );
   }
