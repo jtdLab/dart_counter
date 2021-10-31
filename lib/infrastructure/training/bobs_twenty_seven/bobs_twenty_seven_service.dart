@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/game_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
@@ -139,6 +140,17 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }) {
     return _tryPerform(
       action: () => _game!.players[index].name = newName,
+    );
+  }
+
+  @override
+  void updateMode({
+    required Mode newMode,
+  }) {
+    return _tryPerform(
+      action: () {
+        _game!.mode = newMode == Mode.easy ? ex.Mode.easy : ex.Mode.hard;
+      },
     );
   }
 

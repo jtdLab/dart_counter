@@ -26,7 +26,7 @@ class DoubleTrainingBloc extends Bloc<DoubleTrainingEvent, DoubleTrainingState>
           ),
         ) {
     on<_DoubleTrainingModeChanged>((event, emit) {
-      emit(state.copyWith(mode: event.newMode));
+      _trainingService.updateMode(newMode: event.newMode);
     });
     on<_DoubleTrainingPerformPressed>((event, emit) {
       final hits = state.hits;

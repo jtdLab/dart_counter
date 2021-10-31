@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/training/double/hit.dart';
 import 'package:dart_counter/domain/training/double/game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
+import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/training/double/game_snapshot_dto.dart';
 import 'package:injectable/injectable.dart';
@@ -139,6 +140,21 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }) {
     return _tryPerform(
       action: () => _game!.players[index].name = newName,
+    );
+  }
+
+  @override
+  void updateMode({
+    required Mode newMode,
+  }) {
+    return _tryPerform(
+      action: () {
+        _game!.mode = newMode == Mode.ascending
+            ? ex.Mode.ascending
+            : newMode == Mode.descending
+                ? ex.Mode.descending
+                : ex.Mode.random;
+      },
     );
   }
 

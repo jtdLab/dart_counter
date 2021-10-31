@@ -4,9 +4,15 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
+
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/training/single/game_snapshot.dart'
     as single;
+import 'package:dart_counter/domain/training/score/game_snapshot.dart' as score;
+
+import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart' as bobs27;
+
+import 'package:dart_counter/domain/training/double/game_snapshot.dart' as double;
 
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/training_game_snapshot.dart';
@@ -293,6 +299,25 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
     });
     on<TrainingGameSnapshotReceived>((event, emit) {
       final gameSnapshot = event.gameSnapshot;
+
+      // TODO remove
+     /**
+      *  if (gameSnapshot is score.GameSnapshot) {
+        print('score');
+      }
+
+      if (gameSnapshot is single.GameSnapshot) {
+        print('single');
+      }
+
+      if (gameSnapshot is bobs27.GameSnapshot) {
+        print('bobs27');
+      }
+
+      if (gameSnapshot is double.GameSnapshot) {
+        print('double');
+      }
+      */
 
       emit(state.copyWith(gameSnapshot: gameSnapshot));
     });

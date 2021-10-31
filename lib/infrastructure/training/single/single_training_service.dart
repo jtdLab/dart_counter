@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/hit.dart';
 import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
@@ -154,6 +155,21 @@ class SingleTrainingService implements ISingleTrainingService {
   }) {
     return _tryPerform(
       action: () => _game!.players[index].name = newName,
+    );
+  }
+
+  @override
+  void updateMode({
+    required Mode newMode,
+  }) {
+    return _tryPerform(
+      action: () {
+        _game!.mode = newMode == Mode.ascending
+            ? ex.Mode.ascending
+            : newMode == Mode.descending
+                ? ex.Mode.descending
+                : ex.Mode.random;
+      },
     );
   }
 

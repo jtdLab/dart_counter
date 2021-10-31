@@ -17,6 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BobsTwentySevenEventTearOff {
   const _$BobsTwentySevenEventTearOff();
 
+  _BobsTwentySevenTrainingModeChanged modeChanged({required Mode newMode}) {
+    return _BobsTwentySevenTrainingModeChanged(
+      newMode: newMode,
+    );
+  }
+
   _BobsTwentySevenTrainingPerformPressed performPressed() {
     return const _BobsTwentySevenTrainingPerformPressed();
   }
@@ -41,6 +47,7 @@ const $BobsTwentySevenEvent = _$BobsTwentySevenEventTearOff();
 mixin _$BobsTwentySevenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
     required TResult Function() performPressed,
     required TResult Function() undoPressed,
     required TResult Function() doubleHitPressed,
@@ -49,6 +56,7 @@ mixin _$BobsTwentySevenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -57,6 +65,7 @@ mixin _$BobsTwentySevenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -66,6 +75,8 @@ mixin _$BobsTwentySevenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
     required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
         performPressed,
     required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
@@ -78,6 +89,7 @@ mixin _$BobsTwentySevenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -89,6 +101,7 @@ mixin _$BobsTwentySevenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -116,6 +129,178 @@ class _$BobsTwentySevenEventCopyWithImpl<$Res>
   final BobsTwentySevenEvent _value;
   // ignore: unused_field
   final $Res Function(BobsTwentySevenEvent) _then;
+}
+
+/// @nodoc
+abstract class _$BobsTwentySevenTrainingModeChangedCopyWith<$Res> {
+  factory _$BobsTwentySevenTrainingModeChangedCopyWith(
+          _BobsTwentySevenTrainingModeChanged value,
+          $Res Function(_BobsTwentySevenTrainingModeChanged) then) =
+      __$BobsTwentySevenTrainingModeChangedCopyWithImpl<$Res>;
+  $Res call({Mode newMode});
+}
+
+/// @nodoc
+class __$BobsTwentySevenTrainingModeChangedCopyWithImpl<$Res>
+    extends _$BobsTwentySevenEventCopyWithImpl<$Res>
+    implements _$BobsTwentySevenTrainingModeChangedCopyWith<$Res> {
+  __$BobsTwentySevenTrainingModeChangedCopyWithImpl(
+      _BobsTwentySevenTrainingModeChanged _value,
+      $Res Function(_BobsTwentySevenTrainingModeChanged) _then)
+      : super(_value, (v) => _then(v as _BobsTwentySevenTrainingModeChanged));
+
+  @override
+  _BobsTwentySevenTrainingModeChanged get _value =>
+      super._value as _BobsTwentySevenTrainingModeChanged;
+
+  @override
+  $Res call({
+    Object? newMode = freezed,
+  }) {
+    return _then(_BobsTwentySevenTrainingModeChanged(
+      newMode: newMode == freezed
+          ? _value.newMode
+          : newMode // ignore: cast_nullable_to_non_nullable
+              as Mode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_BobsTwentySevenTrainingModeChanged
+    implements _BobsTwentySevenTrainingModeChanged {
+  const _$_BobsTwentySevenTrainingModeChanged({required this.newMode});
+
+  @override
+  final Mode newMode;
+
+  @override
+  String toString() {
+    return 'BobsTwentySevenEvent.modeChanged(newMode: $newMode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _BobsTwentySevenTrainingModeChanged &&
+            (identical(other.newMode, newMode) ||
+                const DeepCollectionEquality().equals(other.newMode, newMode)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMode);
+
+  @JsonKey(ignore: true)
+  @override
+  _$BobsTwentySevenTrainingModeChangedCopyWith<
+          _BobsTwentySevenTrainingModeChanged>
+      get copyWith => __$BobsTwentySevenTrainingModeChangedCopyWithImpl<
+          _BobsTwentySevenTrainingModeChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
+    required TResult Function() performPressed,
+    required TResult Function() undoPressed,
+    required TResult Function() doubleHitPressed,
+    required TResult Function() missHitPressed,
+  }) {
+    return modeChanged(newMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
+    TResult Function()? performPressed,
+    TResult Function()? undoPressed,
+    TResult Function()? doubleHitPressed,
+    TResult Function()? missHitPressed,
+  }) {
+    return modeChanged?.call(newMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
+    TResult Function()? performPressed,
+    TResult Function()? undoPressed,
+    TResult Function()? doubleHitPressed,
+    TResult Function()? missHitPressed,
+    required TResult orElse(),
+  }) {
+    if (modeChanged != null) {
+      return modeChanged(newMode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
+    required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
+        performPressed,
+    required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
+        undoPressed,
+    required TResult Function(_BobsTwentySevenTrainingDoubleHitPressed value)
+        doubleHitPressed,
+    required TResult Function(_BobsTwentySevenTrainingMissHitPressed value)
+        missHitPressed,
+  }) {
+    return modeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
+    TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
+        performPressed,
+    TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
+    TResult Function(_BobsTwentySevenTrainingDoubleHitPressed value)?
+        doubleHitPressed,
+    TResult Function(_BobsTwentySevenTrainingMissHitPressed value)?
+        missHitPressed,
+  }) {
+    return modeChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
+    TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
+        performPressed,
+    TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
+    TResult Function(_BobsTwentySevenTrainingDoubleHitPressed value)?
+        doubleHitPressed,
+    TResult Function(_BobsTwentySevenTrainingMissHitPressed value)?
+        missHitPressed,
+    required TResult orElse(),
+  }) {
+    if (modeChanged != null) {
+      return modeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BobsTwentySevenTrainingModeChanged
+    implements BobsTwentySevenEvent {
+  const factory _BobsTwentySevenTrainingModeChanged({required Mode newMode}) =
+      _$_BobsTwentySevenTrainingModeChanged;
+
+  Mode get newMode => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$BobsTwentySevenTrainingModeChangedCopyWith<
+          _BobsTwentySevenTrainingModeChanged>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -164,6 +349,7 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
     required TResult Function() performPressed,
     required TResult Function() undoPressed,
     required TResult Function() doubleHitPressed,
@@ -175,6 +361,7 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -186,6 +373,7 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -201,6 +389,8 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
     required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
         performPressed,
     required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
@@ -216,6 +406,7 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -230,6 +421,7 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -297,6 +489,7 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
     required TResult Function() performPressed,
     required TResult Function() undoPressed,
     required TResult Function() doubleHitPressed,
@@ -308,6 +501,7 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -319,6 +513,7 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -334,6 +529,8 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
     required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
         performPressed,
     required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
@@ -349,6 +546,7 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -363,6 +561,7 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -431,6 +630,7 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
     required TResult Function() performPressed,
     required TResult Function() undoPressed,
     required TResult Function() doubleHitPressed,
@@ -442,6 +642,7 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -453,6 +654,7 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -468,6 +670,8 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
     required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
         performPressed,
     required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
@@ -483,6 +687,7 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -497,6 +702,7 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -565,6 +771,7 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Mode newMode) modeChanged,
     required TResult Function() performPressed,
     required TResult Function() undoPressed,
     required TResult Function() doubleHitPressed,
@@ -576,6 +783,7 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -587,6 +795,7 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Mode newMode)? modeChanged,
     TResult Function()? performPressed,
     TResult Function()? undoPressed,
     TResult Function()? doubleHitPressed,
@@ -602,6 +811,8 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_BobsTwentySevenTrainingModeChanged value)
+        modeChanged,
     required TResult Function(_BobsTwentySevenTrainingPerformPressed value)
         performPressed,
     required TResult Function(_BobsTwentySevenTrainingUndoPressed value)
@@ -617,6 +828,7 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,
@@ -631,6 +843,7 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BobsTwentySevenTrainingModeChanged value)? modeChanged,
     TResult Function(_BobsTwentySevenTrainingPerformPressed value)?
         performPressed,
     TResult Function(_BobsTwentySevenTrainingUndoPressed value)? undoPressed,

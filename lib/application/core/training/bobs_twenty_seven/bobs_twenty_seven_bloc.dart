@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -24,6 +25,9 @@ class BobsTwentySevenBloc
             hits: KtList.empty(),
           ),
         ) {
+    on<_BobsTwentySevenTrainingModeChanged>((event, emit) {
+      _trainingService.updateMode(newMode: event.newMode);
+    });
     on<_BobsTwentySevenTrainingPerformPressed>((event, emit) {
       final hits = state.hits;
 

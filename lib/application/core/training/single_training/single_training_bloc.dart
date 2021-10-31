@@ -26,7 +26,7 @@ class SingleTrainingBloc extends Bloc<SingleTrainingEvent, SingleTrainingState>
           ),
         ) {
     on<_SingleTrainingModeChanged>((event, emit) {
-      emit(state.copyWith(mode: event.newMode));
+      _trainingService.updateMode(newMode: event.newMode);
     });
     on<_SingleTrainingPerformPressed>((event, emit) {
       final hits = state.hits;

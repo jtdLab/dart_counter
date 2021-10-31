@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
 
 import 'hit.dart';
@@ -27,6 +28,10 @@ abstract class IBobsTwentySevenService {
   void updateName({
     required int index,
     required String newName,
+  });
+
+  void updateMode({
+    required Mode newMode,
   });
 
   void cancel();
