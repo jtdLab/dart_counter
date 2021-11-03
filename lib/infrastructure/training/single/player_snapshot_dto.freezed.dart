@@ -265,44 +265,24 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerSnapshotDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerSnapshotDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
+                other.isCurrentTurn == isCurrentTurn) &&
             (identical(other.targetValue, targetValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.targetValue, targetValue)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
-            (identical(other.singles, singles) ||
-                const DeepCollectionEquality()
-                    .equals(other.singles, singles)) &&
-            (identical(other.doubles, doubles) ||
-                const DeepCollectionEquality()
-                    .equals(other.doubles, doubles)) &&
-            (identical(other.triples, triples) ||
-                const DeepCollectionEquality()
-                    .equals(other.triples, triples)) &&
-            (identical(other.missed, missed) ||
-                const DeepCollectionEquality().equals(other.missed, missed)));
+                other.targetValue == targetValue) &&
+            (identical(other.points, points) || other.points == points) &&
+            (identical(other.singles, singles) || other.singles == singles) &&
+            (identical(other.doubles, doubles) || other.doubles == doubles) &&
+            (identical(other.triples, triples) || other.triples == triples) &&
+            (identical(other.missed, missed) || other.missed == missed));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(targetValue) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(singles) ^
-      const DeepCollectionEquality().hash(doubles) ^
-      const DeepCollectionEquality().hash(triples) ^
-      const DeepCollectionEquality().hash(missed);
+  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
+      targetValue, points, singles, doubles, triples, missed);
 
   @JsonKey(ignore: true)
   @override
@@ -324,23 +304,23 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const _PlayerSnapshotDto._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn;
   @override
-  int? get targetValue => throw _privateConstructorUsedError;
+  int? get targetValue;
   @override
-  int? get points => throw _privateConstructorUsedError;
+  int? get points;
   @override
-  int? get singles => throw _privateConstructorUsedError;
+  int? get singles;
   @override
-  int? get doubles => throw _privateConstructorUsedError;
+  int? get doubles;
   @override
-  int? get triples => throw _privateConstructorUsedError;
+  int? get triples;
   @override
-  int? get missed => throw _privateConstructorUsedError;
+  int? get missed;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>

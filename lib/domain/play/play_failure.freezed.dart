@@ -105,7 +105,8 @@ class _$_Error implements _Error {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Error);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Error);
   }
 
   @override

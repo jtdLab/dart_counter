@@ -30,7 +30,7 @@ class _$UserSearchResultDtoTearOff {
     );
   }
 
-  UserSearchResultDto fromJson(Map<String, Object> json) {
+  UserSearchResultDto fromJson(Map<String, Object?> json) {
     return UserSearchResultDto.fromJson(json);
   }
 }
@@ -159,22 +159,16 @@ class _$_UserSearchResultDto extends _UserSearchResultDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UserSearchResultDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _UserSearchResultDto &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoUrl, photoUrl)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                other.photoUrl == photoUrl) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(name);
+  int get hashCode => Object.hash(runtimeType, id, photoUrl, name);
 
   @JsonKey(ignore: true)
   @override
@@ -199,11 +193,11 @@ abstract class _UserSearchResultDto extends UserSearchResultDto {
       _$_UserSearchResultDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get photoUrl;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$UserSearchResultDtoCopyWith<_UserSearchResultDto> get copyWith =>

@@ -165,16 +165,14 @@ class _$OldPasswordChanged implements OldPasswordChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is OldPasswordChanged &&
+        (other.runtimeType == runtimeType &&
+            other is OldPasswordChanged &&
             (identical(other.oldPasswordString, oldPasswordString) ||
-                const DeepCollectionEquality()
-                    .equals(other.oldPasswordString, oldPasswordString)));
+                other.oldPasswordString == oldPasswordString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(oldPasswordString);
+  int get hashCode => Object.hash(runtimeType, oldPasswordString);
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +260,7 @@ abstract class OldPasswordChanged implements ChangePasswordEvent {
   const factory OldPasswordChanged({required String oldPasswordString}) =
       _$OldPasswordChanged;
 
-  String get oldPasswordString => throw _privateConstructorUsedError;
+  String get oldPasswordString;
   @JsonKey(ignore: true)
   $OldPasswordChangedCopyWith<OldPasswordChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -316,16 +314,14 @@ class _$NewPasswordChanged implements NewPasswordChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NewPasswordChanged &&
+        (other.runtimeType == runtimeType &&
+            other is NewPasswordChanged &&
             (identical(other.newPasswordString, newPasswordString) ||
-                const DeepCollectionEquality()
-                    .equals(other.newPasswordString, newPasswordString)));
+                other.newPasswordString == newPasswordString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newPasswordString);
+  int get hashCode => Object.hash(runtimeType, newPasswordString);
 
   @JsonKey(ignore: true)
   @override
@@ -413,7 +409,7 @@ abstract class NewPasswordChanged implements ChangePasswordEvent {
   const factory NewPasswordChanged({required String newPasswordString}) =
       _$NewPasswordChanged;
 
-  String get newPasswordString => throw _privateConstructorUsedError;
+  String get newPasswordString;
   @JsonKey(ignore: true)
   $NewPasswordChangedCopyWith<NewPasswordChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -467,16 +463,14 @@ class _$NewPasswordAgainChanged implements NewPasswordAgainChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NewPasswordAgainChanged &&
+        (other.runtimeType == runtimeType &&
+            other is NewPasswordAgainChanged &&
             (identical(other.newPasswordAgainString, newPasswordAgainString) ||
-                const DeepCollectionEquality().equals(
-                    other.newPasswordAgainString, newPasswordAgainString)));
+                other.newPasswordAgainString == newPasswordAgainString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newPasswordAgainString);
+  int get hashCode => Object.hash(runtimeType, newPasswordAgainString);
 
   @JsonKey(ignore: true)
   @override
@@ -565,7 +559,7 @@ abstract class NewPasswordAgainChanged implements ChangePasswordEvent {
   const factory NewPasswordAgainChanged(
       {required String newPasswordAgainString}) = _$NewPasswordAgainChanged;
 
-  String get newPasswordAgainString => throw _privateConstructorUsedError;
+  String get newPasswordAgainString;
   @JsonKey(ignore: true)
   $NewPasswordAgainChangedCopyWith<NewPasswordAgainChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -602,7 +596,8 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConfirmPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -920,40 +915,34 @@ class _$_ChangePasswordState implements _ChangePasswordState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ChangePasswordState &&
+        (other.runtimeType == runtimeType &&
+            other is _ChangePasswordState &&
             (identical(other.oldPassword, oldPassword) ||
-                const DeepCollectionEquality()
-                    .equals(other.oldPassword, oldPassword)) &&
+                other.oldPassword == oldPassword) &&
             (identical(other.newPassword, newPassword) ||
-                const DeepCollectionEquality()
-                    .equals(other.newPassword, newPassword)) &&
+                other.newPassword == newPassword) &&
             (identical(other.newPasswordAgain, newPasswordAgain) ||
-                const DeepCollectionEquality()
-                    .equals(other.newPasswordAgain, newPasswordAgain)) &&
+                other.newPasswordAgain == newPasswordAgain) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.showErrorMessages, showErrorMessages)) &&
+                other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
+                other.isSubmitting == isSubmitting) &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)) &&
+                other.successful == successful) &&
             (identical(other.authFailure, authFailure) ||
-                const DeepCollectionEquality()
-                    .equals(other.authFailure, authFailure)));
+                other.authFailure == authFailure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(oldPassword) ^
-      const DeepCollectionEquality().hash(newPassword) ^
-      const DeepCollectionEquality().hash(newPasswordAgain) ^
-      const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(authFailure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      oldPassword,
+      newPassword,
+      newPasswordAgain,
+      showErrorMessages,
+      isSubmitting,
+      successful,
+      authFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -973,19 +962,19 @@ abstract class _ChangePasswordState implements ChangePasswordState {
       AuthFailure? authFailure}) = _$_ChangePasswordState;
 
   @override
-  Password get oldPassword => throw _privateConstructorUsedError;
+  Password get oldPassword;
   @override
-  Password get newPassword => throw _privateConstructorUsedError;
+  Password get newPassword;
   @override
-  Password get newPasswordAgain => throw _privateConstructorUsedError;
+  Password get newPasswordAgain;
   @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get showErrorMessages;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
-  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  AuthFailure? get authFailure;
   @override
   @JsonKey(ignore: true)
   _$ChangePasswordStateCopyWith<_ChangePasswordState> get copyWith =>

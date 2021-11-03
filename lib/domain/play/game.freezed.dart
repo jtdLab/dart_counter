@@ -209,7 +209,7 @@ class __$OfflineGameCopyWithImpl<$Res> extends _$OfflineGameCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(Game)
+@Implements<Game>()
 class _$_OfflineGame extends _OfflineGame {
   const _$_OfflineGame(
       {required this.id,
@@ -247,38 +247,23 @@ class _$_OfflineGame extends _OfflineGame {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OfflineGame &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OfflineGame &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+                other.createdAt == createdAt) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            (identical(other.players, players) || other.players == players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, status, mode,
+      size, type, startingPoints, players);
 
   @JsonKey(ignore: true)
   @override
@@ -299,22 +284,21 @@ abstract class _OfflineGame extends OfflineGame implements Game {
   const _OfflineGame._() : super._();
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  Status get status => throw _privateConstructorUsedError;
+  Status get status;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  KtList<AbstractOfflinePlayer> get players =>
-      throw _privateConstructorUsedError;
+  KtList<AbstractOfflinePlayer> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameCopyWith<_OfflineGame> get copyWith =>
@@ -530,7 +514,7 @@ class __$OnlineGameCopyWithImpl<$Res> extends _$OnlineGameCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(Game)
+@Implements<Game>()
 class _$_OnlineGame extends _OnlineGame {
   const _$_OnlineGame(
       {required this.id,
@@ -571,42 +555,24 @@ class _$_OnlineGame extends _OnlineGame {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnlineGame &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OnlineGame &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.ownerId, ownerId)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+                other.createdAt == createdAt) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            (identical(other.players, players) || other.players == players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, ownerId, status,
+      mode, size, type, startingPoints, players);
 
   @JsonKey(ignore: true)
   @override
@@ -628,23 +594,23 @@ abstract class _OnlineGame extends OnlineGame implements Game {
   const _OnlineGame._() : super._();
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  UniqueId get ownerId => throw _privateConstructorUsedError;
+  UniqueId get ownerId;
   @override
-  Status get status => throw _privateConstructorUsedError;
+  Status get status;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  KtList<OnlinePlayer> get players => throw _privateConstructorUsedError;
+  KtList<OnlinePlayer> get players;
   @override
   @JsonKey(ignore: true)
   _$OnlineGameCopyWith<_OnlineGame> get copyWith =>

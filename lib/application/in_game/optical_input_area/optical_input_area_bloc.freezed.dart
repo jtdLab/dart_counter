@@ -142,7 +142,8 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoThrowPressed);
   }
 
   @override
@@ -258,7 +259,8 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PerformThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PerformThrowPressed);
   }
 
   @override
@@ -398,18 +400,14 @@ class _$DartPressed implements DartPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DartPressed &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is DartPressed &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(value);
+  int get hashCode => Object.hash(runtimeType, type, value);
 
   @JsonKey(ignore: true)
   @override
@@ -495,8 +493,8 @@ abstract class DartPressed implements OpticalInputAreaEvent {
   const factory DartPressed({required DartType type, required int value}) =
       _$DartPressed;
 
-  DartType get type => throw _privateConstructorUsedError;
-  int get value => throw _privateConstructorUsedError;
+  DartType get type;
+  int get value;
   @JsonKey(ignore: true)
   $DartPressedCopyWith<DartPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -533,7 +531,8 @@ class _$UndoDartPressed implements UndoDartPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoDartPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoDartPressed);
   }
 
   @override
@@ -721,16 +720,14 @@ class _$_OpticalInputAreaState implements _OpticalInputAreaState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OpticalInputAreaState &&
+        (other.runtimeType == runtimeType &&
+            other is _OpticalInputAreaState &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
-                const DeepCollectionEquality()
-                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
+                other.showCheckoutDetails == showCheckoutDetails));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(showCheckoutDetails);
+  int get hashCode => Object.hash(runtimeType, showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -744,7 +741,7 @@ abstract class _OpticalInputAreaState implements OpticalInputAreaState {
       _$_OpticalInputAreaState;
 
   @override
-  bool get showCheckoutDetails => throw _privateConstructorUsedError;
+  bool get showCheckoutDetails;
   @override
   @JsonKey(ignore: true)
   _$OpticalInputAreaStateCopyWith<_OpticalInputAreaState> get copyWith =>

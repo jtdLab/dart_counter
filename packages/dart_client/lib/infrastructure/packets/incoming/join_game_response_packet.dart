@@ -7,7 +7,7 @@ part 'join_game_response_packet.g.dart';
 
 @freezed
 class JoinGameResponsePacket with _$JoinGameResponsePacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory JoinGameResponsePacket({
     required bool successful,
     GameSnapshotDto? snapshot,

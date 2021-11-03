@@ -7,7 +7,7 @@ part 'remove_player_packet.g.dart';
 
 @freezed
 class RemovePlayerPacket with _$RemovePlayerPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory RemovePlayerPacket({
     required int index,
   }) = _RemovePlayerPacket;

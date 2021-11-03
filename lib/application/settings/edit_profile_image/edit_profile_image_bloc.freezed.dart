@@ -129,7 +129,8 @@ class _$DeletePressed implements DeletePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DeletePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DeletePressed);
   }
 
   @override
@@ -239,7 +240,8 @@ class _$TakePressed implements TakePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TakePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TakePressed);
   }
 
   @override
@@ -349,7 +351,8 @@ class _$ChoosePressed implements ChoosePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ChoosePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ChoosePressed);
   }
 
   @override
@@ -522,7 +525,8 @@ class _$Initial implements Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Initial);
   }
 
   @override

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'leg_dto.dart';
 
@@ -26,7 +27,7 @@ class _$LegDtoTearOff {
     );
   }
 
-  LegDto fromJson(Map<String, Object> json) {
+  LegDto fromJson(Map<String, Object?> json) {
     return LegDto.fromJson(json);
   }
 }
@@ -107,7 +108,7 @@ class _$_LegDto extends _LegDto {
   const _$_LegDto({required this.throws}) : super._();
 
   factory _$_LegDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_LegDtoFromJson(json);
+      _$$_LegDtoFromJson(json);
 
   @override
   final List<ThrowDto> throws;
@@ -120,14 +121,14 @@ class _$_LegDto extends _LegDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LegDto &&
-            (identical(other.throws, throws) ||
-                const DeepCollectionEquality().equals(other.throws, throws)));
+        (other.runtimeType == runtimeType &&
+            other is _LegDto &&
+            const DeepCollectionEquality().equals(other.throws, throws));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(throws);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(throws));
 
   @JsonKey(ignore: true)
   @override
@@ -136,7 +137,7 @@ class _$_LegDto extends _LegDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LegDtoToJson(this);
+    return _$$_LegDtoToJson(this);
   }
 }
 
@@ -147,7 +148,7 @@ abstract class _LegDto extends LegDto {
   factory _LegDto.fromJson(Map<String, dynamic> json) = _$_LegDto.fromJson;
 
   @override
-  List<ThrowDto> get throws => throw _privateConstructorUsedError;
+  List<ThrowDto> get throws;
   @override
   @JsonKey(ignore: true)
   _$LegDtoCopyWith<_LegDto> get copyWith => throw _privateConstructorUsedError;

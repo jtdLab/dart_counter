@@ -238,15 +238,14 @@ class _$WatchDataStarted implements WatchDataStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is WatchDataStarted &&
+        (other.runtimeType == runtimeType &&
+            other is WatchDataStarted &&
             (identical(other.appUserId, appUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.appUserId, appUserId)));
+                other.appUserId == appUserId));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(appUserId);
+  int get hashCode => Object.hash(runtimeType, appUserId);
 
   @JsonKey(ignore: true)
   @override
@@ -380,7 +379,7 @@ abstract class WatchDataStarted implements DataWatcherEvent {
   const factory WatchDataStarted({required UniqueId appUserId}) =
       _$WatchDataStarted;
 
-  UniqueId get appUserId => throw _privateConstructorUsedError;
+  UniqueId get appUserId;
   @JsonKey(ignore: true)
   $WatchDataStartedCopyWith<WatchDataStarted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -443,14 +442,13 @@ class _$UserReceived implements UserReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is UserReceived &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -583,7 +581,7 @@ class _$UserReceived implements UserReceived {
 abstract class UserReceived implements DataWatcherEvent {
   const factory UserReceived({required User user}) = _$UserReceived;
 
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @JsonKey(ignore: true)
   $UserReceivedCopyWith<UserReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -641,17 +639,15 @@ class _$ReceivedGameInvationsReceived implements ReceivedGameInvationsReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReceivedGameInvationsReceived &&
+        (other.runtimeType == runtimeType &&
+            other is ReceivedGameInvationsReceived &&
             (identical(
                     other.receivedGameInvitations, receivedGameInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedGameInvitations, receivedGameInvitations)));
+                other.receivedGameInvitations == receivedGameInvitations));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(receivedGameInvitations);
+  int get hashCode => Object.hash(runtimeType, receivedGameInvitations);
 
   @JsonKey(ignore: true)
   @override
@@ -787,8 +783,7 @@ abstract class ReceivedGameInvationsReceived implements DataWatcherEvent {
           {required KtList<GameInvitation> receivedGameInvitations}) =
       _$ReceivedGameInvationsReceived;
 
-  KtList<GameInvitation> get receivedGameInvitations =>
-      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get receivedGameInvitations;
   @JsonKey(ignore: true)
   $ReceivedGameInvationsReceivedCopyWith<ReceivedGameInvationsReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -843,16 +838,14 @@ class _$SentGameInvationsReceived implements SentGameInvationsReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SentGameInvationsReceived &&
+        (other.runtimeType == runtimeType &&
+            other is SentGameInvationsReceived &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)));
+                other.sentGameInvitations == sentGameInvitations));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(sentGameInvitations);
+  int get hashCode => Object.hash(runtimeType, sentGameInvitations);
 
   @JsonKey(ignore: true)
   @override
@@ -988,8 +981,7 @@ abstract class SentGameInvationsReceived implements DataWatcherEvent {
           {required KtList<GameInvitation> sentGameInvitations}) =
       _$SentGameInvationsReceived;
 
-  KtList<GameInvitation> get sentGameInvitations =>
-      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get sentGameInvitations;
   @JsonKey(ignore: true)
   $SentGameInvationsReceivedCopyWith<SentGameInvationsReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1043,14 +1035,13 @@ class _$FriendsReceived implements FriendsReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsReceived &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality().equals(other.friends, friends)));
+        (other.runtimeType == runtimeType &&
+            other is FriendsReceived &&
+            (identical(other.friends, friends) || other.friends == friends));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friends);
+  int get hashCode => Object.hash(runtimeType, friends);
 
   @JsonKey(ignore: true)
   @override
@@ -1184,7 +1175,7 @@ abstract class FriendsReceived implements DataWatcherEvent {
   const factory FriendsReceived({required KtList<Friend> friends}) =
       _$FriendsReceived;
 
-  KtList<Friend> get friends => throw _privateConstructorUsedError;
+  KtList<Friend> get friends;
   @JsonKey(ignore: true)
   $FriendsReceivedCopyWith<FriendsReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1243,16 +1234,14 @@ class _$ReceivedFriendRequestsReceived
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReceivedFriendRequestsReceived &&
+        (other.runtimeType == runtimeType &&
+            other is ReceivedFriendRequestsReceived &&
             (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedFriendRequests, receivedFriendRequests)));
+                other.receivedFriendRequests == receivedFriendRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(receivedFriendRequests);
+  int get hashCode => Object.hash(runtimeType, receivedFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -1388,8 +1377,7 @@ abstract class ReceivedFriendRequestsReceived implements DataWatcherEvent {
           {required KtList<FriendRequest> receivedFriendRequests}) =
       _$ReceivedFriendRequestsReceived;
 
-  KtList<FriendRequest> get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
+  KtList<FriendRequest> get receivedFriendRequests;
   @JsonKey(ignore: true)
   $ReceivedFriendRequestsReceivedCopyWith<ReceivedFriendRequestsReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -1444,16 +1432,14 @@ class _$SentFriendRequestsReceived implements SentFriendRequestsReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SentFriendRequestsReceived &&
+        (other.runtimeType == runtimeType &&
+            other is SentFriendRequestsReceived &&
             (identical(other.sentFriendRequests, sentFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentFriendRequests, sentFriendRequests)));
+                other.sentFriendRequests == sentFriendRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(sentFriendRequests);
+  int get hashCode => Object.hash(runtimeType, sentFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -1590,8 +1576,7 @@ abstract class SentFriendRequestsReceived implements DataWatcherEvent {
           {required KtList<FriendRequest> sentFriendRequests}) =
       _$SentFriendRequestsReceived;
 
-  KtList<FriendRequest> get sentFriendRequests =>
-      throw _privateConstructorUsedError;
+  KtList<FriendRequest> get sentFriendRequests;
   @JsonKey(ignore: true)
   $SentFriendRequestsReceivedCopyWith<SentFriendRequestsReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -1628,7 +1613,8 @@ class _$FailureReceived implements FailureReceived {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FailureReceived);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is FailureReceived);
   }
 
   @override
@@ -2023,36 +2009,24 @@ class _$DataWatcherLoadInProgress implements DataWatcherLoadInProgress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DataWatcherLoadInProgress &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is DataWatcherLoadInProgress &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(
                     other.receivedGameInvitations, receivedGameInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedGameInvitations, receivedGameInvitations)) &&
+                other.receivedGameInvitations == receivedGameInvitations) &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)) &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality()
-                    .equals(other.friends, friends)) &&
+                other.sentGameInvitations == sentGameInvitations) &&
+            (identical(other.friends, friends) || other.friends == friends) &&
             (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedFriendRequests, receivedFriendRequests)) &&
+                other.receivedFriendRequests == receivedFriendRequests) &&
             (identical(other.sentFriendRequests, sentFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentFriendRequests, sentFriendRequests)));
+                other.sentFriendRequests == sentFriendRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(receivedGameInvitations) ^
-      const DeepCollectionEquality().hash(sentGameInvitations) ^
-      const DeepCollectionEquality().hash(friends) ^
-      const DeepCollectionEquality().hash(receivedFriendRequests) ^
-      const DeepCollectionEquality().hash(sentFriendRequests);
+  int get hashCode => Object.hash(runtimeType, user, receivedGameInvitations,
+      sentGameInvitations, friends, receivedFriendRequests, sentFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -2188,16 +2162,12 @@ abstract class DataWatcherLoadInProgress implements DataWatcherState {
       KtList<FriendRequest>? receivedFriendRequests,
       KtList<FriendRequest>? sentFriendRequests}) = _$DataWatcherLoadInProgress;
 
-  User? get user => throw _privateConstructorUsedError;
-  KtList<GameInvitation>? get receivedGameInvitations =>
-      throw _privateConstructorUsedError;
-  KtList<GameInvitation>? get sentGameInvitations =>
-      throw _privateConstructorUsedError;
-  KtList<Friend>? get friends => throw _privateConstructorUsedError;
-  KtList<FriendRequest>? get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
-  KtList<FriendRequest>? get sentFriendRequests =>
-      throw _privateConstructorUsedError;
+  User? get user;
+  KtList<GameInvitation>? get receivedGameInvitations;
+  KtList<GameInvitation>? get sentGameInvitations;
+  KtList<Friend>? get friends;
+  KtList<FriendRequest>? get receivedFriendRequests;
+  KtList<FriendRequest>? get sentFriendRequests;
   @JsonKey(ignore: true)
   $DataWatcherLoadInProgressCopyWith<DataWatcherLoadInProgress> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2307,36 +2277,24 @@ class _$DataWatcherLoadSuccess implements DataWatcherLoadSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DataWatcherLoadSuccess &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is DataWatcherLoadSuccess &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(
                     other.receivedGameInvitations, receivedGameInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedGameInvitations, receivedGameInvitations)) &&
+                other.receivedGameInvitations == receivedGameInvitations) &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)) &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality()
-                    .equals(other.friends, friends)) &&
+                other.sentGameInvitations == sentGameInvitations) &&
+            (identical(other.friends, friends) || other.friends == friends) &&
             (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedFriendRequests, receivedFriendRequests)) &&
+                other.receivedFriendRequests == receivedFriendRequests) &&
             (identical(other.sentFriendRequests, sentFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentFriendRequests, sentFriendRequests)));
+                other.sentFriendRequests == sentFriendRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(receivedGameInvitations) ^
-      const DeepCollectionEquality().hash(sentGameInvitations) ^
-      const DeepCollectionEquality().hash(friends) ^
-      const DeepCollectionEquality().hash(receivedFriendRequests) ^
-      const DeepCollectionEquality().hash(sentFriendRequests);
+  int get hashCode => Object.hash(runtimeType, user, receivedGameInvitations,
+      sentGameInvitations, friends, receivedFriendRequests, sentFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -2468,16 +2426,12 @@ abstract class DataWatcherLoadSuccess implements DataWatcherState {
           required KtList<FriendRequest> sentFriendRequests}) =
       _$DataWatcherLoadSuccess;
 
-  User get user => throw _privateConstructorUsedError;
-  KtList<GameInvitation> get receivedGameInvitations =>
-      throw _privateConstructorUsedError;
-  KtList<GameInvitation> get sentGameInvitations =>
-      throw _privateConstructorUsedError;
-  KtList<Friend> get friends => throw _privateConstructorUsedError;
-  KtList<FriendRequest> get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
-  KtList<FriendRequest> get sentFriendRequests =>
-      throw _privateConstructorUsedError;
+  User get user;
+  KtList<GameInvitation> get receivedGameInvitations;
+  KtList<GameInvitation> get sentGameInvitations;
+  KtList<Friend> get friends;
+  KtList<FriendRequest> get receivedFriendRequests;
+  KtList<FriendRequest> get sentFriendRequests;
   @JsonKey(ignore: true)
   $DataWatcherLoadSuccessCopyWith<DataWatcherLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2514,7 +2468,8 @@ class _$DataWatcherLoadFailure implements DataWatcherLoadFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DataWatcherLoadFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DataWatcherLoadFailure);
   }
 
   @override

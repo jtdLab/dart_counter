@@ -136,7 +136,8 @@ class _$_Failure implements _Failure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Failure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Failure);
   }
 
   @override
@@ -253,7 +254,8 @@ class _$_UnableToLoadData implements _UnableToLoadData {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UnableToLoadData);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UnableToLoadData);
   }
 
   @override
@@ -370,7 +372,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InsufficientPermission);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InsufficientPermission);
   }
 
   @override
@@ -487,7 +490,8 @@ class _$_InvalidUsername implements _InvalidUsername {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InvalidUsername);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidUsername);
   }
 
   @override

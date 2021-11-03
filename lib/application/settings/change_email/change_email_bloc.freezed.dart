@@ -138,16 +138,14 @@ class _$NewEmailChanged implements NewEmailChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NewEmailChanged &&
+        (other.runtimeType == runtimeType &&
+            other is NewEmailChanged &&
             (identical(other.newEmailString, newEmailString) ||
-                const DeepCollectionEquality()
-                    .equals(other.newEmailString, newEmailString)));
+                other.newEmailString == newEmailString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newEmailString);
+  int get hashCode => Object.hash(runtimeType, newEmailString);
 
   @JsonKey(ignore: true)
   @override
@@ -221,7 +219,7 @@ abstract class NewEmailChanged implements ChangeEmailEvent {
   const factory NewEmailChanged({required String newEmailString}) =
       _$NewEmailChanged;
 
-  String get newEmailString => throw _privateConstructorUsedError;
+  String get newEmailString;
   @JsonKey(ignore: true)
   $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -258,7 +256,8 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConfirmPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -526,32 +525,23 @@ class _$_ChangeEmailState implements _ChangeEmailState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ChangeEmailState &&
+        (other.runtimeType == runtimeType &&
+            other is _ChangeEmailState &&
             (identical(other.newEmail, newEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.newEmail, newEmail)) &&
+                other.newEmail == newEmail) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.showErrorMessages, showErrorMessages)) &&
+                other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
+                other.isSubmitting == isSubmitting) &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)) &&
+                other.successful == successful) &&
             (identical(other.userFailure, userFailure) ||
-                const DeepCollectionEquality()
-                    .equals(other.userFailure, userFailure)));
+                other.userFailure == userFailure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newEmail) ^
-      const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(userFailure);
+  int get hashCode => Object.hash(runtimeType, newEmail, showErrorMessages,
+      isSubmitting, successful, userFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -568,15 +558,15 @@ abstract class _ChangeEmailState implements ChangeEmailState {
       UserFailure? userFailure}) = _$_ChangeEmailState;
 
   @override
-  EmailAddress get newEmail => throw _privateConstructorUsedError;
+  EmailAddress get newEmail;
   @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get showErrorMessages;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
-  UserFailure? get userFailure => throw _privateConstructorUsedError;
+  UserFailure? get userFailure;
   @override
   @JsonKey(ignore: true)
   _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>

@@ -7,7 +7,7 @@ part 'reorder_player_packet.g.dart';
 
 @freezed
 class ReorderPlayerPacket with _$ReorderPlayerPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory ReorderPlayerPacket({
     required int oldIndex,
     required int newIndex,

@@ -159,14 +159,13 @@ class _$PlayGameCreated implements PlayGameCreated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayGameCreated &&
-            (identical(other.online, online) ||
-                const DeepCollectionEquality().equals(other.online, online)));
+        (other.runtimeType == runtimeType &&
+            other is PlayGameCreated &&
+            (identical(other.online, online) || other.online == online));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(online);
+  int get hashCode => Object.hash(runtimeType, online);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +251,7 @@ class _$PlayGameCreated implements PlayGameCreated {
 abstract class PlayGameCreated implements PlayEvent {
   const factory PlayGameCreated({required bool online}) = _$PlayGameCreated;
 
-  bool get online => throw _privateConstructorUsedError;
+  bool get online;
   @JsonKey(ignore: true)
   $PlayGameCreatedCopyWith<PlayGameCreated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -288,7 +287,8 @@ class _$PlayGameJoined implements PlayGameJoined {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayGameJoined);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayGameJoined);
   }
 
   @override
@@ -423,15 +423,14 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayGameSnapshotReceived &&
+        (other.runtimeType == runtimeType &&
+            other is PlayGameSnapshotReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -519,7 +518,7 @@ abstract class PlayGameSnapshotReceived implements PlayEvent {
   const factory PlayGameSnapshotReceived({required GameSnapshot gameSnapshot}) =
       _$PlayGameSnapshotReceived;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $PlayGameSnapshotReceivedCopyWith<PlayGameSnapshotReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -556,7 +555,8 @@ class _$PlayResetRequested implements PlayResetRequested {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayResetRequested);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayResetRequested);
   }
 
   @override
@@ -747,7 +747,8 @@ class _$PlayInitial implements PlayInitial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayInitial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayInitial);
   }
 
   @override
@@ -868,15 +869,14 @@ class _$PlayGameInProgress implements PlayGameInProgress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayGameInProgress &&
+        (other.runtimeType == runtimeType &&
+            other is PlayGameInProgress &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -950,7 +950,7 @@ abstract class PlayGameInProgress implements PlayState {
   const factory PlayGameInProgress({required GameSnapshot gameSnapshot}) =
       _$PlayGameInProgress;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $PlayGameInProgressCopyWith<PlayGameInProgress> get copyWith =>
       throw _privateConstructorUsedError;

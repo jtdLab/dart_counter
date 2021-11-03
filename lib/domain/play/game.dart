@@ -23,7 +23,7 @@ abstract class Game {
 
 @freezed
 class OfflineGame with _$OfflineGame implements Game {
-  @Implements(Game)
+  @Implements<Game>()
   const factory OfflineGame({
     required UniqueId id,
     required DateTime createdAt,
@@ -71,7 +71,7 @@ class OfflineGame with _$OfflineGame implements Game {
 
 @freezed
 class OnlineGame with _$OnlineGame implements Game {
-  @Implements(Game)
+  @Implements<Game>()
   const factory OnlineGame({
     required UniqueId id,
     required DateTime createdAt,

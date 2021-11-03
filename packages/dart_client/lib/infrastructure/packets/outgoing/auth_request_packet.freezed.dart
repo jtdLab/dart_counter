@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_request_packet.dart';
 
@@ -26,7 +27,7 @@ class _$AuthRequestPacketTearOff {
     );
   }
 
-  AuthRequestPacket fromJson(Map<String, Object> json) {
+  AuthRequestPacket fromJson(Map<String, Object?> json) {
     return AuthRequestPacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$AuthRequestPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_AuthRequestPacket extends _AuthRequestPacket {
   const _$_AuthRequestPacket({required this.idToken}) : super._();
 
   factory _$_AuthRequestPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthRequestPacketFromJson(json);
+      _$$_AuthRequestPacketFromJson(json);
 
   @override
   final String idToken;
@@ -128,14 +129,13 @@ class _$_AuthRequestPacket extends _AuthRequestPacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthRequestPacket &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality().equals(other.idToken, idToken)));
+        (other.runtimeType == runtimeType &&
+            other is _AuthRequestPacket &&
+            (identical(other.idToken, idToken) || other.idToken == idToken));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(idToken);
+  int get hashCode => Object.hash(runtimeType, idToken);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_AuthRequestPacket extends _AuthRequestPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthRequestPacketToJson(this);
+    return _$$_AuthRequestPacketToJson(this);
   }
 }
 
@@ -158,7 +158,7 @@ abstract class _AuthRequestPacket extends AuthRequestPacket
       _$_AuthRequestPacket.fromJson;
 
   @override
-  String get idToken => throw _privateConstructorUsedError;
+  String get idToken;
   @override
   @JsonKey(ignore: true)
   _$AuthRequestPacketCopyWith<_AuthRequestPacket> get copyWith =>

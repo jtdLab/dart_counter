@@ -7,7 +7,7 @@ part 'start_game_packet.g.dart';
 
 @freezed
 class StartGamePacket with _$StartGamePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory StartGamePacket() = _StartGamePacket;
 
   const StartGamePacket._();

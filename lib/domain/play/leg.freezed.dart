@@ -152,21 +152,15 @@ class _$_Leg implements _Leg {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Leg &&
-            (identical(other.throws, throws) ||
-                const DeepCollectionEquality().equals(other.throws, throws)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)));
+        (other.runtimeType == runtimeType &&
+            other is _Leg &&
+            (identical(other.throws, throws) || other.throws == throws) &&
+            (identical(other.won, won) || other.won == won) &&
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(throws) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(stats);
+  int get hashCode => Object.hash(runtimeType, throws, won, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -181,11 +175,11 @@ abstract class _Leg implements Leg {
       required LegStats stats}) = _$_Leg;
 
   @override
-  KtList<Throw> get throws => throw _privateConstructorUsedError;
+  KtList<Throw> get throws;
   @override
-  bool get won => throw _privateConstructorUsedError;
+  bool get won;
   @override
-  LegStats get stats => throw _privateConstructorUsedError;
+  LegStats get stats;
   @override
   @JsonKey(ignore: true)
   _$LegCopyWith<_Leg> get copyWith => throw _privateConstructorUsedError;

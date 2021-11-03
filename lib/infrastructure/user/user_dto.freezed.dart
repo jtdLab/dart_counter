@@ -40,7 +40,7 @@ class _$UserDtoTearOff {
     );
   }
 
-  UserDto fromJson(Map<String, Object> json) {
+  UserDto fromJson(Map<String, Object?> json) {
     return UserDto.fromJson(json);
   }
 }
@@ -258,38 +258,29 @@ class _$_UserDto extends _UserDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UserDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.idToken, idToken)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality()
-                    .equals(other.profile, profile)) &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality()
-                    .equals(other.friends, friends)) &&
+        (other.runtimeType == runtimeType &&
+            other is _UserDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.profile, profile) || other.profile == profile) &&
+            const DeepCollectionEquality().equals(other.friends, friends) &&
             (identical(other.careerStatsOffline, careerStatsOffline) ||
-                const DeepCollectionEquality()
-                    .equals(other.careerStatsOffline, careerStatsOffline)) &&
+                other.careerStatsOffline == careerStatsOffline) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(idToken) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(friends) ^
-      const DeepCollectionEquality().hash(careerStatsOffline) ^
-      const DeepCollectionEquality().hash(createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      idToken,
+      email,
+      profile,
+      const DeepCollectionEquality().hash(friends),
+      careerStatsOffline,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -316,20 +307,20 @@ abstract class _UserDto extends UserDto {
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get idToken => throw _privateConstructorUsedError;
+  String? get idToken;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  ProfileDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile;
   @override
-  List<String> get friends => throw _privateConstructorUsedError;
+  List<String> get friends;
   @override
-  CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
+  CareerStatsDto get careerStatsOffline;
   @override
   @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$UserDtoCopyWith<_UserDto> get copyWith =>

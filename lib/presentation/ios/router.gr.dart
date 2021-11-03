@@ -1,3 +1,7 @@
+// **************************************************************************
+// AutoRouteGenerator
+// **************************************************************************
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -166,45 +170,63 @@ class Router extends _i23.RootStackRouter {
   List<_i23.RouteConfig> get routes => [
         _i23.RouteConfig(AuthFlowRoute.name, path: '/auth-flow'),
         _i23.RouteConfig(MainFlowRoute.name, path: '/main-flow', children: [
-          _i23.RouteConfig(HomePageRoute.name, path: ''),
-          _i23.RouteConfig(SettingsPageRoute.name, path: 'settings-page'),
+          _i23.RouteConfig(HomePageRoute.name,
+              path: '', parent: MainFlowRoute.name),
+          _i23.RouteConfig(SettingsPageRoute.name,
+              path: 'settings-page', parent: MainFlowRoute.name),
           _i23.RouteConfig(PrivacyPolicyPageRoute.name,
-              path: 'privacy-policy-page'),
-          _i23.RouteConfig(ContactPageRoute.name, path: 'contact-page'),
+              path: 'privacy-policy-page', parent: MainFlowRoute.name),
+          _i23.RouteConfig(ContactPageRoute.name,
+              path: 'contact-page', parent: MainFlowRoute.name),
           _i23.RouteConfig(GameInvitationsPageRoute.name,
-              path: 'game-invitations-page'),
+              path: 'game-invitations-page', parent: MainFlowRoute.name),
           _i23.RouteConfig(FriendsFlowRoute.name,
               path: 'friends-flow',
+              parent: MainFlowRoute.name,
               children: [
                 _i23.RouteConfig('#redirect',
                     path: '',
+                    parent: FriendsFlowRoute.name,
                     redirectTo: 'friends-overview-page',
                     fullMatch: true),
                 _i23.RouteConfig(FriendsOverviewPageRoute.name,
-                    path: 'friends-overview-page'),
+                    path: 'friends-overview-page',
+                    parent: FriendsFlowRoute.name),
                 _i23.RouteConfig(FriendsProfilePageRoute.name,
-                    path: 'friends-profile-page')
+                    path: 'friends-profile-page', parent: FriendsFlowRoute.name)
               ]),
-          _i23.RouteConfig(ProfilePageRoute.name, path: 'profile-page'),
+          _i23.RouteConfig(ProfilePageRoute.name,
+              path: 'profile-page', parent: MainFlowRoute.name),
           _i23.RouteConfig(GameHistoryFlowRoute.name,
               path: 'game-history-flow',
+              parent: MainFlowRoute.name,
               children: [
-                _i23.RouteConfig(OverviewPageRoute.name, path: ''),
-                _i23.RouteConfig(DetailsPageRoute.name, path: 'details-page')
+                _i23.RouteConfig(OverviewPageRoute.name,
+                    path: '', parent: GameHistoryFlowRoute.name),
+                _i23.RouteConfig(DetailsPageRoute.name,
+                    path: 'details-page', parent: GameHistoryFlowRoute.name)
               ]),
-          _i23.RouteConfig(GameFlowRoute.name, path: 'game-flow', children: [
-            _i23.RouteConfig(CreateGamePageRoute.name, path: ''),
-            _i23.RouteConfig(InGamePageRoute.name, path: 'in-game-page'),
-            _i23.RouteConfig(PostGamePageRoute.name, path: 'post-game-page')
-          ]),
+          _i23.RouteConfig(GameFlowRoute.name,
+              path: 'game-flow',
+              parent: MainFlowRoute.name,
+              children: [
+                _i23.RouteConfig(CreateGamePageRoute.name,
+                    path: '', parent: GameFlowRoute.name),
+                _i23.RouteConfig(InGamePageRoute.name,
+                    path: 'in-game-page', parent: GameFlowRoute.name),
+                _i23.RouteConfig(PostGamePageRoute.name,
+                    path: 'post-game-page', parent: GameFlowRoute.name)
+              ]),
           _i23.RouteConfig(TrainingFlowRoute.name,
               path: 'training-flow',
+              parent: MainFlowRoute.name,
               children: [
-                _i23.RouteConfig(CreateTrainingPageRoute.name, path: ''),
+                _i23.RouteConfig(CreateTrainingPageRoute.name,
+                    path: '', parent: TrainingFlowRoute.name),
                 _i23.RouteConfig(InTrainingPageRoute.name,
-                    path: 'in-training-page'),
+                    path: 'in-training-page', parent: TrainingFlowRoute.name),
                 _i23.RouteConfig(PostTrainingPageRoute.name,
-                    path: 'post-training-page')
+                    path: 'post-training-page', parent: TrainingFlowRoute.name)
               ])
         ])
       ];

@@ -8,7 +8,7 @@ part 'perform_throw_packet.g.dart';
 
 @freezed
 class PerformThrowPacket with _$PerformThrowPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory PerformThrowPacket({
     required ThrowDto t,
   }) = _PerformThrowPacket;

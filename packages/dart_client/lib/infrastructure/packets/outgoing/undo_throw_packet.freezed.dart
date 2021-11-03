@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'undo_throw_packet.dart';
 
@@ -24,7 +25,7 @@ class _$UndoThrowPacketTearOff {
     return const _UndoThrowPacket();
   }
 
-  UndoThrowPacket fromJson(Map<String, Object> json) {
+  UndoThrowPacket fromJson(Map<String, Object?> json) {
     return UndoThrowPacket.fromJson(json);
   }
 }
@@ -75,12 +76,12 @@ class __$UndoThrowPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_UndoThrowPacket extends _UndoThrowPacket {
   const _$_UndoThrowPacket() : super._();
 
   factory _$_UndoThrowPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_UndoThrowPacketFromJson(json);
+      _$$_UndoThrowPacketFromJson(json);
 
   @override
   String toString() {
@@ -89,7 +90,8 @@ class _$_UndoThrowPacket extends _UndoThrowPacket {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UndoThrowPacket);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UndoThrowPacket);
   }
 
   @override
@@ -97,7 +99,7 @@ class _$_UndoThrowPacket extends _UndoThrowPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UndoThrowPacketToJson(this);
+    return _$$_UndoThrowPacketToJson(this);
   }
 }
 

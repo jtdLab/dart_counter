@@ -6,13 +6,12 @@ part of 'auth_request_packet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AuthRequestPacket _$_$_AuthRequestPacketFromJson(Map<String, dynamic> json) {
-  return _$_AuthRequestPacket(
-    idToken: json['idToken'] as String,
-  );
-}
+_$_AuthRequestPacket _$$_AuthRequestPacketFromJson(Map<String, dynamic> json) =>
+    _$_AuthRequestPacket(
+      idToken: json['idToken'] as String,
+    );
 
-Map<String, dynamic> _$_$_AuthRequestPacketToJson(
+Map<String, dynamic> _$$_AuthRequestPacketToJson(
         _$_AuthRequestPacket instance) =>
     <String, dynamic>{
       'idToken': instance.idToken,

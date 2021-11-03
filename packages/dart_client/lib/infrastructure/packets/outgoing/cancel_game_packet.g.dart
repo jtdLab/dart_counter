@@ -6,10 +6,8 @@ part of 'cancel_game_packet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CancelGamePacket _$_$_CancelGamePacketFromJson(Map<String, dynamic> json) {
-  return _$_CancelGamePacket();
-}
+_$_CancelGamePacket _$$_CancelGamePacketFromJson(Map<String, dynamic> json) =>
+    _$_CancelGamePacket();
 
-Map<String, dynamic> _$_$_CancelGamePacketToJson(
-        _$_CancelGamePacket instance) =>
+Map<String, dynamic> _$$_CancelGamePacketToJson(_$_CancelGamePacket instance) =>
     <String, dynamic>{};

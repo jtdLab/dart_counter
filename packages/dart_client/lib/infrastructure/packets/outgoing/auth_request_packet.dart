@@ -7,7 +7,7 @@ part 'auth_request_packet.g.dart';
 
 @freezed
 class AuthRequestPacket with _$AuthRequestPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory AuthRequestPacket({
     required String idToken,
   }) = _AuthRequestPacket;

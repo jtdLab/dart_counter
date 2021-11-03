@@ -163,7 +163,8 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoThrowPressed);
   }
 
   @override
@@ -291,7 +292,8 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PerformThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PerformThrowPressed);
   }
 
   @override
@@ -436,14 +438,13 @@ class _$DartPressed implements DartPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DartPressed &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is DartPressed &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+  int get hashCode => Object.hash(runtimeType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -540,7 +541,7 @@ class _$DartPressed implements DartPressed {
 abstract class DartPressed implements DetailedInputAreaEvent {
   const factory DartPressed({required int value}) = _$DartPressed;
 
-  int get value => throw _privateConstructorUsedError;
+  int get value;
   @JsonKey(ignore: true)
   $DartPressedCopyWith<DartPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -575,7 +576,8 @@ class _$Unfocused implements Unfocused {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Unfocused);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Unfocused);
   }
 
   @override
@@ -720,14 +722,13 @@ class _$DartDetailPressed implements DartDetailPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DartDetailPressed &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+        (other.runtimeType == runtimeType &&
+            other is DartDetailPressed &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
+  int get hashCode => Object.hash(runtimeType, type);
 
   @JsonKey(ignore: true)
   @override
@@ -825,7 +826,7 @@ abstract class DartDetailPressed implements DetailedInputAreaEvent {
   const factory DartDetailPressed({required DartType type}) =
       _$DartDetailPressed;
 
-  DartType get type => throw _privateConstructorUsedError;
+  DartType get type;
   @JsonKey(ignore: true)
   $DartDetailPressedCopyWith<DartDetailPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -862,7 +863,8 @@ class _$UndoDartPressed implements UndoDartPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoDartPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoDartPressed);
   }
 
   @override
@@ -1078,20 +1080,17 @@ class _$_DetailedInputAreaState implements _DetailedInputAreaState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DetailedInputAreaState &&
+        (other.runtimeType == runtimeType &&
+            other is _DetailedInputAreaState &&
             (identical(other.focusedValue, focusedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.focusedValue, focusedValue)) &&
+                other.focusedValue == focusedValue) &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
-                const DeepCollectionEquality()
-                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
+                other.showCheckoutDetails == showCheckoutDetails));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(focusedValue) ^
-      const DeepCollectionEquality().hash(showCheckoutDetails);
+      Object.hash(runtimeType, focusedValue, showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -1106,9 +1105,9 @@ abstract class _DetailedInputAreaState implements DetailedInputAreaState {
       required bool showCheckoutDetails}) = _$_DetailedInputAreaState;
 
   @override
-  int? get focusedValue => throw _privateConstructorUsedError;
+  int? get focusedValue;
   @override
-  bool get showCheckoutDetails => throw _privateConstructorUsedError;
+  bool get showCheckoutDetails;
   @override
   @JsonKey(ignore: true)
   _$DetailedInputAreaStateCopyWith<_DetailedInputAreaState> get copyWith =>

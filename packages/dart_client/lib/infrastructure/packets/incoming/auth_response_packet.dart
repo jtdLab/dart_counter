@@ -6,7 +6,7 @@ part 'auth_response_packet.g.dart';
 
 @freezed
 class AuthResponsePacket with _$AuthResponsePacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory AuthResponsePacket({
     required bool successful,
   }) = _AuthResponsePacket;

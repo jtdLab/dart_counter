@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player_snapshot.dart';
 
@@ -334,55 +335,43 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerSnapshot &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerSnapshot &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.wonSets, wonSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonSets, wonSets)) &&
+                other.isCurrentTurn == isCurrentTurn) &&
+            (identical(other.won, won) || other.won == won) &&
+            (identical(other.wonSets, wonSets) || other.wonSets == wonSets) &&
             (identical(other.wonLegsCurrentSet, wonLegsCurrentSet) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsCurrentSet, wonLegsCurrentSet)) &&
+                other.wonLegsCurrentSet == wonLegsCurrentSet) &&
             (identical(other.pointsLeft, pointsLeft) ||
-                const DeepCollectionEquality()
-                    .equals(other.pointsLeft, pointsLeft)) &&
+                other.pointsLeft == pointsLeft) &&
             (identical(other.finishRecommendation, finishRecommendation) ||
-                const DeepCollectionEquality().equals(
-                    other.finishRecommendation, finishRecommendation)) &&
+                other.finishRecommendation == finishRecommendation) &&
             (identical(other.lastPoints, lastPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastPoints, lastPoints)) &&
+                other.lastPoints == lastPoints) &&
             (identical(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) ||
-                const DeepCollectionEquality().equals(
-                    other.dartsThrownCurrentLeg, dartsThrownCurrentLeg)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                other.dartsThrownCurrentLeg == dartsThrownCurrentLeg) &&
+            (identical(other.stats, stats) || other.stats == stats) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonSets) ^
-      const DeepCollectionEquality().hash(wonLegsCurrentSet) ^
-      const DeepCollectionEquality().hash(pointsLeft) ^
-      const DeepCollectionEquality().hash(finishRecommendation) ^
-      const DeepCollectionEquality().hash(lastPoints) ^
-      const DeepCollectionEquality().hash(dartsThrownCurrentLeg) ^
-      const DeepCollectionEquality().hash(stats) ^
-      const DeepCollectionEquality().hash(userId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      isCurrentTurn,
+      won,
+      wonSets,
+      wonLegsCurrentSet,
+      pointsLeft,
+      finishRecommendation,
+      lastPoints,
+      dartsThrownCurrentLeg,
+      stats,
+      userId);
 
   @JsonKey(ignore: true)
   @override
@@ -406,30 +395,29 @@ abstract class _PlayerSnapshot implements PlayerSnapshot {
       required String userId}) = _$_PlayerSnapshot;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn;
   @override
-  bool? get won => throw _privateConstructorUsedError;
+  bool? get won;
   @override
-  int? get wonSets => throw _privateConstructorUsedError;
+  int? get wonSets;
   @override
-  int? get wonLegsCurrentSet => throw _privateConstructorUsedError;
+  int? get wonLegsCurrentSet;
   @override
-  int? get pointsLeft => throw _privateConstructorUsedError;
+  int? get pointsLeft;
   @override
-  KtList<String>? get finishRecommendation =>
-      throw _privateConstructorUsedError;
+  KtList<String>? get finishRecommendation;
   @override
-  int? get lastPoints => throw _privateConstructorUsedError;
+  int? get lastPoints;
   @override
-  int? get dartsThrownCurrentLeg => throw _privateConstructorUsedError;
+  int? get dartsThrownCurrentLeg;
   @override
-  Stats? get stats => throw _privateConstructorUsedError;
+  Stats? get stats;
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotCopyWith<_PlayerSnapshot> get copyWith =>

@@ -7,7 +7,7 @@ part 'snapshot_packet.g.dart';
 
 @freezed
 class SnapshotPacket with _$SnapshotPacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory SnapshotPacket({
     required GameSnapshotDto snapshot,
   }) = _SnapshotPacket;

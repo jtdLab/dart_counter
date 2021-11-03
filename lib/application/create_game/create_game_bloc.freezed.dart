@@ -267,7 +267,8 @@ class _$GameCanceled implements GameCanceled {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameCanceled);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GameCanceled);
   }
 
   @override
@@ -471,20 +472,16 @@ class _$PlayerReordered implements PlayerReordered {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerReordered &&
+        (other.runtimeType == runtimeType &&
+            other is PlayerReordered &&
             (identical(other.oldIndex, oldIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.oldIndex, oldIndex)) &&
+                other.oldIndex == oldIndex) &&
             (identical(other.newIndex, newIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.newIndex, newIndex)));
+                other.newIndex == newIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(oldIndex) ^
-      const DeepCollectionEquality().hash(newIndex);
+  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -634,8 +631,8 @@ abstract class PlayerReordered implements CreateGameEvent {
   const factory PlayerReordered(
       {required int oldIndex, required int newIndex}) = _$PlayerReordered;
 
-  int get oldIndex => throw _privateConstructorUsedError;
-  int get newIndex => throw _privateConstructorUsedError;
+  int get oldIndex;
+  int get newIndex;
   @JsonKey(ignore: true)
   $PlayerReorderedCopyWith<PlayerReordered> get copyWith =>
       throw _privateConstructorUsedError;
@@ -672,7 +669,8 @@ class _$PlayerAdded implements PlayerAdded {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayerAdded);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayerAdded);
   }
 
   @override
@@ -869,14 +867,13 @@ class _$PlayerRemoved implements PlayerRemoved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerRemoved &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerRemoved &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -1025,7 +1022,7 @@ class _$PlayerRemoved implements PlayerRemoved {
 abstract class PlayerRemoved implements CreateGameEvent {
   const factory PlayerRemoved({required int index}) = _$PlayerRemoved;
 
-  int get index => throw _privateConstructorUsedError;
+  int get index;
   @JsonKey(ignore: true)
   $PlayerRemovedCopyWith<PlayerRemoved> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1086,18 +1083,14 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerNameUpdated &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.newName, newName) ||
-                const DeepCollectionEquality().equals(other.newName, newName)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerNameUpdated &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.newName, newName) || other.newName == newName));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(newName);
+  int get hashCode => Object.hash(runtimeType, index, newName);
 
   @JsonKey(ignore: true)
   @override
@@ -1247,8 +1240,8 @@ abstract class PlayerNameUpdated implements CreateGameEvent {
   const factory PlayerNameUpdated(
       {required int index, required String newName}) = _$PlayerNameUpdated;
 
-  int get index => throw _privateConstructorUsedError;
-  String get newName => throw _privateConstructorUsedError;
+  int get index;
+  String get newName;
   @JsonKey(ignore: true)
   $PlayerNameUpdatedCopyWith<PlayerNameUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1302,16 +1295,14 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is StartingPointsUpdated &&
+        (other.runtimeType == runtimeType &&
+            other is StartingPointsUpdated &&
             (identical(other.newStartingPoints, newStartingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.newStartingPoints, newStartingPoints)));
+                other.newStartingPoints == newStartingPoints));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newStartingPoints);
+  int get hashCode => Object.hash(runtimeType, newStartingPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -1462,7 +1453,7 @@ abstract class StartingPointsUpdated implements CreateGameEvent {
   const factory StartingPointsUpdated({required int newStartingPoints}) =
       _$StartingPointsUpdated;
 
-  int get newStartingPoints => throw _privateConstructorUsedError;
+  int get newStartingPoints;
   @JsonKey(ignore: true)
   $StartingPointsUpdatedCopyWith<StartingPointsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1516,14 +1507,13 @@ class _$ModeUpdated implements ModeUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ModeUpdated &&
-            (identical(other.newMode, newMode) ||
-                const DeepCollectionEquality().equals(other.newMode, newMode)));
+        (other.runtimeType == runtimeType &&
+            other is ModeUpdated &&
+            (identical(other.newMode, newMode) || other.newMode == newMode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMode);
+  int get hashCode => Object.hash(runtimeType, newMode);
 
   @JsonKey(ignore: true)
   @override
@@ -1672,7 +1662,7 @@ class _$ModeUpdated implements ModeUpdated {
 abstract class ModeUpdated implements CreateGameEvent {
   const factory ModeUpdated({required Mode newMode}) = _$ModeUpdated;
 
-  Mode get newMode => throw _privateConstructorUsedError;
+  Mode get newMode;
   @JsonKey(ignore: true)
   $ModeUpdatedCopyWith<ModeUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1726,14 +1716,13 @@ class _$SizeUpdated implements SizeUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SizeUpdated &&
-            (identical(other.newSize, newSize) ||
-                const DeepCollectionEquality().equals(other.newSize, newSize)));
+        (other.runtimeType == runtimeType &&
+            other is SizeUpdated &&
+            (identical(other.newSize, newSize) || other.newSize == newSize));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newSize);
+  int get hashCode => Object.hash(runtimeType, newSize);
 
   @JsonKey(ignore: true)
   @override
@@ -1882,7 +1871,7 @@ class _$SizeUpdated implements SizeUpdated {
 abstract class SizeUpdated implements CreateGameEvent {
   const factory SizeUpdated({required int newSize}) = _$SizeUpdated;
 
-  int get newSize => throw _privateConstructorUsedError;
+  int get newSize;
   @JsonKey(ignore: true)
   $SizeUpdatedCopyWith<SizeUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1936,14 +1925,13 @@ class _$TypeUpdated implements TypeUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TypeUpdated &&
-            (identical(other.newType, newType) ||
-                const DeepCollectionEquality().equals(other.newType, newType)));
+        (other.runtimeType == runtimeType &&
+            other is TypeUpdated &&
+            (identical(other.newType, newType) || other.newType == newType));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newType);
+  int get hashCode => Object.hash(runtimeType, newType);
 
   @JsonKey(ignore: true)
   @override
@@ -2092,7 +2080,7 @@ class _$TypeUpdated implements TypeUpdated {
 abstract class TypeUpdated implements CreateGameEvent {
   const factory TypeUpdated({required Type newType}) = _$TypeUpdated;
 
-  Type get newType => throw _privateConstructorUsedError;
+  Type get newType;
   @JsonKey(ignore: true)
   $TypeUpdatedCopyWith<TypeUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2129,7 +2117,8 @@ class _$GameStarted implements GameStarted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameStarted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GameStarted);
   }
 
   @override
@@ -2309,7 +2298,8 @@ class _$DartBotAdded implements DartBotAdded {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DartBotAdded);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DartBotAdded);
   }
 
   @override
@@ -2489,7 +2479,8 @@ class _$DartBotRemoved implements DartBotRemoved {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DartBotRemoved);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DartBotRemoved);
   }
 
   @override
@@ -2688,16 +2679,14 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DartBotTargetAverageUpdated &&
+        (other.runtimeType == runtimeType &&
+            other is DartBotTargetAverageUpdated &&
             (identical(other.newTargetAverage, newTargetAverage) ||
-                const DeepCollectionEquality()
-                    .equals(other.newTargetAverage, newTargetAverage)));
+                other.newTargetAverage == newTargetAverage));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newTargetAverage);
+  int get hashCode => Object.hash(runtimeType, newTargetAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -2848,7 +2837,7 @@ abstract class DartBotTargetAverageUpdated implements CreateGameEvent {
   const factory DartBotTargetAverageUpdated({required int newTargetAverage}) =
       _$DartBotTargetAverageUpdated;
 
-  int get newTargetAverage => throw _privateConstructorUsedError;
+  int get newTargetAverage;
   @JsonKey(ignore: true)
   $DartBotTargetAverageUpdatedCopyWith<DartBotTargetAverageUpdated>
       get copyWith => throw _privateConstructorUsedError;
@@ -2902,15 +2891,14 @@ class _$GameReceived implements GameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameReceived &&
+        (other.runtimeType == runtimeType &&
+            other is GameReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -3060,7 +3048,7 @@ abstract class GameReceived implements CreateGameEvent {
   const factory GameReceived({required GameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3202,15 +3190,14 @@ class _$CreateGameInitial implements CreateGameInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CreateGameInitial &&
+        (other.runtimeType == runtimeType &&
+            other is CreateGameInitial &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -3279,7 +3266,7 @@ abstract class CreateGameInitial implements CreateGameState {
       _$CreateGameInitial;
 
   @override
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $CreateGameInitialCopyWith<CreateGameInitial> get copyWith =>

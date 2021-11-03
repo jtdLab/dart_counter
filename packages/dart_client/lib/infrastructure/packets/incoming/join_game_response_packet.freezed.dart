@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'join_game_response_packet.dart';
 
@@ -29,7 +30,7 @@ class _$JoinGameResponsePacketTearOff {
     );
   }
 
-  JoinGameResponsePacket fromJson(Map<String, Object> json) {
+  JoinGameResponsePacket fromJson(Map<String, Object?> json) {
     return JoinGameResponsePacket.fromJson(json);
   }
 }
@@ -140,13 +141,13 @@ class __$JoinGameResponsePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(ResponsePacket)
+@Implements<ResponsePacket>()
 class _$_JoinGameResponsePacket extends _JoinGameResponsePacket {
   const _$_JoinGameResponsePacket({required this.successful, this.snapshot})
       : super._();
 
   factory _$_JoinGameResponsePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_JoinGameResponsePacketFromJson(json);
+      _$$_JoinGameResponsePacketFromJson(json);
 
   @override
   final bool successful;
@@ -161,20 +162,16 @@ class _$_JoinGameResponsePacket extends _JoinGameResponsePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _JoinGameResponsePacket &&
+        (other.runtimeType == runtimeType &&
+            other is _JoinGameResponsePacket &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)) &&
+                other.successful == successful) &&
             (identical(other.snapshot, snapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.snapshot, snapshot)));
+                other.snapshot == snapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(snapshot);
+  int get hashCode => Object.hash(runtimeType, successful, snapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +181,7 @@ class _$_JoinGameResponsePacket extends _JoinGameResponsePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_JoinGameResponsePacketToJson(this);
+    return _$$_JoinGameResponsePacketToJson(this);
   }
 }
 
@@ -199,9 +196,9 @@ abstract class _JoinGameResponsePacket extends JoinGameResponsePacket
       _$_JoinGameResponsePacket.fromJson;
 
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
-  GameSnapshotDto? get snapshot => throw _privateConstructorUsedError;
+  GameSnapshotDto? get snapshot;
   @override
   @JsonKey(ignore: true)
   _$JoinGameResponsePacketCopyWith<_JoinGameResponsePacket> get copyWith =>

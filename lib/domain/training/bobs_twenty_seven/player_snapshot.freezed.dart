@@ -210,7 +210,7 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(TrainingPlayerSnapshot)
+@Implements<TrainingPlayerSnapshot>()
 class _$_PlayerSnapshot implements _PlayerSnapshot {
   const _$_PlayerSnapshot(
       {required this.id,
@@ -247,41 +247,26 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerSnapshot &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerSnapshot &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
+                other.isCurrentTurn == isCurrentTurn) &&
             (identical(other.isDisqualified, isDisqualified) ||
-                const DeepCollectionEquality()
-                    .equals(other.isDisqualified, isDisqualified)) &&
+                other.isDisqualified == isDisqualified) &&
             (identical(other.targetValue, targetValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.targetValue, targetValue)) &&
+                other.targetValue == targetValue) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
-                const DeepCollectionEquality()
-                    .equals(other.checkoutPercentage, checkoutPercentage)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
+                other.checkoutPercentage == checkoutPercentage) &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.highestPoints, highestPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.highestPoints, highestPoints)));
+                other.highestPoints == highestPoints));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(isDisqualified) ^
-      const DeepCollectionEquality().hash(targetValue) ^
-      const DeepCollectionEquality().hash(checkoutPercentage) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(highestPoints);
+  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
+      isDisqualified, targetValue, checkoutPercentage, points, highestPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -302,21 +287,21 @@ abstract class _PlayerSnapshot
       required int highestPoints}) = _$_PlayerSnapshot;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  bool get isCurrentTurn => throw _privateConstructorUsedError;
+  bool get isCurrentTurn;
   @override
-  bool get isDisqualified => throw _privateConstructorUsedError;
+  bool get isDisqualified;
   @override
-  int get targetValue => throw _privateConstructorUsedError;
+  int get targetValue;
   @override
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double get checkoutPercentage;
   @override
-  int get points => throw _privateConstructorUsedError;
+  int get points;
   @override
-  int get highestPoints => throw _privateConstructorUsedError;
+  int get highestPoints;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotCopyWith<_PlayerSnapshot> get copyWith =>

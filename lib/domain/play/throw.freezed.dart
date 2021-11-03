@@ -161,26 +161,19 @@ class _$_Throw implements _Throw {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Throw &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
+        (other.runtimeType == runtimeType &&
+            other is _Throw &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.dartsThrown, dartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.dartsThrown, dartsThrown)) &&
+                other.dartsThrown == dartsThrown) &&
             (identical(other.dartsOnDouble, dartsOnDouble) ||
-                const DeepCollectionEquality()
-                    .equals(other.dartsOnDouble, dartsOnDouble)) &&
-            (identical(other.darts, darts) ||
-                const DeepCollectionEquality().equals(other.darts, darts)));
+                other.dartsOnDouble == dartsOnDouble) &&
+            (identical(other.darts, darts) || other.darts == darts));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(dartsThrown) ^
-      const DeepCollectionEquality().hash(dartsOnDouble) ^
-      const DeepCollectionEquality().hash(darts);
+      Object.hash(runtimeType, points, dartsThrown, dartsOnDouble, darts);
 
   @JsonKey(ignore: true)
   @override
@@ -196,13 +189,13 @@ abstract class _Throw implements Throw {
       KtList<Dart>? darts}) = _$_Throw;
 
   @override
-  int get points => throw _privateConstructorUsedError;
+  int get points;
   @override
-  int get dartsThrown => throw _privateConstructorUsedError;
+  int get dartsThrown;
   @override
-  int get dartsOnDouble => throw _privateConstructorUsedError;
+  int get dartsOnDouble;
   @override
-  KtList<Dart>? get darts => throw _privateConstructorUsedError;
+  KtList<Dart>? get darts;
   @override
   @JsonKey(ignore: true)
   _$ThrowCopyWith<_Throw> get copyWith => throw _privateConstructorUsedError;

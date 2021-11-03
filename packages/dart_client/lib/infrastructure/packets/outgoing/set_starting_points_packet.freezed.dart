@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'set_starting_points_packet.dart';
 
@@ -27,7 +28,7 @@ class _$SetStartingPointsPacketTearOff {
     );
   }
 
-  SetStartingPointsPacket fromJson(Map<String, Object> json) {
+  SetStartingPointsPacket fromJson(Map<String, Object?> json) {
     return SetStartingPointsPacket.fromJson(json);
   }
 }
@@ -112,12 +113,12 @@ class __$SetStartingPointsPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_SetStartingPointsPacket extends _SetStartingPointsPacket {
   const _$_SetStartingPointsPacket({required this.startingPoints}) : super._();
 
   factory _$_SetStartingPointsPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_SetStartingPointsPacketFromJson(json);
+      _$$_SetStartingPointsPacketFromJson(json);
 
   @override
   final int startingPoints;
@@ -130,16 +131,14 @@ class _$_SetStartingPointsPacket extends _SetStartingPointsPacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetStartingPointsPacket &&
+        (other.runtimeType == runtimeType &&
+            other is _SetStartingPointsPacket &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)));
+                other.startingPoints == startingPoints));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(startingPoints);
+  int get hashCode => Object.hash(runtimeType, startingPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -149,7 +148,7 @@ class _$_SetStartingPointsPacket extends _SetStartingPointsPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SetStartingPointsPacketToJson(this);
+    return _$$_SetStartingPointsPacketToJson(this);
   }
 }
 
@@ -163,7 +162,7 @@ abstract class _SetStartingPointsPacket extends SetStartingPointsPacket
       _$_SetStartingPointsPacket.fromJson;
 
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
   @JsonKey(ignore: true)
   _$SetStartingPointsPacketCopyWith<_SetStartingPointsPacket> get copyWith =>

@@ -28,7 +28,7 @@ class _$DartDtoTearOff {
     );
   }
 
-  DartDto fromJson(Map<String, Object> json) {
+  DartDto fromJson(Map<String, Object?> json) {
     return DartDto.fromJson(json);
   }
 }
@@ -135,18 +135,14 @@ class _$_DartDto extends _DartDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DartDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is _DartDto &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(value);
+  int get hashCode => Object.hash(runtimeType, type, value);
 
   @JsonKey(ignore: true)
   @override
@@ -167,9 +163,9 @@ abstract class _DartDto extends DartDto {
   factory _DartDto.fromJson(Map<String, dynamic> json) = _$_DartDto.fromJson;
 
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  int get value => throw _privateConstructorUsedError;
+  int get value;
   @override
   @JsonKey(ignore: true)
   _$DartDtoCopyWith<_DartDto> get copyWith =>

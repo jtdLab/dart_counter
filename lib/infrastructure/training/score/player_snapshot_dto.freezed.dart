@@ -265,45 +265,36 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerSnapshotDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerSnapshotDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
+                other.isCurrentTurn == isCurrentTurn) &&
             (identical(other.takesLeft, takesLeft) ||
-                const DeepCollectionEquality()
-                    .equals(other.takesLeft, takesLeft)) &&
-            (identical(other.average, average) ||
-                const DeepCollectionEquality()
-                    .equals(other.average, average)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
+                other.takesLeft == takesLeft) &&
+            (identical(other.average, average) || other.average == average) &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.firstDartAverage, firstDartAverage) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstDartAverage, firstDartAverage)) &&
+                other.firstDartAverage == firstDartAverage) &&
             (identical(other.secondDartAverage, secondDartAverage) ||
-                const DeepCollectionEquality()
-                    .equals(other.secondDartAverage, secondDartAverage)) &&
+                other.secondDartAverage == secondDartAverage) &&
             (identical(other.thirdDartAverage, thirdDartAverage) ||
-                const DeepCollectionEquality()
-                    .equals(other.thirdDartAverage, thirdDartAverage)));
+                other.thirdDartAverage == thirdDartAverage));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(takesLeft) ^
-      const DeepCollectionEquality().hash(average) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(firstDartAverage) ^
-      const DeepCollectionEquality().hash(secondDartAverage) ^
-      const DeepCollectionEquality().hash(thirdDartAverage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      isCurrentTurn,
+      takesLeft,
+      average,
+      points,
+      firstDartAverage,
+      secondDartAverage,
+      thirdDartAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -325,23 +316,23 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const _PlayerSnapshotDto._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn;
   @override
-  int? get takesLeft => throw _privateConstructorUsedError;
+  int? get takesLeft;
   @override
-  double? get average => throw _privateConstructorUsedError;
+  double? get average;
   @override
-  int? get points => throw _privateConstructorUsedError;
+  int? get points;
   @override
-  double? get firstDartAverage => throw _privateConstructorUsedError;
+  double? get firstDartAverage;
   @override
-  double? get secondDartAverage => throw _privateConstructorUsedError;
+  double? get secondDartAverage;
   @override
-  double? get thirdDartAverage => throw _privateConstructorUsedError;
+  double? get thirdDartAverage;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>

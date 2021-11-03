@@ -138,15 +138,14 @@ class _$EmailChanged implements EmailChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is EmailChanged &&
+        (other.runtimeType == runtimeType &&
+            other is EmailChanged &&
             (identical(other.emailString, emailString) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailString, emailString)));
+                other.emailString == emailString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(emailString);
+  int get hashCode => Object.hash(runtimeType, emailString);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +218,7 @@ class _$EmailChanged implements EmailChanged {
 abstract class EmailChanged implements ForgotPasswordEvent {
   const factory EmailChanged({required String emailString}) = _$EmailChanged;
 
-  String get emailString => throw _privateConstructorUsedError;
+  String get emailString;
   @JsonKey(ignore: true)
   $EmailChangedCopyWith<EmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -256,7 +255,8 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConfirmPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -524,31 +524,22 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ForgotPasswordState &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ForgotPasswordState &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.showErrorMessages, showErrorMessages)) &&
+                other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
+                other.isSubmitting == isSubmitting) &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)) &&
+                other.successful == successful) &&
             (identical(other.authFailure, authFailure) ||
-                const DeepCollectionEquality()
-                    .equals(other.authFailure, authFailure)));
+                other.authFailure == authFailure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(authFailure);
+  int get hashCode => Object.hash(runtimeType, email, showErrorMessages,
+      isSubmitting, successful, authFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -566,15 +557,15 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
       AuthFailure? authFailure}) = _$_ForgotPasswordState;
 
   @override
-  EmailAddress get email => throw _privateConstructorUsedError;
+  EmailAddress get email;
   @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get showErrorMessages;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
-  AuthFailure? get authFailure => throw _privateConstructorUsedError;
+  AuthFailure? get authFailure;
   @override
   @JsonKey(ignore: true)
   _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith =>

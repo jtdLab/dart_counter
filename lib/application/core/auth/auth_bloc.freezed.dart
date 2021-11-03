@@ -148,16 +148,14 @@ class _$AuthenticationChanged implements AuthenticationChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthenticationChanged &&
+        (other.runtimeType == runtimeType &&
+            other is AuthenticationChanged &&
             (identical(other.isAuthenticated, isAuthenticated) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAuthenticated, isAuthenticated)));
+                other.isAuthenticated == isAuthenticated));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(isAuthenticated);
+  int get hashCode => Object.hash(runtimeType, isAuthenticated);
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +226,7 @@ abstract class AuthenticationChanged implements AuthEvent {
       _$AuthenticationChanged;
 
   @override
-  bool get isAuthenticated => throw _privateConstructorUsedError;
+  bool get isAuthenticated;
   @override
   @JsonKey(ignore: true)
   $AuthenticationChangedCopyWith<AuthenticationChanged> get copyWith =>
@@ -357,15 +355,14 @@ class _$Authenticated implements Authenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Authenticated &&
+        (other.runtimeType == runtimeType &&
+            other is Authenticated &&
             (identical(other.appUserId, appUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.appUserId, appUserId)));
+                other.appUserId == appUserId));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(appUserId);
+  int get hashCode => Object.hash(runtimeType, appUserId);
 
   @JsonKey(ignore: true)
   @override
@@ -438,7 +435,7 @@ class _$Authenticated implements Authenticated {
 abstract class Authenticated implements AuthState {
   const factory Authenticated({required UniqueId appUserId}) = _$Authenticated;
 
-  UniqueId get appUserId => throw _privateConstructorUsedError;
+  UniqueId get appUserId;
   @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -474,7 +471,8 @@ class _$Unauthenticated implements Unauthenticated {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Unauthenticated);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Unauthenticated);
   }
 
   @override

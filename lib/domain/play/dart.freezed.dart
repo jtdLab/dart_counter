@@ -123,18 +123,14 @@ class _$_Dart extends _Dart {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Dart &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is _Dart &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(value);
+  int get hashCode => Object.hash(runtimeType, type, value);
 
   @JsonKey(ignore: true)
   @override
@@ -147,9 +143,9 @@ abstract class _Dart extends Dart {
   const _Dart._() : super._();
 
   @override
-  DartType get type => throw _privateConstructorUsedError;
+  DartType get type;
   @override
-  int get value => throw _privateConstructorUsedError;
+  int get value;
   @override
   @JsonKey(ignore: true)
   _$DartCopyWith<_Dart> get copyWith => throw _privateConstructorUsedError;

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'set_size_packet.dart';
 
@@ -26,7 +27,7 @@ class _$SetSizePacketTearOff {
     );
   }
 
-  SetSizePacket fromJson(Map<String, Object> json) {
+  SetSizePacket fromJson(Map<String, Object?> json) {
     return SetSizePacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$SetSizePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_SetSizePacket extends _SetSizePacket {
   const _$_SetSizePacket({required this.size}) : super._();
 
   factory _$_SetSizePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_SetSizePacketFromJson(json);
+      _$$_SetSizePacketFromJson(json);
 
   @override
   final int size;
@@ -128,14 +129,13 @@ class _$_SetSizePacket extends _SetSizePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetSizePacket &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)));
+        (other.runtimeType == runtimeType &&
+            other is _SetSizePacket &&
+            (identical(other.size, size) || other.size == size));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(size);
+  int get hashCode => Object.hash(runtimeType, size);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_SetSizePacket extends _SetSizePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SetSizePacketToJson(this);
+    return _$$_SetSizePacketToJson(this);
   }
 }
 
@@ -156,7 +156,7 @@ abstract class _SetSizePacket extends SetSizePacket implements RequestPacket {
       _$_SetSizePacket.fromJson;
 
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
   @JsonKey(ignore: true)
   _$SetSizePacketCopyWith<_SetSizePacket> get copyWith =>

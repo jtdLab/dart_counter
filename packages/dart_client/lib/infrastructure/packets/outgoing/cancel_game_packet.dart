@@ -7,7 +7,7 @@ part 'cancel_game_packet.g.dart';
 
 @freezed
 class CancelGamePacket with _$CancelGamePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory CancelGamePacket() = _CancelGamePacket;
 
   const CancelGamePacket._();

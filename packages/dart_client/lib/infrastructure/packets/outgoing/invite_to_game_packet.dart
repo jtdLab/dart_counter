@@ -7,7 +7,7 @@ part 'invite_to_game_packet.g.dart';
 
 @freezed
 class InviteToGamePacket with _$InviteToGamePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory InviteToGamePacket({
     required String uid,
   }) = _InviteToGamePacket;

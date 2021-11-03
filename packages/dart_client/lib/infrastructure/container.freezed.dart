@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'container.dart';
 
@@ -141,23 +142,17 @@ class _$_Container extends _Container {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Container &&
+        (other.runtimeType == runtimeType &&
+            other is _Container &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)) &&
+                other.timestamp == timestamp) &&
             (identical(other.payloadType, payloadType) ||
-                const DeepCollectionEquality()
-                    .equals(other.payloadType, payloadType)) &&
-            (identical(other.payload, payload) ||
-                const DeepCollectionEquality().equals(other.payload, payload)));
+                other.payloadType == payloadType) &&
+            (identical(other.payload, payload) || other.payload == payload));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(payloadType) ^
-      const DeepCollectionEquality().hash(payload);
+  int get hashCode => Object.hash(runtimeType, timestamp, payloadType, payload);
 
   @JsonKey(ignore: true)
   @override
@@ -173,11 +168,11 @@ abstract class _Container extends Container {
   const _Container._() : super._();
 
   @override
-  int get timestamp => throw _privateConstructorUsedError;
+  int get timestamp;
   @override
-  String get payloadType => throw _privateConstructorUsedError;
+  String get payloadType;
   @override
-  Packet? get payload => throw _privateConstructorUsedError;
+  Packet? get payload;
   @override
   @JsonKey(ignore: true)
   _$ContainerCopyWith<_Container> get copyWith =>

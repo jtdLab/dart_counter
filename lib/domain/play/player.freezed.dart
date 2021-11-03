@@ -193,7 +193,7 @@ class __$OfflinePlayerCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(AbstractOfflinePlayer)
+@Implements<AbstractOfflinePlayer>()
 class _$_OfflinePlayer implements _OfflinePlayer {
   const _$_OfflinePlayer(
       {required this.id,
@@ -227,32 +227,21 @@ class _$_OfflinePlayer implements _OfflinePlayer {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OfflinePlayer &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OfflinePlayer &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
+                other.legsOrSets == legsOrSets) &&
+            (identical(other.won, won) || other.won == won) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsOrSets, wonLegsOrSets)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)));
+                other.wonLegsOrSets == wonLegsOrSets) &&
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonLegsOrSets) ^
-      const DeepCollectionEquality().hash(stats);
+      Object.hash(runtimeType, id, name, legsOrSets, won, wonLegsOrSets, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -270,18 +259,17 @@ abstract class _OfflinePlayer implements OfflinePlayer, AbstractOfflinePlayer {
       PlayerStats stats}) = _$_OfflinePlayer;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets;
   @override
-  bool get won => throw _privateConstructorUsedError;
+  bool get won;
   @override
-  int get wonLegsOrSets => throw _privateConstructorUsedError;
+  int get wonLegsOrSets;
   @override
-  PlayerStats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats;
   @override
   @JsonKey(ignore: true)
   _$OfflinePlayerCopyWith<_OfflinePlayer> get copyWith =>
@@ -461,7 +449,7 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(AbstractOfflinePlayer)
+@Implements<AbstractOfflinePlayer>()
 class _$_DartBot implements _DartBot {
   const _$_DartBot(
       {required this.id,
@@ -495,32 +483,21 @@ class _$_DartBot implements _DartBot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DartBot &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _DartBot &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
+                other.legsOrSets == legsOrSets) &&
+            (identical(other.won, won) || other.won == won) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsOrSets, wonLegsOrSets)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)));
+                other.wonLegsOrSets == wonLegsOrSets) &&
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonLegsOrSets) ^
-      const DeepCollectionEquality().hash(stats);
+      Object.hash(runtimeType, id, name, legsOrSets, won, wonLegsOrSets, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -538,18 +515,17 @@ abstract class _DartBot implements DartBot, AbstractOfflinePlayer {
       PlayerStats stats}) = _$_DartBot;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets;
   @override
-  bool get won => throw _privateConstructorUsedError;
+  bool get won;
   @override
-  int get wonLegsOrSets => throw _privateConstructorUsedError;
+  int get wonLegsOrSets;
   @override
-  PlayerStats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats;
   @override
   @JsonKey(ignore: true)
   _$DartBotCopyWith<_DartBot> get copyWith =>
@@ -734,7 +710,7 @@ class __$OnlinePlayerCopyWithImpl<$Res> extends _$OnlinePlayerCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(AbstractPlayer)
+@Implements<AbstractPlayer>()
 class _$_OnlinePlayer implements _OnlinePlayer {
   const _$_OnlinePlayer(
       {required this.id,
@@ -768,32 +744,21 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnlinePlayer &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OnlinePlayer &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
+                other.legsOrSets == legsOrSets) &&
+            (identical(other.won, won) || other.won == won) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegsOrSets, wonLegsOrSets)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)));
+                other.wonLegsOrSets == wonLegsOrSets) &&
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonLegsOrSets) ^
-      const DeepCollectionEquality().hash(stats);
+      Object.hash(runtimeType, id, name, legsOrSets, won, wonLegsOrSets, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -811,18 +776,17 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
       PlayerStats stats}) = _$_OnlinePlayer;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<KtList<Leg>, KtList<Set>> get legsOrSets;
   @override
-  bool get won => throw _privateConstructorUsedError;
+  bool get won;
   @override
-  int get wonLegsOrSets => throw _privateConstructorUsedError;
+  int get wonLegsOrSets;
   @override
-  PlayerStats get stats => throw _privateConstructorUsedError;
+  PlayerStats get stats;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerCopyWith<_OnlinePlayer> get copyWith =>

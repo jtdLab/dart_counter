@@ -25,7 +25,7 @@ abstract class AbstractGameSnapshotDto {
 class OfflineGameSnapshotDto
     with _$OfflineGameSnapshotDto
     implements AbstractGameSnapshotDto {
-  @Implements(AbstractGameSnapshotDto)
+  @Implements<AbstractGameSnapshotDto>()
   const factory OfflineGameSnapshotDto({
     required String status,
     required String mode,
@@ -96,7 +96,7 @@ class OfflineGameSnapshotDto
 class OnlineGameSnapshotDto
     with _$OnlineGameSnapshotDto
     implements AbstractGameSnapshotDto {
-  @Implements(AbstractGameSnapshotDto)
+  @Implements<AbstractGameSnapshotDto>()
   const factory OnlineGameSnapshotDto({
     required String status,
     required String mode,

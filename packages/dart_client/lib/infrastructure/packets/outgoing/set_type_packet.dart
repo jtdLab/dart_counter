@@ -8,7 +8,7 @@ part 'set_type_packet.g.dart';
 
 @freezed
 class SetTypePacket with _$SetTypePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory SetTypePacket({
     required Type type,
   }) = _SetTypePacket;

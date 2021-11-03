@@ -187,26 +187,18 @@ class _$_GameSnapshotDto extends _GameSnapshotDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameSnapshotDto &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GameSnapshotDto &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.numberOfTakes, numberOfTakes) ||
-                const DeepCollectionEquality()
-                    .equals(other.numberOfTakes, numberOfTakes)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality()
-                    .equals(other.players, players)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)));
+                other.numberOfTakes == numberOfTakes) &&
+            (identical(other.players, players) || other.players == players) &&
+            (identical(other.owner, owner) || other.owner == owner));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(numberOfTakes) ^
-      const DeepCollectionEquality().hash(players) ^
-      const DeepCollectionEquality().hash(owner);
+      Object.hash(runtimeType, status, numberOfTakes, players, owner);
 
   @JsonKey(ignore: true)
   @override
@@ -223,13 +215,13 @@ abstract class _GameSnapshotDto extends GameSnapshotDto {
   const _GameSnapshotDto._() : super._();
 
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  int get numberOfTakes => throw _privateConstructorUsedError;
+  int get numberOfTakes;
   @override
-  KtList<PlayerSnapshotDto> get players => throw _privateConstructorUsedError;
+  KtList<PlayerSnapshotDto> get players;
   @override
-  PlayerSnapshotDto get owner => throw _privateConstructorUsedError;
+  PlayerSnapshotDto get owner;
   @override
   @JsonKey(ignore: true)
   _$GameSnapshotDtoCopyWith<_GameSnapshotDto> get copyWith =>

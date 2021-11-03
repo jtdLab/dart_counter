@@ -151,7 +151,8 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoThrowPressed);
   }
 
   @override
@@ -273,7 +274,8 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PerformThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PerformThrowPressed);
   }
 
   @override
@@ -395,7 +397,8 @@ class _$CheckPressed implements CheckPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CheckPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CheckPressed);
   }
 
   @override
@@ -517,7 +520,8 @@ class _$ErasePressed implements ErasePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ErasePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ErasePressed);
   }
 
   @override
@@ -656,14 +660,13 @@ class _$DigitPressed implements DigitPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DigitPressed &&
-            (identical(other.digit, digit) ||
-                const DeepCollectionEquality().equals(other.digit, digit)));
+        (other.runtimeType == runtimeType &&
+            other is DigitPressed &&
+            (identical(other.digit, digit) || other.digit == digit));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(digit);
+  int get hashCode => Object.hash(runtimeType, digit);
 
   @JsonKey(ignore: true)
   @override
@@ -754,7 +757,7 @@ class _$DigitPressed implements DigitPressed {
 abstract class DigitPressed implements StandardInputAreaEvent {
   const factory DigitPressed({required int digit}) = _$DigitPressed;
 
-  int get digit => throw _privateConstructorUsedError;
+  int get digit;
   @JsonKey(ignore: true)
   $DigitPressedCopyWith<DigitPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -863,16 +866,14 @@ class _$_StandardInputAreaState implements _StandardInputAreaState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StandardInputAreaState &&
+        (other.runtimeType == runtimeType &&
+            other is _StandardInputAreaState &&
             (identical(other.showCheckoutDetails, showCheckoutDetails) ||
-                const DeepCollectionEquality()
-                    .equals(other.showCheckoutDetails, showCheckoutDetails)));
+                other.showCheckoutDetails == showCheckoutDetails));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(showCheckoutDetails);
+  int get hashCode => Object.hash(runtimeType, showCheckoutDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -886,7 +887,7 @@ abstract class _StandardInputAreaState implements StandardInputAreaState {
       _$_StandardInputAreaState;
 
   @override
-  bool get showCheckoutDetails => throw _privateConstructorUsedError;
+  bool get showCheckoutDetails;
   @override
   @JsonKey(ignore: true)
   _$StandardInputAreaStateCopyWith<_StandardInputAreaState> get copyWith =>

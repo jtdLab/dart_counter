@@ -6,10 +6,8 @@ part of 'create_game_packet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CreateGamePacket _$_$_CreateGamePacketFromJson(Map<String, dynamic> json) {
-  return _$_CreateGamePacket();
-}
+_$_CreateGamePacket _$$_CreateGamePacketFromJson(Map<String, dynamic> json) =>
+    _$_CreateGamePacket();
 
-Map<String, dynamic> _$_$_CreateGamePacketToJson(
-        _$_CreateGamePacket instance) =>
+Map<String, dynamic> _$$_CreateGamePacketToJson(_$_CreateGamePacket instance) =>
     <String, dynamic>{};

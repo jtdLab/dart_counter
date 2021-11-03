@@ -38,7 +38,7 @@ class _$FriendRequestDtoTearOff {
     );
   }
 
-  FriendRequestDto fromJson(Map<String, Object> json) {
+  FriendRequestDto fromJson(Map<String, Object?> json) {
     return FriendRequestDto.fromJson(json);
   }
 }
@@ -225,32 +225,21 @@ class _$_FriendRequestDto extends _FriendRequestDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FriendRequestDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.toId, toId) ||
-                const DeepCollectionEquality().equals(other.toId, toId)) &&
-            (identical(other.fromId, fromId) ||
-                const DeepCollectionEquality().equals(other.fromId, fromId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _FriendRequestDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.toId, toId) || other.toId == toId) &&
+            (identical(other.fromId, fromId) || other.fromId == fromId) &&
             (identical(other.fromName, fromName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromName, fromName)) &&
-            (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)) &&
+                other.fromName == fromName) &&
+            (identical(other.read, read) || other.read == read) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(toId) ^
-      const DeepCollectionEquality().hash(fromId) ^
-      const DeepCollectionEquality().hash(fromName) ^
-      const DeepCollectionEquality().hash(read) ^
-      const DeepCollectionEquality().hash(createdAt);
+      Object.hash(runtimeType, id, toId, fromId, fromName, read, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -277,18 +266,18 @@ abstract class _FriendRequestDto extends FriendRequestDto {
       _$_FriendRequestDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get toId => throw _privateConstructorUsedError;
+  String get toId;
   @override
-  String get fromId => throw _privateConstructorUsedError;
+  String get fromId;
   @override
-  String get fromName => throw _privateConstructorUsedError;
+  String get fromName;
   @override
-  bool get read => throw _privateConstructorUsedError;
+  bool get read;
   @override
   @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$FriendRequestDtoCopyWith<_FriendRequestDto> get copyWith =>

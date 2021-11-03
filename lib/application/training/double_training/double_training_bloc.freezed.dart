@@ -172,14 +172,13 @@ class _$_DoubleTrainingModeChanged implements _DoubleTrainingModeChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DoubleTrainingModeChanged &&
-            (identical(other.newMode, newMode) ||
-                const DeepCollectionEquality().equals(other.newMode, newMode)));
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingModeChanged &&
+            (identical(other.newMode, newMode) || other.newMode == newMode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMode);
+  int get hashCode => Object.hash(runtimeType, newMode);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +275,7 @@ abstract class _DoubleTrainingModeChanged implements DoubleTrainingEvent {
   const factory _DoubleTrainingModeChanged({required Mode newMode}) =
       _$_DoubleTrainingModeChanged;
 
-  Mode get newMode => throw _privateConstructorUsedError;
+  Mode get newMode;
   @JsonKey(ignore: true)
   _$DoubleTrainingModeChangedCopyWith<_DoubleTrainingModeChanged>
       get copyWith => throw _privateConstructorUsedError;
@@ -316,7 +315,9 @@ class _$_DoubleTrainingPerformPressed implements _DoubleTrainingPerformPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DoubleTrainingPerformPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingPerformPressed);
   }
 
   @override
@@ -443,7 +444,9 @@ class _$_DoubleTrainingUndoPressed implements _DoubleTrainingUndoPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DoubleTrainingUndoPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingUndoPressed);
   }
 
   @override
@@ -572,7 +575,9 @@ class _$_DoubleTrainingDoubleHitPressed
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DoubleTrainingDoubleHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingDoubleHitPressed);
   }
 
   @override
@@ -701,7 +706,9 @@ class _$_DoubleTrainingMissHitPressed implements _DoubleTrainingMissHitPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DoubleTrainingMissHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingMissHitPressed);
   }
 
   @override
@@ -947,18 +954,14 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DoubleTrainingInitial &&
-            (identical(other.hits, hits) ||
-                const DeepCollectionEquality().equals(other.hits, hits)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)));
+        (other.runtimeType == runtimeType &&
+            other is _DoubleTrainingInitial &&
+            (identical(other.hits, hits) || other.hits == hits) &&
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(hits) ^
-      const DeepCollectionEquality().hash(mode);
+  int get hashCode => Object.hash(runtimeType, hits, mode);
 
   @JsonKey(ignore: true)
   @override
@@ -1029,9 +1032,9 @@ abstract class _DoubleTrainingInitial implements DoubleTrainingState {
       required Mode mode}) = _$_DoubleTrainingInitial;
 
   @override
-  KtList<Hit> get hits => throw _privateConstructorUsedError;
+  KtList<Hit> get hits;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
   @JsonKey(ignore: true)
   _$DoubleTrainingInitialCopyWith<_DoubleTrainingInitial> get copyWith =>

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'cancel_game_packet.dart';
 
@@ -24,7 +25,7 @@ class _$CancelGamePacketTearOff {
     return const _CancelGamePacket();
   }
 
-  CancelGamePacket fromJson(Map<String, Object> json) {
+  CancelGamePacket fromJson(Map<String, Object?> json) {
     return CancelGamePacket.fromJson(json);
   }
 }
@@ -75,12 +76,12 @@ class __$CancelGamePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_CancelGamePacket extends _CancelGamePacket {
   const _$_CancelGamePacket() : super._();
 
   factory _$_CancelGamePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_CancelGamePacketFromJson(json);
+      _$$_CancelGamePacketFromJson(json);
 
   @override
   String toString() {
@@ -89,7 +90,8 @@ class _$_CancelGamePacket extends _CancelGamePacket {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CancelGamePacket);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _CancelGamePacket);
   }
 
   @override
@@ -97,7 +99,7 @@ class _$_CancelGamePacket extends _CancelGamePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CancelGamePacketToJson(this);
+    return _$$_CancelGamePacketToJson(this);
   }
 }
 

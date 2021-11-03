@@ -33,7 +33,7 @@ class _$OfflinePlayerDtoTearOff {
     );
   }
 
-  OfflinePlayerDto fromJson(Map<String, Object> json) {
+  OfflinePlayerDto fromJson(Map<String, Object?> json) {
     return OfflinePlayerDto.fromJson(json);
   }
 }
@@ -147,7 +147,7 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(AbstractOfflinePlayerDto)
+@Implements<AbstractOfflinePlayerDto>()
 class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   const _$_OfflinePlayerDto(
       {required this.id,
@@ -174,22 +174,16 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OfflinePlayerDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OfflinePlayerDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)));
+                other.legsOrSets == legsOrSets));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets);
+  int get hashCode => Object.hash(runtimeType, id, name, legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -216,13 +210,12 @@ abstract class _OfflinePlayerDto extends OfflinePlayerDto
       _$_OfflinePlayerDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<List<LegDto>, List<SetDto>> get legsOrSets;
   @override
   @JsonKey(ignore: true)
   _$OfflinePlayerDtoCopyWith<_OfflinePlayerDto> get copyWith =>
@@ -249,7 +242,7 @@ class _$DartBotDtoTearOff {
     );
   }
 
-  DartBotDto fromJson(Map<String, Object> json) {
+  DartBotDto fromJson(Map<String, Object?> json) {
     return DartBotDto.fromJson(json);
   }
 }
@@ -360,7 +353,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(AbstractOfflinePlayerDto)
+@Implements<AbstractOfflinePlayerDto>()
 class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
       {required this.id,
@@ -387,22 +380,16 @@ class _$_DartBotDto extends _DartBotDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DartBotDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _DartBotDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)));
+                other.legsOrSets == legsOrSets));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets);
+  int get hashCode => Object.hash(runtimeType, id, name, legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -429,13 +416,12 @@ abstract class _DartBotDto extends DartBotDto
       _$_DartBotDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<List<LegDto>, List<SetDto>> get legsOrSets;
   @override
   @JsonKey(ignore: true)
   _$DartBotDtoCopyWith<_DartBotDto> get copyWith =>
@@ -462,7 +448,7 @@ class _$OnlinePlayerDtoTearOff {
     );
   }
 
-  OnlinePlayerDto fromJson(Map<String, Object> json) {
+  OnlinePlayerDto fromJson(Map<String, Object?> json) {
     return OnlinePlayerDto.fromJson(json);
   }
 }
@@ -576,7 +562,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(AbstractPlayerDto)
+@Implements<AbstractPlayerDto>()
 class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
       {required this.id,
@@ -603,22 +589,16 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnlinePlayerDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OnlinePlayerDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
-                const DeepCollectionEquality()
-                    .equals(other.legsOrSets, legsOrSets)));
+                other.legsOrSets == legsOrSets));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(legsOrSets);
+  int get hashCode => Object.hash(runtimeType, id, name, legsOrSets);
 
   @JsonKey(ignore: true)
   @override
@@ -645,13 +625,12 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
       _$_OnlinePlayerDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
-      throw _privateConstructorUsedError;
+  Either<List<LegDto>, List<SetDto>> get legsOrSets;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerDtoCopyWith<_OnlinePlayerDto> get copyWith =>

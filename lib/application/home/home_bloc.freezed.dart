@@ -170,7 +170,8 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CreateOnlineGamePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CreateOnlineGamePressed);
   }
 
   @override
@@ -304,7 +305,8 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CreateOfflineGamePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CreateOfflineGamePressed);
   }
 
   @override
@@ -479,23 +481,18 @@ class _$DataReceived implements DataReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DataReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is DataReceived &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.unreadInvitations, unreadInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.unreadInvitations, unreadInvitations)) &&
+                other.unreadInvitations == unreadInvitations) &&
             (identical(other.unreadFriendRequests, unreadFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.unreadFriendRequests, unreadFriendRequests)));
+                other.unreadFriendRequests == unreadFriendRequests));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(unreadInvitations) ^
-      const DeepCollectionEquality().hash(unreadFriendRequests);
+      Object.hash(runtimeType, user, unreadInvitations, unreadFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -600,9 +597,9 @@ abstract class DataReceived implements HomeEvent {
       required int unreadInvitations,
       required int unreadFriendRequests}) = _$DataReceived;
 
-  User get user => throw _privateConstructorUsedError;
-  int get unreadInvitations => throw _privateConstructorUsedError;
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
+  User get user;
+  int get unreadInvitations;
+  int get unreadFriendRequests;
   @JsonKey(ignore: true)
   $DataReceivedCopyWith<DataReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -655,15 +652,14 @@ class _$GameReceived implements GameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameReceived &&
+        (other.runtimeType == runtimeType &&
+            other is GameReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -766,7 +762,7 @@ abstract class GameReceived implements HomeEvent {
   const factory GameReceived({required GameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -820,16 +816,14 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingGameReceived &&
+        (other.runtimeType == runtimeType &&
+            other is TrainingGameReceived &&
             (identical(other.trainingGameSnapshot, trainingGameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.trainingGameSnapshot, trainingGameSnapshot)));
+                other.trainingGameSnapshot == trainingGameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(trainingGameSnapshot);
+  int get hashCode => Object.hash(runtimeType, trainingGameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -934,8 +928,7 @@ abstract class TrainingGameReceived implements HomeEvent {
           {required TrainingGameSnapshot trainingGameSnapshot}) =
       _$TrainingGameReceived;
 
-  TrainingGameSnapshot get trainingGameSnapshot =>
-      throw _privateConstructorUsedError;
+  TrainingGameSnapshot get trainingGameSnapshot;
   @JsonKey(ignore: true)
   $TrainingGameReceivedCopyWith<TrainingGameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1236,38 +1229,31 @@ class _$HomeInitial implements HomeInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is HomeInitial &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is HomeInitial &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.unreadInvitations, unreadInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.unreadInvitations, unreadInvitations)) &&
+                other.unreadInvitations == unreadInvitations) &&
             (identical(other.unreadFriendRequests, unreadFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.unreadFriendRequests, unreadFriendRequests)) &&
+                other.unreadFriendRequests == unreadFriendRequests) &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)) &&
+                other.gameSnapshot == gameSnapshot) &&
             (identical(other.trainingGameSnapshot, trainingGameSnapshot) ||
-                const DeepCollectionEquality().equals(
-                    other.trainingGameSnapshot, trainingGameSnapshot)) &&
-            (identical(other.loading, loading) ||
-                const DeepCollectionEquality()
-                    .equals(other.loading, loading)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+                other.trainingGameSnapshot == trainingGameSnapshot) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(unreadInvitations) ^
-      const DeepCollectionEquality().hash(unreadFriendRequests) ^
-      const DeepCollectionEquality().hash(gameSnapshot) ^
-      const DeepCollectionEquality().hash(trainingGameSnapshot) ^
-      const DeepCollectionEquality().hash(loading) ^
-      const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      user,
+      unreadInvitations,
+      unreadFriendRequests,
+      gameSnapshot,
+      trainingGameSnapshot,
+      loading,
+      failure);
 
   @JsonKey(ignore: true)
   @override
@@ -1369,20 +1355,19 @@ abstract class HomeInitial implements HomeState {
       PlayFailure? failure}) = _$HomeInitial;
 
   @override
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
-  int get unreadInvitations => throw _privateConstructorUsedError;
+  int get unreadInvitations;
   @override
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
+  int get unreadFriendRequests;
   @override
-  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot? get gameSnapshot;
   @override
-  TrainingGameSnapshot? get trainingGameSnapshot =>
-      throw _privateConstructorUsedError;
+  TrainingGameSnapshot? get trainingGameSnapshot;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
-  PlayFailure? get failure => throw _privateConstructorUsedError;
+  PlayFailure? get failure;
   @override
   @JsonKey(ignore: true)
   $HomeInitialCopyWith<HomeInitial> get copyWith =>

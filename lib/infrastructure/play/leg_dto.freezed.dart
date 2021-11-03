@@ -28,7 +28,7 @@ class _$LegDtoTearOff {
     );
   }
 
-  LegDto fromJson(Map<String, Object> json) {
+  LegDto fromJson(Map<String, Object?> json) {
     return LegDto.fromJson(json);
   }
 }
@@ -136,19 +136,16 @@ class _$_LegDto extends _LegDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LegDto &&
+        (other.runtimeType == runtimeType &&
+            other is _LegDto &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.throws, throws) ||
-                const DeepCollectionEquality().equals(other.throws, throws)));
+                other.startingPoints == startingPoints) &&
+            const DeepCollectionEquality().equals(other.throws, throws));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(throws);
+  int get hashCode => Object.hash(
+      runtimeType, startingPoints, const DeepCollectionEquality().hash(throws));
 
   @JsonKey(ignore: true)
   @override
@@ -170,9 +167,9 @@ abstract class _LegDto extends LegDto {
   factory _LegDto.fromJson(Map<String, dynamic> json) = _$_LegDto.fromJson;
 
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  List<ThrowDto> get throws => throw _privateConstructorUsedError;
+  List<ThrowDto> get throws;
   @override
   @JsonKey(ignore: true)
   _$LegDtoCopyWith<_LegDto> get copyWith => throw _privateConstructorUsedError;

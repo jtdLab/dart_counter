@@ -7,7 +7,7 @@ part 'undo_throw_packet.g.dart';
 
 @freezed
 class UndoThrowPacket with _$UndoThrowPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory UndoThrowPacket() = _UndoThrowPacket;
 
   const UndoThrowPacket._();

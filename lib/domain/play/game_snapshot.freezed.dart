@@ -181,7 +181,7 @@ class __$OfflineGameSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(GameSnapshot)
+@Implements<GameSnapshot>()
 class _$_OfflineGameSnapshot extends _OfflineGameSnapshot {
   const _$_OfflineGameSnapshot(
       {required this.status,
@@ -213,31 +213,20 @@ class _$_OfflineGameSnapshot extends _OfflineGameSnapshot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OfflineGameSnapshot &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OfflineGameSnapshot &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            (identical(other.players, players) || other.players == players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(
+      runtimeType, status, mode, size, type, startingPoints, players);
 
   @JsonKey(ignore: true)
   @override
@@ -259,18 +248,17 @@ abstract class _OfflineGameSnapshot extends OfflineGameSnapshot
   const _OfflineGameSnapshot._() : super._();
 
   @override
-  Status get status => throw _privateConstructorUsedError;
+  Status get status;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  KtList<AbstractOfflinePlayerSnapshot> get players =>
-      throw _privateConstructorUsedError;
+  KtList<AbstractOfflinePlayerSnapshot> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameSnapshotCopyWith<_OfflineGameSnapshot> get copyWith =>
@@ -445,7 +433,7 @@ class __$OnlineGameSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(GameSnapshot)
+@Implements<GameSnapshot>()
 class _$_OnlineGameSnapshot extends _OnlineGameSnapshot {
   const _$_OnlineGameSnapshot(
       {required this.status,
@@ -477,31 +465,20 @@ class _$_OnlineGameSnapshot extends _OnlineGameSnapshot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnlineGameSnapshot &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OnlineGameSnapshot &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            (identical(other.players, players) || other.players == players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(
+      runtimeType, status, mode, size, type, startingPoints, players);
 
   @JsonKey(ignore: true)
   @override
@@ -521,18 +498,17 @@ abstract class _OnlineGameSnapshot extends OnlineGameSnapshot
   const _OnlineGameSnapshot._() : super._();
 
   @override
-  Status get status => throw _privateConstructorUsedError;
+  Status get status;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  KtList<OnlinePlayerSnapshot> get players =>
-      throw _privateConstructorUsedError;
+  KtList<OnlinePlayerSnapshot> get players;
   @override
   @JsonKey(ignore: true)
   _$OnlineGameSnapshotCopyWith<_OnlineGameSnapshot> get copyWith =>

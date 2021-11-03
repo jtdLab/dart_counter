@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'reorder_player_packet.dart';
 
@@ -27,7 +28,7 @@ class _$ReorderPlayerPacketTearOff {
     );
   }
 
-  ReorderPlayerPacket fromJson(Map<String, Object> json) {
+  ReorderPlayerPacket fromJson(Map<String, Object?> json) {
     return ReorderPlayerPacket.fromJson(json);
   }
 }
@@ -122,13 +123,13 @@ class __$ReorderPlayerPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_ReorderPlayerPacket extends _ReorderPlayerPacket {
   const _$_ReorderPlayerPacket({required this.oldIndex, required this.newIndex})
       : super._();
 
   factory _$_ReorderPlayerPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_ReorderPlayerPacketFromJson(json);
+      _$$_ReorderPlayerPacketFromJson(json);
 
   @override
   final int oldIndex;
@@ -143,20 +144,16 @@ class _$_ReorderPlayerPacket extends _ReorderPlayerPacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ReorderPlayerPacket &&
+        (other.runtimeType == runtimeType &&
+            other is _ReorderPlayerPacket &&
             (identical(other.oldIndex, oldIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.oldIndex, oldIndex)) &&
+                other.oldIndex == oldIndex) &&
             (identical(other.newIndex, newIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.newIndex, newIndex)));
+                other.newIndex == newIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(oldIndex) ^
-      const DeepCollectionEquality().hash(newIndex);
+  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +163,7 @@ class _$_ReorderPlayerPacket extends _ReorderPlayerPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ReorderPlayerPacketToJson(this);
+    return _$$_ReorderPlayerPacketToJson(this);
   }
 }
 
@@ -180,9 +177,9 @@ abstract class _ReorderPlayerPacket extends ReorderPlayerPacket
       _$_ReorderPlayerPacket.fromJson;
 
   @override
-  int get oldIndex => throw _privateConstructorUsedError;
+  int get oldIndex;
   @override
-  int get newIndex => throw _privateConstructorUsedError;
+  int get newIndex;
   @override
   @JsonKey(ignore: true)
   _$ReorderPlayerPacketCopyWith<_ReorderPlayerPacket> get copyWith =>

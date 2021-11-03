@@ -7,7 +7,7 @@ part 'create_game_response_packet.g.dart';
 
 @freezed
 class CreateGameResponsePacket with _$CreateGameResponsePacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory CreateGameResponsePacket({
     required bool successful,
     GameSnapshotDto? snapshot,

@@ -32,7 +32,7 @@ class _$ProfileDtoTearOff {
     );
   }
 
-  ProfileDto fromJson(Map<String, Object> json) {
+  ProfileDto fromJson(Map<String, Object?> json) {
     return ProfileDto.fromJson(json);
   }
 }
@@ -172,23 +172,18 @@ class _$_ProfileDto extends _ProfileDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProfileDto &&
+        (other.runtimeType == runtimeType &&
+            other is _ProfileDto &&
             (identical(other.photoUrl, photoUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoUrl, photoUrl)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+                other.photoUrl == photoUrl) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.careerStatsOnline, careerStatsOnline) ||
-                const DeepCollectionEquality()
-                    .equals(other.careerStatsOnline, careerStatsOnline)));
+                other.careerStatsOnline == careerStatsOnline));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(careerStatsOnline);
+      Object.hash(runtimeType, photoUrl, name, careerStatsOnline);
 
   @JsonKey(ignore: true)
   @override
@@ -212,11 +207,11 @@ abstract class _ProfileDto extends ProfileDto {
       _$_ProfileDto.fromJson;
 
   @override
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get photoUrl;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  CareerStatsDto get careerStatsOnline => throw _privateConstructorUsedError;
+  CareerStatsDto get careerStatsOnline;
   @override
   @JsonKey(ignore: true)
   _$ProfileDtoCopyWith<_ProfileDto> get copyWith =>

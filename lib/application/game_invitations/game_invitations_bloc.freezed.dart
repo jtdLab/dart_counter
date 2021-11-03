@@ -195,21 +195,18 @@ class _$GameInvitationsDataReceived implements GameInvitationsDataReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInvitationsDataReceived &&
+        (other.runtimeType == runtimeType &&
+            other is GameInvitationsDataReceived &&
             (identical(
                     other.receivedGameInvitations, receivedGameInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedGameInvitations, receivedGameInvitations)) &&
+                other.receivedGameInvitations == receivedGameInvitations) &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)));
+                other.sentGameInvitations == sentGameInvitations));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(receivedGameInvitations) ^
-      const DeepCollectionEquality().hash(sentGameInvitations);
+      Object.hash(runtimeType, receivedGameInvitations, sentGameInvitations);
 
   @JsonKey(ignore: true)
   @override
@@ -310,10 +307,8 @@ abstract class GameInvitationsDataReceived implements GameInvitationsEvent {
           required KtList<GameInvitation> sentGameInvitations}) =
       _$GameInvitationsDataReceived;
 
-  KtList<GameInvitation> get receivedGameInvitations =>
-      throw _privateConstructorUsedError;
-  KtList<GameInvitation> get sentGameInvitations =>
-      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get receivedGameInvitations;
+  KtList<GameInvitation> get sentGameInvitations;
   @JsonKey(ignore: true)
   $GameInvitationsDataReceivedCopyWith<GameInvitationsDataReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -369,15 +364,14 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInvitationsGameReceived &&
+        (other.runtimeType == runtimeType &&
+            other is GameInvitationsGameReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -476,7 +470,7 @@ abstract class GameInvitationsGameReceived implements GameInvitationsEvent {
   const factory GameInvitationsGameReceived(
       {required GameSnapshot gameSnapshot}) = _$GameInvitationsGameReceived;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameInvitationsGameReceivedCopyWith<GameInvitationsGameReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -543,16 +537,14 @@ class _$GameInvitationsInvitationAccepted
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInvitationsInvitationAccepted &&
+        (other.runtimeType == runtimeType &&
+            other is GameInvitationsInvitationAccepted &&
             (identical(other.gameInvitation, gameInvitation) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameInvitation, gameInvitation)));
+                other.gameInvitation == gameInvitation));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gameInvitation);
+  int get hashCode => Object.hash(runtimeType, gameInvitation);
 
   @JsonKey(ignore: true)
   @override
@@ -653,7 +645,7 @@ abstract class GameInvitationsInvitationAccepted
           {required GameInvitation gameInvitation}) =
       _$GameInvitationsInvitationAccepted;
 
-  GameInvitation get gameInvitation => throw _privateConstructorUsedError;
+  GameInvitation get gameInvitation;
   @JsonKey(ignore: true)
   $GameInvitationsInvitationAcceptedCopyWith<GameInvitationsInvitationAccepted>
       get copyWith => throw _privateConstructorUsedError;
@@ -720,16 +712,14 @@ class _$GameInvitationsInvitationDeclined
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInvitationsInvitationDeclined &&
+        (other.runtimeType == runtimeType &&
+            other is GameInvitationsInvitationDeclined &&
             (identical(other.gameInvitation, gameInvitation) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameInvitation, gameInvitation)));
+                other.gameInvitation == gameInvitation));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gameInvitation);
+  int get hashCode => Object.hash(runtimeType, gameInvitation);
 
   @JsonKey(ignore: true)
   @override
@@ -830,7 +820,7 @@ abstract class GameInvitationsInvitationDeclined
           {required GameInvitation gameInvitation}) =
       _$GameInvitationsInvitationDeclined;
 
-  GameInvitation get gameInvitation => throw _privateConstructorUsedError;
+  GameInvitation get gameInvitation;
   @JsonKey(ignore: true)
   $GameInvitationsInvitationDeclinedCopyWith<GameInvitationsInvitationDeclined>
       get copyWith => throw _privateConstructorUsedError;
@@ -1084,32 +1074,22 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInvitationsInitial &&
+        (other.runtimeType == runtimeType &&
+            other is GameInvitationsInitial &&
             (identical(
                     other.receivedGameInvitations, receivedGameInvitations) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedGameInvitations, receivedGameInvitations)) &&
+                other.receivedGameInvitations == receivedGameInvitations) &&
             (identical(other.sentGameInvitations, sentGameInvitations) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentGameInvitations, sentGameInvitations)) &&
+                other.sentGameInvitations == sentGameInvitations) &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)) &&
-            (identical(other.loading, loading) ||
-                const DeepCollectionEquality()
-                    .equals(other.loading, loading)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+                other.gameSnapshot == gameSnapshot) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(receivedGameInvitations) ^
-      const DeepCollectionEquality().hash(sentGameInvitations) ^
-      const DeepCollectionEquality().hash(gameSnapshot) ^
-      const DeepCollectionEquality().hash(loading) ^
-      const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(runtimeType, receivedGameInvitations,
+      sentGameInvitations, gameSnapshot, loading, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -1204,17 +1184,15 @@ abstract class GameInvitationsInitial implements GameInvitationsState {
       PlayFailure? failure}) = _$GameInvitationsInitial;
 
   @override
-  KtList<GameInvitation> get receivedGameInvitations =>
-      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get receivedGameInvitations;
   @override
-  KtList<GameInvitation> get sentGameInvitations =>
-      throw _privateConstructorUsedError;
+  KtList<GameInvitation> get sentGameInvitations;
   @override
-  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot? get gameSnapshot;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
-  PlayFailure? get failure => throw _privateConstructorUsedError;
+  PlayFailure? get failure;
   @override
   @JsonKey(ignore: true)
   $GameInvitationsInitialCopyWith<GameInvitationsInitial> get copyWith =>

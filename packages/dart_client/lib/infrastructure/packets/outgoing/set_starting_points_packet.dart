@@ -7,7 +7,7 @@ part 'set_starting_points_packet.g.dart';
 
 @freezed
 class SetStartingPointsPacket with _$SetStartingPointsPacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory SetStartingPointsPacket({
     required int startingPoints,
   }) = _SetStartingPointsPacket;

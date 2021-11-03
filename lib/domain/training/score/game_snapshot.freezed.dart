@@ -160,7 +160,7 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements(TrainingGameSnapshot)
+@Implements<TrainingGameSnapshot>()
 class _$_GameSnapshot implements _GameSnapshot {
   const _$_GameSnapshot(
       {required this.status,
@@ -185,26 +185,18 @@ class _$_GameSnapshot implements _GameSnapshot {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameSnapshot &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GameSnapshot &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.numberOfTakes, numberOfTakes) ||
-                const DeepCollectionEquality()
-                    .equals(other.numberOfTakes, numberOfTakes)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality()
-                    .equals(other.players, players)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)));
+                other.numberOfTakes == numberOfTakes) &&
+            (identical(other.players, players) || other.players == players) &&
+            (identical(other.owner, owner) || other.owner == owner));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(numberOfTakes) ^
-      const DeepCollectionEquality().hash(players) ^
-      const DeepCollectionEquality().hash(owner);
+      Object.hash(runtimeType, status, numberOfTakes, players, owner);
 
   @JsonKey(ignore: true)
   @override
@@ -220,13 +212,13 @@ abstract class _GameSnapshot implements GameSnapshot, TrainingGameSnapshot {
       required PlayerSnapshot owner}) = _$_GameSnapshot;
 
   @override
-  Status get status => throw _privateConstructorUsedError;
+  Status get status;
   @override
-  int get numberOfTakes => throw _privateConstructorUsedError;
+  int get numberOfTakes;
   @override
-  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
+  KtList<PlayerSnapshot> get players;
   @override
-  PlayerSnapshot get owner => throw _privateConstructorUsedError;
+  PlayerSnapshot get owner;
   @override
   @JsonKey(ignore: true)
   _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>

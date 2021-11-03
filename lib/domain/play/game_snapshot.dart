@@ -23,7 +23,7 @@ abstract class GameSnapshot {
 
 @freezed
 class OfflineGameSnapshot with _$OfflineGameSnapshot implements GameSnapshot {
-  @Implements(GameSnapshot)
+  @Implements<GameSnapshot>()
   const factory OfflineGameSnapshot({
     required Status status,
     required Mode mode,
@@ -56,7 +56,7 @@ class OfflineGameSnapshot with _$OfflineGameSnapshot implements GameSnapshot {
 
 @freezed
 class OnlineGameSnapshot with _$OnlineGameSnapshot implements GameSnapshot {
-  @Implements(GameSnapshot)
+  @Implements<GameSnapshot>()
   const factory OnlineGameSnapshot({
     required Status status,
     required Mode mode,

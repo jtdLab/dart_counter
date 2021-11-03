@@ -6,17 +6,16 @@ part of 'join_game_response_packet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_JoinGameResponsePacket _$_$_JoinGameResponsePacketFromJson(
-    Map<String, dynamic> json) {
-  return _$_JoinGameResponsePacket(
-    successful: json['successful'] as bool,
-    snapshot: json['snapshot'] == null
-        ? null
-        : GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
-  );
-}
+_$_JoinGameResponsePacket _$$_JoinGameResponsePacketFromJson(
+        Map<String, dynamic> json) =>
+    _$_JoinGameResponsePacket(
+      successful: json['successful'] as bool,
+      snapshot: json['snapshot'] == null
+          ? null
+          : GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$_JoinGameResponsePacketToJson(
+Map<String, dynamic> _$$_JoinGameResponsePacketToJson(
         _$_JoinGameResponsePacket instance) =>
     <String, dynamic>{
       'successful': instance.successful,

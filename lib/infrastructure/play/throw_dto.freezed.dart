@@ -34,7 +34,7 @@ class _$ThrowDtoTearOff {
     );
   }
 
-  ThrowDto fromJson(Map<String, Object> json) {
+  ThrowDto fromJson(Map<String, Object?> json) {
     return ThrowDto.fromJson(json);
   }
 }
@@ -175,26 +175,19 @@ class _$_ThrowDto extends _ThrowDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ThrowDto &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ThrowDto &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.dartsThrown, dartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.dartsThrown, dartsThrown)) &&
+                other.dartsThrown == dartsThrown) &&
             (identical(other.dartsOnDouble, dartsOnDouble) ||
-                const DeepCollectionEquality()
-                    .equals(other.dartsOnDouble, dartsOnDouble)) &&
-            (identical(other.darts, darts) ||
-                const DeepCollectionEquality().equals(other.darts, darts)));
+                other.dartsOnDouble == dartsOnDouble) &&
+            const DeepCollectionEquality().equals(other.darts, darts));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(dartsThrown) ^
-      const DeepCollectionEquality().hash(dartsOnDouble) ^
-      const DeepCollectionEquality().hash(darts);
+  int get hashCode => Object.hash(runtimeType, points, dartsThrown,
+      dartsOnDouble, const DeepCollectionEquality().hash(darts));
 
   @JsonKey(ignore: true)
   @override
@@ -218,13 +211,13 @@ abstract class _ThrowDto extends ThrowDto {
   factory _ThrowDto.fromJson(Map<String, dynamic> json) = _$_ThrowDto.fromJson;
 
   @override
-  int get points => throw _privateConstructorUsedError;
+  int get points;
   @override
-  int get dartsThrown => throw _privateConstructorUsedError;
+  int get dartsThrown;
   @override
-  int get dartsOnDouble => throw _privateConstructorUsedError;
+  int get dartsOnDouble;
   @override
-  List<DartDto>? get darts => throw _privateConstructorUsedError;
+  List<DartDto>? get darts;
   @override
   @JsonKey(ignore: true)
   _$ThrowDtoCopyWith<_ThrowDto> get copyWith =>

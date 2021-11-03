@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'remove_player_packet.dart';
 
@@ -26,7 +27,7 @@ class _$RemovePlayerPacketTearOff {
     );
   }
 
-  RemovePlayerPacket fromJson(Map<String, Object> json) {
+  RemovePlayerPacket fromJson(Map<String, Object?> json) {
     return RemovePlayerPacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$RemovePlayerPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_RemovePlayerPacket extends _RemovePlayerPacket {
   const _$_RemovePlayerPacket({required this.index}) : super._();
 
   factory _$_RemovePlayerPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_RemovePlayerPacketFromJson(json);
+      _$$_RemovePlayerPacketFromJson(json);
 
   @override
   final int index;
@@ -128,14 +129,13 @@ class _$_RemovePlayerPacket extends _RemovePlayerPacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RemovePlayerPacket &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)));
+        (other.runtimeType == runtimeType &&
+            other is _RemovePlayerPacket &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_RemovePlayerPacket extends _RemovePlayerPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RemovePlayerPacketToJson(this);
+    return _$$_RemovePlayerPacketToJson(this);
   }
 }
 
@@ -158,7 +158,7 @@ abstract class _RemovePlayerPacket extends RemovePlayerPacket
       _$_RemovePlayerPacket.fromJson;
 
   @override
-  int get index => throw _privateConstructorUsedError;
+  int get index;
   @override
   @JsonKey(ignore: true)
   _$RemovePlayerPacketCopyWith<_RemovePlayerPacket> get copyWith =>

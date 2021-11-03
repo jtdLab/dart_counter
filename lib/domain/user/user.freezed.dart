@@ -225,35 +225,22 @@ class _$_User implements _User {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.idToken, idToken)) &&
+        (other.runtimeType == runtimeType &&
+            other is _User &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
             (identical(other.emailAddress, emailAddress) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailAddress, emailAddress)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality()
-                    .equals(other.profile, profile)) &&
+                other.emailAddress == emailAddress) &&
+            (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.friendIds, friendIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.friendIds, friendIds)) &&
+                other.friendIds == friendIds) &&
             (identical(other.careerStatsOffline, careerStatsOffline) ||
-                const DeepCollectionEquality()
-                    .equals(other.careerStatsOffline, careerStatsOffline)));
+                other.careerStatsOffline == careerStatsOffline));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(idToken) ^
-      const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(friendIds) ^
-      const DeepCollectionEquality().hash(careerStatsOffline);
+  int get hashCode => Object.hash(runtimeType, id, idToken, emailAddress,
+      profile, friendIds, careerStatsOffline);
 
   @JsonKey(ignore: true)
   @override
@@ -271,17 +258,17 @@ abstract class _User implements User {
       required CareerStats careerStatsOffline}) = _$_User;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String get idToken => throw _privateConstructorUsedError;
+  String get idToken;
   @override
-  EmailAddress get emailAddress => throw _privateConstructorUsedError;
+  EmailAddress get emailAddress;
   @override
-  Profile get profile => throw _privateConstructorUsedError;
+  Profile get profile;
   @override
-  KtList<UniqueId> get friendIds => throw _privateConstructorUsedError;
+  KtList<UniqueId> get friendIds;
   @override
-  CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
+  CareerStats get careerStatsOffline;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

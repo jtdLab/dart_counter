@@ -155,24 +155,19 @@ class _$_Profile implements _Profile {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Profile &&
+        (other.runtimeType == runtimeType &&
+            other is _Profile &&
             (identical(other.photoUrl, photoUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoUrl, photoUrl)) &&
+                other.photoUrl == photoUrl) &&
             (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
+                other.username == username) &&
             (identical(other.careerStatsOnline, careerStatsOnline) ||
-                const DeepCollectionEquality()
-                    .equals(other.careerStatsOnline, careerStatsOnline)));
+                other.careerStatsOnline == careerStatsOnline));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(careerStatsOnline);
+      Object.hash(runtimeType, photoUrl, username, careerStatsOnline);
 
   @JsonKey(ignore: true)
   @override
@@ -187,11 +182,11 @@ abstract class _Profile implements Profile {
       required CareerStats careerStatsOnline}) = _$_Profile;
 
   @override
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get photoUrl;
   @override
-  Username get username => throw _privateConstructorUsedError;
+  Username get username;
   @override
-  CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
+  CareerStats get careerStatsOnline;
   @override
   @JsonKey(ignore: true)
   _$ProfileCopyWith<_Profile> get copyWith =>

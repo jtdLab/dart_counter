@@ -195,14 +195,13 @@ class _$FriendsFriendSelected implements FriendsFriendSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsFriendSelected &&
-            (identical(other.friend, friend) ||
-                const DeepCollectionEquality().equals(other.friend, friend)));
+        (other.runtimeType == runtimeType &&
+            other is FriendsFriendSelected &&
+            (identical(other.friend, friend) || other.friend == friend));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friend);
+  int get hashCode => Object.hash(runtimeType, friend);
 
   @JsonKey(ignore: true)
   @override
@@ -305,7 +304,7 @@ abstract class FriendsFriendSelected implements FriendsEvent {
   const factory FriendsFriendSelected({required Friend friend}) =
       _$FriendsFriendSelected;
 
-  Friend get friend => throw _privateConstructorUsedError;
+  Friend get friend;
   @JsonKey(ignore: true)
   $FriendsFriendSelectedCopyWith<FriendsFriendSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -371,15 +370,14 @@ class _$FriendsFriendRequestAccepted implements FriendsFriendRequestAccepted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsFriendRequestAccepted &&
+        (other.runtimeType == runtimeType &&
+            other is FriendsFriendRequestAccepted &&
             (identical(other.friendRequest, friendRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.friendRequest, friendRequest)));
+                other.friendRequest == friendRequest));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friendRequest);
+  int get hashCode => Object.hash(runtimeType, friendRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -482,7 +480,7 @@ abstract class FriendsFriendRequestAccepted implements FriendsEvent {
   const factory FriendsFriendRequestAccepted(
       {required FriendRequest friendRequest}) = _$FriendsFriendRequestAccepted;
 
-  FriendRequest get friendRequest => throw _privateConstructorUsedError;
+  FriendRequest get friendRequest;
   @JsonKey(ignore: true)
   $FriendsFriendRequestAcceptedCopyWith<FriendsFriendRequestAccepted>
       get copyWith => throw _privateConstructorUsedError;
@@ -548,15 +546,14 @@ class _$FriendsFriendRequestDeclined implements FriendsFriendRequestDeclined {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsFriendRequestDeclined &&
+        (other.runtimeType == runtimeType &&
+            other is FriendsFriendRequestDeclined &&
             (identical(other.friendRequest, friendRequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.friendRequest, friendRequest)));
+                other.friendRequest == friendRequest));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friendRequest);
+  int get hashCode => Object.hash(runtimeType, friendRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -659,7 +656,7 @@ abstract class FriendsFriendRequestDeclined implements FriendsEvent {
   const factory FriendsFriendRequestDeclined(
       {required FriendRequest friendRequest}) = _$FriendsFriendRequestDeclined;
 
-  FriendRequest get friendRequest => throw _privateConstructorUsedError;
+  FriendRequest get friendRequest;
   @JsonKey(ignore: true)
   $FriendsFriendRequestDeclinedCopyWith<FriendsFriendRequestDeclined>
       get copyWith => throw _privateConstructorUsedError;
@@ -733,24 +730,18 @@ class _$FriendsDataReceived implements FriendsDataReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsDataReceived &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality()
-                    .equals(other.friends, friends)) &&
+        (other.runtimeType == runtimeType &&
+            other is FriendsDataReceived &&
+            (identical(other.friends, friends) || other.friends == friends) &&
             (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedFriendRequests, receivedFriendRequests)) &&
+                other.receivedFriendRequests == receivedFriendRequests) &&
             (identical(other.sentFriendRequests, sentFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentFriendRequests, sentFriendRequests)));
+                other.sentFriendRequests == sentFriendRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(friends) ^
-      const DeepCollectionEquality().hash(receivedFriendRequests) ^
-      const DeepCollectionEquality().hash(sentFriendRequests);
+  int get hashCode => Object.hash(
+      runtimeType, friends, receivedFriendRequests, sentFriendRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -856,11 +847,9 @@ abstract class FriendsDataReceived implements FriendsEvent {
           required KtList<FriendRequest> sentFriendRequests}) =
       _$FriendsDataReceived;
 
-  KtList<Friend> get friends => throw _privateConstructorUsedError;
-  KtList<FriendRequest> get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
-  KtList<FriendRequest> get sentFriendRequests =>
-      throw _privateConstructorUsedError;
+  KtList<Friend> get friends;
+  KtList<FriendRequest> get receivedFriendRequests;
+  KtList<FriendRequest> get sentFriendRequests;
   @JsonKey(ignore: true)
   $FriendsDataReceivedCopyWith<FriendsDataReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1092,28 +1081,20 @@ class _$FriendsInitial implements FriendsInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FriendsInitial &&
-            (identical(other.friends, friends) ||
-                const DeepCollectionEquality()
-                    .equals(other.friends, friends)) &&
+        (other.runtimeType == runtimeType &&
+            other is FriendsInitial &&
+            (identical(other.friends, friends) || other.friends == friends) &&
             (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedFriendRequests, receivedFriendRequests)) &&
+                other.receivedFriendRequests == receivedFriendRequests) &&
             (identical(other.sentFriendRequests, sentFriendRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentFriendRequests, sentFriendRequests)) &&
+                other.sentFriendRequests == sentFriendRequests) &&
             (identical(other.selectedFriend, selectedFriend) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedFriend, selectedFriend)));
+                other.selectedFriend == selectedFriend));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(friends) ^
-      const DeepCollectionEquality().hash(receivedFriendRequests) ^
-      const DeepCollectionEquality().hash(sentFriendRequests) ^
-      const DeepCollectionEquality().hash(selectedFriend);
+  int get hashCode => Object.hash(runtimeType, friends, receivedFriendRequests,
+      sentFriendRequests, selectedFriend);
 
   @JsonKey(ignore: true)
   @override
@@ -1203,15 +1184,13 @@ abstract class FriendsInitial implements FriendsState {
       Friend? selectedFriend}) = _$FriendsInitial;
 
   @override
-  KtList<Friend> get friends => throw _privateConstructorUsedError;
+  KtList<Friend> get friends;
   @override
-  KtList<FriendRequest> get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
+  KtList<FriendRequest> get receivedFriendRequests;
   @override
-  KtList<FriendRequest> get sentFriendRequests =>
-      throw _privateConstructorUsedError;
+  KtList<FriendRequest> get sentFriendRequests;
   @override
-  Friend? get selectedFriend => throw _privateConstructorUsedError;
+  Friend? get selectedFriend;
   @override
   @JsonKey(ignore: true)
   $FriendsInitialCopyWith<FriendsInitial> get copyWith =>

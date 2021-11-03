@@ -194,14 +194,13 @@ class _$_SingleTrainingModeChanged implements _SingleTrainingModeChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SingleTrainingModeChanged &&
-            (identical(other.newMode, newMode) ||
-                const DeepCollectionEquality().equals(other.newMode, newMode)));
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingModeChanged &&
+            (identical(other.newMode, newMode) || other.newMode == newMode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMode);
+  int get hashCode => Object.hash(runtimeType, newMode);
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +311,7 @@ abstract class _SingleTrainingModeChanged implements SingleTrainingEvent {
   const factory _SingleTrainingModeChanged({required Mode newMode}) =
       _$_SingleTrainingModeChanged;
 
-  Mode get newMode => throw _privateConstructorUsedError;
+  Mode get newMode;
   @JsonKey(ignore: true)
   _$SingleTrainingModeChangedCopyWith<_SingleTrainingModeChanged>
       get copyWith => throw _privateConstructorUsedError;
@@ -352,7 +351,9 @@ class _$_SingleTrainingPerformPressed implements _SingleTrainingPerformPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingPerformPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingPerformPressed);
   }
 
   @override
@@ -493,7 +494,9 @@ class _$_SingleTrainingUndoPressed implements _SingleTrainingUndoPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingUndoPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingUndoPressed);
   }
 
   @override
@@ -636,7 +639,9 @@ class _$_SingleTrainingSingleHitPressed
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingSingleHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingSingleHitPressed);
   }
 
   @override
@@ -780,7 +785,9 @@ class _$_SingleTrainingDoubleHitPressed
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingDoubleHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingDoubleHitPressed);
   }
 
   @override
@@ -924,7 +931,9 @@ class _$_SingleTrainingTripleHitPressed
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingTripleHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingTripleHitPressed);
   }
 
   @override
@@ -1067,7 +1076,9 @@ class _$_SingleTrainingMissHitPressed implements _SingleTrainingMissHitPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SingleTrainingMissHitPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingMissHitPressed);
   }
 
   @override
@@ -1327,18 +1338,14 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SingleTrainingInitial &&
-            (identical(other.hits, hits) ||
-                const DeepCollectionEquality().equals(other.hits, hits)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)));
+        (other.runtimeType == runtimeType &&
+            other is _SingleTrainingInitial &&
+            (identical(other.hits, hits) || other.hits == hits) &&
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(hits) ^
-      const DeepCollectionEquality().hash(mode);
+  int get hashCode => Object.hash(runtimeType, hits, mode);
 
   @JsonKey(ignore: true)
   @override
@@ -1409,9 +1416,9 @@ abstract class _SingleTrainingInitial implements SingleTrainingState {
       required Mode mode}) = _$_SingleTrainingInitial;
 
   @override
-  KtList<Hit> get hits => throw _privateConstructorUsedError;
+  KtList<Hit> get hits;
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
   @JsonKey(ignore: true)
   _$SingleTrainingInitialCopyWith<_SingleTrainingInitial> get copyWith =>

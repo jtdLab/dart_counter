@@ -106,7 +106,8 @@ class _$_Started implements _Started {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -266,7 +267,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override

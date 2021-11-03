@@ -6,14 +6,13 @@ part of 'snapshot_packet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SnapshotPacket _$_$_SnapshotPacketFromJson(Map<String, dynamic> json) {
-  return _$_SnapshotPacket(
-    snapshot:
-        GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
-  );
-}
+_$_SnapshotPacket _$$_SnapshotPacketFromJson(Map<String, dynamic> json) =>
+    _$_SnapshotPacket(
+      snapshot:
+          GameSnapshotDto.fromJson(json['snapshot'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$_SnapshotPacketToJson(_$_SnapshotPacket instance) =>
+Map<String, dynamic> _$$_SnapshotPacketToJson(_$_SnapshotPacket instance) =>
     <String, dynamic>{
       'snapshot': instance.snapshot.toJson(),
     };

@@ -26,7 +26,7 @@ abstract class GameDto {
 
 @freezed
 class OfflineGameDto with _$OfflineGameDto implements GameDto {
-  @Implements(GameDto)
+  @Implements<GameDto>()
   const factory OfflineGameDto({
     required String id,
     required int createdAt,
@@ -115,7 +115,7 @@ class OfflineGameDto with _$OfflineGameDto implements GameDto {
 
 @freezed
 class OnlineGameDto with _$OnlineGameDto implements GameDto {
-  @Implements(GameDto)
+  @Implements<GameDto>()
   const factory OnlineGameDto({
     required String id,
     required int createdAt,

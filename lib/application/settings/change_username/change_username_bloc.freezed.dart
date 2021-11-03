@@ -138,16 +138,14 @@ class _$NewUsernameChanged implements NewUsernameChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NewUsernameChanged &&
+        (other.runtimeType == runtimeType &&
+            other is NewUsernameChanged &&
             (identical(other.newUsernameString, newUsernameString) ||
-                const DeepCollectionEquality()
-                    .equals(other.newUsernameString, newUsernameString)));
+                other.newUsernameString == newUsernameString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newUsernameString);
+  int get hashCode => Object.hash(runtimeType, newUsernameString);
 
   @JsonKey(ignore: true)
   @override
@@ -221,7 +219,7 @@ abstract class NewUsernameChanged implements ChangeUsernameEvent {
   const factory NewUsernameChanged({required String newUsernameString}) =
       _$NewUsernameChanged;
 
-  String get newUsernameString => throw _privateConstructorUsedError;
+  String get newUsernameString;
   @JsonKey(ignore: true)
   $NewUsernameChangedCopyWith<NewUsernameChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -258,7 +256,8 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConfirmPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -526,32 +525,23 @@ class _$_ChangeUsernameState implements _ChangeUsernameState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ChangeUsernameState &&
+        (other.runtimeType == runtimeType &&
+            other is _ChangeUsernameState &&
             (identical(other.newUsername, newUsername) ||
-                const DeepCollectionEquality()
-                    .equals(other.newUsername, newUsername)) &&
+                other.newUsername == newUsername) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.showErrorMessages, showErrorMessages)) &&
+                other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
+                other.isSubmitting == isSubmitting) &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)) &&
+                other.successful == successful) &&
             (identical(other.userFailure, userFailure) ||
-                const DeepCollectionEquality()
-                    .equals(other.userFailure, userFailure)));
+                other.userFailure == userFailure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newUsername) ^
-      const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(successful) ^
-      const DeepCollectionEquality().hash(userFailure);
+  int get hashCode => Object.hash(runtimeType, newUsername, showErrorMessages,
+      isSubmitting, successful, userFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -569,15 +559,15 @@ abstract class _ChangeUsernameState implements ChangeUsernameState {
       UserFailure? userFailure}) = _$_ChangeUsernameState;
 
   @override
-  Username get newUsername => throw _privateConstructorUsedError;
+  Username get newUsername;
   @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get showErrorMessages;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
-  UserFailure? get userFailure => throw _privateConstructorUsedError;
+  UserFailure? get userFailure;
   @override
   @JsonKey(ignore: true)
   _$ChangeUsernameStateCopyWith<_ChangeUsernameState> get copyWith =>

@@ -40,7 +40,7 @@ class _$GameInvitationDtoTearOff {
     );
   }
 
-  GameInvitationDto fromJson(Map<String, Object> json) {
+  GameInvitationDto fromJson(Map<String, Object?> json) {
     return GameInvitationDto.fromJson(json);
   }
 }
@@ -243,35 +243,22 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GameInvitationDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.gameId, gameId) ||
-                const DeepCollectionEquality().equals(other.gameId, gameId)) &&
-            (identical(other.toId, toId) ||
-                const DeepCollectionEquality().equals(other.toId, toId)) &&
-            (identical(other.fromId, fromId) ||
-                const DeepCollectionEquality().equals(other.fromId, fromId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GameInvitationDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.gameId, gameId) || other.gameId == gameId) &&
+            (identical(other.toId, toId) || other.toId == toId) &&
+            (identical(other.fromId, fromId) || other.fromId == fromId) &&
             (identical(other.fromName, fromName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromName, fromName)) &&
-            (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)) &&
+                other.fromName == fromName) &&
+            (identical(other.read, read) || other.read == read) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(gameId) ^
-      const DeepCollectionEquality().hash(toId) ^
-      const DeepCollectionEquality().hash(fromId) ^
-      const DeepCollectionEquality().hash(fromName) ^
-      const DeepCollectionEquality().hash(read) ^
-      const DeepCollectionEquality().hash(createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, gameId, toId, fromId, fromName, read, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -299,20 +286,20 @@ abstract class _GameInvitationDto extends GameInvitationDto {
       _$_GameInvitationDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get gameId => throw _privateConstructorUsedError;
+  String get gameId;
   @override
-  String get toId => throw _privateConstructorUsedError;
+  String get toId;
   @override
-  String get fromId => throw _privateConstructorUsedError;
+  String get fromId;
   @override
-  String get fromName => throw _privateConstructorUsedError;
+  String get fromName;
   @override
-  bool get read => throw _privateConstructorUsedError;
+  bool get read;
   @override
   @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$GameInvitationDtoCopyWith<_GameInvitationDto> get copyWith =>

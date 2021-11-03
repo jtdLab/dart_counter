@@ -6,7 +6,7 @@ part 'player_exited_packet.g.dart';
 
 @freezed
 class PlayerExitedPacket with _$PlayerExitedPacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory PlayerExitedPacket({
     required String username,
   }) = _PlayerExitedPacket;

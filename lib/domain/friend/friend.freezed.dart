@@ -135,18 +135,14 @@ class _$_Friend implements _Friend {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Friend &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
+        (other.runtimeType == runtimeType &&
+            other is _Friend &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(profile);
+  int get hashCode => Object.hash(runtimeType, id, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -159,9 +155,9 @@ abstract class _Friend implements Friend {
       _$_Friend;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  Profile get profile => throw _privateConstructorUsedError;
+  Profile get profile;
   @override
   @JsonKey(ignore: true)
   _$FriendCopyWith<_Friend> get copyWith => throw _privateConstructorUsedError;

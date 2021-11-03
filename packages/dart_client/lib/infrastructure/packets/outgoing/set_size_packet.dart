@@ -7,7 +7,7 @@ part 'set_size_packet.g.dart';
 
 @freezed
 class SetSizePacket with _$SetSizePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory SetSizePacket({
     required int size,
   }) = _SetSizePacket;

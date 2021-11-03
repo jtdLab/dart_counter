@@ -247,41 +247,26 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerSnapshotDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerSnapshotDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentTurn, isCurrentTurn)) &&
+                other.isCurrentTurn == isCurrentTurn) &&
             (identical(other.isFinished, isFinished) ||
-                const DeepCollectionEquality()
-                    .equals(other.isFinished, isFinished)) &&
+                other.isFinished == isFinished) &&
             (identical(other.targetValue, targetValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.targetValue, targetValue)) &&
+                other.targetValue == targetValue) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
-                const DeepCollectionEquality()
-                    .equals(other.checkoutPercentage, checkoutPercentage)) &&
-            (identical(other.missed, missed) ||
-                const DeepCollectionEquality().equals(other.missed, missed)) &&
+                other.checkoutPercentage == checkoutPercentage) &&
+            (identical(other.missed, missed) || other.missed == missed) &&
             (identical(other.dartsThrown, dartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.dartsThrown, dartsThrown)));
+                other.dartsThrown == dartsThrown));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isCurrentTurn) ^
-      const DeepCollectionEquality().hash(isFinished) ^
-      const DeepCollectionEquality().hash(targetValue) ^
-      const DeepCollectionEquality().hash(checkoutPercentage) ^
-      const DeepCollectionEquality().hash(missed) ^
-      const DeepCollectionEquality().hash(dartsThrown);
+  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
+      isFinished, targetValue, checkoutPercentage, missed, dartsThrown);
 
   @JsonKey(ignore: true)
   @override
@@ -302,21 +287,21 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   const _PlayerSnapshotDto._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
+  bool? get isCurrentTurn;
   @override
-  bool? get isFinished => throw _privateConstructorUsedError;
+  bool? get isFinished;
   @override
-  int? get targetValue => throw _privateConstructorUsedError;
+  int? get targetValue;
   @override
-  double? get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage;
   @override
-  int? get missed => throw _privateConstructorUsedError;
+  int? get missed;
   @override
-  int? get dartsThrown => throw _privateConstructorUsedError;
+  int? get dartsThrown;
   @override
   @JsonKey(ignore: true)
   _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>

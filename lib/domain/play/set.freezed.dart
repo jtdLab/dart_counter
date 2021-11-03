@@ -171,25 +171,16 @@ class _$_Set implements _Set {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Set &&
-            (identical(other.legs, legs) ||
-                const DeepCollectionEquality().equals(other.legs, legs)) &&
-            (identical(other.won, won) ||
-                const DeepCollectionEquality().equals(other.won, won)) &&
-            (identical(other.wonLegs, wonLegs) ||
-                const DeepCollectionEquality()
-                    .equals(other.wonLegs, wonLegs)) &&
-            (identical(other.stats, stats) ||
-                const DeepCollectionEquality().equals(other.stats, stats)));
+        (other.runtimeType == runtimeType &&
+            other is _Set &&
+            (identical(other.legs, legs) || other.legs == legs) &&
+            (identical(other.won, won) || other.won == won) &&
+            (identical(other.wonLegs, wonLegs) || other.wonLegs == wonLegs) &&
+            (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(legs) ^
-      const DeepCollectionEquality().hash(won) ^
-      const DeepCollectionEquality().hash(wonLegs) ^
-      const DeepCollectionEquality().hash(stats);
+  int get hashCode => Object.hash(runtimeType, legs, won, wonLegs, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -205,13 +196,13 @@ abstract class _Set implements Set {
       required SetStats stats}) = _$_Set;
 
   @override
-  KtList<Leg> get legs => throw _privateConstructorUsedError;
+  KtList<Leg> get legs;
   @override
-  bool get won => throw _privateConstructorUsedError;
+  bool get won;
   @override
-  int get wonLegs => throw _privateConstructorUsedError;
+  int get wonLegs;
   @override
-  SetStats get stats => throw _privateConstructorUsedError;
+  SetStats get stats;
   @override
   @JsonKey(ignore: true)
   _$SetCopyWith<_Set> get copyWith => throw _privateConstructorUsedError;

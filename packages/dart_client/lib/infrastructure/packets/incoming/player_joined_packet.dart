@@ -6,7 +6,7 @@ part 'player_joined_packet.g.dart';
 
 @freezed
 class PlayerJoinedPacket with _$PlayerJoinedPacket {
-  @Implements(ResponsePacket)
+  @Implements<ResponsePacket>()
   const factory PlayerJoinedPacket({
     required String username,
   }) = _PlayerJoinedPacket;

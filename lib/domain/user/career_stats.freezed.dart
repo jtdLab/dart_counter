@@ -262,46 +262,37 @@ class _$_CareerStats implements _CareerStats {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CareerStats &&
-            (identical(other.average, average) ||
-                const DeepCollectionEquality()
-                    .equals(other.average, average)) &&
+        (other.runtimeType == runtimeType &&
+            other is _CareerStats &&
+            (identical(other.average, average) || other.average == average) &&
             (identical(other.averageTrend, averageTrend) ||
-                const DeepCollectionEquality()
-                    .equals(other.averageTrend, averageTrend)) &&
+                other.averageTrend == averageTrend) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
-                const DeepCollectionEquality()
-                    .equals(other.checkoutPercentage, checkoutPercentage)) &&
+                other.checkoutPercentage == checkoutPercentage) &&
             (identical(
                     other.checkoutPercentageTrend, checkoutPercentageTrend) ||
-                const DeepCollectionEquality().equals(
-                    other.checkoutPercentageTrend, checkoutPercentageTrend)) &&
+                other.checkoutPercentageTrend == checkoutPercentageTrend) &&
             (identical(other.firstNine, firstNine) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstNine, firstNine)) &&
+                other.firstNine == firstNine) &&
             (identical(other.firstNineTrend, firstNineTrend) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstNineTrend, firstNineTrend)) &&
-            (identical(other.games, games) ||
-                const DeepCollectionEquality().equals(other.games, games)) &&
-            (identical(other.wins, wins) ||
-                const DeepCollectionEquality().equals(other.wins, wins)) &&
-            (identical(other.defeats, defeats) ||
-                const DeepCollectionEquality().equals(other.defeats, defeats)));
+                other.firstNineTrend == firstNineTrend) &&
+            (identical(other.games, games) || other.games == games) &&
+            (identical(other.wins, wins) || other.wins == wins) &&
+            (identical(other.defeats, defeats) || other.defeats == defeats));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(average) ^
-      const DeepCollectionEquality().hash(averageTrend) ^
-      const DeepCollectionEquality().hash(checkoutPercentage) ^
-      const DeepCollectionEquality().hash(checkoutPercentageTrend) ^
-      const DeepCollectionEquality().hash(firstNine) ^
-      const DeepCollectionEquality().hash(firstNineTrend) ^
-      const DeepCollectionEquality().hash(games) ^
-      const DeepCollectionEquality().hash(wins) ^
-      const DeepCollectionEquality().hash(defeats);
+  int get hashCode => Object.hash(
+      runtimeType,
+      average,
+      averageTrend,
+      checkoutPercentage,
+      checkoutPercentageTrend,
+      firstNine,
+      firstNineTrend,
+      games,
+      wins,
+      defeats);
 
   @JsonKey(ignore: true)
   @override
@@ -322,23 +313,23 @@ abstract class _CareerStats implements CareerStats {
       required int defeats}) = _$_CareerStats;
 
   @override
-  double get average => throw _privateConstructorUsedError;
+  double get average;
   @override
-  Trend get averageTrend => throw _privateConstructorUsedError;
+  Trend get averageTrend;
   @override
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double get checkoutPercentage;
   @override
-  Trend get checkoutPercentageTrend => throw _privateConstructorUsedError;
+  Trend get checkoutPercentageTrend;
   @override
-  double get firstNine => throw _privateConstructorUsedError;
+  double get firstNine;
   @override
-  Trend get firstNineTrend => throw _privateConstructorUsedError;
+  Trend get firstNineTrend;
   @override
-  int get games => throw _privateConstructorUsedError;
+  int get games;
   @override
-  int get wins => throw _privateConstructorUsedError;
+  int get wins;
   @override
-  int get defeats => throw _privateConstructorUsedError;
+  int get defeats;
   @override
   @JsonKey(ignore: true)
   _$CareerStatsCopyWith<_CareerStats> get copyWith =>

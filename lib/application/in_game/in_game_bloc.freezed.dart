@@ -157,7 +157,8 @@ class _$GameCanceled implements GameCanceled {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameCanceled);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GameCanceled);
   }
 
   @override
@@ -282,7 +283,8 @@ class _$UndoThrowPressed implements UndoThrowPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UndoThrowPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UndoThrowPressed);
   }
 
   @override
@@ -433,14 +435,13 @@ class _$PerformThrowPressed implements PerformThrowPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PerformThrowPressed &&
-            (identical(other.t, t) ||
-                const DeepCollectionEquality().equals(other.t, t)));
+        (other.runtimeType == runtimeType &&
+            other is PerformThrowPressed &&
+            (identical(other.t, t) || other.t == t));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(t);
+  int get hashCode => Object.hash(runtimeType, t);
 
   @JsonKey(ignore: true)
   @override
@@ -534,7 +535,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
 abstract class PerformThrowPressed implements InGameEvent {
   const factory PerformThrowPressed({required Throw t}) = _$PerformThrowPressed;
 
-  Throw get t => throw _privateConstructorUsedError;
+  Throw get t;
   @JsonKey(ignore: true)
   $PerformThrowPressedCopyWith<PerformThrowPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -588,16 +589,14 @@ class _$InputOrDartsChanged implements InputOrDartsChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InputOrDartsChanged &&
+        (other.runtimeType == runtimeType &&
+            other is InputOrDartsChanged &&
             (identical(other.newInputOrDarts, newInputOrDarts) ||
-                const DeepCollectionEquality()
-                    .equals(other.newInputOrDarts, newInputOrDarts)));
+                other.newInputOrDarts == newInputOrDarts));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newInputOrDarts);
+  int get hashCode => Object.hash(runtimeType, newInputOrDarts);
 
   @JsonKey(ignore: true)
   @override
@@ -693,8 +692,7 @@ abstract class InputOrDartsChanged implements InGameEvent {
           {required Either<int, KtList<Dart>> newInputOrDarts}) =
       _$InputOrDartsChanged;
 
-  Either<int, KtList<Dart>> get newInputOrDarts =>
-      throw _privateConstructorUsedError;
+  Either<int, KtList<Dart>> get newInputOrDarts;
   @JsonKey(ignore: true)
   $InputOrDartsChangedCopyWith<InputOrDartsChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -747,15 +745,14 @@ class _$GameReceived implements GameReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameReceived &&
+        (other.runtimeType == runtimeType &&
+            other is GameReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -850,7 +847,7 @@ abstract class GameReceived implements InGameEvent {
   const factory GameReceived({required GameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1037,24 +1034,19 @@ class _$InGameInitial implements InGameInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InGameInitial &&
+        (other.runtimeType == runtimeType &&
+            other is InGameInitial &&
             (identical(other.prevGameSnapshot, prevGameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.prevGameSnapshot, prevGameSnapshot)) &&
+                other.prevGameSnapshot == prevGameSnapshot) &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)) &&
+                other.gameSnapshot == gameSnapshot) &&
             (identical(other.inputOrDarts, inputOrDarts) ||
-                const DeepCollectionEquality()
-                    .equals(other.inputOrDarts, inputOrDarts)));
+                other.inputOrDarts == inputOrDarts));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(prevGameSnapshot) ^
-      const DeepCollectionEquality().hash(gameSnapshot) ^
-      const DeepCollectionEquality().hash(inputOrDarts);
+      Object.hash(runtimeType, prevGameSnapshot, gameSnapshot, inputOrDarts);
 
   @JsonKey(ignore: true)
   @override
@@ -1131,12 +1123,11 @@ abstract class InGameInitial implements InGameState {
       required Either<int, KtList<Dart>> inputOrDarts}) = _$InGameInitial;
 
   @override
-  GameSnapshot? get prevGameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot? get prevGameSnapshot;
   @override
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @override
-  Either<int, KtList<Dart>> get inputOrDarts =>
-      throw _privateConstructorUsedError;
+  Either<int, KtList<Dart>> get inputOrDarts;
   @override
   @JsonKey(ignore: true)
   $InGameInitialCopyWith<InGameInitial> get copyWith =>

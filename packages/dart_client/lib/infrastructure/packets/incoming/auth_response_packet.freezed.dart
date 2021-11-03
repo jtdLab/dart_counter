@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_response_packet.dart';
 
@@ -26,7 +27,7 @@ class _$AuthResponsePacketTearOff {
     );
   }
 
-  AuthResponsePacket fromJson(Map<String, Object> json) {
+  AuthResponsePacket fromJson(Map<String, Object?> json) {
     return AuthResponsePacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$AuthResponsePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(ResponsePacket)
+@Implements<ResponsePacket>()
 class _$_AuthResponsePacket extends _AuthResponsePacket {
   const _$_AuthResponsePacket({required this.successful}) : super._();
 
   factory _$_AuthResponsePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthResponsePacketFromJson(json);
+      _$$_AuthResponsePacketFromJson(json);
 
   @override
   final bool successful;
@@ -128,15 +129,14 @@ class _$_AuthResponsePacket extends _AuthResponsePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthResponsePacket &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthResponsePacket &&
             (identical(other.successful, successful) ||
-                const DeepCollectionEquality()
-                    .equals(other.successful, successful)));
+                other.successful == successful));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(successful);
+  int get hashCode => Object.hash(runtimeType, successful);
 
   @JsonKey(ignore: true)
   @override
@@ -145,7 +145,7 @@ class _$_AuthResponsePacket extends _AuthResponsePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthResponsePacketToJson(this);
+    return _$$_AuthResponsePacketToJson(this);
   }
 }
 
@@ -159,7 +159,7 @@ abstract class _AuthResponsePacket extends AuthResponsePacket
       _$_AuthResponsePacket.fromJson;
 
   @override
-  bool get successful => throw _privateConstructorUsedError;
+  bool get successful;
   @override
   @JsonKey(ignore: true)
   _$AuthResponsePacketCopyWith<_AuthResponsePacket> get copyWith =>

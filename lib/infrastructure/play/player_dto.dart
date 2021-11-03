@@ -99,7 +99,7 @@ class AbstractOfflinePlayerDtoConverter
 class OfflinePlayerDto
     with _$OfflinePlayerDto
     implements AbstractOfflinePlayerDto {
-  @Implements(AbstractOfflinePlayerDto)
+  @Implements<AbstractOfflinePlayerDto>()
   const factory OfflinePlayerDto({
     required String id,
     required String name,
@@ -147,7 +147,7 @@ class OfflinePlayerDto
 
 @freezed
 class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
-  @Implements(AbstractOfflinePlayerDto)
+  @Implements<AbstractOfflinePlayerDto>()
   const factory DartBotDto({
     required String id,
     required String name,
@@ -184,7 +184,7 @@ class DartBotDto with _$DartBotDto implements AbstractOfflinePlayerDto {
 
 @freezed
 class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
-  @Implements(AbstractPlayerDto)
+  @Implements<AbstractPlayerDto>()
   const factory OnlinePlayerDto({
     required String id,
     required String name,

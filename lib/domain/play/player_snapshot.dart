@@ -26,7 +26,7 @@ abstract class AbstractOfflinePlayerSnapshot extends AbstractPlayerSnapshot {}
 class OfflinePlayerSnapshot
     with _$OfflinePlayerSnapshot
     implements AbstractOfflinePlayerSnapshot {
-  @Implements(AbstractOfflinePlayerSnapshot)
+  @Implements<AbstractOfflinePlayerSnapshot>()
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
     String? name,
@@ -71,7 +71,7 @@ class OfflinePlayerSnapshot
 class DartBotSnapshot
     with _$DartBotSnapshot
     implements AbstractOfflinePlayerSnapshot {
-  @Implements(AbstractOfflinePlayerSnapshot)
+  @Implements<AbstractOfflinePlayerSnapshot>()
   const factory DartBotSnapshot({
     required UniqueId id,
     required String name,
@@ -124,7 +124,7 @@ class DartBotSnapshot
 class OnlinePlayerSnapshot
     with _$OnlinePlayerSnapshot
     implements AbstractPlayerSnapshot {
-  @Implements(AbstractPlayerSnapshot)
+  @Implements<AbstractPlayerSnapshot>()
   const factory OnlinePlayerSnapshot({
     required UniqueId id,
     required String name,

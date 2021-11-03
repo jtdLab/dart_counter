@@ -146,23 +146,17 @@ class _$_UserSearchResult implements _UserSearchResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UserSearchResult &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _UserSearchResult &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoUrl, photoUrl)) &&
+                other.photoUrl == photoUrl) &&
             (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
+                other.username == username));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(photoUrl) ^
-      const DeepCollectionEquality().hash(username);
+  int get hashCode => Object.hash(runtimeType, id, photoUrl, username);
 
   @JsonKey(ignore: true)
   @override
@@ -177,11 +171,11 @@ abstract class _UserSearchResult implements UserSearchResult {
       required Username username}) = _$_UserSearchResult;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get photoUrl;
   @override
-  Username get username => throw _privateConstructorUsedError;
+  Username get username;
   @override
   @JsonKey(ignore: true)
   _$UserSearchResultCopyWith<_UserSearchResult> get copyWith =>

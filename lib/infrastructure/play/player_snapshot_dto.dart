@@ -31,7 +31,7 @@ abstract class AbstractOfflinePlayerSnapshotDto
 class OfflinePlayerSnapshotDto
     with _$OfflinePlayerSnapshotDto
     implements AbstractOfflinePlayerSnapshotDto {
-  @Implements(AbstractOfflinePlayerSnapshotDto)
+  @Implements<AbstractOfflinePlayerSnapshotDto>()
   const factory OfflinePlayerSnapshotDto({
     required String id,
     String? name,
@@ -110,7 +110,7 @@ class OfflinePlayerSnapshotDto
 class DartBotSnapshotDto
     with _$DartBotSnapshotDto
     implements AbstractOfflinePlayerSnapshotDto {
-  @Implements(AbstractOfflinePlayerSnapshotDto)
+  @Implements<AbstractOfflinePlayerSnapshotDto>()
   const factory DartBotSnapshotDto({
     required String id,
     required String name,
@@ -190,7 +190,7 @@ class DartBotSnapshotDto
 class OnlinePlayerSnapshotDto
     with _$OnlinePlayerSnapshotDto
     implements AbstractPlayerSnapshotDto {
-  @Implements(AbstractPlayerSnapshotDto)
+  @Implements<AbstractPlayerSnapshotDto>()
   const factory OnlinePlayerSnapshotDto({
     required String id,
     required String name,

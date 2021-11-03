@@ -179,16 +179,14 @@ class _$_ScoreTrainingNumberOfTakesChanged
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ScoreTrainingNumberOfTakesChanged &&
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingNumberOfTakesChanged &&
             (identical(other.newNumberOfTakes, newNumberOfTakes) ||
-                const DeepCollectionEquality()
-                    .equals(other.newNumberOfTakes, newNumberOfTakes)));
+                other.newNumberOfTakes == newNumberOfTakes));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newNumberOfTakes);
+  int get hashCode => Object.hash(runtimeType, newNumberOfTakes);
 
   @JsonKey(ignore: true)
   @override
@@ -287,7 +285,7 @@ abstract class _ScoreTrainingNumberOfTakesChanged
   const factory _ScoreTrainingNumberOfTakesChanged(
       {required int newNumberOfTakes}) = _$_ScoreTrainingNumberOfTakesChanged;
 
-  int get newNumberOfTakes => throw _privateConstructorUsedError;
+  int get newNumberOfTakes;
   @JsonKey(ignore: true)
   _$ScoreTrainingNumberOfTakesChangedCopyWith<
           _ScoreTrainingNumberOfTakesChanged>
@@ -328,7 +326,9 @@ class _$_ScoreTrainingPerformPressed implements _ScoreTrainingPerformPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ScoreTrainingPerformPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingPerformPressed);
   }
 
   @override
@@ -455,7 +455,9 @@ class _$_ScoreTrainingUndoPressed implements _ScoreTrainingUndoPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ScoreTrainingUndoPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingUndoPressed);
   }
 
   @override
@@ -599,14 +601,13 @@ class _$_ScoreTrainingDigitPressed implements _ScoreTrainingDigitPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ScoreTrainingDigitPressed &&
-            (identical(other.digit, digit) ||
-                const DeepCollectionEquality().equals(other.digit, digit)));
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingDigitPressed &&
+            (identical(other.digit, digit) || other.digit == digit));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(digit);
+  int get hashCode => Object.hash(runtimeType, digit);
 
   @JsonKey(ignore: true)
   @override
@@ -704,7 +705,7 @@ abstract class _ScoreTrainingDigitPressed implements ScoreTrainingEvent {
   const factory _ScoreTrainingDigitPressed({required int digit}) =
       _$_ScoreTrainingDigitPressed;
 
-  int get digit => throw _privateConstructorUsedError;
+  int get digit;
   @JsonKey(ignore: true)
   _$ScoreTrainingDigitPressedCopyWith<_ScoreTrainingDigitPressed>
       get copyWith => throw _privateConstructorUsedError;
@@ -743,7 +744,9 @@ class _$_ScoreTrainingEreasePressed implements _ScoreTrainingEreasePressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ScoreTrainingEreasePressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingEreasePressed);
   }
 
   @override
@@ -990,19 +993,15 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ScoreTrainingInitial &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ScoreTrainingInitial &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.numberOfTakes, numberOfTakes) ||
-                const DeepCollectionEquality()
-                    .equals(other.numberOfTakes, numberOfTakes)));
+                other.numberOfTakes == numberOfTakes));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(numberOfTakes);
+  int get hashCode => Object.hash(runtimeType, points, numberOfTakes);
 
   @JsonKey(ignore: true)
   @override
@@ -1073,9 +1072,9 @@ abstract class _ScoreTrainingInitial implements ScoreTrainingState {
       required int numberOfTakes}) = _$_ScoreTrainingInitial;
 
   @override
-  int get points => throw _privateConstructorUsedError;
+  int get points;
   @override
-  int get numberOfTakes => throw _privateConstructorUsedError;
+  int get numberOfTakes;
   @override
   @JsonKey(ignore: true)
   _$ScoreTrainingInitialCopyWith<_ScoreTrainingInitial> get copyWith =>

@@ -205,7 +205,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _EmailAlreadyInUse);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _EmailAlreadyInUse);
   }
 
   @override
@@ -363,7 +364,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UsernameAlreadyInUse);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UsernameAlreadyInUse);
   }
 
   @override
@@ -520,7 +522,8 @@ class _$_InvalidEmail implements _InvalidEmail {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InvalidEmail);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidEmail);
   }
 
   @override
@@ -678,7 +681,8 @@ class _$_InvalidUsername implements _InvalidUsername {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InvalidUsername);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidUsername);
   }
 
   @override
@@ -836,7 +840,8 @@ class _$_InvalidPassword implements _InvalidPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InvalidPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidPassword);
   }
 
   @override
@@ -999,7 +1004,8 @@ class _$_InvalidEmailAndPasswordCombination
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InvalidEmailAndPasswordCombination);
+        (other.runtimeType == runtimeType &&
+            other is _InvalidEmailAndPasswordCombination);
   }
 
   @override
@@ -1164,7 +1170,8 @@ class _$_InvalidUsernameAndPasswordCombination
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InvalidUsernameAndPasswordCombination);
+        (other.runtimeType == runtimeType &&
+            other is _InvalidUsernameAndPasswordCombination);
   }
 
   @override
@@ -1323,7 +1330,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PasswordsNotMatching);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PasswordsNotMatching);
   }
 
   @override
@@ -1481,7 +1489,8 @@ class _$_CancelledByUser implements _CancelledByUser {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CancelledByUser);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _CancelledByUser);
   }
 
   @override
@@ -1638,7 +1647,8 @@ class _$_ServerError implements _ServerError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ServerError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ServerError);
   }
 
   @override

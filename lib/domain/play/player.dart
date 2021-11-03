@@ -24,7 +24,7 @@ abstract class AbstractOfflinePlayer extends AbstractPlayer {}
 
 @freezed
 class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
-  @Implements(AbstractOfflinePlayer)
+  @Implements<AbstractOfflinePlayer>()
   const factory OfflinePlayer({
     required UniqueId id,
     required String name,
@@ -72,7 +72,7 @@ class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
 
 @freezed
 class DartBot with _$DartBot implements AbstractOfflinePlayer {
-  @Implements(AbstractOfflinePlayer)
+  @Implements<AbstractOfflinePlayer>()
   const factory DartBot({
     required UniqueId id,
     required String name,
@@ -118,7 +118,7 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
 
 @freezed
 class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
-  @Implements(AbstractPlayer)
+  @Implements<AbstractPlayer>()
   const factory OnlinePlayer({
     required UniqueId id,
     required String name,

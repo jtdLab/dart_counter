@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'set_type_packet.dart';
 
@@ -26,7 +27,7 @@ class _$SetTypePacketTearOff {
     );
   }
 
-  SetTypePacket fromJson(Map<String, Object> json) {
+  SetTypePacket fromJson(Map<String, Object?> json) {
     return SetTypePacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$SetTypePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_SetTypePacket extends _SetTypePacket {
   const _$_SetTypePacket({required this.type}) : super._();
 
   factory _$_SetTypePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_SetTypePacketFromJson(json);
+      _$$_SetTypePacketFromJson(json);
 
   @override
   final Type type;
@@ -128,14 +129,13 @@ class _$_SetTypePacket extends _SetTypePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetTypePacket &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+        (other.runtimeType == runtimeType &&
+            other is _SetTypePacket &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
+  int get hashCode => Object.hash(runtimeType, type);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_SetTypePacket extends _SetTypePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SetTypePacketToJson(this);
+    return _$$_SetTypePacketToJson(this);
   }
 }
 
@@ -156,7 +156,7 @@ abstract class _SetTypePacket extends SetTypePacket implements RequestPacket {
       _$_SetTypePacket.fromJson;
 
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
   @JsonKey(ignore: true)
   _$SetTypePacketCopyWith<_SetTypePacket> get copyWith =>

@@ -210,32 +210,21 @@ class _$_FriendRequest implements _FriendRequest {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FriendRequest &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.toId, toId) ||
-                const DeepCollectionEquality().equals(other.toId, toId)) &&
-            (identical(other.fromId, fromId) ||
-                const DeepCollectionEquality().equals(other.fromId, fromId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _FriendRequest &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.toId, toId) || other.toId == toId) &&
+            (identical(other.fromId, fromId) || other.fromId == fromId) &&
             (identical(other.fromName, fromName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromName, fromName)) &&
-            (identical(other.read, read) ||
-                const DeepCollectionEquality().equals(other.read, read)) &&
+                other.fromName == fromName) &&
+            (identical(other.read, read) || other.read == read) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                other.createdAt == createdAt));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(toId) ^
-      const DeepCollectionEquality().hash(fromId) ^
-      const DeepCollectionEquality().hash(fromName) ^
-      const DeepCollectionEquality().hash(read) ^
-      const DeepCollectionEquality().hash(createdAt);
+      Object.hash(runtimeType, id, toId, fromId, fromName, read, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -253,17 +242,17 @@ abstract class _FriendRequest implements FriendRequest {
       required DateTime createdAt}) = _$_FriendRequest;
 
   @override
-  UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get id;
   @override
-  UniqueId get toId => throw _privateConstructorUsedError;
+  UniqueId get toId;
   @override
-  UniqueId get fromId => throw _privateConstructorUsedError;
+  UniqueId get fromId;
   @override
-  Username get fromName => throw _privateConstructorUsedError;
+  Username get fromName;
   @override
-  bool get read => throw _privateConstructorUsedError;
+  bool get read;
   @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$FriendRequestCopyWith<_FriendRequest> get copyWith =>

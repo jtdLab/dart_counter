@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player_exited_packet.dart';
 
@@ -26,7 +27,7 @@ class _$PlayerExitedPacketTearOff {
     );
   }
 
-  PlayerExitedPacket fromJson(Map<String, Object> json) {
+  PlayerExitedPacket fromJson(Map<String, Object?> json) {
     return PlayerExitedPacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$PlayerExitedPacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(ResponsePacket)
+@Implements<ResponsePacket>()
 class _$_PlayerExitedPacket extends _PlayerExitedPacket {
   const _$_PlayerExitedPacket({required this.username}) : super._();
 
   factory _$_PlayerExitedPacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_PlayerExitedPacketFromJson(json);
+      _$$_PlayerExitedPacketFromJson(json);
 
   @override
   final String username;
@@ -128,15 +129,14 @@ class _$_PlayerExitedPacket extends _PlayerExitedPacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerExitedPacket &&
+        (other.runtimeType == runtimeType &&
+            other is _PlayerExitedPacket &&
             (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
+                other.username == username));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(username);
+  int get hashCode => Object.hash(runtimeType, username);
 
   @JsonKey(ignore: true)
   @override
@@ -145,7 +145,7 @@ class _$_PlayerExitedPacket extends _PlayerExitedPacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PlayerExitedPacketToJson(this);
+    return _$$_PlayerExitedPacketToJson(this);
   }
 }
 
@@ -159,7 +159,7 @@ abstract class _PlayerExitedPacket extends PlayerExitedPacket
       _$_PlayerExitedPacket.fromJson;
 
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
   @JsonKey(ignore: true)
   _$PlayerExitedPacketCopyWith<_PlayerExitedPacket> get copyWith =>

@@ -156,7 +156,9 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FetchGameHistoryAllRequested);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FetchGameHistoryAllRequested);
   }
 
   @override
@@ -286,7 +288,8 @@ class _$FetchGameHistoryOfflineRequested
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FetchGameHistoryOfflineRequested);
+        (other.runtimeType == runtimeType &&
+            other is FetchGameHistoryOfflineRequested);
   }
 
   @override
@@ -433,14 +436,13 @@ class _$FetchGameHistoryOnlineRequested
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FetchGameHistoryOnlineRequested &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+        (other.runtimeType == runtimeType &&
+            other is FetchGameHistoryOnlineRequested &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+  int get hashCode => Object.hash(runtimeType, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -536,7 +538,7 @@ abstract class FetchGameHistoryOnlineRequested implements GameHistoryEvent {
   const factory FetchGameHistoryOnlineRequested({UniqueId? userId}) =
       _$FetchGameHistoryOnlineRequested;
 
-  UniqueId? get userId => throw _privateConstructorUsedError;
+  UniqueId? get userId;
   @JsonKey(ignore: true)
   $FetchGameHistoryOnlineRequestedCopyWith<FetchGameHistoryOnlineRequested>
       get copyWith => throw _privateConstructorUsedError;
@@ -590,14 +592,13 @@ class _$GameSelected implements GameSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameSelected &&
-            (identical(other.game, game) ||
-                const DeepCollectionEquality().equals(other.game, game)));
+        (other.runtimeType == runtimeType &&
+            other is GameSelected &&
+            (identical(other.game, game) || other.game == game));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(game);
+  int get hashCode => Object.hash(runtimeType, game);
 
   @JsonKey(ignore: true)
   @override
@@ -691,7 +692,7 @@ class _$GameSelected implements GameSelected {
 abstract class GameSelected implements GameHistoryEvent {
   const factory GameSelected({required Game game}) = _$GameSelected;
 
-  Game get game => throw _privateConstructorUsedError;
+  Game get game;
   @JsonKey(ignore: true)
   $GameSelectedCopyWith<GameSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -821,7 +822,9 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameHistoryLoadInProgress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GameHistoryLoadInProgress);
   }
 
   @override
@@ -957,20 +960,16 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameHistoryLoadSuccess &&
+        (other.runtimeType == runtimeType &&
+            other is GameHistoryLoadSuccess &&
             (identical(other.gameHistory, gameHistory) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameHistory, gameHistory)) &&
+                other.gameHistory == gameHistory) &&
             (identical(other.selectedGame, selectedGame) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedGame, selectedGame)));
+                other.selectedGame == selectedGame));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gameHistory) ^
-      const DeepCollectionEquality().hash(selectedGame);
+  int get hashCode => Object.hash(runtimeType, gameHistory, selectedGame);
 
   @JsonKey(ignore: true)
   @override
@@ -1053,8 +1052,8 @@ abstract class GameHistoryLoadSuccess implements GameHistoryState {
       {required List10<Game> gameHistory,
       Game? selectedGame}) = _$GameHistoryLoadSuccess;
 
-  List10<Game> get gameHistory => throw _privateConstructorUsedError;
-  Game? get selectedGame => throw _privateConstructorUsedError;
+  List10<Game> get gameHistory;
+  Game? get selectedGame;
   @JsonKey(ignore: true)
   $GameHistoryLoadSuccessCopyWith<GameHistoryLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1108,14 +1107,14 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameHistoryLoadFailure &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is GameHistoryLoadFailure &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -1197,7 +1196,7 @@ abstract class GameHistoryLoadFailure implements GameHistoryState {
   const factory GameHistoryLoadFailure({required Object failure}) =
       _$GameHistoryLoadFailure;
 
-  Object get failure => throw _privateConstructorUsedError;
+  Object get failure;
   @JsonKey(ignore: true)
   $GameHistoryLoadFailureCopyWith<GameHistoryLoadFailure> get copyWith =>
       throw _privateConstructorUsedError;

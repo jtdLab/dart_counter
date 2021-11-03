@@ -8,7 +8,7 @@ part 'set_mode_packet.g.dart';
 
 @freezed
 class SetModePacket with _$SetModePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory SetModePacket({
     required Mode mode,
   }) = _SetModePacket;

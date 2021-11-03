@@ -183,14 +183,13 @@ class _$_BobsTwentySevenTrainingModeChanged
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenTrainingModeChanged &&
-            (identical(other.newMode, newMode) ||
-                const DeepCollectionEquality().equals(other.newMode, newMode)));
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenTrainingModeChanged &&
+            (identical(other.newMode, newMode) || other.newMode == newMode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMode);
+  int get hashCode => Object.hash(runtimeType, newMode);
 
   @JsonKey(ignore: true)
   @override
@@ -296,7 +295,7 @@ abstract class _BobsTwentySevenTrainingModeChanged
   const factory _BobsTwentySevenTrainingModeChanged({required Mode newMode}) =
       _$_BobsTwentySevenTrainingModeChanged;
 
-  Mode get newMode => throw _privateConstructorUsedError;
+  Mode get newMode;
   @JsonKey(ignore: true)
   _$BobsTwentySevenTrainingModeChangedCopyWith<
           _BobsTwentySevenTrainingModeChanged>
@@ -340,7 +339,8 @@ class _$_BobsTwentySevenTrainingPerformPressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenTrainingPerformPressed);
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenTrainingPerformPressed);
   }
 
   @override
@@ -480,7 +480,8 @@ class _$_BobsTwentySevenTrainingUndoPressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenTrainingUndoPressed);
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenTrainingUndoPressed);
   }
 
   @override
@@ -621,7 +622,8 @@ class _$_BobsTwentySevenTrainingDoubleHitPressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenTrainingDoubleHitPressed);
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenTrainingDoubleHitPressed);
   }
 
   @override
@@ -762,7 +764,8 @@ class _$_BobsTwentySevenTrainingMissHitPressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenTrainingMissHitPressed);
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenTrainingMissHitPressed);
   }
 
   @override
@@ -1002,14 +1005,13 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BobsTwentySevenInitial &&
-            (identical(other.hits, hits) ||
-                const DeepCollectionEquality().equals(other.hits, hits)));
+        (other.runtimeType == runtimeType &&
+            other is _BobsTwentySevenInitial &&
+            (identical(other.hits, hits) || other.hits == hits));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(hits);
+  int get hashCode => Object.hash(runtimeType, hits);
 
   @JsonKey(ignore: true)
   @override
@@ -1079,7 +1081,7 @@ abstract class _BobsTwentySevenInitial implements BobsTwentySevenState {
       _$_BobsTwentySevenInitial;
 
   @override
-  KtList<Hit> get hits => throw _privateConstructorUsedError;
+  KtList<Hit> get hits;
   @override
   @JsonKey(ignore: true)
   _$BobsTwentySevenInitialCopyWith<_BobsTwentySevenInitial> get copyWith =>

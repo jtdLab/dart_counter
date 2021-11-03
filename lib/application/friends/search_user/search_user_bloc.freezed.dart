@@ -139,16 +139,14 @@ class _$SearchStringChanged implements SearchStringChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SearchStringChanged &&
+        (other.runtimeType == runtimeType &&
+            other is SearchStringChanged &&
             (identical(other.newSearchString, newSearchString) ||
-                const DeepCollectionEquality()
-                    .equals(other.newSearchString, newSearchString)));
+                other.newSearchString == newSearchString));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newSearchString);
+  int get hashCode => Object.hash(runtimeType, newSearchString);
 
   @JsonKey(ignore: true)
   @override
@@ -223,7 +221,7 @@ abstract class SearchStringChanged implements SearchUserEvent {
   const factory SearchStringChanged({required String newSearchString}) =
       _$SearchStringChanged;
 
-  String get newSearchString => throw _privateConstructorUsedError;
+  String get newSearchString;
   @JsonKey(ignore: true)
   $SearchStringChangedCopyWith<SearchStringChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -261,7 +259,8 @@ class _$ClearSearchStringPressed implements ClearSearchStringPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ClearSearchStringPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ClearSearchStringPressed);
   }
 
   @override
@@ -439,15 +438,14 @@ class _$_SearchUserState implements _SearchUserState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SearchUserState &&
+        (other.runtimeType == runtimeType &&
+            other is _SearchUserState &&
             (identical(other.searchResults, searchResults) ||
-                const DeepCollectionEquality()
-                    .equals(other.searchResults, searchResults)));
+                other.searchResults == searchResults));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(searchResults);
+  int get hashCode => Object.hash(runtimeType, searchResults);
 
   @JsonKey(ignore: true)
   @override
@@ -460,8 +458,7 @@ abstract class _SearchUserState implements SearchUserState {
       {required KtList<UserSearchResult> searchResults}) = _$_SearchUserState;
 
   @override
-  KtList<UserSearchResult> get searchResults =>
-      throw _privateConstructorUsedError;
+  KtList<UserSearchResult> get searchResults;
   @override
   @JsonKey(ignore: true)
   _$SearchUserStateCopyWith<_SearchUserState> get copyWith =>

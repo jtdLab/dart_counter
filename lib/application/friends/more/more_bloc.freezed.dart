@@ -158,14 +158,13 @@ class _$RemovePressed implements RemovePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is RemovePressed &&
-            (identical(other.friend, friend) ||
-                const DeepCollectionEquality().equals(other.friend, friend)));
+        (other.runtimeType == runtimeType &&
+            other is RemovePressed &&
+            (identical(other.friend, friend) || other.friend == friend));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(friend);
+  int get hashCode => Object.hash(runtimeType, friend);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +232,7 @@ abstract class RemovePressed implements MoreEvent {
   const factory RemovePressed({required Friend friend}) = _$RemovePressed;
 
   @override
-  Friend get friend => throw _privateConstructorUsedError;
+  Friend get friend;
   @override
   @JsonKey(ignore: true)
   $RemovePressedCopyWith<RemovePressed> get copyWith =>
@@ -331,7 +330,8 @@ class _$Initial implements Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Initial);
   }
 
   @override

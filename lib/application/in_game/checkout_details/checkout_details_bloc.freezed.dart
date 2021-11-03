@@ -163,16 +163,14 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SelectedDartsThrownUpdated &&
+        (other.runtimeType == runtimeType &&
+            other is SelectedDartsThrownUpdated &&
             (identical(other.newSelectedDartsThrown, newSelectedDartsThrown) ||
-                const DeepCollectionEquality().equals(
-                    other.newSelectedDartsThrown, newSelectedDartsThrown)));
+                other.newSelectedDartsThrown == newSelectedDartsThrown));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newSelectedDartsThrown);
+  int get hashCode => Object.hash(runtimeType, newSelectedDartsThrown);
 
   @JsonKey(ignore: true)
   @override
@@ -264,7 +262,7 @@ abstract class SelectedDartsThrownUpdated implements CheckoutDetailsEvent {
   const factory SelectedDartsThrownUpdated(
       {required int newSelectedDartsThrown}) = _$SelectedDartsThrownUpdated;
 
-  int get newSelectedDartsThrown => throw _privateConstructorUsedError;
+  int get newSelectedDartsThrown;
   @JsonKey(ignore: true)
   $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
       get copyWith => throw _privateConstructorUsedError;
@@ -322,17 +320,15 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SelectedDartsOnDoubleUpdated &&
+        (other.runtimeType == runtimeType &&
+            other is SelectedDartsOnDoubleUpdated &&
             (identical(
                     other.newSelectedDartsOnDouble, newSelectedDartsOnDouble) ||
-                const DeepCollectionEquality().equals(
-                    other.newSelectedDartsOnDouble, newSelectedDartsOnDouble)));
+                other.newSelectedDartsOnDouble == newSelectedDartsOnDouble));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newSelectedDartsOnDouble);
+  int get hashCode => Object.hash(runtimeType, newSelectedDartsOnDouble);
 
   @JsonKey(ignore: true)
   @override
@@ -423,7 +419,7 @@ abstract class SelectedDartsOnDoubleUpdated implements CheckoutDetailsEvent {
   const factory SelectedDartsOnDoubleUpdated(
       {required int newSelectedDartsOnDouble}) = _$SelectedDartsOnDoubleUpdated;
 
-  int get newSelectedDartsOnDouble => throw _privateConstructorUsedError;
+  int get newSelectedDartsOnDouble;
   @JsonKey(ignore: true)
   $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
       get copyWith => throw _privateConstructorUsedError;
@@ -460,7 +456,8 @@ class _$ConfirmPressed implements ConfirmPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConfirmPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -764,40 +761,34 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CheckoutDetailsState &&
+        (other.runtimeType == runtimeType &&
+            other is _CheckoutDetailsState &&
             (identical(other.minDartsThrown, minDartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.minDartsThrown, minDartsThrown)) &&
+                other.minDartsThrown == minDartsThrown) &&
             (identical(other.maxDartsThrown, maxDartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxDartsThrown, maxDartsThrown)) &&
+                other.maxDartsThrown == maxDartsThrown) &&
             (identical(other.minDartsOnDouble, minDartsOnDouble) ||
-                const DeepCollectionEquality()
-                    .equals(other.minDartsOnDouble, minDartsOnDouble)) &&
+                other.minDartsOnDouble == minDartsOnDouble) &&
             (identical(other.maxDartsOnDouble, maxDartsOnDouble) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxDartsOnDouble, maxDartsOnDouble)) &&
+                other.maxDartsOnDouble == maxDartsOnDouble) &&
             (identical(other.selectedDartsThrown, selectedDartsThrown) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedDartsThrown, selectedDartsThrown)) &&
+                other.selectedDartsThrown == selectedDartsThrown) &&
             (identical(other.selectedDartsOnDouble, selectedDartsOnDouble) ||
-                const DeepCollectionEquality().equals(
-                    other.selectedDartsOnDouble, selectedDartsOnDouble)) &&
+                other.selectedDartsOnDouble == selectedDartsOnDouble) &&
             (identical(other.confirmed, confirmed) ||
-                const DeepCollectionEquality()
-                    .equals(other.confirmed, confirmed)));
+                other.confirmed == confirmed));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(minDartsThrown) ^
-      const DeepCollectionEquality().hash(maxDartsThrown) ^
-      const DeepCollectionEquality().hash(minDartsOnDouble) ^
-      const DeepCollectionEquality().hash(maxDartsOnDouble) ^
-      const DeepCollectionEquality().hash(selectedDartsThrown) ^
-      const DeepCollectionEquality().hash(selectedDartsOnDouble) ^
-      const DeepCollectionEquality().hash(confirmed);
+  int get hashCode => Object.hash(
+      runtimeType,
+      minDartsThrown,
+      maxDartsThrown,
+      minDartsOnDouble,
+      maxDartsOnDouble,
+      selectedDartsThrown,
+      selectedDartsOnDouble,
+      confirmed);
 
   @JsonKey(ignore: true)
   @override
@@ -817,19 +808,19 @@ abstract class _CheckoutDetailsState implements CheckoutDetailsState {
       required bool confirmed}) = _$_CheckoutDetailsState;
 
   @override
-  int get minDartsThrown => throw _privateConstructorUsedError;
+  int get minDartsThrown;
   @override
-  int get maxDartsThrown => throw _privateConstructorUsedError;
+  int get maxDartsThrown;
   @override
-  int get minDartsOnDouble => throw _privateConstructorUsedError;
+  int get minDartsOnDouble;
   @override
-  int get maxDartsOnDouble => throw _privateConstructorUsedError;
+  int get maxDartsOnDouble;
   @override
-  int get selectedDartsThrown => throw _privateConstructorUsedError;
+  int get selectedDartsThrown;
   @override
-  int get selectedDartsOnDouble => throw _privateConstructorUsedError;
+  int get selectedDartsOnDouble;
   @override
-  bool get confirmed => throw _privateConstructorUsedError;
+  bool get confirmed;
   @override
   @JsonKey(ignore: true)
   _$CheckoutDetailsStateCopyWith<_CheckoutDetailsState> get copyWith =>

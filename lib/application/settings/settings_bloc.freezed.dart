@@ -157,14 +157,13 @@ class _$SettingsDataReceived implements SettingsDataReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SettingsDataReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is SettingsDataReceived &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +244,7 @@ abstract class SettingsDataReceived implements SettingsEvent {
   const factory SettingsDataReceived({required User user}) =
       _$SettingsDataReceived;
 
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @JsonKey(ignore: true)
   $SettingsDataReceivedCopyWith<SettingsDataReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -282,7 +281,8 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SettingsLocaleChanged);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SettingsLocaleChanged);
   }
 
   @override
@@ -392,7 +392,8 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SettingsSignOutPressed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SettingsSignOutPressed);
   }
 
   @override
@@ -633,19 +634,15 @@ class _$SettingsInitial implements SettingsInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SettingsInitial &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is SettingsInitial &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.localeChanged, localeChanged) ||
-                const DeepCollectionEquality()
-                    .equals(other.localeChanged, localeChanged)));
+                other.localeChanged == localeChanged));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(localeChanged);
+  int get hashCode => Object.hash(runtimeType, user, localeChanged);
 
   @JsonKey(ignore: true)
   @override
@@ -714,9 +711,9 @@ abstract class SettingsInitial implements SettingsState {
       {required User user, required bool localeChanged}) = _$SettingsInitial;
 
   @override
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
-  bool get localeChanged => throw _privateConstructorUsedError;
+  bool get localeChanged;
   @override
   @JsonKey(ignore: true)
   $SettingsInitialCopyWith<SettingsInitial> get copyWith =>

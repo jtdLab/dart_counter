@@ -159,14 +159,13 @@ class _$UserReceived implements UserReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserReceived &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is UserReceived &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -234,7 +233,7 @@ abstract class UserReceived implements ProfileEvent {
   const factory UserReceived({required User user}) = _$UserReceived;
 
   @override
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
   @JsonKey(ignore: true)
   $UserReceivedCopyWith<UserReceived> get copyWith =>
@@ -413,19 +412,15 @@ class _$ProfileInitial implements ProfileInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ProfileInitial &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is ProfileInitial &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.careerStatsAll, careerStatsAll) ||
-                const DeepCollectionEquality()
-                    .equals(other.careerStatsAll, careerStatsAll)));
+                other.careerStatsAll == careerStatsAll));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(careerStatsAll);
+  int get hashCode => Object.hash(runtimeType, user, careerStatsAll);
 
   @JsonKey(ignore: true)
   @override
@@ -495,9 +490,9 @@ abstract class ProfileInitial implements ProfileState {
       required CareerStats careerStatsAll}) = _$ProfileInitial;
 
   @override
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
-  CareerStats get careerStatsAll => throw _privateConstructorUsedError;
+  CareerStats get careerStatsAll;
   @override
   @JsonKey(ignore: true)
   $ProfileInitialCopyWith<ProfileInitial> get copyWith =>

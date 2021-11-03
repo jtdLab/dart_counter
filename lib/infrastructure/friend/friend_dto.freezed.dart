@@ -28,7 +28,7 @@ class _$FriendDtoTearOff {
     );
   }
 
-  FriendDto fromJson(Map<String, Object> json) {
+  FriendDto fromJson(Map<String, Object?> json) {
     return FriendDto.fromJson(json);
   }
 }
@@ -149,18 +149,14 @@ class _$_FriendDto extends _FriendDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FriendDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
+        (other.runtimeType == runtimeType &&
+            other is _FriendDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(profile);
+  int get hashCode => Object.hash(runtimeType, id, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -182,9 +178,9 @@ abstract class _FriendDto extends FriendDto {
       _$_FriendDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  ProfileDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile;
   @override
   @JsonKey(ignore: true)
   _$FriendDtoCopyWith<_FriendDto> get copyWith =>

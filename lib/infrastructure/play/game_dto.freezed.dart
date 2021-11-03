@@ -43,7 +43,7 @@ class _$OfflineGameDtoTearOff {
     );
   }
 
-  OfflineGameDto fromJson(Map<String, Object> json) {
+  OfflineGameDto fromJson(Map<String, Object?> json) {
     return OfflineGameDto.fromJson(json);
   }
 }
@@ -224,7 +224,7 @@ class __$OfflineGameDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(GameDto)
+@Implements<GameDto>()
 class _$_OfflineGameDto extends _OfflineGameDto {
   const _$_OfflineGameDto(
       {required this.id,
@@ -266,38 +266,23 @@ class _$_OfflineGameDto extends _OfflineGameDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OfflineGameDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OfflineGameDto &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+                other.createdAt == createdAt) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            const DeepCollectionEquality().equals(other.players, players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, status, mode,
+      size, type, startingPoints, const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
   @override
@@ -327,23 +312,22 @@ abstract class _OfflineGameDto extends OfflineGameDto implements GameDto {
       _$_OfflineGameDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  int get createdAt => throw _privateConstructorUsedError;
+  int get createdAt;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get mode => throw _privateConstructorUsedError;
+  String get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
   @AbstractOfflinePlayerDtoConverter()
-  List<AbstractOfflinePlayerDto> get players =>
-      throw _privateConstructorUsedError;
+  List<AbstractOfflinePlayerDto> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameDtoCopyWith<_OfflineGameDto> get copyWith =>
@@ -381,7 +365,7 @@ class _$OnlineGameDtoTearOff {
     );
   }
 
-  OnlineGameDto fromJson(Map<String, Object> json) {
+  OnlineGameDto fromJson(Map<String, Object?> json) {
     return OnlineGameDto.fromJson(json);
   }
 }
@@ -571,7 +555,7 @@ class __$OnlineGameDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(GameDto)
+@Implements<GameDto>()
 class _$_OnlineGameDto extends _OnlineGameDto {
   const _$_OnlineGameDto(
       {required this.id,
@@ -615,42 +599,33 @@ class _$_OnlineGameDto extends _OnlineGameDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnlineGameDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OnlineGameDto &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.ownerId, ownerId)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)) &&
-            (identical(other.size, size) ||
-                const DeepCollectionEquality().equals(other.size, size)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+                other.createdAt == createdAt) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.players, players) ||
-                const DeepCollectionEquality().equals(other.players, players)));
+                other.startingPoints == startingPoints) &&
+            const DeepCollectionEquality().equals(other.players, players));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(mode) ^
-      const DeepCollectionEquality().hash(size) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(players);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      ownerId,
+      status,
+      mode,
+      size,
+      type,
+      startingPoints,
+      const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
   @override
@@ -680,23 +655,23 @@ abstract class _OnlineGameDto extends OnlineGameDto implements GameDto {
       _$_OnlineGameDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  int get createdAt => throw _privateConstructorUsedError;
+  int get createdAt;
   @override
-  String get ownerId => throw _privateConstructorUsedError;
+  String get ownerId;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get mode => throw _privateConstructorUsedError;
+  String get mode;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  List<OnlinePlayerDto> get players => throw _privateConstructorUsedError;
+  List<OnlinePlayerDto> get players;
   @override
   @JsonKey(ignore: true)
   _$OnlineGameDtoCopyWith<_OnlineGameDto> get copyWith =>

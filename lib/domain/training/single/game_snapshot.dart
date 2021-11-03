@@ -12,7 +12,7 @@ part 'game_snapshot.freezed.dart';
 
 @freezed
 class GameSnapshot with _$GameSnapshot implements TrainingGameSnapshot {
-  @Implements(TrainingGameSnapshot)
+  @Implements<TrainingGameSnapshot>()
   const factory GameSnapshot({
     required Status status,
     required Mode mode,

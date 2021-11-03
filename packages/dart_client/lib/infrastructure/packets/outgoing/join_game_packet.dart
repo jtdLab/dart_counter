@@ -7,7 +7,7 @@ part 'join_game_packet.g.dart';
 
 @freezed
 class JoinGamePacket with _$JoinGamePacket {
-  @Implements(RequestPacket)
+  @Implements<RequestPacket>()
   const factory JoinGamePacket({
     required int gameCode,
   }) = _JoinGamePacket;

@@ -7,7 +7,7 @@ part 'player_snapshot.freezed.dart';
 
 @freezed
 class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
-  @Implements(TrainingPlayerSnapshot)
+  @Implements<TrainingPlayerSnapshot>()
   const factory PlayerSnapshot({
     required UniqueId id,
     String? name,

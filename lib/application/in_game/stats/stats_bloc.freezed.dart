@@ -105,7 +105,8 @@ class _$_Started implements _Started {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -306,15 +307,14 @@ class _$StatsInitial implements StatsInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is StatsInitial &&
+        (other.runtimeType == runtimeType &&
+            other is StatsInitial &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -383,7 +383,7 @@ abstract class StatsInitial implements StatsState {
       _$StatsInitial;
 
   @override
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  GameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $StatsInitialCopyWith<StatsInitial> get copyWith =>

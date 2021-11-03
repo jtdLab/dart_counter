@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'invite_to_game_packet.dart';
 
@@ -26,7 +27,7 @@ class _$InviteToGamePacketTearOff {
     );
   }
 
-  InviteToGamePacket fromJson(Map<String, Object> json) {
+  InviteToGamePacket fromJson(Map<String, Object?> json) {
     return InviteToGamePacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$InviteToGamePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_InviteToGamePacket extends _InviteToGamePacket {
   const _$_InviteToGamePacket({required this.uid}) : super._();
 
   factory _$_InviteToGamePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_InviteToGamePacketFromJson(json);
+      _$$_InviteToGamePacketFromJson(json);
 
   @override
   final String uid;
@@ -128,14 +129,13 @@ class _$_InviteToGamePacket extends _InviteToGamePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InviteToGamePacket &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)));
+        (other.runtimeType == runtimeType &&
+            other is _InviteToGamePacket &&
+            (identical(other.uid, uid) || other.uid == uid));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(uid);
+  int get hashCode => Object.hash(runtimeType, uid);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_InviteToGamePacket extends _InviteToGamePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_InviteToGamePacketToJson(this);
+    return _$$_InviteToGamePacketToJson(this);
   }
 }
 
@@ -158,7 +158,7 @@ abstract class _InviteToGamePacket extends InviteToGamePacket
       _$_InviteToGamePacket.fromJson;
 
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
   @JsonKey(ignore: true)
   _$InviteToGamePacketCopyWith<_InviteToGamePacket> get copyWith =>

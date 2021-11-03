@@ -28,7 +28,7 @@ class _$SetDtoTearOff {
     );
   }
 
-  SetDto fromJson(Map<String, Object> json) {
+  SetDto fromJson(Map<String, Object?> json) {
     return SetDto.fromJson(json);
   }
 }
@@ -136,19 +136,16 @@ class _$_SetDto extends _SetDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetDto &&
+        (other.runtimeType == runtimeType &&
+            other is _SetDto &&
             (identical(other.startingPoints, startingPoints) ||
-                const DeepCollectionEquality()
-                    .equals(other.startingPoints, startingPoints)) &&
-            (identical(other.legs, legs) ||
-                const DeepCollectionEquality().equals(other.legs, legs)));
+                other.startingPoints == startingPoints) &&
+            const DeepCollectionEquality().equals(other.legs, legs));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(startingPoints) ^
-      const DeepCollectionEquality().hash(legs);
+  int get hashCode => Object.hash(
+      runtimeType, startingPoints, const DeepCollectionEquality().hash(legs));
 
   @JsonKey(ignore: true)
   @override
@@ -169,9 +166,9 @@ abstract class _SetDto extends SetDto {
   factory _SetDto.fromJson(Map<String, dynamic> json) = _$_SetDto.fromJson;
 
   @override
-  int get startingPoints => throw _privateConstructorUsedError;
+  int get startingPoints;
   @override
-  List<LegDto> get legs => throw _privateConstructorUsedError;
+  List<LegDto> get legs;
   @override
   @JsonKey(ignore: true)
   _$SetDtoCopyWith<_SetDto> get copyWith => throw _privateConstructorUsedError;

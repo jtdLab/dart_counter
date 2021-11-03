@@ -6,28 +6,27 @@ part of 'player_snapshot_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PlayerSnapshotDto _$_$_PlayerSnapshotDtoFromJson(Map<String, dynamic> json) {
-  return _$_PlayerSnapshotDto(
-    id: json['id'] as String,
-    name: json['name'] as String,
-    isCurrentTurn: json['isCurrentTurn'] as bool?,
-    won: json['won'] as bool?,
-    wonSets: json['wonSets'] as int?,
-    wonLegsCurrentSet: json['wonLegsCurrentSet'] as int?,
-    pointsLeft: json['pointsLeft'] as int?,
-    finishRecommendation: (json['finishRecommendation'] as List<dynamic>?)
-        ?.map((e) => e as String)
-        .toList(),
-    lastPoints: json['lastPoints'] as int?,
-    dartsThrownCurrentLeg: json['dartsThrownCurrentLeg'] as int?,
-    stats: json['stats'] == null
-        ? null
-        : StatsDto.fromJson(json['stats'] as Map<String, dynamic>),
-    userId: json['userId'] as String,
-  );
-}
+_$_PlayerSnapshotDto _$$_PlayerSnapshotDtoFromJson(Map<String, dynamic> json) =>
+    _$_PlayerSnapshotDto(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      isCurrentTurn: json['isCurrentTurn'] as bool?,
+      won: json['won'] as bool?,
+      wonSets: json['wonSets'] as int?,
+      wonLegsCurrentSet: json['wonLegsCurrentSet'] as int?,
+      pointsLeft: json['pointsLeft'] as int?,
+      finishRecommendation: (json['finishRecommendation'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      lastPoints: json['lastPoints'] as int?,
+      dartsThrownCurrentLeg: json['dartsThrownCurrentLeg'] as int?,
+      stats: json['stats'] == null
+          ? null
+          : StatsDto.fromJson(json['stats'] as Map<String, dynamic>),
+      userId: json['userId'] as String,
+    );
 
-Map<String, dynamic> _$_$_PlayerSnapshotDtoToJson(
+Map<String, dynamic> _$$_PlayerSnapshotDtoToJson(
         _$_PlayerSnapshotDto instance) =>
     <String, dynamic>{
       'id': instance.id,

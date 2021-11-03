@@ -207,7 +207,8 @@ class _$TrainingCreated implements TrainingCreated {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingCreated);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TrainingCreated);
   }
 
   @override
@@ -356,7 +357,8 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingPlayerAdded);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TrainingPlayerAdded);
   }
 
   @override
@@ -522,14 +524,13 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingPlayerRemoved &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)));
+        (other.runtimeType == runtimeType &&
+            other is TrainingPlayerRemoved &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -649,7 +650,7 @@ abstract class TrainingPlayerRemoved implements TrainingEvent {
   const factory TrainingPlayerRemoved({required int index}) =
       _$TrainingPlayerRemoved;
 
-  int get index => throw _privateConstructorUsedError;
+  int get index;
   @JsonKey(ignore: true)
   $TrainingPlayerRemovedCopyWith<TrainingPlayerRemoved> get copyWith =>
       throw _privateConstructorUsedError;
@@ -711,20 +712,16 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingPlayerReordered &&
+        (other.runtimeType == runtimeType &&
+            other is TrainingPlayerReordered &&
             (identical(other.oldIndex, oldIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.oldIndex, oldIndex)) &&
+                other.oldIndex == oldIndex) &&
             (identical(other.newIndex, newIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.newIndex, newIndex)));
+                other.newIndex == newIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(oldIndex) ^
-      const DeepCollectionEquality().hash(newIndex);
+  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -845,8 +842,8 @@ abstract class TrainingPlayerReordered implements TrainingEvent {
       {required int oldIndex,
       required int newIndex}) = _$TrainingPlayerReordered;
 
-  int get oldIndex => throw _privateConstructorUsedError;
-  int get newIndex => throw _privateConstructorUsedError;
+  int get oldIndex;
+  int get newIndex;
   @JsonKey(ignore: true)
   $TrainingPlayerReorderedCopyWith<TrainingPlayerReordered> get copyWith =>
       throw _privateConstructorUsedError;
@@ -909,18 +906,14 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingPlayerNameUpdated &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.newName, newName) ||
-                const DeepCollectionEquality().equals(other.newName, newName)));
+        (other.runtimeType == runtimeType &&
+            other is TrainingPlayerNameUpdated &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.newName, newName) || other.newName == newName));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(newName);
+  int get hashCode => Object.hash(runtimeType, index, newName);
 
   @JsonKey(ignore: true)
   @override
@@ -1041,8 +1034,8 @@ abstract class TrainingPlayerNameUpdated implements TrainingEvent {
       {required int index,
       required String newName}) = _$TrainingPlayerNameUpdated;
 
-  int get index => throw _privateConstructorUsedError;
-  String get newName => throw _privateConstructorUsedError;
+  int get index;
+  String get newName;
   @JsonKey(ignore: true)
   $TrainingPlayerNameUpdatedCopyWith<TrainingPlayerNameUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1096,14 +1089,13 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingTypeChanged &&
-            (identical(other.newType, newType) ||
-                const DeepCollectionEquality().equals(other.newType, newType)));
+        (other.runtimeType == runtimeType &&
+            other is TrainingTypeChanged &&
+            (identical(other.newType, newType) || other.newType == newType));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newType);
+  int get hashCode => Object.hash(runtimeType, newType);
 
   @JsonKey(ignore: true)
   @override
@@ -1222,7 +1214,7 @@ abstract class TrainingTypeChanged implements TrainingEvent {
   const factory TrainingTypeChanged({required Type newType}) =
       _$TrainingTypeChanged;
 
-  Type get newType => throw _privateConstructorUsedError;
+  Type get newType;
   @JsonKey(ignore: true)
   $TrainingTypeChangedCopyWith<TrainingTypeChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1259,7 +1251,8 @@ class _$TrainingStarted implements TrainingStarted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingStarted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TrainingStarted);
   }
 
   @override
@@ -1408,7 +1401,8 @@ class _$TrainingCanceled implements TrainingCanceled {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TrainingCanceled);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TrainingCanceled);
   }
 
   @override
@@ -1577,15 +1571,14 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingGameSnapshotReceived &&
+        (other.runtimeType == runtimeType &&
+            other is TrainingGameSnapshotReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -1706,7 +1699,7 @@ abstract class TrainingGameSnapshotReceived implements TrainingEvent {
           {required TrainingGameSnapshot gameSnapshot}) =
       _$TrainingGameSnapshotReceived;
 
-  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  TrainingGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $TrainingGameSnapshotReceivedCopyWith<TrainingGameSnapshotReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -1864,19 +1857,15 @@ class _$TrainingInitial implements TrainingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TrainingInitial &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+        (other.runtimeType == runtimeType &&
+            other is TrainingInitial &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.gameSnapshot, gameSnapshot) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameSnapshot, gameSnapshot)));
+                other.gameSnapshot == gameSnapshot));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(gameSnapshot);
+  int get hashCode => Object.hash(runtimeType, type, gameSnapshot);
 
   @JsonKey(ignore: true)
   @override
@@ -1947,9 +1936,9 @@ abstract class TrainingInitial implements TrainingState {
       required TrainingGameSnapshot gameSnapshot}) = _$TrainingInitial;
 
   @override
-  Type get type => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  TrainingGameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $TrainingInitialCopyWith<TrainingInitial> get copyWith =>

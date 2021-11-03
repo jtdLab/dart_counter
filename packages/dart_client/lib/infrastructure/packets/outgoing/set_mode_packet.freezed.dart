@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'set_mode_packet.dart';
 
@@ -26,7 +27,7 @@ class _$SetModePacketTearOff {
     );
   }
 
-  SetModePacket fromJson(Map<String, Object> json) {
+  SetModePacket fromJson(Map<String, Object?> json) {
     return SetModePacket.fromJson(json);
   }
 }
@@ -110,12 +111,12 @@ class __$SetModePacketCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements(RequestPacket)
+@Implements<RequestPacket>()
 class _$_SetModePacket extends _SetModePacket {
   const _$_SetModePacket({required this.mode}) : super._();
 
   factory _$_SetModePacket.fromJson(Map<String, dynamic> json) =>
-      _$_$_SetModePacketFromJson(json);
+      _$$_SetModePacketFromJson(json);
 
   @override
   final Mode mode;
@@ -128,14 +129,13 @@ class _$_SetModePacket extends _SetModePacket {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetModePacket &&
-            (identical(other.mode, mode) ||
-                const DeepCollectionEquality().equals(other.mode, mode)));
+        (other.runtimeType == runtimeType &&
+            other is _SetModePacket &&
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(mode);
+  int get hashCode => Object.hash(runtimeType, mode);
 
   @JsonKey(ignore: true)
   @override
@@ -144,7 +144,7 @@ class _$_SetModePacket extends _SetModePacket {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SetModePacketToJson(this);
+    return _$$_SetModePacketToJson(this);
   }
 }
 
@@ -156,7 +156,7 @@ abstract class _SetModePacket extends SetModePacket implements RequestPacket {
       _$_SetModePacket.fromJson;
 
   @override
-  Mode get mode => throw _privateConstructorUsedError;
+  Mode get mode;
   @override
   @JsonKey(ignore: true)
   _$SetModePacketCopyWith<_SetModePacket> get copyWith =>
