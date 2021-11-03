@@ -1,8 +1,6 @@
 // CORE
+import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
-// BLOCS
-import 'package:dart_counter/application/post_game/post_game_bloc.dart';
 
 // SHARED WIDGETS
 import './../shared.dart';
@@ -11,20 +9,21 @@ import './../shared.dart';
 part 'widgets.dart';
 
 class PostGamePage extends StatelessWidget {
+  final GameSnapshot gameSnapshot;
+
   const PostGamePage({
     Key? key,
+    required this.gameSnapshot,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<PostGameBloc>(),
+    return Provider.value(
+      value: gameSnapshot,
       child: AppPage(
         navigationBar: AppNavigationBar(
-          middle: BlocBuilder<PostGameBloc, PostGameState>(
-            builder: (context, state) => Text(
-              state.gameSnapshot.description().toUpperCase(),
-            ),
+          middle: Text(
+            gameSnapshot.description().toUpperCase(),
           ),
         ),
         child: const SingleChildScrollView(

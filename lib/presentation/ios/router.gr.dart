@@ -8,6 +8,7 @@ import 'package:auto_route/auto_route.dart' as _i23;
 import 'package:flutter/material.dart' as _i24;
 
 import '../../application/game_history/game_history_bloc.dart' as _i27;
+import '../../domain/play/game_snapshot.dart' as _i28;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i26;
 import 'main/contact/contact_page.dart' as _i6;
@@ -141,8 +142,11 @@ class Router extends _i23.RootStackRouter {
           barrierDismissible: false);
     },
     PostGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<PostGamePageRouteArgs>();
       return _i23.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i19.PostGamePage());
+          routeData: routeData,
+          child: _i19.PostGamePage(
+              key: args.key, gameSnapshot: args.gameSnapshot));
     },
     CreateTrainingPageRoute.name: (routeData) {
       return _i23.CupertinoPageX<dynamic>(
@@ -354,10 +358,21 @@ class InGamePageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for [_i19.PostGamePage]
-class PostGamePageRoute extends _i23.PageRouteInfo<void> {
-  const PostGamePageRoute() : super(name, path: 'post-game-page');
+class PostGamePageRoute extends _i23.PageRouteInfo<PostGamePageRouteArgs> {
+  PostGamePageRoute({_i26.Key? key, required _i28.GameSnapshot gameSnapshot})
+      : super(name,
+            path: 'post-game-page',
+            args: PostGamePageRouteArgs(key: key, gameSnapshot: gameSnapshot));
 
   static const String name = 'PostGamePageRoute';
+}
+
+class PostGamePageRouteArgs {
+  const PostGamePageRouteArgs({this.key, required this.gameSnapshot});
+
+  final _i26.Key? key;
+
+  final _i28.GameSnapshot gameSnapshot;
 }
 
 /// generated route for [_i20.CreateTrainingPage]

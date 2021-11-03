@@ -8,17 +8,13 @@ class _PostGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gameSnapshot = context.read<GameSnapshot>();
+
     return AppColumn(
       spacing: size12(context),
       children: [
-        BlocBuilder<PostGameBloc, PostGameState>(
-          builder: (context, state) {
-            final players = state.gameSnapshot.players;
-
-            return StatsWidget(
-              players: players,
-            );
-          },
+        StatsWidget(
+          players: gameSnapshot.players,
         ),
         const _BackToHomeButton(),
       ],

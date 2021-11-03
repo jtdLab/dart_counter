@@ -1,7 +1,11 @@
 // CORE
-import 'package:dart_counter/application/core/training/training_bloc.dart';
-import 'package:dart_counter/domain/training/status.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOCS
+import 'package:dart_counter/application/training/training_bloc.dart';
+
+// DOMAIN
+import 'package:dart_counter/domain/training/status.dart';
 
 import '../../shared.dart';
 

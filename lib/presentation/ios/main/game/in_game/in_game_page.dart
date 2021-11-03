@@ -40,12 +40,13 @@ class InGamePage extends StatelessWidget {
       create: (context) => getIt<InGameBloc>(),
       child: BlocConsumer<InGameBloc, InGameState>(
         listener: (context, state) {
-          final game = state.gameSnapshot;
-          if (game.status == Status.canceled) {
+          final gameSnapshot = state.gameSnapshot;
+          if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
             getIt<PlayBloc>().add(const PlayEvent.resetRequested());
-          } else if (game.status == Status.finished) {
-            context.router.replace(const PostGamePageRoute());
+          } else if (gameSnapshot.status == Status.finished) {
+            context.router
+                .replace(PostGamePageRoute(gameSnapshot: gameSnapshot));
           }
         },
         builder: (context, state) {

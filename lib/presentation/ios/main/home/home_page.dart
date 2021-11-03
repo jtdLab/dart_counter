@@ -1,10 +1,12 @@
 // CORE
-import 'package:dart_counter/application/core/training/training_bloc.dart';
-import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
 import 'package:dart_counter/application/home/home_bloc.dart';
+import 'package:dart_counter/application/training/training_bloc.dart';
+
+// DOMAIN
+import 'package:dart_counter/domain/training/single/game_snapshot.dart';
 
 // LOCAL WIDGETS
 import './../shared.dart';
