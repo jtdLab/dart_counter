@@ -13,7 +13,9 @@ class EditProfileImageModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<EditProfileImageBloc>(),
-      child: const _EditProfileImageWidget(),
+      child: const AppModal(
+        child: _EditProfileImageWidget(),
+      ),
     );
   }
 }

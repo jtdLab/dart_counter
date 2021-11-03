@@ -9,56 +9,50 @@ class _EditProfileImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: Colors.white70,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: AppColumn(
-          spacing: size6(context),
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            AppPrimaryButton(
-              text: LocaleKeys.deletePhoto.tr().toUpperCase(),
-              color: AppColors.red,
-              onPressed: () {
-                context
-                    .read<EditProfileImageBloc>()
-                    .add(const EditProfileImageEvent.deletePressed());
-                context.router.pop();
-              },
-            ),
-            AppPrimaryButton(
-              text: LocaleKeys.takePhoto.tr().toUpperCase(),
-              onPressed: () {
-                context
-                    .read<EditProfileImageBloc>()
-                    .add(const EditProfileImageEvent.takePressed());
-                context.router.pop();
-              },
-            ),
-            AppPrimaryButton(
-              text: LocaleKeys.choosePhoto.tr().toUpperCase(),
-              onPressed: () {
-                context
-                    .read<EditProfileImageBloc>()
-                    .add(const EditProfileImageEvent.choosePressed());
-                context.router.pop();
-              },
-            ),
-            AppPrimaryButton(
-              text: LocaleKeys.done.tr().toUpperCase(),
-              onPressed: () => context.router.pop(),
-            ),
-            SizedBox(
-              height: detailedModalMarginBottom(context),
-            ),
-          ],
+    return AppColumn(
+      spacing: size6(context),
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: spacerLarge(context),
         ),
-      ),
+        AppPrimaryButton(
+          text: LocaleKeys.deletePhoto.tr().toUpperCase(),
+          color: AppColors.red,
+          onPressed: () {
+            context
+                .read<EditProfileImageBloc>()
+                .add(const EditProfileImageEvent.deletePressed());
+            context.router.pop();
+          },
+        ),
+        AppPrimaryButton(
+          text: LocaleKeys.takePhoto.tr().toUpperCase(),
+          onPressed: () {
+            context
+                .read<EditProfileImageBloc>()
+                .add(const EditProfileImageEvent.takePressed());
+            context.router.pop();
+          },
+        ),
+        AppPrimaryButton(
+          text: LocaleKeys.choosePhoto.tr().toUpperCase(),
+          onPressed: () {
+            context
+                .read<EditProfileImageBloc>()
+                .add(const EditProfileImageEvent.choosePressed());
+            context.router.pop();
+          },
+        ),
+        AppPrimaryButton(
+          text: LocaleKeys.done.tr().toUpperCase(),
+          onPressed: () => context.router.pop(),
+        ),
+        SizedBox(
+          height: detailedModalMarginBottom(context),
+        ),
+      ],
     );
   }
 }

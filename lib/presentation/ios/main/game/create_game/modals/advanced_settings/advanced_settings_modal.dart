@@ -7,6 +7,8 @@ part 'widgets.dart';
 class AdvancedSettingsModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const _AdvancedSettingsWidget();
+    return const AppModal(
+      child: _AdvancedSettingsWidget(),
+    );
   }
 }

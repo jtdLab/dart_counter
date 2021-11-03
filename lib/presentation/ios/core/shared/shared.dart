@@ -7,6 +7,7 @@ export 'app_icon_button.dart';
 export 'app_link_button.dart';
 export 'app_number_picker.dart';
 export 'app_page.dart';
+export 'app_modal.dart';
 export 'app_primary_button.dart';
 export 'app_rounded_image.dart';
 export 'app_search_field.dart';

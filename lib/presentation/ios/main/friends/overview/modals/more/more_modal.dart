@@ -17,7 +17,9 @@ class MoreModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<MoreBloc>(),
-      child: const _MoreWidget(),
+      child: const AppModal(
+        child: _MoreWidget(),
+      ),
     );
   }
 }
