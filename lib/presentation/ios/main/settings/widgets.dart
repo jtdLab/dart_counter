@@ -1,4 +1,4 @@
-part of './settings_page.dart';
+part of 'settings_page.dart';
 
 // BODY
 class _SettingsWidget extends StatelessWidget {

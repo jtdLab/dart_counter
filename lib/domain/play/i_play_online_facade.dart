@@ -17,7 +17,7 @@ abstract class IPlayOnlineFacade {
   Stream<OnlineGameSnapshot> watchGame();
 
   /// Creates a new game.
-  Future<Either<PlayFailure, Unit>> createGame();
+  Future<Either<PlayFailure, OnlineGameSnapshot>> createGame();
 
   /// Changes the position of a player from [oldIndex] to [newIndex].
 
@@ -89,7 +89,7 @@ abstract class IPlayOnlineFacade {
   Future<Either<PlayFailure, Unit>> undoThrow();
 
   /// Joins the game with [gameId].
-  Future<Either<PlayFailure, Unit>> joinGame({
+  Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,
   });
 }

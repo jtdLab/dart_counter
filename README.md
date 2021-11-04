@@ -3,13 +3,11 @@
 DartCounter for Android and iOS.
 
 ## Important commands for development
-
 flutter pub run easy_localization:generate -S assets/languages -f keys -o locale_keys.g.dart
-
 flutter pub run build_runner watch --delete-conflicting-outputs
-
 flutter pub run easy_localization:generate -S assets/languages
 
+// TODO
 2. SearchUser
 3. Profile + all sub pages
 4. Play
@@ -32,7 +30,8 @@ flutter pub run easy_localization:generate -S assets/languages
 
 // Join game and accept invitation are 2 different client side actions that have both to be send
 // thats not clean maybe do it server side with 1 call
-// find solution to convert enums e.g a framwork who simulates enums + their conversion or nativ dart feature
+
+// find solution to convert enums to json e.g a framwork who simulates enums + their conversion or nativ dart feature
 // on not mocked facades rethrow all errors e.g NOTAUTHERROR
 // implement playonline facade cleaner with error throwing etc
 // in apppage widget add bool for fullscreen loading animation make loading part of apppage

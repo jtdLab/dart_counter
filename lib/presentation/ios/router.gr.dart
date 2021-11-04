@@ -121,11 +121,11 @@ class Router extends _i23.RootStackRouter {
       return _i23.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i14.ProfilePage());
     },
-    OverviewPageRoute.name: (routeData) {
+    GameHistoryOverviewPageRoute.name: (routeData) {
       return _i23.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i15.OverviewPage());
     },
-    DetailsPageRoute.name: (routeData) {
+    GameHistoryDetailsPageRoute.name: (routeData) {
       return _i23.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i16.DetailsPage());
     },
@@ -201,10 +201,17 @@ class Router extends _i23.RootStackRouter {
               path: 'game-history-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i23.RouteConfig(OverviewPageRoute.name,
-                    path: '', parent: GameHistoryFlowRoute.name),
-                _i23.RouteConfig(DetailsPageRoute.name,
-                    path: 'details-page', parent: GameHistoryFlowRoute.name)
+                _i23.RouteConfig('#redirect',
+                    path: '',
+                    parent: GameHistoryFlowRoute.name,
+                    redirectTo: 'game-history-overview-page',
+                    fullMatch: true),
+                _i23.RouteConfig(GameHistoryOverviewPageRoute.name,
+                    path: 'game-history-overview-page',
+                    parent: GameHistoryFlowRoute.name),
+                _i23.RouteConfig(GameHistoryDetailsPageRoute.name,
+                    path: 'game-history-details-page',
+                    parent: GameHistoryFlowRoute.name)
               ]),
           _i23.RouteConfig(GameFlowRoute.name,
               path: 'game-flow',
@@ -352,17 +359,19 @@ class FriendsProfilePageRoute extends _i23.PageRouteInfo<void> {
 }
 
 /// generated route for [_i15.OverviewPage]
-class OverviewPageRoute extends _i23.PageRouteInfo<void> {
-  const OverviewPageRoute() : super(name, path: '');
+class GameHistoryOverviewPageRoute extends _i23.PageRouteInfo<void> {
+  const GameHistoryOverviewPageRoute()
+      : super(name, path: 'game-history-overview-page');
 
-  static const String name = 'OverviewPageRoute';
+  static const String name = 'GameHistoryOverviewPageRoute';
 }
 
 /// generated route for [_i16.DetailsPage]
-class DetailsPageRoute extends _i23.PageRouteInfo<void> {
-  const DetailsPageRoute() : super(name, path: 'details-page');
+class GameHistoryDetailsPageRoute extends _i23.PageRouteInfo<void> {
+  const GameHistoryDetailsPageRoute()
+      : super(name, path: 'game-history-details-page');
 
-  static const String name = 'DetailsPageRoute';
+  static const String name = 'GameHistoryDetailsPageRoute';
 }
 
 /// generated route for [_i17.CreateGamePage]

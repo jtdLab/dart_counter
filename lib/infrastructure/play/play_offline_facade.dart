@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
 import 'package:dart_counter/domain/play/mode.dart';
+import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/play/player_snapshot_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -53,17 +55,23 @@ class PlayOfflineFacade implements IPlayOfflineFacade {
   }
 
   @override
-  void createGame({
+  Either<PlayFailure, OfflineGameSnapshot> createGame({
     required User owner,
   }) {
-    _game = _game = ex.Game(
-      ownerName: owner.profile.username.getOrCrash(),
-    );
+    if (_game == null) {
+      _game = _game = ex.Game(
+        ownerName: owner.profile.username.getOrCrash(),
+      );
 
-    _owner = owner;
-    _ownerPlayerId = _game!.players[0].id;
+      _owner = owner;
+      _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+      _emitSnpashot();
+
+      return right(_gameController.value);
+    }
+
+    return left(const PlayFailure.error()); // TODO more specific
   }
 
   @override

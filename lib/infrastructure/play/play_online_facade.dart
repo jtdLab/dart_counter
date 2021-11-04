@@ -53,7 +53,7 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> createGame() async {
+  Future<Either<PlayFailure, OnlineGameSnapshot>> createGame() async {
     final user = _userFacade.getUser();
     final idToken = user?.fold(
       (failure) => null,
@@ -67,14 +67,15 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
     if (connected) {
       final successful = await _dartClient.createGame();
       if (successful) {
-        return right(unit);
+        final gameSnapshot = await _gameController.stream.first;
+        return right(gameSnapshot);
       }
     }
     return left(const PlayFailure.error());
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> joinGame({
+  Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,
   }) async {
     final user = _userFacade.getUser();
@@ -91,7 +92,8 @@ class PlayOnlineFacade implements IPlayOnlineFacade {
         gameId: gameId.getOrCrash(),
       );
       if (successful) {
-        return right(unit);
+        final gameSnapshot = await _gameController.stream.first;
+        return right(gameSnapshot);
       }
     }
 

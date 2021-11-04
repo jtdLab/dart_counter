@@ -87,9 +87,13 @@ Route<T> customRouteBuilder<T>(
           children: [
             CupertinoRoute(
               initial: true,
+              name: 'GameHistoryOverviewPageRoute',
+              path: 'game-history-overview-page',
               page: game_history_overview.OverviewPage,
             ),
             CupertinoRoute(
+              name: 'GameHistoryDetailsPageRoute',
+              path: 'game-history-details-page',
               page: game_history_details.DetailsPage,
             ),
           ],

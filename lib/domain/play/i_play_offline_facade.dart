@@ -1,5 +1,7 @@
 import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dartz/dartz.dart';
 
 //import 'package:dart_counter/domain/core/errors.dart';
 
@@ -13,7 +15,7 @@ abstract class IPlayOfflineFacade {
   Stream<OfflineGameSnapshot> watchGame();
 
   /// Creates a new game with [owner].
-  void createGame({
+  Either<PlayFailure, OfflineGameSnapshot> createGame({
     required User owner,
   });
 

@@ -46,25 +46,27 @@ class MockedPlayOnlineFacade implements IPlayOnlineFacade {
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> createGame() async {
+  Future<Either<PlayFailure, OnlineGameSnapshot>> createGame() async {
     if (hasNetworkConnection) {
       _game = _game = ex.Game();
       _game!.players[0].name =
           faker.randomGenerator.element(['Capi', 'Kolle', 'Mirco', 'Baltasar']);
       _images.add(faker.image.image(width: 200, height: 200, random: true));
 
+
+
       _gameController.add(
         _toOnlineGameSnapshot(_game!),
       );
 
-      return right(unit);
+      return right(_gameController.value);
     }
 
     return left(const PlayFailure.error()); // TODO name better
   }
 
   @override
-  Future<Either<PlayFailure, Unit>> joinGame({
+  Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,
   }) {
     return createGame();

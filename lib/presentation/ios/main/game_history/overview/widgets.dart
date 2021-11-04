@@ -57,7 +57,7 @@ class _GameHistoryCard extends StatelessWidget {
         context
             .read<GameHistoryBloc>()
             .add(GameHistoryEvent.gameSelected(game: game));
-        context.router.push(const DetailsPageRoute());
+        context.router.push(const GameHistoryDetailsPageRoute());
       },
       child: AppCard(
         headerBodySpacing: 0,
