@@ -31,18 +31,22 @@ class ChangePasswordModal extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (context) =>
                     BlocListener<ChangePasswordBloc, ChangePasswordState>(
-                  listenWhen: (oldState, newState) =>
-                      newState.successful || newState.authFailure != null,
+                  listenWhen: (_, newState) =>
+                      newState is ChangePasswordSubmitSuccess ||
+                      newState is ChangePasswordSubmitFailure,
                   listener: (context, state) {
-                    if (state.successful) {
+                    if (state is ChangePasswordSubmitSuccess) {
                       Navigator.pushReplacementNamed(context, success);
                       return;
                     }
-                    state.authFailure?.maybeWhen(
-                      orElse: () => showToast(
-                        'AuthFailure happended',
-                      ), // TODO catch other errors also
-                    );
+
+                    if (state is ChangePasswordSubmitFailure) {
+                      state.authFailure.maybeWhen(
+                        orElse: () => showToast(
+                          'AuthFailure happended',
+                        ), // TODO catch other errors also
+                      );
+                    }
                   },
                   child: const _InitialPage(),
                 ),

@@ -5,6 +5,7 @@ class _InitialWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -33,11 +34,15 @@ class _InitialWidget extends StatelessWidget {
           onEditingComplete: () => node.unfocus(),
           onChanged: (emailString) => context
               .read<ForgotPasswordBloc>()
-              .add(ForgotPasswordEvent.emailChanged(emailString: emailString)),
+              .add(ForgotPasswordEvent.emailChanged(newEmail: emailString)),
         ),
         BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+          buildWhen: (_, newState) =>
+              newState is ForgotPasswordInitial ||
+              newState is ForgotPasswordSubmitInProgress ||
+              newState is ForgotPasswordSubmitFailure,
           builder: (context, state) {
-            final isSubmitting = state.isSubmitting;
+            final isSubmitting = state is ForgotPasswordSubmitInProgress;
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,

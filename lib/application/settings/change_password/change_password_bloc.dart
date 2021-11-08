@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -21,76 +22,135 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   ChangePasswordBloc(
     this._authFacade,
   ) : super(
-          ChangePasswordState.initial(),
-        );
-
-  @override
-  Stream<ChangePasswordState> mapEventToState(
-    ChangePasswordEvent event,
-  ) async* {
-    yield* event.map(
-      oldPasswordChanged: (event) => _mapOldPasswordChangedToState(event),
-      newPasswordChanged: (event) => _mapNewPasswordChangedToState(event),
-      newPasswordAgainChanged: (event) =>
-          _mapNewPasswordAgainChangedToState(event),
-      confirmPressed: (_) => _mapConfirmPressedToState(),
-    );
+          ChangePasswordState.initial(
+            oldPassword: Password.empty(),
+            newPassword: Password.empty(),
+            newPasswordAgain: Password.empty(),
+            showErrorMessages: false,
+          ),
+        ) {
+    on<OldPasswordChanged>(_mapOldPasswordChangedToState);
+    on<NewPasswordChanged>(_mapNewPasswordChangedToState);
+    on<NewPasswordAgainChanged>(_mapNewPasswordAgainChangedToState);
+    on<ConfirmPressed>(_mapConfirmPressedToState);
   }
 
-  Stream<ChangePasswordState> _mapOldPasswordChangedToState(
+  void _mapOldPasswordChangedToState(
     OldPasswordChanged event,
-  ) async* {
-    yield state.copyWith(
-      oldPassword: Password(event.oldPasswordString),
+    Emitter<ChangePasswordState> emit,
+  ) {
+    final oldPassword = event.newOldPassword;
+
+    state.maybeMap(
+      initial: (initial) {
+        emit(
+          initial.copyWith(
+            oldPassword: Password(oldPassword),
+          ),
+        );
+      },
+      submitFailure: (_) {
+        emit(
+          ChangePasswordState.initial(
+            oldPassword: Password(oldPassword),
+            newPassword: Password(''),
+            newPasswordAgain: Password(''),
+            showErrorMessages: true,
+          ),
+        );
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
-  Stream<ChangePasswordState> _mapNewPasswordChangedToState(
+  void _mapNewPasswordChangedToState(
     NewPasswordChanged event,
-  ) async* {
-    yield state.copyWith(
-      newPassword: Password(event.newPasswordString),
+    Emitter<ChangePasswordState> emit,
+  ) {
+    final newPassword = event.newNewPassword;
+
+    state.maybeMap(
+      initial: (initial) {
+        emit(initial.copyWith(newPassword: Password(newPassword)));
+      },
+      submitFailure: (_) {
+        emit(
+          ChangePasswordState.initial(
+            oldPassword: Password(''),
+            newPassword: Password(newPassword),
+            newPasswordAgain: Password(''),
+            showErrorMessages: true,
+          ),
+        );
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
-  Stream<ChangePasswordState> _mapNewPasswordAgainChangedToState(
+  void _mapNewPasswordAgainChangedToState(
     NewPasswordAgainChanged event,
-  ) async* {
-    yield state.copyWith(
-      newPasswordAgain: Password(event.newPasswordAgainString),
+    Emitter<ChangePasswordState> emit,
+  ) {
+    final newPasswordAgain = event.newNewPasswordAgain;
+
+    state.maybeMap(
+      initial: (initial) {
+        emit(initial.copyWith(newPasswordAgain: Password(newPasswordAgain)));
+      },
+      submitFailure: (_) {
+        emit(
+          ChangePasswordState.initial(
+            oldPassword: Password(''),
+            newPassword: Password(''),
+            newPasswordAgain: Password(newPasswordAgain),
+            showErrorMessages: true,
+          ),
+        );
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
-  // TODO more granular error handling
-  Stream<ChangePasswordState> _mapConfirmPressedToState() async* {
-    AuthFailure? authFailure;
+  // TODO more granular error handling + validation
+  Future<void> _mapConfirmPressedToState(
+    ConfirmPressed event,
+    Emitter<ChangePasswordState> emit,
+  ) async {
+    await state.maybeMap(
+      initial: (initial) async {
+        AuthFailure? authFailure;
 
-    final oldPassword = state.oldPassword;
-    final newPassword = state.newPassword;
-    final newPasswordAgain = state.newPasswordAgain;
-    final newPasswordsEqual = newPassword == newPasswordAgain;
-    if (oldPassword.isValid() &&
-        newPassword.isValid() &&
-        newPasswordAgain.isValid() &&
-        newPasswordsEqual) {
-      yield state.copyWith(isSubmitting: true);
-      await Future.delayed(const Duration(seconds: 1));
-      authFailure = (await _authFacade.updatePassword(
-        oldPassword: oldPassword,
-        newPassword: newPassword,
-      ))
-          .fold(
-        (failure) => failure,
-        (_) => null,
-      );
-    } else {
-      authFailure = const AuthFailure.serverError();
-    }
-    yield state.copyWith(
-      showErrorMessages: true,
-      isSubmitting: false,
-      successful: authFailure == null,
-      authFailure: authFailure,
+        final oldPassword = initial.oldPassword;
+        final newPassword = initial.newPassword;
+        final newPasswordAgain = initial.newPasswordAgain;
+        final newPasswordsEqual = newPassword == newPasswordAgain;
+
+        if (oldPassword.isValid() &&
+            newPassword.isValid() &&
+            newPasswordAgain.isValid() &&
+            newPasswordsEqual) {
+          emit(const ChangePasswordSubmitInProgress());
+
+          await Future.delayed(const Duration(seconds: 1));
+          authFailure = (await _authFacade.updatePassword(
+            oldPassword: oldPassword,
+            newPassword: newPassword,
+          ))
+              .fold(
+            (failure) => failure,
+            (_) => null,
+          );
+        } else {
+          authFailure = const AuthFailure.serverError();
+        }
+
+        if (authFailure == null) {
+          emit(const ChangePasswordSubmitSuccess());
+        } else {
+          emit(ChangePasswordSubmitFailure(authFailure: authFailure));
+        }
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

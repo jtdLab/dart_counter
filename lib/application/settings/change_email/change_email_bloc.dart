@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -18,51 +19,72 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     with AutoResetLazySingleton {
   final IUserFacade _userFacade;
 
-  ChangeEmailBloc(this._userFacade)
-      : super(
-          ChangeEmailState.initial(),
-        );
-
-  @override
-  Stream<ChangeEmailState> mapEventToState(
-    ChangeEmailEvent event,
-  ) async* {
-    yield* event.map(
-      newEmailChanged: (event) => _mapNewEmailChangedToState(event),
-      confirmPressed: (_) => _mapConfirmPressedToState(),
-    );
+  ChangeEmailBloc(
+    this._userFacade,
+  ) : super(
+          ChangeEmailState.initial(
+            email: EmailAddress.empty(),
+            showErrorMessages: false,
+          ),
+        ) {
+    on<NewEmailChanged>(_mapEmailChangedToState);
+    on<ConfirmPressed>(_mapConfirmPressedToState);
   }
 
-  Stream<ChangeEmailState> _mapNewEmailChangedToState(
+  void _mapEmailChangedToState(
     NewEmailChanged event,
-  ) async* {
-    yield state.copyWith(
-      newEmail: EmailAddress(event.newEmailString),
+    Emitter<ChangeEmailState> emit,
+  ) {
+    final email = event.newNewEmail;
+
+    state.maybeMap(
+      initial: (initial) {
+        emit(initial.copyWith(email: EmailAddress(email)));
+      },
+      submitFailure: (_) {
+        emit(
+          ChangeEmailState.initial(
+            email: EmailAddress(email),
+            showErrorMessages: true,
+          ),
+        );
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
   // TODO more granular error handling
-  Stream<ChangeEmailState> _mapConfirmPressedToState() async* {
-    UserFailure? userFailure;
-    final newEmail = state.newEmail;
-    if (newEmail.isValid()) {
-      yield state.copyWith(isSubmitting: true);
-      await Future.delayed(const Duration(seconds: 1));
-      userFailure = (await _userFacade.updateEmailAddress(
-        newEmailAddress: newEmail,
-      ))
-          .fold(
-        (failure) => failure,
-        (_) => null,
-      );
-    } else {
-      userFailure = const UserFailure.failure();
-    }
-    yield state.copyWith(
-      showErrorMessages: true,
-      isSubmitting: false,
-      successful: userFailure == null,
-      userFailure: userFailure,
+  Future<void> _mapConfirmPressedToState(
+    ConfirmPressed event,
+    Emitter<ChangeEmailState> emit,
+  ) async {
+    await state.maybeMap(
+      initial: (initial) async {
+        UserFailure? userFailure;
+        final email = initial.email;
+
+        if (email.isValid()) {
+          emit(const ChangeEmailSubmitInProgress());
+
+          await Future.delayed(const Duration(seconds: 1));
+          userFailure = (await _userFacade.updateEmailAddress(
+            newEmailAddress: email,
+          ))
+              .fold(
+            (failure) => failure,
+            (_) => null,
+          );
+        } else {
+          userFailure = const UserFailure.invalidEmail();
+        }
+
+        if (userFailure == null) {
+          emit(const ChangeEmailSubmitSuccess());
+        } else {
+          emit(ChangeEmailSubmitFailure(userFailure: userFailure));
+        }
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

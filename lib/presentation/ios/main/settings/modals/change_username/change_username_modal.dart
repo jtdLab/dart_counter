@@ -31,21 +31,25 @@ class ChangeUsernameModal extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (context) =>
                     BlocListener<ChangeUsernameBloc, ChangeUsernameState>(
-                  listenWhen: (oldState, newState) =>
-                      newState.successful || newState.userFailure != null,
+                  listenWhen: (_, newState) =>
+                      newState is ChangeUsernameSubmitSuccess ||
+                      newState is ChangeUsernameSubmitFailure,
                   listener: (context, state) {
-                    if (state.successful) {
+                    if (state is ChangeUsernameSubmitSuccess) {
                       Navigator.pushReplacementNamed(context, success);
                       return;
                     }
-                    state.userFailure?.maybeWhen(
-                      invalidUsername: () => showToast(
-                        LocaleKeys.errorInvalidUsername.tr().toUpperCase(),
-                      ),
-                      orElse: () => showToast(
-                        'UserFailure happended',
-                      ), // TODO catch other errors also
-                    );
+
+                    if (state is ChangeUsernameSubmitFailure) {
+                      state.userFailure.maybeWhen(
+                        invalidUsername: () => showToast(
+                          LocaleKeys.errorInvalidUsername.tr().toUpperCase(),
+                        ),
+                        orElse: () => showToast(
+                          'UserFailure happended',
+                        ), // TODO catch other errors also
+                      );
+                    }
                   },
                   child: const _InitialPage(),
                 ),

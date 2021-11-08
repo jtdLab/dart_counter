@@ -34,13 +34,17 @@ class _InitialWidget extends StatelessWidget {
           onEditingComplete: () => node.unfocus(),
           onChanged: (newEmailString) => context.read<ChangeEmailBloc>().add(
                 ChangeEmailEvent.newEmailChanged(
-                  newEmailString: newEmailString,
+                  newNewEmail: newEmailString,
                 ),
               ),
         ),
         BlocBuilder<ChangeEmailBloc, ChangeEmailState>(
+          buildWhen: (_, newState) =>
+              newState is ChangeEmailInitial ||
+              newState is ChangeEmailSubmitInProgress ||
+              newState is ChangeEmailSubmitFailure,
           builder: (context, state) {
-            final isSubmitting = state.isSubmitting;
+            final isSubmitting = state is ChangeEmailSubmitInProgress;
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,

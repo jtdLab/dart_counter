@@ -144,7 +144,9 @@ class DetailedInputAreaBloc
 
     final value = state.focusedValue;
     if (value == null) {
-      throw UnexpectedStateError();
+      // TODO rename better
+      throw Error();
+      //throw UnexpectedStateError();
     }
 
     final dart = Dart(type: event.type, value: value);

@@ -2,18 +2,15 @@ part of 'change_username_bloc.dart';
 
 @freezed
 class ChangeUsernameState with _$ChangeUsernameState {
-  const factory ChangeUsernameState({
-    required Username newUsername,
+  const factory ChangeUsernameState.initial({
+    required Username username,
     required bool showErrorMessages,
-    required bool isSubmitting,
-    required bool successful,
-    UserFailure? userFailure,
-  }) = _ChangeUsernameState;
-
-  factory ChangeUsernameState.initial() => ChangeUsernameState(
-        newUsername: Username.empty(),
-        showErrorMessages: false,
-        isSubmitting: false,
-        successful: false,
-      );
+  }) = ChangeUsernameInitial;
+  const factory ChangeUsernameState.submitInProgress() =
+      ChangeUsernameSubmitInProgress;
+  const factory ChangeUsernameState.submitSuccess() =
+      ChangeUsernameSubmitSuccess;
+  const factory ChangeUsernameState.submitFailure({
+    required UserFailure userFailure,
+  }) = ChangeUsernameSubmitFailure;
 }

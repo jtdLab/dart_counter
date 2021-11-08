@@ -31,24 +31,28 @@ class ChangeEmailModal extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (context) =>
                     BlocListener<ChangeEmailBloc, ChangeEmailState>(
-                  listenWhen: (oldState, newState) =>
-                      newState.successful || newState.userFailure != null,
+                  listenWhen: (_, newState) =>
+                      newState is ChangeEmailSubmitSuccess ||
+                      newState is ChangeEmailSubmitFailure,
                   listener: (context, state) {
-                    if (state.successful) {
+                    if (state is ChangeEmailSubmitSuccess) {
                       Navigator.pushReplacementNamed(
                           context, ChangeEmailModal.success);
                       return;
                     }
-                    state.userFailure?.maybeWhen(
-                      /* TODO
+
+                    if (state is ChangeEmailSubmitFailure) {
+                      state.userFailure.maybeWhen(
+                        /* TODO
                       invalidEmail: () => showToast(
                         LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
                       ),
                       */
-                      orElse: () => showToast(
-                        'UserFailure happended',
-                      ), // TODO catch other errors also
-                    );
+                        orElse: () => showToast(
+                          'UserFailure happended',
+                        ), // TODO catch other errors also
+                      );
+                    }
                   },
                   child: const _InitialPage(),
                 ),

@@ -35,7 +35,7 @@ class _InitialWidget extends StatelessWidget {
           onChanged: (oldPasswordString) =>
               context.read<ChangePasswordBloc>().add(
                     ChangePasswordEvent.oldPasswordChanged(
-                      oldPasswordString: oldPasswordString,
+                      newOldPassword: oldPasswordString,
                     ),
                   ),
         ),
@@ -47,7 +47,7 @@ class _InitialWidget extends StatelessWidget {
           onChanged: (newPasswordString) =>
               context.read<ChangePasswordBloc>().add(
                     ChangePasswordEvent.newPasswordChanged(
-                      newPasswordString: newPasswordString,
+                      newNewPassword: newPasswordString,
                     ),
                   ),
         ),
@@ -59,13 +59,17 @@ class _InitialWidget extends StatelessWidget {
           onChanged: (newPasswordAgainString) =>
               context.read<ChangePasswordBloc>().add(
                     ChangePasswordEvent.newPasswordAgainChanged(
-                      newPasswordAgainString: newPasswordAgainString,
+                      newNewPasswordAgain: newPasswordAgainString,
                     ),
                   ),
         ),
         BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
+          buildWhen: (_, newState) =>
+              newState is ChangePasswordInitial ||
+              newState is ChangePasswordSubmitInProgress ||
+              newState is ChangePasswordSubmitFailure,
           builder: (context, state) {
-            final isSubmitting = state.isSubmitting;
+            final isSubmitting = state is ChangePasswordSubmitInProgress;
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,

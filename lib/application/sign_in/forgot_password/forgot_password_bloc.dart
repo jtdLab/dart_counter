@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_facade.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -9,9 +10,9 @@ import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'forgot_password_bloc.freezed.dart';
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
-part 'forgot_password_bloc.freezed.dart';
 
 @lazySingleton
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
@@ -21,47 +22,68 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
   ForgotPasswordBloc(
     this._authFacade,
   ) : super(
-          ForgotPasswordState.initial(),
-        );
+          ForgotPasswordState.initial(
+            email: EmailAddress.empty(),
+            showErrorMessages: false,
+          ),
+        ) {
+    on<EmailChanged>(_mapEmailChangedToState);
+    on<ConfirmPressed>(_mapConfirmPressedToState);
+  }
 
-  @override
-  Stream<ForgotPasswordState> mapEventToState(
-    ForgotPasswordEvent event,
-  ) async* {
-    yield* event.map(
-      emailChanged: (event) => _mapEmailChangedToState(event),
-      confirmPressed: (_) => _mapConfirmPressedToState(),
+  void _mapEmailChangedToState(
+    EmailChanged event,
+    Emitter<ForgotPasswordState> emit,
+  ) {
+    final email = event.newEmail;
+
+    state.maybeMap(
+      initial: (initial) {
+        emit(initial.copyWith(email: EmailAddress(email)));
+      },
+      submitFailure: (_) {
+        emit(
+          ForgotPasswordState.initial(
+            email: EmailAddress(email),
+            showErrorMessages: true,
+          ),
+        );
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
-  Stream<ForgotPasswordState> _mapEmailChangedToState(
-    EmailChanged event,
-  ) async* {
-    yield state.copyWith(email: EmailAddress(event.emailString));
-  }
+  Future<void> _mapConfirmPressedToState(
+    ConfirmPressed event,
+    Emitter<ForgotPasswordState> emit,
+  ) async {
+    await state.maybeMap(
+      initial: (initial) async {
+        AuthFailure? authFailure;
+        final email = initial.email;
 
-  Stream<ForgotPasswordState> _mapConfirmPressedToState() async* {
-    AuthFailure? authFailure;
-    final email = state.email;
+        if (email.isValid()) {
+          emit(const ForgotPasswordSubmitInProgress());
 
-    if (email.isValid()) {
-      yield state.copyWith(isSubmitting: true);
-      await Future.delayed(const Duration(seconds: 1));
-      authFailure = (await _authFacade.sendPasswordResetEmail(
-        emailAddress: email,
-      ))
-          .fold(
-        (failure) => failure,
-        (_) => null,
-      );
-    } else {
-      authFailure = const AuthFailure.invalidEmail();
-    }
-    yield state.copyWith(
-      showErrorMessages: true,
-      isSubmitting: false,
-      successful: authFailure == null,
-      authFailure: authFailure,
+          await Future.delayed(const Duration(seconds: 1));
+          authFailure = (await _authFacade.sendPasswordResetEmail(
+            emailAddress: email,
+          ))
+              .fold(
+            (failure) => failure,
+            (_) => null,
+          );
+        } else {
+          authFailure = const AuthFailure.invalidEmail();
+        }
+
+        if (authFailure == null) {
+          emit(const ForgotPasswordSubmitSuccess());
+        } else {
+          emit(ForgotPasswordSubmitFailure(authFailure: authFailure));
+        }
+      },
+      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

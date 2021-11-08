@@ -34,13 +34,17 @@ class _InitialWidget extends StatelessWidget {
           onChanged: (newUsernameString) =>
               context.read<ChangeUsernameBloc>().add(
                     ChangeUsernameEvent.newUsernameChanged(
-                      newUsernameString: newUsernameString,
+                      newUsername: newUsernameString,
                     ),
                   ),
         ),
         BlocBuilder<ChangeUsernameBloc, ChangeUsernameState>(
+          buildWhen: (_, newState) =>
+              newState is ChangeUsernameInitial ||
+              newState is ChangeUsernameSubmitInProgress ||
+              newState is ChangeUsernameSubmitFailure,
           builder: (context, state) {
-            final isSubmitting = state.isSubmitting;
+            final isSubmitting = state is ChangeUsernameSubmitInProgress;
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,

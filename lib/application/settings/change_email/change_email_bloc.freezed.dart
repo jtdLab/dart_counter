@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ChangeEmailEventTearOff {
   const _$ChangeEmailEventTearOff();
 
-  NewEmailChanged newEmailChanged({required String newEmailString}) {
+  NewEmailChanged newEmailChanged({required String newNewEmail}) {
     return NewEmailChanged(
-      newEmailString: newEmailString,
+      newNewEmail: newNewEmail,
     );
   }
 
@@ -35,19 +35,19 @@ const $ChangeEmailEvent = _$ChangeEmailEventTearOff();
 mixin _$ChangeEmailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newEmailString) newEmailChanged,
+    required TResult Function(String newNewEmail) newEmailChanged,
     required TResult Function() confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) =>
@@ -95,7 +95,7 @@ abstract class $NewEmailChangedCopyWith<$Res> {
   factory $NewEmailChangedCopyWith(
           NewEmailChanged value, $Res Function(NewEmailChanged) then) =
       _$NewEmailChangedCopyWithImpl<$Res>;
-  $Res call({String newEmailString});
+  $Res call({String newNewEmail});
 }
 
 /// @nodoc
@@ -111,12 +111,12 @@ class _$NewEmailChangedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? newEmailString = freezed,
+    Object? newNewEmail = freezed,
   }) {
     return _then(NewEmailChanged(
-      newEmailString: newEmailString == freezed
-          ? _value.newEmailString
-          : newEmailString // ignore: cast_nullable_to_non_nullable
+      newNewEmail: newNewEmail == freezed
+          ? _value.newNewEmail
+          : newNewEmail // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -125,14 +125,14 @@ class _$NewEmailChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NewEmailChanged implements NewEmailChanged {
-  const _$NewEmailChanged({required this.newEmailString});
+  const _$NewEmailChanged({required this.newNewEmail});
 
   @override
-  final String newEmailString;
+  final String newNewEmail;
 
   @override
   String toString() {
-    return 'ChangeEmailEvent.newEmailChanged(newEmailString: $newEmailString)';
+    return 'ChangeEmailEvent.newEmailChanged(newNewEmail: $newNewEmail)';
   }
 
   @override
@@ -140,12 +140,12 @@ class _$NewEmailChanged implements NewEmailChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is NewEmailChanged &&
-            (identical(other.newEmailString, newEmailString) ||
-                other.newEmailString == newEmailString));
+            (identical(other.newNewEmail, newNewEmail) ||
+                other.newNewEmail == newNewEmail));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newEmailString);
+  int get hashCode => Object.hash(runtimeType, newNewEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -155,30 +155,30 @@ class _$NewEmailChanged implements NewEmailChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newEmailString) newEmailChanged,
+    required TResult Function(String newNewEmail) newEmailChanged,
     required TResult Function() confirmPressed,
   }) {
-    return newEmailChanged(newEmailString);
+    return newEmailChanged(newNewEmail);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
   }) {
-    return newEmailChanged?.call(newEmailString);
+    return newEmailChanged?.call(newNewEmail);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
     if (newEmailChanged != null) {
-      return newEmailChanged(newEmailString);
+      return newEmailChanged(newNewEmail);
     }
     return orElse();
   }
@@ -216,10 +216,10 @@ class _$NewEmailChanged implements NewEmailChanged {
 }
 
 abstract class NewEmailChanged implements ChangeEmailEvent {
-  const factory NewEmailChanged({required String newEmailString}) =
+  const factory NewEmailChanged({required String newNewEmail}) =
       _$NewEmailChanged;
 
-  String get newEmailString;
+  String get newNewEmail;
   @JsonKey(ignore: true)
   $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -266,7 +266,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newEmailString) newEmailChanged,
+    required TResult Function(String newNewEmail) newEmailChanged,
     required TResult Function() confirmPressed,
   }) {
     return confirmPressed();
@@ -275,7 +275,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
   }) {
     return confirmPressed?.call();
@@ -284,7 +284,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newEmailString)? newEmailChanged,
+    TResult Function(String newNewEmail)? newEmailChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
@@ -334,17 +334,24 @@ abstract class ConfirmPressed implements ChangeEmailEvent {
 class _$ChangeEmailStateTearOff {
   const _$ChangeEmailStateTearOff();
 
-  _ChangeEmailState call(
-      {required EmailAddress newEmail,
-      required bool showErrorMessages,
-      required bool isSubmitting,
-      required bool successful,
-      UserFailure? userFailure}) {
-    return _ChangeEmailState(
-      newEmail: newEmail,
+  ChangeEmailInitial initial(
+      {required EmailAddress email, required bool showErrorMessages}) {
+    return ChangeEmailInitial(
+      email: email,
       showErrorMessages: showErrorMessages,
-      isSubmitting: isSubmitting,
-      successful: successful,
+    );
+  }
+
+  ChangeEmailSubmitInProgress submitInProgress() {
+    return const ChangeEmailSubmitInProgress();
+  }
+
+  ChangeEmailSubmitSuccess submitSuccess() {
+    return const ChangeEmailSubmitSuccess();
+  }
+
+  ChangeEmailSubmitFailure submitFailure({required UserFailure userFailure}) {
+    return ChangeEmailSubmitFailure(
       userFailure: userFailure,
     );
   }
@@ -355,14 +362,57 @@ const $ChangeEmailState = _$ChangeEmailStateTearOff();
 
 /// @nodoc
 mixin _$ChangeEmailState {
-  EmailAddress get newEmail => throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
-  bool get isSubmitting => throw _privateConstructorUsedError;
-  bool get successful => throw _privateConstructorUsedError;
-  UserFailure? get userFailure => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChangeEmailStateCopyWith<ChangeEmailState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailAddress email, bool showErrorMessages)
+        initial,
+    required TResult Function() submitInProgress,
+    required TResult Function() submitSuccess,
+    required TResult Function(UserFailure userFailure) submitFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeEmailInitial value) initial,
+    required TResult Function(ChangeEmailSubmitInProgress value)
+        submitInProgress,
+    required TResult Function(ChangeEmailSubmitSuccess value) submitSuccess,
+    required TResult Function(ChangeEmailSubmitFailure value) submitFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -371,14 +421,6 @@ abstract class $ChangeEmailStateCopyWith<$Res> {
   factory $ChangeEmailStateCopyWith(
           ChangeEmailState value, $Res Function(ChangeEmailState) then) =
       _$ChangeEmailStateCopyWithImpl<$Res>;
-  $Res call(
-      {EmailAddress newEmail,
-      bool showErrorMessages,
-      bool isSubmitting,
-      bool successful,
-      UserFailure? userFailure});
-
-  $UserFailureCopyWith<$Res>? get userFailure;
 }
 
 /// @nodoc
@@ -389,186 +431,566 @@ class _$ChangeEmailStateCopyWithImpl<$Res>
   final ChangeEmailState _value;
   // ignore: unused_field
   final $Res Function(ChangeEmailState) _then;
-
-  @override
-  $Res call({
-    Object? newEmail = freezed,
-    Object? showErrorMessages = freezed,
-    Object? isSubmitting = freezed,
-    Object? successful = freezed,
-    Object? userFailure = freezed,
-  }) {
-    return _then(_value.copyWith(
-      newEmail: newEmail == freezed
-          ? _value.newEmail
-          : newEmail // ignore: cast_nullable_to_non_nullable
-              as EmailAddress,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSubmitting: isSubmitting == freezed
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      successful: successful == freezed
-          ? _value.successful
-          : successful // ignore: cast_nullable_to_non_nullable
-              as bool,
-      userFailure: userFailure == freezed
-          ? _value.userFailure
-          : userFailure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
-    ));
-  }
-
-  @override
-  $UserFailureCopyWith<$Res>? get userFailure {
-    if (_value.userFailure == null) {
-      return null;
-    }
-
-    return $UserFailureCopyWith<$Res>(_value.userFailure!, (value) {
-      return _then(_value.copyWith(userFailure: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$ChangeEmailStateCopyWith<$Res>
-    implements $ChangeEmailStateCopyWith<$Res> {
-  factory _$ChangeEmailStateCopyWith(
-          _ChangeEmailState value, $Res Function(_ChangeEmailState) then) =
-      __$ChangeEmailStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {EmailAddress newEmail,
-      bool showErrorMessages,
-      bool isSubmitting,
-      bool successful,
-      UserFailure? userFailure});
-
-  @override
-  $UserFailureCopyWith<$Res>? get userFailure;
+abstract class $ChangeEmailInitialCopyWith<$Res> {
+  factory $ChangeEmailInitialCopyWith(
+          ChangeEmailInitial value, $Res Function(ChangeEmailInitial) then) =
+      _$ChangeEmailInitialCopyWithImpl<$Res>;
+  $Res call({EmailAddress email, bool showErrorMessages});
 }
 
 /// @nodoc
-class __$ChangeEmailStateCopyWithImpl<$Res>
+class _$ChangeEmailInitialCopyWithImpl<$Res>
     extends _$ChangeEmailStateCopyWithImpl<$Res>
-    implements _$ChangeEmailStateCopyWith<$Res> {
-  __$ChangeEmailStateCopyWithImpl(
-      _ChangeEmailState _value, $Res Function(_ChangeEmailState) _then)
-      : super(_value, (v) => _then(v as _ChangeEmailState));
+    implements $ChangeEmailInitialCopyWith<$Res> {
+  _$ChangeEmailInitialCopyWithImpl(
+      ChangeEmailInitial _value, $Res Function(ChangeEmailInitial) _then)
+      : super(_value, (v) => _then(v as ChangeEmailInitial));
 
   @override
-  _ChangeEmailState get _value => super._value as _ChangeEmailState;
+  ChangeEmailInitial get _value => super._value as ChangeEmailInitial;
 
   @override
   $Res call({
-    Object? newEmail = freezed,
+    Object? email = freezed,
     Object? showErrorMessages = freezed,
-    Object? isSubmitting = freezed,
-    Object? successful = freezed,
-    Object? userFailure = freezed,
   }) {
-    return _then(_ChangeEmailState(
-      newEmail: newEmail == freezed
-          ? _value.newEmail
-          : newEmail // ignore: cast_nullable_to_non_nullable
+    return _then(ChangeEmailInitial(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSubmitting: isSubmitting == freezed
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      successful: successful == freezed
-          ? _value.successful
-          : successful // ignore: cast_nullable_to_non_nullable
-              as bool,
-      userFailure: userFailure == freezed
-          ? _value.userFailure
-          : userFailure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ChangeEmailState implements _ChangeEmailState {
-  const _$_ChangeEmailState(
-      {required this.newEmail,
-      required this.showErrorMessages,
-      required this.isSubmitting,
-      required this.successful,
-      this.userFailure});
+class _$ChangeEmailInitial implements ChangeEmailInitial {
+  const _$ChangeEmailInitial(
+      {required this.email, required this.showErrorMessages});
 
   @override
-  final EmailAddress newEmail;
+  final EmailAddress email;
   @override
   final bool showErrorMessages;
-  @override
-  final bool isSubmitting;
-  @override
-  final bool successful;
-  @override
-  final UserFailure? userFailure;
 
   @override
   String toString() {
-    return 'ChangeEmailState(newEmail: $newEmail, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, successful: $successful, userFailure: $userFailure)';
+    return 'ChangeEmailState.initial(email: $email, showErrorMessages: $showErrorMessages)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ChangeEmailState &&
-            (identical(other.newEmail, newEmail) ||
-                other.newEmail == newEmail) &&
+            other is ChangeEmailInitial &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting) &&
-            (identical(other.successful, successful) ||
-                other.successful == successful) &&
+                other.showErrorMessages == showErrorMessages));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email, showErrorMessages);
+
+  @JsonKey(ignore: true)
+  @override
+  $ChangeEmailInitialCopyWith<ChangeEmailInitial> get copyWith =>
+      _$ChangeEmailInitialCopyWithImpl<ChangeEmailInitial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailAddress email, bool showErrorMessages)
+        initial,
+    required TResult Function() submitInProgress,
+    required TResult Function() submitSuccess,
+    required TResult Function(UserFailure userFailure) submitFailure,
+  }) {
+    return initial(email, showErrorMessages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+  }) {
+    return initial?.call(email, showErrorMessages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(email, showErrorMessages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeEmailInitial value) initial,
+    required TResult Function(ChangeEmailSubmitInProgress value)
+        submitInProgress,
+    required TResult Function(ChangeEmailSubmitSuccess value) submitSuccess,
+    required TResult Function(ChangeEmailSubmitFailure value) submitFailure,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeEmailInitial implements ChangeEmailState {
+  const factory ChangeEmailInitial(
+      {required EmailAddress email,
+      required bool showErrorMessages}) = _$ChangeEmailInitial;
+
+  EmailAddress get email;
+  bool get showErrorMessages;
+  @JsonKey(ignore: true)
+  $ChangeEmailInitialCopyWith<ChangeEmailInitial> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChangeEmailSubmitInProgressCopyWith<$Res> {
+  factory $ChangeEmailSubmitInProgressCopyWith(
+          ChangeEmailSubmitInProgress value,
+          $Res Function(ChangeEmailSubmitInProgress) then) =
+      _$ChangeEmailSubmitInProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ChangeEmailSubmitInProgressCopyWithImpl<$Res>
+    extends _$ChangeEmailStateCopyWithImpl<$Res>
+    implements $ChangeEmailSubmitInProgressCopyWith<$Res> {
+  _$ChangeEmailSubmitInProgressCopyWithImpl(ChangeEmailSubmitInProgress _value,
+      $Res Function(ChangeEmailSubmitInProgress) _then)
+      : super(_value, (v) => _then(v as ChangeEmailSubmitInProgress));
+
+  @override
+  ChangeEmailSubmitInProgress get _value =>
+      super._value as ChangeEmailSubmitInProgress;
+}
+
+/// @nodoc
+
+class _$ChangeEmailSubmitInProgress implements ChangeEmailSubmitInProgress {
+  const _$ChangeEmailSubmitInProgress();
+
+  @override
+  String toString() {
+    return 'ChangeEmailState.submitInProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChangeEmailSubmitInProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailAddress email, bool showErrorMessages)
+        initial,
+    required TResult Function() submitInProgress,
+    required TResult Function() submitSuccess,
+    required TResult Function(UserFailure userFailure) submitFailure,
+  }) {
+    return submitInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+  }) {
+    return submitInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitInProgress != null) {
+      return submitInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeEmailInitial value) initial,
+    required TResult Function(ChangeEmailSubmitInProgress value)
+        submitInProgress,
+    required TResult Function(ChangeEmailSubmitSuccess value) submitSuccess,
+    required TResult Function(ChangeEmailSubmitFailure value) submitFailure,
+  }) {
+    return submitInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+  }) {
+    return submitInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitInProgress != null) {
+      return submitInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeEmailSubmitInProgress implements ChangeEmailState {
+  const factory ChangeEmailSubmitInProgress() = _$ChangeEmailSubmitInProgress;
+}
+
+/// @nodoc
+abstract class $ChangeEmailSubmitSuccessCopyWith<$Res> {
+  factory $ChangeEmailSubmitSuccessCopyWith(ChangeEmailSubmitSuccess value,
+          $Res Function(ChangeEmailSubmitSuccess) then) =
+      _$ChangeEmailSubmitSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ChangeEmailSubmitSuccessCopyWithImpl<$Res>
+    extends _$ChangeEmailStateCopyWithImpl<$Res>
+    implements $ChangeEmailSubmitSuccessCopyWith<$Res> {
+  _$ChangeEmailSubmitSuccessCopyWithImpl(ChangeEmailSubmitSuccess _value,
+      $Res Function(ChangeEmailSubmitSuccess) _then)
+      : super(_value, (v) => _then(v as ChangeEmailSubmitSuccess));
+
+  @override
+  ChangeEmailSubmitSuccess get _value =>
+      super._value as ChangeEmailSubmitSuccess;
+}
+
+/// @nodoc
+
+class _$ChangeEmailSubmitSuccess implements ChangeEmailSubmitSuccess {
+  const _$ChangeEmailSubmitSuccess();
+
+  @override
+  String toString() {
+    return 'ChangeEmailState.submitSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ChangeEmailSubmitSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailAddress email, bool showErrorMessages)
+        initial,
+    required TResult Function() submitInProgress,
+    required TResult Function() submitSuccess,
+    required TResult Function(UserFailure userFailure) submitFailure,
+  }) {
+    return submitSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+  }) {
+    return submitSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitSuccess != null) {
+      return submitSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeEmailInitial value) initial,
+    required TResult Function(ChangeEmailSubmitInProgress value)
+        submitInProgress,
+    required TResult Function(ChangeEmailSubmitSuccess value) submitSuccess,
+    required TResult Function(ChangeEmailSubmitFailure value) submitFailure,
+  }) {
+    return submitSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+  }) {
+    return submitSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitSuccess != null) {
+      return submitSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeEmailSubmitSuccess implements ChangeEmailState {
+  const factory ChangeEmailSubmitSuccess() = _$ChangeEmailSubmitSuccess;
+}
+
+/// @nodoc
+abstract class $ChangeEmailSubmitFailureCopyWith<$Res> {
+  factory $ChangeEmailSubmitFailureCopyWith(ChangeEmailSubmitFailure value,
+          $Res Function(ChangeEmailSubmitFailure) then) =
+      _$ChangeEmailSubmitFailureCopyWithImpl<$Res>;
+  $Res call({UserFailure userFailure});
+
+  $UserFailureCopyWith<$Res> get userFailure;
+}
+
+/// @nodoc
+class _$ChangeEmailSubmitFailureCopyWithImpl<$Res>
+    extends _$ChangeEmailStateCopyWithImpl<$Res>
+    implements $ChangeEmailSubmitFailureCopyWith<$Res> {
+  _$ChangeEmailSubmitFailureCopyWithImpl(ChangeEmailSubmitFailure _value,
+      $Res Function(ChangeEmailSubmitFailure) _then)
+      : super(_value, (v) => _then(v as ChangeEmailSubmitFailure));
+
+  @override
+  ChangeEmailSubmitFailure get _value =>
+      super._value as ChangeEmailSubmitFailure;
+
+  @override
+  $Res call({
+    Object? userFailure = freezed,
+  }) {
+    return _then(ChangeEmailSubmitFailure(
+      userFailure: userFailure == freezed
+          ? _value.userFailure
+          : userFailure // ignore: cast_nullable_to_non_nullable
+              as UserFailure,
+    ));
+  }
+
+  @override
+  $UserFailureCopyWith<$Res> get userFailure {
+    return $UserFailureCopyWith<$Res>(_value.userFailure, (value) {
+      return _then(_value.copyWith(userFailure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ChangeEmailSubmitFailure implements ChangeEmailSubmitFailure {
+  const _$ChangeEmailSubmitFailure({required this.userFailure});
+
+  @override
+  final UserFailure userFailure;
+
+  @override
+  String toString() {
+    return 'ChangeEmailState.submitFailure(userFailure: $userFailure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChangeEmailSubmitFailure &&
             (identical(other.userFailure, userFailure) ||
                 other.userFailure == userFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newEmail, showErrorMessages,
-      isSubmitting, successful, userFailure);
+  int get hashCode => Object.hash(runtimeType, userFailure);
 
   @JsonKey(ignore: true)
   @override
-  _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>
-      __$ChangeEmailStateCopyWithImpl<_ChangeEmailState>(this, _$identity);
+  $ChangeEmailSubmitFailureCopyWith<ChangeEmailSubmitFailure> get copyWith =>
+      _$ChangeEmailSubmitFailureCopyWithImpl<ChangeEmailSubmitFailure>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailAddress email, bool showErrorMessages)
+        initial,
+    required TResult Function() submitInProgress,
+    required TResult Function() submitSuccess,
+    required TResult Function(UserFailure userFailure) submitFailure,
+  }) {
+    return submitFailure(userFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+  }) {
+    return submitFailure?.call(userFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function()? submitInProgress,
+    TResult Function()? submitSuccess,
+    TResult Function(UserFailure userFailure)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitFailure != null) {
+      return submitFailure(userFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeEmailInitial value) initial,
+    required TResult Function(ChangeEmailSubmitInProgress value)
+        submitInProgress,
+    required TResult Function(ChangeEmailSubmitSuccess value) submitSuccess,
+    required TResult Function(ChangeEmailSubmitFailure value) submitFailure,
+  }) {
+    return submitFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+  }) {
+    return submitFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeEmailInitial value)? initial,
+    TResult Function(ChangeEmailSubmitInProgress value)? submitInProgress,
+    TResult Function(ChangeEmailSubmitSuccess value)? submitSuccess,
+    TResult Function(ChangeEmailSubmitFailure value)? submitFailure,
+    required TResult orElse(),
+  }) {
+    if (submitFailure != null) {
+      return submitFailure(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ChangeEmailState implements ChangeEmailState {
-  const factory _ChangeEmailState(
-      {required EmailAddress newEmail,
-      required bool showErrorMessages,
-      required bool isSubmitting,
-      required bool successful,
-      UserFailure? userFailure}) = _$_ChangeEmailState;
+abstract class ChangeEmailSubmitFailure implements ChangeEmailState {
+  const factory ChangeEmailSubmitFailure({required UserFailure userFailure}) =
+      _$ChangeEmailSubmitFailure;
 
-  @override
-  EmailAddress get newEmail;
-  @override
-  bool get showErrorMessages;
-  @override
-  bool get isSubmitting;
-  @override
-  bool get successful;
-  @override
-  UserFailure? get userFailure;
-  @override
+  UserFailure get userFailure;
   @JsonKey(ignore: true)
-  _$ChangeEmailStateCopyWith<_ChangeEmailState> get copyWith =>
+  $ChangeEmailSubmitFailureCopyWith<ChangeEmailSubmitFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

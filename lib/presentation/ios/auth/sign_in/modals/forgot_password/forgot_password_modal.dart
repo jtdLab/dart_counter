@@ -32,21 +32,27 @@ class ForgotPasswordModal extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (context) =>
                     BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
-                  listenWhen: (oldState, newState) =>
-                      newState.successful || newState.authFailure != null,
+                  listenWhen: (_, newState) =>
+                      newState is ForgotPasswordSubmitSuccess ||
+                      newState is ForgotPasswordSubmitFailure,
                   listener: (context, state) {
-                    if (state.successful) {
+                    if (state is ForgotPasswordSubmitSuccess) {
                       Navigator.pushReplacementNamed(context, success);
                       return;
                     }
-                    state.authFailure?.maybeWhen(
-                      invalidEmail: () => showToast(
-                        LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
-                      ),
-                      orElse: () => showToast(
-                        'AutFailure happended',
-                      ), // TODO catch other errors also
-                    );
+
+                    if (state is ForgotPasswordSubmitFailure) {
+                      state.authFailure.maybeWhen(
+                        invalidEmail: () => showToast(
+                          LocaleKeys.errorInvalidEmailAddress
+                              .tr()
+                              .toUpperCase(),
+                        ),
+                        orElse: () => showToast(
+                          'AutFailure happended',
+                        ), // TODO catch other errors also
+                      );
+                    }
                   },
                   child: const _InitialPage(),
                 ),
