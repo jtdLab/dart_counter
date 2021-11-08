@@ -10,7 +10,7 @@ class SignUpState with _$SignUpState {
     required bool showErrorMessages,
     required bool isSubmitting,
     AuthFailure? authFailure,
-    required bool isSignedUp
+    required bool isSignedUp,
   }) = _SignUpState;
 
   factory SignUpState.initial() => SignUpState(

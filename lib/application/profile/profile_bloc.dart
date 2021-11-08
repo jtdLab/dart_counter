@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -16,30 +17,32 @@ part 'profile_state.dart';
 @lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
+  final DataWatcherBloc _dataWatcherBloc;
 
-  StreamSubscription? _userSubscription;
+  StreamSubscription? _dataWatcherSubscription;
 
   ProfileBloc(
-    this._userFacade,
+    this._dataWatcherBloc,
   ) : super(
-          _userFacade.getUser()?.fold(
-                    (failure) => throw Error(),
-                    (user) => ProfileState.initial(
-                      user: user,
-                      careerStatsAll: _calcCareerStatsAll(
-                        careerStatsOnline: user.profile.careerStatsOnline,
-                        careerStatsOffline: user.careerStatsOffline,
-                      ),
-                    ),
-                  ) ??
-              (throw Error()),
+          _dataWatcherBloc.state.maybeMap(
+            loadSuccess: (loadSuccess) => ProfileState.initial(
+              user: loadSuccess.user,
+              careerStatsAll: _calcCareerStatsAll(
+                  careerStatsOnline: loadSuccess.user.profile.careerStatsOnline,
+                  careerStatsOffline: loadSuccess.user.careerStatsOffline),
+            ),
+            orElse: () => throw Error(), // TODO name better
+          ),
         ) {
-    _userSubscription = _userFacade.watchUser().listen((failurOrUser) {
-      return failurOrUser.fold(
-        (failure) => throw Error(), // TODO failure
-        (user) => add(ProfileEvent.userReceived(user: user)),
-      );
+    _dataWatcherSubscription =
+        _dataWatcherBloc.stream.listen((dataWatcherState) {
+      if (dataWatcherState is DataWatcherLoadSuccess) {
+        add(
+          ProfileEvent.userReceived(
+            user: dataWatcherState.user,
+          ),
+        );
+      }
     });
   }
 
@@ -108,7 +111,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
 
   @override
   Future<void> close() {
-    _userSubscription?.cancel();
+    _dataWatcherSubscription?.cancel();
 
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ProfileBloc>()) {

@@ -71,6 +71,8 @@ dependencies:
   url_launcher: ^6.0.12
   uuid: ^3.0.5
   json_annotation: ^4.3.0
+  bloc_test: ^8.5.0
+  mocktail: ^0.2.0
 
 dev_dependencies:
   flutter_test:
