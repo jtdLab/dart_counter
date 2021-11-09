@@ -1,11 +1,11 @@
 /// Indicates that the developer of a bloc didnt expect
 /// an event beeing sent to the bloc when in a certain state.
 class UnexpectedStateError extends Error {
-  final Object event;
+  final Object? event;
   final Object state;
 
   UnexpectedStateError({
-    required this.event,
+    this.event,
     required this.state,
   });
 

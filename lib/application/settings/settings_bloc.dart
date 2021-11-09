@@ -34,7 +34,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
               user: loadSuccess.user,
               localeChanged: false,
             ),
-            orElse: () => throw Error(), // TODO name better
+            orElse: () =>
+                throw UnexpectedStateError(state: _dataWatcherBloc.state),
           ),
         ) {
     _dataWatcherSubscription =
