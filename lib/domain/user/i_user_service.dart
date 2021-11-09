@@ -8,17 +8,24 @@ import 'package:dartz/dartz.dart';
 
 /// Domain service for all actions related to the app-user.
 abstract class IUserService {
-  /// Returns the app-user or failure.
+  /// Deletes the profile photo of the user.
   ///
   /// {@template not_authenticated_error}
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   /// {@endtemplate}
-  Either<UserFailure, User> getUser();
+  Future<Either<UserFailure, Unit>> deleteProfilePhoto();
 
-  /// Returns a stream of the app-user or failures.
+  /// Returns the app-user or failure.
   ///
   /// {@macro not_authenticated_error}
-  Stream<Either<UserFailure, User>> watchUser();
+  Either<UserFailure, User> getUser();
+
+  /// Updates the email address of the user.
+  ///
+  /// {@macro not_authenticated_error}
+  Future<Either<UserFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
+  });
 
   /// Updates the profile photo of the user.
   ///
@@ -27,11 +34,6 @@ abstract class IUserService {
     required Uint8List newPhotoData,
   });
 
-  /// Deletes the profile photo of the user.
-  ///
-  /// {@macro not_authenticated_error}
-  Future<Either<UserFailure, Unit>> deleteProfilePhoto();
-
   /// Updates the username of the user.
   ///
   /// {@macro not_authenticated_error}
@@ -39,10 +41,8 @@ abstract class IUserService {
     required Username newUsername,
   });
 
-  /// Updates the email address of the user.
+  /// Returns a stream of the app-user or failures.
   ///
   /// {@macro not_authenticated_error}
-  Future<Either<UserFailure, Unit>> updateEmailAddress({
-    required EmailAddress newEmailAddress,
-  });
+  Stream<Either<UserFailure, User>> watchUser();
 }

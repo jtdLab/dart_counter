@@ -4,26 +4,26 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthFacade extends Mock implements IAuthService {}
+class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
-  late MockAuthFacade mockAuthFacade;
+  late MockAuthService mockAuthService;
 
   setUp(() {
-    mockAuthFacade = MockAuthFacade();
+    mockAuthService = MockAuthService();
   });
 
   test('initial state initialized correctly when unauthenticated', () {
     // Arrange
     when(
-      () => mockAuthFacade.isAuthenticated(),
+      () => mockAuthService.isAuthenticated(),
     ).thenAnswer((_) => false);
     when(
-      () => mockAuthFacade.watchIsAuthenticated(),
+      () => mockAuthService.watchIsAuthenticated(),
     ).thenAnswer((_) => const Stream.empty());
 
     // Act
-    final underTest = AuthBloc(mockAuthFacade);
+    final underTest = AuthBloc(mockAuthService);
 
     // Assert
     expect(
@@ -35,14 +35,14 @@ void main() {
   test('initial state initialized correctly when authenticated', () {
     // Arrange
     when(
-      () => mockAuthFacade.isAuthenticated(),
+      () => mockAuthService.isAuthenticated(),
     ).thenAnswer((_) => true);
     when(
-      () => mockAuthFacade.watchIsAuthenticated(),
+      () => mockAuthService.watchIsAuthenticated(),
     ).thenAnswer((_) => const Stream.empty());
 
     // Act
-    final underTest = AuthBloc(mockAuthFacade);
+    final underTest = AuthBloc(mockAuthService);
 
     // Assert
     expect(
@@ -55,15 +55,15 @@ void main() {
     'emits [Authenticated, Unauthenticated] on auth state change ',
     build: () {
       when(
-        () => mockAuthFacade.isAuthenticated(),
+        () => mockAuthService.isAuthenticated(),
       ).thenAnswer((_) => false);
       when(
-        () => mockAuthFacade.watchIsAuthenticated(),
+        () => mockAuthService.watchIsAuthenticated(),
       ).thenAnswer(
         (_) => Stream.fromIterable([true, false]),
       );
 
-      return AuthBloc(mockAuthFacade);
+      return AuthBloc(mockAuthService);
     },
     act: (AuthBloc bloc) => bloc.add(const AuthEvent.started()),
     expect: () => [

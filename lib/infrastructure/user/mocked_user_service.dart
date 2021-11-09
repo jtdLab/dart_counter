@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
@@ -13,6 +12,7 @@ import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
+
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
@@ -36,35 +36,13 @@ class MockedUserService implements IUserService {
       }
     });
   }
-  
 
   @override
-  Either<UserFailure, User> getUser() {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      return _userController.value;
-    }
-
-    return left(const UserFailure.failure()); // TODO name better
-  }
-
-  @override
-  Stream<Either<UserFailure, User>> watchUser() {
-    _checkAuth();
-
-    return _userController.stream; // TODO does this emit on subscribe
-  }
-
-  @override
-  Future<Either<UserFailure, Unit>> updateProfilePhoto({
-    required Uint8List newPhotoData,
-  }) async {
+  Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     _checkAuth();
     if (hasNetworkConnection) {
       final user = _userController.value.toOption().toNullable()!;
-      final newProfile = user.profile.copyWith(
-        photoUrl: faker.image.image(width: 200, height: 200),
-      );
+      final newProfile = user.profile.copyWith(photoUrl: null);
       _userController.add(
         right(
           user.copyWith(profile: newProfile),
@@ -77,11 +55,47 @@ class MockedUserService implements IUserService {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
+  Either<UserFailure, User> getUser() {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      return _userController.value;
+    }
+
+    return left(const UserFailure.failure()); // TODO name better
+  }
+
+  @override
+  Future<Either<UserFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      if (newEmailAddress.isValid()) {
+        if (_authService.isAuthenticated()) {
+          final user = _userController.value.toOption().toNullable()!;
+          _userController.add(
+            right(
+              user.copyWith(emailAddress: newEmailAddress),
+            ),
+          );
+          return right(unit);
+        }
+      }
+    }
+
+    return left(const UserFailure.failure()); // TODO name better
+  }
+
+  @override
+  Future<Either<UserFailure, Unit>> updateProfilePhoto({
+    required Uint8List newPhotoData,
+  }) async {
     _checkAuth();
     if (hasNetworkConnection) {
       final user = _userController.value.toOption().toNullable()!;
-      final newProfile = user.profile.copyWith(photoUrl: null);
+      final newProfile = user.profile.copyWith(
+        photoUrl: faker.image.image(width: 200, height: 200),
+      );
       _userController.add(
         right(
           user.copyWith(profile: newProfile),
@@ -117,25 +131,10 @@ class MockedUserService implements IUserService {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updateEmailAddress({
-    required EmailAddress newEmailAddress,
-  }) async {
+  Stream<Either<UserFailure, User>> watchUser() {
     _checkAuth();
-    if (hasNetworkConnection) {
-      if (newEmailAddress.isValid()) {
-        if (_authService.isAuthenticated()) {
-          final user = _userController.value.toOption().toNullable()!;
-          _userController.add(
-            right(
-              user.copyWith(emailAddress: newEmailAddress),
-            ),
-          );
-          return right(unit);
-        }
-      }
-    }
 
-    return left(const UserFailure.failure()); // TODO name better
+    return _userController.stream; // TODO does this emit on subscribe
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.

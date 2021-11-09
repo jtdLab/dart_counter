@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthFacade extends Mock implements IAuthService {}
+class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
   setUpAll(() {
@@ -16,15 +16,15 @@ void main() {
     registerFallbackValue(EmailAddress.empty());
   });
 
-  late MockAuthFacade mockAuthFacade;
+  late MockAuthService mockAuthService;
 
   setUp(() {
-    mockAuthFacade = MockAuthFacade();
+    mockAuthService = MockAuthService();
   });
 
   test('initial state initialized correctly', () {
     // Arrange & Act
-    final underTest = ForgotPasswordBloc(mockAuthFacade);
+    final underTest = ForgotPasswordBloc(mockAuthService);
 
     // Assert
     expect(
@@ -39,7 +39,7 @@ void main() {
   group('EmailChanged', () {
     blocTest(
       'emits [ForgotPasswordInitial] when current state is ForgotPasswordInitial ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
       expect: () => [
@@ -52,7 +52,7 @@ void main() {
 
     blocTest(
       'emits [ForgotPasswordInitial] when current state is ForgotPasswordSubmitFailure ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),
@@ -68,7 +68,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ForgotPasswordSubmitInProgress ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitInProgress(),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
@@ -77,7 +77,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ForgotPasswordSubmitSuccess ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitSuccess(),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
@@ -91,12 +91,12 @@ void main() {
       'when current state is ForgotPasswordInitial with valid and existing email ',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
-          () => mockAuthFacade.sendPasswordResetEmail(
+          () => mockAuthService.sendPasswordResetEmail(
             emailAddress: any(named: 'emailAddress'),
           ),
         ).thenAnswer((_) async => right(unit));
 
-        return ForgotPasswordBloc(mockAuthFacade);
+        return ForgotPasswordBloc(mockAuthService);
       },
       seed: () => ForgotPasswordState.initial(
         email: EmailAddress('a@b.com'),
@@ -117,12 +117,12 @@ void main() {
       'when current state is ForgotPasswordInitial with valid and not existing email ',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
-          () => mockAuthFacade.sendPasswordResetEmail(
+          () => mockAuthService.sendPasswordResetEmail(
             emailAddress: any(named: 'emailAddress'),
           ),
         ).thenAnswer((_) async => left(const AuthFailure.serverError()));
 
-        return ForgotPasswordBloc(mockAuthFacade);
+        return ForgotPasswordBloc(mockAuthService);
       },
       seed: () => ForgotPasswordState.initial(
         email: EmailAddress('a@b.com'),
@@ -143,7 +143,7 @@ void main() {
     blocTest(
       'emits [ForgotPasswordSubmitFailure] '
       'when current state is ForgotPasswordInitial with invalid email ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => ForgotPasswordState.initial(
         email: EmailAddress('abd'),
         showErrorMessages: false,
@@ -160,7 +160,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ForgotPasswordSubmitInProgress ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitInProgress(),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.confirmPressed()),
@@ -169,7 +169,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ForgotPasswordSubmitSuccess ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitSuccess(),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.confirmPressed()),
@@ -178,7 +178,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ForgotPasswordSubmitFailure ',
-      build: () => ForgotPasswordBloc(mockAuthFacade),
+      build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),

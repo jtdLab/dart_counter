@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockUserFacade extends Mock implements IUserService {}
+class MockUserService extends Mock implements IUserService {}
 
 void main() {
   setUpAll(() {
@@ -16,15 +16,15 @@ void main() {
     registerFallbackValue(EmailAddress.empty());
   });
 
-  late MockUserFacade mockUserFacade;
+  late MockUserService mockUserService;
 
   setUp(() {
-    mockUserFacade = MockUserFacade();
+    mockUserService = MockUserService();
   });
 
   test('initial state initialized correctly', () {
     // Arrange & Act
-    final underTest = ChangeEmailBloc(mockUserFacade);
+    final underTest = ChangeEmailBloc(mockUserService);
 
     // Assert
     expect(
@@ -39,7 +39,7 @@ void main() {
   group('NewEmailChanged', () {
     blocTest(
       'emits [ChangeEmailInitial] when current state is ChangeEmailInitial ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
       expect: () => [
@@ -52,7 +52,7 @@ void main() {
 
     blocTest(
       'emits [ChangeEmailInitial] when current state is ChangeEmailSubmitFailure ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
       ),
@@ -68,7 +68,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeEmailSubmitInProgress ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitInProgress(),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
@@ -77,7 +77,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeEmailSubmitSuccess ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitSuccess(),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
@@ -91,12 +91,12 @@ void main() {
       'when current state is ChangeEmailInitial with valid and available email ',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserFacade.updateEmailAddress(
+          () => mockUserService.updateEmailAddress(
             newEmailAddress: any(named: 'newEmailAddress'),
           ),
         ).thenAnswer((_) async => right(unit));
 
-        return ChangeEmailBloc(mockUserFacade);
+        return ChangeEmailBloc(mockUserService);
       },
       seed: () => ChangeEmailState.initial(
         email: EmailAddress('a@b.com'),
@@ -117,12 +117,12 @@ void main() {
       'when current state is ChangeEmailInitial with valid and not available email ',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserFacade.updateEmailAddress(
+          () => mockUserService.updateEmailAddress(
             newEmailAddress: any(named: 'newEmailAddress'),
           ),
         ).thenAnswer((_) async => left(const UserFailure.failure()));
 
-        return ChangeEmailBloc(mockUserFacade);
+        return ChangeEmailBloc(mockUserService);
       },
       seed: () => ChangeEmailState.initial(
         email: EmailAddress('a@b.com'),
@@ -143,7 +143,7 @@ void main() {
     blocTest(
       'emits [ChangeEmailSubmitFailure] '
       'when current state is ChangeEmailInitial with invalid email ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => ChangeEmailState.initial(
         email: EmailAddress('abd'),
         showErrorMessages: false,
@@ -160,7 +160,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeEmailSubmitInProgress ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitInProgress(),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.confirmPressed()),
@@ -169,7 +169,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeEmailSubmitSuccess ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitSuccess(),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.confirmPressed()),
@@ -178,7 +178,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeEmailSubmitFailure ',
-      build: () => ChangeEmailBloc(mockUserFacade),
+      build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
       ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -45,7 +44,6 @@ class UserService implements IUserService {
       }
     });
   }
-
 
   @override
   Either<UserFailure, User> getUser() {

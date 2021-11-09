@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthFacade extends Mock implements IAuthService {}
+class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
   setUpAll(() {
@@ -16,15 +16,15 @@ void main() {
     registerFallbackValue(Password.empty());
   });
 
-  late MockAuthFacade mockAuthFacade;
+  late MockAuthService mockAuthService;
 
   setUp(() {
-    mockAuthFacade = MockAuthFacade();
+    mockAuthService = MockAuthService();
   });
 
   test('initial state initialized correctly', () {
     // Arrange & Act
-    final underTest = ChangePasswordBloc(mockAuthFacade);
+    final underTest = ChangePasswordBloc(mockAuthService);
 
     // Assert
     expect(
@@ -41,7 +41,7 @@ void main() {
   group('OldPasswordChanged', () {
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
       ),
@@ -57,7 +57,7 @@ void main() {
 
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),
@@ -76,7 +76,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitInProgress(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
@@ -86,7 +86,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitSuccess(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
@@ -98,7 +98,7 @@ void main() {
   group('NewPasswordChanged', () {
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
       ),
@@ -114,7 +114,7 @@ void main() {
 
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),
@@ -133,7 +133,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitInProgress(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
@@ -143,7 +143,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitSuccess(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
@@ -155,7 +155,7 @@ void main() {
   group('NewPasswordAgainChanged', () {
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordAgainChanged(
           newNewPasswordAgain: 'abcd',
@@ -173,7 +173,7 @@ void main() {
 
     blocTest(
       'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),
@@ -194,7 +194,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitInProgress(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordAgainChanged(
@@ -206,7 +206,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitSuccess(),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordAgainChanged(
@@ -224,13 +224,13 @@ void main() {
       'and valid new password which matches new password-again ',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
-          () => mockAuthFacade.updatePassword(
+          () => mockAuthService.updatePassword(
             oldPassword: any(named: 'oldPassword'),
             newPassword: any(named: 'newPassword'),
           ),
         ).thenAnswer((_) async => right(unit));
 
-        return ChangePasswordBloc(mockAuthFacade);
+        return ChangePasswordBloc(mockAuthService);
       },
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
@@ -251,7 +251,7 @@ void main() {
     blocTest(
       'emits [ChangePasswordSubmitFailure] '
       'when current state is ChangePasswordInitial with not matching new password and new password-again ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
         newPassword: Password('newPassword'),
@@ -271,7 +271,7 @@ void main() {
     blocTest(
       'emits [ChangePasswordSubmitFailure] '
       'when current state is ChangePasswordInitial with invalid old password ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('a'),
         newPassword: Password('newPassword'),
@@ -291,7 +291,7 @@ void main() {
     blocTest(
       'emits [ChangePasswordSubmitFailure] '
       'when current state is ChangePasswordInitial with invalid new password ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
         newPassword: Password('a'),
@@ -314,13 +314,13 @@ void main() {
       'and valid new password which matches new password-again but backend error occurs ',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
-          () => mockAuthFacade.updatePassword(
+          () => mockAuthService.updatePassword(
             oldPassword: any(named: 'oldPassword'),
             newPassword: any(named: 'newPassword'),
           ),
         ).thenAnswer((_) async => left(const AuthFailure.serverError()));
 
-        return ChangePasswordBloc(mockAuthFacade);
+        return ChangePasswordBloc(mockAuthService);
       },
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
@@ -342,7 +342,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitInProgress(),
       act: (ChangePasswordBloc bloc) =>
           bloc.add(const ChangePasswordEvent.confirmPressed()),
@@ -351,7 +351,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitSuccess(),
       act: (ChangePasswordBloc bloc) =>
           bloc.add(const ChangePasswordEvent.confirmPressed()),
@@ -360,7 +360,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitFailure ',
-      build: () => ChangePasswordBloc(mockAuthFacade),
+      build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
       ),

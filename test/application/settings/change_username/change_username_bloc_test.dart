@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockUserFacade extends Mock implements IUserService {}
+class MockUserService extends Mock implements IUserService {}
 
 void main() {
   setUpAll(() {
@@ -16,15 +16,15 @@ void main() {
     registerFallbackValue(Username.empty());
   });
 
-  late MockUserFacade mockUserFacade;
+  late MockUserService mockUserService;
 
   setUp(() {
-    mockUserFacade = MockUserFacade();
+    mockUserService = MockUserService();
   });
 
   test('initial state initialized correctly', () {
     // Arrange & Act
-    final underTest = ChangeUsernameBloc(mockUserFacade);
+    final underTest = ChangeUsernameBloc(mockUserService);
 
     // Assert
     expect(
@@ -39,7 +39,7 @@ void main() {
   group('UsernameChanged', () {
     blocTest(
       'emits [ChangeUsernameInitial] when current state is ChangeUsernameInitial ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       act: (ChangeUsernameBloc bloc) => bloc.add(
         const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
       ),
@@ -53,7 +53,7 @@ void main() {
 
     blocTest(
       'emits [ChangeUsernameInitial] when current state is ChangeUsernameSubmitFailure ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
       ),
@@ -70,7 +70,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeUsernameSubmitInProgress ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitInProgress(),
       act: (ChangeUsernameBloc bloc) => bloc.add(
         const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
@@ -80,7 +80,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeUsernameSubmitSuccess ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitSuccess(),
       act: (ChangeUsernameBloc bloc) => bloc.add(
         const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
@@ -95,12 +95,12 @@ void main() {
       'when current state is ChangeUsernameInitial with valid and available username ',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserFacade.updateUsername(
+          () => mockUserService.updateUsername(
             newUsername: any(named: 'newUsername'),
           ),
         ).thenAnswer((_) async => right(unit));
 
-        return ChangeUsernameBloc(mockUserFacade);
+        return ChangeUsernameBloc(mockUserService);
       },
       seed: () => ChangeUsernameState.initial(
         username: Username('dummyUsername'),
@@ -121,12 +121,12 @@ void main() {
       'when current state is ChangeUsernameInitial with valid and not available username ',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserFacade.updateUsername(
+          () => mockUserService.updateUsername(
             newUsername: any(named: 'newUsername'),
           ),
         ).thenAnswer((_) async => left(const UserFailure.failure()));
 
-        return ChangeUsernameBloc(mockUserFacade);
+        return ChangeUsernameBloc(mockUserService);
       },
       seed: () => ChangeUsernameState.initial(
         username: Username('dummyUsername'),
@@ -147,7 +147,7 @@ void main() {
     blocTest(
       'emits [ChangeUsernameSubmitFailure] '
       'when current state is ChangeUsernameInitial with invalid username ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => ChangeUsernameState.initial(
         username: Username('a'),
         showErrorMessages: false,
@@ -164,7 +164,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeUsernameSubmitInProgress ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitInProgress(),
       act: (ChangeUsernameBloc bloc) =>
           bloc.add(const ChangeUsernameEvent.confirmPressed()),
@@ -173,7 +173,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeUsernameSubmitSuccess ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitSuccess(),
       act: (ChangeUsernameBloc bloc) =>
           bloc.add(const ChangeUsernameEvent.confirmPressed()),
@@ -182,7 +182,7 @@ void main() {
 
     blocTest(
       'throws Error when current state is ChangeUsernameSubmitFailure ',
-      build: () => ChangeUsernameBloc(mockUserFacade),
+      build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
       ),
