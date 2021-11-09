@@ -95,7 +95,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         passwordsMatch) {
       await Future.delayed(const Duration(milliseconds: 500));
       final signUpResult =
-          await _authService.singUpWithEmailAndUsernameAndPassword(
+          await _authService.signUpWithEmailAndUsernameAndPassword(
         emailAddress: state.email,
         username: state.username,
         password: state.password,

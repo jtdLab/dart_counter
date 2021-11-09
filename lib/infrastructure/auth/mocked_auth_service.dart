@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
@@ -14,11 +12,8 @@ import 'package:rxdart/rxdart.dart';
 class MockedAuthService implements IAuthService {
   final BehaviorSubject<bool> _authenticatedController;
 
-  MockedAuthService() : _authenticatedController = BehaviorSubject.seeded(false);
-
-  @override
-  UniqueId? userId() =>
-      isAuthenticated() ? UniqueId.fromUniqueString('dummyUid') : null;
+  MockedAuthService()
+      : _authenticatedController = BehaviorSubject.seeded(false);
 
   @override
   Future<String?> idToken() async {
@@ -39,10 +34,96 @@ class MockedAuthService implements IAuthService {
   }
 
   @override
-  Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+    required EmailAddress emailAddress,
+  }) async {
+    if (hasNetworkConnection) {
+      if (emailAddress.isValid()) {
+        return right(unit);
+      }
+
+      return left(const AuthFailure.invalidEmail());
+    }
+
+    return left(const AuthFailure.serverError());
+  }
 
   @override
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
+  Future<Either<AuthFailure, Unit>> signInWithApple() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
+    required EmailAddress emailAddress,
+    required Password password,
+  }) async {
+    if (hasNetworkConnection) {
+      if (!emailAddress.isValid() || !password.isValid()) {
+        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+      }
+
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  }) async {
+    if (hasNetworkConnection) {
+      if (!username.isValid() || !password.isValid()) {
+        return left(const AuthFailure.invalidUsernameAndPasswordCombination());
+      }
+
+      _authenticatedController.add(true);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    if (hasNetworkConnection) {
+      _authenticatedController.add(false);
+      return right(unit);
+    }
+
+    return left(const AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndUsernameAndPassword({
     required EmailAddress emailAddress,
     required Username username,
     required Password password,
@@ -68,107 +149,6 @@ class MockedAuthService implements IAuthService {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
-  }) async {
-    if (hasNetworkConnection) {
-      if (!emailAddress.isValid()) {
-        return left(const AuthFailure.invalidEmail());
-      }
-
-      if (!password.isValid()) {
-        return left(const AuthFailure.invalidPassword());
-      }
-
-      _authenticatedController.add(true);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-/**
- * 
-  @override
-  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
-    required Username username,
-    required Password password,
-  }) async {
-    if (hasNetworkConnection) {
-      if (username.isValid()) {
-        return left(const AuthFailure.invalidUsername());
-      }
-
-      if (password.isValid()) {
-        return left(const AuthFailure.invalidPassword());
-      }
-
-      _authenticatedController.add(true);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
- */
-
-  @override
-  Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
-    if (hasNetworkConnection) {
-      _authenticatedController.add(true);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    if (hasNetworkConnection) {
-      _authenticatedController.add(true);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> signInWithApple() async {
-    if (hasNetworkConnection) {
-      _authenticatedController.add(true);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> signOut() async {
-    if (hasNetworkConnection) {
-      _authenticatedController.add(false);
-      return right(unit);
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
-    required EmailAddress emailAddress,
-  }) async {
-    if (hasNetworkConnection) {
-      if (emailAddress.isValid()) {
-        return right(unit);
-      }
-
-      return left(const AuthFailure.invalidEmail());
-    }
-
-    return left(const AuthFailure.serverError());
-  }
-
-  @override
   Future<Either<AuthFailure, Unit>> updatePassword({
     required Password oldPassword,
     required Password newPassword,
@@ -187,4 +167,11 @@ class MockedAuthService implements IAuthService {
 
     throw NotAuthenticatedError();
   }
+
+  @override
+  UniqueId? userId() =>
+      isAuthenticated() ? UniqueId.fromUniqueString('dummyUid') : null;
+
+  @override
+  Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
 }

@@ -164,7 +164,7 @@ class _FriendsCardItem extends StatelessWidget {
           ],
           const Spacer(),
           Text(
-            friend.profile.username.getOrCrash().toUpperCase(),
+            friend.profile.name.getOrCrash().toUpperCase(),
           ),
           const Spacer(),
           AppIconButton(

@@ -5,58 +5,37 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 
 /// Domain service for all actions related to authentication.
 abstract class IAuthService {
-  /// Returns the id of the app-user if authenticated or `null` if not authenticated.
-  UniqueId? userId();
-
   /// Returns the idToken of the app-user if authenticated or `null` if not authenticated.
   Future<String?> idToken();
 
   /// Returns `true` if the app-user is authenticated.
   bool isAuthenticated();
 
-  /// Returns a stream that indicates whether or not the app-user is authenticated.
-  Stream<bool> watchIsAuthenticated();
-
-  /// Signs a user up with [emailAddress], [username] and [password].
+  /// Sends a password-reset-email the users email address.
   ///
   /// Possible failures:
-  //  1. Email already in use
-  //  2. Username already in use
-  /// 3. Invalid email
-  /// 4. Invalid username
-  /// 5. Invalid password
-  /// 6. Server error
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
+  /// 1. Invalid email
+  /// 2. Server error
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
     required EmailAddress emailAddress,
-    required Username username,
-    required Password password,
   });
+
+  /// Signs a user in with apple.
+  ///
+  /// Possible failures:
+  /// 1. Canceled by user
+  /// 2. Server error
+  Future<Either<AuthFailure, Unit>> signInWithApple();
 
   /// Signs a user in with [emailAddress] and [password].
   ///
   /// Possible failures:
-  /// 1. Invalid email
-  /// 2. Invalid password
-  /// 3. Invalid email and password combination
-  /// 4. Server error
-  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
+  /// 1. Invalid email and password combination
+  /// 2. Server error
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
   });
-
-/**
- *   /// Signs a user in with [username] and [password].
-  ///
-  /// Possible failures:
-  /// 1. Invalid username
-  /// 2. Invalid password
-  /// 3. Invalid username and password combination
-  /// 4. Server error
-  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
-    required Username username,
-    required Password password,
-  });
- */
 
   /// Signs a user in with facebook.
   ///
@@ -72,12 +51,15 @@ abstract class IAuthService {
   /// 2. Server error
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 
-  /// Signs a user in with apple.
+  /// Signs a user in with [username] and [password].
   ///
   /// Possible failures:
-  /// 1. Canceled by user
+  /// 1. Invalid username and password combination
   /// 2. Server error
-  Future<Either<AuthFailure, Unit>> signInWithApple();
+  Future<Either<AuthFailure, Unit>> signInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  });
 
   /// Signs the user of the app out.
   ///
@@ -85,13 +67,19 @@ abstract class IAuthService {
   /// 1. Server error
   Future<Either<AuthFailure, Unit>> signOut();
 
-  /// Sends a password-reset-email the users email address.
+  /// Signs a user up with [emailAddress], [username] and [password].
   ///
   /// Possible failures:
-  /// 1. Invalid email
-  /// 2. Server error
-  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+  //  1. Email already in use
+  //  2. Username already in use
+  /// 3. Invalid email
+  /// 4. Invalid username
+  /// 5. Invalid password
+  /// 6. Server error
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndUsernameAndPassword({
     required EmailAddress emailAddress,
+    required Username username,
+    required Password password,
   });
 
   /// Updates the password of the user.
@@ -105,4 +93,10 @@ abstract class IAuthService {
     required Password oldPassword,
     required Password newPassword,
   });
+
+  /// Returns the id of the app-user if authenticated or `null` if not authenticated.
+  UniqueId? userId();
+
+  /// Returns a stream that indicates whether or not the app-user is authenticated.
+  Stream<bool> watchIsAuthenticated();
 }

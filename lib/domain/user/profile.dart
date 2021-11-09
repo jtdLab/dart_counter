@@ -11,13 +11,13 @@ part 'profile.freezed.dart';
 class Profile with _$Profile {
   const factory Profile({
     String? photoUrl,
-    required Username username,
+    required Username name,
     required CareerStats careerStatsOnline,
   }) = _Profile;
 
   factory Profile.dummy() => Profile(
         photoUrl: faker.image.image(width: 200, height: 200, random: true),
-        username: Username(
+        name: Username(
           faker.randomGenerator.element([
             'David88',
             'mrjosch',

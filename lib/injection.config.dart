@@ -70,14 +70,14 @@ import 'domain/training/single/i_single_training_service.dart' as _i32;
 import 'domain/user/i_user_service.dart' as _i34;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i53;
 import 'infrastructure/auth/mocked_auth_service.dart' as _i13;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i18;
-import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i17;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i17;
+import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i18;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i76;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i75;
 import 'infrastructure/friend/friend_service.dart' as _i67;
 import 'infrastructure/friend/mocked_friend_service.dart' as _i22;
-import 'infrastructure/game_history/game_history_service.dart' as _i24;
-import 'infrastructure/game_history/mocked_game_history_service.dart' as _i25;
+import 'infrastructure/game_history/game_history_service.dart' as _i25;
+import 'infrastructure/game_history/mocked_game_history_service.dart' as _i24;
 import 'infrastructure/game_invitation/game_invitation_service.dart' as _i54;
 import 'infrastructure/game_invitation/mocked_game_invitation_service.dart'
     as _i27;
@@ -122,11 +122,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i17.MockedConnectivityService(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i18.ConnectivityService(get<_i4.Connectivity>()),
+      () => _i17.ConnectivityService(get<_i4.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i16.IConnectivityService>(
+      () => _i18.MockedConnectivityService(),
+      registerFor: {_dev});
   gh.lazySingleton<_i19.IDoubleTrainingService>(
       () => _i20.DoubleTrainingService(),
       registerFor: {_dev, _test, _prod});
@@ -134,11 +134,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i22.MockedFriendService(get<_i12.IAuthService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i23.IGameHistoryService>(
-      () => _i24.GameHistoryService(get<_i8.FirebaseFirestore>()),
-      registerFor: {_test, _prod});
-  gh.lazySingleton<_i23.IGameHistoryService>(
-      () => _i25.MockedGameHistoryService(get<_i12.IAuthService>()),
+      () => _i24.MockedGameHistoryService(get<_i12.IAuthService>()),
       registerFor: {_dev});
+  gh.lazySingleton<_i23.IGameHistoryService>(
+      () => _i25.GameHistoryService(get<_i8.FirebaseFirestore>()),
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i26.IGameInvitationService>(
       () => _i27.MockedGameInvitationService(get<_i12.IAuthService>()),
       registerFor: {_dev});

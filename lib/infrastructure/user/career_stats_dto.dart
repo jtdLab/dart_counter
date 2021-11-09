@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'career_stats_dto.freezed.dart';
 part 'career_stats_dto.g.dart';
 
+/// Data transfer object corresponing to [CareerStats].
 @freezed
 class CareerStatsDto with _$CareerStatsDto {
   const factory CareerStatsDto({
@@ -23,12 +24,12 @@ class CareerStatsDto with _$CareerStatsDto {
   factory CareerStatsDto.fromDomain(CareerStats careerStats) {
     return CareerStatsDto(
       average: careerStats.average,
-      averageTrend: careerStats.averageTrend.toString().split('.')[1],
+      averageTrend: careerStats.averageTrend.toShortString(),
       checkoutPercentage: careerStats.checkoutPercentage,
       checkoutPercentageTrend:
-          careerStats.checkoutPercentageTrend.toString().split('.')[1],
+          careerStats.checkoutPercentageTrend.toShortString(),
       firstNine: careerStats.firstNine,
-      firstNineTrend: careerStats.firstNineTrend.toString().split('.')[1],
+      firstNineTrend: careerStats.firstNineTrend.toShortString(),
       games: careerStats.games,
       wins: careerStats.wins,
       defeats: careerStats.defeats,
@@ -38,14 +39,11 @@ class CareerStatsDto with _$CareerStatsDto {
   CareerStats toDomain() {
     return CareerStats(
       average: average,
-      averageTrend:
-          Trend.values.firstWhere((e) => e.toString() == 'Trend.$averageTrend'),
+      averageTrend: Trends.parse(averageTrend),
       checkoutPercentage: checkoutPercentage,
-      checkoutPercentageTrend: Trend.values
-          .firstWhere((e) => e.toString() == 'Trend.$checkoutPercentageTrend'),
+      checkoutPercentageTrend: Trends.parse(checkoutPercentageTrend),
       firstNine: firstNine,
-      firstNineTrend: Trend.values
-          .firstWhere((e) => e.toString() == 'Trend.$firstNineTrend'),
+      firstNineTrend: Trends.parse(firstNineTrend),
       games: games,
       wins: wins,
       defeats: defeats,

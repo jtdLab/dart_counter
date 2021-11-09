@@ -11,10 +11,10 @@ class _NameDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FriendsBloc, FriendsState>(
       builder: (context, state) {
-        final username = state.selectedFriend!.profile.username.getOrCrash();
+        final name = state.selectedFriend!.profile.name.getOrCrash();
 
         return Text(
-          username.toUpperCase(),
+          name.toUpperCase(),
         );
       },
     );

@@ -59,7 +59,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }) {
     if (_game == null) {
       _game = _game = ex.Game(
-        ownerName: owner.profile.username.getOrCrash(),
+        ownerName: owner.profile.name.getOrCrash(),
       );
 
       _owner = owner;

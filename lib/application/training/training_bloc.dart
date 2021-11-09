@@ -52,7 +52,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
             gameSnapshot: single.GameSnapshot.initial(
               username: _userService.getUser().fold(
                     (failure) => throw Error(),
-                    (user) => user.profile.username.getOrCrash(),
+                    (user) => user.profile.name.getOrCrash(),
                   ),
             ),
           ),

@@ -42,7 +42,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
     List<String?>? players,
   }) {
     _game = _game = ex.Game(
-      ownerName: owner.profile.username.getOrCrash(),
+      ownerName: owner.profile.name.getOrCrash(),
     );
 
     if (players != null && players.length <= 3) {

@@ -220,7 +220,7 @@ class MockedFriendService implements IFriendService {
 
       final newFriend = Friend.dummy().copyWith(
         id: friendRequest.fromId,
-        profile: Profile.dummy().copyWith(username: friendRequest.fromName),
+        profile: Profile.dummy().copyWith(name: friendRequest.fromName),
       );
 
       final friends =

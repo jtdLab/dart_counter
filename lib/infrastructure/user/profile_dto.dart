@@ -1,14 +1,13 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/profile.dart';
-import 'package:dart_counter/infrastructure/play/game_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kt_dart/kt.dart';
 
 import 'career_stats_dto.dart';
 
 part 'profile_dto.freezed.dart';
 part 'profile_dto.g.dart';
 
+/// Data transfer object corresponing to [Profile].
 @freezed
 class ProfileDto with _$ProfileDto {
   const factory ProfileDto({
@@ -22,7 +21,7 @@ class ProfileDto with _$ProfileDto {
   factory ProfileDto.fromDomain(Profile profile) {
     return ProfileDto(
       photoUrl: profile.photoUrl,
-      name: profile.username.getOrCrash(),
+      name: profile.name.getOrCrash(),
       careerStatsOnline: CareerStatsDto.fromDomain(profile.careerStatsOnline),
     );
   }
@@ -30,7 +29,7 @@ class ProfileDto with _$ProfileDto {
   Profile toDomain() {
     return Profile(
       photoUrl: photoUrl,
-      username: Username(name),
+      name: Username(name),
       careerStatsOnline: careerStatsOnline.toDomain(),
     );
   }

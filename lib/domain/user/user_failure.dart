@@ -6,9 +6,10 @@ part 'user_failure.freezed.dart';
 @freezed
 class UserFailure with _$UserFailure {
   const factory UserFailure.failure() = _Failure;
-  //const factory UserFailure.unableToLoadData() = _UnableToLoadData;
+  const factory UserFailure.unableToLoadData() = _UnableToLoadData;
   const factory UserFailure.noNetworkAccess() = _NoNetworkAccess;
   const factory UserFailure.insufficientPermission() = _InsufficientPermission;
   const factory UserFailure.invalidUsername() = _InvalidUsername;
   const factory UserFailure.invalidEmail() = _InvalidEmail;
+  const factory UserFailure.serverError() = _ServerError;
 }

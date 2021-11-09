@@ -23,10 +23,10 @@ class _$UserDtoTearOff {
 
   _UserDto call(
       {required String id,
-      String? idToken,
+      required String idToken,
       required String email,
       required ProfileDto profile,
-      required List<String> friends,
+      required List<String> friendIds,
       required CareerStatsDto careerStatsOffline,
       @ServerTimestampConverter() String? createdAt}) {
     return _UserDto(
@@ -34,7 +34,7 @@ class _$UserDtoTearOff {
       idToken: idToken,
       email: email,
       profile: profile,
-      friends: friends,
+      friendIds: friendIds,
       careerStatsOffline: careerStatsOffline,
       createdAt: createdAt,
     );
@@ -51,10 +51,10 @@ const $UserDto = _$UserDtoTearOff();
 /// @nodoc
 mixin _$UserDto {
   String get id => throw _privateConstructorUsedError;
-  String? get idToken => throw _privateConstructorUsedError;
+  String get idToken => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   ProfileDto get profile => throw _privateConstructorUsedError;
-  List<String> get friends => throw _privateConstructorUsedError;
+  List<String> get friendIds => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
   @ServerTimestampConverter()
   String? get createdAt => throw _privateConstructorUsedError;
@@ -70,10 +70,10 @@ abstract class $UserDtoCopyWith<$Res> {
       _$UserDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String? idToken,
+      String idToken,
       String email,
       ProfileDto profile,
-      List<String> friends,
+      List<String> friendIds,
       CareerStatsDto careerStatsOffline,
       @ServerTimestampConverter() String? createdAt});
 
@@ -95,7 +95,7 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
     Object? idToken = freezed,
     Object? email = freezed,
     Object? profile = freezed,
-    Object? friends = freezed,
+    Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
     Object? createdAt = freezed,
   }) {
@@ -107,7 +107,7 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
       idToken: idToken == freezed
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -116,9 +116,9 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileDto,
-      friends: friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
+      friendIds: friendIds == freezed
+          ? _value.friendIds
+          : friendIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       careerStatsOffline: careerStatsOffline == freezed
           ? _value.careerStatsOffline
@@ -153,10 +153,10 @@ abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   @override
   $Res call(
       {String id,
-      String? idToken,
+      String idToken,
       String email,
       ProfileDto profile,
-      List<String> friends,
+      List<String> friendIds,
       CareerStatsDto careerStatsOffline,
       @ServerTimestampConverter() String? createdAt});
 
@@ -181,7 +181,7 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
     Object? idToken = freezed,
     Object? email = freezed,
     Object? profile = freezed,
-    Object? friends = freezed,
+    Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
     Object? createdAt = freezed,
   }) {
@@ -193,7 +193,7 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
       idToken: idToken == freezed
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -202,9 +202,9 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileDto,
-      friends: friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
+      friendIds: friendIds == freezed
+          ? _value.friendIds
+          : friendIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       careerStatsOffline: careerStatsOffline == freezed
           ? _value.careerStatsOffline
@@ -223,10 +223,10 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
 class _$_UserDto extends _UserDto {
   const _$_UserDto(
       {required this.id,
-      this.idToken,
+      required this.idToken,
       required this.email,
       required this.profile,
-      required this.friends,
+      required this.friendIds,
       required this.careerStatsOffline,
       @ServerTimestampConverter() this.createdAt})
       : super._();
@@ -237,13 +237,13 @@ class _$_UserDto extends _UserDto {
   @override
   final String id;
   @override
-  final String? idToken;
+  final String idToken;
   @override
   final String email;
   @override
   final ProfileDto profile;
   @override
-  final List<String> friends;
+  final List<String> friendIds;
   @override
   final CareerStatsDto careerStatsOffline;
   @override
@@ -252,7 +252,7 @@ class _$_UserDto extends _UserDto {
 
   @override
   String toString() {
-    return 'UserDto(id: $id, idToken: $idToken, email: $email, profile: $profile, friends: $friends, careerStatsOffline: $careerStatsOffline, createdAt: $createdAt)';
+    return 'UserDto(id: $id, idToken: $idToken, email: $email, profile: $profile, friendIds: $friendIds, careerStatsOffline: $careerStatsOffline, createdAt: $createdAt)';
   }
 
   @override
@@ -264,7 +264,7 @@ class _$_UserDto extends _UserDto {
             (identical(other.idToken, idToken) || other.idToken == idToken) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.profile, profile) || other.profile == profile) &&
-            const DeepCollectionEquality().equals(other.friends, friends) &&
+            const DeepCollectionEquality().equals(other.friendIds, friendIds) &&
             (identical(other.careerStatsOffline, careerStatsOffline) ||
                 other.careerStatsOffline == careerStatsOffline) &&
             (identical(other.createdAt, createdAt) ||
@@ -278,7 +278,7 @@ class _$_UserDto extends _UserDto {
       idToken,
       email,
       profile,
-      const DeepCollectionEquality().hash(friends),
+      const DeepCollectionEquality().hash(friendIds),
       careerStatsOffline,
       createdAt);
 
@@ -296,10 +296,10 @@ class _$_UserDto extends _UserDto {
 abstract class _UserDto extends UserDto {
   const factory _UserDto(
       {required String id,
-      String? idToken,
+      required String idToken,
       required String email,
       required ProfileDto profile,
-      required List<String> friends,
+      required List<String> friendIds,
       required CareerStatsDto careerStatsOffline,
       @ServerTimestampConverter() String? createdAt}) = _$_UserDto;
   const _UserDto._() : super._();
@@ -309,13 +309,13 @@ abstract class _UserDto extends UserDto {
   @override
   String get id;
   @override
-  String? get idToken;
+  String get idToken;
   @override
   String get email;
   @override
   ProfileDto get profile;
   @override
-  List<String> get friends;
+  List<String> get friendIds;
   @override
   CareerStatsDto get careerStatsOffline;
   @override

@@ -31,22 +31,11 @@ class FirebaseAuthService implements IAuthService {
   );
 
   @override
-  UniqueId? userId() {
-    final uid = _auth.currentUser?.uid;
-
-    if (uid == null) {
-      return null;
-    }
-
-    return UniqueId.fromUniqueString(uid);
-  }
-
-  @override
   Future<String?> idToken() async {
     final user = _auth.currentUser;
 
     if (user == null) {
-      return Future.value(null);
+      return null;
     }
 
     return user.getIdToken();
@@ -56,64 +45,64 @@ class FirebaseAuthService implements IAuthService {
   bool isAuthenticated() => _auth.currentUser?.uid != null;
 
   @override
-  Stream<bool> watchIsAuthenticated() => _auth.authStateChanges().map(
-        (user) => user?.uid != null,
-      );
-
-  @override
-  Future<Either<AuthFailure, Unit>> singUpWithEmailAndUsernameAndPassword({
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
     required EmailAddress emailAddress,
-    required Username username,
-    required Password password,
   }) async {
     if (!emailAddress.isValid()) {
       return left(const AuthFailure.invalidEmail());
     }
-
-    if (!username.isValid()) {
-      return left(const AuthFailure.invalidUsername());
-    }
-
-    if (!password.isValid()) {
-      return left(const AuthFailure.invalidPassword());
-    }
-
-    final bool success;
     try {
-      success = await _socialClient.createUser(
-        email: emailAddress.getOrCrash(),
-        username: username.getOrCrash(),
-        password: password.getOrCrash(),
+      await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError());
+    }
+  }
+
+  // TODO detect cancelled by user
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithApple() async {
+    try {
+      // To prevent replay attacks with the credential returned from Apple, we
+      // include a nonce in the credential request. When signing in in with
+      // Firebase, the nonce in the id token returned by Apple, is expected to
+      // match the sha256 hash of `rawNonce`.
+      final rawNonce = _generateNonce();
+      final nonce = _sha256ofString(rawNonce);
+
+      // Request credential for the currently signed in Apple account.
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: nonce,
       );
 
-      if (success) {
-        return singInWithEmailAndPassword(
-          emailAddress: emailAddress,
-          password: password,
-        );
-      }
-    } catch (e) {
-      if (e is EmailAlreadyInUseError) {
-        return left(const AuthFailure.emailAlreadyInUse());
-      } else if (e is UsernameAlreadyInUseError) {
-        return left(const AuthFailure.usernameAlreadyInUse());
-      }
-    }
+      // Create an `OAuthCredential` from the credential returned by Apple.
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
 
-    return left(const AuthFailure.serverError());
+      // Sign in the user with Firebase. If the nonce we generated earlier does
+      // not match the nonce in `appleCredential.identityToken`, sign in will fail.
+      await _auth.signInWithCredential(oauthCredential);
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const AuthFailure.serverError());
+    }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> singInWithEmailAndPassword({
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    if (!emailAddress.isValid()) {
-      return left(const AuthFailure.invalidEmail());
-    }
-
-    if (!password.isValid()) {
-      return left(const AuthFailure.invalidPassword());
+    if (!emailAddress.isValid() || !password.isValid()) {
+      return left(const AuthFailure.invalidEmailAndPasswordCombination());
     }
 
     try {
@@ -131,37 +120,6 @@ class FirebaseAuthService implements IAuthService {
       return left(const AuthFailure.serverError());
     }
   }
-
-/**
- *   @override
-  Future<Either<AuthFailure, Unit>> singInWithUsernameAndPassword({
-    required Username username,
-    required Password password,
-  }) async {
-    if (!username.isValid()) {
-      return left(const AuthFailure.invalidUsername());
-    }
-
-    if (!password.isValid()) {
-      return left(const AuthFailure.invalidPassword());
-    }
-
-    try {
-      // TODO call server endpoint and return invalid username password combination failure
-      // this return email 
-      // and sign in with email and password
-      final emailAddress  = EmailAddress.empty(); // TODO real email
-
-      return singInWithEmailAndPassword(
-        emailAddress: emailAddress,
-        password: password,
-      );
-    } catch (e) {
-      print(e);
-      return left(const AuthFailure.serverError()); 
-    }
-  }
- */
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
@@ -211,36 +169,25 @@ class FirebaseAuthService implements IAuthService {
     }
   }
 
-  // TODO detect cancelled by user
   @override
-  Future<Either<AuthFailure, Unit>> signInWithApple() async {
+  Future<Either<AuthFailure, Unit>> signInWithUsernameAndPassword({
+    required Username username,
+    required Password password,
+  }) async {
+    if (!username.isValid() || !password.isValid()) {
+      return left(const AuthFailure.invalidUsernameAndPasswordCombination());
+    }
+
     try {
-      // To prevent replay attacks with the credential returned from Apple, we
-      // include a nonce in the credential request. When signing in in with
-      // Firebase, the nonce in the id token returned by Apple, is expected to
-      // match the sha256 hash of `rawNonce`.
-      final rawNonce = _generateNonce();
-      final nonce = _sha256ofString(rawNonce);
+      // TODO call server endpoint and return invalid username password combination failure
+      // this return email
+      // and sign in with email and password
+      final emailAddress = EmailAddress.empty(); // TODO real email
 
-      // Request credential for the currently signed in Apple account.
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: nonce,
+      return signInWithEmailAndPassword(
+        emailAddress: emailAddress,
+        password: password,
       );
-
-      // Create an `OAuthCredential` from the credential returned by Apple.
-      final oauthCredential = OAuthProvider("apple.com").credential(
-        idToken: appleCredential.identityToken,
-        rawNonce: rawNonce,
-      );
-
-      // Sign in the user with Firebase. If the nonce we generated earlier does
-      // not match the nonce in `appleCredential.identityToken`, sign in will fail.
-      await _auth.signInWithCredential(oauthCredential);
-      return right(unit);
     } catch (e) {
       print(e);
       return left(const AuthFailure.serverError());
@@ -264,19 +211,46 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndUsernameAndPassword({
     required EmailAddress emailAddress,
+    required Username username,
+    required Password password,
   }) async {
     if (!emailAddress.isValid()) {
       return left(const AuthFailure.invalidEmail());
     }
-    try {
-      await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const AuthFailure.serverError());
+
+    if (!username.isValid()) {
+      return left(const AuthFailure.invalidUsername());
     }
+
+    if (!password.isValid()) {
+      return left(const AuthFailure.invalidPassword());
+    }
+
+    final bool success;
+    try {
+      success = await _socialClient.createUser(
+        email: emailAddress.getOrCrash(),
+        username: username.getOrCrash(),
+        password: password.getOrCrash(),
+      );
+
+      if (success) {
+        return signInWithEmailAndPassword(
+          emailAddress: emailAddress,
+          password: password,
+        );
+      }
+    } catch (e) {
+      if (e is EmailAlreadyInUseError) {
+        return left(const AuthFailure.emailAlreadyInUse());
+      } else if (e is UsernameAlreadyInUseError) {
+        return left(const AuthFailure.usernameAlreadyInUse());
+      }
+    }
+
+    return left(const AuthFailure.serverError());
   }
 
   @override
@@ -305,6 +279,22 @@ class FirebaseAuthService implements IAuthService {
       return left(const AuthFailure.serverError());
     }
   }
+
+  @override
+  UniqueId? userId() {
+    final uid = _auth.currentUser?.uid;
+
+    if (uid == null) {
+      return null;
+    }
+
+    return UniqueId.fromUniqueString(uid);
+  }
+
+  @override
+  Stream<bool> watchIsAuthenticated() => _auth.authStateChanges().map(
+        (user) => user?.uid != null,
+      );
 
   /// Generates a cryptographically secure random nonce, to be included in a
   /// credential request.

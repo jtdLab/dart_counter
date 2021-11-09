@@ -20,14 +20,14 @@ class _$UserTearOff {
   _User call(
       {required UniqueId id,
       required String idToken,
-      required EmailAddress emailAddress,
+      required EmailAddress email,
       required Profile profile,
       required KtList<UniqueId> friendIds,
       required CareerStats careerStatsOffline}) {
     return _User(
       id: id,
       idToken: idToken,
-      emailAddress: emailAddress,
+      email: email,
       profile: profile,
       friendIds: friendIds,
       careerStatsOffline: careerStatsOffline,
@@ -42,7 +42,7 @@ const $User = _$UserTearOff();
 mixin _$User {
   UniqueId get id => throw _privateConstructorUsedError;
   String get idToken => throw _privateConstructorUsedError;
-  EmailAddress get emailAddress => throw _privateConstructorUsedError;
+  EmailAddress get email => throw _privateConstructorUsedError;
   Profile get profile => throw _privateConstructorUsedError;
   KtList<UniqueId> get friendIds => throw _privateConstructorUsedError;
   CareerStats get careerStatsOffline => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $UserCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String idToken,
-      EmailAddress emailAddress,
+      EmailAddress email,
       Profile profile,
       KtList<UniqueId> friendIds,
       CareerStats careerStatsOffline});
@@ -79,7 +79,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? idToken = freezed,
-    Object? emailAddress = freezed,
+    Object? email = freezed,
     Object? profile = freezed,
     Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
@@ -93,9 +93,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String,
-      emailAddress: emailAddress == freezed
-          ? _value.emailAddress
-          : emailAddress // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       profile: profile == freezed
           ? _value.profile
@@ -135,7 +135,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String idToken,
-      EmailAddress emailAddress,
+      EmailAddress email,
       Profile profile,
       KtList<UniqueId> friendIds,
       CareerStats careerStatsOffline});
@@ -159,7 +159,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? idToken = freezed,
-    Object? emailAddress = freezed,
+    Object? email = freezed,
     Object? profile = freezed,
     Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
@@ -173,9 +173,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
               as String,
-      emailAddress: emailAddress == freezed
-          ? _value.emailAddress
-          : emailAddress // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       profile: profile == freezed
           ? _value.profile
@@ -199,7 +199,7 @@ class _$_User implements _User {
   const _$_User(
       {required this.id,
       required this.idToken,
-      required this.emailAddress,
+      required this.email,
       required this.profile,
       required this.friendIds,
       required this.careerStatsOffline});
@@ -209,7 +209,7 @@ class _$_User implements _User {
   @override
   final String idToken;
   @override
-  final EmailAddress emailAddress;
+  final EmailAddress email;
   @override
   final Profile profile;
   @override
@@ -219,7 +219,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, idToken: $idToken, emailAddress: $emailAddress, profile: $profile, friendIds: $friendIds, careerStatsOffline: $careerStatsOffline)';
+    return 'User(id: $id, idToken: $idToken, email: $email, profile: $profile, friendIds: $friendIds, careerStatsOffline: $careerStatsOffline)';
   }
 
   @override
@@ -229,8 +229,7 @@ class _$_User implements _User {
             other is _User &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.emailAddress, emailAddress) ||
-                other.emailAddress == emailAddress) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.friendIds, friendIds) ||
                 other.friendIds == friendIds) &&
@@ -239,8 +238,8 @@ class _$_User implements _User {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, idToken, emailAddress,
-      profile, friendIds, careerStatsOffline);
+  int get hashCode => Object.hash(
+      runtimeType, id, idToken, email, profile, friendIds, careerStatsOffline);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +251,7 @@ abstract class _User implements User {
   const factory _User(
       {required UniqueId id,
       required String idToken,
-      required EmailAddress emailAddress,
+      required EmailAddress email,
       required Profile profile,
       required KtList<UniqueId> friendIds,
       required CareerStats careerStatsOffline}) = _$_User;
@@ -262,7 +261,7 @@ abstract class _User implements User {
   @override
   String get idToken;
   @override
-  EmailAddress get emailAddress;
+  EmailAddress get email;
   @override
   Profile get profile;
   @override

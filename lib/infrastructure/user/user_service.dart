@@ -40,8 +40,10 @@ class UserService implements IUserService {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
-        _userController = BehaviorSubject();
-        _userController!.addStream(watchUser());
+        if (!_authService.isAuthenticated()) {
+          _userController = BehaviorSubject();
+          _userController!.addStream(watchUser());
+        }
       } else {
         await _userController!.close();
         _userController = null;
@@ -150,20 +152,23 @@ class UserService implements IUserService {
       rethrow;
     }
 
-    final idToken = await _authService.idToken();
+    final idToken = (await _authService.idToken())!;
 
-    yield* userDoc
-        .snapshots()
-        .map<Either<UserFailure, User>>(
-          (doc) => right(
-            UserDto.fromFirestore(doc).toDomain(idToken: idToken!),
-          ),
-        )
-        .onErrorReturnWith(
-          (error, stack) => left(
-            const UserFailure.failure(), // TODO more specific
-          ),
-        );
+    yield* userDoc.snapshots().map<Either<UserFailure, User>>(
+      (doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return right(UserDto.fromJson(json).toDomain());
+      },
+    ).onErrorReturnWith(
+      (error, stack) => left(
+        const UserFailure.failure(), // TODO more specific
+      ),
+    );
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.

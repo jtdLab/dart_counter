@@ -13,7 +13,7 @@ class User with _$User {
   const factory User({
     required UniqueId id,
     required String idToken,
-    required EmailAddress emailAddress,
+    required EmailAddress email,
     required Profile profile,
     required KtList<UniqueId> friendIds,
     required CareerStats careerStatsOffline,
@@ -25,7 +25,7 @@ class User with _$User {
         faker.randomGenerator.string(28, min: 28),
       ),
       idToken: faker.randomGenerator.string(28, min: 28),
-      emailAddress: EmailAddress(faker.internet.email()),
+      email: EmailAddress(faker.internet.email()),
       profile: Profile.dummy(),
       friendIds: KtList.from([
         UniqueId.fromUniqueString('dummyFriendId1'),

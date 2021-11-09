@@ -70,7 +70,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
     if (isEmailValid && isPasswordValid) {
       yield* _signIn(
-        () => _authService.singInWithEmailAndPassword(
+        () => _authService.signInWithEmailAndPassword(
           emailAddress: state.email,
           password: state.password,
         ),

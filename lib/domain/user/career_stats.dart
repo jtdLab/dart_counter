@@ -6,6 +6,30 @@ part 'career_stats.freezed.dart';
 /// Indicates wheter a specific stat increased, declined or did not change in recent time.
 enum Trend { up, down, none }
 
+/// Error that may occur when parsing a String to a [Trend]
+class TrendParseError extends Error {
+  final String notParsableString;
+
+  TrendParseError(this.notParsableString);
+
+  @override
+  String toString() => 'Error parsing $notParsableString to Trend';
+}
+
+/// Utility methods to convert a [String] to [Trend] and vice versa.
+extension Trends on Trend {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+
+  static Trend parse(String str) {
+    return Trend.values.firstWhere(
+      (e) => e.toString() == 'Trend.$str',
+      orElse: () => throw TrendParseError(str),
+    );
+  }
+}
+
 /// Domain model of the stats an app-user has achieved since created.
 @freezed
 class CareerStats with _$CareerStats {

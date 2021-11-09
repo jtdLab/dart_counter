@@ -10,10 +10,10 @@ class _NameDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        final username = state.user.profile.username.getOrCrash();
+        final name = state.user.profile.name.getOrCrash();
 
         return Text(
-          username.toUpperCase(),
+          name.toUpperCase(),
         );
       },
     );

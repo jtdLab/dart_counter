@@ -225,13 +225,13 @@ void main() {
         // Assert
         expect(failurOrUnit.isRight(), true);
         expect(
-          underTest.getUser().toOption().toNullable()!.emailAddress,
+          underTest.getUser().toOption().toNullable()!.email,
           newEmail,
         );
         underTest.watchUser().listen(
               expectAsync1(
                 (failurOrUser) => expect(
-                  underTest.getUser().toOption().toNullable()!.emailAddress,
+                  underTest.getUser().toOption().toNullable()!.email,
                   newEmail,
                 ),
               ),
@@ -372,13 +372,13 @@ void main() {
         // Assert
         expect(failurOrUnit.isRight(), true);
         expect(
-          underTest.getUser().toOption().toNullable()!.profile.username,
+          underTest.getUser().toOption().toNullable()!.profile.name,
           newUsername,
         );
         underTest.watchUser().listen(
               expectAsync1(
                 (failurOrUser) => expect(
-                  underTest.getUser().toOption().toNullable()!.profile.username,
+                  underTest.getUser().toOption().toNullable()!.profile.name,
                   newUsername,
                 ),
               ),

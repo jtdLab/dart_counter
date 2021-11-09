@@ -70,7 +70,7 @@ class MockedUserService implements IUserService {
       if (newEmailAddress.isValid()) {
         final user = getUser().toOption().toNullable()!;
         _userController!.add(
-          right(user.copyWith(emailAddress: newEmailAddress)),
+          right(user.copyWith(email: newEmailAddress)),
         );
         return right(unit);
       }
@@ -104,7 +104,7 @@ class MockedUserService implements IUserService {
     if (hasNetworkConnection) {
       if (newUsername.isValid()) {
         final user = getUser().toOption().toNullable()!;
-        final newProfile = user.profile.copyWith(username: newUsername);
+        final newProfile = user.profile.copyWith(name: newUsername);
         _userController!.add(right(user.copyWith(profile: newProfile)));
         return right(unit);
       }
