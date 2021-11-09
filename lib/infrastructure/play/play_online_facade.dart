@@ -55,7 +55,7 @@ class PlayOnlineFacade implements IPlayOnlineService {
   @override
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame() async {
     final user = _userFacade.getUser();
-    final idToken = user?.fold(
+    final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,
     );
@@ -79,7 +79,7 @@ class PlayOnlineFacade implements IPlayOnlineService {
     required UniqueId gameId,
   }) async {
     final user = _userFacade.getUser();
-    final idToken = user?.fold(
+    final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,
     );

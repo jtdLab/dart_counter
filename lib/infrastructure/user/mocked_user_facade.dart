@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
@@ -37,14 +38,10 @@ class MockedUserFacade implements IUserService {
   }
 
   @override
-  Either<UserFailure, User>? getUser() {
+  Either<UserFailure, User> getUser() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _userController.value;
-      } catch (e) {
-        return null;
-      }
+      return _userController.value;
     }
 
     return left(const UserFailure.failure()); // TODO name better
@@ -59,7 +56,7 @@ class MockedUserFacade implements IUserService {
 
   @override
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
-    required File newPhoto,
+    required Uint8List newPhotoData,
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {

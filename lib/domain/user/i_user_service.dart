@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -6,44 +6,42 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dartz/dartz.dart';
 
-class NotDecodableImageError extends Error {}
-
-/// Domain interface for all actions related to the user of the app.
+/// Domain interface for all actions related to the app-user.
 abstract class IUserService {
-  /// Returns the signed in user.
+  /// Returns the app-user or failure.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
-  Either<UserFailure, User>? getUser(); // TODO good ?
+  /// {@template not_authenticated_error}
+  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
+  /// {@endtemplate}
+  Either<UserFailure, User> getUser();
 
-  /// Returns a stream of the signed in user.
+  /// Returns a stream of the app-user or failures.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  /// {@macro not_authenticated_error}
   Stream<Either<UserFailure, User>> watchUser();
 
-  // TODO dont take a file here instead take bytes
   /// Updates the profile photo of the user.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
-  /// Throws [NotDecodableImageError] if [newPhoto] doesn`t contain a decodable image.
+  /// {@macro not_authenticated_error}
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
-    required File newPhoto,
+    required Uint8List newPhotoData,
   });
 
   /// Deletes the profile photo of the user.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  /// {@macro not_authenticated_error}
   Future<Either<UserFailure, Unit>> deleteProfilePhoto();
 
   /// Updates the username of the user.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  /// {@macro not_authenticated_error}
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   });
 
   /// Updates the email address of the user.
   ///
-  /// Throws [NotAuthenticatedError] if the user is not signed in.
+  /// {@macro not_authenticated_error}
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
   });

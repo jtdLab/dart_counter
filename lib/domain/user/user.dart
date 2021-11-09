@@ -7,6 +7,7 @@ import 'package:kt_dart/kt.dart';
 
 part 'user.freezed.dart';
 
+/// Domain model of an app-user.
 @freezed
 class User with _$User {
   const factory User({

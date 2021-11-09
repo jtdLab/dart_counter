@@ -50,7 +50,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
           TrainingState.initial(
             type: Type.single,
             gameSnapshot: single.GameSnapshot.initial(
-              username: _userFacade.getUser()?.fold(
+              username: _userFacade.getUser().fold(
                     (failure) => throw Error(),
                     (user) => user.profile.username.getOrCrash(),
                   ),
@@ -59,7 +59,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
         ) {
     on<TrainingCreated>((event, emit) async {
       if (state is TrainingInitial) {
-        final user = _userFacade.getUser()?.fold(
+        final user = _userFacade.getUser().fold(
               (failure) => null,
               (user) => user,
             );
@@ -185,7 +185,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
       }
     });
     on<TrainingTypeChanged>((event, emit) {
-      final user = _userFacade.getUser()?.fold(
+      final user = _userFacade.getUser().fold(
             (failure) => null,
             (user) => user,
           );

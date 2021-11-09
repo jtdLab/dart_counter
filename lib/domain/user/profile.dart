@@ -6,6 +6,7 @@ import 'career_stats.dart';
 
 part 'profile.freezed.dart';
 
+/// Domain model of an app-users profile.
 @freezed
 class Profile with _$Profile {
   const factory Profile({

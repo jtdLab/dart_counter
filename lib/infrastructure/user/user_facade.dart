@@ -47,7 +47,7 @@ class UserFacade implements IUserService {
   }
 
   @override
-  Either<UserFailure, User>? getUser() {
+  Either<UserFailure, User> getUser() {
     _checkAuth();
     final failureOrUser = _userController.value;
 
@@ -75,12 +75,13 @@ class UserFacade implements IUserService {
 
   @override
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
-    required File newPhoto,
+    required Uint8List newPhotoData,
   }) async {
     _checkAuth();
-    final decodedImage = decodeImage(newPhoto.readAsBytesSync());
+    final decodedImage = decodeImage(newPhotoData);
     if (decodedImage == null) {
-      throw NotDecodableImageError();
+      print('couldn not decode image.');
+      return left(const UserFailure.failure()); // TODO name better
     }
 
     try {

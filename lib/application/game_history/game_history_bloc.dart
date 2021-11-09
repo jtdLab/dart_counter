@@ -44,11 +44,10 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
 
   Stream<GameHistoryState> _mapFetchGameHistoryAllRequestedToState() async* {
     final failureOrUser = _userService.getUser();
-    final uid = failureOrUser?.fold(
-          (failure) => throw Error(), // TODO failure here pls
-          (user) => user.id,
-        ) ??
-        (throw Error()); // TODO failure here pls
+    final uid = failureOrUser.fold(
+      (failure) => throw Error(), // TODO failure here pls
+      (user) => user.id,
+    );
 
     final failureOrOnlineGameHistory =
         await _gameHistoryService.fetchGameHistoryOnline(uid: uid.getOrCrash());
@@ -95,11 +94,10 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
 
     if (event.userId == null) {
       final failureOrUser = _userService.getUser();
-      uid = failureOrUser?.fold(
-            (failure) => throw Error(), // TODO failure here pls
-            (user) => user.id,
-          ) ??
-          (throw Error()); // TODO failure here pls
+      uid = failureOrUser.fold(
+        (failure) => throw Error(), // TODO failure here pls
+        (user) => user.id,
+      );
     } else {
       uid = event.userId!;
     }

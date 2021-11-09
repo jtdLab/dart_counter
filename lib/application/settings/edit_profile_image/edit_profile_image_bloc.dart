@@ -44,8 +44,10 @@ class EditProfileImageBloc
     if (pickedFile == null) {
       return;
     }
-    final file = File(pickedFile.path);
-    _userService.updateProfilePhoto(newPhoto: file);
+
+    _userService.updateProfilePhoto(
+      newPhotoData: await pickedFile.readAsBytes(),
+    );
   }
 
   Stream<EditProfileImageState> _mapChoosePressedToState() async* {
@@ -54,8 +56,10 @@ class EditProfileImageBloc
     if (pickedFile == null) {
       return;
     }
-    final file = File(pickedFile.path);
-    _userService.updateProfilePhoto(newPhoto: file);
+
+    _userService.updateProfilePhoto(
+      newPhotoData: await pickedFile.readAsBytes(),
+    );
   }
 
   @override

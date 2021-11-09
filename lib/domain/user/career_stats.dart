@@ -3,8 +3,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'career_stats.freezed.dart';
 
+/// Indicates wheter a specific stat increased, declined or did not change in recent time.
 enum Trend { up, down, none }
 
+/// Domain model of the stats an app-user has achieved since created.
 @freezed
 class CareerStats with _$CareerStats {
   const factory CareerStats({
