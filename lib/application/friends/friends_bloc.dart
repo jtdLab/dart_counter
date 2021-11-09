@@ -5,7 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,14 +18,14 @@ part 'friends_state.dart';
 @lazySingleton
 class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     with AutoResetLazySingleton {
-  final IFriendFacade _friendFacade;
+  final IFriendService _friendService;
 
   final DataWatcherBloc _dataWatcherBloc;
 
   StreamSubscription? _dataWatcherSubscription;
 
   FriendsBloc(
-    this._friendFacade,
+    this._friendService,
     this._dataWatcherBloc,
   ) : super(
           _dataWatcherBloc.state.maybeMap(
@@ -50,7 +50,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
       }
     });
 
-    _friendFacade.markReceivedFriendRequestsAsRead();
+    _friendService.markReceivedFriendRequestsAsRead();
   }
 
   @override
@@ -74,13 +74,13 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
   Stream<FriendsState> _mapFriendRequestAcceptedToState(
     FriendsFriendRequestAccepted event,
   ) async* {
-    _friendFacade.acceptFriendRequest(friendRequest: event.friendRequest);
+    _friendService.acceptFriendRequest(friendRequest: event.friendRequest);
   }
 
   Stream<FriendsState> _mapFriendRequestDeclinedToState(
     FriendsFriendRequestDeclined event,
   ) async* {
-    _friendFacade.declineFriendRequest(friendRequest: event.friendRequest);
+    _friendService.declineFriendRequest(friendRequest: event.friendRequest);
   }
 
   Stream<FriendsState> _mapDataReceivedToState(

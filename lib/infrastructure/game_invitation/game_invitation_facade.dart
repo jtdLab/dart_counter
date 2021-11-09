@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_client/dart_client.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
+import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -17,9 +17,9 @@ import 'game_invitation_dto.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IGameInvitationFacade)
-class GameInvitationFacade implements IGameInvitationFacade {
-  final IAuthFacade _authFacade;
+@LazySingleton(as: IGameInvitationService)
+class GameInvitationFacade implements IGameInvitationService {
+  final IAuthService _authFacade;
   final FirebaseFirestore _firestore;
   final DartClient _dartClient;
   final SocialClient _socialClient;

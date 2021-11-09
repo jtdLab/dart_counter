@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dart_counter/domain/connectivity/i_connectivity_facade.dart';
+import 'package:dart_counter/domain/connectivity/i_connectivity_service.dart';
 import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';

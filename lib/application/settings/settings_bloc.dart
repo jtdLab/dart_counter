@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/errors.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:flutter/widgets.dart';
@@ -19,14 +19,14 @@ part 'settings_bloc.freezed.dart';
 @lazySingleton
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IAuthService _authService;
 
   final DataWatcherBloc _dataWatcherBloc;
 
   StreamSubscription? _dataWatcherSubscription;
 
   SettingsBloc(
-    this._authFacade,
+    this._authService,
     this._dataWatcherBloc,
   ) : super(
           _dataWatcherBloc.state.maybeMap(
@@ -74,7 +74,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
   }
 
   Stream<SettingsState> _mapSignOutPressedToState() async* {
-    await _authFacade.signOut();
+    await _authService.signOut();
   }
 
   @override

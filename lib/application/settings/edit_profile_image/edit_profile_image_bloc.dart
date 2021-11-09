@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,10 +17,10 @@ part 'edit_profile_image_bloc.freezed.dart';
 class EditProfileImageBloc
     extends Bloc<EditProfileImageEvent, EditProfileImageState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
+  final IUserService _userService;
 
   EditProfileImageBloc(
-    this._userFacade,
+    this._userService,
   ) : super(const EditProfileImageState.initial());
 
   @override
@@ -35,7 +35,7 @@ class EditProfileImageBloc
   }
 
   Stream<EditProfileImageState> _mapDeletePressedToState() async* {
-    _userFacade.deleteProfilePhoto();
+    _userService.deleteProfilePhoto();
   }
 
   Stream<EditProfileImageState> _mapTakePressedToState() async* {
@@ -45,7 +45,7 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updateProfilePhoto(newPhoto: file);
+    _userService.updateProfilePhoto(newPhoto: file);
   }
 
   Stream<EditProfileImageState> _mapChoosePressedToState() async* {
@@ -55,7 +55,7 @@ class EditProfileImageBloc
       return;
     }
     final file = File(pickedFile.path);
-    _userFacade.updateProfilePhoto(newPhoto: file);
+    _userService.updateProfilePhoto(newPhoto: file);
   }
 
   @override

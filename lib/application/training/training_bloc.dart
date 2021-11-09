@@ -19,7 +19,7 @@ import 'package:dart_counter/domain/training/double/game_snapshot.dart'
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/type.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -36,7 +36,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
   final IScoreTrainingService _scoreTrainingService;
   final IBobsTwentySevenService _bobsTwentySevenService;
 
-  final IUserFacade _userFacade;
+  final IUserService _userFacade;
 
   StreamSubscription? _gameSnapshotsSubscription;
 

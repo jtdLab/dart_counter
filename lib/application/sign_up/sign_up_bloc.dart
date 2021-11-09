@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,12 +18,12 @@ part 'sign_up_state.dart';
 @lazySingleton
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IAuthService _authService;
 
   final DataWatcherBloc _dataWatcherBloc;
 
   SignUpBloc(
-    this._authFacade,
+    this._authService,
     this._dataWatcherBloc,
   ) : super(SignUpState.initial());
 
@@ -95,7 +95,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         passwordsMatch) {
       await Future.delayed(const Duration(milliseconds: 500));
       final signUpResult =
-          await _authFacade.singUpWithEmailAndUsernameAndPassword(
+          await _authService.singUpWithEmailAndUsernameAndPassword(
         emailAddress: state.email,
         username: state.username,
         password: state.password,
@@ -113,7 +113,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         );
 
         if (state is DataWatcherLoadFailure) {
-          await _authFacade.signOut();
+          await _authService.signOut();
           // TODO delete user or go to sign in -> user is created but sign in failed
           authFailure = const AuthFailure.serverError(); // TODO data load error
         }

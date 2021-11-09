@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/auth/auth_bloc.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,11 +23,10 @@ part 'data_watcher_state.dart';
 @lazySingleton
 class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
-  final IGameInvitationFacade _gameInvitationFacade;
-  final IFriendFacade _friendFacade;
-
-  final AuthBloc _authBloc;
+  final IAuthService _authService;
+  final IUserService _userService;
+  final IGameInvitationService _gameInvitationService;
+  final IFriendService _friendService;
 
   StreamSubscription? _authSubscription;
   StreamSubscription? _userSubscription;
@@ -37,13 +37,13 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   StreamSubscription? _sentFriendRequestsSubscription;
 
   DataWatcherBloc(
-    this._userFacade,
-    this._gameInvitationFacade,
-    this._friendFacade,
-    this._authBloc,
+    this._authService,
+    this._userService,
+    this._gameInvitationService,
+    this._friendService,
   ) : super(const DataWatcherState.loadInProgress()) {
-    _authSubscription = _authBloc.stream.listen((authState) {
-      if (authState is Authenticated) {
+    _authSubscription = _authService.watchIsAuthenticated().listen((authState) {
+      if (authState) {
         //add(DataWatcherEvent.watchDataStarted(appUserId: authState.appUserId));
       } else {
         _cancelDataSubscriptions();
@@ -74,14 +74,14 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   Stream<DataWatcherState> _mapWatchDataStartedToState(
     WatchDataStarted event,
   ) async* {
-    _userSubscription = _userFacade.watchUser().listen((failureOrUser) {
+    _userSubscription = _userService.watchUser().listen((failureOrUser) {
       failureOrUser.fold(
         (failure) => add(const DataWatcherEvent.failureReceived()),
         (user) => add(DataWatcherEvent.userReceived(user: user)),
       );
     });
 
-    _receivedGameInvitationsSubscription = _gameInvitationFacade
+    _receivedGameInvitationsSubscription = _gameInvitationService
         .watchReceivedInvitations()
         .listen((failureOrReceivedGameInvitations) {
       failureOrReceivedGameInvitations.fold(
@@ -94,7 +94,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
       );
     });
 
-    _sentGameInvitationsSubscription = _gameInvitationFacade
+    _sentGameInvitationsSubscription = _gameInvitationService
         .watchSentInvitations()
         .listen((failureOrSentGameInvitations) {
       failureOrSentGameInvitations.fold(
@@ -108,7 +108,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     });
 
     _friendsSubscription =
-        _friendFacade.watchFriends().listen((failureOrFriends) {
+        _friendService.watchFriends().listen((failureOrFriends) {
       failureOrFriends.fold(
         (failure) => add(const DataWatcherEvent.failureReceived()),
         (friends) => add(
@@ -119,7 +119,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
       );
     });
 
-    _receivedFriendRequestsSubscription = _friendFacade
+    _receivedFriendRequestsSubscription = _friendService
         .watchReceivedFriendRequests()
         .listen((failureOrReceivedFriendRequests) {
       failureOrReceivedFriendRequests.fold(
@@ -132,7 +132,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
       );
     });
 
-    _sentFriendRequestsSubscription = _friendFacade
+    _sentFriendRequestsSubscription = _friendService
         .watchSentFriendRequests()
         .listen((failureOrSentFriendRequests) {
       failureOrSentFriendRequests.fold(

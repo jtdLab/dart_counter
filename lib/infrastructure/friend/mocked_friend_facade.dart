@@ -1,10 +1,10 @@
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:dart_counter/main_dev.dart';
@@ -15,9 +15,9 @@ import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
-@LazySingleton(as: IFriendFacade)
-class MockedFriendFacade implements IFriendFacade {
-  final IAuthFacade _authFacade;
+@LazySingleton(as: IFriendService)
+class MockedFriendFacade implements IFriendService {
+  final IAuthService _authFacade;
 
   BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
 

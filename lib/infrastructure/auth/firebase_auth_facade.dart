@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -16,8 +16,8 @@ import 'package:social_client/social_client.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IAuthFacade)
-class FirebaseAuthFacade implements IAuthFacade {
+@LazySingleton(as: IAuthService)
+class FirebaseAuthFacade implements IAuthService {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final FacebookAuth _facebookAuth;

@@ -6,8 +6,8 @@ import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dar
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/training/training_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_offline_service.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/training/training_game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -21,8 +21,8 @@ part 'home_state.dart';
 
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
-  final IPlayOfflineFacade _playOfflineFacade;
-  final IPlayOnlineFacade _playOnlineFacade;
+  final IPlayOfflineService _playOfflineService;
+  final IPlayOnlineService _playOnlineService;
 
   final DataWatcherBloc _dataWatcherBloc;
   final PlayBloc _playBloc;
@@ -33,8 +33,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   StreamSubscription? _trainingGameSnapshotsSubscription;
 
   HomeBloc(
-    this._playOfflineFacade,
-    this._playOnlineFacade,
+    this._playOfflineService,
+    this._playOnlineService,
     this._dataWatcherBloc,
     this._playBloc,
     this._trainingBloc,
@@ -103,7 +103,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     yield state.copyWith(loading: true);
 
     await Future.delayed(const Duration(seconds: 1));
-    final failureOrUnit = await _playOnlineFacade.createGame();
+    final failureOrUnit = await _playOnlineService.createGame();
 
     yield* failureOrUnit.fold(
       (failure) async* {
@@ -120,7 +120,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
     final appUser = (_dataWatcherBloc.state as DataWatcherLoadSuccess).user;
 
-    _playOfflineFacade.createGame(owner: appUser);
+    _playOfflineService.createGame(owner: appUser);
     _playBloc.add(
       const PlayEvent.gameCreated(online: false),
     );

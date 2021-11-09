@@ -9,7 +9,7 @@ import 'package:dartz/dartz.dart';
 class NotDecodableImageError extends Error {}
 
 /// Domain interface for all actions related to the user of the app.
-abstract class IUserFacade {
+abstract class IUserService {
   /// Returns the signed in user.
   ///
   /// Throws [NotAuthenticatedError] if the user is not signed in.

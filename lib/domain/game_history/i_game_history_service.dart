@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 
 /// Domain interface for all actions related to the game history of the app-user and other users.
-abstract class IGameHistoryFacade {
+abstract class IGameHistoryService {
   /// Fetches the offline game history of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.

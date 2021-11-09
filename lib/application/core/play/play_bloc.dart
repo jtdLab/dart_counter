@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_offline_service.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -15,14 +15,14 @@ part 'play_state.dart';
 
 @lazySingleton
 class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
-  final IPlayOfflineFacade _playOfflineFacade;
-  final IPlayOnlineFacade _playOnlineFacade;
+  final IPlayOfflineService _playOfflineService;
+  final IPlayOnlineService _playOnlineService;
 
   StreamSubscription? _gameSnapshotsSubscription;
 
   PlayBloc(
-    this._playOfflineFacade,
-    this._playOnlineFacade,
+    this._playOfflineService,
+    this._playOnlineService,
   ) : super(
           const PlayState.initial(),
         );
@@ -46,13 +46,13 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
 
     final GameSnapshot gameSnapshot;
     if (online) {
-      final gameSnapshots = _playOnlineFacade.watchGame();
+      final gameSnapshots = _playOnlineService.watchGame();
       _gameSnapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
         add(PlayEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
       });
       gameSnapshot = await gameSnapshots.first;
     } else {
-      final gameSnapshots = _playOfflineFacade.watchGame();
+      final gameSnapshots = _playOfflineService.watchGame();
       _gameSnapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
         add(PlayEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
       });
@@ -63,7 +63,7 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> with AutoResetLazySingleton {
   }
 
   Stream<PlayState> _mapGameJoinedState() async* {
-    final gameSnapshots = _playOnlineFacade.watchGame();
+    final gameSnapshots = _playOnlineService.watchGame();
     _gameSnapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
       add(PlayEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
     });

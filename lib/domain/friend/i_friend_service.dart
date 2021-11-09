@@ -10,7 +10,7 @@ import 'friend.dart';
 import 'friend_request.dart';
 
 /// Domain interface for all actions related to friends/friendships of the app-user.
-abstract class IFriendFacade {
+abstract class IFriendService {
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.

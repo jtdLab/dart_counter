@@ -1,8 +1,8 @@
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/game_history/i_game_history_facade.dart';
+import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/play/game.dart';
@@ -11,9 +11,9 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 @Environment(Environment.dev)
-@LazySingleton(as: IGameHistoryFacade)
-class MockedGameHistoryFacade implements IGameHistoryFacade {
-  final IAuthFacade _authFacade;
+@LazySingleton(as: IGameHistoryService)
+class MockedGameHistoryFacade implements IGameHistoryService {
+  final IAuthService _authFacade;
 
   MockedGameHistoryFacade(
     this._authFacade,

@@ -3,10 +3,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
@@ -21,11 +21,11 @@ import 'package:social_client/social_client.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IUserFacade)
-class UserFacade implements IUserFacade {
+@LazySingleton(as: IUserService)
+class UserFacade implements IUserService {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
-  final IAuthFacade _authFacade;
+  final IAuthService _authFacade;
   final SocialClient _socialClient;
 
   BehaviorSubject<Either<UserFailure, User>> _userController;

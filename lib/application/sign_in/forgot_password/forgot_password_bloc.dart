@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,10 +17,10 @@ part 'forgot_password_state.dart';
 @lazySingleton
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IAuthService _authService;
 
   ForgotPasswordBloc(
-    this._authFacade,
+    this._authService,
   ) : super(
           ForgotPasswordState.initial(
             email: EmailAddress.empty(),
@@ -66,7 +66,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
           emit(const ForgotPasswordSubmitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
-          authFailure = (await _authFacade.sendPasswordResetEmail(
+          authFailure = (await _authService.sendPasswordResetEmail(
             emailAddress: email,
           ))
               .fold(

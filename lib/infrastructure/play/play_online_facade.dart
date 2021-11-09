@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:dart_client/dart_client.dart' as dc;
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/play/game_snapshot_dto.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dartz/dartz.dart';
@@ -18,10 +18,10 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IPlayOnlineFacade)
-class PlayOnlineFacade implements IPlayOnlineFacade {
+@LazySingleton(as: IPlayOnlineService)
+class PlayOnlineFacade implements IPlayOnlineService {
   final dc.DartClient _dartClient;
-  final IUserFacade _userFacade;
+  final IUserService _userFacade;
 
   final BehaviorSubject<OnlineGameSnapshot> _gameController;
 

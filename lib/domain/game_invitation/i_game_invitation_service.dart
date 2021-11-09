@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 
 /// Domain interface for all actions related to the inviting process of games.
-abstract class IGameInvitationFacade {
+abstract class IGameInvitationService {
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.

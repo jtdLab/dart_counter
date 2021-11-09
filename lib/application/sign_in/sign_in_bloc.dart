@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/core.dart';
@@ -19,12 +19,12 @@ part 'sign_in_state.dart';
 @lazySingleton
 class SignInBloc extends Bloc<SignInEvent, SignInState>
     with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IAuthService _authService;
 
   final DataWatcherBloc _dataWatcherBloc;
 
   SignInBloc(
-    this._authFacade,
+    this._authService,
     this._dataWatcherBloc,
   ) : super(SignInState.initial());
 
@@ -70,7 +70,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
     if (isEmailValid && isPasswordValid) {
       yield* _signIn(
-        () => _authFacade.singInWithEmailAndPassword(
+        () => _authService.singInWithEmailAndPassword(
           emailAddress: state.email,
           password: state.password,
         ),
@@ -86,15 +86,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }
 
   Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
-    yield* _signIn(() => _authFacade.signInWithFacebook());
+    yield* _signIn(() => _authService.signInWithFacebook());
   }
 
   Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
-    yield* _signIn(() => _authFacade.signInWithGoogle());
+    yield* _signIn(() => _authService.signInWithGoogle());
   }
 
   Stream<SignInState> _mapSignInWithApplePressedToState() async* {
-    yield* _signIn(() => _authFacade.signInWithApple());
+    yield* _signIn(() => _authService.signInWithApple());
   }
 
   Stream<SignInState> _signIn(
@@ -123,7 +123,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
       if (state is DataWatcherLoadFailure) {
         // couldnt load data
-        await _authFacade.signOut();
+        await _authService.signOut();
         authFailure = const AuthFailure.serverError();
       }
     }

@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/friend/user_search_result_dto.dart';
 import 'package:dartz/dartz.dart';
@@ -22,10 +22,10 @@ import 'friend_request_dto.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IFriendFacade)
-class FriendFacade implements IFriendFacade {
-  final IAuthFacade _authFacade;
-  final IUserFacade _userFacade;
+@LazySingleton(as: IFriendService)
+class FriendFacade implements IFriendService {
+  final IAuthService _authFacade;
+  final IUserService _userFacade;
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 

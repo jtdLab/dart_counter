@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
+import 'package:dart_counter/domain/play/i_play_offline_service.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/infrastructure/play/player_snapshot_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
@@ -20,8 +19,8 @@ import 'throw_dto.dart';
 @Environment(Environment.dev)
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IPlayOfflineFacade)
-class PlayOfflineFacade implements IPlayOfflineFacade {
+@LazySingleton(as: IPlayOfflineService)
+class PlayOfflineFacade implements IPlayOfflineService {
   final BehaviorSubject<OfflineGameSnapshot> _gameController;
 
   ex.Game? _game;

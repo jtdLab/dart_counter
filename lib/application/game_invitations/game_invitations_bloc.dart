@@ -5,9 +5,9 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
+import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,8 +20,8 @@ part 'game_invitations_state.dart';
 
 @lazySingleton
 class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsState> with AutoResetLazySingleton{
-  final IPlayOnlineFacade _playOnlineFacade;
-  final IGameInvitationFacade _gameInvitationFacade;
+  final IPlayOnlineService _playOnlineFacade;
+  final IGameInvitationService _gameInvitationService;
 
   final DataWatcherBloc _dataWatcherBloc;
   final PlayBloc _playBloc;
@@ -31,7 +31,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
 
   GameInvitationsBloc(
     this._playOnlineFacade,
-    this._gameInvitationFacade,
+    this._gameInvitationService,
     this._dataWatcherBloc,
     this._playBloc,
   ) : super(
@@ -63,7 +63,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
       }
     });
 
-    _gameInvitationFacade.markReceivedInvitationsAsRead();
+    _gameInvitationService.markReceivedInvitationsAsRead();
   }
 
   @override
@@ -101,7 +101,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
       },
       (_) async* {
         _playBloc.add(const PlayEvent.gameJoined());
-        await _gameInvitationFacade.accept(invitation: event.gameInvitation);
+        await _gameInvitationService.accept(invitation: event.gameInvitation);
       },
     );
   }
@@ -109,7 +109,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
   Stream<GameInvitationsState> _mapInvitationDeclinedToState(
     GameInvitationsInvitationDeclined event,
   ) async* {
-    _gameInvitationFacade.decline(invitation: event.gameInvitation);
+    _gameInvitationService.decline(invitation: event.gameInvitation);
   }
 
   Stream<GameInvitationsState> _mapGameReceivedToState(

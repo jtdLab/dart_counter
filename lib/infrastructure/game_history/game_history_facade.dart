@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
-import 'package:dart_counter/domain/game_history/i_game_history_facade.dart';
+import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/play/game.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/play/game_dto.dart';
@@ -11,8 +11,8 @@ import 'package:injectable/injectable.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IGameHistoryFacade)
-class GameHistoryFacade implements IGameHistoryFacade {
+@LazySingleton(as: IGameHistoryService)
+class GameHistoryFacade implements IGameHistoryService {
   final FirebaseFirestore _firestore;
 
   GameHistoryFacade(

@@ -5,8 +5,8 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/dart.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_offline_service.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
@@ -21,16 +21,16 @@ part 'in_game_state.dart';
 @lazySingleton
 class InGameBloc extends Bloc<InGameEvent, InGameState>
     with AutoResetLazySingleton {
-  final IPlayOfflineFacade _playOfflineFacade;
-  final IPlayOnlineFacade _playOnlineFacade;
+  final IPlayOfflineService _playOfflineService;
+  final IPlayOnlineService _playOnlineService;
 
   final PlayBloc _playBloc;
 
   StreamSubscription? _gameSnapshotsSubscription;
 
   InGameBloc(
-    this._playOfflineFacade,
-    this._playOnlineFacade,
+    this._playOfflineService,
+    this._playOnlineService,
     this._playBloc,
   ) : super(
           _playBloc.state.maybeMap(
@@ -67,9 +67,9 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (online) {
-        _playOnlineFacade.cancelGame();
+        _playOnlineService.cancelGame();
       } else {
-        _playOfflineFacade.cancelGame();
+        _playOfflineService.cancelGame();
       }
     }
   }
@@ -82,9 +82,9 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (online) {
-        _playOnlineFacade.undoThrow();
+        _playOnlineService.undoThrow();
       } else {
-        _playOfflineFacade.undoThrow();
+        _playOfflineService.undoThrow();
       }
     }
   }
@@ -99,12 +99,12 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
       final t = event.t;
 
       if (online) {
-        final failureOrUnit = await _playOnlineFacade.performThrow(t: t);
+        final failureOrUnit = await _playOnlineService.performThrow(t: t);
         if (failureOrUnit.isRight()) {
           yield state.copyWith(inputOrDarts: left(0));
         }
       } else {
-        _playOfflineFacade.performThrow(t: t);
+        _playOfflineService.performThrow(t: t);
         // TODO wait for result if throw as sucess ful
         yield state.copyWith(inputOrDarts: left(0));
       }

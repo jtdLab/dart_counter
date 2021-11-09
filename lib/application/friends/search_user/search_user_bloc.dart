@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/friend/i_friend_facade.dart';
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dart_counter/injection.dart';
@@ -19,10 +19,10 @@ part 'search_user_bloc.freezed.dart';
 @lazySingleton
 class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     with AutoResetLazySingleton {
-  final IFriendFacade _friendFacade;
+  final IFriendService _friendService;
 
   SearchUserBloc(
-    this._friendFacade,
+    this._friendService,
   ) : super(SearchUserState.initial());
 
   @override
@@ -42,7 +42,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
       yield SearchUserState.initial();
       return;
     }
-    final failureOrSearchResults = await _friendFacade.searchUserByUsername(
+    final failureOrSearchResults = await _friendService.searchUserByUsername(
       username: event.newSearchString,
     );
     yield failureOrSearchResults.fold(

@@ -1,9 +1,9 @@
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_facade.dart';
+import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -11,9 +11,9 @@ import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
-@LazySingleton(as: IGameInvitationFacade)
-class MockedGameInvitationFacade implements IGameInvitationFacade {
-  final IAuthFacade _authFacade;
+@LazySingleton(as: IGameInvitationService)
+class MockedGameInvitationFacade implements IGameInvitationService {
+  final IAuthService _authFacade;
 
   BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _receivedGameInvitationsController;

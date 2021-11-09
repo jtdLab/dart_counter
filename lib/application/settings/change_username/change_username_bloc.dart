@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,10 +17,10 @@ part 'change_username_state.dart';
 @lazySingleton
 class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
+  final IUserService _userService;
 
   ChangeUsernameBloc(
-    this._userFacade,
+    this._userService,
   ) : super(
           ChangeUsernameState.initial(
             username: Username.empty(),
@@ -66,7 +66,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
           emit(const ChangeUsernameSubmitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
-          userFailure = (await _userFacade.updateUsername(
+          userFailure = (await _userService.updateUsername(
             newUsername: username,
           ))
               .fold(

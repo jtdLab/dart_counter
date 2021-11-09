@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/player_snapshot.dart';
@@ -10,7 +10,7 @@ import 'package:dart_counter/domain/play/stats.dart';
 import 'package:dart_counter/domain/play/status.dart';
 import 'package:dart_counter/domain/play/throw.dart';
 import 'package:dart_counter/domain/play/type.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/play/throw_dto.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -21,9 +21,9 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
-@LazySingleton(as: IPlayOnlineFacade)
-class MockedPlayOnlineFacade implements IPlayOnlineFacade {
-  final IUserFacade _userFacade; // TODO use or remove
+@LazySingleton(as: IPlayOnlineService)
+class MockedPlayOnlineFacade implements IPlayOnlineService {
+  final IUserService _userFacade; // TODO use or remove
 
   final BehaviorSubject<OnlineGameSnapshot> _gameController;
 

@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_offline_facade.dart';
-import 'package:dart_counter/domain/play/i_play_online_facade.dart';
+import 'package:dart_counter/domain/play/i_play_offline_service.dart';
+import 'package:dart_counter/domain/play/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/mode.dart';
 import 'package:dart_counter/domain/play/type.dart';
 import 'package:dart_counter/injection.dart';
@@ -19,16 +19,16 @@ part 'create_game_state.dart';
 @lazySingleton
 class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
     with AutoResetLazySingleton {
-  final IPlayOfflineFacade _playOfflineFacade;
-  final IPlayOnlineFacade _playOnlineFacade;
+  final IPlayOfflineService _playOfflineService;
+  final IPlayOnlineService _playOnlineService;
 
   final PlayBloc _playBloc;
 
   StreamSubscription? _gameSnapshotsSubscription;
 
   CreateGameBloc(
-    this._playOfflineFacade,
-    this._playOnlineFacade,
+    this._playOfflineService,
+    this._playOnlineService,
     this._playBloc,
   ) : super(
           _playBloc.state.maybeMap(
@@ -74,9 +74,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (online) {
-        _playOnlineFacade.cancelGame();
+        _playOnlineService.cancelGame();
       } else {
-        _playOfflineFacade.cancelGame();
+        _playOfflineService.cancelGame();
       }
     }
   }
@@ -92,9 +92,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newIndex = event.newIndex;
 
       if (online) {
-        _playOnlineFacade.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
+        _playOnlineService.reorderPlayer(oldIndex: oldIndex, newIndex: newIndex);
       } else {
-        _playOfflineFacade.reorderPlayer(
+        _playOfflineService.reorderPlayer(
           oldIndex: oldIndex,
           newIndex: newIndex,
         );
@@ -110,7 +110,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       if (online) {
         // TODO send invitation
       } else {
-        _playOfflineFacade.addPlayer();
+        _playOfflineService.addPlayer();
       }
     }
   }
@@ -125,9 +125,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final index = event.index;
 
       if (online) {
-        _playOnlineFacade.removePlayer(index: index);
+        _playOnlineService.removePlayer(index: index);
       } else {
-        _playOfflineFacade.removePlayer(index: index);
+        _playOfflineService.removePlayer(index: index);
       }
     }
   }
@@ -143,7 +143,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newName = event.newName;
 
       if (!online) {
-        _playOfflineFacade.updateName(index: index, newName: newName);
+        _playOfflineService.updateName(index: index, newName: newName);
       }
     }
   }
@@ -158,9 +158,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newStartingPoints = event.newStartingPoints;
 
       if (online) {
-        _playOnlineFacade.setStartingPoints(startingPoints: newStartingPoints);
+        _playOnlineService.setStartingPoints(startingPoints: newStartingPoints);
       } else {
-        _playOfflineFacade.setStartingPoints(startingPoints: newStartingPoints);
+        _playOfflineService.setStartingPoints(startingPoints: newStartingPoints);
       }
     }
   }
@@ -175,9 +175,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newMode = event.newMode;
 
       if (online) {
-        _playOnlineFacade.setMode(mode: newMode);
+        _playOnlineService.setMode(mode: newMode);
       } else {
-        _playOfflineFacade.setMode(mode: newMode);
+        _playOfflineService.setMode(mode: newMode);
       }
     }
   }
@@ -192,9 +192,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newSize = event.newSize;
 
       if (online) {
-        _playOnlineFacade.setSize(size: newSize);
+        _playOnlineService.setSize(size: newSize);
       } else {
-        _playOfflineFacade.setSize(size: newSize);
+        _playOfflineService.setSize(size: newSize);
       }
     }
   }
@@ -209,9 +209,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newType = event.newType;
 
       if (online) {
-        _playOnlineFacade.setType(type: newType);
+        _playOnlineService.setType(type: newType);
       } else {
-        _playOfflineFacade.setType(type: newType);
+        _playOfflineService.setType(type: newType);
       }
     }
   }
@@ -222,9 +222,9 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (online) {
-        _playOnlineFacade.startGame();
+        _playOnlineService.startGame();
       } else {
-        _playOfflineFacade.startGame();
+        _playOfflineService.startGame();
       }
     }
   }
@@ -235,7 +235,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (!online) {
-        _playOfflineFacade.addDartBot();
+        _playOfflineService.addDartBot();
       }
     }
   }
@@ -246,7 +246,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
       if (!online) {
-        _playOfflineFacade.removeDartBot();
+        _playOfflineService.removeDartBot();
       }
     }
   }
@@ -261,7 +261,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
       final newTargetAverage = event.newTargetAverage;
 
       if (!online) {
-        _playOfflineFacade.setDartBotTargetAverage(
+        _playOfflineService.setDartBotTargetAverage(
           targetAverage: newTargetAverage,
         );
       }

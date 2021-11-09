@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,12 +14,12 @@ part 'auth_state.dart';
 
 @lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
-  final IAuthFacade _authFacade;
+  final IAuthService _authService;
 
   AuthBloc(
-    this._authFacade,
+    this._authService,
   ) : super(
-          _authFacade.isAuthenticated()
+          _authService.isAuthenticated()
               ? const AuthState.authenticated()
               : const AuthState.unauthenticated(),
         ) {
@@ -34,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
     Emitter<AuthState> emit,
   ) async {
     await emit.forEach(
-      _authFacade.watchIsAuthenticated(),
+      _authService.watchIsAuthenticated(),
       onData: (bool isAuthenticated) => isAuthenticated
           ? const AuthState.authenticated()
           : const AuthState.unauthenticated(),

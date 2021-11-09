@@ -10,7 +10,7 @@ import 'throw.dart';
 import 'type.dart';
 
 /// Domain interface for all actions related playing an offline game.
-abstract class IPlayOfflineFacade {
+abstract class IPlayOfflineService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<OfflineGameSnapshot> watchGame();
 

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dart_counter/domain/auth/i_auth_facade.dart';
+import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/main_dev.dart';
@@ -14,9 +14,9 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
-@LazySingleton(as: IUserFacade)
-class MockedUserFacade implements IUserFacade {
-  final IAuthFacade _authFacade;
+@LazySingleton(as: IUserService)
+class MockedUserFacade implements IUserService {
+  final IAuthService _authFacade;
 
   BehaviorSubject<Either<UserFailure, User>> _userController;
 

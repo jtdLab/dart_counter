@@ -1,5 +1,5 @@
 /// Domain interface for actions related to the availability of an internet connection.
-abstract class IConnectivityFacade {
+abstract class IConnectivityService {
   /// Returns a stream that emits `true` if the app is offline.
   ///
   /// **Attention:** 

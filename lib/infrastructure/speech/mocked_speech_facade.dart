@@ -1,5 +1,5 @@
-import 'package:dart_counter/domain/speech/i_speech_facade.dart';
+import 'package:dart_counter/domain/speech/i_speech_service.dart';
 
-class  MockedSpeechFacade implements ISpeechFacade {
+class  MockedSpeechFacade implements ISpeechService {
   
 }

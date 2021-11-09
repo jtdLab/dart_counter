@@ -1,11 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dart_counter/domain/connectivity/i_connectivity_facade.dart';
+import 'package:dart_counter/domain/connectivity/i_connectivity_service.dart';
 import 'package:injectable/injectable.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-@LazySingleton(as: IConnectivityFacade)
-class ConnectivityFacade implements IConnectivityFacade {
+@LazySingleton(as: IConnectivityService)
+class ConnectivityFacade implements IConnectivityService {
   final Connectivity _connectivity;
 
   ConnectivityFacade(

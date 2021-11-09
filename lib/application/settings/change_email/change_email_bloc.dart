@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,10 +17,10 @@ part 'change_email_state.dart';
 @lazySingleton
 class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
+  final IUserService _userService;
 
   ChangeEmailBloc(
-    this._userFacade,
+    this._userService,
   ) : super(
           ChangeEmailState.initial(
             email: EmailAddress.empty(),
@@ -66,7 +66,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
           emit(const ChangeEmailSubmitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
-          userFailure = (await _userFacade.updateEmailAddress(
+          userFailure = (await _userService.updateEmailAddress(
             newEmailAddress: email,
           ))
               .fold(

@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/game_history/i_game_history_facade.dart';
+import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/play/game.dart';
-import 'package:dart_counter/domain/user/i_user_facade.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -19,12 +19,12 @@ part 'game_history_bloc.freezed.dart';
 @lazySingleton
 class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     with AutoResetLazySingleton {
-  final IUserFacade _userFacade;
-  final IGameHistoryFacade _gameHistoryFacade;
+  final IUserService _userService;
+  final IGameHistoryService _gameHistoryService;
 
   GameHistoryBloc(
-    this._userFacade,
-    this._gameHistoryFacade,
+    this._userService,
+    this._gameHistoryService,
   ) : super(const GameHistoryState.loadInProgress());
 
   @override
@@ -43,7 +43,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   }
 
   Stream<GameHistoryState> _mapFetchGameHistoryAllRequestedToState() async* {
-    final failureOrUser = _userFacade.getUser();
+    final failureOrUser = _userService.getUser();
     final uid = failureOrUser?.fold(
           (failure) => throw Error(), // TODO failure here pls
           (user) => user.id,
@@ -51,9 +51,9 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
         (throw Error()); // TODO failure here pls
 
     final failureOrOnlineGameHistory =
-        await _gameHistoryFacade.fetchGameHistoryOnline(uid: uid.getOrCrash());
+        await _gameHistoryService.fetchGameHistoryOnline(uid: uid.getOrCrash());
     final failureOrOfflineGameHistory =
-        await _gameHistoryFacade.fetchGameHistoryOffline();
+        await _gameHistoryService.fetchGameHistoryOffline();
 
     yield failureOrOnlineGameHistory.fold(
       (failure) => GameHistoryState.loadFailure(failure: failure),
@@ -79,7 +79,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   Stream<GameHistoryState>
       _mapFetchGameHistoryOfflineRequestedToState() async* {
     final failureOrGameHistory =
-        await _gameHistoryFacade.fetchGameHistoryOffline();
+        await _gameHistoryService.fetchGameHistoryOffline();
 
     yield failureOrGameHistory.fold(
       (failure) => GameHistoryState.loadFailure(failure: failure),
@@ -93,7 +93,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     final UniqueId uid;
 
     if (event.userId == null) {
-      final failureOrUser = _userFacade.getUser();
+      final failureOrUser = _userService.getUser();
       uid = failureOrUser?.fold(
             (failure) => throw Error(), // TODO failure here pls
             (user) => user.id,
@@ -104,7 +104,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     }
 
     final failureOrGameHistory =
-        await _gameHistoryFacade.fetchGameHistoryOnline(uid: uid.getOrCrash());
+        await _gameHistoryService.fetchGameHistoryOnline(uid: uid.getOrCrash());
     yield failureOrGameHistory.fold(
       (failure) => GameHistoryState.loadFailure(failure: failure),
       (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
