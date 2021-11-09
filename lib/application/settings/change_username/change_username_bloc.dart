@@ -27,12 +27,12 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
             showErrorMessages: false,
           ),
         ) {
-    on<UsernameChanged>(_mapUsernameChangedToState);
-    on<ConfirmPressed>(_mapConfirmPressedToState);
+    on<_UsernameChanged>(_mapUsernameChangedToState);
+    on<_ConfirmPressed>(_mapConfirmPressedToState);
   }
 
   void _mapUsernameChangedToState(
-    UsernameChanged event,
+    _UsernameChanged event,
     Emitter<ChangeUsernameState> emit,
   ) {
     final username = event.newUsername;
@@ -54,7 +54,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
   }
 
   Future<void> _mapConfirmPressedToState(
-    ConfirmPressed event,
+    _ConfirmPressed event,
     Emitter<ChangeUsernameState> emit,
   ) async {
     await state.maybeMap(

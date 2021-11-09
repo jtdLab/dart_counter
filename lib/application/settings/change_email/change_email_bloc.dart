@@ -27,12 +27,12 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
             showErrorMessages: false,
           ),
         ) {
-    on<NewEmailChanged>(_mapEmailChangedToState);
-    on<ConfirmPressed>(_mapConfirmPressedToState);
+    on<_NewEmailChanged>(_mapEmailChangedToState);
+    on<_ConfirmPressed>(_mapConfirmPressedToState);
   }
 
   void _mapEmailChangedToState(
-    NewEmailChanged event,
+    _NewEmailChanged event,
     Emitter<ChangeEmailState> emit,
   ) {
     final email = event.newNewEmail;
@@ -54,7 +54,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
   }
 
   Future<void> _mapConfirmPressedToState(
-    ConfirmPressed event,
+    _ConfirmPressed event,
     Emitter<ChangeEmailState> emit,
   ) async {
     await state.maybeMap(

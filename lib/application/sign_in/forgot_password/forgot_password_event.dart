@@ -4,6 +4,6 @@ part of 'forgot_password_bloc.dart';
 class ForgotPasswordEvent with _$ForgotPasswordEvent {
   const factory ForgotPasswordEvent.emailChanged({
     required String newEmail,
-  }) = EmailChanged;
-  const factory ForgotPasswordEvent.confirmPressed() = ConfirmPressed;
+  }) = _EmailChanged;
+  const factory ForgotPasswordEvent.confirmPressed() = _ConfirmPressed;
 }

@@ -29,14 +29,14 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
             showErrorMessages: false,
           ),
         ) {
-    on<OldPasswordChanged>(_mapOldPasswordChangedToState);
-    on<NewPasswordChanged>(_mapNewPasswordChangedToState);
-    on<NewPasswordAgainChanged>(_mapNewPasswordAgainChangedToState);
-    on<ConfirmPressed>(_mapConfirmPressedToState);
+    on<_OldPasswordChanged>(_mapOldPasswordChangedToState);
+    on<_NewPasswordChanged>(_mapNewPasswordChangedToState);
+    on<_NewPasswordAgainChanged>(_mapNewPasswordAgainChangedToState);
+    on<_ConfirmPressed>(_mapConfirmPressedToState);
   }
 
   void _mapOldPasswordChangedToState(
-    OldPasswordChanged event,
+    _OldPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
     final oldPassword = event.newOldPassword;
@@ -64,7 +64,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   }
 
   void _mapNewPasswordChangedToState(
-    NewPasswordChanged event,
+    _NewPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
     final newPassword = event.newNewPassword;
@@ -88,7 +88,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   }
 
   void _mapNewPasswordAgainChangedToState(
-    NewPasswordAgainChanged event,
+    _NewPasswordAgainChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
     final newPasswordAgain = event.newNewPasswordAgain;
@@ -112,7 +112,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   }
 
   Future<void> _mapConfirmPressedToState(
-    ConfirmPressed event,
+    _ConfirmPressed event,
     Emitter<ChangePasswordState> emit,
   ) async {
     await state.maybeMap(

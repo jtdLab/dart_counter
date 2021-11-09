@@ -4,6 +4,6 @@ part of 'change_email_bloc.dart';
 class ChangeEmailEvent with _$ChangeEmailEvent {
   const factory ChangeEmailEvent.newEmailChanged({
     required String newNewEmail,
-  }) = NewEmailChanged;
-  const factory ChangeEmailEvent.confirmPressed() = ConfirmPressed;
+  }) = _NewEmailChanged;
+  const factory ChangeEmailEvent.confirmPressed() = _ConfirmPressed;
 }

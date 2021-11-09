@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ChangeUsernameEventTearOff {
   const _$ChangeUsernameEventTearOff();
 
-  UsernameChanged newUsernameChanged({required String newUsername}) {
-    return UsernameChanged(
+  _UsernameChanged newUsernameChanged({required String newUsername}) {
+    return _UsernameChanged(
       newUsername: newUsername,
     );
   }
 
-  ConfirmPressed confirmPressed() {
-    return const ConfirmPressed();
+  _ConfirmPressed confirmPressed() {
+    return const _ConfirmPressed();
   }
 }
 
@@ -54,20 +54,20 @@ mixin _$ChangeUsernameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UsernameChanged value) newUsernameChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,29 +91,29 @@ class _$ChangeUsernameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $UsernameChangedCopyWith<$Res> {
-  factory $UsernameChangedCopyWith(
-          UsernameChanged value, $Res Function(UsernameChanged) then) =
-      _$UsernameChangedCopyWithImpl<$Res>;
+abstract class _$UsernameChangedCopyWith<$Res> {
+  factory _$UsernameChangedCopyWith(
+          _UsernameChanged value, $Res Function(_UsernameChanged) then) =
+      __$UsernameChangedCopyWithImpl<$Res>;
   $Res call({String newUsername});
 }
 
 /// @nodoc
-class _$UsernameChangedCopyWithImpl<$Res>
+class __$UsernameChangedCopyWithImpl<$Res>
     extends _$ChangeUsernameEventCopyWithImpl<$Res>
-    implements $UsernameChangedCopyWith<$Res> {
-  _$UsernameChangedCopyWithImpl(
-      UsernameChanged _value, $Res Function(UsernameChanged) _then)
-      : super(_value, (v) => _then(v as UsernameChanged));
+    implements _$UsernameChangedCopyWith<$Res> {
+  __$UsernameChangedCopyWithImpl(
+      _UsernameChanged _value, $Res Function(_UsernameChanged) _then)
+      : super(_value, (v) => _then(v as _UsernameChanged));
 
   @override
-  UsernameChanged get _value => super._value as UsernameChanged;
+  _UsernameChanged get _value => super._value as _UsernameChanged;
 
   @override
   $Res call({
     Object? newUsername = freezed,
   }) {
-    return _then(UsernameChanged(
+    return _then(_UsernameChanged(
       newUsername: newUsername == freezed
           ? _value.newUsername
           : newUsername // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class _$UsernameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UsernameChanged implements UsernameChanged {
-  const _$UsernameChanged({required this.newUsername});
+class _$_UsernameChanged implements _UsernameChanged {
+  const _$_UsernameChanged({required this.newUsername});
 
   @override
   final String newUsername;
@@ -139,7 +139,7 @@ class _$UsernameChanged implements UsernameChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UsernameChanged &&
+            other is _UsernameChanged &&
             (identical(other.newUsername, newUsername) ||
                 other.newUsername == newUsername));
   }
@@ -149,8 +149,8 @@ class _$UsernameChanged implements UsernameChanged {
 
   @JsonKey(ignore: true)
   @override
-  $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
-      _$UsernameChangedCopyWithImpl<UsernameChanged>(this, _$identity);
+  _$UsernameChangedCopyWith<_UsernameChanged> get copyWith =>
+      __$UsernameChangedCopyWithImpl<_UsernameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -186,8 +186,8 @@ class _$UsernameChanged implements UsernameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UsernameChanged value) newUsernameChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return newUsernameChanged(this);
   }
@@ -195,8 +195,8 @@ class _$UsernameChanged implements UsernameChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return newUsernameChanged?.call(this);
   }
@@ -204,8 +204,8 @@ class _$UsernameChanged implements UsernameChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (newUsernameChanged != null) {
@@ -215,39 +215,39 @@ class _$UsernameChanged implements UsernameChanged {
   }
 }
 
-abstract class UsernameChanged implements ChangeUsernameEvent {
-  const factory UsernameChanged({required String newUsername}) =
-      _$UsernameChanged;
+abstract class _UsernameChanged implements ChangeUsernameEvent {
+  const factory _UsernameChanged({required String newUsername}) =
+      _$_UsernameChanged;
 
   String get newUsername;
   @JsonKey(ignore: true)
-  $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
+  _$UsernameChangedCopyWith<_UsernameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConfirmPressedCopyWith<$Res> {
-  factory $ConfirmPressedCopyWith(
-          ConfirmPressed value, $Res Function(ConfirmPressed) then) =
-      _$ConfirmPressedCopyWithImpl<$Res>;
+abstract class _$ConfirmPressedCopyWith<$Res> {
+  factory _$ConfirmPressedCopyWith(
+          _ConfirmPressed value, $Res Function(_ConfirmPressed) then) =
+      __$ConfirmPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ConfirmPressedCopyWithImpl<$Res>
+class __$ConfirmPressedCopyWithImpl<$Res>
     extends _$ChangeUsernameEventCopyWithImpl<$Res>
-    implements $ConfirmPressedCopyWith<$Res> {
-  _$ConfirmPressedCopyWithImpl(
-      ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
-      : super(_value, (v) => _then(v as ConfirmPressed));
+    implements _$ConfirmPressedCopyWith<$Res> {
+  __$ConfirmPressedCopyWithImpl(
+      _ConfirmPressed _value, $Res Function(_ConfirmPressed) _then)
+      : super(_value, (v) => _then(v as _ConfirmPressed));
 
   @override
-  ConfirmPressed get _value => super._value as ConfirmPressed;
+  _ConfirmPressed get _value => super._value as _ConfirmPressed;
 }
 
 /// @nodoc
 
-class _$ConfirmPressed implements ConfirmPressed {
-  const _$ConfirmPressed();
+class _$_ConfirmPressed implements _ConfirmPressed {
+  const _$_ConfirmPressed();
 
   @override
   String toString() {
@@ -257,7 +257,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ConfirmPressed);
+        (other.runtimeType == runtimeType && other is _ConfirmPressed);
   }
 
   @override
@@ -297,8 +297,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UsernameChanged value) newUsernameChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
   }
@@ -306,8 +306,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return confirmPressed?.call(this);
   }
@@ -315,8 +315,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UsernameChanged value)? newUsernameChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (confirmPressed != null) {
@@ -326,8 +326,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   }
 }
 
-abstract class ConfirmPressed implements ChangeUsernameEvent {
-  const factory ConfirmPressed() = _$ConfirmPressed;
+abstract class _ConfirmPressed implements ChangeUsernameEvent {
+  const factory _ConfirmPressed() = _$_ConfirmPressed;
 }
 
 /// @nodoc

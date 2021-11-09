@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ChangeEmailEventTearOff {
   const _$ChangeEmailEventTearOff();
 
-  NewEmailChanged newEmailChanged({required String newNewEmail}) {
-    return NewEmailChanged(
+  _NewEmailChanged newEmailChanged({required String newNewEmail}) {
+    return _NewEmailChanged(
       newNewEmail: newNewEmail,
     );
   }
 
-  ConfirmPressed confirmPressed() {
-    return const ConfirmPressed();
+  _ConfirmPressed confirmPressed() {
+    return const _ConfirmPressed();
   }
 }
 
@@ -54,20 +54,20 @@ mixin _$ChangeEmailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NewEmailChanged value) newEmailChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_NewEmailChanged value) newEmailChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,29 +91,29 @@ class _$ChangeEmailEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $NewEmailChangedCopyWith<$Res> {
-  factory $NewEmailChangedCopyWith(
-          NewEmailChanged value, $Res Function(NewEmailChanged) then) =
-      _$NewEmailChangedCopyWithImpl<$Res>;
+abstract class _$NewEmailChangedCopyWith<$Res> {
+  factory _$NewEmailChangedCopyWith(
+          _NewEmailChanged value, $Res Function(_NewEmailChanged) then) =
+      __$NewEmailChangedCopyWithImpl<$Res>;
   $Res call({String newNewEmail});
 }
 
 /// @nodoc
-class _$NewEmailChangedCopyWithImpl<$Res>
+class __$NewEmailChangedCopyWithImpl<$Res>
     extends _$ChangeEmailEventCopyWithImpl<$Res>
-    implements $NewEmailChangedCopyWith<$Res> {
-  _$NewEmailChangedCopyWithImpl(
-      NewEmailChanged _value, $Res Function(NewEmailChanged) _then)
-      : super(_value, (v) => _then(v as NewEmailChanged));
+    implements _$NewEmailChangedCopyWith<$Res> {
+  __$NewEmailChangedCopyWithImpl(
+      _NewEmailChanged _value, $Res Function(_NewEmailChanged) _then)
+      : super(_value, (v) => _then(v as _NewEmailChanged));
 
   @override
-  NewEmailChanged get _value => super._value as NewEmailChanged;
+  _NewEmailChanged get _value => super._value as _NewEmailChanged;
 
   @override
   $Res call({
     Object? newNewEmail = freezed,
   }) {
-    return _then(NewEmailChanged(
+    return _then(_NewEmailChanged(
       newNewEmail: newNewEmail == freezed
           ? _value.newNewEmail
           : newNewEmail // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class _$NewEmailChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NewEmailChanged implements NewEmailChanged {
-  const _$NewEmailChanged({required this.newNewEmail});
+class _$_NewEmailChanged implements _NewEmailChanged {
+  const _$_NewEmailChanged({required this.newNewEmail});
 
   @override
   final String newNewEmail;
@@ -139,7 +139,7 @@ class _$NewEmailChanged implements NewEmailChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is NewEmailChanged &&
+            other is _NewEmailChanged &&
             (identical(other.newNewEmail, newNewEmail) ||
                 other.newNewEmail == newNewEmail));
   }
@@ -149,8 +149,8 @@ class _$NewEmailChanged implements NewEmailChanged {
 
   @JsonKey(ignore: true)
   @override
-  $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
-      _$NewEmailChangedCopyWithImpl<NewEmailChanged>(this, _$identity);
+  _$NewEmailChangedCopyWith<_NewEmailChanged> get copyWith =>
+      __$NewEmailChangedCopyWithImpl<_NewEmailChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -186,8 +186,8 @@ class _$NewEmailChanged implements NewEmailChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NewEmailChanged value) newEmailChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_NewEmailChanged value) newEmailChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return newEmailChanged(this);
   }
@@ -195,8 +195,8 @@ class _$NewEmailChanged implements NewEmailChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return newEmailChanged?.call(this);
   }
@@ -204,8 +204,8 @@ class _$NewEmailChanged implements NewEmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (newEmailChanged != null) {
@@ -215,39 +215,39 @@ class _$NewEmailChanged implements NewEmailChanged {
   }
 }
 
-abstract class NewEmailChanged implements ChangeEmailEvent {
-  const factory NewEmailChanged({required String newNewEmail}) =
-      _$NewEmailChanged;
+abstract class _NewEmailChanged implements ChangeEmailEvent {
+  const factory _NewEmailChanged({required String newNewEmail}) =
+      _$_NewEmailChanged;
 
   String get newNewEmail;
   @JsonKey(ignore: true)
-  $NewEmailChangedCopyWith<NewEmailChanged> get copyWith =>
+  _$NewEmailChangedCopyWith<_NewEmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConfirmPressedCopyWith<$Res> {
-  factory $ConfirmPressedCopyWith(
-          ConfirmPressed value, $Res Function(ConfirmPressed) then) =
-      _$ConfirmPressedCopyWithImpl<$Res>;
+abstract class _$ConfirmPressedCopyWith<$Res> {
+  factory _$ConfirmPressedCopyWith(
+          _ConfirmPressed value, $Res Function(_ConfirmPressed) then) =
+      __$ConfirmPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ConfirmPressedCopyWithImpl<$Res>
+class __$ConfirmPressedCopyWithImpl<$Res>
     extends _$ChangeEmailEventCopyWithImpl<$Res>
-    implements $ConfirmPressedCopyWith<$Res> {
-  _$ConfirmPressedCopyWithImpl(
-      ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
-      : super(_value, (v) => _then(v as ConfirmPressed));
+    implements _$ConfirmPressedCopyWith<$Res> {
+  __$ConfirmPressedCopyWithImpl(
+      _ConfirmPressed _value, $Res Function(_ConfirmPressed) _then)
+      : super(_value, (v) => _then(v as _ConfirmPressed));
 
   @override
-  ConfirmPressed get _value => super._value as ConfirmPressed;
+  _ConfirmPressed get _value => super._value as _ConfirmPressed;
 }
 
 /// @nodoc
 
-class _$ConfirmPressed implements ConfirmPressed {
-  const _$ConfirmPressed();
+class _$_ConfirmPressed implements _ConfirmPressed {
+  const _$_ConfirmPressed();
 
   @override
   String toString() {
@@ -257,7 +257,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ConfirmPressed);
+        (other.runtimeType == runtimeType && other is _ConfirmPressed);
   }
 
   @override
@@ -297,8 +297,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NewEmailChanged value) newEmailChanged,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_NewEmailChanged value) newEmailChanged,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
   }
@@ -306,8 +306,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return confirmPressed?.call(this);
   }
@@ -315,8 +315,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NewEmailChanged value)? newEmailChanged,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_NewEmailChanged value)? newEmailChanged,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (confirmPressed != null) {
@@ -326,8 +326,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   }
 }
 
-abstract class ConfirmPressed implements ChangeEmailEvent {
-  const factory ConfirmPressed() = _$ConfirmPressed;
+abstract class _ConfirmPressed implements ChangeEmailEvent {
+  const factory _ConfirmPressed() = _$_ConfirmPressed;
 }
 
 /// @nodoc

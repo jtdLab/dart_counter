@@ -34,7 +34,7 @@ class AppWidget extends StatelessWidget {
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(
         initialRoutes: context.read<AuthBloc>().state.when(
-              authenticated: (_) => [const MainFlowRoute()],
+              authenticated: () => [const MainFlowRoute()],
               unauthenticated: () => [const AuthFlowRoute()],
             ),
       ),

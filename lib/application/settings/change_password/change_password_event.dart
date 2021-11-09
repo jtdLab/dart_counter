@@ -4,12 +4,12 @@ part of 'change_password_bloc.dart';
 class ChangePasswordEvent with _$ChangePasswordEvent {
   const factory ChangePasswordEvent.oldPasswordChanged({
     required String newOldPassword,
-  }) = OldPasswordChanged;
+  }) = _OldPasswordChanged;
   const factory ChangePasswordEvent.newPasswordChanged({
     required String newNewPassword,
-  }) = NewPasswordChanged;
+  }) = _NewPasswordChanged;
   const factory ChangePasswordEvent.newPasswordAgainChanged({
     required String newNewPasswordAgain,
-  }) = NewPasswordAgainChanged;
-  const factory ChangePasswordEvent.confirmPressed() = ConfirmPressed;
+  }) = _NewPasswordAgainChanged;
+  const factory ChangePasswordEvent.confirmPressed() = _ConfirmPressed;
 }

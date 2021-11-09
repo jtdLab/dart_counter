@@ -27,12 +27,12 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
             showErrorMessages: false,
           ),
         ) {
-    on<EmailChanged>(_mapEmailChangedToState);
-    on<ConfirmPressed>(_mapConfirmPressedToState);
+    on<_EmailChanged>(_mapEmailChangedToState);
+    on<_ConfirmPressed>(_mapConfirmPressedToState);
   }
 
   void _mapEmailChangedToState(
-    EmailChanged event,
+    _EmailChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
     final email = event.newEmail;
@@ -54,7 +54,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
   }
 
   Future<void> _mapConfirmPressedToState(
-    ConfirmPressed event,
+    _ConfirmPressed event,
     Emitter<ForgotPasswordState> emit,
   ) async {
     await state.maybeMap(

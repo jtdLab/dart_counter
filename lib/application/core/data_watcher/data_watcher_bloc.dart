@@ -44,7 +44,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
   ) : super(const DataWatcherState.loadInProgress()) {
     _authSubscription = _authBloc.stream.listen((authState) {
       if (authState is Authenticated) {
-        add(DataWatcherEvent.watchDataStarted(appUserId: authState.appUserId));
+        //add(DataWatcherEvent.watchDataStarted(appUserId: authState.appUserId));
       } else {
         _cancelDataSubscriptions();
       }
