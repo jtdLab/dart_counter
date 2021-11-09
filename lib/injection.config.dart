@@ -152,7 +152,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i34.IUserService>(
       () => _i35.MockedUserService(get<_i12.IAuthService>()),
-      registerFor: {_dev});
+      registerFor: {_dev},
+      dispose: (i) => i.dispose());
   gh.lazySingleton<_i36.MoreBloc>(
       () => _i36.MoreBloc(get<_i21.IFriendService>()));
   gh.lazySingleton<_i37.ScoreTrainingBloc>(
@@ -216,7 +217,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i10.FirebaseStorage>(),
           get<_i12.IAuthService>(),
           get<_i40.SocialClient>()),
-      registerFor: {_test, _prod});
+      registerFor: {_test, _prod},
+      dispose: (i) => i.dispose());
   gh.lazySingleton<_i58.PlayBloc>(() => _i58.PlayBloc(
       get<_i28.IPlayOfflineService>(), get<_i55.IPlayOnlineService>()));
   gh.lazySingleton<_i59.ProfileBloc>(

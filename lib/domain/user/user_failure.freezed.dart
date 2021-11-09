@@ -21,8 +21,8 @@ class _$UserFailureTearOff {
     return const _Failure();
   }
 
-  _UnableToLoadData unableToLoadData() {
-    return const _UnableToLoadData();
+  _NoNetworkAccess noNetworkAccess() {
+    return const _NoNetworkAccess();
   }
 
   _InsufficientPermission insufficientPermission() {
@@ -46,7 +46,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
@@ -55,7 +55,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -64,7 +64,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -74,7 +74,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -84,7 +84,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -93,7 +93,7 @@ mixin _$UserFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -157,7 +157,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
@@ -169,7 +169,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -181,7 +181,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -197,7 +197,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -210,7 +210,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -222,7 +222,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -240,38 +240,38 @@ abstract class _Failure implements UserFailure {
 }
 
 /// @nodoc
-abstract class _$UnableToLoadDataCopyWith<$Res> {
-  factory _$UnableToLoadDataCopyWith(
-          _UnableToLoadData value, $Res Function(_UnableToLoadData) then) =
-      __$UnableToLoadDataCopyWithImpl<$Res>;
+abstract class _$NoNetworkAccessCopyWith<$Res> {
+  factory _$NoNetworkAccessCopyWith(
+          _NoNetworkAccess value, $Res Function(_NoNetworkAccess) then) =
+      __$NoNetworkAccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnableToLoadDataCopyWithImpl<$Res>
+class __$NoNetworkAccessCopyWithImpl<$Res>
     extends _$UserFailureCopyWithImpl<$Res>
-    implements _$UnableToLoadDataCopyWith<$Res> {
-  __$UnableToLoadDataCopyWithImpl(
-      _UnableToLoadData _value, $Res Function(_UnableToLoadData) _then)
-      : super(_value, (v) => _then(v as _UnableToLoadData));
+    implements _$NoNetworkAccessCopyWith<$Res> {
+  __$NoNetworkAccessCopyWithImpl(
+      _NoNetworkAccess _value, $Res Function(_NoNetworkAccess) _then)
+      : super(_value, (v) => _then(v as _NoNetworkAccess));
 
   @override
-  _UnableToLoadData get _value => super._value as _UnableToLoadData;
+  _NoNetworkAccess get _value => super._value as _NoNetworkAccess;
 }
 
 /// @nodoc
 
-class _$_UnableToLoadData implements _UnableToLoadData {
-  const _$_UnableToLoadData();
+class _$_NoNetworkAccess implements _NoNetworkAccess {
+  const _$_NoNetworkAccess();
 
   @override
   String toString() {
-    return 'UserFailure.unableToLoadData()';
+    return 'UserFailure.noNetworkAccess()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UnableToLoadData);
+        (other.runtimeType == runtimeType && other is _NoNetworkAccess);
   }
 
   @override
@@ -281,38 +281,38 @@ class _$_UnableToLoadData implements _UnableToLoadData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
   }) {
-    return unableToLoadData();
+    return noNetworkAccess();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
   }) {
-    return unableToLoadData?.call();
+    return noNetworkAccess?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
     required TResult orElse(),
   }) {
-    if (unableToLoadData != null) {
-      return unableToLoadData();
+    if (noNetworkAccess != null) {
+      return noNetworkAccess();
     }
     return orElse();
   }
@@ -321,46 +321,46 @@ class _$_UnableToLoadData implements _UnableToLoadData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
     required TResult Function(_InvalidEmail value) invalidEmail,
   }) {
-    return unableToLoadData(this);
+    return noNetworkAccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
   }) {
-    return unableToLoadData?.call(this);
+    return noNetworkAccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
     required TResult orElse(),
   }) {
-    if (unableToLoadData != null) {
-      return unableToLoadData(this);
+    if (noNetworkAccess != null) {
+      return noNetworkAccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _UnableToLoadData implements UserFailure {
-  const factory _UnableToLoadData() = _$_UnableToLoadData;
+abstract class _NoNetworkAccess implements UserFailure {
+  const factory _NoNetworkAccess() = _$_NoNetworkAccess;
 }
 
 /// @nodoc
@@ -405,7 +405,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
@@ -417,7 +417,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -429,7 +429,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -445,7 +445,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -458,7 +458,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -470,7 +470,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -529,7 +529,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
@@ -541,7 +541,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -553,7 +553,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -569,7 +569,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -582,7 +582,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -594,7 +594,7 @@ class _$_InvalidUsername implements _InvalidUsername {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -652,7 +652,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() failure,
-    required TResult Function() unableToLoadData,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() invalidUsername,
     required TResult Function() invalidEmail,
@@ -664,7 +664,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -676,7 +676,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? failure,
-    TResult Function()? unableToLoadData,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? invalidUsername,
     TResult Function()? invalidEmail,
@@ -692,7 +692,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Failure value) failure,
-    required TResult Function(_UnableToLoadData value) unableToLoadData,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_InvalidUsername value) invalidUsername,
@@ -705,7 +705,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,
@@ -717,7 +717,7 @@ class _$_InvalidEmail implements _InvalidEmail {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Failure value)? failure,
-    TResult Function(_UnableToLoadData value)? unableToLoadData,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_InvalidUsername value)? invalidUsername,
     TResult Function(_InvalidEmail value)? invalidEmail,

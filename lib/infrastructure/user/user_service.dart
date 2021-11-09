@@ -27,7 +27,9 @@ class UserService implements IUserService {
   final IAuthService _authService;
   final SocialClient _socialClient;
 
-  BehaviorSubject<Either<UserFailure, User>> _userController;
+  StreamSubscription? _authSubscription;
+
+  BehaviorSubject<Either<UserFailure, User>>? _userController;
 
   UserService(
     this._firestore,
@@ -35,41 +37,59 @@ class UserService implements IUserService {
     this._authService,
     this._socialClient,
   ) : _userController = BehaviorSubject() {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authSubscription =
+        _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _userController = BehaviorSubject();
-        _userController.addStream(watchUser());
+        _userController!.addStream(watchUser());
       } else {
-        await _userController.close(); // TODO needed
+        await _userController!.close();
+        _userController = null;
       }
     });
   }
 
   @override
+  Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
+    _checkAuth();
+    try {
+      final photosRef = _storage.profilePhotoReference();
+      await photosRef.delete();
+
+      final userDoc = _firestore.userDocument();
+      userDoc.update({'profile.photoUrl': null});
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const UserFailure.failure()); // TODO name better
+    }
+  }
+
+  @override
   Either<UserFailure, User> getUser() {
     _checkAuth();
-    final failureOrUser = _userController.value;
+    final failureOrUser = _userController!.value;
 
     return failureOrUser;
   }
 
   @override
-  Stream<Either<UserFailure, User>> watchUser() async* {
+  Future<Either<UserFailure, Unit>> updateEmailAddress({
+    required EmailAddress newEmailAddress,
+  }) async {
     _checkAuth();
-    final DocumentReference<Object?> userDoc;
-    try {
-      userDoc = _firestore.userDocument();
-    } catch (e) {
-      rethrow;
+    if (!newEmailAddress.isValid()) {
+      return left(const UserFailure.invalidEmail());
+    }
+    final success = await _socialClient.updateEmail(
+      newEmail: newEmailAddress.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
     }
 
-    yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
-      final idToken = await _authService.idToken();
-      final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken!);
-      return right(user);
-    }).onErrorReturnWith(
-      (e, s) => left(const UserFailure.unableToLoadData()),
-    );
+    return left(const UserFailure.failure()); // TODO name better
   }
 
   @override
@@ -101,28 +121,12 @@ class UserService implements IUserService {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
-    _checkAuth();
-    try {
-      final photosRef = _storage.profilePhotoReference();
-      await photosRef.delete();
-
-      final userDoc = _firestore.userDocument();
-      userDoc.update({'profile.photoUrl': null});
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const UserFailure.failure()); // TODO name better
-    }
-  }
-
-  @override
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   }) async {
     _checkAuth();
     if (!newUsername.isValid()) {
-      return left(const UserFailure.failure()); // TODO name better
+      return left(const UserFailure.invalidUsername());
     }
 
     final success = await _socialClient.updateName(
@@ -137,22 +141,29 @@ class UserService implements IUserService {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> updateEmailAddress({
-    required EmailAddress newEmailAddress,
-  }) async {
+  Stream<Either<UserFailure, User>> watchUser() async* {
     _checkAuth();
-    if (!newEmailAddress.isValid()) {
-      return left(const UserFailure.failure()); // TODO name better
-    }
-    final success = await _socialClient.updateEmail(
-      newEmail: newEmailAddress.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
+    final DocumentReference<Object?> userDoc;
+    try {
+      userDoc = _firestore.userDocument();
+    } catch (e) {
+      rethrow;
     }
 
-    return left(const UserFailure.failure()); // TODO name better
+    final idToken = await _authService.idToken();
+
+    yield* userDoc
+        .snapshots()
+        .map<Either<UserFailure, User>>(
+          (doc) => right(
+            UserDto.fromFirestore(doc).toDomain(idToken: idToken!),
+          ),
+        )
+        .onErrorReturnWith(
+          (error, stack) => left(
+            const UserFailure.failure(), // TODO more specific
+          ),
+        );
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
@@ -160,5 +171,11 @@ class UserService implements IUserService {
     if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
+  }
+
+  @disposeMethod
+  @override
+  void dispose() {
+    _authSubscription?.cancel();
   }
 }
