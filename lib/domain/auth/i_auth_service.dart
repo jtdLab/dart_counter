@@ -3,7 +3,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 
-/// Domain interface for all actions related to authentication.
+/// Domain service for all actions related to authentication.
 abstract class IAuthService {
   /// Returns the id of the app-user if authenticated or `null` if not authenticated.
   UniqueId? userId();

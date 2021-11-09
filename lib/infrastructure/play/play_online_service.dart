@@ -19,15 +19,15 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOnlineService)
-class PlayOnlineFacade implements IPlayOnlineService {
+class PlayOnlineService implements IPlayOnlineService {
   final dc.DartClient _dartClient;
-  final IUserService _userFacade;
+  final IUserService _userService;
 
   final BehaviorSubject<OnlineGameSnapshot> _gameController;
 
-  PlayOnlineFacade(
+  PlayOnlineService(
     this._dartClient,
-    this._userFacade,
+    this._userService,
   ) : _gameController = BehaviorSubject() {
     _dartClient.watchGame().listen(
       (game) async {
@@ -54,7 +54,7 @@ class PlayOnlineFacade implements IPlayOnlineService {
 
   @override
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame() async {
-    final user = _userFacade.getUser();
+    final user = _userService.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,
@@ -78,7 +78,7 @@ class PlayOnlineFacade implements IPlayOnlineService {
   Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,
   }) async {
-    final user = _userFacade.getUser();
+    final user = _userService.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,

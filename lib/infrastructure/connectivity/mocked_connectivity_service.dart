@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IConnectivityService)
-class MockedConnectivityFacade implements IConnectivityService {
+class MockedConnectivityService implements IConnectivityService {
   @override
   Stream<bool> watchIsOffline() => Stream.value(!md.hasNetworkConnection);
 

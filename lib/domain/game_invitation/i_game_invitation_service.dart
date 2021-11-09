@@ -5,7 +5,7 @@ import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 
-/// Domain interface for all actions related to the inviting process of games.
+/// Domain service for all actions related to the inviting process of games.
 abstract class IGameInvitationService {
   /// Returns the received game invitations of the app-user.
   ///

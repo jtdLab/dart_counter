@@ -16,8 +16,8 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
-class MockedFriendFacade implements IFriendService {
-  final IAuthService _authFacade;
+class MockedFriendService implements IFriendService {
+  final IAuthService _authService;
 
   BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
 
@@ -29,13 +29,13 @@ class MockedFriendFacade implements IFriendService {
 
   final List<UserSearchResult> _userSearchResults;
 
-  MockedFriendFacade(
-    this._authFacade,
+  MockedFriendService(
+    this._authService,
   )   : _friendsController = BehaviorSubject(),
         _receivedFriendRequestController = BehaviorSubject(),
         _sentFriendRequestController = BehaviorSubject(),
         _userSearchResults = [] {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _friendsController = BehaviorSubject.seeded(
           hasNetworkConnection
@@ -331,7 +331,7 @@ class MockedFriendFacade implements IFriendService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

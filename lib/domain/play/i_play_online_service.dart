@@ -7,7 +7,7 @@ import 'play_failure.dart';
 import 'throw.dart';
 import 'type.dart';
 
-/// Domain interface for all actions related playing an online game
+/// Domain service for all actions related playing an online game
 /// hosted on a server against other players.
 abstract class IPlayOnlineService {
   /// Returns a stream of the received snapshots of the current game of the app-user.

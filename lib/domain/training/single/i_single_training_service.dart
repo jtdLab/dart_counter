@@ -4,6 +4,7 @@ import 'package:dart_counter/domain/user/user.dart';
 
 import 'hit.dart';
 
+/// Domain service for playing a single training game.
 abstract class ISingleTrainingService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<GameSnapshot> watchGame();

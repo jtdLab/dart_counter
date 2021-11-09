@@ -23,9 +23,9 @@ import 'friend_request_dto.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IFriendService)
-class FriendFacade implements IFriendService {
-  final IAuthService _authFacade;
-  final IUserService _userFacade;
+class FriendService implements IFriendService {
+  final IAuthService _authService;
+  final IUserService _userService;
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
@@ -35,15 +35,15 @@ class FriendFacade implements IFriendService {
   BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _sentFriendRequestsController;
 
-  FriendFacade(
-    this._authFacade,
-    this._userFacade,
+  FriendService(
+    this._authService,
+    this._userService,
     this._firestore,
     this._socialClient,
   )   : _friendsController = BehaviorSubject(),
         _receivedFriendRequestsController = BehaviorSubject(),
         _sentFriendRequestsController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _friendsController = BehaviorSubject();
         _friendsController.addStream(watchFriends());
@@ -85,7 +85,7 @@ class FriendFacade implements IFriendService {
   @override
   Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
-    return _userFacade
+    return _userService
         .watchUser()
         .asyncMap<Either<FriendFailure, KtList<Friend>>>((failureOrUser) {
       return failureOrUser.fold(
@@ -302,7 +302,7 @@ class FriendFacade implements IFriendService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

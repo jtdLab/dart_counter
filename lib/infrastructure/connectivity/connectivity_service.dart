@@ -5,10 +5,10 @@ import 'package:injectable/injectable.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IConnectivityService)
-class ConnectivityFacade implements IConnectivityService {
+class ConnectivityService implements IConnectivityService {
   final Connectivity _connectivity;
 
-  ConnectivityFacade(
+  ConnectivityService(
     this._connectivity,
   );
 

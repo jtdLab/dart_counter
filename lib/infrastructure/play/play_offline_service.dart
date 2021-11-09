@@ -20,7 +20,7 @@ import 'throw_dto.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IPlayOfflineService)
-class PlayOfflineFacade implements IPlayOfflineService {
+class PlayOfflineService implements IPlayOfflineService {
   final BehaviorSubject<OfflineGameSnapshot> _gameController;
 
   ex.Game? _game;
@@ -30,7 +30,7 @@ class PlayOfflineFacade implements IPlayOfflineService {
 
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
 
-  PlayOfflineFacade() : _gameController = BehaviorSubject();
+  PlayOfflineService() : _gameController = BehaviorSubject();
 
   @override
   void addDartBot() {

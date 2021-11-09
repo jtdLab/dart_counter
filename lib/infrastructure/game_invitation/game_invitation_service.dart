@@ -18,8 +18,8 @@ import 'game_invitation_dto.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IGameInvitationService)
-class GameInvitationFacade implements IGameInvitationService {
-  final IAuthService _authFacade;
+class GameInvitationService implements IGameInvitationService {
+  final IAuthService _authService;
   final FirebaseFirestore _firestore;
   final DartClient _dartClient;
   final SocialClient _socialClient;
@@ -29,14 +29,14 @@ class GameInvitationFacade implements IGameInvitationService {
   BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _sentInvitationsController;
 
-  GameInvitationFacade(
-    this._authFacade,
+  GameInvitationService(
+    this._authService,
     this._firestore,
     this._socialClient,
     this._dartClient,
   )   : _receivedInvitationsController = BehaviorSubject(),
         _sentInvitationsController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _receivedInvitationsController = BehaviorSubject();
         _receivedInvitationsController.addStream(watchReceivedInvitations());
@@ -206,7 +206,7 @@ class GameInvitationFacade implements IGameInvitationService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

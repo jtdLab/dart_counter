@@ -22,8 +22,8 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IPlayOnlineService)
-class MockedPlayOnlineFacade implements IPlayOnlineService {
-  final IUserService _userFacade; // TODO use or remove
+class MockedPlayOnlineService implements IPlayOnlineService {
+  final IUserService _userService; // TODO use or remove
 
   final BehaviorSubject<OnlineGameSnapshot> _gameController;
 
@@ -34,8 +34,8 @@ class MockedPlayOnlineFacade implements IPlayOnlineService {
 
   ex.Game? _game;
 
-  MockedPlayOnlineFacade(
-    this._userFacade,
+  MockedPlayOnlineService(
+    this._userService,
   ) : _gameController = BehaviorSubject();
 
   @override

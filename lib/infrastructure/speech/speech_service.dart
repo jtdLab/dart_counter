@@ -3,6 +3,6 @@ import 'package:injectable/injectable.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
-class SpeechFacade implements ISpeechService {
+class SpeechService implements ISpeechService {
   
 }

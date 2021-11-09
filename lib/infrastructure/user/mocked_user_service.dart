@@ -16,15 +16,15 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
-class MockedUserFacade implements IUserService {
-  final IAuthService _authFacade;
+class MockedUserService implements IUserService {
+  final IAuthService _authService;
 
   BehaviorSubject<Either<UserFailure, User>> _userController;
 
-  MockedUserFacade(
-    this._authFacade,
+  MockedUserService(
+    this._authService,
   ) : _userController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _userController = BehaviorSubject.seeded(
           hasNetworkConnection
@@ -36,6 +36,7 @@ class MockedUserFacade implements IUserService {
       }
     });
   }
+  
 
   @override
   Either<UserFailure, User> getUser() {
@@ -99,7 +100,7 @@ class MockedUserFacade implements IUserService {
     _checkAuth();
     if (hasNetworkConnection) {
       if (newUsername.isValid()) {
-        if (_authFacade.isAuthenticated()) {
+        if (_authService.isAuthenticated()) {
           final user = _userController.value.toOption().toNullable()!;
           final newProfile = user.profile.copyWith(username: newUsername);
           _userController.add(
@@ -122,7 +123,7 @@ class MockedUserFacade implements IUserService {
     _checkAuth();
     if (hasNetworkConnection) {
       if (newEmailAddress.isValid()) {
-        if (_authFacade.isAuthenticated()) {
+        if (_authService.isAuthenticated()) {
           final user = _userController.value.toOption().toNullable()!;
           _userController.add(
             right(
@@ -139,7 +140,7 @@ class MockedUserFacade implements IUserService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

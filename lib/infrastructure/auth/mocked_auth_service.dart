@@ -11,10 +11,10 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
-class MockedAuthFacade implements IAuthService {
+class MockedAuthService implements IAuthService {
   final BehaviorSubject<bool> _authenticatedController;
 
-  MockedAuthFacade() : _authenticatedController = BehaviorSubject.seeded(false);
+  MockedAuthService() : _authenticatedController = BehaviorSubject.seeded(false);
 
   @override
   UniqueId? userId() =>

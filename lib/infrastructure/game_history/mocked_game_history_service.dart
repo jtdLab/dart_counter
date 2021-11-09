@@ -12,17 +12,17 @@ import 'package:kt_dart/kt.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IGameHistoryService)
-class MockedGameHistoryFacade implements IGameHistoryService {
-  final IAuthService _authFacade;
+class MockedGameHistoryService implements IGameHistoryService {
+  final IAuthService _authService;
 
-  MockedGameHistoryFacade(
-    this._authFacade,
+  MockedGameHistoryService(
+    this._authService,
   );
 
   @override
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
       fetchGameHistoryOffline() async {
-    if (_authFacade.isAuthenticated()) {
+    if (_authService.isAuthenticated()) {
       if (hasNetworkConnection) {
         final games = List.generate(
           faker.randomGenerator.integer(11),
@@ -45,7 +45,7 @@ class MockedGameHistoryFacade implements IGameHistoryService {
       fetchGameHistoryOnline({
     required String uid,
   }) async {
-    if (_authFacade.isAuthenticated()) {
+    if (_authService.isAuthenticated()) {
       if (hasNetworkConnection) {
         final games = List.generate(
           faker.randomGenerator.integer(11),

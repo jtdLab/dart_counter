@@ -17,13 +17,13 @@ import 'package:social_client/social_client.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthService)
-class FirebaseAuthFacade implements IAuthService {
+class FirebaseAuthService implements IAuthService {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final FacebookAuth _facebookAuth;
   final SocialClient _socialClient;
 
-  FirebaseAuthFacade(
+  FirebaseAuthService(
     this._auth,
     this._googleSignIn,
     this._facebookAuth,

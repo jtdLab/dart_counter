@@ -22,21 +22,21 @@ import 'package:social_client/social_client.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IUserService)
-class UserFacade implements IUserService {
+class UserService implements IUserService {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
-  final IAuthService _authFacade;
+  final IAuthService _authService;
   final SocialClient _socialClient;
 
   BehaviorSubject<Either<UserFailure, User>> _userController;
 
-  UserFacade(
+  UserService(
     this._firestore,
     this._storage,
-    this._authFacade,
+    this._authService,
     this._socialClient,
   ) : _userController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _userController = BehaviorSubject();
         _userController.addStream(watchUser());
@@ -45,6 +45,7 @@ class UserFacade implements IUserService {
       }
     });
   }
+
 
   @override
   Either<UserFailure, User> getUser() {
@@ -65,7 +66,7 @@ class UserFacade implements IUserService {
     }
 
     yield* userDoc.snapshots().asyncMap<Either<UserFailure, User>>((doc) async {
-      final idToken = await _authFacade.idToken();
+      final idToken = await _authService.idToken();
       final user = UserDto.fromFirestore(doc).toDomain(idToken: idToken!);
       return right(user);
     }).onErrorReturnWith(
@@ -158,7 +159,7 @@ class UserFacade implements IUserService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

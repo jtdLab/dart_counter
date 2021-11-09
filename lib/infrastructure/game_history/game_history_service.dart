@@ -12,10 +12,10 @@ import 'package:injectable/injectable.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IGameHistoryService)
-class GameHistoryFacade implements IGameHistoryService {
+class GameHistoryService implements IGameHistoryService {
   final FirebaseFirestore _firestore;
 
-  GameHistoryFacade(
+  GameHistoryService(
     this._firestore,
   );
 

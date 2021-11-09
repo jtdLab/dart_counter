@@ -6,7 +6,7 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dartz/dartz.dart';
 
-/// Domain interface for all actions related to the app-user.
+/// Domain service for all actions related to the app-user.
 abstract class IUserService {
   /// Returns the app-user or failure.
   ///

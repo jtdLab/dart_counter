@@ -9,7 +9,7 @@ import 'mode.dart';
 import 'throw.dart';
 import 'type.dart';
 
-/// Domain interface for all actions related playing an offline game.
+/// Domain service for all actions related playing an offline game.
 abstract class IPlayOfflineService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<OfflineGameSnapshot> watchGame();

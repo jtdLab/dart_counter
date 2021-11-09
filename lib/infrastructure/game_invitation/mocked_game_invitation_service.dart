@@ -12,8 +12,8 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IGameInvitationService)
-class MockedGameInvitationFacade implements IGameInvitationService {
-  final IAuthService _authFacade;
+class MockedGameInvitationService implements IGameInvitationService {
+  final IAuthService _authService;
 
   BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _receivedGameInvitationsController;
@@ -21,11 +21,11 @@ class MockedGameInvitationFacade implements IGameInvitationService {
   BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
       _sentGameInvitationsController;
 
-  MockedGameInvitationFacade(
-    this._authFacade,
+  MockedGameInvitationService(
+    this._authService,
   )   : _receivedGameInvitationsController = BehaviorSubject(),
         _sentGameInvitationsController = BehaviorSubject() {
-    _authFacade.watchIsAuthenticated().listen((isAuthenticated) async {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _receivedGameInvitationsController = BehaviorSubject.seeded(
           hasNetworkConnection
@@ -224,7 +224,7 @@ class MockedGameInvitationFacade implements IGameInvitationService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
-    if (!_authFacade.isAuthenticated()) {
+    if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
   }

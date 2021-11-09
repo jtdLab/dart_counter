@@ -9,7 +9,7 @@ import 'package:kt_dart/kt.dart';
 import 'friend.dart';
 import 'friend_request.dart';
 
-/// Domain interface for all actions related to friends/friendships of the app-user.
+/// Domain service for all actions related to friends/friendships of the app-user.
 abstract class IFriendService {
   /// Returns the received friend requests of the app-user.
   ///
