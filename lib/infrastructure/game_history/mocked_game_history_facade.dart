@@ -29,13 +29,9 @@ class MockedGameHistoryFacade implements IGameHistoryService {
           (index) => OfflineGame.dummy(),
         );
 
-        return right(
-          List10(
-            games
-                .toImmutableList()
-                .sortedByDescending((game) => game.createdAt),
-          ),
-        );
+        games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
+
+        return right(List10(games));
       }
 
       return left(const GameHistoryFailure.unexpected()); // TODO name better
@@ -56,13 +52,9 @@ class MockedGameHistoryFacade implements IGameHistoryService {
           (index) => OnlineGame.dummy(),
         );
 
-        return right(
-          List10(
-            games
-                .toImmutableList()
-                .sortedByDescending((game) => game.createdAt),
-          ),
-        );
+        games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
+
+        return right(List10(games));
       }
 
       return left(const GameHistoryFailure.unexpected()); // TODO name better

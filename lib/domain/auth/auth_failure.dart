@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_failure.freezed.dart';
 
+/// All failures of the auth domain.
 @freezed
 class AuthFailure with _$AuthFailure {
   const factory AuthFailure.emailAlreadyInUse() = _EmailAlreadyInUse;

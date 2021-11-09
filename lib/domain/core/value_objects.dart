@@ -2,17 +2,19 @@ import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
 
+/// Base class for domain specific object holding either [T] or a [ValueFailure].
 @immutable
 abstract class ValueObject<T> {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
 
-  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  /// Returns the value of this value object.
+  ///
+  /// Throws [UnexpectedValueError] if this contains a [ValueFailure].
   T getOrCrash() {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
@@ -33,6 +35,7 @@ abstract class ValueObject<T> {
   String toString() => 'Value($value)';
 }
 
+/// A value object containing valid email or failure.
 class EmailAddress extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -50,6 +53,7 @@ class EmailAddress extends ValueObject<String> {
   const EmailAddress._(this.value);
 }
 
+/// A value object containing valid username or failure.
 class Username extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -67,6 +71,7 @@ class Username extends ValueObject<String> {
   const Username._(this.value);
 }
 
+/// A value object containing valid password or failure.
 class Password extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -84,6 +89,7 @@ class Password extends ValueObject<String> {
   const Password._(this.value);
 }
 
+/// A value object containing unique uid or failure.
 class UniqueId extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -103,25 +109,25 @@ class UniqueId extends ValueObject<String> {
   const UniqueId._(this.value);
 }
 
-// maybe dont use kt list instead take list
-class List10<T> extends ValueObject<KtList<T>> {
+/// A value object containing a list with max. length of 10 or failure.
+class List10<T> extends ValueObject<List<T>> {
   @override
-  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+  final Either<ValueFailure<List<T>>, List<T>> value;
 
   static const maxLength = 10;
 
-  factory List10(KtList<T> input) {
+  factory List10(List<T> list) {
     return List10._(
-      validateMaxListLength(input, maxLength),
+      validateMaxListLength(list: list, maxLength: maxLength),
     );
   }
 
-  factory List10.empty() => List10(const KtList.empty());
+  factory List10.empty() => List10(const []);
 
   const List10._(this.value);
 
   int get length {
-    return value.getOrElse(() => emptyList()).size;
+    return getOrCrash().length;
   }
 
   bool get isFull {

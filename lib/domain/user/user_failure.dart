@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_failure.freezed.dart';
 
+/// All failures of the user domain.
 @freezed
 class UserFailure with _$UserFailure {
   const factory UserFailure.failure() = _Failure;

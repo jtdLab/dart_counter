@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
 
 part 'failures.freezed.dart';
 
+/// All failures of a [ValueObject].
 @freezed
 class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.invalidEmail({

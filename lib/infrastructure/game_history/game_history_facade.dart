@@ -35,7 +35,7 @@ class GameHistoryFacade implements IGameHistoryService {
         games.add(OfflineGameDto.fromFirestore(doc).toDomain());
       }
 
-      return right(List10(KtList.from(games)));
+      return right(List10(games));
     } catch (e) {
       print(e);
       return left(const GameHistoryFailure.unexpected()); // TODO name better
@@ -60,7 +60,7 @@ class GameHistoryFacade implements IGameHistoryService {
         games.add(OnlineGameDto.fromFirestore(doc).toDomain());
       }
 
-      return right(List10(KtList.from(games)));
+      return right(List10(games));
     } catch (e) {
       print(e);
       return left(const GameHistoryFailure.unexpected()); // TODO name better

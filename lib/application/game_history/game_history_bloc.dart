@@ -60,16 +60,17 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
       (onlineGameHistory) => failureOrOfflineGameHistory.fold(
         (failure) => GameHistoryState.loadFailure(failure: failure),
         (offlineGameHistory) {
-          final allGameHistory = KtMutableList<Game>.empty();
+          final allGameHistory = <Game>[];
 
           allGameHistory.addAll(onlineGameHistory.getOrCrash());
           allGameHistory.addAll(offlineGameHistory.getOrCrash());
 
-          allGameHistory.sortedByDescending((game) => game.createdAt);
-        
+          /// TODO is descending or need to reverse ???
+          allGameHistory
+              .sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
 
           return GameHistoryState.loadSuccess(
-            gameHistory: List10(allGameHistory.take(10)),
+            gameHistory: List10(allGameHistory.take(10).toList()),
           );
         },
       ),

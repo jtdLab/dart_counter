@@ -1,8 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:kt_dart/kt.dart';
 
 import 'failures.dart';
 
+/// Validates [emailString].
+///
+/// Returns [emailString] if valid email.
+///
+/// Returns ValueFailure else.
 Either<ValueFailure<String>, String> validateEmailAddress({
   required String emailString,
 }) {
@@ -15,6 +19,11 @@ Either<ValueFailure<String>, String> validateEmailAddress({
   }
 }
 
+/// Validates [usernameString].
+///
+/// Returns [usernameString] if valid username.
+///
+/// Returns ValueFailure else.
 Either<ValueFailure<String>, String> validateUsername({
   required String usernameString,
 }) {
@@ -30,6 +39,11 @@ Either<ValueFailure<String>, String> validateUsername({
   }
 }
 
+/// Validates [passwordString].
+///
+/// Returns [passwordString] if valid password.
+///
+/// Returns ValueFailure else.
 Either<ValueFailure<String>, String> validatePassword({
   required String passwordString,
 }) {
@@ -44,16 +58,21 @@ Either<ValueFailure<String>, String> validatePassword({
   }
 }
 
-Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
-  KtList<T> input,
-  int maxLength,
-) {
-  if (input.size <= maxLength) {
-    return right(input);
+/// Validates wheter [list] has [maxLength].
+///
+/// Returns [list] if valid list.
+///
+/// Returns ValueFailure else.
+Either<ValueFailure<List<T>>, List<T>> validateMaxListLength<T>({
+  required List<T> list,
+  required int maxLength,
+}) {
+  if (list.length <= maxLength) {
+    return right(list);
   } else {
     return left(
       ValueFailure.listTooLong(
-        failedValue: input,
+        failedValue: list,
         max: maxLength,
       ),
     );

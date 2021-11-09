@@ -15,7 +15,7 @@ class _OverviewWidget extends StatelessWidget {
           loadSuccess: (loadSucess) {
             final games = loadSucess.gameHistory.getOrCrash();
 
-            if (games.size == 0) {
+            if (games.isEmpty) {
               return Center(
                 child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
               );
@@ -24,7 +24,7 @@ class _OverviewWidget extends StatelessWidget {
             return AppColumn(
               spacing: size12(context),
               children: [
-                for (final game in games.iter) _GameHistoryCard(game: game),
+                for (final game in games) _GameHistoryCard(game: game),
               ],
             );
           },
