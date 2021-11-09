@@ -141,7 +141,7 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangeEmailSubmitInProgress, ChangeEmailSubmitFailure] '
+      'emits [ChangeEmailSubmitFailure] '
       'when current state is ChangeEmailInitial with invalid email ',
       build: () => ChangeEmailBloc(mockUserFacade),
       seed: () => ChangeEmailState.initial(

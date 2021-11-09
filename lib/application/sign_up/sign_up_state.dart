@@ -14,10 +14,10 @@ class SignUpState with _$SignUpState {
   }) = _SignUpState;
 
   factory SignUpState.initial() => SignUpState(
-        email: EmailAddress(''),
-        username: Username(''),
-        password: Password(''),
-        passwordAgain: Password(''),
+        email: EmailAddress.empty(),
+        username: Username.empty(),
+        password: Password.empty(),
+        passwordAgain: Password.empty(),
         showErrorMessages: false,
         isSubmitting: false,
         isSignedUp: false,

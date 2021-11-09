@@ -249,7 +249,7 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordSubmitInProgress, ChangePasswordSubmitFailure] '
+      'emits [ChangePasswordSubmitFailure] '
       'when current state is ChangePasswordInitial with not matching new password and new password-again ',
       build: () => ChangePasswordBloc(mockAuthFacade),
       seed: () => ChangePasswordState.initial(
@@ -263,12 +263,82 @@ void main() {
       ),
       expect: () => [
         const ChangePasswordSubmitFailure(
-          authFailure: AuthFailure.serverError(),
+          authFailure: AuthFailure.passwordsNotMatching(),
         ),
       ],
     );
 
-    // TODO test more granular validation + check authfailure types in failure stats of other tests
+    blocTest(
+      'emits [ChangePasswordSubmitFailure] '
+      'when current state is ChangePasswordInitial with invalid old password ',
+      build: () => ChangePasswordBloc(mockAuthFacade),
+      seed: () => ChangePasswordState.initial(
+        oldPassword: Password('a'),
+        newPassword: Password('newPassword'),
+        newPasswordAgain: Password('newPassword'),
+        showErrorMessages: false,
+      ),
+      act: (ChangePasswordBloc bloc) => bloc.add(
+        const ChangePasswordEvent.confirmPressed(),
+      ),
+      expect: () => [
+        const ChangePasswordSubmitFailure(
+          authFailure: AuthFailure.invalidOldPassword(),
+        ),
+      ],
+    );
+
+    blocTest(
+      'emits [ChangePasswordSubmitFailure] '
+      'when current state is ChangePasswordInitial with invalid new password ',
+      build: () => ChangePasswordBloc(mockAuthFacade),
+      seed: () => ChangePasswordState.initial(
+        oldPassword: Password('oldPassword'),
+        newPassword: Password('a'),
+        newPasswordAgain: Password('newPassword'),
+        showErrorMessages: false,
+      ),
+      act: (ChangePasswordBloc bloc) => bloc.add(
+        const ChangePasswordEvent.confirmPressed(),
+      ),
+      expect: () => [
+        const ChangePasswordSubmitFailure(
+          authFailure: AuthFailure.invalidNewPassword(),
+        ),
+      ],
+    );
+
+    blocTest(
+      'emits [ChangePasswordSubmitInProgress, ChangePasswordSubmitFailure] '
+      'when current state is ChangePasswordInitial with valid and correct old password '
+      'and valid new password which matches new password-again but backend error occurs ',
+      build: () {
+        when<Future<Either<AuthFailure, Unit>>>(
+          () => mockAuthFacade.updatePassword(
+            oldPassword: any(named: 'oldPassword'),
+            newPassword: any(named: 'newPassword'),
+          ),
+        ).thenAnswer((_) async => left(const AuthFailure.serverError()));
+
+        return ChangePasswordBloc(mockAuthFacade);
+      },
+      seed: () => ChangePasswordState.initial(
+        oldPassword: Password('oldPassword'),
+        newPassword: Password('newPassword'),
+        newPasswordAgain: Password('newPassword'),
+        showErrorMessages: false,
+      ),
+      act: (ChangePasswordBloc bloc) => bloc.add(
+        const ChangePasswordEvent.confirmPressed(),
+      ),
+      wait: const Duration(seconds: 1),
+      expect: () => [
+        const ChangePasswordSubmitInProgress(),
+        const ChangePasswordSubmitFailure(
+          authFailure: AuthFailure.serverError(),
+        ),
+      ],
+    );
 
     blocTest(
       'throws Error when current state is ChangePasswordSubmitInProgress ',

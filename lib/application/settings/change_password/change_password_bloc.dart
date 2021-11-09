@@ -53,8 +53,8 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         emit(
           ChangePasswordState.initial(
             oldPassword: Password(oldPassword),
-            newPassword: Password(''),
-            newPasswordAgain: Password(''),
+            newPassword: Password.empty(),
+            newPasswordAgain: Password.empty(),
             showErrorMessages: true,
           ),
         );
@@ -76,9 +76,9 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
       submitFailure: (_) {
         emit(
           ChangePasswordState.initial(
-            oldPassword: Password(''),
+            oldPassword: Password.empty(),
             newPassword: Password(newPassword),
-            newPasswordAgain: Password(''),
+            newPasswordAgain: Password.empty(),
             showErrorMessages: true,
           ),
         );
@@ -100,8 +100,8 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
       submitFailure: (_) {
         emit(
           ChangePasswordState.initial(
-            oldPassword: Password(''),
-            newPassword: Password(''),
+            oldPassword: Password.empty(),
+            newPassword: Password.empty(),
             newPasswordAgain: Password(newPasswordAgain),
             showErrorMessages: true,
           ),
@@ -111,7 +111,6 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     );
   }
 
-  // TODO more granular error handling + validation
   Future<void> _mapConfirmPressedToState(
     ConfirmPressed event,
     Emitter<ChangePasswordState> emit,
@@ -125,23 +124,28 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         final newPasswordAgain = initial.newPasswordAgain;
         final newPasswordsEqual = newPassword == newPasswordAgain;
 
-        if (oldPassword.isValid() &&
-            newPassword.isValid() &&
-            newPasswordAgain.isValid() &&
-            newPasswordsEqual) {
-          emit(const ChangePasswordSubmitInProgress());
+        if (oldPassword.isValid()) {
+          if (newPassword.isValid()) {
+            if (newPasswordsEqual) {
+              emit(const ChangePasswordSubmitInProgress());
 
-          await Future.delayed(const Duration(seconds: 1));
-          authFailure = (await _authFacade.updatePassword(
-            oldPassword: oldPassword,
-            newPassword: newPassword,
-          ))
-              .fold(
-            (failure) => failure,
-            (_) => null,
-          );
+              await Future.delayed(const Duration(seconds: 1));
+              authFailure = (await _authFacade.updatePassword(
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+              ))
+                  .fold(
+                (failure) => failure,
+                (_) => null,
+              );
+            } else {
+              authFailure = const AuthFailure.passwordsNotMatching();
+            }
+          } else {
+            authFailure = const AuthFailure.invalidNewPassword();
+          }
         } else {
-          authFailure = const AuthFailure.serverError();
+          authFailure = const AuthFailure.invalidOldPassword();
         }
 
         if (authFailure == null) {

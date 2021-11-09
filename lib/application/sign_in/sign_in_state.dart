@@ -12,8 +12,8 @@ class SignInState with _$SignInState {
   }) = _SignInState;
 
   factory SignInState.initial() => SignInState(
-        email: EmailAddress(''),
-        password: Password(''),
+        email: EmailAddress.empty(),
+        password: Password.empty(),
         showErrorMessages: false,
         isSubmitting: false,
         isSignedIn: false,

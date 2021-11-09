@@ -33,6 +33,14 @@ class _$AuthFailureTearOff {
     return const _InvalidUsername();
   }
 
+  _InvalidOldPassword invalidOldPassword() {
+    return const _InvalidOldPassword();
+  }
+
+  _InvalidNewPassword invalidNewPassword() {
+    return const _InvalidNewPassword();
+  }
+
   _InvalidPassword invalidPassword() {
     return const _InvalidPassword();
   }
@@ -70,6 +78,8 @@ mixin _$AuthFailure {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -84,6 +94,8 @@ mixin _$AuthFailure {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -98,6 +110,8 @@ mixin _$AuthFailure {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -113,6 +127,8 @@ mixin _$AuthFailure {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -129,6 +145,8 @@ mixin _$AuthFailure {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -145,6 +163,8 @@ mixin _$AuthFailure {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -219,6 +239,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -236,6 +258,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -253,6 +277,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -274,6 +300,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -293,6 +321,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -312,6 +342,8 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -378,6 +410,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -395,6 +429,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -412,6 +448,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -433,6 +471,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -452,6 +492,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -471,6 +513,8 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -536,6 +580,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -553,6 +599,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -570,6 +618,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -591,6 +641,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -610,6 +662,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -629,6 +683,8 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -695,6 +751,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -712,6 +770,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -729,6 +789,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -750,6 +812,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -769,6 +833,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -788,6 +854,8 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -807,6 +875,348 @@ class _$_InvalidUsername implements _InvalidUsername {
 
 abstract class _InvalidUsername implements AuthFailure {
   const factory _InvalidUsername() = _$_InvalidUsername;
+}
+
+/// @nodoc
+abstract class _$InvalidOldPasswordCopyWith<$Res> {
+  factory _$InvalidOldPasswordCopyWith(
+          _InvalidOldPassword value, $Res Function(_InvalidOldPassword) then) =
+      __$InvalidOldPasswordCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InvalidOldPasswordCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$InvalidOldPasswordCopyWith<$Res> {
+  __$InvalidOldPasswordCopyWithImpl(
+      _InvalidOldPassword _value, $Res Function(_InvalidOldPassword) _then)
+      : super(_value, (v) => _then(v as _InvalidOldPassword));
+
+  @override
+  _InvalidOldPassword get _value => super._value as _InvalidOldPassword;
+}
+
+/// @nodoc
+
+class _$_InvalidOldPassword implements _InvalidOldPassword {
+  const _$_InvalidOldPassword();
+
+  @override
+  String toString() {
+    return 'AuthFailure.invalidOldPassword()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidOldPassword);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() usernameAlreadyInUse,
+    required TResult Function() invalidEmail,
+    required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
+    required TResult Function() invalidPassword,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() invalidUsernameAndPasswordCombination,
+    required TResult Function() passwordsNotMatching,
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+  }) {
+    return invalidOldPassword();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+  }) {
+    return invalidOldPassword?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidOldPassword != null) {
+      return invalidOldPassword();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(_InvalidEmail value) invalidEmail,
+    required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
+    required TResult Function(_InvalidPassword value) invalidPassword,
+    required TResult Function(_InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(_InvalidUsernameAndPasswordCombination value)
+        invalidUsernameAndPasswordCombination,
+    required TResult Function(_PasswordsNotMatching value) passwordsNotMatching,
+    required TResult Function(_CancelledByUser value) cancelledByUser,
+    required TResult Function(_ServerError value) serverError,
+  }) {
+    return invalidOldPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+  }) {
+    return invalidOldPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidOldPassword != null) {
+      return invalidOldPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidOldPassword implements AuthFailure {
+  const factory _InvalidOldPassword() = _$_InvalidOldPassword;
+}
+
+/// @nodoc
+abstract class _$InvalidNewPasswordCopyWith<$Res> {
+  factory _$InvalidNewPasswordCopyWith(
+          _InvalidNewPassword value, $Res Function(_InvalidNewPassword) then) =
+      __$InvalidNewPasswordCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InvalidNewPasswordCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$InvalidNewPasswordCopyWith<$Res> {
+  __$InvalidNewPasswordCopyWithImpl(
+      _InvalidNewPassword _value, $Res Function(_InvalidNewPassword) _then)
+      : super(_value, (v) => _then(v as _InvalidNewPassword));
+
+  @override
+  _InvalidNewPassword get _value => super._value as _InvalidNewPassword;
+}
+
+/// @nodoc
+
+class _$_InvalidNewPassword implements _InvalidNewPassword {
+  const _$_InvalidNewPassword();
+
+  @override
+  String toString() {
+    return 'AuthFailure.invalidNewPassword()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InvalidNewPassword);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() usernameAlreadyInUse,
+    required TResult Function() invalidEmail,
+    required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
+    required TResult Function() invalidPassword,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() invalidUsernameAndPasswordCombination,
+    required TResult Function() passwordsNotMatching,
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+  }) {
+    return invalidNewPassword();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+  }) {
+    return invalidNewPassword?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidNewPassword != null) {
+      return invalidNewPassword();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(_InvalidEmail value) invalidEmail,
+    required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
+    required TResult Function(_InvalidPassword value) invalidPassword,
+    required TResult Function(_InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(_InvalidUsernameAndPasswordCombination value)
+        invalidUsernameAndPasswordCombination,
+    required TResult Function(_PasswordsNotMatching value) passwordsNotMatching,
+    required TResult Function(_CancelledByUser value) cancelledByUser,
+    required TResult Function(_ServerError value) serverError,
+  }) {
+    return invalidNewPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+  }) {
+    return invalidNewPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidNewPassword != null) {
+      return invalidNewPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidNewPassword implements AuthFailure {
+  const factory _InvalidNewPassword() = _$_InvalidNewPassword;
 }
 
 /// @nodoc
@@ -854,6 +1264,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -871,6 +1283,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -888,6 +1302,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -909,6 +1325,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -928,6 +1346,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -947,6 +1367,8 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1018,6 +1440,8 @@ class _$_InvalidEmailAndPasswordCombination
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -1035,6 +1459,8 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1052,6 +1478,8 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1073,6 +1501,8 @@ class _$_InvalidEmailAndPasswordCombination
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -1092,6 +1522,8 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1111,6 +1543,8 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1184,6 +1618,8 @@ class _$_InvalidUsernameAndPasswordCombination
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -1201,6 +1637,8 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1218,6 +1656,8 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1239,6 +1679,8 @@ class _$_InvalidUsernameAndPasswordCombination
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -1258,6 +1700,8 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1277,6 +1721,8 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1344,6 +1790,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -1361,6 +1809,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1378,6 +1828,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1399,6 +1851,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -1418,6 +1872,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1437,6 +1893,8 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1503,6 +1961,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -1520,6 +1980,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1537,6 +1999,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1558,6 +2022,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -1577,6 +2043,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1596,6 +2064,8 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1661,6 +2131,8 @@ class _$_ServerError implements _ServerError {
     required TResult Function() usernameAlreadyInUse,
     required TResult Function() invalidEmail,
     required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
     required TResult Function() invalidPassword,
     required TResult Function() invalidEmailAndPasswordCombination,
     required TResult Function() invalidUsernameAndPasswordCombination,
@@ -1678,6 +2150,8 @@ class _$_ServerError implements _ServerError {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1695,6 +2169,8 @@ class _$_ServerError implements _ServerError {
     TResult Function()? usernameAlreadyInUse,
     TResult Function()? invalidEmail,
     TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
     TResult Function()? invalidPassword,
     TResult Function()? invalidEmailAndPasswordCombination,
     TResult Function()? invalidUsernameAndPasswordCombination,
@@ -1716,6 +2192,8 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
     required TResult Function(_InvalidEmail value) invalidEmail,
     required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
     required TResult Function(_InvalidPassword value) invalidPassword,
     required TResult Function(_InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
@@ -1735,6 +2213,8 @@ class _$_ServerError implements _ServerError {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
@@ -1754,6 +2234,8 @@ class _$_ServerError implements _ServerError {
     TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
     TResult Function(_InvalidEmail value)? invalidEmail,
     TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
     TResult Function(_InvalidPassword value)? invalidPassword,
     TResult Function(_InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,

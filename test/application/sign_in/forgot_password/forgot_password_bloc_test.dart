@@ -141,7 +141,7 @@ void main() {
     );
 
     blocTest(
-      'emits [ForgotPasswordSubmitInProgress, ForgotPasswordSubmitFailure] '
+      'emits [ForgotPasswordSubmitFailure] '
       'when current state is ForgotPasswordInitial with invalid email ',
       build: () => ForgotPasswordBloc(mockAuthFacade),
       seed: () => ForgotPasswordState.initial(

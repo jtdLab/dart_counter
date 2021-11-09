@@ -66,10 +66,10 @@ void main() {
           underTest.state,
           equals(
             SignUpState(
-              email: EmailAddress(''),
-              username: Username(''),
-              password: Password(''),
-              passwordAgain: Password(''),
+              email: EmailAddress.empty(),
+              username: Username.empty(),
+              password: Password.empty(),
+              passwordAgain: Password.empty(),
               showErrorMessages: false,
               isSubmitting: false,
               isSignedUp: false,
@@ -96,9 +96,9 @@ void main() {
           expect: () => [
             SignUpState(
               email: EmailAddress('abc'),
-              username: Username(''),
-              password: Password(''),
-              passwordAgain: Password(''),
+              username: Username.empty(),
+              password: Password.empty(),
+              passwordAgain: Password.empty(),
               showErrorMessages: false,
               isSubmitting: false,
               isSignedUp: false,
@@ -146,10 +146,10 @@ void main() {
               bloc.add(const SignUpEvent.usernameChanged('abc')),
           expect: () => [
             SignUpState(
-              email: EmailAddress(''),
+              email: EmailAddress.empty(),
               username: Username('abc'),
-              password: Password(''),
-              passwordAgain: Password(''),
+              password: Password.empty(),
+              passwordAgain: Password.empty(),
               showErrorMessages: false,
               isSubmitting: false,
               isSignedUp: false,
@@ -197,10 +197,10 @@ void main() {
               bloc.add(const SignUpEvent.passwordChanged('abc')),
           expect: () => [
             SignUpState(
-              email: EmailAddress(''),
-              username: Username(''),
+              email: EmailAddress.empty(),
+              username: Username.empty(),
               password: Password('abc'),
-              passwordAgain: Password(''),
+              passwordAgain: Password.empty(),
               showErrorMessages: false,
               isSubmitting: false,
               isSignedUp: false,
@@ -248,9 +248,9 @@ void main() {
               bloc.add(const SignUpEvent.passwordAgainChanged('abc')),
           expect: () => [
             SignUpState(
-              email: EmailAddress(''),
-              username: Username(''),
-              password: Password(''),
+              email: EmailAddress.empty(),
+              username: Username.empty(),
+              password: Password.empty(),
               passwordAgain: Password('abc'),
               showErrorMessages: false,
               isSubmitting: false,

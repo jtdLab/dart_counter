@@ -145,7 +145,7 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitFailure] '
+      'emits [ChangeUsernameSubmitFailure] '
       'when current state is ChangeUsernameInitial with invalid username ',
       build: () => ChangeUsernameBloc(mockUserFacade),
       seed: () => ChangeUsernameState.initial(

@@ -53,7 +53,6 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     );
   }
 
-  // TODO more granular error handling
   Future<void> _mapConfirmPressedToState(
     ConfirmPressed event,
     Emitter<ChangeUsernameState> emit,
@@ -71,7 +70,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
             newUsername: username,
           ))
               .fold(
-            (failure) => failure,
+            (userFailure) => userFailure,
             (_) => null,
           );
         } else {

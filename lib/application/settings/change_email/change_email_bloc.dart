@@ -53,7 +53,6 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     );
   }
 
-  // TODO more granular error handling
   Future<void> _mapConfirmPressedToState(
     ConfirmPressed event,
     Emitter<ChangeEmailState> emit,
@@ -71,7 +70,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
             newEmailAddress: email,
           ))
               .fold(
-            (failure) => failure,
+            (userFailure) => userFailure,
             (_) => null,
           );
         } else {
