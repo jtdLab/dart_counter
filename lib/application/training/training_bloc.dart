@@ -36,7 +36,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
   final IScoreTrainingService _scoreTrainingService;
   final IBobsTwentySevenService _bobsTwentySevenService;
 
-  final IUserService _userFacade;
+  final IUserService _userService;
 
   StreamSubscription? _gameSnapshotsSubscription;
 
@@ -45,12 +45,12 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
     this._doubleTrainingService,
     this._scoreTrainingService,
     this._bobsTwentySevenService,
-    this._userFacade,
+    this._userService,
   ) : super(
           TrainingState.initial(
             type: Type.single,
             gameSnapshot: single.GameSnapshot.initial(
-              username: _userFacade.getUser().fold(
+              username: _userService.getUser().fold(
                     (failure) => throw Error(),
                     (user) => user.profile.username.getOrCrash(),
                   ),
@@ -59,7 +59,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
         ) {
     on<TrainingCreated>((event, emit) async {
       if (state is TrainingInitial) {
-        final user = _userFacade.getUser().fold(
+        final user = _userService.getUser().fold(
               (failure) => null,
               (user) => user,
             );
@@ -185,7 +185,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
       }
     });
     on<TrainingTypeChanged>((event, emit) {
-      final user = _userFacade.getUser().fold(
+      final user = _userService.getUser().fold(
             (failure) => null,
             (user) => user,
           );

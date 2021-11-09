@@ -21,6 +21,7 @@ class MockedUserService implements IUserService {
 
   BehaviorSubject<Either<UserFailure, User>> _userController;
 
+
   MockedUserService(
     this._authService,
   ) : _userController = BehaviorSubject() {

@@ -20,7 +20,7 @@ part 'game_invitations_state.dart';
 
 @lazySingleton
 class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsState> with AutoResetLazySingleton{
-  final IPlayOnlineService _playOnlineFacade;
+  final IPlayOnlineService _playOnlineService;
   final IGameInvitationService _gameInvitationService;
 
   final DataWatcherBloc _dataWatcherBloc;
@@ -30,7 +30,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
   StreamSubscription? _gameSnapshotsSubscription;
 
   GameInvitationsBloc(
-    this._playOnlineFacade,
+    this._playOnlineService,
     this._gameInvitationService,
     this._dataWatcherBloc,
     this._playBloc,
@@ -94,7 +94,7 @@ class GameInvitationsBloc extends Bloc<GameInvitationsEvent, GameInvitationsStat
 
     yield state.copyWith(loading: true);
     await Future.delayed(const Duration(milliseconds: 500));
-    final failureOrUnit = await _playOnlineFacade.joinGame(gameId: gameId);
+    final failureOrUnit = await _playOnlineService.joinGame(gameId: gameId);
     yield* failureOrUnit.fold(
       (failure) async* {
         yield state.copyWith(loading: false, failure: failure);

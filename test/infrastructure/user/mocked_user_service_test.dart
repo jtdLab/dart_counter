@@ -19,7 +19,7 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  void setUpAuthFacadeWithAuthenticatedUser() {
+  void setUpAuthServiceWithAuthenticatedUser() {
     when(
       () => mockAuthService.isAuthenticated(),
     ).thenAnswer((_) => true);
@@ -28,7 +28,7 @@ void main() {
     ).thenAnswer((_) => const Stream.empty());
   }
 
-  void setUpAuthFacadeWithNotAuthenticatedUser() {
+  void setUpAuthServiceWithNotAuthenticatedUser() {
     when(
       () => mockAuthService.isAuthenticated(),
     ).thenAnswer((_) => false);
