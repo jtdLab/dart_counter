@@ -3,8 +3,14 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
+/// Create the apps dependency injection container.
+///
+/// For more info see: https://pub.dev/packages/get_it
 final getIt = GetIt.instance;
 
+/// Setup injectable package which generates dependency injection code.
+///
+/// For more info see: https://pub.dev/packages/injectable
 @InjectableInit()
 void configureInjection(String env) {
   $initGetIt(getIt, environment: env);

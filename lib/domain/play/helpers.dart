@@ -1,5 +1,7 @@
 import 'package:dart_game/util/dart_utils.dart';
 
+// TODO needed?
+
 /// Returns `true` if [points] is valid when a player has [pointsLeft].
 bool validatePoints({
   required int pointsLeft,

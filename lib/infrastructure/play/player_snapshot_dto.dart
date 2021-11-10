@@ -9,7 +9,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player_snapshot_dto.freezed.dart';
 
-// TODO why need freezd classes to explicit implement interface e.g "implements AbstractPlayerSnapshotDto" this should be done by freezed already
 abstract class AbstractPlayerSnapshotDto {
   String get id;
   String? get name;

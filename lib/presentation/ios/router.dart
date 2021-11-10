@@ -23,19 +23,9 @@ import 'main/training/in_training/in_training_page.dart';
 import 'main/training/post_training/post_training_page.dart';
 import 'main/training/training_flow.dart';
 
-// route builder for pages with modal views
-Route<T> customRouteBuilder<T>(
-  BuildContext context,
-  Widget widget,
-  CustomPage page,
-) =>
-    MaterialWithModalsPageRoute<T>(
-      builder: (context) => widget,
-      settings: page,
-      maintainState: page.maintainState,
-      fullscreenDialog: page.fullscreenDialog,
-    );
-
+/// Setup auto route.
+///
+/// For more info see: https://pub.dev/packages/auto_route
 @CustomAutoRouter(
   routes: <AutoRoute>[
     CustomRoute(
@@ -135,3 +125,20 @@ Route<T> customRouteBuilder<T>(
   ],
 )
 class $Router {}
+
+/// Route builder for pages with modal views.
+///
+/// This is needed to get the correct visual ios effect (the background page gets zoom back
+///
+/// a little bit when a modal page gets pushed via modal bottom sheet).
+Route<T> customRouteBuilder<T>(
+  BuildContext context,
+  Widget widget,
+  CustomPage page,
+) =>
+    MaterialWithModalsPageRoute<T>(
+      builder: (context) => widget,
+      settings: page,
+      maintainState: page.maintainState,
+      fullscreenDialog: page.fullscreenDialog,
+    );

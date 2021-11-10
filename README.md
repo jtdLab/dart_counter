@@ -3,15 +3,12 @@
 DartCounter for Android and iOS.
 
 ## Important commands for development
+
 flutter pub run easy_localization:generate -S assets/languages -f keys -o locale_keys.g.dart
 flutter pub run build_runner watch --delete-conflicting-outputs
 flutter pub run easy_localization:generate -S assets/languages
 
-// TODO
-2. SearchUser
-3. Profile + all sub pages
-4. Play
-5. Trainings area
+// TODO 2. SearchUser 3. Profile + all sub pages 4. Play 5. Trainings area
 
 // TODO CLEAN BLOC EVENT AND STATE VISIBILITY AND NAMING
 
@@ -75,32 +72,33 @@ OTHER
 BLOCS
 LOCALE PAGES + WIDGETS
 
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  test('constructor', () {
-    // TODO implement test
-  });
+test('constructor', () {
+// TODO implement test
+});
 
-  test('fromDomain', () {
-    // TODO implement test
-  });
+test('fromDomain', () {
+// TODO implement test
+});
 
-  test('toDomain', () {
-    // TODO implement test
-  });
+test('toDomain', () {
+// TODO implement test
+});
 
-  test('fromJson', () {
-    // TODO implement test
-  });
+test('fromJson', () {
+// TODO implement test
+});
 
-  test('toJson', () {
-    // TODO implement test
-  });
+test('toJson', () {
+// TODO implement test
+});
 
-  test('constructor', () {
-    // TODO implement test
-  });
+test('constructor', () {
+// TODO implement test
+});
 }
+
+// TODO why need freezd classes to explicit implement interface e.g "implements AbstractPlayerSnapshotDto" this should be done by freezed already
