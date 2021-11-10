@@ -21,4 +21,6 @@ abstract class AbstractPlayer {
   PlayerStats get stats;
 }
 
+/// Base class for player of an offline dart game. 
 abstract class AbstractOfflinePlayer extends AbstractPlayer {}
+// TODO move to offline section

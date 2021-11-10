@@ -20,3 +20,4 @@ abstract class AbstractPlayerSnapshotDto {
 
 abstract class AbstractOfflinePlayerSnapshotDto
     extends AbstractPlayerSnapshotDto {}
+    // TODO move to offline section

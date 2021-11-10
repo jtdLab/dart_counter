@@ -14,3 +14,4 @@ abstract class AbstractPlayerDto {
 }
 
 abstract class AbstractOfflinePlayerDto extends AbstractPlayerDto {}
+// TODO move to offline section

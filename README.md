@@ -102,3 +102,6 @@ test('constructor', () {
 }
 
 // TODO why need freezd classes to explicit implement interface e.g "implements AbstractPlayerSnapshotDto" this should be done by freezed already
+
+
+// TODO renaem abstract players and player snapshots or game and gamesnpashot in domain and infrato IPlayer or IGame or other nameing
