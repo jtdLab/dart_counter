@@ -63,91 +63,12 @@ class MockedGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
-      getReceivedGameInvitations() {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      try {
-        return _receivedGameInvitationsController.value;
-      } catch (e) {
-        return null;
-      }
-    }
-
-    return left(const GameInvitationFailure.unexpected());
-  }
-
-  @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
-      getSentGameInvitations() {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      try {
-        return _sentGameInvitationsController.value;
-      } catch (e) {
-        return null;
-      }
-    }
-
-    return left(const GameInvitationFailure.unexpected());
-  }
-
-  @override
-  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedGameInvitations() {
-    _checkAuth();
-    return _receivedGameInvitationsController.stream;
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>>
-      markReceivedInvitationsAsRead() async {
-    _checkAuth();
-    final receivedInvitations =
-        _receivedGameInvitationsController.value.toOption().toNullable()!;
-
-    _receivedGameInvitationsController.add(
-      right(
-        receivedInvitations
-            .map(
-              (invitation) => invitation.copyWith(read: true),
-            )
-            .toList(),
-      ),
-    );
-
-    return right(unit);
-  }
-
-  @override
-  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations() {
-    _checkAuth();
-    return _sentGameInvitationsController.stream;
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
-    required UniqueId gameId,
-    required UniqueId toId,
+  Future<Either<GameInvitationFailure, Unit>> accept({
+    required GameInvitation invitation,
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentInvitations =
-          _sentGameInvitationsController.value.toOption().toNullable()!;
-
-      _sentGameInvitationsController.add(
-        right(
-          sentInvitations.toMutableList()
-            ..add(
-              GameInvitation.dummy().copyWith(
-                gameId: gameId,
-                toId: toId,
-              ),
-            ),
-        ),
-      );
-
+      _removeFromReceivedGameInvitations(invitation);
       return right(unit);
     }
 
@@ -180,7 +101,7 @@ class MockedGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> accept({
+  Future<Either<GameInvitationFailure, Unit>> decline({
     required GameInvitation invitation,
   }) async {
     _checkAuth();
@@ -193,16 +114,95 @@ class MockedGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>> decline({
-    required GameInvitation invitation,
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
+      getReceivedGameInvitations() {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      try {
+        return _receivedGameInvitationsController.value;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    return left(const GameInvitationFailure.unexpected());
+  }
+
+  @override
+  Either<GameInvitationFailure, KtList<GameInvitation>>?
+      getSentGameInvitations() {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      try {
+        return _sentGameInvitationsController.value;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    return left(const GameInvitationFailure.unexpected());
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>>
+      markReceivedInvitationsAsRead() async {
+    _checkAuth();
+    final receivedInvitations =
+        _receivedGameInvitationsController.value.toOption().toNullable()!;
+
+    _receivedGameInvitationsController.add(
+      right(
+        receivedInvitations
+            .map(
+              (invitation) => invitation.copyWith(read: true),
+            )
+            .toList(),
+      ),
+    );
+
+    return right(unit);
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
+    required UniqueId gameId,
+    required UniqueId toId,
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      _removeFromReceivedGameInvitations(invitation);
+      final sentInvitations =
+          _sentGameInvitationsController.value.toOption().toNullable()!;
+
+      _sentGameInvitationsController.add(
+        right(
+          sentInvitations.toMutableList()
+            ..add(
+              GameInvitation.dummy().copyWith(
+                gameId: gameId,
+                toId: toId,
+              ),
+            ),
+        ),
+      );
+
       return right(unit);
     }
 
     return left(const GameInvitationFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchReceivedGameInvitations() {
+    _checkAuth();
+    return _receivedGameInvitationsController.stream;
+  }
+
+  @override
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchSentInvitations() {
+    _checkAuth();
+    return _sentGameInvitationsController.stream;
   }
 
   /// Removes [invitation] from the receivedGameInvitations and emits event.

@@ -18,6 +18,7 @@ import 'package:rxdart/rxdart.dart';
 @LazySingleton(as: IFriendService)
 class MockedFriendService implements IFriendService {
   final IAuthService _authService;
+  //final IUserService _userService; // TODO needed like in real ?
 
   BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
 
@@ -31,6 +32,7 @@ class MockedFriendService implements IFriendService {
 
   MockedFriendService(
     this._authService,
+    //this._userService,
   )   : _friendsController = BehaviorSubject(),
         _receivedFriendRequestController = BehaviorSubject(),
         _sentFriendRequestController = BehaviorSubject(),
@@ -79,6 +81,69 @@ class MockedFriendService implements IFriendService {
   }
 
   @override
+  Future<Either<FriendFailure, Unit>> acceptFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      _removeFromReceivedFriendRequests(friendRequest);
+
+      final newFriend = Friend.dummy().copyWith(
+        id: friendRequest.fromId,
+        profile: Profile.dummy().copyWith(name: friendRequest.fromName),
+      );
+
+      final friends =
+          _friendsController.value.toOption().toNullable()!.toMutableList();
+      friends.add(newFriend);
+
+      _friendsController.add(right(friends));
+      return right(unit);
+    }
+
+    return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> cancelFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      final sentFriendRequests = _sentFriendRequestController.value
+          .toOption()
+          .toNullable()!
+          .toMutableList()
+          .asList();
+
+      sentFriendRequests.removeWhere(
+        (element) => element == friendRequest,
+      );
+
+      _sentFriendRequestController.add(
+        right(sentFriendRequests.toImmutableList()),
+      );
+
+      return right(unit);
+    }
+
+    return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> declineFriendRequest({
+    required FriendRequest friendRequest,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      _removeFromReceivedFriendRequests(friendRequest);
+      return right(unit);
+    }
+
+    return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
   Either<FriendFailure, KtList<Friend>>? getFriends() {
     _checkAuth();
     if (hasNetworkConnection) {
@@ -121,19 +186,6 @@ class MockedFriendService implements IFriendService {
   }
 
   @override
-  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
-    _checkAuth();
-    return _friendsController.stream;
-  }
-
-  @override
-  Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchReceivedFriendRequests() {
-    _checkAuth();
-    return _receivedFriendRequestController.stream;
-  }
-
-  @override
   Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
     _checkAuth();
 
@@ -151,100 +203,6 @@ class MockedFriendService implements IFriendService {
     );
 
     return right(unit);
-  }
-
-  @override
-  Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchSentFriendRequests() {
-    _checkAuth();
-
-    return _sentFriendRequestController.stream;
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> sendFriendRequest({
-    required UniqueId toId,
-  }) async {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value
-          .toOption()
-          .toNullable()!
-          .toMutableList();
-
-      sentFriendRequests.add(
-        FriendRequest.dummy().copyWith(toId: toId),
-      );
-      _sentFriendRequestController.add(
-        right(sentFriendRequests),
-      );
-      return right(unit);
-    }
-
-    return left(const FriendFailure.unexpected()); // TODO name better
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> cancelFriendRequest({
-    required FriendRequest friendRequest,
-  }) async {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value
-          .toOption()
-          .toNullable()!
-          .toMutableList()
-          .asList();
-
-      sentFriendRequests.removeWhere(
-        (element) => element == friendRequest,
-      );
-
-      _sentFriendRequestController.add(
-        right(sentFriendRequests.toImmutableList()),
-      );
-
-      return right(unit);
-    }
-
-    return left(const FriendFailure.unexpected()); // TODO name better
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> acceptFriendRequest({
-    required FriendRequest friendRequest,
-  }) async {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      _removeFromReceivedFriendRequests(friendRequest);
-
-      final newFriend = Friend.dummy().copyWith(
-        id: friendRequest.fromId,
-        profile: Profile.dummy().copyWith(name: friendRequest.fromName),
-      );
-
-      final friends =
-          _friendsController.value.toOption().toNullable()!.toMutableList();
-      friends.add(newFriend);
-
-      _friendsController.add(right(friends));
-      return right(unit);
-    }
-
-    return left(const FriendFailure.unexpected()); // TODO name better
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> declineFriendRequest({
-    required FriendRequest friendRequest,
-  }) async {
-    _checkAuth();
-    if (hasNetworkConnection) {
-      _removeFromReceivedFriendRequests(friendRequest);
-      return right(unit);
-    }
-
-    return left(const FriendFailure.unexpected()); // TODO name better
   }
 
   @override
@@ -273,7 +231,7 @@ class MockedFriendService implements IFriendService {
     return left(const FriendFailure.unexpected()); // TODO name better
   }
 
-  // TODO imple better
+// TODO imple better
   @override
   Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
     required String username,
@@ -327,6 +285,50 @@ class MockedFriendService implements IFriendService {
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> sendFriendRequest({
+    required UniqueId toId,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      final sentFriendRequests = _sentFriendRequestController.value
+          .toOption()
+          .toNullable()!
+          .toMutableList();
+
+      sentFriendRequests.add(
+        FriendRequest.dummy().copyWith(toId: toId),
+      );
+      _sentFriendRequestController.add(
+        right(sentFriendRequests),
+      );
+      return right(unit);
+    }
+
+    return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
+    _checkAuth();
+    return _friendsController.stream;
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchReceivedFriendRequests() {
+    _checkAuth();
+    return _receivedFriendRequestController.stream;
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchSentFriendRequests() {
+    _checkAuth();
+
+    return _sentFriendRequestController.stream;
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.

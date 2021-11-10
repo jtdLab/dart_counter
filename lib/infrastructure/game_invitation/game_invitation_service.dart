@@ -41,7 +41,8 @@ class GameInvitationService implements IGameInvitationService {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _receivedInvitationsController = BehaviorSubject();
-        _receivedInvitationsController.addStream(watchReceivedGameInvitations());
+        _receivedInvitationsController
+            .addStream(watchReceivedGameInvitations());
         _sentInvitationsController = BehaviorSubject();
         _sentInvitationsController.addStream(watchSentInvitations());
       } else {
@@ -49,6 +50,59 @@ class GameInvitationService implements IGameInvitationService {
         await _sentInvitationsController.close(); // TODO needed
       }
     });
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> accept({
+    required GameInvitation invitation,
+  }) async {
+    _checkAuth();
+    // TODO this should be in on call and handled server side
+    bool success = await _dartClient.joinGame(
+      gameId: invitation.gameId.getOrCrash(),
+    );
+
+    success &= await _socialClient.acceptGameInvitation(
+      fromId: invitation.fromId.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    } else {
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> cancel({
+    required GameInvitation invitation,
+  }) async {
+    _checkAuth();
+    final success = await _socialClient.cancelGameInvitation(
+      toId: invitation.toId.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    } else {
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> decline({
+    required GameInvitation invitation,
+  }) async {
+    _checkAuth();
+    final success = await _socialClient.declineGameInvitation(
+      fromId: invitation.fromId.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    } else {
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
   }
 
   @override
@@ -65,6 +119,50 @@ class GameInvitationService implements IGameInvitationService {
     _checkAuth();
 
     return _sentInvitationsController.value;
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>>
+      markReceivedInvitationsAsRead() async {
+    _checkAuth();
+    final CollectionReference<Object?> collection;
+    try {
+      collection = _firestore.receivedGameInvitationsCollection();
+    } catch (e) {
+      rethrow;
+    }
+
+    try {
+      final querySnapshot = await collection
+          .where('read', isNotEqualTo: true)
+          .get(const GetOptions(source: Source.cache));
+
+      for (final doc in querySnapshot.docs) {
+        await collection.doc(doc.id).update({'read': true});
+      }
+
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
+  }
+
+  @override
+  Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
+    required UniqueId gameId,
+    required UniqueId toId,
+  }) async {
+    _checkAuth();
+    final success = await _socialClient.sendGameInvitation(
+      toId: toId.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    } else {
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    }
   }
 
   @override
@@ -96,33 +194,6 @@ class GameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Future<Either<GameInvitationFailure, Unit>>
-      markReceivedInvitationsAsRead() async {
-    _checkAuth();
-    final CollectionReference<Object?> collection;
-    try {
-      collection = _firestore.receivedGameInvitationsCollection();
-    } catch (e) {
-      rethrow;
-    }
-
-    try {
-      final querySnapshot = await collection
-          .where('read', isNotEqualTo: true)
-          .get(const GetOptions(source: Source.cache));
-
-      for (final doc in querySnapshot.docs) {
-        await collection.doc(doc.id).update({'read': true});
-      }
-
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-  }
-
-  @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchSentInvitations() async* {
     _checkAuth();
@@ -147,76 +218,6 @@ class GameInvitationService implements IGameInvitationService {
     }).onErrorReturnWith((e, s) {
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     });
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
-    required UniqueId gameId,
-    required UniqueId toId,
-  }) async {
-    _checkAuth();
-    final success = await _socialClient.sendGameInvitation(
-      toId: toId.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
-    } else {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>> cancel({
-    required GameInvitation invitation,
-  }) async {
-    _checkAuth();
-    final success = await _socialClient.cancelGameInvitation(
-      toId: invitation.toId.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
-    } else {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>> accept({
-    required GameInvitation invitation,
-  }) async {
-    _checkAuth();
-    // TODO this should be in on call and handled server side
-    bool success = await _dartClient.joinGame(
-      gameId: invitation.gameId.getOrCrash(),
-    );
-
-    success &= await _socialClient.acceptGameInvitation(
-      fromId: invitation.fromId.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
-    } else {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
-  }
-
-  @override
-  Future<Either<GameInvitationFailure, Unit>> decline({
-    required GameInvitation invitation,
-  }) async {
-    _checkAuth();
-    final success = await _socialClient.declineGameInvitation(
-      fromId: invitation.fromId.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
-    } else {
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
-    }
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.

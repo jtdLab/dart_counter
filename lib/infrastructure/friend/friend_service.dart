@@ -60,146 +60,12 @@ class FriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<Friend>>? getFriends() {
-    _checkAuth();
-
-    return _friendsController.value;
-  }
-
-  @override
-  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
-    _checkAuth();
-
-    return _receivedFriendRequestsController.value;
-  }
-
-  @override
-  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
-    _checkAuth();
-
-    return _sentFriendRequestsController.value;
-  }
-
-  // TODO implement more efficient and add pagination
-  @override
-  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
-    _checkAuth();
-    return _userService
-        .watchUser()
-        .asyncMap<Either<FriendFailure, KtList<Friend>>>((failureOrUser) {
-      return failureOrUser.fold(
-        (failure) => throw Error(), // TODO name better
-        (user) async {
-          final friendIds = user.friendIds;
-
-          final friends = <Friend>[];
-
-          for (final friendId in friendIds.iter) {
-            final doc = await _firestore
-                .profilesCollection()
-                .doc(friendId.getOrCrash())
-                .get();
-
-            final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-            json.addAll({
-              'id': doc.id,
-            });
-
-            friends.add(FriendDto.fromJson(json).toDomain());
-          }
-
-          return right(friends.toImmutableList());
-        },
-      );
-    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
-  }
-
-  @override
-  Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchReceivedFriendRequests() async* {
-    _checkAuth();
-    final collection = _firestore.receivedFriendRequestsCollection();
-    yield* collection
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) {
-      final receivedFriendRequests = snapshot.docs.map((doc) {
-        final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-        json.addAll({
-          'id': doc.id,
-        });
-
-        return FriendRequestDto.fromJson(json).toDomain();
-      }).toImmutableList();
-      return right<FriendFailure, KtList<FriendRequest>>(
-        receivedFriendRequests,
-      );
-    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
-    _checkAuth();
-    final CollectionReference<Object?> collection;
-    try {
-      collection = _firestore.receivedFriendRequestsCollection();
-    } catch (e) {
-      rethrow;
-    }
-
-    try {
-      final querySnapshot = await collection
-          .where('read', isNotEqualTo: true)
-          .get(const GetOptions(source: Source.cache));
-
-      for (final doc in querySnapshot.docs) {
-        await collection.doc(doc.id).update({'read': true});
-      }
-
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const FriendFailure.unexpected()); // TODO name better
-    }
-  }
-
-  @override
-  Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchSentFriendRequests() async* {
-    _checkAuth();
-    final collection = _firestore.sentFriendRequestsCollection();
-    yield* collection
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) {
-      final sentFriendRequests = snapshot.docs.map((doc) {
-        final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-        json.addAll({
-          'id': doc.id,
-        });
-
-        return FriendRequestDto.fromJson(json).toDomain();
-      }).toImmutableList();
-
-      return right<FriendFailure, KtList<FriendRequest>>(
-        sentFriendRequests,
-      );
-    }).onErrorReturnWith((e, s) {
-      return left(const FriendFailure.unexpected());
-    });
-  }
-
-  @override
-  Future<Either<FriendFailure, Unit>> sendFriendRequest({
-    required UniqueId toId,
+  Future<Either<FriendFailure, Unit>> acceptFriendRequest({
+    required FriendRequest friendRequest,
   }) async {
     _checkAuth();
-
-    final success = await _socialClient.sendFriendRequest(
-      toId: toId.getOrCrash(),
+    final success = await _socialClient.acceptFriendRequest(
+      fromId: friendRequest.fromId.getOrCrash(),
     );
 
     if (success) {
@@ -226,22 +92,6 @@ class FriendService implements IFriendService {
   }
 
   @override
-  Future<Either<FriendFailure, Unit>> acceptFriendRequest({
-    required FriendRequest friendRequest,
-  }) async {
-    _checkAuth();
-    final success = await _socialClient.acceptFriendRequest(
-      fromId: friendRequest.fromId.getOrCrash(),
-    );
-
-    if (success) {
-      return right(unit);
-    } else {
-      return left(const FriendFailure.unexpected());
-    }
-  }
-
-  @override
   Future<Either<FriendFailure, Unit>> declineFriendRequest({
     required FriendRequest friendRequest,
   }) async {
@@ -254,6 +104,53 @@ class FriendService implements IFriendService {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
+    }
+  }
+
+  @override
+  Either<FriendFailure, KtList<Friend>>? getFriends() {
+    _checkAuth();
+
+    return _friendsController.value;
+  }
+
+  @override
+  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
+    _checkAuth();
+
+    return _receivedFriendRequestsController.value;
+  }
+
+  @override
+  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
+    _checkAuth();
+
+    return _sentFriendRequestsController.value;
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
+    _checkAuth();
+    final CollectionReference<Object?> collection;
+    try {
+      collection = _firestore.receivedFriendRequestsCollection();
+    } catch (e) {
+      rethrow;
+    }
+
+    try {
+      final querySnapshot = await collection
+          .where('read', isNotEqualTo: true)
+          .get(const GetOptions(source: Source.cache));
+
+      for (final doc in querySnapshot.docs) {
+        await collection.doc(doc.id).update({'read': true});
+      }
+
+      return right(unit);
+    } catch (e) {
+      print(e);
+      return left(const FriendFailure.unexpected()); // TODO name better
     }
   }
 
@@ -320,6 +217,109 @@ class FriendService implements IFriendService {
     }
 
     return right(searchResults.toImmutableList());
+  }
+
+  @override
+  Future<Either<FriendFailure, Unit>> sendFriendRequest({
+    required UniqueId toId,
+  }) async {
+    _checkAuth();
+
+    final success = await _socialClient.sendFriendRequest(
+      toId: toId.getOrCrash(),
+    );
+
+    if (success) {
+      return right(unit);
+    } else {
+      return left(const FriendFailure.unexpected());
+    }
+  }
+
+  // TODO implement more efficient and add pagination
+  @override
+  Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
+    _checkAuth();
+    return _userService
+        .watchUser()
+        .asyncMap<Either<FriendFailure, KtList<Friend>>>((failureOrUser) {
+      return failureOrUser.fold(
+        (failure) => throw Error(), // TODO name better
+        (user) async {
+          final friendIds = user.friendIds;
+
+          final friends = <Friend>[];
+
+          for (final friendId in friendIds.iter) {
+            final doc = await _firestore
+                .profilesCollection()
+                .doc(friendId.getOrCrash())
+                .get();
+
+            final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+            json.addAll({
+              'id': doc.id,
+            });
+
+            friends.add(FriendDto.fromJson(json).toDomain());
+          }
+
+          return right(friends.toImmutableList());
+        },
+      );
+    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchReceivedFriendRequests() async* {
+    _checkAuth();
+    final collection = _firestore.receivedFriendRequestsCollection();
+    yield* collection
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snapshot) {
+      final receivedFriendRequests = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
+      return right<FriendFailure, KtList<FriendRequest>>(
+        receivedFriendRequests,
+      );
+    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
+  }
+
+  @override
+  Stream<Either<FriendFailure, KtList<FriendRequest>>>
+      watchSentFriendRequests() async* {
+    _checkAuth();
+    final collection = _firestore.sentFriendRequestsCollection();
+    yield* collection
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snapshot) {
+      final sentFriendRequests = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
+
+      return right<FriendFailure, KtList<FriendRequest>>(
+        sentFriendRequests,
+      );
+    }).onErrorReturnWith((e, s) {
+      return left(const FriendFailure.unexpected());
+    });
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
