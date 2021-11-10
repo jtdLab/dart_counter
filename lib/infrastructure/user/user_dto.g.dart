@@ -15,7 +15,6 @@ _$_UserDto _$$_UserDtoFromJson(Map<String, dynamic> json) => _$_UserDto(
           (json['friendIds'] as List<dynamic>).map((e) => e as String).toList(),
       careerStatsOffline: CareerStatsDto.fromJson(
           json['careerStatsOffline'] as Map<String, dynamic>),
-      createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$$_UserDtoToJson(_$_UserDto instance) =>
@@ -26,5 +25,4 @@ Map<String, dynamic> _$$_UserDtoToJson(_$_UserDto instance) =>
       'profile': instance.profile.toJson(),
       'friendIds': instance.friendIds,
       'careerStatsOffline': instance.careerStatsOffline.toJson(),
-      'createdAt': const ServerTimestampConverter().toJson(instance.createdAt),
     };

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_client/dart_client.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
@@ -75,14 +77,21 @@ class GameInvitationService implements IGameInvitationService {
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
-      final receivedGameInvitations = snapshot.docs
-          .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
-          .toImmutableList();
+      final receivedGameInvitations = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return GameInvitationDto.fromJson(json).toDomain();
+      }).toImmutableList();
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         receivedGameInvitations,
       );
-    }).onErrorReturnWith((e,s ) {
-      return left(const GameInvitationFailure.unableToRead()); // TODO name better
+    }).onErrorReturnWith((e, s) {
+      return left(
+          const GameInvitationFailure.unableToRead()); // TODO name better
     });
   }
 
@@ -123,9 +132,15 @@ class GameInvitationService implements IGameInvitationService {
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
-      final sentGameInvitations = snapshot.docs
-          .map((doc) => GameInvitationDto.fromFirestore(doc).toDomain())
-          .toImmutableList();
+      final sentGameInvitations = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return GameInvitationDto.fromJson(json).toDomain();
+      }).toImmutableList();
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         sentGameInvitations,
       );

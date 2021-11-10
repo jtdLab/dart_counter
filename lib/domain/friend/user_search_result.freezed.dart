@@ -18,11 +18,11 @@ class _$UserSearchResultTearOff {
   const _$UserSearchResultTearOff();
 
   _UserSearchResult call(
-      {required UniqueId id, String? photoUrl, required Username username}) {
+      {required UniqueId id, String? photoUrl, required Username name}) {
     return _UserSearchResult(
       id: id,
       photoUrl: photoUrl,
-      username: username,
+      name: name,
     );
   }
 }
@@ -34,7 +34,7 @@ const $UserSearchResult = _$UserSearchResultTearOff();
 mixin _$UserSearchResult {
   UniqueId get id => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
-  Username get username => throw _privateConstructorUsedError;
+  Username get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserSearchResultCopyWith<UserSearchResult> get copyWith =>
@@ -46,7 +46,7 @@ abstract class $UserSearchResultCopyWith<$Res> {
   factory $UserSearchResultCopyWith(
           UserSearchResult value, $Res Function(UserSearchResult) then) =
       _$UserSearchResultCopyWithImpl<$Res>;
-  $Res call({UniqueId id, String? photoUrl, Username username});
+  $Res call({UniqueId id, String? photoUrl, Username name});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$UserSearchResultCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? photoUrl = freezed,
-    Object? username = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -73,9 +73,9 @@ class _$UserSearchResultCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as Username,
     ));
   }
@@ -88,7 +88,7 @@ abstract class _$UserSearchResultCopyWith<$Res>
           _UserSearchResult value, $Res Function(_UserSearchResult) then) =
       __$UserSearchResultCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, String? photoUrl, Username username});
+  $Res call({UniqueId id, String? photoUrl, Username name});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$UserSearchResultCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? photoUrl = freezed,
-    Object? username = freezed,
+    Object? name = freezed,
   }) {
     return _then(_UserSearchResult(
       id: id == freezed
@@ -117,9 +117,9 @@ class __$UserSearchResultCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as Username,
     ));
   }
@@ -129,18 +129,18 @@ class __$UserSearchResultCopyWithImpl<$Res>
 
 class _$_UserSearchResult implements _UserSearchResult {
   const _$_UserSearchResult(
-      {required this.id, this.photoUrl, required this.username});
+      {required this.id, this.photoUrl, required this.name});
 
   @override
   final UniqueId id;
   @override
   final String? photoUrl;
   @override
-  final Username username;
+  final Username name;
 
   @override
   String toString() {
-    return 'UserSearchResult(id: $id, photoUrl: $photoUrl, username: $username)';
+    return 'UserSearchResult(id: $id, photoUrl: $photoUrl, name: $name)';
   }
 
   @override
@@ -151,12 +151,11 @@ class _$_UserSearchResult implements _UserSearchResult {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
-            (identical(other.username, username) ||
-                other.username == username));
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, photoUrl, username);
+  int get hashCode => Object.hash(runtimeType, id, photoUrl, name);
 
   @JsonKey(ignore: true)
   @override
@@ -168,14 +167,14 @@ abstract class _UserSearchResult implements UserSearchResult {
   const factory _UserSearchResult(
       {required UniqueId id,
       String? photoUrl,
-      required Username username}) = _$_UserSearchResult;
+      required Username name}) = _$_UserSearchResult;
 
   @override
   UniqueId get id;
   @override
   String? get photoUrl;
   @override
-  Username get username;
+  Username get name;
   @override
   @JsonKey(ignore: true)
   _$UserSearchResultCopyWith<_UserSearchResult> get copyWith =>

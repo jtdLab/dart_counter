@@ -27,7 +27,7 @@ class _$FriendRequestDtoTearOff {
       required String fromId,
       required String fromName,
       required bool read,
-      @ServerTimestampConverter() String? createdAt}) {
+      required int createdAt}) {
     return _FriendRequestDto(
       id: id,
       toId: toId,
@@ -53,8 +53,7 @@ mixin _$FriendRequestDto {
   String get fromId => throw _privateConstructorUsedError;
   String get fromName => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
-  @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +72,7 @@ abstract class $FriendRequestDtoCopyWith<$Res> {
       String fromId,
       String fromName,
       bool read,
-      @ServerTimestampConverter() String? createdAt});
+      int createdAt});
 }
 
 /// @nodoc
@@ -118,7 +117,7 @@ class _$FriendRequestDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ));
   }
 }
@@ -136,7 +135,7 @@ abstract class _$FriendRequestDtoCopyWith<$Res>
       String fromId,
       String fromName,
       bool read,
-      @ServerTimestampConverter() String? createdAt});
+      int createdAt});
 }
 
 /// @nodoc
@@ -183,7 +182,7 @@ class __$FriendRequestDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ));
   }
 }
@@ -197,7 +196,7 @@ class _$_FriendRequestDto extends _FriendRequestDto {
       required this.fromId,
       required this.fromName,
       required this.read,
-      @ServerTimestampConverter() this.createdAt})
+      required this.createdAt})
       : super._();
 
   factory _$_FriendRequestDto.fromJson(Map<String, dynamic> json) =>
@@ -214,8 +213,7 @@ class _$_FriendRequestDto extends _FriendRequestDto {
   @override
   final bool read;
   @override
-  @ServerTimestampConverter()
-  final String? createdAt;
+  final int createdAt;
 
   @override
   String toString() {
@@ -259,7 +257,7 @@ abstract class _FriendRequestDto extends FriendRequestDto {
       required String fromId,
       required String fromName,
       required bool read,
-      @ServerTimestampConverter() String? createdAt}) = _$_FriendRequestDto;
+      required int createdAt}) = _$_FriendRequestDto;
   const _FriendRequestDto._() : super._();
 
   factory _FriendRequestDto.fromJson(Map<String, dynamic> json) =
@@ -276,8 +274,7 @@ abstract class _FriendRequestDto extends FriendRequestDto {
   @override
   bool get read;
   @override
-  @ServerTimestampConverter()
-  String? get createdAt;
+  int get createdAt;
   @override
   @JsonKey(ignore: true)
   _$FriendRequestDtoCopyWith<_FriendRequestDto> get copyWith =>

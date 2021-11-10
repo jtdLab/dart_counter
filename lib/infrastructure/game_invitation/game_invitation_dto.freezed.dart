@@ -28,7 +28,7 @@ class _$GameInvitationDtoTearOff {
       required String fromId,
       required String fromName,
       required bool read,
-      @ServerTimestampConverter() String? createdAt}) {
+      required int createdAt}) {
     return _GameInvitationDto(
       id: id,
       gameId: gameId,
@@ -56,8 +56,7 @@ mixin _$GameInvitationDto {
   String get fromId => throw _privateConstructorUsedError;
   String get fromName => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
-  @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -77,7 +76,7 @@ abstract class $GameInvitationDtoCopyWith<$Res> {
       String fromId,
       String fromName,
       bool read,
-      @ServerTimestampConverter() String? createdAt});
+      int createdAt});
 }
 
 /// @nodoc
@@ -127,7 +126,7 @@ class _$GameInvitationDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ));
   }
 }
@@ -146,7 +145,7 @@ abstract class _$GameInvitationDtoCopyWith<$Res>
       String fromId,
       String fromName,
       bool read,
-      @ServerTimestampConverter() String? createdAt});
+      int createdAt});
 }
 
 /// @nodoc
@@ -198,7 +197,7 @@ class __$GameInvitationDtoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ));
   }
 }
@@ -213,7 +212,7 @@ class _$_GameInvitationDto extends _GameInvitationDto {
       required this.fromId,
       required this.fromName,
       required this.read,
-      @ServerTimestampConverter() this.createdAt})
+      required this.createdAt})
       : super._();
 
   factory _$_GameInvitationDto.fromJson(Map<String, dynamic> json) =>
@@ -232,8 +231,7 @@ class _$_GameInvitationDto extends _GameInvitationDto {
   @override
   final bool read;
   @override
-  @ServerTimestampConverter()
-  final String? createdAt;
+  final int createdAt;
 
   @override
   String toString() {
@@ -279,7 +277,7 @@ abstract class _GameInvitationDto extends GameInvitationDto {
       required String fromId,
       required String fromName,
       required bool read,
-      @ServerTimestampConverter() String? createdAt}) = _$_GameInvitationDto;
+      required int createdAt}) = _$_GameInvitationDto;
   const _GameInvitationDto._() : super._();
 
   factory _GameInvitationDto.fromJson(Map<String, dynamic> json) =
@@ -298,8 +296,7 @@ abstract class _GameInvitationDto extends GameInvitationDto {
   @override
   bool get read;
   @override
-  @ServerTimestampConverter()
-  String? get createdAt;
+  int get createdAt;
   @override
   @JsonKey(ignore: true)
   _$GameInvitationDtoCopyWith<_GameInvitationDto> get copyWith =>

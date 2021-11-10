@@ -1,25 +1,15 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/profile.dart';
-import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/friend/friend_dto.dart';
 import 'package:dart_counter/infrastructure/user/career_stats_dto.dart';
 import 'package:dart_counter/infrastructure/user/profile_dto.dart';
-import 'package:dart_counter/infrastructure/user/user_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kt_dart/kt.dart';
 
 void main() {
   final id = UniqueId.fromUniqueString('dummyId');
   const idString = 'dummyId';
-  const idToken = 'dummyIdToken';
-  final email = EmailAddress('a@b.com');
-  const emailString = 'a@b.com';
-
-  final friendIds = KtList.from([
-    UniqueId.fromUniqueString('dummyId1'),
-    UniqueId.fromUniqueString('dummyId2'),
-  ]);
-  final friendIdsStrings = ['dummyId1', 'dummyId2'];
 
   const photoUrl = 'http://www.ab.c';
   final name = Username('dummyName');
@@ -56,13 +46,9 @@ void main() {
     careerStatsOnline: careerStatsDomain,
   );
 
-  final domain = User(
+  final domain = Friend(
     id: id,
-    idToken: idToken,
-    email: email,
     profile: profileDomain,
-    friendIds: friendIds,
-    careerStatsOffline: careerStatsDomain,
   );
 
   const careerStatsDto = CareerStatsDto(
@@ -83,13 +69,9 @@ void main() {
     careerStatsOnline: careerStatsDto,
   );
 
-  final dto = UserDto(
+  const dto = FriendDto(
     id: idString,
-    idToken: idToken,
-    email: emailString,
     profile: profileDto,
-    friendIds: friendIdsStrings,
-    careerStatsOffline: careerStatsDto,
   );
 
   const careerStatsJson = {
@@ -112,34 +94,22 @@ void main() {
 
   final json = {
     'id': idString,
-    'idToken': idToken,
-    'email': emailString,
     'profile': profileJson,
-    'friendIds': friendIdsStrings,
-    'careerStatsOffline': careerStatsJson,
   };
 
   test('constructor', () {
     // Assert
     expect(dto.id, idString);
-    expect(dto.idToken, idToken);
-    expect(dto.email, emailString);
     expect(dto.profile, profileDto);
-    expect(dto.friendIds, friendIdsStrings);
-    expect(dto.careerStatsOffline, careerStatsDto);
   });
 
   test('fromDomain', () {
     // Act
-    final dto = UserDto.fromDomain(domain);
+    final dto = FriendDto.fromDomain(domain);
 
     // Assert
     expect(dto.id, idString);
-    expect(dto.idToken, idToken);
-    expect(dto.email, emailString);
     expect(dto.profile, profileDto);
-    expect(dto.friendIds, friendIdsStrings);
-    expect(dto.careerStatsOffline, careerStatsDto);
   });
 
   test('toDomain', () {
@@ -148,24 +118,16 @@ void main() {
 
     // Assert
     expect(domain.id, id);
-    expect(domain.idToken, idToken);
-    expect(domain.email, email);
     expect(domain.profile, profileDomain);
-    expect(domain.friendIds, friendIds);
-    expect(domain.careerStatsOffline, careerStatsDomain);
   });
 
   test('fromJson', () {
     // Act
-    final dto = UserDto.fromJson(json);
+    final dto = FriendDto.fromJson(json);
 
     // Assert
     expect(dto.id, idString);
-    expect(dto.idToken, idToken);
-    expect(dto.email, emailString);
     expect(dto.profile, profileDto);
-    expect(dto.friendIds, friendIdsStrings);
-    expect(dto.careerStatsOffline, careerStatsDto);
   });
 
   test('toJson', () {
@@ -174,10 +136,6 @@ void main() {
 
     // Assert
     expect(json['id'], idString);
-    expect(json['idToken'], idToken);
-    expect(json['email'], emailString);
     expect(json['profile'], profileJson);
-    expect(json['friendIds'], friendIdsStrings);
-    expect(json['careerStatsOffline'], careerStatsJson);
   });
 }

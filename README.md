@@ -74,3 +74,33 @@ CORE
 OTHER
 BLOCS
 LOCALE PAGES + WIDGETS
+
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+void main() {
+  test('constructor', () {
+    // TODO implement test
+  });
+
+  test('fromDomain', () {
+    // TODO implement test
+  });
+
+  test('toDomain', () {
+    // TODO implement test
+  });
+
+  test('fromJson', () {
+    // TODO implement test
+  });
+
+  test('toJson', () {
+    // TODO implement test
+  });
+
+  test('constructor', () {
+    // TODO implement test
+  });
+}

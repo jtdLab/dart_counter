@@ -54,7 +54,7 @@ class _SearchUserWidgetState extends State<_SearchUserWidget> {
                             children: searchResults
                                 .map(
                                   (item) => _UserItem(
-                                    name: item.username.getOrCrash(),
+                                    name: item.name.getOrCrash(),
                                   ),
                                 )
                                 .asList(),

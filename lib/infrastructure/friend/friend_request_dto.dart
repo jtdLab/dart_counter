@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'friend_request_dto.freezed.dart';
@@ -15,7 +13,7 @@ class FriendRequestDto with _$FriendRequestDto {
     required String fromId,
     required String fromName,
     required bool read,
-    @ServerTimestampConverter() String? createdAt,
+    required int createdAt,
   }) = _FriendRequestDto;
 
   const FriendRequestDto._();
@@ -27,6 +25,7 @@ class FriendRequestDto with _$FriendRequestDto {
       fromId: friendRequest.fromId.getOrCrash(),
       fromName: friendRequest.fromName.getOrCrash(),
       read: friendRequest.read,
+      createdAt: friendRequest.createdAt.millisecondsSinceEpoch,
     );
   }
 
@@ -37,18 +36,8 @@ class FriendRequestDto with _$FriendRequestDto {
       fromId: UniqueId.fromUniqueString(fromId),
       fromName: Username(fromName),
       read: read,
-      createdAt: DateTime.parse(createdAt!), // TODO
+      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
     );
-  }
-
-  factory FriendRequestDto.fromFirestore(DocumentSnapshot doc) {
-    final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-    json.addAll({
-      'id': doc.id,
-    });
-
-    return FriendRequestDto.fromJson(json);
   }
 
   factory FriendRequestDto.fromJson(Map<String, dynamic> json) =>

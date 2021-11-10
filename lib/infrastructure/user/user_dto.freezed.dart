@@ -27,8 +27,7 @@ class _$UserDtoTearOff {
       required String email,
       required ProfileDto profile,
       required List<String> friendIds,
-      required CareerStatsDto careerStatsOffline,
-      @ServerTimestampConverter() String? createdAt}) {
+      required CareerStatsDto careerStatsOffline}) {
     return _UserDto(
       id: id,
       idToken: idToken,
@@ -36,7 +35,6 @@ class _$UserDtoTearOff {
       profile: profile,
       friendIds: friendIds,
       careerStatsOffline: careerStatsOffline,
-      createdAt: createdAt,
     );
   }
 
@@ -56,8 +54,6 @@ mixin _$UserDto {
   ProfileDto get profile => throw _privateConstructorUsedError;
   List<String> get friendIds => throw _privateConstructorUsedError;
   CareerStatsDto get careerStatsOffline => throw _privateConstructorUsedError;
-  @ServerTimestampConverter()
-  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,8 +70,7 @@ abstract class $UserDtoCopyWith<$Res> {
       String email,
       ProfileDto profile,
       List<String> friendIds,
-      CareerStatsDto careerStatsOffline,
-      @ServerTimestampConverter() String? createdAt});
+      CareerStatsDto careerStatsOffline});
 
   $ProfileDtoCopyWith<$Res> get profile;
   $CareerStatsDtoCopyWith<$Res> get careerStatsOffline;
@@ -97,7 +92,6 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
     Object? profile = freezed,
     Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
-    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -124,10 +118,6 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _value.careerStatsOffline
           : careerStatsOffline // ignore: cast_nullable_to_non_nullable
               as CareerStatsDto,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 
@@ -157,8 +147,7 @@ abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       String email,
       ProfileDto profile,
       List<String> friendIds,
-      CareerStatsDto careerStatsOffline,
-      @ServerTimestampConverter() String? createdAt});
+      CareerStatsDto careerStatsOffline});
 
   @override
   $ProfileDtoCopyWith<$Res> get profile;
@@ -183,7 +172,6 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
     Object? profile = freezed,
     Object? friendIds = freezed,
     Object? careerStatsOffline = freezed,
-    Object? createdAt = freezed,
   }) {
     return _then(_UserDto(
       id: id == freezed
@@ -210,10 +198,6 @@ class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
           ? _value.careerStatsOffline
           : careerStatsOffline // ignore: cast_nullable_to_non_nullable
               as CareerStatsDto,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -227,8 +211,7 @@ class _$_UserDto extends _UserDto {
       required this.email,
       required this.profile,
       required this.friendIds,
-      required this.careerStatsOffline,
-      @ServerTimestampConverter() this.createdAt})
+      required this.careerStatsOffline})
       : super._();
 
   factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
@@ -246,13 +229,10 @@ class _$_UserDto extends _UserDto {
   final List<String> friendIds;
   @override
   final CareerStatsDto careerStatsOffline;
-  @override
-  @ServerTimestampConverter()
-  final String? createdAt;
 
   @override
   String toString() {
-    return 'UserDto(id: $id, idToken: $idToken, email: $email, profile: $profile, friendIds: $friendIds, careerStatsOffline: $careerStatsOffline, createdAt: $createdAt)';
+    return 'UserDto(id: $id, idToken: $idToken, email: $email, profile: $profile, friendIds: $friendIds, careerStatsOffline: $careerStatsOffline)';
   }
 
   @override
@@ -266,21 +246,12 @@ class _$_UserDto extends _UserDto {
             (identical(other.profile, profile) || other.profile == profile) &&
             const DeepCollectionEquality().equals(other.friendIds, friendIds) &&
             (identical(other.careerStatsOffline, careerStatsOffline) ||
-                other.careerStatsOffline == careerStatsOffline) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.careerStatsOffline == careerStatsOffline));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      idToken,
-      email,
-      profile,
-      const DeepCollectionEquality().hash(friendIds),
-      careerStatsOffline,
-      createdAt);
+  int get hashCode => Object.hash(runtimeType, id, idToken, email, profile,
+      const DeepCollectionEquality().hash(friendIds), careerStatsOffline);
 
   @JsonKey(ignore: true)
   @override
@@ -300,8 +271,7 @@ abstract class _UserDto extends UserDto {
       required String email,
       required ProfileDto profile,
       required List<String> friendIds,
-      required CareerStatsDto careerStatsOffline,
-      @ServerTimestampConverter() String? createdAt}) = _$_UserDto;
+      required CareerStatsDto careerStatsOffline}) = _$_UserDto;
   const _UserDto._() : super._();
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
@@ -318,9 +288,6 @@ abstract class _UserDto extends UserDto {
   List<String> get friendIds;
   @override
   CareerStatsDto get careerStatsOffline;
-  @override
-  @ServerTimestampConverter()
-  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$UserDtoCopyWith<_UserDto> get copyWith =>

@@ -717,7 +717,8 @@ void main() {
       'THEN emit [true] ',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = AuthenticatedMockAuthService();
+        MockedAuthService.hasNetworkConnection = true;
         await underTest.signInWithApple();
         MockedAuthService.hasNetworkConnection = false;
 
@@ -752,7 +753,6 @@ void main() {
         });
 
         // Act & Assert
-
         expect(
           underTest.watchIsAuthenticated(),
           emitsInOrder([false, true, false]),

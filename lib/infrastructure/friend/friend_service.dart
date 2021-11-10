@@ -6,7 +6,6 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/domain/friend/user.dart';
 import 'package:dart_counter/domain/friend/user_search_result.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
@@ -101,7 +100,13 @@ class FriendService implements IFriendService {
                 .doc(friendId.getOrCrash())
                 .get();
 
-            friends.add(FriendDto.fromFirestore(doc).toDomain());
+            final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+            json.addAll({
+              'id': doc.id,
+            });
+
+            friends.add(FriendDto.fromJson(json).toDomain());
           }
 
           return right(friends.toImmutableList());
@@ -119,9 +124,15 @@ class FriendService implements IFriendService {
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
-      final receivedFriendRequests = snapshot.docs
-          .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
-          .toImmutableList();
+      final receivedFriendRequests = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
       return right<FriendFailure, KtList<FriendRequest>>(
         receivedFriendRequests,
       );
@@ -163,9 +174,15 @@ class FriendService implements IFriendService {
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
-      final sentFriendRequests = snapshot.docs
-          .map((doc) => FriendRequestDto.fromFirestore(doc).toDomain())
-          .toImmutableList();
+      final sentFriendRequests = snapshot.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
 
       return right<FriendFailure, KtList<FriendRequest>>(
         sentFriendRequests,
@@ -282,7 +299,7 @@ class FriendService implements IFriendService {
           .profilesCollection()
           .orderBy('name')
           .where('name', isGreaterThanOrEqualTo: username)
-          .startAfter([lastVisible.username.getOrCrash()])
+          .startAfter([lastVisible.name.getOrCrash()])
           .limit(limit)
           .get();
     }
@@ -290,7 +307,12 @@ class FriendService implements IFriendService {
     final searchResults = <UserSearchResult>[];
     try {
       for (final doc in querySnapshot.docs) {
-        searchResults.add(UserSearchResultDto.fromFirestore(doc).toDomain());
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+        searchResults.add(UserSearchResultDto.fromJson(json).toDomain());
       }
     } catch (e) {
       print(e);

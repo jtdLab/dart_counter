@@ -283,7 +283,7 @@ class MockedFriendService implements IFriendService {
     _checkAuth();
     if (hasNetworkConnection) {
       if (_userSearchResults.isNotEmpty) {
-        final name = _userSearchResults.last.username.getOrCrash();
+        final name = _userSearchResults.last.name.getOrCrash();
         if (username == name) {
           _userSearchResults.clear();
         }
@@ -304,7 +304,7 @@ class MockedFriendService implements IFriendService {
           List.generate(
             limit,
             (index) => UserSearchResult.dummy().copyWith(
-              username: Username(
+              name: Username(
                 '$username-${100 + _userSearchResults.length + index}',
               ),
             ),
@@ -315,7 +315,7 @@ class MockedFriendService implements IFriendService {
           List.generate(
             limit,
             (index) => UserSearchResult.dummy().copyWith(
-              username: Username(
+              name: Username(
                 '${username.substring(0, 5)}-${100 + _userSearchResults.length + index}',
               ),
             ),

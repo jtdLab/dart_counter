@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game_invitation_dto.freezed.dart';
@@ -16,7 +14,7 @@ class GameInvitationDto with _$GameInvitationDto {
     required String fromId,
     required String fromName,
     required bool read,
-    @ServerTimestampConverter() String? createdAt,
+    required int createdAt,
   }) = _GameInvitationDto;
 
   const GameInvitationDto._();
@@ -29,6 +27,7 @@ class GameInvitationDto with _$GameInvitationDto {
       fromId: invitation.fromId.getOrCrash(),
       fromName: invitation.fromName.getOrCrash(),
       read: invitation.read,
+      createdAt: invitation.createdAt.millisecondsSinceEpoch,
     );
   }
 
@@ -40,18 +39,8 @@ class GameInvitationDto with _$GameInvitationDto {
       fromId: UniqueId.fromUniqueString(fromId),
       fromName: Username(fromName),
       read: read,
-      createdAt: DateTime.parse(createdAt!), // TODO
+      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
     );
-  }
-
-  factory GameInvitationDto.fromFirestore(DocumentSnapshot doc) {
-    final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-    json.addAll({
-      'id': doc.id,
-    });
-
-    return GameInvitationDto.fromJson(json);
   }
 
   factory GameInvitationDto.fromJson(Map<String, dynamic> json) =>

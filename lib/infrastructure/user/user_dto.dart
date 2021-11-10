@@ -19,7 +19,6 @@ class UserDto with _$UserDto {
     required ProfileDto profile,
     required List<String> friendIds,
     required CareerStatsDto careerStatsOffline,
-    @ServerTimestampConverter() String? createdAt,
   }) = _UserDto;
 
   const UserDto._();

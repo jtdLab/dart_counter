@@ -92,7 +92,8 @@ extension FirestoreX on FirebaseFirestore {
   }
 }
 
-/// Helps dealing with firestore timestamps.
+/**
+ * /// Helps dealing with firestore timestamps.
 // TODO more doc
 class ServerTimestampConverter implements JsonConverter<String?, Object?> {
   const ServerTimestampConverter();
@@ -110,3 +111,5 @@ class ServerTimestampConverter implements JsonConverter<String?, Object?> {
   @override
   Object? toJson(_) => FieldValue.serverTimestamp();
 }
+
+ */

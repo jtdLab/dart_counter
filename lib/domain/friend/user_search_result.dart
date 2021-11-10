@@ -9,13 +9,13 @@ class UserSearchResult with _$UserSearchResult {
   const factory UserSearchResult({
     required UniqueId id,
     String? photoUrl,
-    required Username username,
+    required Username name,
   }) = _UserSearchResult;
 
   factory UserSearchResult.dummy() => UserSearchResult(
         id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
         photoUrl: faker.image.image(width: 200, height: 200),
-        username: Username(
+        name: Username(
           faker.randomGenerator.element([
             'David88',
             'mrjosch',

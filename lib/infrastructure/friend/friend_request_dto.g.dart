@@ -13,7 +13,7 @@ _$_FriendRequestDto _$$_FriendRequestDtoFromJson(Map<String, dynamic> json) =>
       fromId: json['fromId'] as String,
       fromName: json['fromName'] as String,
       read: json['read'] as bool,
-      createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
+      createdAt: json['createdAt'] as int,
     );
 
 Map<String, dynamic> _$$_FriendRequestDtoToJson(_$_FriendRequestDto instance) =>
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$_FriendRequestDtoToJson(_$_FriendRequestDto instance) =>
       'fromId': instance.fromId,
       'fromName': instance.fromName,
       'read': instance.read,
-      'createdAt': const ServerTimestampConverter().toJson(instance.createdAt),
+      'createdAt': instance.createdAt,
     };

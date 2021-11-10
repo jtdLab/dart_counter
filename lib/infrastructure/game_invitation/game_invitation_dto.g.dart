@@ -14,7 +14,7 @@ _$_GameInvitationDto _$$_GameInvitationDtoFromJson(Map<String, dynamic> json) =>
       fromId: json['fromId'] as String,
       fromName: json['fromName'] as String,
       read: json['read'] as bool,
-      createdAt: const ServerTimestampConverter().fromJson(json['createdAt']),
+      createdAt: json['createdAt'] as int,
     );
 
 Map<String, dynamic> _$$_GameInvitationDtoToJson(
@@ -26,5 +26,5 @@ Map<String, dynamic> _$$_GameInvitationDtoToJson(
       'fromId': instance.fromId,
       'fromName': instance.fromName,
       'read': instance.read,
-      'createdAt': const ServerTimestampConverter().toJson(instance.createdAt),
+      'createdAt': instance.createdAt,
     };
