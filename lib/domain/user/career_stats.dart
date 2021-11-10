@@ -45,7 +45,7 @@ class CareerStats with _$CareerStats {
     required int defeats,
   }) = _CareerStats;
 
-  factory CareerStats.initial() => const CareerStats(
+  factory CareerStats.empty() => const CareerStats(
         average: 0.0,
         averageTrend: Trend.none,
         checkoutPercentage: 0.0,
