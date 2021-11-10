@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'player_snapshot.dart';
+part of 'double_training_player_snapshot.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,85 +14,86 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$PlayerSnapshotTearOff {
-  const _$PlayerSnapshotTearOff();
+class _$DoubleTrainingPlayerSnapshotTearOff {
+  const _$DoubleTrainingPlayerSnapshotTearOff();
 
-  _PlayerSnapshot call(
+  _DoubleTrainingPlayerSnapshot call(
       {required UniqueId id,
       String? name,
       required bool isCurrentTurn,
-      required bool isDisqualified,
+      required bool isFinished,
       required int targetValue,
-      required double checkoutPercentage,
-      required int points,
-      required int highestPoints}) {
-    return _PlayerSnapshot(
+      double? checkoutPercentage,
+      required int missed,
+      required int dartsThrown}) {
+    return _DoubleTrainingPlayerSnapshot(
       id: id,
       name: name,
       isCurrentTurn: isCurrentTurn,
-      isDisqualified: isDisqualified,
+      isFinished: isFinished,
       targetValue: targetValue,
       checkoutPercentage: checkoutPercentage,
-      points: points,
-      highestPoints: highestPoints,
+      missed: missed,
+      dartsThrown: dartsThrown,
     );
   }
 }
 
 /// @nodoc
-const $PlayerSnapshot = _$PlayerSnapshotTearOff();
+const $DoubleTrainingPlayerSnapshot = _$DoubleTrainingPlayerSnapshotTearOff();
 
 /// @nodoc
-mixin _$PlayerSnapshot {
+mixin _$DoubleTrainingPlayerSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   bool get isCurrentTurn => throw _privateConstructorUsedError;
-  bool get isDisqualified => throw _privateConstructorUsedError;
+  bool get isFinished => throw _privateConstructorUsedError;
   int get targetValue => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
-  int get points => throw _privateConstructorUsedError;
-  int get highestPoints => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
+  int get missed => throw _privateConstructorUsedError;
+  int get dartsThrown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlayerSnapshotCopyWith<PlayerSnapshot> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DoubleTrainingPlayerSnapshotCopyWith<DoubleTrainingPlayerSnapshot>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerSnapshotCopyWith<$Res> {
-  factory $PlayerSnapshotCopyWith(
-          PlayerSnapshot value, $Res Function(PlayerSnapshot) then) =
-      _$PlayerSnapshotCopyWithImpl<$Res>;
+abstract class $DoubleTrainingPlayerSnapshotCopyWith<$Res> {
+  factory $DoubleTrainingPlayerSnapshotCopyWith(
+          DoubleTrainingPlayerSnapshot value,
+          $Res Function(DoubleTrainingPlayerSnapshot) then) =
+      _$DoubleTrainingPlayerSnapshotCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
       String? name,
       bool isCurrentTurn,
-      bool isDisqualified,
+      bool isFinished,
       int targetValue,
-      double checkoutPercentage,
-      int points,
-      int highestPoints});
+      double? checkoutPercentage,
+      int missed,
+      int dartsThrown});
 }
 
 /// @nodoc
-class _$PlayerSnapshotCopyWithImpl<$Res>
-    implements $PlayerSnapshotCopyWith<$Res> {
-  _$PlayerSnapshotCopyWithImpl(this._value, this._then);
+class _$DoubleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    implements $DoubleTrainingPlayerSnapshotCopyWith<$Res> {
+  _$DoubleTrainingPlayerSnapshotCopyWithImpl(this._value, this._then);
 
-  final PlayerSnapshot _value;
+  final DoubleTrainingPlayerSnapshot _value;
   // ignore: unused_field
-  final $Res Function(PlayerSnapshot) _then;
+  final $Res Function(DoubleTrainingPlayerSnapshot) _then;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? isCurrentTurn = freezed,
-    Object? isDisqualified = freezed,
+    Object? isFinished = freezed,
     Object? targetValue = freezed,
     Object? checkoutPercentage = freezed,
-    Object? points = freezed,
-    Object? highestPoints = freezed,
+    Object? missed = freezed,
+    Object? dartsThrown = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -107,9 +108,9 @@ class _$PlayerSnapshotCopyWithImpl<$Res>
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
               as bool,
-      isDisqualified: isDisqualified == freezed
-          ? _value.isDisqualified
-          : isDisqualified // ignore: cast_nullable_to_non_nullable
+      isFinished: isFinished == freezed
+          ? _value.isFinished
+          : isFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       targetValue: targetValue == freezed
           ? _value.targetValue
@@ -118,60 +119,63 @@ class _$PlayerSnapshotCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+              as double?,
+      missed: missed == freezed
+          ? _value.missed
+          : missed // ignore: cast_nullable_to_non_nullable
               as int,
-      highestPoints: highestPoints == freezed
-          ? _value.highestPoints
-          : highestPoints // ignore: cast_nullable_to_non_nullable
+      dartsThrown: dartsThrown == freezed
+          ? _value.dartsThrown
+          : dartsThrown // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$PlayerSnapshotCopyWith<$Res>
-    implements $PlayerSnapshotCopyWith<$Res> {
-  factory _$PlayerSnapshotCopyWith(
-          _PlayerSnapshot value, $Res Function(_PlayerSnapshot) then) =
-      __$PlayerSnapshotCopyWithImpl<$Res>;
+abstract class _$DoubleTrainingPlayerSnapshotCopyWith<$Res>
+    implements $DoubleTrainingPlayerSnapshotCopyWith<$Res> {
+  factory _$DoubleTrainingPlayerSnapshotCopyWith(
+          _DoubleTrainingPlayerSnapshot value,
+          $Res Function(_DoubleTrainingPlayerSnapshot) then) =
+      __$DoubleTrainingPlayerSnapshotCopyWithImpl<$Res>;
   @override
   $Res call(
       {UniqueId id,
       String? name,
       bool isCurrentTurn,
-      bool isDisqualified,
+      bool isFinished,
       int targetValue,
-      double checkoutPercentage,
-      int points,
-      int highestPoints});
+      double? checkoutPercentage,
+      int missed,
+      int dartsThrown});
 }
 
 /// @nodoc
-class __$PlayerSnapshotCopyWithImpl<$Res>
-    extends _$PlayerSnapshotCopyWithImpl<$Res>
-    implements _$PlayerSnapshotCopyWith<$Res> {
-  __$PlayerSnapshotCopyWithImpl(
-      _PlayerSnapshot _value, $Res Function(_PlayerSnapshot) _then)
-      : super(_value, (v) => _then(v as _PlayerSnapshot));
+class __$DoubleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    extends _$DoubleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    implements _$DoubleTrainingPlayerSnapshotCopyWith<$Res> {
+  __$DoubleTrainingPlayerSnapshotCopyWithImpl(
+      _DoubleTrainingPlayerSnapshot _value,
+      $Res Function(_DoubleTrainingPlayerSnapshot) _then)
+      : super(_value, (v) => _then(v as _DoubleTrainingPlayerSnapshot));
 
   @override
-  _PlayerSnapshot get _value => super._value as _PlayerSnapshot;
+  _DoubleTrainingPlayerSnapshot get _value =>
+      super._value as _DoubleTrainingPlayerSnapshot;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? isCurrentTurn = freezed,
-    Object? isDisqualified = freezed,
+    Object? isFinished = freezed,
     Object? targetValue = freezed,
     Object? checkoutPercentage = freezed,
-    Object? points = freezed,
-    Object? highestPoints = freezed,
+    Object? missed = freezed,
+    Object? dartsThrown = freezed,
   }) {
-    return _then(_PlayerSnapshot(
+    return _then(_DoubleTrainingPlayerSnapshot(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -184,9 +188,9 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
               as bool,
-      isDisqualified: isDisqualified == freezed
-          ? _value.isDisqualified
-          : isDisqualified // ignore: cast_nullable_to_non_nullable
+      isFinished: isFinished == freezed
+          ? _value.isFinished
+          : isFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       targetValue: targetValue == freezed
           ? _value.targetValue
@@ -195,14 +199,14 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      points: points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
+              as double?,
+      missed: missed == freezed
+          ? _value.missed
+          : missed // ignore: cast_nullable_to_non_nullable
               as int,
-      highestPoints: highestPoints == freezed
-          ? _value.highestPoints
-          : highestPoints // ignore: cast_nullable_to_non_nullable
+      dartsThrown: dartsThrown == freezed
+          ? _value.dartsThrown
+          : dartsThrown // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -211,16 +215,16 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements<AbstractTrainingPlayerSnapshot>()
-class _$_PlayerSnapshot implements _PlayerSnapshot {
-  const _$_PlayerSnapshot(
+class _$_DoubleTrainingPlayerSnapshot implements _DoubleTrainingPlayerSnapshot {
+  const _$_DoubleTrainingPlayerSnapshot(
       {required this.id,
       this.name,
       required this.isCurrentTurn,
-      required this.isDisqualified,
+      required this.isFinished,
       required this.targetValue,
-      required this.checkoutPercentage,
-      required this.points,
-      required this.highestPoints});
+      this.checkoutPercentage,
+      required this.missed,
+      required this.dartsThrown});
 
   @override
   final UniqueId id;
@@ -229,62 +233,63 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
   @override
   final bool isCurrentTurn;
   @override
-  final bool isDisqualified;
+  final bool isFinished;
   @override
   final int targetValue;
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @override
-  final int points;
+  final int missed;
   @override
-  final int highestPoints;
+  final int dartsThrown;
 
   @override
   String toString() {
-    return 'PlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isDisqualified: $isDisqualified, targetValue: $targetValue, checkoutPercentage: $checkoutPercentage, points: $points, highestPoints: $highestPoints)';
+    return 'DoubleTrainingPlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isFinished: $isFinished, targetValue: $targetValue, checkoutPercentage: $checkoutPercentage, missed: $missed, dartsThrown: $dartsThrown)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PlayerSnapshot &&
+            other is _DoubleTrainingPlayerSnapshot &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.isDisqualified, isDisqualified) ||
-                other.isDisqualified == isDisqualified) &&
+            (identical(other.isFinished, isFinished) ||
+                other.isFinished == isFinished) &&
             (identical(other.targetValue, targetValue) ||
                 other.targetValue == targetValue) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
                 other.checkoutPercentage == checkoutPercentage) &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.highestPoints, highestPoints) ||
-                other.highestPoints == highestPoints));
+            (identical(other.missed, missed) || other.missed == missed) &&
+            (identical(other.dartsThrown, dartsThrown) ||
+                other.dartsThrown == dartsThrown));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
-      isDisqualified, targetValue, checkoutPercentage, points, highestPoints);
+      isFinished, targetValue, checkoutPercentage, missed, dartsThrown);
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerSnapshotCopyWith<_PlayerSnapshot> get copyWith =>
-      __$PlayerSnapshotCopyWithImpl<_PlayerSnapshot>(this, _$identity);
+  _$DoubleTrainingPlayerSnapshotCopyWith<_DoubleTrainingPlayerSnapshot>
+      get copyWith => __$DoubleTrainingPlayerSnapshotCopyWithImpl<
+          _DoubleTrainingPlayerSnapshot>(this, _$identity);
 }
 
-abstract class _PlayerSnapshot
-    implements PlayerSnapshot, AbstractTrainingPlayerSnapshot {
-  const factory _PlayerSnapshot(
+abstract class _DoubleTrainingPlayerSnapshot
+    implements DoubleTrainingPlayerSnapshot, AbstractTrainingPlayerSnapshot {
+  const factory _DoubleTrainingPlayerSnapshot(
       {required UniqueId id,
       String? name,
       required bool isCurrentTurn,
-      required bool isDisqualified,
+      required bool isFinished,
       required int targetValue,
-      required double checkoutPercentage,
-      required int points,
-      required int highestPoints}) = _$_PlayerSnapshot;
+      double? checkoutPercentage,
+      required int missed,
+      required int dartsThrown}) = _$_DoubleTrainingPlayerSnapshot;
 
   @override
   UniqueId get id;
@@ -293,17 +298,17 @@ abstract class _PlayerSnapshot
   @override
   bool get isCurrentTurn;
   @override
-  bool get isDisqualified;
+  bool get isFinished;
   @override
   int get targetValue;
   @override
-  double get checkoutPercentage;
+  double? get checkoutPercentage;
   @override
-  int get points;
+  int get missed;
   @override
-  int get highestPoints;
+  int get dartsThrown;
   @override
   @JsonKey(ignore: true)
-  _$PlayerSnapshotCopyWith<_PlayerSnapshot> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$DoubleTrainingPlayerSnapshotCopyWith<_DoubleTrainingPlayerSnapshot>
+      get copyWith => throw _privateConstructorUsedError;
 }

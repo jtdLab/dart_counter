@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/training/double/game_snapshot.dart';
+import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
 
@@ -7,7 +7,7 @@ import 'hit.dart';
 /// Domain service for playing a double training game.
 abstract class IDoubleTrainingService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
-  Stream<GameSnapshot> watchGame();
+  Stream<DoubleTrainingGameSnapshot> watchGame();
 
   void createGame({
     required User owner,

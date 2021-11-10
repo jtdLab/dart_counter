@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'player_snapshot_dto.dart';
+part of 'bobs_twenty_seven_player_snapshot_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,85 +14,87 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$PlayerSnapshotDtoTearOff {
-  const _$PlayerSnapshotDtoTearOff();
+class _$BobsTwentySevenPlayerSnapshotDtoTearOff {
+  const _$BobsTwentySevenPlayerSnapshotDtoTearOff();
 
-  _PlayerSnapshotDto call(
+  _BobsTwentySevenPlayerSnapshotDto call(
       {required String id,
       String? name,
       bool? isCurrentTurn,
-      bool? isFinished,
+      bool? isDisqualified,
       int? targetValue,
       double? checkoutPercentage,
-      int? missed,
-      int? dartsThrown}) {
-    return _PlayerSnapshotDto(
+      int? points,
+      int? highestPoints}) {
+    return _BobsTwentySevenPlayerSnapshotDto(
       id: id,
       name: name,
       isCurrentTurn: isCurrentTurn,
-      isFinished: isFinished,
+      isDisqualified: isDisqualified,
       targetValue: targetValue,
       checkoutPercentage: checkoutPercentage,
-      missed: missed,
-      dartsThrown: dartsThrown,
+      points: points,
+      highestPoints: highestPoints,
     );
   }
 }
 
 /// @nodoc
-const $PlayerSnapshotDto = _$PlayerSnapshotDtoTearOff();
+const $BobsTwentySevenPlayerSnapshotDto =
+    _$BobsTwentySevenPlayerSnapshotDtoTearOff();
 
 /// @nodoc
-mixin _$PlayerSnapshotDto {
+mixin _$BobsTwentySevenPlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  bool? get isFinished => throw _privateConstructorUsedError;
+  bool? get isDisqualified => throw _privateConstructorUsedError;
   int? get targetValue => throw _privateConstructorUsedError;
   double? get checkoutPercentage => throw _privateConstructorUsedError;
-  int? get missed => throw _privateConstructorUsedError;
-  int? get dartsThrown => throw _privateConstructorUsedError;
+  int? get points => throw _privateConstructorUsedError;
+  int? get highestPoints => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlayerSnapshotDtoCopyWith<PlayerSnapshotDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $BobsTwentySevenPlayerSnapshotDtoCopyWith<BobsTwentySevenPlayerSnapshotDto>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerSnapshotDtoCopyWith<$Res> {
-  factory $PlayerSnapshotDtoCopyWith(
-          PlayerSnapshotDto value, $Res Function(PlayerSnapshotDto) then) =
-      _$PlayerSnapshotDtoCopyWithImpl<$Res>;
+abstract class $BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res> {
+  factory $BobsTwentySevenPlayerSnapshotDtoCopyWith(
+          BobsTwentySevenPlayerSnapshotDto value,
+          $Res Function(BobsTwentySevenPlayerSnapshotDto) then) =
+      _$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String? name,
       bool? isCurrentTurn,
-      bool? isFinished,
+      bool? isDisqualified,
       int? targetValue,
       double? checkoutPercentage,
-      int? missed,
-      int? dartsThrown});
+      int? points,
+      int? highestPoints});
 }
 
 /// @nodoc
-class _$PlayerSnapshotDtoCopyWithImpl<$Res>
-    implements $PlayerSnapshotDtoCopyWith<$Res> {
-  _$PlayerSnapshotDtoCopyWithImpl(this._value, this._then);
+class _$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<$Res>
+    implements $BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res> {
+  _$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl(this._value, this._then);
 
-  final PlayerSnapshotDto _value;
+  final BobsTwentySevenPlayerSnapshotDto _value;
   // ignore: unused_field
-  final $Res Function(PlayerSnapshotDto) _then;
+  final $Res Function(BobsTwentySevenPlayerSnapshotDto) _then;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? isCurrentTurn = freezed,
-    Object? isFinished = freezed,
+    Object? isDisqualified = freezed,
     Object? targetValue = freezed,
     Object? checkoutPercentage = freezed,
-    Object? missed = freezed,
-    Object? dartsThrown = freezed,
+    Object? points = freezed,
+    Object? highestPoints = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -107,9 +109,9 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isFinished: isFinished == freezed
-          ? _value.isFinished
-          : isFinished // ignore: cast_nullable_to_non_nullable
+      isDisqualified: isDisqualified == freezed
+          ? _value.isDisqualified
+          : isDisqualified // ignore: cast_nullable_to_non_nullable
               as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
@@ -119,59 +121,62 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
               as double?,
-      missed: missed == freezed
-          ? _value.missed
-          : missed // ignore: cast_nullable_to_non_nullable
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
               as int?,
-      dartsThrown: dartsThrown == freezed
-          ? _value.dartsThrown
-          : dartsThrown // ignore: cast_nullable_to_non_nullable
+      highestPoints: highestPoints == freezed
+          ? _value.highestPoints
+          : highestPoints // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$PlayerSnapshotDtoCopyWith<$Res>
-    implements $PlayerSnapshotDtoCopyWith<$Res> {
-  factory _$PlayerSnapshotDtoCopyWith(
-          _PlayerSnapshotDto value, $Res Function(_PlayerSnapshotDto) then) =
-      __$PlayerSnapshotDtoCopyWithImpl<$Res>;
+abstract class _$BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res>
+    implements $BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res> {
+  factory _$BobsTwentySevenPlayerSnapshotDtoCopyWith(
+          _BobsTwentySevenPlayerSnapshotDto value,
+          $Res Function(_BobsTwentySevenPlayerSnapshotDto) then) =
+      __$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
       String? name,
       bool? isCurrentTurn,
-      bool? isFinished,
+      bool? isDisqualified,
       int? targetValue,
       double? checkoutPercentage,
-      int? missed,
-      int? dartsThrown});
+      int? points,
+      int? highestPoints});
 }
 
 /// @nodoc
-class __$PlayerSnapshotDtoCopyWithImpl<$Res>
-    extends _$PlayerSnapshotDtoCopyWithImpl<$Res>
-    implements _$PlayerSnapshotDtoCopyWith<$Res> {
-  __$PlayerSnapshotDtoCopyWithImpl(
-      _PlayerSnapshotDto _value, $Res Function(_PlayerSnapshotDto) _then)
-      : super(_value, (v) => _then(v as _PlayerSnapshotDto));
+class __$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<$Res>
+    extends _$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<$Res>
+    implements _$BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res> {
+  __$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl(
+      _BobsTwentySevenPlayerSnapshotDto _value,
+      $Res Function(_BobsTwentySevenPlayerSnapshotDto) _then)
+      : super(_value, (v) => _then(v as _BobsTwentySevenPlayerSnapshotDto));
 
   @override
-  _PlayerSnapshotDto get _value => super._value as _PlayerSnapshotDto;
+  _BobsTwentySevenPlayerSnapshotDto get _value =>
+      super._value as _BobsTwentySevenPlayerSnapshotDto;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? isCurrentTurn = freezed,
-    Object? isFinished = freezed,
+    Object? isDisqualified = freezed,
     Object? targetValue = freezed,
     Object? checkoutPercentage = freezed,
-    Object? missed = freezed,
-    Object? dartsThrown = freezed,
+    Object? points = freezed,
+    Object? highestPoints = freezed,
   }) {
-    return _then(_PlayerSnapshotDto(
+    return _then(_BobsTwentySevenPlayerSnapshotDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -184,9 +189,9 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isFinished: isFinished == freezed
-          ? _value.isFinished
-          : isFinished // ignore: cast_nullable_to_non_nullable
+      isDisqualified: isDisqualified == freezed
+          ? _value.isDisqualified
+          : isDisqualified // ignore: cast_nullable_to_non_nullable
               as bool?,
       targetValue: targetValue == freezed
           ? _value.targetValue
@@ -196,13 +201,13 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
               as double?,
-      missed: missed == freezed
-          ? _value.missed
-          : missed // ignore: cast_nullable_to_non_nullable
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
               as int?,
-      dartsThrown: dartsThrown == freezed
-          ? _value.dartsThrown
-          : dartsThrown // ignore: cast_nullable_to_non_nullable
+      highestPoints: highestPoints == freezed
+          ? _value.highestPoints
+          : highestPoints // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -210,16 +215,17 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
-  const _$_PlayerSnapshotDto(
+class _$_BobsTwentySevenPlayerSnapshotDto
+    extends _BobsTwentySevenPlayerSnapshotDto {
+  const _$_BobsTwentySevenPlayerSnapshotDto(
       {required this.id,
       this.name,
       this.isCurrentTurn,
-      this.isFinished,
+      this.isDisqualified,
       this.targetValue,
       this.checkoutPercentage,
-      this.missed,
-      this.dartsThrown})
+      this.points,
+      this.highestPoints})
       : super._();
 
   @override
@@ -229,62 +235,64 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
   @override
   final bool? isCurrentTurn;
   @override
-  final bool? isFinished;
+  final bool? isDisqualified;
   @override
   final int? targetValue;
   @override
   final double? checkoutPercentage;
   @override
-  final int? missed;
+  final int? points;
   @override
-  final int? dartsThrown;
+  final int? highestPoints;
 
   @override
   String toString() {
-    return 'PlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isFinished: $isFinished, targetValue: $targetValue, checkoutPercentage: $checkoutPercentage, missed: $missed, dartsThrown: $dartsThrown)';
+    return 'BobsTwentySevenPlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, isDisqualified: $isDisqualified, targetValue: $targetValue, checkoutPercentage: $checkoutPercentage, points: $points, highestPoints: $highestPoints)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PlayerSnapshotDto &&
+            other is _BobsTwentySevenPlayerSnapshotDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.isFinished, isFinished) ||
-                other.isFinished == isFinished) &&
+            (identical(other.isDisqualified, isDisqualified) ||
+                other.isDisqualified == isDisqualified) &&
             (identical(other.targetValue, targetValue) ||
                 other.targetValue == targetValue) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
                 other.checkoutPercentage == checkoutPercentage) &&
-            (identical(other.missed, missed) || other.missed == missed) &&
-            (identical(other.dartsThrown, dartsThrown) ||
-                other.dartsThrown == dartsThrown));
+            (identical(other.points, points) || other.points == points) &&
+            (identical(other.highestPoints, highestPoints) ||
+                other.highestPoints == highestPoints));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
-      isFinished, targetValue, checkoutPercentage, missed, dartsThrown);
+      isDisqualified, targetValue, checkoutPercentage, points, highestPoints);
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>
-      __$PlayerSnapshotDtoCopyWithImpl<_PlayerSnapshotDto>(this, _$identity);
+  _$BobsTwentySevenPlayerSnapshotDtoCopyWith<_BobsTwentySevenPlayerSnapshotDto>
+      get copyWith => __$BobsTwentySevenPlayerSnapshotDtoCopyWithImpl<
+          _BobsTwentySevenPlayerSnapshotDto>(this, _$identity);
 }
 
-abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
-  const factory _PlayerSnapshotDto(
+abstract class _BobsTwentySevenPlayerSnapshotDto
+    extends BobsTwentySevenPlayerSnapshotDto {
+  const factory _BobsTwentySevenPlayerSnapshotDto(
       {required String id,
       String? name,
       bool? isCurrentTurn,
-      bool? isFinished,
+      bool? isDisqualified,
       int? targetValue,
       double? checkoutPercentage,
-      int? missed,
-      int? dartsThrown}) = _$_PlayerSnapshotDto;
-  const _PlayerSnapshotDto._() : super._();
+      int? points,
+      int? highestPoints}) = _$_BobsTwentySevenPlayerSnapshotDto;
+  const _BobsTwentySevenPlayerSnapshotDto._() : super._();
 
   @override
   String get id;
@@ -293,17 +301,17 @@ abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
   @override
   bool? get isCurrentTurn;
   @override
-  bool? get isFinished;
+  bool? get isDisqualified;
   @override
   int? get targetValue;
   @override
   double? get checkoutPercentage;
   @override
-  int? get missed;
+  int? get points;
   @override
-  int? get dartsThrown;
+  int? get highestPoints;
   @override
   @JsonKey(ignore: true)
-  _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$BobsTwentySevenPlayerSnapshotDtoCopyWith<_BobsTwentySevenPlayerSnapshotDto>
+      get copyWith => throw _privateConstructorUsedError;
 }

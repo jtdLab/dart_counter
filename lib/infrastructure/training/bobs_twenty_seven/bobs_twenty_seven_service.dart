@@ -1,9 +1,9 @@
-import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_game_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -14,7 +14,7 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IBobsTwentySevenService)
 class BobsTwentySevenService implements IBobsTwentySevenService {
-  final BehaviorSubject<GameSnapshot> _gameController;
+  final BehaviorSubject<BobsTwentySevenGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -155,7 +155,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  Stream<GameSnapshot> watchGame() {
+  Stream<BobsTwentySevenGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 
@@ -171,7 +171,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   void _emitSnpashot() {
-    final dto = GameSnapshotDto.fromExternal(_game!);
+    final dto = BobsTwentySevenGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
       /**
@@ -188,7 +188,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
           /**
          *   .copyWith(
             players: playersWithPhotos,
-          )
+          )∏
          */
           .toDomain(),
     );

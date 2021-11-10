@@ -1,11 +1,11 @@
 import 'package:dart_counter/domain/game/throw.dart';
-import 'package:dart_counter/domain/training/score/game_snapshot.dart';
+import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 
 /// Domain service for playing a score training game.
 abstract class IScoreTrainingService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
-  Stream<GameSnapshot> watchGame();
+  Stream<ScoreTrainingGameSnapshot> watchGame();
 
   void createGame({
     required User owner,

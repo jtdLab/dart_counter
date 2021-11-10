@@ -2,12 +2,12 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/training/abstract_training_player_snapshot.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot.freezed.dart';
+part 'bobs_twenty_seven_training_player_snapshot.freezed.dart';
 
 @freezed
-class PlayerSnapshot with _$PlayerSnapshot implements AbstractTrainingPlayerSnapshot {
+class BobsTwentySevenPlayerSnapshot with _$BobsTwentySevenPlayerSnapshot implements AbstractTrainingPlayerSnapshot {
   @Implements<AbstractTrainingPlayerSnapshot>()
-  const factory PlayerSnapshot({
+  const factory BobsTwentySevenPlayerSnapshot({
     required UniqueId id,
     String? name,
     required bool isCurrentTurn,
@@ -16,7 +16,7 @@ class PlayerSnapshot with _$PlayerSnapshot implements AbstractTrainingPlayerSnap
     required double checkoutPercentage,
     required int points,
     required int highestPoints,
-  }) = _PlayerSnapshot;
+  }) = _BobsTwentySevenPlayerSnapshot;
 
   // TODO dummy
 }

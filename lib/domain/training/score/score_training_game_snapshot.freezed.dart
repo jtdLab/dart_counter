@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'game_snapshot.dart';
+part of 'score_training_game_snapshot.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,15 +14,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$GameSnapshotTearOff {
-  const _$GameSnapshotTearOff();
+class _$ScoreTrainingGameSnapshotTearOff {
+  const _$ScoreTrainingGameSnapshotTearOff();
 
-  _GameSnapshot call(
+  _ScoreTrainingGameSnapshot call(
       {required Status status,
       required int numberOfTakes,
-      required KtList<PlayerSnapshot> players,
-      required PlayerSnapshot owner}) {
-    return _GameSnapshot(
+      required KtList<ScoreTrainingPlayerSnapshot> players,
+      required ScoreTrainingPlayerSnapshot owner}) {
+    return _ScoreTrainingGameSnapshot(
       status: status,
       numberOfTakes: numberOfTakes,
       players: players,
@@ -32,41 +32,43 @@ class _$GameSnapshotTearOff {
 }
 
 /// @nodoc
-const $GameSnapshot = _$GameSnapshotTearOff();
+const $ScoreTrainingGameSnapshot = _$ScoreTrainingGameSnapshotTearOff();
 
 /// @nodoc
-mixin _$GameSnapshot {
+mixin _$ScoreTrainingGameSnapshot {
   Status get status => throw _privateConstructorUsedError;
   int get numberOfTakes => throw _privateConstructorUsedError;
-  KtList<PlayerSnapshot> get players => throw _privateConstructorUsedError;
-  PlayerSnapshot get owner => throw _privateConstructorUsedError;
+  KtList<ScoreTrainingPlayerSnapshot> get players =>
+      throw _privateConstructorUsedError;
+  ScoreTrainingPlayerSnapshot get owner => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $GameSnapshotCopyWith<GameSnapshot> get copyWith =>
+  $ScoreTrainingGameSnapshotCopyWith<ScoreTrainingGameSnapshot> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameSnapshotCopyWith<$Res> {
-  factory $GameSnapshotCopyWith(
-          GameSnapshot value, $Res Function(GameSnapshot) then) =
-      _$GameSnapshotCopyWithImpl<$Res>;
+abstract class $ScoreTrainingGameSnapshotCopyWith<$Res> {
+  factory $ScoreTrainingGameSnapshotCopyWith(ScoreTrainingGameSnapshot value,
+          $Res Function(ScoreTrainingGameSnapshot) then) =
+      _$ScoreTrainingGameSnapshotCopyWithImpl<$Res>;
   $Res call(
       {Status status,
       int numberOfTakes,
-      KtList<PlayerSnapshot> players,
-      PlayerSnapshot owner});
+      KtList<ScoreTrainingPlayerSnapshot> players,
+      ScoreTrainingPlayerSnapshot owner});
 
-  $PlayerSnapshotCopyWith<$Res> get owner;
+  $ScoreTrainingPlayerSnapshotCopyWith<$Res> get owner;
 }
 
 /// @nodoc
-class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
-  _$GameSnapshotCopyWithImpl(this._value, this._then);
+class _$ScoreTrainingGameSnapshotCopyWithImpl<$Res>
+    implements $ScoreTrainingGameSnapshotCopyWith<$Res> {
+  _$ScoreTrainingGameSnapshotCopyWithImpl(this._value, this._then);
 
-  final GameSnapshot _value;
+  final ScoreTrainingGameSnapshot _value;
   // ignore: unused_field
-  final $Res Function(GameSnapshot) _then;
+  final $Res Function(ScoreTrainingGameSnapshot) _then;
 
   @override
   $Res call({
@@ -87,48 +89,50 @@ class _$GameSnapshotCopyWithImpl<$Res> implements $GameSnapshotCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<PlayerSnapshot>,
+              as KtList<ScoreTrainingPlayerSnapshot>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerSnapshot,
+              as ScoreTrainingPlayerSnapshot,
     ));
   }
 
   @override
-  $PlayerSnapshotCopyWith<$Res> get owner {
-    return $PlayerSnapshotCopyWith<$Res>(_value.owner, (value) {
+  $ScoreTrainingPlayerSnapshotCopyWith<$Res> get owner {
+    return $ScoreTrainingPlayerSnapshotCopyWith<$Res>(_value.owner, (value) {
       return _then(_value.copyWith(owner: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$GameSnapshotCopyWith<$Res>
-    implements $GameSnapshotCopyWith<$Res> {
-  factory _$GameSnapshotCopyWith(
-          _GameSnapshot value, $Res Function(_GameSnapshot) then) =
-      __$GameSnapshotCopyWithImpl<$Res>;
+abstract class _$ScoreTrainingGameSnapshotCopyWith<$Res>
+    implements $ScoreTrainingGameSnapshotCopyWith<$Res> {
+  factory _$ScoreTrainingGameSnapshotCopyWith(_ScoreTrainingGameSnapshot value,
+          $Res Function(_ScoreTrainingGameSnapshot) then) =
+      __$ScoreTrainingGameSnapshotCopyWithImpl<$Res>;
   @override
   $Res call(
       {Status status,
       int numberOfTakes,
-      KtList<PlayerSnapshot> players,
-      PlayerSnapshot owner});
+      KtList<ScoreTrainingPlayerSnapshot> players,
+      ScoreTrainingPlayerSnapshot owner});
 
   @override
-  $PlayerSnapshotCopyWith<$Res> get owner;
+  $ScoreTrainingPlayerSnapshotCopyWith<$Res> get owner;
 }
 
 /// @nodoc
-class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
-    implements _$GameSnapshotCopyWith<$Res> {
-  __$GameSnapshotCopyWithImpl(
-      _GameSnapshot _value, $Res Function(_GameSnapshot) _then)
-      : super(_value, (v) => _then(v as _GameSnapshot));
+class __$ScoreTrainingGameSnapshotCopyWithImpl<$Res>
+    extends _$ScoreTrainingGameSnapshotCopyWithImpl<$Res>
+    implements _$ScoreTrainingGameSnapshotCopyWith<$Res> {
+  __$ScoreTrainingGameSnapshotCopyWithImpl(_ScoreTrainingGameSnapshot _value,
+      $Res Function(_ScoreTrainingGameSnapshot) _then)
+      : super(_value, (v) => _then(v as _ScoreTrainingGameSnapshot));
 
   @override
-  _GameSnapshot get _value => super._value as _GameSnapshot;
+  _ScoreTrainingGameSnapshot get _value =>
+      super._value as _ScoreTrainingGameSnapshot;
 
   @override
   $Res call({
@@ -137,7 +141,7 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
     Object? players = freezed,
     Object? owner = freezed,
   }) {
-    return _then(_GameSnapshot(
+    return _then(_ScoreTrainingGameSnapshot(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -149,11 +153,11 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<PlayerSnapshot>,
+              as KtList<ScoreTrainingPlayerSnapshot>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as PlayerSnapshot,
+              as ScoreTrainingPlayerSnapshot,
     ));
   }
 }
@@ -161,8 +165,8 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements<AbstractTrainingGameSnapshot>()
-class _$_GameSnapshot implements _GameSnapshot {
-  const _$_GameSnapshot(
+class _$_ScoreTrainingGameSnapshot implements _ScoreTrainingGameSnapshot {
+  const _$_ScoreTrainingGameSnapshot(
       {required this.status,
       required this.numberOfTakes,
       required this.players,
@@ -173,20 +177,20 @@ class _$_GameSnapshot implements _GameSnapshot {
   @override
   final int numberOfTakes;
   @override
-  final KtList<PlayerSnapshot> players;
+  final KtList<ScoreTrainingPlayerSnapshot> players;
   @override
-  final PlayerSnapshot owner;
+  final ScoreTrainingPlayerSnapshot owner;
 
   @override
   String toString() {
-    return 'GameSnapshot(status: $status, numberOfTakes: $numberOfTakes, players: $players, owner: $owner)';
+    return 'ScoreTrainingGameSnapshot(status: $status, numberOfTakes: $numberOfTakes, players: $players, owner: $owner)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GameSnapshot &&
+            other is _ScoreTrainingGameSnapshot &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.numberOfTakes, numberOfTakes) ||
                 other.numberOfTakes == numberOfTakes) &&
@@ -200,28 +204,31 @@ class _$_GameSnapshot implements _GameSnapshot {
 
   @JsonKey(ignore: true)
   @override
-  _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>
-      __$GameSnapshotCopyWithImpl<_GameSnapshot>(this, _$identity);
+  _$ScoreTrainingGameSnapshotCopyWith<_ScoreTrainingGameSnapshot>
+      get copyWith =>
+          __$ScoreTrainingGameSnapshotCopyWithImpl<_ScoreTrainingGameSnapshot>(
+              this, _$identity);
 }
 
-abstract class _GameSnapshot
-    implements GameSnapshot, AbstractTrainingGameSnapshot {
-  const factory _GameSnapshot(
-      {required Status status,
-      required int numberOfTakes,
-      required KtList<PlayerSnapshot> players,
-      required PlayerSnapshot owner}) = _$_GameSnapshot;
+abstract class _ScoreTrainingGameSnapshot
+    implements ScoreTrainingGameSnapshot, AbstractTrainingGameSnapshot {
+  const factory _ScoreTrainingGameSnapshot(
+          {required Status status,
+          required int numberOfTakes,
+          required KtList<ScoreTrainingPlayerSnapshot> players,
+          required ScoreTrainingPlayerSnapshot owner}) =
+      _$_ScoreTrainingGameSnapshot;
 
   @override
   Status get status;
   @override
   int get numberOfTakes;
   @override
-  KtList<PlayerSnapshot> get players;
+  KtList<ScoreTrainingPlayerSnapshot> get players;
   @override
-  PlayerSnapshot get owner;
+  ScoreTrainingPlayerSnapshot get owner;
   @override
   @JsonKey(ignore: true)
-  _$GameSnapshotCopyWith<_GameSnapshot> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$ScoreTrainingGameSnapshotCopyWith<_ScoreTrainingGameSnapshot>
+      get copyWith => throw _privateConstructorUsedError;
 }

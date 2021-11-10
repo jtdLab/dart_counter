@@ -1,26 +1,27 @@
-import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/training/status.dart';
-import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/player_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_player_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-part 'game_snapshot_dto.freezed.dart';
+part 'bobs_twenty_seven_game_snapshot_dto.freezed.dart';
 
 @freezed
-class GameSnapshotDto with _$GameSnapshotDto {
-  const factory GameSnapshotDto({
+class BobsTwentySevenGameSnapshotDto with _$BobsTwentySevenGameSnapshotDto {
+  const factory BobsTwentySevenGameSnapshotDto({
     required String status,
     required String mode,
-    required KtList<PlayerSnapshotDto> players,
-    required PlayerSnapshotDto owner,
-  }) = _GameSnapshotDto;
+    required KtList<BobsTwentySevenPlayerSnapshotDto> players,
+    required BobsTwentySevenPlayerSnapshotDto owner,
+  }) = _BobsTwentySevenGameSnapshotDto;
 
-  const GameSnapshotDto._();
+  const BobsTwentySevenGameSnapshotDto._();
 
-  factory GameSnapshotDto.fromDomain(GameSnapshot gameSnapshot) {
-    return GameSnapshotDto(
+  factory BobsTwentySevenGameSnapshotDto.fromDomain(
+      BobsTwentySevenGameSnapshot gameSnapshot) {
+    return BobsTwentySevenGameSnapshotDto(
       status: gameSnapshot.status == Status.pending
           ? 'pending'
           : gameSnapshot.status == Status.running
@@ -30,13 +31,13 @@ class GameSnapshotDto with _$GameSnapshotDto {
                   : 'finished',
       mode: gameSnapshot.mode == Mode.easy ? 'easy' : 'hard',
       players: gameSnapshot.players
-          .map((player) => PlayerSnapshotDto.fromDomain(player)),
-      owner: PlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+          .map((player) => BobsTwentySevenPlayerSnapshotDto.fromDomain(player)),
+      owner: BobsTwentySevenPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
     );
   }
 
-  factory GameSnapshotDto.fromExternal(ex.Game game) {
-    return GameSnapshotDto(
+  factory BobsTwentySevenGameSnapshotDto.fromExternal(ex.Game game) {
+    return BobsTwentySevenGameSnapshotDto(
       status: game.status == ex.Status.pending
           ? 'pending'
           : game.status == ex.Status.running
@@ -46,14 +47,15 @@ class GameSnapshotDto with _$GameSnapshotDto {
                   : 'finished',
       mode: game.mode == ex.Mode.easy ? 'easy' : 'hard',
       players: game.players
-          .map((player) => PlayerSnapshotDto.fromExternal(player))
+          .map(
+              (player) => BobsTwentySevenPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
-      owner: PlayerSnapshotDto.fromExternal(game.owner),
+      owner: BobsTwentySevenPlayerSnapshotDto.fromExternal(game.owner),
     );
   }
 
-  GameSnapshot toDomain() {
-    return GameSnapshot(
+  BobsTwentySevenGameSnapshot toDomain() {
+    return BobsTwentySevenGameSnapshot(
       status: status == 'pending'
           ? Status.pending
           : status == 'running'

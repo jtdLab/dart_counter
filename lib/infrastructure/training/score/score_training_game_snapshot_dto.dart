@@ -1,25 +1,26 @@
-import 'package:dart_counter/domain/training/score/game_snapshot.dart';
+import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/status.dart';
-import 'package:dart_counter/infrastructure/training/score/player_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/score/score_training_player_snapshot_dto.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-part 'game_snapshot_dto.freezed.dart';
+part 'score_training_game_snapshot_dto.freezed.dart';
 
 @freezed
-class GameSnapshotDto with _$GameSnapshotDto {
-  const factory GameSnapshotDto({
+class ScoreTrainingGameSnapshotDto with _$ScoreTrainingGameSnapshotDto {
+  const factory ScoreTrainingGameSnapshotDto({
     required String status,
     required int numberOfTakes,
-    required KtList<PlayerSnapshotDto> players,
-    required PlayerSnapshotDto owner,
-  }) = _GameSnapshotDto;
+    required KtList<ScoreTrainingPlayerSnapshotDto> players,
+    required ScoreTrainingPlayerSnapshotDto owner,
+  }) = _ScoreTrainingGameSnapshotDto;
 
-  const GameSnapshotDto._();
+  const ScoreTrainingGameSnapshotDto._();
 
-  factory GameSnapshotDto.fromDomain(GameSnapshot gameSnapshot) {
-    return GameSnapshotDto(
+  factory ScoreTrainingGameSnapshotDto.fromDomain(
+      ScoreTrainingGameSnapshot gameSnapshot) {
+    return ScoreTrainingGameSnapshotDto(
       status: gameSnapshot.status == Status.pending
           ? 'pending'
           : gameSnapshot.status == Status.running
@@ -29,13 +30,13 @@ class GameSnapshotDto with _$GameSnapshotDto {
                   : 'finished',
       numberOfTakes: gameSnapshot.numberOfTakes,
       players: gameSnapshot.players
-          .map((player) => PlayerSnapshotDto.fromDomain(player)),
-      owner: PlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+          .map((player) => ScoreTrainingPlayerSnapshotDto.fromDomain(player)),
+      owner: ScoreTrainingPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
     );
   }
 
-  factory GameSnapshotDto.fromExternal(ex.Game game) {
-    return GameSnapshotDto(
+  factory ScoreTrainingGameSnapshotDto.fromExternal(ex.Game game) {
+    return ScoreTrainingGameSnapshotDto(
       status: game.status == ex.Status.pending
           ? 'pending'
           : game.status == ex.Status.running
@@ -45,14 +46,14 @@ class GameSnapshotDto with _$GameSnapshotDto {
                   : 'finished',
       numberOfTakes: game.numberOfTakes,
       players: game.players
-          .map((player) => PlayerSnapshotDto.fromExternal(player))
+          .map((player) => ScoreTrainingPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
-      owner: PlayerSnapshotDto.fromExternal(game.owner),
+      owner: ScoreTrainingPlayerSnapshotDto.fromExternal(game.owner),
     );
   }
 
-  GameSnapshot toDomain() {
-    return GameSnapshot(
+  ScoreTrainingGameSnapshot toDomain() {
+    return ScoreTrainingGameSnapshot(
       status: status == 'pending'
           ? Status.pending
           : status == 'running'

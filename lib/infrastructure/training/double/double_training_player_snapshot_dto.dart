@@ -1,13 +1,13 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/double/player_snapshot.dart';
+import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
 import 'package:dart_game/double_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot_dto.freezed.dart';
+part 'double_training_player_snapshot_dto.freezed.dart';
 
 @freezed
-class PlayerSnapshotDto with _$PlayerSnapshotDto {
-  const factory PlayerSnapshotDto({
+class DoubleTrainingPlayerSnapshotDto with _$DoubleTrainingPlayerSnapshotDto {
+  const factory DoubleTrainingPlayerSnapshotDto({
     required String id,
     String? name,
     bool? isCurrentTurn,
@@ -16,12 +16,13 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     double? checkoutPercentage,
     int? missed,
     int? dartsThrown,
-  }) = _PlayerSnapshotDto;
+  }) = _DoubleTrainingPlayerSnapshotDto;
 
-  const PlayerSnapshotDto._();
+  const DoubleTrainingPlayerSnapshotDto._();
 
-  factory PlayerSnapshotDto.fromDomain(PlayerSnapshot playerSnapshot) {
-    return PlayerSnapshotDto(
+  factory DoubleTrainingPlayerSnapshotDto.fromDomain(
+      DoubleTrainingPlayerSnapshot playerSnapshot) {
+    return DoubleTrainingPlayerSnapshotDto(
       id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
       isCurrentTurn: playerSnapshot.isCurrentTurn,
@@ -33,8 +34,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  factory PlayerSnapshotDto.fromExternal(ex.Player player) {
-    return PlayerSnapshotDto(
+  factory DoubleTrainingPlayerSnapshotDto.fromExternal(ex.Player player) {
+    return DoubleTrainingPlayerSnapshotDto(
       id: player.id,
       name: player.name,
       isCurrentTurn: player.isCurrentTurn,
@@ -46,8 +47,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  PlayerSnapshot toDomain() {
-    return PlayerSnapshot(
+  DoubleTrainingPlayerSnapshot toDomain() {
+    return DoubleTrainingPlayerSnapshot(
       id: UniqueId.fromUniqueString(id),
       name: name,
       isCurrentTurn: isCurrentTurn ?? false,

@@ -1,13 +1,13 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/player_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_player_snapshot.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot_dto.freezed.dart';
+part 'bobs_twenty_seven_player_snapshot_dto.freezed.dart';
 
 @freezed
-class PlayerSnapshotDto with _$PlayerSnapshotDto {
-  const factory PlayerSnapshotDto({
+class BobsTwentySevenPlayerSnapshotDto with _$BobsTwentySevenPlayerSnapshotDto {
+  const factory BobsTwentySevenPlayerSnapshotDto({
     required String id,
     String? name,
     bool? isCurrentTurn,
@@ -16,12 +16,13 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     double? checkoutPercentage,
     int? points,
     int? highestPoints,
-  }) = _PlayerSnapshotDto;
+  }) = _BobsTwentySevenPlayerSnapshotDto;
 
-  const PlayerSnapshotDto._();
+  const BobsTwentySevenPlayerSnapshotDto._();
 
-  factory PlayerSnapshotDto.fromDomain(PlayerSnapshot playerSnapshot) {
-    return PlayerSnapshotDto(
+  factory BobsTwentySevenPlayerSnapshotDto.fromDomain(
+      BobsTwentySevenPlayerSnapshot playerSnapshot) {
+    return BobsTwentySevenPlayerSnapshotDto(
       id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
       isCurrentTurn: playerSnapshot.isCurrentTurn,
@@ -33,8 +34,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  factory PlayerSnapshotDto.fromExternal(ex.Player player) {
-    return PlayerSnapshotDto(
+  factory BobsTwentySevenPlayerSnapshotDto.fromExternal(ex.Player player) {
+    return BobsTwentySevenPlayerSnapshotDto(
       id: player.id,
       name: player.name,
       isCurrentTurn: player.isCurrentTurn,
@@ -46,8 +47,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  PlayerSnapshot toDomain() {
-    return PlayerSnapshot(
+  BobsTwentySevenPlayerSnapshot toDomain() {
+    return BobsTwentySevenPlayerSnapshot(
       id: UniqueId.fromUniqueString(id),
       name: name,
       isCurrentTurn: isCurrentTurn ?? false,

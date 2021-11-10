@@ -1,9 +1,9 @@
 import 'package:dart_counter/domain/training/double/hit.dart';
-import 'package:dart_counter/domain/training/double/game_snapshot.dart';
+import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/infrastructure/training/double/game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_game_snapshot_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/double_training_game.dart' as ex;
 import 'package:rxdart/rxdart.dart';
@@ -14,7 +14,7 @@ import 'package:kt_dart/kt.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IDoubleTrainingService)
 class DoubleTrainingService implements IDoubleTrainingService {
-  final BehaviorSubject<GameSnapshot> _gameController;
+  final BehaviorSubject<DoubleTrainingGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -159,7 +159,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }
 
   @override
-  Stream<GameSnapshot> watchGame() {
+  Stream<DoubleTrainingGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 
@@ -175,7 +175,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }
 
   void _emitSnpashot() {
-    final dto = GameSnapshotDto.fromExternal(_game!);
+    final dto = DoubleTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
       /**

@@ -488,7 +488,7 @@ class _OrderCard extends StatelessWidget {
               ),
             ],
           );
-        } else if (gameSnapshot is double.GameSnapshot) {
+        } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
           final mode = gameSnapshot.mode;
 
           return AppCard(

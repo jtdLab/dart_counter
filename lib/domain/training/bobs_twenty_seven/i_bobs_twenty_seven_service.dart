@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
 
@@ -7,7 +7,7 @@ import 'hit.dart';
 /// Domain service for playing a bobs twenty seven training game.
 abstract class IBobsTwentySevenService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
-  Stream<GameSnapshot> watchGame();
+  Stream<BobsTwentySevenGameSnapshot> watchGame();
 
   void createGame({
     required User owner,

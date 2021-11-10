@@ -3,12 +3,12 @@ import 'package:dart_counter/domain/training/abstract_training_player_snapshot.d
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot.freezed.dart';
+part 'score_training_player_snapshot.freezed.dart';
 
 @freezed
-class PlayerSnapshot with _$PlayerSnapshot implements AbstractTrainingPlayerSnapshot {
+class ScoreTrainingPlayerSnapshot with _$ScoreTrainingPlayerSnapshot implements AbstractTrainingPlayerSnapshot {
   @Implements<AbstractTrainingPlayerSnapshot>()
-  const factory PlayerSnapshot({
+  const factory ScoreTrainingPlayerSnapshot({
     required UniqueId id,
     String? name,
     required bool isCurrentTurn,
@@ -18,7 +18,7 @@ class PlayerSnapshot with _$PlayerSnapshot implements AbstractTrainingPlayerSnap
     double? firstDartAverage,
     double? secondDartAverage,
     double? thirdDartAverage,
-  }) = _PlayerSnapshot;
+  }) = _ScoreTrainingPlayerSnapshot;
 
   // TODO dummy
 }
