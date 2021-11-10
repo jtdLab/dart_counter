@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'player_snapshot_dto.dart';
+part of 'single_training_player_snapshot.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,20 +14,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$PlayerSnapshotDtoTearOff {
-  const _$PlayerSnapshotDtoTearOff();
+class _$SingleTrainingPlayerSnapshotTearOff {
+  const _$SingleTrainingPlayerSnapshotTearOff();
 
-  _PlayerSnapshotDto call(
-      {required String id,
+  _SingleTrainingPlayerSnapshot call(
+      {required UniqueId id,
       String? name,
-      bool? isCurrentTurn,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed}) {
-    return _PlayerSnapshotDto(
+      required bool isCurrentTurn,
+      required int targetValue,
+      required int points,
+      required int singles,
+      required int doubles,
+      required int triples,
+      required int missed}) {
+    return _SingleTrainingPlayerSnapshot(
       id: id,
       name: name,
       isCurrentTurn: isCurrentTurn,
@@ -42,50 +42,51 @@ class _$PlayerSnapshotDtoTearOff {
 }
 
 /// @nodoc
-const $PlayerSnapshotDto = _$PlayerSnapshotDtoTearOff();
+const $SingleTrainingPlayerSnapshot = _$SingleTrainingPlayerSnapshotTearOff();
 
 /// @nodoc
-mixin _$PlayerSnapshotDto {
-  String get id => throw _privateConstructorUsedError;
+mixin _$SingleTrainingPlayerSnapshot {
+  UniqueId get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  bool? get isCurrentTurn => throw _privateConstructorUsedError;
-  int? get targetValue => throw _privateConstructorUsedError;
-  int? get points => throw _privateConstructorUsedError;
-  int? get singles => throw _privateConstructorUsedError;
-  int? get doubles => throw _privateConstructorUsedError;
-  int? get triples => throw _privateConstructorUsedError;
-  int? get missed => throw _privateConstructorUsedError;
+  bool get isCurrentTurn => throw _privateConstructorUsedError;
+  int get targetValue => throw _privateConstructorUsedError;
+  int get points => throw _privateConstructorUsedError;
+  int get singles => throw _privateConstructorUsedError;
+  int get doubles => throw _privateConstructorUsedError;
+  int get triples => throw _privateConstructorUsedError;
+  int get missed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlayerSnapshotDtoCopyWith<PlayerSnapshotDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SingleTrainingPlayerSnapshotCopyWith<SingleTrainingPlayerSnapshot>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerSnapshotDtoCopyWith<$Res> {
-  factory $PlayerSnapshotDtoCopyWith(
-          PlayerSnapshotDto value, $Res Function(PlayerSnapshotDto) then) =
-      _$PlayerSnapshotDtoCopyWithImpl<$Res>;
+abstract class $SingleTrainingPlayerSnapshotCopyWith<$Res> {
+  factory $SingleTrainingPlayerSnapshotCopyWith(
+          SingleTrainingPlayerSnapshot value,
+          $Res Function(SingleTrainingPlayerSnapshot) then) =
+      _$SingleTrainingPlayerSnapshotCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {UniqueId id,
       String? name,
-      bool? isCurrentTurn,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      bool isCurrentTurn,
+      int targetValue,
+      int points,
+      int singles,
+      int doubles,
+      int triples,
+      int missed});
 }
 
 /// @nodoc
-class _$PlayerSnapshotDtoCopyWithImpl<$Res>
-    implements $PlayerSnapshotDtoCopyWith<$Res> {
-  _$PlayerSnapshotDtoCopyWithImpl(this._value, this._then);
+class _$SingleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    implements $SingleTrainingPlayerSnapshotCopyWith<$Res> {
+  _$SingleTrainingPlayerSnapshotCopyWithImpl(this._value, this._then);
 
-  final PlayerSnapshotDto _value;
+  final SingleTrainingPlayerSnapshot _value;
   // ignore: unused_field
-  final $Res Function(PlayerSnapshotDto) _then;
+  final $Res Function(SingleTrainingPlayerSnapshot) _then;
 
   @override
   $Res call({
@@ -103,7 +104,7 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueId,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -111,64 +112,67 @@ class _$PlayerSnapshotDtoCopyWithImpl<$Res>
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       singles: singles == freezed
           ? _value.singles
           : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       doubles: doubles == freezed
           ? _value.doubles
           : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       triples: triples == freezed
           ? _value.triples
           : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       missed: missed == freezed
           ? _value.missed
           : missed // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$PlayerSnapshotDtoCopyWith<$Res>
-    implements $PlayerSnapshotDtoCopyWith<$Res> {
-  factory _$PlayerSnapshotDtoCopyWith(
-          _PlayerSnapshotDto value, $Res Function(_PlayerSnapshotDto) then) =
-      __$PlayerSnapshotDtoCopyWithImpl<$Res>;
+abstract class _$SingleTrainingPlayerSnapshotCopyWith<$Res>
+    implements $SingleTrainingPlayerSnapshotCopyWith<$Res> {
+  factory _$SingleTrainingPlayerSnapshotCopyWith(
+          _SingleTrainingPlayerSnapshot value,
+          $Res Function(_SingleTrainingPlayerSnapshot) then) =
+      __$SingleTrainingPlayerSnapshotCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {UniqueId id,
       String? name,
-      bool? isCurrentTurn,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed});
+      bool isCurrentTurn,
+      int targetValue,
+      int points,
+      int singles,
+      int doubles,
+      int triples,
+      int missed});
 }
 
 /// @nodoc
-class __$PlayerSnapshotDtoCopyWithImpl<$Res>
-    extends _$PlayerSnapshotDtoCopyWithImpl<$Res>
-    implements _$PlayerSnapshotDtoCopyWith<$Res> {
-  __$PlayerSnapshotDtoCopyWithImpl(
-      _PlayerSnapshotDto _value, $Res Function(_PlayerSnapshotDto) _then)
-      : super(_value, (v) => _then(v as _PlayerSnapshotDto));
+class __$SingleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    extends _$SingleTrainingPlayerSnapshotCopyWithImpl<$Res>
+    implements _$SingleTrainingPlayerSnapshotCopyWith<$Res> {
+  __$SingleTrainingPlayerSnapshotCopyWithImpl(
+      _SingleTrainingPlayerSnapshot _value,
+      $Res Function(_SingleTrainingPlayerSnapshot) _then)
+      : super(_value, (v) => _then(v as _SingleTrainingPlayerSnapshot));
 
   @override
-  _PlayerSnapshotDto get _value => super._value as _PlayerSnapshotDto;
+  _SingleTrainingPlayerSnapshot get _value =>
+      super._value as _SingleTrainingPlayerSnapshot;
 
   @override
   $Res call({
@@ -182,11 +186,11 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
     Object? triples = freezed,
     Object? missed = freezed,
   }) {
-    return _then(_PlayerSnapshotDto(
+    return _then(_SingleTrainingPlayerSnapshot(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueId,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -194,79 +198,79 @@ class __$PlayerSnapshotDtoCopyWithImpl<$Res>
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       targetValue: targetValue == freezed
           ? _value.targetValue
           : targetValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       singles: singles == freezed
           ? _value.singles
           : singles // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       doubles: doubles == freezed
           ? _value.doubles
           : doubles // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       triples: triples == freezed
           ? _value.triples
           : triples // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       missed: missed == freezed
           ? _value.missed
           : missed // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
-  const _$_PlayerSnapshotDto(
+@Implements<AbstractTrainingPlayerSnapshot>()
+class _$_SingleTrainingPlayerSnapshot implements _SingleTrainingPlayerSnapshot {
+  const _$_SingleTrainingPlayerSnapshot(
       {required this.id,
       this.name,
-      this.isCurrentTurn,
-      this.targetValue,
-      this.points,
-      this.singles,
-      this.doubles,
-      this.triples,
-      this.missed})
-      : super._();
+      required this.isCurrentTurn,
+      required this.targetValue,
+      required this.points,
+      required this.singles,
+      required this.doubles,
+      required this.triples,
+      required this.missed});
 
   @override
-  final String id;
+  final UniqueId id;
   @override
   final String? name;
   @override
-  final bool? isCurrentTurn;
+  final bool isCurrentTurn;
   @override
-  final int? targetValue;
+  final int targetValue;
   @override
-  final int? points;
+  final int points;
   @override
-  final int? singles;
+  final int singles;
   @override
-  final int? doubles;
+  final int doubles;
   @override
-  final int? triples;
+  final int triples;
   @override
-  final int? missed;
+  final int missed;
 
   @override
   String toString() {
-    return 'PlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
+    return 'SingleTrainingPlayerSnapshot(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, targetValue: $targetValue, points: $points, singles: $singles, doubles: $doubles, triples: $triples, missed: $missed)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PlayerSnapshotDto &&
+            other is _SingleTrainingPlayerSnapshot &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
@@ -286,43 +290,44 @@ class _$_PlayerSnapshotDto extends _PlayerSnapshotDto {
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>
-      __$PlayerSnapshotDtoCopyWithImpl<_PlayerSnapshotDto>(this, _$identity);
+  _$SingleTrainingPlayerSnapshotCopyWith<_SingleTrainingPlayerSnapshot>
+      get copyWith => __$SingleTrainingPlayerSnapshotCopyWithImpl<
+          _SingleTrainingPlayerSnapshot>(this, _$identity);
 }
 
-abstract class _PlayerSnapshotDto extends PlayerSnapshotDto {
-  const factory _PlayerSnapshotDto(
-      {required String id,
+abstract class _SingleTrainingPlayerSnapshot
+    implements SingleTrainingPlayerSnapshot, AbstractTrainingPlayerSnapshot {
+  const factory _SingleTrainingPlayerSnapshot(
+      {required UniqueId id,
       String? name,
-      bool? isCurrentTurn,
-      int? targetValue,
-      int? points,
-      int? singles,
-      int? doubles,
-      int? triples,
-      int? missed}) = _$_PlayerSnapshotDto;
-  const _PlayerSnapshotDto._() : super._();
+      required bool isCurrentTurn,
+      required int targetValue,
+      required int points,
+      required int singles,
+      required int doubles,
+      required int triples,
+      required int missed}) = _$_SingleTrainingPlayerSnapshot;
 
   @override
-  String get id;
+  UniqueId get id;
   @override
   String? get name;
   @override
-  bool? get isCurrentTurn;
+  bool get isCurrentTurn;
   @override
-  int? get targetValue;
+  int get targetValue;
   @override
-  int? get points;
+  int get points;
   @override
-  int? get singles;
+  int get singles;
   @override
-  int? get doubles;
+  int get doubles;
   @override
-  int? get triples;
+  int get triples;
   @override
-  int? get missed;
+  int get missed;
   @override
   @JsonKey(ignore: true)
-  _$PlayerSnapshotDtoCopyWith<_PlayerSnapshotDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$SingleTrainingPlayerSnapshotCopyWith<_SingleTrainingPlayerSnapshot>
+      get copyWith => throw _privateConstructorUsedError;
 }

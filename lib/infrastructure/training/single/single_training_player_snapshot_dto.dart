@@ -1,13 +1,13 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/single/player_snapshot.dart';
+import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot_dto.freezed.dart';
+part 'single_training_player_snapshot_dto.freezed.dart';
 
 @freezed
-class PlayerSnapshotDto with _$PlayerSnapshotDto {
-  const factory PlayerSnapshotDto({
+class SingleTrainingPlayerSnapshotDto with _$SingleTrainingPlayerSnapshotDto {
+  const factory SingleTrainingPlayerSnapshotDto({
     required String id,
     String? name,
     bool? isCurrentTurn,
@@ -17,12 +17,13 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     int? doubles,
     int? triples,
     int? missed,
-  }) = _PlayerSnapshotDto;
+  }) = _SingleTrainingPlayerSnapshotDto;
 
-  const PlayerSnapshotDto._();
+  const SingleTrainingPlayerSnapshotDto._();
 
-  factory PlayerSnapshotDto.fromDomain(PlayerSnapshot playerSnapshot) {
-    return PlayerSnapshotDto(
+  factory SingleTrainingPlayerSnapshotDto.fromDomain(
+      SingleTrainingPlayerSnapshot playerSnapshot) {
+    return SingleTrainingPlayerSnapshotDto(
       id: playerSnapshot.id.getOrCrash(),
       name: playerSnapshot.name,
       isCurrentTurn: playerSnapshot.isCurrentTurn,
@@ -35,8 +36,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  factory PlayerSnapshotDto.fromExternal(ex.Player player) {
-    return PlayerSnapshotDto(
+  factory SingleTrainingPlayerSnapshotDto.fromExternal(ex.Player player) {
+    return SingleTrainingPlayerSnapshotDto(
       id: player.id,
       name: player.name,
       isCurrentTurn: player.isCurrentTurn,
@@ -49,8 +50,8 @@ class PlayerSnapshotDto with _$PlayerSnapshotDto {
     );
   }
 
-  PlayerSnapshot toDomain() {
-    return PlayerSnapshot(
+  SingleTrainingPlayerSnapshot toDomain() {
+    return SingleTrainingPlayerSnapshot(
       id: UniqueId.fromUniqueString(id),
       name: name,
       isCurrentTurn: isCurrentTurn ?? false,

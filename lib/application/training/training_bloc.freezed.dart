@@ -62,7 +62,7 @@ class _$TrainingEventTearOff {
   }
 
   TrainingGameSnapshotReceived gameSnapshotReceived(
-      {required TrainingGameSnapshot gameSnapshot}) {
+      {required AbstractTrainingGameSnapshot gameSnapshot}) {
     return TrainingGameSnapshotReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -84,7 +84,7 @@ mixin _$TrainingEvent {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -98,7 +98,8 @@ mixin _$TrainingEvent {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,7 +112,8 @@ mixin _$TrainingEvent {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -225,7 +227,7 @@ class _$TrainingCreated implements TrainingCreated {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return trainingCreated();
@@ -242,7 +244,8 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return trainingCreated?.call();
   }
@@ -258,7 +261,8 @@ class _$TrainingCreated implements TrainingCreated {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingCreated != null) {
@@ -375,7 +379,7 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return playerAdded();
@@ -392,7 +396,8 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return playerAdded?.call();
   }
@@ -408,7 +413,8 @@ class _$TrainingPlayerAdded implements TrainingPlayerAdded {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -549,7 +555,7 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return playerRemoved(index);
@@ -566,7 +572,8 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return playerRemoved?.call(index);
   }
@@ -582,7 +589,8 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -740,7 +748,7 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return playerReordered(oldIndex, newIndex);
@@ -757,7 +765,8 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return playerReordered?.call(oldIndex, newIndex);
   }
@@ -773,7 +782,8 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -932,7 +942,7 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return playerNameUpdated(index, newName);
@@ -949,7 +959,8 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return playerNameUpdated?.call(index, newName);
   }
@@ -965,7 +976,8 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1113,7 +1125,7 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return typeChanged(newType);
@@ -1130,7 +1142,8 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return typeChanged?.call(newType);
   }
@@ -1146,7 +1159,8 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (typeChanged != null) {
@@ -1269,7 +1283,7 @@ class _$TrainingStarted implements TrainingStarted {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return trainingStarted();
@@ -1286,7 +1300,8 @@ class _$TrainingStarted implements TrainingStarted {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return trainingStarted?.call();
   }
@@ -1302,7 +1317,8 @@ class _$TrainingStarted implements TrainingStarted {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingStarted != null) {
@@ -1419,7 +1435,7 @@ class _$TrainingCanceled implements TrainingCanceled {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return trainingCanceled();
@@ -1436,7 +1452,8 @@ class _$TrainingCanceled implements TrainingCanceled {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return trainingCanceled?.call();
   }
@@ -1452,7 +1469,8 @@ class _$TrainingCanceled implements TrainingCanceled {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingCanceled != null) {
@@ -1526,7 +1544,7 @@ abstract class $TrainingGameSnapshotReceivedCopyWith<$Res> {
           TrainingGameSnapshotReceived value,
           $Res Function(TrainingGameSnapshotReceived) then) =
       _$TrainingGameSnapshotReceivedCopyWithImpl<$Res>;
-  $Res call({TrainingGameSnapshot gameSnapshot});
+  $Res call({AbstractTrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -1550,7 +1568,7 @@ class _$TrainingGameSnapshotReceivedCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as TrainingGameSnapshot,
+              as AbstractTrainingGameSnapshot,
     ));
   }
 }
@@ -1561,7 +1579,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
   const _$TrainingGameSnapshotReceived({required this.gameSnapshot});
 
   @override
-  final TrainingGameSnapshot gameSnapshot;
+  final AbstractTrainingGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -1597,7 +1615,7 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     required TResult Function(Type newType) typeChanged,
     required TResult Function() trainingStarted,
     required TResult Function() trainingCanceled,
-    required TResult Function(TrainingGameSnapshot gameSnapshot)
+    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
         gameSnapshotReceived,
   }) {
     return gameSnapshotReceived(gameSnapshot);
@@ -1614,7 +1632,8 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
   }) {
     return gameSnapshotReceived?.call(gameSnapshot);
   }
@@ -1630,7 +1649,8 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     TResult Function(Type newType)? typeChanged,
     TResult Function()? trainingStarted,
     TResult Function()? trainingCanceled,
-    TResult Function(TrainingGameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
+        gameSnapshotReceived,
     required TResult orElse(),
   }) {
     if (gameSnapshotReceived != null) {
@@ -1696,10 +1716,10 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
 
 abstract class TrainingGameSnapshotReceived implements TrainingEvent {
   const factory TrainingGameSnapshotReceived(
-          {required TrainingGameSnapshot gameSnapshot}) =
+          {required AbstractTrainingGameSnapshot gameSnapshot}) =
       _$TrainingGameSnapshotReceived;
 
-  TrainingGameSnapshot get gameSnapshot;
+  AbstractTrainingGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $TrainingGameSnapshotReceivedCopyWith<TrainingGameSnapshotReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -1710,7 +1730,8 @@ class _$TrainingStateTearOff {
   const _$TrainingStateTearOff();
 
   TrainingInitial initial(
-      {required Type type, required TrainingGameSnapshot gameSnapshot}) {
+      {required Type type,
+      required AbstractTrainingGameSnapshot gameSnapshot}) {
     return TrainingInitial(
       type: type,
       gameSnapshot: gameSnapshot,
@@ -1724,22 +1745,26 @@ const $TrainingState = _$TrainingStateTearOff();
 /// @nodoc
 mixin _$TrainingState {
   Type get type => throw _privateConstructorUsedError;
-  TrainingGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractTrainingGameSnapshot get gameSnapshot =>
+      throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Type type, TrainingGameSnapshot gameSnapshot)
+    required TResult Function(
+            Type type, AbstractTrainingGameSnapshot gameSnapshot)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
+    TResult Function(Type type, AbstractTrainingGameSnapshot gameSnapshot)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
+    TResult Function(Type type, AbstractTrainingGameSnapshot gameSnapshot)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1770,7 +1795,7 @@ abstract class $TrainingStateCopyWith<$Res> {
   factory $TrainingStateCopyWith(
           TrainingState value, $Res Function(TrainingState) then) =
       _$TrainingStateCopyWithImpl<$Res>;
-  $Res call({Type type, TrainingGameSnapshot gameSnapshot});
+  $Res call({Type type, AbstractTrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -1795,7 +1820,7 @@ class _$TrainingStateCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as TrainingGameSnapshot,
+              as AbstractTrainingGameSnapshot,
     ));
   }
 }
@@ -1807,7 +1832,7 @@ abstract class $TrainingInitialCopyWith<$Res>
           TrainingInitial value, $Res Function(TrainingInitial) then) =
       _$TrainingInitialCopyWithImpl<$Res>;
   @override
-  $Res call({Type type, TrainingGameSnapshot gameSnapshot});
+  $Res call({Type type, AbstractTrainingGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -1834,7 +1859,7 @@ class _$TrainingInitialCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as TrainingGameSnapshot,
+              as AbstractTrainingGameSnapshot,
     ));
   }
 }
@@ -1847,7 +1872,7 @@ class _$TrainingInitial implements TrainingInitial {
   @override
   final Type type;
   @override
-  final TrainingGameSnapshot gameSnapshot;
+  final AbstractTrainingGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -1875,7 +1900,8 @@ class _$TrainingInitial implements TrainingInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Type type, TrainingGameSnapshot gameSnapshot)
+    required TResult Function(
+            Type type, AbstractTrainingGameSnapshot gameSnapshot)
         initial,
   }) {
     return initial(type, gameSnapshot);
@@ -1884,7 +1910,8 @@ class _$TrainingInitial implements TrainingInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
+    TResult Function(Type type, AbstractTrainingGameSnapshot gameSnapshot)?
+        initial,
   }) {
     return initial?.call(type, gameSnapshot);
   }
@@ -1892,7 +1919,8 @@ class _$TrainingInitial implements TrainingInitial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Type type, TrainingGameSnapshot gameSnapshot)? initial,
+    TResult Function(Type type, AbstractTrainingGameSnapshot gameSnapshot)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1933,12 +1961,12 @@ class _$TrainingInitial implements TrainingInitial {
 abstract class TrainingInitial implements TrainingState {
   const factory TrainingInitial(
       {required Type type,
-      required TrainingGameSnapshot gameSnapshot}) = _$TrainingInitial;
+      required AbstractTrainingGameSnapshot gameSnapshot}) = _$TrainingInitial;
 
   @override
   Type get type;
   @override
-  TrainingGameSnapshot get gameSnapshot;
+  AbstractTrainingGameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $TrainingInitialCopyWith<TrainingInitial> get copyWith =>

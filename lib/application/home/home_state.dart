@@ -7,7 +7,7 @@ class HomeState with _$HomeState {
     required int unreadInvitations,
     required int unreadFriendRequests,
     AbstractGameSnapshot? gameSnapshot,
-    TrainingGameSnapshot? trainingGameSnapshot,
+    AbstractTrainingGameSnapshot? trainingGameSnapshot,
     required bool loading,
     PlayFailure? failure,
   }) = HomeInitial;

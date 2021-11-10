@@ -21,6 +21,6 @@ class TrainingEvent with _$TrainingEvent {
   const factory TrainingEvent.trainingStarted() = TrainingStarted;
   const factory TrainingEvent.trainingCanceled() = TrainingCanceled;
   const factory TrainingEvent.gameSnapshotReceived({
-    required TrainingGameSnapshot gameSnapshot,
+    required AbstractTrainingGameSnapshot gameSnapshot,
   }) = TrainingGameSnapshotReceived;
 }

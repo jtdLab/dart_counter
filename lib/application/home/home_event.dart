@@ -13,6 +13,6 @@ class HomeEvent with _$HomeEvent {
     required AbstractGameSnapshot gameSnapshot,
   }) = GameReceived;
    const factory HomeEvent.trainingGameReceived({
-    required TrainingGameSnapshot trainingGameSnapshot,
+    required AbstractTrainingGameSnapshot trainingGameSnapshot,
   }) = TrainingGameReceived;
 }

@@ -210,7 +210,7 @@ class __$PlayerSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<TrainingPlayerSnapshot>()
+@Implements<AbstractTrainingPlayerSnapshot>()
 class _$_PlayerSnapshot implements _PlayerSnapshot {
   const _$_PlayerSnapshot(
       {required this.id,
@@ -275,7 +275,7 @@ class _$_PlayerSnapshot implements _PlayerSnapshot {
 }
 
 abstract class _PlayerSnapshot
-    implements PlayerSnapshot, TrainingPlayerSnapshot {
+    implements PlayerSnapshot, AbstractTrainingPlayerSnapshot {
   const factory _PlayerSnapshot(
       {required UniqueId id,
       String? name,

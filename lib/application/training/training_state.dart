@@ -4,6 +4,6 @@ part of 'training_bloc.dart';
 class TrainingState with _$TrainingState {
   const factory TrainingState.initial({
     required Type type,
-    required TrainingGameSnapshot gameSnapshot,
+    required AbstractTrainingGameSnapshot gameSnapshot,
   }) = TrainingInitial;
 }

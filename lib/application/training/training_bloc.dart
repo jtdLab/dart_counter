@@ -6,8 +6,7 @@ import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_sev
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
-import 'package:dart_counter/domain/training/single/game_snapshot.dart'
-    as single;
+import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/game_snapshot.dart' as score;
 
 import 'package:dart_counter/domain/training/bobs_twenty_seven/game_snapshot.dart'
@@ -17,7 +16,7 @@ import 'package:dart_counter/domain/training/double/game_snapshot.dart'
     as double;
 
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
-import 'package:dart_counter/domain/training/training_game_snapshot.dart';
+import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
@@ -49,7 +48,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
   ) : super(
           TrainingState.initial(
             type: Type.single,
-            gameSnapshot: single.GameSnapshot.initial(
+            gameSnapshot: SingleTrainingGameSnapshot.initial(
               username: _userService.getUser().fold(
                     (failure) => throw Error(),
                     (user) => user.profile.name.getOrCrash(),

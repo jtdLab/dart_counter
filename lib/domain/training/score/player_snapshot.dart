@@ -1,13 +1,13 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/training_player_snapshot.dart';
+import 'package:dart_counter/domain/training/abstract_training_player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player_snapshot.freezed.dart';
 
 @freezed
-class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
-  @Implements<TrainingPlayerSnapshot>()
+class PlayerSnapshot with _$PlayerSnapshot implements AbstractTrainingPlayerSnapshot {
+  @Implements<AbstractTrainingPlayerSnapshot>()
   const factory PlayerSnapshot({
     required UniqueId id,
     String? name,

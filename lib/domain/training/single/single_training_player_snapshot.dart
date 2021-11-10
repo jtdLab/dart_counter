@@ -1,14 +1,16 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/training_player_snapshot.dart';
+import 'package:dart_counter/domain/training/abstract_training_player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'player_snapshot.freezed.dart';
+part 'single_training_player_snapshot.freezed.dart';
 
 @freezed
-class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
-  @Implements<TrainingPlayerSnapshot>()
-  const factory PlayerSnapshot({
+class SingleTrainingPlayerSnapshot
+    with _$SingleTrainingPlayerSnapshot
+    implements AbstractTrainingPlayerSnapshot {
+  @Implements<AbstractTrainingPlayerSnapshot>()
+  const factory SingleTrainingPlayerSnapshot({
     required UniqueId id,
     String? name,
     required bool isCurrentTurn,
@@ -18,13 +20,13 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
     required int doubles,
     required int triples,
     required int missed,
-  }) = _PlayerSnapshot;
+  }) = _SingleTrainingPlayerSnapshot;
 
   // TODO needed remove pls
-  factory PlayerSnapshot.initial({
+  factory SingleTrainingPlayerSnapshot.initial({
     String? username,
   }) {
-    return PlayerSnapshot(
+    return SingleTrainingPlayerSnapshot(
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       name: username,
       isCurrentTurn: false,
@@ -37,8 +39,8 @@ class PlayerSnapshot with _$PlayerSnapshot implements TrainingPlayerSnapshot {
     );
   }
 
-  factory PlayerSnapshot.dummy() {
-    return PlayerSnapshot(
+  factory SingleTrainingPlayerSnapshot.dummy() {
+    return SingleTrainingPlayerSnapshot(
       id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
       name: faker.person.name(),
       isCurrentTurn: faker.randomGenerator.boolean(),

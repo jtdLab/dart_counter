@@ -147,7 +147,7 @@ class _PlayerList extends StatelessWidget {
 
 class _EditablePlayerItem extends StatelessWidget {
   final int index;
-  final TrainingPlayerSnapshot player;
+  final AbstractTrainingPlayerSnapshot player;
   final bool isDismissable;
 
   const _EditablePlayerItem({
@@ -225,7 +225,7 @@ class _EditablePlayerItem extends StatelessWidget {
 
 class _PlayerItem extends StatelessWidget {
   final int index;
-  final TrainingPlayerSnapshot player;
+  final AbstractTrainingPlayerSnapshot player;
   final bool isDismissable;
 
   const _PlayerItem({
@@ -427,7 +427,7 @@ class _OrderCard extends StatelessWidget {
       builder: (context, state) {
         final gameSnapshot = state.gameSnapshot;
 
-        if (gameSnapshot is single.GameSnapshot) {
+        if (gameSnapshot is SingleTrainingGameSnapshot) {
           final mode = gameSnapshot.mode;
 
           return AppCard(

@@ -160,7 +160,7 @@ class __$GameSnapshotCopyWithImpl<$Res> extends _$GameSnapshotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<TrainingGameSnapshot>()
+@Implements<AbstractTrainingGameSnapshot>()
 class _$_GameSnapshot implements _GameSnapshot {
   const _$_GameSnapshot(
       {required this.status,
@@ -202,7 +202,8 @@ class _$_GameSnapshot implements _GameSnapshot {
       __$GameSnapshotCopyWithImpl<_GameSnapshot>(this, _$identity);
 }
 
-abstract class _GameSnapshot implements GameSnapshot, TrainingGameSnapshot {
+abstract class _GameSnapshot
+    implements GameSnapshot, AbstractTrainingGameSnapshot {
   const factory _GameSnapshot(
       {required Status status,
       required Mode mode,

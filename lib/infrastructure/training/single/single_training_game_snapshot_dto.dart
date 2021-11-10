@@ -1,29 +1,29 @@
 import 'package:dart_counter/domain/training/mode.dart';
-import 'package:dart_counter/domain/training/single/game_snapshot.dart';
+import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/status.dart';
-import 'package:dart_counter/infrastructure/training/single/player_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/single/single_training_player_snapshot_dto.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-part 'game_snapshot_dto.freezed.dart';
+part 'single_training_game_snapshot_dto.freezed.dart';
 
 @freezed
-class GameSnapshotDto with _$GameSnapshotDto {
-  const factory GameSnapshotDto({
+class SingleTrainingGameSnapshotDto with _$SingleTrainingGameSnapshotDto {
+  const factory SingleTrainingGameSnapshotDto({
     required String status,
     required String mode,
-    required KtList<PlayerSnapshotDto> players,
-    required PlayerSnapshotDto owner,
-  }) = _GameSnapshotDto;
+    required KtList<SingleTrainingPlayerSnapshotDto> players,
+    required SingleTrainingPlayerSnapshotDto owner,
+  }) = _SingleTrainingGameSnapshotDto;
 
-  const GameSnapshotDto._();
+  const SingleTrainingGameSnapshotDto._();
 
-  factory GameSnapshotDto.fromDomain(GameSnapshot gameSnapshot) {
+  factory SingleTrainingGameSnapshotDto.fromDomain(SingleTrainingGameSnapshot gameSnapshot) {
     final players = gameSnapshot.players
-        .map((player) => PlayerSnapshotDto.fromDomain(player));
+        .map((player) => SingleTrainingPlayerSnapshotDto.fromDomain(player));
 
-    return GameSnapshotDto(
+    return SingleTrainingGameSnapshotDto(
       status: gameSnapshot.status == Status.pending
           ? 'pending'
           : gameSnapshot.status == Status.running
@@ -37,12 +37,12 @@ class GameSnapshotDto with _$GameSnapshotDto {
               ? 'descending'
               : 'random',
       players: players,
-      owner: PlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+      owner: SingleTrainingPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
     );
   }
 
-  factory GameSnapshotDto.fromExternal(ex.Game game) {
-    return GameSnapshotDto(
+  factory SingleTrainingGameSnapshotDto.fromExternal(ex.Game game) {
+    return SingleTrainingGameSnapshotDto(
       status: game.status == ex.Status.pending
           ? 'pending'
           : game.status == ex.Status.running
@@ -56,14 +56,14 @@ class GameSnapshotDto with _$GameSnapshotDto {
               ? 'descending'
               : 'random',
       players: game.players
-          .map((player) => PlayerSnapshotDto.fromExternal(player))
+          .map((player) => SingleTrainingPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
-      owner: PlayerSnapshotDto.fromExternal(game.owner),
+      owner: SingleTrainingPlayerSnapshotDto.fromExternal(game.owner),
     );
   }
 
-  GameSnapshot toDomain() {
-    return GameSnapshot(
+  SingleTrainingGameSnapshot toDomain() {
+    return SingleTrainingGameSnapshot(
       status: status == 'pending'
           ? Status.pending
           : status == 'running'

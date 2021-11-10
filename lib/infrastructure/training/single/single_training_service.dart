@@ -1,9 +1,9 @@
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/hit.dart';
-import 'package:dart_counter/domain/training/single/game_snapshot.dart';
+import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/infrastructure/training/single/game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/single/single_training_game_snapshot_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:rxdart/rxdart.dart';
@@ -14,7 +14,7 @@ import 'package:kt_dart/kt.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: ISingleTrainingService)
 class SingleTrainingService implements ISingleTrainingService {
-  final BehaviorSubject<GameSnapshot> _gameController;
+  final BehaviorSubject<SingleTrainingGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -174,7 +174,7 @@ class SingleTrainingService implements ISingleTrainingService {
   }
 
   @override
-  Stream<GameSnapshot> watchGame() {
+  Stream<SingleTrainingGameSnapshot> watchGame() {
     return _gameController.stream;
   }
 
@@ -190,7 +190,7 @@ class SingleTrainingService implements ISingleTrainingService {
   }
 
   void _emitSnpashot() {
-    final dto = GameSnapshotDto.fromExternal(_game!);
+    final dto = SingleTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
       /**
