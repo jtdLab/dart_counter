@@ -3,12 +3,13 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
-class MockedAuthService implements IAuthService {
+class MockedAuthService with Disposable implements IAuthService {
   static bool hasNetworkConnection = true;
 
   final BehaviorSubject<bool> _authenticatedController;
@@ -174,9 +175,8 @@ class MockedAuthService implements IAuthService {
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
 
-  @disposeMethod
   @override
-  void dispose() {
+  void onDispose() {
     _authenticatedController.close();
   }
 }

@@ -13,6 +13,7 @@ import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image/image.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -21,7 +22,7 @@ import 'package:social_client/social_client.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IUserService)
-class UserService implements IUserService {
+class UserService with Disposable implements IUserService {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
   final IAuthService _authService;
@@ -178,9 +179,9 @@ class UserService implements IUserService {
     }
   }
 
-  @disposeMethod
   @override
-  void dispose() {
+  void onDispose() {
     _authSubscription?.cancel();
+    _userController?.close();
   }
 }

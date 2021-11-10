@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -17,7 +18,7 @@ import 'package:social_client/social_client.dart';
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthService)
-class FirebaseAuthService implements IAuthService {
+class FirebaseAuthService with Disposable implements IAuthService {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final FacebookAuth _facebookAuth;
@@ -296,9 +297,8 @@ class FirebaseAuthService implements IAuthService {
         (user) => user?.uid != null,
       );
 
-  @disposeMethod
   @override
-  void dispose() {
+  void onDispose() {
     // TODO implement
   }
 

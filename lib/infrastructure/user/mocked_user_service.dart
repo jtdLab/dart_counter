@@ -9,12 +9,13 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
-class MockedUserService implements IUserService {
+class MockedUserService with Disposable implements IUserService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
@@ -137,9 +138,9 @@ class MockedUserService implements IUserService {
     );
   }
 
-  @disposeMethod
   @override
-  void dispose() {
+  void onDispose() {
     _authSubscription?.cancel();
+    _userController?.close();
   }
 }

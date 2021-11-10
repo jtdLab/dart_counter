@@ -99,6 +99,4 @@ abstract class IAuthService {
 
   /// Returns a stream that indicates whether or not the app-user is authenticated.
   Stream<bool> watchIsAuthenticated();
-
-  void dispose();
 }

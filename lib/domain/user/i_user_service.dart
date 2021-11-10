@@ -45,6 +45,4 @@ abstract class IUserService {
   ///
   /// {@macro not_authenticated_error}
   Stream<Either<UserFailure, User>> watchUser();
-
-  void dispose();
 }
