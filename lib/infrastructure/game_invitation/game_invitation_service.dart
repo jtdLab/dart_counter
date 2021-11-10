@@ -41,7 +41,7 @@ class GameInvitationService implements IGameInvitationService {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
         _receivedInvitationsController = BehaviorSubject();
-        _receivedInvitationsController.addStream(watchReceivedInvitations());
+        _receivedInvitationsController.addStream(watchReceivedGameInvitations());
         _sentInvitationsController = BehaviorSubject();
         _sentInvitationsController.addStream(watchSentInvitations());
       } else {
@@ -69,7 +69,7 @@ class GameInvitationService implements IGameInvitationService {
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations() async* {
+      watchReceivedGameInvitations() async* {
     _checkAuth();
     final collection = _firestore.receivedGameInvitationsCollection();
 

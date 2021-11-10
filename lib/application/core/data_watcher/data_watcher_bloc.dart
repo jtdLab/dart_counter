@@ -82,7 +82,7 @@ class DataWatcherBloc extends Bloc<DataWatcherEvent, DataWatcherState>
     });
 
     _receivedGameInvitationsSubscription = _gameInvitationService
-        .watchReceivedInvitations()
+        .watchReceivedGameInvitations()
         .listen((failureOrReceivedGameInvitations) {
       failureOrReceivedGameInvitations.fold(
         (failure) => add(const DataWatcherEvent.failureReceived()),

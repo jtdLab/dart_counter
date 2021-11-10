@@ -7,6 +7,27 @@ import 'package:kt_dart/kt.dart';
 
 /// Domain service for all actions related to the inviting process of games.
 abstract class IGameInvitationService {
+  /// Accepts the received [invitation].
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
+  Future<Either<GameInvitationFailure, Unit>> accept({
+    required GameInvitation invitation,
+  });
+
+  /// Cancels the sent [invitation].
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
+  Future<Either<GameInvitationFailure, Unit>> cancel({
+    required GameInvitation invitation,
+  });
+
+  /// Declines the received [invitation].
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
+  Future<Either<GameInvitationFailure, Unit>> decline({
+    required GameInvitation invitation,
+  });
+
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
@@ -19,24 +40,12 @@ abstract class IGameInvitationService {
   Either<GameInvitationFailure, KtList<GameInvitation>>?
       getSentGameInvitations(); // TODO good ?
 
-  /// Returns a stream of the received invitations of the app-user.
-  ///
-  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations();
-
-  /// Marks the received invitations of the app-user globally as read.
+  /// Marks the received game invitations of the app-user globally as read.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   Future<Either<GameInvitationFailure, Unit>> markReceivedInvitationsAsRead();
 
-  /// Returns a stream of the sent invitations of the app-user.
-  ///
-  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations();
-
-  /// Sends a invitation to game with id [gameId] to user with id [toId] .
+  /// Sends a game invitation to game with id [gameId] to user with id [toId] .
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
@@ -44,24 +53,15 @@ abstract class IGameInvitationService {
     required UniqueId toId,
   });
 
-  /// Cancels the sent [invitation].
+  /// Returns a stream of the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Future<Either<GameInvitationFailure, Unit>> cancel({
-    required GameInvitation invitation,
-  });
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchReceivedGameInvitations();
 
-  /// Accepts the received [invitation].
+  /// Returns a stream of the sent game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Future<Either<GameInvitationFailure, Unit>> accept({
-    required GameInvitation invitation,
-  });
-
-  /// Declines the received [invitation].
-  ///
-  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Future<Either<GameInvitationFailure, Unit>> decline({
-    required GameInvitation invitation,
-  });
+  Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      watchSentInvitations();
 }

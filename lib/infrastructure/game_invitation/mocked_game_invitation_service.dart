@@ -94,7 +94,7 @@ class MockedGameInvitationService implements IGameInvitationService {
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedInvitations() {
+      watchReceivedGameInvitations() {
     _checkAuth();
     return _receivedGameInvitationsController.stream;
   }
