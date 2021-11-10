@@ -15,9 +15,9 @@ import 'package:dart_counter/application/in_game/standard_input_area/standard_in
 import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/play/dart.dart';
-import 'package:dart_counter/domain/play/player_snapshot.dart';
-import 'package:dart_counter/domain/play/status.dart';
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/game/status.dart';
 
 // MODALS
 import 'modals/checkout_details/checkout_details_modal.dart';

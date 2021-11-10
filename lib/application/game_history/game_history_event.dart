@@ -10,6 +10,6 @@ class GameHistoryEvent with _$GameHistoryEvent {
     UniqueId? userId,
   }) = FetchGameHistoryOnlineRequested;
   const factory GameHistoryEvent.gameSelected({
-    required Game game,
+    required AbstractGame game,
   }) = GameSelected;
 }

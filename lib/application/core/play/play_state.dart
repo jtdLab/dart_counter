@@ -4,6 +4,6 @@ part of 'play_bloc.dart';
 class PlayState with _$PlayState {
   const factory PlayState.initial() = PlayInitial;
   const factory PlayState.gameInProgress({
-    required GameSnapshot gameSnapshot,
+    required AbstractGameSnapshot gameSnapshot,
   }) = PlayGameInProgress;
 }

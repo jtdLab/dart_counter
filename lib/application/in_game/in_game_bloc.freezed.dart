@@ -38,7 +38,7 @@ class _$InGameEventTearOff {
     );
   }
 
-  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
+  GameReceived gameReceived({required AbstractGameSnapshot gameSnapshot}) {
     return GameReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -57,7 +57,7 @@ mixin _$InGameEvent {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,7 +67,7 @@ mixin _$InGameEvent {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,7 +77,7 @@ mixin _$InGameEvent {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,7 +172,7 @@ class _$GameCanceled implements GameCanceled {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameCanceled();
   }
@@ -185,7 +185,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameCanceled?.call();
   }
@@ -198,7 +198,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCanceled != null) {
@@ -298,7 +298,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return undoThrowPressed();
   }
@@ -311,7 +311,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return undoThrowPressed?.call();
   }
@@ -324,7 +324,7 @@ class _$UndoThrowPressed implements UndoThrowPressed {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (undoThrowPressed != null) {
@@ -456,7 +456,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return performThrowPressed(t);
   }
@@ -469,7 +469,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return performThrowPressed?.call(t);
   }
@@ -482,7 +482,7 @@ class _$PerformThrowPressed implements PerformThrowPressed {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (performThrowPressed != null) {
@@ -611,7 +611,7 @@ class _$InputOrDartsChanged implements InputOrDartsChanged {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return inputOrDartsChanged(newInputOrDarts);
   }
@@ -624,7 +624,7 @@ class _$InputOrDartsChanged implements InputOrDartsChanged {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return inputOrDartsChanged?.call(newInputOrDarts);
   }
@@ -637,7 +637,7 @@ class _$InputOrDartsChanged implements InputOrDartsChanged {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (inputOrDartsChanged != null) {
@@ -703,7 +703,7 @@ abstract class $GameReceivedCopyWith<$Res> {
   factory $GameReceivedCopyWith(
           GameReceived value, $Res Function(GameReceived) then) =
       _$GameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -724,7 +724,7 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -735,7 +735,7 @@ class _$GameReceived implements GameReceived {
   const _$GameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -767,7 +767,7 @@ class _$GameReceived implements GameReceived {
     required TResult Function(Throw t) performThrowPressed,
     required TResult Function(Either<int, KtList<Dart>> newInputOrDarts)
         inputOrDartsChanged,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameReceived(gameSnapshot);
   }
@@ -780,7 +780,7 @@ class _$GameReceived implements GameReceived {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameReceived?.call(gameSnapshot);
   }
@@ -793,7 +793,7 @@ class _$GameReceived implements GameReceived {
     TResult Function(Throw t)? performThrowPressed,
     TResult Function(Either<int, KtList<Dart>> newInputOrDarts)?
         inputOrDartsChanged,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -844,10 +844,10 @@ class _$GameReceived implements GameReceived {
 }
 
 abstract class GameReceived implements InGameEvent {
-  const factory GameReceived({required GameSnapshot gameSnapshot}) =
+  const factory GameReceived({required AbstractGameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -858,8 +858,8 @@ class _$InGameStateTearOff {
   const _$InGameStateTearOff();
 
   InGameInitial initial(
-      {GameSnapshot? prevGameSnapshot,
-      required GameSnapshot gameSnapshot,
+      {AbstractGameSnapshot? prevGameSnapshot,
+      required AbstractGameSnapshot gameSnapshot,
       required Either<int, KtList<Dart>> inputOrDarts}) {
     return InGameInitial(
       prevGameSnapshot: prevGameSnapshot,
@@ -874,28 +874,35 @@ const $InGameState = _$InGameStateTearOff();
 
 /// @nodoc
 mixin _$InGameState {
-  GameSnapshot? get prevGameSnapshot => throw _privateConstructorUsedError;
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractGameSnapshot? get prevGameSnapshot =>
+      throw _privateConstructorUsedError;
+  AbstractGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
   Either<int, KtList<Dart>> get inputOrDarts =>
       throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot? prevGameSnapshot,
-            GameSnapshot gameSnapshot, Either<int, KtList<Dart>> inputOrDarts)
+    required TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
+            Either<int, KtList<Dart>> inputOrDarts)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot? prevGameSnapshot, GameSnapshot gameSnapshot,
+    TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
             Either<int, KtList<Dart>> inputOrDarts)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot? prevGameSnapshot, GameSnapshot gameSnapshot,
+    TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
             Either<int, KtList<Dart>> inputOrDarts)?
         initial,
     required TResult orElse(),
@@ -929,8 +936,8 @@ abstract class $InGameStateCopyWith<$Res> {
           InGameState value, $Res Function(InGameState) then) =
       _$InGameStateCopyWithImpl<$Res>;
   $Res call(
-      {GameSnapshot? prevGameSnapshot,
-      GameSnapshot gameSnapshot,
+      {AbstractGameSnapshot? prevGameSnapshot,
+      AbstractGameSnapshot gameSnapshot,
       Either<int, KtList<Dart>> inputOrDarts});
 }
 
@@ -952,11 +959,11 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
       prevGameSnapshot: prevGameSnapshot == freezed
           ? _value.prevGameSnapshot
           : prevGameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
       inputOrDarts: inputOrDarts == freezed
           ? _value.inputOrDarts
           : inputOrDarts // ignore: cast_nullable_to_non_nullable
@@ -973,8 +980,8 @@ abstract class $InGameInitialCopyWith<$Res>
       _$InGameInitialCopyWithImpl<$Res>;
   @override
   $Res call(
-      {GameSnapshot? prevGameSnapshot,
-      GameSnapshot gameSnapshot,
+      {AbstractGameSnapshot? prevGameSnapshot,
+      AbstractGameSnapshot gameSnapshot,
       Either<int, KtList<Dart>> inputOrDarts});
 }
 
@@ -998,11 +1005,11 @@ class _$InGameInitialCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
       prevGameSnapshot: prevGameSnapshot == freezed
           ? _value.prevGameSnapshot
           : prevGameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
       inputOrDarts: inputOrDarts == freezed
           ? _value.inputOrDarts
           : inputOrDarts // ignore: cast_nullable_to_non_nullable
@@ -1020,9 +1027,9 @@ class _$InGameInitial implements InGameInitial {
       required this.inputOrDarts});
 
   @override
-  final GameSnapshot? prevGameSnapshot;
+  final AbstractGameSnapshot? prevGameSnapshot;
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
   @override
   final Either<int, KtList<Dart>> inputOrDarts;
 
@@ -1056,8 +1063,10 @@ class _$InGameInitial implements InGameInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot? prevGameSnapshot,
-            GameSnapshot gameSnapshot, Either<int, KtList<Dart>> inputOrDarts)
+    required TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
+            Either<int, KtList<Dart>> inputOrDarts)
         initial,
   }) {
     return initial(prevGameSnapshot, gameSnapshot, inputOrDarts);
@@ -1066,7 +1075,9 @@ class _$InGameInitial implements InGameInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot? prevGameSnapshot, GameSnapshot gameSnapshot,
+    TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
             Either<int, KtList<Dart>> inputOrDarts)?
         initial,
   }) {
@@ -1076,7 +1087,9 @@ class _$InGameInitial implements InGameInitial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot? prevGameSnapshot, GameSnapshot gameSnapshot,
+    TResult Function(
+            AbstractGameSnapshot? prevGameSnapshot,
+            AbstractGameSnapshot gameSnapshot,
             Either<int, KtList<Dart>> inputOrDarts)?
         initial,
     required TResult orElse(),
@@ -1118,14 +1131,14 @@ class _$InGameInitial implements InGameInitial {
 
 abstract class InGameInitial implements InGameState {
   const factory InGameInitial(
-      {GameSnapshot? prevGameSnapshot,
-      required GameSnapshot gameSnapshot,
+      {AbstractGameSnapshot? prevGameSnapshot,
+      required AbstractGameSnapshot gameSnapshot,
       required Either<int, KtList<Dart>> inputOrDarts}) = _$InGameInitial;
 
   @override
-  GameSnapshot? get prevGameSnapshot;
+  AbstractGameSnapshot? get prevGameSnapshot;
   @override
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @override
   Either<int, KtList<Dart>> get inputOrDarts;
   @override

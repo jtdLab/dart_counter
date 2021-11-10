@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
-import 'package:dart_counter/domain/play/dart.dart';
-import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -110,7 +110,7 @@ class OpticalInputAreaBloc
     if (darts.size < 3) {
       final focusedValue = event.value;
       if (focusedValue == 0) {
-        const dart = Dart(type: DartType.s, value: 0);
+        const dart = Dart(type: DartType.single, value: 0);
         final newDarts = darts.toMutableList()..add(dart);
 
         _inGameBloc.add(

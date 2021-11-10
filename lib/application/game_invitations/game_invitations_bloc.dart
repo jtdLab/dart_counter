@@ -6,8 +6,8 @@ import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dar
 import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
-import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/i_play_online_service.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

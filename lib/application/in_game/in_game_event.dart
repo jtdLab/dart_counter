@@ -12,6 +12,6 @@ class InGameEvent with _$InGameEvent {
     required Either<int, KtList<Dart>> newInputOrDarts,
   }) = InputOrDartsChanged;
   const factory InGameEvent.gameReceived({
-    required GameSnapshot gameSnapshot,
+    required AbstractGameSnapshot gameSnapshot,
   }) = GameReceived;
 }

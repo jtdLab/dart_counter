@@ -42,7 +42,7 @@ class _OverviewWidget extends StatelessWidget {
 
 // TODO only display game owners stats here atm the game owner is assumed to be players[0]
 class _GameHistoryCard extends StatelessWidget {
-  final Game game;
+  final AbstractGame game;
 
   const _GameHistoryCard({
     Key? key,

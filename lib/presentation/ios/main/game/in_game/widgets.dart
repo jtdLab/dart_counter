@@ -1098,12 +1098,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 16
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.s,
+                                    type: DartType.single,
                                   )
                               : state.focusedValue == 17
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.s,
+                                        type: DartType.single,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 16
@@ -1127,17 +1127,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 16
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.d,
+                                    type: DartType.double,
                                   )
                               : state.focusedValue == 17
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 18
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 16
@@ -1165,22 +1165,22 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 16
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 17
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.t,
+                                        type: DartType.triple,
                                       )
                                   : state.focusedValue == 18
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.d,
+                                            type: DartType.double,
                                           )
                                       : state.focusedValue == 19
                                           ? () => _dartDetailPressed(
                                                 context: context,
-                                                type: DartType.s,
+                                                type: DartType.single,
                                               )
                                           : null,
                       textOrIcon: left(state.focusedValue == 16
@@ -1208,17 +1208,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 18
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 19
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 20
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 18
@@ -1244,17 +1244,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 19
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 20
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 25
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 19
@@ -1280,12 +1280,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 20
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 25
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 20
@@ -1311,12 +1311,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 10
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.s,
+                                    type: DartType.single,
                                   )
                               : state.focusedValue == 11
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.s,
+                                        type: DartType.single,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 10
@@ -1340,17 +1340,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 10
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.d,
+                                    type: DartType.double,
                                   )
                               : state.focusedValue == 11
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 12
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 10
@@ -1378,22 +1378,22 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 10
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 11
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.t,
+                                        type: DartType.triple,
                                       )
                                   : state.focusedValue == 12
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.d,
+                                            type: DartType.double,
                                           )
                                       : state.focusedValue == 13
                                           ? () => _dartDetailPressed(
                                                 context: context,
-                                                type: DartType.s,
+                                                type: DartType.single,
                                               )
                                           : null,
                       textOrIcon: left(state.focusedValue == 10
@@ -1421,22 +1421,22 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 12
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 13
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 14
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : state.focusedValue == 15
                                           ? () => _dartDetailPressed(
                                                 context: context,
-                                                type: DartType.s,
+                                                type: DartType.single,
                                               )
                                           : null,
                       textOrIcon: left(state.focusedValue == 12
@@ -1466,17 +1466,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 13
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 14
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 15
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.d,
+                                            type: DartType.double,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 13
@@ -1502,12 +1502,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 14
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 15
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.t,
+                                        type: DartType.triple,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 14
@@ -1533,12 +1533,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 4
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.s,
+                                    type: DartType.single,
                                   )
                               : state.focusedValue == 5
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.s,
+                                        type: DartType.single,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 4
@@ -1562,17 +1562,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 4
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.d,
+                                    type: DartType.double,
                                   )
                               : state.focusedValue == 5
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 6
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 4
@@ -1600,22 +1600,22 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 4
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 5
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.t,
+                                        type: DartType.triple,
                                       )
                                   : state.focusedValue == 6
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.d,
+                                            type: DartType.double,
                                           )
                                       : state.focusedValue == 7
                                           ? () => _dartDetailPressed(
                                                 context: context,
-                                                type: DartType.s,
+                                                type: DartType.single,
                                               )
                                           : null,
                       textOrIcon: left(state.focusedValue == 4
@@ -1643,22 +1643,22 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 6
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 7
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 8
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.s,
+                                            type: DartType.single,
                                           )
                                       : state.focusedValue == 9
                                           ? () => _dartDetailPressed(
                                                 context: context,
-                                                type: DartType.s,
+                                                type: DartType.single,
                                               )
                                           : null,
                       textOrIcon: left(state.focusedValue == 6
@@ -1688,17 +1688,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 7
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 8
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.d,
+                                        type: DartType.double,
                                       )
                                   : state.focusedValue == 9
                                       ? () => _dartDetailPressed(
                                             context: context,
-                                            type: DartType.d,
+                                            type: DartType.double,
                                           )
                                       : null,
                       textOrIcon: left(state.focusedValue == 7
@@ -1724,12 +1724,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                           : state.focusedValue == 8
                               ? () => _dartDetailPressed(
                                     context: context,
-                                    type: DartType.t,
+                                    type: DartType.triple,
                                   )
                               : state.focusedValue == 9
                                   ? () => _dartDetailPressed(
                                         context: context,
-                                        type: DartType.t,
+                                        type: DartType.triple,
                                       )
                                   : null,
                       textOrIcon: left(state.focusedValue == 8
@@ -1759,7 +1759,7 @@ class _DetailedKeyBoard extends StatelessWidget {
                                 : state.focusedValue == 1
                                     ? () => _dartDetailPressed(
                                           context: context,
-                                          type: DartType.s,
+                                          type: DartType.single,
                                         )
                                     : null,
                             textOrIcon:
@@ -1778,17 +1778,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                                 : state.focusedValue == 1
                                     ? () => _dartDetailPressed(
                                           context: context,
-                                          type: DartType.d,
+                                          type: DartType.double,
                                         )
                                     : state.focusedValue == 2
                                         ? () => _dartDetailPressed(
                                               context: context,
-                                              type: DartType.s,
+                                              type: DartType.single,
                                             )
                                         : state.focusedValue == 3
                                             ? () => _dartDetailPressed(
                                                   context: context,
-                                                  type: DartType.s,
+                                                  type: DartType.single,
                                                 )
                                             : null,
                             textOrIcon: left(state.focusedValue == 1
@@ -1823,17 +1823,17 @@ class _DetailedKeyBoard extends StatelessWidget {
                                 : state.focusedValue == 1
                                     ? () => _dartDetailPressed(
                                           context: context,
-                                          type: DartType.t,
+                                          type: DartType.triple,
                                         )
                                     : state.focusedValue == 2
                                         ? () => _dartDetailPressed(
                                               context: context,
-                                              type: DartType.d,
+                                              type: DartType.double,
                                             )
                                         : state.focusedValue == 3
                                             ? () => _dartDetailPressed(
                                                   context: context,
-                                                  type: DartType.d,
+                                                  type: DartType.double,
                                                 )
                                             : null,
                             textOrIcon: left(state.focusedValue == 1
@@ -1859,12 +1859,12 @@ class _DetailedKeyBoard extends StatelessWidget {
                                 : state.focusedValue == 2
                                     ? () => _dartDetailPressed(
                                           context: context,
-                                          type: DartType.t,
+                                          type: DartType.triple,
                                         )
                                     : state.focusedValue == 3
                                         ? () => _dartDetailPressed(
                                               context: context,
-                                              type: DartType.t,
+                                              type: DartType.triple,
                                             )
                                         : null,
                             textOrIcon: left(state.focusedValue == 2
@@ -2996,13 +2996,13 @@ class _DartsDisplayer extends StatelessWidget {
     } else {
       var string = '';
       switch (dart.type) {
-        case DartType.s:
+        case DartType.single:
           string += 'S';
           break;
-        case DartType.d:
+        case DartType.double:
           string += 'D';
           break;
-        case DartType.t:
+        case DartType.triple:
           string += 'T';
           break;
       }

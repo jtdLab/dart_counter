@@ -6,11 +6,11 @@ import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/create_game/create_game_bloc.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/play/game_snapshot.dart';
-import 'package:dart_counter/domain/play/mode.dart';
-import 'package:dart_counter/domain/play/player_snapshot.dart';
-import 'package:dart_counter/domain/play/status.dart';
-import 'package:dart_counter/domain/play/type.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/game/mode.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/domain/game/type.dart';
 
 // MODALS
 import 'modals/advanced_settings/advanced_settings_modal.dart';

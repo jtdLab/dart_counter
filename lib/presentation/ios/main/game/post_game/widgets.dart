@@ -8,7 +8,7 @@ class _PostGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gameSnapshot = context.read<GameSnapshot>();
+    final gameSnapshot = context.read<AbstractGameSnapshot>();
 
     return AppColumn(
       spacing: size12(context),

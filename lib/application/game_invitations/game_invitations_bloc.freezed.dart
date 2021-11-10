@@ -27,7 +27,7 @@ class _$GameInvitationsEventTearOff {
   }
 
   GameInvitationsGameReceived gameReceived(
-      {required GameSnapshot gameSnapshot}) {
+      {required AbstractGameSnapshot gameSnapshot}) {
     return GameInvitationsGameReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -58,7 +58,7 @@ mixin _$GameInvitationsEvent {
     required TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(GameInvitation gameInvitation) invitationAccepted,
     required TResult Function(GameInvitation gameInvitation) invitationDeclined,
   }) =>
@@ -68,7 +68,7 @@ mixin _$GameInvitationsEvent {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
   }) =>
@@ -78,7 +78,7 @@ mixin _$GameInvitationsEvent {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
     required TResult orElse(),
@@ -220,7 +220,7 @@ class _$GameInvitationsDataReceived implements GameInvitationsDataReceived {
     required TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(GameInvitation gameInvitation) invitationAccepted,
     required TResult Function(GameInvitation gameInvitation) invitationDeclined,
   }) {
@@ -233,7 +233,7 @@ class _$GameInvitationsDataReceived implements GameInvitationsDataReceived {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
   }) {
@@ -246,7 +246,7 @@ class _$GameInvitationsDataReceived implements GameInvitationsDataReceived {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
     required TResult orElse(),
@@ -320,7 +320,7 @@ abstract class $GameInvitationsGameReceivedCopyWith<$Res> {
           GameInvitationsGameReceived value,
           $Res Function(GameInvitationsGameReceived) then) =
       _$GameInvitationsGameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -343,7 +343,7 @@ class _$GameInvitationsGameReceivedCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -354,7 +354,7 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
   const _$GameInvitationsGameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -385,7 +385,7 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
     required TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(GameInvitation gameInvitation) invitationAccepted,
     required TResult Function(GameInvitation gameInvitation) invitationDeclined,
   }) {
@@ -398,7 +398,7 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
   }) {
@@ -411,7 +411,7 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
     required TResult orElse(),
@@ -468,9 +468,10 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
 
 abstract class GameInvitationsGameReceived implements GameInvitationsEvent {
   const factory GameInvitationsGameReceived(
-      {required GameSnapshot gameSnapshot}) = _$GameInvitationsGameReceived;
+          {required AbstractGameSnapshot gameSnapshot}) =
+      _$GameInvitationsGameReceived;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameInvitationsGameReceivedCopyWith<GameInvitationsGameReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -558,7 +559,7 @@ class _$GameInvitationsInvitationAccepted
     required TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(GameInvitation gameInvitation) invitationAccepted,
     required TResult Function(GameInvitation gameInvitation) invitationDeclined,
   }) {
@@ -571,7 +572,7 @@ class _$GameInvitationsInvitationAccepted
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
   }) {
@@ -584,7 +585,7 @@ class _$GameInvitationsInvitationAccepted
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
     required TResult orElse(),
@@ -733,7 +734,7 @@ class _$GameInvitationsInvitationDeclined
     required TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(GameInvitation gameInvitation) invitationAccepted,
     required TResult Function(GameInvitation gameInvitation) invitationDeclined,
   }) {
@@ -746,7 +747,7 @@ class _$GameInvitationsInvitationDeclined
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
   }) {
@@ -759,7 +760,7 @@ class _$GameInvitationsInvitationDeclined
     TResult Function(KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(GameInvitation gameInvitation)? invitationAccepted,
     TResult Function(GameInvitation gameInvitation)? invitationDeclined,
     required TResult orElse(),
@@ -833,7 +834,7 @@ class _$GameInvitationsStateTearOff {
   GameInvitationsInitial initial(
       {required KtList<GameInvitation> receivedGameInvitations,
       required KtList<GameInvitation> sentGameInvitations,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       required bool loading,
       PlayFailure? failure}) {
     return GameInvitationsInitial(
@@ -855,7 +856,7 @@ mixin _$GameInvitationsState {
       throw _privateConstructorUsedError;
   KtList<GameInvitation> get sentGameInvitations =>
       throw _privateConstructorUsedError;
-  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractGameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   PlayFailure? get failure => throw _privateConstructorUsedError;
 
@@ -864,7 +865,7 @@ mixin _$GameInvitationsState {
     required TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)
         initial,
@@ -875,7 +876,7 @@ mixin _$GameInvitationsState {
     TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)?
         initial,
@@ -886,7 +887,7 @@ mixin _$GameInvitationsState {
     TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)?
         initial,
@@ -923,7 +924,7 @@ abstract class $GameInvitationsStateCopyWith<$Res> {
   $Res call(
       {KtList<GameInvitation> receivedGameInvitations,
       KtList<GameInvitation> sentGameInvitations,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       bool loading,
       PlayFailure? failure});
 
@@ -959,7 +960,7 @@ class _$GameInvitationsStateCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -993,7 +994,7 @@ abstract class $GameInvitationsInitialCopyWith<$Res>
   $Res call(
       {KtList<GameInvitation> receivedGameInvitations,
       KtList<GameInvitation> sentGameInvitations,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       bool loading,
       PlayFailure? failure});
 
@@ -1032,7 +1033,7 @@ class _$GameInvitationsInitialCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -1060,7 +1061,7 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
   @override
   final KtList<GameInvitation> sentGameInvitations;
   @override
-  final GameSnapshot? gameSnapshot;
+  final AbstractGameSnapshot? gameSnapshot;
   @override
   final bool loading;
   @override
@@ -1103,7 +1104,7 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
     required TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)
         initial,
@@ -1118,7 +1119,7 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
     TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)?
         initial,
@@ -1133,7 +1134,7 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
     TResult Function(
             KtList<GameInvitation> receivedGameInvitations,
             KtList<GameInvitation> sentGameInvitations,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             bool loading,
             PlayFailure? failure)?
         initial,
@@ -1179,7 +1180,7 @@ abstract class GameInvitationsInitial implements GameInvitationsState {
   const factory GameInvitationsInitial(
       {required KtList<GameInvitation> receivedGameInvitations,
       required KtList<GameInvitation> sentGameInvitations,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       required bool loading,
       PlayFailure? failure}) = _$GameInvitationsInitial;
 
@@ -1188,7 +1189,7 @@ abstract class GameInvitationsInitial implements GameInvitationsState {
   @override
   KtList<GameInvitation> get sentGameInvitations;
   @override
-  GameSnapshot? get gameSnapshot;
+  AbstractGameSnapshot? get gameSnapshot;
   @override
   bool get loading;
   @override

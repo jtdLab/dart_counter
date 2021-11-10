@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/play/player_snapshot.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 
 class StatsWidget extends StatefulWidget {
   final KtList<AbstractPlayerSnapshot> players;

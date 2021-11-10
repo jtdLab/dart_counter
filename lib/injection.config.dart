@@ -60,8 +60,8 @@ import 'domain/connectivity/i_connectivity_service.dart' as _i16;
 import 'domain/friend/i_friend_service.dart' as _i21;
 import 'domain/game_history/i_game_history_service.dart' as _i23;
 import 'domain/game_invitation/i_game_invitation_service.dart' as _i26;
-import 'domain/play/i_play_offline_service.dart' as _i28;
-import 'domain/play/i_play_online_service.dart' as _i55;
+import 'domain/play/offline/i_play_offline_service.dart' as _i28;
+import 'domain/play/online/i_play_online_service.dart' as _i55;
 import 'domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart'
     as _i14;
 import 'domain/training/double/i_double_training_service.dart' as _i19;
@@ -81,9 +81,9 @@ import 'infrastructure/game_history/mocked_game_history_service.dart' as _i24;
 import 'infrastructure/game_invitation/game_invitation_service.dart' as _i54;
 import 'infrastructure/game_invitation/mocked_game_invitation_service.dart'
     as _i27;
-import 'infrastructure/play/mocked_play_online_service.dart' as _i56;
-import 'infrastructure/play/play_offline_service.dart' as _i29;
-import 'infrastructure/play/play_online_service.dart' as _i68;
+import 'infrastructure/play/offline/play_offline_service.dart' as _i29;
+import 'infrastructure/play/online/mocked_play_online_service.dart' as _i56;
+import 'infrastructure/play/online/play_online_service.dart' as _i68;
 import 'infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_service.dart'
     as _i15;
 import 'infrastructure/training/double/double_training_service.dart' as _i20;

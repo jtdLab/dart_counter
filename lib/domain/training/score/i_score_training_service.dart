@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/play/throw.dart';
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
 

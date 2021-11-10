@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stats_dto.freezed.dart';
 part 'stats_dto.g.dart';
 
+// TODO shared in play and game history content and file has to be relocated or split up ?
+
 @freezed
 class PlayerStatsDto with _$PlayerStatsDto {
   const factory PlayerStatsDto({

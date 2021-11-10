@@ -1,5 +1,5 @@
 // CORE
-import 'package:dart_counter/domain/play/game_snapshot.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // SHARED WIDGETS
@@ -9,7 +9,7 @@ import './../shared.dart';
 part 'widgets.dart';
 
 class PostGamePage extends StatelessWidget {
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   const PostGamePage({
     Key? key,

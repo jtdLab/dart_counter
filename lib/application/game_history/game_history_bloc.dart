@@ -5,7 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
-import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -59,7 +59,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
       (onlineGameHistory) => failureOrOfflineGameHistory.fold(
         (failure) => GameHistoryState.loadFailure(failure: failure),
         (offlineGameHistory) {
-          final allGameHistory = <Game>[];
+          final allGameHistory = <AbstractGame>[];
 
           allGameHistory.addAll(onlineGameHistory.getOrCrash());
           allGameHistory.addAll(offlineGameHistory.getOrCrash());

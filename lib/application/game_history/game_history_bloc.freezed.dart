@@ -32,7 +32,7 @@ class _$GameHistoryEventTearOff {
     );
   }
 
-  GameSelected gameSelected({required Game game}) {
+  GameSelected gameSelected({required AbstractGame game}) {
     return GameSelected(
       game: game,
     );
@@ -49,7 +49,7 @@ mixin _$GameHistoryEvent {
     required TResult Function() fetchGameHistoryAllRequested,
     required TResult Function() fetchGameHistoryOfflineRequested,
     required TResult Function(UniqueId? userId) fetchGameHistoryOnlineRequested,
-    required TResult Function(Game game) gameSelected,
+    required TResult Function(AbstractGame game) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,7 +57,7 @@ mixin _$GameHistoryEvent {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,7 +65,7 @@ mixin _$GameHistoryEvent {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,7 +170,7 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
     required TResult Function() fetchGameHistoryAllRequested,
     required TResult Function() fetchGameHistoryOfflineRequested,
     required TResult Function(UniqueId? userId) fetchGameHistoryOnlineRequested,
-    required TResult Function(Game game) gameSelected,
+    required TResult Function(AbstractGame game) gameSelected,
   }) {
     return fetchGameHistoryAllRequested();
   }
@@ -181,7 +181,7 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
   }) {
     return fetchGameHistoryAllRequested?.call();
   }
@@ -192,7 +192,7 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryAllRequested != null) {
@@ -301,7 +301,7 @@ class _$FetchGameHistoryOfflineRequested
     required TResult Function() fetchGameHistoryAllRequested,
     required TResult Function() fetchGameHistoryOfflineRequested,
     required TResult Function(UniqueId? userId) fetchGameHistoryOnlineRequested,
-    required TResult Function(Game game) gameSelected,
+    required TResult Function(AbstractGame game) gameSelected,
   }) {
     return fetchGameHistoryOfflineRequested();
   }
@@ -312,7 +312,7 @@ class _$FetchGameHistoryOfflineRequested
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
   }) {
     return fetchGameHistoryOfflineRequested?.call();
   }
@@ -323,7 +323,7 @@ class _$FetchGameHistoryOfflineRequested
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryOfflineRequested != null) {
@@ -456,7 +456,7 @@ class _$FetchGameHistoryOnlineRequested
     required TResult Function() fetchGameHistoryAllRequested,
     required TResult Function() fetchGameHistoryOfflineRequested,
     required TResult Function(UniqueId? userId) fetchGameHistoryOnlineRequested,
-    required TResult Function(Game game) gameSelected,
+    required TResult Function(AbstractGame game) gameSelected,
   }) {
     return fetchGameHistoryOnlineRequested(userId);
   }
@@ -467,7 +467,7 @@ class _$FetchGameHistoryOnlineRequested
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
   }) {
     return fetchGameHistoryOnlineRequested?.call(userId);
   }
@@ -478,7 +478,7 @@ class _$FetchGameHistoryOnlineRequested
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryOnlineRequested != null) {
@@ -549,7 +549,7 @@ abstract class $GameSelectedCopyWith<$Res> {
   factory $GameSelectedCopyWith(
           GameSelected value, $Res Function(GameSelected) then) =
       _$GameSelectedCopyWithImpl<$Res>;
-  $Res call({Game game});
+  $Res call({AbstractGame game});
 }
 
 /// @nodoc
@@ -571,7 +571,7 @@ class _$GameSelectedCopyWithImpl<$Res>
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
-              as Game,
+              as AbstractGame,
     ));
   }
 }
@@ -582,7 +582,7 @@ class _$GameSelected implements GameSelected {
   const _$GameSelected({required this.game});
 
   @override
-  final Game game;
+  final AbstractGame game;
 
   @override
   String toString() {
@@ -611,7 +611,7 @@ class _$GameSelected implements GameSelected {
     required TResult Function() fetchGameHistoryAllRequested,
     required TResult Function() fetchGameHistoryOfflineRequested,
     required TResult Function(UniqueId? userId) fetchGameHistoryOnlineRequested,
-    required TResult Function(Game game) gameSelected,
+    required TResult Function(AbstractGame game) gameSelected,
   }) {
     return gameSelected(game);
   }
@@ -622,7 +622,7 @@ class _$GameSelected implements GameSelected {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
   }) {
     return gameSelected?.call(game);
   }
@@ -633,7 +633,7 @@ class _$GameSelected implements GameSelected {
     TResult Function()? fetchGameHistoryAllRequested,
     TResult Function()? fetchGameHistoryOfflineRequested,
     TResult Function(UniqueId? userId)? fetchGameHistoryOnlineRequested,
-    TResult Function(Game game)? gameSelected,
+    TResult Function(AbstractGame game)? gameSelected,
     required TResult orElse(),
   }) {
     if (gameSelected != null) {
@@ -690,9 +690,9 @@ class _$GameSelected implements GameSelected {
 }
 
 abstract class GameSelected implements GameHistoryEvent {
-  const factory GameSelected({required Game game}) = _$GameSelected;
+  const factory GameSelected({required AbstractGame game}) = _$GameSelected;
 
-  Game get game;
+  AbstractGame get game;
   @JsonKey(ignore: true)
   $GameSelectedCopyWith<GameSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -707,7 +707,7 @@ class _$GameHistoryStateTearOff {
   }
 
   GameHistoryLoadSuccess loadSuccess(
-      {required List10<Game> gameHistory, Game? selectedGame}) {
+      {required List10<AbstractGame> gameHistory, AbstractGame? selectedGame}) {
     return GameHistoryLoadSuccess(
       gameHistory: gameHistory,
       selectedGame: selectedGame,
@@ -729,7 +729,8 @@ mixin _$GameHistoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+    required TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)
         loadSuccess,
     required TResult Function(Object failure) loadFailure,
   }) =>
@@ -737,14 +738,18 @@ mixin _$GameHistoryState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
     required TResult orElse(),
   }) =>
@@ -834,7 +839,8 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+    required TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)
         loadSuccess,
     required TResult Function(Object failure) loadFailure,
   }) {
@@ -845,7 +851,9 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
   }) {
     return loadInProgress?.call();
@@ -855,7 +863,9 @@ class _$GameHistoryLoadInProgress implements GameHistoryLoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -909,7 +919,7 @@ abstract class $GameHistoryLoadSuccessCopyWith<$Res> {
   factory $GameHistoryLoadSuccessCopyWith(GameHistoryLoadSuccess value,
           $Res Function(GameHistoryLoadSuccess) then) =
       _$GameHistoryLoadSuccessCopyWithImpl<$Res>;
-  $Res call({List10<Game> gameHistory, Game? selectedGame});
+  $Res call({List10<AbstractGame> gameHistory, AbstractGame? selectedGame});
 }
 
 /// @nodoc
@@ -932,11 +942,11 @@ class _$GameHistoryLoadSuccessCopyWithImpl<$Res>
       gameHistory: gameHistory == freezed
           ? _value.gameHistory
           : gameHistory // ignore: cast_nullable_to_non_nullable
-              as List10<Game>,
+              as List10<AbstractGame>,
       selectedGame: selectedGame == freezed
           ? _value.selectedGame
           : selectedGame // ignore: cast_nullable_to_non_nullable
-              as Game?,
+              as AbstractGame?,
     ));
   }
 }
@@ -948,9 +958,9 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
       {required this.gameHistory, this.selectedGame});
 
   @override
-  final List10<Game> gameHistory;
+  final List10<AbstractGame> gameHistory;
   @override
-  final Game? selectedGame;
+  final AbstractGame? selectedGame;
 
   @override
   String toString() {
@@ -981,7 +991,8 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+    required TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)
         loadSuccess,
     required TResult Function(Object failure) loadFailure,
   }) {
@@ -992,7 +1003,9 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
   }) {
     return loadSuccess?.call(gameHistory, selectedGame);
@@ -1002,7 +1015,9 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -1049,11 +1064,11 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
 
 abstract class GameHistoryLoadSuccess implements GameHistoryState {
   const factory GameHistoryLoadSuccess(
-      {required List10<Game> gameHistory,
-      Game? selectedGame}) = _$GameHistoryLoadSuccess;
+      {required List10<AbstractGame> gameHistory,
+      AbstractGame? selectedGame}) = _$GameHistoryLoadSuccess;
 
-  List10<Game> get gameHistory;
-  Game? get selectedGame;
+  List10<AbstractGame> get gameHistory;
+  AbstractGame? get selectedGame;
   @JsonKey(ignore: true)
   $GameHistoryLoadSuccessCopyWith<GameHistoryLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1126,7 +1141,8 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List10<Game> gameHistory, Game? selectedGame)
+    required TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)
         loadSuccess,
     required TResult Function(Object failure) loadFailure,
   }) {
@@ -1137,7 +1153,9 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
   }) {
     return loadFailure?.call(failure);
@@ -1147,7 +1165,9 @@ class _$GameHistoryLoadFailure implements GameHistoryLoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List10<Game> gameHistory, Game? selectedGame)? loadSuccess,
+    TResult Function(
+            List10<AbstractGame> gameHistory, AbstractGame? selectedGame)?
+        loadSuccess,
     TResult Function(Object failure)? loadFailure,
     required TResult orElse(),
   }) {

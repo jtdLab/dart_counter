@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/play/player.dart';
+import 'package:dart_counter/domain/game/abstract_player.dart';
 
 // LOCAL WIDGETS
 import './../../shared.dart';

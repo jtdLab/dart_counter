@@ -7,7 +7,7 @@ class PlayEvent with _$PlayEvent {
   }) = PlayGameCreated;
   const factory PlayEvent.gameJoined() = PlayGameJoined;
   const factory PlayEvent.gameSnapshotReceived({
-    required GameSnapshot gameSnapshot,
+    required AbstractGameSnapshot gameSnapshot,
   }) = PlayGameSnapshotReceived;
   const factory PlayEvent.resetRequested() = PlayResetRequested;
 }

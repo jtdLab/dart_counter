@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'stats.freezed.dart';
 
+// TODO shared or not ?? re located this file an its content
+
 @freezed
 class LegStats with _$LegStats {
   const factory LegStats({

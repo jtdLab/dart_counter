@@ -6,7 +6,7 @@ class HomeState with _$HomeState {
     required User user,
     required int unreadInvitations,
     required int unreadFriendRequests,
-    GameSnapshot? gameSnapshot,
+    AbstractGameSnapshot? gameSnapshot,
     TrainingGameSnapshot? trainingGameSnapshot,
     required bool loading,
     PlayFailure? failure,

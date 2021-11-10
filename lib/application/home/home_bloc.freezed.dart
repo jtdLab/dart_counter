@@ -36,7 +36,7 @@ class _$HomeEventTearOff {
     );
   }
 
-  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
+  GameReceived gameReceived({required AbstractGameSnapshot gameSnapshot}) {
     return GameReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -62,7 +62,7 @@ mixin _$HomeEvent {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) =>
@@ -74,7 +74,7 @@ mixin _$HomeEvent {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) =>
@@ -86,7 +86,7 @@ mixin _$HomeEvent {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -185,7 +185,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) {
@@ -200,7 +200,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) {
@@ -215,7 +215,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -320,7 +320,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) {
@@ -335,7 +335,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) {
@@ -350,7 +350,7 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -507,7 +507,7 @@ class _$DataReceived implements DataReceived {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) {
@@ -522,7 +522,7 @@ class _$DataReceived implements DataReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) {
@@ -537,7 +537,7 @@ class _$DataReceived implements DataReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -610,7 +610,7 @@ abstract class $GameReceivedCopyWith<$Res> {
   factory $GameReceivedCopyWith(
           GameReceived value, $Res Function(GameReceived) then) =
       _$GameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -631,7 +631,7 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -642,7 +642,7 @@ class _$GameReceived implements GameReceived {
   const _$GameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -674,7 +674,7 @@ class _$GameReceived implements GameReceived {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) {
@@ -689,7 +689,7 @@ class _$GameReceived implements GameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) {
@@ -704,7 +704,7 @@ class _$GameReceived implements GameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -759,10 +759,10 @@ class _$GameReceived implements GameReceived {
 }
 
 abstract class GameReceived implements HomeEvent {
-  const factory GameReceived({required GameSnapshot gameSnapshot}) =
+  const factory GameReceived({required AbstractGameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -839,7 +839,7 @@ class _$TrainingGameReceived implements TrainingGameReceived {
     required TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)
         dataReceived,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
     required TResult Function(TrainingGameSnapshot trainingGameSnapshot)
         trainingGameReceived,
   }) {
@@ -854,7 +854,7 @@ class _$TrainingGameReceived implements TrainingGameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
   }) {
@@ -869,7 +869,7 @@ class _$TrainingGameReceived implements TrainingGameReceived {
     TResult Function(
             User user, int unreadInvitations, int unreadFriendRequests)?
         dataReceived,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     TResult Function(TrainingGameSnapshot trainingGameSnapshot)?
         trainingGameReceived,
     required TResult orElse(),
@@ -942,7 +942,7 @@ class _$HomeStateTearOff {
       {required User user,
       required int unreadInvitations,
       required int unreadFriendRequests,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       TrainingGameSnapshot? trainingGameSnapshot,
       required bool loading,
       PlayFailure? failure}) {
@@ -966,7 +966,7 @@ mixin _$HomeState {
   User get user => throw _privateConstructorUsedError;
   int get unreadInvitations => throw _privateConstructorUsedError;
   int get unreadFriendRequests => throw _privateConstructorUsedError;
-  GameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractGameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
   TrainingGameSnapshot? get trainingGameSnapshot =>
       throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
@@ -978,7 +978,7 @@ mixin _$HomeState {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)
@@ -991,7 +991,7 @@ mixin _$HomeState {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)?
@@ -1004,7 +1004,7 @@ mixin _$HomeState {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)?
@@ -1042,7 +1042,7 @@ abstract class $HomeStateCopyWith<$Res> {
       {User user,
       int unreadInvitations,
       int unreadFriendRequests,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       TrainingGameSnapshot? trainingGameSnapshot,
       bool loading,
       PlayFailure? failure});
@@ -1085,7 +1085,7 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       trainingGameSnapshot: trainingGameSnapshot == freezed
           ? _value.trainingGameSnapshot
           : trainingGameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -1130,7 +1130,7 @@ abstract class $HomeInitialCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       {User user,
       int unreadInvitations,
       int unreadFriendRequests,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       TrainingGameSnapshot? trainingGameSnapshot,
       bool loading,
       PlayFailure? failure});
@@ -1177,7 +1177,7 @@ class _$HomeInitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot?,
+              as AbstractGameSnapshot?,
       trainingGameSnapshot: trainingGameSnapshot == freezed
           ? _value.trainingGameSnapshot
           : trainingGameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -1213,7 +1213,7 @@ class _$HomeInitial implements HomeInitial {
   @override
   final int unreadFriendRequests;
   @override
-  final GameSnapshot? gameSnapshot;
+  final AbstractGameSnapshot? gameSnapshot;
   @override
   final TrainingGameSnapshot? trainingGameSnapshot;
   @override
@@ -1267,7 +1267,7 @@ class _$HomeInitial implements HomeInitial {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)
@@ -1284,7 +1284,7 @@ class _$HomeInitial implements HomeInitial {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)?
@@ -1301,7 +1301,7 @@ class _$HomeInitial implements HomeInitial {
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
-            GameSnapshot? gameSnapshot,
+            AbstractGameSnapshot? gameSnapshot,
             TrainingGameSnapshot? trainingGameSnapshot,
             bool loading,
             PlayFailure? failure)?
@@ -1349,7 +1349,7 @@ abstract class HomeInitial implements HomeState {
       {required User user,
       required int unreadInvitations,
       required int unreadFriendRequests,
-      GameSnapshot? gameSnapshot,
+      AbstractGameSnapshot? gameSnapshot,
       TrainingGameSnapshot? trainingGameSnapshot,
       required bool loading,
       PlayFailure? failure}) = _$HomeInitial;
@@ -1361,7 +1361,7 @@ abstract class HomeInitial implements HomeState {
   @override
   int get unreadFriendRequests;
   @override
-  GameSnapshot? get gameSnapshot;
+  AbstractGameSnapshot? get gameSnapshot;
   @override
   TrainingGameSnapshot? get trainingGameSnapshot;
   @override

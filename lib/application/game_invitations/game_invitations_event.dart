@@ -7,7 +7,7 @@ class GameInvitationsEvent with _$GameInvitationsEvent {
     required KtList<GameInvitation> sentGameInvitations,
   }) = GameInvitationsDataReceived;
   const factory GameInvitationsEvent.gameReceived({
-    required GameSnapshot gameSnapshot
+    required AbstractGameSnapshot gameSnapshot
   }) = GameInvitationsGameReceived;
   const factory GameInvitationsEvent.invitationAccepted({
     required GameInvitation gameInvitation,

@@ -177,7 +177,7 @@ abstract class _Started implements StatsEvent {
 class _$StatsStateTearOff {
   const _$StatsStateTearOff();
 
-  StatsInitial initial({required GameSnapshot gameSnapshot}) {
+  StatsInitial initial({required AbstractGameSnapshot gameSnapshot}) {
     return StatsInitial(
       gameSnapshot: gameSnapshot,
     );
@@ -189,21 +189,21 @@ const $StatsState = _$StatsStateTearOff();
 
 /// @nodoc
 mixin _$StatsState {
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) initial,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -234,7 +234,7 @@ abstract class $StatsStateCopyWith<$Res> {
   factory $StatsStateCopyWith(
           StatsState value, $Res Function(StatsState) then) =
       _$StatsStateCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -253,7 +253,7 @@ class _$StatsStateCopyWithImpl<$Res> implements $StatsStateCopyWith<$Res> {
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -265,7 +265,7 @@ abstract class $StatsInitialCopyWith<$Res>
           StatsInitial value, $Res Function(StatsInitial) then) =
       _$StatsInitialCopyWithImpl<$Res>;
   @override
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -286,7 +286,7 @@ class _$StatsInitialCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -297,7 +297,7 @@ class _$StatsInitial implements StatsInitial {
   const _$StatsInitial({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -324,7 +324,7 @@ class _$StatsInitial implements StatsInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) initial,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) initial,
   }) {
     return initial(gameSnapshot);
   }
@@ -332,7 +332,7 @@ class _$StatsInitial implements StatsInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
   }) {
     return initial?.call(gameSnapshot);
   }
@@ -340,7 +340,7 @@ class _$StatsInitial implements StatsInitial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -379,11 +379,11 @@ class _$StatsInitial implements StatsInitial {
 }
 
 abstract class StatsInitial implements StatsState {
-  const factory StatsInitial({required GameSnapshot gameSnapshot}) =
+  const factory StatsInitial({required AbstractGameSnapshot gameSnapshot}) =
       _$StatsInitial;
 
   @override
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $StatsInitialCopyWith<StatsInitial> get copyWith =>

@@ -91,7 +91,7 @@ class _$CreateGameEventTearOff {
     );
   }
 
-  GameReceived gameReceived({required GameSnapshot gameSnapshot}) {
+  GameReceived gameReceived({required AbstractGameSnapshot gameSnapshot}) {
     return GameReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -118,7 +118,7 @@ mixin _$CreateGameEvent {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -136,7 +136,7 @@ mixin _$CreateGameEvent {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -154,7 +154,7 @@ mixin _$CreateGameEvent {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -290,7 +290,7 @@ class _$GameCanceled implements GameCanceled {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameCanceled();
   }
@@ -311,7 +311,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameCanceled?.call();
   }
@@ -332,7 +332,7 @@ class _$GameCanceled implements GameCanceled {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameCanceled != null) {
@@ -504,7 +504,7 @@ class _$PlayerReordered implements PlayerReordered {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return playerReordered(oldIndex, newIndex);
   }
@@ -525,7 +525,7 @@ class _$PlayerReordered implements PlayerReordered {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return playerReordered?.call(oldIndex, newIndex);
   }
@@ -546,7 +546,7 @@ class _$PlayerReordered implements PlayerReordered {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -692,7 +692,7 @@ class _$PlayerAdded implements PlayerAdded {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return playerAdded();
   }
@@ -713,7 +713,7 @@ class _$PlayerAdded implements PlayerAdded {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return playerAdded?.call();
   }
@@ -734,7 +734,7 @@ class _$PlayerAdded implements PlayerAdded {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -896,7 +896,7 @@ class _$PlayerRemoved implements PlayerRemoved {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return playerRemoved(index);
   }
@@ -917,7 +917,7 @@ class _$PlayerRemoved implements PlayerRemoved {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return playerRemoved?.call(index);
   }
@@ -938,7 +938,7 @@ class _$PlayerRemoved implements PlayerRemoved {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -1113,7 +1113,7 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return playerNameUpdated(index, newName);
   }
@@ -1134,7 +1134,7 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return playerNameUpdated?.call(index, newName);
   }
@@ -1155,7 +1155,7 @@ class _$PlayerNameUpdated implements PlayerNameUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1326,7 +1326,7 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return startingPointsUpdated(newStartingPoints);
   }
@@ -1347,7 +1347,7 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return startingPointsUpdated?.call(newStartingPoints);
   }
@@ -1368,7 +1368,7 @@ class _$StartingPointsUpdated implements StartingPointsUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (startingPointsUpdated != null) {
@@ -1536,7 +1536,7 @@ class _$ModeUpdated implements ModeUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return modeUpdated(newMode);
   }
@@ -1557,7 +1557,7 @@ class _$ModeUpdated implements ModeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return modeUpdated?.call(newMode);
   }
@@ -1578,7 +1578,7 @@ class _$ModeUpdated implements ModeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (modeUpdated != null) {
@@ -1745,7 +1745,7 @@ class _$SizeUpdated implements SizeUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return sizeUpdated(newSize);
   }
@@ -1766,7 +1766,7 @@ class _$SizeUpdated implements SizeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return sizeUpdated?.call(newSize);
   }
@@ -1787,7 +1787,7 @@ class _$SizeUpdated implements SizeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (sizeUpdated != null) {
@@ -1954,7 +1954,7 @@ class _$TypeUpdated implements TypeUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return typeUpdated(newType);
   }
@@ -1975,7 +1975,7 @@ class _$TypeUpdated implements TypeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return typeUpdated?.call(newType);
   }
@@ -1996,7 +1996,7 @@ class _$TypeUpdated implements TypeUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (typeUpdated != null) {
@@ -2140,7 +2140,7 @@ class _$GameStarted implements GameStarted {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameStarted();
   }
@@ -2161,7 +2161,7 @@ class _$GameStarted implements GameStarted {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameStarted?.call();
   }
@@ -2182,7 +2182,7 @@ class _$GameStarted implements GameStarted {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameStarted != null) {
@@ -2321,7 +2321,7 @@ class _$DartBotAdded implements DartBotAdded {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return dartBotAdded();
   }
@@ -2342,7 +2342,7 @@ class _$DartBotAdded implements DartBotAdded {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return dartBotAdded?.call();
   }
@@ -2363,7 +2363,7 @@ class _$DartBotAdded implements DartBotAdded {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (dartBotAdded != null) {
@@ -2502,7 +2502,7 @@ class _$DartBotRemoved implements DartBotRemoved {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return dartBotRemoved();
   }
@@ -2523,7 +2523,7 @@ class _$DartBotRemoved implements DartBotRemoved {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return dartBotRemoved?.call();
   }
@@ -2544,7 +2544,7 @@ class _$DartBotRemoved implements DartBotRemoved {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (dartBotRemoved != null) {
@@ -2710,7 +2710,7 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return dartBotTargetAverageUpdated(newTargetAverage);
   }
@@ -2731,7 +2731,7 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return dartBotTargetAverageUpdated?.call(newTargetAverage);
   }
@@ -2752,7 +2752,7 @@ class _$DartBotTargetAverageUpdated implements DartBotTargetAverageUpdated {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (dartBotTargetAverageUpdated != null) {
@@ -2848,7 +2848,7 @@ abstract class $GameReceivedCopyWith<$Res> {
   factory $GameReceivedCopyWith(
           GameReceived value, $Res Function(GameReceived) then) =
       _$GameReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -2870,7 +2870,7 @@ class _$GameReceivedCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -2881,7 +2881,7 @@ class _$GameReceived implements GameReceived {
   const _$GameReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -2921,7 +2921,7 @@ class _$GameReceived implements GameReceived {
     required TResult Function() dartBotAdded,
     required TResult Function() dartBotRemoved,
     required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
-    required TResult Function(GameSnapshot gameSnapshot) gameReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameReceived,
   }) {
     return gameReceived(gameSnapshot);
   }
@@ -2942,7 +2942,7 @@ class _$GameReceived implements GameReceived {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
   }) {
     return gameReceived?.call(gameSnapshot);
   }
@@ -2963,7 +2963,7 @@ class _$GameReceived implements GameReceived {
     TResult Function()? dartBotAdded,
     TResult Function()? dartBotRemoved,
     TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
-    TResult Function(GameSnapshot gameSnapshot)? gameReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -3045,10 +3045,10 @@ class _$GameReceived implements GameReceived {
 }
 
 abstract class GameReceived implements CreateGameEvent {
-  const factory GameReceived({required GameSnapshot gameSnapshot}) =
+  const factory GameReceived({required AbstractGameSnapshot gameSnapshot}) =
       _$GameReceived;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $GameReceivedCopyWith<GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3058,7 +3058,7 @@ abstract class GameReceived implements CreateGameEvent {
 class _$CreateGameStateTearOff {
   const _$CreateGameStateTearOff();
 
-  CreateGameInitial initial({required GameSnapshot gameSnapshot}) {
+  CreateGameInitial initial({required AbstractGameSnapshot gameSnapshot}) {
     return CreateGameInitial(
       gameSnapshot: gameSnapshot,
     );
@@ -3070,21 +3070,21 @@ const $CreateGameState = _$CreateGameStateTearOff();
 
 /// @nodoc
 mixin _$CreateGameState {
-  GameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
+  AbstractGameSnapshot get gameSnapshot => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) initial,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3115,7 +3115,7 @@ abstract class $CreateGameStateCopyWith<$Res> {
   factory $CreateGameStateCopyWith(
           CreateGameState value, $Res Function(CreateGameState) then) =
       _$CreateGameStateCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -3135,7 +3135,7 @@ class _$CreateGameStateCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -3147,7 +3147,7 @@ abstract class $CreateGameInitialCopyWith<$Res>
           CreateGameInitial value, $Res Function(CreateGameInitial) then) =
       _$CreateGameInitialCopyWithImpl<$Res>;
   @override
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -3169,7 +3169,7 @@ class _$CreateGameInitialCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -3180,7 +3180,7 @@ class _$CreateGameInitial implements CreateGameInitial {
   const _$CreateGameInitial({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -3207,7 +3207,7 @@ class _$CreateGameInitial implements CreateGameInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GameSnapshot gameSnapshot) initial,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) initial,
   }) {
     return initial(gameSnapshot);
   }
@@ -3215,7 +3215,7 @@ class _$CreateGameInitial implements CreateGameInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
   }) {
     return initial?.call(gameSnapshot);
   }
@@ -3223,7 +3223,7 @@ class _$CreateGameInitial implements CreateGameInitial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameSnapshot gameSnapshot)? initial,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -3262,11 +3262,11 @@ class _$CreateGameInitial implements CreateGameInitial {
 }
 
 abstract class CreateGameInitial implements CreateGameState {
-  const factory CreateGameInitial({required GameSnapshot gameSnapshot}) =
-      _$CreateGameInitial;
+  const factory CreateGameInitial(
+      {required AbstractGameSnapshot gameSnapshot}) = _$CreateGameInitial;
 
   @override
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @override
   @JsonKey(ignore: true)
   $CreateGameInitialCopyWith<CreateGameInitial> get copyWith =>

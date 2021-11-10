@@ -28,7 +28,7 @@ class _$PlayEventTearOff {
   }
 
   PlayGameSnapshotReceived gameSnapshotReceived(
-      {required GameSnapshot gameSnapshot}) {
+      {required AbstractGameSnapshot gameSnapshot}) {
     return PlayGameSnapshotReceived(
       gameSnapshot: gameSnapshot,
     );
@@ -48,7 +48,8 @@ mixin _$PlayEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
-    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
     required TResult Function() resetRequested,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +57,7 @@ mixin _$PlayEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +65,7 @@ mixin _$PlayEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
     required TResult orElse(),
   }) =>
@@ -177,7 +178,8 @@ class _$PlayGameCreated implements PlayGameCreated {
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
-    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
     required TResult Function() resetRequested,
   }) {
     return gameCreated(online);
@@ -188,7 +190,7 @@ class _$PlayGameCreated implements PlayGameCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
   }) {
     return gameCreated?.call(online);
@@ -199,7 +201,7 @@ class _$PlayGameCreated implements PlayGameCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
@@ -299,7 +301,8 @@ class _$PlayGameJoined implements PlayGameJoined {
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
-    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
     required TResult Function() resetRequested,
   }) {
     return gameJoined();
@@ -310,7 +313,7 @@ class _$PlayGameJoined implements PlayGameJoined {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
   }) {
     return gameJoined?.call();
@@ -321,7 +324,7 @@ class _$PlayGameJoined implements PlayGameJoined {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
@@ -379,7 +382,7 @@ abstract class $PlayGameSnapshotReceivedCopyWith<$Res> {
   factory $PlayGameSnapshotReceivedCopyWith(PlayGameSnapshotReceived value,
           $Res Function(PlayGameSnapshotReceived) then) =
       _$PlayGameSnapshotReceivedCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -402,7 +405,7 @@ class _$PlayGameSnapshotReceivedCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -413,7 +416,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
   const _$PlayGameSnapshotReceived({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -443,7 +446,8 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
-    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
     required TResult Function() resetRequested,
   }) {
     return gameSnapshotReceived(gameSnapshot);
@@ -454,7 +458,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
   }) {
     return gameSnapshotReceived?.call(gameSnapshot);
@@ -465,7 +469,7 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
@@ -515,10 +519,11 @@ class _$PlayGameSnapshotReceived implements PlayGameSnapshotReceived {
 }
 
 abstract class PlayGameSnapshotReceived implements PlayEvent {
-  const factory PlayGameSnapshotReceived({required GameSnapshot gameSnapshot}) =
+  const factory PlayGameSnapshotReceived(
+          {required AbstractGameSnapshot gameSnapshot}) =
       _$PlayGameSnapshotReceived;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $PlayGameSnapshotReceivedCopyWith<PlayGameSnapshotReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -567,7 +572,8 @@ class _$PlayResetRequested implements PlayResetRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(bool online) gameCreated,
     required TResult Function() gameJoined,
-    required TResult Function(GameSnapshot gameSnapshot) gameSnapshotReceived,
+    required TResult Function(AbstractGameSnapshot gameSnapshot)
+        gameSnapshotReceived,
     required TResult Function() resetRequested,
   }) {
     return resetRequested();
@@ -578,7 +584,7 @@ class _$PlayResetRequested implements PlayResetRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
   }) {
     return resetRequested?.call();
@@ -589,7 +595,7 @@ class _$PlayResetRequested implements PlayResetRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool online)? gameCreated,
     TResult Function()? gameJoined,
-    TResult Function(GameSnapshot gameSnapshot)? gameSnapshotReceived,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameSnapshotReceived,
     TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
@@ -650,7 +656,8 @@ class _$PlayStateTearOff {
     return const PlayInitial();
   }
 
-  PlayGameInProgress gameInProgress({required GameSnapshot gameSnapshot}) {
+  PlayGameInProgress gameInProgress(
+      {required AbstractGameSnapshot gameSnapshot}) {
     return PlayGameInProgress(
       gameSnapshot: gameSnapshot,
     );
@@ -665,19 +672,19 @@ mixin _$PlayState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(GameSnapshot gameSnapshot) gameInProgress,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -758,7 +765,7 @@ class _$PlayInitial implements PlayInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(GameSnapshot gameSnapshot) gameInProgress,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameInProgress,
   }) {
     return initial();
   }
@@ -767,7 +774,7 @@ class _$PlayInitial implements PlayInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
   }) {
     return initial?.call();
   }
@@ -776,7 +783,7 @@ class _$PlayInitial implements PlayInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -826,7 +833,7 @@ abstract class $PlayGameInProgressCopyWith<$Res> {
   factory $PlayGameInProgressCopyWith(
           PlayGameInProgress value, $Res Function(PlayGameInProgress) then) =
       _$PlayGameInProgressCopyWithImpl<$Res>;
-  $Res call({GameSnapshot gameSnapshot});
+  $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
@@ -848,7 +855,7 @@ class _$PlayGameInProgressCopyWithImpl<$Res>
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as GameSnapshot,
+              as AbstractGameSnapshot,
     ));
   }
 }
@@ -859,7 +866,7 @@ class _$PlayGameInProgress implements PlayGameInProgress {
   const _$PlayGameInProgress({required this.gameSnapshot});
 
   @override
-  final GameSnapshot gameSnapshot;
+  final AbstractGameSnapshot gameSnapshot;
 
   @override
   String toString() {
@@ -887,7 +894,7 @@ class _$PlayGameInProgress implements PlayGameInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(GameSnapshot gameSnapshot) gameInProgress,
+    required TResult Function(AbstractGameSnapshot gameSnapshot) gameInProgress,
   }) {
     return gameInProgress(gameSnapshot);
   }
@@ -896,7 +903,7 @@ class _$PlayGameInProgress implements PlayGameInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
   }) {
     return gameInProgress?.call(gameSnapshot);
   }
@@ -905,7 +912,7 @@ class _$PlayGameInProgress implements PlayGameInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(GameSnapshot gameSnapshot)? gameInProgress,
+    TResult Function(AbstractGameSnapshot gameSnapshot)? gameInProgress,
     required TResult orElse(),
   }) {
     if (gameInProgress != null) {
@@ -947,10 +954,10 @@ class _$PlayGameInProgress implements PlayGameInProgress {
 }
 
 abstract class PlayGameInProgress implements PlayState {
-  const factory PlayGameInProgress({required GameSnapshot gameSnapshot}) =
-      _$PlayGameInProgress;
+  const factory PlayGameInProgress(
+      {required AbstractGameSnapshot gameSnapshot}) = _$PlayGameInProgress;
 
-  GameSnapshot get gameSnapshot;
+  AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
   $PlayGameInProgressCopyWith<PlayGameInProgress> get copyWith =>
       throw _privateConstructorUsedError;

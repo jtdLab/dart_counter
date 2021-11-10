@@ -3,7 +3,7 @@ import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
-import 'package:dart_counter/domain/play/game.dart';
+import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
