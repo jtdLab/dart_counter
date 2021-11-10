@@ -70,8 +70,8 @@ abstract class IAuthService {
   /// Signs a user up with [emailAddress], [username] and [password].
   ///
   /// Possible failures:
-  //  1. Email already in use
-  //  2. Username already in use
+  /// 1. Email already in use
+  /// 2. Username already in use
   /// 3. Invalid email
   /// 4. Invalid username
   /// 5. Invalid password
@@ -99,4 +99,6 @@ abstract class IAuthService {
 
   /// Returns a stream that indicates whether or not the app-user is authenticated.
   Stream<bool> watchIsAuthenticated();
+
+  void dispose();
 }

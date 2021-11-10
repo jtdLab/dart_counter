@@ -2,7 +2,6 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,6 +9,8 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
 class MockedAuthService implements IAuthService {
+  static bool hasNetworkConnection = true;
+
   final BehaviorSubject<bool> _authenticatedController;
 
   MockedAuthService()
@@ -21,17 +22,11 @@ class MockedAuthService implements IAuthService {
       return 'dummyIdToken';
     }
 
-    return Future.value(null);
+    return null;
   }
 
   @override
-  bool isAuthenticated() {
-    try {
-      return _authenticatedController.value;
-    } catch (e) {
-      return false;
-    }
-  }
+  bool isAuthenticated() => _authenticatedController.value;
 
   @override
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
@@ -155,11 +150,15 @@ class MockedAuthService implements IAuthService {
   }) async {
     if (isAuthenticated()) {
       if (hasNetworkConnection) {
-        if (oldPassword.isValid() && newPassword.isValid()) {
-          return right(unit);
+        if (!oldPassword.isValid()) {
+          return left(const AuthFailure.invalidOldPassword());
         }
 
-        return left(const AuthFailure.invalidPassword());
+        if (!newPassword.isValid()) {
+          return left(const AuthFailure.invalidNewPassword());
+        }
+
+        return right(unit);
       }
 
       return left(const AuthFailure.serverError());
@@ -174,4 +173,10 @@ class MockedAuthService implements IAuthService {
 
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
+
+  @disposeMethod
+  @override
+  void dispose() {
+    _authenticatedController.close();
+  }
 }

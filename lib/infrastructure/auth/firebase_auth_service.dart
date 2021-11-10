@@ -296,6 +296,12 @@ class FirebaseAuthService implements IAuthService {
         (user) => user?.uid != null,
       );
 
+  @disposeMethod
+  @override
+  void dispose() {
+    // TODO implement
+  }
+
   /// Generates a cryptographically secure random nonce, to be included in a
   /// credential request.
   String _generateNonce([int length = 32]) {

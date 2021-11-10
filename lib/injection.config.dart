@@ -117,7 +117,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i11.GoogleSignIn>(() => jtdInjectableModule.googleSignIn);
   gh.lazySingleton<_i12.IAuthService>(() => _i13.MockedAuthService(),
-      registerFor: {_dev});
+      registerFor: {_dev}, dispose: (i) => i.dispose());
   gh.lazySingleton<_i14.IBobsTwentySevenService>(
       () => _i15.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
@@ -200,7 +200,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i11.GoogleSignIn>(),
           get<_i6.FacebookAuth>(),
           get<_i40.SocialClient>()),
-      registerFor: {_test, _prod});
+      registerFor: {_test, _prod},
+      dispose: (i) => i.dispose());
   gh.lazySingleton<_i26.IGameInvitationService>(
       () => _i54.GameInvitationService(
           get<_i12.IAuthService>(),

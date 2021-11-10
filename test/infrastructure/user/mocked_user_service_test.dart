@@ -61,7 +61,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return NoNetworkAccess failure ',
+      'THEN return no network access failure ',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -81,7 +81,7 @@ void main() {
 
     test(
       'GIVEN authenticated user and has network access '
-      'THEN return unit, set users photoUrl to null and emit updated user  ',
+      'THEN return unit, set users photoUrl to null and emit updated user ',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -128,7 +128,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return NoNetworkAccess failure ',
+      'THEN return no network access failure ',
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -186,7 +186,7 @@ void main() {
     test(
       'GIVEN authenticated user but has no network access '
       'WHEN valid email '
-      'THEN return NoNetworkAccess failure ',
+      'THEN return no network access failure ',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -261,7 +261,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return NoNetworkAccess failure ',
+      'THEN return no network access failure ',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -333,7 +333,7 @@ void main() {
     test(
       'GIVEN authenticated user but has no network access '
       'WHEN valid username '
-      'THEN return NoNetworkAccess failure ',
+      'THEN return no network access failure ',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -406,7 +406,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return stream with NoNetworkAccess failure ',
+      'THEN return stream with no network access failure ',
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();

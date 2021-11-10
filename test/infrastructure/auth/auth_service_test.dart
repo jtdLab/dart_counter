@@ -2,29 +2,55 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  group('idToken', () {});
+  group('idToken', () {
+    // TODO implement tests
+  });
 
-  group('isAuthenticated', () {});
+  group('isAuthenticated', () {
+    // TODO implement tests
+  });
 
-  group('sendPasswordResetEmail', () {});
+  group('sendPasswordResetEmail', () {
+    // TODO implement tests
+  });
 
-  group('signInWithApple', () {});
+  group('signInWithApple', () {
+    // TODO implement tests
+  });
 
-  group('signInWithEmailAndPassword', () {});
+  group('signInWithEmailAndPassword', () {
+    // TODO implement tests
+  });
 
-  group('signInWithFacebook', () {});
+  group('signInWithFacebook', () {
+    // TODO implement tests
+  });
 
-  group('signInWithGoogle', () {});
+  group('signInWithGoogle', () {
+    // TODO implement tests
+  });
 
-  group('signInWithUsernameAndPassword', () {});
+  group('signInWithUsernameAndPassword', () {
+    // TODO implement tests
+  });
 
-  group('signOut', () {});
+  group('signOut', () {
+    // TODO implement tests
+  });
 
-  group('signUpWithEmailAndUsernameAndPassword', () {});
+  group('signUpWithEmailAndUsernameAndPassword', () {
+    // TODO implement tests
+  });
 
-  group('updatePassword', () {});
+  group('updatePassword', () {
+    // TODO implement tests
+  });
 
-  group('userId', () {});
+  group('userId', () {
+    // TODO implement tests
+  });
 
-  group('watchIsAuthenticated', () {});
+  group('watchIsAuthenticated', () {
+    // TODO implement tests
+  });
 }
