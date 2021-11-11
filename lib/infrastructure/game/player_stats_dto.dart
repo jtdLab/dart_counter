@@ -58,6 +58,31 @@ class PlayerStatsDto with _$PlayerStatsDto {
     );
   }
 
+  PlayerStats toDomain() {
+    return PlayerStats(
+      average: average,
+      checkoutPercentage: checkoutPercentage,
+      firstNineAverage: firstNineAverage,
+      bestLegDartsThrown: bestLegDartsThrown,
+      bestLegAverage: bestLegAverage,
+      worstLegDartsThrown: worstLegDartsThrown,
+      worstLegAverage: worstLegAverage,
+      averageDartsPerLeg: averageDartsPerLeg,
+      highestFinish: highestFinish,
+      firstDartAverage: firstDartAverage,
+      secondDartAverage: secondDartAverage,
+      thirdDartAverage: thirdDartAverage,
+      fourtyPlus: fourtyPlus,
+      sixtyPlus: sixtyPlus,
+      eightyPlus: eightyPlus,
+      hundredPlus: hundredPlus,
+      hundredTwentyPlus: hundredTwentyPlus,
+      hundredFourtyPlus: hundredFourtyPlus,
+      hundredSixtyPlus: hundredSixtyPlus,
+      hundredEighty: hundredEighty,
+    );
+  }
+
 // TODO remove or keep
 /**
  *   factory PlayerStatsDto.fromExternal(ex.Stats stats) {
@@ -86,6 +111,8 @@ class PlayerStatsDto with _$PlayerStatsDto {
   }
 
  */
+
+// TODO remove or keep
   factory PlayerStatsDto.fromClient(dc.Stats stats) {
     return PlayerStatsDto(
       average: stats.average,
@@ -108,31 +135,6 @@ class PlayerStatsDto with _$PlayerStatsDto {
       hundredFourtyPlus: stats.hundredFourtyPlus,
       hundredSixtyPlus: stats.hundredSixtyPlus,
       hundredEighty: stats.hundredEighty,
-    );
-  }
-
-  PlayerStats toDomain() {
-    return PlayerStats(
-      average: average,
-      checkoutPercentage: checkoutPercentage,
-      firstNineAverage: firstNineAverage,
-      bestLegDartsThrown: bestLegDartsThrown,
-      bestLegAverage: bestLegAverage,
-      worstLegDartsThrown: worstLegDartsThrown,
-      worstLegAverage: worstLegAverage,
-      averageDartsPerLeg: averageDartsPerLeg,
-      highestFinish: highestFinish,
-      firstDartAverage: firstDartAverage,
-      secondDartAverage: secondDartAverage,
-      thirdDartAverage: thirdDartAverage,
-      fourtyPlus: fourtyPlus,
-      sixtyPlus: sixtyPlus,
-      eightyPlus: eightyPlus,
-      hundredPlus: hundredPlus,
-      hundredTwentyPlus: hundredTwentyPlus,
-      hundredFourtyPlus: hundredFourtyPlus,
-      hundredSixtyPlus: hundredSixtyPlus,
-      hundredEighty: hundredEighty,
     );
   }
 
