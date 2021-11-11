@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:kt_dart/kt.dart';
 
 export './offline/dartbot_snapshot.dart';

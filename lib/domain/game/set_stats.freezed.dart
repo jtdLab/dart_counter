@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'stats_dto.dart';
+part of 'set_stats.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,18 +13,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlayerStatsDto _$PlayerStatsDtoFromJson(Map<String, dynamic> json) {
-  return _PlayerStatsDto.fromJson(json);
-}
-
 /// @nodoc
-class _$PlayerStatsDtoTearOff {
-  const _$PlayerStatsDtoTearOff();
+class _$SetStatsTearOff {
+  const _$SetStatsTearOff();
 
-  _PlayerStatsDto call(
-      {required double average,
-      double? checkoutPercentage,
-      required double firstNineAverage,
+  _SetStats call(
+      {double average = 0,
+      double checkoutPercentage = 0,
+      double firstNineAverage = 0,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -34,15 +30,15 @@ class _$PlayerStatsDtoTearOff {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) {
-    return _PlayerStatsDto(
+      int fourtyPlus = 0,
+      int sixtyPlus = 0,
+      int eightyPlus = 0,
+      int hundredPlus = 0,
+      int hundredTwentyPlus = 0,
+      int hundredFourtyPlus = 0,
+      int hundredSixtyPlus = 0,
+      int hundredEighty = 0}) {
+    return _SetStats(
       average: average,
       checkoutPercentage: checkoutPercentage,
       firstNineAverage: firstNineAverage,
@@ -65,19 +61,15 @@ class _$PlayerStatsDtoTearOff {
       hundredEighty: hundredEighty,
     );
   }
-
-  PlayerStatsDto fromJson(Map<String, Object?> json) {
-    return PlayerStatsDto.fromJson(json);
-  }
 }
 
 /// @nodoc
-const $PlayerStatsDto = _$PlayerStatsDtoTearOff();
+const $SetStats = _$SetStatsTearOff();
 
 /// @nodoc
-mixin _$PlayerStatsDto {
+mixin _$SetStats {
   double get average => throw _privateConstructorUsedError;
-  double? get checkoutPercentage => throw _privateConstructorUsedError;
+  double get checkoutPercentage => throw _privateConstructorUsedError;
   double get firstNineAverage => throw _privateConstructorUsedError;
   int? get bestLegDartsThrown => throw _privateConstructorUsedError;
   double? get bestLegAverage => throw _privateConstructorUsedError;
@@ -97,20 +89,18 @@ mixin _$PlayerStatsDto {
   int get hundredSixtyPlus => throw _privateConstructorUsedError;
   int get hundredEighty => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerStatsDtoCopyWith<PlayerStatsDto> get copyWith =>
+  $SetStatsCopyWith<SetStats> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerStatsDtoCopyWith<$Res> {
-  factory $PlayerStatsDtoCopyWith(
-          PlayerStatsDto value, $Res Function(PlayerStatsDto) then) =
-      _$PlayerStatsDtoCopyWithImpl<$Res>;
+abstract class $SetStatsCopyWith<$Res> {
+  factory $SetStatsCopyWith(SetStats value, $Res Function(SetStats) then) =
+      _$SetStatsCopyWithImpl<$Res>;
   $Res call(
       {double average,
-      double? checkoutPercentage,
+      double checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -132,13 +122,12 @@ abstract class $PlayerStatsDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlayerStatsDtoCopyWithImpl<$Res>
-    implements $PlayerStatsDtoCopyWith<$Res> {
-  _$PlayerStatsDtoCopyWithImpl(this._value, this._then);
+class _$SetStatsCopyWithImpl<$Res> implements $SetStatsCopyWith<$Res> {
+  _$SetStatsCopyWithImpl(this._value, this._then);
 
-  final PlayerStatsDto _value;
+  final SetStats _value;
   // ignore: unused_field
-  final $Res Function(PlayerStatsDto) _then;
+  final $Res Function(SetStats) _then;
 
   @override
   $Res call({
@@ -171,7 +160,7 @@ class _$PlayerStatsDtoCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -249,15 +238,13 @@ class _$PlayerStatsDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PlayerStatsDtoCopyWith<$Res>
-    implements $PlayerStatsDtoCopyWith<$Res> {
-  factory _$PlayerStatsDtoCopyWith(
-          _PlayerStatsDto value, $Res Function(_PlayerStatsDto) then) =
-      __$PlayerStatsDtoCopyWithImpl<$Res>;
+abstract class _$SetStatsCopyWith<$Res> implements $SetStatsCopyWith<$Res> {
+  factory _$SetStatsCopyWith(_SetStats value, $Res Function(_SetStats) then) =
+      __$SetStatsCopyWithImpl<$Res>;
   @override
   $Res call(
       {double average,
-      double? checkoutPercentage,
+      double checkoutPercentage,
       double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
@@ -279,15 +266,13 @@ abstract class _$PlayerStatsDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PlayerStatsDtoCopyWithImpl<$Res>
-    extends _$PlayerStatsDtoCopyWithImpl<$Res>
-    implements _$PlayerStatsDtoCopyWith<$Res> {
-  __$PlayerStatsDtoCopyWithImpl(
-      _PlayerStatsDto _value, $Res Function(_PlayerStatsDto) _then)
-      : super(_value, (v) => _then(v as _PlayerStatsDto));
+class __$SetStatsCopyWithImpl<$Res> extends _$SetStatsCopyWithImpl<$Res>
+    implements _$SetStatsCopyWith<$Res> {
+  __$SetStatsCopyWithImpl(_SetStats _value, $Res Function(_SetStats) _then)
+      : super(_value, (v) => _then(v as _SetStats));
 
   @override
-  _PlayerStatsDto get _value => super._value as _PlayerStatsDto;
+  _SetStats get _value => super._value as _SetStats;
 
   @override
   $Res call({
@@ -312,7 +297,7 @@ class __$PlayerStatsDtoCopyWithImpl<$Res>
     Object? hundredSixtyPlus = freezed,
     Object? hundredEighty = freezed,
   }) {
-    return _then(_PlayerStatsDto(
+    return _then(_SetStats(
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
@@ -320,7 +305,7 @@ class __$PlayerStatsDtoCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
@@ -398,12 +383,12 @@ class __$PlayerStatsDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_PlayerStatsDto extends _PlayerStatsDto {
-  const _$_PlayerStatsDto(
-      {required this.average,
-      this.checkoutPercentage,
-      required this.firstNineAverage,
+
+class _$_SetStats implements _SetStats {
+  const _$_SetStats(
+      {this.average = 0,
+      this.checkoutPercentage = 0,
+      this.firstNineAverage = 0,
       this.bestLegDartsThrown,
       this.bestLegAverage,
       this.worstLegDartsThrown,
@@ -413,23 +398,22 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
       this.firstDartAverage,
       this.secondDartAverage,
       this.thirdDartAverage,
-      required this.fourtyPlus,
-      required this.sixtyPlus,
-      required this.eightyPlus,
-      required this.hundredPlus,
-      required this.hundredTwentyPlus,
-      required this.hundredFourtyPlus,
-      required this.hundredSixtyPlus,
-      required this.hundredEighty})
-      : super._();
+      this.fourtyPlus = 0,
+      this.sixtyPlus = 0,
+      this.eightyPlus = 0,
+      this.hundredPlus = 0,
+      this.hundredTwentyPlus = 0,
+      this.hundredFourtyPlus = 0,
+      this.hundredSixtyPlus = 0,
+      this.hundredEighty = 0});
 
-  factory _$_PlayerStatsDto.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerStatsDtoFromJson(json);
-
+  @JsonKey(defaultValue: 0)
   @override
   final double average;
+  @JsonKey(defaultValue: 0)
   @override
-  final double? checkoutPercentage;
+  final double checkoutPercentage;
+  @JsonKey(defaultValue: 0)
   @override
   final double firstNineAverage;
   @override
@@ -450,33 +434,41 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
   final double? secondDartAverage;
   @override
   final double? thirdDartAverage;
+  @JsonKey(defaultValue: 0)
   @override
   final int fourtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int sixtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int eightyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredTwentyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredFourtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredSixtyPlus;
+  @JsonKey(defaultValue: 0)
   @override
   final int hundredEighty;
 
   @override
   String toString() {
-    return 'PlayerStatsDto(average: $average, checkoutPercentage: $checkoutPercentage, firstNineAverage: $firstNineAverage, bestLegDartsThrown: $bestLegDartsThrown, bestLegAverage: $bestLegAverage, worstLegDartsThrown: $worstLegDartsThrown, worstLegAverage: $worstLegAverage, averageDartsPerLeg: $averageDartsPerLeg, highestFinish: $highestFinish, firstDartAverage: $firstDartAverage, secondDartAverage: $secondDartAverage, thirdDartAverage: $thirdDartAverage, fourtyPlus: $fourtyPlus, sixtyPlus: $sixtyPlus, eightyPlus: $eightyPlus, hundredPlus: $hundredPlus, hundredTwentyPlus: $hundredTwentyPlus, hundredFourtyPlus: $hundredFourtyPlus, hundredSixtyPlus: $hundredSixtyPlus, hundredEighty: $hundredEighty)';
+    return 'SetStats(average: $average, checkoutPercentage: $checkoutPercentage, firstNineAverage: $firstNineAverage, bestLegDartsThrown: $bestLegDartsThrown, bestLegAverage: $bestLegAverage, worstLegDartsThrown: $worstLegDartsThrown, worstLegAverage: $worstLegAverage, averageDartsPerLeg: $averageDartsPerLeg, highestFinish: $highestFinish, firstDartAverage: $firstDartAverage, secondDartAverage: $secondDartAverage, thirdDartAverage: $thirdDartAverage, fourtyPlus: $fourtyPlus, sixtyPlus: $sixtyPlus, eightyPlus: $eightyPlus, hundredPlus: $hundredPlus, hundredTwentyPlus: $hundredTwentyPlus, hundredFourtyPlus: $hundredFourtyPlus, hundredSixtyPlus: $hundredSixtyPlus, hundredEighty: $hundredEighty)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PlayerStatsDto &&
+            other is _SetStats &&
             (identical(other.average, average) || other.average == average) &&
             (identical(other.checkoutPercentage, checkoutPercentage) ||
                 other.checkoutPercentage == checkoutPercentage) &&
@@ -545,20 +537,15 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerStatsDtoCopyWith<_PlayerStatsDto> get copyWith =>
-      __$PlayerStatsDtoCopyWithImpl<_PlayerStatsDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PlayerStatsDtoToJson(this);
-  }
+  _$SetStatsCopyWith<_SetStats> get copyWith =>
+      __$SetStatsCopyWithImpl<_SetStats>(this, _$identity);
 }
 
-abstract class _PlayerStatsDto extends PlayerStatsDto {
-  const factory _PlayerStatsDto(
-      {required double average,
-      double? checkoutPercentage,
-      required double firstNineAverage,
+abstract class _SetStats implements SetStats {
+  const factory _SetStats(
+      {double average,
+      double checkoutPercentage,
+      double firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -568,23 +555,19 @@ abstract class _PlayerStatsDto extends PlayerStatsDto {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) = _$_PlayerStatsDto;
-  const _PlayerStatsDto._() : super._();
-
-  factory _PlayerStatsDto.fromJson(Map<String, dynamic> json) =
-      _$_PlayerStatsDto.fromJson;
+      int fourtyPlus,
+      int sixtyPlus,
+      int eightyPlus,
+      int hundredPlus,
+      int hundredTwentyPlus,
+      int hundredFourtyPlus,
+      int hundredSixtyPlus,
+      int hundredEighty}) = _$_SetStats;
 
   @override
   double get average;
   @override
-  double? get checkoutPercentage;
+  double get checkoutPercentage;
   @override
   double get firstNineAverage;
   @override
@@ -623,6 +606,6 @@ abstract class _PlayerStatsDto extends PlayerStatsDto {
   int get hundredEighty;
   @override
   @JsonKey(ignore: true)
-  _$PlayerStatsDtoCopyWith<_PlayerStatsDto> get copyWith =>
+  _$SetStatsCopyWith<_SetStats> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,8 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart.freezed.dart';
 
-// s = single, d = double, t = triple
-enum DartType { s, d, t }
+enum DartType { single, double, triple }
 
 @freezed
 class Dart with _$Dart {
@@ -17,10 +16,10 @@ class Dart with _$Dart {
   int points() {
     int multiplier;
     switch (type) {
-      case DartType.s:
+      case DartType.single:
         multiplier = 1;
         break;
-      case DartType.d:
+      case DartType.double:
         multiplier = 2;
         break;
       default:

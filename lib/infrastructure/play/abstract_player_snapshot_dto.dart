@@ -1,4 +1,4 @@
-import 'package:dart_counter/infrastructure/play/stats_dto.dart';
+import 'package:dart_counter/infrastructure/game/player_stats_dto.dart';
 
 export './offline/dartbot_snapshot_dto.dart';
 export './offline/offline_player_snapshot_dto.dart';

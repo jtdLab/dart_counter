@@ -1,10 +1,53 @@
-import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_client/dart_client.dart' as c;
+import 'package:dart_counter/infrastructure/core/errors.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart_dto.freezed.dart';
 part 'dart_dto.g.dart';
+
+/// Utility methods to convert a [String] to [DartType] and vice versa.
+extension DartTypeX on DartType {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+
+  static DartType parse(String str) {
+    return DartType.values.firstWhere(
+      (e) => e.toString() == 'DartType.$str',
+      orElse: () => throw EnumParseError<DartType>(str),
+    );
+  }
+}
+
+/// Utility methods to convert a [String] to [ex.DartType] and vice versa.
+extension ExternalDartTypeX on ex.DartType {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+
+  static ex.DartType parse(String str) {
+    return ex.DartType.values.firstWhere(
+      (e) => e.toString() == 'DartType.$str',
+      orElse: () => throw EnumParseError<ex.DartType>(str),
+    );
+  }
+}
+
+/// Utility methods to convert a [String] to [c.DartType] and vice versa.
+extension ClientDartTypeX on c.DartType {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+
+  static c.DartType parse(String str) {
+    return c.DartType.values.firstWhere(
+      (e) => e.toString() == 'DartType.$str',
+      orElse: () => throw EnumParseError<c.DartType>(str),
+    );
+  }
+}
 
 @freezed
 class DartDto with _$DartDto {
@@ -17,66 +60,42 @@ class DartDto with _$DartDto {
 
   factory DartDto.fromDomain(Dart dart) {
     return DartDto(
-      type: dart.type == DartType.single
-          ? 'single'
-          : dart.type == DartType.double
-              ? 'double'
-              : 'triple',
+      type: dart.type.toShortString(),
       value: dart.value,
-    );
-  }
-
-  factory DartDto.fromExternal(ex.Dart d) {
-    return DartDto(
-      type: d.type == ex.DartType.single
-          ? 'single'
-          : d.type == ex.DartType.double
-              ? 'double'
-              : 'triple',
-      value: d.value,
-    );
-  }
-
-  factory DartDto.fromClient(dc.Dart d) {
-    return DartDto(
-      type: d.type == dc.DartType.s
-          ? 'single'
-          : d.type == dc.DartType.d
-              ? 'double'
-              : 'triple',
-      value: d.value,
     );
   }
 
   Dart toDomain() {
     return Dart(
-      type: type == 'single'
-          ? DartType.single
-          : type == 'double'
-              ? DartType.double
-              : DartType.triple,
+      type: DartTypeX.parse(type),
       value: value,
+    );
+  }
+
+  factory DartDto.fromExternal(ex.Dart dart) {
+    return DartDto(
+      type: dart.type.toShortString(),
+      value: dart.value,
     );
   }
 
   ex.Dart toExternal() {
     return ex.Dart(
-      type: type == 'single'
-          ? ex.DartType.single
-          : type == 'double'
-              ? ex.DartType.double
-              : ex.DartType.triple,
+      type: ExternalDartTypeX.parse(type),
       value: value,
     );
   }
 
-  dc.Dart toClient() {
-    return dc.Dart(
-      type: type == 'single'
-          ? dc.DartType.s
-          : type == 'double'
-              ? dc.DartType.d
-              : dc.DartType.t,
+  factory DartDto.fromClient(c.Dart dart) {
+    return DartDto(
+      type: dart.type.toShortString(),
+      value: dart.value,
+    );
+  }
+
+  c.Dart toClient() {
+    return c.Dart(
+      type: ClientDartTypeX.parse(type),
       value: value,
     );
   }

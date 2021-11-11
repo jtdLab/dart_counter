@@ -1,5 +1,5 @@
 import 'package:dart_game/dart_game.dart' as ex;
-import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dartz/dartz.dart';
 
@@ -31,34 +31,21 @@ class ThrowDto with _$ThrowDto {
     );
   }
 
+  Throw toDomain() {
+    return Throw(
+      points: points,
+      dartsThrown: dartsThrown,
+      dartsOnDouble: dartsOnDouble,
+      darts: darts?.map((dart) => dart.toDomain()).toImmutableList(),
+    );
+  }
+
   factory ThrowDto.fromExternal(ex.Throw t) {
     return ThrowDto(
       points: t.points,
       dartsThrown: t.dartsThrown,
       dartsOnDouble: t.dartsOnDouble,
       darts: t.darts?.map((dart) => DartDto.fromExternal(dart)).toList(),
-    );
-  }
-
-  factory ThrowDto.fromClient(dc.Throw t) {
-    return ThrowDto(
-      points: t.points,
-      dartsThrown: t.dartsThrown,
-      dartsOnDouble: t.dartsOnDouble,
-      darts: t.darts?.map((dart) => DartDto.fromClient(dart)).asList(),
-    );
-  }
-
-  Throw toDomain() {
-    return Throw(
-      points: points,
-      dartsThrown: dartsThrown,
-      dartsOnDouble: dartsOnDouble,
-      darts: darts == null
-          ? null
-          : KtList.from(
-              darts!.map((dart) => dart.toDomain()),
-            ),
     );
   }
 
@@ -72,16 +59,21 @@ class ThrowDto with _$ThrowDto {
     );
   }
 
-  dc.Throw toClient() {
-    return dc.Throw(
+  factory ThrowDto.fromClient(c.Throw t) {
+    return ThrowDto(
+      points: t.points,
+      dartsThrown: t.dartsThrown,
+      dartsOnDouble: t.dartsOnDouble,
+      darts: t.darts?.map((dart) => DartDto.fromClient(dart)).asList(),
+    );
+  }
+
+  c.Throw toClient() {
+    return c.Throw(
       points: points,
       dartsThrown: dartsThrown,
       dartsOnDouble: dartsOnDouble,
-      darts: darts == null
-          ? null
-          : KtList.from(
-              darts!.map((dart) => dart.toClient()),
-            ),
+      darts: darts?.map((dart) => dart.toClient()).toImmutableList(),
     );
   }
 

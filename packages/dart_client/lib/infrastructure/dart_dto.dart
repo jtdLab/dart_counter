@@ -15,9 +15,9 @@ class DartDto with _$DartDto {
 
   factory DartDto.fromDomain(Dart dart) {
     return DartDto(
-      type: dart.type == DartType.s
+      type: dart.type == DartType.single
           ? 'single'
-          : dart.type == DartType.d
+          : dart.type == DartType.double
               ? 'double'
               : 'triple',
       value: dart.value,
@@ -27,10 +27,10 @@ class DartDto with _$DartDto {
   Dart toDomain() {
     return Dart(
       type: type == 'single'
-          ? DartType.s
+          ? DartType.single
           : type == 'double'
-              ? DartType.d
-              : DartType.t,
+              ? DartType.double
+              : DartType.triple,
       value: value,
     );
   }

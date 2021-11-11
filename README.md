@@ -105,3 +105,6 @@ test('constructor', () {
 
 
 // TODO renaem abstract players and player snapshots or game and gamesnpashot in domain and infrato IPlayer or IGame or other nameing
+
+
+// TODO game folder all in gamehistory expect dart and throw becaus they are shared in play and training ???ß

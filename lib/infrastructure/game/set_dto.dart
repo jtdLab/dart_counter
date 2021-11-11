@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/game/set.dart';
-import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dart_counter/domain/game/set_stats.dart';
 import 'package:dart_counter/infrastructure/game/leg_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,13 +16,6 @@ class SetDto with _$SetDto {
   }) = _SetDto;
 
   const SetDto._();
-
-  factory SetDto.fromExternal(ex.Set set) {
-    return SetDto(
-      startingPoints: set.startingPoints,
-      legs: set.legs.map((leg) => LegDto.fromExternal(leg)).toList(),
-    );
-  }
 
   Set toDomain() {
     final external = toExternal();
@@ -47,6 +40,13 @@ class SetDto with _$SetDto {
         hundredSixtyPlus: external.hundredSixtyPlus,
         hundredEighty: external.hundredEighty,
       ),
+    );
+  }
+
+  factory SetDto.fromExternal(ex.Set set) {
+    return SetDto(
+      startingPoints: set.startingPoints,
+      legs: set.legs.map((leg) => LegDto.fromExternal(leg)).toList(),
     );
   }
 

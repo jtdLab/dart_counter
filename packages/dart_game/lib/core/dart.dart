@@ -1,3 +1,5 @@
+import 'package:quiver/core.dart';
+
 /// The type of a [Dart]
 enum DartType {
   single,
@@ -73,6 +75,12 @@ class Dart {
       );
     }
   }
+
+  // TODO test
+  bool operator ==(o) => o is Dart && type == o.type && value == o.value;
+
+  // TODO test
+  int get hashCode => hash2(type.hashCode, value.hashCode);
 
   @override
   String toString() {

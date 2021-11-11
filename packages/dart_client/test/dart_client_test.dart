@@ -42,12 +42,12 @@ void main() {
       // Act
       final domain = dto.toDomain();
       // Assert
-      expect(domain, Dart(type: DartType.s, value: 10));
+      expect(domain, Dart(type: DartType.single, value: 10));
     });
 
     test('(Domain -> Dto)', () {
       // Arrange
-      final domain = Dart(type: DartType.d, value: 13);
+      final domain = Dart(type: DartType.double, value: 13);
       // Act
       final dto = DartDto.fromDomain(domain);
       // Assert
@@ -171,9 +171,9 @@ void main() {
         dartsThrown: 3,
         dartsOnDouble: 0,
         darts: KtList.from([
-          Dart(type: DartType.t, value: 20),
-          Dart(type: DartType.t, value: 20),
-          Dart(type: DartType.s, value: 3),
+          Dart(type: DartType.triple, value: 20),
+          Dart(type: DartType.triple, value: 20),
+          Dart(type: DartType.single, value: 3),
         ]),
       );
       final expectedDomainNull =
@@ -189,9 +189,9 @@ void main() {
         dartsThrown: 3,
         dartsOnDouble: 0,
         darts: KtList.from([
-          Dart(type: DartType.t, value: 20),
-          Dart(type: DartType.t, value: 20),
-          Dart(type: DartType.s, value: 3),
+          Dart(type: DartType.triple, value: 20),
+          Dart(type: DartType.triple, value: 20),
+          Dart(type: DartType.single, value: 3),
         ]),
       );
       final domainNull = Throw(points: 123, dartsThrown: 3, dartsOnDouble: 0);

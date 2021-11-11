@@ -1,8 +1,23 @@
 import 'package:dart_counter/domain/user/career_stats.dart';
+import 'package:dart_counter/infrastructure/core/errors.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'career_stats_dto.freezed.dart';
 part 'career_stats_dto.g.dart';
+
+/// Utility methods to convert a [String] to [Trend] and vice versa.
+extension TrendX on Trend {
+  String toShortString() {
+    return toString().split('.').last;
+  }
+
+  static Trend parse(String str) {
+    return Trend.values.firstWhere(
+      (e) => e.toString() == 'Trend.$str',
+      orElse: () => throw EnumParseError<Trend>(str),
+    );
+  }
+}
 
 /// Data transfer object corresponing to [CareerStats].
 @freezed
@@ -39,11 +54,11 @@ class CareerStatsDto with _$CareerStatsDto {
   CareerStats toDomain() {
     return CareerStats(
       average: average,
-      averageTrend: Trends.parse(averageTrend),
+      averageTrend: TrendX.parse(averageTrend),
       checkoutPercentage: checkoutPercentage,
-      checkoutPercentageTrend: Trends.parse(checkoutPercentageTrend),
+      checkoutPercentageTrend: TrendX.parse(checkoutPercentageTrend),
       firstNine: firstNine,
-      firstNineTrend: Trends.parse(firstNineTrend),
+      firstNineTrend: TrendX.parse(firstNineTrend),
       games: games,
       wins: wins,
       defeats: defeats,

@@ -1,8 +1,8 @@
 import 'package:dart_client/dart_client.dart' as dc show PlayerSnapshot;
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
-import 'package:dart_counter/domain/play/stats.dart';
-import 'package:dart_counter/infrastructure/play/stats_dto.dart';
+import 'package:dart_counter/domain/game/player_stats.dart';
+import 'package:dart_counter/infrastructure/game/player_stats_dto.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

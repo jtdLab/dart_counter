@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:dart_game/core/dart.dart';
 import 'package:dartz/dartz.dart';
+import 'package:quiver/core.dart';
 
 class Throw {
   late final int points;
@@ -306,6 +308,22 @@ class Throw {
       }
     }
   }
+
+  // TODO test
+  bool operator ==(o) =>
+      o is Throw &&
+      points == o.points &&
+      dartsThrown == o.dartsThrown &&
+      dartsOnDouble == o.dartsOnDouble &&
+      ListEquality().equals(darts, o.darts);
+
+  // TODO test
+  int get hashCode => hash4(
+        points.hashCode,
+        dartsThrown.hashCode,
+        dartsOnDouble.hashCode,
+        darts.hashCode,
+      );
 
   @override
   String toString() {

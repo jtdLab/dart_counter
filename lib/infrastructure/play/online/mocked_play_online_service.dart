@@ -6,7 +6,7 @@ import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
-import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/game/type.dart';

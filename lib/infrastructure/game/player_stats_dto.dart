@@ -1,12 +1,10 @@
 import 'package:dart_client/dart_client.dart' as dc;
 import 'package:dart_game/dart_game.dart' as ex;
-import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'stats_dto.freezed.dart';
-part 'stats_dto.g.dart';
-
-// TODO shared in play and game history content and file has to be relocated or split up ?
+part 'player_stats_dto.freezed.dart';
+part 'player_stats_dto.g.dart';
 
 @freezed
 class PlayerStatsDto with _$PlayerStatsDto {

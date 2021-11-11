@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/game/leg.dart';
-import 'package:dart_counter/domain/play/stats.dart';
+import 'package:dart_counter/domain/game/leg_stats.dart';
 import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,13 +16,6 @@ class LegDto with _$LegDto {
   }) = _LegDto;
 
   const LegDto._();
-
-  factory LegDto.fromExternal(ex.Leg leg) {
-    return LegDto(
-      startingPoints: leg.startingPoints,
-      throws: leg.throws.map((t) => ThrowDto.fromExternal(t)).toList(),
-    );
-  }
 
   Leg toDomain() {
     final external = toExternal();
@@ -46,6 +39,13 @@ class LegDto with _$LegDto {
         hundredSixtyPlus: external.hundredSixtyPlus,
         hundredEighty: external.hundredEighty,
       ),
+    );
+  }
+
+  factory LegDto.fromExternal(ex.Leg leg) {
+    return LegDto(
+      startingPoints: leg.startingPoints,
+      throws: leg.throws.map((t) => ThrowDto.fromExternal(t)).toList(),
     );
   }
 

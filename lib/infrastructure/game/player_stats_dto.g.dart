@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'stats_dto.dart';
+part of 'player_stats_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
