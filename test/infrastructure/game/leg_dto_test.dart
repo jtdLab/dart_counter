@@ -1,5 +1,4 @@
-/**
- * import 'package:dart_counter/domain/game/leg.dart';
+import 'package:dart_counter/domain/game/leg.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/infrastructure/game/leg_dto.dart';
 import 'package:dart_counter/infrastructure/game/throw_dto.dart';
@@ -7,7 +6,6 @@ import 'package:dart_game/dart_game.dart' as ex;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
-
 
 void main() {
   const won = false;
@@ -22,11 +20,6 @@ void main() {
     points: points,
     dartsThrown: dartsThrown,
     dartsOnDouble: dartsOnDouble,
-  );
-
-  final domain = Leg(
-    throws: KtList.from([throwDomain, throwDomain]),
-    won: won,
   );
 
   final throwExternal = ex.Throw(
@@ -100,5 +93,3 @@ void main() {
     expect(json['value'], value);
   });
 }
-
- */

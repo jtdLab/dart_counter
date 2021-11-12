@@ -11,23 +11,27 @@ part 'set_dto.g.dart';
 @freezed
 class SetDto with _$SetDto {
   const factory SetDto({
-    required int startingPoints,
     required List<LegDto> legs,
   }) = _SetDto;
 
   const SetDto._();
 
-  Set toDomain() {
-    final external = toExternal();
+  Set toDomain({
+    required int startingPoints,
+  }) {
+    final external = toExternal(startingPoints: startingPoints);
+
     return Set(
-      legs: KtList.from(legs.map((legDto) => legDto.toDomain())),
+      legs: KtList.from(
+        legs.map((legDto) => legDto.toDomain(startingPoints: startingPoints)),
+      ),
       won: external.won,
       wonLegs: external.wonLegs,
       // TODO more stats from external sets e.g best leg darts Thrown etc.
       stats: SetStats(
-        average: external.average ?? 0,
-        checkoutPercentage: external.checkoutPercentage ?? 0,
-        firstNineAverage: external.firstNineAverage ?? 0,
+        average: external.average,
+        checkoutPercentage: external.checkoutPercentage,
+        firstNineAverage: external.firstNineAverage,
         firstDartAverage: external.firstDartAverage,
         secondDartAverage: external.secondDartAverage,
         thirdDartAverage: external.thirdDartAverage,
@@ -45,15 +49,18 @@ class SetDto with _$SetDto {
 
   factory SetDto.fromExternal(ex.Set set) {
     return SetDto(
-      startingPoints: set.startingPoints,
       legs: set.legs.map((leg) => LegDto.fromExternal(leg)).toList(),
     );
   }
 
-  ex.Set toExternal() {
+  ex.Set toExternal({
+    required int startingPoints,
+  }) {
     return ex.Set.fromData(
       startingPoints: startingPoints,
-      legs: legs.map((legDto) => legDto.toExternal()).toList(),
+      legs: legs
+          .map((legDto) => legDto.toExternal(startingPoints: startingPoints))
+          .toList(),
     );
   }
 

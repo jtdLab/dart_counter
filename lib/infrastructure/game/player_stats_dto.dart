@@ -1,5 +1,4 @@
-import 'package:dart_client/dart_client.dart' as dc;
-import 'package:dart_game/dart_game.dart' as ex;
+import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,9 +8,9 @@ part 'player_stats_dto.g.dart';
 @freezed
 class PlayerStatsDto with _$PlayerStatsDto {
   const factory PlayerStatsDto({
-    required double average,
+    double? average,
     double? checkoutPercentage,
-    required double firstNineAverage,
+    double? firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,
     int? worstLegDartsThrown,
@@ -21,42 +20,17 @@ class PlayerStatsDto with _$PlayerStatsDto {
     double? firstDartAverage,
     double? secondDartAverage,
     double? thirdDartAverage,
-    required int fourtyPlus,
-    required int sixtyPlus,
-    required int eightyPlus,
-    required int hundredPlus,
-    required int hundredTwentyPlus,
-    required int hundredFourtyPlus,
-    required int hundredSixtyPlus,
-    required int hundredEighty,
+    int? fourtyPlus,
+    int? sixtyPlus,
+    int? eightyPlus,
+    int? hundredPlus,
+    int? hundredTwentyPlus,
+    int? hundredFourtyPlus,
+    int? hundredSixtyPlus,
+    int? hundredEighty,
   }) = _PlayerStatsDto;
 
   const PlayerStatsDto._();
-
-  factory PlayerStatsDto.fromDomain(PlayerStats stats) {
-    return PlayerStatsDto(
-      average: stats.average,
-      checkoutPercentage: stats.checkoutPercentage,
-      firstNineAverage: stats.firstNineAverage,
-      bestLegDartsThrown: stats.bestLegDartsThrown,
-      bestLegAverage: stats.bestLegAverage,
-      worstLegDartsThrown: stats.worstLegDartsThrown,
-      worstLegAverage: stats.worstLegAverage,
-      averageDartsPerLeg: stats.averageDartsPerLeg,
-      highestFinish: stats.highestFinish,
-      firstDartAverage: stats.firstDartAverage,
-      secondDartAverage: stats.secondDartAverage,
-      thirdDartAverage: stats.thirdDartAverage,
-      fourtyPlus: stats.fourtyPlus,
-      sixtyPlus: stats.sixtyPlus,
-      eightyPlus: stats.eightyPlus,
-      hundredPlus: stats.hundredPlus,
-      hundredTwentyPlus: stats.hundredTwentyPlus,
-      hundredFourtyPlus: stats.hundredFourtyPlus,
-      hundredSixtyPlus: stats.hundredSixtyPlus,
-      hundredEighty: stats.hundredEighty,
-    );
-  }
 
   PlayerStats toDomain() {
     return PlayerStats(
@@ -83,37 +57,7 @@ class PlayerStatsDto with _$PlayerStatsDto {
     );
   }
 
-// TODO remove or keep
-/**
- *   factory PlayerStatsDto.fromExternal(ex.Stats stats) {
-    return PlayerStatsDto(
-      average: stats.average,
-      checkoutPercentage: stats.checkoutPercentage,
-      firstNineAverage: stats.firstNineAverage,
-      bestLegDartsThrown: stats.bestLegDartsThrown,
-      bestLegAverage: stats.bestLegAverage,
-      worstLegDartsThrown: stats.worstLegDartsThrown,
-      worstLegAverage: stats.worstLegAverage,
-      averageDartsPerLeg: stats.averageDartsPerLeg,
-      firstDartAverage: stats.firstDartAverage,
-      secondDartAverage: stats.secondDartAverage,
-      thirdDartAverage: stats.thirdDartAverage,
-      highestFinish: stats.highestFinish,
-      fourtyPlus: stats.fourtyPlus,
-      sixtyPlus: stats.sixtyPlus,
-      eightyPlus: stats.eightyPlus,
-      hundredPlus: stats.hundredPlus,
-      hundredTwentyPlus: stats.hundredTwentyPlus,
-      hundredFourtyPlus: stats.hundredFourtyPlus,
-      hundredSixtyPlus: stats.hundredSixtyPlus,
-      hundredEighty: stats.hundredEighty,
-    );
-  }
-
- */
-
-// TODO remove or keep
-  factory PlayerStatsDto.fromClient(dc.Stats stats) {
+  factory PlayerStatsDto.fromClient(c.Stats stats) {
     return PlayerStatsDto(
       average: stats.average,
       checkoutPercentage: stats.checkoutPercentage,

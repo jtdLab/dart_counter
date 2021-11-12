@@ -8,9 +8,9 @@ part 'stats_dto.g.dart';
 @freezed
 class StatsDto with _$StatsDto {
   const factory StatsDto({
-    required double average,
-    required double checkoutPercentage,
-    required double firstNineAverage,
+    double? average,
+    double? checkoutPercentage,
+    double? firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,
     int? worstLegDartsThrown,
@@ -20,14 +20,14 @@ class StatsDto with _$StatsDto {
     double? firstDartAverage,
     double? secondDartAverage,
     double? thirdDartAverage,
-    required int fourtyPlus,
-    required int sixtyPlus,
-    required int eightyPlus,
-    required int hundredPlus,
-    required int hundredTwentyPlus,
-    required int hundredFourtyPlus,
-    required int hundredSixtyPlus,
-    required int hundredEighty,
+    int? fourtyPlus,
+    int? sixtyPlus,
+    int? eightyPlus,
+    int? hundredPlus,
+    int? hundredTwentyPlus,
+    int? hundredFourtyPlus,
+    int? hundredSixtyPlus,
+    int? hundredEighty,
   }) = _StatsDto;
 
   const StatsDto._();

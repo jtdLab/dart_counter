@@ -2,16 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game/mode.dart';
-import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
-import 'package:dart_counter/infrastructure/game/converters.dart';
 import 'package:dart_counter/infrastructure/game/abstract_player_dto.dart';
+import 'package:dart_counter/infrastructure/game/converters.dart';
+import 'package:dart_counter/infrastructure/game/mode_x.dart';
+import 'package:dart_counter/infrastructure/game/status_x.dart';
+import 'package:dart_counter/infrastructure/game/type_x.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
 
 import '../abstract_game_dto.dart';
+import 'abstract_offline_player_dto.dart';
 
 part 'offline_game_dto.freezed.dart';
 part 'offline_game_dto.g.dart';
@@ -33,20 +36,58 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
 
   const OfflineGameDto._();
 
+  OfflineGame toDomain() {
+    final legsNeededToWin = type == Type.legs.toShortString()
+        ? mode == Mode.firstTo.toShortString()
+            ? size
+            : (size / 2).round()
+        : 3;
+    final setsNeededToWin = type == Type.sets.toShortString()
+        ? mode == Mode.firstTo.toShortString()
+            ? size
+            : (size / 2).round()
+        : null;
+
+    return OfflineGame(
+      id: UniqueId.fromUniqueString(id),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
+      status: StatusX.parse(status),
+      mode: ModeX.parse(mode),
+      size: size,
+      type: TypeX.parse(type),
+      startingPoints: startingPoints,
+      players: KtList.from(
+        players.map(
+          (player) {
+            if (player is OfflinePlayerDto) {
+              return player.toDomain(
+                startingPoints: startingPoints,
+                legsNeededToWin: legsNeededToWin,
+                setsNeededToWin: setsNeededToWin,
+              );
+            } else if (player is DartBotDto) {
+              return player.toDomain(
+                startingPoints: startingPoints,
+                legsNeededToWin: legsNeededToWin,
+                setsNeededToWin: setsNeededToWin,
+              );
+            } else {
+              throw Error();
+            }
+          },
+        ),
+      ),
+    );
+  }
+
   factory OfflineGameDto.fromExternal(ex.Game game) {
     return OfflineGameDto(
       id: const Uuid().v1(),
       createdAt: DateTime.now().millisecondsSinceEpoch,
-      status: game.status == ex.Status.pending
-          ? 'pending'
-          : game.status == ex.Status.running
-              ? 'running'
-              : game.status == ex.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
+      status: game.status.toShortString(),
+      mode: game.mode.toShortString(),
       size: game.size,
-      type: game.type == ex.Type.legs ? 'legs' : 'sets',
+      type: game.type.toShortString(),
       startingPoints: game.startingPoints,
       players: game.players.map(
         (player) {
@@ -57,37 +98,6 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
           }
         },
       ).toList(),
-    );
-  }
-
-  OfflineGame toDomain() {
-    return OfflineGame(
-      id: UniqueId.fromUniqueString(id),
-      createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt),
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
-      size: size,
-      type: type == 'legs' ? Type.legs : Type.sets,
-      startingPoints: startingPoints,
-      players: KtList.from(
-        players.map(
-          (player) {
-            if (player is OfflinePlayerDto) {
-              return player.toDomain();
-            } else if (player is DartBotDto) {
-              return player.toDomain();
-            } else {
-              throw Error();
-            }
-          },
-        ),
-      ),
     );
   }
 

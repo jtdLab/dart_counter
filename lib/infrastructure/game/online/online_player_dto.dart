@@ -25,16 +25,28 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
 
   const OnlinePlayerDto._();
 
-  OnlinePlayer toDomain() {
+  OnlinePlayer toDomain({
+    required int startingPoints,
+    required int legsNeededToWin,
+    int? setsNeededToWin,
+  }) {
     return OnlinePlayer(
       id: UniqueId.fromUniqueString(this.id),
       name: name,
       legsOrSets: legsOrSets.fold(
         (legDtos) => left(
-          KtList.from(legDtos.map((legDto) => legDto.toDomain())),
+          KtList.from(
+            legDtos.map(
+              (legDto) => legDto.toDomain(startingPoints: startingPoints),
+            ),
+          ),
         ),
         (setDtos) => right(
-          KtList.from(setDtos.map((setDto) => setDto.toDomain())),
+          KtList.from(
+            setDtos.map(
+              (setDto) => setDto.toDomain(startingPoints: startingPoints),
+            ),
+          ),
         ),
       ),
       won: false,

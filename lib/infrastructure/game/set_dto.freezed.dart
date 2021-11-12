@@ -21,9 +21,8 @@ SetDto _$SetDtoFromJson(Map<String, dynamic> json) {
 class _$SetDtoTearOff {
   const _$SetDtoTearOff();
 
-  _SetDto call({required int startingPoints, required List<LegDto> legs}) {
+  _SetDto call({required List<LegDto> legs}) {
     return _SetDto(
-      startingPoints: startingPoints,
       legs: legs,
     );
   }
@@ -38,7 +37,6 @@ const $SetDto = _$SetDtoTearOff();
 
 /// @nodoc
 mixin _$SetDto {
-  int get startingPoints => throw _privateConstructorUsedError;
   List<LegDto> get legs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +48,7 @@ mixin _$SetDto {
 abstract class $SetDtoCopyWith<$Res> {
   factory $SetDtoCopyWith(SetDto value, $Res Function(SetDto) then) =
       _$SetDtoCopyWithImpl<$Res>;
-  $Res call({int startingPoints, List<LegDto> legs});
+  $Res call({List<LegDto> legs});
 }
 
 /// @nodoc
@@ -63,14 +61,9 @@ class _$SetDtoCopyWithImpl<$Res> implements $SetDtoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? startingPoints = freezed,
     Object? legs = freezed,
   }) {
     return _then(_value.copyWith(
-      startingPoints: startingPoints == freezed
-          ? _value.startingPoints
-          : startingPoints // ignore: cast_nullable_to_non_nullable
-              as int,
       legs: legs == freezed
           ? _value.legs
           : legs // ignore: cast_nullable_to_non_nullable
@@ -84,7 +77,7 @@ abstract class _$SetDtoCopyWith<$Res> implements $SetDtoCopyWith<$Res> {
   factory _$SetDtoCopyWith(_SetDto value, $Res Function(_SetDto) then) =
       __$SetDtoCopyWithImpl<$Res>;
   @override
-  $Res call({int startingPoints, List<LegDto> legs});
+  $Res call({List<LegDto> legs});
 }
 
 /// @nodoc
@@ -98,14 +91,9 @@ class __$SetDtoCopyWithImpl<$Res> extends _$SetDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? startingPoints = freezed,
     Object? legs = freezed,
   }) {
     return _then(_SetDto(
-      startingPoints: startingPoints == freezed
-          ? _value.startingPoints
-          : startingPoints // ignore: cast_nullable_to_non_nullable
-              as int,
       legs: legs == freezed
           ? _value.legs
           : legs // ignore: cast_nullable_to_non_nullable
@@ -117,20 +105,17 @@ class __$SetDtoCopyWithImpl<$Res> extends _$SetDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetDto extends _SetDto {
-  const _$_SetDto({required this.startingPoints, required this.legs})
-      : super._();
+  const _$_SetDto({required this.legs}) : super._();
 
   factory _$_SetDto.fromJson(Map<String, dynamic> json) =>
       _$$_SetDtoFromJson(json);
 
   @override
-  final int startingPoints;
-  @override
   final List<LegDto> legs;
 
   @override
   String toString() {
-    return 'SetDto(startingPoints: $startingPoints, legs: $legs)';
+    return 'SetDto(legs: $legs)';
   }
 
   @override
@@ -138,14 +123,12 @@ class _$_SetDto extends _SetDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetDto &&
-            (identical(other.startingPoints, startingPoints) ||
-                other.startingPoints == startingPoints) &&
             const DeepCollectionEquality().equals(other.legs, legs));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, startingPoints, const DeepCollectionEquality().hash(legs));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(legs));
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +142,11 @@ class _$_SetDto extends _SetDto {
 }
 
 abstract class _SetDto extends SetDto {
-  const factory _SetDto(
-      {required int startingPoints, required List<LegDto> legs}) = _$_SetDto;
+  const factory _SetDto({required List<LegDto> legs}) = _$_SetDto;
   const _SetDto._() : super._();
 
   factory _SetDto.fromJson(Map<String, dynamic> json) = _$_SetDto.fromJson;
 
-  @override
-  int get startingPoints;
   @override
   List<LegDto> get legs;
   @override

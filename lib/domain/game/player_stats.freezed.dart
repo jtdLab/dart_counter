@@ -18,9 +18,9 @@ class _$PlayerStatsTearOff {
   const _$PlayerStatsTearOff();
 
   _PlayerStats call(
-      {double average = 0,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage = 0,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -30,14 +30,14 @@ class _$PlayerStatsTearOff {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus = 0,
-      int sixtyPlus = 0,
-      int eightyPlus = 0,
-      int hundredPlus = 0,
-      int hundredTwentyPlus = 0,
-      int hundredFourtyPlus = 0,
-      int hundredSixtyPlus = 0,
-      int hundredEighty = 0}) {
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) {
     return _PlayerStats(
       average: average,
       checkoutPercentage: checkoutPercentage,
@@ -68,9 +68,9 @@ const $PlayerStats = _$PlayerStatsTearOff();
 
 /// @nodoc
 mixin _$PlayerStats {
-  double get average => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
   double? get checkoutPercentage => throw _privateConstructorUsedError;
-  double get firstNineAverage => throw _privateConstructorUsedError;
+  double? get firstNineAverage => throw _privateConstructorUsedError;
   int? get bestLegDartsThrown => throw _privateConstructorUsedError;
   double? get bestLegAverage => throw _privateConstructorUsedError;
   int? get worstLegDartsThrown => throw _privateConstructorUsedError;
@@ -80,14 +80,14 @@ mixin _$PlayerStats {
   double? get firstDartAverage => throw _privateConstructorUsedError;
   double? get secondDartAverage => throw _privateConstructorUsedError;
   double? get thirdDartAverage => throw _privateConstructorUsedError;
-  int get fourtyPlus => throw _privateConstructorUsedError;
-  int get sixtyPlus => throw _privateConstructorUsedError;
-  int get eightyPlus => throw _privateConstructorUsedError;
-  int get hundredPlus => throw _privateConstructorUsedError;
-  int get hundredTwentyPlus => throw _privateConstructorUsedError;
-  int get hundredFourtyPlus => throw _privateConstructorUsedError;
-  int get hundredSixtyPlus => throw _privateConstructorUsedError;
-  int get hundredEighty => throw _privateConstructorUsedError;
+  int? get fourtyPlus => throw _privateConstructorUsedError;
+  int? get sixtyPlus => throw _privateConstructorUsedError;
+  int? get eightyPlus => throw _privateConstructorUsedError;
+  int? get hundredPlus => throw _privateConstructorUsedError;
+  int? get hundredTwentyPlus => throw _privateConstructorUsedError;
+  int? get hundredFourtyPlus => throw _privateConstructorUsedError;
+  int? get hundredSixtyPlus => throw _privateConstructorUsedError;
+  int? get hundredEighty => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerStatsCopyWith<PlayerStats> get copyWith =>
@@ -100,9 +100,9 @@ abstract class $PlayerStatsCopyWith<$Res> {
           PlayerStats value, $Res Function(PlayerStats) then) =
       _$PlayerStatsCopyWithImpl<$Res>;
   $Res call(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -112,14 +112,14 @@ abstract class $PlayerStatsCopyWith<$Res> {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -157,7 +157,7 @@ class _$PlayerStatsCopyWithImpl<$Res> implements $PlayerStatsCopyWith<$Res> {
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
@@ -165,7 +165,7 @@ class _$PlayerStatsCopyWithImpl<$Res> implements $PlayerStatsCopyWith<$Res> {
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       bestLegDartsThrown: bestLegDartsThrown == freezed
           ? _value.bestLegDartsThrown
           : bestLegDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -205,35 +205,35 @@ class _$PlayerStatsCopyWithImpl<$Res> implements $PlayerStatsCopyWith<$Res> {
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -246,9 +246,9 @@ abstract class _$PlayerStatsCopyWith<$Res>
       __$PlayerStatsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -258,14 +258,14 @@ abstract class _$PlayerStatsCopyWith<$Res>
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -305,7 +305,7 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
@@ -313,7 +313,7 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       bestLegDartsThrown: bestLegDartsThrown == freezed
           ? _value.bestLegDartsThrown
           : bestLegDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -353,35 +353,35 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -390,9 +390,9 @@ class __$PlayerStatsCopyWithImpl<$Res> extends _$PlayerStatsCopyWithImpl<$Res>
 
 class _$_PlayerStats implements _PlayerStats {
   const _$_PlayerStats(
-      {this.average = 0,
+      {this.average,
       this.checkoutPercentage,
-      this.firstNineAverage = 0,
+      this.firstNineAverage,
       this.bestLegDartsThrown,
       this.bestLegAverage,
       this.worstLegDartsThrown,
@@ -402,23 +402,21 @@ class _$_PlayerStats implements _PlayerStats {
       this.firstDartAverage,
       this.secondDartAverage,
       this.thirdDartAverage,
-      this.fourtyPlus = 0,
-      this.sixtyPlus = 0,
-      this.eightyPlus = 0,
-      this.hundredPlus = 0,
-      this.hundredTwentyPlus = 0,
-      this.hundredFourtyPlus = 0,
-      this.hundredSixtyPlus = 0,
-      this.hundredEighty = 0});
+      this.fourtyPlus,
+      this.sixtyPlus,
+      this.eightyPlus,
+      this.hundredPlus,
+      this.hundredTwentyPlus,
+      this.hundredFourtyPlus,
+      this.hundredSixtyPlus,
+      this.hundredEighty});
 
-  @JsonKey(defaultValue: 0)
   @override
-  final double average;
+  final double? average;
   @override
   final double? checkoutPercentage;
-  @JsonKey(defaultValue: 0)
   @override
-  final double firstNineAverage;
+  final double? firstNineAverage;
   @override
   final int? bestLegDartsThrown;
   @override
@@ -437,30 +435,22 @@ class _$_PlayerStats implements _PlayerStats {
   final double? secondDartAverage;
   @override
   final double? thirdDartAverage;
-  @JsonKey(defaultValue: 0)
   @override
-  final int fourtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? fourtyPlus;
   @override
-  final int sixtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? sixtyPlus;
   @override
-  final int eightyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? eightyPlus;
   @override
-  final int hundredPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredPlus;
   @override
-  final int hundredTwentyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredTwentyPlus;
   @override
-  final int hundredFourtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredFourtyPlus;
   @override
-  final int hundredSixtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredSixtyPlus;
   @override
-  final int hundredEighty;
+  final int? hundredEighty;
 
   @override
   String toString() {
@@ -546,9 +536,9 @@ class _$_PlayerStats implements _PlayerStats {
 
 abstract class _PlayerStats implements PlayerStats {
   const factory _PlayerStats(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -558,21 +548,21 @@ abstract class _PlayerStats implements PlayerStats {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty}) = _$_PlayerStats;
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) = _$_PlayerStats;
 
   @override
-  double get average;
+  double? get average;
   @override
   double? get checkoutPercentage;
   @override
-  double get firstNineAverage;
+  double? get firstNineAverage;
   @override
   int? get bestLegDartsThrown;
   @override
@@ -592,21 +582,21 @@ abstract class _PlayerStats implements PlayerStats {
   @override
   double? get thirdDartAverage;
   @override
-  int get fourtyPlus;
+  int? get fourtyPlus;
   @override
-  int get sixtyPlus;
+  int? get sixtyPlus;
   @override
-  int get eightyPlus;
+  int? get eightyPlus;
   @override
-  int get hundredPlus;
+  int? get hundredPlus;
   @override
-  int get hundredTwentyPlus;
+  int? get hundredTwentyPlus;
   @override
-  int get hundredFourtyPlus;
+  int? get hundredFourtyPlus;
   @override
-  int get hundredSixtyPlus;
+  int? get hundredSixtyPlus;
   @override
-  int get hundredEighty;
+  int? get hundredEighty;
   @override
   @JsonKey(ignore: true)
   _$PlayerStatsCopyWith<_PlayerStats> get copyWith =>

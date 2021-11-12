@@ -22,9 +22,9 @@ class _$StatsDtoTearOff {
   const _$StatsDtoTearOff();
 
   _StatsDto call(
-      {required double average,
-      required double checkoutPercentage,
-      required double firstNineAverage,
+      {double? average,
+      double? checkoutPercentage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -34,14 +34,14 @@ class _$StatsDtoTearOff {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) {
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) {
     return _StatsDto(
       average: average,
       checkoutPercentage: checkoutPercentage,
@@ -76,9 +76,9 @@ const $StatsDto = _$StatsDtoTearOff();
 
 /// @nodoc
 mixin _$StatsDto {
-  double get average => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
-  double get firstNineAverage => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get firstNineAverage => throw _privateConstructorUsedError;
   int? get bestLegDartsThrown => throw _privateConstructorUsedError;
   double? get bestLegAverage => throw _privateConstructorUsedError;
   int? get worstLegDartsThrown => throw _privateConstructorUsedError;
@@ -88,14 +88,14 @@ mixin _$StatsDto {
   double? get firstDartAverage => throw _privateConstructorUsedError;
   double? get secondDartAverage => throw _privateConstructorUsedError;
   double? get thirdDartAverage => throw _privateConstructorUsedError;
-  int get fourtyPlus => throw _privateConstructorUsedError;
-  int get sixtyPlus => throw _privateConstructorUsedError;
-  int get eightyPlus => throw _privateConstructorUsedError;
-  int get hundredPlus => throw _privateConstructorUsedError;
-  int get hundredTwentyPlus => throw _privateConstructorUsedError;
-  int get hundredFourtyPlus => throw _privateConstructorUsedError;
-  int get hundredSixtyPlus => throw _privateConstructorUsedError;
-  int get hundredEighty => throw _privateConstructorUsedError;
+  int? get fourtyPlus => throw _privateConstructorUsedError;
+  int? get sixtyPlus => throw _privateConstructorUsedError;
+  int? get eightyPlus => throw _privateConstructorUsedError;
+  int? get hundredPlus => throw _privateConstructorUsedError;
+  int? get hundredTwentyPlus => throw _privateConstructorUsedError;
+  int? get hundredFourtyPlus => throw _privateConstructorUsedError;
+  int? get hundredSixtyPlus => throw _privateConstructorUsedError;
+  int? get hundredEighty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -108,9 +108,9 @@ abstract class $StatsDtoCopyWith<$Res> {
   factory $StatsDtoCopyWith(StatsDto value, $Res Function(StatsDto) then) =
       _$StatsDtoCopyWithImpl<$Res>;
   $Res call(
-      {double average,
-      double checkoutPercentage,
-      double firstNineAverage,
+      {double? average,
+      double? checkoutPercentage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -120,14 +120,14 @@ abstract class $StatsDtoCopyWith<$Res> {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -165,15 +165,15 @@ class _$StatsDtoCopyWithImpl<$Res> implements $StatsDtoCopyWith<$Res> {
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       bestLegDartsThrown: bestLegDartsThrown == freezed
           ? _value.bestLegDartsThrown
           : bestLegDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -213,35 +213,35 @@ class _$StatsDtoCopyWithImpl<$Res> implements $StatsDtoCopyWith<$Res> {
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -252,9 +252,9 @@ abstract class _$StatsDtoCopyWith<$Res> implements $StatsDtoCopyWith<$Res> {
       __$StatsDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double average,
-      double checkoutPercentage,
-      double firstNineAverage,
+      {double? average,
+      double? checkoutPercentage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -264,14 +264,14 @@ abstract class _$StatsDtoCopyWith<$Res> implements $StatsDtoCopyWith<$Res> {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -310,15 +310,15 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       bestLegDartsThrown: bestLegDartsThrown == freezed
           ? _value.bestLegDartsThrown
           : bestLegDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -358,35 +358,35 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -395,9 +395,9 @@ class __$StatsDtoCopyWithImpl<$Res> extends _$StatsDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_StatsDto extends _StatsDto {
   const _$_StatsDto(
-      {required this.average,
-      required this.checkoutPercentage,
-      required this.firstNineAverage,
+      {this.average,
+      this.checkoutPercentage,
+      this.firstNineAverage,
       this.bestLegDartsThrown,
       this.bestLegAverage,
       this.worstLegDartsThrown,
@@ -407,25 +407,25 @@ class _$_StatsDto extends _StatsDto {
       this.firstDartAverage,
       this.secondDartAverage,
       this.thirdDartAverage,
-      required this.fourtyPlus,
-      required this.sixtyPlus,
-      required this.eightyPlus,
-      required this.hundredPlus,
-      required this.hundredTwentyPlus,
-      required this.hundredFourtyPlus,
-      required this.hundredSixtyPlus,
-      required this.hundredEighty})
+      this.fourtyPlus,
+      this.sixtyPlus,
+      this.eightyPlus,
+      this.hundredPlus,
+      this.hundredTwentyPlus,
+      this.hundredFourtyPlus,
+      this.hundredSixtyPlus,
+      this.hundredEighty})
       : super._();
 
   factory _$_StatsDto.fromJson(Map<String, dynamic> json) =>
       _$$_StatsDtoFromJson(json);
 
   @override
-  final double average;
+  final double? average;
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @override
-  final double firstNineAverage;
+  final double? firstNineAverage;
   @override
   final int? bestLegDartsThrown;
   @override
@@ -445,21 +445,21 @@ class _$_StatsDto extends _StatsDto {
   @override
   final double? thirdDartAverage;
   @override
-  final int fourtyPlus;
+  final int? fourtyPlus;
   @override
-  final int sixtyPlus;
+  final int? sixtyPlus;
   @override
-  final int eightyPlus;
+  final int? eightyPlus;
   @override
-  final int hundredPlus;
+  final int? hundredPlus;
   @override
-  final int hundredTwentyPlus;
+  final int? hundredTwentyPlus;
   @override
-  final int hundredFourtyPlus;
+  final int? hundredFourtyPlus;
   @override
-  final int hundredSixtyPlus;
+  final int? hundredSixtyPlus;
   @override
-  final int hundredEighty;
+  final int? hundredEighty;
 
   @override
   String toString() {
@@ -550,9 +550,9 @@ class _$_StatsDto extends _StatsDto {
 
 abstract class _StatsDto extends StatsDto {
   const factory _StatsDto(
-      {required double average,
-      required double checkoutPercentage,
-      required double firstNineAverage,
+      {double? average,
+      double? checkoutPercentage,
+      double? firstNineAverage,
       int? bestLegDartsThrown,
       double? bestLegAverage,
       int? worstLegDartsThrown,
@@ -562,24 +562,24 @@ abstract class _StatsDto extends StatsDto {
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      required int fourtyPlus,
-      required int sixtyPlus,
-      required int eightyPlus,
-      required int hundredPlus,
-      required int hundredTwentyPlus,
-      required int hundredFourtyPlus,
-      required int hundredSixtyPlus,
-      required int hundredEighty}) = _$_StatsDto;
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) = _$_StatsDto;
   const _StatsDto._() : super._();
 
   factory _StatsDto.fromJson(Map<String, dynamic> json) = _$_StatsDto.fromJson;
 
   @override
-  double get average;
+  double? get average;
   @override
-  double get checkoutPercentage;
+  double? get checkoutPercentage;
   @override
-  double get firstNineAverage;
+  double? get firstNineAverage;
   @override
   int? get bestLegDartsThrown;
   @override
@@ -599,21 +599,21 @@ abstract class _StatsDto extends StatsDto {
   @override
   double? get thirdDartAverage;
   @override
-  int get fourtyPlus;
+  int? get fourtyPlus;
   @override
-  int get sixtyPlus;
+  int? get sixtyPlus;
   @override
-  int get eightyPlus;
+  int? get eightyPlus;
   @override
-  int get hundredPlus;
+  int? get hundredPlus;
   @override
-  int get hundredTwentyPlus;
+  int? get hundredTwentyPlus;
   @override
-  int get hundredFourtyPlus;
+  int? get hundredFourtyPlus;
   @override
-  int get hundredSixtyPlus;
+  int? get hundredSixtyPlus;
   @override
-  int get hundredEighty;
+  int? get hundredEighty;
   @override
   @JsonKey(ignore: true)
   _$StatsDtoCopyWith<_StatsDto> get copyWith =>

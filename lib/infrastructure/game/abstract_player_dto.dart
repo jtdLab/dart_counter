@@ -12,6 +12,3 @@ abstract class AbstractPlayerDto {
   //@LegsOrSetsConverter() // TODO need this annotation ?
   Either<List<LegDto>, List<SetDto>> get legsOrSets;
 }
-
-abstract class AbstractOfflinePlayerDto extends AbstractPlayerDto {}
-// TODO move to offline section

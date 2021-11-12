@@ -112,7 +112,8 @@ class _GameHistoryCard extends StatelessWidget {
                           ),
                         ),
                         AutoSizeText(
-                          game.players[0].stats.average.toStringAsFixed(2),
+                          game.players[0].stats.average?.toStringAsFixed(2) ??
+                              '-',
                           maxLines: 1,
                           minFontSize: 8,
                           maxFontSize: 14,

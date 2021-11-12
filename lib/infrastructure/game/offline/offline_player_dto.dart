@@ -7,8 +7,8 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import '../abstract_player_dto.dart';
 import '../converters.dart';
+import 'abstract_offline_player_dto.dart';
 
 part 'offline_player_dto.freezed.dart';
 part 'offline_player_dto.g.dart';
@@ -27,6 +27,34 @@ class OfflinePlayerDto
 
   const OfflinePlayerDto._();
 
+  OfflinePlayer toDomain({
+    required int startingPoints,
+    required int legsNeededToWin,
+    int? setsNeededToWin,
+  }) {
+    return OfflinePlayer(
+      id: UniqueId.fromUniqueString(this.id),
+      name: name,
+      legsOrSets: legsOrSets.fold(
+        (legDtos) => left(
+          KtList.from(
+            legDtos.map(
+              (legDto) => legDto.toDomain(startingPoints: startingPoints),
+            ),
+          ),
+        ),
+        (setDtos) => right(
+          KtList.from(
+            setDtos.map(
+              (setDto) => setDto.toDomain(startingPoints: startingPoints),
+            ),
+          ),
+        ),
+      ),
+      //stats: _stats().toDomain(),
+    );
+  }
+
   factory OfflinePlayerDto.fromExternal(ex.Player player) {
     return OfflinePlayerDto(
       id: player.id,
@@ -35,22 +63,6 @@ class OfflinePlayerDto
         (legs) => left(legs.map((leg) => LegDto.fromExternal(leg)).toList()),
         (sets) => right(sets.map((set) => SetDto.fromExternal(set)).toList()),
       ),
-    );
-  }
-
-  OfflinePlayer toDomain() {
-    return OfflinePlayer(
-      id: UniqueId.fromUniqueString(this.id),
-      name: name,
-      legsOrSets: legsOrSets.fold(
-        (legDtos) => left(
-          KtList.from(legDtos.map((legDto) => legDto.toDomain())),
-        ),
-        (setDtos) => right(
-          KtList.from(setDtos.map((setDto) => setDto.toDomain())),
-        ),
-      ),
-      //stats: _stats().toDomain(),
     );
   }
 

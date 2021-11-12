@@ -2,11 +2,13 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
+
 import '../abstract_game.dart';
-import '../mode.dart';
 import '../abstract_player.dart';
+import '../mode.dart';
 import '../status.dart';
 import '../type.dart';
+import 'abstract_offline_player.dart';
 
 part 'offline_game.freezed.dart';
 

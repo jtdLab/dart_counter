@@ -6,20 +6,20 @@ part 'leg_stats.freezed.dart';
 @freezed
 class LegStats with _$LegStats {
   const factory LegStats({
-    @Default(0) double average,
+    double? average,
     double? checkoutPercentage,
-    @Default(0) double firstNineAverage,
+    double? firstNineAverage,
     double? firstDartAverage,
     double? secondDartAverage,
     double? thirdDartAverage,
-    @Default(0) int fourtyPlus,
-    @Default(0) int sixtyPlus,
-    @Default(0) int eightyPlus,
-    @Default(0) int hundredPlus,
-    @Default(0) int hundredTwentyPlus,
-    @Default(0) int hundredFourtyPlus,
-    @Default(0) int hundredSixtyPlus,
-    @Default(0) int hundredEighty,
+    int? fourtyPlus,
+    int? sixtyPlus,
+    int? eightyPlus,
+    int? hundredPlus,
+    int? hundredTwentyPlus,
+    int? hundredFourtyPlus,
+    int? hundredSixtyPlus,
+    int? hundredEighty,
   }) = _LegStats;
 
   factory LegStats.dummy() => LegStats(

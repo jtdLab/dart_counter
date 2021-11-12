@@ -370,7 +370,7 @@ class _OnePlayerFooter extends StatelessWidget {
                 ),
                 _OnePlayerStatDisplayer(
                   icon: AppImages.averageWhite,
-                  value: player.stats.average.toStringAsFixed(2),
+                  value: player.stats.average?.toStringAsFixed(2),
                 ),
                 _OnePlayerStatDisplayer(
                   icon: AppImages.checkoutPercentageWhite,
@@ -655,7 +655,7 @@ class _FourPlayerDisplayer extends StatelessWidget {
 
 class _FourPlayerStatsDisplayer extends StatelessWidget {
   final int dartsThrownCurrentLeg;
-  final double average;
+  final double? average;
   final double? checkoutPercentage;
 
   const _FourPlayerStatsDisplayer({
@@ -684,7 +684,7 @@ class _FourPlayerStatsDisplayer extends StatelessWidget {
             flex: 5,
             child: _FourPlayerStatDisplayer(
               icon: AppImages.averageWhite,
-              value: average.toStringAsFixed(2),
+              value: average?.toStringAsFixed(2) ?? '-',
             ),
           ),
           const Spacer(),
@@ -2554,7 +2554,7 @@ class _PlayerItemFinishRecommendationDisplayer extends StatelessWidget {
 class _PlayerItemStatsDisplayer extends StatelessWidget {
   final bool isCurrentTurn;
   final int dartsThrownCurrentLeg;
-  final double average;
+  final double? average;
   final double? checkoutPercentage;
 
   const _PlayerItemStatsDisplayer({
@@ -2594,7 +2594,7 @@ class _PlayerItemStatsDisplayer extends StatelessWidget {
               icon: isCurrentTurn
                   ? AppImages.averageWhite
                   : AppImages.averageBlack,
-              value: average.toStringAsFixed(2),
+              value: average?.toStringAsFixed(2) ?? '-',
             ),
           ),
           const Spacer(),

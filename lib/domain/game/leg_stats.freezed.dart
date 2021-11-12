@@ -18,20 +18,20 @@ class _$LegStatsTearOff {
   const _$LegStatsTearOff();
 
   _LegStats call(
-      {double average = 0,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage = 0,
+      double? firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus = 0,
-      int sixtyPlus = 0,
-      int eightyPlus = 0,
-      int hundredPlus = 0,
-      int hundredTwentyPlus = 0,
-      int hundredFourtyPlus = 0,
-      int hundredSixtyPlus = 0,
-      int hundredEighty = 0}) {
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) {
     return _LegStats(
       average: average,
       checkoutPercentage: checkoutPercentage,
@@ -56,20 +56,20 @@ const $LegStats = _$LegStatsTearOff();
 
 /// @nodoc
 mixin _$LegStats {
-  double get average => throw _privateConstructorUsedError;
+  double? get average => throw _privateConstructorUsedError;
   double? get checkoutPercentage => throw _privateConstructorUsedError;
-  double get firstNineAverage => throw _privateConstructorUsedError;
+  double? get firstNineAverage => throw _privateConstructorUsedError;
   double? get firstDartAverage => throw _privateConstructorUsedError;
   double? get secondDartAverage => throw _privateConstructorUsedError;
   double? get thirdDartAverage => throw _privateConstructorUsedError;
-  int get fourtyPlus => throw _privateConstructorUsedError;
-  int get sixtyPlus => throw _privateConstructorUsedError;
-  int get eightyPlus => throw _privateConstructorUsedError;
-  int get hundredPlus => throw _privateConstructorUsedError;
-  int get hundredTwentyPlus => throw _privateConstructorUsedError;
-  int get hundredFourtyPlus => throw _privateConstructorUsedError;
-  int get hundredSixtyPlus => throw _privateConstructorUsedError;
-  int get hundredEighty => throw _privateConstructorUsedError;
+  int? get fourtyPlus => throw _privateConstructorUsedError;
+  int? get sixtyPlus => throw _privateConstructorUsedError;
+  int? get eightyPlus => throw _privateConstructorUsedError;
+  int? get hundredPlus => throw _privateConstructorUsedError;
+  int? get hundredTwentyPlus => throw _privateConstructorUsedError;
+  int? get hundredFourtyPlus => throw _privateConstructorUsedError;
+  int? get hundredSixtyPlus => throw _privateConstructorUsedError;
+  int? get hundredEighty => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LegStatsCopyWith<LegStats> get copyWith =>
@@ -81,20 +81,20 @@ abstract class $LegStatsCopyWith<$Res> {
   factory $LegStatsCopyWith(LegStats value, $Res Function(LegStats) then) =
       _$LegStatsCopyWithImpl<$Res>;
   $Res call(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -126,7 +126,7 @@ class _$LegStatsCopyWithImpl<$Res> implements $LegStatsCopyWith<$Res> {
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ class _$LegStatsCopyWithImpl<$Res> implements $LegStatsCopyWith<$Res> {
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstDartAverage: firstDartAverage == freezed
           ? _value.firstDartAverage
           : firstDartAverage // ignore: cast_nullable_to_non_nullable
@@ -150,35 +150,35 @@ class _$LegStatsCopyWithImpl<$Res> implements $LegStatsCopyWith<$Res> {
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -189,20 +189,20 @@ abstract class _$LegStatsCopyWith<$Res> implements $LegStatsCopyWith<$Res> {
       __$LegStatsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty});
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty});
 }
 
 /// @nodoc
@@ -235,7 +235,7 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
       average: average == freezed
           ? _value.average
           : average // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
@@ -243,7 +243,7 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
       firstNineAverage: firstNineAverage == freezed
           ? _value.firstNineAverage
           : firstNineAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       firstDartAverage: firstDartAverage == freezed
           ? _value.firstDartAverage
           : firstDartAverage // ignore: cast_nullable_to_non_nullable
@@ -259,35 +259,35 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
       fourtyPlus: fourtyPlus == freezed
           ? _value.fourtyPlus
           : fourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       sixtyPlus: sixtyPlus == freezed
           ? _value.sixtyPlus
           : sixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       eightyPlus: eightyPlus == freezed
           ? _value.eightyPlus
           : eightyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredPlus: hundredPlus == freezed
           ? _value.hundredPlus
           : hundredPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredTwentyPlus: hundredTwentyPlus == freezed
           ? _value.hundredTwentyPlus
           : hundredTwentyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredFourtyPlus: hundredFourtyPlus == freezed
           ? _value.hundredFourtyPlus
           : hundredFourtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredSixtyPlus: hundredSixtyPlus == freezed
           ? _value.hundredSixtyPlus
           : hundredSixtyPlus // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       hundredEighty: hundredEighty == freezed
           ? _value.hundredEighty
           : hundredEighty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -296,59 +296,49 @@ class __$LegStatsCopyWithImpl<$Res> extends _$LegStatsCopyWithImpl<$Res>
 
 class _$_LegStats implements _LegStats {
   const _$_LegStats(
-      {this.average = 0,
+      {this.average,
       this.checkoutPercentage,
-      this.firstNineAverage = 0,
+      this.firstNineAverage,
       this.firstDartAverage,
       this.secondDartAverage,
       this.thirdDartAverage,
-      this.fourtyPlus = 0,
-      this.sixtyPlus = 0,
-      this.eightyPlus = 0,
-      this.hundredPlus = 0,
-      this.hundredTwentyPlus = 0,
-      this.hundredFourtyPlus = 0,
-      this.hundredSixtyPlus = 0,
-      this.hundredEighty = 0});
+      this.fourtyPlus,
+      this.sixtyPlus,
+      this.eightyPlus,
+      this.hundredPlus,
+      this.hundredTwentyPlus,
+      this.hundredFourtyPlus,
+      this.hundredSixtyPlus,
+      this.hundredEighty});
 
-  @JsonKey(defaultValue: 0)
   @override
-  final double average;
+  final double? average;
   @override
   final double? checkoutPercentage;
-  @JsonKey(defaultValue: 0)
   @override
-  final double firstNineAverage;
+  final double? firstNineAverage;
   @override
   final double? firstDartAverage;
   @override
   final double? secondDartAverage;
   @override
   final double? thirdDartAverage;
-  @JsonKey(defaultValue: 0)
   @override
-  final int fourtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? fourtyPlus;
   @override
-  final int sixtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? sixtyPlus;
   @override
-  final int eightyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? eightyPlus;
   @override
-  final int hundredPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredPlus;
   @override
-  final int hundredTwentyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredTwentyPlus;
   @override
-  final int hundredFourtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredFourtyPlus;
   @override
-  final int hundredSixtyPlus;
-  @JsonKey(defaultValue: 0)
+  final int? hundredSixtyPlus;
   @override
-  final int hundredEighty;
+  final int? hundredEighty;
 
   @override
   String toString() {
@@ -415,27 +405,27 @@ class _$_LegStats implements _LegStats {
 
 abstract class _LegStats implements LegStats {
   const factory _LegStats(
-      {double average,
+      {double? average,
       double? checkoutPercentage,
-      double firstNineAverage,
+      double? firstNineAverage,
       double? firstDartAverage,
       double? secondDartAverage,
       double? thirdDartAverage,
-      int fourtyPlus,
-      int sixtyPlus,
-      int eightyPlus,
-      int hundredPlus,
-      int hundredTwentyPlus,
-      int hundredFourtyPlus,
-      int hundredSixtyPlus,
-      int hundredEighty}) = _$_LegStats;
+      int? fourtyPlus,
+      int? sixtyPlus,
+      int? eightyPlus,
+      int? hundredPlus,
+      int? hundredTwentyPlus,
+      int? hundredFourtyPlus,
+      int? hundredSixtyPlus,
+      int? hundredEighty}) = _$_LegStats;
 
   @override
-  double get average;
+  double? get average;
   @override
   double? get checkoutPercentage;
   @override
-  double get firstNineAverage;
+  double? get firstNineAverage;
   @override
   double? get firstDartAverage;
   @override
@@ -443,21 +433,21 @@ abstract class _LegStats implements LegStats {
   @override
   double? get thirdDartAverage;
   @override
-  int get fourtyPlus;
+  int? get fourtyPlus;
   @override
-  int get sixtyPlus;
+  int? get sixtyPlus;
   @override
-  int get eightyPlus;
+  int? get eightyPlus;
   @override
-  int get hundredPlus;
+  int? get hundredPlus;
   @override
-  int get hundredTwentyPlus;
+  int? get hundredTwentyPlus;
   @override
-  int get hundredFourtyPlus;
+  int? get hundredFourtyPlus;
   @override
-  int get hundredSixtyPlus;
+  int? get hundredSixtyPlus;
   @override
-  int get hundredEighty;
+  int? get hundredEighty;
   @override
   @JsonKey(ignore: true)
   _$LegStatsCopyWith<_LegStats> get copyWith =>

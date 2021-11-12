@@ -11,22 +11,23 @@ part 'leg_dto.g.dart';
 @freezed
 class LegDto with _$LegDto {
   const factory LegDto({
-    required int startingPoints,
     required List<ThrowDto> throws,
   }) = _LegDto;
 
   const LegDto._();
 
-  Leg toDomain() {
-    final external = toExternal();
+  Leg toDomain({
+    required int startingPoints,
+  }) {
+    final external = toExternal(startingPoints: startingPoints);
 
     return Leg(
       throws: KtList.from(throws.map((throwDto) => throwDto.toDomain())),
       won: external.won,
       stats: LegStats(
-        average: external.average ?? 0,
-        checkoutPercentage: external.checkoutPercentage ?? 0,
-        firstNineAverage: external.firstNineAverage ?? 0,
+        average: external.average,
+        checkoutPercentage: external.checkoutPercentage,
+        firstNineAverage: external.firstNineAverage,
         firstDartAverage: external.firstDartAverage,
         secondDartAverage: external.secondDartAverage,
         thirdDartAverage: external.thirdDartAverage,
@@ -44,12 +45,13 @@ class LegDto with _$LegDto {
 
   factory LegDto.fromExternal(ex.Leg leg) {
     return LegDto(
-      startingPoints: leg.startingPoints,
       throws: leg.throws.map((t) => ThrowDto.fromExternal(t)).toList(),
     );
   }
 
-  ex.Leg toExternal() {
+  ex.Leg toExternal({
+    required int startingPoints,
+  }) {
     return ex.Leg.fromData(
       startingPoints: startingPoints,
       throws: throws.map((throwDto) => throwDto.toExternal()).toList(),

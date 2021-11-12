@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'leg_dto.dart';
 import 'abstract_player_dto.dart';
+import 'leg_dto.dart';
+import 'offline/abstract_offline_player_dto.dart';
 import 'set_dto.dart';
 
 class LegsOrSetsConverter

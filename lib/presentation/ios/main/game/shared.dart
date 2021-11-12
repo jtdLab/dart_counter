@@ -166,8 +166,8 @@ class _PlayerColumn extends StatelessWidget {
       ),
       headerItem1: player.wonSets != null ? player.wonSets.toString() : '-',
       headerItem2: player.wonLegsCurrentSet.toString(),
-      subHeader1Item1: player.stats.average.toStringAsFixed(2),
-      subHeader1Item2: player.stats.firstNineAverage.toStringAsFixed(2),
+      subHeader1Item1: player.stats.average?.toStringAsFixed(2) ?? '-',
+      subHeader1Item2: player.stats.firstNineAverage?.toStringAsFixed(2) ?? '-',
       subHeader1Item3: player.stats.bestLegAverage != null
           ? player.stats.bestLegAverage!.toStringAsFixed(2)
           : '-',

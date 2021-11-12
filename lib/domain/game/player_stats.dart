@@ -6,9 +6,9 @@ part 'player_stats.freezed.dart';
 @freezed
 class PlayerStats with _$PlayerStats {
   const factory PlayerStats({
-    @Default(0) double average,
+    double? average,
     double? checkoutPercentage,
-    @Default(0) double firstNineAverage,
+    double? firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,
     int? worstLegDartsThrown,
@@ -18,14 +18,14 @@ class PlayerStats with _$PlayerStats {
     double? firstDartAverage,
     double? secondDartAverage,
     double? thirdDartAverage,
-    @Default(0) int fourtyPlus,
-    @Default(0) int sixtyPlus,
-    @Default(0) int eightyPlus,
-    @Default(0) int hundredPlus,
-    @Default(0) int hundredTwentyPlus,
-    @Default(0) int hundredFourtyPlus,
-    @Default(0) int hundredSixtyPlus,
-    @Default(0) int hundredEighty,
+    int? fourtyPlus,
+    int? sixtyPlus,
+    int? eightyPlus,
+    int? hundredPlus,
+    int? hundredTwentyPlus,
+    int? hundredFourtyPlus,
+    int? hundredSixtyPlus,
+    int? hundredEighty,
   }) = _PlayerStats;
 
   factory PlayerStats.dummy() => PlayerStats(
