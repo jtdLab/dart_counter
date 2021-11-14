@@ -18,12 +18,12 @@ class _$LegTearOff {
   const _$LegTearOff();
 
   _Leg call(
-      {required KtList<Throw> throws,
-      required bool won,
+      {required bool won,
+      required KtList<Throw> throws,
       required LegStats stats}) {
     return _Leg(
-      throws: throws,
       won: won,
+      throws: throws,
       stats: stats,
     );
   }
@@ -34,8 +34,8 @@ const $Leg = _$LegTearOff();
 
 /// @nodoc
 mixin _$Leg {
-  KtList<Throw> get throws => throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
+  KtList<Throw> get throws => throw _privateConstructorUsedError;
   LegStats get stats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -46,7 +46,7 @@ mixin _$Leg {
 abstract class $LegCopyWith<$Res> {
   factory $LegCopyWith(Leg value, $Res Function(Leg) then) =
       _$LegCopyWithImpl<$Res>;
-  $Res call({KtList<Throw> throws, bool won, LegStats stats});
+  $Res call({bool won, KtList<Throw> throws, LegStats stats});
 
   $LegStatsCopyWith<$Res> get stats;
 }
@@ -61,19 +61,19 @@ class _$LegCopyWithImpl<$Res> implements $LegCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? throws = freezed,
     Object? won = freezed,
+    Object? throws = freezed,
     Object? stats = freezed,
   }) {
     return _then(_value.copyWith(
-      throws: throws == freezed
-          ? _value.throws
-          : throws // ignore: cast_nullable_to_non_nullable
-              as KtList<Throw>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
               as bool,
+      throws: throws == freezed
+          ? _value.throws
+          : throws // ignore: cast_nullable_to_non_nullable
+              as KtList<Throw>,
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -94,7 +94,7 @@ abstract class _$LegCopyWith<$Res> implements $LegCopyWith<$Res> {
   factory _$LegCopyWith(_Leg value, $Res Function(_Leg) then) =
       __$LegCopyWithImpl<$Res>;
   @override
-  $Res call({KtList<Throw> throws, bool won, LegStats stats});
+  $Res call({bool won, KtList<Throw> throws, LegStats stats});
 
   @override
   $LegStatsCopyWith<$Res> get stats;
@@ -111,19 +111,19 @@ class __$LegCopyWithImpl<$Res> extends _$LegCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? throws = freezed,
     Object? won = freezed,
+    Object? throws = freezed,
     Object? stats = freezed,
   }) {
     return _then(_Leg(
-      throws: throws == freezed
-          ? _value.throws
-          : throws // ignore: cast_nullable_to_non_nullable
-              as KtList<Throw>,
       won: won == freezed
           ? _value.won
           : won // ignore: cast_nullable_to_non_nullable
               as bool,
+      throws: throws == freezed
+          ? _value.throws
+          : throws // ignore: cast_nullable_to_non_nullable
+              as KtList<Throw>,
       stats: stats == freezed
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -135,18 +135,18 @@ class __$LegCopyWithImpl<$Res> extends _$LegCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Leg implements _Leg {
-  const _$_Leg({required this.throws, required this.won, required this.stats});
+  const _$_Leg({required this.won, required this.throws, required this.stats});
 
   @override
-  final KtList<Throw> throws;
-  @override
   final bool won;
+  @override
+  final KtList<Throw> throws;
   @override
   final LegStats stats;
 
   @override
   String toString() {
-    return 'Leg(throws: $throws, won: $won, stats: $stats)';
+    return 'Leg(won: $won, throws: $throws, stats: $stats)';
   }
 
   @override
@@ -154,13 +154,13 @@ class _$_Leg implements _Leg {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Leg &&
-            (identical(other.throws, throws) || other.throws == throws) &&
             (identical(other.won, won) || other.won == won) &&
+            (identical(other.throws, throws) || other.throws == throws) &&
             (identical(other.stats, stats) || other.stats == stats));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, throws, won, stats);
+  int get hashCode => Object.hash(runtimeType, won, throws, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -170,14 +170,14 @@ class _$_Leg implements _Leg {
 
 abstract class _Leg implements Leg {
   const factory _Leg(
-      {required KtList<Throw> throws,
-      required bool won,
+      {required bool won,
+      required KtList<Throw> throws,
       required LegStats stats}) = _$_Leg;
 
   @override
-  KtList<Throw> get throws;
-  @override
   bool get won;
+  @override
+  KtList<Throw> get throws;
   @override
   LegStats get stats;
   @override

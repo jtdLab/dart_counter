@@ -19,20 +19,18 @@ class BobsTwentySevenGameSnapshotDto with _$BobsTwentySevenGameSnapshotDto {
 
   const BobsTwentySevenGameSnapshotDto._();
 
-  factory BobsTwentySevenGameSnapshotDto.fromDomain(
-      BobsTwentySevenGameSnapshot gameSnapshot) {
-    return BobsTwentySevenGameSnapshotDto(
-      status: gameSnapshot.status == Status.pending
-          ? 'pending'
-          : gameSnapshot.status == Status.running
-              ? 'running'
-              : gameSnapshot.status == Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: gameSnapshot.mode == Mode.easy ? 'easy' : 'hard',
-      players: gameSnapshot.players
-          .map((player) => BobsTwentySevenPlayerSnapshotDto.fromDomain(player)),
-      owner: BobsTwentySevenPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+  BobsTwentySevenGameSnapshot toDomain() {
+    return BobsTwentySevenGameSnapshot(
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      mode: mode == 'easy' ? Mode.easy : Mode.hard,
+      players: players.map((player) => player.toDomain()),
+      owner: owner.toDomain(),
     );
   }
 
@@ -51,21 +49,6 @@ class BobsTwentySevenGameSnapshotDto with _$BobsTwentySevenGameSnapshotDto {
               (player) => BobsTwentySevenPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
       owner: BobsTwentySevenPlayerSnapshotDto.fromExternal(game.owner),
-    );
-  }
-
-  BobsTwentySevenGameSnapshot toDomain() {
-    return BobsTwentySevenGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'easy' ? Mode.easy : Mode.hard,
-      players: players.map((player) => player.toDomain()),
-      owner: owner.toDomain(),
     );
   }
 }

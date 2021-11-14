@@ -18,20 +18,18 @@ class ScoreTrainingGameSnapshotDto with _$ScoreTrainingGameSnapshotDto {
 
   const ScoreTrainingGameSnapshotDto._();
 
-  factory ScoreTrainingGameSnapshotDto.fromDomain(
-      ScoreTrainingGameSnapshot gameSnapshot) {
-    return ScoreTrainingGameSnapshotDto(
-      status: gameSnapshot.status == Status.pending
-          ? 'pending'
-          : gameSnapshot.status == Status.running
-              ? 'running'
-              : gameSnapshot.status == Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      numberOfTakes: gameSnapshot.numberOfTakes,
-      players: gameSnapshot.players
-          .map((player) => ScoreTrainingPlayerSnapshotDto.fromDomain(player)),
-      owner: ScoreTrainingPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+  ScoreTrainingGameSnapshot toDomain() {
+    return ScoreTrainingGameSnapshot(
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      numberOfTakes: numberOfTakes,
+      players: players.map((player) => player.toDomain()),
+      owner: owner.toDomain(),
     );
   }
 
@@ -49,21 +47,6 @@ class ScoreTrainingGameSnapshotDto with _$ScoreTrainingGameSnapshotDto {
           .map((player) => ScoreTrainingPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
       owner: ScoreTrainingPlayerSnapshotDto.fromExternal(game.owner),
-    );
-  }
-
-  ScoreTrainingGameSnapshot toDomain() {
-    return ScoreTrainingGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      numberOfTakes: numberOfTakes,
-      players: players.map((player) => player.toDomain()),
-      owner: owner.toDomain(),
     );
   }
 }

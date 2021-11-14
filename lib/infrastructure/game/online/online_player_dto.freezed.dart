@@ -24,8 +24,8 @@ class _$OnlinePlayerDtoTearOff {
   _OnlinePlayerDto call(
       {required String id,
       required String name,
-      @LegsOrSetsConverter()
-          required Either<List<LegDto>, List<SetDto>> legsOrSets}) {
+      @AbstractLegsOrSetsConverter()
+          required List<AbstractLegsOrSetsDto> legsOrSets}) {
     return _OnlinePlayerDto(
       id: id,
       name: name,
@@ -45,8 +45,8 @@ const $OnlinePlayerDto = _$OnlinePlayerDtoTearOff();
 mixin _$OnlinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+  @AbstractLegsOrSetsConverter()
+  List<AbstractLegsOrSetsDto> get legsOrSets =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $OnlinePlayerDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
-              as Either<List<LegDto>, List<SetDto>>,
+              as List<AbstractLegsOrSetsDto>,
     ));
   }
 }
@@ -108,7 +108,7 @@ abstract class _$OnlinePlayerDtoCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
 /// @nodoc
@@ -140,7 +140,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
-              as Either<List<LegDto>, List<SetDto>>,
+              as List<AbstractLegsOrSetsDto>,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
       {required this.id,
       required this.name,
-      @LegsOrSetsConverter() required this.legsOrSets})
+      @AbstractLegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
   factory _$_OnlinePlayerDto.fromJson(Map<String, dynamic> json) =>
@@ -163,8 +163,8 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   @override
   final String name;
   @override
-  @LegsOrSetsConverter()
-  final Either<List<LegDto>, List<SetDto>> legsOrSets;
+  @AbstractLegsOrSetsConverter()
+  final List<AbstractLegsOrSetsDto> legsOrSets;
 
   @override
   String toString() {
@@ -178,12 +178,13 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
             other is _OnlinePlayerDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.legsOrSets, legsOrSets) ||
-                other.legsOrSets == legsOrSets));
+            const DeepCollectionEquality()
+                .equals(other.legsOrSets, legsOrSets));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, legsOrSets);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, const DeepCollectionEquality().hash(legsOrSets));
 
   @JsonKey(ignore: true)
   @override
@@ -201,8 +202,8 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   const factory _OnlinePlayerDto(
           {required String id,
           required String name,
-          @LegsOrSetsConverter()
-              required Either<List<LegDto>, List<SetDto>> legsOrSets}) =
+          @AbstractLegsOrSetsConverter()
+              required List<AbstractLegsOrSetsDto> legsOrSets}) =
       _$_OnlinePlayerDto;
   const _OnlinePlayerDto._() : super._();
 
@@ -214,8 +215,8 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   @override
   String get name;
   @override
-  @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets;
+  @AbstractLegsOrSetsConverter()
+  List<AbstractLegsOrSetsDto> get legsOrSets;
   @override
   @JsonKey(ignore: true)
   _$OnlinePlayerDtoCopyWith<_OnlinePlayerDto> get copyWith =>

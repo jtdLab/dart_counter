@@ -9,17 +9,17 @@ part 'leg.freezed.dart';
 @freezed
 class Leg with _$Leg {
   const factory Leg({
-    required KtList<Throw> throws,
     required bool won,
+    required KtList<Throw> throws,
     required LegStats stats,
   }) = _Leg;
 
   factory Leg.dummy() {
     return Leg(
+      won: false,
       throws: KtList.from(
         faker.randomGenerator.amount((i) => Throw.dummy(), 10),
       ),
-      won: false,
       stats: LegStats.dummy(),
     );
   }

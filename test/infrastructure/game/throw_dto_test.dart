@@ -95,6 +95,7 @@ void main() {
     'points': points,
     'dartsThrown': dartsThrown,
     'dartsOnDouble': dartsOnDouble,
+    'darts': null,
   };
 
   final jsonWithDarts = {

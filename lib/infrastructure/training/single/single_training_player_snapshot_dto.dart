@@ -21,18 +21,17 @@ class SingleTrainingPlayerSnapshotDto with _$SingleTrainingPlayerSnapshotDto {
 
   const SingleTrainingPlayerSnapshotDto._();
 
-  factory SingleTrainingPlayerSnapshotDto.fromDomain(
-      SingleTrainingPlayerSnapshot playerSnapshot) {
-    return SingleTrainingPlayerSnapshotDto(
-      id: playerSnapshot.id.getOrCrash(),
-      name: playerSnapshot.name,
-      isCurrentTurn: playerSnapshot.isCurrentTurn,
-      targetValue: playerSnapshot.targetValue,
-      points: playerSnapshot.points,
-      singles: playerSnapshot.singles,
-      doubles: playerSnapshot.doubles,
-      triples: playerSnapshot.triples,
-      missed: playerSnapshot.missed,
+  SingleTrainingPlayerSnapshot toDomain() {
+    return SingleTrainingPlayerSnapshot(
+      id: UniqueId.fromUniqueString(id),
+      name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
+      targetValue: targetValue ?? 1,
+      points: points ?? 0,
+      singles: singles ?? 0,
+      doubles: doubles ?? 0,
+      triples: triples ?? 0,
+      missed: missed ?? 0,
     );
   }
 
@@ -47,20 +46,6 @@ class SingleTrainingPlayerSnapshotDto with _$SingleTrainingPlayerSnapshotDto {
       doubles: player.doubles,
       triples: player.triples,
       missed: player.missed,
-    );
-  }
-
-  SingleTrainingPlayerSnapshot toDomain() {
-    return SingleTrainingPlayerSnapshot(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      isCurrentTurn: isCurrentTurn ?? false,
-      targetValue: targetValue ?? 1,
-      points: points ?? 0,
-      singles: singles ?? 0,
-      doubles: doubles ?? 0,
-      triples: triples ?? 0,
-      missed: missed ?? 0,
     );
   }
 }

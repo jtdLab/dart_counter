@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/game/leg.dart';
 import 'package:dart_counter/domain/game/leg_stats.dart';
+import 'package:dart_counter/infrastructure/game/abstract_legs_or_sets_dto.dart';
 import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,7 +10,8 @@ part 'leg_dto.freezed.dart';
 part 'leg_dto.g.dart';
 
 @freezed
-class LegDto with _$LegDto {
+class LegDto with _$LegDto implements AbstractLegsOrSetsDto {
+  @Implements<AbstractLegsOrSetsDto>()
   const factory LegDto({
     required List<ThrowDto> throws,
   }) = _LegDto;

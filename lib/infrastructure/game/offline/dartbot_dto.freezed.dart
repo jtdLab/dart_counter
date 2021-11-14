@@ -24,8 +24,8 @@ class _$DartBotDtoTearOff {
   _DartBotDto call(
       {required String id,
       required String name,
-      @LegsOrSetsConverter()
-          required Either<List<LegDto>, List<SetDto>> legsOrSets}) {
+      @AbstractLegsOrSetsConverter()
+          required List<AbstractLegsOrSetsDto> legsOrSets}) {
     return _DartBotDto(
       id: id,
       name: name,
@@ -45,8 +45,8 @@ const $DartBotDto = _$DartBotDtoTearOff();
 mixin _$DartBotDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets =>
+  @AbstractLegsOrSetsConverter()
+  List<AbstractLegsOrSetsDto> get legsOrSets =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $DartBotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
-              as Either<List<LegDto>, List<SetDto>>,
+              as List<AbstractLegsOrSetsDto>,
     ));
   }
 }
@@ -106,7 +106,7 @@ abstract class _$DartBotDtoCopyWith<$Res> implements $DartBotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      @LegsOrSetsConverter() Either<List<LegDto>, List<SetDto>> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
 /// @nodoc
@@ -137,7 +137,7 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
-              as Either<List<LegDto>, List<SetDto>>,
+              as List<AbstractLegsOrSetsDto>,
     ));
   }
 }
@@ -149,7 +149,7 @@ class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
       {required this.id,
       required this.name,
-      @LegsOrSetsConverter() required this.legsOrSets})
+      @AbstractLegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
   factory _$_DartBotDto.fromJson(Map<String, dynamic> json) =>
@@ -160,8 +160,8 @@ class _$_DartBotDto extends _DartBotDto {
   @override
   final String name;
   @override
-  @LegsOrSetsConverter()
-  final Either<List<LegDto>, List<SetDto>> legsOrSets;
+  @AbstractLegsOrSetsConverter()
+  final List<AbstractLegsOrSetsDto> legsOrSets;
 
   @override
   String toString() {
@@ -175,12 +175,13 @@ class _$_DartBotDto extends _DartBotDto {
             other is _DartBotDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.legsOrSets, legsOrSets) ||
-                other.legsOrSets == legsOrSets));
+            const DeepCollectionEquality()
+                .equals(other.legsOrSets, legsOrSets));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, legsOrSets);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, const DeepCollectionEquality().hash(legsOrSets));
 
   @JsonKey(ignore: true)
   @override
@@ -196,11 +197,10 @@ class _$_DartBotDto extends _DartBotDto {
 abstract class _DartBotDto extends DartBotDto
     implements AbstractOfflinePlayerDto {
   const factory _DartBotDto(
-          {required String id,
-          required String name,
-          @LegsOrSetsConverter()
-              required Either<List<LegDto>, List<SetDto>> legsOrSets}) =
-      _$_DartBotDto;
+      {required String id,
+      required String name,
+      @AbstractLegsOrSetsConverter()
+          required List<AbstractLegsOrSetsDto> legsOrSets}) = _$_DartBotDto;
   const _DartBotDto._() : super._();
 
   factory _DartBotDto.fromJson(Map<String, dynamic> json) =
@@ -211,8 +211,8 @@ abstract class _DartBotDto extends DartBotDto
   @override
   String get name;
   @override
-  @LegsOrSetsConverter()
-  Either<List<LegDto>, List<SetDto>> get legsOrSets;
+  @AbstractLegsOrSetsConverter()
+  List<AbstractLegsOrSetsDto> get legsOrSets;
   @override
   @JsonKey(ignore: true)
   _$DartBotDtoCopyWith<_DartBotDto> get copyWith =>

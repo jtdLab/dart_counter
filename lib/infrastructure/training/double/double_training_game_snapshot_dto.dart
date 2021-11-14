@@ -19,23 +19,22 @@ class DoubleTrainingGameSnapshotDto with _$DoubleTrainingGameSnapshotDto {
 
   const DoubleTrainingGameSnapshotDto._();
 
-  factory DoubleTrainingGameSnapshotDto.fromDomain(DoubleTrainingGameSnapshot gameSnapshot) {
-    return DoubleTrainingGameSnapshotDto(
-      status: gameSnapshot.status == Status.pending
-          ? 'pending'
-          : gameSnapshot.status == Status.running
-              ? 'running'
-              : gameSnapshot.status == Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: gameSnapshot.mode == Mode.ascending
-          ? 'ascending'
-          : gameSnapshot.mode == Mode.descending
-              ? 'descending'
-              : 'random',
-      players: gameSnapshot.players
-          .map((player) => DoubleTrainingPlayerSnapshotDto.fromDomain(player)),
-      owner: DoubleTrainingPlayerSnapshotDto.fromDomain(gameSnapshot.owner),
+  DoubleTrainingGameSnapshot toDomain() {
+    return DoubleTrainingGameSnapshot(
+      status: status == 'pending'
+          ? Status.pending
+          : status == 'running'
+              ? Status.running
+              : status == 'canceled'
+                  ? Status.canceled
+                  : Status.finished,
+      mode: mode == 'ascending'
+          ? Mode.ascending
+          : mode == 'descending'
+              ? Mode.descending
+              : Mode.random,
+      players: players.map((player) => player.toDomain()),
+      owner: owner.toDomain(),
     );
   }
 
@@ -57,25 +56,6 @@ class DoubleTrainingGameSnapshotDto with _$DoubleTrainingGameSnapshotDto {
           .map((player) => DoubleTrainingPlayerSnapshotDto.fromExternal(player))
           .toImmutableList(),
       owner: DoubleTrainingPlayerSnapshotDto.fromExternal(game.owner),
-    );
-  }
-
-  DoubleTrainingGameSnapshot toDomain() {
-    return DoubleTrainingGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'ascending'
-          ? Mode.ascending
-          : mode == 'descending'
-              ? Mode.descending
-              : Mode.random,
-      players: players.map((player) => player.toDomain()),
-      owner: owner.toDomain(),
     );
   }
 }

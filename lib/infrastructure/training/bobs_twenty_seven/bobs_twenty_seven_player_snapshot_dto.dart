@@ -20,17 +20,16 @@ class BobsTwentySevenPlayerSnapshotDto with _$BobsTwentySevenPlayerSnapshotDto {
 
   const BobsTwentySevenPlayerSnapshotDto._();
 
-  factory BobsTwentySevenPlayerSnapshotDto.fromDomain(
-      BobsTwentySevenPlayerSnapshot playerSnapshot) {
-    return BobsTwentySevenPlayerSnapshotDto(
-      id: playerSnapshot.id.getOrCrash(),
-      name: playerSnapshot.name,
-      isCurrentTurn: playerSnapshot.isCurrentTurn,
-      isDisqualified: playerSnapshot.isDisqualified,
-      targetValue: playerSnapshot.targetValue,
-      checkoutPercentage: playerSnapshot.checkoutPercentage,
-      points: playerSnapshot.points,
-      highestPoints: playerSnapshot.highestPoints,
+  BobsTwentySevenPlayerSnapshot toDomain() {
+    return BobsTwentySevenPlayerSnapshot(
+      id: UniqueId.fromUniqueString(id),
+      name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
+      isDisqualified: isDisqualified ?? false,
+      targetValue: targetValue ?? 1,
+      checkoutPercentage: checkoutPercentage ?? 0,
+      points: points ?? 0,
+      highestPoints: highestPoints ?? 27,
     );
   }
 
@@ -44,19 +43,6 @@ class BobsTwentySevenPlayerSnapshotDto with _$BobsTwentySevenPlayerSnapshotDto {
       checkoutPercentage: player.checkoutPercentage,
       points: player.points,
       highestPoints: player.highestPoints,
-    );
-  }
-
-  BobsTwentySevenPlayerSnapshot toDomain() {
-    return BobsTwentySevenPlayerSnapshot(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      isCurrentTurn: isCurrentTurn ?? false,
-      isDisqualified: isDisqualified ?? false,
-      targetValue: targetValue ?? 1,
-      checkoutPercentage: checkoutPercentage ?? 0,
-      points: points ?? 0,
-      highestPoints: highestPoints ?? 27,
     );
   }
 }

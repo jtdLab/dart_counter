@@ -104,6 +104,7 @@ class __$LegDtoCopyWithImpl<$Res> extends _$LegDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@Implements<AbstractLegsOrSetsDto>()
 class _$_LegDto extends _LegDto {
   const _$_LegDto({required this.throws}) : super._();
 
@@ -141,7 +142,7 @@ class _$_LegDto extends _LegDto {
   }
 }
 
-abstract class _LegDto extends LegDto {
+abstract class _LegDto extends LegDto implements AbstractLegsOrSetsDto {
   const factory _LegDto({required List<ThrowDto> throws}) = _$_LegDto;
   const _LegDto._() : super._();
 

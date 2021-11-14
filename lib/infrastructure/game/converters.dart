@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:dart_counter/infrastructure/game/abstract_legs_or_sets_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'abstract_player_dto.dart';
@@ -6,54 +6,48 @@ import 'leg_dto.dart';
 import 'offline/abstract_offline_player_dto.dart';
 import 'set_dto.dart';
 
-class LegsOrSetsConverter
+// Some custom json converters.
+
+class AbstractLegsOrSetsConverter
     implements
-        JsonConverter<Either<List<LegDto>, List<SetDto>>,
-            Map<String, dynamic>> {
-  const LegsOrSetsConverter();
+        JsonConverter<List<AbstractLegsOrSetsDto>, List<Map<String, dynamic>>> {
+  const AbstractLegsOrSetsConverter();
 
   @override
-  Either<List<LegDto>, List<SetDto>> fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Map<String, dynamic> toJson(Either<List<LegDto>, List<SetDto>> either) {
-    throw UnimplementedError();
-  }
-}
-
-// TODO how to detect online offline or dartBot
-class AbstractPlayerDtoConverter
-    implements JsonConverter<AbstractPlayerDto, Map<String, dynamic>> {
-  const AbstractPlayerDtoConverter();
-
-  @override
-  AbstractPlayerDto fromJson(Map<String, dynamic> json) {
-    if (json['userId'] != null) {
-      return OnlinePlayerDto.fromJson(json);
-    } else if (json['targetAverage'] != null) {
-      return DartBotDto.fromJson(json);
-    } else {
-      return OfflinePlayerDto.fromJson(json);
+  List<AbstractLegsOrSetsDto> fromJson(
+    List<Map<String, dynamic>> json,
+  ) {
+    try {
+      return json.map((legJson) => LegDto.fromJson(legJson)).toList();
+    } catch (_) {
+      return json.map((setJson) => SetDto.fromJson(setJson)).toList();
     }
   }
 
   @override
-  Map<String, dynamic> toJson(AbstractPlayerDto abstractPlayerDto) {
-    if (abstractPlayerDto is OfflinePlayerDto) {
-      return abstractPlayerDto.toJson();
-    } else if (abstractPlayerDto is DartBotDto) {
-      return abstractPlayerDto.toJson();
-    } else if (abstractPlayerDto is OnlinePlayerDto) {
-      return abstractPlayerDto.toJson();
-    } else {
-      throw Error(); // TODO
+  List<Map<String, dynamic>> toJson(
+    List<AbstractLegsOrSetsDto> legsOrSets,
+  ) {
+    if (!(legsOrSets.every((element) => element is LegDto) ||
+        legsOrSets.every((element) => element is SetDto))) {
+      throw ArgumentError.value(
+        legsOrSets,
+        'LegsOrSets needs to contain only legs or only sets ',
+      );
     }
+
+    return legsOrSets.map(
+      (legOrSet) {
+        if (legOrSet is LegDto) {
+          return legOrSet.toJson();
+        } else {
+          return (legOrSet as SetDto).toJson();
+        }
+      },
+    ).toList();
   }
 }
 
-// TODO how to detect dartBot
 class AbstractOfflinePlayerDtoConverter
     implements JsonConverter<AbstractOfflinePlayerDto, Map<String, dynamic>> {
   const AbstractOfflinePlayerDtoConverter();
@@ -69,13 +63,12 @@ class AbstractOfflinePlayerDtoConverter
 
   @override
   Map<String, dynamic> toJson(
-      AbstractOfflinePlayerDto abstractOfflinePlayerDto) {
+    AbstractOfflinePlayerDto abstractOfflinePlayerDto,
+  ) {
     if (abstractOfflinePlayerDto is OfflinePlayerDto) {
       return abstractOfflinePlayerDto.toJson();
-    } else if (abstractOfflinePlayerDto is DartBotDto) {
-      return abstractOfflinePlayerDto.toJson();
     } else {
-      throw Error(); // TODO
+      return (abstractOfflinePlayerDto as DartBotDto).toJson();
     }
   }
 }

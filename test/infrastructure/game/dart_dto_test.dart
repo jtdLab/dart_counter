@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/infrastructure/core/errors.dart';
 import 'package:dart_counter/infrastructure/game/dart_dto.dart';
 import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_game/dart_game.dart' as ex;
@@ -50,6 +51,248 @@ void main() {
       'value': value,
     },
   );
+
+  group('DartTypeX', () {
+    group('domain', () {
+      group('toShortString', () {
+        test('single', () {
+          // Arrange
+          const type = DartType.single;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'single');
+        });
+
+        test('double', () {
+          // Arrange
+          const type = DartType.double;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'double');
+        });
+
+        test('triple', () {
+          // Arrange
+          const type = DartType.triple;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'triple');
+        });
+      });
+
+      group('parse', () {
+        test('single', () {
+          // Arrange
+          const string = 'single';
+
+          // Act
+          final type = DartTypeX.parse(string);
+
+          // Assert
+          expect(type, DartType.single);
+        });
+
+        test('double', () {
+          // Arrange
+          const string = 'double';
+
+          // Act
+          final type = DartTypeX.parse(string);
+
+          // Assert
+          expect(type, DartType.double);
+        });
+
+        test('triple', () {
+          // Arrange
+          const string = 'triple';
+
+          // Act
+          final type = DartTypeX.parse(string);
+
+          // Assert
+          expect(type, DartType.triple);
+        });
+
+        test('invalid string', () {
+          // Assert
+          expect(
+            () => DartTypeX.parse('fojdsfosdf'),
+            throwsA(isA<EnumParseError>()),
+          );
+        });
+      });
+    });
+
+    group('external', () {
+      group('toShortString', () {
+        test('single', () {
+          // Arrange
+          const type = ex.DartType.single;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'single');
+        });
+
+        test('double', () {
+          // Arrange
+          const type = ex.DartType.double;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'double');
+        });
+
+        test('triple', () {
+          // Arrange
+          const type = ex.DartType.triple;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'triple');
+        });
+      });
+
+      group('parse', () {
+        test('single', () {
+          // Arrange
+          const string = 'single';
+
+          // Act
+          final type = ExternalDartTypeX.parse(string);
+
+          // Assert
+          expect(type, ex.DartType.single);
+        });
+
+        test('double', () {
+          // Arrange
+          const string = 'double';
+
+          // Act
+          final type = ExternalDartTypeX.parse(string);
+
+          // Assert
+          expect(type, ex.DartType.double);
+        });
+
+        test('triple', () {
+          // Arrange
+          const string = 'triple';
+
+          // Act
+          final type = ExternalDartTypeX.parse(string);
+
+          // Assert
+          expect(type, ex.DartType.triple);
+        });
+
+        test('invalid string', () {
+          // Assert
+          expect(
+            () => ExternalDartTypeX.parse('fojdsfosdf'),
+            throwsA(isA<EnumParseError>()),
+          );
+        });
+      });
+    });
+
+    group('client', () {
+      group('toShortString', () {
+        test('single', () {
+          // Arrange
+          const type = c.DartType.single;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'single');
+        });
+
+        test('double', () {
+          // Arrange
+          const type = c.DartType.double;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'double');
+        });
+
+        test('triple', () {
+          // Arrange
+          const type = c.DartType.triple;
+
+          // Act
+          final string = type.toShortString();
+
+          // Assert
+          expect(string, 'triple');
+        });
+      });
+
+      group('parse', () {
+        test('single', () {
+          // Arrange
+          const string = 'single';
+
+          // Act
+          final type = ClientDartTypeX.parse(string);
+
+          // Assert
+          expect(type, c.DartType.single);
+        });
+
+        test('double', () {
+          // Arrange
+          const string = 'double';
+
+          // Act
+          final type = ClientDartTypeX.parse(string);
+
+          // Assert
+          expect(type, c.DartType.double);
+        });
+
+        test('triple', () {
+          // Arrange
+          const string = 'triple';
+
+          // Act
+          final type = ClientDartTypeX.parse(string);
+
+          // Assert
+          expect(type, c.DartType.triple);
+        });
+
+        test('invalid string', () {
+          // Assert
+          expect(
+            () => ClientDartTypeX.parse('fojdsfosdf'),
+            throwsA(isA<EnumParseError>()),
+          );
+        });
+      });
+    });
+  });
 
   test('constructor', () {
     for (int i = 0; i < 3; i++) {

@@ -20,17 +20,16 @@ class DoubleTrainingPlayerSnapshotDto with _$DoubleTrainingPlayerSnapshotDto {
 
   const DoubleTrainingPlayerSnapshotDto._();
 
-  factory DoubleTrainingPlayerSnapshotDto.fromDomain(
-      DoubleTrainingPlayerSnapshot playerSnapshot) {
-    return DoubleTrainingPlayerSnapshotDto(
-      id: playerSnapshot.id.getOrCrash(),
-      name: playerSnapshot.name,
-      isCurrentTurn: playerSnapshot.isCurrentTurn,
-      isFinished: playerSnapshot.isFinished,
-      targetValue: playerSnapshot.targetValue,
-      checkoutPercentage: playerSnapshot.checkoutPercentage,
-      missed: playerSnapshot.missed,
-      dartsThrown: playerSnapshot.dartsThrown,
+  DoubleTrainingPlayerSnapshot toDomain() {
+    return DoubleTrainingPlayerSnapshot(
+      id: UniqueId.fromUniqueString(id),
+      name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
+      isFinished: isFinished ?? false,
+      targetValue: targetValue ?? 1,
+      checkoutPercentage: checkoutPercentage,
+      missed: missed ?? 0,
+      dartsThrown: dartsThrown ?? 0,
     );
   }
 
@@ -44,19 +43,6 @@ class DoubleTrainingPlayerSnapshotDto with _$DoubleTrainingPlayerSnapshotDto {
       checkoutPercentage: player.checkoutPercentage,
       missed: player.missed,
       dartsThrown: player.dartsThrown,
-    );
-  }
-
-  DoubleTrainingPlayerSnapshot toDomain() {
-    return DoubleTrainingPlayerSnapshot(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      isCurrentTurn: isCurrentTurn ?? false,
-      isFinished: isFinished ?? false,
-      targetValue: targetValue ?? 1,
-      checkoutPercentage: checkoutPercentage,
-      missed: missed ?? 0,
-      dartsThrown: dartsThrown ?? 0,
     );
   }
 }
