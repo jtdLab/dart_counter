@@ -33,16 +33,8 @@ class OnlineGameDto with _$OnlineGameDto implements AbstractGameDto {
   const OnlineGameDto._();
 
   OnlineGame toDomain() {
-    final legsNeededToWin = type == Type.legs.toShortString()
-        ? mode == Mode.firstTo.toShortString()
-            ? size
-            : (size / 2).round()
-        : 3;
-    final setsNeededToWin = type == Type.sets.toShortString()
-        ? mode == Mode.firstTo.toShortString()
-            ? size
-            : (size / 2).round()
-        : null;
+    final legsOrSetsNeededToWin =
+        mode == Mode.firstTo.toShortString() ? size : (size / 2).round();
 
     return OnlineGame(
       id: UniqueId.fromUniqueString(id),
@@ -57,22 +49,11 @@ class OnlineGameDto with _$OnlineGameDto implements AbstractGameDto {
         players.map(
           (player) => player.toDomain(
             startingPoints: startingPoints,
-            legsNeededToWin: legsNeededToWin,
-            setsNeededToWin: setsNeededToWin,
+            legsOrSetsNeededToWin: legsOrSetsNeededToWin,
           ),
         ),
       ),
     );
-  }
-
-  factory OnlineGameDto.fromFirestore(DocumentSnapshot doc) {
-    final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-    json.addAll({
-      'id': doc.id,
-    });
-
-    return OnlineGameDto.fromJson(json);
   }
 
   factory OnlineGameDto.fromJson(Map<String, dynamic> json) =>

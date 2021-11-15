@@ -7,7 +7,7 @@ import 'package:dart_counter/infrastructure/game/player_stats_dto.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../abstract_player_snapshot_dto.dart';
+import 'abstract_offline_player_snapshot.dart';
 
 part 'offline_player_snapshot_dto.freezed.dart';
 

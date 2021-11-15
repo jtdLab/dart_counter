@@ -32,7 +32,13 @@ class GameHistoryService implements IGameHistoryService {
 
       final games = <OfflineGame>[];
       for (final doc in querySnapshot.docs) {
-        games.add(OfflineGameDto.fromFirestore(doc).toDomain());
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        games.add(OfflineGameDto.fromJson(json).toDomain());
       }
 
       return right(List10(games));
@@ -57,7 +63,12 @@ class GameHistoryService implements IGameHistoryService {
 
       final games = <OnlineGame>[];
       for (final doc in querySnapshot.docs) {
-        games.add(OnlineGameDto.fromFirestore(doc).toDomain());
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+        games.add(OnlineGameDto.fromJson(json).toDomain());
       }
 
       return right(List10(games));

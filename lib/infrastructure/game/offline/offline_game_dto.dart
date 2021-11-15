@@ -37,16 +37,8 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
   const OfflineGameDto._();
 
   OfflineGame toDomain() {
-    final legsNeededToWin = type == Type.legs.toShortString()
-        ? mode == Mode.firstTo.toShortString()
-            ? size
-            : (size / 2).round()
-        : 3;
-    final setsNeededToWin = type == Type.sets.toShortString()
-        ? mode == Mode.firstTo.toShortString()
-            ? size
-            : (size / 2).round()
-        : null;
+    final legsOrSetsNeededToWin =
+        mode == Mode.firstTo.toShortString() ? size : (size / 2).round();
 
     return OfflineGame(
       id: UniqueId.fromUniqueString(id),
@@ -62,14 +54,12 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
             if (player is OfflinePlayerDto) {
               return player.toDomain(
                 startingPoints: startingPoints,
-                legsNeededToWin: legsNeededToWin,
-                setsNeededToWin: setsNeededToWin,
+                legsOrSetsNeededToWin: legsOrSetsNeededToWin,
               );
             } else if (player is DartBotDto) {
               return player.toDomain(
                 startingPoints: startingPoints,
-                legsNeededToWin: legsNeededToWin,
-                setsNeededToWin: setsNeededToWin,
+                legsOrSetsNeededToWin: legsOrSetsNeededToWin,
               );
             } else {
               throw Error();
@@ -99,16 +89,6 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
         },
       ).toList(),
     );
-  }
-
-  factory OfflineGameDto.fromFirestore(DocumentSnapshot doc) {
-    final json = (doc.data() ?? {}) as Map<String, dynamic>;
-
-    json.addAll({
-      'id': doc.id,
-    });
-
-    return OfflineGameDto.fromJson(json);
   }
 
   factory OfflineGameDto.fromJson(Map<String, dynamic> json) =>

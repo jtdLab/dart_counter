@@ -7,7 +7,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../abstract_player_snapshot_dto.dart';
+import 'abstract_offline_player_snapshot.dart';
 
 part 'dartbot_snapshot_dto.freezed.dart';
 

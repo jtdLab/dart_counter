@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_player.dart';
+import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/infrastructure/game/abstract_legs_or_sets_dto.dart';
 import 'package:dart_counter/infrastructure/game/leg_dto.dart';
 import 'package:dart_counter/infrastructure/game/set_dto.dart';
@@ -30,8 +31,7 @@ class OfflinePlayerDto
 
   OfflinePlayer toDomain({
     required int startingPoints,
-    required int legsNeededToWin,
-    int? setsNeededToWin,
+    required int legsOrSetsNeededToWin,
   }) {
     return OfflinePlayer(
       id: UniqueId.fromUniqueString(this.id),
