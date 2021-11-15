@@ -4,7 +4,7 @@ import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import '../abstract_player_snapshot.dart';
+import 'abstract_offline_player_snapshot.dart';
 
 part 'dartbot_snapshot.freezed.dart';
 

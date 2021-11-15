@@ -6,11 +6,14 @@ import 'package:kt_dart/kt.dart';
 
 import '../abstract_game_snapshot.dart';
 import '../abstract_player_snapshot.dart';
+import 'abstract_offline_player_snapshot.dart';
 
 part 'offline_game_snapshot.freezed.dart';
 
 @freezed
-class OfflineGameSnapshot with _$OfflineGameSnapshot implements AbstractGameSnapshot {
+class OfflineGameSnapshot
+    with _$OfflineGameSnapshot
+    implements AbstractGameSnapshot {
   @Implements<AbstractGameSnapshot>()
   const factory OfflineGameSnapshot({
     required Status status,
