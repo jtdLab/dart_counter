@@ -6,8 +6,8 @@ import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import 'abstract_offline_player_snapshot.dart';
 import '../abstract_game_snapshot_dto.dart';
+import 'abstract_offline_player_snapshot.dart';
 
 part 'offline_game_snapshot_dto.freezed.dart';
 
@@ -26,31 +26,6 @@ class OfflineGameSnapshotDto
   }) = _OfflineGameSnapshotDto;
 
   const OfflineGameSnapshotDto._();
-
-  factory OfflineGameSnapshotDto.fromExternal(ex.Game game) {
-    return OfflineGameSnapshotDto(
-      status: game.status == ex.Status.pending
-          ? 'pending'
-          : game.status == ex.Status.running
-              ? 'running'
-              : game.status == ex.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
-      size: game.size,
-      type: game.type == ex.Type.legs ? 'legs' : 'sets',
-      startingPoints: game.startingPoints,
-      players: game.players.map<AbstractOfflinePlayerSnapshotDto>(
-        (player) {
-          if (player is ex.DartBot) {
-            return DartBotSnapshotDto.fromExternal(player);
-          } else {
-            return OfflinePlayerSnapshotDto.fromExternal(player);
-          }
-        },
-      ).toList(),
-    );
-  }
 
   OfflineGameSnapshot toDomain() {
     return OfflineGameSnapshot(
@@ -78,6 +53,31 @@ class OfflineGameSnapshotDto
           },
         ),
       ),
+    );
+  }
+
+  factory OfflineGameSnapshotDto.fromExternal(ex.Game game) {
+    return OfflineGameSnapshotDto(
+      status: game.status == ex.Status.pending
+          ? 'pending'
+          : game.status == ex.Status.running
+              ? 'running'
+              : game.status == ex.Status.canceled
+                  ? 'canceled'
+                  : 'finished',
+      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
+      size: game.size,
+      type: game.type == ex.Type.legs ? 'legs' : 'sets',
+      startingPoints: game.startingPoints,
+      players: game.players.map<AbstractOfflinePlayerSnapshotDto>(
+        (player) {
+          if (player is ex.DartBot) {
+            return DartBotSnapshotDto.fromExternal(player);
+          } else {
+            return OfflinePlayerSnapshotDto.fromExternal(player);
+          }
+        },
+      ).toList(),
     );
   }
 }

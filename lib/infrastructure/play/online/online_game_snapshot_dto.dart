@@ -1,4 +1,4 @@
-import 'package:dart_client/dart_client.dart' as dc;
+import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
@@ -27,28 +27,6 @@ class OnlineGameSnapshotDto
 
   const OnlineGameSnapshotDto._();
 
-  factory OnlineGameSnapshotDto.fromClient(dc.GameSnapshot gameSnapshot) {
-    return OnlineGameSnapshotDto(
-      status: gameSnapshot.status == dc.Status.pending
-          ? 'pending'
-          : gameSnapshot.status == dc.Status.running
-              ? 'running'
-              : gameSnapshot.status == dc.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: gameSnapshot.mode == dc.Mode.firstTo ? 'firstTo' : 'bestOf',
-      size: gameSnapshot.size,
-      type: gameSnapshot.type == dc.Type.legs ? 'legs' : 'sets',
-      startingPoints: gameSnapshot.startingPoints,
-      players: gameSnapshot.players
-          .map(
-            (playerSnapshot) =>
-                OnlinePlayerSnapshotDto.fromClient(playerSnapshot),
-          )
-          .asList(),
-    );
-  }
-
   OnlineGameSnapshot toDomain() {
     return OnlineGameSnapshot(
       status: status == 'pending'
@@ -67,6 +45,28 @@ class OnlineGameSnapshotDto
           (player) => player.toDomain(),
         ),
       ),
+    );
+  }
+
+  factory OnlineGameSnapshotDto.fromClient(c.GameSnapshot gameSnapshot) {
+    return OnlineGameSnapshotDto(
+      status: gameSnapshot.status == c.Status.pending
+          ? 'pending'
+          : gameSnapshot.status == c.Status.running
+              ? 'running'
+              : gameSnapshot.status == c.Status.canceled
+                  ? 'canceled'
+                  : 'finished',
+      mode: gameSnapshot.mode == c.Mode.firstTo ? 'firstTo' : 'bestOf',
+      size: gameSnapshot.size,
+      type: gameSnapshot.type == c.Type.legs ? 'legs' : 'sets',
+      startingPoints: gameSnapshot.startingPoints,
+      players: gameSnapshot.players
+          .map(
+            (playerSnapshot) =>
+                OnlinePlayerSnapshotDto.fromClient(playerSnapshot),
+          )
+          .asList(),
     );
   }
 }

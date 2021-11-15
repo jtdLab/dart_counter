@@ -1,7 +1,7 @@
-import 'package:dart_client/dart_client.dart' as dc show PlayerSnapshot;
+import 'package:dart_client/dart_client.dart' as c show PlayerSnapshot;
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/game/player_stats.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/infrastructure/game/player_stats_dto.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -32,24 +32,6 @@ class OnlinePlayerSnapshotDto
 
   const OnlinePlayerSnapshotDto._();
 
-  factory OnlinePlayerSnapshotDto.fromClient(dc.PlayerSnapshot playerSnapshot) {
-    return OnlinePlayerSnapshotDto(
-      id: playerSnapshot.id,
-      name: playerSnapshot.name,
-      isCurrentTurn: playerSnapshot.isCurrentTurn,
-      won: playerSnapshot.won,
-      wonSets: playerSnapshot.wonSets,
-      wonLegsCurrentSet: playerSnapshot.wonLegsCurrentSet,
-      pointsLeft: playerSnapshot.pointsLeft,
-      finishRecommendation: playerSnapshot.finishRecommendation?.asList(),
-      lastPoints: playerSnapshot.lastPoints,
-      dartsThrownCurrentLeg: playerSnapshot.dartsThrownCurrentLeg,
-      stats: playerSnapshot.stats == null
-          ? null
-          : PlayerStatsDto.fromClient(playerSnapshot.stats!),
-    );
-  }
-
   OnlinePlayerSnapshot toDomain() {
     return OnlinePlayerSnapshot(
       id: UniqueId.fromUniqueString(this.id),
@@ -66,6 +48,24 @@ class OnlinePlayerSnapshotDto
       lastPoints: lastPoints,
       dartsThrownCurrentLeg: dartsThrownCurrentLeg ?? 0,
       stats: stats?.toDomain() ?? const PlayerStats(),
+    );
+  }
+
+  factory OnlinePlayerSnapshotDto.fromClient(c.PlayerSnapshot playerSnapshot) {
+    return OnlinePlayerSnapshotDto(
+      id: playerSnapshot.id,
+      name: playerSnapshot.name,
+      isCurrentTurn: playerSnapshot.isCurrentTurn,
+      won: playerSnapshot.won,
+      wonSets: playerSnapshot.wonSets,
+      wonLegsCurrentSet: playerSnapshot.wonLegsCurrentSet,
+      pointsLeft: playerSnapshot.pointsLeft,
+      finishRecommendation: playerSnapshot.finishRecommendation?.asList(),
+      lastPoints: playerSnapshot.lastPoints,
+      dartsThrownCurrentLeg: playerSnapshot.dartsThrownCurrentLeg,
+      stats: playerSnapshot.stats == null
+          ? null
+          : PlayerStatsDto.fromClient(playerSnapshot.stats!),
     );
   }
 }
