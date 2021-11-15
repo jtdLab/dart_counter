@@ -1,6 +1,6 @@
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/infrastructure/training/single/single_training_player_snapshot_dto.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';

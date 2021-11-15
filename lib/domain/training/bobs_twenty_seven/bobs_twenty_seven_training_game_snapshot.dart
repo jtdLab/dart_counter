@@ -4,13 +4,15 @@ import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import '../status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'mode.dart';
 
 part 'bobs_twenty_seven_training_game_snapshot.freezed.dart';
 
 @freezed
-class BobsTwentySevenGameSnapshot with _$BobsTwentySevenGameSnapshot implements AbstractTrainingGameSnapshot {
+class BobsTwentySevenGameSnapshot
+    with _$BobsTwentySevenGameSnapshot
+    implements AbstractTrainingGameSnapshot {
   @Implements<AbstractTrainingGameSnapshot>()
   const factory BobsTwentySevenGameSnapshot({
     required Status status,

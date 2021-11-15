@@ -5,12 +5,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../mode.dart';
-import '../status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 
 part 'double_training_game_snapshot.freezed.dart';
 
 @freezed
-class DoubleTrainingGameSnapshot with _$DoubleTrainingGameSnapshot implements AbstractTrainingGameSnapshot {
+class DoubleTrainingGameSnapshot
+    with _$DoubleTrainingGameSnapshot
+    implements AbstractTrainingGameSnapshot {
   @Implements<AbstractTrainingGameSnapshot>()
   const factory DoubleTrainingGameSnapshot({
     required Status status,

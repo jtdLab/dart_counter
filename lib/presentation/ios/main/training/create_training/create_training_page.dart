@@ -8,7 +8,7 @@ import 'package:dart_counter/application/training/single_training/single_trainin
 
 // DOMAIN
 import 'package:dart_counter/domain/training/type.dart';
-import 'package:dart_counter/domain/training/status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/abstract_training_player_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';

@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/training/training_bloc.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/training/status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 
 import '../../shared.dart';
 

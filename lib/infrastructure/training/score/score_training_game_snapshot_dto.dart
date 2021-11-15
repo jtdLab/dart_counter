@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/status.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/infrastructure/training/score/score_training_player_snapshot_dto.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
