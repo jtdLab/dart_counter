@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
+import 'package:dart_counter/infrastructure/game/status_x.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_player_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,13 +22,7 @@ class BobsTwentySevenGameSnapshotDto with _$BobsTwentySevenGameSnapshotDto {
 
   BobsTwentySevenGameSnapshot toDomain() {
     return BobsTwentySevenGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
+      status: StatusX.parse(status),
       mode: mode == 'easy' ? Mode.easy : Mode.hard,
       players: players.map((player) => player.toDomain()),
       owner: owner.toDomain(),
