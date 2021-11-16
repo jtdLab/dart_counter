@@ -21,15 +21,15 @@ class _$OfflinePlayerSnapshotTearOff {
       {required UniqueId id,
       String? name,
       String? photoUrl,
-      bool isCurrentTurn = false,
-      bool won = false,
+      required bool isCurrentTurn,
+      required bool won,
       int? wonSets,
-      int wonLegsCurrentSet = 0,
-      int pointsLeft = 0,
+      required int wonLegsCurrentSet,
+      required int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int dartsThrownCurrentLeg = 0,
-      PlayerStats stats = const PlayerStats()}) {
+      required int dartsThrownCurrentLeg,
+      required PlayerStats stats}) {
     return _OfflinePlayerSnapshot(
       id: id,
       name: name,
@@ -289,15 +289,15 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
       {required this.id,
       this.name,
       this.photoUrl,
-      this.isCurrentTurn = false,
-      this.won = false,
+      required this.isCurrentTurn,
+      required this.won,
       this.wonSets,
-      this.wonLegsCurrentSet = 0,
-      this.pointsLeft = 0,
+      required this.wonLegsCurrentSet,
+      required this.pointsLeft,
       this.finishRecommendation,
       this.lastPoints,
-      this.dartsThrownCurrentLeg = 0,
-      this.stats = const PlayerStats()});
+      required this.dartsThrownCurrentLeg,
+      required this.stats});
 
   @override
   final UniqueId id;
@@ -305,28 +305,22 @@ class _$_OfflinePlayerSnapshot implements _OfflinePlayerSnapshot {
   final String? name;
   @override
   final String? photoUrl;
-  @JsonKey(defaultValue: false)
   @override
   final bool isCurrentTurn;
-  @JsonKey(defaultValue: false)
   @override
   final bool won;
   @override
   final int? wonSets;
-  @JsonKey(defaultValue: 0)
   @override
   final int wonLegsCurrentSet;
-  @JsonKey(defaultValue: 0)
   @override
   final int pointsLeft;
   @override
   final KtList<String>? finishRecommendation;
   @override
   final int? lastPoints;
-  @JsonKey(defaultValue: 0)
   @override
   final int dartsThrownCurrentLeg;
-  @JsonKey(defaultValue: const PlayerStats())
   @override
   final PlayerStats stats;
 
@@ -390,15 +384,15 @@ abstract class _OfflinePlayerSnapshot
       {required UniqueId id,
       String? name,
       String? photoUrl,
-      bool isCurrentTurn,
-      bool won,
+      required bool isCurrentTurn,
+      required bool won,
       int? wonSets,
-      int wonLegsCurrentSet,
-      int pointsLeft,
+      required int wonLegsCurrentSet,
+      required int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int dartsThrownCurrentLeg,
-      PlayerStats stats}) = _$_OfflinePlayerSnapshot;
+      required int dartsThrownCurrentLeg,
+      required PlayerStats stats}) = _$_OfflinePlayerSnapshot;
 
   @override
   UniqueId get id;

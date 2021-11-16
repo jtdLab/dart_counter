@@ -1,7 +1,7 @@
-import 'package:dart_counter/domain/game/mode.dart';
-import 'package:dart_counter/domain/game/status.dart';
-import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/infrastructure/game/mode_x.dart';
+import 'package:dart_counter/infrastructure/game/status_x.dart';
+import 'package:dart_counter/infrastructure/game/type_x.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -29,16 +29,10 @@ class OfflineGameSnapshotDto
 
   OfflineGameSnapshot toDomain() {
     return OfflineGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'firstTo' ? Mode.firstTo : Mode.bestOf,
+      status: StatusX.parse(status),
+      mode: ModeX.parse(mode),
       size: size,
-      type: type == 'legs' ? Type.legs : Type.sets,
+      type: TypeX.parse(type),
       startingPoints: startingPoints,
       players: KtList.from(
         players.map(
@@ -58,16 +52,10 @@ class OfflineGameSnapshotDto
 
   factory OfflineGameSnapshotDto.fromExternal(ex.Game game) {
     return OfflineGameSnapshotDto(
-      status: game.status == ex.Status.pending
-          ? 'pending'
-          : game.status == ex.Status.running
-              ? 'running'
-              : game.status == ex.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == ex.Mode.firstTo ? 'firstTo' : 'bestOf',
+      status: game.status.toShortString(),
+      mode: game.mode.toShortString(),
       size: game.size,
-      type: game.type == ex.Type.legs ? 'legs' : 'sets',
+      type: game.type.toShortString(),
       startingPoints: game.startingPoints,
       players: game.players.map<AbstractOfflinePlayerSnapshotDto>(
         (player) {

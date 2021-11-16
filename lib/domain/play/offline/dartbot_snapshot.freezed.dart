@@ -19,17 +19,17 @@ class _$DartBotSnapshotTearOff {
 
   _DartBotSnapshot call(
       {required UniqueId id,
-      required String name,
-      bool isCurrentTurn = false,
-      bool won = false,
+      String? name,
+      required bool isCurrentTurn,
+      required bool won,
       int? wonSets,
-      int wonLegsCurrentSet = 0,
-      int pointsLeft = 0,
+      required int wonLegsCurrentSet,
+      required int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int dartsThrownCurrentLeg = 0,
-      PlayerStats stats = const PlayerStats(),
-      int targetAverage = 1}) {
+      required int dartsThrownCurrentLeg,
+      required PlayerStats stats,
+      required int targetAverage}) {
     return _DartBotSnapshot(
       id: id,
       name: name,
@@ -53,7 +53,7 @@ const $DartBotSnapshot = _$DartBotSnapshotTearOff();
 /// @nodoc
 mixin _$DartBotSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -78,7 +78,7 @@ abstract class $DartBotSnapshotCopyWith<$Res> {
       _$DartBotSnapshotCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      String name,
+      String? name,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -125,7 +125,7 @@ class _$DartBotSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -186,7 +186,7 @@ abstract class _$DartBotSnapshotCopyWith<$Res>
   @override
   $Res call(
       {UniqueId id,
-      String name,
+      String? name,
       bool isCurrentTurn,
       bool won,
       int? wonSets,
@@ -236,7 +236,7 @@ class __$DartBotSnapshotCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -287,47 +287,40 @@ class __$DartBotSnapshotCopyWithImpl<$Res>
 class _$_DartBotSnapshot implements _DartBotSnapshot {
   const _$_DartBotSnapshot(
       {required this.id,
-      required this.name,
-      this.isCurrentTurn = false,
-      this.won = false,
+      this.name,
+      required this.isCurrentTurn,
+      required this.won,
       this.wonSets,
-      this.wonLegsCurrentSet = 0,
-      this.pointsLeft = 0,
+      required this.wonLegsCurrentSet,
+      required this.pointsLeft,
       this.finishRecommendation,
       this.lastPoints,
-      this.dartsThrownCurrentLeg = 0,
-      this.stats = const PlayerStats(),
-      this.targetAverage = 1});
+      required this.dartsThrownCurrentLeg,
+      required this.stats,
+      required this.targetAverage});
 
   @override
   final UniqueId id;
   @override
-  final String name;
-  @JsonKey(defaultValue: false)
+  final String? name;
   @override
   final bool isCurrentTurn;
-  @JsonKey(defaultValue: false)
   @override
   final bool won;
   @override
   final int? wonSets;
-  @JsonKey(defaultValue: 0)
   @override
   final int wonLegsCurrentSet;
-  @JsonKey(defaultValue: 0)
   @override
   final int pointsLeft;
   @override
   final KtList<String>? finishRecommendation;
   @override
   final int? lastPoints;
-  @JsonKey(defaultValue: 0)
   @override
   final int dartsThrownCurrentLeg;
-  @JsonKey(defaultValue: const PlayerStats())
   @override
   final PlayerStats stats;
-  @JsonKey(defaultValue: 1)
   @override
   final int targetAverage;
 
@@ -388,22 +381,22 @@ abstract class _DartBotSnapshot
     implements DartBotSnapshot, AbstractOfflinePlayerSnapshot {
   const factory _DartBotSnapshot(
       {required UniqueId id,
-      required String name,
-      bool isCurrentTurn,
-      bool won,
+      String? name,
+      required bool isCurrentTurn,
+      required bool won,
       int? wonSets,
-      int wonLegsCurrentSet,
-      int pointsLeft,
+      required int wonLegsCurrentSet,
+      required int pointsLeft,
       KtList<String>? finishRecommendation,
       int? lastPoints,
-      int dartsThrownCurrentLeg,
-      PlayerStats stats,
-      int targetAverage}) = _$_DartBotSnapshot;
+      required int dartsThrownCurrentLeg,
+      required PlayerStats stats,
+      required int targetAverage}) = _$_DartBotSnapshot;
 
   @override
   UniqueId get id;
   @override
-  String get name;
+  String? get name;
   @override
   bool get isCurrentTurn;
   @override

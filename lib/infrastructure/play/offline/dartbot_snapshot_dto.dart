@@ -17,7 +17,7 @@ class DartBotSnapshotDto
   @Implements<AbstractOfflinePlayerSnapshotDto>()
   const factory DartBotSnapshotDto({
     required String id,
-    required String name,
+    String? name,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -54,7 +54,6 @@ class DartBotSnapshotDto
   factory DartBotSnapshotDto.fromExternal(ex.DartBot dartBot) {
     return DartBotSnapshotDto(
       id: dartBot.id,
-      name: 'Dartbot', // TODO
       isCurrentTurn: dartBot.isCurrentTurn,
       won: dartBot.won,
       wonSets: dartBot.wonSets,
@@ -63,28 +62,30 @@ class DartBotSnapshotDto
       finishRecommendation: dartBot.finishRecommendation,
       lastPoints: dartBot.lastPoints,
       dartsThrownCurrentLeg: dartBot.dartsThrownCurrentLeg,
-      stats: PlayerStatsDto(
-        average: dartBot.average ?? 0,
-        checkoutPercentage: dartBot.checkoutPercentage ?? 0,
-        firstNineAverage: dartBot.firstNineAverage ?? 0,
-        bestLegDartsThrown: dartBot.bestLegDartsThrown,
-        bestLegAverage: dartBot.bestLegAverage,
-        worstLegDartsThrown: dartBot.worstLegDartsThrown,
-        worstLegAverage: dartBot.worstLegAverage,
-        averageDartsPerLeg: dartBot.averageDartsPerLeg,
-        firstDartAverage: dartBot.firstDartAverage,
-        secondDartAverage: dartBot.secondDartAverage,
-        thirdDartAverage: dartBot.thirdDartAverage,
-        highestFinish: dartBot.highestFinish,
-        fourtyPlus: dartBot.fourtyPlus ?? 0,
-        sixtyPlus: dartBot.sixtyPlus ?? 0,
-        eightyPlus: dartBot.eightyPlus ?? 0,
-        hundredPlus: dartBot.hundredPlus ?? 0,
-        hundredTwentyPlus: dartBot.hundredTwentyPlus ?? 0,
-        hundredFourtyPlus: dartBot.hundredFourtyPlus ?? 0,
-        hundredSixtyPlus: dartBot.hundredSixtyPlus ?? 0,
-        hundredEighty: dartBot.hundredEighty ?? 0,
-      ),
+      stats: dartBot.lastPoints != null
+          ? PlayerStatsDto(
+              average: dartBot.average,
+              checkoutPercentage: dartBot.checkoutPercentage,
+              firstNineAverage: dartBot.firstNineAverage,
+              bestLegDartsThrown: dartBot.bestLegDartsThrown,
+              bestLegAverage: dartBot.bestLegAverage,
+              worstLegDartsThrown: dartBot.worstLegDartsThrown,
+              worstLegAverage: dartBot.worstLegAverage,
+              averageDartsPerLeg: dartBot.averageDartsPerLeg,
+              firstDartAverage: dartBot.firstDartAverage,
+              secondDartAverage: dartBot.secondDartAverage,
+              thirdDartAverage: dartBot.thirdDartAverage,
+              highestFinish: dartBot.highestFinish,
+              fourtyPlus: dartBot.fourtyPlus,
+              sixtyPlus: dartBot.sixtyPlus,
+              eightyPlus: dartBot.eightyPlus,
+              hundredPlus: dartBot.hundredPlus,
+              hundredTwentyPlus: dartBot.hundredTwentyPlus,
+              hundredFourtyPlus: dartBot.hundredFourtyPlus,
+              hundredSixtyPlus: dartBot.hundredSixtyPlus,
+              hundredEighty: dartBot.hundredEighty,
+            )
+          : null,
       targetAverage: dartBot.targetAverage,
     );
   }

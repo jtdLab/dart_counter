@@ -6,9 +6,9 @@ part 'stats.freezed.dart';
 @freezed
 class Stats with _$Stats {
   const factory Stats({
-     double? average,
-     double? checkoutPercentage,
-     double? firstNineAverage,
+    double? average,
+    double? checkoutPercentage,
+    double? firstNineAverage,
     int? bestLegDartsThrown,
     double? bestLegAverage,
     int? worstLegDartsThrown,

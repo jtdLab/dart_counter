@@ -15,26 +15,17 @@ class DartBotSnapshot
   @Implements<AbstractOfflinePlayerSnapshot>()
   const factory DartBotSnapshot({
     required UniqueId id,
-    required String name,
-    @Default(false)
-        bool isCurrentTurn,
-    @Default(false)
-        bool won,
+    String? name,
+    required bool isCurrentTurn,
+    required bool won,
     int? wonSets,
-    @Default(0)
-        int wonLegsCurrentSet,
-    @Default(0)
-        int pointsLeft,
+    required int wonLegsCurrentSet,
+    required int pointsLeft,
     KtList<String>? finishRecommendation,
     int? lastPoints,
-    @Default(0)
-        int dartsThrownCurrentLeg,
-    @Default(
-      PlayerStats(),
-    )
-        PlayerStats stats,
-    @Default(1)
-        int targetAverage,
+    required int dartsThrownCurrentLeg,
+    required PlayerStats stats,
+    required int targetAverage,
   }) = _DartBotSnapshot;
 
   factory DartBotSnapshot.dummy() => DartBotSnapshot(
@@ -58,5 +49,6 @@ class DartBotSnapshot
         lastPoints: 120,
         dartsThrownCurrentLeg: 6,
         stats: PlayerStats.dummy(),
+        targetAverage: 100,
       );
 }

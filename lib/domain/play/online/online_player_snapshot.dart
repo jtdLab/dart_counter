@@ -8,7 +8,6 @@ import '../abstract_player_snapshot.dart';
 
 part 'online_player_snapshot.freezed.dart';
 
-
 @freezed
 class OnlinePlayerSnapshot
     with _$OnlinePlayerSnapshot
@@ -18,23 +17,15 @@ class OnlinePlayerSnapshot
     required UniqueId id,
     required String name,
     String? photoUrl,
-    @Default(false)
-        bool isCurrentTurn,
-    @Default(false)
-        bool won,
+    required bool isCurrentTurn,
+    required bool won,
     int? wonSets,
-    @Default(0)
-        int wonLegsCurrentSet,
-    @Default(0)
-        int pointsLeft,
+    required int wonLegsCurrentSet,
+    required int pointsLeft,
     KtList<String>? finishRecommendation,
     int? lastPoints,
-    @Default(0)
-        int dartsThrownCurrentLeg,
-    @Default(
-      PlayerStats(),
-    )
-        PlayerStats stats,
+    required int dartsThrownCurrentLeg,
+    required PlayerStats stats,
   }) = _OnlinePlayerSnapshot;
 
   factory OnlinePlayerSnapshot.dummy() => OnlinePlayerSnapshot(

@@ -17,15 +17,15 @@ class OfflinePlayerSnapshot
     required UniqueId id,
     String? name,
     String? photoUrl,
-    @Default(false) bool isCurrentTurn,
-    @Default(false) bool won,
+    required bool isCurrentTurn,
+    required bool won,
     int? wonSets,
-    @Default(0) int wonLegsCurrentSet,
-    @Default(0) int pointsLeft,
+    required int wonLegsCurrentSet,
+    required int pointsLeft,
     KtList<String>? finishRecommendation,
     int? lastPoints,
-    @Default(0) int dartsThrownCurrentLeg,
-    @Default(PlayerStats()) PlayerStats stats,
+    required int dartsThrownCurrentLeg,
+    required PlayerStats stats,
   }) = _OfflinePlayerSnapshot;
 
   factory OfflinePlayerSnapshot.dummy() => OfflinePlayerSnapshot(

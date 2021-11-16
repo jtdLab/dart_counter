@@ -19,7 +19,7 @@ class _$DartBotSnapshotDtoTearOff {
 
   _DartBotSnapshotDto call(
       {required String id,
-      required String name,
+      String? name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -53,7 +53,7 @@ const $DartBotSnapshotDto = _$DartBotSnapshotDtoTearOff();
 /// @nodoc
 mixin _$DartBotSnapshotDto {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   bool? get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -77,7 +77,7 @@ abstract class $DartBotSnapshotDtoCopyWith<$Res> {
       _$DartBotSnapshotDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String name,
+      String? name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -124,7 +124,7 @@ class _$DartBotSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ abstract class _$DartBotSnapshotDtoCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String name,
+      String? name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -239,7 +239,7 @@ class __$DartBotSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
           : isCurrentTurn // ignore: cast_nullable_to_non_nullable
@@ -290,7 +290,7 @@ class __$DartBotSnapshotDtoCopyWithImpl<$Res>
 class _$_DartBotSnapshotDto extends _DartBotSnapshotDto {
   const _$_DartBotSnapshotDto(
       {required this.id,
-      required this.name,
+      this.name,
       this.isCurrentTurn,
       this.won,
       this.wonSets,
@@ -306,7 +306,7 @@ class _$_DartBotSnapshotDto extends _DartBotSnapshotDto {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final bool? isCurrentTurn;
   @override
@@ -385,7 +385,7 @@ abstract class _DartBotSnapshotDto extends DartBotSnapshotDto
     implements AbstractOfflinePlayerSnapshotDto {
   const factory _DartBotSnapshotDto(
       {required String id,
-      required String name,
+      String? name,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -401,7 +401,7 @@ abstract class _DartBotSnapshotDto extends DartBotSnapshotDto
   @override
   String get id;
   @override
-  String get name;
+  String? get name;
   @override
   bool? get isCurrentTurn;
   @override
