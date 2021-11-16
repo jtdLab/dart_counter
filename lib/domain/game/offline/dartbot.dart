@@ -18,14 +18,9 @@ class DartBot with _$DartBot implements AbstractOfflinePlayer {
     required UniqueId id,
     required String name,
     required Either<KtList<Leg>, KtList<Set>> legsOrSets,
-    @Default(false)
-        bool won,
-    @Default(0)
-        int wonLegsOrSets,
-    @Default(
-      PlayerStats(),
-    )
-        PlayerStats stats,
+    required bool won,
+    required int wonLegsOrSets,
+    required PlayerStats stats,
   }) = _DartBot;
 
   factory DartBot.dummy() => DartBot(

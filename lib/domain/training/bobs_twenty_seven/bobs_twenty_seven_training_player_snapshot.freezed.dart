@@ -23,7 +23,7 @@ class _$BobsTwentySevenPlayerSnapshotTearOff {
       required bool isCurrentTurn,
       required bool isDisqualified,
       required int targetValue,
-      required double checkoutPercentage,
+      double? checkoutPercentage,
       required int points,
       required int highestPoints}) {
     return _BobsTwentySevenPlayerSnapshot(
@@ -49,7 +49,7 @@ mixin _$BobsTwentySevenPlayerSnapshot {
   bool get isCurrentTurn => throw _privateConstructorUsedError;
   bool get isDisqualified => throw _privateConstructorUsedError;
   int get targetValue => throw _privateConstructorUsedError;
-  double get checkoutPercentage => throw _privateConstructorUsedError;
+  double? get checkoutPercentage => throw _privateConstructorUsedError;
   int get points => throw _privateConstructorUsedError;
   int get highestPoints => throw _privateConstructorUsedError;
 
@@ -70,7 +70,7 @@ abstract class $BobsTwentySevenPlayerSnapshotCopyWith<$Res> {
       bool isCurrentTurn,
       bool isDisqualified,
       int targetValue,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       int points,
       int highestPoints});
 }
@@ -119,7 +119,7 @@ class _$BobsTwentySevenPlayerSnapshotCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$BobsTwentySevenPlayerSnapshotCopyWith<$Res>
       bool isCurrentTurn,
       bool isDisqualified,
       int targetValue,
-      double checkoutPercentage,
+      double? checkoutPercentage,
       int points,
       int highestPoints});
 }
@@ -199,7 +199,7 @@ class __$BobsTwentySevenPlayerSnapshotCopyWithImpl<$Res>
       checkoutPercentage: checkoutPercentage == freezed
           ? _value.checkoutPercentage
           : checkoutPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$_BobsTwentySevenPlayerSnapshot
       required this.isCurrentTurn,
       required this.isDisqualified,
       required this.targetValue,
-      required this.checkoutPercentage,
+      this.checkoutPercentage,
       required this.points,
       required this.highestPoints});
 
@@ -238,7 +238,7 @@ class _$_BobsTwentySevenPlayerSnapshot
   @override
   final int targetValue;
   @override
-  final double checkoutPercentage;
+  final double? checkoutPercentage;
   @override
   final int points;
   @override
@@ -288,7 +288,7 @@ abstract class _BobsTwentySevenPlayerSnapshot
       required bool isCurrentTurn,
       required bool isDisqualified,
       required int targetValue,
-      required double checkoutPercentage,
+      double? checkoutPercentage,
       required int points,
       required int highestPoints}) = _$_BobsTwentySevenPlayerSnapshot;
 
@@ -303,7 +303,7 @@ abstract class _BobsTwentySevenPlayerSnapshot
   @override
   int get targetValue;
   @override
-  double get checkoutPercentage;
+  double? get checkoutPercentage;
   @override
   int get points;
   @override

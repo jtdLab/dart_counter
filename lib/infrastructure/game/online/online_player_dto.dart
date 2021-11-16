@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_player.dart';
+import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/infrastructure/game/leg_dto.dart';
 import 'package:dart_counter/infrastructure/game/set_dto.dart';
@@ -57,6 +58,32 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
                   .toImmutableList(),
             ),
       won: external.won ?? false,
+      wonLegsOrSets: (legsOrSets is List<LegDto>
+              ? external.wonLegsCurrentSet
+              : external.wonSets) ??
+          0,
+      stats: PlayerStats(
+        average: external.average,
+        checkoutPercentage: external.checkoutPercentage,
+        firstNineAverage: external.firstNineAverage,
+        bestLegDartsThrown: external.bestLegDartsThrown,
+        bestLegAverage: external.bestLegAverage,
+        worstLegDartsThrown: external.worstLegDartsThrown,
+        worstLegAverage: external.worstLegAverage,
+        averageDartsPerLeg: external.averageDartsPerLeg,
+        highestFinish: external.highestFinish,
+        firstDartAverage: external.firstDartAverage,
+        secondDartAverage: external.secondDartAverage,
+        thirdDartAverage: external.thirdDartAverage,
+        fourtyPlus: external.fourtyPlus,
+        sixtyPlus: external.sixtyPlus,
+        eightyPlus: external.eightyPlus,
+        hundredPlus: external.hundredPlus,
+        hundredTwentyPlus: external.hundredTwentyPlus,
+        hundredFourtyPlus: external.hundredFourtyPlus,
+        hundredSixtyPlus: external.hundredSixtyPlus,
+        hundredEighty: external.hundredEighty,
+      ),
     );
   }
 

@@ -16,7 +16,7 @@ class BobsTwentySevenPlayerSnapshot
     required bool isCurrentTurn,
     required bool isDisqualified,
     required int targetValue,
-    required double checkoutPercentage,
+    double? checkoutPercentage,
     required int points,
     required int highestPoints,
   }) = _BobsTwentySevenPlayerSnapshot;

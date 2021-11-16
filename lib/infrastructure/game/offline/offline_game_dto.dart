@@ -70,27 +70,6 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
     );
   }
 
-  factory OfflineGameDto.fromExternal(ex.Game game) {
-    return OfflineGameDto(
-      id: const Uuid().v1(),
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      status: game.status.toShortString(),
-      mode: game.mode.toShortString(),
-      size: game.size,
-      type: game.type.toShortString(),
-      startingPoints: game.startingPoints,
-      players: game.players.map(
-        (player) {
-          if (player is ex.DartBot) {
-            return DartBotDto.fromExternal(player);
-          } else {
-            return OfflinePlayerDto.fromExternal(player);
-          }
-        },
-      ).toList(),
-    );
-  }
-
   factory OfflineGameDto.fromJson(Map<String, dynamic> json) =>
       _$OfflineGameDtoFromJson(json);
 }

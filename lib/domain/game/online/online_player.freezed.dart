@@ -21,9 +21,9 @@ class _$OnlinePlayerTearOff {
       {required UniqueId id,
       required String name,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
-      bool won = false,
-      int wonLegsOrSets = 0,
-      PlayerStats stats = const PlayerStats()}) {
+      required bool won,
+      required int wonLegsOrSets,
+      required PlayerStats stats}) {
     return _OnlinePlayer(
       id: id,
       name: name,
@@ -197,9 +197,9 @@ class _$_OnlinePlayer implements _OnlinePlayer {
       {required this.id,
       required this.name,
       required this.legsOrSets,
-      this.won = false,
-      this.wonLegsOrSets = 0,
-      this.stats = const PlayerStats()});
+      required this.won,
+      required this.wonLegsOrSets,
+      required this.stats});
 
   @override
   final UniqueId id;
@@ -207,13 +207,10 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   final String name;
   @override
   final Either<KtList<Leg>, KtList<Set>> legsOrSets;
-  @JsonKey(defaultValue: false)
   @override
   final bool won;
-  @JsonKey(defaultValue: 0)
   @override
   final int wonLegsOrSets;
-  @JsonKey(defaultValue: const PlayerStats())
   @override
   final PlayerStats stats;
 
@@ -252,9 +249,9 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
       {required UniqueId id,
       required String name,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
-      bool won,
-      int wonLegsOrSets,
-      PlayerStats stats}) = _$_OnlinePlayer;
+      required bool won,
+      required int wonLegsOrSets,
+      required PlayerStats stats}) = _$_OnlinePlayer;
 
   @override
   UniqueId get id;
