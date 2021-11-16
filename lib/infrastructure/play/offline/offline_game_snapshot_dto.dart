@@ -39,10 +39,8 @@ class OfflineGameSnapshotDto
           (player) {
             if (player is OfflinePlayerSnapshotDto) {
               return player.toDomain();
-            } else if (player is DartBotSnapshotDto) {
-              return player.toDomain();
             } else {
-              throw Error(); // TODO
+              return (player as DartBotSnapshotDto).toDomain();
             }
           },
         ),
