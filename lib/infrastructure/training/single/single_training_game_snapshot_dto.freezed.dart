@@ -20,7 +20,7 @@ class _$SingleTrainingGameSnapshotDtoTearOff {
   _SingleTrainingGameSnapshotDto call(
       {required String status,
       required String mode,
-      required KtList<SingleTrainingPlayerSnapshotDto> players,
+      required List<SingleTrainingPlayerSnapshotDto> players,
       required SingleTrainingPlayerSnapshotDto owner}) {
     return _SingleTrainingGameSnapshotDto(
       status: status,
@@ -38,7 +38,7 @@ const $SingleTrainingGameSnapshotDto = _$SingleTrainingGameSnapshotDtoTearOff();
 mixin _$SingleTrainingGameSnapshotDto {
   String get status => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
-  KtList<SingleTrainingPlayerSnapshotDto> get players =>
+  List<SingleTrainingPlayerSnapshotDto> get players =>
       throw _privateConstructorUsedError;
   SingleTrainingPlayerSnapshotDto get owner =>
       throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $SingleTrainingGameSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String status,
       String mode,
-      KtList<SingleTrainingPlayerSnapshotDto> players,
+      List<SingleTrainingPlayerSnapshotDto> players,
       SingleTrainingPlayerSnapshotDto owner});
 
   $SingleTrainingPlayerSnapshotDtoCopyWith<$Res> get owner;
@@ -91,7 +91,7 @@ class _$SingleTrainingGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<SingleTrainingPlayerSnapshotDto>,
+              as List<SingleTrainingPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ abstract class _$SingleTrainingGameSnapshotDtoCopyWith<$Res>
   $Res call(
       {String status,
       String mode,
-      KtList<SingleTrainingPlayerSnapshotDto> players,
+      List<SingleTrainingPlayerSnapshotDto> players,
       SingleTrainingPlayerSnapshotDto owner});
 
   @override
@@ -158,7 +158,7 @@ class __$SingleTrainingGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<SingleTrainingPlayerSnapshotDto>,
+              as List<SingleTrainingPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -182,7 +182,7 @@ class _$_SingleTrainingGameSnapshotDto extends _SingleTrainingGameSnapshotDto {
   @override
   final String mode;
   @override
-  final KtList<SingleTrainingPlayerSnapshotDto> players;
+  final List<SingleTrainingPlayerSnapshotDto> players;
   @override
   final SingleTrainingPlayerSnapshotDto owner;
 
@@ -198,12 +198,13 @@ class _$_SingleTrainingGameSnapshotDto extends _SingleTrainingGameSnapshotDto {
             other is _SingleTrainingGameSnapshotDto &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.players, players) || other.players == players) &&
+            const DeepCollectionEquality().equals(other.players, players) &&
             (identical(other.owner, owner) || other.owner == owner));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mode, players, owner);
+  int get hashCode => Object.hash(runtimeType, status, mode,
+      const DeepCollectionEquality().hash(players), owner);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +218,7 @@ abstract class _SingleTrainingGameSnapshotDto
   const factory _SingleTrainingGameSnapshotDto(
           {required String status,
           required String mode,
-          required KtList<SingleTrainingPlayerSnapshotDto> players,
+          required List<SingleTrainingPlayerSnapshotDto> players,
           required SingleTrainingPlayerSnapshotDto owner}) =
       _$_SingleTrainingGameSnapshotDto;
   const _SingleTrainingGameSnapshotDto._() : super._();
@@ -227,7 +228,7 @@ abstract class _SingleTrainingGameSnapshotDto
   @override
   String get mode;
   @override
-  KtList<SingleTrainingPlayerSnapshotDto> get players;
+  List<SingleTrainingPlayerSnapshotDto> get players;
   @override
   SingleTrainingPlayerSnapshotDto get owner;
   @override

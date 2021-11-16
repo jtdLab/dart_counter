@@ -20,7 +20,7 @@ class _$BobsTwentySevenGameSnapshotDtoTearOff {
   _BobsTwentySevenGameSnapshotDto call(
       {required String status,
       required String mode,
-      required KtList<BobsTwentySevenPlayerSnapshotDto> players,
+      required List<BobsTwentySevenPlayerSnapshotDto> players,
       required BobsTwentySevenPlayerSnapshotDto owner}) {
     return _BobsTwentySevenGameSnapshotDto(
       status: status,
@@ -39,7 +39,7 @@ const $BobsTwentySevenGameSnapshotDto =
 mixin _$BobsTwentySevenGameSnapshotDto {
   String get status => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
-  KtList<BobsTwentySevenPlayerSnapshotDto> get players =>
+  List<BobsTwentySevenPlayerSnapshotDto> get players =>
       throw _privateConstructorUsedError;
   BobsTwentySevenPlayerSnapshotDto get owner =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $BobsTwentySevenGameSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String status,
       String mode,
-      KtList<BobsTwentySevenPlayerSnapshotDto> players,
+      List<BobsTwentySevenPlayerSnapshotDto> players,
       BobsTwentySevenPlayerSnapshotDto owner});
 
   $BobsTwentySevenPlayerSnapshotDtoCopyWith<$Res> get owner;
@@ -92,7 +92,7 @@ class _$BobsTwentySevenGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<BobsTwentySevenPlayerSnapshotDto>,
+              as List<BobsTwentySevenPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ abstract class _$BobsTwentySevenGameSnapshotDtoCopyWith<$Res>
   $Res call(
       {String status,
       String mode,
-      KtList<BobsTwentySevenPlayerSnapshotDto> players,
+      List<BobsTwentySevenPlayerSnapshotDto> players,
       BobsTwentySevenPlayerSnapshotDto owner});
 
   @override
@@ -159,7 +159,7 @@ class __$BobsTwentySevenGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<BobsTwentySevenPlayerSnapshotDto>,
+              as List<BobsTwentySevenPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class _$_BobsTwentySevenGameSnapshotDto
   @override
   final String mode;
   @override
-  final KtList<BobsTwentySevenPlayerSnapshotDto> players;
+  final List<BobsTwentySevenPlayerSnapshotDto> players;
   @override
   final BobsTwentySevenPlayerSnapshotDto owner;
 
@@ -200,12 +200,13 @@ class _$_BobsTwentySevenGameSnapshotDto
             other is _BobsTwentySevenGameSnapshotDto &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.players, players) || other.players == players) &&
+            const DeepCollectionEquality().equals(other.players, players) &&
             (identical(other.owner, owner) || other.owner == owner));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mode, players, owner);
+  int get hashCode => Object.hash(runtimeType, status, mode,
+      const DeepCollectionEquality().hash(players), owner);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +220,7 @@ abstract class _BobsTwentySevenGameSnapshotDto
   const factory _BobsTwentySevenGameSnapshotDto(
           {required String status,
           required String mode,
-          required KtList<BobsTwentySevenPlayerSnapshotDto> players,
+          required List<BobsTwentySevenPlayerSnapshotDto> players,
           required BobsTwentySevenPlayerSnapshotDto owner}) =
       _$_BobsTwentySevenGameSnapshotDto;
   const _BobsTwentySevenGameSnapshotDto._() : super._();
@@ -229,7 +230,7 @@ abstract class _BobsTwentySevenGameSnapshotDto
   @override
   String get mode;
   @override
-  KtList<BobsTwentySevenPlayerSnapshotDto> get players;
+  List<BobsTwentySevenPlayerSnapshotDto> get players;
   @override
   BobsTwentySevenPlayerSnapshotDto get owner;
   @override

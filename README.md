@@ -108,3 +108,5 @@ test('constructor', () {
 
 
 // TODO game folder all in gamehistory expect dart and throw becaus they are shared in play and training ???ß
+
+// training game/player snapshot single remove initial() methods

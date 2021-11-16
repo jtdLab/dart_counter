@@ -1,6 +1,8 @@
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/infrastructure/game/status_x.dart';
+import 'package:dart_counter/infrastructure/training/mode_x.dart';
 import 'package:dart_counter/infrastructure/training/single/single_training_player_snapshot_dto.dart';
 import 'package:dart_game/single_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,7 +15,7 @@ class SingleTrainingGameSnapshotDto with _$SingleTrainingGameSnapshotDto {
   const factory SingleTrainingGameSnapshotDto({
     required String status,
     required String mode,
-    required KtList<SingleTrainingPlayerSnapshotDto> players,
+    required List<SingleTrainingPlayerSnapshotDto> players,
     required SingleTrainingPlayerSnapshotDto owner,
   }) = _SingleTrainingGameSnapshotDto;
 
@@ -21,40 +23,20 @@ class SingleTrainingGameSnapshotDto with _$SingleTrainingGameSnapshotDto {
 
   SingleTrainingGameSnapshot toDomain() {
     return SingleTrainingGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
-      mode: mode == 'ascending'
-          ? Mode.ascending
-          : mode == 'descending'
-              ? Mode.descending
-              : Mode.random,
-      players: players.map((player) => player.toDomain()),
+      status: StatusX.parse(status),
+      mode: ModeX.parse(mode),
+      players: players.map((player) => player.toDomain()).toImmutableList(),
       owner: owner.toDomain(),
     );
   }
 
   factory SingleTrainingGameSnapshotDto.fromExternal(ex.Game game) {
     return SingleTrainingGameSnapshotDto(
-      status: game.status == ex.Status.pending
-          ? 'pending'
-          : game.status == ex.Status.running
-              ? 'running'
-              : game.status == ex.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
-      mode: game.mode == ex.Mode.ascending
-          ? 'ascending'
-          : game.mode == ex.Mode.descending
-              ? 'descending'
-              : 'random',
+      status: game.status.toShortString(),
+      mode: game.mode.toShortString(),
       players: game.players
           .map((player) => SingleTrainingPlayerSnapshotDto.fromExternal(player))
-          .toImmutableList(),
+          .toList(),
       owner: SingleTrainingPlayerSnapshotDto.fromExternal(game.owner),
     );
   }

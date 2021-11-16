@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/score_training_player_snapshot.dart';
+import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -18,5 +19,15 @@ class ScoreTrainingGameSnapshot
     required ScoreTrainingPlayerSnapshot owner,
   }) = _ScoreTrainingGameSnapshot;
 
-  // TODO dummy
+  factory ScoreTrainingGameSnapshot.dummy() {
+    final players = faker.randomGenerator
+        .amount((i) => ScoreTrainingPlayerSnapshot.dummy(), 4);
+
+    return ScoreTrainingGameSnapshot(
+      status: faker.randomGenerator.element(Status.values),
+      numberOfTakes: faker.randomGenerator.integer(20),
+      players: players.toImmutableList(),
+      owner: players[0],
+    );
+  }
 }

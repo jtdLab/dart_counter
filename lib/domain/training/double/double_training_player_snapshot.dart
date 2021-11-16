@@ -6,7 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'double_training_player_snapshot.freezed.dart';
 
 @freezed
-class DoubleTrainingPlayerSnapshot with _$DoubleTrainingPlayerSnapshot implements AbstractTrainingPlayerSnapshot {
+class DoubleTrainingPlayerSnapshot
+    with _$DoubleTrainingPlayerSnapshot
+    implements AbstractTrainingPlayerSnapshot {
   @Implements<AbstractTrainingPlayerSnapshot>()
   const factory DoubleTrainingPlayerSnapshot({
     required UniqueId id,
@@ -19,5 +21,15 @@ class DoubleTrainingPlayerSnapshot with _$DoubleTrainingPlayerSnapshot implement
     required int dartsThrown,
   }) = _DoubleTrainingPlayerSnapshot;
 
-  // TODO dummy
+  factory DoubleTrainingPlayerSnapshot.dummy() => DoubleTrainingPlayerSnapshot(
+        id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
+        name: faker.randomGenerator.element([faker.person.firstName(), null]),
+        isCurrentTurn: faker.randomGenerator.boolean(),
+        isFinished: faker.randomGenerator.boolean(),
+        targetValue: 1,
+        checkoutPercentage:
+            faker.randomGenerator.element([34.44, 100.0, 1.43, 56.49]),
+        missed: faker.randomGenerator.integer(30),
+        dartsThrown: faker.randomGenerator.integer(50),
+      );
 }

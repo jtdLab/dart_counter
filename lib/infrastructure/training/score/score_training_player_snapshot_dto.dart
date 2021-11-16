@@ -21,17 +21,17 @@ class ScoreTrainingPlayerSnapshotDto with _$ScoreTrainingPlayerSnapshotDto {
 
   const ScoreTrainingPlayerSnapshotDto._();
 
-  factory ScoreTrainingPlayerSnapshotDto.fromDomain(ScoreTrainingPlayerSnapshot playerSnapshot) {
-    return ScoreTrainingPlayerSnapshotDto(
-      id: playerSnapshot.id.getOrCrash(),
-      name: playerSnapshot.name,
-      isCurrentTurn: playerSnapshot.isCurrentTurn,
-      takesLeft: playerSnapshot.takesLeft,
-      average: playerSnapshot.average,
-      points: playerSnapshot.points,
-      firstDartAverage: playerSnapshot.firstDartAverage,
-      secondDartAverage: playerSnapshot.secondDartAverage,
-      thirdDartAverage: playerSnapshot.thirdDartAverage,
+  ScoreTrainingPlayerSnapshot toDomain() {
+    return ScoreTrainingPlayerSnapshot(
+      id: UniqueId.fromUniqueString(id),
+      name: name,
+      isCurrentTurn: isCurrentTurn ?? false,
+      takesLeft: takesLeft ?? 1,
+      average: average,
+      points: points ?? 0,
+      firstDartAverage: firstDartAverage,
+      secondDartAverage: secondDartAverage,
+      thirdDartAverage: thirdDartAverage,
     );
   }
 
@@ -46,20 +46,6 @@ class ScoreTrainingPlayerSnapshotDto with _$ScoreTrainingPlayerSnapshotDto {
       firstDartAverage: player.firstDartAverage,
       secondDartAverage: player.secondDartAverage,
       thirdDartAverage: player.thirdDartAverage,
-    );
-  }
-
-  ScoreTrainingPlayerSnapshot toDomain() {
-    return ScoreTrainingPlayerSnapshot(
-      id: UniqueId.fromUniqueString(id),
-      name: name,
-      isCurrentTurn: isCurrentTurn ?? false,
-      takesLeft: takesLeft ?? 1,
-      average: average,
-      points: points ?? 0,
-      firstDartAverage: firstDartAverage,
-      secondDartAverage: secondDartAverage,
-      thirdDartAverage: thirdDartAverage,
     );
   }
 }

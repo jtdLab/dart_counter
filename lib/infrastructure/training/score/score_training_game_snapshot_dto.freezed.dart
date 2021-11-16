@@ -20,7 +20,7 @@ class _$ScoreTrainingGameSnapshotDtoTearOff {
   _ScoreTrainingGameSnapshotDto call(
       {required String status,
       required int numberOfTakes,
-      required KtList<ScoreTrainingPlayerSnapshotDto> players,
+      required List<ScoreTrainingPlayerSnapshotDto> players,
       required ScoreTrainingPlayerSnapshotDto owner}) {
     return _ScoreTrainingGameSnapshotDto(
       status: status,
@@ -38,7 +38,7 @@ const $ScoreTrainingGameSnapshotDto = _$ScoreTrainingGameSnapshotDtoTearOff();
 mixin _$ScoreTrainingGameSnapshotDto {
   String get status => throw _privateConstructorUsedError;
   int get numberOfTakes => throw _privateConstructorUsedError;
-  KtList<ScoreTrainingPlayerSnapshotDto> get players =>
+  List<ScoreTrainingPlayerSnapshotDto> get players =>
       throw _privateConstructorUsedError;
   ScoreTrainingPlayerSnapshotDto get owner =>
       throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $ScoreTrainingGameSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String status,
       int numberOfTakes,
-      KtList<ScoreTrainingPlayerSnapshotDto> players,
+      List<ScoreTrainingPlayerSnapshotDto> players,
       ScoreTrainingPlayerSnapshotDto owner});
 
   $ScoreTrainingPlayerSnapshotDtoCopyWith<$Res> get owner;
@@ -91,7 +91,7 @@ class _$ScoreTrainingGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<ScoreTrainingPlayerSnapshotDto>,
+              as List<ScoreTrainingPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ abstract class _$ScoreTrainingGameSnapshotDtoCopyWith<$Res>
   $Res call(
       {String status,
       int numberOfTakes,
-      KtList<ScoreTrainingPlayerSnapshotDto> players,
+      List<ScoreTrainingPlayerSnapshotDto> players,
       ScoreTrainingPlayerSnapshotDto owner});
 
   @override
@@ -157,7 +157,7 @@ class __$ScoreTrainingGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<ScoreTrainingPlayerSnapshotDto>,
+              as List<ScoreTrainingPlayerSnapshotDto>,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -181,7 +181,7 @@ class _$_ScoreTrainingGameSnapshotDto extends _ScoreTrainingGameSnapshotDto {
   @override
   final int numberOfTakes;
   @override
-  final KtList<ScoreTrainingPlayerSnapshotDto> players;
+  final List<ScoreTrainingPlayerSnapshotDto> players;
   @override
   final ScoreTrainingPlayerSnapshotDto owner;
 
@@ -198,13 +198,13 @@ class _$_ScoreTrainingGameSnapshotDto extends _ScoreTrainingGameSnapshotDto {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.numberOfTakes, numberOfTakes) ||
                 other.numberOfTakes == numberOfTakes) &&
-            (identical(other.players, players) || other.players == players) &&
+            const DeepCollectionEquality().equals(other.players, players) &&
             (identical(other.owner, owner) || other.owner == owner));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, numberOfTakes, players, owner);
+  int get hashCode => Object.hash(runtimeType, status, numberOfTakes,
+      const DeepCollectionEquality().hash(players), owner);
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +218,7 @@ abstract class _ScoreTrainingGameSnapshotDto
   const factory _ScoreTrainingGameSnapshotDto(
           {required String status,
           required int numberOfTakes,
-          required KtList<ScoreTrainingPlayerSnapshotDto> players,
+          required List<ScoreTrainingPlayerSnapshotDto> players,
           required ScoreTrainingPlayerSnapshotDto owner}) =
       _$_ScoreTrainingGameSnapshotDto;
   const _ScoreTrainingGameSnapshotDto._() : super._();
@@ -228,7 +228,7 @@ abstract class _ScoreTrainingGameSnapshotDto
   @override
   int get numberOfTakes;
   @override
-  KtList<ScoreTrainingPlayerSnapshotDto> get players;
+  List<ScoreTrainingPlayerSnapshotDto> get players;
   @override
   ScoreTrainingPlayerSnapshotDto get owner;
   @override

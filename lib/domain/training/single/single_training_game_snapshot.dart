@@ -36,14 +36,13 @@ class SingleTrainingGameSnapshot
 
   factory SingleTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
-        .amount((i) => SingleTrainingPlayerSnapshot.dummy(), 4)
-        .toImmutableList();
+        .amount((i) => SingleTrainingPlayerSnapshot.dummy(), 4);
 
     return SingleTrainingGameSnapshot(
-      status: Status.pending,
-      mode: Mode.ascending,
-      players: players,
-      owner: players.get(0),
+      status: faker.randomGenerator.element(Status.values),
+      mode: faker.randomGenerator.element(Mode.values),
+      players: players.toImmutableList(),
+      owner: players[0],
     );
   }
 }

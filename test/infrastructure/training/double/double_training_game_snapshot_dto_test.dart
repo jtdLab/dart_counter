@@ -1,11 +1,11 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/status.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_player_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
-import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_game_snapshot_dto.dart';
-import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_player_snapshot_dto.dart';
-import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
+import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
+import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
+import 'package:dart_counter/domain/training/mode.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_player_snapshot_dto.dart';
+import 'package:dart_game/double_training_game.dart' as ex;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -13,30 +13,29 @@ void main() {
   final id = UniqueId.fromUniqueString('dummyId');
   const idString = 'dummyId';
 
-  final playerDomain = BobsTwentySevenPlayerSnapshot(
+  final playerDomain = DoubleTrainingPlayerSnapshot(
     id: id,
     isCurrentTurn: false,
-    isDisqualified: false,
+    isFinished: false,
     targetValue: 1,
-    checkoutPercentage: 0.0,
-    points: 0,
-    highestPoints: 27,
+    missed: 0,
+    dartsThrown: 0,
   );
 
-  final domain = BobsTwentySevenGameSnapshot(
+  final domain = DoubleTrainingGameSnapshot(
     status: Status.pending,
-    mode: Mode.easy,
+    mode: Mode.ascending,
     players: KtList.from([playerDomain]),
     owner: playerDomain,
   );
 
-  const playerDto = BobsTwentySevenPlayerSnapshotDto(
+  const playerDto = DoubleTrainingPlayerSnapshotDto(
     id: idString,
   );
 
-  const dto = BobsTwentySevenGameSnapshotDto(
+  const dto = DoubleTrainingGameSnapshotDto(
     status: 'pending',
-    mode: 'easy',
+    mode: 'ascending',
     players: [playerDto],
     owner: playerDto,
   );
@@ -47,7 +46,7 @@ void main() {
 
   final external = ex.Game.fromData(
     status: ex.Status.pending,
-    mode: ex.Mode.easy,
+    mode: ex.Mode.ascending,
     players: [playerExternal],
     owner: playerExternal,
   );
@@ -56,7 +55,7 @@ void main() {
     () {
       // Assert
       expect(dto.status, 'pending');
-      expect(dto.mode, 'easy');
+      expect(dto.mode, 'ascending');
       expect(dto.players, [playerDto]);
       expect(dto.owner, playerDto);
     },
@@ -77,7 +76,7 @@ void main() {
     'fromExternal',
     () {
       // Act
-      final underTest = BobsTwentySevenGameSnapshotDto.fromExternal(external);
+      final underTest = DoubleTrainingGameSnapshotDto.fromExternal(external);
 
       // Assert
       expect(underTest, dto);

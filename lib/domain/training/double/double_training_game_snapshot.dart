@@ -21,5 +21,15 @@ class DoubleTrainingGameSnapshot
     required DoubleTrainingPlayerSnapshot owner,
   }) = _DoubleTrainingGameSnapshot;
 
-  // TODO dummy
+  factory DoubleTrainingGameSnapshot.dummy() {
+    final players = faker.randomGenerator
+        .amount((i) => DoubleTrainingPlayerSnapshot.dummy(), 4);
+
+    return DoubleTrainingGameSnapshot(
+      status: faker.randomGenerator.element(Status.values),
+      mode: faker.randomGenerator.element(Mode.values),
+      players: players.toImmutableList(),
+      owner: players[0],
+    );
+  }
 }

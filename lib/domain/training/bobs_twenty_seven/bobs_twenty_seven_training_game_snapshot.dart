@@ -21,5 +21,15 @@ class BobsTwentySevenGameSnapshot
     required BobsTwentySevenPlayerSnapshot owner,
   }) = _BobsTwentySevenGameSnapshot;
 
-  // TODO dummy
+  factory BobsTwentySevenGameSnapshot.dummy() {
+    final players = faker.randomGenerator
+        .amount((i) => BobsTwentySevenPlayerSnapshot.dummy(), 4);
+
+    return BobsTwentySevenGameSnapshot(
+      status: faker.randomGenerator.element(Status.values),
+      mode: faker.randomGenerator.element(Mode.values),
+      players: players.toImmutableList(),
+      owner: players[0],
+    );
+  }
 }

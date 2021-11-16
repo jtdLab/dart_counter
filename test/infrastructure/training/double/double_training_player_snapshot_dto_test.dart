@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
-import 'package:dart_counter/infrastructure/training/single/single_training_player_snapshot_dto.dart';
-import 'package:dart_game/single_training_game.dart' as ex;
+import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_player_snapshot_dto.dart';
+import 'package:dart_game/double_training_game.dart' as ex;
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -9,47 +9,42 @@ void main() {
   const idString = 'dummyId';
   const nameString = 'dummyName';
   const isCurrentTurn = false;
+  const isFinished = false;
   const targetValue = 2;
-  const points = 3;
-  const singles = 3;
-  const doubles = 0;
-  const triples = 0;
+  const checkoutPercentage = 1.0;
   const missed = 0;
+  const dartsThrown = 3;
 
-  final domainWithoutNulls = SingleTrainingPlayerSnapshot(
+  final domainWithoutNulls = DoubleTrainingPlayerSnapshot(
     id: id,
     name: nameString,
     isCurrentTurn: isCurrentTurn,
+    isFinished: isFinished,
     targetValue: targetValue,
-    points: points,
-    singles: singles,
-    doubles: doubles,
-    triples: triples,
+    checkoutPercentage: checkoutPercentage,
     missed: missed,
+    dartsThrown: dartsThrown,
   );
-  final domainWithNulls = SingleTrainingPlayerSnapshot(
+  final domainWithNulls = DoubleTrainingPlayerSnapshot(
     id: id,
     isCurrentTurn: false,
+    isFinished: false,
     targetValue: 1,
-    points: 0,
-    singles: 0,
-    doubles: 0,
-    triples: 0,
     missed: 0,
+    dartsThrown: 0,
   );
 
-  const dtoWithoutNulls = SingleTrainingPlayerSnapshotDto(
+  const dtoWithoutNulls = DoubleTrainingPlayerSnapshotDto(
     id: idString,
     name: nameString,
     isCurrentTurn: isCurrentTurn,
+    isFinished: isFinished,
     targetValue: targetValue,
-    points: points,
-    singles: singles,
-    doubles: doubles,
-    triples: triples,
+    checkoutPercentage: checkoutPercentage,
     missed: missed,
+    dartsThrown: dartsThrown,
   );
-  const dtoWithNulls = SingleTrainingPlayerSnapshotDto(
+  const dtoWithNulls = DoubleTrainingPlayerSnapshotDto(
     id: idString,
   );
 
@@ -57,13 +52,14 @@ void main() {
     id: idString,
     name: nameString,
     isCurrentTurn: isCurrentTurn,
+    isFinished: isFinished,
     targetValue: targetValue,
     throws: [
       ex.Throw.fromDarts(
         darts: [
-          ex.Dart(type: ex.DartType.single, value: 1),
-          ex.Dart(type: ex.DartType.single, value: 1),
-          ex.Dart(type: ex.DartType.single, value: 1),
+          ex.Dart(type: ex.DartType.double, value: 1),
+          ex.Dart(type: ex.DartType.double, value: 1),
+          ex.Dart(type: ex.DartType.double, value: 1),
         ],
       ),
     ],
@@ -81,12 +77,11 @@ void main() {
           expect(dtoWithoutNulls.id, idString);
           expect(dtoWithoutNulls.name, nameString);
           expect(dtoWithoutNulls.isCurrentTurn, isCurrentTurn);
+          expect(dtoWithoutNulls.isFinished, isFinished);
           expect(dtoWithoutNulls.targetValue, targetValue);
-          expect(dtoWithoutNulls.points, points);
-          expect(dtoWithoutNulls.singles, singles);
-          expect(dtoWithoutNulls.doubles, doubles);
-          expect(dtoWithoutNulls.triples, triples);
+          expect(dtoWithoutNulls.checkoutPercentage, checkoutPercentage);
           expect(dtoWithoutNulls.missed, missed);
+          expect(dtoWithoutNulls.dartsThrown, dartsThrown);
         },
       );
 
@@ -96,12 +91,11 @@ void main() {
           expect(dtoWithNulls.id, idString);
           expect(dtoWithNulls.name, null);
           expect(dtoWithNulls.isCurrentTurn, null);
+          expect(dtoWithNulls.isFinished, null);
           expect(dtoWithNulls.targetValue, null);
-          expect(dtoWithNulls.points, null);
-          expect(dtoWithNulls.singles, null);
-          expect(dtoWithNulls.doubles, null);
-          expect(dtoWithNulls.triples, null);
+          expect(dtoWithNulls.checkoutPercentage, null);
           expect(dtoWithNulls.missed, null);
+          expect(dtoWithNulls.dartsThrown, null);
         },
       );
     },
@@ -135,7 +129,7 @@ void main() {
         'without nulls',
         () {
           // Act
-          final dto = SingleTrainingPlayerSnapshotDto.fromExternal(
+          final dto = DoubleTrainingPlayerSnapshotDto.fromExternal(
             externalWithoutNulls,
           );
 
@@ -148,7 +142,7 @@ void main() {
         'with nulls',
         () {
           // Act
-          final dto = SingleTrainingPlayerSnapshotDto.fromExternal(
+          final dto = DoubleTrainingPlayerSnapshotDto.fromExternal(
             externalWithNulls,
           );
 

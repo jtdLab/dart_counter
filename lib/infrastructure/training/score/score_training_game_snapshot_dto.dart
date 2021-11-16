@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/infrastructure/game/status_x.dart';
 import 'package:dart_counter/infrastructure/training/score/score_training_player_snapshot_dto.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +13,7 @@ class ScoreTrainingGameSnapshotDto with _$ScoreTrainingGameSnapshotDto {
   const factory ScoreTrainingGameSnapshotDto({
     required String status,
     required int numberOfTakes,
-    required KtList<ScoreTrainingPlayerSnapshotDto> players,
+    required List<ScoreTrainingPlayerSnapshotDto> players,
     required ScoreTrainingPlayerSnapshotDto owner,
   }) = _ScoreTrainingGameSnapshotDto;
 
@@ -20,32 +21,20 @@ class ScoreTrainingGameSnapshotDto with _$ScoreTrainingGameSnapshotDto {
 
   ScoreTrainingGameSnapshot toDomain() {
     return ScoreTrainingGameSnapshot(
-      status: status == 'pending'
-          ? Status.pending
-          : status == 'running'
-              ? Status.running
-              : status == 'canceled'
-                  ? Status.canceled
-                  : Status.finished,
+      status: StatusX.parse(status),
       numberOfTakes: numberOfTakes,
-      players: players.map((player) => player.toDomain()),
+      players: players.map((player) => player.toDomain()).toImmutableList(),
       owner: owner.toDomain(),
     );
   }
 
   factory ScoreTrainingGameSnapshotDto.fromExternal(ex.Game game) {
     return ScoreTrainingGameSnapshotDto(
-      status: game.status == ex.Status.pending
-          ? 'pending'
-          : game.status == ex.Status.running
-              ? 'running'
-              : game.status == ex.Status.canceled
-                  ? 'canceled'
-                  : 'finished',
+      status: game.status.toShortString(),
       numberOfTakes: game.numberOfTakes,
       players: game.players
           .map((player) => ScoreTrainingPlayerSnapshotDto.fromExternal(player))
-          .toImmutableList(),
+          .toList(),
       owner: ScoreTrainingPlayerSnapshotDto.fromExternal(game.owner),
     );
   }
