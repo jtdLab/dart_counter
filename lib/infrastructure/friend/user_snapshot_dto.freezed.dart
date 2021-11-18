@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_search_result_dto.dart';
+part of 'user_snapshot_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,59 +13,59 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserSearchResultDto _$UserSearchResultDtoFromJson(Map<String, dynamic> json) {
-  return _UserSearchResultDto.fromJson(json);
+UserSnapshotDto _$UserSnapshotDtoFromJson(Map<String, dynamic> json) {
+  return _UserSnapshotDto.fromJson(json);
 }
 
 /// @nodoc
-class _$UserSearchResultDtoTearOff {
-  const _$UserSearchResultDtoTearOff();
+class _$UserSnapshotDtoTearOff {
+  const _$UserSnapshotDtoTearOff();
 
-  _UserSearchResultDto call(
+  _UserSnapshotDto call(
       {required String id, String? photoUrl, required String name}) {
-    return _UserSearchResultDto(
+    return _UserSnapshotDto(
       id: id,
       photoUrl: photoUrl,
       name: name,
     );
   }
 
-  UserSearchResultDto fromJson(Map<String, Object?> json) {
-    return UserSearchResultDto.fromJson(json);
+  UserSnapshotDto fromJson(Map<String, Object?> json) {
+    return UserSnapshotDto.fromJson(json);
   }
 }
 
 /// @nodoc
-const $UserSearchResultDto = _$UserSearchResultDtoTearOff();
+const $UserSnapshotDto = _$UserSnapshotDtoTearOff();
 
 /// @nodoc
-mixin _$UserSearchResultDto {
+mixin _$UserSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserSearchResultDtoCopyWith<UserSearchResultDto> get copyWith =>
+  $UserSnapshotDtoCopyWith<UserSnapshotDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserSearchResultDtoCopyWith<$Res> {
-  factory $UserSearchResultDtoCopyWith(
-          UserSearchResultDto value, $Res Function(UserSearchResultDto) then) =
-      _$UserSearchResultDtoCopyWithImpl<$Res>;
+abstract class $UserSnapshotDtoCopyWith<$Res> {
+  factory $UserSnapshotDtoCopyWith(
+          UserSnapshotDto value, $Res Function(UserSnapshotDto) then) =
+      _$UserSnapshotDtoCopyWithImpl<$Res>;
   $Res call({String id, String? photoUrl, String name});
 }
 
 /// @nodoc
-class _$UserSearchResultDtoCopyWithImpl<$Res>
-    implements $UserSearchResultDtoCopyWith<$Res> {
-  _$UserSearchResultDtoCopyWithImpl(this._value, this._then);
+class _$UserSnapshotDtoCopyWithImpl<$Res>
+    implements $UserSnapshotDtoCopyWith<$Res> {
+  _$UserSnapshotDtoCopyWithImpl(this._value, this._then);
 
-  final UserSearchResultDto _value;
+  final UserSnapshotDto _value;
   // ignore: unused_field
-  final $Res Function(UserSearchResultDto) _then;
+  final $Res Function(UserSnapshotDto) _then;
 
   @override
   $Res call({
@@ -91,25 +91,25 @@ class _$UserSearchResultDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$UserSearchResultDtoCopyWith<$Res>
-    implements $UserSearchResultDtoCopyWith<$Res> {
-  factory _$UserSearchResultDtoCopyWith(_UserSearchResultDto value,
-          $Res Function(_UserSearchResultDto) then) =
-      __$UserSearchResultDtoCopyWithImpl<$Res>;
+abstract class _$UserSnapshotDtoCopyWith<$Res>
+    implements $UserSnapshotDtoCopyWith<$Res> {
+  factory _$UserSnapshotDtoCopyWith(
+          _UserSnapshotDto value, $Res Function(_UserSnapshotDto) then) =
+      __$UserSnapshotDtoCopyWithImpl<$Res>;
   @override
   $Res call({String id, String? photoUrl, String name});
 }
 
 /// @nodoc
-class __$UserSearchResultDtoCopyWithImpl<$Res>
-    extends _$UserSearchResultDtoCopyWithImpl<$Res>
-    implements _$UserSearchResultDtoCopyWith<$Res> {
-  __$UserSearchResultDtoCopyWithImpl(
-      _UserSearchResultDto _value, $Res Function(_UserSearchResultDto) _then)
-      : super(_value, (v) => _then(v as _UserSearchResultDto));
+class __$UserSnapshotDtoCopyWithImpl<$Res>
+    extends _$UserSnapshotDtoCopyWithImpl<$Res>
+    implements _$UserSnapshotDtoCopyWith<$Res> {
+  __$UserSnapshotDtoCopyWithImpl(
+      _UserSnapshotDto _value, $Res Function(_UserSnapshotDto) _then)
+      : super(_value, (v) => _then(v as _UserSnapshotDto));
 
   @override
-  _UserSearchResultDto get _value => super._value as _UserSearchResultDto;
+  _UserSnapshotDto get _value => super._value as _UserSnapshotDto;
 
   @override
   $Res call({
@@ -117,7 +117,7 @@ class __$UserSearchResultDtoCopyWithImpl<$Res>
     Object? photoUrl = freezed,
     Object? name = freezed,
   }) {
-    return _then(_UserSearchResultDto(
+    return _then(_UserSnapshotDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -136,13 +136,13 @@ class __$UserSearchResultDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserSearchResultDto extends _UserSearchResultDto {
-  const _$_UserSearchResultDto(
+class _$_UserSnapshotDto extends _UserSnapshotDto {
+  const _$_UserSnapshotDto(
       {required this.id, this.photoUrl, required this.name})
       : super._();
 
-  factory _$_UserSearchResultDto.fromJson(Map<String, dynamic> json) =>
-      _$$_UserSearchResultDtoFromJson(json);
+  factory _$_UserSnapshotDto.fromJson(Map<String, dynamic> json) =>
+      _$$_UserSnapshotDtoFromJson(json);
 
   @override
   final String id;
@@ -153,14 +153,14 @@ class _$_UserSearchResultDto extends _UserSearchResultDto {
 
   @override
   String toString() {
-    return 'UserSearchResultDto(id: $id, photoUrl: $photoUrl, name: $name)';
+    return 'UserSnapshotDto(id: $id, photoUrl: $photoUrl, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserSearchResultDto &&
+            other is _UserSnapshotDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
@@ -172,25 +172,24 @@ class _$_UserSearchResultDto extends _UserSearchResultDto {
 
   @JsonKey(ignore: true)
   @override
-  _$UserSearchResultDtoCopyWith<_UserSearchResultDto> get copyWith =>
-      __$UserSearchResultDtoCopyWithImpl<_UserSearchResultDto>(
-          this, _$identity);
+  _$UserSnapshotDtoCopyWith<_UserSnapshotDto> get copyWith =>
+      __$UserSnapshotDtoCopyWithImpl<_UserSnapshotDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserSearchResultDtoToJson(this);
+    return _$$_UserSnapshotDtoToJson(this);
   }
 }
 
-abstract class _UserSearchResultDto extends UserSearchResultDto {
-  const factory _UserSearchResultDto(
+abstract class _UserSnapshotDto extends UserSnapshotDto {
+  const factory _UserSnapshotDto(
       {required String id,
       String? photoUrl,
-      required String name}) = _$_UserSearchResultDto;
-  const _UserSearchResultDto._() : super._();
+      required String name}) = _$_UserSnapshotDto;
+  const _UserSnapshotDto._() : super._();
 
-  factory _UserSearchResultDto.fromJson(Map<String, dynamic> json) =
-      _$_UserSearchResultDto.fromJson;
+  factory _UserSnapshotDto.fromJson(Map<String, dynamic> json) =
+      _$_UserSnapshotDto.fromJson;
 
   @override
   String get id;
@@ -200,6 +199,6 @@ abstract class _UserSearchResultDto extends UserSearchResultDto {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$UserSearchResultDtoCopyWith<_UserSearchResultDto> get copyWith =>
+  _$UserSnapshotDtoCopyWith<_UserSnapshotDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

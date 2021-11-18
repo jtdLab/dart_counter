@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_search_result.dart';
+part of 'user_snapshot.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UserSearchResultTearOff {
-  const _$UserSearchResultTearOff();
+class _$UserSnapshotTearOff {
+  const _$UserSnapshotTearOff();
 
-  _UserSearchResult call(
+  _UserSnapshot call(
       {required UniqueId id, String? photoUrl, required Username name}) {
-    return _UserSearchResult(
+    return _UserSnapshot(
       id: id,
       photoUrl: photoUrl,
       name: name,
@@ -28,35 +28,34 @@ class _$UserSearchResultTearOff {
 }
 
 /// @nodoc
-const $UserSearchResult = _$UserSearchResultTearOff();
+const $UserSnapshot = _$UserSnapshotTearOff();
 
 /// @nodoc
-mixin _$UserSearchResult {
+mixin _$UserSnapshot {
   UniqueId get id => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
   Username get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserSearchResultCopyWith<UserSearchResult> get copyWith =>
+  $UserSnapshotCopyWith<UserSnapshot> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserSearchResultCopyWith<$Res> {
-  factory $UserSearchResultCopyWith(
-          UserSearchResult value, $Res Function(UserSearchResult) then) =
-      _$UserSearchResultCopyWithImpl<$Res>;
+abstract class $UserSnapshotCopyWith<$Res> {
+  factory $UserSnapshotCopyWith(
+          UserSnapshot value, $Res Function(UserSnapshot) then) =
+      _$UserSnapshotCopyWithImpl<$Res>;
   $Res call({UniqueId id, String? photoUrl, Username name});
 }
 
 /// @nodoc
-class _$UserSearchResultCopyWithImpl<$Res>
-    implements $UserSearchResultCopyWith<$Res> {
-  _$UserSearchResultCopyWithImpl(this._value, this._then);
+class _$UserSnapshotCopyWithImpl<$Res> implements $UserSnapshotCopyWith<$Res> {
+  _$UserSnapshotCopyWithImpl(this._value, this._then);
 
-  final UserSearchResult _value;
+  final UserSnapshot _value;
   // ignore: unused_field
-  final $Res Function(UserSearchResult) _then;
+  final $Res Function(UserSnapshot) _then;
 
   @override
   $Res call({
@@ -82,25 +81,24 @@ class _$UserSearchResultCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$UserSearchResultCopyWith<$Res>
-    implements $UserSearchResultCopyWith<$Res> {
-  factory _$UserSearchResultCopyWith(
-          _UserSearchResult value, $Res Function(_UserSearchResult) then) =
-      __$UserSearchResultCopyWithImpl<$Res>;
+abstract class _$UserSnapshotCopyWith<$Res>
+    implements $UserSnapshotCopyWith<$Res> {
+  factory _$UserSnapshotCopyWith(
+          _UserSnapshot value, $Res Function(_UserSnapshot) then) =
+      __$UserSnapshotCopyWithImpl<$Res>;
   @override
   $Res call({UniqueId id, String? photoUrl, Username name});
 }
 
 /// @nodoc
-class __$UserSearchResultCopyWithImpl<$Res>
-    extends _$UserSearchResultCopyWithImpl<$Res>
-    implements _$UserSearchResultCopyWith<$Res> {
-  __$UserSearchResultCopyWithImpl(
-      _UserSearchResult _value, $Res Function(_UserSearchResult) _then)
-      : super(_value, (v) => _then(v as _UserSearchResult));
+class __$UserSnapshotCopyWithImpl<$Res> extends _$UserSnapshotCopyWithImpl<$Res>
+    implements _$UserSnapshotCopyWith<$Res> {
+  __$UserSnapshotCopyWithImpl(
+      _UserSnapshot _value, $Res Function(_UserSnapshot) _then)
+      : super(_value, (v) => _then(v as _UserSnapshot));
 
   @override
-  _UserSearchResult get _value => super._value as _UserSearchResult;
+  _UserSnapshot get _value => super._value as _UserSnapshot;
 
   @override
   $Res call({
@@ -108,7 +106,7 @@ class __$UserSearchResultCopyWithImpl<$Res>
     Object? photoUrl = freezed,
     Object? name = freezed,
   }) {
-    return _then(_UserSearchResult(
+    return _then(_UserSnapshot(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -127,9 +125,8 @@ class __$UserSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserSearchResult implements _UserSearchResult {
-  const _$_UserSearchResult(
-      {required this.id, this.photoUrl, required this.name});
+class _$_UserSnapshot implements _UserSnapshot {
+  const _$_UserSnapshot({required this.id, this.photoUrl, required this.name});
 
   @override
   final UniqueId id;
@@ -140,14 +137,14 @@ class _$_UserSearchResult implements _UserSearchResult {
 
   @override
   String toString() {
-    return 'UserSearchResult(id: $id, photoUrl: $photoUrl, name: $name)';
+    return 'UserSnapshot(id: $id, photoUrl: $photoUrl, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserSearchResult &&
+            other is _UserSnapshot &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
@@ -159,15 +156,15 @@ class _$_UserSearchResult implements _UserSearchResult {
 
   @JsonKey(ignore: true)
   @override
-  _$UserSearchResultCopyWith<_UserSearchResult> get copyWith =>
-      __$UserSearchResultCopyWithImpl<_UserSearchResult>(this, _$identity);
+  _$UserSnapshotCopyWith<_UserSnapshot> get copyWith =>
+      __$UserSnapshotCopyWithImpl<_UserSnapshot>(this, _$identity);
 }
 
-abstract class _UserSearchResult implements UserSearchResult {
-  const factory _UserSearchResult(
+abstract class _UserSnapshot implements UserSnapshot {
+  const factory _UserSnapshot(
       {required UniqueId id,
       String? photoUrl,
-      required Username name}) = _$_UserSearchResult;
+      required Username name}) = _$_UserSnapshot;
 
   @override
   UniqueId get id;
@@ -177,6 +174,6 @@ abstract class _UserSearchResult implements UserSearchResult {
   Username get name;
   @override
   @JsonKey(ignore: true)
-  _$UserSearchResultCopyWith<_UserSearchResult> get copyWith =>
+  _$UserSnapshotCopyWith<_UserSnapshot> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -17,6 +17,7 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
   const factory OnlinePlayer({
     required UniqueId id,
     required String name,
+    String? photoUrl,
     required Either<KtList<Leg>, KtList<Set>> legsOrSets,
     required bool won,
     required int wonLegsOrSets,
@@ -27,6 +28,8 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
+        photoUrl: faker.randomGenerator
+            .element([faker.image.image(width: 200, height: 200), null]),
         name: faker.randomGenerator.element([
           'David88',
           'mrjosch',

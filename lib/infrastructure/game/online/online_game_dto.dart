@@ -1,12 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game/mode.dart';
-import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/infrastructure/game/abstract_player_dto.dart';
 import 'package:dart_counter/infrastructure/game/mode_x.dart';
 import 'package:dart_counter/infrastructure/game/status_x.dart';
 import 'package:dart_counter/infrastructure/game/type_x.dart';
+import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -53,6 +52,30 @@ class OnlineGameDto with _$OnlineGameDto implements AbstractGameDto {
           ),
         ),
       ),
+    );
+  }
+
+  ex.Game toExternal({
+    required int startingPoints,
+    required int legsOrSetsNeededToWin,
+  }) {
+    final p = players
+        .map(
+          (player) => player.toExternal(
+            startingPoints: startingPoints,
+            legsOrSetsNeededToWin: legsOrSetsNeededToWin,
+          ),
+        )
+        .toList();
+
+    return ex.Game.fromData(
+      status: ExternalStatusX.parse(status),
+      startingPoints: startingPoints,
+      mode: ExternalModeX.parse(mode),
+      size: size,
+      type: ExternalTypeX.parse(type),
+      players: p,
+      owner: p.firstWhere((player) => player.id == ownerId),
     );
   }
 

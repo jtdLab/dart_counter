@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
-import 'package:dart_counter/domain/friend/user_search_result.dart';
+import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -68,10 +68,17 @@ abstract class IFriendService {
   /// It is the last element of a pervious successful call to this method.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<UserSnapshot>>> searchUserByUsername({
     required String username,
-    UserSearchResult? lastVisible,
+    UserSnapshot? lastVisible,
     int limit = 5,
+  });
+
+  /// Get the user with [id].
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not signed in.
+  Future<Either<FriendFailure, UserSnapshot>> getUserById({
+    required String id,
   });
 
   /// Sends a friend request to a user with id [toId].

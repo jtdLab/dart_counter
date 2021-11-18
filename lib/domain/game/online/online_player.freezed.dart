@@ -20,6 +20,7 @@ class _$OnlinePlayerTearOff {
   _OnlinePlayer call(
       {required UniqueId id,
       required String name,
+      String? photoUrl,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       required bool won,
       required int wonLegsOrSets,
@@ -27,6 +28,7 @@ class _$OnlinePlayerTearOff {
     return _OnlinePlayer(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       legsOrSets: legsOrSets,
       won: won,
       wonLegsOrSets: wonLegsOrSets,
@@ -42,6 +44,7 @@ const $OnlinePlayer = _$OnlinePlayerTearOff();
 mixin _$OnlinePlayer {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
       throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
@@ -61,6 +64,7 @@ abstract class $OnlinePlayerCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       String name,
+      String? photoUrl,
       Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
@@ -81,6 +85,7 @@ class _$OnlinePlayerCopyWithImpl<$Res> implements $OnlinePlayerCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
@@ -95,6 +100,10 @@ class _$OnlinePlayerCopyWithImpl<$Res> implements $OnlinePlayerCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -132,6 +141,7 @@ abstract class _$OnlinePlayerCopyWith<$Res>
   $Res call(
       {UniqueId id,
       String name,
+      String? photoUrl,
       Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
@@ -155,6 +165,7 @@ class __$OnlinePlayerCopyWithImpl<$Res> extends _$OnlinePlayerCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
@@ -169,6 +180,10 @@ class __$OnlinePlayerCopyWithImpl<$Res> extends _$OnlinePlayerCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -196,6 +211,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   const _$_OnlinePlayer(
       {required this.id,
       required this.name,
+      this.photoUrl,
       required this.legsOrSets,
       required this.won,
       required this.wonLegsOrSets,
@@ -205,6 +221,8 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   final UniqueId id;
   @override
   final String name;
+  @override
+  final String? photoUrl;
   @override
   final Either<KtList<Leg>, KtList<Set>> legsOrSets;
   @override
@@ -216,7 +234,7 @@ class _$_OnlinePlayer implements _OnlinePlayer {
 
   @override
   String toString() {
-    return 'OnlinePlayer(id: $id, name: $name, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
+    return 'OnlinePlayer(id: $id, name: $name, photoUrl: $photoUrl, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
   }
 
   @override
@@ -226,6 +244,8 @@ class _$_OnlinePlayer implements _OnlinePlayer {
             other is _OnlinePlayer &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
             (identical(other.legsOrSets, legsOrSets) ||
                 other.legsOrSets == legsOrSets) &&
             (identical(other.won, won) || other.won == won) &&
@@ -235,8 +255,8 @@ class _$_OnlinePlayer implements _OnlinePlayer {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, legsOrSets, won, wonLegsOrSets, stats);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, photoUrl, legsOrSets, won, wonLegsOrSets, stats);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +268,7 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
   const factory _OnlinePlayer(
       {required UniqueId id,
       required String name,
+      String? photoUrl,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       required bool won,
       required int wonLegsOrSets,
@@ -257,6 +278,8 @@ abstract class _OnlinePlayer implements OnlinePlayer, AbstractPlayer {
   UniqueId get id;
   @override
   String get name;
+  @override
+  String? get photoUrl;
   @override
   Either<KtList<Leg>, KtList<Set>> get legsOrSets;
   @override

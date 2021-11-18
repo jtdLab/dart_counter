@@ -5,7 +5,7 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/domain/friend/user_search_result.dart';
+import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
@@ -28,7 +28,7 @@ class MockedFriendService implements IFriendService {
   BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
       _sentFriendRequestController;
 
-  final List<UserSearchResult> _userSearchResults;
+  final List<UserSnapshot> _userSearchResults;
 
   MockedFriendService(
     this._authService,
@@ -233,9 +233,9 @@ class MockedFriendService implements IFriendService {
 
 // TODO imple better
   @override
-  Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<UserSnapshot>>> searchUserByUsername({
     required String username,
-    UserSearchResult? lastVisible,
+    UserSnapshot? lastVisible,
     int limit = 5,
   }) async {
     _checkAuth();
@@ -261,7 +261,7 @@ class MockedFriendService implements IFriendService {
         _userSearchResults.addAll(
           List.generate(
             limit,
-            (index) => UserSearchResult.dummy().copyWith(
+            (index) => UserSnapshot.dummy().copyWith(
               name: Username(
                 '$username-${100 + _userSearchResults.length + index}',
               ),
@@ -272,7 +272,7 @@ class MockedFriendService implements IFriendService {
         _userSearchResults.addAll(
           List.generate(
             limit,
-            (index) => UserSearchResult.dummy().copyWith(
+            (index) => UserSnapshot.dummy().copyWith(
               name: Username(
                 '${username.substring(0, 5)}-${100 + _userSearchResults.length + index}',
               ),
@@ -282,6 +282,18 @@ class MockedFriendService implements IFriendService {
       }
 
       return right(_userSearchResults.toImmutableList());
+    }
+
+    return left(const FriendFailure.unexpected()); // TODO name better
+  }
+
+  @override
+  Future<Either<FriendFailure, UserSnapshot>> getUserById({
+    required String id,
+  }) async {
+    _checkAuth();
+    if (hasNetworkConnection) {
+      return right(UserSnapshot.dummy());
     }
 
     return left(const FriendFailure.unexpected()); // TODO name better

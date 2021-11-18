@@ -24,11 +24,13 @@ class _$OnlinePlayerDtoTearOff {
   _OnlinePlayerDto call(
       {required String id,
       required String name,
+      String? photoUrl,
       @AbstractLegsOrSetsConverter()
           required List<AbstractLegsOrSetsDto> legsOrSets}) {
     return _OnlinePlayerDto(
       id: id,
       name: name,
+      photoUrl: photoUrl,
       legsOrSets: legsOrSets,
     );
   }
@@ -45,6 +47,7 @@ const $OnlinePlayerDto = _$OnlinePlayerDtoTearOff();
 mixin _$OnlinePlayerDto {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   @AbstractLegsOrSetsConverter()
   List<AbstractLegsOrSetsDto> get legsOrSets =>
       throw _privateConstructorUsedError;
@@ -63,6 +66,7 @@ abstract class $OnlinePlayerDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String? photoUrl,
       @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
@@ -79,6 +83,7 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? legsOrSets = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +95,10 @@ class _$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -108,6 +117,7 @@ abstract class _$OnlinePlayerDtoCopyWith<$Res>
   $Res call(
       {String id,
       String name,
+      String? photoUrl,
       @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
 }
 
@@ -126,6 +136,7 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? photoUrl = freezed,
     Object? legsOrSets = freezed,
   }) {
     return _then(_OnlinePlayerDto(
@@ -137,6 +148,10 @@ class __$OnlinePlayerDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -152,6 +167,7 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   const _$_OnlinePlayerDto(
       {required this.id,
       required this.name,
+      this.photoUrl,
       @AbstractLegsOrSetsConverter() required this.legsOrSets})
       : super._();
 
@@ -163,12 +179,14 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
   @override
   final String name;
   @override
+  final String? photoUrl;
+  @override
   @AbstractLegsOrSetsConverter()
   final List<AbstractLegsOrSetsDto> legsOrSets;
 
   @override
   String toString() {
-    return 'OnlinePlayerDto(id: $id, name: $name, legsOrSets: $legsOrSets)';
+    return 'OnlinePlayerDto(id: $id, name: $name, photoUrl: $photoUrl, legsOrSets: $legsOrSets)';
   }
 
   @override
@@ -178,13 +196,15 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
             other is _OnlinePlayerDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
             const DeepCollectionEquality()
                 .equals(other.legsOrSets, legsOrSets));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(legsOrSets));
+  int get hashCode => Object.hash(runtimeType, id, name, photoUrl,
+      const DeepCollectionEquality().hash(legsOrSets));
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +222,7 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   const factory _OnlinePlayerDto(
           {required String id,
           required String name,
+          String? photoUrl,
           @AbstractLegsOrSetsConverter()
               required List<AbstractLegsOrSetsDto> legsOrSets}) =
       _$_OnlinePlayerDto;
@@ -214,6 +235,8 @@ abstract class _OnlinePlayerDto extends OnlinePlayerDto
   String get id;
   @override
   String get name;
+  @override
+  String? get photoUrl;
   @override
   @AbstractLegsOrSetsConverter()
   List<AbstractLegsOrSetsDto> get legsOrSets;

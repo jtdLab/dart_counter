@@ -6,10 +6,10 @@ import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/domain/friend/user_search_result.dart';
+import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
-import 'package:dart_counter/infrastructure/friend/user_search_result_dto.dart';
+import 'package:dart_counter/infrastructure/friend/user_snapshot_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -174,9 +174,9 @@ class FriendService implements IFriendService {
   //  implement this with field mask - for that check
   // if this feature is available on sdk or restapi of firestore
   @override
-  Future<Either<FriendFailure, KtList<UserSearchResult>>> searchUserByUsername({
+  Future<Either<FriendFailure, KtList<UserSnapshot>>> searchUserByUsername({
     required String username,
-    UserSearchResult? lastVisible,
+    UserSnapshot? lastVisible,
     int limit = 5,
   }) async {
     _checkAuth();
@@ -191,7 +191,7 @@ class FriendService implements IFriendService {
           .limit(limit)
           .get();
     } else {
-      // no pagination
+      // pagination
       querySnapshot = await _firestore
           .profilesCollection()
           .orderBy('name')
@@ -201,7 +201,7 @@ class FriendService implements IFriendService {
           .get();
     }
 
-    final searchResults = <UserSearchResult>[];
+    final searchResults = <UserSnapshot>[];
     try {
       for (final doc in querySnapshot.docs) {
         final json = (doc.data() ?? {}) as Map<String, dynamic>;
@@ -209,7 +209,7 @@ class FriendService implements IFriendService {
         json.addAll({
           'id': doc.id,
         });
-        searchResults.add(UserSearchResultDto.fromJson(json).toDomain());
+        searchResults.add(UserSnapshotDto.fromJson(json).toDomain());
       }
     } catch (e) {
       print(e);
@@ -217,6 +217,26 @@ class FriendService implements IFriendService {
     }
 
     return right(searchResults.toImmutableList());
+  }
+
+  @override
+  Future<Either<FriendFailure, UserSnapshot>> getUserById({
+    required String id,
+  }) async {
+    final doc = await _firestore.profilesCollection().doc(id).get();
+
+    try {
+      final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+      json.addAll({
+        'id': doc.id,
+      });
+
+      return right(UserSnapshotDto.fromJson(json).toDomain());
+    } catch (e) {
+      print(e);
+      return left(const FriendFailure.unexpected()); // TODO name better
+    }
   }
 
   @override

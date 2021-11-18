@@ -22,6 +22,7 @@ class OnlinePlayerDto with _$OnlinePlayerDto implements AbstractPlayerDto {
   const factory OnlinePlayerDto({
     required String id,
     required String name,
+    String? photoUrl,
     @AbstractLegsOrSetsConverter()
         required List<AbstractLegsOrSetsDto> legsOrSets,
   }) = _OnlinePlayerDto;

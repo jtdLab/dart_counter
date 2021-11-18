@@ -338,7 +338,7 @@ abstract class ClearSearchStringPressed implements SearchUserEvent {
 class _$SearchUserStateTearOff {
   const _$SearchUserStateTearOff();
 
-  _SearchUserState call({required KtList<UserSearchResult> searchResults}) {
+  _SearchUserState call({required KtList<UserSnapshot> searchResults}) {
     return _SearchUserState(
       searchResults: searchResults,
     );
@@ -350,8 +350,7 @@ const $SearchUserState = _$SearchUserStateTearOff();
 
 /// @nodoc
 mixin _$SearchUserState {
-  KtList<UserSearchResult> get searchResults =>
-      throw _privateConstructorUsedError;
+  KtList<UserSnapshot> get searchResults => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchUserStateCopyWith<SearchUserState> get copyWith =>
@@ -363,7 +362,7 @@ abstract class $SearchUserStateCopyWith<$Res> {
   factory $SearchUserStateCopyWith(
           SearchUserState value, $Res Function(SearchUserState) then) =
       _$SearchUserStateCopyWithImpl<$Res>;
-  $Res call({KtList<UserSearchResult> searchResults});
+  $Res call({KtList<UserSnapshot> searchResults});
 }
 
 /// @nodoc
@@ -383,7 +382,7 @@ class _$SearchUserStateCopyWithImpl<$Res>
       searchResults: searchResults == freezed
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as KtList<UserSearchResult>,
+              as KtList<UserSnapshot>,
     ));
   }
 }
@@ -395,7 +394,7 @@ abstract class _$SearchUserStateCopyWith<$Res>
           _SearchUserState value, $Res Function(_SearchUserState) then) =
       __$SearchUserStateCopyWithImpl<$Res>;
   @override
-  $Res call({KtList<UserSearchResult> searchResults});
+  $Res call({KtList<UserSnapshot> searchResults});
 }
 
 /// @nodoc
@@ -417,7 +416,7 @@ class __$SearchUserStateCopyWithImpl<$Res>
       searchResults: searchResults == freezed
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as KtList<UserSearchResult>,
+              as KtList<UserSnapshot>,
     ));
   }
 }
@@ -428,7 +427,7 @@ class _$_SearchUserState implements _SearchUserState {
   const _$_SearchUserState({required this.searchResults});
 
   @override
-  final KtList<UserSearchResult> searchResults;
+  final KtList<UserSnapshot> searchResults;
 
   @override
   String toString() {
@@ -455,10 +454,10 @@ class _$_SearchUserState implements _SearchUserState {
 
 abstract class _SearchUserState implements SearchUserState {
   const factory _SearchUserState(
-      {required KtList<UserSearchResult> searchResults}) = _$_SearchUserState;
+      {required KtList<UserSnapshot> searchResults}) = _$_SearchUserState;
 
   @override
-  KtList<UserSearchResult> get searchResults;
+  KtList<UserSnapshot> get searchResults;
   @override
   @JsonKey(ignore: true)
   _$SearchUserStateCopyWith<_SearchUserState> get copyWith =>
