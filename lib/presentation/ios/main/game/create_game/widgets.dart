@@ -177,14 +177,6 @@ class _PlayerList extends StatelessWidget {
                 final isDismissable = state.gameSnapshot.hasDartBot()
                     ? state.gameSnapshot.players.size > 2
                     : state.gameSnapshot.players.size > 1;
-                if (player.photoUrl != null) {
-                  return _PlayerItem(
-                    key: ValueKey(player.id),
-                    index: index,
-                    offlinePlayerOrOnlinePlayer: left(player),
-                    isDismissable: false,
-                  );
-                }
 
                 return _EditablePlayerItem(
                   key: ValueKey(player.id),
@@ -393,7 +385,7 @@ class _PlayerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final photoUrl = offlinePlayerOrOnlinePlayer.fold(
-      (offlinePlayer) => offlinePlayer.photoUrl,
+      (offlinePlayer) => null,
       (onlinePlayer) => onlinePlayer.photoUrl,
     );
 

@@ -6,19 +6,18 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'abstract_offline_player_snapshot.dart';
+import '../abstract_player_snapshot_dto.dart';
 
 part 'offline_player_snapshot_dto.freezed.dart';
 
 @freezed
 class OfflinePlayerSnapshotDto
     with _$OfflinePlayerSnapshotDto
-    implements AbstractOfflinePlayerSnapshotDto {
-  @Implements<AbstractOfflinePlayerSnapshotDto>()
+    implements AbstractPlayerSnapshotDto {
+  @Implements<AbstractPlayerSnapshotDto>()
   const factory OfflinePlayerSnapshotDto({
     required String id,
     String? name,
-    String? photoUrl,
     bool? isCurrentTurn,
     bool? won,
     int? wonSets,
@@ -36,7 +35,6 @@ class OfflinePlayerSnapshotDto
     return OfflinePlayerSnapshot(
       id: UniqueId.fromUniqueString(this.id),
       name: name,
-      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn ?? false,
       won: won ?? false,
       wonSets: wonSets,

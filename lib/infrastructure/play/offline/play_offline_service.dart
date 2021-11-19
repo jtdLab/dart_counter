@@ -205,8 +205,9 @@ class PlayOfflineService implements IPlayOfflineService {
 
     final playersWithPhotos = offlineGameSnapshotDto.players.map((player) {
       if (player.id == _ownerPlayerId!) {
-        return (player as OfflinePlayerSnapshotDto)
-            .copyWith(photoUrl: _owner!.profile.photoUrl);
+        return (player as OfflinePlayerSnapshotDto);
+        // TODO
+        //.copyWith(photoUrl: _owner!.profile.photoUrl);
       }
       return player;
     }).toList();

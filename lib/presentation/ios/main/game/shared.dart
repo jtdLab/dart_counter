@@ -133,12 +133,10 @@ class _PlayerColumn extends StatelessWidget {
     String? photoUrl;
 
     final player = this.player;
-    if (player is OfflinePlayerSnapshot) {
-      photoUrl = player.photoUrl;
-    } else if (player is OnlinePlayerSnapshot) {
+    if (player is OnlinePlayerSnapshot) {
       photoUrl = player.photoUrl;
     }
-
+    
     return _Column(
       header: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

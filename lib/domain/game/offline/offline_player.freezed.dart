@@ -193,7 +193,7 @@ class __$OfflinePlayerCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<AbstractOfflinePlayer>()
+@Implements<AbstractPlayer>()
 class _$_OfflinePlayer implements _OfflinePlayer {
   const _$_OfflinePlayer(
       {required this.id,
@@ -246,7 +246,7 @@ class _$_OfflinePlayer implements _OfflinePlayer {
       __$OfflinePlayerCopyWithImpl<_OfflinePlayer>(this, _$identity);
 }
 
-abstract class _OfflinePlayer implements OfflinePlayer, AbstractOfflinePlayer {
+abstract class _OfflinePlayer implements OfflinePlayer, AbstractPlayer {
   const factory _OfflinePlayer(
       {required UniqueId id,
       required String name,

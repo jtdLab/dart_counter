@@ -23,7 +23,7 @@ class _$OfflineGameSnapshotDtoTearOff {
       required int size,
       required String type,
       required int startingPoints,
-      required List<AbstractOfflinePlayerSnapshotDto> players}) {
+      required List<AbstractPlayerSnapshotDto> players}) {
     return _OfflineGameSnapshotDto(
       status: status,
       mode: mode,
@@ -45,7 +45,7 @@ mixin _$OfflineGameSnapshotDto {
   int get size => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  List<AbstractOfflinePlayerSnapshotDto> get players =>
+  List<AbstractPlayerSnapshotDto> get players =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -64,7 +64,7 @@ abstract class $OfflineGameSnapshotDtoCopyWith<$Res> {
       int size,
       String type,
       int startingPoints,
-      List<AbstractOfflinePlayerSnapshotDto> players});
+      List<AbstractPlayerSnapshotDto> players});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class _$OfflineGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractOfflinePlayerSnapshotDto>,
+              as List<AbstractPlayerSnapshotDto>,
     ));
   }
 }
@@ -127,7 +127,7 @@ abstract class _$OfflineGameSnapshotDtoCopyWith<$Res>
       int size,
       String type,
       int startingPoints,
-      List<AbstractOfflinePlayerSnapshotDto> players});
+      List<AbstractPlayerSnapshotDto> players});
 }
 
 /// @nodoc
@@ -174,7 +174,7 @@ class __$OfflineGameSnapshotDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractOfflinePlayerSnapshotDto>,
+              as List<AbstractPlayerSnapshotDto>,
     ));
   }
 }
@@ -203,7 +203,7 @@ class _$_OfflineGameSnapshotDto extends _OfflineGameSnapshotDto {
   @override
   final int startingPoints;
   @override
-  final List<AbstractOfflinePlayerSnapshotDto> players;
+  final List<AbstractPlayerSnapshotDto> players;
 
   @override
   String toString() {
@@ -243,7 +243,7 @@ abstract class _OfflineGameSnapshotDto extends OfflineGameSnapshotDto
           required int size,
           required String type,
           required int startingPoints,
-          required List<AbstractOfflinePlayerSnapshotDto> players}) =
+          required List<AbstractPlayerSnapshotDto> players}) =
       _$_OfflineGameSnapshotDto;
   const _OfflineGameSnapshotDto._() : super._();
 
@@ -258,7 +258,7 @@ abstract class _OfflineGameSnapshotDto extends OfflineGameSnapshotDto
   @override
   int get startingPoints;
   @override
-  List<AbstractOfflinePlayerSnapshotDto> get players;
+  List<AbstractPlayerSnapshotDto> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameSnapshotDtoCopyWith<_OfflineGameSnapshotDto> get copyWith =>

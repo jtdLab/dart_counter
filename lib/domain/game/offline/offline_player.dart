@@ -6,14 +6,14 @@ import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../abstract_player.dart';
 import '../leg.dart';
-import 'abstract_offline_player.dart';
 
 part 'offline_player.freezed.dart';
 
 @freezed
-class OfflinePlayer with _$OfflinePlayer implements AbstractOfflinePlayer {
-  @Implements<AbstractOfflinePlayer>()
+class OfflinePlayer with _$OfflinePlayer implements AbstractPlayer {
+  @Implements<AbstractPlayer>()
   const factory OfflinePlayer({
     required UniqueId id,
     required String name,

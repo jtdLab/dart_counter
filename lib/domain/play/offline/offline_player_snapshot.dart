@@ -16,7 +16,6 @@ class OfflinePlayerSnapshot
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
     String? name,
-    String? photoUrl,
     required bool isCurrentTurn,
     required bool won,
     int? wonSets,
@@ -32,7 +31,6 @@ class OfflinePlayerSnapshot
         id: UniqueId.fromUniqueString(
           faker.randomGenerator.string(28, min: 28),
         ),
-        photoUrl: faker.image.image(width: 200, height: 200, random: true),
         name: faker.randomGenerator.element([
           'David88',
           'mrjosch',

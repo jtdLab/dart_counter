@@ -20,7 +20,6 @@ class _$OfflinePlayerSnapshotDtoTearOff {
   _OfflinePlayerSnapshotDto call(
       {required String id,
       String? name,
-      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -33,7 +32,6 @@ class _$OfflinePlayerSnapshotDtoTearOff {
     return _OfflinePlayerSnapshotDto(
       id: id,
       name: name,
-      photoUrl: photoUrl,
       isCurrentTurn: isCurrentTurn,
       won: won,
       wonSets: wonSets,
@@ -54,7 +52,6 @@ const $OfflinePlayerSnapshotDto = _$OfflinePlayerSnapshotDtoTearOff();
 mixin _$OfflinePlayerSnapshotDto {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get photoUrl => throw _privateConstructorUsedError;
   bool? get isCurrentTurn => throw _privateConstructorUsedError;
   bool? get won => throw _privateConstructorUsedError;
   int? get wonSets => throw _privateConstructorUsedError;
@@ -78,7 +75,6 @@ abstract class $OfflinePlayerSnapshotDtoCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
-      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -105,7 +101,6 @@ class _$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -124,10 +119,6 @@ class _$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: photoUrl == freezed
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -190,7 +181,6 @@ abstract class _$OfflinePlayerSnapshotDtoCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
-      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -221,7 +211,6 @@ class __$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? photoUrl = freezed,
     Object? isCurrentTurn = freezed,
     Object? won = freezed,
     Object? wonSets = freezed,
@@ -240,10 +229,6 @@ class __$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: photoUrl == freezed
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       isCurrentTurn: isCurrentTurn == freezed
           ? _value.isCurrentTurn
@@ -287,12 +272,11 @@ class __$OfflinePlayerSnapshotDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<AbstractOfflinePlayerSnapshotDto>()
+@Implements<AbstractPlayerSnapshotDto>()
 class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
   const _$_OfflinePlayerSnapshotDto(
       {required this.id,
       this.name,
-      this.photoUrl,
       this.isCurrentTurn,
       this.won,
       this.wonSets,
@@ -308,8 +292,6 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
   final String id;
   @override
   final String? name;
-  @override
-  final String? photoUrl;
   @override
   final bool? isCurrentTurn;
   @override
@@ -331,7 +313,7 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
 
   @override
   String toString() {
-    return 'OfflinePlayerSnapshotDto(id: $id, name: $name, photoUrl: $photoUrl, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
+    return 'OfflinePlayerSnapshotDto(id: $id, name: $name, isCurrentTurn: $isCurrentTurn, won: $won, wonSets: $wonSets, wonLegsCurrentSet: $wonLegsCurrentSet, pointsLeft: $pointsLeft, finishRecommendation: $finishRecommendation, lastPoints: $lastPoints, dartsThrownCurrentLeg: $dartsThrownCurrentLeg, stats: $stats)';
   }
 
   @override
@@ -341,8 +323,6 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
             other is _OfflinePlayerSnapshotDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
             (identical(other.isCurrentTurn, isCurrentTurn) ||
                 other.isCurrentTurn == isCurrentTurn) &&
             (identical(other.won, won) || other.won == won) &&
@@ -365,7 +345,6 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
       runtimeType,
       id,
       name,
-      photoUrl,
       isCurrentTurn,
       won,
       wonSets,
@@ -384,11 +363,10 @@ class _$_OfflinePlayerSnapshotDto extends _OfflinePlayerSnapshotDto {
 }
 
 abstract class _OfflinePlayerSnapshotDto extends OfflinePlayerSnapshotDto
-    implements AbstractOfflinePlayerSnapshotDto {
+    implements AbstractPlayerSnapshotDto {
   const factory _OfflinePlayerSnapshotDto(
       {required String id,
       String? name,
-      String? photoUrl,
       bool? isCurrentTurn,
       bool? won,
       int? wonSets,
@@ -404,8 +382,6 @@ abstract class _OfflinePlayerSnapshotDto extends OfflinePlayerSnapshotDto
   String get id;
   @override
   String? get name;
-  @override
-  String? get photoUrl;
   @override
   bool? get isCurrentTurn;
   @override

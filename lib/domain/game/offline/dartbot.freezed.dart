@@ -186,7 +186,7 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<AbstractOfflinePlayer>()
+@Implements<AbstractPlayer>()
 class _$_DartBot implements _DartBot {
   const _$_DartBot(
       {required this.id,
@@ -239,7 +239,7 @@ class _$_DartBot implements _DartBot {
       __$DartBotCopyWithImpl<_DartBot>(this, _$identity);
 }
 
-abstract class _DartBot implements DartBot, AbstractOfflinePlayer {
+abstract class _DartBot implements DartBot, AbstractPlayer {
   const factory _DartBot(
       {required UniqueId id,
       required String name,

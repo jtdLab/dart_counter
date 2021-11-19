@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../abstract_game_snapshot_dto.dart';
-import 'abstract_offline_player_snapshot.dart';
+import '../abstract_player_snapshot_dto.dart';
 
 part 'offline_game_snapshot_dto.freezed.dart';
 
@@ -22,7 +22,7 @@ class OfflineGameSnapshotDto
     required int size,
     required String type,
     required int startingPoints,
-    required List<AbstractOfflinePlayerSnapshotDto> players,
+    required List<AbstractPlayerSnapshotDto> players,
   }) = _OfflineGameSnapshotDto;
 
   const OfflineGameSnapshotDto._();
@@ -55,7 +55,7 @@ class OfflineGameSnapshotDto
       size: game.size,
       type: game.type.toShortString(),
       startingPoints: game.startingPoints,
-      players: game.players.map<AbstractOfflinePlayerSnapshotDto>(
+      players: game.players.map<AbstractPlayerSnapshotDto>(
         (player) {
           if (player is ex.DartBot) {
             return DartBotSnapshotDto.fromExternal(player);

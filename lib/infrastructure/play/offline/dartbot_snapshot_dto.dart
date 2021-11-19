@@ -6,15 +6,15 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'abstract_offline_player_snapshot.dart';
+import '../abstract_player_snapshot_dto.dart';
 
 part 'dartbot_snapshot_dto.freezed.dart';
 
 @freezed
 class DartBotSnapshotDto
     with _$DartBotSnapshotDto
-    implements AbstractOfflinePlayerSnapshotDto {
-  @Implements<AbstractOfflinePlayerSnapshotDto>()
+    implements AbstractPlayerSnapshotDto {
+  @Implements<AbstractPlayerSnapshotDto>()
   const factory DartBotSnapshotDto({
     required String id,
     String? name,

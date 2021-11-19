@@ -8,7 +8,6 @@ import '../abstract_player.dart';
 import '../mode.dart';
 import '../status.dart';
 import '../type.dart';
-import 'abstract_offline_player.dart';
 
 part 'offline_game.freezed.dart';
 
@@ -23,7 +22,7 @@ class OfflineGame with _$OfflineGame implements AbstractGame {
     required int size,
     required Type type,
     required int startingPoints,
-    required KtList<AbstractOfflinePlayer> players,
+    required KtList<AbstractPlayer> players,
   }) = _OfflineGame;
 
   const OfflineGame._();

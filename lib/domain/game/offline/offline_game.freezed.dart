@@ -25,7 +25,7 @@ class _$OfflineGameTearOff {
       required int size,
       required Type type,
       required int startingPoints,
-      required KtList<AbstractOfflinePlayer> players}) {
+      required KtList<AbstractPlayer> players}) {
     return _OfflineGame(
       id: id,
       createdAt: createdAt,
@@ -51,8 +51,7 @@ mixin _$OfflineGame {
   int get size => throw _privateConstructorUsedError;
   Type get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  KtList<AbstractOfflinePlayer> get players =>
-      throw _privateConstructorUsedError;
+  KtList<AbstractPlayer> get players => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OfflineGameCopyWith<OfflineGame> get copyWith =>
@@ -72,7 +71,7 @@ abstract class $OfflineGameCopyWith<$Res> {
       int size,
       Type type,
       int startingPoints,
-      KtList<AbstractOfflinePlayer> players});
+      KtList<AbstractPlayer> players});
 }
 
 /// @nodoc
@@ -126,7 +125,7 @@ class _$OfflineGameCopyWithImpl<$Res> implements $OfflineGameCopyWith<$Res> {
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<AbstractOfflinePlayer>,
+              as KtList<AbstractPlayer>,
     ));
   }
 }
@@ -146,7 +145,7 @@ abstract class _$OfflineGameCopyWith<$Res>
       int size,
       Type type,
       int startingPoints,
-      KtList<AbstractOfflinePlayer> players});
+      KtList<AbstractPlayer> players});
 }
 
 /// @nodoc
@@ -202,7 +201,7 @@ class __$OfflineGameCopyWithImpl<$Res> extends _$OfflineGameCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as KtList<AbstractOfflinePlayer>,
+              as KtList<AbstractPlayer>,
     ));
   }
 }
@@ -237,7 +236,7 @@ class _$_OfflineGame extends _OfflineGame {
   @override
   final int startingPoints;
   @override
-  final KtList<AbstractOfflinePlayer> players;
+  final KtList<AbstractPlayer> players;
 
   @override
   String toString() {
@@ -280,7 +279,7 @@ abstract class _OfflineGame extends OfflineGame implements AbstractGame {
       required int size,
       required Type type,
       required int startingPoints,
-      required KtList<AbstractOfflinePlayer> players}) = _$_OfflineGame;
+      required KtList<AbstractPlayer> players}) = _$_OfflineGame;
   const _OfflineGame._() : super._();
 
   @override
@@ -298,7 +297,7 @@ abstract class _OfflineGame extends OfflineGame implements AbstractGame {
   @override
   int get startingPoints;
   @override
-  KtList<AbstractOfflinePlayer> get players;
+  KtList<AbstractPlayer> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameCopyWith<_OfflineGame> get copyWith =>

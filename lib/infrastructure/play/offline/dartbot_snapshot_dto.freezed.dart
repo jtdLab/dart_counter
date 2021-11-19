@@ -286,7 +286,7 @@ class __$DartBotSnapshotDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
-@Implements<AbstractOfflinePlayerSnapshotDto>()
+@Implements<AbstractPlayerSnapshotDto>()
 class _$_DartBotSnapshotDto extends _DartBotSnapshotDto {
   const _$_DartBotSnapshotDto(
       {required this.id,
@@ -382,7 +382,7 @@ class _$_DartBotSnapshotDto extends _DartBotSnapshotDto {
 }
 
 abstract class _DartBotSnapshotDto extends DartBotSnapshotDto
-    implements AbstractOfflinePlayerSnapshotDto {
+    implements AbstractPlayerSnapshotDto {
   const factory _DartBotSnapshotDto(
       {required String id,
       String? name,
