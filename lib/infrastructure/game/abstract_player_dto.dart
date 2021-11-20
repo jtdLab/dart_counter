@@ -10,6 +10,5 @@ export './online/online_player_dto.dart';
 /// Base class for [DartBotDto], [OfflinePlayerDto] and [OnlinePlayerDto].
 abstract class AbstractPlayerDto {
   String get id;
-  String get name;
   List<AbstractLegsOrSetsDto> get legsOrSets;
 }

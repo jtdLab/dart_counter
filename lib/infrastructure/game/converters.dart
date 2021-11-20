@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'abstract_player_dto.dart';
 import 'leg_dto.dart';
-import 'offline/abstract_offline_player_dto.dart';
 import 'set_dto.dart';
 
 // Some custom json converters.
@@ -48,13 +47,15 @@ class AbstractLegsOrSetsConverter
   }
 }
 
-class AbstractOfflinePlayerDtoConverter
-    implements JsonConverter<AbstractOfflinePlayerDto, Map<String, dynamic>> {
-  const AbstractOfflinePlayerDtoConverter();
+class AbstractPlayerDtoConverter
+    implements JsonConverter<AbstractPlayerDto, Map<String, dynamic>> {
+  const AbstractPlayerDtoConverter();
 
   @override
-  AbstractOfflinePlayerDto fromJson(Map<String, dynamic> json) {
-    if (json['id'] == 'dartBot') {
+  AbstractPlayerDto fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('photoUrl')) {
+      return OnlinePlayerDto.fromJson(json);
+    } else if (json['id'] == 'dartBot') {
       return DartBotDto.fromJson(json);
     } else {
       return OfflinePlayerDto.fromJson(json);
@@ -63,12 +64,14 @@ class AbstractOfflinePlayerDtoConverter
 
   @override
   Map<String, dynamic> toJson(
-    AbstractOfflinePlayerDto abstractOfflinePlayerDto,
+    AbstractPlayerDto abstractPlayerDto,
   ) {
-    if (abstractOfflinePlayerDto is OfflinePlayerDto) {
-      return abstractOfflinePlayerDto.toJson();
+    if (abstractPlayerDto is OnlinePlayerDto) {
+      return abstractPlayerDto.toJson();
+    } else if (abstractPlayerDto is OfflinePlayerDto) {
+      return abstractPlayerDto.toJson();
     } else {
-      return (abstractOfflinePlayerDto as DartBotDto).toJson();
+      return (abstractPlayerDto as DartBotDto).toJson();
     }
   }
 }

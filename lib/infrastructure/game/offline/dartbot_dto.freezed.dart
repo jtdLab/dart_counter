@@ -23,13 +23,13 @@ class _$DartBotDtoTearOff {
 
   _DartBotDto call(
       {required String id,
-      required String name,
       @AbstractLegsOrSetsConverter()
-          required List<AbstractLegsOrSetsDto> legsOrSets}) {
+          required List<AbstractLegsOrSetsDto> legsOrSets,
+      required int targetAverage}) {
     return _DartBotDto(
       id: id,
-      name: name,
       legsOrSets: legsOrSets,
+      targetAverage: targetAverage,
     );
   }
 
@@ -44,10 +44,10 @@ const $DartBotDto = _$DartBotDtoTearOff();
 /// @nodoc
 mixin _$DartBotDto {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   @AbstractLegsOrSetsConverter()
   List<AbstractLegsOrSetsDto> get legsOrSets =>
       throw _privateConstructorUsedError;
+  int get targetAverage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,8 +62,8 @@ abstract class $DartBotDtoCopyWith<$Res> {
       _$DartBotDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String name,
-      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets,
+      int targetAverage});
 }
 
 /// @nodoc
@@ -77,22 +77,22 @@ class _$DartBotDtoCopyWithImpl<$Res> implements $DartBotDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? legsOrSets = freezed,
+    Object? targetAverage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
               as List<AbstractLegsOrSetsDto>,
+      targetAverage: targetAverage == freezed
+          ? _value.targetAverage
+          : targetAverage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -105,8 +105,8 @@ abstract class _$DartBotDtoCopyWith<$Res> implements $DartBotDtoCopyWith<$Res> {
   @override
   $Res call(
       {String id,
-      String name,
-      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets});
+      @AbstractLegsOrSetsConverter() List<AbstractLegsOrSetsDto> legsOrSets,
+      int targetAverage});
 }
 
 /// @nodoc
@@ -122,34 +122,34 @@ class __$DartBotDtoCopyWithImpl<$Res> extends _$DartBotDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? legsOrSets = freezed,
+    Object? targetAverage = freezed,
   }) {
     return _then(_DartBotDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
               as List<AbstractLegsOrSetsDto>,
+      targetAverage: targetAverage == freezed
+          ? _value.targetAverage
+          : targetAverage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-@Implements<AbstractOfflinePlayerDto>()
+@Implements<AbstractPlayerDto>()
 class _$_DartBotDto extends _DartBotDto {
   const _$_DartBotDto(
       {required this.id,
-      required this.name,
-      @AbstractLegsOrSetsConverter() required this.legsOrSets})
+      @AbstractLegsOrSetsConverter() required this.legsOrSets,
+      required this.targetAverage})
       : super._();
 
   factory _$_DartBotDto.fromJson(Map<String, dynamic> json) =>
@@ -158,14 +158,14 @@ class _$_DartBotDto extends _DartBotDto {
   @override
   final String id;
   @override
-  final String name;
-  @override
   @AbstractLegsOrSetsConverter()
   final List<AbstractLegsOrSetsDto> legsOrSets;
+  @override
+  final int targetAverage;
 
   @override
   String toString() {
-    return 'DartBotDto(id: $id, name: $name, legsOrSets: $legsOrSets)';
+    return 'DartBotDto(id: $id, legsOrSets: $legsOrSets, targetAverage: $targetAverage)';
   }
 
   @override
@@ -174,14 +174,15 @@ class _$_DartBotDto extends _DartBotDto {
         (other.runtimeType == runtimeType &&
             other is _DartBotDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
-                .equals(other.legsOrSets, legsOrSets));
+                .equals(other.legsOrSets, legsOrSets) &&
+            (identical(other.targetAverage, targetAverage) ||
+                other.targetAverage == targetAverage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(legsOrSets));
+  int get hashCode => Object.hash(runtimeType, id,
+      const DeepCollectionEquality().hash(legsOrSets), targetAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -194,13 +195,12 @@ class _$_DartBotDto extends _DartBotDto {
   }
 }
 
-abstract class _DartBotDto extends DartBotDto
-    implements AbstractOfflinePlayerDto {
+abstract class _DartBotDto extends DartBotDto implements AbstractPlayerDto {
   const factory _DartBotDto(
       {required String id,
-      required String name,
       @AbstractLegsOrSetsConverter()
-          required List<AbstractLegsOrSetsDto> legsOrSets}) = _$_DartBotDto;
+          required List<AbstractLegsOrSetsDto> legsOrSets,
+      required int targetAverage}) = _$_DartBotDto;
   const _DartBotDto._() : super._();
 
   factory _DartBotDto.fromJson(Map<String, dynamic> json) =
@@ -209,10 +209,10 @@ abstract class _DartBotDto extends DartBotDto
   @override
   String get id;
   @override
-  String get name;
-  @override
   @AbstractLegsOrSetsConverter()
   List<AbstractLegsOrSetsDto> get legsOrSets;
+  @override
+  int get targetAverage;
   @override
   @JsonKey(ignore: true)
   _$DartBotDtoCopyWith<_DartBotDto> get copyWith =>

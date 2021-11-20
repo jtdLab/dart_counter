@@ -9,15 +9,15 @@ part of 'dartbot_dto.dart';
 _$_DartBotDto _$$_DartBotDtoFromJson(Map<String, dynamic> json) =>
     _$_DartBotDto(
       id: json['id'] as String,
-      name: json['name'] as String,
       legsOrSets: const AbstractLegsOrSetsConverter()
           .fromJson(json['legsOrSets'] as List<Map<String, dynamic>>),
+      targetAverage: json['targetAverage'] as int,
     );
 
 Map<String, dynamic> _$$_DartBotDtoToJson(_$_DartBotDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
       'legsOrSets':
           const AbstractLegsOrSetsConverter().toJson(instance.legsOrSets),
+      'targetAverage': instance.targetAverage,
     };

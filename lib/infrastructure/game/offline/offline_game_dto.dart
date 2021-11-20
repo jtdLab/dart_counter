@@ -11,7 +11,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../abstract_game_dto.dart';
-import 'abstract_offline_player_dto.dart';
 
 part 'offline_game_dto.freezed.dart';
 part 'offline_game_dto.g.dart';
@@ -27,8 +26,7 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
     required int size,
     required String type,
     required int startingPoints,
-    @AbstractOfflinePlayerDtoConverter()
-        required List<AbstractOfflinePlayerDto> players,
+    @AbstractPlayerDtoConverter() required List<AbstractPlayerDto> players,
   }) = _OfflineGameDto;
 
   const OfflineGameDto._();
@@ -65,8 +63,9 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
     );
   }
 
+/**
+ * 
   ex.Game toExternal({
-    required int startingPoints,
     required int legsOrSetsNeededToWin,
   }) {
     final p = players.map(
@@ -94,6 +93,8 @@ class OfflineGameDto with _$OfflineGameDto implements AbstractGameDto {
       players: p,
     );
   }
+
+ */
 
   factory OfflineGameDto.fromJson(Map<String, dynamic> json) =>
       _$OfflineGameDtoFromJson(json);

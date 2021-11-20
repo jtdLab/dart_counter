@@ -16,25 +16,15 @@ class DartBot with _$DartBot implements AbstractPlayer {
   @Implements<AbstractPlayer>()
   const factory DartBot({
     required UniqueId id,
-    required String name,
     required Either<KtList<Leg>, KtList<Set>> legsOrSets,
     required bool won,
     required int wonLegsOrSets,
     required PlayerStats stats,
+    required int targetAverage,
   }) = _DartBot;
 
   factory DartBot.dummy() => DartBot(
         id: UniqueId.fromUniqueString('dartBot'),
-        name: faker.randomGenerator.element([
-          'David88',
-          'mrjosch',
-          'SebiAbi69',
-          'HoeHoe',
-          'Soldier48',
-          'Needs',
-          'egesit',
-          'AnisAbi',
-        ]),
         legsOrSets: faker.randomGenerator.boolean()
             ? left(
                 KtList.from(
@@ -49,5 +39,6 @@ class DartBot with _$DartBot implements AbstractPlayer {
         won: false,
         wonLegsOrSets: 0,
         stats: PlayerStats.dummy(),
+        targetAverage: faker.randomGenerator.integer(100, min: 10),
       );
 }

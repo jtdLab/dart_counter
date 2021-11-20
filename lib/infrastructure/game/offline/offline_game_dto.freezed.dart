@@ -29,8 +29,7 @@ class _$OfflineGameDtoTearOff {
       required int size,
       required String type,
       required int startingPoints,
-      @AbstractOfflinePlayerDtoConverter()
-          required List<AbstractOfflinePlayerDto> players}) {
+      @AbstractPlayerDtoConverter() required List<AbstractPlayerDto> players}) {
     return _OfflineGameDto(
       id: id,
       createdAt: createdAt,
@@ -60,9 +59,8 @@ mixin _$OfflineGameDto {
   int get size => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get startingPoints => throw _privateConstructorUsedError;
-  @AbstractOfflinePlayerDtoConverter()
-  List<AbstractOfflinePlayerDto> get players =>
-      throw _privateConstructorUsedError;
+  @AbstractPlayerDtoConverter()
+  List<AbstractPlayerDto> get players => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,8 +81,7 @@ abstract class $OfflineGameDtoCopyWith<$Res> {
       int size,
       String type,
       int startingPoints,
-      @AbstractOfflinePlayerDtoConverter()
-          List<AbstractOfflinePlayerDto> players});
+      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
 }
 
 /// @nodoc
@@ -139,7 +136,7 @@ class _$OfflineGameDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractOfflinePlayerDto>,
+              as List<AbstractPlayerDto>,
     ));
   }
 }
@@ -159,8 +156,7 @@ abstract class _$OfflineGameDtoCopyWith<$Res>
       int size,
       String type,
       int startingPoints,
-      @AbstractOfflinePlayerDtoConverter()
-          List<AbstractOfflinePlayerDto> players});
+      @AbstractPlayerDtoConverter() List<AbstractPlayerDto> players});
 }
 
 /// @nodoc
@@ -217,7 +213,7 @@ class __$OfflineGameDtoCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as List<AbstractOfflinePlayerDto>,
+              as List<AbstractPlayerDto>,
     ));
   }
 }
@@ -234,7 +230,7 @@ class _$_OfflineGameDto extends _OfflineGameDto {
       required this.size,
       required this.type,
       required this.startingPoints,
-      @AbstractOfflinePlayerDtoConverter() required this.players})
+      @AbstractPlayerDtoConverter() required this.players})
       : super._();
 
   factory _$_OfflineGameDto.fromJson(Map<String, dynamic> json) =>
@@ -255,8 +251,8 @@ class _$_OfflineGameDto extends _OfflineGameDto {
   @override
   final int startingPoints;
   @override
-  @AbstractOfflinePlayerDtoConverter()
-  final List<AbstractOfflinePlayerDto> players;
+  @AbstractPlayerDtoConverter()
+  final List<AbstractPlayerDto> players;
 
   @override
   String toString() {
@@ -305,8 +301,8 @@ abstract class _OfflineGameDto extends OfflineGameDto
       required int size,
       required String type,
       required int startingPoints,
-      @AbstractOfflinePlayerDtoConverter()
-          required List<AbstractOfflinePlayerDto> players}) = _$_OfflineGameDto;
+      @AbstractPlayerDtoConverter()
+          required List<AbstractPlayerDto> players}) = _$_OfflineGameDto;
   const _OfflineGameDto._() : super._();
 
   factory _OfflineGameDto.fromJson(Map<String, dynamic> json) =
@@ -327,8 +323,8 @@ abstract class _OfflineGameDto extends OfflineGameDto
   @override
   int get startingPoints;
   @override
-  @AbstractOfflinePlayerDtoConverter()
-  List<AbstractOfflinePlayerDto> get players;
+  @AbstractPlayerDtoConverter()
+  List<AbstractPlayerDto> get players;
   @override
   @JsonKey(ignore: true)
   _$OfflineGameDtoCopyWith<_OfflineGameDto> get copyWith =>

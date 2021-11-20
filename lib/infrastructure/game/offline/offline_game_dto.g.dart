@@ -16,7 +16,7 @@ _$_OfflineGameDto _$$_OfflineGameDtoFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
       startingPoints: json['startingPoints'] as int,
       players: (json['players'] as List<dynamic>)
-          .map((e) => const AbstractOfflinePlayerDtoConverter()
+          .map((e) => const AbstractPlayerDtoConverter()
               .fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -31,6 +31,6 @@ Map<String, dynamic> _$$_OfflineGameDtoToJson(_$_OfflineGameDto instance) =>
       'type': instance.type,
       'startingPoints': instance.startingPoints,
       'players': instance.players
-          .map(const AbstractOfflinePlayerDtoConverter().toJson)
+          .map(const AbstractPlayerDtoConverter().toJson)
           .toList(),
     };

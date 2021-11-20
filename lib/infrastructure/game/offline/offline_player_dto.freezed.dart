@@ -147,7 +147,7 @@ class __$OfflinePlayerDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@Implements<AbstractOfflinePlayerDto>()
+@Implements<AbstractPlayerDto>()
 class _$_OfflinePlayerDto extends _OfflinePlayerDto {
   const _$_OfflinePlayerDto(
       {required this.id,
@@ -198,7 +198,7 @@ class _$_OfflinePlayerDto extends _OfflinePlayerDto {
 }
 
 abstract class _OfflinePlayerDto extends OfflinePlayerDto
-    implements AbstractOfflinePlayerDto {
+    implements AbstractPlayerDto {
   const factory _OfflinePlayerDto(
           {required String id,
           required String name,

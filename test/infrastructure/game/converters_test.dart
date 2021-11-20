@@ -403,8 +403,105 @@ void main() {
     });
   });
 
-  group('AbstractOfflinePlayerDtoConverter', () {
+  group('AbstractPlayerDtoConverter', () {
     group('fromJson', () {
+      group('OnlinePlayerDto', () {
+        test('photoUrl is not null', () {
+          // Arrange
+          final json = {
+            'id': 'dummyId',
+            'name': 'dummyName',
+            'photoUrl': 'www.example.com',
+            'legsOrSets': [
+              {
+                'throws': [
+                  {
+                    'points': 180,
+                    'dartsThrown': 3,
+                    'dartsOnDouble': 0,
+                    'darts': null,
+                  },
+                  {
+                    'points': 20,
+                    'dartsThrown': 3,
+                    'dartsOnDouble': 0,
+                    'darts': null,
+                  }
+                ],
+              },
+            ],
+          };
+
+          // Act
+          final dto = const AbstractPlayerDtoConverter().fromJson(json);
+
+          // Assert
+          expect(
+            dto,
+            const OnlinePlayerDto(
+              id: 'dummyId',
+              name: 'dummyName',
+              photoUrl: 'www.example.com',
+              legsOrSets: [
+                LegDto(
+                  throws: [
+                    ThrowDto(points: 180, dartsThrown: 3, dartsOnDouble: 0),
+                    ThrowDto(points: 20, dartsThrown: 3, dartsOnDouble: 0),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
+
+        test('photoUrl is not null', () {
+          // Arrange
+          final json = {
+            'id': 'dummyId',
+            'name': 'dummyName',
+            'photoUrl': null,
+            'legsOrSets': [
+              {
+                'throws': [
+                  {
+                    'points': 180,
+                    'dartsThrown': 3,
+                    'dartsOnDouble': 0,
+                    'darts': null,
+                  },
+                  {
+                    'points': 20,
+                    'dartsThrown': 3,
+                    'dartsOnDouble': 0,
+                    'darts': null,
+                  }
+                ],
+              },
+            ],
+          };
+
+          // Act
+          final dto = const AbstractPlayerDtoConverter().fromJson(json);
+
+          // Assert
+          expect(
+            dto,
+            const OnlinePlayerDto(
+              id: 'dummyId',
+              name: 'dummyName',
+              legsOrSets: [
+                LegDto(
+                  throws: [
+                    ThrowDto(points: 180, dartsThrown: 3, dartsOnDouble: 0),
+                    ThrowDto(points: 20, dartsThrown: 3, dartsOnDouble: 0),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
+      });
+
       test('OfflinePlayerDto', () {
         // Arrange
         final json = {
@@ -431,7 +528,7 @@ void main() {
         };
 
         // Act
-        final dto = const AbstractOfflinePlayerDtoConverter().fromJson(json);
+        final dto = const AbstractPlayerDtoConverter().fromJson(json);
 
         // Assert
         expect(
@@ -456,6 +553,7 @@ void main() {
         final json = {
           'id': 'dartBot',
           'name': 'DartBot',
+          'targetAverage': 50,
           'legsOrSets': [
             {
               'throws': [
@@ -477,14 +575,14 @@ void main() {
         };
 
         // Act
-        final dto = const AbstractOfflinePlayerDtoConverter().fromJson(json);
+        final dto = const AbstractPlayerDtoConverter().fromJson(json);
 
         // Assert
         expect(
           dto,
           const DartBotDto(
             id: 'dartBot',
-            name: 'DartBot',
+            targetAverage: 50,
             legsOrSets: [
               LegDto(
                 throws: [
@@ -499,6 +597,103 @@ void main() {
     });
 
     group('toJson', () {
+      group('OnlinePlayerDto', () {
+        test('photoUrl is not null', () {
+          // Arrange
+          const dto = OnlinePlayerDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            photoUrl: 'www.example.com',
+            legsOrSets: [
+              LegDto(
+                throws: [
+                  ThrowDto(points: 180, dartsThrown: 3, dartsOnDouble: 0),
+                  ThrowDto(points: 20, dartsThrown: 3, dartsOnDouble: 0),
+                ],
+              ),
+            ],
+          );
+
+          // Act
+          final json = const AbstractPlayerDtoConverter().toJson(dto);
+
+          // Assert
+          expect(
+            json,
+            {
+              'id': 'dummyId',
+              'name': 'dummyName',
+              'photoUrl': 'www.example.com',
+              'legsOrSets': [
+                {
+                  'throws': [
+                    {
+                      'points': 180,
+                      'dartsThrown': 3,
+                      'dartsOnDouble': 0,
+                      'darts': null,
+                    },
+                    {
+                      'points': 20,
+                      'dartsThrown': 3,
+                      'dartsOnDouble': 0,
+                      'darts': null,
+                    }
+                  ],
+                },
+              ],
+            },
+          );
+        });
+
+        test('photoUrl is null', () {
+          // Arrange
+          const dto = OnlinePlayerDto(
+            id: 'dummyId',
+            name: 'dummyName',
+            legsOrSets: [
+              LegDto(
+                throws: [
+                  ThrowDto(points: 180, dartsThrown: 3, dartsOnDouble: 0),
+                  ThrowDto(points: 20, dartsThrown: 3, dartsOnDouble: 0),
+                ],
+              ),
+            ],
+          );
+
+          // Act
+          final json = const AbstractPlayerDtoConverter().toJson(dto);
+
+          // Assert
+          expect(
+            json,
+            {
+              'id': 'dummyId',
+              'name': 'dummyName',
+              'photoUrl': null,
+              'legsOrSets': [
+                {
+                  'throws': [
+                    {
+                      'points': 180,
+                      'dartsThrown': 3,
+                      'dartsOnDouble': 0,
+                      'darts': null,
+                    },
+                    {
+                      'points': 20,
+                      'dartsThrown': 3,
+                      'dartsOnDouble': 0,
+                      'darts': null,
+                    }
+                  ],
+                },
+              ],
+            },
+          );
+        });
+      });
+
       test('OfflinePlayerDto', () {
         // Arrange
         const dto = OfflinePlayerDto(
@@ -515,7 +710,7 @@ void main() {
         );
 
         // Act
-        final json = const AbstractOfflinePlayerDtoConverter().toJson(dto);
+        final json = const AbstractPlayerDtoConverter().toJson(dto);
 
         // Assert
         expect(
@@ -549,7 +744,7 @@ void main() {
         // Arrange
         const dto = DartBotDto(
           id: 'dartBot',
-          name: 'DartBot',
+          targetAverage: 50,
           legsOrSets: [
             LegDto(
               throws: [
@@ -561,14 +756,14 @@ void main() {
         );
 
         // Act
-        final json = const AbstractOfflinePlayerDtoConverter().toJson(dto);
+        final json = const AbstractPlayerDtoConverter().toJson(dto);
 
         // Assert
         expect(
           json,
           {
             'id': 'dartBot',
-            'name': 'DartBot',
+            'targetAverage': 50,
             'legsOrSets': [
               {
                 'throws': [

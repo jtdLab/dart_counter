@@ -16,7 +16,6 @@ export './online/online_player.dart';
 /// Base class for [OfflinePlayer], [DartBot] and [OnlinePlayer].
 abstract class AbstractPlayer {
   UniqueId get id;
-  String get name;
   Either<KtList<Leg>, KtList<Set>> get legsOrSets;
 
   bool get won;

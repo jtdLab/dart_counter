@@ -170,7 +170,11 @@ class _PlayerColumn extends StatelessWidget {
             ),
           ],
           AutoSizeText(
-            player.name.toUpperCase(),
+            player is DartBot
+                ? LocaleKeys.dartBot.tr().toUpperCase()
+                : player is OfflinePlayer
+                    ? player.name
+                    : (player as OnlinePlayer).name,
             minFontSize: 1,
             maxFontSize: maxFontSizeSmall(context) - 1, // TODO
             style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(

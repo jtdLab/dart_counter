@@ -55,8 +55,8 @@ class OnlineGameDto with _$OnlineGameDto implements AbstractGameDto {
     );
   }
 
-  ex.Game toExternal({
-    required int startingPoints,
+  /**
+  *  ex.Game toExternal({
     required int legsOrSetsNeededToWin,
   }) {
     final p = players
@@ -78,6 +78,8 @@ class OnlineGameDto with _$OnlineGameDto implements AbstractGameDto {
       owner: p.firstWhere((player) => player.id == ownerId),
     );
   }
+
+  */
 
   factory OnlineGameDto.fromJson(Map<String, dynamic> json) =>
       _$OnlineGameDtoFromJson(json);

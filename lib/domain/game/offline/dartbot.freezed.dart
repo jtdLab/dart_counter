@@ -19,18 +19,18 @@ class _$DartBotTearOff {
 
   _DartBot call(
       {required UniqueId id,
-      required String name,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       required bool won,
       required int wonLegsOrSets,
-      required PlayerStats stats}) {
+      required PlayerStats stats,
+      required int targetAverage}) {
     return _DartBot(
       id: id,
-      name: name,
       legsOrSets: legsOrSets,
       won: won,
       wonLegsOrSets: wonLegsOrSets,
       stats: stats,
+      targetAverage: targetAverage,
     );
   }
 }
@@ -41,12 +41,12 @@ const $DartBot = _$DartBotTearOff();
 /// @nodoc
 mixin _$DartBot {
   UniqueId get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   Either<KtList<Leg>, KtList<Set>> get legsOrSets =>
       throw _privateConstructorUsedError;
   bool get won => throw _privateConstructorUsedError;
   int get wonLegsOrSets => throw _privateConstructorUsedError;
   PlayerStats get stats => throw _privateConstructorUsedError;
+  int get targetAverage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DartBotCopyWith<DartBot> get copyWith => throw _privateConstructorUsedError;
@@ -58,11 +58,11 @@ abstract class $DartBotCopyWith<$Res> {
       _$DartBotCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      String name,
       Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
-      PlayerStats stats});
+      PlayerStats stats,
+      int targetAverage});
 
   $PlayerStatsCopyWith<$Res> get stats;
 }
@@ -78,21 +78,17 @@ class _$DartBotCopyWithImpl<$Res> implements $DartBotCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
+    Object? targetAverage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -109,6 +105,10 @@ class _$DartBotCopyWithImpl<$Res> implements $DartBotCopyWith<$Res> {
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStats,
+      targetAverage: targetAverage == freezed
+          ? _value.targetAverage
+          : targetAverage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -127,11 +127,11 @@ abstract class _$DartBotCopyWith<$Res> implements $DartBotCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
-      String name,
       Either<KtList<Leg>, KtList<Set>> legsOrSets,
       bool won,
       int wonLegsOrSets,
-      PlayerStats stats});
+      PlayerStats stats,
+      int targetAverage});
 
   @override
   $PlayerStatsCopyWith<$Res> get stats;
@@ -149,21 +149,17 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? legsOrSets = freezed,
     Object? won = freezed,
     Object? wonLegsOrSets = freezed,
     Object? stats = freezed,
+    Object? targetAverage = freezed,
   }) {
     return _then(_DartBot(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       legsOrSets: legsOrSets == freezed
           ? _value.legsOrSets
           : legsOrSets // ignore: cast_nullable_to_non_nullable
@@ -180,6 +176,10 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as PlayerStats,
+      targetAverage: targetAverage == freezed
+          ? _value.targetAverage
+          : targetAverage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -190,16 +190,14 @@ class __$DartBotCopyWithImpl<$Res> extends _$DartBotCopyWithImpl<$Res>
 class _$_DartBot implements _DartBot {
   const _$_DartBot(
       {required this.id,
-      required this.name,
       required this.legsOrSets,
       required this.won,
       required this.wonLegsOrSets,
-      required this.stats});
+      required this.stats,
+      required this.targetAverage});
 
   @override
   final UniqueId id;
-  @override
-  final String name;
   @override
   final Either<KtList<Leg>, KtList<Set>> legsOrSets;
   @override
@@ -208,10 +206,12 @@ class _$_DartBot implements _DartBot {
   final int wonLegsOrSets;
   @override
   final PlayerStats stats;
+  @override
+  final int targetAverage;
 
   @override
   String toString() {
-    return 'DartBot(id: $id, name: $name, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats)';
+    return 'DartBot(id: $id, legsOrSets: $legsOrSets, won: $won, wonLegsOrSets: $wonLegsOrSets, stats: $stats, targetAverage: $targetAverage)';
   }
 
   @override
@@ -220,18 +220,19 @@ class _$_DartBot implements _DartBot {
         (other.runtimeType == runtimeType &&
             other is _DartBot &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.legsOrSets, legsOrSets) ||
                 other.legsOrSets == legsOrSets) &&
             (identical(other.won, won) || other.won == won) &&
             (identical(other.wonLegsOrSets, wonLegsOrSets) ||
                 other.wonLegsOrSets == wonLegsOrSets) &&
-            (identical(other.stats, stats) || other.stats == stats));
+            (identical(other.stats, stats) || other.stats == stats) &&
+            (identical(other.targetAverage, targetAverage) ||
+                other.targetAverage == targetAverage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, legsOrSets, won, wonLegsOrSets, stats);
+  int get hashCode => Object.hash(
+      runtimeType, id, legsOrSets, won, wonLegsOrSets, stats, targetAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -242,16 +243,14 @@ class _$_DartBot implements _DartBot {
 abstract class _DartBot implements DartBot, AbstractPlayer {
   const factory _DartBot(
       {required UniqueId id,
-      required String name,
       required Either<KtList<Leg>, KtList<Set>> legsOrSets,
       required bool won,
       required int wonLegsOrSets,
-      required PlayerStats stats}) = _$_DartBot;
+      required PlayerStats stats,
+      required int targetAverage}) = _$_DartBot;
 
   @override
   UniqueId get id;
-  @override
-  String get name;
   @override
   Either<KtList<Leg>, KtList<Set>> get legsOrSets;
   @override
@@ -260,6 +259,8 @@ abstract class _DartBot implements DartBot, AbstractPlayer {
   int get wonLegsOrSets;
   @override
   PlayerStats get stats;
+  @override
+  int get targetAverage;
   @override
   @JsonKey(ignore: true)
   _$DartBotCopyWith<_DartBot> get copyWith =>
