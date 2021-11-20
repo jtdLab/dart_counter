@@ -43,6 +43,7 @@ void main() {
 
   group('watchFriends', () {
     // TODO implement tests
+    
   });
 
   group('watchReceivedFriendRequests', () {

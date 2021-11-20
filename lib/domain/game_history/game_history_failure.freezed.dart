@@ -21,6 +21,10 @@ class _$GameHistoryFailureTearOff {
     return const _Unexpected();
   }
 
+  _NoNetworkAccess noNetworkAccess() {
+    return const _NoNetworkAccess();
+  }
+
   _InsufficientPermission insufficientPermission() {
     return const _InsufficientPermission();
   }
@@ -38,6 +42,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToRead,
   }) =>
@@ -45,6 +50,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
   }) =>
@@ -52,6 +58,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
     required TResult orElse(),
@@ -60,6 +67,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToRead value) unableToRead,
@@ -68,6 +76,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
   }) =>
@@ -75,6 +84,7 @@ mixin _$GameHistoryFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
@@ -141,6 +151,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToRead,
   }) {
@@ -151,6 +162,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
   }) {
@@ -161,6 +173,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
     required TResult orElse(),
@@ -175,6 +188,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToRead value) unableToRead,
@@ -186,6 +200,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
   }) {
@@ -196,6 +211,7 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
@@ -209,6 +225,124 @@ class _$_Unexpected implements _Unexpected {
 
 abstract class _Unexpected implements GameHistoryFailure {
   const factory _Unexpected() = _$_Unexpected;
+}
+
+/// @nodoc
+abstract class _$NoNetworkAccessCopyWith<$Res> {
+  factory _$NoNetworkAccessCopyWith(
+          _NoNetworkAccess value, $Res Function(_NoNetworkAccess) then) =
+      __$NoNetworkAccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoNetworkAccessCopyWithImpl<$Res>
+    extends _$GameHistoryFailureCopyWithImpl<$Res>
+    implements _$NoNetworkAccessCopyWith<$Res> {
+  __$NoNetworkAccessCopyWithImpl(
+      _NoNetworkAccess _value, $Res Function(_NoNetworkAccess) _then)
+      : super(_value, (v) => _then(v as _NoNetworkAccess));
+
+  @override
+  _NoNetworkAccess get _value => super._value as _NoNetworkAccess;
+}
+
+/// @nodoc
+
+class _$_NoNetworkAccess implements _NoNetworkAccess {
+  const _$_NoNetworkAccess();
+
+  @override
+  String toString() {
+    return 'GameHistoryFailure.noNetworkAccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoNetworkAccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() noNetworkAccess,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToRead,
+  }) {
+    return noNetworkAccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToRead,
+  }) {
+    return noNetworkAccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToRead,
+    required TResult orElse(),
+  }) {
+    if (noNetworkAccess != null) {
+      return noNetworkAccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToRead value) unableToRead,
+  }) {
+    return noNetworkAccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToRead value)? unableToRead,
+  }) {
+    return noNetworkAccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToRead value)? unableToRead,
+    required TResult orElse(),
+  }) {
+    if (noNetworkAccess != null) {
+      return noNetworkAccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoNetworkAccess implements GameHistoryFailure {
+  const factory _NoNetworkAccess() = _$_NoNetworkAccess;
 }
 
 /// @nodoc
@@ -253,6 +387,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToRead,
   }) {
@@ -263,6 +398,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
   }) {
@@ -273,6 +409,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
     required TResult orElse(),
@@ -287,6 +424,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToRead value) unableToRead,
@@ -298,6 +436,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
   }) {
@@ -308,6 +447,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),
@@ -365,6 +505,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() noNetworkAccess,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToRead,
   }) {
@@ -375,6 +516,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
   }) {
@@ -385,6 +527,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? noNetworkAccess,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToRead,
     required TResult orElse(),
@@ -399,6 +542,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoNetworkAccess value) noNetworkAccess,
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToRead value) unableToRead,
@@ -410,6 +554,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
   }) {
@@ -420,6 +565,7 @@ class _$_UnableToRead implements _UnableToRead {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoNetworkAccess value)? noNetworkAccess,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToRead value)? unableToRead,
     required TResult orElse(),

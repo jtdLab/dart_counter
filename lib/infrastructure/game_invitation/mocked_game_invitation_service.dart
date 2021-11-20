@@ -23,38 +23,15 @@ class MockedGameInvitationService implements IGameInvitationService {
 
   MockedGameInvitationService(
     this._authService,
-  )   : _receivedGameInvitationsController = BehaviorSubject(),
-        _sentGameInvitationsController = BehaviorSubject() {
+  )   : _receivedGameInvitationsController =
+            _createReceivedGameInvitationsController(),
+        _sentGameInvitationsController =
+            _createSentGameInvitationsController() {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
-        _receivedGameInvitationsController = BehaviorSubject.seeded(
-          hasNetworkConnection
-              ? right([
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                  GameInvitation.dummy(),
-                ].toImmutableList())
-              : left(
-                  const GameInvitationFailure.unexpected(), // TODO name better
-                ),
-        );
-        _sentGameInvitationsController = BehaviorSubject.seeded(
-          hasNetworkConnection
-              ? right(
-                  [
-                    GameInvitation.dummy(),
-                    GameInvitation.dummy(),
-                    GameInvitation.dummy(),
-                    GameInvitation.dummy(),
-                    GameInvitation.dummy(),
-                  ].toImmutableList(),
-                )
-              : left(
-                  const GameInvitationFailure.unexpected(), // TODO name better
-                ),
-        );
+        _receivedGameInvitationsController =
+            _createReceivedGameInvitationsController();
+        _sentGameInvitationsController = _createSentGameInvitationsController();
       } else {
         await _receivedGameInvitationsController.close(); // TODO needed
         await _sentGameInvitationsController.close(); // TODO needed
@@ -72,7 +49,7 @@ class MockedGameInvitationService implements IGameInvitationService {
       return right(unit);
     }
 
-    return left(const GameInvitationFailure.unexpected()); // TODO name better
+    return left(const GameInvitationFailure.noNetworkAccess());
   }
 
   @override
@@ -97,7 +74,7 @@ class MockedGameInvitationService implements IGameInvitationService {
       return right(unit);
     }
 
-    return left(const GameInvitationFailure.unexpected()); // TODO name better
+    return left(const GameInvitationFailure.noNetworkAccess());
   }
 
   @override
@@ -110,7 +87,7 @@ class MockedGameInvitationService implements IGameInvitationService {
       return right(unit);
     }
 
-    return left(const GameInvitationFailure.unexpected()); // TODO name better
+    return left(const GameInvitationFailure.noNetworkAccess());
   }
 
   @override
@@ -188,7 +165,7 @@ class MockedGameInvitationService implements IGameInvitationService {
       return right(unit);
     }
 
-    return left(const GameInvitationFailure.unexpected()); // TODO name better
+    return left(const GameInvitationFailure.noNetworkAccess());
   }
 
   @override
@@ -203,6 +180,44 @@ class MockedGameInvitationService implements IGameInvitationService {
       watchSentInvitations() {
     _checkAuth();
     return _sentGameInvitationsController.stream;
+  }
+
+  /// Creates a new received gameInvitation controller seeded with either a list of [GameInvitation] or [GameInvitationFailure] depending
+  /// on available network connection.
+  static BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _createReceivedGameInvitationsController() {
+    return BehaviorSubject.seeded(
+      hasNetworkConnection
+          ? right(
+              [
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+              ].toImmutableList(),
+            )
+          : left(const GameInvitationFailure.noNetworkAccess()),
+    );
+  }
+
+  /// Creates a new sent gameInvitation controller seeded with either a list of [GameInvitation] or [GameInvitationFailure] depending
+  /// on available network connection.
+  static BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      _createSentGameInvitationsController() {
+    return BehaviorSubject.seeded(
+      hasNetworkConnection
+          ? right(
+              [
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+                GameInvitation.dummy(),
+              ].toImmutableList(),
+            )
+          : left(const GameInvitationFailure.noNetworkAccess()),
+    );
   }
 
   /// Removes [invitation] from the receivedGameInvitations and emits event.

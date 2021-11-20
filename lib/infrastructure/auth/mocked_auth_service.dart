@@ -26,6 +26,7 @@ class MockedAuthService with Disposable implements IAuthService {
     return null;
   }
 
+
   @override
   bool isAuthenticated() => _authenticatedController.value;
 

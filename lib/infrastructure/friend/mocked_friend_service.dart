@@ -20,12 +20,12 @@ class MockedFriendService implements IFriendService {
   final IAuthService _authService;
   //final IUserService _userService; // TODO needed like in real ?
 
-  BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
+  BehaviorSubject<Either<FriendFailure, KtList<Friend>>>? _friendsController;
 
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>?
       _receivedFriendRequestController;
 
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>?
       _sentFriendRequestController;
 
   final List<UserSnapshot> _userSearchResults;
@@ -33,49 +33,24 @@ class MockedFriendService implements IFriendService {
   MockedFriendService(
     this._authService,
     //this._userService,
-  )   : _friendsController = BehaviorSubject(),
-        _receivedFriendRequestController = BehaviorSubject(),
-        _sentFriendRequestController = BehaviorSubject(),
+  )   : _friendsController = _createFriendsController(),
+        _receivedFriendRequestController =
+            _createReceivedFriendRequestsController(),
+        _sentFriendRequestController = _createSentFriendRequestsController(),
         _userSearchResults = [] {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
-        _friendsController = BehaviorSubject.seeded(
-          hasNetworkConnection
-              ? right(
-                  faker.randomGenerator
-                      .amount((i) => Friend.dummy(), 5)
-                      .toImmutableList(),
-                )
-              : left(
-                  const FriendFailure.unexpected(), // TODO name better
-                ),
-        );
-        _receivedFriendRequestController = BehaviorSubject.seeded(
-          hasNetworkConnection
-              ? right(
-                  faker.randomGenerator
-                      .amount((i) => FriendRequest.dummy(), 5)
-                      .toImmutableList(),
-                )
-              : left(
-                  const FriendFailure.unexpected(), // TODO name better
-                ),
-        );
-        _sentFriendRequestController = BehaviorSubject.seeded(
-          hasNetworkConnection
-              ? right(
-                  faker.randomGenerator
-                      .amount((i) => FriendRequest.dummy(), 20)
-                      .toImmutableList(),
-                )
-              : left(
-                  const FriendFailure.unexpected(), // TODO name better
-                ),
-        );
+        _friendsController = _createFriendsController();
+        _receivedFriendRequestController =
+            _createReceivedFriendRequestsController();
+        _sentFriendRequestController = _createSentFriendRequestsController();
       } else {
-        await _friendsController.close(); // TODO needed
-        await _receivedFriendRequestController.close(); // TODO needed
-        await _sentFriendRequestController.close(); // TODO needed
+        await _friendsController?.close();
+        await _receivedFriendRequestController?.close();
+        await _sentFriendRequestController?.close();
+        _friendsController = null;
+        _receivedFriendRequestController = null;
+        _sentFriendRequestController = null;
       }
     });
   }
@@ -94,14 +69,14 @@ class MockedFriendService implements IFriendService {
       );
 
       final friends =
-          _friendsController.value.toOption().toNullable()!.toMutableList();
+          _friendsController!.value.toOption().toNullable()!.toMutableList();
       friends.add(newFriend);
 
-      _friendsController.add(right(friends));
+      _friendsController!.add(right(friends));
       return right(unit);
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -110,7 +85,7 @@ class MockedFriendService implements IFriendService {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value
+      final sentFriendRequests = _sentFriendRequestController!.value
           .toOption()
           .toNullable()!
           .toMutableList()
@@ -120,14 +95,14 @@ class MockedFriendService implements IFriendService {
         (element) => element == friendRequest,
       );
 
-      _sentFriendRequestController.add(
+      _sentFriendRequestController!.add(
         right(sentFriendRequests.toImmutableList()),
       );
 
       return right(unit);
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -140,7 +115,7 @@ class MockedFriendService implements IFriendService {
       return right(unit);
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -148,13 +123,13 @@ class MockedFriendService implements IFriendService {
     _checkAuth();
     if (hasNetworkConnection) {
       try {
-        return _friendsController.value;
+        return _friendsController!.value;
       } catch (e) {
         return null;
       }
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -162,13 +137,13 @@ class MockedFriendService implements IFriendService {
     _checkAuth();
     if (hasNetworkConnection) {
       try {
-        return _receivedFriendRequestController.value;
+        return _receivedFriendRequestController!.value;
       } catch (e) {
         return null;
       }
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -176,13 +151,13 @@ class MockedFriendService implements IFriendService {
     _checkAuth();
     if (hasNetworkConnection) {
       try {
-        return _sentFriendRequestController.value;
+        return _sentFriendRequestController!.value;
       } catch (e) {
         return null;
       }
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -190,9 +165,9 @@ class MockedFriendService implements IFriendService {
     _checkAuth();
 
     final receivedFriendRequests =
-        _receivedFriendRequestController.value.toOption().toNullable()!;
+        _receivedFriendRequestController!.value.toOption().toNullable()!;
 
-    _receivedFriendRequestController.add(
+    _receivedFriendRequestController!.add(
       right(
         receivedFriendRequests
             .map(
@@ -211,7 +186,7 @@ class MockedFriendService implements IFriendService {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final friends = _friendsController.value
+      final friends = _friendsController!.value
           .toOption()
           .toNullable()!
           .toMutableList()
@@ -221,14 +196,14 @@ class MockedFriendService implements IFriendService {
         (element) => element == friend,
       );
 
-      _friendsController.add(
+      _friendsController!.add(
         right(friends.toImmutableList()),
       );
 
       return right(unit);
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
 // TODO imple better
@@ -284,7 +259,7 @@ class MockedFriendService implements IFriendService {
       return right(_userSearchResults.toImmutableList());
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -296,7 +271,7 @@ class MockedFriendService implements IFriendService {
       return right(UserSnapshot.dummy());
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
@@ -305,7 +280,7 @@ class MockedFriendService implements IFriendService {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController.value
+      final sentFriendRequests = _sentFriendRequestController!.value
           .toOption()
           .toNullable()!
           .toMutableList();
@@ -313,26 +288,26 @@ class MockedFriendService implements IFriendService {
       sentFriendRequests.add(
         FriendRequest.dummy().copyWith(toId: toId),
       );
-      _sentFriendRequestController.add(
+      _sentFriendRequestController!.add(
         right(sentFriendRequests),
       );
       return right(unit);
     }
 
-    return left(const FriendFailure.unexpected()); // TODO name better
+    return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
   Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
-    return _friendsController.stream;
+    return _friendsController!.stream;
   }
 
   @override
   Stream<Either<FriendFailure, KtList<FriendRequest>>>
       watchReceivedFriendRequests() {
     _checkAuth();
-    return _receivedFriendRequestController.stream;
+    return _receivedFriendRequestController!.stream;
   }
 
   @override
@@ -340,7 +315,7 @@ class MockedFriendService implements IFriendService {
       watchSentFriendRequests() {
     _checkAuth();
 
-    return _sentFriendRequestController.stream;
+    return _sentFriendRequestController!.stream;
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
@@ -350,9 +325,54 @@ class MockedFriendService implements IFriendService {
     }
   }
 
+  /// Creates a new friend controller seeded with either a list of [Friend] or [FriendFailure] depending
+  /// on available network connection.
+  static BehaviorSubject<Either<FriendFailure, KtList<Friend>>>
+      _createFriendsController() {
+    return BehaviorSubject.seeded(
+      hasNetworkConnection
+          ? right(
+              faker.randomGenerator
+                  .amount((i) => Friend.dummy(), 5)
+                  .toImmutableList(),
+            )
+          : left(const FriendFailure.noNetworkAccess()),
+    );
+  }
+
+  /// Creates a new received friendRequests controller seeded with either a list of [FriendRequests] or [FriendFailure] depending
+  /// on available network connection.
+  static BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+      _createReceivedFriendRequestsController() {
+    return BehaviorSubject.seeded(
+      hasNetworkConnection
+          ? right(
+              faker.randomGenerator
+                  .amount((i) => FriendRequest.dummy(), 5)
+                  .toImmutableList(),
+            )
+          : left(const FriendFailure.noNetworkAccess()),
+    );
+  }
+
+  /// Creates a new sent friendRequests controller seeded with either a list of [FriendRequests] or [FriendFailure] depending
+  /// on available network connection.
+  static BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
+      _createSentFriendRequestsController() {
+    return BehaviorSubject.seeded(
+      hasNetworkConnection
+          ? right(
+              faker.randomGenerator
+                  .amount((i) => FriendRequest.dummy(), 20)
+                  .toImmutableList(),
+            )
+          : left(const FriendFailure.noNetworkAccess()),
+    );
+  }
+
   /// Removes [friendRequest] from the receivedFriendRequests and emits event.
   void _removeFromReceivedFriendRequests(FriendRequest friendRequest) {
-    final receivedFriendRequests = _receivedFriendRequestController.value
+    final receivedFriendRequests = _receivedFriendRequestController!.value
         .toOption()
         .toNullable()!
         .toMutableList()
@@ -362,7 +382,7 @@ class MockedFriendService implements IFriendService {
       (element) => element == friendRequest,
     );
 
-    _receivedFriendRequestController.add(
+    _receivedFriendRequestController!.add(
       right(receivedFriendRequests.toImmutableList()),
     );
   }
