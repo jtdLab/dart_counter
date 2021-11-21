@@ -1,4 +1,6 @@
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
+import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/friend/mocked_friend_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -6,15 +8,21 @@ import 'package:dartz/dartz.dart';
 
 class MockAuthService extends Mock implements IAuthService {}
 
+class MockUserService extends Mock implements IUserService {}
+
+
+
 void main() {
   setUpAll(() async {
     // mocktail related setup
   });
 
   late MockAuthService mockAuthService;
+  late MockUserService mockUserService;
 
   setUp(() {
     mockAuthService = MockAuthService();
+    mockUserService = MockUserService();
   });
 
   void setUpMockAuthServiceWithAuthenticatedUser() {
@@ -76,10 +84,26 @@ void main() {
   });
 
   group('watchFriends', () {
+    test(
+      'GIVEN not authenticated user '
+      'THEN throw NotAuthenticatedError ',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithNotAuthenticatedUser();
+        final underTest = MockedFriendService(mockAuthService, mockUserService);
+
+        // Act & Assert
+        expect(
+          () => underTest.watchFriends(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      },
+    );
+
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService);
+      final underTest = MockedFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchFriends().listen(
@@ -93,10 +117,26 @@ void main() {
   });
 
   group('watchReceivedFriendRequests', () {
+    test(
+      'GIVEN not authenticated user '
+      'THEN throw NotAuthenticatedError ',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithNotAuthenticatedUser();
+        final underTest = MockedFriendService(mockAuthService, mockUserService);
+
+        // Act & Assert
+        expect(
+          () => underTest.watchReceivedFriendRequests(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      },
+    );
+
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService);
+      final underTest = MockedFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchReceivedFriendRequests().listen(
@@ -113,10 +153,26 @@ void main() {
   });
 
   group('watchSentFriendRequests', () {
+    test(
+      'GIVEN not authenticated user '
+      'THEN throw NotAuthenticatedError ',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithNotAuthenticatedUser();
+        final underTest = MockedFriendService(mockAuthService, mockUserService);
+
+        // Act & Assert
+        expect(
+          () => underTest.watchSentFriendRequests(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      },
+    );
+
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService);
+      final underTest = MockedFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchReceivedFriendRequests().listen(

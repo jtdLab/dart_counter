@@ -6,6 +6,7 @@ import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/profile.dart';
 import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
@@ -14,11 +15,13 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+// TODO test and impl
+
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
 class MockedFriendService implements IFriendService {
   final IAuthService _authService;
-  //final IUserService _userService; // TODO needed like in real ?
+  final IUserService _userService;
 
   BehaviorSubject<Either<FriendFailure, KtList<Friend>>>? _friendsController;
 
@@ -32,7 +35,7 @@ class MockedFriendService implements IFriendService {
 
   MockedFriendService(
     this._authService,
-    //this._userService,
+    this._userService,
   )   : _friendsController = _createFriendsController(),
         _receivedFriendRequestController =
             _createReceivedFriendRequestsController(),
@@ -40,10 +43,12 @@ class MockedFriendService implements IFriendService {
         _userSearchResults = [] {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
-        _friendsController = _createFriendsController();
-        _receivedFriendRequestController =
-            _createReceivedFriendRequestsController();
-        _sentFriendRequestController = _createSentFriendRequestsController();
+        if (!_authService.isAuthenticated()) {
+          _friendsController = _createFriendsController();
+          _receivedFriendRequestController =
+              _createReceivedFriendRequestsController();
+          _sentFriendRequestController = _createSentFriendRequestsController();
+        }
       } else {
         await _friendsController?.close();
         await _receivedFriendRequestController?.close();
@@ -268,7 +273,8 @@ class MockedFriendService implements IFriendService {
   }) async {
     _checkAuth();
     if (hasNetworkConnection) {
-      return right(UserSnapshot.dummy());
+      return right(
+          UserSnapshot.dummy().copyWith(id: UniqueId.fromUniqueString(id)));
     }
 
     return left(const FriendFailure.noNetworkAccess());
