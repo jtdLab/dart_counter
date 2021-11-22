@@ -326,6 +326,11 @@ class GameHistoryFlowRouteArgs {
   final _i26.Key? key;
 
   final _i27.GameHistoryBloc gameHistoryBloc;
+
+  @override
+  String toString() {
+    return 'GameHistoryFlowRouteArgs{key: $key, gameHistoryBloc: $gameHistoryBloc}';
+  }
 }
 
 /// generated route for [_i11.GameFlow]
@@ -405,6 +410,11 @@ class PostGamePageRouteArgs {
   final _i26.Key? key;
 
   final _i28.AbstractGameSnapshot gameSnapshot;
+
+  @override
+  String toString() {
+    return 'PostGamePageRouteArgs{key: $key, gameSnapshot: $gameSnapshot}';
+  }
 }
 
 /// generated route for [_i20.CreateTrainingPage]
