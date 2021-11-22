@@ -17,34 +17,34 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeEventTearOff {
   const _$HomeEventTearOff();
 
-  CreateOnlineGamePressed createOnlineGamePressed() {
-    return const CreateOnlineGamePressed();
+  _CreateOnlineGamePressed createOnlineGamePressed() {
+    return const _CreateOnlineGamePressed();
   }
 
-  CreateOfflineGamePressed createOfflineGamePressed() {
-    return const CreateOfflineGamePressed();
+  _CreateOfflineGamePressed createOfflineGamePressed() {
+    return const _CreateOfflineGamePressed();
   }
 
-  DataReceived dataReceived(
+  _DataReceived dataReceived(
       {required User user,
       required int unreadInvitations,
       required int unreadFriendRequests}) {
-    return DataReceived(
+    return _DataReceived(
       user: user,
       unreadInvitations: unreadInvitations,
       unreadFriendRequests: unreadFriendRequests,
     );
   }
 
-  GameReceived gameReceived({required AbstractGameSnapshot gameSnapshot}) {
-    return GameReceived(
+  _GameReceived gameReceived({required AbstractGameSnapshot gameSnapshot}) {
+    return _GameReceived(
       gameSnapshot: gameSnapshot,
     );
   }
 
-  TrainingGameReceived trainingGameReceived(
+  _TrainingGameReceived trainingGameReceived(
       {required AbstractTrainingGameSnapshot trainingGameSnapshot}) {
-    return TrainingGameReceived(
+    return _TrainingGameReceived(
       trainingGameSnapshot: trainingGameSnapshot,
     );
   }
@@ -94,31 +94,31 @@ mixin _$HomeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,28 +140,29 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $CreateOnlineGamePressedCopyWith<$Res> {
-  factory $CreateOnlineGamePressedCopyWith(CreateOnlineGamePressed value,
-          $Res Function(CreateOnlineGamePressed) then) =
-      _$CreateOnlineGamePressedCopyWithImpl<$Res>;
+abstract class _$CreateOnlineGamePressedCopyWith<$Res> {
+  factory _$CreateOnlineGamePressedCopyWith(_CreateOnlineGamePressed value,
+          $Res Function(_CreateOnlineGamePressed) then) =
+      __$CreateOnlineGamePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CreateOnlineGamePressedCopyWithImpl<$Res>
+class __$CreateOnlineGamePressedCopyWithImpl<$Res>
     extends _$HomeEventCopyWithImpl<$Res>
-    implements $CreateOnlineGamePressedCopyWith<$Res> {
-  _$CreateOnlineGamePressedCopyWithImpl(CreateOnlineGamePressed _value,
-      $Res Function(CreateOnlineGamePressed) _then)
-      : super(_value, (v) => _then(v as CreateOnlineGamePressed));
+    implements _$CreateOnlineGamePressedCopyWith<$Res> {
+  __$CreateOnlineGamePressedCopyWithImpl(_CreateOnlineGamePressed _value,
+      $Res Function(_CreateOnlineGamePressed) _then)
+      : super(_value, (v) => _then(v as _CreateOnlineGamePressed));
 
   @override
-  CreateOnlineGamePressed get _value => super._value as CreateOnlineGamePressed;
+  _CreateOnlineGamePressed get _value =>
+      super._value as _CreateOnlineGamePressed;
 }
 
 /// @nodoc
 
-class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
-  const _$CreateOnlineGamePressed();
+class _$_CreateOnlineGamePressed implements _CreateOnlineGamePressed {
+  const _$_CreateOnlineGamePressed();
 
   @override
   String toString() {
@@ -171,7 +172,7 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CreateOnlineGamePressed);
+        (other.runtimeType == runtimeType && other is _CreateOnlineGamePressed);
   }
 
   @override
@@ -229,13 +230,13 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) {
     return createOnlineGamePressed(this);
   }
@@ -243,11 +244,11 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) {
     return createOnlineGamePressed?.call(this);
   }
@@ -255,11 +256,11 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) {
     if (createOnlineGamePressed != null) {
@@ -269,34 +270,34 @@ class _$CreateOnlineGamePressed implements CreateOnlineGamePressed {
   }
 }
 
-abstract class CreateOnlineGamePressed implements HomeEvent {
-  const factory CreateOnlineGamePressed() = _$CreateOnlineGamePressed;
+abstract class _CreateOnlineGamePressed implements HomeEvent {
+  const factory _CreateOnlineGamePressed() = _$_CreateOnlineGamePressed;
 }
 
 /// @nodoc
-abstract class $CreateOfflineGamePressedCopyWith<$Res> {
-  factory $CreateOfflineGamePressedCopyWith(CreateOfflineGamePressed value,
-          $Res Function(CreateOfflineGamePressed) then) =
-      _$CreateOfflineGamePressedCopyWithImpl<$Res>;
+abstract class _$CreateOfflineGamePressedCopyWith<$Res> {
+  factory _$CreateOfflineGamePressedCopyWith(_CreateOfflineGamePressed value,
+          $Res Function(_CreateOfflineGamePressed) then) =
+      __$CreateOfflineGamePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CreateOfflineGamePressedCopyWithImpl<$Res>
+class __$CreateOfflineGamePressedCopyWithImpl<$Res>
     extends _$HomeEventCopyWithImpl<$Res>
-    implements $CreateOfflineGamePressedCopyWith<$Res> {
-  _$CreateOfflineGamePressedCopyWithImpl(CreateOfflineGamePressed _value,
-      $Res Function(CreateOfflineGamePressed) _then)
-      : super(_value, (v) => _then(v as CreateOfflineGamePressed));
+    implements _$CreateOfflineGamePressedCopyWith<$Res> {
+  __$CreateOfflineGamePressedCopyWithImpl(_CreateOfflineGamePressed _value,
+      $Res Function(_CreateOfflineGamePressed) _then)
+      : super(_value, (v) => _then(v as _CreateOfflineGamePressed));
 
   @override
-  CreateOfflineGamePressed get _value =>
-      super._value as CreateOfflineGamePressed;
+  _CreateOfflineGamePressed get _value =>
+      super._value as _CreateOfflineGamePressed;
 }
 
 /// @nodoc
 
-class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
-  const _$CreateOfflineGamePressed();
+class _$_CreateOfflineGamePressed implements _CreateOfflineGamePressed {
+  const _$_CreateOfflineGamePressed();
 
   @override
   String toString() {
@@ -306,7 +307,8 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CreateOfflineGamePressed);
+        (other.runtimeType == runtimeType &&
+            other is _CreateOfflineGamePressed);
   }
 
   @override
@@ -364,13 +366,13 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) {
     return createOfflineGamePressed(this);
   }
@@ -378,11 +380,11 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) {
     return createOfflineGamePressed?.call(this);
   }
@@ -390,11 +392,11 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) {
     if (createOfflineGamePressed != null) {
@@ -404,29 +406,29 @@ class _$CreateOfflineGamePressed implements CreateOfflineGamePressed {
   }
 }
 
-abstract class CreateOfflineGamePressed implements HomeEvent {
-  const factory CreateOfflineGamePressed() = _$CreateOfflineGamePressed;
+abstract class _CreateOfflineGamePressed implements HomeEvent {
+  const factory _CreateOfflineGamePressed() = _$_CreateOfflineGamePressed;
 }
 
 /// @nodoc
-abstract class $DataReceivedCopyWith<$Res> {
-  factory $DataReceivedCopyWith(
-          DataReceived value, $Res Function(DataReceived) then) =
-      _$DataReceivedCopyWithImpl<$Res>;
+abstract class _$DataReceivedCopyWith<$Res> {
+  factory _$DataReceivedCopyWith(
+          _DataReceived value, $Res Function(_DataReceived) then) =
+      __$DataReceivedCopyWithImpl<$Res>;
   $Res call({User user, int unreadInvitations, int unreadFriendRequests});
 
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$DataReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements $DataReceivedCopyWith<$Res> {
-  _$DataReceivedCopyWithImpl(
-      DataReceived _value, $Res Function(DataReceived) _then)
-      : super(_value, (v) => _then(v as DataReceived));
+class __$DataReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$DataReceivedCopyWith<$Res> {
+  __$DataReceivedCopyWithImpl(
+      _DataReceived _value, $Res Function(_DataReceived) _then)
+      : super(_value, (v) => _then(v as _DataReceived));
 
   @override
-  DataReceived get _value => super._value as DataReceived;
+  _DataReceived get _value => super._value as _DataReceived;
 
   @override
   $Res call({
@@ -434,7 +436,7 @@ class _$DataReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
     Object? unreadInvitations = freezed,
     Object? unreadFriendRequests = freezed,
   }) {
-    return _then(DataReceived(
+    return _then(_DataReceived(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -460,8 +462,8 @@ class _$DataReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataReceived implements DataReceived {
-  const _$DataReceived(
+class _$_DataReceived implements _DataReceived {
+  const _$_DataReceived(
       {required this.user,
       required this.unreadInvitations,
       required this.unreadFriendRequests});
@@ -482,7 +484,7 @@ class _$DataReceived implements DataReceived {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DataReceived &&
+            other is _DataReceived &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.unreadInvitations, unreadInvitations) ||
                 other.unreadInvitations == unreadInvitations) &&
@@ -496,8 +498,8 @@ class _$DataReceived implements DataReceived {
 
   @JsonKey(ignore: true)
   @override
-  $DataReceivedCopyWith<DataReceived> get copyWith =>
-      _$DataReceivedCopyWithImpl<DataReceived>(this, _$identity);
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
+      __$DataReceivedCopyWithImpl<_DataReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -551,13 +553,13 @@ class _$DataReceived implements DataReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) {
     return dataReceived(this);
   }
@@ -565,11 +567,11 @@ class _$DataReceived implements DataReceived {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) {
     return dataReceived?.call(this);
   }
@@ -577,11 +579,11 @@ class _$DataReceived implements DataReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) {
     if (dataReceived != null) {
@@ -591,43 +593,43 @@ class _$DataReceived implements DataReceived {
   }
 }
 
-abstract class DataReceived implements HomeEvent {
-  const factory DataReceived(
+abstract class _DataReceived implements HomeEvent {
+  const factory _DataReceived(
       {required User user,
       required int unreadInvitations,
-      required int unreadFriendRequests}) = _$DataReceived;
+      required int unreadFriendRequests}) = _$_DataReceived;
 
   User get user;
   int get unreadInvitations;
   int get unreadFriendRequests;
   @JsonKey(ignore: true)
-  $DataReceivedCopyWith<DataReceived> get copyWith =>
+  _$DataReceivedCopyWith<_DataReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameReceivedCopyWith<$Res> {
-  factory $GameReceivedCopyWith(
-          GameReceived value, $Res Function(GameReceived) then) =
-      _$GameReceivedCopyWithImpl<$Res>;
+abstract class _$GameReceivedCopyWith<$Res> {
+  factory _$GameReceivedCopyWith(
+          _GameReceived value, $Res Function(_GameReceived) then) =
+      __$GameReceivedCopyWithImpl<$Res>;
   $Res call({AbstractGameSnapshot gameSnapshot});
 }
 
 /// @nodoc
-class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements $GameReceivedCopyWith<$Res> {
-  _$GameReceivedCopyWithImpl(
-      GameReceived _value, $Res Function(GameReceived) _then)
-      : super(_value, (v) => _then(v as GameReceived));
+class __$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$GameReceivedCopyWith<$Res> {
+  __$GameReceivedCopyWithImpl(
+      _GameReceived _value, $Res Function(_GameReceived) _then)
+      : super(_value, (v) => _then(v as _GameReceived));
 
   @override
-  GameReceived get _value => super._value as GameReceived;
+  _GameReceived get _value => super._value as _GameReceived;
 
   @override
   $Res call({
     Object? gameSnapshot = freezed,
   }) {
-    return _then(GameReceived(
+    return _then(_GameReceived(
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -638,8 +640,8 @@ class _$GameReceivedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GameReceived implements GameReceived {
-  const _$GameReceived({required this.gameSnapshot});
+class _$_GameReceived implements _GameReceived {
+  const _$_GameReceived({required this.gameSnapshot});
 
   @override
   final AbstractGameSnapshot gameSnapshot;
@@ -653,7 +655,7 @@ class _$GameReceived implements GameReceived {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameReceived &&
+            other is _GameReceived &&
             (identical(other.gameSnapshot, gameSnapshot) ||
                 other.gameSnapshot == gameSnapshot));
   }
@@ -663,8 +665,8 @@ class _$GameReceived implements GameReceived {
 
   @JsonKey(ignore: true)
   @override
-  $GameReceivedCopyWith<GameReceived> get copyWith =>
-      _$GameReceivedCopyWithImpl<GameReceived>(this, _$identity);
+  _$GameReceivedCopyWith<_GameReceived> get copyWith =>
+      __$GameReceivedCopyWithImpl<_GameReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -718,13 +720,13 @@ class _$GameReceived implements GameReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) {
     return gameReceived(this);
   }
@@ -732,11 +734,11 @@ class _$GameReceived implements GameReceived {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) {
     return gameReceived?.call(this);
   }
@@ -744,11 +746,11 @@ class _$GameReceived implements GameReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) {
     if (gameReceived != null) {
@@ -758,40 +760,40 @@ class _$GameReceived implements GameReceived {
   }
 }
 
-abstract class GameReceived implements HomeEvent {
-  const factory GameReceived({required AbstractGameSnapshot gameSnapshot}) =
-      _$GameReceived;
+abstract class _GameReceived implements HomeEvent {
+  const factory _GameReceived({required AbstractGameSnapshot gameSnapshot}) =
+      _$_GameReceived;
 
   AbstractGameSnapshot get gameSnapshot;
   @JsonKey(ignore: true)
-  $GameReceivedCopyWith<GameReceived> get copyWith =>
+  _$GameReceivedCopyWith<_GameReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrainingGameReceivedCopyWith<$Res> {
-  factory $TrainingGameReceivedCopyWith(TrainingGameReceived value,
-          $Res Function(TrainingGameReceived) then) =
-      _$TrainingGameReceivedCopyWithImpl<$Res>;
+abstract class _$TrainingGameReceivedCopyWith<$Res> {
+  factory _$TrainingGameReceivedCopyWith(_TrainingGameReceived value,
+          $Res Function(_TrainingGameReceived) then) =
+      __$TrainingGameReceivedCopyWithImpl<$Res>;
   $Res call({AbstractTrainingGameSnapshot trainingGameSnapshot});
 }
 
 /// @nodoc
-class _$TrainingGameReceivedCopyWithImpl<$Res>
+class __$TrainingGameReceivedCopyWithImpl<$Res>
     extends _$HomeEventCopyWithImpl<$Res>
-    implements $TrainingGameReceivedCopyWith<$Res> {
-  _$TrainingGameReceivedCopyWithImpl(
-      TrainingGameReceived _value, $Res Function(TrainingGameReceived) _then)
-      : super(_value, (v) => _then(v as TrainingGameReceived));
+    implements _$TrainingGameReceivedCopyWith<$Res> {
+  __$TrainingGameReceivedCopyWithImpl(
+      _TrainingGameReceived _value, $Res Function(_TrainingGameReceived) _then)
+      : super(_value, (v) => _then(v as _TrainingGameReceived));
 
   @override
-  TrainingGameReceived get _value => super._value as TrainingGameReceived;
+  _TrainingGameReceived get _value => super._value as _TrainingGameReceived;
 
   @override
   $Res call({
     Object? trainingGameSnapshot = freezed,
   }) {
-    return _then(TrainingGameReceived(
+    return _then(_TrainingGameReceived(
       trainingGameSnapshot: trainingGameSnapshot == freezed
           ? _value.trainingGameSnapshot
           : trainingGameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -802,8 +804,8 @@ class _$TrainingGameReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TrainingGameReceived implements TrainingGameReceived {
-  const _$TrainingGameReceived({required this.trainingGameSnapshot});
+class _$_TrainingGameReceived implements _TrainingGameReceived {
+  const _$_TrainingGameReceived({required this.trainingGameSnapshot});
 
   @override
   final AbstractTrainingGameSnapshot trainingGameSnapshot;
@@ -817,7 +819,7 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TrainingGameReceived &&
+            other is _TrainingGameReceived &&
             (identical(other.trainingGameSnapshot, trainingGameSnapshot) ||
                 other.trainingGameSnapshot == trainingGameSnapshot));
   }
@@ -827,8 +829,8 @@ class _$TrainingGameReceived implements TrainingGameReceived {
 
   @JsonKey(ignore: true)
   @override
-  $TrainingGameReceivedCopyWith<TrainingGameReceived> get copyWith =>
-      _$TrainingGameReceivedCopyWithImpl<TrainingGameReceived>(
+  _$TrainingGameReceivedCopyWith<_TrainingGameReceived> get copyWith =>
+      __$TrainingGameReceivedCopyWithImpl<_TrainingGameReceived>(
           this, _$identity);
 
   @override
@@ -883,13 +885,13 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateOnlineGamePressed value)
+    required TResult Function(_CreateOnlineGamePressed value)
         createOnlineGamePressed,
-    required TResult Function(CreateOfflineGamePressed value)
+    required TResult Function(_CreateOfflineGamePressed value)
         createOfflineGamePressed,
-    required TResult Function(DataReceived value) dataReceived,
-    required TResult Function(GameReceived value) gameReceived,
-    required TResult Function(TrainingGameReceived value) trainingGameReceived,
+    required TResult Function(_DataReceived value) dataReceived,
+    required TResult Function(_GameReceived value) gameReceived,
+    required TResult Function(_TrainingGameReceived value) trainingGameReceived,
   }) {
     return trainingGameReceived(this);
   }
@@ -897,11 +899,11 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
   }) {
     return trainingGameReceived?.call(this);
   }
@@ -909,11 +911,11 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateOnlineGamePressed value)? createOnlineGamePressed,
-    TResult Function(CreateOfflineGamePressed value)? createOfflineGamePressed,
-    TResult Function(DataReceived value)? dataReceived,
-    TResult Function(GameReceived value)? gameReceived,
-    TResult Function(TrainingGameReceived value)? trainingGameReceived,
+    TResult Function(_CreateOnlineGamePressed value)? createOnlineGamePressed,
+    TResult Function(_CreateOfflineGamePressed value)? createOfflineGamePressed,
+    TResult Function(_DataReceived value)? dataReceived,
+    TResult Function(_GameReceived value)? gameReceived,
+    TResult Function(_TrainingGameReceived value)? trainingGameReceived,
     required TResult orElse(),
   }) {
     if (trainingGameReceived != null) {
@@ -923,14 +925,14 @@ class _$TrainingGameReceived implements TrainingGameReceived {
   }
 }
 
-abstract class TrainingGameReceived implements HomeEvent {
-  const factory TrainingGameReceived(
+abstract class _TrainingGameReceived implements HomeEvent {
+  const factory _TrainingGameReceived(
           {required AbstractTrainingGameSnapshot trainingGameSnapshot}) =
-      _$TrainingGameReceived;
+      _$_TrainingGameReceived;
 
   AbstractTrainingGameSnapshot get trainingGameSnapshot;
   @JsonKey(ignore: true)
-  $TrainingGameReceivedCopyWith<TrainingGameReceived> get copyWith =>
+  _$TrainingGameReceivedCopyWith<_TrainingGameReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

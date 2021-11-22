@@ -170,7 +170,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapDataReceivedToState(
-    DataReceived event,
+    _DataReceived event,
   ) async* {
     yield HomeState.loadSuccess(
       user: event.user,
@@ -180,7 +180,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapGameReceivedToState(
-    GameReceived event,
+    _GameReceived event,
   ) async* {
     yield* state.maybeMap(
       loadSuccess: (loadSuccess) async* {
@@ -193,7 +193,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   }
 
   Stream<HomeState> _mapTrainingGameReceivedToState(
-    TrainingGameReceived event,
+    _TrainingGameReceived event,
   ) async* {
     yield* state.maybeMap(
       loadSuccess: (loadSuccess) async* {
