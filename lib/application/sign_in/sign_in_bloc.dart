@@ -22,115 +22,146 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
   SignInBloc(
     this._authService,
-  ) : super(SignInState.initial());
-
-  @override
-  Stream<SignInState> mapEventToState(
-    SignInEvent event,
-  ) async* {
-    yield* event.map(
-      emailChanged: (event) => _mapEmailChangedToState(event),
-      passwordChanged: (event) => _mapPasswordChangedToState(event),
-      signInPressed: (_) => _mapSignInPressedToState(),
-      signInWithFacebookPressed: (_) => _mapSignInWithFacebookPressedToState(),
-      signInWithGooglePressed: (_) => _mapSignInWithGooglePressedToState(),
-      signInWithApplePressed: (_) => _mapSignInWithApplePressedToState(),
+  ) : super(
+          SignInState.initial(
+            email: EmailAddress.empty(),
+            password: Password.empty(),
+            showErrorMessages: false,
+          ),
+        ) {
+    on<_EmailChanged>(_mapEmailChangedToState);
+    on<_PasswordChanged>(_mapPasswordChangedToState);
+    on<_SignInPressed>((_, emit) async => _mapSignInPressedToState(emit));
+    on<_SignInWithFacebookPressed>(
+      (_, emit) async => _mapSignInWithFacebookPressedToState(emit),
+    );
+    on<_SignInWithGooglePressed>(
+      (_, emit) async => _mapSignInWithGooglePressedToState(emit),
+    );
+    on<_SignInWithApplePressed>(
+      (_, emit) async => _mapSignInWithApplePressedToState(emit),
     );
   }
 
-  Stream<SignInState> _mapEmailChangedToState(
-    EmailChanged event,
-  ) async* {
-    yield state.copyWith(
-      email: EmailAddress(event.newEmailString),
-      authFailure: null,
+  void _mapEmailChangedToState(
+    _EmailChanged event,
+    Emitter<SignInState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(
+          initial.copyWith(
+            email: EmailAddress(event.newEmail),
+          ),
+        );
+      },
     );
   }
 
-  Stream<SignInState> _mapPasswordChangedToState(
-    PasswordChanged event,
-  ) async* {
-    yield state.copyWith(
-      password: Password(event.newPasswordString),
-      authFailure: null,
+  void _mapPasswordChangedToState(
+    _PasswordChanged event,
+    Emitter<SignInState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(
+          initial.copyWith(
+            password: Password(event.newPassword),
+          ),
+        );
+      },
     );
   }
 
-  Stream<SignInState> _mapSignInPressedToState() async* {
-    final isEmailValid = state.email.isValid();
-    final isPasswordValid = state.password.isValid();
-    yield state.copyWith(
-      isSubmitting: true,
-      authFailure: null,
+  Future<void> _mapSignInPressedToState(
+    Emitter<SignInState> emit,
+  ) async {
+    await state.mapOrNull(
+      initial: (initial) async {
+        final isEmailValid = initial.email.isValid();
+        final isPasswordValid = initial.password.isValid();
+
+        if (isEmailValid && isPasswordValid) {
+          await _signIn(
+            () => _authService.signInWithEmailAndPassword(
+              emailAddress: initial.email,
+              password: initial.password,
+            ),
+            emit: emit,
+          );
+        } else {
+          emit(
+            const SignInState.signInLoadFailure(
+              authFailure: AuthFailure.invalidEmailAndPasswordCombination(),
+            ),
+          );
+          emit(initial);
+        }
+      },
     );
-
-    if (isEmailValid && isPasswordValid) {
-      yield* _signIn(
-        () => _authService.signInWithEmailAndPassword(
-          emailAddress: state.email,
-          password: state.password,
-        ),
-      );
-    } else {
-      yield state.copyWith(
-        isSubmitting: false,
-        showErrorMessages: true,
-        authFailure: const AuthFailure.invalidEmailAndPasswordCombination(),
-        isSignedIn: false,
-      );
-    }
   }
 
-  Stream<SignInState> _mapSignInWithFacebookPressedToState() async* {
-    yield* _signIn(() => _authService.signInWithFacebook());
-  }
-
-  Stream<SignInState> _mapSignInWithGooglePressedToState() async* {
-    yield* _signIn(() => _authService.signInWithGoogle());
-  }
-
-  Stream<SignInState> _mapSignInWithApplePressedToState() async* {
-    yield* _signIn(() => _authService.signInWithApple());
-  }
-
-  Stream<SignInState> _signIn(
-    Future<Either<AuthFailure, Unit>> Function() signInFuture,
-  ) async* {
-    yield state.copyWith(
-      isSubmitting: true,
-      authFailure: null,
+  Future<void> _mapSignInWithFacebookPressedToState(
+    Emitter<SignInState> emit,
+  ) async {
+    await state.mapOrNull(
+      initial: (initial) async {
+        await _signIn(
+          () => _authService.signInWithFacebook(),
+          emit: emit,
+        );
+      },
     );
+  }
 
-    await Future.delayed(const Duration(milliseconds: 500));
-
-    final signInResult = await signInFuture();
-    AuthFailure? authFailure = signInResult.fold(
-      (failure) => failure,
-      (_) => null,
+  Future<void> _mapSignInWithGooglePressedToState(
+    Emitter<SignInState> emit,
+  ) async {
+    await state.mapOrNull(
+      initial: (initial) async {
+        await _signIn(
+          () => _authService.signInWithGoogle(),
+          emit: emit,
+        );
+      },
     );
+  }
 
-    /**
-    *  if (authFailure == null) {
-      // TODO missing load success most of the times
-      final state = await _dataWatcherBloc.stream.firstWhere(
-        (element) =>
-            element is DataWatcherLoadSuccess ||
-            element is DataWatcherLoadFailure,
-      );
+  Future<void> _mapSignInWithApplePressedToState(
+    Emitter<SignInState> emit,
+  ) async {
+    await state.mapOrNull(
+      initial: (initial) async {
+        await _signIn(
+          () => _authService.signInWithApple(),
+          emit: emit,
+        );
+      },
+    );
+  }
 
-      if (state is DataWatcherLoadFailure) {
-        // couldnt load data
-        await _authService.signOut();
-        authFailure = const AuthFailure.serverError();
-      }
-    }
-    */
+  /// Awaits [signInFuture] and then emits [SignInLoadFailure] if sign-in failed.
+  Future<void> _signIn(
+    Future<Either<AuthFailure, Unit>> Function() signInFuture, {
+    required Emitter<SignInState> emit,
+  }) async {
+    await state.maybeMap(
+      initial: (initial) async {
+        emit(const SignInState.signInLoadInProgress());
 
-    yield state.copyWith(
-      isSubmitting: authFailure == null,
-      showErrorMessages: true,
-      authFailure: authFailure,
-      isSignedIn: authFailure == null,
+        await Future.delayed(
+            const Duration(milliseconds: 500)); // TODO in service or here ?
+
+        final signInResult = await signInFuture();
+        signInResult.fold(
+          (authFailure) {
+            emit(SignInState.signInLoadFailure(authFailure: authFailure));
+            emit(initial);
+          },
+          (_) {},
+        );
+      },
+      orElse: () {},
     );
   }
 

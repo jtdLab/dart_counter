@@ -1,9 +1,8 @@
 // CORE
-import 'package:dart_counter/presentation/ios/core/core.dart';
-
 // BLOCS
 import 'package:dart_counter/application/core/auth/auth_bloc.dart';
 import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // MODALS
 import 'modals/forgot_password/forgot_password_modal.dart';
@@ -23,19 +22,26 @@ class SignInPage extends StatelessWidget {
       create: (context) => getIt<SignInBloc>(),
       child: MultiBlocListener(
         listeners: [
-          BlocListener<SignInBloc, SignInState>(
+          BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
-              if (state.isSignedIn) {
+              if (state is Authenticated) {
                 context.router.replace(const MainFlowRoute());
                 return;
               }
-
-              state.authFailure?.maybeWhen(
-                serverError: () => showToast(LocaleKeys.errorServer.tr()),
-                invalidEmailAndPasswordCombination: () => showToast(
-                  LocaleKeys.errorInvalidEmailAndPasswordCombination.tr(),
-                ),
-                orElse: () {},
+            },
+          ),
+          BlocListener<SignInBloc, SignInState>(
+            listenWhen: (_, next) => next is SignInLoadFailure,
+            listener: (context, state) {
+              state.mapOrNull(
+                signInLoadFailure: (signInLoadFailure) {
+                  signInLoadFailure.authFailure.whenOrNull(
+                    serverError: () => showToast(LocaleKeys.errorServer.tr()),
+                    invalidEmailAndPasswordCombination: () => showToast(
+                      LocaleKeys.errorInvalidEmailAndPasswordCombination.tr(),
+                    ),
+                  );
+                },
               );
             },
           ),

@@ -29,13 +29,9 @@ class MockedUserService with Disposable implements IUserService {
   ) : _userController = _createUserController() {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (isAuthenticated) {
-        if (!_authService.isAuthenticated()) {
-          _userController = _createUserController();
-        }
-      } else {
+      if (!isAuthenticated) {
         await _userController?.close();
-        _userController = null;
+        _userController = _createUserController();
       }
     });
   }

@@ -14,6 +14,8 @@ part 'forgot_password_bloc.freezed.dart';
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
+// TODO other change bloc and this retranition after failur could be implemented better
+
 @lazySingleton
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     with AutoResetLazySingleton {

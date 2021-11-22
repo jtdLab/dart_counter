@@ -2,20 +2,15 @@ part of 'sign_in_bloc.dart';
 
 @freezed
 class SignInState with _$SignInState {
-  const factory SignInState({
+  const factory SignInState.initial({
     required EmailAddress email,
     required Password password,
     required bool showErrorMessages,
-    required bool isSubmitting,
-    AuthFailure? authFailure,
-    required bool isSignedIn,
-  }) = _SignInState;
+  }) = SignInInitial;
 
-  factory SignInState.initial() => SignInState(
-        email: EmailAddress.empty(),
-        password: Password.empty(),
-        showErrorMessages: false,
-        isSubmitting: false,
-        isSignedIn: false,
-      );
+  const factory SignInState.signInLoadInProgress() = SignInLoadInProgress;
+
+  const factory SignInState.signInLoadFailure({
+    required AuthFailure authFailure,
+  }) = SignInLoadFailure;
 }

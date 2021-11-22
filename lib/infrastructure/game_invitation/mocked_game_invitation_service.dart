@@ -29,18 +29,12 @@ class MockedGameInvitationService implements IGameInvitationService {
         _sentGameInvitationsController =
             _createSentGameInvitationsController() {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (isAuthenticated) {
-        if (!_authService.isAuthenticated()) {
-          _receivedGameInvitationsController =
-              _createReceivedGameInvitationsController();
-          _sentGameInvitationsController =
-              _createSentGameInvitationsController();
-        }
-      } else {
+      if (!isAuthenticated) {
         await _receivedGameInvitationsController?.close();
         await _sentGameInvitationsController?.close();
-        _receivedGameInvitationsController = null;
-        _sentGameInvitationsController = null;
+        _receivedGameInvitationsController =
+            _createReceivedGameInvitationsController();
+        _sentGameInvitationsController = _createSentGameInvitationsController();
       }
     });
   }

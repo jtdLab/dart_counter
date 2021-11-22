@@ -42,20 +42,14 @@ class MockedFriendService implements IFriendService {
         _sentFriendRequestController = _createSentFriendRequestsController(),
         _userSearchResults = [] {
     _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (isAuthenticated) {
-        if (!_authService.isAuthenticated()) {
-          _friendsController = _createFriendsController();
-          _receivedFriendRequestController =
-              _createReceivedFriendRequestsController();
-          _sentFriendRequestController = _createSentFriendRequestsController();
-        }
-      } else {
+      if (!isAuthenticated) {
         await _friendsController?.close();
         await _receivedFriendRequestController?.close();
         await _sentFriendRequestController?.close();
-        _friendsController = null;
-        _receivedFriendRequestController = null;
-        _sentFriendRequestController = null;
+        _friendsController = _createFriendsController();
+        _receivedFriendRequestController =
+            _createReceivedFriendRequestsController();
+        _sentFriendRequestController = _createSentFriendRequestsController();
       }
     });
   }
