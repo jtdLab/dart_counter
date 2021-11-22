@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/settings/change_username/change_username_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -123,7 +124,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         if (oldPassword.isValid()) {
           if (newPassword.isValid()) {
             if (newPasswordsEqual) {
-              emit(const ChangePasswordSubmitInProgress());
+              emit(const ChangePasswordState.submitInProgress());
 
               await Future.delayed(const Duration(seconds: 1));
               authFailure = (await _authService.updatePassword(
@@ -145,9 +146,9 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
         }
 
         if (authFailure == null) {
-          emit(const ChangePasswordSubmitSuccess());
+          emit(const ChangePasswordState.submitSuccess());
         } else {
-          emit(ChangePasswordSubmitFailure(authFailure: authFailure));
+          emit(ChangePasswordState.submitFailure(authFailure: authFailure));
         }
       },
     );

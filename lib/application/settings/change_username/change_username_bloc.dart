@@ -61,7 +61,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
         final username = initial.username;
 
         if (username.isValid()) {
-          emit(const ChangeUsernameSubmitInProgress());
+          emit(const ChangeUsernameState.submitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
           userFailure = (await _userService.updateUsername(
@@ -76,9 +76,9 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
         }
 
         if (userFailure == null) {
-          emit(const ChangeUsernameSubmitSuccess());
+          emit(const ChangeUsernameState.submitSuccess());
         } else {
-          emit(ChangeUsernameSubmitFailure(userFailure: userFailure));
+          emit(ChangeUsernameState.submitFailure(userFailure: userFailure));
         }
       },
     );

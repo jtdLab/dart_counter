@@ -61,7 +61,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
         final email = initial.email;
 
         if (email.isValid()) {
-          emit(const ChangeEmailSubmitInProgress());
+          emit(const ChangeEmailState.submitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
           userFailure = (await _userService.updateEmailAddress(
@@ -76,9 +76,9 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
         }
 
         if (userFailure == null) {
-          emit(const ChangeEmailSubmitSuccess());
+          emit(const ChangeEmailState.submitSuccess());
         } else {
-          emit(ChangeEmailSubmitFailure(userFailure: userFailure));
+          emit(ChangeEmailState.submitFailure(userFailure: userFailure));
         }
       },
     );

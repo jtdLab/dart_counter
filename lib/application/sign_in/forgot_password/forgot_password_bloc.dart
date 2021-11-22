@@ -61,7 +61,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
         final email = initial.email;
 
         if (email.isValid()) {
-          emit(const ForgotPasswordSubmitInProgress());
+          emit(const ForgotPasswordState.submitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
 
