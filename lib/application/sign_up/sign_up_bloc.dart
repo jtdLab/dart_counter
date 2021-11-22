@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/data_watcher/data_watcher_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -14,17 +13,13 @@ part 'sign_up_bloc.freezed.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
-
 @lazySingleton
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     with AutoResetLazySingleton {
   final IAuthService _authService;
 
-  final DataWatcherBloc _dataWatcherBloc;
-
   SignUpBloc(
     this._authService,
-    this._dataWatcherBloc,
   ) : super(SignUpState.initial());
 
   @override
@@ -105,7 +100,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         (_) => null,
       );
 
-      if (authFailure == null) {
+      /**
+      *  if (authFailure == null) {
         final state = await _dataWatcherBloc.stream.firstWhere(
           (element) =>
               element is DataWatcherLoadSuccess ||
@@ -118,6 +114,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
           authFailure = const AuthFailure.serverError(); // TODO data load error
         }
       }
+      */
 
       yield state.copyWith(
         isSubmitting: authFailure == null,

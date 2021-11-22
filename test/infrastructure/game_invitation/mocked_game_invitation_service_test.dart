@@ -83,7 +83,7 @@ void main() {
         MockedGameInvitationService.hasNetworkConnection = true;
         final underTest = MockedGameInvitationService(mockAuthService);
         final acceptedInvitation = underTest
-            .getReceivedGameInvitations()!
+            .getReceivedGameInvitations()
             .toOption()
             .toNullable()!
             .get(0);
@@ -158,7 +158,7 @@ void main() {
         MockedGameInvitationService.hasNetworkConnection = true;
         final underTest = MockedGameInvitationService(mockAuthService);
         final canceledInvitation =
-            underTest.getSentGameInvitations()!.toOption().toNullable()!.get(0);
+            underTest.getSentGameInvitations().toOption().toNullable()!.get(0);
 
         // Act
         final failurOrUnit = await underTest.cancel(
@@ -230,7 +230,7 @@ void main() {
         MockedGameInvitationService.hasNetworkConnection = true;
         final underTest = MockedGameInvitationService(mockAuthService);
         final declinedInvitation = underTest
-            .getReceivedGameInvitations()!
+            .getReceivedGameInvitations()
             .toOption()
             .toNullable()!
             .get(0);
@@ -309,7 +309,7 @@ void main() {
             underTest.getReceivedGameInvitations();
 
         // Assert
-        expect(failureOrReceivedGameInvitations!.isRight(), true);
+        expect(failureOrReceivedGameInvitations.isRight(), true);
       },
     );
   });
@@ -364,7 +364,7 @@ void main() {
         final failureOrSentGameInvitations = underTest.getSentGameInvitations();
 
         // Assert
-        expect(failureOrSentGameInvitations!.isRight(), true);
+        expect(failureOrSentGameInvitations.isRight(), true);
       },
     );
   });

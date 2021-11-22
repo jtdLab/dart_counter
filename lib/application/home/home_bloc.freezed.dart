@@ -938,23 +938,29 @@ abstract class TrainingGameReceived implements HomeEvent {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  HomeInitial initial(
+  HomeLoadInProgress loadInProgress() {
+    return const HomeLoadInProgress();
+  }
+
+  HomeLoadSuccess loadSuccess(
       {required User user,
       required int unreadInvitations,
       required int unreadFriendRequests,
       AbstractGameSnapshot? gameSnapshot,
       AbstractTrainingGameSnapshot? trainingGameSnapshot,
-      required bool loading,
       PlayFailure? failure}) {
-    return HomeInitial(
+    return HomeLoadSuccess(
       user: user,
       unreadInvitations: unreadInvitations,
       unreadFriendRequests: unreadFriendRequests,
       gameSnapshot: gameSnapshot,
       trainingGameSnapshot: trainingGameSnapshot,
-      loading: loading,
       failure: failure,
     );
+  }
+
+  HomeLoadFailure loadFailure() {
+    return const HomeLoadFailure();
   }
 }
 
@@ -963,74 +969,70 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  User get user => throw _privateConstructorUsedError;
-  int get unreadInvitations => throw _privateConstructorUsedError;
-  int get unreadFriendRequests => throw _privateConstructorUsedError;
-  AbstractGameSnapshot? get gameSnapshot => throw _privateConstructorUsedError;
-  AbstractTrainingGameSnapshot? get trainingGameSnapshot =>
-      throw _privateConstructorUsedError;
-  bool get loading => throw _privateConstructorUsedError;
-  PlayFailure? get failure => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
     required TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)
-        initial,
+        loadSuccess,
+    required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
     TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)?
-        initial,
+        loadSuccess,
+    TResult Function()? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
     TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)?
-        initial,
+        loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(HomeInitial value) initial,
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+    required TResult Function(HomeLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(HomeInitial value)? initial,
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeInitial value)? initial,
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1038,17 +1040,6 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call(
-      {User user,
-      int unreadInvitations,
-      int unreadFriendRequests,
-      AbstractGameSnapshot? gameSnapshot,
-      AbstractTrainingGameSnapshot? trainingGameSnapshot,
-      bool loading,
-      PlayFailure? failure});
-
-  $UserCopyWith<$Res> get user;
-  $PlayFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -1058,6 +1049,166 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
+}
+
+/// @nodoc
+abstract class $HomeLoadInProgressCopyWith<$Res> {
+  factory $HomeLoadInProgressCopyWith(
+          HomeLoadInProgress value, $Res Function(HomeLoadInProgress) then) =
+      _$HomeLoadInProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$HomeLoadInProgressCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements $HomeLoadInProgressCopyWith<$Res> {
+  _$HomeLoadInProgressCopyWithImpl(
+      HomeLoadInProgress _value, $Res Function(HomeLoadInProgress) _then)
+      : super(_value, (v) => _then(v as HomeLoadInProgress));
+
+  @override
+  HomeLoadInProgress get _value => super._value as HomeLoadInProgress;
+}
+
+/// @nodoc
+
+class _$HomeLoadInProgress implements HomeLoadInProgress {
+  const _$HomeLoadInProgress();
+
+  @override
+  String toString() {
+    return 'HomeState.loadInProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is HomeLoadInProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+    required TResult Function(HomeLoadFailure value) loadFailure,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
+  }) {
+    return loadInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeLoadInProgress implements HomeState {
+  const factory HomeLoadInProgress() = _$HomeLoadInProgress;
+}
+
+/// @nodoc
+abstract class $HomeLoadSuccessCopyWith<$Res> {
+  factory $HomeLoadSuccessCopyWith(
+          HomeLoadSuccess value, $Res Function(HomeLoadSuccess) then) =
+      _$HomeLoadSuccessCopyWithImpl<$Res>;
+  $Res call(
+      {User user,
+      int unreadInvitations,
+      int unreadFriendRequests,
+      AbstractGameSnapshot? gameSnapshot,
+      AbstractTrainingGameSnapshot? trainingGameSnapshot,
+      PlayFailure? failure});
+
+  $UserCopyWith<$Res> get user;
+  $PlayFailureCopyWith<$Res>? get failure;
+}
+
+/// @nodoc
+class _$HomeLoadSuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $HomeLoadSuccessCopyWith<$Res> {
+  _$HomeLoadSuccessCopyWithImpl(
+      HomeLoadSuccess _value, $Res Function(HomeLoadSuccess) _then)
+      : super(_value, (v) => _then(v as HomeLoadSuccess));
+
+  @override
+  HomeLoadSuccess get _value => super._value as HomeLoadSuccess;
 
   @override
   $Res call({
@@ -1066,10 +1217,9 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
     Object? unreadFriendRequests = freezed,
     Object? gameSnapshot = freezed,
     Object? trainingGameSnapshot = freezed,
-    Object? loading = freezed,
     Object? failure = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(HomeLoadSuccess(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -1090,10 +1240,6 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
           ? _value.trainingGameSnapshot
           : trainingGameSnapshot // ignore: cast_nullable_to_non_nullable
               as AbstractTrainingGameSnapshot?,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -1121,89 +1267,14 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $HomeInitialCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory $HomeInitialCopyWith(
-          HomeInitial value, $Res Function(HomeInitial) then) =
-      _$HomeInitialCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {User user,
-      int unreadInvitations,
-      int unreadFriendRequests,
-      AbstractGameSnapshot? gameSnapshot,
-      AbstractTrainingGameSnapshot? trainingGameSnapshot,
-      bool loading,
-      PlayFailure? failure});
 
-  @override
-  $UserCopyWith<$Res> get user;
-  @override
-  $PlayFailureCopyWith<$Res>? get failure;
-}
-
-/// @nodoc
-class _$HomeInitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements $HomeInitialCopyWith<$Res> {
-  _$HomeInitialCopyWithImpl(
-      HomeInitial _value, $Res Function(HomeInitial) _then)
-      : super(_value, (v) => _then(v as HomeInitial));
-
-  @override
-  HomeInitial get _value => super._value as HomeInitial;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? unreadInvitations = freezed,
-    Object? unreadFriendRequests = freezed,
-    Object? gameSnapshot = freezed,
-    Object? trainingGameSnapshot = freezed,
-    Object? loading = freezed,
-    Object? failure = freezed,
-  }) {
-    return _then(HomeInitial(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      unreadInvitations: unreadInvitations == freezed
-          ? _value.unreadInvitations
-          : unreadInvitations // ignore: cast_nullable_to_non_nullable
-              as int,
-      unreadFriendRequests: unreadFriendRequests == freezed
-          ? _value.unreadFriendRequests
-          : unreadFriendRequests // ignore: cast_nullable_to_non_nullable
-              as int,
-      gameSnapshot: gameSnapshot == freezed
-          ? _value.gameSnapshot
-          : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as AbstractGameSnapshot?,
-      trainingGameSnapshot: trainingGameSnapshot == freezed
-          ? _value.trainingGameSnapshot
-          : trainingGameSnapshot // ignore: cast_nullable_to_non_nullable
-              as AbstractTrainingGameSnapshot?,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as PlayFailure?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$HomeInitial implements HomeInitial {
-  const _$HomeInitial(
+class _$HomeLoadSuccess implements HomeLoadSuccess {
+  const _$HomeLoadSuccess(
       {required this.user,
       required this.unreadInvitations,
       required this.unreadFriendRequests,
       this.gameSnapshot,
       this.trainingGameSnapshot,
-      required this.loading,
       this.failure});
 
   @override
@@ -1217,20 +1288,18 @@ class _$HomeInitial implements HomeInitial {
   @override
   final AbstractTrainingGameSnapshot? trainingGameSnapshot;
   @override
-  final bool loading;
-  @override
   final PlayFailure? failure;
 
   @override
   String toString() {
-    return 'HomeState.initial(user: $user, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests, gameSnapshot: $gameSnapshot, trainingGameSnapshot: $trainingGameSnapshot, loading: $loading, failure: $failure)';
+    return 'HomeState.loadSuccess(user: $user, unreadInvitations: $unreadInvitations, unreadFriendRequests: $unreadFriendRequests, gameSnapshot: $gameSnapshot, trainingGameSnapshot: $trainingGameSnapshot, failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is HomeInitial &&
+            other is HomeLoadSuccess &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.unreadInvitations, unreadInvitations) ||
                 other.unreadInvitations == unreadInvitations) &&
@@ -1240,77 +1309,72 @@ class _$HomeInitial implements HomeInitial {
                 other.gameSnapshot == gameSnapshot) &&
             (identical(other.trainingGameSnapshot, trainingGameSnapshot) ||
                 other.trainingGameSnapshot == trainingGameSnapshot) &&
-            (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      user,
-      unreadInvitations,
-      unreadFriendRequests,
-      gameSnapshot,
-      trainingGameSnapshot,
-      loading,
-      failure);
+  int get hashCode => Object.hash(runtimeType, user, unreadInvitations,
+      unreadFriendRequests, gameSnapshot, trainingGameSnapshot, failure);
 
   @JsonKey(ignore: true)
   @override
-  $HomeInitialCopyWith<HomeInitial> get copyWith =>
-      _$HomeInitialCopyWithImpl<HomeInitial>(this, _$identity);
+  $HomeLoadSuccessCopyWith<HomeLoadSuccess> get copyWith =>
+      _$HomeLoadSuccessCopyWithImpl<HomeLoadSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
     required TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)
-        initial,
+        loadSuccess,
+    required TResult Function() loadFailure,
   }) {
-    return initial(user, unreadInvitations, unreadFriendRequests, gameSnapshot,
-        trainingGameSnapshot, loading, failure);
+    return loadSuccess(user, unreadInvitations, unreadFriendRequests,
+        gameSnapshot, trainingGameSnapshot, failure);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
     TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)?
-        initial,
+        loadSuccess,
+    TResult Function()? loadFailure,
   }) {
-    return initial?.call(user, unreadInvitations, unreadFriendRequests,
-        gameSnapshot, trainingGameSnapshot, loading, failure);
+    return loadSuccess?.call(user, unreadInvitations, unreadFriendRequests,
+        gameSnapshot, trainingGameSnapshot, failure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
     TResult Function(
             User user,
             int unreadInvitations,
             int unreadFriendRequests,
             AbstractGameSnapshot? gameSnapshot,
             AbstractTrainingGameSnapshot? trainingGameSnapshot,
-            bool loading,
             PlayFailure? failure)?
-        initial,
+        loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(user, unreadInvitations, unreadFriendRequests,
-          gameSnapshot, trainingGameSnapshot, loading, failure);
+    if (loadSuccess != null) {
+      return loadSuccess(user, unreadInvitations, unreadFriendRequests,
+          gameSnapshot, trainingGameSnapshot, failure);
     }
     return orElse();
   }
@@ -1318,58 +1382,185 @@ class _$HomeInitial implements HomeInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(HomeInitial value) initial,
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+    required TResult Function(HomeLoadFailure value) loadFailure,
   }) {
-    return initial(this);
+    return loadSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(HomeInitial value)? initial,
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
   }) {
-    return initial?.call(this);
+    return loadSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeInitial value)? initial,
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (loadSuccess != null) {
+      return loadSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class HomeInitial implements HomeState {
-  const factory HomeInitial(
+abstract class HomeLoadSuccess implements HomeState {
+  const factory HomeLoadSuccess(
       {required User user,
       required int unreadInvitations,
       required int unreadFriendRequests,
       AbstractGameSnapshot? gameSnapshot,
       AbstractTrainingGameSnapshot? trainingGameSnapshot,
-      required bool loading,
-      PlayFailure? failure}) = _$HomeInitial;
+      PlayFailure? failure}) = _$HomeLoadSuccess;
+
+  User get user;
+  int get unreadInvitations;
+  int get unreadFriendRequests;
+  AbstractGameSnapshot? get gameSnapshot;
+  AbstractTrainingGameSnapshot? get trainingGameSnapshot;
+  PlayFailure? get failure;
+  @JsonKey(ignore: true)
+  $HomeLoadSuccessCopyWith<HomeLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeLoadFailureCopyWith<$Res> {
+  factory $HomeLoadFailureCopyWith(
+          HomeLoadFailure value, $Res Function(HomeLoadFailure) then) =
+      _$HomeLoadFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$HomeLoadFailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $HomeLoadFailureCopyWith<$Res> {
+  _$HomeLoadFailureCopyWithImpl(
+      HomeLoadFailure _value, $Res Function(HomeLoadFailure) _then)
+      : super(_value, (v) => _then(v as HomeLoadFailure));
 
   @override
-  User get user;
+  HomeLoadFailure get _value => super._value as HomeLoadFailure;
+}
+
+/// @nodoc
+
+class _$HomeLoadFailure implements HomeLoadFailure {
+  const _$HomeLoadFailure();
+
   @override
-  int get unreadInvitations;
+  String toString() {
+    return 'HomeState.loadFailure()';
+  }
+
   @override
-  int get unreadFriendRequests;
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is HomeLoadFailure);
+  }
+
   @override
-  AbstractGameSnapshot? get gameSnapshot;
+  int get hashCode => runtimeType.hashCode;
+
   @override
-  AbstractTrainingGameSnapshot? get trainingGameSnapshot;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)
+        loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadFailure();
+  }
+
   @override
-  bool get loading;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return loadFailure?.call();
+  }
+
   @override
-  PlayFailure? get failure;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(
+            User user,
+            int unreadInvitations,
+            int unreadFriendRequests,
+            AbstractGameSnapshot? gameSnapshot,
+            AbstractTrainingGameSnapshot? trainingGameSnapshot,
+            PlayFailure? failure)?
+        loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure();
+    }
+    return orElse();
+  }
+
   @override
-  @JsonKey(ignore: true)
-  $HomeInitialCopyWith<HomeInitial> get copyWith =>
-      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeLoadInProgress value) loadInProgress,
+    required TResult Function(HomeLoadSuccess value) loadSuccess,
+    required TResult Function(HomeLoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
+  }) {
+    return loadFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeLoadInProgress value)? loadInProgress,
+    TResult Function(HomeLoadSuccess value)? loadSuccess,
+    TResult Function(HomeLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeLoadFailure implements HomeState {
+  const factory HomeLoadFailure() = _$HomeLoadFailure;
 }

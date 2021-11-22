@@ -19,36 +19,48 @@ class HomePage extends StatelessWidget {
       create: (context) => getIt<HomeBloc>(),
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
-          final gameSnapshot = state.gameSnapshot;
-          if (gameSnapshot != null) {
-            context.router.replace(const GameFlowRoute());
-          }
-          /**
+          state.mapOrNull(
+            loadSuccess: (loadSuccess) {
+              final gameSnapshot = loadSuccess.gameSnapshot;
+              if (gameSnapshot != null) {
+                context.router.replace(const GameFlowRoute());
+              }
+              /**
           * 
             final trainingGameSnapshot = state.trainingGameSnapshot;
             if (trainingGameSnapshot != null) {
               context.router.replace(const TrainingFlowRoute());
             }
           */
+            },
+          );
         },
         builder: (context, state) {
-          if (state.loading) {
-            return const AppPage(child: LoadingWidget());
-          } else {
-            return AppPage(
-              navigationBar: AppNavigationBar(
-                leading: const _SettingsButton(),
-                trailing: Row(
-                  children: const [
-                    _GameInvitationsButton(),
-                    _FriendsButton(),
-                    _StatsButton(),
-                  ],
+          return state.map(
+            loadInProgress: (loadInProgress) =>
+                const AppPage(child: LoadingWidget()),
+            loadSuccess: (loadSuccess) {
+              return Provider.value(
+                value: loadSuccess,
+                child: AppPage(
+                  navigationBar: AppNavigationBar(
+                    leading: const _SettingsButton(),
+                    trailing: Row(
+                      children: const [
+                        _GameInvitationsButton(),
+                        _FriendsButton(),
+                        _StatsButton(),
+                      ],
+                    ),
+                  ),
+                  child: _HomeWidget(),
                 ),
-              ),
-              child: _HomeWidget(),
-            );
-          }
+              );
+            },
+            loadFailure: (loadFailure) {
+              return const Text('TODO');
+            },
+          );
         },
       ),
     );

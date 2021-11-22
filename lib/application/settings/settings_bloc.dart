@@ -20,34 +20,25 @@ part 'settings_bloc.freezed.dart';
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     with AutoResetLazySingleton {
   final IAuthService _authService;
+  final IUserService _userService;
 
-  final DataWatcherBloc _dataWatcherBloc;
-
-  StreamSubscription? _dataWatcherSubscription;
+  StreamSubscription? _userSubscription;
 
   SettingsBloc(
     this._authService,
-    this._dataWatcherBloc,
+    this._userService,
   ) : super(
-          _dataWatcherBloc.state.maybeMap(
-            loadSuccess: (loadSuccess) => SettingsState.initial(
-              user: loadSuccess.user,
-              localeChanged: false,
-            ),
-            orElse: () =>
-                throw UnexpectedStateError(state: _dataWatcherBloc.state),
+          SettingsState.initial(
+            user: _userService.getUser().toOption().toNullable()!,
+            localeChanged: false,
           ),
         ) {
-    _dataWatcherSubscription =
-        _dataWatcherBloc.stream.listen((dataWatcherState) {
-      if (dataWatcherState is DataWatcherLoadSuccess) {
-        add(
-          SettingsEvent.dataReceived(
-            user: dataWatcherState.user,
+    _userSubscription = _userService.watchUser().listen(
+          (failureOrUser) => failureOrUser.fold(
+            (_) {},
+            (user) => add(SettingsEvent.dataReceived(user: user)),
           ),
         );
-      }
-    });
   }
 
   @override
@@ -79,7 +70,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
 
   @override
   Future<void> close() {
-    _dataWatcherSubscription?.cancel();
+    _userSubscription?.cancel();
 
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SettingsBloc>()) {

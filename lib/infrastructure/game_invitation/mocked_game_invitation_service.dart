@@ -9,11 +9,10 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 @Environment(Environment.dev)
 @LazySingleton(as: IGameInvitationService)
 class MockedGameInvitationService implements IGameInvitationService {
-  static bool hasNetworkConnection = false;
+  static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
 
@@ -98,30 +97,22 @@ class MockedGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
+  Either<GameInvitationFailure, KtList<GameInvitation>>
       getReceivedGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _receivedGameInvitationsController!.value;
-      } catch (e) {
-        return null;
-      }
+      return _receivedGameInvitationsController!.value;
     }
 
     return left(const GameInvitationFailure.noNetworkAccess());
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
+  Either<GameInvitationFailure, KtList<GameInvitation>>
       getSentGameInvitations() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _sentGameInvitationsController!.value;
-      } catch (e) {
-        return null;
-      }
+      return _sentGameInvitationsController!.value;
     }
 
     return left(const GameInvitationFailure.noNetworkAccess());

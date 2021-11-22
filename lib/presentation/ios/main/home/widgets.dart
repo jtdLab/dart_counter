@@ -25,44 +25,39 @@ class _GameInvitationsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final unreadReceivedInvitations = state.unreadInvitations;
+    final unreadReceivedInvitations =
+        context.read<HomeLoadSuccess>().unreadInvitations;
 
-        if (unreadReceivedInvitations == 0) {
-          return AppNavigationBarButton(
-            onPressed: () =>
-                context.router.push(const GameInvitationsPageRoute()),
-            child: Image.asset(
-              AppImages.messageNew,
-            ),
-          );
-        } else {
-          return AppNavigationBarButton(
-            onPressed: () =>
-                context.router.push(const GameInvitationsPageRoute()),
-            child: Badge(
-              badgeContent: AutoSizeText(
-                unreadReceivedInvitations.toString(),
-                maxLines: 1,
-                minFontSize: maxFontSizeSmall(context),
-                maxFontSize: maxFontSizeNormal(context),
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(color: AppColors.white),
-              ),
-              position: BadgePosition.topEnd(
-                top: -13,
-              ),
-              child: Image.asset(
-                AppImages.messageNew,
-              ),
-            ),
-          );
-        }
-      },
-    );
+    if (unreadReceivedInvitations == 0) {
+      return AppNavigationBarButton(
+        onPressed: () => context.router.push(const GameInvitationsPageRoute()),
+        child: Image.asset(
+          AppImages.messageNew,
+        ),
+      );
+    } else {
+      return AppNavigationBarButton(
+        onPressed: () => context.router.push(const GameInvitationsPageRoute()),
+        child: Badge(
+          badgeContent: AutoSizeText(
+            unreadReceivedInvitations.toString(),
+            maxLines: 1,
+            minFontSize: maxFontSizeSmall(context),
+            maxFontSize: maxFontSizeNormal(context),
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
+          ),
+          position: BadgePosition.topEnd(
+            top: -13,
+          ),
+          child: Image.asset(
+            AppImages.messageNew,
+          ),
+        ),
+      );
+    }
   }
 }
 
@@ -73,37 +68,34 @@ class _FriendsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final unreadFriendRequests = state.unreadFriendRequests;
+    final unreadFriendRequests =
+        context.read<HomeLoadSuccess>().unreadFriendRequests;
 
-        if (unreadFriendRequests == 0) {
-          return AppNavigationBarButton(
-            onPressed: () => context.router.push(const FriendsFlowRoute()),
-            child: Image.asset(
-              AppImages.playerNew,
-            ),
-          );
-        } else {
-          return AppNavigationBarButton(
-            onPressed: () => context.router.push(const FriendsFlowRoute()),
-            child: Badge(
-              badgeContent: Text(
-                unreadFriendRequests.toString(),
-                style: const TextStyle(
-                    color: AppColors.white, fontWeight: FontWeight.bold),
-              ),
-              position: BadgePosition.topEnd(
-                top: -13,
-              ),
-              child: Image.asset(
-                AppImages.playerNew,
-              ),
-            ),
-          );
-        }
-      },
-    );
+    if (unreadFriendRequests == 0) {
+      return AppNavigationBarButton(
+        onPressed: () => context.router.push(const FriendsFlowRoute()),
+        child: Image.asset(
+          AppImages.playerNew,
+        ),
+      );
+    } else {
+      return AppNavigationBarButton(
+        onPressed: () => context.router.push(const FriendsFlowRoute()),
+        child: Badge(
+          badgeContent: Text(
+            unreadFriendRequests.toString(),
+            style: const TextStyle(
+                color: AppColors.white, fontWeight: FontWeight.bold),
+          ),
+          position: BadgePosition.topEnd(
+            top: -13,
+          ),
+          child: Image.asset(
+            AppImages.playerNew,
+          ),
+        ),
+      );
+    }
   }
 }
 
@@ -128,40 +120,36 @@ class _StatsButton extends StatelessWidget {
 class _HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final photoUrl = state.user.profile.photoUrl;
+    final photoUrl = context.read<HomeLoadSuccess>().user.profile.photoUrl;
 
-        return Column(
-          children: [
-            const Spacer(),
-            ProfileImageDisplayer(
-              photoUrl: photoUrl,
-            ),
-            const Spacer(flex: 2),
-            const _NameDisplayer(),
-            const Spacer(flex: 2),
-            _PlayOnlineButton(),
-            SizedBox(
-              height: spacerNormal(context),
-            ),
-            _PlayOfflineButton(),
-            SizedBox(
-              height: spacerNormal(context),
-            ),
-            _TrainButton(),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _InstagramButton(),
-                _YoutubeButton(),
-              ],
-            ),
-            const Spacer(),
+    return Column(
+      children: [
+        const Spacer(),
+        ProfileImageDisplayer(
+          photoUrl: photoUrl,
+        ),
+        const Spacer(flex: 2),
+        const _NameDisplayer(),
+        const Spacer(flex: 2),
+        _PlayOnlineButton(),
+        SizedBox(
+          height: spacerNormal(context),
+        ),
+        _PlayOfflineButton(),
+        SizedBox(
+          height: spacerNormal(context),
+        ),
+        _TrainButton(),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            _InstagramButton(),
+            _YoutubeButton(),
           ],
-        );
-      },
+        ),
+        const Spacer(),
+      ],
     );
   }
 }
@@ -173,32 +161,29 @@ class _NameDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        final username = state.user.profile.name.getOrCrash();
+    final username =
+        context.read<HomeLoadSuccess>().user.profile.name.getOrCrash();
 
-        return Container(
-          height: size40(context),
-          decoration: BoxDecoration(
-            color: AppColors.blueNew,
-            border: Border.all(
-              width: border4(context),
-            ),
-          ),
-          child: Center(
-            child: AutoSizeText(
-              username.toUpperCase(),
-              maxLines: 1,
-              minFontSize: 8,
-              maxFontSize: maxFontSizeNormal(context),
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-          ),
-        );
-      },
+    return Container(
+      height: size40(context),
+      decoration: BoxDecoration(
+        color: AppColors.blueNew,
+        border: Border.all(
+          width: border4(context),
+        ),
+      ),
+      child: Center(
+        child: AutoSizeText(
+          username.toUpperCase(),
+          maxLines: 1,
+          minFontSize: 8,
+          maxFontSize: maxFontSizeNormal(context),
+          style: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle
+              .copyWith(color: AppColors.white),
+        ),
+      ),
     );
   }
 }

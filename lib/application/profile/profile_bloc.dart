@@ -17,33 +17,36 @@ part 'profile_state.dart';
 @lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
     with AutoResetLazySingleton {
-  final DataWatcherBloc _dataWatcherBloc;
+  final IUserService _userService;
 
-  StreamSubscription? _dataWatcherSubscription;
+  StreamSubscription? _userSubscription;
 
   ProfileBloc(
-    this._dataWatcherBloc,
+    this._userService,
   ) : super(
-          _dataWatcherBloc.state.maybeMap(
-            loadSuccess: (loadSuccess) => ProfileState.initial(
-              user: loadSuccess.user,
-              careerStatsAll: _calcCareerStatsAll(
-                  careerStatsOnline: loadSuccess.user.profile.careerStatsOnline,
-                  careerStatsOffline: loadSuccess.user.careerStatsOffline),
+          ProfileState.initial(
+            user: _userService.getUser().toOption().toNullable()!,
+            careerStatsAll: _calcCareerStatsAll(
+              careerStatsOnline: _userService
+                  .getUser()
+                  .toOption()
+                  .toNullable()!
+                  .profile
+                  .careerStatsOnline,
+              careerStatsOffline: _userService
+                  .getUser()
+                  .toOption()
+                  .toNullable()!
+                  .careerStatsOffline,
             ),
-            orElse: () => throw Error(), // TODO name better
           ),
         ) {
-    _dataWatcherSubscription =
-        _dataWatcherBloc.stream.listen((dataWatcherState) {
-      if (dataWatcherState is DataWatcherLoadSuccess) {
-        add(
-          ProfileEvent.userReceived(
-            user: dataWatcherState.user,
+    _userSubscription = _userService.watchUser().listen(
+          (failureOrUser) => failureOrUser.fold(
+            (_) {},
+            (user) => add(ProfileEvent.userReceived(user: user)),
           ),
         );
-      }
-    });
   }
 
   @override
@@ -111,7 +114,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
 
   @override
   Future<void> close() {
-    _dataWatcherSubscription?.cancel();
+    _userSubscription?.cancel();
 
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ProfileBloc>()) {

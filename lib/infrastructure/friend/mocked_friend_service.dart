@@ -124,42 +124,30 @@ class MockedFriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<Friend>>? getFriends() {
+  Either<FriendFailure, KtList<Friend>> getFriends() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _friendsController!.value;
-      } catch (e) {
-        return null;
-      }
+      return _friendsController!.value;
     }
 
     return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _receivedFriendRequestController!.value;
-      } catch (e) {
-        return null;
-      }
+      return _receivedFriendRequestController!.value;
     }
 
     return left(const FriendFailure.noNetworkAccess());
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
     _checkAuth();
     if (hasNetworkConnection) {
-      try {
-        return _sentFriendRequestController!.value;
-      } catch (e) {
-        return null;
-      }
+      return _sentFriendRequestController!.value;
     }
 
     return left(const FriendFailure.noNetworkAccess());

@@ -108,21 +108,21 @@ class FriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<Friend>>? getFriends() {
+  Either<FriendFailure, KtList<Friend>> getFriends() {
     _checkAuth();
 
     return _friendsController.value;
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>>? getReceivedFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
     _checkAuth();
 
     return _receivedFriendRequestsController.value;
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>>? getSentFriendRequests() {
+  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
     _checkAuth();
 
     return _sentFriendRequestsController.value;

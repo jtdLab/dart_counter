@@ -106,7 +106,7 @@ class GameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
+  Either<GameInvitationFailure, KtList<GameInvitation>>
       getReceivedGameInvitations() {
     _checkAuth();
 
@@ -114,7 +114,7 @@ class GameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>?
+  Either<GameInvitationFailure, KtList<GameInvitation>>
       getSentGameInvitations() {
     _checkAuth();
 
