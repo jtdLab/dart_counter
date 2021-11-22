@@ -24,17 +24,17 @@ class SignInPage extends StatelessWidget {
         listeners: [
           BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
-              if (state is Authenticated) {
-                context.router.replace(const MainFlowRoute());
-                return;
-              }
+              state.whenOrNull(
+                authenticated: () =>
+                    context.router.replace(const MainFlowRoute()),
+              );
             },
           ),
           BlocListener<SignInBloc, SignInState>(
             listenWhen: (_, next) => next is SignInLoadFailure,
             listener: (context, state) {
               state.mapOrNull(
-                signInLoadFailure: (signInLoadFailure) {
+                loadFailure: (signInLoadFailure) {
                   signInLoadFailure.authFailure.whenOrNull(
                     serverError: () => showToast(LocaleKeys.errorServer.tr()),
                     invalidEmailAndPasswordCombination: () => showToast(

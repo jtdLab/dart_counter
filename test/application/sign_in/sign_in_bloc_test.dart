@@ -32,7 +32,6 @@ void main() {
       SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
     );
   });
@@ -47,7 +46,6 @@ void main() {
         SignInInitial(
           email: EmailAddress('abcd'),
           password: Password.empty(),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -63,7 +61,6 @@ void main() {
         SignInInitial(
           email: EmailAddress.empty(),
           password: Password('abcd'),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -77,7 +74,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress('invalidEmail'),
         password: Password('abcdefg'),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       expect: () => [
@@ -87,7 +83,6 @@ void main() {
         SignInInitial(
           email: EmailAddress('invalidEmail'),
           password: Password('abcdefg'),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -99,7 +94,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress('a@b.com'),
         password: Password('a'),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       expect: () => [
@@ -109,7 +103,6 @@ void main() {
         SignInInitial(
           email: EmailAddress('a@b.com'),
           password: Password('a'),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -121,8 +114,8 @@ void main() {
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithEmailAndPassword(
-            emailAddress: EmailAddress('a@b.com'),
-            password: Password('abcdefg'),
+            emailAddress: any(named: 'emailAddress'),
+            password: any(named: 'password'),
           ),
         ).thenAnswer((_) async => left(const AuthFailure.serverError()));
 
@@ -131,7 +124,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress('a@b.com'),
         password: Password('abcdefg'),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       wait: const Duration(milliseconds: 600),
@@ -143,7 +135,6 @@ void main() {
         SignInInitial(
           email: EmailAddress('a@b.com'),
           password: Password('abcdefg'),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -155,8 +146,8 @@ void main() {
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithEmailAndPassword(
-            emailAddress: EmailAddress('a@b.com'),
-            password: Password('abcdefg'),
+            emailAddress: any(named: 'emailAddress'),
+            password: any(named: 'password'),
           ),
         ).thenAnswer((_) async => right(unit));
 
@@ -165,7 +156,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress('a@b.com'),
         password: Password('abcdefg'),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       wait: const Duration(milliseconds: 600),
@@ -190,7 +180,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithFacebookPressed()),
@@ -203,7 +192,6 @@ void main() {
         SignInInitial(
           email: EmailAddress.empty(),
           password: Password.empty(),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -222,7 +210,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithFacebookPressed()),
@@ -248,7 +235,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithGooglePressed()),
@@ -261,7 +247,6 @@ void main() {
         SignInInitial(
           email: EmailAddress.empty(),
           password: Password.empty(),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -280,7 +265,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithGooglePressed()),
@@ -306,7 +290,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithApplePressed()),
@@ -319,7 +302,6 @@ void main() {
         SignInInitial(
           email: EmailAddress.empty(),
           password: Password.empty(),
-          showErrorMessages: false,
         ),
       ],
     );
@@ -338,7 +320,6 @@ void main() {
       seed: () => SignInState.initial(
         email: EmailAddress.empty(),
         password: Password.empty(),
-        showErrorMessages: false,
       ),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.signInWithApplePressed()),

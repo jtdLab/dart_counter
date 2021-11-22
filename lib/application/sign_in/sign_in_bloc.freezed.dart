@@ -1005,21 +1005,18 @@ class _$SignInStateTearOff {
   const _$SignInStateTearOff();
 
   SignInInitial initial(
-      {required EmailAddress email,
-      required Password password,
-      required bool showErrorMessages}) {
+      {required EmailAddress email, required Password password}) {
     return SignInInitial(
       email: email,
       password: password,
-      showErrorMessages: showErrorMessages,
     );
   }
 
-  SignInLoadInProgress signInLoadInProgress() {
+  SignInLoadInProgress loadInProgress() {
     return const SignInLoadInProgress();
   }
 
-  SignInLoadFailure signInLoadFailure({required AuthFailure authFailure}) {
+  SignInLoadFailure loadFailure({required AuthFailure authFailure}) {
     return SignInLoadFailure(
       authFailure: authFailure,
     );
@@ -1033,51 +1030,45 @@ const $SignInState = _$SignInStateTearOff();
 mixin _$SignInState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)
-        initial,
-    required TResult Function() signInLoadInProgress,
-    required TResult Function(AuthFailure authFailure) signInLoadFailure,
+    required TResult Function(EmailAddress email, Password password) initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(AuthFailure authFailure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInInitial value) initial,
-    required TResult Function(SignInLoadInProgress value) signInLoadInProgress,
-    required TResult Function(SignInLoadFailure value) signInLoadFailure,
+    required TResult Function(SignInLoadInProgress value) loadInProgress,
+    required TResult Function(SignInLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1104,7 +1095,7 @@ abstract class $SignInInitialCopyWith<$Res> {
   factory $SignInInitialCopyWith(
           SignInInitial value, $Res Function(SignInInitial) then) =
       _$SignInInitialCopyWithImpl<$Res>;
-  $Res call({EmailAddress email, Password password, bool showErrorMessages});
+  $Res call({EmailAddress email, Password password});
 }
 
 /// @nodoc
@@ -1121,7 +1112,6 @@ class _$SignInInitialCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? showErrorMessages = freezed,
   }) {
     return _then(SignInInitial(
       email: email == freezed
@@ -1132,10 +1122,6 @@ class _$SignInInitialCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1143,21 +1129,16 @@ class _$SignInInitialCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInInitial implements SignInInitial {
-  const _$SignInInitial(
-      {required this.email,
-      required this.password,
-      required this.showErrorMessages});
+  const _$SignInInitial({required this.email, required this.password});
 
   @override
   final EmailAddress email;
   @override
   final Password password;
-  @override
-  final bool showErrorMessages;
 
   @override
   String toString() {
-    return 'SignInState.initial(email: $email, password: $password, showErrorMessages: $showErrorMessages)';
+    return 'SignInState.initial(email: $email, password: $password)';
   }
 
   @override
@@ -1167,14 +1148,11 @@ class _$SignInInitial implements SignInInitial {
             other is SignInInitial &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+                other.password == password));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, showErrorMessages);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -1184,39 +1162,33 @@ class _$SignInInitial implements SignInInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)
-        initial,
-    required TResult Function() signInLoadInProgress,
-    required TResult Function(AuthFailure authFailure) signInLoadFailure,
+    required TResult Function(EmailAddress email, Password password) initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(AuthFailure authFailure) loadFailure,
   }) {
-    return initial(email, password, showErrorMessages);
+    return initial(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
   }) {
-    return initial?.call(email, password, showErrorMessages);
+    return initial?.call(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(email, password, showErrorMessages);
+      return initial(email, password);
     }
     return orElse();
   }
@@ -1225,8 +1197,8 @@ class _$SignInInitial implements SignInInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInInitial value) initial,
-    required TResult Function(SignInLoadInProgress value) signInLoadInProgress,
-    required TResult Function(SignInLoadFailure value) signInLoadFailure,
+    required TResult Function(SignInLoadInProgress value) loadInProgress,
+    required TResult Function(SignInLoadFailure value) loadFailure,
   }) {
     return initial(this);
   }
@@ -1235,8 +1207,8 @@ class _$SignInInitial implements SignInInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
   }) {
     return initial?.call(this);
   }
@@ -1245,8 +1217,8 @@ class _$SignInInitial implements SignInInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1259,12 +1231,10 @@ class _$SignInInitial implements SignInInitial {
 abstract class SignInInitial implements SignInState {
   const factory SignInInitial(
       {required EmailAddress email,
-      required Password password,
-      required bool showErrorMessages}) = _$SignInInitial;
+      required Password password}) = _$SignInInitial;
 
   EmailAddress get email;
   Password get password;
-  bool get showErrorMessages;
   @JsonKey(ignore: true)
   $SignInInitialCopyWith<SignInInitial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1296,7 +1266,7 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
 
   @override
   String toString() {
-    return 'SignInState.signInLoadInProgress()';
+    return 'SignInState.loadInProgress()';
   }
 
   @override
@@ -1311,39 +1281,33 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)
-        initial,
-    required TResult Function() signInLoadInProgress,
-    required TResult Function(AuthFailure authFailure) signInLoadFailure,
+    required TResult Function(EmailAddress email, Password password) initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(AuthFailure authFailure) loadFailure,
   }) {
-    return signInLoadInProgress();
+    return loadInProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
   }) {
-    return signInLoadInProgress?.call();
+    return loadInProgress?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (signInLoadInProgress != null) {
-      return signInLoadInProgress();
+    if (loadInProgress != null) {
+      return loadInProgress();
     }
     return orElse();
   }
@@ -1352,32 +1316,32 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInInitial value) initial,
-    required TResult Function(SignInLoadInProgress value) signInLoadInProgress,
-    required TResult Function(SignInLoadFailure value) signInLoadFailure,
+    required TResult Function(SignInLoadInProgress value) loadInProgress,
+    required TResult Function(SignInLoadFailure value) loadFailure,
   }) {
-    return signInLoadInProgress(this);
+    return loadInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
   }) {
-    return signInLoadInProgress?.call(this);
+    return loadInProgress?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (signInLoadInProgress != null) {
-      return signInLoadInProgress(this);
+    if (loadInProgress != null) {
+      return loadInProgress(this);
     }
     return orElse();
   }
@@ -1438,7 +1402,7 @@ class _$SignInLoadFailure implements SignInLoadFailure {
 
   @override
   String toString() {
-    return 'SignInState.signInLoadFailure(authFailure: $authFailure)';
+    return 'SignInState.loadFailure(authFailure: $authFailure)';
   }
 
   @override
@@ -1461,39 +1425,33 @@ class _$SignInLoadFailure implements SignInLoadFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)
-        initial,
-    required TResult Function() signInLoadInProgress,
-    required TResult Function(AuthFailure authFailure) signInLoadFailure,
+    required TResult Function(EmailAddress email, Password password) initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(AuthFailure authFailure) loadFailure,
   }) {
-    return signInLoadFailure(authFailure);
+    return loadFailure(authFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
   }) {
-    return signInLoadFailure?.call(authFailure);
+    return loadFailure?.call(authFailure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailAddress email, Password password, bool showErrorMessages)?
-        initial,
-    TResult Function()? signInLoadInProgress,
-    TResult Function(AuthFailure authFailure)? signInLoadFailure,
+    TResult Function(EmailAddress email, Password password)? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(AuthFailure authFailure)? loadFailure,
     required TResult orElse(),
   }) {
-    if (signInLoadFailure != null) {
-      return signInLoadFailure(authFailure);
+    if (loadFailure != null) {
+      return loadFailure(authFailure);
     }
     return orElse();
   }
@@ -1502,32 +1460,32 @@ class _$SignInLoadFailure implements SignInLoadFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SignInInitial value) initial,
-    required TResult Function(SignInLoadInProgress value) signInLoadInProgress,
-    required TResult Function(SignInLoadFailure value) signInLoadFailure,
+    required TResult Function(SignInLoadInProgress value) loadInProgress,
+    required TResult Function(SignInLoadFailure value) loadFailure,
   }) {
-    return signInLoadFailure(this);
+    return loadFailure(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
   }) {
-    return signInLoadFailure?.call(this);
+    return loadFailure?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInInitial value)? initial,
-    TResult Function(SignInLoadInProgress value)? signInLoadInProgress,
-    TResult Function(SignInLoadFailure value)? signInLoadFailure,
+    TResult Function(SignInLoadInProgress value)? loadInProgress,
+    TResult Function(SignInLoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (signInLoadFailure != null) {
-      return signInLoadFailure(this);
+    if (loadFailure != null) {
+      return loadFailure(this);
     }
     return orElse();
   }

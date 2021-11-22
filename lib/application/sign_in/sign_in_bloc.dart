@@ -26,7 +26,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
           SignInState.initial(
             email: EmailAddress.empty(),
             password: Password.empty(),
-            showErrorMessages: false,
           ),
         ) {
     on<_EmailChanged>(_mapEmailChangedToState);
@@ -49,11 +48,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   ) {
     state.mapOrNull(
       initial: (initial) {
-        emit(
-          initial.copyWith(
-            email: EmailAddress(event.newEmail),
-          ),
-        );
+        emit(initial.copyWith(email: EmailAddress(event.newEmail)));
       },
     );
   }
@@ -64,11 +59,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   ) {
     state.mapOrNull(
       initial: (initial) {
-        emit(
-          initial.copyWith(
-            password: Password(event.newPassword),
-          ),
-        );
+        emit(initial.copyWith(password: Password(event.newPassword)));
       },
     );
   }
@@ -91,7 +82,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
           );
         } else {
           emit(
-            const SignInState.signInLoadFailure(
+            const SignInState.loadFailure(
               authFailure: AuthFailure.invalidEmailAndPasswordCombination(),
             ),
           );
@@ -147,15 +138,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
   }) async {
     await state.maybeMap(
       initial: (initial) async {
-        emit(const SignInState.signInLoadInProgress());
+        emit(const SignInState.loadInProgress());
 
-        await Future.delayed(
-            const Duration(milliseconds: 500)); // TODO in service or here ?
+        // TODO in service or here ?
+        await Future.delayed(const Duration(milliseconds: 500));
 
         final signInResult = await signInFuture();
+
         signInResult.fold(
           (authFailure) {
-            emit(SignInState.signInLoadFailure(authFailure: authFailure));
+            emit(SignInState.loadFailure(authFailure: authFailure));
             emit(initial);
           },
           (_) {},

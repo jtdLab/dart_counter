@@ -7,10 +7,11 @@ class _SignUpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
-      builder: (context, state) {
-        final node = FocusScope.of(context);
+    final node = FocusScope.of(context);
 
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (_, next) => next is SignUpInitial,
+      builder: (context, state) {
         return Column(
           children: [
             SizedBox(
@@ -27,11 +28,14 @@ class _SignUpWidget extends StatelessWidget {
               onEditingComplete: () => node.nextFocus(),
               onChanged: (emailString) {
                 context.read<SignUpBloc>().add(
-                      SignUpEvent.emailChanged(emailString),
+                      SignUpEvent.emailChanged(newEmail: emailString),
                     );
               },
-              valid: !state.showErrorMessages ||
-                  (state.showErrorMessages && state.email.isValid()),
+              valid: state.mapOrNull(
+                initial: (initial) =>
+                    !initial.showErrorMessages ||
+                    (initial.showErrorMessages && initial.email.isValid()),
+              ),
               errorMessage: LocaleKeys.errorInvalidEmailAddress.tr(),
             ),
             AppTextField(
@@ -39,10 +43,13 @@ class _SignUpWidget extends StatelessWidget {
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (usernameString) => context.read<SignUpBloc>().add(
-                    SignUpEvent.usernameChanged(usernameString),
+                    SignUpEvent.usernameChanged(newUsername: usernameString),
                   ),
-              valid: !state.showErrorMessages ||
-                  (state.showErrorMessages && state.username.isValid()),
+              valid: state.mapOrNull(
+                initial: (initial) =>
+                    !initial.showErrorMessages ||
+                    (initial.showErrorMessages && initial.username.isValid()),
+              ),
               errorMessage: LocaleKeys.errorInvalidUsername.tr(),
             ),
             AppTextField(
@@ -51,10 +58,13 @@ class _SignUpWidget extends StatelessWidget {
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (passwordString) => context.read<SignUpBloc>().add(
-                    SignUpEvent.passwordChanged(passwordString),
+                    SignUpEvent.passwordChanged(newPassword: passwordString),
                   ),
-              valid: !state.showErrorMessages ||
-                  (state.showErrorMessages && state.password.isValid()),
+              valid: state.mapOrNull(
+                initial: (initial) =>
+                    !initial.showErrorMessages ||
+                    (initial.showErrorMessages && initial.password.isValid()),
+              ),
               errorMessage: LocaleKeys.errorInvalidPassword.tr(),
             ),
             AppTextField(
@@ -64,20 +74,31 @@ class _SignUpWidget extends StatelessWidget {
               onEditingComplete: () => node.unfocus(),
               onChanged: (passwordAgainString) =>
                   context.read<SignUpBloc>().add(
-                        SignUpEvent.passwordAgainChanged(passwordAgainString),
+                        SignUpEvent.passwordAgainChanged(
+                          newPasswordAgain: passwordAgainString,
+                        ),
                       ),
-              valid: !state.showErrorMessages ||
-                  (state.showErrorMessages &&
-                      state.password.isValid() &&
-                      state.password == state.passwordAgain),
+              valid: state.mapOrNull(
+                initial: (initial) =>
+                    !initial.showErrorMessages ||
+                    (initial.showErrorMessages &&
+                        initial.password.isValid() &&
+                        initial.password == initial.passwordAgain),
+              ),
               errorMessage: LocaleKeys.errorPasswordsDontMatch.tr(),
             ),
-            AppPrimaryButton(
-              isSubmitting: state.isSubmitting,
-              text: LocaleKeys.signUp.tr(),
-              onPressed: () => context
-                  .read<SignUpBloc>()
-                  .add(const SignUpEvent.signUpPressed()),
+            BlocBuilder<SignUpBloc, SignUpState>(
+              buildWhen: (prev, next) =>
+                  prev is SignUpLoadInProgress || next is SignUpLoadInProgress,
+              builder: (context, state) {
+                return AppPrimaryButton(
+                  isSubmitting: state is SignUpLoadInProgress,
+                  text: LocaleKeys.signIn.tr(),
+                  onPressed: () => context.read<SignUpBloc>().add(
+                        const SignUpEvent.signUpPressed(),
+                      ),
+                );
+              },
             ),
             SizedBox(
               height: spacerSmall(context),

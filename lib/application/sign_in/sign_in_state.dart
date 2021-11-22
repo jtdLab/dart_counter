@@ -5,10 +5,9 @@ class SignInState with _$SignInState {
   const factory SignInState.initial({
     required EmailAddress email,
     required Password password,
-    required bool showErrorMessages,
   }) = SignInInitial;
-  const factory SignInState.signInLoadInProgress() = SignInLoadInProgress;
-  const factory SignInState.signInLoadFailure({
+  const factory SignInState.loadInProgress() = SignInLoadInProgress;
+  const factory SignInState.loadFailure({
     required AuthFailure authFailure,
   }) = SignInLoadFailure;
 }

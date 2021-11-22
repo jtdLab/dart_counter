@@ -20,116 +20,104 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
 
   SignUpBloc(
     this._authService,
-  ) : super(SignUpState.initial());
+  ) : super(
+          SignUpState.initial(
+            email: EmailAddress.empty(),
+            username: Username.empty(),
+            password: Password.empty(),
+            passwordAgain: Password.empty(),
+            showErrorMessages: false,
+          ),
+        ) {
+    on<_EmailChanged>(_mapEmailChangedToState);
+    on<_UsernameChanged>(_mapUsernameChangedToState);
+    on<_PasswordChanged>(_mapPasswordChangedToState);
+    on<_PasswordAgainChanged>(_mapPasswordAgainChangedToState);
+    on<_SignUpPressed>((_, emit) async => _mapSignUpPressedToState(emit));
+  }
 
-  @override
-  Stream<SignUpState> mapEventToState(
-    SignUpEvent event,
-  ) async* {
-    yield* event.map(
-      emailChanged: (event) => _mapEmailChangedToState(event),
-      usernameChanged: (event) => _mapUsernameChangedToState(event),
-      passwordChanged: (event) => _mapPasswordChangedToState(event),
-      passwordAgainChanged: (event) => _mapPasswordAgainChangedToState(event),
-      signUpPressed: (_) => _mapSignUpPressedToState(),
+  void _mapEmailChangedToState(
+    _EmailChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(initial.copyWith(email: EmailAddress(event.newEmail)));
+      },
     );
   }
 
-  Stream<SignUpState> _mapEmailChangedToState(
-    EmailChanged event,
-  ) async* {
-    yield state.copyWith(
-      email: EmailAddress(event.newEmailString),
-      authFailure: null,
+  void _mapUsernameChangedToState(
+    _UsernameChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(initial.copyWith(username: Username(event.newUsername)));
+      },
     );
   }
 
-  Stream<SignUpState> _mapUsernameChangedToState(
-    UsernameChanged event,
-  ) async* {
-    yield state.copyWith(
-      username: Username(event.newUsernameString),
-      authFailure: null,
+  void _mapPasswordChangedToState(
+    _PasswordChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(initial.copyWith(password: Password(event.newPassword)));
+      },
     );
   }
 
-  Stream<SignUpState> _mapPasswordChangedToState(
-    PasswordChanged event,
-  ) async* {
-    yield state.copyWith(
-      password: Password(event.newPasswordString),
-      authFailure: null,
+  void _mapPasswordAgainChangedToState(
+    _PasswordAgainChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    state.mapOrNull(
+      initial: (initial) {
+        emit(initial.copyWith(passwordAgain: Password(event.newPasswordAgain)));
+      },
     );
   }
 
-  Stream<SignUpState> _mapPasswordAgainChangedToState(
-    PasswordAgainChanged event,
-  ) async* {
-    yield state.copyWith(
-      passwordAgain: Password(event.newPasswordAgainString),
-      authFailure: null,
-    );
-  }
+  Future<void> _mapSignUpPressedToState(
+    Emitter<SignUpState> emit,
+  ) async {
+    await state.mapOrNull(
+      initial: (initial) async {
+        final isEmailValid = initial.email.isValid();
+        final isUsernameValid = initial.username.isValid();
+        final isPasswordValid = initial.password.isValid();
+        final isPasswordAgainValid = initial.passwordAgain.isValid();
+        final passwordsMatch = initial.password == initial.passwordAgain;
 
-  Stream<SignUpState> _mapSignUpPressedToState() async* {
-    AuthFailure? authFailure;
-    final isEmailValid = state.email.isValid();
-    final isUsernameValid = state.username.isValid();
-    final isPasswordValid = state.password.isValid();
-    final isPasswordAgainValid = state.passwordAgain.isValid();
-    final passwordsMatch = state.password == state.passwordAgain;
-    yield state.copyWith(
-      isSubmitting: true,
-      authFailure: null,
-    );
+        if (isEmailValid &&
+            isUsernameValid &&
+            isPasswordValid &&
+            isPasswordAgainValid &&
+            passwordsMatch) {
+          emit(const SignUpState.loadInProgress());
 
-    if (isEmailValid &&
-        isUsernameValid &&
-        isPasswordValid &&
-        isPasswordAgainValid &&
-        passwordsMatch) {
-      await Future.delayed(const Duration(milliseconds: 500));
-      final signUpResult =
-          await _authService.signUpWithEmailAndUsernameAndPassword(
-        emailAddress: state.email,
-        username: state.username,
-        password: state.password,
-      );
-      authFailure = signUpResult.fold(
-        (failure) => failure,
-        (_) => null,
-      );
+          await Future.delayed(const Duration(milliseconds: 500));
 
-      /**
-      *  if (authFailure == null) {
-        final state = await _dataWatcherBloc.stream.firstWhere(
-          (element) =>
-              element is DataWatcherLoadSuccess ||
-              element is DataWatcherLoadFailure,
-        );
-
-        if (state is DataWatcherLoadFailure) {
-          await _authService.signOut();
-          // TODO delete user or go to sign in -> user is created but sign in failed
-          authFailure = const AuthFailure.serverError(); // TODO data load error
+          final signUpResult =
+              await _authService.signUpWithEmailAndUsernameAndPassword(
+            emailAddress: initial.email,
+            username: initial.username,
+            password: initial.password,
+          );
+          signUpResult.fold(
+            (failure) {
+              emit(SignUpState.loadFailure(authFailure: failure));
+              emit(initial.copyWith(showErrorMessages: true));
+            },
+            (_) {},
+          );
+        } else {
+          emit(initial.copyWith(showErrorMessages: true));
         }
-      }
-      */
-
-      yield state.copyWith(
-        isSubmitting: authFailure == null,
-        showErrorMessages: true,
-        authFailure: authFailure,
-        isSignedUp: authFailure == null,
-      );
-    } else {
-      yield state.copyWith(
-        isSubmitting: false,
-        showErrorMessages: true,
-        authFailure: authFailure,
-        isSignedUp: false,
-      );
-    }
+      },
+    );
   }
 
   @override
