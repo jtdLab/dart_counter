@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -37,7 +36,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
   ) {
     final username = event.newUsername;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(initial.copyWith(username: Username(username)));
       },
@@ -49,7 +48,6 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -57,7 +55,7 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     _ConfirmPressed event,
     Emitter<ChangeUsernameState> emit,
   ) async {
-    await state.maybeMap(
+    await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
         final username = initial.username;
@@ -83,7 +81,6 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
           emit(ChangeUsernameSubmitFailure(userFailure: userFailure));
         }
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/settings/change_username/change_username_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
@@ -66,26 +65,6 @@ void main() {
           showErrorMessages: true,
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeUsernameSubmitInProgress ',
-      build: () => ChangeUsernameBloc(mockUserService),
-      seed: () => const ChangeUsernameState.submitInProgress(),
-      act: (ChangeUsernameBloc bloc) => bloc.add(
-        const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeUsernameSubmitSuccess ',
-      build: () => ChangeUsernameBloc(mockUserService),
-      seed: () => const ChangeUsernameState.submitSuccess(),
-      act: (ChangeUsernameBloc bloc) => bloc.add(
-        const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 
@@ -160,35 +139,6 @@ void main() {
           userFailure: UserFailure.invalidUsername(),
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeUsernameSubmitInProgress ',
-      build: () => ChangeUsernameBloc(mockUserService),
-      seed: () => const ChangeUsernameState.submitInProgress(),
-      act: (ChangeUsernameBloc bloc) =>
-          bloc.add(const ChangeUsernameEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeUsernameSubmitSuccess ',
-      build: () => ChangeUsernameBloc(mockUserService),
-      seed: () => const ChangeUsernameState.submitSuccess(),
-      act: (ChangeUsernameBloc bloc) =>
-          bloc.add(const ChangeUsernameEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeUsernameSubmitFailure ',
-      build: () => ChangeUsernameBloc(mockUserService),
-      seed: () => const ChangeUsernameState.submitFailure(
-        userFailure: UserFailure.invalidEmail(),
-      ),
-      act: (ChangeUsernameBloc bloc) =>
-          bloc.add(const ChangeUsernameEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 }

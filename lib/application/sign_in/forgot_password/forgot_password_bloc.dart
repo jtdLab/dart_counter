@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -13,8 +12,6 @@ import 'package:injectable/injectable.dart';
 part 'forgot_password_bloc.freezed.dart';
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
-
-// TODO other change bloc and this retranition after failur could be implemented better
 
 @lazySingleton
 class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
@@ -39,7 +36,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
   ) {
     final email = event.newEmail;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(initial.copyWith(email: EmailAddress(email)));
       },
@@ -51,7 +48,6 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -59,7 +55,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     _ConfirmPressed event,
     Emitter<ForgotPasswordState> emit,
   ) async {
-    await state.maybeMap(
+    await state.mapOrNull(
       initial: (initial) async {
         AuthFailure? authFailure;
         final email = initial.email;
@@ -68,6 +64,7 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
           emit(const ForgotPasswordSubmitInProgress());
 
           await Future.delayed(const Duration(seconds: 1));
+
           authFailure = (await _authService.sendPasswordResetEmail(
             emailAddress: email,
           ))
@@ -80,12 +77,11 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
         }
 
         if (authFailure == null) {
-          emit(const ForgotPasswordSubmitSuccess());
+          emit(const ForgotPasswordState.submitSuccess());
         } else {
-          emit(ForgotPasswordSubmitFailure(authFailure: authFailure));
+          emit(ForgotPasswordState.submitFailure(authFailure: authFailure));
         }
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -37,7 +36,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
   ) {
     final email = event.newNewEmail;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(initial.copyWith(email: EmailAddress(email)));
       },
@@ -49,7 +48,6 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -57,7 +55,7 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     _ConfirmPressed event,
     Emitter<ChangeEmailState> emit,
   ) async {
-    await state.maybeMap(
+    await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
         final email = initial.email;
@@ -83,7 +81,6 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
           emit(ChangeEmailSubmitFailure(userFailure: userFailure));
         }
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 

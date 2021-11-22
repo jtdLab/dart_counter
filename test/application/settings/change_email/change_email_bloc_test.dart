@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/settings/change_email/change_email_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
@@ -64,24 +63,6 @@ void main() {
           showErrorMessages: true,
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeEmailSubmitInProgress ',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitInProgress(),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeEmailSubmitSuccess ',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitSuccess(),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 
@@ -156,35 +137,6 @@ void main() {
           userFailure: UserFailure.invalidEmail(),
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeEmailSubmitInProgress ',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitInProgress(),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeEmailSubmitSuccess ',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitSuccess(),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangeEmailSubmitFailure ',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitFailure(
-        userFailure: UserFailure.invalidEmail(),
-      ),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 }

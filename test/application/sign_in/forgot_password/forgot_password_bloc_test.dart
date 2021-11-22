@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
@@ -64,24 +63,6 @@ void main() {
           showErrorMessages: true,
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ForgotPasswordSubmitInProgress ',
-      build: () => ForgotPasswordBloc(mockAuthService),
-      seed: () => const ForgotPasswordState.submitInProgress(),
-      act: (ForgotPasswordBloc bloc) =>
-          bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ForgotPasswordSubmitSuccess ',
-      build: () => ForgotPasswordBloc(mockAuthService),
-      seed: () => const ForgotPasswordState.submitSuccess(),
-      act: (ForgotPasswordBloc bloc) =>
-          bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 
@@ -156,35 +137,6 @@ void main() {
           authFailure: AuthFailure.invalidEmail(),
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ForgotPasswordSubmitInProgress ',
-      build: () => ForgotPasswordBloc(mockAuthService),
-      seed: () => const ForgotPasswordState.submitInProgress(),
-      act: (ForgotPasswordBloc bloc) =>
-          bloc.add(const ForgotPasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ForgotPasswordSubmitSuccess ',
-      build: () => ForgotPasswordBloc(mockAuthService),
-      seed: () => const ForgotPasswordState.submitSuccess(),
-      act: (ForgotPasswordBloc bloc) =>
-          bloc.add(const ForgotPasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ForgotPasswordSubmitFailure ',
-      build: () => ForgotPasswordBloc(mockAuthService),
-      seed: () => const ForgotPasswordState.submitFailure(
-        authFailure: AuthFailure.invalidEmail(),
-      ),
-      act: (ForgotPasswordBloc bloc) =>
-          bloc.add(const ForgotPasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 }

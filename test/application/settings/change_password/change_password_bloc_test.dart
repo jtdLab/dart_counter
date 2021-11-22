@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/application/settings/change_password/change_password_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
@@ -73,26 +72,6 @@ void main() {
         ),
       ],
     );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitInProgress(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitSuccess(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
   });
 
   group('NewPasswordChanged', () {
@@ -129,26 +108,6 @@ void main() {
           showErrorMessages: true,
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitInProgress(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitSuccess(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 
@@ -190,30 +149,6 @@ void main() {
           showErrorMessages: true,
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitInProgress(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.newPasswordAgainChanged(
-          newNewPasswordAgain: 'abcd',
-        ),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitSuccess(),
-      act: (ChangePasswordBloc bloc) => bloc.add(
-        const ChangePasswordEvent.newPasswordAgainChanged(
-          newNewPasswordAgain: 'abcd',
-        ),
-      ),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 
@@ -338,35 +273,6 @@ void main() {
           authFailure: AuthFailure.serverError(),
         ),
       ],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitInProgress ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitInProgress(),
-      act: (ChangePasswordBloc bloc) =>
-          bloc.add(const ChangePasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitSuccess ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitSuccess(),
-      act: (ChangePasswordBloc bloc) =>
-          bloc.add(const ChangePasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
-    );
-
-    blocTest(
-      'throws Error when current state is ChangePasswordSubmitFailure ',
-      build: () => ChangePasswordBloc(mockAuthService),
-      seed: () => const ChangePasswordState.submitFailure(
-        authFailure: AuthFailure.invalidEmail(),
-      ),
-      act: (ChangePasswordBloc bloc) =>
-          bloc.add(const ChangePasswordEvent.confirmPressed()),
-      errors: () => [isA<UnexpectedStateError>()],
     );
   });
 }

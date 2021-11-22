@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/errors.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -41,7 +40,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   ) {
     final oldPassword = event.newOldPassword;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(
           initial.copyWith(
@@ -59,7 +58,6 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -69,7 +67,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   ) {
     final newPassword = event.newNewPassword;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(initial.copyWith(newPassword: Password(newPassword)));
       },
@@ -83,7 +81,6 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -93,7 +90,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
   ) {
     final newPasswordAgain = event.newNewPasswordAgain;
 
-    state.maybeMap(
+    state.mapOrNull(
       initial: (initial) {
         emit(initial.copyWith(newPasswordAgain: Password(newPasswordAgain)));
       },
@@ -107,7 +104,6 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
           ),
         );
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
@@ -115,7 +111,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     _ConfirmPressed event,
     Emitter<ChangePasswordState> emit,
   ) async {
-    await state.maybeMap(
+    await state.mapOrNull(
       initial: (initial) async {
         AuthFailure? authFailure;
 
@@ -154,7 +150,6 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
           emit(ChangePasswordSubmitFailure(authFailure: authFailure));
         }
       },
-      orElse: () => throw UnexpectedStateError(event: event, state: state),
     );
   }
 
