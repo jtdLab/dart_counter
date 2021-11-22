@@ -16,6 +16,8 @@ part 'search_user_event.dart';
 part 'search_user_state.dart';
 part 'search_user_bloc.freezed.dart';
 
+// TODO update to v8.0.0
+
 @lazySingleton
 class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     with AutoResetLazySingleton {
@@ -55,10 +57,12 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     yield SearchUserState.initial();
   }
 
+  /**
+    *
   @override
   Stream<Transition<SearchUserEvent, SearchUserState>> transformEvents(
     Stream<SearchUserEvent> events,
-    transitionFn,
+    mapper,
   ) {
     // Split into two streams, one which we will debounce
     final splitEvents = StreamSplitter.splitFrom(events, 2);
@@ -75,8 +79,9 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     // This has debounced SearchInputChanged, plus all other events
     final finalStream = StreamGroup.merge([inputEvents, otherEvents]);
 
-    return finalStream.switchMap(transitionFn);
+    return finalStream.switchMap(mapper);
   }
+ */
 
   @override
   Future<void> close() {
@@ -84,7 +89,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     if (getIt.isRegistered<SearchUserBloc>()) {
       getIt.resetLazySingleton<SearchUserBloc>();
     }
-    
+
     return super.close();
   }
 }
