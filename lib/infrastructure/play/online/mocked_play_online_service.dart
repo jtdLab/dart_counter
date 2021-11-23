@@ -162,6 +162,11 @@ class MockedPlayOnlineService implements IPlayOnlineService {
   }
 
   @override
+  OnlineGameSnapshot getGame() {
+    return _gameController.value;
+  }
+
+  @override
   Stream<OnlineGameSnapshot> watchGame() {
     return _gameController.stream;
   }

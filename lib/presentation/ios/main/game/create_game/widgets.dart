@@ -680,7 +680,7 @@ class _TypePicker extends StatelessWidget {
   }
 }
 
-// TODO shared with training
+// TODO share with training
 class _PlayButton extends StatelessWidget {
   const _PlayButton({
     Key? key,

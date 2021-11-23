@@ -185,6 +185,11 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
+  OfflineGameSnapshot getGame() {
+    return _gameController.value;
+  }
+
+  @override
   Stream<OfflineGameSnapshot> watchGame() {
     return _gameController.stream;
   }

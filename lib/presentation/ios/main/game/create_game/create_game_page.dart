@@ -17,7 +17,6 @@ import 'modals/advanced_settings/advanced_settings_modal.dart';
 import 'package:dart_counter/presentation/ios/main/game/create_game/modals/add_player/add_player_modal.dart';
 
 // LOCAL WIDGETS
-import '../shared.dart';
 import './../../shared.dart';
 part 'widgets.dart';
 
