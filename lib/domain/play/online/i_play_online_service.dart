@@ -16,6 +16,9 @@ abstract class IPlayOnlineService {
   // TODO Should throw error if no active running game
   Stream<OnlineGameSnapshot> watchGame();
 
+  /// Returns a stream of the latest received snapshot of the current game of the app-user.
+  OnlineGameSnapshot getGame();
+
   /// Creates a new game.
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame();
 

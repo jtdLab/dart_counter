@@ -14,6 +14,9 @@ abstract class IPlayOfflineService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<OfflineGameSnapshot> watchGame();
 
+  /// Returns a stream of the latest received snapshot of the current game of the app-user.
+  OfflineGameSnapshot getGame();
+
   /// Creates a new game with [owner].
   Either<PlayFailure, OfflineGameSnapshot> createGame({
     required User owner,

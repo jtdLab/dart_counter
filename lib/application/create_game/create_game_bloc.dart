@@ -82,7 +82,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapPlayerReorederedToState(
-    PlayerReordered event,
+    _PlayerReordered event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -116,7 +116,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapPlayerRemovedToState(
-    PlayerRemoved event,
+    _PlayerRemoved event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -133,7 +133,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapPlayerNameUpdatedToState(
-    PlayerNameUpdated event,
+    _PlayerNameUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -149,7 +149,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapStartingPointsUpdatedToState(
-    StartingPointsUpdated event,
+    _StartingPointsUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -166,7 +166,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapModeUpdatedToState(
-    ModeUpdated event,
+    _ModeUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -183,7 +183,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapSizeUpdatedToState(
-    SizeUpdated event,
+    _SizeUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -200,7 +200,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapTypeUpdatedToState(
-    TypeUpdated event,
+    _TypeUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -252,7 +252,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapDartBotTargetAverageSetToState(
-    DartBotTargetAverageUpdated event,
+    _DartBotTargetAverageUpdated event,
   ) async* {
     final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
@@ -269,7 +269,7 @@ class CreateGameBloc extends Bloc<CreateGameEvent, CreateGameState>
   }
 
   Stream<CreateGameState> _mapGameReceivedToState(
-    GameReceived event,
+    _GameReceived event,
   ) async* {
     final gameSnapshot = event.gameSnapshot;
     yield state.copyWith(gameSnapshot: gameSnapshot);

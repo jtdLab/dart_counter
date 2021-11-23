@@ -3,38 +3,38 @@ part of 'create_game_bloc.dart';
 // TODO rename event to fel angelov naming convention
 @freezed
 class CreateGameEvent with _$CreateGameEvent {
-  const factory CreateGameEvent.gameCanceled() = GameCanceled;
+  const factory CreateGameEvent.gameCanceled() = _GameCanceled;
   const factory CreateGameEvent.playerReordered({
     required int oldIndex,
     required int newIndex,
-  }) = PlayerReordered;
-  const factory CreateGameEvent.playerAdded() = PlayerAdded;
+  }) = _PlayerReordered;
+  const factory CreateGameEvent.playerAdded() = _PlayerAdded;
   const factory CreateGameEvent.playerRemoved({
     required int index,
-  }) = PlayerRemoved;
+  }) = _PlayerRemoved;
   const factory CreateGameEvent.playerNameUpdated({
     required int index,
     required String newName,
-  }) = PlayerNameUpdated;
+  }) = _PlayerNameUpdated;
   const factory CreateGameEvent.startingPointsUpdated({
     required int newStartingPoints,
-  }) = StartingPointsUpdated;
+  }) = _StartingPointsUpdated;
   const factory CreateGameEvent.modeUpdated({
     required Mode newMode,
-  }) = ModeUpdated;
+  }) = _ModeUpdated;
   const factory CreateGameEvent.sizeUpdated({
     required int newSize,
-  }) = SizeUpdated;
+  }) = _SizeUpdated;
   const factory CreateGameEvent.typeUpdated({
     required Type newType,
-  }) = TypeUpdated;
-  const factory CreateGameEvent.gameStarted() = GameStarted;
-  const factory CreateGameEvent.dartBotAdded() = DartBotAdded;
-  const factory CreateGameEvent.dartBotRemoved() = DartBotRemoved;
+  }) = _TypeUpdated;
+  const factory CreateGameEvent.gameStarted() = _GameStarted;
+  const factory CreateGameEvent.dartBotAdded() = _DartBotAdded;
+  const factory CreateGameEvent.dartBotRemoved() = _DartBotRemoved;
   const factory CreateGameEvent.dartBotTargetAverageUpdated({
     required int newTargetAverage,
-  }) = DartBotTargetAverageUpdated;
+  }) = _DartBotTargetAverageUpdated;
   const factory CreateGameEvent.gameReceived({
     required AbstractGameSnapshot gameSnapshot,
-  }) = GameReceived;
+  }) = _GameReceived;
 }
