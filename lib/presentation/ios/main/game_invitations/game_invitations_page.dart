@@ -23,7 +23,7 @@ class GameInvitationsPage extends StatelessWidget {
       child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
         listener: (context, state) {
           if (state.gameSnapshot != null) {
-            context.router.replaceAll([const GameFlowRoute()]);
+            context.router.replaceAll([const PlayOnlineFlowRoute()]);
           }
         },
         builder: (context, state) {

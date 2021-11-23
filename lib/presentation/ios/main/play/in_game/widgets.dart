@@ -14,8 +14,8 @@ class _StatsButton extends StatelessWidget {
         showCupertinoModalBottomSheet(
           expand: true,
           context: context,
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<StatsBloc>(),
+          builder: (context) => Provider.value(
+            value: context.read<InGameBloc>().state.gameSnapshot,
             child: const StatsModal(),
           ),
         );

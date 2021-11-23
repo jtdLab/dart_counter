@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/core/auth/auth_bloc.dart';
+import 'package:dart_counter/application/auth/auth_bloc.dart';
 import 'package:dart_counter/application/sign_up/sign_up_bloc.dart';
 
 // LOCAL WIDGETS

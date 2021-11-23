@@ -8,13 +8,9 @@ class _StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StatsBloc, StatsState>(
-      builder: (context, state) {
-        final players = state.gameSnapshot.players;
+    final players = context.read<AbstractGameSnapshot>().players;
 
-        return StatsWidget(players: players);
-      },
-    );
+    return StatsWidget(players: players);
   }
 }
 

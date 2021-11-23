@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -23,7 +24,11 @@ class HomePage extends StatelessWidget {
             loadSuccess: (loadSuccess) {
               final gameSnapshot = loadSuccess.gameSnapshot;
               if (gameSnapshot != null) {
-                context.router.replace(const GameFlowRoute());
+                if (gameSnapshot is OfflineGameSnapshot) {
+                  context.router.replace(const PlayOfflineFlowRoute());
+                } else {
+                  context.router.replace(const PlayOnlineFlowRoute());
+                }
               }
               /**
           * 

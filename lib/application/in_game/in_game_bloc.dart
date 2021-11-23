@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
@@ -24,28 +23,31 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   final IPlayOfflineService _playOfflineService;
   final IPlayOnlineService _playOnlineService;
 
-  final PlayBloc _playBloc;
-
   StreamSubscription? _gameSnapshotsSubscription;
 
   InGameBloc(
     this._playOfflineService,
     this._playOnlineService,
-    this._playBloc,
   ) : super(
-          _playBloc.state.maybeMap(
+          throw Error(),
+          /**
+           * _playBloc.state.maybeMap(
             gameInProgress: (gameInProgress) => InGameState.initial(
               gameSnapshot: gameInProgress.gameSnapshot,
               inputOrDarts: left(0),
             ),
             orElse: () => throw Error(), // TODO name better
           ),
+           */
         ) {
-    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
+    // TODO
+    /**
+    *  _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
       if (playState is PlayGameInProgress) {
         add(InGameEvent.gameReceived(gameSnapshot: playState.gameSnapshot));
       }
     });
+    */
   }
 
   @override
@@ -62,7 +64,8 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
   }
 
   Stream<InGameState> _mapGameCanceledToState() async* {
-    final playState = _playBloc.state;
+    /**
+  *    final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
@@ -72,12 +75,14 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
         _playOfflineService.cancelGame();
       }
     }
+  */
   }
 
   Stream<InGameState> _mapUndoThrowPressedToState() async* {
     // TODO maybe add last throw and cut last input digit or if darts
     // remove last darts and preset inputOrDarts to this value
-    final playState = _playBloc.state;
+    /**
+    *  final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
@@ -87,12 +92,14 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
         _playOfflineService.undoThrow();
       }
     }
+    */
   }
 
   Stream<InGameState> _mapPerformThrowPressedToState(
     PerformThrowPressed event,
   ) async* {
-    final playState = _playBloc.state;
+    /**
+     * final playState = _playBloc.state;
     if (playState is PlayGameInProgress) {
       final online = playState.gameSnapshot is OnlineGameSnapshot;
 
@@ -109,6 +116,7 @@ class InGameBloc extends Bloc<InGameEvent, InGameState>
         yield state.copyWith(inputOrDarts: left(0));
       }
     }
+     */
   }
 
   Stream<InGameState> _mapGameReceivedToState(

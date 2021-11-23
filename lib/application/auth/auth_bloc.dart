@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
               : const AuthState.unauthenticated(),
         ) {
     on<_AuthStarted>(
-      (event, emit) async => _mapAuthStartedToState,
+      (event, emit) async => _mapAuthStartedToState(event, emit),
       transformer: restartable(),
     );
   }

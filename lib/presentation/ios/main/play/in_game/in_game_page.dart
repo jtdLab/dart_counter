@@ -5,14 +5,12 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'dart:math' as math;
 
 // BLOCS
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/in_game/optical_input_area/optical_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/speech_input_area/speech_input_area_bloc.dart';
 import 'package:dart_counter/application/in_game/standard_input_area/standard_input_area_bloc.dart';
-import 'package:dart_counter/application/in_game/stats/stats_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/game/dart.dart';
@@ -43,7 +41,7 @@ class InGamePage extends StatelessWidget {
           final gameSnapshot = state.gameSnapshot;
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
-            getIt<PlayBloc>().add(const PlayEvent.resetRequested());
+            
           } else if (gameSnapshot.status == Status.finished) {
             context.router
                 .replace(PostGamePageRoute(gameSnapshot: gameSnapshot));

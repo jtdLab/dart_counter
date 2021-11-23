@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
@@ -27,15 +26,12 @@ class GameInvitationsBloc
   final IPlayOnlineService _playOnlineService;
   final IGameInvitationService _gameInvitationService;
 
-  final PlayBloc _playBloc;
-
   StreamSubscription? _dataSubscription;
   StreamSubscription? _gameSnapshotsSubscription;
 
   GameInvitationsBloc(
     this._playOnlineService,
     this._gameInvitationService,
-    this._playBloc,
   ) : super(
           GameInvitationsState.initial(
             receivedGameInvitations: _gameInvitationService
@@ -81,13 +77,16 @@ class GameInvitationsBloc
       }
     });
 
-    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
+    // TODO
+    /**
+   *   _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
       if (playState is PlayGameInProgress) {
         final gameSnapshot = playState.gameSnapshot;
         add(GameInvitationsEvent.gameReceived(gameSnapshot: gameSnapshot));
       }
     });
 
+   */
     _gameInvitationService.markReceivedInvitationsAsRead();
   }
 
@@ -125,7 +124,7 @@ class GameInvitationsBloc
         yield state.copyWith(loading: false, failure: failure);
       },
       (_) async* {
-        _playBloc.add(const PlayEvent.gameJoined());
+       // _playBloc.add(const PlayEvent.gameJoined()); // TODO
         await _gameInvitationService.accept(invitation: event.gameInvitation);
       },
     );

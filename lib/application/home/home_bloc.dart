@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/core/play/play_bloc.dart';
 import 'package:dart_counter/application/training/training_bloc.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
@@ -26,6 +26,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:async/async.dart';
 
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';
@@ -40,174 +41,150 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
   final IGameInvitationService _gameInvitationService;
   final IFriendService _friendService;
 
-  final PlayBloc _playBloc;
-  final TrainingBloc _trainingBloc;
-
-  StreamSubscription? _dataSubscription;
-  StreamSubscription? _gameSnapshotsSubscription;
-  StreamSubscription? _trainingGameSnapshotsSubscription;
-
   HomeBloc(
     this._playOfflineService,
     this._playOnlineService,
     this._userService,
     this._gameInvitationService,
     this._friendService,
-    this._playBloc,
-    this._trainingBloc,
   ) : super(const HomeState.loadInProgress()) {
-    final dataStream = CombineLatestStream(
-      [
-        _userService.watchUser(),
-        _gameInvitationService.watchReceivedGameInvitations(),
-        _friendService.watchReceivedFriendRequests(),
-      ],
-      (events) => events,
-    );
+    on<_WatchDataStarted>(
+      (event, emit) async {
+        await emit.forEach(
+          CombineLatestStream(
+            [
+              _userService.watchUser(),
+              _gameInvitationService.watchReceivedGameInvitations(),
+              _friendService.watchReceivedFriendRequests(),
+            ],
+            (data) => Tuple3(
+              data[0]! as Either<UserFailure, User>,
+              data[1]! as Either<GameInvitationFailure, KtList<GameInvitation>>,
+              data[2]! as Either<FriendFailure, KtList<FriendRequest>>,
+            ),
+          ).asyncMap(
+            (data) async {
+              final failureOrUser = data.value1;
+              final failureOrReceivedGameInvitations = data.value2;
+              final failureOrReceivedFriendRequests = data.value3;
 
-    _dataSubscription = dataStream.listen((data) async {
-      final failureOrUser = data[0]! as Either<UserFailure, User>;
-      final failureOrReceivedGameInvitations =
-          data[1]! as Either<GameInvitationFailure, KtList<GameInvitation>>;
-      final failureOrReceivedFriendRequests =
-          data[2]! as Either<FriendFailure, KtList<FriendRequest>>;
+              if (failureOrUser.isLeft()) {
+                return const HomeState.loadFailure();
+              } else if (failureOrReceivedGameInvitations.isLeft()) {
+                return const HomeState.loadFailure();
+              } else if (failureOrReceivedFriendRequests.isLeft()) {
+                return const HomeState.loadFailure();
+              } else {
+                final user = failureOrUser.toOption().toNullable()!;
+                final photoUrl = user.profile.photoUrl;
+                if (photoUrl != null) {
+                  await _fetchImage(url: photoUrl);
+                }
 
-      if (failureOrUser.isLeft()) {
-        // yield load failure state
-      } else if (failureOrReceivedGameInvitations.isLeft()) {
-        // yield load failure state
-      } else if (failureOrReceivedFriendRequests.isLeft()) {
-        // yield load failure state
-      } else {
-        final user = failureOrUser.toOption().toNullable()!;
-        final photoUrl = user.profile.photoUrl;
-        if (photoUrl != null) {
-          await _fetchImage(url: photoUrl);
-        }
-
-        add(
-          HomeEvent.dataReceived(
-            user: user,
-            unreadInvitations: failureOrReceivedGameInvitations
-                .toOption()
-                .toNullable()!
-                .iter
-                .where((element) => !element.read)
-                .length,
-            unreadFriendRequests: failureOrReceivedFriendRequests
-                .toOption()
-                .toNullable()!
-                .iter
-                .where((element) => !element.read)
-                .length,
+                return HomeState.loadSuccess(
+                  user: user,
+                  unreadInvitations: failureOrReceivedGameInvitations
+                      .toOption()
+                      .toNullable()!
+                      .iter
+                      .where((element) => !element.read)
+                      .length,
+                  unreadFriendRequests: failureOrReceivedFriendRequests
+                      .toOption()
+                      .toNullable()!
+                      .iter
+                      .where((element) => !element.read)
+                      .length,
+                );
+              }
+            },
           ),
+          onData: id,
         );
-      }
-    });
-
-    _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
-      if (playState is PlayGameInProgress) {
-        final gameSnapshot = playState.gameSnapshot;
-        add(HomeEvent.gameReceived(gameSnapshot: gameSnapshot));
-      }
-    });
-
-    _trainingGameSnapshotsSubscription =
-        _trainingBloc.stream.listen((trainingState) {
-      if (trainingState is TrainingInitial) {
-        final gameSnapshot = trainingState.gameSnapshot;
-        add(HomeEvent.trainingGameReceived(trainingGameSnapshot: gameSnapshot));
-      }
-    });
-  }
-
-  @override
-  Stream<HomeState> mapEventToState(
-    HomeEvent event,
-  ) async* {
-    yield* event.map(
-      createOnlineGamePressed: (_) => _mapCreateOnlineGamePressedToState(),
-      createOfflineGamePressed: (_) => _mapCreateOfflineGamePressedToState(),
-      dataReceived: (event) => _mapDataReceivedToState(event),
-      gameReceived: (event) => _mapGameReceivedToState(event),
-      trainingGameReceived: (event) => _mapTrainingGameReceivedToState(event),
+      },
+      transformer: restartable(),
     );
+    on<_CreateOnlineGamePressed>(
+      (event, emit) async => _mapCreateOnlineGamePressedToState(event, emit),
+    );
+    on<_CreateOfflineGamePressed>(_mapCreateOfflineGamePressedToState);
+    on<_CreateTrainingPressed>(_mapCreateTrainingPressedToState);
+
+    add(const HomeEvent.watchDataStarted());
   }
 
-  Stream<HomeState> _mapCreateOnlineGamePressedToState() async* {
-    yield* state.maybeMap(
-      loadSuccess: (loadSuccess) async* {
-        yield const HomeState.loadInProgress();
+  Future<void> _mapCreateOnlineGamePressedToState(
+    _CreateOnlineGamePressed event,
+    Emitter<HomeState> emit,
+  ) async {
+    await state.mapOrNull(
+      loadSuccess: (loadSuccess) async {
+        emit(const HomeState.loadInProgress());
 
+        // TODO move to service ?
         await Future.delayed(const Duration(seconds: 1));
-        final failureOrUnit = await _playOnlineService.createGame();
 
-        yield* failureOrUnit.fold(
-          (failure) async* {
-            yield loadSuccess;
+        final failureOrGameSnapshot = await _playOnlineService.createGame();
+        failureOrGameSnapshot.fold(
+          (failure) {
+            emit(loadSuccess);
           },
-          (_) async* {
-            _playBloc.add(
-              const PlayEvent.gameCreated(online: true),
-            );
+          (gameSnapshot) {
+            emit(loadSuccess.copyWith(gameSnapshot: gameSnapshot));
           },
         );
       },
-      orElse: () async* {},
     );
   }
 
-  Stream<HomeState> _mapCreateOfflineGamePressedToState() async* {
-    yield* state.maybeMap(
-      loadSuccess: (loadSuccess) async* {
-        _playOfflineService.createGame(owner: loadSuccess.user);
-        _playBloc.add(
-          const PlayEvent.gameCreated(online: false),
+  void _mapCreateOfflineGamePressedToState(
+    _CreateOfflineGamePressed event,
+    Emitter<HomeState> emit,
+  ) {
+    state.mapOrNull(
+      loadSuccess: (loadSuccess) {
+        final failureOrGameSnapshot = _playOfflineService.createGame(
+          owner: loadSuccess.user,
+        );
+        failureOrGameSnapshot.fold(
+          (failure) {
+            emit(loadSuccess);
+          },
+          (gameSnapshot) {
+            emit(loadSuccess.copyWith(gameSnapshot: gameSnapshot));
+          },
         );
       },
-      orElse: () async* {},
     );
   }
 
-  Stream<HomeState> _mapDataReceivedToState(
-    _DataReceived event,
-  ) async* {
-    yield HomeState.loadSuccess(
-      user: event.user,
-      unreadInvitations: event.unreadInvitations,
-      unreadFriendRequests: event.unreadFriendRequests,
-    );
-  }
-
-  Stream<HomeState> _mapGameReceivedToState(
-    _GameReceived event,
-  ) async* {
-    yield* state.maybeMap(
-      loadSuccess: (loadSuccess) async* {
-        yield loadSuccess.copyWith(
-          gameSnapshot: event.gameSnapshot,
+  void _mapCreateTrainingPressedToState(
+    _CreateTrainingPressed event,
+    Emitter<HomeState> emit,
+  ) {
+    // TODO
+    /**
+     * state.mapOrNull(
+      loadSuccess: (loadSuccess) {
+        final failureOrTrainingGameSnapshot = _traingService.createGame(
+          owner: loadSuccess.user,
+        );
+        failureOrTrainingGameSnapshot.fold(
+          (failure) {
+            emit(loadSuccess);
+          },
+          (trainingGameSnapshot) {
+            emit(loadSuccess.copyWith(trainingGameSnapshot: trainingGameSnapshot));
+          },
         );
       },
-      orElse: () async* {},
     );
+     */
   }
-
-  Stream<HomeState> _mapTrainingGameReceivedToState(
-    _TrainingGameReceived event,
-  ) async* {
-    yield* state.maybeMap(
-      loadSuccess: (loadSuccess) async* {
-        yield loadSuccess.copyWith(
-          trainingGameSnapshot: event.trainingGameSnapshot,
-        );
-      },
-      orElse: () async* {},
-    );
-  }
-
-  /// Loads and caches image located at [url].
 
   // TODO move this to repo layer or keep here
+
+  /// Loads and caches image located at [url].
   Future<void> _fetchImage({
     required String url,
   }) async {
@@ -224,10 +201,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
   @override
   Future<void> close() {
-    _dataSubscription?.cancel();
-    _gameSnapshotsSubscription?.cancel();
-    _trainingGameSnapshotsSubscription?.cancel();
-
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<HomeBloc>()) {
       getIt.resetLazySingleton<HomeBloc>();
