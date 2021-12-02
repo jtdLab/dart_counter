@@ -178,8 +178,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           _i36.Bloc<_i38.InGameEvent, _i39.InGameState>?>(
       (playWatcherCubit, inGameBloc) => _i35.OpticalInputAreaBloc(
           playWatcherCubit, inGameBloc, get<_i34.InputCubit>()));
-  gh.lazySingleton<_i40.PlayOfflineWatcherCubit>(
-      () => _i40.PlayOfflineWatcherCubit(get<_i25.IPlayOfflineService>()));
+  gh.lazySingleton<_i40.PlayOfflineWatcherCubit>(() =>
+      _i40.PlayOfflineWatcherCubit(
+          get<_i25.IPlayOfflineService>(), get<_i31.IUserService>()));
   gh.lazySingleton<_i41.ProfileBloc>(
       () => _i41.ProfileBloc(get<_i31.IUserService>()));
   gh.lazySingleton<_i42.ScoreTrainingBloc>(

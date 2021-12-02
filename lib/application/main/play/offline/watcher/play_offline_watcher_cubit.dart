@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
+import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,7 +15,15 @@ class PlayOfflineWatcherCubit extends Cubit<OfflineGameSnapshot> {
 
   PlayOfflineWatcherCubit(
     this._playOfflineService,
-  ) : super(_playOfflineService.getGame()) {
+    IUserService userService,
+  ) : super(
+          _playOfflineService.createGame(
+            owner: userService
+                .getUser()
+                // TODO better error
+                .getOrElse(() => throw Error()),
+          ),
+        ) {
     _gameSnapshotStreamSubscription = _playOfflineService
         .watchGame()
         .listen((gameSnapshot) => emit(gameSnapshot));

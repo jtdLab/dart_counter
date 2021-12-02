@@ -54,9 +54,9 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  Future<Either<PlayFailure, OfflineGameSnapshot>> createGame({
+  OfflineGameSnapshot createGame({
     required User owner,
-  }) async {
+  }) {
     if (_game == null) {
       _game = _game = ex.Game(
         ownerName: owner.profile.name.getOrCrash(),
@@ -67,10 +67,10 @@ class PlayOfflineService implements IPlayOfflineService {
 
       _emitSnpashot();
 
-      return right(_gameController.value);
+      return _gameController.value;
     }
 
-    return left(const PlayFailure.error()); // TODO more specific
+    throw Error(); // TODO better name for this error e.g game alrdy running
   }
 
   @override

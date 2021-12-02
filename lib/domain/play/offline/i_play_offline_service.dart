@@ -13,7 +13,9 @@ abstract class IPlayOfflineService extends AbstractIPlayService {
   OfflineGameSnapshot getGame();
 
   /// Creates a new game with [owner].
-  Future<Either<PlayFailure, OfflineGameSnapshot>> createGame({
+  ///
+  /// Returns the first snapshot of the created game.
+  OfflineGameSnapshot createGame({
     required User owner,
   });
 

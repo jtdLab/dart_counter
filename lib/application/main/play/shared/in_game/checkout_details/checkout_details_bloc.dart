@@ -17,6 +17,7 @@ part 'checkout_details_bloc.freezed.dart';
 part 'checkout_details_event.dart';
 part 'checkout_details_state.dart';
 
+
 @injectable
 class CheckoutDetailsBloc
     extends Bloc<CheckoutDetailsEvent, CheckoutDetailsState>
