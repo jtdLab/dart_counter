@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/settings/change_username/change_username_bloc.dart';
+import 'package:dart_counter/application/main/settings/change_username/change_username_bloc.dart';
 
 // LOCAL PAGES + WIDGETS
 part 'initial/initial_page.dart';

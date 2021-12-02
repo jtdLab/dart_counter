@@ -1,9 +1,9 @@
 // CORE
-import 'package:dart_counter/application/play/online/watcher/play_online_watcher_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/play/online/create_game/create_online_game_bloc.dart';
+import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
+import 'package:dart_counter/application/main/play/online/create_game/create_online_game_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';

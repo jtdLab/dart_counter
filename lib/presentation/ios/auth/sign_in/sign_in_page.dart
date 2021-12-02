@@ -1,7 +1,7 @@
 // CORE
 // BLOCS
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-import 'package:dart_counter/application/sign_in/sign_in_bloc.dart';
+import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // MODALS

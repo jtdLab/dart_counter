@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/sign_in/forgot_password/forgot_password_bloc.dart';
+import 'package:dart_counter/application/auth/sign_in/forgot_password/forgot_password_bloc.dart';
 
 // LOCAL PAGES + WIDGETS
 part 'initial/initial_page.dart';

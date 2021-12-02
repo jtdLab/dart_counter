@@ -11,7 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:flutter/material.dart' as _i28;
 
-import '../../application/game_history/game_history_bloc.dart' as _i31;
+import '../../application/main/game_history/game_history_bloc.dart' as _i31;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i30;
 import 'main/contact/contact_page.dart' as _i6;

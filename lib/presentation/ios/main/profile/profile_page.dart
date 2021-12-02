@@ -1,9 +1,9 @@
 // CORE
-import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/profile/profile_bloc.dart';
+import 'package:dart_counter/application/main/profile/profile_bloc.dart';
+import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/user/career_stats.dart';

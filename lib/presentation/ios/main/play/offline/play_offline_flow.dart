@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/play/offline/watcher/play_offline_watcher_cubit.dart';
+import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 
 class PlayOfflineFlow extends StatelessWidget {
   const PlayOfflineFlow({

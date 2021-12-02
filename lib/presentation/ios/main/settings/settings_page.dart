@@ -3,7 +3,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOC
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-import 'package:dart_counter/application/settings/settings_bloc.dart';
+import 'package:dart_counter/application/main/settings/settings_bloc.dart';
 
 // MODALS
 import 'modals/edit_profile_image/edit_profile_image_modal.dart';
