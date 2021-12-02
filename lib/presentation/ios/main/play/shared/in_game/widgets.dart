@@ -1534,7 +1534,7 @@ class PlayerItem extends StatelessWidget {
           Expanded(
             flex: 7,
             child: _PlayerItemHeader(
-              name: player.name!,
+              name: player.name!, // TODO DartBot has no name maybe do dartbot into seperate item
             ),
           ),
           Expanded(

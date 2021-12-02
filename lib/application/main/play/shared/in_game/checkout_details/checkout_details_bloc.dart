@@ -5,7 +5,7 @@ import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/helpers.dart' as helpers;
+import 'package:dart_game/util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -16,7 +16,6 @@ import '../in_game_state.dart';
 part 'checkout_details_bloc.freezed.dart';
 part 'checkout_details_event.dart';
 part 'checkout_details_state.dart';
-
 
 @injectable
 class CheckoutDetailsBloc
@@ -35,7 +34,7 @@ class CheckoutDetailsBloc
         _inGameBloc = inGameBloc!,
         super(
           CheckoutDetailsState(
-            minDartsThrown: helpers.minDartsThrown(
+            minDartsThrown: DartUtils.minDartsThrown(
               points: _inputCubit.state.when(
                 points: (input) => input,
                 darts: (darts) => darts.fold(
@@ -45,7 +44,7 @@ class CheckoutDetailsBloc
               ),
               pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
             ),
-            maxDartsThrown: helpers.maxDartsThrown(
+            maxDartsThrown: DartUtils.maxDartsThrown(
               points: _inputCubit.state.when(
                 points: (input) => input,
                 darts: (darts) => darts.fold(
@@ -55,7 +54,7 @@ class CheckoutDetailsBloc
               ),
               pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
             ),
-            minDartsOnDouble: helpers.minDartsOnDouble(
+            minDartsOnDouble: DartUtils.minDartsOnDouble(
               points: _inputCubit.state.when(
                 points: (input) => input,
                 darts: (darts) => darts.fold(
@@ -66,7 +65,7 @@ class CheckoutDetailsBloc
               pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
             ),
             maxDartsOnDouble: min(
-              helpers.maxDartsOnDouble(
+              DartUtils.maxDartsOnDouble(
                 points: _inputCubit.state.when(
                   points: (input) => input,
                   darts: (darts) => darts.fold(
@@ -76,7 +75,7 @@ class CheckoutDetailsBloc
                 ),
                 pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
               ),
-              helpers.minDartsThrown(
+              DartUtils.minDartsThrown(
                 points: _inputCubit.state.when(
                   points: (input) => input,
                   darts: (darts) => darts.fold(
@@ -87,7 +86,7 @@ class CheckoutDetailsBloc
                 pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
               ),
             ),
-            selectedDartsThrown: helpers.minDartsThrown(
+            selectedDartsThrown: DartUtils.minDartsThrown(
               points: _inputCubit.state.when(
                 points: (input) => input,
                 darts: (darts) => darts.fold(
@@ -97,7 +96,7 @@ class CheckoutDetailsBloc
               ),
               pointsLeft: playWatcherCubit.state.currentTurn().pointsLeft,
             ),
-            selectedDartsOnDouble: helpers.minDartsOnDouble(
+            selectedDartsOnDouble: DartUtils.minDartsOnDouble(
               points: _inputCubit.state.when(
                 points: (input) => input,
                 darts: (darts) => darts.fold(
@@ -125,7 +124,7 @@ class CheckoutDetailsBloc
     }
 
     final newMaxDartsOnDouble = min(
-      helpers.maxDartsOnDouble(
+      DartUtils.maxDartsOnDouble(
         points: _inputCubit.state.when(
           points: (input) => input,
           darts: (darts) => darts.fold(

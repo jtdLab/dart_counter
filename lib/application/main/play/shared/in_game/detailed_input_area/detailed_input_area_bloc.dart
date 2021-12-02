@@ -5,7 +5,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/helpers.dart' as helpers;
+import 'package:dart_game/util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -60,20 +60,20 @@ class DetailedInputAreaBloc
       (acc, dart) => acc + dart.points(),
     );
 
-    final minDartsThrown = helpers.minDartsThrown(
+    final minDartsThrown = DartUtils.minDartsThrown(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsThrown = helpers.maxDartsThrown(
+    final maxDartsThrown = DartUtils.maxDartsThrown(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
-    final minDartsOnDouble = helpers.minDartsOnDouble(
+    final minDartsOnDouble = DartUtils.minDartsOnDouble(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsOnDouble = helpers.maxDartsOnDouble(
+    final maxDartsOnDouble = DartUtils.maxDartsOnDouble(
       points: input,
       pointsLeft: pointsLeftCurrentTurn,
     );

@@ -4,7 +4,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/input/input_cu
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/helpers.dart' as helpers;
+import 'package:dart_game/util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -53,20 +53,21 @@ class StandardInputAreaBloc
       darts: (darts) => throw Error(), // TODO better error
     );
 
-    final minDartsThrown = helpers.minDartsThrown(
-      points: points,
+    final minDartsThrown = DartUtils.minDartsThrown(
       pointsLeft: pointsLeftCurrentTurn,
+      points: points,
     );
-    final maxDartsThrown = helpers.maxDartsThrown(
+
+    final maxDartsThrown = DartUtils.maxDartsThrown(
       points: points,
       pointsLeft: pointsLeftCurrentTurn,
     );
 
-    final minDartsOnDouble = helpers.minDartsOnDouble(
+    final minDartsOnDouble = DartUtils.minDartsOnDouble(
       points: points,
       pointsLeft: pointsLeftCurrentTurn,
     );
-    final maxDartsOnDouble = helpers.maxDartsOnDouble(
+    final maxDartsOnDouble = DartUtils.maxDartsOnDouble(
       points: points,
       pointsLeft: pointsLeftCurrentTurn,
     );
@@ -97,24 +98,25 @@ class StandardInputAreaBloc
     final pointsLeftCurrentTurn =
         _playWatcherCubit.state.currentTurn().pointsLeft;
 
-    final isFinish = helpers.isFinish(points: pointsLeftCurrentTurn);
+    final isFinish = DartUtils.isFinish(points: pointsLeftCurrentTurn);
+
     if (isFinish) {
       _inputCubit.update(newInput: left(pointsLeftCurrentTurn));
 
-      final minDartsThrown = helpers.minDartsThrown(
+      final minDartsThrown = DartUtils.minDartsThrown(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
-      final maxDartsThrown = helpers.maxDartsThrown(
+      final maxDartsThrown = DartUtils.maxDartsThrown(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
 
-      final minDartsOnDouble = helpers.minDartsOnDouble(
+      final minDartsOnDouble = DartUtils.minDartsOnDouble(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
-      final maxDartsOnDouble = helpers.maxDartsOnDouble(
+      final maxDartsOnDouble = DartUtils.maxDartsOnDouble(
         points: pointsLeftCurrentTurn,
         pointsLeft: pointsLeftCurrentTurn,
       );
@@ -174,7 +176,7 @@ class StandardInputAreaBloc
       currentInput.toString() + event.digit.toString(),
     );
 
-    final valid = helpers.validatePoints(
+    final valid = DartUtils.validatePoints(
       pointsLeft: pointsLeftCurrentTurn,
       points: newInput,
     );

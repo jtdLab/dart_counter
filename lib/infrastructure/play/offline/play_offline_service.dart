@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/game/mode.dart';
@@ -16,6 +17,8 @@ import 'package:rxdart/rxdart.dart';
 
 import '../abstract_game_snapshot_dto.dart';
 
+// This service has to reset itself after games is canceled or finished
+
 @Environment(Environment.dev)
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -30,7 +33,13 @@ class PlayOfflineService implements IPlayOfflineService {
 
   // TODO maybe use behaivor subj with ex.Game? and map this to watchGameStream
 
-  PlayOfflineService() : _gameController = BehaviorSubject();
+  PlayOfflineService() : _gameController = BehaviorSubject() {
+    _gameController.stream.listen((gameSnapshot) {
+      if(gameSnapshot.status == Status.canceled || gameSnapshot.status == Status.finished) {
+        // TODO reset
+      }
+    });
+  }
 
   @override
   Future<Either<PlayFailure, Unit>> addDartBot() {
