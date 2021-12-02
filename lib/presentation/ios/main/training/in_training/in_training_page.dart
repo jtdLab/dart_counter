@@ -7,7 +7,7 @@ import 'package:dart_counter/application/training/training_bloc.dart';
 // DOMAIN
 import 'package:dart_counter/domain/game/status.dart';
 
-import '../../shared.dart';
+import '../../shared/widgets.dart';
 
 part 'widgets.dart';
 

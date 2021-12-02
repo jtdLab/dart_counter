@@ -2,10 +2,11 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/auth/auth_bloc.dart';
+import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 
 final Router router = Router();
 
+// TODO rename to app flow ?? and move outside core
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import 'package:dart_counter/application/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 
 // LOCAL WIDGETS
-import './../../shared.dart';
+import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class OverviewPage extends StatelessWidget {

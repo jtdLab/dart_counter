@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // LOCAL WIDGETS
-import './../shared.dart';
+import '../shared/widgets.dart';
 part 'widgets.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {

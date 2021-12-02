@@ -107,7 +107,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     on<_CreateOnlineGamePressed>(
       (event, emit) async => _mapCreateOnlineGamePressedToState(event, emit),
     );
-    on<_CreateOfflineGamePressed>(_mapCreateOfflineGamePressedToState);
+    on<_CreateOfflineGamePressed>(
+      (event, emit) async => _mapCreateOfflineGamePressedToState(event, emit),
+    );
     on<_CreateTrainingPressed>(_mapCreateTrainingPressedToState);
 
     add(const HomeEvent.watchDataStarted());
@@ -137,16 +139,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     );
   }
 
-  void _mapCreateOfflineGamePressedToState(
+  Future<void> _mapCreateOfflineGamePressedToState(
     _CreateOfflineGamePressed event,
     Emitter<HomeState> emit,
-  ) {
-    state.mapOrNull(
-      loadSuccess: (loadSuccess) {
+  ) async {
+    await state.mapOrNull(
+      loadSuccess: (loadSuccess) async {
         final failureOrGameSnapshot = _playOfflineService.createGame(
           owner: loadSuccess.user,
         );
-        failureOrGameSnapshot.fold(
+        (await failureOrGameSnapshot).fold(
           (failure) {
             emit(loadSuccess);
           },

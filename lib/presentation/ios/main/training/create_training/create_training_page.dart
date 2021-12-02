@@ -17,7 +17,7 @@ import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven
 import 'package:dart_counter/domain/training/mode.dart';
 
 // LOCAL WIDGETS
-import './../../shared.dart';
+import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class CreateTrainingPage extends StatelessWidget {

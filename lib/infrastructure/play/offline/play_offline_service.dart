@@ -33,30 +33,30 @@ class PlayOfflineService implements IPlayOfflineService {
   PlayOfflineService() : _gameController = BehaviorSubject();
 
   @override
-  void addDartBot() {
+  Future<Either<PlayFailure, Unit>> addDartBot() {
     return _tryPerform(
       action: () => _game!.addDartBot(),
     );
   }
 
   @override
-  void addPlayer() {
+  Future<Either<PlayFailure, Unit>> addPlayer() {
     return _tryPerform(
       action: () => _game!.addPlayer(player: ex.Player()),
     );
   }
 
   @override
-  void cancelGame() {
+  Future<Either<PlayFailure, Unit>> cancelGame() {
     return _tryPerform(
       action: () => _game!.cancel(),
     );
   }
 
   @override
-  Either<PlayFailure, OfflineGameSnapshot> createGame({
+  Future<Either<PlayFailure, OfflineGameSnapshot>> createGame({
     required User owner,
-  }) {
+  }) async {
     if (_game == null) {
       _game = _game = ex.Game(
         ownerName: owner.profile.name.getOrCrash(),
@@ -74,7 +74,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void performThrow({
+  Future<Either<PlayFailure, Unit>> performThrow({
     required Throw t,
   }) {
     return _tryPerform(
@@ -85,14 +85,14 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void removeDartBot() {
+  Future<Either<PlayFailure, Unit>> removeDartBot() {
     return _tryPerform(
       action: () => _game!.removeDartBot(),
     );
   }
 
   @override
-  void removePlayer({
+  Future<Either<PlayFailure, Unit>> removePlayer({
     required int index,
   }) {
     return _tryPerform(
@@ -101,7 +101,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void reorderPlayer({
+  Future<Either<PlayFailure, Unit>> reorderPlayer({
     required int oldIndex,
     required int newIndex,
   }) {
@@ -114,7 +114,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void setDartBotTargetAverage({
+  Future<Either<PlayFailure, Unit>> setDartBotTargetAverage({
     required int targetAverage,
   }) {
     return _tryPerform(
@@ -123,7 +123,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void setMode({
+  Future<Either<PlayFailure, Unit>> setMode({
     required Mode mode,
   }) {
     return _tryPerform(
@@ -133,7 +133,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void setSize({
+  Future<Either<PlayFailure, Unit>> setSize({
     required int size,
   }) {
     return _tryPerform(
@@ -142,7 +142,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void setStartingPoints({
+  Future<Either<PlayFailure, Unit>> setStartingPoints({
     required int startingPoints,
   }) {
     return _tryPerform(
@@ -151,7 +151,7 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void setType({
+  Future<Either<PlayFailure, Unit>> setType({
     required Type type,
   }) {
     return _tryPerform(
@@ -161,21 +161,21 @@ class PlayOfflineService implements IPlayOfflineService {
   }
 
   @override
-  void startGame() {
+  Future<Either<PlayFailure, Unit>> startGame() {
     return _tryPerform(
       action: () => _game!.start(),
     );
   }
 
   @override
-  void undoThrow() {
+  Future<Either<PlayFailure, Unit>> undoThrow() {
     return _tryPerform(
       action: () => _game!.undoThrow(),
     );
   }
 
   @override
-  void updateName({
+  Future<Either<PlayFailure, Unit>> updateName({
     required int index,
     required String newName,
   }) {
@@ -196,13 +196,19 @@ class PlayOfflineService implements IPlayOfflineService {
 
   // TODO involve return type bool of action instead of void
   /// Trys to Perform [action].
-  void _tryPerform({
+  Future<Either<PlayFailure, Unit>> _tryPerform({
     required void Function() action,
-  }) {
+  }) async {
     if (_game != null) {
       action();
       _emitSnpashot();
+      return right(unit);
     }
+
+    // TODO name better no game found running
+    return left(
+      const PlayFailure.error(),
+    );
   }
 
   void _emitSnpashot() {

@@ -1,7 +1,4 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/main/play/create_game/offline/create_offline_game_page.dart';
-import 'package:dart_counter/presentation/ios/main/play/in_game/offline/in_offline_game_page.dart';
-import 'package:dart_counter/presentation/ios/main/play/play_offline_flow.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -14,10 +11,14 @@ import 'main/game_history/overview/overview_page.dart' as game_history_overview;
 import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
-import 'main/play/create_game/online/create_online_game_page.dart';
-import 'main/play/in_game/online/in_online_game_page.dart';
-import 'main/play/play_online_flow.dart';
-import 'main/play/post_game/post_game_page.dart';
+import 'main/play/offline/create_game/create_offline_game_page.dart';
+import 'main/play/offline/in_game/in_offline_game_page.dart';
+import 'main/play/offline/play_offline_flow.dart';
+import 'main/play/online/create_game/create_online_game_page.dart';
+import 'main/play/online/in_game/in_online_game_page.dart';
+import 'main/play/online/play_online_flow.dart';
+import 'main/play/offline/post_game/post_offline_game_page.dart';
+import 'main/play/online/post_game/post_online_game_page.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';
@@ -104,7 +105,7 @@ import 'main/training/training_flow.dart';
               page: InOfflineGamePage,
             ),
             CupertinoRoute(
-              page: PostGamePage,
+              page: PostOfflineGamePage,
             ),
           ],
         ),
@@ -121,7 +122,7 @@ import 'main/training/training_flow.dart';
               page: InOnlineGamePage,
             ),
             CupertinoRoute(
-              page: PostGamePage,
+              page: PostOnlineGamePage,
             ),
           ],
         ),

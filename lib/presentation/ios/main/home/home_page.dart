@@ -10,7 +10,7 @@ import 'package:dart_counter/application/training/training_bloc.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 
 // LOCAL WIDGETS
-import './../shared.dart';
+import '../shared/widgets.dart';
 part 'widgets.dart';
 
 class HomePage extends StatelessWidget {

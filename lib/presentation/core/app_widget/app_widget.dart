@@ -6,7 +6,7 @@ import 'dart:io';
 import 'package:dart_counter/generated/codegen_loader.g.dart';
 
 // BLOCS
-import 'package:dart_counter/application/auth/auth_bloc.dart';
+import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 
 // APPS
 import 'package:dart_counter/presentation/android/core/app_widget.dart'

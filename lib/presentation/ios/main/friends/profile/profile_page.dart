@@ -9,7 +9,7 @@ import 'package:dart_counter/application/friends/friends_bloc.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 
 // LOCAL WIDGETS
-import './../../shared.dart';
+import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class ProfilePage extends StatelessWidget {

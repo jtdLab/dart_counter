@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOC
-import 'package:dart_counter/application/auth/auth_bloc.dart';
+import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/application/settings/settings_bloc.dart';
 
 // MODALS
@@ -12,7 +12,7 @@ import 'modals/change_password/change_password_modal.dart';
 import 'modals/change_email/change_email_modal.dart';
 
 // LOCAL WIDGETS
-import '../shared.dart';
+import '../shared/widgets.dart';
 part 'widgets.dart';
 
 class SettingsPage extends StatelessWidget {

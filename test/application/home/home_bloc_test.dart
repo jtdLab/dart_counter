@@ -6,6 +6,7 @@ import 'package:mocktail/mocktail.dart';
 
 // TODO impl tests
 
+
 class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
