@@ -26,7 +26,7 @@ class _GameInvitationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final unreadReceivedInvitations =
-        context.read<HomeLoadSuccess>().unreadInvitations;
+        context.read<HomeLoadSuccess>().unreadGameInvitations;
 
     if (unreadReceivedInvitations == 0) {
       return AppNavigationBarButton(
@@ -192,9 +192,7 @@ class _PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () => context
-          .read<HomeBloc>()
-          .add(const HomeEvent.createOnlineGamePressed()),
+      onPressed: () => context.read<CreateOnlineGameCubit>().createGame(),
       color: AppColors.orangeNew,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.playersNew),
@@ -207,9 +205,7 @@ class _PlayOfflineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () => context
-          .read<HomeBloc>()
-          .add(const HomeEvent.createOfflineGamePressed()),
+      onPressed: () => context.router.replace(const PlayOfflineFlowRoute()),
       color: AppColors.white,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.robotNew),

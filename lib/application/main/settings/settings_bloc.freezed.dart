@@ -17,18 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SettingsEventTearOff {
   const _$SettingsEventTearOff();
 
-  SettingsDataReceived dataReceived({required User user}) {
-    return SettingsDataReceived(
-      user: user,
-    );
+  _WatchDataStarted watchDataStarted() {
+    return const _WatchDataStarted();
   }
 
-  SettingsLocaleChanged localeChanged() {
-    return const SettingsLocaleChanged();
+  _LocaleChanged localeChanged() {
+    return const _LocaleChanged();
   }
 
-  SettingsSignOutPressed signOutPressed() {
-    return const SettingsSignOutPressed();
+  _SignOutPressed signOutPressed() {
+    return const _SignOutPressed();
   }
 }
 
@@ -39,21 +37,21 @@ const $SettingsEvent = _$SettingsEventTearOff();
 mixin _$SettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) dataReceived,
+    required TResult Function() watchDataStarted,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -61,23 +59,23 @@ mixin _$SettingsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsDataReceived value) dataReceived,
-    required TResult Function(SettingsLocaleChanged value) localeChanged,
-    required TResult Function(SettingsSignOutPressed value) signOutPressed,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_LocaleChanged value) localeChanged,
+    required TResult Function(_SignOutPressed value) signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -101,106 +99,73 @@ class _$SettingsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SettingsDataReceivedCopyWith<$Res> {
-  factory $SettingsDataReceivedCopyWith(SettingsDataReceived value,
-          $Res Function(SettingsDataReceived) then) =
-      _$SettingsDataReceivedCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
+abstract class _$WatchDataStartedCopyWith<$Res> {
+  factory _$WatchDataStartedCopyWith(
+          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
+      __$WatchDataStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SettingsDataReceivedCopyWithImpl<$Res>
+class __$WatchDataStartedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements $SettingsDataReceivedCopyWith<$Res> {
-  _$SettingsDataReceivedCopyWithImpl(
-      SettingsDataReceived _value, $Res Function(SettingsDataReceived) _then)
-      : super(_value, (v) => _then(v as SettingsDataReceived));
+    implements _$WatchDataStartedCopyWith<$Res> {
+  __$WatchDataStartedCopyWithImpl(
+      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
+      : super(_value, (v) => _then(v as _WatchDataStarted));
 
   @override
-  SettingsDataReceived get _value => super._value as SettingsDataReceived;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(SettingsDataReceived(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
+  _WatchDataStarted get _value => super._value as _WatchDataStarted;
 }
 
 /// @nodoc
 
-class _$SettingsDataReceived implements SettingsDataReceived {
-  const _$SettingsDataReceived({required this.user});
-
-  @override
-  final User user;
+class _$_WatchDataStarted implements _WatchDataStarted {
+  const _$_WatchDataStarted();
 
   @override
   String toString() {
-    return 'SettingsEvent.dataReceived(user: $user)';
+    return 'SettingsEvent.watchDataStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is SettingsDataReceived &&
-            (identical(other.user, user) || other.user == user));
+        (other.runtimeType == runtimeType && other is _WatchDataStarted);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  $SettingsDataReceivedCopyWith<SettingsDataReceived> get copyWith =>
-      _$SettingsDataReceivedCopyWithImpl<SettingsDataReceived>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) dataReceived,
+    required TResult Function() watchDataStarted,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
-    return dataReceived(user);
+    return watchDataStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
-    return dataReceived?.call(user);
+    return watchDataStarted?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
   }) {
-    if (dataReceived != null) {
-      return dataReceived(user);
+    if (watchDataStarted != null) {
+      return watchDataStarted();
     }
     return orElse();
   }
@@ -208,71 +173,65 @@ class _$SettingsDataReceived implements SettingsDataReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsDataReceived value) dataReceived,
-    required TResult Function(SettingsLocaleChanged value) localeChanged,
-    required TResult Function(SettingsSignOutPressed value) signOutPressed,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_LocaleChanged value) localeChanged,
+    required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
-    return dataReceived(this);
+    return watchDataStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
-    return dataReceived?.call(this);
+    return watchDataStarted?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
-    if (dataReceived != null) {
-      return dataReceived(this);
+    if (watchDataStarted != null) {
+      return watchDataStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class SettingsDataReceived implements SettingsEvent {
-  const factory SettingsDataReceived({required User user}) =
-      _$SettingsDataReceived;
-
-  User get user;
-  @JsonKey(ignore: true)
-  $SettingsDataReceivedCopyWith<SettingsDataReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _WatchDataStarted implements SettingsEvent {
+  const factory _WatchDataStarted() = _$_WatchDataStarted;
 }
 
 /// @nodoc
-abstract class $SettingsLocaleChangedCopyWith<$Res> {
-  factory $SettingsLocaleChangedCopyWith(SettingsLocaleChanged value,
-          $Res Function(SettingsLocaleChanged) then) =
-      _$SettingsLocaleChangedCopyWithImpl<$Res>;
+abstract class _$LocaleChangedCopyWith<$Res> {
+  factory _$LocaleChangedCopyWith(
+          _LocaleChanged value, $Res Function(_LocaleChanged) then) =
+      __$LocaleChangedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SettingsLocaleChangedCopyWithImpl<$Res>
+class __$LocaleChangedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements $SettingsLocaleChangedCopyWith<$Res> {
-  _$SettingsLocaleChangedCopyWithImpl(
-      SettingsLocaleChanged _value, $Res Function(SettingsLocaleChanged) _then)
-      : super(_value, (v) => _then(v as SettingsLocaleChanged));
+    implements _$LocaleChangedCopyWith<$Res> {
+  __$LocaleChangedCopyWithImpl(
+      _LocaleChanged _value, $Res Function(_LocaleChanged) _then)
+      : super(_value, (v) => _then(v as _LocaleChanged));
 
   @override
-  SettingsLocaleChanged get _value => super._value as SettingsLocaleChanged;
+  _LocaleChanged get _value => super._value as _LocaleChanged;
 }
 
 /// @nodoc
 
-class _$SettingsLocaleChanged implements SettingsLocaleChanged {
-  const _$SettingsLocaleChanged();
+class _$_LocaleChanged implements _LocaleChanged {
+  const _$_LocaleChanged();
 
   @override
   String toString() {
@@ -282,7 +241,7 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is SettingsLocaleChanged);
+        (other.runtimeType == runtimeType && other is _LocaleChanged);
   }
 
   @override
@@ -291,7 +250,7 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) dataReceived,
+    required TResult Function() watchDataStarted,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -301,7 +260,7 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -311,7 +270,7 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -325,9 +284,9 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsDataReceived value) dataReceived,
-    required TResult Function(SettingsLocaleChanged value) localeChanged,
-    required TResult Function(SettingsSignOutPressed value) signOutPressed,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_LocaleChanged value) localeChanged,
+    required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
     return localeChanged(this);
   }
@@ -335,9 +294,9 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
     return localeChanged?.call(this);
   }
@@ -345,9 +304,9 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (localeChanged != null) {
@@ -357,33 +316,33 @@ class _$SettingsLocaleChanged implements SettingsLocaleChanged {
   }
 }
 
-abstract class SettingsLocaleChanged implements SettingsEvent {
-  const factory SettingsLocaleChanged() = _$SettingsLocaleChanged;
+abstract class _LocaleChanged implements SettingsEvent {
+  const factory _LocaleChanged() = _$_LocaleChanged;
 }
 
 /// @nodoc
-abstract class $SettingsSignOutPressedCopyWith<$Res> {
-  factory $SettingsSignOutPressedCopyWith(SettingsSignOutPressed value,
-          $Res Function(SettingsSignOutPressed) then) =
-      _$SettingsSignOutPressedCopyWithImpl<$Res>;
+abstract class _$SignOutPressedCopyWith<$Res> {
+  factory _$SignOutPressedCopyWith(
+          _SignOutPressed value, $Res Function(_SignOutPressed) then) =
+      __$SignOutPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SettingsSignOutPressedCopyWithImpl<$Res>
+class __$SignOutPressedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements $SettingsSignOutPressedCopyWith<$Res> {
-  _$SettingsSignOutPressedCopyWithImpl(SettingsSignOutPressed _value,
-      $Res Function(SettingsSignOutPressed) _then)
-      : super(_value, (v) => _then(v as SettingsSignOutPressed));
+    implements _$SignOutPressedCopyWith<$Res> {
+  __$SignOutPressedCopyWithImpl(
+      _SignOutPressed _value, $Res Function(_SignOutPressed) _then)
+      : super(_value, (v) => _then(v as _SignOutPressed));
 
   @override
-  SettingsSignOutPressed get _value => super._value as SettingsSignOutPressed;
+  _SignOutPressed get _value => super._value as _SignOutPressed;
 }
 
 /// @nodoc
 
-class _$SettingsSignOutPressed implements SettingsSignOutPressed {
-  const _$SettingsSignOutPressed();
+class _$_SignOutPressed implements _SignOutPressed {
+  const _$_SignOutPressed();
 
   @override
   String toString() {
@@ -393,7 +352,7 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is SettingsSignOutPressed);
+        (other.runtimeType == runtimeType && other is _SignOutPressed);
   }
 
   @override
@@ -402,7 +361,7 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) dataReceived,
+    required TResult Function() watchDataStarted,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -412,7 +371,7 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -422,7 +381,7 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? dataReceived,
+    TResult Function()? watchDataStarted,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -436,9 +395,9 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SettingsDataReceived value) dataReceived,
-    required TResult Function(SettingsLocaleChanged value) localeChanged,
-    required TResult Function(SettingsSignOutPressed value) signOutPressed,
+    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_LocaleChanged value) localeChanged,
+    required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
     return signOutPressed(this);
   }
@@ -446,9 +405,9 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
     return signOutPressed?.call(this);
   }
@@ -456,9 +415,9 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SettingsDataReceived value)? dataReceived,
-    TResult Function(SettingsLocaleChanged value)? localeChanged,
-    TResult Function(SettingsSignOutPressed value)? signOutPressed,
+    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_LocaleChanged value)? localeChanged,
+    TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
     if (signOutPressed != null) {
@@ -468,8 +427,8 @@ class _$SettingsSignOutPressed implements SettingsSignOutPressed {
   }
 }
 
-abstract class SettingsSignOutPressed implements SettingsEvent {
-  const factory SettingsSignOutPressed() = _$SettingsSignOutPressed;
+abstract class _SignOutPressed implements SettingsEvent {
+  const factory _SignOutPressed() = _$_SignOutPressed;
 }
 
 /// @nodoc
