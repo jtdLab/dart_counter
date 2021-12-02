@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/main/play/shared/in_game_event.dart';
-import 'package:dart_counter/application/main/play/shared/in_game_state.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_event.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_state.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
-export 'package:dart_counter/application/main/play/shared/in_game_event.dart';
-export 'package:dart_counter/application/main/play/shared/in_game_state.dart';
+export 'package:dart_counter/application/main/play/shared/in_game/in_game_event.dart';
+export 'package:dart_counter/application/main/play/shared/in_game/in_game_state.dart';
 
 @lazySingleton
 class InOfflineGameBloc extends Bloc<InGameEvent, InGameState>

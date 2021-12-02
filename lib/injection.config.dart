@@ -40,20 +40,20 @@ import 'application/main/play/online/create_game/create_online_game_bloc.dart'
 import 'application/main/play/online/in_game/in_online_game_bloc.dart' as _i71;
 import 'application/main/play/online/watcher/play_online_watcher_cubit.dart'
     as _i73;
-import 'application/main/play/shared/checkout_details/checkout_details_bloc.dart'
+import 'application/main/play/shared/in_game/checkout_details/checkout_details_bloc.dart'
     as _i57;
-import 'application/main/play/shared/detailed_input_area/detailed_input_area_bloc.dart'
+import 'application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart'
     as _i59;
-import 'application/main/play/shared/in_game_event.dart' as _i38;
-import 'application/main/play/shared/in_game_state.dart' as _i39;
-import 'application/main/play/shared/input/input_cubit.dart' as _i34;
-import 'application/main/play/shared/optical_input_area/optical_input_area_bloc.dart'
+import 'application/main/play/shared/in_game/in_game_event.dart' as _i38;
+import 'application/main/play/shared/in_game/in_game_state.dart' as _i39;
+import 'application/main/play/shared/in_game/input/input_cubit.dart' as _i34;
+import 'application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart'
     as _i35;
-import 'application/main/play/shared/show_checkout_details/show_checkout_details_cubit.dart'
+import 'application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart'
     as _i44;
-import 'application/main/play/shared/speech_input_area/speech_input_area_bloc.dart'
+import 'application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart'
     as _i49;
-import 'application/main/play/shared/standard_input_area/standard_input_area_bloc.dart'
+import 'application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart'
     as _i50;
 import 'application/main/profile/profile_bloc.dart' as _i41;
 import 'application/main/settings/change_email/change_email_bloc.dart' as _i54;

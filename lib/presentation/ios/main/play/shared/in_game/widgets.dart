@@ -5,11 +5,11 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'dart:math' as math;
 
 // BLOCS
-import 'package:dart_counter/application/main/play/shared/input/input_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/detailed_input_area/detailed_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/optical_input_area/optical_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/speech_input_area/speech_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/standard_input_area/standard_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/game/dart.dart';
