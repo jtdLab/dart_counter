@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<HomeBloc>(),
+          create: (context) => getIt<HomeBloc>()..add(const HomeEvent.watchDataStarted()),
         ),
         BlocProvider(
           create: (context) => getIt<CreateOnlineGameCubit>(),
@@ -24,11 +24,12 @@ class HomePage extends StatelessWidget {
       child: BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
         listener: (context, state) {
           state.mapOrNull(
-              success: (success) =>
-                  context.router.replace(const PlayOnlineFlowRoute()),
-              failure: (failure) {
-                // TODO show toast with error msg why could not creat egame
-              });
+            success: (success) =>
+                context.router.replace(const PlayOnlineFlowRoute()),
+            failure: (failure) {
+              // TODO show toast with error msg why could not creat egame
+            },
+          );
         },
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
