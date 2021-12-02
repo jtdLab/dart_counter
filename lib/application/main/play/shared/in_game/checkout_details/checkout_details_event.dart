@@ -4,9 +4,9 @@ part of 'checkout_details_bloc.dart';
 class CheckoutDetailsEvent with _$CheckoutDetailsEvent {
   const factory CheckoutDetailsEvent.selectedDartsThrownUpdated({
     required int newSelectedDartsThrown,
-  }) = SelectedDartsThrownUpdated;
+  }) = _SelectedDartsThrownUpdated;
   const factory CheckoutDetailsEvent.selectedDartsOnDoubleUpdated({
     required int newSelectedDartsOnDouble,
-  }) = SelectedDartsOnDoubleUpdated;
-  const factory CheckoutDetailsEvent.confirmPressed() = ConfirmPressed;
+  }) = _SelectedDartsOnDoubleUpdated;
+  const factory CheckoutDetailsEvent.confirmPressed() = _ConfirmPressed;
 }

@@ -17,22 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CheckoutDetailsEventTearOff {
   const _$CheckoutDetailsEventTearOff();
 
-  SelectedDartsThrownUpdated selectedDartsThrownUpdated(
+  _SelectedDartsThrownUpdated selectedDartsThrownUpdated(
       {required int newSelectedDartsThrown}) {
-    return SelectedDartsThrownUpdated(
+    return _SelectedDartsThrownUpdated(
       newSelectedDartsThrown: newSelectedDartsThrown,
     );
   }
 
-  SelectedDartsOnDoubleUpdated selectedDartsOnDoubleUpdated(
+  _SelectedDartsOnDoubleUpdated selectedDartsOnDoubleUpdated(
       {required int newSelectedDartsOnDouble}) {
-    return SelectedDartsOnDoubleUpdated(
+    return _SelectedDartsOnDoubleUpdated(
       newSelectedDartsOnDouble: newSelectedDartsOnDouble,
     );
   }
 
-  ConfirmPressed confirmPressed() {
-    return const ConfirmPressed();
+  _ConfirmPressed confirmPressed() {
+    return const _ConfirmPressed();
   }
 }
 
@@ -69,29 +69,29 @@ mixin _$CheckoutDetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SelectedDartsThrownUpdated value)
+    required TResult Function(_SelectedDartsThrownUpdated value)
         selectedDartsThrownUpdated,
-    required TResult Function(SelectedDartsOnDoubleUpdated value)
+    required TResult Function(_SelectedDartsOnDoubleUpdated value)
         selectedDartsOnDoubleUpdated,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,30 +115,31 @@ class _$CheckoutDetailsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SelectedDartsThrownUpdatedCopyWith<$Res> {
-  factory $SelectedDartsThrownUpdatedCopyWith(SelectedDartsThrownUpdated value,
-          $Res Function(SelectedDartsThrownUpdated) then) =
-      _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>;
+abstract class _$SelectedDartsThrownUpdatedCopyWith<$Res> {
+  factory _$SelectedDartsThrownUpdatedCopyWith(
+          _SelectedDartsThrownUpdated value,
+          $Res Function(_SelectedDartsThrownUpdated) then) =
+      __$SelectedDartsThrownUpdatedCopyWithImpl<$Res>;
   $Res call({int newSelectedDartsThrown});
 }
 
 /// @nodoc
-class _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>
+class __$SelectedDartsThrownUpdatedCopyWithImpl<$Res>
     extends _$CheckoutDetailsEventCopyWithImpl<$Res>
-    implements $SelectedDartsThrownUpdatedCopyWith<$Res> {
-  _$SelectedDartsThrownUpdatedCopyWithImpl(SelectedDartsThrownUpdated _value,
-      $Res Function(SelectedDartsThrownUpdated) _then)
-      : super(_value, (v) => _then(v as SelectedDartsThrownUpdated));
+    implements _$SelectedDartsThrownUpdatedCopyWith<$Res> {
+  __$SelectedDartsThrownUpdatedCopyWithImpl(_SelectedDartsThrownUpdated _value,
+      $Res Function(_SelectedDartsThrownUpdated) _then)
+      : super(_value, (v) => _then(v as _SelectedDartsThrownUpdated));
 
   @override
-  SelectedDartsThrownUpdated get _value =>
-      super._value as SelectedDartsThrownUpdated;
+  _SelectedDartsThrownUpdated get _value =>
+      super._value as _SelectedDartsThrownUpdated;
 
   @override
   $Res call({
     Object? newSelectedDartsThrown = freezed,
   }) {
-    return _then(SelectedDartsThrownUpdated(
+    return _then(_SelectedDartsThrownUpdated(
       newSelectedDartsThrown: newSelectedDartsThrown == freezed
           ? _value.newSelectedDartsThrown
           : newSelectedDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -149,8 +150,8 @@ class _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
-  const _$SelectedDartsThrownUpdated({required this.newSelectedDartsThrown});
+class _$_SelectedDartsThrownUpdated implements _SelectedDartsThrownUpdated {
+  const _$_SelectedDartsThrownUpdated({required this.newSelectedDartsThrown});
 
   @override
   final int newSelectedDartsThrown;
@@ -164,7 +165,7 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SelectedDartsThrownUpdated &&
+            other is _SelectedDartsThrownUpdated &&
             (identical(other.newSelectedDartsThrown, newSelectedDartsThrown) ||
                 other.newSelectedDartsThrown == newSelectedDartsThrown));
   }
@@ -174,10 +175,9 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
 
   @JsonKey(ignore: true)
   @override
-  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
-      get copyWith =>
-          _$SelectedDartsThrownUpdatedCopyWithImpl<SelectedDartsThrownUpdated>(
-              this, _$identity);
+  _$SelectedDartsThrownUpdatedCopyWith<_SelectedDartsThrownUpdated>
+      get copyWith => __$SelectedDartsThrownUpdatedCopyWithImpl<
+          _SelectedDartsThrownUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -220,11 +220,11 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SelectedDartsThrownUpdated value)
+    required TResult Function(_SelectedDartsThrownUpdated value)
         selectedDartsThrownUpdated,
-    required TResult Function(SelectedDartsOnDoubleUpdated value)
+    required TResult Function(_SelectedDartsOnDoubleUpdated value)
         selectedDartsOnDoubleUpdated,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return selectedDartsThrownUpdated(this);
   }
@@ -232,11 +232,11 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return selectedDartsThrownUpdated?.call(this);
   }
@@ -244,11 +244,11 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (selectedDartsThrownUpdated != null) {
@@ -258,43 +258,43 @@ class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
   }
 }
 
-abstract class SelectedDartsThrownUpdated implements CheckoutDetailsEvent {
-  const factory SelectedDartsThrownUpdated(
-      {required int newSelectedDartsThrown}) = _$SelectedDartsThrownUpdated;
+abstract class _SelectedDartsThrownUpdated implements CheckoutDetailsEvent {
+  const factory _SelectedDartsThrownUpdated(
+      {required int newSelectedDartsThrown}) = _$_SelectedDartsThrownUpdated;
 
   int get newSelectedDartsThrown;
   @JsonKey(ignore: true)
-  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
+  _$SelectedDartsThrownUpdatedCopyWith<_SelectedDartsThrownUpdated>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
-  factory $SelectedDartsOnDoubleUpdatedCopyWith(
-          SelectedDartsOnDoubleUpdated value,
-          $Res Function(SelectedDartsOnDoubleUpdated) then) =
-      _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>;
+abstract class _$SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  factory _$SelectedDartsOnDoubleUpdatedCopyWith(
+          _SelectedDartsOnDoubleUpdated value,
+          $Res Function(_SelectedDartsOnDoubleUpdated) then) =
+      __$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>;
   $Res call({int newSelectedDartsOnDouble});
 }
 
 /// @nodoc
-class _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>
+class __$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>
     extends _$CheckoutDetailsEventCopyWithImpl<$Res>
-    implements $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
-  _$SelectedDartsOnDoubleUpdatedCopyWithImpl(
-      SelectedDartsOnDoubleUpdated _value,
-      $Res Function(SelectedDartsOnDoubleUpdated) _then)
-      : super(_value, (v) => _then(v as SelectedDartsOnDoubleUpdated));
+    implements _$SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  __$SelectedDartsOnDoubleUpdatedCopyWithImpl(
+      _SelectedDartsOnDoubleUpdated _value,
+      $Res Function(_SelectedDartsOnDoubleUpdated) _then)
+      : super(_value, (v) => _then(v as _SelectedDartsOnDoubleUpdated));
 
   @override
-  SelectedDartsOnDoubleUpdated get _value =>
-      super._value as SelectedDartsOnDoubleUpdated;
+  _SelectedDartsOnDoubleUpdated get _value =>
+      super._value as _SelectedDartsOnDoubleUpdated;
 
   @override
   $Res call({
     Object? newSelectedDartsOnDouble = freezed,
   }) {
-    return _then(SelectedDartsOnDoubleUpdated(
+    return _then(_SelectedDartsOnDoubleUpdated(
       newSelectedDartsOnDouble: newSelectedDartsOnDouble == freezed
           ? _value.newSelectedDartsOnDouble
           : newSelectedDartsOnDouble // ignore: cast_nullable_to_non_nullable
@@ -305,8 +305,8 @@ class _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
-  const _$SelectedDartsOnDoubleUpdated(
+class _$_SelectedDartsOnDoubleUpdated implements _SelectedDartsOnDoubleUpdated {
+  const _$_SelectedDartsOnDoubleUpdated(
       {required this.newSelectedDartsOnDouble});
 
   @override
@@ -321,7 +321,7 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SelectedDartsOnDoubleUpdated &&
+            other is _SelectedDartsOnDoubleUpdated &&
             (identical(
                     other.newSelectedDartsOnDouble, newSelectedDartsOnDouble) ||
                 other.newSelectedDartsOnDouble == newSelectedDartsOnDouble));
@@ -332,9 +332,9 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
 
   @JsonKey(ignore: true)
   @override
-  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
-      get copyWith => _$SelectedDartsOnDoubleUpdatedCopyWithImpl<
-          SelectedDartsOnDoubleUpdated>(this, _$identity);
+  _$SelectedDartsOnDoubleUpdatedCopyWith<_SelectedDartsOnDoubleUpdated>
+      get copyWith => __$SelectedDartsOnDoubleUpdatedCopyWithImpl<
+          _SelectedDartsOnDoubleUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -377,11 +377,11 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SelectedDartsThrownUpdated value)
+    required TResult Function(_SelectedDartsThrownUpdated value)
         selectedDartsThrownUpdated,
-    required TResult Function(SelectedDartsOnDoubleUpdated value)
+    required TResult Function(_SelectedDartsOnDoubleUpdated value)
         selectedDartsOnDoubleUpdated,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return selectedDartsOnDoubleUpdated(this);
   }
@@ -389,11 +389,11 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return selectedDartsOnDoubleUpdated?.call(this);
   }
@@ -401,11 +401,11 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (selectedDartsOnDoubleUpdated != null) {
@@ -415,39 +415,40 @@ class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
   }
 }
 
-abstract class SelectedDartsOnDoubleUpdated implements CheckoutDetailsEvent {
-  const factory SelectedDartsOnDoubleUpdated(
-      {required int newSelectedDartsOnDouble}) = _$SelectedDartsOnDoubleUpdated;
+abstract class _SelectedDartsOnDoubleUpdated implements CheckoutDetailsEvent {
+  const factory _SelectedDartsOnDoubleUpdated(
+          {required int newSelectedDartsOnDouble}) =
+      _$_SelectedDartsOnDoubleUpdated;
 
   int get newSelectedDartsOnDouble;
   @JsonKey(ignore: true)
-  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
+  _$SelectedDartsOnDoubleUpdatedCopyWith<_SelectedDartsOnDoubleUpdated>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConfirmPressedCopyWith<$Res> {
-  factory $ConfirmPressedCopyWith(
-          ConfirmPressed value, $Res Function(ConfirmPressed) then) =
-      _$ConfirmPressedCopyWithImpl<$Res>;
+abstract class _$ConfirmPressedCopyWith<$Res> {
+  factory _$ConfirmPressedCopyWith(
+          _ConfirmPressed value, $Res Function(_ConfirmPressed) then) =
+      __$ConfirmPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ConfirmPressedCopyWithImpl<$Res>
+class __$ConfirmPressedCopyWithImpl<$Res>
     extends _$CheckoutDetailsEventCopyWithImpl<$Res>
-    implements $ConfirmPressedCopyWith<$Res> {
-  _$ConfirmPressedCopyWithImpl(
-      ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
-      : super(_value, (v) => _then(v as ConfirmPressed));
+    implements _$ConfirmPressedCopyWith<$Res> {
+  __$ConfirmPressedCopyWithImpl(
+      _ConfirmPressed _value, $Res Function(_ConfirmPressed) _then)
+      : super(_value, (v) => _then(v as _ConfirmPressed));
 
   @override
-  ConfirmPressed get _value => super._value as ConfirmPressed;
+  _ConfirmPressed get _value => super._value as _ConfirmPressed;
 }
 
 /// @nodoc
 
-class _$ConfirmPressed implements ConfirmPressed {
-  const _$ConfirmPressed();
+class _$_ConfirmPressed implements _ConfirmPressed {
+  const _$_ConfirmPressed();
 
   @override
   String toString() {
@@ -457,7 +458,7 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ConfirmPressed);
+        (other.runtimeType == runtimeType && other is _ConfirmPressed);
   }
 
   @override
@@ -504,11 +505,11 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SelectedDartsThrownUpdated value)
+    required TResult Function(_SelectedDartsThrownUpdated value)
         selectedDartsThrownUpdated,
-    required TResult Function(SelectedDartsOnDoubleUpdated value)
+    required TResult Function(_SelectedDartsOnDoubleUpdated value)
         selectedDartsOnDoubleUpdated,
-    required TResult Function(ConfirmPressed value) confirmPressed,
+    required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
   }
@@ -516,11 +517,11 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return confirmPressed?.call(this);
   }
@@ -528,11 +529,11 @@ class _$ConfirmPressed implements ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectedDartsThrownUpdated value)?
+    TResult Function(_SelectedDartsThrownUpdated value)?
         selectedDartsThrownUpdated,
-    TResult Function(SelectedDartsOnDoubleUpdated value)?
+    TResult Function(_SelectedDartsOnDoubleUpdated value)?
         selectedDartsOnDoubleUpdated,
-    TResult Function(ConfirmPressed value)? confirmPressed,
+    TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
     if (confirmPressed != null) {
@@ -542,8 +543,8 @@ class _$ConfirmPressed implements ConfirmPressed {
   }
 }
 
-abstract class ConfirmPressed implements CheckoutDetailsEvent {
-  const factory ConfirmPressed() = _$ConfirmPressed;
+abstract class _ConfirmPressed implements CheckoutDetailsEvent {
+  const factory _ConfirmPressed() = _$_ConfirmPressed;
 }
 
 /// @nodoc

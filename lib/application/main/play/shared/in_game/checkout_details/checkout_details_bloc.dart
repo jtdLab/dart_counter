@@ -108,13 +108,13 @@ class CheckoutDetailsBloc
             ),
           ),
         ) {
-    on<SelectedDartsThrownUpdated>(_mapSelectedDartsThrownUpdatedToState);
-    on<SelectedDartsOnDoubleUpdated>(_mapSelectedDartsOnDoubleUpdatedToState);
-    on<SelectedDartsOnDoubleUpdated>((_, __) => _mapConfirmPressedToState());
+    on<_SelectedDartsThrownUpdated>(_mapSelectedDartsThrownUpdatedToState);
+    on<_SelectedDartsOnDoubleUpdated>(_mapSelectedDartsOnDoubleUpdatedToState);
+    on<_ConfirmPressed>((_, __) => _mapConfirmPressedToState());
   }
 
   void _mapSelectedDartsThrownUpdatedToState(
-    SelectedDartsThrownUpdated event,
+    _SelectedDartsThrownUpdated event,
     Emitter<CheckoutDetailsState> emit,
   ) {
     final newSelectedDartsThrown = event.newSelectedDartsThrown;
@@ -147,7 +147,7 @@ class CheckoutDetailsBloc
   }
 
   void _mapSelectedDartsOnDoubleUpdatedToState(
-    SelectedDartsOnDoubleUpdated event,
+    _SelectedDartsOnDoubleUpdated event,
     Emitter<CheckoutDetailsState> emit,
   ) {
     emit(
