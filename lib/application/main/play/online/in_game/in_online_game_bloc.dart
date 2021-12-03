@@ -17,28 +17,25 @@ class InOnlineGameBloc extends Bloc<InGameEvent, InGameState>
   InOnlineGameBloc(
     this._playOnlineService,
   ) : super(const InGameState.initial()) {
-    on<GameCanceled>((_, __) async => _mapGameCanceledToState());
-    on<UndoThrowPressed>((_, __) async => _mapUndoThrowPressedToState());
+    on<GameCanceled>((_, __) => _mapGameCanceledToState());
+    on<UndoThrowPressed>((_, __) => _mapUndoThrowPressedToState());
     on<PerformThrowPressed>(
-      (event, _) async => _mapPerformThrowPressedToState(event),
+      (event, _) => _mapPerformThrowPressedToState(event),
     );
   }
 
-  Future<void> _mapGameCanceledToState() async {
-    // TODO fold result
-    await _playOnlineService.cancelGame();
+  void _mapGameCanceledToState() {
+    _playOnlineService.cancelGame();
   }
 
-  Future<void> _mapUndoThrowPressedToState() async {
-    // TODO fold result
-    await _playOnlineService.undoThrow();
+  void _mapUndoThrowPressedToState() {
+    _playOnlineService.undoThrow();
   }
 
-  Future<void> _mapPerformThrowPressedToState(
+  void _mapPerformThrowPressedToState(
     PerformThrowPressed event,
-  ) async {
-    // TODO fold result
-    await _playOnlineService.performThrow(t: event.t);
+  ) {
+    _playOnlineService.performThrow(t: event.t);
   }
 
   @override
