@@ -1,3 +1,4 @@
+// Utility functions helpful for things like validation of user input a. o. when playing dart games.
 abstract class IDartUtils {
   /// Returns `true` if [points] is valid when a player has [pointsLeft].
   bool validatePoints({
