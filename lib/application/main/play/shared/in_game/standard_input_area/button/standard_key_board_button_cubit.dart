@@ -44,14 +44,13 @@ class StandardKeyBoardButtonCubit extends Cubit<StandardKeyBoardButtonState> {
     this._dartUtils,
   ) : super(const StandardKeyBoardButtonState.initial(disabled: false)) {
     _inputCubitSubscription = _inputCubit.stream.listen((inputState) {
-      final out = inputState.map(
-        points: (points) => _mapInputPointsToState(points),
-        darts: (darts) => throw Error(),
+      emit(
+        inputState.map(
+          points: (points) => _mapInputPointsToState(points),
+          // TODO throw on switch from detailed to standard
+          darts: (darts) => throw Error(),
+        ),
       );
-      
-      print(out);
-
-      emit(out);
     });
   }
 

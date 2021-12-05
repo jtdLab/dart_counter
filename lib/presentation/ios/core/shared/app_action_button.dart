@@ -100,7 +100,6 @@ class AppActionButton extends StatelessWidget {
                   text!,
                   maxLines: 1,
                   minFontSize: 8,
-                 
                   style: TextStyle(
                     fontSize: fontSize,
                     color: onPressed == null

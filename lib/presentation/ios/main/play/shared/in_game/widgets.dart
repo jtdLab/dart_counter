@@ -159,13 +159,23 @@ class _StandardKeyBoard extends StatelessWidget {
           child: AppRow(
             spacing: size6(context),
             children: [
-              AppActionButton.flexible(
-                color: AppColors.white,
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.checkPressed()),
-                fontSize: 18,
-                text: LocaleKeys.check.tr().toUpperCase(),
+              BlocBuilder<InputCubit, InputState>(
+                builder: (context, state) {
+                  final points = state.whenOrNull(
+                    points: (points) => points,
+                  ); // TODO visually not good on keyboard change
+
+                  return AppActionButton.flexible(
+                    color: AppColors.white,
+                    onPressed: points == 0
+                        ? null
+                        : () => context
+                            .read<StandardInputAreaBloc>()
+                            .add(const StandardInputAreaEvent.checkPressed()),
+                    fontSize: 18,
+                    text: LocaleKeys.check.tr().toUpperCase(),
+                  );
+                },
               ),
               BlocProvider(
                 create: (context) => StandardKeyBoardButtonCubit(
@@ -178,12 +188,27 @@ class _StandardKeyBoard extends StatelessWidget {
                   digit: 0,
                 ),
               ),
-              AppActionButton.flexible(
-                color: AppColors.white,
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.erasePressed()),
-                icon: Image.asset(AppImages.chevronBackNew),
+              BlocBuilder<InputCubit, InputState>(
+                builder: (context, state) {
+                  final points = state.whenOrNull(
+                    points: (points) => points,
+                  ); // TODO visually not good on keyboard change
+
+                  return AppActionButton.flexible(
+                    color: AppColors.white,
+                    onPressed: points == 0
+                        ? null
+                        : () => context
+                            .read<StandardInputAreaBloc>()
+                            .add(const StandardInputAreaEvent.erasePressed()),
+                    icon: Image.asset(
+                      AppImages.chevronBackNew,
+                      color: points == 0
+                          ? CupertinoColors.quaternarySystemFill
+                          : null,
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -387,14 +412,29 @@ class _DetailedKeyBoard extends StatelessWidget {
                   child: AppRow(
                     spacing: size6(context),
                     children: [
-                      AppActionButton.flexible(
-                        color: AppColors.white,
-                        onPressed: () => context
-                            .read<DetailedInputAreaBloc>()
-                            .add(
-                              const DetailedInputAreaEvent.undoDartPressed(),
+                      BlocBuilder<InputCubit, InputState>(
+                        builder: (context, state) {
+                          final darts = state.whenOrNull(
+                            darts: (darts) => darts,
+                          ); // TODO visually not good on keyboard change
+
+                          return AppActionButton.flexible(
+                            color: AppColors.white,
+                            onPressed: darts?.size == 0
+                                ? null
+                                : () =>
+                                    context.read<DetailedInputAreaBloc>().add(
+                                          const DetailedInputAreaEvent
+                                              .undoDartPressed(),
+                                        ),
+                            icon: Image.asset(
+                              AppImages.chevronBackNew,
+                              color: darts?.size == 0
+                                  ? CupertinoColors.quaternarySystemFill
+                                  : null,
                             ),
-                        icon: Image.asset(AppImages.chevronBackNew),
+                          );
+                        },
                       ),
                     ],
                   ),
