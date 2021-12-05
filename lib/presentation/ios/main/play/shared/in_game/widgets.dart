@@ -1,19 +1,21 @@
 // CORE
-import 'package:dart_counter/presentation/ios/core/core.dart';
-
 // OTHER
 import 'dart:math' as math;
 
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/button/detailed_key_board_button_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 // BLOCS
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/button/standard_key_board_button_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
-
 // DOMAIN
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // NAVBAR
 class StatsButton extends StatelessWidget {
@@ -88,106 +90,100 @@ class _StandardKeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO dependency injection like this seems not to be good practice
+    final pointsLeftCubit = context.read<PointsLeftCubit>();
+    final inputCubit = context.read<InputCubit>();
+    final dartUtils = getIt<IDartUtils>();
+
     return AppColumn(
       spacing: size6(context),
       children: [
         Expanded(
           child: AppRow(
             spacing: size6(context),
-            children: [
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 1)),
-                text: '1',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 2)),
-                text: '2',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 3)),
-                text: '3',
-              ),
-            ],
+            children: List.generate(3, (index) {
+              final i = index + 1;
+              return BlocProvider(
+                create: (context) => StandardKeyBoardButtonCubit(
+                  i,
+                  pointsLeftCubit,
+                  inputCubit,
+                  dartUtils,
+                ),
+                child: _KeyBoardButton(
+                  digit: i,
+                ),
+              );
+            }),
+          ),
+        ),
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: List.generate(3, (index) {
+              final i = index + 4;
+              return BlocProvider(
+                create: (context) => StandardKeyBoardButtonCubit(
+                  i,
+                  pointsLeftCubit,
+                  inputCubit,
+                  dartUtils,
+                ),
+                child: _KeyBoardButton(
+                  digit: i,
+                ),
+              );
+            }),
+          ),
+        ),
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: List.generate(3, (index) {
+              final i = index + 7;
+              return BlocProvider(
+                create: (context) => StandardKeyBoardButtonCubit(
+                  i,
+                  pointsLeftCubit,
+                  inputCubit,
+                  dartUtils,
+                ),
+                child: _KeyBoardButton(
+                  digit: i,
+                ),
+              );
+            }),
           ),
         ),
         Expanded(
           child: AppRow(
             spacing: size6(context),
             children: [
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 4)),
-                text: '4',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 5)),
-                text: '5',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 6)),
-                text: '6',
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: AppRow(
-            spacing: size6(context),
-            children: [
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 7)),
-                text: '7',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 8)),
-                text: '8',
-              ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 9)),
-                text: '9',
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: AppRow(
-            spacing: size6(context),
-            children: [
-              _KeyBoardButton(
+              AppActionButton.flexible(
+                color: AppColors.white,
                 onPressed: () => context
                     .read<StandardInputAreaBloc>()
                     .add(const StandardInputAreaEvent.checkPressed()),
                 fontSize: 18,
                 text: LocaleKeys.check.tr().toUpperCase(),
               ),
-              _KeyBoardButton(
-                onPressed: () => context
-                    .read<StandardInputAreaBloc>()
-                    .add(const StandardInputAreaEvent.digitPressed(digit: 0)),
-                text: '0',
+              BlocProvider(
+                create: (context) => StandardKeyBoardButtonCubit(
+                  0,
+                  pointsLeftCubit,
+                  inputCubit,
+                  dartUtils,
+                ),
+                child: const _KeyBoardButton(
+                  digit: 0,
+                ),
               ),
-              _KeyBoardButton(
+              AppActionButton.flexible(
+                color: AppColors.white,
                 onPressed: () => context
                     .read<StandardInputAreaBloc>()
                     .add(const StandardInputAreaEvent.erasePressed()),
-                child: Image.asset(AppImages.chevronBackNew),
+                icon: Image.asset(AppImages.chevronBackNew),
               ),
             ],
           ),
@@ -198,38 +194,30 @@ class _StandardKeyBoard extends StatelessWidget {
 }
 
 class _KeyBoardButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final double fontSize;
-  final String? text;
-  final Widget? child;
+  final int digit;
 
   const _KeyBoardButton({
     Key? key,
-    this.onPressed,
-    this.fontSize = 28,
-    this.text,
-    this.child,
-  })  : assert(text != null || child != null),
-        super(key: key);
+    required this.digit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (text != null) {
-      return AppActionButton.flexible(
-        fontSize: fontSize,
-        color: AppColors.white,
-        onPressed: onPressed,
-        text: text,
-      );
-    }
-    if (child != null) {
-      return AppActionButton.flexible(
-        color: AppColors.white,
-        onPressed: onPressed,
-        icon: child,
-      );
-    }
-    throw AssertionError('Need to provide child or text');
+    return BlocBuilder<StandardKeyBoardButtonCubit,
+        StandardKeyBoardButtonState>(
+      builder: (context, state) {
+        return AppActionButton.flexible(
+          fontSize: 28,
+          color: AppColors.white,
+          onPressed: state.disabled
+              ? null
+              : () => context
+                  .read<StandardInputAreaBloc>()
+                  .add(StandardInputAreaEvent.digitPressed(digit: digit)),
+          text: digit.toString(),
+        );
+      },
+    );
   }
 }
 
@@ -253,15 +241,15 @@ class DetailedInputArea extends StatelessWidget {
           child: AppColumn(
             spacing: size6(context),
             children: [
-              BlocBuilder<InputCubit, InputState>(
-                builder: (context, state) {
-                  return Expanded(
-                    child: _DartsDisplayer(
+              Expanded(
+                child: BlocBuilder<InputCubit, InputState>(
+                  builder: (context, state) {
+                    return _DartsDisplayer(
                       darts: state.whenOrNull(darts: (darts) => darts) ??
                           const KtList.empty(),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
               Expanded(
                 flex: 3,
@@ -287,7 +275,6 @@ class DetailedInputArea extends StatelessWidget {
   }
 }
 
-// TODO refactor 900 lines are to much for this
 class _DetailedKeyBoard extends StatelessWidget {
   const _DetailedKeyBoard({
     Key? key,
@@ -295,933 +282,181 @@ class _DetailedKeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailedInputAreaBloc, DetailedInputAreaState>(
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () => context
-              .read<DetailedInputAreaBloc>()
-              .add(const DetailedInputAreaEvent.unfocused()),
-          child: AppColumn(
-            spacing: size6(context),
-            children: [
-              Expanded(
-                child: AppRow(
-                  spacing: size6(context),
-                  children: [
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 16,
-                              )
-                          : state.focusedValue == 16
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.single,
-                                  )
-                              : state.focusedValue == 17
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.single,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 16
-                            ? 'S16'
-                            : state.focusedValue == 17
-                                ? 'S17'
-                                : '16',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 16
-                          ? AppColors.red
-                          : state.focusedValue == 17
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 17,
-                              )
-                          : state.focusedValue == 16
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.double,
-                                  )
-                              : state.focusedValue == 17
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 18
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 16
-                            ? 'D16'
-                            : state.focusedValue == 17
-                                ? 'D17'
-                                : state.focusedValue == 18
-                                    ? 'S18'
-                                    : '17',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 16
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 17
-                              ? AppColors.orangeNew
-                              : state.focusedValue == 18
-                                  ? AppColors.red
-                                  : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 18,
-                              )
-                          : state.focusedValue == 16
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 17
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.triple,
-                                      )
-                                  : state.focusedValue == 18
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.double,
-                                          )
-                                      : state.focusedValue == 19
-                                          ? () => _dartDetailPressed(
-                                                context: context,
-                                                type: DartType.single,
-                                              )
-                                          : null,
-                      textOrIcon: left(
-                        state.focusedValue == 16
-                            ? 'T16'
-                            : state.focusedValue == 17
-                                ? 'T17'
-                                : state.focusedValue == 18
-                                    ? 'D18'
-                                    : state.focusedValue == 19
-                                        ? 'S19'
-                                        : '18',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 18
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 19
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 19,
-                              )
-                          : state.focusedValue == 18
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 19
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 20
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 18
-                            ? 'T18'
-                            : state.focusedValue == 19
-                                ? 'D19'
-                                : state.focusedValue == 20
-                                    ? 'S20'
-                                    : '19',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 19
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 20
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 20,
-                              )
-                          : state.focusedValue == 19
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 20
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 25
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 19
-                            ? 'T19'
-                            : state.focusedValue == 20
-                                ? 'D20'
-                                : state.focusedValue == 25
-                                    ? 'S25'
-                                    : '20',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 20
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 25
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 25,
-                              )
-                          : state.focusedValue == 20
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 25
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 20
-                            ? 'T20'
-                            : state.focusedValue == 25
-                                ? 'D25'
-                                : '25',
-                      ),
-                    ),
-                  ],
+    // TODO dependency injection like this seems not to be good practice
+    final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
+    final pointsLeftCubit = context.read<PointsLeftCubit>();
+    final dartUtils = getIt<IDartUtils>();
+
+    return GestureDetector(
+      onTap: () => context
+          .read<DetailedInputAreaBloc>()
+          .add(const DetailedInputAreaEvent.unfocused()),
+      child: AppColumn(
+        spacing: size6(context),
+        children: [
+          Expanded(
+            child: AppRow(
+              spacing: size6(context),
+              children: List.generate(
+                6,
+                (i) => BlocProvider(
+                  create: (context) => DetailedKeyBoardButtonCubit(
+                    i != 5 ? i + 16 : 25,
+                    detailedInputAreaBloc,
+                    pointsLeftCubit,
+                    dartUtils,
+                  ),
+                  child: const _DetailedKeyBoardDigitButton(),
                 ),
               ),
-              Expanded(
-                child: AppRow(
-                  spacing: size6(context),
-                  children: [
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 10,
-                              )
-                          : state.focusedValue == 10
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.single,
-                                  )
-                              : state.focusedValue == 11
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.single,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 10
-                            ? 'S10'
-                            : state.focusedValue == 11
-                                ? 'S11'
-                                : '10',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 10
-                          ? AppColors.red
-                          : state.focusedValue == 11
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 11,
-                              )
-                          : state.focusedValue == 10
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.double,
-                                  )
-                              : state.focusedValue == 11
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 12
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 10
-                            ? 'D10'
-                            : state.focusedValue == 11
-                                ? 'D11'
-                                : state.focusedValue == 12
-                                    ? 'S12'
-                                    : '11',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 10
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 11
-                              ? AppColors.orangeNew
-                              : state.focusedValue == 12
-                                  ? AppColors.red
-                                  : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 12,
-                              )
-                          : state.focusedValue == 10
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 11
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.triple,
-                                      )
-                                  : state.focusedValue == 12
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.double,
-                                          )
-                                      : state.focusedValue == 13
-                                          ? () => _dartDetailPressed(
-                                                context: context,
-                                                type: DartType.single,
-                                              )
-                                          : null,
-                      textOrIcon: left(
-                        state.focusedValue == 10
-                            ? 'T10'
-                            : state.focusedValue == 11
-                                ? 'T11'
-                                : state.focusedValue == 12
-                                    ? 'D12'
-                                    : state.focusedValue == 13
-                                        ? 'S13'
-                                        : '12',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 12
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 13
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 13,
-                              )
-                          : state.focusedValue == 12
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 13
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 14
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : state.focusedValue == 15
-                                          ? () => _dartDetailPressed(
-                                                context: context,
-                                                type: DartType.single,
-                                              )
-                                          : null,
-                      textOrIcon: left(
-                        state.focusedValue == 12
-                            ? 'T12'
-                            : state.focusedValue == 13
-                                ? 'D13'
-                                : state.focusedValue == 14
-                                    ? 'S14'
-                                    : state.focusedValue == 15
-                                        ? 'S15'
-                                        : '13',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 13
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 14
-                              ? AppColors.red
-                              : state.focusedValue == 15
-                                  ? AppColors.red
-                                  : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 14,
-                              )
-                          : state.focusedValue == 13
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 14
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 15
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.double,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 13
-                            ? 'T13'
-                            : state.focusedValue == 14
-                                ? 'D14'
-                                : state.focusedValue == 15
-                                    ? 'D15'
-                                    : '14',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 14
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 15
-                              ? AppColors.orangeNew
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 15,
-                              )
-                          : state.focusedValue == 14
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 15
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.triple,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 14
-                            ? 'T14'
-                            : state.focusedValue == 15
-                                ? 'T15'
-                                : '15',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: AppRow(
-                  spacing: size6(context),
-                  children: [
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 4,
-                              )
-                          : state.focusedValue == 4
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.single,
-                                  )
-                              : state.focusedValue == 5
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.single,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 4
-                            ? 'S4'
-                            : state.focusedValue == 5
-                                ? 'S5'
-                                : '4',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 4
-                          ? AppColors.red
-                          : state.focusedValue == 5
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 5,
-                              )
-                          : state.focusedValue == 4
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.double,
-                                  )
-                              : state.focusedValue == 5
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 6
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 4
-                            ? 'D4'
-                            : state.focusedValue == 5
-                                ? 'D5'
-                                : state.focusedValue == 6
-                                    ? 'S6'
-                                    : '5',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 4
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 5
-                              ? AppColors.orangeNew
-                              : state.focusedValue == 6
-                                  ? AppColors.red
-                                  : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 6,
-                              )
-                          : state.focusedValue == 4
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 5
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.triple,
-                                      )
-                                  : state.focusedValue == 6
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.double,
-                                          )
-                                      : state.focusedValue == 7
-                                          ? () => _dartDetailPressed(
-                                                context: context,
-                                                type: DartType.single,
-                                              )
-                                          : null,
-                      textOrIcon: left(
-                        state.focusedValue == 4
-                            ? 'T4'
-                            : state.focusedValue == 5
-                                ? 'T5'
-                                : state.focusedValue == 6
-                                    ? 'D6'
-                                    : state.focusedValue == 7
-                                        ? 'S7'
-                                        : '6',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 6
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 7
-                              ? AppColors.red
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 7,
-                              )
-                          : state.focusedValue == 6
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 7
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 8
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.single,
-                                          )
-                                      : state.focusedValue == 9
-                                          ? () => _dartDetailPressed(
-                                                context: context,
-                                                type: DartType.single,
-                                              )
-                                          : null,
-                      textOrIcon: left(
-                        state.focusedValue == 6
-                            ? 'T6'
-                            : state.focusedValue == 7
-                                ? 'D7'
-                                : state.focusedValue == 8
-                                    ? 'S8'
-                                    : state.focusedValue == 9
-                                        ? 'S9'
-                                        : '7',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 7
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 8
-                              ? AppColors.red
-                              : state.focusedValue == 9
-                                  ? AppColors.red
-                                  : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 8,
-                              )
-                          : state.focusedValue == 7
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 8
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.double,
-                                      )
-                                  : state.focusedValue == 9
-                                      ? () => _dartDetailPressed(
-                                            context: context,
-                                            type: DartType.double,
-                                          )
-                                      : null,
-                      textOrIcon: left(
-                        state.focusedValue == 7
-                            ? 'T7'
-                            : state.focusedValue == 8
-                                ? 'D8'
-                                : state.focusedValue == 9
-                                    ? 'D9'
-                                    : '8',
-                      ),
-                    ),
-                    _DetailedKeyBoardButton(
-                      fontSize: 14,
-                      color: state.focusedValue == 8
-                          ? AppColors.orangeNew
-                          : state.focusedValue == 9
-                              ? AppColors.orangeNew
-                              : AppColors.black,
-                      onPressed: state.focusedValue == null
-                          ? () => _dartPressed(
-                                context: context,
-                                value: 9,
-                              )
-                          : state.focusedValue == 8
-                              ? () => _dartDetailPressed(
-                                    context: context,
-                                    type: DartType.triple,
-                                  )
-                              : state.focusedValue == 9
-                                  ? () => _dartDetailPressed(
-                                        context: context,
-                                        type: DartType.triple,
-                                      )
-                                  : null,
-                      textOrIcon: left(
-                        state.focusedValue == 8
-                            ? 'T8'
-                            : state.focusedValue == 9
-                                ? 'T9'
-                                : '9',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: AppRow(
-                  spacing: size6(context),
-                  children: [
-                    Expanded(
-                      child: AppRow(
-                        spacing: size6(context),
-                        children: [
-                          _DetailedKeyBoardButton(
-                            fontSize: 14,
-                            onPressed: state.focusedValue == null
-                                ? () => _dartPressed(
-                                      context: context,
-                                      value: 0,
-                                    )
-                                : state.focusedValue == 1
-                                    ? () => _dartDetailPressed(
-                                          context: context,
-                                          type: DartType.single,
-                                        )
-                                    : null,
-                            textOrIcon:
-                                left(state.focusedValue == 1 ? 'S1' : '0'),
-                          ),
-                          _DetailedKeyBoardButton(
-                            fontSize: 14,
-                            color: state.focusedValue == 1
-                                ? AppColors.red
-                                : AppColors.black,
-                            onPressed: state.focusedValue == null
-                                ? () => _dartPressed(
-                                      context: context,
-                                      value: 1,
-                                    )
-                                : state.focusedValue == 1
-                                    ? () => _dartDetailPressed(
-                                          context: context,
-                                          type: DartType.double,
-                                        )
-                                    : state.focusedValue == 2
-                                        ? () => _dartDetailPressed(
-                                              context: context,
-                                              type: DartType.single,
-                                            )
-                                        : state.focusedValue == 3
-                                            ? () => _dartDetailPressed(
-                                                  context: context,
-                                                  type: DartType.single,
-                                                )
-                                            : null,
-                            textOrIcon: left(
-                              state.focusedValue == 1
-                                  ? 'D1'
-                                  : state.focusedValue == 2
-                                      ? 'S2'
-                                      : state.focusedValue == 3
-                                          ? 'S3'
-                                          : '1',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: AppRow(
-                        spacing: size6(context),
-                        children: [
-                          _DetailedKeyBoardButton(
-                            fontSize: 14,
-                            color: state.focusedValue == 1
-                                ? AppColors.orangeNew
-                                : state.focusedValue == 2
-                                    ? AppColors.red
-                                    : state.focusedValue == 3
-                                        ? AppColors.red
-                                        : AppColors.black,
-                            onPressed: state.focusedValue == null
-                                ? () => _dartPressed(
-                                      context: context,
-                                      value: 2,
-                                    )
-                                : state.focusedValue == 1
-                                    ? () => _dartDetailPressed(
-                                          context: context,
-                                          type: DartType.triple,
-                                        )
-                                    : state.focusedValue == 2
-                                        ? () => _dartDetailPressed(
-                                              context: context,
-                                              type: DartType.double,
-                                            )
-                                        : state.focusedValue == 3
-                                            ? () => _dartDetailPressed(
-                                                  context: context,
-                                                  type: DartType.double,
-                                                )
-                                            : null,
-                            textOrIcon: left(
-                              state.focusedValue == 1
-                                  ? 'T1'
-                                  : state.focusedValue == 2
-                                      ? 'D2'
-                                      : state.focusedValue == 3
-                                          ? 'D3'
-                                          : '2',
-                            ),
-                          ),
-                          _DetailedKeyBoardButton(
-                            fontSize: 14,
-                            color: state.focusedValue == 2
-                                ? AppColors.orangeNew
-                                : state.focusedValue == 3
-                                    ? AppColors.orangeNew
-                                    : AppColors.black,
-                            onPressed: state.focusedValue == null
-                                ? () => _dartPressed(
-                                      context: context,
-                                      value: 3,
-                                    )
-                                : state.focusedValue == 2
-                                    ? () => _dartDetailPressed(
-                                          context: context,
-                                          type: DartType.triple,
-                                        )
-                                    : state.focusedValue == 3
-                                        ? () => _dartDetailPressed(
-                                              context: context,
-                                              type: DartType.triple,
-                                            )
-                                        : null,
-                            textOrIcon: left(
-                              state.focusedValue == 2
-                                  ? 'T2'
-                                  : state.focusedValue == 3
-                                      ? 'T3'
-                                      : '3',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: AppRow(
-                        spacing: size6(context),
-                        children: [
-                          _DetailedKeyBoardButton(
-                            onPressed: () =>
-                                context.read<DetailedInputAreaBloc>().add(
-                                      const DetailedInputAreaEvent
-                                          .undoDartPressed(),
-                                    ),
-                            textOrIcon: right(
-                              Image.asset(AppImages.chevronBackNew),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        );
-      },
+          Expanded(
+            child: AppRow(
+              spacing: size6(context),
+              children: List.generate(
+                6,
+                (i) => BlocProvider(
+                  create: (context) => DetailedKeyBoardButtonCubit(
+                    i + 10,
+                    detailedInputAreaBloc,
+                    pointsLeftCubit,
+                    dartUtils,
+                  ),
+                  child: const _DetailedKeyBoardDigitButton(),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: AppRow(
+              spacing: size6(context),
+              children: List.generate(
+                6,
+                (i) => BlocProvider(
+                  create: (context) => DetailedKeyBoardButtonCubit(
+                    i + 4,
+                    detailedInputAreaBloc,
+                    pointsLeftCubit,
+                    dartUtils,
+                  ),
+                  child: const _DetailedKeyBoardDigitButton(),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: AppRow(
+              spacing: size6(context),
+              children: [
+                Expanded(
+                  child: AppRow(
+                    spacing: size6(context),
+                    children: List.generate(
+                      2,
+                      (i) => BlocProvider(
+                        create: (context) => DetailedKeyBoardButtonCubit(
+                          i,
+                          detailedInputAreaBloc,
+                          pointsLeftCubit,
+                          dartUtils,
+                        ),
+                        child: const _DetailedKeyBoardDigitButton(),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: AppRow(
+                    spacing: size6(context),
+                    children: List.generate(
+                      2,
+                      (i) => BlocProvider(
+                        create: (context) => DetailedKeyBoardButtonCubit(
+                          i + 2,
+                          detailedInputAreaBloc,
+                          pointsLeftCubit,
+                          dartUtils,
+                        ),
+                        child: const _DetailedKeyBoardDigitButton(),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: AppRow(
+                    spacing: size6(context),
+                    children: [
+                      AppActionButton.flexible(
+                        color: AppColors.white,
+                        onPressed: () => context
+                            .read<DetailedInputAreaBloc>()
+                            .add(
+                              const DetailedInputAreaEvent.undoDartPressed(),
+                            ),
+                        icon: Image.asset(AppImages.chevronBackNew),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
-  }
-
-  // TODO cleanest way?
-  void _dartPressed({
-    required BuildContext context,
-    required int value,
-  }) {
-    context.read<DetailedInputAreaBloc>().add(
-          DetailedInputAreaEvent.dartPressed(
-            value: value,
-          ),
-        );
-  }
-
-  void _dartDetailPressed({
-    required BuildContext context,
-    required DartType type,
-  }) {
-    context.read<DetailedInputAreaBloc>().add(
-          DetailedInputAreaEvent.dartDetailPressed(
-            type: type,
-          ),
-        );
   }
 }
 
-class _DetailedKeyBoardButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final double fontSize;
-  final Color color;
-  final Either<String, Widget> textOrIcon;
-
-  const _DetailedKeyBoardButton({
+class _DetailedKeyBoardDigitButton extends StatelessWidget {
+  const _DetailedKeyBoardDigitButton({
     Key? key,
-    this.onPressed,
-    this.fontSize = 28,
-    this.color = AppColors.black,
-    required this.textOrIcon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return textOrIcon.fold(
-      (text) => AppActionButton.flexible(
-        fontSize: fontSize,
-        color: AppColors.white,
-        onPressed: onPressed,
-        text: text,
-        fontColor: color,
-        borderColor: color,
-      ),
-      (icon) => AppActionButton.flexible(
-        fontSize: fontSize,
-        color: AppColors.white,
-        onPressed: onPressed,
-        icon: icon,
-        fontColor: color,
-        borderColor: color,
-      ),
+    return BlocBuilder<DetailedKeyBoardButtonCubit,
+        DetailedKeyBoardButtonState>(
+      builder: (context, state) {
+        return state.map(
+          initial: (initial) {
+            return AppActionButton.flexible(
+              fontSize: 14,
+              color: AppColors.white,
+              onPressed: initial.disabled
+                  ? null
+                  : () => context.read<DetailedKeyBoardButtonCubit>().pressed(),
+              text: initial.value.toString(),
+            );
+          },
+          focused: (focused) {
+            final type = focused.type;
+            final value = focused.value;
+
+            final color = type == DartType.single
+                ? AppColors.black
+                : type == DartType.double
+                    ? AppColors.red
+                    : AppColors.orangeNew;
+
+            final text = type == DartType.single
+                ? 'S'
+                : type == DartType.double
+                    ? 'D'
+                    : 'T';
+
+            return AppActionButton.flexible(
+              fontSize: 14,
+              color: AppColors.white,
+              onPressed: () =>
+                  context.read<DetailedKeyBoardButtonCubit>().pressed(),
+              text: text + value.toString(),
+              fontColor: color,
+              borderColor: color,
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -1534,7 +769,8 @@ class PlayerItem extends StatelessWidget {
           Expanded(
             flex: 7,
             child: _PlayerItemHeader(
-              name: player.name!, // TODO DartBot has no name maybe do dartbot into seperate item
+              name: player
+                  .name!, // TODO DartBot has no name maybe do dartbot into seperate item
             ),
           ),
           Expanded(
@@ -2141,6 +1377,7 @@ class _PlayerItemSmallFinishRecommendationDisplayer extends StatelessWidget {
 }
 
 // DART DISPLAYER
+
 // TODO responsive
 class _DartsDisplayer extends StatelessWidget {
   final KtList<Dart> darts;
@@ -2264,33 +1501,33 @@ class _InputRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InputCubit, InputState>(
-      builder: (context, state) {
-        return AppRow(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              child: _UndoButton(
-                onPressed: onUndoPressed,
-              ),
-            ),
-            Expanded(
-              child: _InputPointsDisplayer(
+    return AppRow(
+      spacing: size6(context),
+      children: [
+        Expanded(
+          child: _UndoButton(
+            onPressed: onUndoPressed,
+          ),
+        ),
+        Expanded(
+          child: BlocBuilder<InputCubit, InputState>(
+            builder: (context, state) {
+              return _InputPointsDisplayer(
                 input: state.when(
                   points: (input) => input,
                   darts: (darts) =>
                       darts.foldRight(0, (dart, acc) => acc + dart.points()),
                 ),
-              ),
-            ),
-            Expanded(
-              child: _DoButton(
-                onPressed: onPerformThrowPressed,
-              ),
-            ),
-          ],
-        );
-      },
+              );
+            },
+          ),
+        ),
+        Expanded(
+          child: _DoButton(
+            onPressed: onPerformThrowPressed,
+          ),
+        ),
+      ],
     );
   }
 }

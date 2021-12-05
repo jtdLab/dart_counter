@@ -25,9 +25,9 @@ class _$DetailedInputAreaEventTearOff {
     return const _PerformThrowPressed();
   }
 
-  _DartPressed dartPressed({required int value}) {
-    return _DartPressed(
-      value: value,
+  _DartFocused dartFocused({required int focusedValue}) {
+    return _DartFocused(
+      focusedValue: focusedValue,
     );
   }
 
@@ -55,7 +55,7 @@ mixin _$DetailedInputAreaEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -65,7 +65,7 @@ mixin _$DetailedInputAreaEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -75,7 +75,7 @@ mixin _$DetailedInputAreaEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -86,7 +86,7 @@ mixin _$DetailedInputAreaEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -96,7 +96,7 @@ mixin _$DetailedInputAreaEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -106,7 +106,7 @@ mixin _$DetailedInputAreaEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -175,7 +175,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -188,7 +188,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -201,7 +201,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -218,7 +218,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -231,7 +231,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -244,7 +244,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -304,7 +304,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -317,7 +317,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -330,7 +330,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -347,7 +347,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -360,7 +360,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -373,7 +373,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -391,32 +391,32 @@ abstract class _PerformThrowPressed implements DetailedInputAreaEvent {
 }
 
 /// @nodoc
-abstract class _$DartPressedCopyWith<$Res> {
-  factory _$DartPressedCopyWith(
-          _DartPressed value, $Res Function(_DartPressed) then) =
-      __$DartPressedCopyWithImpl<$Res>;
-  $Res call({int value});
+abstract class _$DartFocusedCopyWith<$Res> {
+  factory _$DartFocusedCopyWith(
+          _DartFocused value, $Res Function(_DartFocused) then) =
+      __$DartFocusedCopyWithImpl<$Res>;
+  $Res call({int focusedValue});
 }
 
 /// @nodoc
-class __$DartPressedCopyWithImpl<$Res>
+class __$DartFocusedCopyWithImpl<$Res>
     extends _$DetailedInputAreaEventCopyWithImpl<$Res>
-    implements _$DartPressedCopyWith<$Res> {
-  __$DartPressedCopyWithImpl(
-      _DartPressed _value, $Res Function(_DartPressed) _then)
-      : super(_value, (v) => _then(v as _DartPressed));
+    implements _$DartFocusedCopyWith<$Res> {
+  __$DartFocusedCopyWithImpl(
+      _DartFocused _value, $Res Function(_DartFocused) _then)
+      : super(_value, (v) => _then(v as _DartFocused));
 
   @override
-  _DartPressed get _value => super._value as _DartPressed;
+  _DartFocused get _value => super._value as _DartFocused;
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? focusedValue = freezed,
   }) {
-    return _then(_DartPressed(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+    return _then(_DartFocused(
+      focusedValue: focusedValue == freezed
+          ? _value.focusedValue
+          : focusedValue // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -424,44 +424,45 @@ class __$DartPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DartPressed implements _DartPressed {
-  const _$_DartPressed({required this.value});
+class _$_DartFocused implements _DartFocused {
+  const _$_DartFocused({required this.focusedValue});
 
   @override
-  final int value;
+  final int focusedValue;
 
   @override
   String toString() {
-    return 'DetailedInputAreaEvent.dartPressed(value: $value)';
+    return 'DetailedInputAreaEvent.dartFocused(focusedValue: $focusedValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DartPressed &&
-            (identical(other.value, value) || other.value == value));
+            other is _DartFocused &&
+            (identical(other.focusedValue, focusedValue) ||
+                other.focusedValue == focusedValue));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, focusedValue);
 
   @JsonKey(ignore: true)
   @override
-  _$DartPressedCopyWith<_DartPressed> get copyWith =>
-      __$DartPressedCopyWithImpl<_DartPressed>(this, _$identity);
+  _$DartFocusedCopyWith<_DartFocused> get copyWith =>
+      __$DartFocusedCopyWithImpl<_DartFocused>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
   }) {
-    return dartPressed(value);
+    return dartFocused(focusedValue);
   }
 
   @override
@@ -469,12 +470,12 @@ class _$_DartPressed implements _DartPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
   }) {
-    return dartPressed?.call(value);
+    return dartFocused?.call(focusedValue);
   }
 
   @override
@@ -482,14 +483,14 @@ class _$_DartPressed implements _DartPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
     required TResult orElse(),
   }) {
-    if (dartPressed != null) {
-      return dartPressed(value);
+    if (dartFocused != null) {
+      return dartFocused(focusedValue);
     }
     return orElse();
   }
@@ -499,12 +500,12 @@ class _$_DartPressed implements _DartPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
   }) {
-    return dartPressed(this);
+    return dartFocused(this);
   }
 
   @override
@@ -512,12 +513,12 @@ class _$_DartPressed implements _DartPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
   }) {
-    return dartPressed?.call(this);
+    return dartFocused?.call(this);
   }
 
   @override
@@ -525,25 +526,25 @@ class _$_DartPressed implements _DartPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
     required TResult orElse(),
   }) {
-    if (dartPressed != null) {
-      return dartPressed(this);
+    if (dartFocused != null) {
+      return dartFocused(this);
     }
     return orElse();
   }
 }
 
-abstract class _DartPressed implements DetailedInputAreaEvent {
-  const factory _DartPressed({required int value}) = _$_DartPressed;
+abstract class _DartFocused implements DetailedInputAreaEvent {
+  const factory _DartFocused({required int focusedValue}) = _$_DartFocused;
 
-  int get value;
+  int get focusedValue;
   @JsonKey(ignore: true)
-  _$DartPressedCopyWith<_DartPressed> get copyWith =>
+  _$DartFocusedCopyWith<_DartFocused> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -589,7 +590,7 @@ class _$_Unfocused implements _Unfocused {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -602,7 +603,7 @@ class _$_Unfocused implements _Unfocused {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -615,7 +616,7 @@ class _$_Unfocused implements _Unfocused {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -632,7 +633,7 @@ class _$_Unfocused implements _Unfocused {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -645,7 +646,7 @@ class _$_Unfocused implements _Unfocused {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -658,7 +659,7 @@ class _$_Unfocused implements _Unfocused {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -741,7 +742,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -754,7 +755,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -767,7 +768,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -784,7 +785,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -797,7 +798,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -810,7 +811,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -876,7 +877,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult when<TResult extends Object?>({
     required TResult Function() undoThrowPressed,
     required TResult Function() performThrowPressed,
-    required TResult Function(int value) dartPressed,
+    required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
     required TResult Function() undoDartPressed,
@@ -889,7 +890,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -902,7 +903,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? undoThrowPressed,
     TResult Function()? performThrowPressed,
-    TResult Function(int value)? dartPressed,
+    TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
     TResult Function()? undoDartPressed,
@@ -919,7 +920,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_UndoThrowPressed value) undoThrowPressed,
     required TResult Function(_PerformThrowPressed value) performThrowPressed,
-    required TResult Function(_DartPressed value) dartPressed,
+    required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
     required TResult Function(_UndoDartPressed value) undoDartPressed,
@@ -932,7 +933,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -945,7 +946,7 @@ class _$_UndoDartPressed implements _UndoDartPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UndoThrowPressed value)? undoThrowPressed,
     TResult Function(_PerformThrowPressed value)? performThrowPressed,
-    TResult Function(_DartPressed value)? dartPressed,
+    TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
     TResult Function(_UndoDartPressed value)? undoDartPressed,
@@ -966,9 +967,15 @@ abstract class _UndoDartPressed implements DetailedInputAreaEvent {
 class _$DetailedInputAreaStateTearOff {
   const _$DetailedInputAreaStateTearOff();
 
-  DetailedInputAreaInitial initial({int? focusedValue}) {
-    return DetailedInputAreaInitial(
+  DetailedInputAreaInitial initial() {
+    return const DetailedInputAreaInitial();
+  }
+
+  DetailedInputAreaFocused focused(
+      {required int focusedValue, required DartType maxAllowedType}) {
+    return DetailedInputAreaFocused(
       focusedValue: focusedValue,
+      maxAllowedType: maxAllowedType,
     );
   }
 }
@@ -978,43 +985,44 @@ const $DetailedInputAreaState = _$DetailedInputAreaStateTearOff();
 
 /// @nodoc
 mixin _$DetailedInputAreaState {
-  int? get focusedValue => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? focusedValue) initial,
+    required TResult Function() initial,
+    required TResult Function(int focusedValue, DartType maxAllowedType)
+        focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? focusedValue)? initial,
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? focusedValue)? initial,
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DetailedInputAreaInitial value) initial,
+    required TResult Function(DetailedInputAreaFocused value) focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DetailedInputAreaStateCopyWith<DetailedInputAreaState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1023,7 +1031,6 @@ abstract class $DetailedInputAreaStateCopyWith<$Res> {
   factory $DetailedInputAreaStateCopyWith(DetailedInputAreaState value,
           $Res Function(DetailedInputAreaState) then) =
       _$DetailedInputAreaStateCopyWithImpl<$Res>;
-  $Res call({int? focusedValue});
 }
 
 /// @nodoc
@@ -1034,28 +1041,13 @@ class _$DetailedInputAreaStateCopyWithImpl<$Res>
   final DetailedInputAreaState _value;
   // ignore: unused_field
   final $Res Function(DetailedInputAreaState) _then;
-
-  @override
-  $Res call({
-    Object? focusedValue = freezed,
-  }) {
-    return _then(_value.copyWith(
-      focusedValue: focusedValue == freezed
-          ? _value.focusedValue
-          : focusedValue // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $DetailedInputAreaInitialCopyWith<$Res>
-    implements $DetailedInputAreaStateCopyWith<$Res> {
+abstract class $DetailedInputAreaInitialCopyWith<$Res> {
   factory $DetailedInputAreaInitialCopyWith(DetailedInputAreaInitial value,
           $Res Function(DetailedInputAreaInitial) then) =
       _$DetailedInputAreaInitialCopyWithImpl<$Res>;
-  @override
-  $Res call({int? focusedValue});
 }
 
 /// @nodoc
@@ -1069,75 +1061,55 @@ class _$DetailedInputAreaInitialCopyWithImpl<$Res>
   @override
   DetailedInputAreaInitial get _value =>
       super._value as DetailedInputAreaInitial;
-
-  @override
-  $Res call({
-    Object? focusedValue = freezed,
-  }) {
-    return _then(DetailedInputAreaInitial(
-      focusedValue: focusedValue == freezed
-          ? _value.focusedValue
-          : focusedValue // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$DetailedInputAreaInitial implements DetailedInputAreaInitial {
-  const _$DetailedInputAreaInitial({this.focusedValue});
-
-  @override
-  final int? focusedValue;
+  const _$DetailedInputAreaInitial();
 
   @override
   String toString() {
-    return 'DetailedInputAreaState.initial(focusedValue: $focusedValue)';
+    return 'DetailedInputAreaState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DetailedInputAreaInitial &&
-            (identical(other.focusedValue, focusedValue) ||
-                other.focusedValue == focusedValue));
+        (other.runtimeType == runtimeType && other is DetailedInputAreaInitial);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, focusedValue);
-
-  @JsonKey(ignore: true)
-  @override
-  $DetailedInputAreaInitialCopyWith<DetailedInputAreaInitial> get copyWith =>
-      _$DetailedInputAreaInitialCopyWithImpl<DetailedInputAreaInitial>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? focusedValue) initial,
+    required TResult Function() initial,
+    required TResult Function(int focusedValue, DartType maxAllowedType)
+        focused,
   }) {
-    return initial(focusedValue);
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? focusedValue)? initial,
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
   }) {
-    return initial?.call(focusedValue);
+    return initial?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? focusedValue)? initial,
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(focusedValue);
+      return initial();
     }
     return orElse();
   }
@@ -1146,6 +1118,7 @@ class _$DetailedInputAreaInitial implements DetailedInputAreaInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DetailedInputAreaInitial value) initial,
+    required TResult Function(DetailedInputAreaFocused value) focused,
   }) {
     return initial(this);
   }
@@ -1154,6 +1127,7 @@ class _$DetailedInputAreaInitial implements DetailedInputAreaInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
   }) {
     return initial?.call(this);
   }
@@ -1162,6 +1136,7 @@ class _$DetailedInputAreaInitial implements DetailedInputAreaInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1172,13 +1147,155 @@ class _$DetailedInputAreaInitial implements DetailedInputAreaInitial {
 }
 
 abstract class DetailedInputAreaInitial implements DetailedInputAreaState {
-  const factory DetailedInputAreaInitial({int? focusedValue}) =
-      _$DetailedInputAreaInitial;
+  const factory DetailedInputAreaInitial() = _$DetailedInputAreaInitial;
+}
+
+/// @nodoc
+abstract class $DetailedInputAreaFocusedCopyWith<$Res> {
+  factory $DetailedInputAreaFocusedCopyWith(DetailedInputAreaFocused value,
+          $Res Function(DetailedInputAreaFocused) then) =
+      _$DetailedInputAreaFocusedCopyWithImpl<$Res>;
+  $Res call({int focusedValue, DartType maxAllowedType});
+}
+
+/// @nodoc
+class _$DetailedInputAreaFocusedCopyWithImpl<$Res>
+    extends _$DetailedInputAreaStateCopyWithImpl<$Res>
+    implements $DetailedInputAreaFocusedCopyWith<$Res> {
+  _$DetailedInputAreaFocusedCopyWithImpl(DetailedInputAreaFocused _value,
+      $Res Function(DetailedInputAreaFocused) _then)
+      : super(_value, (v) => _then(v as DetailedInputAreaFocused));
 
   @override
-  int? get focusedValue;
+  DetailedInputAreaFocused get _value =>
+      super._value as DetailedInputAreaFocused;
+
   @override
+  $Res call({
+    Object? focusedValue = freezed,
+    Object? maxAllowedType = freezed,
+  }) {
+    return _then(DetailedInputAreaFocused(
+      focusedValue: focusedValue == freezed
+          ? _value.focusedValue
+          : focusedValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxAllowedType: maxAllowedType == freezed
+          ? _value.maxAllowedType
+          : maxAllowedType // ignore: cast_nullable_to_non_nullable
+              as DartType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DetailedInputAreaFocused implements DetailedInputAreaFocused {
+  const _$DetailedInputAreaFocused(
+      {required this.focusedValue, required this.maxAllowedType});
+
+  @override
+  final int focusedValue;
+  @override
+  final DartType maxAllowedType;
+
+  @override
+  String toString() {
+    return 'DetailedInputAreaState.focused(focusedValue: $focusedValue, maxAllowedType: $maxAllowedType)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DetailedInputAreaFocused &&
+            (identical(other.focusedValue, focusedValue) ||
+                other.focusedValue == focusedValue) &&
+            (identical(other.maxAllowedType, maxAllowedType) ||
+                other.maxAllowedType == maxAllowedType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, focusedValue, maxAllowedType);
+
   @JsonKey(ignore: true)
-  $DetailedInputAreaInitialCopyWith<DetailedInputAreaInitial> get copyWith =>
+  @override
+  $DetailedInputAreaFocusedCopyWith<DetailedInputAreaFocused> get copyWith =>
+      _$DetailedInputAreaFocusedCopyWithImpl<DetailedInputAreaFocused>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int focusedValue, DartType maxAllowedType)
+        focused,
+  }) {
+    return focused(focusedValue, maxAllowedType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
+  }) {
+    return focused?.call(focusedValue, maxAllowedType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int focusedValue, DartType maxAllowedType)? focused,
+    required TResult orElse(),
+  }) {
+    if (focused != null) {
+      return focused(focusedValue, maxAllowedType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DetailedInputAreaInitial value) initial,
+    required TResult Function(DetailedInputAreaFocused value) focused,
+  }) {
+    return focused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
+  }) {
+    return focused?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DetailedInputAreaInitial value)? initial,
+    TResult Function(DetailedInputAreaFocused value)? focused,
+    required TResult orElse(),
+  }) {
+    if (focused != null) {
+      return focused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DetailedInputAreaFocused implements DetailedInputAreaState {
+  const factory DetailedInputAreaFocused(
+      {required int focusedValue,
+      required DartType maxAllowedType}) = _$DetailedInputAreaFocused;
+
+  int get focusedValue;
+  DartType get maxAllowedType;
+  @JsonKey(ignore: true)
+  $DetailedInputAreaFocusedCopyWith<DetailedInputAreaFocused> get copyWith =>
       throw _privateConstructorUsedError;
 }

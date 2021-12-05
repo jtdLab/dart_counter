@@ -15,7 +15,7 @@ part 'speech_input_area_event.dart';
 part 'speech_input_area_state.dart';
 part 'speech_input_area_bloc.freezed.dart';
 
-// TODO design + implement
+// TODO design + implement + test
 @injectable
 class SpeechInputAreaBloc
     extends Bloc<SpeechInputAreaEvent, SpeechInputAreaState>

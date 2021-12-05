@@ -36,14 +36,14 @@ class _InOnlineGameWidget extends StatelessWidget {
             children: [
               BlocProvider(
                 create: (context) => getIt<StandardInputAreaBloc>(
-                  param1: context.read<PlayOnlineWatcherCubit>(),
+                  param1: context.read<PointsLeftCubit>(),
                   param2: context.read<InOnlineGameBloc>(),
                 ),
                 child: const StandardInputArea(),
               ),
               BlocProvider(
                 create: (context) => getIt<DetailedInputAreaBloc>(
-                  param1: context.read<PlayOnlineWatcherCubit>(),
+                  param1: context.read<PointsLeftCubit>(),
                   param2: context.read<InOnlineGameBloc>(),
                 ),
                 child: const DetailedInputArea(),

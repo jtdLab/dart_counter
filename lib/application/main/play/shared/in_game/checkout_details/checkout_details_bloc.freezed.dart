@@ -551,14 +551,14 @@ abstract class _ConfirmPressed implements CheckoutDetailsEvent {
 class _$CheckoutDetailsStateTearOff {
   const _$CheckoutDetailsStateTearOff();
 
-  _CheckoutDetailsState call(
+  CheckoutDetailsInitial initial(
       {required int minDartsThrown,
       required int maxDartsThrown,
       required int minDartsOnDouble,
       required int maxDartsOnDouble,
       required int selectedDartsThrown,
       required int selectedDartsOnDouble}) {
-    return _CheckoutDetailsState(
+    return CheckoutDetailsInitial(
       minDartsThrown: minDartsThrown,
       maxDartsThrown: maxDartsThrown,
       minDartsOnDouble: minDartsOnDouble,
@@ -580,6 +580,60 @@ mixin _$CheckoutDetailsState {
   int get maxDartsOnDouble => throw _privateConstructorUsedError;
   int get selectedDartsThrown => throw _privateConstructorUsedError;
   int get selectedDartsOnDouble => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)?
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)?
+        initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CheckoutDetailsInitial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CheckoutDetailsInitial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CheckoutDetailsInitial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CheckoutDetailsStateCopyWith<CheckoutDetailsState> get copyWith =>
@@ -648,11 +702,11 @@ class _$CheckoutDetailsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CheckoutDetailsStateCopyWith<$Res>
+abstract class $CheckoutDetailsInitialCopyWith<$Res>
     implements $CheckoutDetailsStateCopyWith<$Res> {
-  factory _$CheckoutDetailsStateCopyWith(_CheckoutDetailsState value,
-          $Res Function(_CheckoutDetailsState) then) =
-      __$CheckoutDetailsStateCopyWithImpl<$Res>;
+  factory $CheckoutDetailsInitialCopyWith(CheckoutDetailsInitial value,
+          $Res Function(CheckoutDetailsInitial) then) =
+      _$CheckoutDetailsInitialCopyWithImpl<$Res>;
   @override
   $Res call(
       {int minDartsThrown,
@@ -664,15 +718,15 @@ abstract class _$CheckoutDetailsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CheckoutDetailsStateCopyWithImpl<$Res>
+class _$CheckoutDetailsInitialCopyWithImpl<$Res>
     extends _$CheckoutDetailsStateCopyWithImpl<$Res>
-    implements _$CheckoutDetailsStateCopyWith<$Res> {
-  __$CheckoutDetailsStateCopyWithImpl(
-      _CheckoutDetailsState _value, $Res Function(_CheckoutDetailsState) _then)
-      : super(_value, (v) => _then(v as _CheckoutDetailsState));
+    implements $CheckoutDetailsInitialCopyWith<$Res> {
+  _$CheckoutDetailsInitialCopyWithImpl(CheckoutDetailsInitial _value,
+      $Res Function(CheckoutDetailsInitial) _then)
+      : super(_value, (v) => _then(v as CheckoutDetailsInitial));
 
   @override
-  _CheckoutDetailsState get _value => super._value as _CheckoutDetailsState;
+  CheckoutDetailsInitial get _value => super._value as CheckoutDetailsInitial;
 
   @override
   $Res call({
@@ -683,7 +737,7 @@ class __$CheckoutDetailsStateCopyWithImpl<$Res>
     Object? selectedDartsThrown = freezed,
     Object? selectedDartsOnDouble = freezed,
   }) {
-    return _then(_CheckoutDetailsState(
+    return _then(CheckoutDetailsInitial(
       minDartsThrown: minDartsThrown == freezed
           ? _value.minDartsThrown
           : minDartsThrown // ignore: cast_nullable_to_non_nullable
@@ -714,8 +768,8 @@ class __$CheckoutDetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CheckoutDetailsState implements _CheckoutDetailsState {
-  const _$_CheckoutDetailsState(
+class _$CheckoutDetailsInitial implements CheckoutDetailsInitial {
+  const _$CheckoutDetailsInitial(
       {required this.minDartsThrown,
       required this.maxDartsThrown,
       required this.minDartsOnDouble,
@@ -738,14 +792,14 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
 
   @override
   String toString() {
-    return 'CheckoutDetailsState(minDartsThrown: $minDartsThrown, maxDartsThrown: $maxDartsThrown, minDartsOnDouble: $minDartsOnDouble, maxDartsOnDouble: $maxDartsOnDouble, selectedDartsThrown: $selectedDartsThrown, selectedDartsOnDouble: $selectedDartsOnDouble)';
+    return 'CheckoutDetailsState.initial(minDartsThrown: $minDartsThrown, maxDartsThrown: $maxDartsThrown, minDartsOnDouble: $minDartsOnDouble, maxDartsOnDouble: $maxDartsOnDouble, selectedDartsThrown: $selectedDartsThrown, selectedDartsOnDouble: $selectedDartsOnDouble)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CheckoutDetailsState &&
+            other is CheckoutDetailsInitial &&
             (identical(other.minDartsThrown, minDartsThrown) ||
                 other.minDartsThrown == minDartsThrown) &&
             (identical(other.maxDartsThrown, maxDartsThrown) ||
@@ -772,19 +826,99 @@ class _$_CheckoutDetailsState implements _CheckoutDetailsState {
 
   @JsonKey(ignore: true)
   @override
-  _$CheckoutDetailsStateCopyWith<_CheckoutDetailsState> get copyWith =>
-      __$CheckoutDetailsStateCopyWithImpl<_CheckoutDetailsState>(
+  $CheckoutDetailsInitialCopyWith<CheckoutDetailsInitial> get copyWith =>
+      _$CheckoutDetailsInitialCopyWithImpl<CheckoutDetailsInitial>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)
+        initial,
+  }) {
+    return initial(minDartsThrown, maxDartsThrown, minDartsOnDouble,
+        maxDartsOnDouble, selectedDartsThrown, selectedDartsOnDouble);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)?
+        initial,
+  }) {
+    return initial?.call(minDartsThrown, maxDartsThrown, minDartsOnDouble,
+        maxDartsOnDouble, selectedDartsThrown, selectedDartsOnDouble);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            int minDartsThrown,
+            int maxDartsThrown,
+            int minDartsOnDouble,
+            int maxDartsOnDouble,
+            int selectedDartsThrown,
+            int selectedDartsOnDouble)?
+        initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(minDartsThrown, maxDartsThrown, minDartsOnDouble,
+          maxDartsOnDouble, selectedDartsThrown, selectedDartsOnDouble);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CheckoutDetailsInitial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CheckoutDetailsInitial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CheckoutDetailsInitial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _CheckoutDetailsState implements CheckoutDetailsState {
-  const factory _CheckoutDetailsState(
+abstract class CheckoutDetailsInitial implements CheckoutDetailsState {
+  const factory CheckoutDetailsInitial(
       {required int minDartsThrown,
       required int maxDartsThrown,
       required int minDartsOnDouble,
       required int maxDartsOnDouble,
       required int selectedDartsThrown,
-      required int selectedDartsOnDouble}) = _$_CheckoutDetailsState;
+      required int selectedDartsOnDouble}) = _$CheckoutDetailsInitial;
 
   @override
   int get minDartsThrown;
@@ -800,6 +934,6 @@ abstract class _CheckoutDetailsState implements CheckoutDetailsState {
   int get selectedDartsOnDouble;
   @override
   @JsonKey(ignore: true)
-  _$CheckoutDetailsStateCopyWith<_CheckoutDetailsState> get copyWith =>
+  $CheckoutDetailsInitialCopyWith<CheckoutDetailsInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -110,3 +110,8 @@ test('constructor', () {
 // TODO game folder all in gamehistory expect dart and throw becaus they are shared in play and training ???ß
 
 // training game/player snapshot single remove initial() methods
+
+IMPORTANT what can be done better:
+HOW BLOCS AND DEPENDENCIES GET INJECTED
+TEST descriptions
+BLOCBUILDER more close to location where the data they provide is needed and not wrap whole bunch of non depending widgets

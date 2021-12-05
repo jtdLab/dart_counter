@@ -9,6 +9,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/input/input_cu
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/game/status.dart';
@@ -37,6 +38,10 @@ class InOfflineGamePage extends StatelessWidget {
           create: (context) => getIt<InOfflineGameBloc>(),
         ),
         BlocProvider(
+          create: (context) =>
+              PointsLeftCubit(context.read<PlayOfflineWatcherCubit>()),
+        ),
+        BlocProvider(
           create: (context) => getIt<InputCubit>(),
         ),
         BlocProvider(
@@ -63,7 +68,10 @@ class InOfflineGamePage extends StatelessWidget {
                   expand: true,
                   context: context,
                   builder: (context) => BlocProvider(
-                    create: (context) => getIt<CheckoutDetailsBloc>(),
+                    create: (context) => getIt<CheckoutDetailsBloc>(
+                      param1: context.read<PointsLeftCubit>(),
+                      param2: context.read<InOfflineGameBloc>(),
+                    ),
                     child: const CheckoutDetailsModal(),
                   ),
                 );

@@ -15,6 +15,8 @@ part 'optical_input_area_bloc.freezed.dart';
 part 'optical_input_area_event.dart';
 part 'optical_input_area_state.dart';
 
+// TODO test
+
 @injectable
 class OpticalInputAreaBloc
     extends Bloc<OpticalInputAreaEvent, OpticalInputAreaState>

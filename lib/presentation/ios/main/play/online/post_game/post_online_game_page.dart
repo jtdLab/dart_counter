@@ -2,10 +2,10 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOC
-import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
+import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
 
 // DOMAIN
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 
 // SHARED WIDGETS
 import '../../shared/post_game/widgets.dart';
@@ -19,7 +19,7 @@ class PostOnlineGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
       builder: (context, state) {
         return AppPage(
           navigationBar: AppNavigationBar(
