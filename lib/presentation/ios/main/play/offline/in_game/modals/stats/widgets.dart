@@ -1,4 +1,4 @@
-part of 'stats_modal.dart';
+part of 'offline_stats_modal.dart';
 
 // BODY
 class _StatsWidget extends StatelessWidget {
@@ -8,9 +8,13 @@ class _StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final players = context.read<AbstractGameSnapshot>().players;
+    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+      builder: (context, state) {
+        //final players = context.read<AbstractGameSnapshot>().players;
 
-    return StatsWidget(players: players);
+        return StatsWidget(players: state.players);
+      },
+    );
   }
 }
 

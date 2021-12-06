@@ -18,7 +18,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // LOCAL WIDGETS
 import '../../../../shared/widgets.dart';
 // MODALS
-import '../../../shared/in_game/modals/stats/stats_modal.dart';
 import '../../../shared/in_game/widgets.dart';
 
 part 'widgets.dart';
@@ -94,7 +93,9 @@ class InOfflineGamePage extends StatelessWidget {
               trailing: StatsButton(
                 // TODO rework
                 onPressed: () {
-                  showCupertinoModalBottomSheet(
+                  context.router.push(const OfflineStatsModalRoute());
+                  /**
+                   * showCupertinoModalBottomSheet(
                     expand: true,
                     context: context,
                     builder: (context) => Provider.value(
@@ -102,7 +103,7 @@ class InOfflineGamePage extends StatelessWidget {
                       value: context.read<PlayOfflineWatcherCubit>().state,
                       child: const StatsModal(),
                     ),
-                  );
+                  ); */
                 },
               ),
             ),

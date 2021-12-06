@@ -18,7 +18,6 @@ import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 
 // MODALS
-import '../../../shared/in_game/modals/stats/stats_modal.dart';
 
 // LOCAL WIDGETS
 import '../../../../shared/widgets.dart';
@@ -95,8 +94,10 @@ class InOnlineGamePage extends StatelessWidget {
               ),
               trailing: StatsButton(
                 onPressed: () {
+                  context.router.push(const OnlineStatsModalRoute());
                   // TODO rework
-                  showCupertinoModalBottomSheet(
+                  /**
+                 *   showCupertinoModalBottomSheet(
                     expand: true,
                     context: context,
                     builder: (context) => Provider.value(
@@ -105,6 +106,7 @@ class InOnlineGamePage extends StatelessWidget {
                       child: const StatsModal(),
                     ),
                   );
+                 */
                 },
               ),
             ),

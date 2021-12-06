@@ -1,5 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 
 import 'auth/auth_flow.dart';
@@ -14,6 +15,7 @@ import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
 import 'main/play/offline/create_game/create_offline_game_page.dart';
+import 'main/play/offline/in_game/modals/stats/offline_stats_modal.dart';
 import 'main/play/offline/in_game/page/in_offline_game_page.dart';
 import 'main/play/offline/play_offline_flow.dart';
 import 'main/play/offline/post_game/post_offline_game_page.dart';
@@ -115,6 +117,10 @@ import 'main/training/training_flow.dart';
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: CheckoutDetailsModal,
                 ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: OfflineStatsModal,
+                ),
               ],
             ),
             CupertinoRoute(
@@ -141,6 +147,10 @@ import 'main/training/training_flow.dart';
                 CustomRoute(
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: CheckoutDetailsModal,
+                ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: OnlineStatsModal,
                 ),
               ],
             ),

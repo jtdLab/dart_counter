@@ -17,97 +17,93 @@ class _CheckoutDetailsWidget extends StatelessWidget {
         final selectedDartsThrown = state.selectedDartsThrown;
         final selectedDartsOnDouble = state.selectedDartsOnDouble;
 
-        return AppPage(
-          child: Column(
-            children: [
-              const Spacer(),
-              if (minDartsThrown < maxDartsThrown) ...[
-                AppCard(
-                  middle: Text(
-                    LocaleKeys.dartsThrown.tr().toUpperCase(),
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .textStyle
-                        .copyWith(color: AppColors.white),
-                  ),
-                  children: [
-                    AppRow(
-                      spacing: size6(context),
-                      children: [
-                        for (int i = minDartsThrown; i <= maxDartsThrown; i++)
-                          Expanded(
-                            child: _CheckoutDetailsButton(
-                              selected: i == selectedDartsThrown,
-                              onPressed: () =>
-                                  context.read<CheckoutDetailsBloc>().add(
-                                        CheckoutDetailsEvent
-                                            .selectedDartsThrownUpdated(
-                                          newSelectedDartsThrown: i,
-                                        ),
-                                      ),
-                              text: i.toString(),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ],
+        return Column(
+          children: [
+            const Spacer(),
+            if (minDartsThrown < maxDartsThrown) ...[
+              AppCard(
+                middle: Text(
+                  LocaleKeys.dartsThrown.tr().toUpperCase(),
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(color: AppColors.white),
                 ),
-              ],
-              SizedBox(
-                height: spacerLarge(context),
-              ),
-              if (minDartsOnDouble < maxDartsOnDouble) ...[
-                AppCard(
-                  middle: Text(
-                    LocaleKeys.dartsOnDouble.tr().toUpperCase(),
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .textStyle
-                        .copyWith(color: AppColors.white),
-                  ),
-                  children: [
-                    AppRow(
-                      spacing: size6(context),
-                      children: [
-                        for (int i = minDartsOnDouble;
-                            i <= maxDartsOnDouble;
-                            i++)
-                          Expanded(
-                            child: _CheckoutDetailsButton(
-                              selected: i == selectedDartsOnDouble,
-                              onPressed: () =>
-                                  context.read<CheckoutDetailsBloc>().add(
-                                        CheckoutDetailsEvent
-                                            .selectedDartsOnDoubleUpdated(
-                                          newSelectedDartsOnDouble: i,
-                                        ),
+                children: [
+                  AppRow(
+                    spacing: size6(context),
+                    children: [
+                      for (int i = minDartsThrown; i <= maxDartsThrown; i++)
+                        Expanded(
+                          child: _CheckoutDetailsButton(
+                            selected: i == selectedDartsThrown,
+                            onPressed: () =>
+                                context.read<CheckoutDetailsBloc>().add(
+                                      CheckoutDetailsEvent
+                                          .selectedDartsThrownUpdated(
+                                        newSelectedDartsThrown: i,
                                       ),
-                              text: i.toString(),
-                            ),
+                                    ),
+                            text: i.toString(),
                           ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-              SizedBox(
-                height: spacerLarge(context),
-              ),
-              AppPrimaryButton(
-                color: AppColors.orangeNew,
-                onPressed: () {
-                  context
-                      .read<CheckoutDetailsBloc>()
-                      .add(const CheckoutDetailsEvent.confirmPressed());
-                  context.router.pop();
-                },
-                text: LocaleKeys.confirm.tr().toUpperCase(),
-              ),
-              const Spacer(
-                flex: 2,
+                        ),
+                    ],
+                  ),
+                ],
               ),
             ],
-          ),
+            SizedBox(
+              height: spacerLarge(context),
+            ),
+            if (minDartsOnDouble < maxDartsOnDouble) ...[
+              AppCard(
+                middle: Text(
+                  LocaleKeys.dartsOnDouble.tr().toUpperCase(),
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(color: AppColors.white),
+                ),
+                children: [
+                  AppRow(
+                    spacing: size6(context),
+                    children: [
+                      for (int i = minDartsOnDouble; i <= maxDartsOnDouble; i++)
+                        Expanded(
+                          child: _CheckoutDetailsButton(
+                            selected: i == selectedDartsOnDouble,
+                            onPressed: () =>
+                                context.read<CheckoutDetailsBloc>().add(
+                                      CheckoutDetailsEvent
+                                          .selectedDartsOnDoubleUpdated(
+                                        newSelectedDartsOnDouble: i,
+                                      ),
+                                    ),
+                            text: i.toString(),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+            SizedBox(
+              height: spacerLarge(context),
+            ),
+            AppPrimaryButton(
+              color: AppColors.orangeNew,
+              onPressed: () {
+                context
+                    .read<CheckoutDetailsBloc>()
+                    .add(const CheckoutDetailsEvent.confirmPressed());
+                context.router.pop();
+              },
+              text: LocaleKeys.confirm.tr().toUpperCase(),
+            ),
+            const Spacer(
+              flex: 2,
+            ),
+          ],
         );
       },
     );
