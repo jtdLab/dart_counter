@@ -39,7 +39,7 @@ class CreateOnlineGamePage extends StatelessWidget {
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (gameSnapshot.status == Status.running) {
-            context.router.replace(const InOnlineGamePageRoute());
+            context.router.replace(const InOnlineGameFlowRoute());
           }
         },
         child: AppPage(

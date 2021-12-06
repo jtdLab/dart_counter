@@ -6,6 +6,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/input/input_cu
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -18,26 +19,21 @@ part 'checkout_details_event.dart';
 part 'checkout_details_state.dart';
 
 // TODO test + impl
-
-@injectable
 class CheckoutDetailsBloc
     extends Bloc<CheckoutDetailsEvent, CheckoutDetailsState>
     with AutoResetLazySingleton {
-  final PointsLeftCubit _pointsLeftCubit;
   final Bloc<InGameEvent, InGameState> _inGameBloc;
-  final InputCubit _inputCubit;
+  final PointsLeftCubit _pointsLeftCubit;
 
+  final InputCubit _inputCubit;
   final IDartUtils _dartUtils;
 
   CheckoutDetailsBloc(
-    // TODO has to be nullable because of getIt maybe find better solutation
-    @factoryParam PointsLeftCubit? pointsLeftCubit,
-    @factoryParam Bloc<InGameEvent, InGameState>? inGameBloc,
+    this._pointsLeftCubit,
+    this._inGameBloc,
     this._inputCubit,
     this._dartUtils,
-  )   : _pointsLeftCubit = pointsLeftCubit!,
-        _inGameBloc = inGameBloc!,
-        super(
+  ) : super(
           CheckoutDetailsState.initial(
             minDartsThrown: _dartUtils.minDartsThrown(
               points: _inputCubit.state.when(
@@ -47,7 +43,7 @@ class CheckoutDetailsBloc
                   (acc, dart) => acc + dart.points(),
                 ),
               ),
-              pointsLeft: pointsLeftCubit.state,
+              pointsLeft: _pointsLeftCubit.state,
             ),
             maxDartsThrown: _dartUtils.maxDartsThrown(
               points: _inputCubit.state.when(
@@ -57,7 +53,7 @@ class CheckoutDetailsBloc
                   (acc, dart) => acc + dart.points(),
                 ),
               ),
-              pointsLeft: pointsLeftCubit.state,
+              pointsLeft: _pointsLeftCubit.state,
             ),
             minDartsOnDouble: _dartUtils.minDartsOnDouble(
               points: _inputCubit.state.when(
@@ -67,7 +63,7 @@ class CheckoutDetailsBloc
                   (acc, dart) => acc + dart.points(),
                 ),
               ),
-              pointsLeft: pointsLeftCubit.state,
+              pointsLeft: _pointsLeftCubit.state,
             ),
             maxDartsOnDouble: min(
               _dartUtils.maxDartsOnDouble(
@@ -78,7 +74,7 @@ class CheckoutDetailsBloc
                     (acc, dart) => acc + dart.points(),
                   ),
                 ),
-                pointsLeft: pointsLeftCubit.state,
+                pointsLeft: _pointsLeftCubit.state,
               ),
               _dartUtils.minDartsThrown(
                 points: _inputCubit.state.when(
@@ -88,7 +84,7 @@ class CheckoutDetailsBloc
                     (acc, dart) => acc + dart.points(),
                   ),
                 ),
-                pointsLeft: pointsLeftCubit.state,
+                pointsLeft: _pointsLeftCubit.state,
               ),
             ),
             selectedDartsThrown: _dartUtils.minDartsThrown(
@@ -99,7 +95,7 @@ class CheckoutDetailsBloc
                   (acc, dart) => acc + dart.points(),
                 ),
               ),
-              pointsLeft: pointsLeftCubit.state,
+              pointsLeft: _pointsLeftCubit.state,
             ),
             selectedDartsOnDouble: _dartUtils.minDartsOnDouble(
               points: _inputCubit.state.when(
@@ -109,7 +105,7 @@ class CheckoutDetailsBloc
                   (acc, dart) => acc + dart.points(),
                 ),
               ),
-              pointsLeft: pointsLeftCubit.state,
+              pointsLeft: _pointsLeftCubit.state,
             ),
           ),
         ) {

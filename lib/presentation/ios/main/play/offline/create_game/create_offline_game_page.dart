@@ -55,7 +55,7 @@ class CreateOfflineGamePage extends StatelessWidget {
               }
             }
 
-            context.router.replace(const InOfflineGamePageRoute());
+            context.router.replace(const InOfflineGameFlowRoute());
           }
         },
         child: AppPage(

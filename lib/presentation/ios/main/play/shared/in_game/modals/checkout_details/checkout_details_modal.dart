@@ -14,6 +14,9 @@ class CheckoutDetailsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return AppPage(
+      child: Container(),
+    );
     return const _CheckoutDetailsWidget();
   }
 }

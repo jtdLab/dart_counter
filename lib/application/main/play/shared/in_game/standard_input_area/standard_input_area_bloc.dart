@@ -16,7 +16,6 @@ part 'standard_input_area_bloc.freezed.dart';
 part 'standard_input_area_event.dart';
 part 'standard_input_area_state.dart';
 
-@injectable
 class StandardInputAreaBloc
     extends Bloc<StandardInputAreaEvent, StandardInputAreaState>
     with AutoResetLazySingleton {
@@ -28,15 +27,12 @@ class StandardInputAreaBloc
   final IDartUtils _dartUtils;
 
   StandardInputAreaBloc(
-    // TODO has to be nullable because of getIt maybe find better solutation
-    @factoryParam PointsLeftCubit? pointsLeftCubit,
-    @factoryParam Bloc<InGameEvent, InGameState>? inGameBloc,
+    this._pointsLeftCubit,
+    this._inGameBloc,
     this._inputCubit,
     this._showCheckoutDetailsCubit,
     this._dartUtils,
-  )   : _pointsLeftCubit = pointsLeftCubit!,
-        _inGameBloc = inGameBloc!,
-        super(const StandardInputAreaState.initial()) {
+  ) : super(const StandardInputAreaState.initial()) {
     on<_UndoThrowPressed>((_, __) => _mapUndoThrowPressedToState());
     on<_PerformThrowPressed>((_, __) => _mapPerformThrowPressedToState());
     on<_CheckPressed>((_, emit) => _mapCheckPressedToState(emit));

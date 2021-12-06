@@ -1,4 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -12,12 +14,13 @@ import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
 import 'main/play/offline/create_game/create_offline_game_page.dart';
-import 'main/play/offline/in_game/in_offline_game_page.dart';
+import 'main/play/offline/in_game/page/in_offline_game_page.dart';
 import 'main/play/offline/play_offline_flow.dart';
-import 'main/play/online/create_game/create_online_game_page.dart';
-import 'main/play/online/in_game/in_online_game_page.dart';
-import 'main/play/online/play_online_flow.dart';
 import 'main/play/offline/post_game/post_offline_game_page.dart';
+import 'main/play/online/create_game/create_online_game_page.dart';
+import 'main/play/online/in_game/in_online_game_flow.dart';
+import 'main/play/online/in_game/page/in_online_game_page.dart';
+import 'main/play/online/play_online_flow.dart';
 import 'main/play/online/post_game/post_online_game_page.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
@@ -100,9 +103,19 @@ import 'main/training/training_flow.dart';
               customRouteBuilder: customRouteBuilder,
               page: CreateOfflineGamePage,
             ),
-            CustomRoute(
-              customRouteBuilder: customRouteBuilder,
-              page: InOfflineGamePage,
+            CupertinoRoute(
+              page: InOfflineGameFlow,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  customRouteBuilder: customRouteBuilder,
+                  page: InOfflineGamePage,
+                ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: CheckoutDetailsModal,
+                ),
+              ],
             ),
             CupertinoRoute(
               page: PostOfflineGamePage,
@@ -117,9 +130,19 @@ import 'main/training/training_flow.dart';
               customRouteBuilder: customRouteBuilder,
               page: CreateOnlineGamePage,
             ),
-            CustomRoute(
-              customRouteBuilder: customRouteBuilder,
-              page: InOnlineGamePage,
+            CupertinoRoute(
+              page: InOnlineGameFlow,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  customRouteBuilder: customRouteBuilder,
+                  page: InOnlineGamePage,
+                ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: CheckoutDetailsModal,
+                ),
+              ],
             ),
             CupertinoRoute(
               page: PostOnlineGamePage,
@@ -163,3 +186,94 @@ Route<T> customRouteBuilder<T>(
       maintainState: page.maintainState,
       fullscreenDialog: page.fullscreenDialog,
     );
+
+Route<T> expandedModalRouteBuilder<T>(
+  BuildContext context,
+  Widget widget,
+  CustomPage page,
+) =>
+    _modalRouteBuilder(context, widget, page, true);
+
+Route<T> notExpandedModalRouteBuilder<T>(
+  BuildContext context,
+  Widget widget,
+  CustomPage page,
+) =>
+    _modalRouteBuilder(context, widget, page, false);
+
+Route<T> _modalRouteBuilder<T>(
+  BuildContext context,
+  Widget widget,
+  CustomPage page,
+  bool expand,
+) =>
+    CupertinoModalBottomSheetRoute<T>(
+      builder: (context) => widget,
+      containerBuilder: (context, _, child) => _CupertinoBottomSheetContainer(
+        topRadius: _kDefaultTopRadius,
+        child: child,
+      ),
+      expanded: expand,
+      barrierLabel: '',
+      isDismissible: !expand,
+      modalBarrierColor: Colors.black12,
+      settings: page,
+      transitionBackgroundColor: Colors.black,
+    );
+
+// TODO move to presentation
+///
+/// Container for modal
+///
+const double _kPreviousPageVisibleOffset = 10;
+
+const Radius _kDefaultTopRadius = Radius.circular(12);
+const BoxShadow _kDefaultBoxShadow =
+    BoxShadow(blurRadius: 10, color: Colors.black12, spreadRadius: 5);
+
+/// Cupertino Bottom Sheet Container
+///
+/// Clip the child widget to rectangle with top rounded corners and adds
+/// top padding(+safe area padding). This padding [_kPreviousPageVisibleOffset]
+/// is the height that will be displayed from previous route.
+class _CupertinoBottomSheetContainer extends StatelessWidget {
+  final Widget child;
+  final Color? backgroundColor;
+  final Radius topRadius;
+  final BoxShadow? shadow;
+
+  const _CupertinoBottomSheetContainer({
+    Key? key,
+    required this.child,
+    this.backgroundColor,
+    required this.topRadius,
+    this.shadow,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final topSafeAreaPadding = MediaQuery.of(context).padding.top;
+    final topPadding = _kPreviousPageVisibleOffset + topSafeAreaPadding;
+
+    final _shadow = shadow ?? _kDefaultBoxShadow;
+
+    final _backgroundColor =
+        backgroundColor ?? CupertinoTheme.of(context).scaffoldBackgroundColor;
+    return Padding(
+      padding: EdgeInsets.only(top: topPadding),
+      child: ClipRRect(
+        borderRadius: BorderRadius.vertical(top: topRadius),
+        child: Container(
+          decoration:
+              BoxDecoration(color: _backgroundColor, boxShadow: [_shadow]),
+          width: double.infinity,
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true, //Remove top Safe Area
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -35,16 +35,22 @@ class _InOnlineGameWidget extends StatelessWidget {
                 _onKeyBoardChanged(context, keyBoardIndex: pageIndex),
             children: [
               BlocProvider(
-                create: (context) => getIt<StandardInputAreaBloc>(
-                  param1: context.read<PointsLeftCubit>(),
-                  param2: context.read<InOnlineGameBloc>(),
+                create: (context) => StandardInputAreaBloc(
+                  context.read<PointsLeftCubit>(),
+                  context.read<InOnlineGameBloc>(),
+                  getIt<InputCubit>(),
+                  getIt<ShowCheckoutDetailsCubit>(),
+                  getIt<IDartUtils>(),
                 ),
                 child: const StandardInputArea(),
               ),
               BlocProvider(
-                create: (context) => getIt<DetailedInputAreaBloc>(
-                  param1: context.read<PointsLeftCubit>(),
-                  param2: context.read<InOnlineGameBloc>(),
+                create: (context) => DetailedInputAreaBloc(
+                  context.read<PointsLeftCubit>(),
+                  context.read<InOnlineGameBloc>(),
+                  getIt<InputCubit>(),
+                  getIt<ShowCheckoutDetailsCubit>(),
+                  getIt<IDartUtils>(),
                 ),
                 child: const DetailedInputArea(),
               ),

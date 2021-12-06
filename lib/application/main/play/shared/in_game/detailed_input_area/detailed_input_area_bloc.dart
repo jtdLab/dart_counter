@@ -6,6 +6,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,7 +19,6 @@ part 'detailed_input_area_bloc.freezed.dart';
 part 'detailed_input_area_event.dart';
 part 'detailed_input_area_state.dart';
 
-@injectable
 class DetailedInputAreaBloc
     extends Bloc<DetailedInputAreaEvent, DetailedInputAreaState>
     with AutoResetLazySingleton {
@@ -30,15 +30,12 @@ class DetailedInputAreaBloc
   final IDartUtils _dartUtils;
 
   DetailedInputAreaBloc(
-    // TODO has to be nullable because of getIt maybe find better solution
-    @factoryParam PointsLeftCubit? pointsLeftCubit,
-    @factoryParam Bloc<InGameEvent, InGameState>? inGameBloc,
+    this._pointsLeftCubit,
+    this._inGameBloc,
     this._inputCubit,
     this._showCheckoutDetailsCubit,
     this._dartUtils,
-  )   : _pointsLeftCubit = pointsLeftCubit!,
-        _inGameBloc = inGameBloc!,
-        super(const DetailedInputAreaState.initial()) {
+  ) : super(const DetailedInputAreaState.initial()) {
     on<_UndoThrowPressed>((_, __) => _mapUndoThrowPressedToState());
     on<_PerformThrowPressed>((_, __) => _mapPerformThrowPressedToState());
     on<_DartFocused>(_mapDartFocusedToState);

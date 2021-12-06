@@ -4,7 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../detailed_input_area_bloc.dart';
 

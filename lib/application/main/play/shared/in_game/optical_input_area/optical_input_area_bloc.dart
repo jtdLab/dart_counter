@@ -17,7 +17,6 @@ part 'optical_input_area_state.dart';
 
 // TODO test
 
-@injectable
 class OpticalInputAreaBloc
     extends Bloc<OpticalInputAreaEvent, OpticalInputAreaState>
     with AutoResetLazySingleton {
@@ -26,13 +25,10 @@ class OpticalInputAreaBloc
   final InputCubit _inputCubit;
 
   OpticalInputAreaBloc(
-    // TODO has to be nullable because of getIt maybe find better solutation
-    @factoryParam Cubit<AbstractGameSnapshot>? playWatcherCubit,
-    @factoryParam Bloc<InGameEvent, InGameState>? inGameBloc,
+    this._playWatcherCubit,
+    this._inGameBloc,
     this._inputCubit,
-  )   : _playWatcherCubit = playWatcherCubit!,
-        _inGameBloc = inGameBloc!,
-        super(const OpticalInputAreaState.initial()) {
+  ) : super(const OpticalInputAreaState.initial()) {
     on<_DartPressed>((event, __) => _mapDartPressedToState(event));
     on<_UndoDartPressed>((_, __) => _mapUndoDartPressedToState());
   }

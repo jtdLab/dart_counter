@@ -17,6 +17,7 @@ import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
+
 // NAVBAR
 class StatsButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -103,7 +104,7 @@ class _StandardKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: List.generate(3, (index) {
               final i = index + 1;
-              return BlocProvider(
+              return BlocProvider( // TODO provider move to inside button same for detailed keyboard buttons
                 create: (context) => StandardKeyBoardButtonCubit(
                   i,
                   pointsLeftCubit,
@@ -510,7 +511,7 @@ class SpeechInputArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider( // TODO inject correctly not with getit
       create: (context) => getIt<SpeechInputAreaBloc>(),
       child: Builder(
         builder: (context) =>
@@ -609,7 +610,7 @@ class OpticalInputArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<OpticalInputAreaBloc>(),
+      create: (context) => getIt<OpticalInputAreaBloc>(), // TODO ibject correctly not with getit
       child: AppColumn(
         spacing: size6(context),
         children: [

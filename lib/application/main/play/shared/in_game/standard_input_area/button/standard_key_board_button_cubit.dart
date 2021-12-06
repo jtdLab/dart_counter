@@ -6,6 +6,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/points_left/po
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'standard_key_board_button_cubit.freezed.dart';
 part 'standard_key_board_button_state.dart';
@@ -30,8 +31,8 @@ part 'standard_key_board_button_state.dart';
 
 class StandardKeyBoardButtonCubit extends Cubit<StandardKeyBoardButtonState> {
   final int _value;
-  final InputCubit _inputCubit;
   final PointsLeftCubit _pointsLeftCubit; // TODO needed???
+  final InputCubit _inputCubit;
 
   final IDartUtils _dartUtils;
 
