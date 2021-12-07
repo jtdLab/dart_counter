@@ -19,16 +19,16 @@ part 'standard_input_area_state.dart';
 class StandardInputAreaBloc
     extends Bloc<StandardInputAreaEvent, StandardInputAreaState>
     with AutoResetLazySingleton {
-  final PointsLeftCubit _pointsLeftCubit;
   final Bloc<InGameEvent, InGameState> _inGameBloc;
+  final PointsLeftCubit _pointsLeftCubit;
   final InputCubit _inputCubit;
   final ShowCheckoutDetailsCubit _showCheckoutDetailsCubit;
 
   final IDartUtils _dartUtils;
 
   StandardInputAreaBloc(
-    this._pointsLeftCubit,
     this._inGameBloc,
+    this._pointsLeftCubit,
     this._inputCubit,
     this._showCheckoutDetailsCubit,
     this._dartUtils,
