@@ -2,44 +2,28 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/checkout_details_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockPlayWatcherCubit extends MockCubit<AbstractGameSnapshot> {}
-
 class MockInGameBloc extends MockBloc<InGameEvent, InGameState> {}
+
+class MockPointsLeftCubit extends MockCubit<int> implements PointsLeftCubit {}
 
 class MockInputCubit extends MockCubit<InputState> implements InputCubit {}
 
-class MockAbstractPlayerSnapshot extends Mock
-    implements AbstractPlayerSnapshot {
-  @override
-  final int pointsLeft;
-
-  MockAbstractPlayerSnapshot(this.pointsLeft);
-}
-
-class MockAbstractGameSnapshot extends Mock implements AbstractGameSnapshot {
-  final int pointsLeftCurrentTurn;
-
-  MockAbstractGameSnapshot(this.pointsLeftCurrentTurn);
-
-  @override
-  AbstractPlayerSnapshot currentTurn() =>
-      MockAbstractPlayerSnapshot(pointsLeftCurrentTurn);
-}
-
+class MockDartUtils extends Mock implements IDartUtils {}
 
 void main() {
-  late Cubit<AbstractGameSnapshot> mockPlayWatcherCubit;
   late Bloc<InGameEvent, InGameState> mockInGameBloc;
+  late PointsLeftCubit mockPointsLeftCubit;
   late InputCubit mockInputCubit;
+  final IDartUtils mockDartUtils = MockDartUtils();
 
   const points = 40;
   final darts = [
@@ -54,16 +38,43 @@ void main() {
   const maxDartsOnDouble = 3;
 
   setUp(() {
-    mockPlayWatcherCubit = MockPlayWatcherCubit();
+    mockPointsLeftCubit = MockPointsLeftCubit();
     mockInGameBloc = MockInGameBloc();
     mockInputCubit = MockInputCubit();
 
-    final gameSnapshot = MockAbstractGameSnapshot(points);
     whenListen(
-      mockPlayWatcherCubit,
-      Stream.fromIterable([gameSnapshot]),
-      initialState: gameSnapshot,
+      mockPointsLeftCubit,
+      Stream.fromIterable([points]),
+      initialState: points,
     );
+
+    when<int>(
+      () => mockDartUtils.minDartsThrown(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => minDartsThrown);
+
+    when<int>(
+      () => mockDartUtils.maxDartsThrown(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => maxDartsThrown);
+
+    when<int>(
+      () => mockDartUtils.minDartsOnDouble(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => minDartsOnDouble);
+
+    when<int>(
+      () => mockDartUtils.maxDartsOnDouble(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => maxDartsOnDouble);
   });
 
   test('initial state initialized correctly when input is points', () {
@@ -76,9 +87,10 @@ void main() {
 
     // Act
     final underTest = CheckoutDetailsBloc(
-      mockPlayWatcherCubit,
+      mockPointsLeftCubit,
       mockInGameBloc,
       mockInputCubit,
+      mockDartUtils,
     );
 
     // Assert
@@ -88,7 +100,7 @@ void main() {
         minDartsThrown: minDartsThrown,
         maxDartsThrown: maxDartsThrown,
         minDartsOnDouble: minDartsOnDouble,
-        maxDartsOnDouble: maxDartsOnDouble,
+        maxDartsOnDouble: minDartsThrown,
         selectedDartsThrown: minDartsThrown,
         selectedDartsOnDouble: minDartsOnDouble,
       ),
@@ -105,9 +117,10 @@ void main() {
 
     // Act
     final underTest = CheckoutDetailsBloc(
-      mockPlayWatcherCubit,
+      mockPointsLeftCubit,
       mockInGameBloc,
       mockInputCubit,
+      mockDartUtils,
     );
 
     // Assert
@@ -117,7 +130,7 @@ void main() {
         minDartsThrown: minDartsThrown,
         maxDartsThrown: maxDartsThrown,
         minDartsOnDouble: minDartsOnDouble,
-        maxDartsOnDouble: maxDartsOnDouble,
+        maxDartsOnDouble: minDartsThrown,
         selectedDartsThrown: minDartsThrown,
         selectedDartsOnDouble: minDartsOnDouble,
       ),
@@ -128,11 +141,6 @@ void main() {
       'initial state initialized correctly when maxDartsOnDouble > minDartsThrown',
       () {
     // Arrange
-    const points = 40;
-    const minDartsThrown = 1;
-    const maxDartsThrown = 3;
-    const minDartsOnDouble = 1;
-    const maxDartsOnDouble = 3;
     whenListen(
       mockInputCubit,
       Stream.fromIterable([const InputState.points(points: points)]),
@@ -141,9 +149,10 @@ void main() {
 
     // Act
     final underTest = CheckoutDetailsBloc(
-      mockPlayWatcherCubit,
+      mockPointsLeftCubit,
       mockInGameBloc,
       mockInputCubit,
+      mockDartUtils,
     );
 
     // Assert
@@ -153,7 +162,7 @@ void main() {
         minDartsThrown: minDartsThrown,
         maxDartsThrown: maxDartsThrown,
         minDartsOnDouble: minDartsOnDouble,
-        maxDartsOnDouble: maxDartsOnDouble,
+        maxDartsOnDouble: minDartsThrown,
         selectedDartsThrown: minDartsThrown,
         selectedDartsOnDouble: minDartsOnDouble,
       ),
@@ -164,28 +173,51 @@ void main() {
       'initial state initialized correctly when maxDartsOnDouble <= minDartsThrown',
       () {
     // Arrange
-    const points = 40;
-    const minDartsThrown = 1;
+    const minDartsThrown = 3;
     const maxDartsThrown = 3;
-    const minDartsOnDouble = 1;
-    const maxDartsOnDouble = 3;
+    const minDartsOnDouble = 0;
+    const maxDartsOnDouble = 1;
+
+    when<int>(
+      () => mockDartUtils.minDartsThrown(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => minDartsThrown);
+
+    when<int>(
+      () => mockDartUtils.maxDartsThrown(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => maxDartsThrown);
+
+    when<int>(
+      () => mockDartUtils.minDartsOnDouble(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => minDartsOnDouble);
+
+    when<int>(
+      () => mockDartUtils.maxDartsOnDouble(
+        pointsLeft: any(named: 'pointsLeft'),
+        points: any(named: 'points'),
+      ),
+    ).thenAnswer((_) => maxDartsOnDouble);
+
     whenListen(
       mockInputCubit,
       Stream.fromIterable([const InputState.points(points: points)]),
       initialState: const InputState.points(points: points),
     );
 
-    whenListen(
-      mockInputCubit,
-      Stream.fromIterable([InputState.darts(darts: darts)]),
-      initialState: InputState.darts(darts: darts),
-    );
-
     // Act
     final underTest = CheckoutDetailsBloc(
-      mockPlayWatcherCubit,
+      mockPointsLeftCubit,
       mockInGameBloc,
       mockInputCubit,
+      mockDartUtils,
     );
 
     // Assert
@@ -216,9 +248,10 @@ void main() {
         );
 
         return CheckoutDetailsBloc(
-          mockPlayWatcherCubit,
+          mockPointsLeftCubit,
           mockInGameBloc,
           mockInputCubit,
+          mockDartUtils,
         );
       },
       seed: () => const CheckoutDetailsState.initial(
@@ -239,7 +272,7 @@ void main() {
           minDartsThrown: minDartsThrown,
           maxDartsThrown: maxDartsThrown,
           minDartsOnDouble: minDartsOnDouble,
-          maxDartsOnDouble: maxDartsOnDouble,
+          maxDartsOnDouble: 1,
           selectedDartsThrown: 1,
           selectedDartsOnDouble: 1,
         ),
@@ -247,7 +280,8 @@ void main() {
     );
 
     blocTest<CheckoutDetailsBloc, CheckoutDetailsState>(
-      'emits [CheckoutDetailsInitial] with updated selectedDartsThrown, selectedDartsOnDouble and '
+      'GIVEN selectedDartsOnDouble <= newSelectedDartsThrown '
+      'emits [CheckoutDetailsInitial] with updated selectedDartsThrown and '
       'maxDartsOnDouble. '
       'when SelectedDartsThrownUpdated is added.',
       build: () {
@@ -258,9 +292,10 @@ void main() {
         );
 
         return CheckoutDetailsBloc(
-          mockPlayWatcherCubit,
+          mockPointsLeftCubit,
           mockInGameBloc,
           mockInputCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(
@@ -273,9 +308,9 @@ void main() {
           minDartsThrown: minDartsThrown,
           maxDartsThrown: maxDartsThrown,
           minDartsOnDouble: minDartsOnDouble,
-          maxDartsOnDouble: maxDartsOnDouble,
+          maxDartsOnDouble: 2,
           selectedDartsThrown: 2,
-          selectedDartsOnDouble: 1,
+          selectedDartsOnDouble: minDartsOnDouble,
         ),
       ],
     );
@@ -293,14 +328,15 @@ void main() {
         );
 
         return CheckoutDetailsBloc(
-          mockPlayWatcherCubit,
+          mockPointsLeftCubit,
           mockInGameBloc,
           mockInputCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(
         const CheckoutDetailsEvent.selectedDartsOnDoubleUpdated(
-          newSelectedDartsOnDouble: 1,
+          newSelectedDartsOnDouble: 3,
         ),
       ),
       expect: () => [
@@ -308,9 +344,9 @@ void main() {
           minDartsThrown: minDartsThrown,
           maxDartsThrown: maxDartsThrown,
           minDartsOnDouble: minDartsOnDouble,
-          maxDartsOnDouble: maxDartsOnDouble,
+          maxDartsOnDouble: minDartsThrown,
           selectedDartsThrown: minDartsThrown,
-          selectedDartsOnDouble: 1,
+          selectedDartsOnDouble: 3,
         )
       ],
     );
@@ -329,9 +365,10 @@ void main() {
         );
 
         return CheckoutDetailsBloc(
-          mockPlayWatcherCubit,
+          mockPointsLeftCubit,
           mockInGameBloc,
           mockInputCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(const CheckoutDetailsEvent.confirmPressed()),
@@ -362,9 +399,10 @@ void main() {
         );
 
         return CheckoutDetailsBloc(
-          mockPlayWatcherCubit,
+          mockPointsLeftCubit,
           mockInGameBloc,
           mockInputCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(const CheckoutDetailsEvent.confirmPressed()),

@@ -6,9 +6,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/input/input_cu
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../in_game_event.dart';
@@ -18,7 +16,6 @@ part 'checkout_details_bloc.freezed.dart';
 part 'checkout_details_event.dart';
 part 'checkout_details_state.dart';
 
-// TODO test + impl
 class CheckoutDetailsBloc
     extends Bloc<CheckoutDetailsEvent, CheckoutDetailsState>
     with AutoResetLazySingleton {
@@ -120,9 +117,9 @@ class CheckoutDetailsBloc
   ) {
     final newSelectedDartsThrown = event.newSelectedDartsThrown;
 
-    int newSelectedDartsOnDouble = state.selectedDartsOnDouble;
-    if (newSelectedDartsOnDouble > newSelectedDartsThrown) {
-      newSelectedDartsOnDouble = newSelectedDartsThrown;
+    int selectedDartsOnDouble = state.selectedDartsOnDouble;
+    if (selectedDartsOnDouble > newSelectedDartsThrown) {
+      selectedDartsOnDouble = newSelectedDartsThrown;
     }
 
     final newMaxDartsOnDouble = min(
@@ -142,7 +139,7 @@ class CheckoutDetailsBloc
     emit(
       state.copyWith(
         selectedDartsThrown: newSelectedDartsThrown,
-        selectedDartsOnDouble: newSelectedDartsOnDouble,
+        selectedDartsOnDouble: selectedDartsOnDouble,
         maxDartsOnDouble: newMaxDartsOnDouble,
       ),
     );
