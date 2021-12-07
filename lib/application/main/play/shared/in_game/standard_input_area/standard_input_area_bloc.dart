@@ -7,7 +7,6 @@ import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 import '../in_game_event.dart';
 import '../in_game_state.dart';

@@ -40,6 +40,7 @@ enum DetailedKeyBoardButtonType {
   twentyFive
 }
 
+
 class DetailedKeyBoardButtonCubit extends Cubit<DetailedKeyBoardButtonState> {
   final int _value; // The value the button shows in initial state
   final DetailedInputAreaBloc _inputAreaBloc;
@@ -62,7 +63,9 @@ class DetailedKeyBoardButtonCubit extends Cubit<DetailedKeyBoardButtonState> {
       emit(
         detailedInputAreaState.map(
           initial: (initial) => DetailedKeyBoardButtonState.initial(
-              value: _value, disabled: false),
+            value: _value,
+            disabled: false,
+          ),
           focused: (focused) => _mapDetailedInputAreaFocusedToState(focused),
         ),
       );
