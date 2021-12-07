@@ -2,42 +2,26 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:kt_dart/kt.dart';
-
-class MockPlayWatcherCubit extends MockCubit<AbstractGameSnapshot> {}
+import 'package:mocktail/mocktail.dart';
 
 class MockInGameBloc extends MockBloc<InGameEvent, InGameState> {}
+
+class MockPointsLeftCubit extends MockCubit<int> implements PointsLeftCubit {}
 
 class MockInputCubit extends MockCubit<InputState> implements InputCubit {}
 
 class MockShowCheckoutDetailsCubit extends MockCubit<bool>
     implements ShowCheckoutDetailsCubit {}
 
-class MockAbstractPlayerSnapshot extends Mock
-    implements AbstractPlayerSnapshot {
-  @override
-  final int pointsLeft;
-
-  MockAbstractPlayerSnapshot(this.pointsLeft);
-}
-
-class MockAbstractGameSnapshot extends Mock implements AbstractGameSnapshot {
-  final int pointsLeftCurrentTurn;
-
-  MockAbstractGameSnapshot(this.pointsLeftCurrentTurn);
-
-  @override
-  AbstractPlayerSnapshot currentTurn() =>
-      MockAbstractPlayerSnapshot(pointsLeftCurrentTurn);
-}
+class MockDartUtils extends Mock implements IDartUtils {}
 
 void main() {
   setUpAll(() {
@@ -45,14 +29,15 @@ void main() {
     registerFallbackValue(left<int, KtList<Dart>>(0));
   });
 
-  late Cubit<AbstractGameSnapshot> mockPlayWatcherCubit;
   late Bloc<InGameEvent, InGameState> mockInGameBloc;
+  late PointsLeftCubit mockPointsLeftCubit;
   late InputCubit mockInputCubit;
   late ShowCheckoutDetailsCubit mockShowCheckoutDetailsCubit;
+  final IDartUtils mockDartUtils = MockDartUtils();
 
   setUp(() {
-    mockPlayWatcherCubit = MockPlayWatcherCubit();
     mockInGameBloc = MockInGameBloc();
+    mockPointsLeftCubit = MockPointsLeftCubit();
     mockInputCubit = MockInputCubit();
     mockShowCheckoutDetailsCubit = MockShowCheckoutDetailsCubit();
   });
@@ -60,10 +45,11 @@ void main() {
   test('initial state initialized correctly', () {
     // Arrange & Act
     final underTest = DetailedInputAreaBloc(
-      mockPlayWatcherCubit,
       mockInGameBloc,
+      mockPointsLeftCubit,
       mockInputCubit,
       mockShowCheckoutDetailsCubit,
+      mockDartUtils,
     );
 
     // Assert
@@ -75,10 +61,11 @@ void main() {
       'add undoThrowPressed to inGameBloc when UndoDartPressed is added.',
       build: () {
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(const DetailedInputAreaEvent.undoThrowPressed()),
@@ -96,10 +83,11 @@ void main() {
       'emits [MyState] when MyEvent is added.',
       build: () {
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
     );
@@ -118,10 +106,11 @@ void main() {
         );
 
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) =>
@@ -134,11 +123,11 @@ void main() {
       'GIVEN input is points dd'
       'throws Error when DartFocused is added.',
       build: () {
-        final gameSnapshot = MockAbstractGameSnapshot(40);
+        const pointsLeft = 40;
         whenListen(
-          mockPlayWatcherCubit,
-          Stream.fromIterable([gameSnapshot]),
-          initialState: gameSnapshot,
+          mockPointsLeftCubit,
+          Stream.fromIterable([pointsLeft]),
+          initialState: pointsLeft,
         );
 
         const points = 10;
@@ -149,10 +138,11 @@ void main() {
         );
 
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) =>
@@ -166,10 +156,11 @@ void main() {
       'emits [DetailedInputAreaInitial] with focusedValue = null when Unfocused is added.',
       build: () {
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(const DetailedInputAreaEvent.unfocused()),
@@ -189,13 +180,19 @@ void main() {
           Stream.fromIterable([const InputState.points(points: points)]),
           initialState: const InputState.points(points: points),
         );
+
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
+      seed: () => const DetailedInputAreaState.focused(
+        focusedValue: 20,
+        maxAllowedType: DartType.triple,
+      ),
       act: (bloc) => bloc.add(
         const DetailedInputAreaEvent.dartDetailPressed(type: DartType.single),
       ),
@@ -213,10 +210,11 @@ void main() {
           initialState: const InputState.darts(darts: darts),
         );
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       seed: () => const DetailedInputAreaState.focused(
@@ -251,10 +249,11 @@ void main() {
           initialState: const InputState.points(points: points),
         );
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(
@@ -275,10 +274,11 @@ void main() {
           initialState: const InputState.darts(darts: darts),
         );
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(
@@ -302,10 +302,11 @@ void main() {
           initialState: InputState.darts(darts: darts),
         );
         return DetailedInputAreaBloc(
-          mockPlayWatcherCubit,
           mockInGameBloc,
+          mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
+          mockDartUtils,
         );
       },
       act: (bloc) => bloc.add(

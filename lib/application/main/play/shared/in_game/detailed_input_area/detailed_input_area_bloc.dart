@@ -6,10 +6,8 @@ import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../in_game_event.dart';
@@ -22,16 +20,16 @@ part 'detailed_input_area_state.dart';
 class DetailedInputAreaBloc
     extends Bloc<DetailedInputAreaEvent, DetailedInputAreaState>
     with AutoResetLazySingleton {
-  final PointsLeftCubit _pointsLeftCubit;
   final Bloc<InGameEvent, InGameState> _inGameBloc;
+  final PointsLeftCubit _pointsLeftCubit;
   final InputCubit _inputCubit;
   final ShowCheckoutDetailsCubit _showCheckoutDetailsCubit;
 
   final IDartUtils _dartUtils;
 
   DetailedInputAreaBloc(
-    this._pointsLeftCubit,
     this._inGameBloc,
+    this._pointsLeftCubit,
     this._inputCubit,
     this._showCheckoutDetailsCubit,
     this._dartUtils,
@@ -184,7 +182,7 @@ class DetailedInputAreaBloc
       focused: (focused) {
         final darts = _inputCubit.state
             .when(
-              points: (input) => throw Error(), // TODO error
+              points: (input) => throw Error(), // TODO error name better
               darts: (darts) => darts,
             )
             .toMutableList();

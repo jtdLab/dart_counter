@@ -46,8 +46,8 @@ class _InOnlineGameWidget extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => DetailedInputAreaBloc(
-                  context.read<PointsLeftCubit>(),
                   context.read<InOnlineGameBloc>(),
+                  context.read<PointsLeftCubit>(),
                   getIt<InputCubit>(),
                   getIt<ShowCheckoutDetailsCubit>(),
                   getIt<IDartUtils>(),
