@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$StandardKeyBoardButtonStateTearOff {
   const _$StandardKeyBoardButtonStateTearOff();
 
-  StandardKeyBoardButtonInitial initial({required bool disabled}) {
+  StandardKeyBoardButtonInitial initial(
+      {required StandardKeyBoardButtonType type, required bool disabled}) {
     return StandardKeyBoardButtonInitial(
+      type: type,
       disabled: disabled,
     );
   }
@@ -29,21 +31,23 @@ const $StandardKeyBoardButtonState = _$StandardKeyBoardButtonStateTearOff();
 
 /// @nodoc
 mixin _$StandardKeyBoardButtonState {
+  StandardKeyBoardButtonType get type => throw _privateConstructorUsedError;
   bool get disabled => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool disabled) initial,
+    required TResult Function(StandardKeyBoardButtonType type, bool disabled)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool disabled)? initial,
+    TResult Function(StandardKeyBoardButtonType type, bool disabled)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool disabled)? initial,
+    TResult Function(StandardKeyBoardButtonType type, bool disabled)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,7 +79,7 @@ abstract class $StandardKeyBoardButtonStateCopyWith<$Res> {
           StandardKeyBoardButtonState value,
           $Res Function(StandardKeyBoardButtonState) then) =
       _$StandardKeyBoardButtonStateCopyWithImpl<$Res>;
-  $Res call({bool disabled});
+  $Res call({StandardKeyBoardButtonType type, bool disabled});
 }
 
 /// @nodoc
@@ -89,9 +93,14 @@ class _$StandardKeyBoardButtonStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? type = freezed,
     Object? disabled = freezed,
   }) {
     return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as StandardKeyBoardButtonType,
       disabled: disabled == freezed
           ? _value.disabled
           : disabled // ignore: cast_nullable_to_non_nullable
@@ -108,7 +117,7 @@ abstract class $StandardKeyBoardButtonInitialCopyWith<$Res>
           $Res Function(StandardKeyBoardButtonInitial) then) =
       _$StandardKeyBoardButtonInitialCopyWithImpl<$Res>;
   @override
-  $Res call({bool disabled});
+  $Res call({StandardKeyBoardButtonType type, bool disabled});
 }
 
 /// @nodoc
@@ -126,9 +135,14 @@ class _$StandardKeyBoardButtonInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? type = freezed,
     Object? disabled = freezed,
   }) {
     return _then(StandardKeyBoardButtonInitial(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as StandardKeyBoardButtonType,
       disabled: disabled == freezed
           ? _value.disabled
           : disabled // ignore: cast_nullable_to_non_nullable
@@ -140,14 +154,17 @@ class _$StandardKeyBoardButtonInitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StandardKeyBoardButtonInitial implements StandardKeyBoardButtonInitial {
-  const _$StandardKeyBoardButtonInitial({required this.disabled});
+  const _$StandardKeyBoardButtonInitial(
+      {required this.type, required this.disabled});
 
+  @override
+  final StandardKeyBoardButtonType type;
   @override
   final bool disabled;
 
   @override
   String toString() {
-    return 'StandardKeyBoardButtonState.initial(disabled: $disabled)';
+    return 'StandardKeyBoardButtonState.initial(type: $type, disabled: $disabled)';
   }
 
   @override
@@ -155,12 +172,13 @@ class _$StandardKeyBoardButtonInitial implements StandardKeyBoardButtonInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is StandardKeyBoardButtonInitial &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.disabled, disabled) ||
                 other.disabled == disabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, disabled);
+  int get hashCode => Object.hash(runtimeType, type, disabled);
 
   @JsonKey(ignore: true)
   @override
@@ -171,27 +189,28 @@ class _$StandardKeyBoardButtonInitial implements StandardKeyBoardButtonInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool disabled) initial,
+    required TResult Function(StandardKeyBoardButtonType type, bool disabled)
+        initial,
   }) {
-    return initial(disabled);
+    return initial(type, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool disabled)? initial,
+    TResult Function(StandardKeyBoardButtonType type, bool disabled)? initial,
   }) {
-    return initial?.call(disabled);
+    return initial?.call(type, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool disabled)? initial,
+    TResult Function(StandardKeyBoardButtonType type, bool disabled)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(disabled);
+      return initial(type, disabled);
     }
     return orElse();
   }
@@ -227,9 +246,12 @@ class _$StandardKeyBoardButtonInitial implements StandardKeyBoardButtonInitial {
 
 abstract class StandardKeyBoardButtonInitial
     implements StandardKeyBoardButtonState {
-  const factory StandardKeyBoardButtonInitial({required bool disabled}) =
-      _$StandardKeyBoardButtonInitial;
+  const factory StandardKeyBoardButtonInitial(
+      {required StandardKeyBoardButtonType type,
+      required bool disabled}) = _$StandardKeyBoardButtonInitial;
 
+  @override
+  StandardKeyBoardButtonType get type;
   @override
   bool get disabled;
   @override

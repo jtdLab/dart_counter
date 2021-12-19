@@ -18,18 +18,18 @@ class _$DetailedKeyBoardButtonStateTearOff {
   const _$DetailedKeyBoardButtonStateTearOff();
 
   DetailedKeyBoardButtonInitial initial(
-      {required int value, required bool disabled}) {
+      {required DetailedKeyBoardButtonType type, required bool disabled}) {
     return DetailedKeyBoardButtonInitial(
-      value: value,
+      type: type,
       disabled: disabled,
     );
   }
 
   DetailedKeyBoardButtonFocused focused(
-      {required DartType type, required int value}) {
+      {required DetailedKeyBoardButtonType type, required DartType dartType}) {
     return DetailedKeyBoardButtonFocused(
       type: type,
-      value: value,
+      dartType: dartType,
     );
   }
 }
@@ -39,24 +39,29 @@ const $DetailedKeyBoardButtonState = _$DetailedKeyBoardButtonStateTearOff();
 
 /// @nodoc
 mixin _$DetailedKeyBoardButtonState {
-  int get value => throw _privateConstructorUsedError;
+  DetailedKeyBoardButtonType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int value, bool disabled) initial,
-    required TResult Function(DartType type, int value) focused,
+    required TResult Function(DetailedKeyBoardButtonType type, bool disabled)
+        initial,
+    required TResult Function(
+            DetailedKeyBoardButtonType type, DartType dartType)
+        focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,7 +96,7 @@ abstract class $DetailedKeyBoardButtonStateCopyWith<$Res> {
           DetailedKeyBoardButtonState value,
           $Res Function(DetailedKeyBoardButtonState) then) =
       _$DetailedKeyBoardButtonStateCopyWithImpl<$Res>;
-  $Res call({int value});
+  $Res call({DetailedKeyBoardButtonType type});
 }
 
 /// @nodoc
@@ -105,13 +110,13 @@ class _$DetailedKeyBoardButtonStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DetailedKeyBoardButtonType,
     ));
   }
 }
@@ -124,7 +129,7 @@ abstract class $DetailedKeyBoardButtonInitialCopyWith<$Res>
           $Res Function(DetailedKeyBoardButtonInitial) then) =
       _$DetailedKeyBoardButtonInitialCopyWithImpl<$Res>;
   @override
-  $Res call({int value, bool disabled});
+  $Res call({DetailedKeyBoardButtonType type, bool disabled});
 }
 
 /// @nodoc
@@ -142,14 +147,14 @@ class _$DetailedKeyBoardButtonInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? type = freezed,
     Object? disabled = freezed,
   }) {
     return _then(DetailedKeyBoardButtonInitial(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DetailedKeyBoardButtonType,
       disabled: disabled == freezed
           ? _value.disabled
           : disabled // ignore: cast_nullable_to_non_nullable
@@ -162,16 +167,16 @@ class _$DetailedKeyBoardButtonInitialCopyWithImpl<$Res>
 
 class _$DetailedKeyBoardButtonInitial implements DetailedKeyBoardButtonInitial {
   const _$DetailedKeyBoardButtonInitial(
-      {required this.value, required this.disabled});
+      {required this.type, required this.disabled});
 
   @override
-  final int value;
+  final DetailedKeyBoardButtonType type;
   @override
   final bool disabled;
 
   @override
   String toString() {
-    return 'DetailedKeyBoardButtonState.initial(value: $value, disabled: $disabled)';
+    return 'DetailedKeyBoardButtonState.initial(type: $type, disabled: $disabled)';
   }
 
   @override
@@ -179,13 +184,13 @@ class _$DetailedKeyBoardButtonInitial implements DetailedKeyBoardButtonInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DetailedKeyBoardButtonInitial &&
-            (identical(other.value, value) || other.value == value) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.disabled, disabled) ||
                 other.disabled == disabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, disabled);
+  int get hashCode => Object.hash(runtimeType, type, disabled);
 
   @JsonKey(ignore: true)
   @override
@@ -196,30 +201,35 @@ class _$DetailedKeyBoardButtonInitial implements DetailedKeyBoardButtonInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int value, bool disabled) initial,
-    required TResult Function(DartType type, int value) focused,
+    required TResult Function(DetailedKeyBoardButtonType type, bool disabled)
+        initial,
+    required TResult Function(
+            DetailedKeyBoardButtonType type, DartType dartType)
+        focused,
   }) {
-    return initial(value, disabled);
+    return initial(type, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
   }) {
-    return initial?.call(value, disabled);
+    return initial?.call(type, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(value, disabled);
+      return initial(type, disabled);
     }
     return orElse();
   }
@@ -259,11 +269,11 @@ class _$DetailedKeyBoardButtonInitial implements DetailedKeyBoardButtonInitial {
 abstract class DetailedKeyBoardButtonInitial
     implements DetailedKeyBoardButtonState {
   const factory DetailedKeyBoardButtonInitial(
-      {required int value,
+      {required DetailedKeyBoardButtonType type,
       required bool disabled}) = _$DetailedKeyBoardButtonInitial;
 
   @override
-  int get value;
+  DetailedKeyBoardButtonType get type;
   bool get disabled;
   @override
   @JsonKey(ignore: true)
@@ -279,7 +289,7 @@ abstract class $DetailedKeyBoardButtonFocusedCopyWith<$Res>
           $Res Function(DetailedKeyBoardButtonFocused) then) =
       _$DetailedKeyBoardButtonFocusedCopyWithImpl<$Res>;
   @override
-  $Res call({DartType type, int value});
+  $Res call({DetailedKeyBoardButtonType type, DartType dartType});
 }
 
 /// @nodoc
@@ -298,17 +308,17 @@ class _$DetailedKeyBoardButtonFocusedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = freezed,
-    Object? value = freezed,
+    Object? dartType = freezed,
   }) {
     return _then(DetailedKeyBoardButtonFocused(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as DetailedKeyBoardButtonType,
+      dartType: dartType == freezed
+          ? _value.dartType
+          : dartType // ignore: cast_nullable_to_non_nullable
               as DartType,
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -317,16 +327,16 @@ class _$DetailedKeyBoardButtonFocusedCopyWithImpl<$Res>
 
 class _$DetailedKeyBoardButtonFocused implements DetailedKeyBoardButtonFocused {
   const _$DetailedKeyBoardButtonFocused(
-      {required this.type, required this.value});
+      {required this.type, required this.dartType});
 
   @override
-  final DartType type;
+  final DetailedKeyBoardButtonType type;
   @override
-  final int value;
+  final DartType dartType;
 
   @override
   String toString() {
-    return 'DetailedKeyBoardButtonState.focused(type: $type, value: $value)';
+    return 'DetailedKeyBoardButtonState.focused(type: $type, dartType: $dartType)';
   }
 
   @override
@@ -335,11 +345,12 @@ class _$DetailedKeyBoardButtonFocused implements DetailedKeyBoardButtonFocused {
         (other.runtimeType == runtimeType &&
             other is DetailedKeyBoardButtonFocused &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.dartType, dartType) ||
+                other.dartType == dartType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, value);
+  int get hashCode => Object.hash(runtimeType, type, dartType);
 
   @JsonKey(ignore: true)
   @override
@@ -350,30 +361,35 @@ class _$DetailedKeyBoardButtonFocused implements DetailedKeyBoardButtonFocused {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int value, bool disabled) initial,
-    required TResult Function(DartType type, int value) focused,
+    required TResult Function(DetailedKeyBoardButtonType type, bool disabled)
+        initial,
+    required TResult Function(
+            DetailedKeyBoardButtonType type, DartType dartType)
+        focused,
   }) {
-    return focused(type, value);
+    return focused(type, dartType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
   }) {
-    return focused?.call(type, value);
+    return focused?.call(type, dartType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int value, bool disabled)? initial,
-    TResult Function(DartType type, int value)? focused,
+    TResult Function(DetailedKeyBoardButtonType type, bool disabled)? initial,
+    TResult Function(DetailedKeyBoardButtonType type, DartType dartType)?
+        focused,
     required TResult orElse(),
   }) {
     if (focused != null) {
-      return focused(type, value);
+      return focused(type, dartType);
     }
     return orElse();
   }
@@ -413,12 +429,12 @@ class _$DetailedKeyBoardButtonFocused implements DetailedKeyBoardButtonFocused {
 abstract class DetailedKeyBoardButtonFocused
     implements DetailedKeyBoardButtonState {
   const factory DetailedKeyBoardButtonFocused(
-      {required DartType type,
-      required int value}) = _$DetailedKeyBoardButtonFocused;
+      {required DetailedKeyBoardButtonType type,
+      required DartType dartType}) = _$DetailedKeyBoardButtonFocused;
 
-  DartType get type;
   @override
-  int get value;
+  DetailedKeyBoardButtonType get type;
+  DartType get dartType;
   @override
   @JsonKey(ignore: true)
   $DetailedKeyBoardButtonFocusedCopyWith<DetailedKeyBoardButtonFocused>

@@ -12,5 +12,5 @@ class DetailedInputAreaEvent with _$DetailedInputAreaEvent {
   const factory DetailedInputAreaEvent.dartDetailPressed({
     required DartType type,
   }) = _DartDetailPressed;
-  const factory DetailedInputAreaEvent.undoDartPressed() = _UndoDartPressed;
+  const factory DetailedInputAreaEvent.ereaseDartPressed() = _EreaseDartPressed;
 }

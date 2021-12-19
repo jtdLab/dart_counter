@@ -39,7 +39,7 @@ class DetailedInputAreaBloc
     on<_DartFocused>(_mapDartFocusedToState);
     on<_Unfocused>((_, emit) => _mapUnfocusedToState(emit));
     on<_DartDetailPressed>(_mapDartDetailPressedToState);
-    on<_UndoDartPressed>((_, emit) => _mapUndoDartPressedToState(emit));
+    on<_EreaseDartPressed>((_, emit) => _mapEreaseDartPressedToState(emit));
   }
 
   void _mapUndoThrowPressedToState() =>
@@ -56,8 +56,14 @@ class DetailedInputAreaBloc
             (index) => const Dart(type: DartType.single, value: 0),
           ).toImmutableList();
         } else {
-          // TODO fill up darts or what
-          return darts;
+          // TODO fill up darts or what is right ?
+          return darts.toMutableList()
+            ..addAll(
+              List.generate(
+                3 - darts.size,
+                (index) => const Dart(type: DartType.single, value: 0),
+              ).toImmutableList(),
+            );
         }
       },
     );
@@ -82,7 +88,6 @@ class DetailedInputAreaBloc
       points: points,
       pointsLeft: pointsLeft,
     );
-
     final minDartsOnDouble = _dartUtils.minDartsOnDouble(
       points: points,
       pointsLeft: pointsLeft,
@@ -198,7 +203,7 @@ class DetailedInputAreaBloc
     );
   }
 
-  void _mapUndoDartPressedToState(
+  void _mapEreaseDartPressedToState(
     Emitter<DetailedInputAreaState> emit,
   ) {
     final darts = _inputCubit.state

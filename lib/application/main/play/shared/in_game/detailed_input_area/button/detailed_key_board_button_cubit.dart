@@ -4,190 +4,199 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 import '../detailed_input_area_bloc.dart';
 
 part 'detailed_key_board_button_cubit.freezed.dart';
 part 'detailed_key_board_button_state.dart';
-
-// TODO refactor later to use this enum instead of value
-enum DetailedKeyBoardButtonType {
-  erease,
-  zero,
-  one,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-  ten,
-  eleven,
-  twelve,
-  thirteen,
-  fourteen,
-  fifteen,
-  sixteen,
-  seventeen,
-  eighteen,
-  nineteen,
-  twenty,
-  twentyFive
-}
-
+part 'detailed_key_board_button_type.dart';
 
 class DetailedKeyBoardButtonCubit extends Cubit<DetailedKeyBoardButtonState> {
-  final int _value; // The value the button shows in initial state
+  final DetailedKeyBoardButtonType
+      _type; // The value the button shows in initial state
   final DetailedInputAreaBloc _inputAreaBloc;
-  final PointsLeftCubit _pointsLeftCubit; // TODO needed???
+  final PointsLeftCubit _pointsLeftCubit;
 
-  final IDartUtils _dartUtils; // TODO needed ?
+  final IDartUtils _dartUtils;
 
   late final StreamSubscription _inputAreaSubscription;
+  late final StreamSubscription _pointsLeftSubscription;
 
   DetailedKeyBoardButtonCubit(
-    this._value,
+    this._type,
     this._inputAreaBloc,
     this._pointsLeftCubit,
     this._dartUtils,
   ) : super(
-          DetailedKeyBoardButtonState.initial(value: _value, disabled: false),
+          // TODO test
+          _type == DetailedKeyBoardButtonType.erease
+              ? DetailedKeyBoardButtonState.initial(
+                  type: _type,
+                  disabled: false,
+                )
+              : DetailedKeyBoardButtonState.initial(
+                  type: _type,
+                  disabled: !_dartUtils.validatePoints(
+                    pointsLeft: _pointsLeftCubit.state,
+                    points: _type.toDigit(),
+                  ),
+                ),
         ) {
     _inputAreaSubscription =
         _inputAreaBloc.stream.listen((detailedInputAreaState) {
       emit(
         detailedInputAreaState.map(
           initial: (initial) => DetailedKeyBoardButtonState.initial(
-            value: _value,
+            type: _type,
             disabled: false,
           ),
           focused: (focused) => _mapDetailedInputAreaFocusedToState(focused),
         ),
       );
     });
+
+    _pointsLeftSubscription = _pointsLeftCubit.stream.listen((pointsLeft) {
+      // TODO implement
+    });
   }
 
   void pressed() {
-    state.map(
-      initial: (initial) {
-        _inputAreaBloc
-            .add(DetailedInputAreaEvent.dartFocused(focusedValue: _value));
-      },
-      focused: (focused) {
-        final type = focused.type;
+    if (_type == DetailedKeyBoardButtonType.erease) {
+      _inputAreaBloc.add(const DetailedInputAreaEvent.ereaseDartPressed());
+    } else {
+      state.map(
+        initial: (initial) {
+          _inputAreaBloc.add(
+            DetailedInputAreaEvent.dartFocused(focusedValue: _type.toDigit()),
+          );
+        },
+        focused: (focused) {
+          final dartTyp = focused.dartType;
 
-        _inputAreaBloc
-            .add(DetailedInputAreaEvent.dartDetailPressed(type: type));
-      },
-    );
+          _inputAreaBloc
+              .add(DetailedInputAreaEvent.dartDetailPressed(type: dartTyp));
+        },
+      );
+    }
   }
 
   @override
   Future<void> close() {
     _inputAreaSubscription.cancel();
+    _pointsLeftSubscription.cancel();
     return super.close();
   }
 
-  /// Maps the incoming [event] from the input area to the correct state of the specific button with [_value].
+  /// Maps the incoming [event] from the input area to the correct state of the specific button with [_type].
   DetailedKeyBoardButtonState _mapDetailedInputAreaFocusedToState(
     DetailedInputAreaFocused event,
   ) {
-    final focusedValue = event.focusedValue;
-    final maxAllowedType = event.maxAllowedType;
+    if (_type != DetailedKeyBoardButtonType.erease) {
+      final focusedValue = event.focusedValue;
+      final maxAllowedType = event.maxAllowedType;
 
-    final leftSide = [
-      0,
-      4,
-      10,
-      16
-    ]; // Buttons with values 0,4,10,16 are on the left side of the keyboard.
-    final rightSide = [
-      3,
-      9,
-      15,
-      25
-    ]; // Buttons with values 3, 9, 15, 25 are on the left side of the keyboard.
+      final leftSide = [
+        0,
+        4,
+        10,
+        16
+      ]; // Buttons with values 0,4,10,16 are on the left side of the keyboard.
+      final rightSide = [
+        3,
+        9,
+        15,
+        25
+      ]; // Buttons with values 3, 9, 15, 25 are on the left side of the keyboard.
 
-    // Determine type of new state
-    final DartType type;
-    if (leftSide.contains(focusedValue)) {
-      if (_value == focusedValue) {
-        type = DartType.single;
-      } else if (_value == focusedValue + 1) {
-        type = DartType.double;
-      } else if (_value == focusedValue + 2) {
-        type = DartType.triple;
-      } else {
-        return DetailedKeyBoardButtonState.initial(
-            value: _value, disabled: true);
-      }
-    } else if (rightSide.contains(focusedValue)) {
-      if (focusedValue == 25) {
-        if (_value == 25) {
-          type = DartType.double;
-        } else if (_value == 20) {
+      // Determine type of new state
+      final DartType type;
+      if (leftSide.contains(focusedValue)) {
+        if (_type.toDigit() == focusedValue) {
           type = DartType.single;
-        } else {
-          return DetailedKeyBoardButtonState.initial(
-              value: _value, disabled: true);
-        }
-      } else {
-        if (_value == focusedValue) {
+        } else if (_type.toDigit() == focusedValue + 1) {
+          type = DartType.double;
+        } else if (_type.toDigit() == focusedValue + 2) {
           type = DartType.triple;
-        } else if (_value == focusedValue - 1) {
-          type = DartType.double;
-        } else if (_value == focusedValue - 2) {
-          type = DartType.single;
         } else {
           return DetailedKeyBoardButtonState.initial(
-              value: _value, disabled: true);
+            type: _type,
+            disabled: true,
+          );
+        }
+      } else if (rightSide.contains(focusedValue)) {
+        if (focusedValue == 25) {
+          if (_type.toDigit() == 25) {
+            type = DartType.double;
+          } else if (_type.toDigit() == 20) {
+            type = DartType.single;
+          } else {
+            return DetailedKeyBoardButtonState.initial(
+              type: _type,
+              disabled: true,
+            );
+          }
+        } else {
+          if (_type.toDigit() == focusedValue) {
+            type = DartType.triple;
+          } else if (_type.toDigit() == focusedValue - 1) {
+            type = DartType.double;
+          } else if (_type.toDigit() == focusedValue - 2) {
+            type = DartType.single;
+          } else {
+            return DetailedKeyBoardButtonState.initial(
+              type: _type,
+              disabled: true,
+            );
+          }
+        }
+      } else {
+        if (focusedValue == 20) {
+          if (_type.toDigit() == 19) {
+            type = DartType.single;
+          } else if (_type.toDigit() == focusedValue) {
+            type = DartType.double;
+          } else if (_type.toDigit() == 25) {
+            type = DartType.triple;
+          } else {
+            return DetailedKeyBoardButtonState.initial(
+              type: _type,
+              disabled: true,
+            );
+          }
+        } else {
+          if (_type.toDigit() == focusedValue - 1) {
+            type = DartType.single;
+          } else if (_type.toDigit() == focusedValue) {
+            type = DartType.double;
+          } else if (_type.toDigit() == focusedValue + 1) {
+            type = DartType.triple;
+          } else {
+            return DetailedKeyBoardButtonState.initial(
+              type: _type,
+              disabled: true,
+            );
+          }
         }
       }
+
+      // filter when type is larger then max allowed type
+
+      if (maxAllowedType == DartType.single && type != DartType.single) {
+        return DetailedKeyBoardButtonState.initial(type: _type, disabled: true);
+      }
+
+      if (maxAllowedType == DartType.double && type == DartType.triple) {
+        return DetailedKeyBoardButtonState.initial(type: _type, disabled: true);
+      }
+
+      // Return state
+      return DetailedKeyBoardButtonState.focused(
+        type: DetailedKeyBoardButtonTypeX.fromDigit(focusedValue),
+        dartType: type,
+      );
     } else {
-      if (focusedValue == 20) {
-        if (_value == 19) {
-          type = DartType.single;
-        } else if (_value == focusedValue) {
-          type = DartType.double;
-        } else if (_value == 25) {
-          type = DartType.triple;
-        } else {
-          return DetailedKeyBoardButtonState.initial(
-              value: _value, disabled: true);
-        }
-      } else {
-        if (_value == focusedValue - 1) {
-          type = DartType.single;
-        } else if (_value == focusedValue) {
-          type = DartType.double;
-        } else if (_value == focusedValue + 1) {
-          type = DartType.triple;
-        } else {
-          return DetailedKeyBoardButtonState.initial(
-              value: _value, disabled: true);
-        }
-      }
+      return state;
     }
-
-    // filter when type is larger then max allowed type
-
-    if (maxAllowedType == DartType.single && type != DartType.single) {
-      return DetailedKeyBoardButtonState.initial(value: _value, disabled: true);
-    }
-
-    if (maxAllowedType == DartType.double && type == DartType.triple) {
-      return DetailedKeyBoardButtonState.initial(value: _value, disabled: true);
-    }
-
-    // Return state
-    return DetailedKeyBoardButtonState.focused(
-      type: type,
-      value: focusedValue,
-    );
   }
 }

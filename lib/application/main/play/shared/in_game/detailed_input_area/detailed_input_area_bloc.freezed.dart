@@ -41,8 +41,8 @@ class _$DetailedInputAreaEventTearOff {
     );
   }
 
-  _UndoDartPressed undoDartPressed() {
-    return const _UndoDartPressed();
+  _EreaseDartPressed ereaseDartPressed() {
+    return const _EreaseDartPressed();
   }
 }
 
@@ -58,7 +58,7 @@ mixin _$DetailedInputAreaEvent {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +68,7 @@ mixin _$DetailedInputAreaEvent {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,7 +78,7 @@ mixin _$DetailedInputAreaEvent {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,7 +89,7 @@ mixin _$DetailedInputAreaEvent {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,7 +99,7 @@ mixin _$DetailedInputAreaEvent {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,7 +109,7 @@ mixin _$DetailedInputAreaEvent {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +178,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
     return undoThrowPressed();
   }
@@ -191,7 +191,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
     return undoThrowPressed?.call();
   }
@@ -204,7 +204,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (undoThrowPressed != null) {
@@ -221,7 +221,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
     return undoThrowPressed(this);
   }
@@ -234,7 +234,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
     return undoThrowPressed?.call(this);
   }
@@ -247,7 +247,7 @@ class _$_UndoThrowPressed implements _UndoThrowPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (undoThrowPressed != null) {
@@ -307,7 +307,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
     return performThrowPressed();
   }
@@ -320,7 +320,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
     return performThrowPressed?.call();
   }
@@ -333,7 +333,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (performThrowPressed != null) {
@@ -350,7 +350,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
     return performThrowPressed(this);
   }
@@ -363,7 +363,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
     return performThrowPressed?.call(this);
   }
@@ -376,7 +376,7 @@ class _$_PerformThrowPressed implements _PerformThrowPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (performThrowPressed != null) {
@@ -460,7 +460,7 @@ class _$_DartFocused implements _DartFocused {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
     return dartFocused(focusedValue);
   }
@@ -473,7 +473,7 @@ class _$_DartFocused implements _DartFocused {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
     return dartFocused?.call(focusedValue);
   }
@@ -486,7 +486,7 @@ class _$_DartFocused implements _DartFocused {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (dartFocused != null) {
@@ -503,7 +503,7 @@ class _$_DartFocused implements _DartFocused {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
     return dartFocused(this);
   }
@@ -516,7 +516,7 @@ class _$_DartFocused implements _DartFocused {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
     return dartFocused?.call(this);
   }
@@ -529,7 +529,7 @@ class _$_DartFocused implements _DartFocused {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (dartFocused != null) {
@@ -593,7 +593,7 @@ class _$_Unfocused implements _Unfocused {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
     return unfocused();
   }
@@ -606,7 +606,7 @@ class _$_Unfocused implements _Unfocused {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
     return unfocused?.call();
   }
@@ -619,7 +619,7 @@ class _$_Unfocused implements _Unfocused {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (unfocused != null) {
@@ -636,7 +636,7 @@ class _$_Unfocused implements _Unfocused {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
     return unfocused(this);
   }
@@ -649,7 +649,7 @@ class _$_Unfocused implements _Unfocused {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
     return unfocused?.call(this);
   }
@@ -662,7 +662,7 @@ class _$_Unfocused implements _Unfocused {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (unfocused != null) {
@@ -745,7 +745,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
     return dartDetailPressed(type);
   }
@@ -758,7 +758,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
     return dartDetailPressed?.call(type);
   }
@@ -771,7 +771,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (dartDetailPressed != null) {
@@ -788,7 +788,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
     return dartDetailPressed(this);
   }
@@ -801,7 +801,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
     return dartDetailPressed?.call(this);
   }
@@ -814,7 +814,7 @@ class _$_DartDetailPressed implements _DartDetailPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
     if (dartDetailPressed != null) {
@@ -835,38 +835,38 @@ abstract class _DartDetailPressed implements DetailedInputAreaEvent {
 }
 
 /// @nodoc
-abstract class _$UndoDartPressedCopyWith<$Res> {
-  factory _$UndoDartPressedCopyWith(
-          _UndoDartPressed value, $Res Function(_UndoDartPressed) then) =
-      __$UndoDartPressedCopyWithImpl<$Res>;
+abstract class _$EreaseDartPressedCopyWith<$Res> {
+  factory _$EreaseDartPressedCopyWith(
+          _EreaseDartPressed value, $Res Function(_EreaseDartPressed) then) =
+      __$EreaseDartPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UndoDartPressedCopyWithImpl<$Res>
+class __$EreaseDartPressedCopyWithImpl<$Res>
     extends _$DetailedInputAreaEventCopyWithImpl<$Res>
-    implements _$UndoDartPressedCopyWith<$Res> {
-  __$UndoDartPressedCopyWithImpl(
-      _UndoDartPressed _value, $Res Function(_UndoDartPressed) _then)
-      : super(_value, (v) => _then(v as _UndoDartPressed));
+    implements _$EreaseDartPressedCopyWith<$Res> {
+  __$EreaseDartPressedCopyWithImpl(
+      _EreaseDartPressed _value, $Res Function(_EreaseDartPressed) _then)
+      : super(_value, (v) => _then(v as _EreaseDartPressed));
 
   @override
-  _UndoDartPressed get _value => super._value as _UndoDartPressed;
+  _EreaseDartPressed get _value => super._value as _EreaseDartPressed;
 }
 
 /// @nodoc
 
-class _$_UndoDartPressed implements _UndoDartPressed {
-  const _$_UndoDartPressed();
+class _$_EreaseDartPressed implements _EreaseDartPressed {
+  const _$_EreaseDartPressed();
 
   @override
   String toString() {
-    return 'DetailedInputAreaEvent.undoDartPressed()';
+    return 'DetailedInputAreaEvent.ereaseDartPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UndoDartPressed);
+        (other.runtimeType == runtimeType && other is _EreaseDartPressed);
   }
 
   @override
@@ -880,9 +880,9 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     required TResult Function(int focusedValue) dartFocused,
     required TResult Function() unfocused,
     required TResult Function(DartType type) dartDetailPressed,
-    required TResult Function() undoDartPressed,
+    required TResult Function() ereaseDartPressed,
   }) {
-    return undoDartPressed();
+    return ereaseDartPressed();
   }
 
   @override
@@ -893,9 +893,9 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
   }) {
-    return undoDartPressed?.call();
+    return ereaseDartPressed?.call();
   }
 
   @override
@@ -906,11 +906,11 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     TResult Function(int focusedValue)? dartFocused,
     TResult Function()? unfocused,
     TResult Function(DartType type)? dartDetailPressed,
-    TResult Function()? undoDartPressed,
+    TResult Function()? ereaseDartPressed,
     required TResult orElse(),
   }) {
-    if (undoDartPressed != null) {
-      return undoDartPressed();
+    if (ereaseDartPressed != null) {
+      return ereaseDartPressed();
     }
     return orElse();
   }
@@ -923,9 +923,9 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     required TResult Function(_DartFocused value) dartFocused,
     required TResult Function(_Unfocused value) unfocused,
     required TResult Function(_DartDetailPressed value) dartDetailPressed,
-    required TResult Function(_UndoDartPressed value) undoDartPressed,
+    required TResult Function(_EreaseDartPressed value) ereaseDartPressed,
   }) {
-    return undoDartPressed(this);
+    return ereaseDartPressed(this);
   }
 
   @override
@@ -936,9 +936,9 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
   }) {
-    return undoDartPressed?.call(this);
+    return ereaseDartPressed?.call(this);
   }
 
   @override
@@ -949,18 +949,18 @@ class _$_UndoDartPressed implements _UndoDartPressed {
     TResult Function(_DartFocused value)? dartFocused,
     TResult Function(_Unfocused value)? unfocused,
     TResult Function(_DartDetailPressed value)? dartDetailPressed,
-    TResult Function(_UndoDartPressed value)? undoDartPressed,
+    TResult Function(_EreaseDartPressed value)? ereaseDartPressed,
     required TResult orElse(),
   }) {
-    if (undoDartPressed != null) {
-      return undoDartPressed(this);
+    if (ereaseDartPressed != null) {
+      return ereaseDartPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class _UndoDartPressed implements DetailedInputAreaEvent {
-  const factory _UndoDartPressed() = _$_UndoDartPressed;
+abstract class _EreaseDartPressed implements DetailedInputAreaEvent {
+  const factory _EreaseDartPressed() = _$_EreaseDartPressed;
 }
 
 /// @nodoc

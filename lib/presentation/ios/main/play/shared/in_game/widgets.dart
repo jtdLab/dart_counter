@@ -17,7 +17,6 @@ import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-
 // NAVBAR
 class StatsButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -91,127 +90,63 @@ class _StandardKeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
-    final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final inputCubit = context.read<InputCubit>();
-    final dartUtils = getIt<IDartUtils>();
-
     return AppColumn(
       spacing: size6(context),
       children: [
         Expanded(
           child: AppRow(
             spacing: size6(context),
-            children: List.generate(3, (index) {
-              final i = index + 1;
-              return BlocProvider( // TODO provider move to inside button same for detailed keyboard buttons
-                create: (context) => StandardKeyBoardButtonCubit(
-                  i,
-                  pointsLeftCubit,
-                  inputCubit,
-                  dartUtils,
-                ),
-                child: _KeyBoardButton(
-                  digit: i,
-                ),
-              );
-            }),
-          ),
-        ),
-        Expanded(
-          child: AppRow(
-            spacing: size6(context),
-            children: List.generate(3, (index) {
-              final i = index + 4;
-              return BlocProvider(
-                create: (context) => StandardKeyBoardButtonCubit(
-                  i,
-                  pointsLeftCubit,
-                  inputCubit,
-                  dartUtils,
-                ),
-                child: _KeyBoardButton(
-                  digit: i,
-                ),
-              );
-            }),
-          ),
-        ),
-        Expanded(
-          child: AppRow(
-            spacing: size6(context),
-            children: List.generate(3, (index) {
-              final i = index + 7;
-              return BlocProvider(
-                create: (context) => StandardKeyBoardButtonCubit(
-                  i,
-                  pointsLeftCubit,
-                  inputCubit,
-                  dartUtils,
-                ),
-                child: _KeyBoardButton(
-                  digit: i,
-                ),
-              );
-            }),
+            children: [
+              StandardKeyBoardButtonType.one,
+              StandardKeyBoardButtonType.two,
+              StandardKeyBoardButtonType.three,
+            ]
+                .map(
+                  (type) => _StandardKeyBoardButton(type: type),
+                )
+                .toList(),
           ),
         ),
         Expanded(
           child: AppRow(
             spacing: size6(context),
             children: [
-              BlocBuilder<InputCubit, InputState>(
-                builder: (context, state) {
-                  final points = state.whenOrNull(
-                    points: (points) => points,
-                  ); // TODO visually not good on keyboard change
-
-                  return AppActionButton.flexible(
-                    color: AppColors.white,
-                    onPressed: points == 0
-                        ? null
-                        : () => context
-                            .read<StandardInputAreaBloc>()
-                            .add(const StandardInputAreaEvent.checkPressed()),
-                    fontSize: 18,
-                    text: LocaleKeys.check.tr().toUpperCase(),
-                  );
-                },
-              ),
-              BlocProvider(
-                create: (context) => StandardKeyBoardButtonCubit(
-                  0,
-                  pointsLeftCubit,
-                  inputCubit,
-                  dartUtils,
-                ),
-                child: const _KeyBoardButton(
-                  digit: 0,
-                ),
-              ),
-              BlocBuilder<InputCubit, InputState>(
-                builder: (context, state) {
-                  final points = state.whenOrNull(
-                    points: (points) => points,
-                  ); // TODO visually not good on keyboard change
-
-                  return AppActionButton.flexible(
-                    color: AppColors.white,
-                    onPressed: points == 0
-                        ? null
-                        : () => context
-                            .read<StandardInputAreaBloc>()
-                            .add(const StandardInputAreaEvent.erasePressed()),
-                    icon: Image.asset(
-                      AppImages.chevronBackNew,
-                      color: points == 0
-                          ? CupertinoColors.quaternarySystemFill
-                          : null,
-                    ),
-                  );
-                },
-              ),
-            ],
+              StandardKeyBoardButtonType.four,
+              StandardKeyBoardButtonType.five,
+              StandardKeyBoardButtonType.six,
+            ]
+                .map(
+                  (type) => _StandardKeyBoardButton(type: type),
+                )
+                .toList(),
+          ),
+        ),
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: [
+              StandardKeyBoardButtonType.seven,
+              StandardKeyBoardButtonType.eight,
+              StandardKeyBoardButtonType.nine,
+            ]
+                .map(
+                  (type) => _StandardKeyBoardButton(type: type),
+                )
+                .toList(),
+          ),
+        ),
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: [
+              StandardKeyBoardButtonType.check,
+              StandardKeyBoardButtonType.zero,
+              StandardKeyBoardButtonType.erease,
+            ]
+                .map(
+                  (type) => _StandardKeyBoardButton(type: type),
+                )
+                .toList(),
           ),
         ),
       ],
@@ -219,33 +154,89 @@ class _StandardKeyBoard extends StatelessWidget {
   }
 }
 
-class _KeyBoardButton extends StatelessWidget {
-  final int digit;
+class _StandardKeyBoardButton extends StatelessWidget {
+  final StandardKeyBoardButtonType type;
 
-  const _KeyBoardButton({
+  const _StandardKeyBoardButton({
     Key? key,
-    required this.digit,
+    required this.type,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StandardKeyBoardButtonCubit,
-        StandardKeyBoardButtonState>(
-      builder: (context, state) {
-        return AppActionButton.flexible(
-          fontSize: 28,
-          color: AppColors.white,
-          onPressed: state.disabled
-              ? null
-              : () => context
-                  .read<StandardInputAreaBloc>()
-                  .add(StandardInputAreaEvent.digitPressed(digit: digit)),
-          text: digit.toString(),
-        );
-      },
+    // TODO dependency injection like this seems not to be good practice
+    final pointsLeftCubit = context.read<PointsLeftCubit>();
+    final inputCubit = context.read<InputCubit>();
+    final dartUtils = getIt<IDartUtils>();
+
+    return BlocProvider(
+      create: (context) => StandardKeyBoardButtonCubit(
+        type,
+        pointsLeftCubit,
+        inputCubit,
+        dartUtils,
+      ),
+      child:
+          BlocBuilder<StandardKeyBoardButtonCubit, StandardKeyBoardButtonState>(
+        builder: (context, state) {
+          return _textOrImage(context).fold(
+            (text) => AppActionButton.flexible(
+              fontSize: _fontSize,
+              color: AppColors.white,
+              onPressed: state.disabled ? null : _onPressed(context),
+              text: text,
+            ),
+            (image) => AppActionButton.flexible(
+              fontSize: _fontSize,
+              color: AppColors.white,
+              onPressed: state.disabled ? null : _onPressed(context),
+              icon: image,
+            ),
+          );
+        },
+      ),
     );
   }
+
+  VoidCallback? _onPressed(BuildContext context) {
+    switch (type) {
+      case StandardKeyBoardButtonType.check:
+        return () => context
+            .read<StandardInputAreaBloc>()
+            .add(const StandardInputAreaEvent.checkPressed());
+      case StandardKeyBoardButtonType.erease:
+        return () => context
+            .read<StandardInputAreaBloc>()
+            .add(const StandardInputAreaEvent.erasePressed());
+      default:
+        return () => context
+            .read<StandardInputAreaBloc>()
+            .add(StandardInputAreaEvent.digitPressed(digit: type.toDigit()));
+    }
+  }
+
+  double get _fontSize => type == StandardKeyBoardButtonType.check ? 18 : 28;
+
+  Either<String, Image> _textOrImage(BuildContext context) {
+    switch (type) {
+      case StandardKeyBoardButtonType.check:
+        return left('CHECK');
+      case StandardKeyBoardButtonType.erease:
+        final disabled =
+            context.read<StandardKeyBoardButtonCubit>().state.disabled;
+        return right(
+          Image.asset(
+            AppImages.chevronBackNew,
+            color: disabled ? CupertinoColors.quaternarySystemFill : null,
+          ),
+        );
+
+      default:
+        return left(type.toDigit().toString());
+    }
+  }
 }
+
 
 // DETAILED INPUT AREA
 // TODO flex factors
@@ -308,11 +299,6 @@ class _DetailedKeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
-    final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
-    final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final dartUtils = getIt<IDartUtils>();
-
     return GestureDetector(
       onTap: () => context
           .read<DetailedInputAreaBloc>()
@@ -323,52 +309,40 @@ class _DetailedKeyBoard extends StatelessWidget {
           Expanded(
             child: AppRow(
               spacing: size6(context),
-              children: List.generate(
-                6,
-                (i) => BlocProvider(
-                  create: (context) => DetailedKeyBoardButtonCubit(
-                    i != 5 ? i + 16 : 25,
-                    detailedInputAreaBloc,
-                    pointsLeftCubit,
-                    dartUtils,
-                  ),
-                  child: const _DetailedKeyBoardDigitButton(),
-                ),
-              ),
+              children: [
+                DetailedKeyBoardButtonType.sixteen,
+                DetailedKeyBoardButtonType.seventeen,
+                DetailedKeyBoardButtonType.eighteen,
+                DetailedKeyBoardButtonType.nineteen,
+                DetailedKeyBoardButtonType.twenty,
+                DetailedKeyBoardButtonType.twentyFive
+              ].map((type) => _DetailedKeyBoardButton(type: type)).toList(),
             ),
           ),
           Expanded(
             child: AppRow(
               spacing: size6(context),
-              children: List.generate(
-                6,
-                (i) => BlocProvider(
-                  create: (context) => DetailedKeyBoardButtonCubit(
-                    i + 10,
-                    detailedInputAreaBloc,
-                    pointsLeftCubit,
-                    dartUtils,
-                  ),
-                  child: const _DetailedKeyBoardDigitButton(),
-                ),
-              ),
+              children: [
+                DetailedKeyBoardButtonType.ten,
+                DetailedKeyBoardButtonType.eleven,
+                DetailedKeyBoardButtonType.twelve,
+                DetailedKeyBoardButtonType.thirteen,
+                DetailedKeyBoardButtonType.fourteen,
+                DetailedKeyBoardButtonType.fifteen
+              ].map((type) => _DetailedKeyBoardButton(type: type)).toList(),
             ),
           ),
           Expanded(
             child: AppRow(
               spacing: size6(context),
-              children: List.generate(
-                6,
-                (i) => BlocProvider(
-                  create: (context) => DetailedKeyBoardButtonCubit(
-                    i + 4,
-                    detailedInputAreaBloc,
-                    pointsLeftCubit,
-                    dartUtils,
-                  ),
-                  child: const _DetailedKeyBoardDigitButton(),
-                ),
-              ),
+              children: [
+                DetailedKeyBoardButtonType.four,
+                DetailedKeyBoardButtonType.five,
+                DetailedKeyBoardButtonType.six,
+                DetailedKeyBoardButtonType.seven,
+                DetailedKeyBoardButtonType.eight,
+                DetailedKeyBoardButtonType.nine
+              ].map((type) => _DetailedKeyBoardButton(type: type)).toList(),
             ),
           ),
           Expanded(
@@ -378,64 +352,31 @@ class _DetailedKeyBoard extends StatelessWidget {
                 Expanded(
                   child: AppRow(
                     spacing: size6(context),
-                    children: List.generate(
-                      2,
-                      (i) => BlocProvider(
-                        create: (context) => DetailedKeyBoardButtonCubit(
-                          i,
-                          detailedInputAreaBloc,
-                          pointsLeftCubit,
-                          dartUtils,
-                        ),
-                        child: const _DetailedKeyBoardDigitButton(),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: AppRow(
-                    spacing: size6(context),
-                    children: List.generate(
-                      2,
-                      (i) => BlocProvider(
-                        create: (context) => DetailedKeyBoardButtonCubit(
-                          i + 2,
-                          detailedInputAreaBloc,
-                          pointsLeftCubit,
-                          dartUtils,
-                        ),
-                        child: const _DetailedKeyBoardDigitButton(),
-                      ),
-                    ),
+                    children: [
+                      DetailedKeyBoardButtonType.zero,
+                      DetailedKeyBoardButtonType.one,
+                    ]
+                        .map((type) => _DetailedKeyBoardButton(type: type))
+                        .toList(),
                   ),
                 ),
                 Expanded(
                   child: AppRow(
                     spacing: size6(context),
                     children: [
-                      BlocBuilder<InputCubit, InputState>(
-                        builder: (context, state) {
-                          final darts = state.whenOrNull(
-                            darts: (darts) => darts,
-                          ); // TODO visually not good on keyboard change
-
-                          return AppActionButton.flexible(
-                            color: AppColors.white,
-                            onPressed: darts?.size == 0
-                                ? null
-                                : () =>
-                                    context.read<DetailedInputAreaBloc>().add(
-                                          const DetailedInputAreaEvent
-                                              .undoDartPressed(),
-                                        ),
-                            icon: Image.asset(
-                              AppImages.chevronBackNew,
-                              color: darts?.size == 0
-                                  ? CupertinoColors.quaternarySystemFill
-                                  : null,
-                            ),
-                          );
-                        },
+                      DetailedKeyBoardButtonType.two,
+                      DetailedKeyBoardButtonType.three,
+                    ]
+                        .map((type) => _DetailedKeyBoardButton(type: type))
+                        .toList(),
+                  ),
+                ),
+                Expanded(
+                  child: AppRow(
+                    spacing: size6(context),
+                    children: const [
+                      _DetailedKeyBoardButton(
+                        type: DetailedKeyBoardButtonType.erease,
                       ),
                     ],
                   ),
@@ -449,56 +390,104 @@ class _DetailedKeyBoard extends StatelessWidget {
   }
 }
 
-class _DetailedKeyBoardDigitButton extends StatelessWidget {
-  const _DetailedKeyBoardDigitButton({
+class _DetailedKeyBoardButton extends StatelessWidget {
+  final DetailedKeyBoardButtonType type;
+
+  const _DetailedKeyBoardButton({
     Key? key,
+    required this.type,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailedKeyBoardButtonCubit,
-        DetailedKeyBoardButtonState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (initial) {
-            return AppActionButton.flexible(
-              fontSize: 14,
-              color: AppColors.white,
-              onPressed: initial.disabled
-                  ? null
-                  : () => context.read<DetailedKeyBoardButtonCubit>().pressed(),
-              text: initial.value.toString(),
-            );
-          },
-          focused: (focused) {
-            final type = focused.type;
-            final value = focused.value;
+    // TODO dependency injection like this seems not to be good practice
+    final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
+    final pointsLeftCubit = context.read<PointsLeftCubit>();
+    final dartUtils = getIt<IDartUtils>();
 
-            final color = type == DartType.single
-                ? AppColors.black
-                : type == DartType.double
-                    ? AppColors.red
-                    : AppColors.orangeNew;
+    return BlocProvider(
+      create: (context) => DetailedKeyBoardButtonCubit(
+        type,
+        detailedInputAreaBloc,
+        pointsLeftCubit,
+        dartUtils,
+      ),
+      child:
+          BlocBuilder<DetailedKeyBoardButtonCubit, DetailedKeyBoardButtonState>(
+        builder: (context, state) {
+          return state.map(
+            initial: (initial) {
+              return textOrImage(context).fold(
+                (text) => AppActionButton.flexible(
+                  fontSize: 14,
+                  color: AppColors.white,
+                  onPressed: initial.disabled
+                      ? null
+                      : () =>
+                          context.read<DetailedKeyBoardButtonCubit>().pressed(),
+                  text: text,
+                ),
+                (image) => AppActionButton.flexible(
+                  fontSize: 14,
+                  color: AppColors.white,
+                  onPressed: initial.disabled
+                      ? null
+                      : () =>
+                          context.read<DetailedKeyBoardButtonCubit>().pressed(),
+                  icon: image,
+                ),
+              );
+            },
+            focused: (focused) {
+              final type = focused.type;
+              final dartType = focused.dartType;
 
-            final text = type == DartType.single
-                ? 'S'
-                : type == DartType.double
-                    ? 'D'
-                    : 'T';
+              final color = dartType == DartType.single
+                  ? AppColors.black
+                  : dartType == DartType.double
+                      ? AppColors.red
+                      : AppColors.orangeNew;
 
-            return AppActionButton.flexible(
-              fontSize: 14,
-              color: AppColors.white,
-              onPressed: () =>
-                  context.read<DetailedKeyBoardButtonCubit>().pressed(),
-              text: text + value.toString(),
-              fontColor: color,
-              borderColor: color,
-            );
-          },
-        );
-      },
+              final text = dartType == DartType.single
+                  ? 'S'
+                  : dartType == DartType.double
+                      ? 'D'
+                      : 'T';
+
+              return AppActionButton.flexible(
+                fontSize: 14,
+                color: AppColors.white,
+                onPressed: () =>
+                    context.read<DetailedKeyBoardButtonCubit>().pressed(),
+                text: text + type.toDigit().toString(),
+                fontColor: color,
+                borderColor: color,
+              );
+            },
+          );
+        },
+      ),
     );
+  }
+
+  Either<String, Image> textOrImage(BuildContext context) {
+    switch (type) {
+      case DetailedKeyBoardButtonType.erease:
+        final disabled =
+            context.read<DetailedKeyBoardButtonCubit>().state.mapOrNull(
+                  initial: (initial) => initial.disabled,
+                );
+        return right(
+          Image.asset(
+            AppImages.chevronBackNew,
+            color: (disabled ?? false)
+                ? CupertinoColors.quaternarySystemFill
+                : null,
+          ),
+        );
+      default:
+        return left(type.toDigit().toString());
+    }
   }
 }
 
@@ -511,7 +500,8 @@ class SpeechInputArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider( // TODO inject correctly not with getit
+    return BlocProvider(
+      // TODO inject correctly not with getit
       create: (context) => getIt<SpeechInputAreaBloc>(),
       child: Builder(
         builder: (context) =>
@@ -610,7 +600,8 @@ class OpticalInputArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<OpticalInputAreaBloc>(), // TODO ibject correctly not with getit
+      create: (context) =>
+          getIt<OpticalInputAreaBloc>(), // TODO ibject correctly not with getit
       child: AppColumn(
         spacing: size6(context),
         children: [

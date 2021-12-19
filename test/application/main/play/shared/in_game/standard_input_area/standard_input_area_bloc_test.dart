@@ -7,6 +7,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/standard_input
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/infrastructure/play/dart_utils.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,7 +23,6 @@ class MockInputCubit extends MockCubit<InputState> implements InputCubit {}
 class MockShowCheckoutDetailsCubit extends MockCubit<bool>
     implements ShowCheckoutDetailsCubit {}
 
-class MockDartUtils extends Mock implements IDartUtils {}
 
 void main() {
   setUpAll(() {
@@ -34,7 +34,7 @@ void main() {
   late PointsLeftCubit mockPointsLeftCubit;
   late InputCubit mockInputCubit;
   late ShowCheckoutDetailsCubit mockShowCheckoutDetailsCubit;
-  final IDartUtils mockDartUtils = MockDartUtils();
+  final IDartUtils mockDartUtils = DartUtils();
 
   setUp(() {
     mockInGameBloc = MockInGameBloc();

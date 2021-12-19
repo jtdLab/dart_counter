@@ -8,62 +8,62 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'standard_key_board_button_cubit.freezed.dart';
 part 'standard_key_board_button_state.dart';
-
-// TODO remove
-/**
- * enum StandardKeyBoardButtonType {
-  check,
-  erease,
-  zero,
-  one,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine
-}
- */
+part 'standard_key_board_button_type.dart';
 
 class StandardKeyBoardButtonCubit extends Cubit<StandardKeyBoardButtonState> {
-  final int _value;
-  final PointsLeftCubit _pointsLeftCubit; // TODO needed???
+  final StandardKeyBoardButtonType _type;
+  final PointsLeftCubit _pointsLeftCubit;
   final InputCubit _inputCubit;
 
   final IDartUtils _dartUtils;
 
+  late final StreamSubscription _pointsLeftCubitSubscription;
   late final StreamSubscription _inputCubitSubscription;
 
   StandardKeyBoardButtonCubit(
-    this._value,
+    this._type,
     this._pointsLeftCubit,
     this._inputCubit,
     this._dartUtils,
-  ) : super(const StandardKeyBoardButtonState.initial(disabled: false)) {
+  ) : super(
+          !_dartUtils.isFinish(points: _pointsLeftCubit.state) &&
+                  _type == StandardKeyBoardButtonType.check
+              ? StandardKeyBoardButtonState.initial(
+                  type: _type,
+                  disabled: true,
+                )
+              : _type == StandardKeyBoardButtonType.erease
+                  ? StandardKeyBoardButtonState.initial(
+                      type: _type,
+                      disabled: true,
+                    )
+                  : StandardKeyBoardButtonState.initial(
+                      type: _type,
+                      disabled: false,
+                    ),
+        ) {
+    _pointsLeftCubitSubscription = _pointsLeftCubit.stream
+        .listen((_) => emit(_onPointsLeftOrInputChanged()));
     _inputCubitSubscription = _inputCubit.stream.listen((inputState) {
-      emit(
-        inputState.map(
-          points: (points) => _mapInputPointsToState(points),
-          // TODO throw on switch from detailed to standard
-          darts: (darts) => throw Error(),
-        ),
+      inputState.mapOrNull(
+        points: (points) => emit(_onPointsLeftOrInputChanged()),
       );
     });
   }
 
   @override
   Future<void> close() {
+    _pointsLeftCubitSubscription.cancel();
     _inputCubitSubscription.cancel();
     return super.close();
   }
 
-  /// Maps the incoming [event] from the input cubit to the correct state of the specific button with [_type].
-  StandardKeyBoardButtonState _mapInputPointsToState(
-    InputPoints event,
-  ) {
-    final points = event.points;
+  /// On input or points left changed calc the correct state of the specific button with [_type].
+  StandardKeyBoardButtonState _onPointsLeftOrInputChanged() {
+    final points = _inputCubit.state.map(
+      points: (points) => points.points,
+      darts: (darts) => throw Error(), // TODO better error
+    );
 
     final pointsLeft = _pointsLeftCubit.state;
 
@@ -72,77 +72,9 @@ class StandardKeyBoardButtonCubit extends Cubit<StandardKeyBoardButtonState> {
     }
 
     final bool disabled;
-    switch (_value) {
-      case 0:
-        disabled = points == 0 ||
-            !_dartUtils.validatePoints(
-              points: newPoints(points, 0),
-              pointsLeft: pointsLeft,
-            );
-        break;
-      case 1:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 1),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 2:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 2),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 3:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 3),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 4:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 4),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 5:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 5),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 6:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 6),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 7:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 7),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 8:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 8),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      case 9:
-        disabled = !_dartUtils.validatePoints(
-          points: newPoints(points, 9),
-          pointsLeft: pointsLeft,
-        );
-        break;
-      default:
-        disabled = false;
-    }
-
-    // TODO remove
-    /**
-     * switch (_type) {
+    switch (_type) {
       case StandardKeyBoardButtonType.check:
-        disabled = points == 0;
+        disabled = !_dartUtils.isFinish(points: pointsLeft);
         break;
       case StandardKeyBoardButtonType.erease:
         disabled = points == 0;
@@ -209,8 +141,7 @@ class StandardKeyBoardButtonCubit extends Cubit<StandardKeyBoardButtonState> {
         );
         break;
     }
-     */
 
-    return StandardKeyBoardButtonState.initial(disabled: disabled);
+    return state.copyWith(disabled: disabled);
   }
 }

@@ -79,6 +79,7 @@ void main() {
 
   group('PerformThrowPressed', () {
     // TODO impl
+
     blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
       'emits [MyState] when MyEvent is added.',
       build: () {
@@ -119,6 +120,7 @@ void main() {
     );
 
     // TODO impl
+
     blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
       'GIVEN input is points dd'
       'throws Error when DartFocused is added.',
@@ -257,7 +259,7 @@ void main() {
         );
       },
       act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.undoDartPressed(),
+        const DetailedInputAreaEvent.ereaseDartPressed(),
       ),
       errors: () => [isA<Error>()],
     );
@@ -282,7 +284,7 @@ void main() {
         );
       },
       act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.undoDartPressed(),
+        const DetailedInputAreaEvent.ereaseDartPressed(),
       ),
       verify: (_) => verifyNever(
         () => mockInputCubit.update(newInput: any(named: 'newInput')),
@@ -310,7 +312,7 @@ void main() {
         );
       },
       act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.undoDartPressed(),
+        const DetailedInputAreaEvent.ereaseDartPressed(),
       ),
       expect: () => [const DetailedInputAreaState.initial()],
       verify: (_) => verify(
