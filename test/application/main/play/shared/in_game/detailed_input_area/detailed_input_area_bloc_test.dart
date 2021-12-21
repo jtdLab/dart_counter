@@ -153,7 +153,7 @@ void main() {
     );
   });
 
-  group('Unfocused', () {
+  group('UnFocusRequested', () {
     blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
       'emits [DetailedInputAreaInitial] with focusedValue = null when Unfocused is added.',
       build: () {
@@ -165,159 +165,9 @@ void main() {
           mockDartUtils,
         );
       },
-      act: (bloc) => bloc.add(const DetailedInputAreaEvent.unfocused()),
+      act: (bloc) => bloc.add(const DetailedInputAreaEvent.unfocusRequested()),
       expect: () =>
           const <DetailedInputAreaState>[DetailedInputAreaState.initial()],
-    );
-  });
-
-  group('DartDetailPressed', () {
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is points '
-      'throws Error when DartDetailPressed is added.',
-      build: () {
-        const points = 40;
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.points(points: points)]),
-          initialState: const InputState.points(points: points),
-        );
-
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      seed: () => const DetailedInputAreaState.focused(
-        focusedValue: 20,
-        maxAllowedType: DartType.triple,
-      ),
-      act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.dartDetailPressed(type: DartType.single),
-      ),
-      errors: () => [isA<Error>()],
-    );
-
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'emits [DetailedInputAreaInitial] and updates input cubit with darts where correct new dart was added '
-      'when DartDetailPressed is added.',
-      build: () {
-        const darts = KtList<Dart>.empty();
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.darts(darts: darts)]),
-          initialState: const InputState.darts(darts: darts),
-        );
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      seed: () => const DetailedInputAreaState.focused(
-        focusedValue: 20,
-        maxAllowedType: DartType.triple,
-      ),
-      act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.dartDetailPressed(
-          type: DartType.double,
-        ),
-      ),
-      expect: () => [const DetailedInputAreaState.initial()],
-      verify: (_) => (verify(
-        () => mockInputCubit.update(
-          newInput: right(
-            KtList.from([const Dart(type: DartType.double, value: 20)]),
-          ),
-        ),
-      )).called(1),
-    );
-  });
-
-  group('UndoDartPressed', () {
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is points '
-      'throws Error when UndoDartPressed is added.',
-      build: () {
-        const points = 40;
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.points(points: points)]),
-          initialState: const InputState.points(points: points),
-        );
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.ereaseDartPressed(),
-      ),
-      errors: () => [isA<Error>()],
-    );
-
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is empty darts '
-      'do nothing '
-      'when UndoDartPressed is added.',
-      build: () {
-        const darts = KtList<Dart>.empty();
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.darts(darts: darts)]),
-          initialState: const InputState.darts(darts: darts),
-        );
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.ereaseDartPressed(),
-      ),
-      verify: (_) => verifyNever(
-        () => mockInputCubit.update(newInput: any(named: 'newInput')),
-      ),
-    );
-
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is not empty darts '
-      'emits [DetailedInputAreaInitial] and updates input cubit with darts where last dart is removed '
-      'when UndoDartPressed is added.',
-      build: () {
-        final darts =
-            KtList.from([const Dart(type: DartType.single, value: 10)]);
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([InputState.darts(darts: darts)]),
-          initialState: InputState.darts(darts: darts),
-        );
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      act: (bloc) => bloc.add(
-        const DetailedInputAreaEvent.ereaseDartPressed(),
-      ),
-      expect: () => [const DetailedInputAreaState.initial()],
-      verify: (_) => verify(
-        () => mockInputCubit.update(newInput: right(const KtList.empty())),
-      ).called(1),
     );
   });
 }

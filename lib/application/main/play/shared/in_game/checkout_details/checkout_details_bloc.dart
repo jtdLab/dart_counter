@@ -6,6 +6,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/input/input_cu
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -176,5 +177,7 @@ class CheckoutDetailsBloc
         ),
       ),
     );
+
+    _inputCubit.update(newInput: right(const KtList.empty()));
   }
 }

@@ -2,7 +2,7 @@
 // OTHER
 import 'dart:math' as math;
 
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/button/detailed_key_board_button_cubit.dart';
+//import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/button/detailed_key_board_button_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 // BLOCS
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
@@ -237,7 +237,6 @@ class _StandardKeyBoardButton extends StatelessWidget {
   }
 }
 
-
 // DETAILED INPUT AREA
 // TODO flex factors
 class DetailedInputArea extends StatelessWidget {
@@ -299,10 +298,12 @@ class _DetailedKeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    throw Error();
+    /** 
     return GestureDetector(
       onTap: () => context
           .read<DetailedInputAreaBloc>()
-          .add(const DetailedInputAreaEvent.unfocused()),
+          .add(const DetailedInputAreaEvent.unfocusRequested()),
       child: AppColumn(
         spacing: size6(context),
         children: [
@@ -387,9 +388,11 @@ class _DetailedKeyBoard extends StatelessWidget {
         ],
       ),
     );
+ */
   }
 }
 
+/** 
 class _DetailedKeyBoardButton extends StatelessWidget {
   final DetailedKeyBoardButtonType type;
 
@@ -402,6 +405,7 @@ class _DetailedKeyBoardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
     final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
+    final inputCubit = context.read<InputCubit>();
     final pointsLeftCubit = context.read<PointsLeftCubit>();
     final dartUtils = getIt<IDartUtils>();
 
@@ -409,6 +413,7 @@ class _DetailedKeyBoardButton extends StatelessWidget {
       create: (context) => DetailedKeyBoardButtonCubit(
         type,
         detailedInputAreaBloc,
+        inputCubit,
         pointsLeftCubit,
         dartUtils,
       ),
@@ -490,6 +495,7 @@ class _DetailedKeyBoardButton extends StatelessWidget {
     }
   }
 }
+*/
 
 // SPEECH INPUT AREA
 // TODO flex factors

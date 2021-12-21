@@ -35,19 +35,19 @@ class DetailedInputAreaBloc
     this._dartUtils,
   ) : super(const DetailedInputAreaState.initial()) {
     on<_UndoThrowPressed>((_, __) => _mapUndoThrowPressedToState());
-    on<_PerformThrowPressed>((_, __) => _mapPerformThrowPressedToState());
+    on<_PerformThrowPressed>((_, emit) => _mapPerformThrowPressedToState(emit));
     on<_DartFocused>(_mapDartFocusedToState);
-    on<_Unfocused>((_, emit) => _mapUnfocusedToState(emit));
-    on<_DartDetailPressed>(_mapDartDetailPressedToState);
-    on<_EreaseDartPressed>((_, emit) => _mapEreaseDartPressedToState(emit));
+    on<_UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
   }
 
   void _mapUndoThrowPressedToState() =>
       _inGameBloc.add(const InGameEvent.undoThrowPressed());
 
-  void _mapPerformThrowPressedToState() {
-    final darts = _inputCubit.state.when(
-      points: (points) => throw Error(), // TODO error
+  void _mapPerformThrowPressedToState(
+    Emitter<DetailedInputAreaState> emit,
+  ) {
+    var darts = _inputCubit.state.when(
+      points: (points) => throw Error(), // TODO better error
       darts: (darts) {
         if (darts.isEmpty()) {
           // empty means the user had missed all 3 darts
@@ -56,28 +56,23 @@ class DetailedInputAreaBloc
             (index) => const Dart(type: DartType.single, value: 0),
           ).toImmutableList();
         } else {
-          // TODO fill up darts or what is right ?
-          return darts.toMutableList()
-            ..addAll(
-              List.generate(
-                3 - darts.size,
-                (index) => const Dart(type: DartType.single, value: 0),
-              ).toImmutableList(),
-            );
+          return darts;
         }
       },
     );
 
     final pointsLeft = _pointsLeftCubit.state;
-
     final points = darts.fold<int>(0, (acc, dart) => acc + dart.points());
 
-    // TODO
-    if (pointsLeft != points) {
-      if (darts.size != 3) {
-        // do nothing when less then 3 darts but do not finish the pointsLeft.
-        return;
-      }
+    if (darts.size != 3 && pointsLeft != points) {
+      // less then 3 darts but do not finish the pointsLeft fill the remaining with 0s
+      darts = darts.toMutableList()
+        ..addAll(
+          List.generate(
+            3 - darts.size,
+            (index) => const Dart(type: DartType.single, value: 0),
+          ).toImmutableList(),
+        );
     }
 
     final minDartsThrown = _dartUtils.minDartsThrown(
@@ -130,92 +125,25 @@ class DetailedInputAreaBloc
         .toMutableList();
 
     final pointsLeft = _pointsLeftCubit.state;
-
     final points = darts.fold<int>(0, (acc, dart) => acc + dart.points());
 
-    if (darts.size < 3) {
+    if (darts.size < 3 && pointsLeft != points) {
       final focusedValue = event.focusedValue;
       if (focusedValue == 0) {
         // 0 pressed type can be auto implied
-        const dart = Dart(type: DartType.single, value: 0);
-        _inputCubit.update(newInput: right(darts..add(dart)));
+        _inputCubit.update(
+          newInput:
+              right(darts..add(const Dart(type: DartType.single, value: 0))),
+        );
       } else {
         // other pressed type needs to be specified by another user input
-        if (pointsLeft != points) {
-          // calc maxAllowedType it has to be the max type so the possible new points satisfy
-          // pointsLeft - new points (aka. remaining points) >= 0 but not 1.
-          DartType? maxAllowedType;
-          for (final type in DartType.values) {
-            final multiplier = type == DartType.single
-                ? 1
-                : type == DartType.double
-                    ? 2
-                    : 3;
-
-            final newPoints = points + (multiplier * focusedValue);
-            final newRemainingPoints = pointsLeft - newPoints;
-            if (newRemainingPoints >= 0 && newRemainingPoints != 1) {
-              maxAllowedType = type;
-            }
-          }
-
-          if (maxAllowedType == null) {
-            // TODO this will be removed if smart keyboard advanced settings is implemented
-          } else {
-            emit(
-              DetailedInputAreaState.focused(
-                focusedValue: focusedValue,
-                maxAllowedType: maxAllowedType,
-              ),
-            );
-          }
-        }
+        emit(DetailedInputAreaState.focused(focusedValue: focusedValue));
       }
     }
   }
 
-  void _mapUnfocusedToState(
+  void _mapUnfocusRequestedToState(
     Emitter<DetailedInputAreaState> emit,
   ) =>
       emit(const DetailedInputAreaState.initial());
-
-  void _mapDartDetailPressedToState(
-    _DartDetailPressed event,
-    Emitter<DetailedInputAreaState> emit,
-  ) {
-    state.mapOrNull(
-      focused: (focused) {
-        final darts = _inputCubit.state
-            .when(
-              points: (input) => throw Error(), // TODO error name better
-              darts: (darts) => darts,
-            )
-            .toMutableList();
-
-        final focusedValue = focused.focusedValue;
-
-        emit(const DetailedInputAreaState.initial());
-        _inputCubit.update(
-          newInput:
-              right(darts..add(Dart(type: event.type, value: focusedValue))),
-        );
-      },
-    );
-  }
-
-  void _mapEreaseDartPressedToState(
-    Emitter<DetailedInputAreaState> emit,
-  ) {
-    final darts = _inputCubit.state
-        .when(
-          points: (input) => throw Error(), // TODO error
-          darts: (darts) => darts,
-        )
-        .toMutableList();
-
-    if (darts.isNotEmpty()) {
-      emit(const DetailedInputAreaState.initial());
-      _inputCubit.update(newInput: right(darts..removeAt(darts.size - 1)));
-    }
-  }
 }

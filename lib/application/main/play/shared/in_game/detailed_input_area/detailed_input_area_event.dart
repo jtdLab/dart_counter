@@ -8,9 +8,5 @@ class DetailedInputAreaEvent with _$DetailedInputAreaEvent {
   const factory DetailedInputAreaEvent.dartFocused({
     required int focusedValue,
   }) = _DartFocused;
-  const factory DetailedInputAreaEvent.unfocused() = _Unfocused;
-  const factory DetailedInputAreaEvent.dartDetailPressed({
-    required DartType type,
-  }) = _DartDetailPressed;
-  const factory DetailedInputAreaEvent.ereaseDartPressed() = _EreaseDartPressed;
+  const factory DetailedInputAreaEvent.unfocusRequested() = _UnfocusRequested;
 }
