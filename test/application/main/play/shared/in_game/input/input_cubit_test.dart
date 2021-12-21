@@ -5,8 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 
-/**
- * void main() {
+void main() {
   test('initial state initialized correctly', () {
     // Arrange & Act
     final underTest = InputCubit();
@@ -14,19 +13,19 @@ import 'package:kt_dart/kt.dart';
     // Assert
     expect(
       underTest.state,
-      left(0),
+      const InputState.points(points: 0),
     );
   });
 
   group('update', () {
-    blocTest<InputCubit, Either<int, KtList<Dart>>>(
+    blocTest<InputCubit, InputState>(
       'emits [InputPoints] when update with points is called.',
       build: () => InputCubit(),
       act: (cubit) => cubit.update(newInput: left(88)),
-      expect: () => <Either<int, KtList<Dart>>>[left(88)],
+      expect: () => const [InputState.points(points: 88)],
     );
 
-    blocTest<InputCubit, Either<int, KtList<Dart>>>(
+    blocTest<InputCubit, InputState>(
       'emits [InputPoints] when update with darts is called.',
       build: () => InputCubit(),
       act: (cubit) => cubit.update(
@@ -38,17 +37,15 @@ import 'package:kt_dart/kt.dart';
           ].toImmutableList(),
         ),
       ),
-      expect: () => <Either<int, KtList<Dart>>>[
-        right(
-          const [
+      expect: () => [
+        InputState.darts(
+          darts: const [
             Dart(type: DartType.single, value: 10),
             Dart(type: DartType.single, value: 11),
             Dart(type: DartType.single, value: 12),
           ].toImmutableList(),
-        )
+        ),
       ],
     );
   });
 }
-
- */
