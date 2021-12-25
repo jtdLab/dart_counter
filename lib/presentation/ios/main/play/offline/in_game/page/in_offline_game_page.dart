@@ -90,11 +90,13 @@ class InOfflineGamePage extends StatelessWidget {
               middle: Text(
                 gameSnapshot.description(),
               ),
-              trailing: StatsButton(
-                // TODO rework
-                onPressed: () {
-                  context.router.push(const OfflineStatsModalRoute());
-                  /**
+              trailing: Row(
+                children: [
+                  StatsButton(
+                    // TODO rework
+                    onPressed: () {
+                      context.router.push(const OfflineStatsModalRoute());
+                      /**
                    * showCupertinoModalBottomSheet(
                     expand: true,
                     context: context,
@@ -104,7 +106,18 @@ class InOfflineGamePage extends StatelessWidget {
                       child: const StatsModal(),
                     ),
                   ); */
-                },
+                    },
+                  ),
+                  AppNavigationBarButton(
+                    onPressed: () => {
+                      // TODO show ingame settings modal
+                      //context.router.push(const InGameSettingsModalRoute());
+                    },
+                    child: Image.asset(
+                      AppImages.settingsNew,
+                    ),
+                  ),
+                ],
               ),
             ),
             child: const _InOfflineGameWidget(),

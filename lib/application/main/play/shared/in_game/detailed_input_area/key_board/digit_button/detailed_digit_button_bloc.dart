@@ -15,6 +15,12 @@ part 'detailed_digit_button_bloc.freezed.dart';
 part 'detailed_digit_button_event.dart';
 part 'detailed_digit_button_state.dart';
 
+// TODO implement with fewer lines
+// bugs known
+// when 3 darts already input then there are some key still not disabled
+// Throw.zero get autofilled and darts on double are 3 by user then there is error in model 
+// => Throw.zero needs to be modeled better
+
 class DetailedDigitButtonBloc
     extends Bloc<DetailedDigitButtonEvent, DetailedDigitButtonState> {
   final int _digit;
