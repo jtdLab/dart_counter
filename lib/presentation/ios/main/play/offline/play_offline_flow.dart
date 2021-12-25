@@ -3,6 +3,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
 import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 
 class PlayOfflineFlow extends StatelessWidget {
   const PlayOfflineFlow({
@@ -11,8 +12,17 @@ class PlayOfflineFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<PlayOfflineWatcherCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<PlayOfflineWatcherCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => AdvancedSettingsBloc(
+            context.read<PlayOfflineWatcherCubit>(),
+          )..add(const AdvancedSettingsEvent.started()),
+        ),
+      ],
       child: const AutoRouter(),
     );
   }

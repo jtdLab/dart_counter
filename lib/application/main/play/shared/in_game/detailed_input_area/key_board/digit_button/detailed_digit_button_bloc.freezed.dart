@@ -24,10 +24,6 @@ class _$DetailedDigitButtonEventTearOff {
   _Pressed pressed() {
     return const _Pressed();
   }
-
-  _InputReceived inputReceived() {
-    return const _InputReceived();
-  }
 }
 
 /// @nodoc
@@ -39,21 +35,18 @@ mixin _$DetailedDigitButtonEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() pressed,
-    required TResult Function() inputReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,21 +54,18 @@ mixin _$DetailedDigitButtonEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Pressed value) pressed,
-    required TResult Function(_InputReceived value) inputReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,7 +129,6 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() pressed,
-    required TResult Function() inputReceived,
   }) {
     return started();
   }
@@ -149,7 +138,6 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
   }) {
     return started?.call();
   }
@@ -159,7 +147,6 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -173,7 +160,6 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Pressed value) pressed,
-    required TResult Function(_InputReceived value) inputReceived,
   }) {
     return started(this);
   }
@@ -183,7 +169,6 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
   }) {
     return started?.call(this);
   }
@@ -193,7 +178,6 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -248,7 +232,6 @@ class _$_Pressed implements _Pressed {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() pressed,
-    required TResult Function() inputReceived,
   }) {
     return pressed();
   }
@@ -258,7 +241,6 @@ class _$_Pressed implements _Pressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
   }) {
     return pressed?.call();
   }
@@ -268,7 +250,6 @@ class _$_Pressed implements _Pressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? pressed,
-    TResult Function()? inputReceived,
     required TResult orElse(),
   }) {
     if (pressed != null) {
@@ -282,7 +263,6 @@ class _$_Pressed implements _Pressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Pressed value) pressed,
-    required TResult Function(_InputReceived value) inputReceived,
   }) {
     return pressed(this);
   }
@@ -292,7 +272,6 @@ class _$_Pressed implements _Pressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
   }) {
     return pressed?.call(this);
   }
@@ -302,7 +281,6 @@ class _$_Pressed implements _Pressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
     required TResult orElse(),
   }) {
     if (pressed != null) {
@@ -317,137 +295,22 @@ abstract class _Pressed implements DetailedDigitButtonEvent {
 }
 
 /// @nodoc
-abstract class _$InputReceivedCopyWith<$Res> {
-  factory _$InputReceivedCopyWith(
-          _InputReceived value, $Res Function(_InputReceived) then) =
-      __$InputReceivedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InputReceivedCopyWithImpl<$Res>
-    extends _$DetailedDigitButtonEventCopyWithImpl<$Res>
-    implements _$InputReceivedCopyWith<$Res> {
-  __$InputReceivedCopyWithImpl(
-      _InputReceived _value, $Res Function(_InputReceived) _then)
-      : super(_value, (v) => _then(v as _InputReceived));
-
-  @override
-  _InputReceived get _value => super._value as _InputReceived;
-}
-
-/// @nodoc
-
-class _$_InputReceived implements _InputReceived {
-  const _$_InputReceived();
-
-  @override
-  String toString() {
-    return 'DetailedDigitButtonEvent.inputReceived()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _InputReceived);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() pressed,
-    required TResult Function() inputReceived,
-  }) {
-    return inputReceived();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? pressed,
-    TResult Function()? inputReceived,
-  }) {
-    return inputReceived?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? pressed,
-    TResult Function()? inputReceived,
-    required TResult orElse(),
-  }) {
-    if (inputReceived != null) {
-      return inputReceived();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Pressed value) pressed,
-    required TResult Function(_InputReceived value) inputReceived,
-  }) {
-    return inputReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
-  }) {
-    return inputReceived?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Pressed value)? pressed,
-    TResult Function(_InputReceived value)? inputReceived,
-    required TResult orElse(),
-  }) {
-    if (inputReceived != null) {
-      return inputReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InputReceived implements DetailedDigitButtonEvent {
-  const factory _InputReceived() = _$_InputReceived;
-}
-
-/// @nodoc
 class _$DetailedDigitButtonStateTearOff {
   const _$DetailedDigitButtonStateTearOff();
 
-  DetailedDigitButtonEnabled enabled({required int digit}) {
-    return DetailedDigitButtonEnabled(
-      digit: digit,
-    );
+  DetailedDigitButtonEnabled enabled() {
+    return const DetailedDigitButtonEnabled();
   }
 
-  DetailedDigitButtonDisabled disabled({required int digit}) {
-    return DetailedDigitButtonDisabled(
-      digit: digit,
-    );
+  DetailedDigitButtonDisabled disabled() {
+    return const DetailedDigitButtonDisabled();
   }
 
   DetailedDigitButtonFocused focused(
-      {required int digit, required DartType dartType}) {
+      {required DartType dartType, required int value}) {
     return DetailedDigitButtonFocused(
-      digit: digit,
       dartType: dartType,
+      value: value,
     );
   }
 }
@@ -457,27 +320,25 @@ const $DetailedDigitButtonState = _$DetailedDigitButtonStateTearOff();
 
 /// @nodoc
 mixin _$DetailedDigitButtonState {
-  int get digit => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int digit) enabled,
-    required TResult Function(int digit) disabled,
-    required TResult Function(int digit, DartType dartType) focused,
+    required TResult Function() enabled,
+    required TResult Function() disabled,
+    required TResult Function(DartType dartType, int value) focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -503,10 +364,6 @@ mixin _$DetailedDigitButtonState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DetailedDigitButtonStateCopyWith<DetailedDigitButtonState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -514,7 +371,6 @@ abstract class $DetailedDigitButtonStateCopyWith<$Res> {
   factory $DetailedDigitButtonStateCopyWith(DetailedDigitButtonState value,
           $Res Function(DetailedDigitButtonState) then) =
       _$DetailedDigitButtonStateCopyWithImpl<$Res>;
-  $Res call({int digit});
 }
 
 /// @nodoc
@@ -525,28 +381,13 @@ class _$DetailedDigitButtonStateCopyWithImpl<$Res>
   final DetailedDigitButtonState _value;
   // ignore: unused_field
   final $Res Function(DetailedDigitButtonState) _then;
-
-  @override
-  $Res call({
-    Object? digit = freezed,
-  }) {
-    return _then(_value.copyWith(
-      digit: digit == freezed
-          ? _value.digit
-          : digit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $DetailedDigitButtonEnabledCopyWith<$Res>
-    implements $DetailedDigitButtonStateCopyWith<$Res> {
+abstract class $DetailedDigitButtonEnabledCopyWith<$Res> {
   factory $DetailedDigitButtonEnabledCopyWith(DetailedDigitButtonEnabled value,
           $Res Function(DetailedDigitButtonEnabled) then) =
       _$DetailedDigitButtonEnabledCopyWithImpl<$Res>;
-  @override
-  $Res call({int digit});
 }
 
 /// @nodoc
@@ -560,81 +401,58 @@ class _$DetailedDigitButtonEnabledCopyWithImpl<$Res>
   @override
   DetailedDigitButtonEnabled get _value =>
       super._value as DetailedDigitButtonEnabled;
-
-  @override
-  $Res call({
-    Object? digit = freezed,
-  }) {
-    return _then(DetailedDigitButtonEnabled(
-      digit: digit == freezed
-          ? _value.digit
-          : digit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$DetailedDigitButtonEnabled implements DetailedDigitButtonEnabled {
-  const _$DetailedDigitButtonEnabled({required this.digit});
-
-  @override
-  final int digit;
+  const _$DetailedDigitButtonEnabled();
 
   @override
   String toString() {
-    return 'DetailedDigitButtonState.enabled(digit: $digit)';
+    return 'DetailedDigitButtonState.enabled()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DetailedDigitButtonEnabled &&
-            (identical(other.digit, digit) || other.digit == digit));
+            other is DetailedDigitButtonEnabled);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, digit);
-
-  @JsonKey(ignore: true)
-  @override
-  $DetailedDigitButtonEnabledCopyWith<DetailedDigitButtonEnabled>
-      get copyWith =>
-          _$DetailedDigitButtonEnabledCopyWithImpl<DetailedDigitButtonEnabled>(
-              this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int digit) enabled,
-    required TResult Function(int digit) disabled,
-    required TResult Function(int digit, DartType dartType) focused,
+    required TResult Function() enabled,
+    required TResult Function() disabled,
+    required TResult Function(DartType dartType, int value) focused,
   }) {
-    return enabled(digit);
+    return enabled();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
   }) {
-    return enabled?.call(digit);
+    return enabled?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
     required TResult orElse(),
   }) {
     if (enabled != null) {
-      return enabled(digit);
+      return enabled();
     }
     return orElse();
   }
@@ -675,26 +493,15 @@ class _$DetailedDigitButtonEnabled implements DetailedDigitButtonEnabled {
 }
 
 abstract class DetailedDigitButtonEnabled implements DetailedDigitButtonState {
-  const factory DetailedDigitButtonEnabled({required int digit}) =
-      _$DetailedDigitButtonEnabled;
-
-  @override
-  int get digit;
-  @override
-  @JsonKey(ignore: true)
-  $DetailedDigitButtonEnabledCopyWith<DetailedDigitButtonEnabled>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory DetailedDigitButtonEnabled() = _$DetailedDigitButtonEnabled;
 }
 
 /// @nodoc
-abstract class $DetailedDigitButtonDisabledCopyWith<$Res>
-    implements $DetailedDigitButtonStateCopyWith<$Res> {
+abstract class $DetailedDigitButtonDisabledCopyWith<$Res> {
   factory $DetailedDigitButtonDisabledCopyWith(
           DetailedDigitButtonDisabled value,
           $Res Function(DetailedDigitButtonDisabled) then) =
       _$DetailedDigitButtonDisabledCopyWithImpl<$Res>;
-  @override
-  $Res call({int digit});
 }
 
 /// @nodoc
@@ -708,80 +515,58 @@ class _$DetailedDigitButtonDisabledCopyWithImpl<$Res>
   @override
   DetailedDigitButtonDisabled get _value =>
       super._value as DetailedDigitButtonDisabled;
-
-  @override
-  $Res call({
-    Object? digit = freezed,
-  }) {
-    return _then(DetailedDigitButtonDisabled(
-      digit: digit == freezed
-          ? _value.digit
-          : digit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$DetailedDigitButtonDisabled implements DetailedDigitButtonDisabled {
-  const _$DetailedDigitButtonDisabled({required this.digit});
-
-  @override
-  final int digit;
+  const _$DetailedDigitButtonDisabled();
 
   @override
   String toString() {
-    return 'DetailedDigitButtonState.disabled(digit: $digit)';
+    return 'DetailedDigitButtonState.disabled()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DetailedDigitButtonDisabled &&
-            (identical(other.digit, digit) || other.digit == digit));
+            other is DetailedDigitButtonDisabled);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, digit);
-
-  @JsonKey(ignore: true)
-  @override
-  $DetailedDigitButtonDisabledCopyWith<DetailedDigitButtonDisabled>
-      get copyWith => _$DetailedDigitButtonDisabledCopyWithImpl<
-          DetailedDigitButtonDisabled>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int digit) enabled,
-    required TResult Function(int digit) disabled,
-    required TResult Function(int digit, DartType dartType) focused,
+    required TResult Function() enabled,
+    required TResult Function() disabled,
+    required TResult Function(DartType dartType, int value) focused,
   }) {
-    return disabled(digit);
+    return disabled();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
   }) {
-    return disabled?.call(digit);
+    return disabled?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
     required TResult orElse(),
   }) {
     if (disabled != null) {
-      return disabled(digit);
+      return disabled();
     }
     return orElse();
   }
@@ -822,25 +607,15 @@ class _$DetailedDigitButtonDisabled implements DetailedDigitButtonDisabled {
 }
 
 abstract class DetailedDigitButtonDisabled implements DetailedDigitButtonState {
-  const factory DetailedDigitButtonDisabled({required int digit}) =
-      _$DetailedDigitButtonDisabled;
-
-  @override
-  int get digit;
-  @override
-  @JsonKey(ignore: true)
-  $DetailedDigitButtonDisabledCopyWith<DetailedDigitButtonDisabled>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory DetailedDigitButtonDisabled() = _$DetailedDigitButtonDisabled;
 }
 
 /// @nodoc
-abstract class $DetailedDigitButtonFocusedCopyWith<$Res>
-    implements $DetailedDigitButtonStateCopyWith<$Res> {
+abstract class $DetailedDigitButtonFocusedCopyWith<$Res> {
   factory $DetailedDigitButtonFocusedCopyWith(DetailedDigitButtonFocused value,
           $Res Function(DetailedDigitButtonFocused) then) =
       _$DetailedDigitButtonFocusedCopyWithImpl<$Res>;
-  @override
-  $Res call({int digit, DartType dartType});
+  $Res call({DartType dartType, int value});
 }
 
 /// @nodoc
@@ -857,18 +632,18 @@ class _$DetailedDigitButtonFocusedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? digit = freezed,
     Object? dartType = freezed,
+    Object? value = freezed,
   }) {
     return _then(DetailedDigitButtonFocused(
-      digit: digit == freezed
-          ? _value.digit
-          : digit // ignore: cast_nullable_to_non_nullable
-              as int,
       dartType: dartType == freezed
           ? _value.dartType
           : dartType // ignore: cast_nullable_to_non_nullable
               as DartType,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -877,16 +652,16 @@ class _$DetailedDigitButtonFocusedCopyWithImpl<$Res>
 
 class _$DetailedDigitButtonFocused implements DetailedDigitButtonFocused {
   const _$DetailedDigitButtonFocused(
-      {required this.digit, required this.dartType});
+      {required this.dartType, required this.value});
 
   @override
-  final int digit;
-  @override
   final DartType dartType;
+  @override
+  final int value;
 
   @override
   String toString() {
-    return 'DetailedDigitButtonState.focused(digit: $digit, dartType: $dartType)';
+    return 'DetailedDigitButtonState.focused(dartType: $dartType, value: $value)';
   }
 
   @override
@@ -894,13 +669,13 @@ class _$DetailedDigitButtonFocused implements DetailedDigitButtonFocused {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DetailedDigitButtonFocused &&
-            (identical(other.digit, digit) || other.digit == digit) &&
             (identical(other.dartType, dartType) ||
-                other.dartType == dartType));
+                other.dartType == dartType) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, digit, dartType);
+  int get hashCode => Object.hash(runtimeType, dartType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -912,33 +687,33 @@ class _$DetailedDigitButtonFocused implements DetailedDigitButtonFocused {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int digit) enabled,
-    required TResult Function(int digit) disabled,
-    required TResult Function(int digit, DartType dartType) focused,
+    required TResult Function() enabled,
+    required TResult Function() disabled,
+    required TResult Function(DartType dartType, int value) focused,
   }) {
-    return focused(digit, dartType);
+    return focused(dartType, value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
   }) {
-    return focused?.call(digit, dartType);
+    return focused?.call(dartType, value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int digit)? enabled,
-    TResult Function(int digit)? disabled,
-    TResult Function(int digit, DartType dartType)? focused,
+    TResult Function()? enabled,
+    TResult Function()? disabled,
+    TResult Function(DartType dartType, int value)? focused,
     required TResult orElse(),
   }) {
     if (focused != null) {
-      return focused(digit, dartType);
+      return focused(dartType, value);
     }
     return orElse();
   }
@@ -980,13 +755,11 @@ class _$DetailedDigitButtonFocused implements DetailedDigitButtonFocused {
 
 abstract class DetailedDigitButtonFocused implements DetailedDigitButtonState {
   const factory DetailedDigitButtonFocused(
-      {required int digit,
-      required DartType dartType}) = _$DetailedDigitButtonFocused;
+      {required DartType dartType,
+      required int value}) = _$DetailedDigitButtonFocused;
 
-  @override
-  int get digit;
   DartType get dartType;
-  @override
+  int get value;
   @JsonKey(ignore: true)
   $DetailedDigitButtonFocusedCopyWith<DetailedDigitButtonFocused>
       get copyWith => throw _privateConstructorUsedError;

@@ -103,9 +103,7 @@ test('constructor', () {
 
 // TODO why need freezd classes to explicit implement interface e.g "implements AbstractPlayerSnapshotDto" this should be done by freezed already
 
-
 // TODO renaem abstract players and player snapshots or game and gamesnpashot in domain and infrato IPlayer or IGame or other nameing
-
 
 // TODO game folder all in gamehistory expect dart and throw becaus they are shared in play and training ???ß
 
@@ -115,3 +113,7 @@ IMPORTANT what can be done better:
 HOW BLOCS AND DEPENDENCIES GET INJECTED
 TEST descriptions
 BLOCBUILDER more close to location where the data they provide is needed and not wrap whole bunch of non depending widgets
+
+// THERE is a probleme with Dart(value:0);
+// when doing filling and dartsOnDouble dialog
+// needs to be implemented specialliy in external modal

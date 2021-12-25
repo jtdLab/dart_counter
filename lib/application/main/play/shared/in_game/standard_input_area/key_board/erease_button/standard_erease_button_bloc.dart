@@ -1,27 +1,21 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kt_dart/kt.dart';
 
-part 'detailed_erease_button_bloc.freezed.dart';
-part 'detailed_erease_button_event.dart';
-part 'detailed_erease_button_state.dart';
+part 'standard_erease_button_bloc.freezed.dart';
+part 'standard_erease_button_event.dart';
+part 'standard_erease_button_state.dart';
 
-class DetailedEreaseButtonBloc
-    extends Bloc<DetailedEreaseButtonEvent, DetailedEreaseButtonState> {
-  final DetailedInputAreaBloc _inputAreaBloc;
+class StandardEreaseButtonBloc
+    extends Bloc<StandardEreaseButtonEvent, StandardEreaseButtonState> {
   final InputCubit _inputCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
 
-  DetailedEreaseButtonBloc(
-    this._inputAreaBloc,
+  StandardEreaseButtonBloc(
     this._inputCubit,
     this._advancedSettingsBloc,
   ) : super(
@@ -29,8 +23,8 @@ class DetailedEreaseButtonBloc
             createGame: (_) => throw advancedSettingsInGameExpectedError,
             inGame: (inGame) {
               return inGame.currentTurnAdvancedSettings.smartKeyBoardActivated
-                  ? const DetailedEreaseButtonState.disabled()
-                  : const DetailedEreaseButtonState.enabled();
+                  ? const StandardEreaseButtonState.disabled()
+                  : const StandardEreaseButtonState.enabled();
             },
           ),
         ) {
@@ -42,13 +36,14 @@ class DetailedEreaseButtonBloc
   }
 
   Future<void> _mapStartedToState(
-    Emitter<DetailedEreaseButtonState> emit,
+    Emitter<StandardEreaseButtonState> emit,
   ) async {
     await _inputCubit.stream.forEach((_) => _refreshState(emit));
+    await _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit));
   }
 
   void _mapPressedToState(
-    Emitter<DetailedEreaseButtonState> emit,
+    Emitter<StandardEreaseButtonState> emit,
   ) {
     state.map(
       enabled: (_) {
@@ -58,28 +53,33 @@ class DetailedEreaseButtonBloc
             final smartKeyBoardActivated =
                 inGame.currentTurnAdvancedSettings.smartKeyBoardActivated;
 
-            final darts = _inputCubit.state
-                .when(
-                  points: (_) => throw dartsExpectedError,
-                  darts: (darts) => darts,
-                )
-                .toMutableList();
+            final points = _inputCubit.state.when(
+              points: (points) => points,
+              darts: (_) => throw pointsExpectedError,
+            );
 
             // when smart keyboard is not active
             if (!smartKeyBoardActivated) {
-              // and darts are empty
-              if (darts.isEmpty()) {
+              // and points = 0
+              if (points == 0) {
                 // do nothing
                 return;
               }
             }
 
-            // else reset inputArea
-            _inputAreaBloc.add(const DetailedInputAreaEvent.unfocusRequested());
-            // remove last dart from darts
-            final newDarts = darts..removeLast();
-            // set input to newDarts
-            _inputCubit.update(newInput: right(newDarts));
+            // else calc newPoints
+            int newPoints;
+            if (points < 10) {
+              newPoints = 0;
+            } else {
+              final pointsString = points.toString();
+              newPoints = int.parse(
+                pointsString.substring(0, pointsString.length - 1),
+              );
+            }
+
+            // set input to newPoints
+            _inputCubit.update(newInput: left(newPoints));
           },
         );
       },
@@ -89,7 +89,7 @@ class DetailedEreaseButtonBloc
 
   /// Recalculates and emits the state of this button.
   void _refreshState(
-    Emitter<DetailedEreaseButtonState> emit,
+    Emitter<StandardEreaseButtonState> emit,
   ) {
     _advancedSettingsBloc.state.map(
       createGame: (_) => throw advancedSettingsInGameExpectedError,
@@ -99,21 +99,21 @@ class DetailedEreaseButtonBloc
 
         // when smart keyboard is active
         if (smartKeyBoardActivated) {
-          final darts = _inputCubit.state.when(
-            points: (_) => throw dartsExpectedError,
-            darts: (darts) => darts,
+          final points = _inputCubit.state.when(
+            points: (points) => points,
+            darts: (_) => throw pointsExpectedError,
           );
 
-          // and darts is empty
-          if (darts.isEmpty()) {
+          // and points = 0
+          if (points == 0) {
             // emit disabled
-            emit(const DetailedEreaseButtonState.disabled());
+            emit(const StandardEreaseButtonState.disabled());
             return;
           }
         }
 
         // else emit enabled
-        emit(const DetailedEreaseButtonState.enabled());
+        emit(const StandardEreaseButtonState.enabled());
       },
     );
   }

@@ -7,6 +7,8 @@ import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
+// TODO maybe add started event if this is convention to start listening to other blocs/services
+
 @lazySingleton
 class PlayOfflineWatcherCubit extends Cubit<OfflineGameSnapshot> {
   final IPlayOfflineService _playOfflineService;

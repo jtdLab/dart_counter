@@ -40,6 +40,7 @@ class DartUtils {
     required int points,
   }) {
     if (pointsLeft != null) {
+      if (pointsLeft == 0) return false; // TODO test case 4 this
       if (points > pointsLeft) return false;
       if (pointsLeft - points == 1) return false;
     }

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
@@ -47,7 +48,7 @@ class DetailedInputAreaBloc
     Emitter<DetailedInputAreaState> emit,
   ) {
     var darts = _inputCubit.state.when(
-      points: (points) => throw Error(), // TODO better error
+      points: (points) => throw dartsExpectedError,
       darts: (darts) {
         if (darts.isEmpty()) {
           // empty means the user had missed all 3 darts
@@ -74,6 +75,9 @@ class DetailedInputAreaBloc
           ).toImmutableList(),
         );
     }
+
+    // set update input cubit to darts filled with 0s
+    _inputCubit.update(newInput: right(darts));
 
     final minDartsThrown = _dartUtils.minDartsThrown(
       points: points,
@@ -119,7 +123,7 @@ class DetailedInputAreaBloc
   ) {
     final darts = _inputCubit.state
         .when(
-          points: (points) => throw Error(), // TODO better error
+          points: (points) => throw dartsExpectedError,
           darts: (darts) => darts,
         )
         .toMutableList();

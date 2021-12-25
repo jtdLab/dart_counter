@@ -42,132 +42,139 @@ void main() {
     mockShowCheckoutDetailsCubit = MockShowCheckoutDetailsCubit();
   });
 
-  test('initial state initialized correctly', () {
-    // Arrange & Act
-    final underTest = DetailedInputAreaBloc(
-      mockInGameBloc,
-      mockPointsLeftCubit,
-      mockInputCubit,
-      mockShowCheckoutDetailsCubit,
-      mockDartUtils,
-    );
-
-    // Assert
-    expect(underTest.state, const DetailedInputAreaState.initial());
-  });
-
-  group('UndoThrowPressed', () {
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'add undoThrowPressed to inGameBloc when UndoDartPressed is added.',
-      build: () {
-        return DetailedInputAreaBloc(
+  group(
+    'DetailedInputAreaBloc',
+    () {
+      test('initial state is DetailedInputAreaInitial', () {
+        // Arrange & Act
+        final underTest = DetailedInputAreaBloc(
           mockInGameBloc,
           mockPointsLeftCubit,
           mockInputCubit,
           mockShowCheckoutDetailsCubit,
           mockDartUtils,
         );
-      },
-      act: (bloc) => bloc.add(const DetailedInputAreaEvent.undoThrowPressed()),
-      verify: (_) {
-        verify(
-          () => mockInGameBloc.add(const InGameEvent.undoThrowPressed()),
-        ).called(1);
-      },
-    );
-  });
 
-  group('PerformThrowPressed', () {
-    // TODO impl
+        // Assert
+        expect(underTest.state, const DetailedInputAreaState.initial());
+      });
 
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'emits [MyState] when MyEvent is added.',
-      build: () {
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
+      group('UndoThrowPressed', () {
+        blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
+          'add undoThrowPressed to inGameBloc when UndoDartPressed is added.',
+          build: () {
+            return DetailedInputAreaBloc(
+              mockInGameBloc,
+              mockPointsLeftCubit,
+              mockInputCubit,
+              mockShowCheckoutDetailsCubit,
+              mockDartUtils,
+            );
+          },
+          act: (bloc) =>
+              bloc.add(const DetailedInputAreaEvent.undoThrowPressed()),
+          verify: (_) {
+            verify(
+              () => mockInGameBloc.add(const InGameEvent.undoThrowPressed()),
+            ).called(1);
+          },
         );
-      },
-    );
-  });
+      });
 
-  group('DartFocused', () {
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is points '
-      'throws Error when DartFocused is added.',
-      build: () {
-        const points = 10;
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.points(points: points)]),
-          initialState: const InputState.points(points: points),
+      group('PerformThrowPressed', () {
+        // TODO impl
+
+        blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
+          'emits [MyState] when MyEvent is added.',
+          build: () {
+            return DetailedInputAreaBloc(
+              mockInGameBloc,
+              mockPointsLeftCubit,
+              mockInputCubit,
+              mockShowCheckoutDetailsCubit,
+              mockDartUtils,
+            );
+          },
         );
+      });
 
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      act: (bloc) =>
-          bloc.add(const DetailedInputAreaEvent.dartFocused(focusedValue: 10)),
-      errors: () => [isA<Error>()],
-    );
+      group('DartFocused', () {
+        blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
+          'GIVEN input is points '
+          'throws Error when DartFocused is added.',
+          build: () {
+            const points = 10;
+            whenListen(
+              mockInputCubit,
+              Stream.fromIterable([const InputState.points(points: points)]),
+              initialState: const InputState.points(points: points),
+            );
 
-    // TODO impl
-
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'GIVEN input is points dd'
-      'throws Error when DartFocused is added.',
-      build: () {
-        const pointsLeft = 40;
-        whenListen(
-          mockPointsLeftCubit,
-          Stream.fromIterable([pointsLeft]),
-          initialState: pointsLeft,
-        );
-
-        const points = 10;
-        whenListen(
-          mockInputCubit,
-          Stream.fromIterable([const InputState.points(points: points)]),
-          initialState: const InputState.points(points: points),
+            return DetailedInputAreaBloc(
+              mockInGameBloc,
+              mockPointsLeftCubit,
+              mockInputCubit,
+              mockShowCheckoutDetailsCubit,
+              mockDartUtils,
+            );
+          },
+          act: (bloc) => bloc
+              .add(const DetailedInputAreaEvent.dartFocused(focusedValue: 10)),
+          errors: () => [isA<Error>()],
         );
 
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
-        );
-      },
-      act: (bloc) =>
-          bloc.add(const DetailedInputAreaEvent.dartFocused(focusedValue: 10)),
-      errors: () => [isA<Error>()],
-    );
-  });
+        // TODO impl
 
-  group('UnFocusRequested', () {
-    blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
-      'emits [DetailedInputAreaInitial] with focusedValue = null when Unfocused is added.',
-      build: () {
-        return DetailedInputAreaBloc(
-          mockInGameBloc,
-          mockPointsLeftCubit,
-          mockInputCubit,
-          mockShowCheckoutDetailsCubit,
-          mockDartUtils,
+        blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
+          'GIVEN input is points dd '
+          'throws Error when DartFocused is added.',
+          build: () {
+            const pointsLeft = 40;
+            whenListen(
+              mockPointsLeftCubit,
+              Stream.fromIterable([pointsLeft]),
+              initialState: pointsLeft,
+            );
+
+            const points = 10;
+            whenListen(
+              mockInputCubit,
+              Stream.fromIterable([const InputState.points(points: points)]),
+              initialState: const InputState.points(points: points),
+            );
+
+            return DetailedInputAreaBloc(
+              mockInGameBloc,
+              mockPointsLeftCubit,
+              mockInputCubit,
+              mockShowCheckoutDetailsCubit,
+              mockDartUtils,
+            );
+          },
+          act: (bloc) => bloc
+              .add(const DetailedInputAreaEvent.dartFocused(focusedValue: 10)),
+          errors: () => [isA<Error>()],
         );
-      },
-      act: (bloc) => bloc.add(const DetailedInputAreaEvent.unfocusRequested()),
-      expect: () =>
-          const <DetailedInputAreaState>[DetailedInputAreaState.initial()],
-    );
-  });
+      });
+
+      group('UnfocusRequested', () {
+        blocTest<DetailedInputAreaBloc, DetailedInputAreaState>(
+          'emits [DetailedInputAreaInitial] with focusedValue = null when Unfocused is added.',
+          build: () {
+            return DetailedInputAreaBloc(
+              mockInGameBloc,
+              mockPointsLeftCubit,
+              mockInputCubit,
+              mockShowCheckoutDetailsCubit,
+              mockDartUtils,
+            );
+          },
+          act: (bloc) =>
+              bloc.add(const DetailedInputAreaEvent.unfocusRequested()),
+          expect: () =>
+              const <DetailedInputAreaState>[DetailedInputAreaState.initial()],
+        );
+      });
+    },
+  );
 }
