@@ -431,7 +431,7 @@ class _DetailedDigitButton extends StatelessWidget {
                       : AppColors.orangeNew;
 
               final text = dartType == DartType.single
-                  ? 'S'
+                  ? ''
                   : dartType == DartType.double
                       ? 'D'
                       : 'T';
@@ -1493,7 +1493,7 @@ class _DartsDisplayer extends StatelessWidget {
       var string = '';
       switch (dart.type) {
         case DartType.single:
-          string += 'S';
+          string += '';
           break;
         case DartType.double:
           string += 'D';
