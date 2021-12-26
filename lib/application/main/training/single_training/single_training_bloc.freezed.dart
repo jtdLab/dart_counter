@@ -196,11 +196,12 @@ class _$_SingleTrainingModeChanged implements _SingleTrainingModeChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SingleTrainingModeChanged &&
-            (identical(other.newMode, newMode) || other.newMode == newMode));
+            const DeepCollectionEquality().equals(other.newMode, newMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newMode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newMode));
 
   @JsonKey(ignore: true)
   @override
@@ -1340,12 +1341,15 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SingleTrainingInitial &&
-            (identical(other.hits, hits) || other.hits == hits) &&
-            (identical(other.mode, mode) || other.mode == mode));
+            const DeepCollectionEquality().equals(other.hits, hits) &&
+            const DeepCollectionEquality().equals(other.mode, mode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hits, mode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(hits),
+      const DeepCollectionEquality().hash(mode));
 
   @JsonKey(ignore: true)
   @override

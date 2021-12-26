@@ -141,12 +141,13 @@ class _$SearchStringChanged implements SearchStringChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SearchStringChanged &&
-            (identical(other.newSearchString, newSearchString) ||
-                other.newSearchString == newSearchString));
+            const DeepCollectionEquality()
+                .equals(other.newSearchString, newSearchString));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newSearchString);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newSearchString));
 
   @JsonKey(ignore: true)
   @override
@@ -439,12 +440,13 @@ class _$_SearchUserState implements _SearchUserState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SearchUserState &&
-            (identical(other.searchResults, searchResults) ||
-                other.searchResults == searchResults));
+            const DeepCollectionEquality()
+                .equals(other.searchResults, searchResults));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchResults);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(searchResults));
 
   @JsonKey(ignore: true)
   @override

@@ -167,12 +167,13 @@ class _$_OldPasswordChanged implements _OldPasswordChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OldPasswordChanged &&
-            (identical(other.newOldPassword, newOldPassword) ||
-                other.newOldPassword == newOldPassword));
+            const DeepCollectionEquality()
+                .equals(other.newOldPassword, newOldPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newOldPassword);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newOldPassword));
 
   @JsonKey(ignore: true)
   @override
@@ -316,12 +317,13 @@ class _$_NewPasswordChanged implements _NewPasswordChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewPasswordChanged &&
-            (identical(other.newNewPassword, newNewPassword) ||
-                other.newNewPassword == newNewPassword));
+            const DeepCollectionEquality()
+                .equals(other.newNewPassword, newNewPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newNewPassword);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newNewPassword));
 
   @JsonKey(ignore: true)
   @override
@@ -466,12 +468,13 @@ class _$_NewPasswordAgainChanged implements _NewPasswordAgainChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewPasswordAgainChanged &&
-            (identical(other.newNewPasswordAgain, newNewPasswordAgain) ||
-                other.newNewPasswordAgain == newNewPasswordAgain));
+            const DeepCollectionEquality()
+                .equals(other.newNewPasswordAgain, newNewPasswordAgain));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newNewPasswordAgain);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newNewPasswordAgain));
 
   @JsonKey(ignore: true)
   @override
@@ -878,19 +881,23 @@ class _$ChangePasswordInitial implements ChangePasswordInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangePasswordInitial &&
-            (identical(other.oldPassword, oldPassword) ||
-                other.oldPassword == oldPassword) &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword) &&
-            (identical(other.newPasswordAgain, newPasswordAgain) ||
-                other.newPasswordAgain == newPasswordAgain) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+            const DeepCollectionEquality()
+                .equals(other.oldPassword, oldPassword) &&
+            const DeepCollectionEquality()
+                .equals(other.newPassword, newPassword) &&
+            const DeepCollectionEquality()
+                .equals(other.newPasswordAgain, newPasswordAgain) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, oldPassword, newPassword,
-      newPasswordAgain, showErrorMessages);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(oldPassword),
+      const DeepCollectionEquality().hash(newPassword),
+      const DeepCollectionEquality().hash(newPasswordAgain),
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -1317,12 +1324,13 @@ class _$ChangePasswordSubmitFailure implements ChangePasswordSubmitFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangePasswordSubmitFailure &&
-            (identical(other.authFailure, authFailure) ||
-                other.authFailure == authFailure));
+            const DeepCollectionEquality()
+                .equals(other.authFailure, authFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(authFailure));
 
   @JsonKey(ignore: true)
   @override

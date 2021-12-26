@@ -272,11 +272,16 @@ class _PlayerItem extends StatelessWidget {
                 AppIconButton(
                   padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
-                    showCupertinoModalBottomSheet(
+                    context.router.push(
+                      CreateGameAdvancedSettingsModalRoute(index: index),
+                    );
+                    /**
+                    *  showCupertinoModalBottomSheet(
                       backgroundColor: Colors.white70,
                       context: context,
-                      builder: (context) => AdvancedSettingsModal(),
+                      builder: (context) => CreateGameAdvancedSettingsModal(),
                     );
+                    */
                   },
                   icon: Image.asset(AppImages.settingsNew),
                 ),
@@ -353,10 +358,8 @@ class _EditablePlayerItem extends StatelessWidget {
                 AppIconButton(
                   padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
-                    showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => AdvancedSettingsModal(),
+                    context.router.push(
+                      CreateGameAdvancedSettingsModalRoute(index: index),
                     );
                   },
                   icon: Image.asset(
@@ -409,19 +412,20 @@ class _DartBotItem extends StatelessWidget {
                   LocaleKeys.dartBot.tr().toUpperCase(),
                 ),
                 const Spacer(),
-                AppIconButton(
+                // TODO
+                /**
+                 * AppIconButton(
                   padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
-                    showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => AdvancedSettingsModal(),
+                    context.router.push(
+                      CreateGameAdvancedSettingsModalRoute(index: index),
                     );
                   },
                   icon: Image.asset(
                     AppImages.settingsNew,
                   ),
                 ),
+                 */
               ],
             ),
           ),

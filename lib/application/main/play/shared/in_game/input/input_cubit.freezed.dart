@@ -140,11 +140,12 @@ class _$InputPoints implements InputPoints {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is InputPoints &&
-            (identical(other.points, points) || other.points == points));
+            const DeepCollectionEquality().equals(other.points, points));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, points);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(points));
 
   @JsonKey(ignore: true)
   @override
@@ -271,11 +272,12 @@ class _$InputDarts implements InputDarts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is InputDarts &&
-            (identical(other.darts, darts) || other.darts == darts));
+            const DeepCollectionEquality().equals(other.darts, darts));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, darts);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(darts));
 
   @JsonKey(ignore: true)
   @override

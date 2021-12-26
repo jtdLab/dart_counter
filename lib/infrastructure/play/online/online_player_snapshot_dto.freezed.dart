@@ -339,42 +339,41 @@ class _$_OnlinePlayerSnapshotDto extends _OnlinePlayerSnapshotDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OnlinePlayerSnapshotDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.won, won) || other.won == won) &&
-            (identical(other.wonSets, wonSets) || other.wonSets == wonSets) &&
-            (identical(other.wonLegsCurrentSet, wonLegsCurrentSet) ||
-                other.wonLegsCurrentSet == wonLegsCurrentSet) &&
-            (identical(other.pointsLeft, pointsLeft) ||
-                other.pointsLeft == pointsLeft) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.isCurrentTurn, isCurrentTurn) &&
+            const DeepCollectionEquality().equals(other.won, won) &&
+            const DeepCollectionEquality().equals(other.wonSets, wonSets) &&
+            const DeepCollectionEquality()
+                .equals(other.wonLegsCurrentSet, wonLegsCurrentSet) &&
+            const DeepCollectionEquality()
+                .equals(other.pointsLeft, pointsLeft) &&
             const DeepCollectionEquality()
                 .equals(other.finishRecommendation, finishRecommendation) &&
-            (identical(other.lastPoints, lastPoints) ||
-                other.lastPoints == lastPoints) &&
-            (identical(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) ||
-                other.dartsThrownCurrentLeg == dartsThrownCurrentLeg) &&
-            (identical(other.stats, stats) || other.stats == stats));
+            const DeepCollectionEquality()
+                .equals(other.lastPoints, lastPoints) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsThrownCurrentLeg, dartsThrownCurrentLeg) &&
+            const DeepCollectionEquality().equals(other.stats, stats));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      name,
-      photoUrl,
-      isCurrentTurn,
-      won,
-      wonSets,
-      wonLegsCurrentSet,
-      pointsLeft,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(photoUrl),
+      const DeepCollectionEquality().hash(isCurrentTurn),
+      const DeepCollectionEquality().hash(won),
+      const DeepCollectionEquality().hash(wonSets),
+      const DeepCollectionEquality().hash(wonLegsCurrentSet),
+      const DeepCollectionEquality().hash(pointsLeft),
       const DeepCollectionEquality().hash(finishRecommendation),
-      lastPoints,
-      dartsThrownCurrentLeg,
-      stats);
+      const DeepCollectionEquality().hash(lastPoints),
+      const DeepCollectionEquality().hash(dartsThrownCurrentLeg),
+      const DeepCollectionEquality().hash(stats));
 
   @JsonKey(ignore: true)
   @override

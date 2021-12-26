@@ -173,14 +173,19 @@ class _$_Set implements _Set {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Set &&
-            (identical(other.legs, legs) || other.legs == legs) &&
-            (identical(other.won, won) || other.won == won) &&
-            (identical(other.wonLegs, wonLegs) || other.wonLegs == wonLegs) &&
-            (identical(other.stats, stats) || other.stats == stats));
+            const DeepCollectionEquality().equals(other.legs, legs) &&
+            const DeepCollectionEquality().equals(other.won, won) &&
+            const DeepCollectionEquality().equals(other.wonLegs, wonLegs) &&
+            const DeepCollectionEquality().equals(other.stats, stats));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, legs, won, wonLegs, stats);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(legs),
+      const DeepCollectionEquality().hash(won),
+      const DeepCollectionEquality().hash(wonLegs),
+      const DeepCollectionEquality().hash(stats));
 
   @JsonKey(ignore: true)
   @override

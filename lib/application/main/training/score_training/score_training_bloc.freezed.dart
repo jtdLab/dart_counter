@@ -181,12 +181,13 @@ class _$_ScoreTrainingNumberOfTakesChanged
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScoreTrainingNumberOfTakesChanged &&
-            (identical(other.newNumberOfTakes, newNumberOfTakes) ||
-                other.newNumberOfTakes == newNumberOfTakes));
+            const DeepCollectionEquality()
+                .equals(other.newNumberOfTakes, newNumberOfTakes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newNumberOfTakes);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newNumberOfTakes));
 
   @JsonKey(ignore: true)
   @override
@@ -603,11 +604,12 @@ class _$_ScoreTrainingDigitPressed implements _ScoreTrainingDigitPressed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScoreTrainingDigitPressed &&
-            (identical(other.digit, digit) || other.digit == digit));
+            const DeepCollectionEquality().equals(other.digit, digit));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, digit);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(digit));
 
   @JsonKey(ignore: true)
   @override
@@ -995,13 +997,16 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScoreTrainingInitial &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.numberOfTakes, numberOfTakes) ||
-                other.numberOfTakes == numberOfTakes));
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality()
+                .equals(other.numberOfTakes, numberOfTakes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, points, numberOfTakes);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(numberOfTakes));
 
   @JsonKey(ignore: true)
   @override

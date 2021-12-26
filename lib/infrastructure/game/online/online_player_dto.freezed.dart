@@ -194,16 +194,19 @@ class _$_OnlinePlayerDto extends _OnlinePlayerDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OnlinePlayerDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
             const DeepCollectionEquality()
                 .equals(other.legsOrSets, legsOrSets));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, photoUrl,
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(photoUrl),
       const DeepCollectionEquality().hash(legsOrSets));
 
   @JsonKey(ignore: true)

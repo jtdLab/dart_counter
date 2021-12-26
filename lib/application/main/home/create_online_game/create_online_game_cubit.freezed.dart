@@ -381,11 +381,12 @@ class _$CreateOnlineGameFailure implements CreateOnlineGameFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CreateOnlineGameFailure &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

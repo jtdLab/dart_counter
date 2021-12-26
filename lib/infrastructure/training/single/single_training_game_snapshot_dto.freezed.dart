@@ -196,15 +196,19 @@ class _$_SingleTrainingGameSnapshotDto extends _SingleTrainingGameSnapshotDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SingleTrainingGameSnapshotDto &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
             const DeepCollectionEquality().equals(other.players, players) &&
-            (identical(other.owner, owner) || other.owner == owner));
+            const DeepCollectionEquality().equals(other.owner, owner));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mode,
-      const DeepCollectionEquality().hash(players), owner);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(players),
+      const DeepCollectionEquality().hash(owner));
 
   @JsonKey(ignore: true)
   @override

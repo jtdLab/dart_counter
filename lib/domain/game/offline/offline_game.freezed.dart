@@ -248,21 +248,28 @@ class _$_OfflineGame extends _OfflineGame {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OfflineGame &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.startingPoints, startingPoints) ||
-                other.startingPoints == startingPoints) &&
-            (identical(other.players, players) || other.players == players));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality()
+                .equals(other.startingPoints, startingPoints) &&
+            const DeepCollectionEquality().equals(other.players, players));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, status, mode,
-      size, type, startingPoints, players);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(startingPoints),
+      const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
   @override

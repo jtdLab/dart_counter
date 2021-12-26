@@ -240,18 +240,24 @@ class _$_UserDto extends _UserDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.profile, profile) || other.profile == profile) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.idToken, idToken) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.profile, profile) &&
             const DeepCollectionEquality().equals(other.friendIds, friendIds) &&
-            (identical(other.careerStatsOffline, careerStatsOffline) ||
-                other.careerStatsOffline == careerStatsOffline));
+            const DeepCollectionEquality()
+                .equals(other.careerStatsOffline, careerStatsOffline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, idToken, email, profile,
-      const DeepCollectionEquality().hash(friendIds), careerStatsOffline);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(idToken),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(profile),
+      const DeepCollectionEquality().hash(friendIds),
+      const DeepCollectionEquality().hash(careerStatsOffline));
 
   @JsonKey(ignore: true)
   @override

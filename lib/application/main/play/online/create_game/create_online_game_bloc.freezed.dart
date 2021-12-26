@@ -363,14 +363,15 @@ class _$_PlayerReordered implements _PlayerReordered {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlayerReordered &&
-            (identical(other.oldIndex, oldIndex) ||
-                other.oldIndex == oldIndex) &&
-            (identical(other.newIndex, newIndex) ||
-                other.newIndex == newIndex));
+            const DeepCollectionEquality().equals(other.oldIndex, oldIndex) &&
+            const DeepCollectionEquality().equals(other.newIndex, newIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(oldIndex),
+      const DeepCollectionEquality().hash(newIndex));
 
   @JsonKey(ignore: true)
   @override
@@ -538,11 +539,12 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlayerRemoved &&
-            (identical(other.index, index) || other.index == index));
+            const DeepCollectionEquality().equals(other.index, index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
 
   @JsonKey(ignore: true)
   @override
@@ -708,12 +710,13 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _StartingPointsUpdated &&
-            (identical(other.newStartingPoints, newStartingPoints) ||
-                other.newStartingPoints == newStartingPoints));
+            const DeepCollectionEquality()
+                .equals(other.newStartingPoints, newStartingPoints));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newStartingPoints);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newStartingPoints));
 
   @JsonKey(ignore: true)
   @override
@@ -881,11 +884,12 @@ class _$_ModeUpdated implements _ModeUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ModeUpdated &&
-            (identical(other.newMode, newMode) || other.newMode == newMode));
+            const DeepCollectionEquality().equals(other.newMode, newMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newMode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newMode));
 
   @JsonKey(ignore: true)
   @override
@@ -1051,11 +1055,12 @@ class _$_SizeUpdated implements _SizeUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SizeUpdated &&
-            (identical(other.newSize, newSize) || other.newSize == newSize));
+            const DeepCollectionEquality().equals(other.newSize, newSize));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newSize);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newSize));
 
   @JsonKey(ignore: true)
   @override
@@ -1221,11 +1226,12 @@ class _$_TypeUpdated implements _TypeUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TypeUpdated &&
-            (identical(other.newType, newType) || other.newType == newType));
+            const DeepCollectionEquality().equals(other.newType, newType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newType);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newType));
 
   @JsonKey(ignore: true)
   @override

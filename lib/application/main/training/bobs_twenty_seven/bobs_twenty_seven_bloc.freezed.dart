@@ -185,11 +185,12 @@ class _$_BobsTwentySevenTrainingModeChanged
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BobsTwentySevenTrainingModeChanged &&
-            (identical(other.newMode, newMode) || other.newMode == newMode));
+            const DeepCollectionEquality().equals(other.newMode, newMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newMode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newMode));
 
   @JsonKey(ignore: true)
   @override
@@ -1007,11 +1008,12 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BobsTwentySevenInitial &&
-            (identical(other.hits, hits) || other.hits == hits));
+            const DeepCollectionEquality().equals(other.hits, hits));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hits);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(hits));
 
   @JsonKey(ignore: true)
   @override

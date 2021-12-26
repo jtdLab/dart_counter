@@ -145,14 +145,17 @@ class _$_UserSnapshot implements _UserSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserSnapshot &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
-            (identical(other.name, name) || other.name == name));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, photoUrl, name);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(photoUrl),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override

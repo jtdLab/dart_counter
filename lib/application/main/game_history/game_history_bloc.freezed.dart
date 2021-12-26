@@ -438,11 +438,12 @@ class _$FetchGameHistoryOnlineRequested
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FetchGameHistoryOnlineRequested &&
-            (identical(other.userId, userId) || other.userId == userId));
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
 
   @JsonKey(ignore: true)
   @override
@@ -594,11 +595,12 @@ class _$GameSelected implements GameSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameSelected &&
-            (identical(other.game, game) || other.game == game));
+            const DeepCollectionEquality().equals(other.game, game));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, game);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(game));
 
   @JsonKey(ignore: true)
   @override
@@ -972,14 +974,17 @@ class _$GameHistoryLoadSuccess implements GameHistoryLoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameHistoryLoadSuccess &&
-            (identical(other.gameHistory, gameHistory) ||
-                other.gameHistory == gameHistory) &&
-            (identical(other.selectedGame, selectedGame) ||
-                other.selectedGame == selectedGame));
+            const DeepCollectionEquality()
+                .equals(other.gameHistory, gameHistory) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedGame, selectedGame));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameHistory, selectedGame);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(gameHistory),
+      const DeepCollectionEquality().hash(selectedGame));
 
   @JsonKey(ignore: true)
   @override

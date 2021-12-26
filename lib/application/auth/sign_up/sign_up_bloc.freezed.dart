@@ -175,12 +175,12 @@ class _$_EmailChanged implements _EmailChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EmailChanged &&
-            (identical(other.newEmail, newEmail) ||
-                other.newEmail == newEmail));
+            const DeepCollectionEquality().equals(other.newEmail, newEmail));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newEmail);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newEmail));
 
   @JsonKey(ignore: true)
   @override
@@ -327,12 +327,13 @@ class _$_UsernameChanged implements _UsernameChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UsernameChanged &&
-            (identical(other.newUsername, newUsername) ||
-                other.newUsername == newUsername));
+            const DeepCollectionEquality()
+                .equals(other.newUsername, newUsername));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newUsername);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newUsername));
 
   @JsonKey(ignore: true)
   @override
@@ -480,12 +481,13 @@ class _$_PasswordChanged implements _PasswordChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PasswordChanged &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword));
+            const DeepCollectionEquality()
+                .equals(other.newPassword, newPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newPassword);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newPassword));
 
   @JsonKey(ignore: true)
   @override
@@ -633,12 +635,13 @@ class _$_PasswordAgainChanged implements _PasswordAgainChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PasswordAgainChanged &&
-            (identical(other.newPasswordAgain, newPasswordAgain) ||
-                other.newPasswordAgain == newPasswordAgain));
+            const DeepCollectionEquality()
+                .equals(other.newPasswordAgain, newPasswordAgain));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newPasswordAgain);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newPasswordAgain));
 
   @JsonKey(ignore: true)
   @override
@@ -1049,20 +1052,23 @@ class _$SignUpInitial implements SignUpInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SignUpInitial &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.passwordAgain, passwordAgain) ||
-                other.passwordAgain == passwordAgain) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.passwordAgain, passwordAgain) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, email, username, password, passwordAgain, showErrorMessages);
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(passwordAgain),
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -1340,12 +1346,13 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SignUpLoadFailure &&
-            (identical(other.authFailure, authFailure) ||
-                other.authFailure == authFailure));
+            const DeepCollectionEquality()
+                .equals(other.authFailure, authFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(authFailure));
 
   @JsonKey(ignore: true)
   @override

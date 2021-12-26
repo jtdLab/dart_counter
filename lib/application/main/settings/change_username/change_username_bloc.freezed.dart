@@ -140,12 +140,13 @@ class _$_UsernameChanged implements _UsernameChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UsernameChanged &&
-            (identical(other.newUsername, newUsername) ||
-                other.newUsername == newUsername));
+            const DeepCollectionEquality()
+                .equals(other.newUsername, newUsername));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newUsername);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newUsername));
 
   @JsonKey(ignore: true)
   @override
@@ -492,14 +493,16 @@ class _$ChangeUsernameInitial implements ChangeUsernameInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeUsernameInitial &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, showErrorMessages);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -904,12 +907,13 @@ class _$ChangeUsernameSubmitFailure implements ChangeUsernameSubmitFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeUsernameSubmitFailure &&
-            (identical(other.userFailure, userFailure) ||
-                other.userFailure == userFailure));
+            const DeepCollectionEquality()
+                .equals(other.userFailure, userFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(userFailure));
 
   @JsonKey(ignore: true)
   @override

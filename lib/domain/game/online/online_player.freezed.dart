@@ -242,21 +242,27 @@ class _$_OnlinePlayer implements _OnlinePlayer {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OnlinePlayer &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
-            (identical(other.legsOrSets, legsOrSets) ||
-                other.legsOrSets == legsOrSets) &&
-            (identical(other.won, won) || other.won == won) &&
-            (identical(other.wonLegsOrSets, wonLegsOrSets) ||
-                other.wonLegsOrSets == wonLegsOrSets) &&
-            (identical(other.stats, stats) || other.stats == stats));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.legsOrSets, legsOrSets) &&
+            const DeepCollectionEquality().equals(other.won, won) &&
+            const DeepCollectionEquality()
+                .equals(other.wonLegsOrSets, wonLegsOrSets) &&
+            const DeepCollectionEquality().equals(other.stats, stats));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, photoUrl, legsOrSets, won, wonLegsOrSets, stats);
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(photoUrl),
+      const DeepCollectionEquality().hash(legsOrSets),
+      const DeepCollectionEquality().hash(won),
+      const DeepCollectionEquality().hash(wonLegsOrSets),
+      const DeepCollectionEquality().hash(stats));
 
   @JsonKey(ignore: true)
   @override

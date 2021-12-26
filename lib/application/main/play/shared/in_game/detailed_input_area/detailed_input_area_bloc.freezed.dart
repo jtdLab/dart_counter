@@ -394,12 +394,13 @@ class _$_DartFocused implements _DartFocused {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DartFocused &&
-            (identical(other.focusedValue, focusedValue) ||
-                other.focusedValue == focusedValue));
+            const DeepCollectionEquality()
+                .equals(other.focusedValue, focusedValue));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, focusedValue);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(focusedValue));
 
   @JsonKey(ignore: true)
   @override
@@ -841,12 +842,13 @@ class _$DetailedInputAreaFocused implements DetailedInputAreaFocused {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DetailedInputAreaFocused &&
-            (identical(other.focusedValue, focusedValue) ||
-                other.focusedValue == focusedValue));
+            const DeepCollectionEquality()
+                .equals(other.focusedValue, focusedValue));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, focusedValue);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(focusedValue));
 
   @JsonKey(ignore: true)
   @override

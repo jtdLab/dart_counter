@@ -273,22 +273,31 @@ class _$_SingleTrainingPlayerSnapshotDto
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SingleTrainingPlayerSnapshotDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.targetValue, targetValue) ||
-                other.targetValue == targetValue) &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.singles, singles) || other.singles == singles) &&
-            (identical(other.doubles, doubles) || other.doubles == doubles) &&
-            (identical(other.triples, triples) || other.triples == triples) &&
-            (identical(other.missed, missed) || other.missed == missed));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.isCurrentTurn, isCurrentTurn) &&
+            const DeepCollectionEquality()
+                .equals(other.targetValue, targetValue) &&
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality().equals(other.singles, singles) &&
+            const DeepCollectionEquality().equals(other.doubles, doubles) &&
+            const DeepCollectionEquality().equals(other.triples, triples) &&
+            const DeepCollectionEquality().equals(other.missed, missed));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
-      targetValue, points, singles, doubles, triples, missed);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isCurrentTurn),
+      const DeepCollectionEquality().hash(targetValue),
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(singles),
+      const DeepCollectionEquality().hash(doubles),
+      const DeepCollectionEquality().hash(triples),
+      const DeepCollectionEquality().hash(missed));
 
   @JsonKey(ignore: true)
   @override

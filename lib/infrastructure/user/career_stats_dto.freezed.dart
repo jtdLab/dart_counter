@@ -279,35 +279,33 @@ class _$_CareerStatsDto extends _CareerStatsDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CareerStatsDto &&
-            (identical(other.average, average) || other.average == average) &&
-            (identical(other.averageTrend, averageTrend) ||
-                other.averageTrend == averageTrend) &&
-            (identical(other.checkoutPercentage, checkoutPercentage) ||
-                other.checkoutPercentage == checkoutPercentage) &&
-            (identical(
-                    other.checkoutPercentageTrend, checkoutPercentageTrend) ||
-                other.checkoutPercentageTrend == checkoutPercentageTrend) &&
-            (identical(other.firstNine, firstNine) ||
-                other.firstNine == firstNine) &&
-            (identical(other.firstNineTrend, firstNineTrend) ||
-                other.firstNineTrend == firstNineTrend) &&
-            (identical(other.games, games) || other.games == games) &&
-            (identical(other.wins, wins) || other.wins == wins) &&
-            (identical(other.defeats, defeats) || other.defeats == defeats));
+            const DeepCollectionEquality().equals(other.average, average) &&
+            const DeepCollectionEquality()
+                .equals(other.averageTrend, averageTrend) &&
+            const DeepCollectionEquality()
+                .equals(other.checkoutPercentage, checkoutPercentage) &&
+            const DeepCollectionEquality().equals(
+                other.checkoutPercentageTrend, checkoutPercentageTrend) &&
+            const DeepCollectionEquality().equals(other.firstNine, firstNine) &&
+            const DeepCollectionEquality()
+                .equals(other.firstNineTrend, firstNineTrend) &&
+            const DeepCollectionEquality().equals(other.games, games) &&
+            const DeepCollectionEquality().equals(other.wins, wins) &&
+            const DeepCollectionEquality().equals(other.defeats, defeats));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      average,
-      averageTrend,
-      checkoutPercentage,
-      checkoutPercentageTrend,
-      firstNine,
-      firstNineTrend,
-      games,
-      wins,
-      defeats);
+      const DeepCollectionEquality().hash(average),
+      const DeepCollectionEquality().hash(averageTrend),
+      const DeepCollectionEquality().hash(checkoutPercentage),
+      const DeepCollectionEquality().hash(checkoutPercentageTrend),
+      const DeepCollectionEquality().hash(firstNine),
+      const DeepCollectionEquality().hash(firstNineTrend),
+      const DeepCollectionEquality().hash(games),
+      const DeepCollectionEquality().hash(wins),
+      const DeepCollectionEquality().hash(defeats));
 
   @JsonKey(ignore: true)
   @override

@@ -20,6 +20,24 @@ class _$AdvancedSettingsEventTearOff {
   _Started started() {
     return const _Started();
   }
+
+  _ShowAverageToggled showAverageToggled({required int index}) {
+    return _ShowAverageToggled(
+      index: index,
+    );
+  }
+
+  _ShowCheckoutToggled showCheckoutToggled({required int index}) {
+    return _ShowCheckoutToggled(
+      index: index,
+    );
+  }
+
+  _SmartKeyBoardActiveToggled smartKeyBoardActiveToggled({required int index}) {
+    return _SmartKeyBoardActiveToggled(
+      index: index,
+    );
+  }
 }
 
 /// @nodoc
@@ -30,32 +48,53 @@ mixin _$AdvancedSettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int index) showAverageToggled,
+    required TResult Function(int index) showCheckoutToggled,
+    required TResult Function(int index) smartKeyBoardActiveToggled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ShowAverageToggled value) showAverageToggled,
+    required TResult Function(_ShowCheckoutToggled value) showCheckoutToggled,
+    required TResult Function(_SmartKeyBoardActiveToggled value)
+        smartKeyBoardActiveToggled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +157,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int index) showAverageToggled,
+    required TResult Function(int index) showCheckoutToggled,
+    required TResult Function(int index) smartKeyBoardActiveToggled,
   }) {
     return started();
   }
@@ -126,6 +168,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
   }) {
     return started?.call();
   }
@@ -134,6 +179,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -146,6 +194,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ShowAverageToggled value) showAverageToggled,
+    required TResult Function(_ShowCheckoutToggled value) showCheckoutToggled,
+    required TResult Function(_SmartKeyBoardActiveToggled value)
+        smartKeyBoardActiveToggled,
   }) {
     return started(this);
   }
@@ -154,6 +206,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
   }) {
     return started?.call(this);
   }
@@ -162,6 +218,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -173,6 +233,460 @@ class _$_Started implements _Started {
 
 abstract class _Started implements AdvancedSettingsEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$ShowAverageToggledCopyWith<$Res> {
+  factory _$ShowAverageToggledCopyWith(
+          _ShowAverageToggled value, $Res Function(_ShowAverageToggled) then) =
+      __$ShowAverageToggledCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$ShowAverageToggledCopyWithImpl<$Res>
+    extends _$AdvancedSettingsEventCopyWithImpl<$Res>
+    implements _$ShowAverageToggledCopyWith<$Res> {
+  __$ShowAverageToggledCopyWithImpl(
+      _ShowAverageToggled _value, $Res Function(_ShowAverageToggled) _then)
+      : super(_value, (v) => _then(v as _ShowAverageToggled));
+
+  @override
+  _ShowAverageToggled get _value => super._value as _ShowAverageToggled;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_ShowAverageToggled(
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShowAverageToggled implements _ShowAverageToggled {
+  const _$_ShowAverageToggled({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'AdvancedSettingsEvent.showAverageToggled(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ShowAverageToggled &&
+            const DeepCollectionEquality().equals(other.index, index));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ShowAverageToggledCopyWith<_ShowAverageToggled> get copyWith =>
+      __$ShowAverageToggledCopyWithImpl<_ShowAverageToggled>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) showAverageToggled,
+    required TResult Function(int index) showCheckoutToggled,
+    required TResult Function(int index) smartKeyBoardActiveToggled,
+  }) {
+    return showAverageToggled(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+  }) {
+    return showAverageToggled?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (showAverageToggled != null) {
+      return showAverageToggled(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ShowAverageToggled value) showAverageToggled,
+    required TResult Function(_ShowCheckoutToggled value) showCheckoutToggled,
+    required TResult Function(_SmartKeyBoardActiveToggled value)
+        smartKeyBoardActiveToggled,
+  }) {
+    return showAverageToggled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+  }) {
+    return showAverageToggled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (showAverageToggled != null) {
+      return showAverageToggled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowAverageToggled implements AdvancedSettingsEvent {
+  const factory _ShowAverageToggled({required int index}) =
+      _$_ShowAverageToggled;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$ShowAverageToggledCopyWith<_ShowAverageToggled> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ShowCheckoutToggledCopyWith<$Res> {
+  factory _$ShowCheckoutToggledCopyWith(_ShowCheckoutToggled value,
+          $Res Function(_ShowCheckoutToggled) then) =
+      __$ShowCheckoutToggledCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$ShowCheckoutToggledCopyWithImpl<$Res>
+    extends _$AdvancedSettingsEventCopyWithImpl<$Res>
+    implements _$ShowCheckoutToggledCopyWith<$Res> {
+  __$ShowCheckoutToggledCopyWithImpl(
+      _ShowCheckoutToggled _value, $Res Function(_ShowCheckoutToggled) _then)
+      : super(_value, (v) => _then(v as _ShowCheckoutToggled));
+
+  @override
+  _ShowCheckoutToggled get _value => super._value as _ShowCheckoutToggled;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_ShowCheckoutToggled(
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShowCheckoutToggled implements _ShowCheckoutToggled {
+  const _$_ShowCheckoutToggled({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'AdvancedSettingsEvent.showCheckoutToggled(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ShowCheckoutToggled &&
+            const DeepCollectionEquality().equals(other.index, index));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ShowCheckoutToggledCopyWith<_ShowCheckoutToggled> get copyWith =>
+      __$ShowCheckoutToggledCopyWithImpl<_ShowCheckoutToggled>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) showAverageToggled,
+    required TResult Function(int index) showCheckoutToggled,
+    required TResult Function(int index) smartKeyBoardActiveToggled,
+  }) {
+    return showCheckoutToggled(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+  }) {
+    return showCheckoutToggled?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (showCheckoutToggled != null) {
+      return showCheckoutToggled(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ShowAverageToggled value) showAverageToggled,
+    required TResult Function(_ShowCheckoutToggled value) showCheckoutToggled,
+    required TResult Function(_SmartKeyBoardActiveToggled value)
+        smartKeyBoardActiveToggled,
+  }) {
+    return showCheckoutToggled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+  }) {
+    return showCheckoutToggled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (showCheckoutToggled != null) {
+      return showCheckoutToggled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowCheckoutToggled implements AdvancedSettingsEvent {
+  const factory _ShowCheckoutToggled({required int index}) =
+      _$_ShowCheckoutToggled;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$ShowCheckoutToggledCopyWith<_ShowCheckoutToggled> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SmartKeyBoardActiveToggledCopyWith<$Res> {
+  factory _$SmartKeyBoardActiveToggledCopyWith(
+          _SmartKeyBoardActiveToggled value,
+          $Res Function(_SmartKeyBoardActiveToggled) then) =
+      __$SmartKeyBoardActiveToggledCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$SmartKeyBoardActiveToggledCopyWithImpl<$Res>
+    extends _$AdvancedSettingsEventCopyWithImpl<$Res>
+    implements _$SmartKeyBoardActiveToggledCopyWith<$Res> {
+  __$SmartKeyBoardActiveToggledCopyWithImpl(_SmartKeyBoardActiveToggled _value,
+      $Res Function(_SmartKeyBoardActiveToggled) _then)
+      : super(_value, (v) => _then(v as _SmartKeyBoardActiveToggled));
+
+  @override
+  _SmartKeyBoardActiveToggled get _value =>
+      super._value as _SmartKeyBoardActiveToggled;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_SmartKeyBoardActiveToggled(
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SmartKeyBoardActiveToggled implements _SmartKeyBoardActiveToggled {
+  const _$_SmartKeyBoardActiveToggled({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'AdvancedSettingsEvent.smartKeyBoardActiveToggled(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SmartKeyBoardActiveToggled &&
+            const DeepCollectionEquality().equals(other.index, index));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SmartKeyBoardActiveToggledCopyWith<_SmartKeyBoardActiveToggled>
+      get copyWith => __$SmartKeyBoardActiveToggledCopyWithImpl<
+          _SmartKeyBoardActiveToggled>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) showAverageToggled,
+    required TResult Function(int index) showCheckoutToggled,
+    required TResult Function(int index) smartKeyBoardActiveToggled,
+  }) {
+    return smartKeyBoardActiveToggled(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+  }) {
+    return smartKeyBoardActiveToggled?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? showAverageToggled,
+    TResult Function(int index)? showCheckoutToggled,
+    TResult Function(int index)? smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (smartKeyBoardActiveToggled != null) {
+      return smartKeyBoardActiveToggled(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ShowAverageToggled value) showAverageToggled,
+    required TResult Function(_ShowCheckoutToggled value) showCheckoutToggled,
+    required TResult Function(_SmartKeyBoardActiveToggled value)
+        smartKeyBoardActiveToggled,
+  }) {
+    return smartKeyBoardActiveToggled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+  }) {
+    return smartKeyBoardActiveToggled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ShowAverageToggled value)? showAverageToggled,
+    TResult Function(_ShowCheckoutToggled value)? showCheckoutToggled,
+    TResult Function(_SmartKeyBoardActiveToggled value)?
+        smartKeyBoardActiveToggled,
+    required TResult orElse(),
+  }) {
+    if (smartKeyBoardActiveToggled != null) {
+      return smartKeyBoardActiveToggled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SmartKeyBoardActiveToggled implements AdvancedSettingsEvent {
+  const factory _SmartKeyBoardActiveToggled({required int index}) =
+      _$_SmartKeyBoardActiveToggled;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$SmartKeyBoardActiveToggledCopyWith<_SmartKeyBoardActiveToggled>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -338,12 +852,13 @@ class _$AdvancedSettingsCreateGame implements AdvancedSettingsCreateGame {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AdvancedSettingsCreateGame &&
-            (identical(other.advancedSettings, advancedSettings) ||
-                other.advancedSettings == advancedSettings));
+            const DeepCollectionEquality()
+                .equals(other.advancedSettings, advancedSettings));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, advancedSettings);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(advancedSettings));
 
   @JsonKey(ignore: true)
   @override
@@ -508,17 +1023,18 @@ class _$AdvancedSettingsInGame implements AdvancedSettingsInGame {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AdvancedSettingsInGame &&
-            (identical(other.advancedSettings, advancedSettings) ||
-                other.advancedSettings == advancedSettings) &&
-            (identical(other.currentTurnAdvancedSettings,
-                    currentTurnAdvancedSettings) ||
-                other.currentTurnAdvancedSettings ==
-                    currentTurnAdvancedSettings));
+            const DeepCollectionEquality()
+                .equals(other.advancedSettings, advancedSettings) &&
+            const DeepCollectionEquality().equals(
+                other.currentTurnAdvancedSettings,
+                currentTurnAdvancedSettings));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, advancedSettings, currentTurnAdvancedSettings);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(advancedSettings),
+      const DeepCollectionEquality().hash(currentTurnAdvancedSettings));
 
   @JsonKey(ignore: true)
   @override

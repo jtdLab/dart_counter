@@ -669,13 +669,15 @@ class _$DetailedDigitButtonFocused implements DetailedDigitButtonFocused {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DetailedDigitButtonFocused &&
-            (identical(other.dartType, dartType) ||
-                other.dartType == dartType) &&
-            (identical(other.value, value) || other.value == value));
+            const DeepCollectionEquality().equals(other.dartType, dartType) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, dartType, value);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(dartType),
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override

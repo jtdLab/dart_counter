@@ -271,34 +271,33 @@ class _$_ScoreTrainingPlayerSnapshot implements _ScoreTrainingPlayerSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScoreTrainingPlayerSnapshot &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.takesLeft, takesLeft) ||
-                other.takesLeft == takesLeft) &&
-            (identical(other.average, average) || other.average == average) &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.firstDartAverage, firstDartAverage) ||
-                other.firstDartAverage == firstDartAverage) &&
-            (identical(other.secondDartAverage, secondDartAverage) ||
-                other.secondDartAverage == secondDartAverage) &&
-            (identical(other.thirdDartAverage, thirdDartAverage) ||
-                other.thirdDartAverage == thirdDartAverage));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.isCurrentTurn, isCurrentTurn) &&
+            const DeepCollectionEquality().equals(other.takesLeft, takesLeft) &&
+            const DeepCollectionEquality().equals(other.average, average) &&
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality()
+                .equals(other.firstDartAverage, firstDartAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.secondDartAverage, secondDartAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.thirdDartAverage, thirdDartAverage));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      name,
-      isCurrentTurn,
-      takesLeft,
-      average,
-      points,
-      firstDartAverage,
-      secondDartAverage,
-      thirdDartAverage);
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isCurrentTurn),
+      const DeepCollectionEquality().hash(takesLeft),
+      const DeepCollectionEquality().hash(average),
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(firstDartAverage),
+      const DeepCollectionEquality().hash(secondDartAverage),
+      const DeepCollectionEquality().hash(thirdDartAverage));
 
   @JsonKey(ignore: true)
   @override

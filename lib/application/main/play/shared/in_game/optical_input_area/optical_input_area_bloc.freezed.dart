@@ -148,12 +148,15 @@ class _$_DartPressed implements _DartPressed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DartPressed &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.value, value) || other.value == value));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, value);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override

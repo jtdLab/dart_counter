@@ -1,6 +1,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
+import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 
 import 'auth/auth_flow.dart';
@@ -14,16 +15,19 @@ import 'main/game_history/overview/overview_page.dart' as game_history_overview;
 import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
+import 'main/play/offline/create_game/create_offline_game_flow.dart';
 import 'main/play/offline/create_game/create_offline_game_page.dart';
 import 'main/play/offline/in_game/modals/stats/offline_stats_modal.dart';
 import 'main/play/offline/in_game/page/in_offline_game_page.dart';
 import 'main/play/offline/play_offline_flow.dart';
 import 'main/play/offline/post_game/post_offline_game_page.dart';
+import 'main/play/online/create_game/create_online_game_flow.dart';
 import 'main/play/online/create_game/create_online_game_page.dart';
 import 'main/play/online/in_game/in_online_game_flow.dart';
 import 'main/play/online/in_game/page/in_online_game_page.dart';
 import 'main/play/online/play_online_flow.dart';
 import 'main/play/online/post_game/post_online_game_page.dart';
+import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';
@@ -102,8 +106,18 @@ import 'main/training/training_flow.dart';
           children: [
             CustomRoute(
               initial: true,
-              customRouteBuilder: customRouteBuilder,
-              page: CreateOfflineGamePage,
+              page: CreateOfflineGameFlow,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  customRouteBuilder: customRouteBuilder,
+                  page: CreateOfflineGamePage,
+                ),
+                CustomRoute(
+                  customRouteBuilder: notExpandedModalRouteBuilder,
+                  page: CreateGameAdvancedSettingsModal,
+                ),
+              ],
             ),
             CupertinoRoute(
               page: InOfflineGameFlow,
@@ -121,6 +135,10 @@ import 'main/training/training_flow.dart';
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: OfflineStatsModal,
                 ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: AdvancedSettingsModal,
+                ),
               ],
             ),
             CupertinoRoute(
@@ -133,8 +151,18 @@ import 'main/training/training_flow.dart';
           children: [
             CustomRoute(
               initial: true,
-              customRouteBuilder: customRouteBuilder,
-              page: CreateOnlineGamePage,
+              page: CreateOnlineGameFlow,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  customRouteBuilder: customRouteBuilder,
+                  page: CreateOnlineGamePage,
+                ),
+                CustomRoute(
+                  customRouteBuilder: notExpandedModalRouteBuilder,
+                  page: CreateGameAdvancedSettingsModal,
+                ),
+              ],
             ),
             CupertinoRoute(
               page: InOnlineGameFlow,
@@ -151,6 +179,10 @@ import 'main/training/training_flow.dart';
                 CustomRoute(
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: OnlineStatsModal,
+                ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: AdvancedSettingsModal,
                 ),
               ],
             ),

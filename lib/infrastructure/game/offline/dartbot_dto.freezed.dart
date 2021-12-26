@@ -173,16 +173,19 @@ class _$_DartBotDto extends _DartBotDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DartBotDto &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.legsOrSets, legsOrSets) &&
-            (identical(other.targetAverage, targetAverage) ||
-                other.targetAverage == targetAverage));
+            const DeepCollectionEquality()
+                .equals(other.targetAverage, targetAverage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id,
-      const DeepCollectionEquality().hash(legsOrSets), targetAverage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(legsOrSets),
+      const DeepCollectionEquality().hash(targetAverage));
 
   @JsonKey(ignore: true)
   @override

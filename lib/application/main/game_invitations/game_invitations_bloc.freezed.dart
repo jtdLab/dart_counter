@@ -197,16 +197,17 @@ class _$GameInvitationsDataReceived implements GameInvitationsDataReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsDataReceived &&
-            (identical(
-                    other.receivedGameInvitations, receivedGameInvitations) ||
-                other.receivedGameInvitations == receivedGameInvitations) &&
-            (identical(other.sentGameInvitations, sentGameInvitations) ||
-                other.sentGameInvitations == sentGameInvitations));
+            const DeepCollectionEquality().equals(
+                other.receivedGameInvitations, receivedGameInvitations) &&
+            const DeepCollectionEquality()
+                .equals(other.sentGameInvitations, sentGameInvitations));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, receivedGameInvitations, sentGameInvitations);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(receivedGameInvitations),
+      const DeepCollectionEquality().hash(sentGameInvitations));
 
   @JsonKey(ignore: true)
   @override
@@ -366,12 +367,13 @@ class _$GameInvitationsGameReceived implements GameInvitationsGameReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsGameReceived &&
-            (identical(other.gameSnapshot, gameSnapshot) ||
-                other.gameSnapshot == gameSnapshot));
+            const DeepCollectionEquality()
+                .equals(other.gameSnapshot, gameSnapshot));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameSnapshot);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(gameSnapshot));
 
   @JsonKey(ignore: true)
   @override
@@ -540,12 +542,13 @@ class _$GameInvitationsInvitationAccepted
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsInvitationAccepted &&
-            (identical(other.gameInvitation, gameInvitation) ||
-                other.gameInvitation == gameInvitation));
+            const DeepCollectionEquality()
+                .equals(other.gameInvitation, gameInvitation));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameInvitation);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(gameInvitation));
 
   @JsonKey(ignore: true)
   @override
@@ -715,12 +718,13 @@ class _$GameInvitationsInvitationDeclined
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsInvitationDeclined &&
-            (identical(other.gameInvitation, gameInvitation) ||
-                other.gameInvitation == gameInvitation));
+            const DeepCollectionEquality()
+                .equals(other.gameInvitation, gameInvitation));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameInvitation);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(gameInvitation));
 
   @JsonKey(ignore: true)
   @override
@@ -1077,20 +1081,24 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsInitial &&
-            (identical(
-                    other.receivedGameInvitations, receivedGameInvitations) ||
-                other.receivedGameInvitations == receivedGameInvitations) &&
-            (identical(other.sentGameInvitations, sentGameInvitations) ||
-                other.sentGameInvitations == sentGameInvitations) &&
-            (identical(other.gameSnapshot, gameSnapshot) ||
-                other.gameSnapshot == gameSnapshot) &&
-            (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(
+                other.receivedGameInvitations, receivedGameInvitations) &&
+            const DeepCollectionEquality()
+                .equals(other.sentGameInvitations, sentGameInvitations) &&
+            const DeepCollectionEquality()
+                .equals(other.gameSnapshot, gameSnapshot) &&
+            const DeepCollectionEquality().equals(other.loading, loading) &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, receivedGameInvitations,
-      sentGameInvitations, gameSnapshot, loading, failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(receivedGameInvitations),
+      const DeepCollectionEquality().hash(sentGameInvitations),
+      const DeepCollectionEquality().hash(gameSnapshot),
+      const DeepCollectionEquality().hash(loading),
+      const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

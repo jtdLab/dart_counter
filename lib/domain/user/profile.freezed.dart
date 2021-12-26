@@ -155,16 +155,18 @@ class _$_Profile implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Profile &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.careerStatsOnline, careerStatsOnline) ||
-                other.careerStatsOnline == careerStatsOnline));
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.careerStatsOnline, careerStatsOnline));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, photoUrl, name, careerStatsOnline);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(photoUrl),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(careerStatsOnline));
 
   @JsonKey(ignore: true)
   @override

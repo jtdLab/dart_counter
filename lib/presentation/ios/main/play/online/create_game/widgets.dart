@@ -173,11 +173,16 @@ class _PlayerItem extends StatelessWidget {
                 AppIconButton(
                   padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
-                    showCupertinoModalBottomSheet(
+                    context.router.push(
+                      CreateGameAdvancedSettingsModalRoute(index: index),
+                    );
+                    /**
+                    *  showCupertinoModalBottomSheet(
                       backgroundColor: Colors.white70,
                       context: context,
-                      builder: (context) => AdvancedSettingsModal(),
+                      builder: (context) => CreateGameAdvancedSettingsModal(),
                     );
+                    */
                   },
                   icon: Image.asset(AppImages.settingsNew),
                 ),

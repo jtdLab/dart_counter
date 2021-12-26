@@ -255,24 +255,32 @@ class _$_BobsTwentySevenPlayerSnapshotDto
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BobsTwentySevenPlayerSnapshotDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.isDisqualified, isDisqualified) ||
-                other.isDisqualified == isDisqualified) &&
-            (identical(other.targetValue, targetValue) ||
-                other.targetValue == targetValue) &&
-            (identical(other.checkoutPercentage, checkoutPercentage) ||
-                other.checkoutPercentage == checkoutPercentage) &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.highestPoints, highestPoints) ||
-                other.highestPoints == highestPoints));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.isCurrentTurn, isCurrentTurn) &&
+            const DeepCollectionEquality()
+                .equals(other.isDisqualified, isDisqualified) &&
+            const DeepCollectionEquality()
+                .equals(other.targetValue, targetValue) &&
+            const DeepCollectionEquality()
+                .equals(other.checkoutPercentage, checkoutPercentage) &&
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality()
+                .equals(other.highestPoints, highestPoints));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
-      isDisqualified, targetValue, checkoutPercentage, points, highestPoints);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isCurrentTurn),
+      const DeepCollectionEquality().hash(isDisqualified),
+      const DeepCollectionEquality().hash(targetValue),
+      const DeepCollectionEquality().hash(checkoutPercentage),
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(highestPoints));
 
   @JsonKey(ignore: true)
   @override

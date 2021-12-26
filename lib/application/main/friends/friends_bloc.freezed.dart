@@ -197,11 +197,12 @@ class _$FriendsFriendSelected implements FriendsFriendSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsFriendSelected &&
-            (identical(other.friend, friend) || other.friend == friend));
+            const DeepCollectionEquality().equals(other.friend, friend));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friend);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(friend));
 
   @JsonKey(ignore: true)
   @override
@@ -372,12 +373,13 @@ class _$FriendsFriendRequestAccepted implements FriendsFriendRequestAccepted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsFriendRequestAccepted &&
-            (identical(other.friendRequest, friendRequest) ||
-                other.friendRequest == friendRequest));
+            const DeepCollectionEquality()
+                .equals(other.friendRequest, friendRequest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friendRequest);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(friendRequest));
 
   @JsonKey(ignore: true)
   @override
@@ -548,12 +550,13 @@ class _$FriendsFriendRequestDeclined implements FriendsFriendRequestDeclined {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsFriendRequestDeclined &&
-            (identical(other.friendRequest, friendRequest) ||
-                other.friendRequest == friendRequest));
+            const DeepCollectionEquality()
+                .equals(other.friendRequest, friendRequest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friendRequest);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(friendRequest));
 
   @JsonKey(ignore: true)
   @override
@@ -732,16 +735,19 @@ class _$FriendsDataReceived implements FriendsDataReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsDataReceived &&
-            (identical(other.friends, friends) || other.friends == friends) &&
-            (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                other.receivedFriendRequests == receivedFriendRequests) &&
-            (identical(other.sentFriendRequests, sentFriendRequests) ||
-                other.sentFriendRequests == sentFriendRequests));
+            const DeepCollectionEquality().equals(other.friends, friends) &&
+            const DeepCollectionEquality()
+                .equals(other.receivedFriendRequests, receivedFriendRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.sentFriendRequests, sentFriendRequests));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, friends, receivedFriendRequests, sentFriendRequests);
+      runtimeType,
+      const DeepCollectionEquality().hash(friends),
+      const DeepCollectionEquality().hash(receivedFriendRequests),
+      const DeepCollectionEquality().hash(sentFriendRequests));
 
   @JsonKey(ignore: true)
   @override
@@ -1083,18 +1089,22 @@ class _$FriendsInitial implements FriendsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsInitial &&
-            (identical(other.friends, friends) || other.friends == friends) &&
-            (identical(other.receivedFriendRequests, receivedFriendRequests) ||
-                other.receivedFriendRequests == receivedFriendRequests) &&
-            (identical(other.sentFriendRequests, sentFriendRequests) ||
-                other.sentFriendRequests == sentFriendRequests) &&
-            (identical(other.selectedFriend, selectedFriend) ||
-                other.selectedFriend == selectedFriend));
+            const DeepCollectionEquality().equals(other.friends, friends) &&
+            const DeepCollectionEquality()
+                .equals(other.receivedFriendRequests, receivedFriendRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.sentFriendRequests, sentFriendRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedFriend, selectedFriend));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friends, receivedFriendRequests,
-      sentFriendRequests, selectedFriend);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(friends),
+      const DeepCollectionEquality().hash(receivedFriendRequests),
+      const DeepCollectionEquality().hash(sentFriendRequests),
+      const DeepCollectionEquality().hash(selectedFriend));
 
   @JsonKey(ignore: true)
   @override

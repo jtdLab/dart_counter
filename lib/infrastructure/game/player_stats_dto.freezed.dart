@@ -477,70 +477,69 @@ class _$_PlayerStatsDto extends _PlayerStatsDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlayerStatsDto &&
-            (identical(other.average, average) || other.average == average) &&
-            (identical(other.checkoutPercentage, checkoutPercentage) ||
-                other.checkoutPercentage == checkoutPercentage) &&
-            (identical(other.firstNineAverage, firstNineAverage) ||
-                other.firstNineAverage == firstNineAverage) &&
-            (identical(other.bestLegDartsThrown, bestLegDartsThrown) ||
-                other.bestLegDartsThrown == bestLegDartsThrown) &&
-            (identical(other.bestLegAverage, bestLegAverage) ||
-                other.bestLegAverage == bestLegAverage) &&
-            (identical(other.worstLegDartsThrown, worstLegDartsThrown) ||
-                other.worstLegDartsThrown == worstLegDartsThrown) &&
-            (identical(other.worstLegAverage, worstLegAverage) ||
-                other.worstLegAverage == worstLegAverage) &&
-            (identical(other.averageDartsPerLeg, averageDartsPerLeg) ||
-                other.averageDartsPerLeg == averageDartsPerLeg) &&
-            (identical(other.highestFinish, highestFinish) ||
-                other.highestFinish == highestFinish) &&
-            (identical(other.firstDartAverage, firstDartAverage) ||
-                other.firstDartAverage == firstDartAverage) &&
-            (identical(other.secondDartAverage, secondDartAverage) ||
-                other.secondDartAverage == secondDartAverage) &&
-            (identical(other.thirdDartAverage, thirdDartAverage) ||
-                other.thirdDartAverage == thirdDartAverage) &&
-            (identical(other.fourtyPlus, fourtyPlus) ||
-                other.fourtyPlus == fourtyPlus) &&
-            (identical(other.sixtyPlus, sixtyPlus) ||
-                other.sixtyPlus == sixtyPlus) &&
-            (identical(other.eightyPlus, eightyPlus) ||
-                other.eightyPlus == eightyPlus) &&
-            (identical(other.hundredPlus, hundredPlus) ||
-                other.hundredPlus == hundredPlus) &&
-            (identical(other.hundredTwentyPlus, hundredTwentyPlus) ||
-                other.hundredTwentyPlus == hundredTwentyPlus) &&
-            (identical(other.hundredFourtyPlus, hundredFourtyPlus) ||
-                other.hundredFourtyPlus == hundredFourtyPlus) &&
-            (identical(other.hundredSixtyPlus, hundredSixtyPlus) ||
-                other.hundredSixtyPlus == hundredSixtyPlus) &&
-            (identical(other.hundredEighty, hundredEighty) ||
-                other.hundredEighty == hundredEighty));
+            const DeepCollectionEquality().equals(other.average, average) &&
+            const DeepCollectionEquality()
+                .equals(other.checkoutPercentage, checkoutPercentage) &&
+            const DeepCollectionEquality()
+                .equals(other.firstNineAverage, firstNineAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.bestLegDartsThrown, bestLegDartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.bestLegAverage, bestLegAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.worstLegDartsThrown, worstLegDartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.worstLegAverage, worstLegAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.averageDartsPerLeg, averageDartsPerLeg) &&
+            const DeepCollectionEquality()
+                .equals(other.highestFinish, highestFinish) &&
+            const DeepCollectionEquality()
+                .equals(other.firstDartAverage, firstDartAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.secondDartAverage, secondDartAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.thirdDartAverage, thirdDartAverage) &&
+            const DeepCollectionEquality()
+                .equals(other.fourtyPlus, fourtyPlus) &&
+            const DeepCollectionEquality().equals(other.sixtyPlus, sixtyPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.eightyPlus, eightyPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.hundredPlus, hundredPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.hundredTwentyPlus, hundredTwentyPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.hundredFourtyPlus, hundredFourtyPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.hundredSixtyPlus, hundredSixtyPlus) &&
+            const DeepCollectionEquality()
+                .equals(other.hundredEighty, hundredEighty));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        average,
-        checkoutPercentage,
-        firstNineAverage,
-        bestLegDartsThrown,
-        bestLegAverage,
-        worstLegDartsThrown,
-        worstLegAverage,
-        averageDartsPerLeg,
-        highestFinish,
-        firstDartAverage,
-        secondDartAverage,
-        thirdDartAverage,
-        fourtyPlus,
-        sixtyPlus,
-        eightyPlus,
-        hundredPlus,
-        hundredTwentyPlus,
-        hundredFourtyPlus,
-        hundredSixtyPlus,
-        hundredEighty
+        const DeepCollectionEquality().hash(average),
+        const DeepCollectionEquality().hash(checkoutPercentage),
+        const DeepCollectionEquality().hash(firstNineAverage),
+        const DeepCollectionEquality().hash(bestLegDartsThrown),
+        const DeepCollectionEquality().hash(bestLegAverage),
+        const DeepCollectionEquality().hash(worstLegDartsThrown),
+        const DeepCollectionEquality().hash(worstLegAverage),
+        const DeepCollectionEquality().hash(averageDartsPerLeg),
+        const DeepCollectionEquality().hash(highestFinish),
+        const DeepCollectionEquality().hash(firstDartAverage),
+        const DeepCollectionEquality().hash(secondDartAverage),
+        const DeepCollectionEquality().hash(thirdDartAverage),
+        const DeepCollectionEquality().hash(fourtyPlus),
+        const DeepCollectionEquality().hash(sixtyPlus),
+        const DeepCollectionEquality().hash(eightyPlus),
+        const DeepCollectionEquality().hash(hundredPlus),
+        const DeepCollectionEquality().hash(hundredTwentyPlus),
+        const DeepCollectionEquality().hash(hundredFourtyPlus),
+        const DeepCollectionEquality().hash(hundredSixtyPlus),
+        const DeepCollectionEquality().hash(hundredEighty)
       ]);
 
   @JsonKey(ignore: true)

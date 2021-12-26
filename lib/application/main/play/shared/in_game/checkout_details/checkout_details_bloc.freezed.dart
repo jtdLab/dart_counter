@@ -166,12 +166,13 @@ class _$_SelectedDartsThrownUpdated implements _SelectedDartsThrownUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SelectedDartsThrownUpdated &&
-            (identical(other.newSelectedDartsThrown, newSelectedDartsThrown) ||
-                other.newSelectedDartsThrown == newSelectedDartsThrown));
+            const DeepCollectionEquality()
+                .equals(other.newSelectedDartsThrown, newSelectedDartsThrown));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newSelectedDartsThrown);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newSelectedDartsThrown));
 
   @JsonKey(ignore: true)
   @override
@@ -322,13 +323,13 @@ class _$_SelectedDartsOnDoubleUpdated implements _SelectedDartsOnDoubleUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SelectedDartsOnDoubleUpdated &&
-            (identical(
-                    other.newSelectedDartsOnDouble, newSelectedDartsOnDouble) ||
-                other.newSelectedDartsOnDouble == newSelectedDartsOnDouble));
+            const DeepCollectionEquality().equals(
+                other.newSelectedDartsOnDouble, newSelectedDartsOnDouble));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newSelectedDartsOnDouble);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(newSelectedDartsOnDouble));
 
   @JsonKey(ignore: true)
   @override
@@ -800,29 +801,29 @@ class _$CheckoutDetailsInitial implements CheckoutDetailsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CheckoutDetailsInitial &&
-            (identical(other.minDartsThrown, minDartsThrown) ||
-                other.minDartsThrown == minDartsThrown) &&
-            (identical(other.maxDartsThrown, maxDartsThrown) ||
-                other.maxDartsThrown == maxDartsThrown) &&
-            (identical(other.minDartsOnDouble, minDartsOnDouble) ||
-                other.minDartsOnDouble == minDartsOnDouble) &&
-            (identical(other.maxDartsOnDouble, maxDartsOnDouble) ||
-                other.maxDartsOnDouble == maxDartsOnDouble) &&
-            (identical(other.selectedDartsThrown, selectedDartsThrown) ||
-                other.selectedDartsThrown == selectedDartsThrown) &&
-            (identical(other.selectedDartsOnDouble, selectedDartsOnDouble) ||
-                other.selectedDartsOnDouble == selectedDartsOnDouble));
+            const DeepCollectionEquality()
+                .equals(other.minDartsThrown, minDartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.maxDartsThrown, maxDartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.minDartsOnDouble, minDartsOnDouble) &&
+            const DeepCollectionEquality()
+                .equals(other.maxDartsOnDouble, maxDartsOnDouble) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedDartsThrown, selectedDartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedDartsOnDouble, selectedDartsOnDouble));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      minDartsThrown,
-      maxDartsThrown,
-      minDartsOnDouble,
-      maxDartsOnDouble,
-      selectedDartsThrown,
-      selectedDartsOnDouble);
+      const DeepCollectionEquality().hash(minDartsThrown),
+      const DeepCollectionEquality().hash(maxDartsThrown),
+      const DeepCollectionEquality().hash(minDartsOnDouble),
+      const DeepCollectionEquality().hash(maxDartsOnDouble),
+      const DeepCollectionEquality().hash(selectedDartsThrown),
+      const DeepCollectionEquality().hash(selectedDartsOnDouble));
 
   @JsonKey(ignore: true)
   @override

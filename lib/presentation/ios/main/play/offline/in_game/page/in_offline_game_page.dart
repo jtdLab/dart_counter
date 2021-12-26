@@ -109,7 +109,8 @@ class InOfflineGamePage extends StatelessWidget {
                     },
                   ),
                   AppNavigationBarButton(
-                    onPressed: () => {
+                    onPressed: () {
+                      context.router.push(const AdvancedSettingsModalRoute());
                       // TODO show ingame settings modal
                       //context.router.push(const InGameSettingsModalRoute());
                     },

@@ -243,20 +243,25 @@ class _$_GameInvitationDto extends _GameInvitationDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GameInvitationDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.gameId, gameId) || other.gameId == gameId) &&
-            (identical(other.toId, toId) || other.toId == toId) &&
-            (identical(other.fromId, fromId) || other.fromId == fromId) &&
-            (identical(other.fromName, fromName) ||
-                other.fromName == fromName) &&
-            (identical(other.read, read) || other.read == read) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.gameId, gameId) &&
+            const DeepCollectionEquality().equals(other.toId, toId) &&
+            const DeepCollectionEquality().equals(other.fromId, fromId) &&
+            const DeepCollectionEquality().equals(other.fromName, fromName) &&
+            const DeepCollectionEquality().equals(other.read, read) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, gameId, toId, fromId, fromName, read, createdAt);
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(gameId),
+      const DeepCollectionEquality().hash(toId),
+      const DeepCollectionEquality().hash(fromId),
+      const DeepCollectionEquality().hash(fromName),
+      const DeepCollectionEquality().hash(read),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override

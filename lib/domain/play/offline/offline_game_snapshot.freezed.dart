@@ -215,18 +215,24 @@ class _$_OfflineGameSnapshot extends _OfflineGameSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OfflineGameSnapshot &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.startingPoints, startingPoints) ||
-                other.startingPoints == startingPoints) &&
-            (identical(other.players, players) || other.players == players));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.mode, mode) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality()
+                .equals(other.startingPoints, startingPoints) &&
+            const DeepCollectionEquality().equals(other.players, players));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, mode, size, type, startingPoints, players);
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(mode),
+      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(startingPoints),
+      const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
   @override

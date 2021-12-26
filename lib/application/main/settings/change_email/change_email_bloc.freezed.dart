@@ -140,12 +140,13 @@ class _$_NewEmailChanged implements _NewEmailChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewEmailChanged &&
-            (identical(other.newNewEmail, newNewEmail) ||
-                other.newNewEmail == newNewEmail));
+            const DeepCollectionEquality()
+                .equals(other.newNewEmail, newNewEmail));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newNewEmail);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newNewEmail));
 
   @JsonKey(ignore: true)
   @override
@@ -491,13 +492,16 @@ class _$ChangeEmailInitial implements ChangeEmailInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeEmailInitial &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, showErrorMessages);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -895,12 +899,13 @@ class _$ChangeEmailSubmitFailure implements ChangeEmailSubmitFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeEmailSubmitFailure &&
-            (identical(other.userFailure, userFailure) ||
-                other.userFailure == userFailure));
+            const DeepCollectionEquality()
+                .equals(other.userFailure, userFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(userFailure));
 
   @JsonKey(ignore: true)
   @override

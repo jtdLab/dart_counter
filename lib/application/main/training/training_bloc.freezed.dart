@@ -532,11 +532,12 @@ class _$TrainingPlayerRemoved implements TrainingPlayerRemoved {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingPlayerRemoved &&
-            (identical(other.index, index) || other.index == index));
+            const DeepCollectionEquality().equals(other.index, index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
 
   @JsonKey(ignore: true)
   @override
@@ -722,14 +723,15 @@ class _$TrainingPlayerReordered implements TrainingPlayerReordered {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingPlayerReordered &&
-            (identical(other.oldIndex, oldIndex) ||
-                other.oldIndex == oldIndex) &&
-            (identical(other.newIndex, newIndex) ||
-                other.newIndex == newIndex));
+            const DeepCollectionEquality().equals(other.oldIndex, oldIndex) &&
+            const DeepCollectionEquality().equals(other.newIndex, newIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(oldIndex),
+      const DeepCollectionEquality().hash(newIndex));
 
   @JsonKey(ignore: true)
   @override
@@ -918,12 +920,15 @@ class _$TrainingPlayerNameUpdated implements TrainingPlayerNameUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingPlayerNameUpdated &&
-            (identical(other.index, index) || other.index == index) &&
-            (identical(other.newName, newName) || other.newName == newName));
+            const DeepCollectionEquality().equals(other.index, index) &&
+            const DeepCollectionEquality().equals(other.newName, newName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index, newName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(newName));
 
   @JsonKey(ignore: true)
   @override
@@ -1103,11 +1108,12 @@ class _$TrainingTypeChanged implements TrainingTypeChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingTypeChanged &&
-            (identical(other.newType, newType) || other.newType == newType));
+            const DeepCollectionEquality().equals(other.newType, newType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, newType);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(newType));
 
   @JsonKey(ignore: true)
   @override
@@ -1591,12 +1597,13 @@ class _$TrainingGameSnapshotReceived implements TrainingGameSnapshotReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingGameSnapshotReceived &&
-            (identical(other.gameSnapshot, gameSnapshot) ||
-                other.gameSnapshot == gameSnapshot));
+            const DeepCollectionEquality()
+                .equals(other.gameSnapshot, gameSnapshot));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameSnapshot);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(gameSnapshot));
 
   @JsonKey(ignore: true)
   @override
@@ -1884,13 +1891,16 @@ class _$TrainingInitial implements TrainingInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is TrainingInitial &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.gameSnapshot, gameSnapshot) ||
-                other.gameSnapshot == gameSnapshot));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality()
+                .equals(other.gameSnapshot, gameSnapshot));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, gameSnapshot);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(gameSnapshot));
 
   @JsonKey(ignore: true)
   @override

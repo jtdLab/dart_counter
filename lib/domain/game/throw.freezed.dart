@@ -163,17 +163,21 @@ class _$_Throw implements _Throw {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Throw &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.dartsThrown, dartsThrown) ||
-                other.dartsThrown == dartsThrown) &&
-            (identical(other.dartsOnDouble, dartsOnDouble) ||
-                other.dartsOnDouble == dartsOnDouble) &&
-            (identical(other.darts, darts) || other.darts == darts));
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsThrown, dartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsOnDouble, dartsOnDouble) &&
+            const DeepCollectionEquality().equals(other.darts, darts));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, points, dartsThrown, dartsOnDouble, darts);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(dartsThrown),
+      const DeepCollectionEquality().hash(dartsOnDouble),
+      const DeepCollectionEquality().hash(darts));
 
   @JsonKey(ignore: true)
   @override

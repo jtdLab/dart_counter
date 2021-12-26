@@ -463,16 +463,19 @@ class _$HomeLoadSuccess implements HomeLoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HomeLoadSuccess &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.unreadGameInvitations, unreadGameInvitations) ||
-                other.unreadGameInvitations == unreadGameInvitations) &&
-            (identical(other.unreadFriendRequests, unreadFriendRequests) ||
-                other.unreadFriendRequests == unreadFriendRequests));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.unreadGameInvitations, unreadGameInvitations) &&
+            const DeepCollectionEquality()
+                .equals(other.unreadFriendRequests, unreadFriendRequests));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, user, unreadGameInvitations, unreadFriendRequests);
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(unreadGameInvitations),
+      const DeepCollectionEquality().hash(unreadFriendRequests));
 
   @JsonKey(ignore: true)
   @override

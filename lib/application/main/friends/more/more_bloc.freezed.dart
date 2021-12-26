@@ -160,11 +160,12 @@ class _$RemovePressed implements RemovePressed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is RemovePressed &&
-            (identical(other.friend, friend) || other.friend == friend));
+            const DeepCollectionEquality().equals(other.friend, friend));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, friend);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(friend));
 
   @JsonKey(ignore: true)
   @override

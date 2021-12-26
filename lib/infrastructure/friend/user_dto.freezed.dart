@@ -149,12 +149,15 @@ class _$_UserDto extends _UserDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.profile, profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, profile);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(profile));
 
   @JsonKey(ignore: true)
   @override

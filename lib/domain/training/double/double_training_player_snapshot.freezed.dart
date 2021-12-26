@@ -253,24 +253,32 @@ class _$_DoubleTrainingPlayerSnapshot implements _DoubleTrainingPlayerSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DoubleTrainingPlayerSnapshot &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isCurrentTurn, isCurrentTurn) ||
-                other.isCurrentTurn == isCurrentTurn) &&
-            (identical(other.isFinished, isFinished) ||
-                other.isFinished == isFinished) &&
-            (identical(other.targetValue, targetValue) ||
-                other.targetValue == targetValue) &&
-            (identical(other.checkoutPercentage, checkoutPercentage) ||
-                other.checkoutPercentage == checkoutPercentage) &&
-            (identical(other.missed, missed) || other.missed == missed) &&
-            (identical(other.dartsThrown, dartsThrown) ||
-                other.dartsThrown == dartsThrown));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.isCurrentTurn, isCurrentTurn) &&
+            const DeepCollectionEquality()
+                .equals(other.isFinished, isFinished) &&
+            const DeepCollectionEquality()
+                .equals(other.targetValue, targetValue) &&
+            const DeepCollectionEquality()
+                .equals(other.checkoutPercentage, checkoutPercentage) &&
+            const DeepCollectionEquality().equals(other.missed, missed) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsThrown, dartsThrown));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, isCurrentTurn,
-      isFinished, targetValue, checkoutPercentage, missed, dartsThrown);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isCurrentTurn),
+      const DeepCollectionEquality().hash(isFinished),
+      const DeepCollectionEquality().hash(targetValue),
+      const DeepCollectionEquality().hash(checkoutPercentage),
+      const DeepCollectionEquality().hash(missed),
+      const DeepCollectionEquality().hash(dartsThrown));
 
   @JsonKey(ignore: true)
   @override

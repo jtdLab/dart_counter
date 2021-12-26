@@ -219,20 +219,26 @@ class _$_DartBot implements _DartBot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DartBot &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.legsOrSets, legsOrSets) ||
-                other.legsOrSets == legsOrSets) &&
-            (identical(other.won, won) || other.won == won) &&
-            (identical(other.wonLegsOrSets, wonLegsOrSets) ||
-                other.wonLegsOrSets == wonLegsOrSets) &&
-            (identical(other.stats, stats) || other.stats == stats) &&
-            (identical(other.targetAverage, targetAverage) ||
-                other.targetAverage == targetAverage));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.legsOrSets, legsOrSets) &&
+            const DeepCollectionEquality().equals(other.won, won) &&
+            const DeepCollectionEquality()
+                .equals(other.wonLegsOrSets, wonLegsOrSets) &&
+            const DeepCollectionEquality().equals(other.stats, stats) &&
+            const DeepCollectionEquality()
+                .equals(other.targetAverage, targetAverage));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, legsOrSets, won, wonLegsOrSets, stats, targetAverage);
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(legsOrSets),
+      const DeepCollectionEquality().hash(won),
+      const DeepCollectionEquality().hash(wonLegsOrSets),
+      const DeepCollectionEquality().hash(stats),
+      const DeepCollectionEquality().hash(targetAverage));
 
   @JsonKey(ignore: true)
   @override

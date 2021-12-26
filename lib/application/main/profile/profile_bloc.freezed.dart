@@ -161,11 +161,12 @@ class _$UserReceived implements UserReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UserReceived &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -414,13 +415,16 @@ class _$ProfileInitial implements ProfileInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ProfileInitial &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.careerStatsAll, careerStatsAll) ||
-                other.careerStatsAll == careerStatsAll));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.careerStatsAll, careerStatsAll));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, careerStatsAll);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(careerStatsAll));
 
   @JsonKey(ignore: true)
   @override

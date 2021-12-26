@@ -10,12 +10,6 @@ part 'advanced_settings_event.dart';
 part 'advanced_settings_state.dart';
 part 'advanced_settings_bloc.freezed.dart';
 
-// TODO implement this
-
-// toto remove later
-final initialTestSettings =
-    AdvancedSettings.dummy().copyWith(smartKeyBoardActivated: true);
-
 class AdvancedSettingsBloc
     extends Bloc<AdvancedSettingsEvent, AdvancedSettingsState> {
   final Cubit<AbstractGameSnapshot> _playWatcherCubit;
@@ -23,15 +17,30 @@ class AdvancedSettingsBloc
   AdvancedSettingsBloc(
     this._playWatcherCubit,
   ) : super(
-          // TODO just for tesing should be empty
-          AdvancedSettingsState.inGame(
-            advancedSettings: [initialTestSettings].toImmutableList(),
-            currentTurnAdvancedSettings: initialTestSettings,
+          // TODO load initial advanced settings of user in offline game / dont know in online game ???
+          AdvancedSettingsState.createGame(
+            advancedSettings: [
+              AdvancedSettings(
+                playerId: _playWatcherCubit.state.players.first().id,
+                showAverage: true,
+                showCheckoutPercentage: true,
+                smartKeyBoardActivated: false,
+              ),
+            ].toImmutableList(),
           ),
         ) {
     on<_Started>(
       (_, emit) async => _mapStartedToState(emit),
       transformer: restartable(),
+    );
+    on<_ShowAverageToggled>(
+      (event, emit) => _mapShowAverageToggledToState(event, emit),
+    );
+    on<_ShowCheckoutToggled>(
+      (event, emit) => _mapShowCheckoutToggledToState(event, emit),
+    );
+    on<_SmartKeyBoardActiveToggled>(
+      (event, emit) => _mapSmartKeyBoardActiveToggledToState(event, emit),
     );
   }
 
@@ -41,6 +50,48 @@ class AdvancedSettingsBloc
     await _playWatcherCubit.stream.forEach(
       (gameSnapshot) => _onGameSnapshot(gameSnapshot, emit),
     );
+  }
+
+  void _mapShowAverageToggledToState(
+    _ShowAverageToggled event,
+    Emitter<AdvancedSettingsState> emit,
+  ) {
+    final int index = event.index;
+    final current = state.advancedSettings.get(index);
+    final newAdvancedSettings = state.advancedSettings.toMutableList();
+    newAdvancedSettings.set(
+      index,
+      current.copyWith(showAverage: !current.showAverage),
+    );
+    emit(state.copyWith(advancedSettings: newAdvancedSettings));
+  }
+
+  void _mapShowCheckoutToggledToState(
+    _ShowCheckoutToggled event,
+    Emitter<AdvancedSettingsState> emit,
+  ) {
+    final int index = event.index;
+    final current = state.advancedSettings.get(index);
+    final newAdvancedSettings = state.advancedSettings.toMutableList();
+    newAdvancedSettings.set(
+      index,
+      current.copyWith(showCheckoutPercentage: !current.showCheckoutPercentage),
+    );
+    emit(state.copyWith(advancedSettings: newAdvancedSettings));
+  }
+
+  void _mapSmartKeyBoardActiveToggledToState(
+    _SmartKeyBoardActiveToggled event,
+    Emitter<AdvancedSettingsState> emit,
+  ) {
+    final int index = event.index;
+    final current = state.advancedSettings.get(index);
+    final newAdvancedSettings = state.advancedSettings.toMutableList();
+    newAdvancedSettings.set(
+      index,
+      current.copyWith(smartKeyBoardActivated: !current.smartKeyBoardActivated),
+    );
+    emit(state.copyWith(advancedSettings: newAdvancedSettings));
   }
 
   void _onGameSnapshot(
@@ -65,7 +116,7 @@ class AdvancedSettingsBloc
                   AdvancedSettings(
                     playerId: playerId,
                     showAverage: true,
-                    checkoutPercentage: true,
+                    showCheckoutPercentage: true,
                     smartKeyBoardActivated: false,
                   ),
                 );

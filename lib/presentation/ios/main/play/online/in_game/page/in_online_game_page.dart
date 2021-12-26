@@ -92,11 +92,13 @@ class InOnlineGamePage extends StatelessWidget {
               middle: Text(
                 gameSnapshot.description(),
               ),
-              trailing: StatsButton(
-                onPressed: () {
-                  context.router.push(const OnlineStatsModalRoute());
-                  // TODO rework
-                  /**
+              trailing: Row(
+                children: [
+                  StatsButton(
+                    onPressed: () {
+                      context.router.push(const OnlineStatsModalRoute());
+                      // TODO rework
+                      /**
                  *   showCupertinoModalBottomSheet(
                     expand: true,
                     context: context,
@@ -107,7 +109,19 @@ class InOnlineGamePage extends StatelessWidget {
                     ),
                   );
                  */
-                },
+                    },
+                  ),
+                  AppNavigationBarButton(
+                    onPressed: () {
+                      context.router.push(const AdvancedSettingsModalRoute());
+                      // TODO show ingame settings modal
+                      //context.router.push(const InGameSettingsModalRoute());
+                    },
+                    child: Image.asset(
+                      AppImages.settingsNew,
+                    ),
+                  ),
+                ],
               ),
             ),
             child: const _InOnlineGameWidget(),

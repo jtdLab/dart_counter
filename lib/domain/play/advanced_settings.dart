@@ -9,7 +9,7 @@ class AdvancedSettings with _$AdvancedSettings {
   const factory AdvancedSettings({
     required UniqueId playerId,
     required bool showAverage,
-    required bool checkoutPercentage,
+    required bool showCheckoutPercentage,
     required bool smartKeyBoardActivated,
   }) = _AdvancedSettings;
 
@@ -18,7 +18,7 @@ class AdvancedSettings with _$AdvancedSettings {
           faker.randomGenerator.string(28, min: 28),
         ),
         showAverage: faker.randomGenerator.boolean(),
-        checkoutPercentage: faker.randomGenerator.boolean(),
+        showCheckoutPercentage: faker.randomGenerator.boolean(),
         smartKeyBoardActivated: faker.randomGenerator.boolean(),
       );
 }

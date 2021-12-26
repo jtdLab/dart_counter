@@ -191,16 +191,20 @@ class _$_ScoreTrainingGameSnapshot implements _ScoreTrainingGameSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScoreTrainingGameSnapshot &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.numberOfTakes, numberOfTakes) ||
-                other.numberOfTakes == numberOfTakes) &&
-            (identical(other.players, players) || other.players == players) &&
-            (identical(other.owner, owner) || other.owner == owner));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.numberOfTakes, numberOfTakes) &&
+            const DeepCollectionEquality().equals(other.players, players) &&
+            const DeepCollectionEquality().equals(other.owner, owner));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, numberOfTakes, players, owner);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(numberOfTakes),
+      const DeepCollectionEquality().hash(players),
+      const DeepCollectionEquality().hash(owner));
 
   @JsonKey(ignore: true)
   @override

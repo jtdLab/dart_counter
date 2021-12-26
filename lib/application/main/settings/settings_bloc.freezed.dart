@@ -595,13 +595,16 @@ class _$SettingsInitial implements SettingsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SettingsInitial &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.localeChanged, localeChanged) ||
-                other.localeChanged == localeChanged));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.localeChanged, localeChanged));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, localeChanged);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(localeChanged));
 
   @JsonKey(ignore: true)
   @override
