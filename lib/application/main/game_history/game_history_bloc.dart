@@ -15,6 +15,8 @@ part 'game_history_event.dart';
 part 'game_history_state.dart';
 part 'game_history_bloc.freezed.dart';
 
+// TODO transform to bloc v.8.0.0
+
 @lazySingleton
 class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     with AutoResetLazySingleton {

@@ -13,6 +13,8 @@ part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
+// TODO transform to bloc v.8.0.0
+
 @lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
     with AutoResetLazySingleton {

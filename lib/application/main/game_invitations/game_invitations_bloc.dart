@@ -19,6 +19,8 @@ part 'game_invitations_bloc.freezed.dart';
 part 'game_invitations_event.dart';
 part 'game_invitations_state.dart';
 
+// TODO transform to bloc v.8.0.0
+
 @lazySingleton
 class GameInvitationsBloc
     extends Bloc<GameInvitationsEvent, GameInvitationsState>
