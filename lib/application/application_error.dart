@@ -7,4 +7,8 @@ class ApplicationError extends Error {
   String toString() {
     return 'ApplicationError: $msg';
   }
+
+  factory ApplicationError.unexpectedMissingData() => ApplicationError(
+        'Data not available where it is expected to be available',
+      );
 }

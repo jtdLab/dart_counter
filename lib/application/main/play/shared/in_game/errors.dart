@@ -2,6 +2,8 @@ import 'package:dart_counter/application/application_error.dart';
 
 // Errors in shard in game atm but // TODO place this file in correct location in filesystem application/main/play
 
+// USE factories for more info look ApplicationError.dart
+
 final advancedSettingsInGameExpectedError = ApplicationError(
   'AdvancedSettingsBloc holds AdvancedSettingsCreateGame but AdvancedSettingsInGame expected',
 );

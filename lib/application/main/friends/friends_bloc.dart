@@ -18,11 +18,6 @@ part 'friends_bloc.freezed.dart';
 part 'friends_event.dart';
 part 'friends_state.dart';
 
-// TODO share among other blocs ??
-final dataNotAvailableAtAnUnexpectedPoint = ApplicationError(
-  'Data not available where it is expected to be available',
-);
-
 @lazySingleton
 class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     with AutoResetLazySingleton {
@@ -34,15 +29,17 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     this._friendService,
   ) : super(
           FriendsState.initial(
-            friends: _friendService
-                .getFriends()
-                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
-            receivedFriendRequests: _friendService
-                .getReceivedFriendRequests()
-                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
-            sentFriendRequests: _friendService
-                .getSentFriendRequests()
-                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+            friends: _friendService.getFriends().getOrElse(
+                  () => throw ApplicationError.unexpectedMissingData(),
+                ),
+            receivedFriendRequests:
+                _friendService.getReceivedFriendRequests().getOrElse(
+                      () => throw ApplicationError.unexpectedMissingData(),
+                    ),
+            sentFriendRequests:
+                _friendService.getSentFriendRequests().getOrElse(
+                      () => throw ApplicationError.unexpectedMissingData(),
+                    ),
           ),
         ) {
     on<Started>((_, emit) async => _mapStartedToState(emit));
@@ -84,11 +81,11 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
 
         return state.copyWith(
           friends: failureOrFriends
-              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
           receivedFriendRequests: failureOrReceivedFriendRequests
-              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
           sentFriendRequests: failureOrSentFriendRequests
-              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
         );
       },
     );
