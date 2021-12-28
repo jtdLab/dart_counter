@@ -1,9 +1,11 @@
+import 'package:dart_counter/bloc_observer.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -32,7 +34,10 @@ Future<void> main() async {
   configureInjection(Environment.dev);
   await Firebase.initializeApp();
 
-  runApp(
-    AppWidget(),
+  BlocOverrides.runZoned(
+    () {
+      runApp(AppWidget());
+    },
+    blocObserver: DartCounterBlocObserver(),
   );
 }

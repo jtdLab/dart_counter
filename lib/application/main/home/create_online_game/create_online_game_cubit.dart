@@ -8,6 +8,8 @@ import 'package:injectable/injectable.dart';
 part 'create_online_game_state.dart';
 part 'create_online_game_cubit.freezed.dart';
 
+// TODO understand and maybe replace if better option is available
+
 @lazySingleton
 class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
   final IPlayOnlineService _playOnlineService;
