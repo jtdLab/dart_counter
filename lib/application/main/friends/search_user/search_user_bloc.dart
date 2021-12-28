@@ -25,7 +25,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     on<SearchStringChanged>(
       (event, emit) async => _mapSearchStringChangedToState(event, emit),
       transformer: (events, _) {
-        return events.debounceTime(const Duration(milliseconds: 300));
+        return events.throttleTime(const Duration(milliseconds: 300));
       },
     );
     on<ClearPressed>((_, emit) => _mapClearPressedToState(emit));

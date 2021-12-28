@@ -32,6 +32,10 @@ void main() {
   setUp(() {
     mockFriendService = MockFriendService();
     mockFriendsBloc = MockFriendsBloc();
+
+    when(
+      () => mockFriendService.removeFriend(friend: any(named: 'friend')),
+    ).thenAnswer((_) async => right(unit));
   });
 
   test('initial state is MoreInitial', () {
@@ -52,9 +56,6 @@ void main() {
         'calls removeFriend with friendToRemove as param '
         'when selected friend is not null',
         setUp: () {
-          when(
-            () => mockFriendService.removeFriend(friend: any(named: 'friend')),
-          ).thenAnswer((_) async => right(unit));
           when(() => mockFriendsBloc.state).thenReturn(
             FriendsState.initial(
               friends: const KtList.empty(),
@@ -80,9 +81,6 @@ void main() {
         'does nothing '
         'when selected friend is null',
         setUp: () {
-          when(
-            () => mockFriendService.removeFriend(friend: any(named: 'friend')),
-          ).thenAnswer((_) async => right(unit));
           when(() => mockFriendsBloc.state).thenReturn(
             const FriendsState.initial(
               friends: KtList.empty(),
