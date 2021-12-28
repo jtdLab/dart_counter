@@ -38,6 +38,6 @@ Future<void> main() async {
     () {
       runApp(AppWidget());
     },
-    blocObserver: DartCounterBlocObserver(),
+    blocObserver: false ? DartCounterBlocObserver() : null,
   );
 }
