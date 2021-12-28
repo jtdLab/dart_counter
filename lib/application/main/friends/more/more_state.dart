@@ -2,5 +2,5 @@ part of 'more_bloc.dart';
 
 @freezed
 class MoreState with _$MoreState {
-  const factory MoreState.initial() = Initial;
+  const factory MoreState.initial() = MoreInitial;
 }

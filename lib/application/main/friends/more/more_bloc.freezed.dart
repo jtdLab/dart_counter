@@ -178,8 +178,8 @@ abstract class RemovePressed implements MoreEvent {
 class _$MoreStateTearOff {
   const _$MoreStateTearOff();
 
-  Initial initial() {
-    return const Initial();
+  MoreInitial initial() {
+    return const MoreInitial();
   }
 }
 
@@ -206,17 +206,17 @@ mixin _$MoreState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(MoreInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(MoreInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(MoreInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -238,25 +238,27 @@ class _$MoreStateCopyWithImpl<$Res> implements $MoreStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class $MoreInitialCopyWith<$Res> {
+  factory $MoreInitialCopyWith(
+          MoreInitial value, $Res Function(MoreInitial) then) =
+      _$MoreInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$MoreStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+class _$MoreInitialCopyWithImpl<$Res> extends _$MoreStateCopyWithImpl<$Res>
+    implements $MoreInitialCopyWith<$Res> {
+  _$MoreInitialCopyWithImpl(
+      MoreInitial _value, $Res Function(MoreInitial) _then)
+      : super(_value, (v) => _then(v as MoreInitial));
 
   @override
-  Initial get _value => super._value as Initial;
+  MoreInitial get _value => super._value as MoreInitial;
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$MoreInitial implements MoreInitial {
+  const _$MoreInitial();
 
   @override
   String toString() {
@@ -266,7 +268,7 @@ class _$Initial implements Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Initial);
+        (other.runtimeType == runtimeType && other is MoreInitial);
   }
 
   @override
@@ -303,7 +305,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(MoreInitial value) initial,
   }) {
     return initial(this);
   }
@@ -311,7 +313,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(MoreInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -319,7 +321,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(MoreInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -329,6 +331,6 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements MoreState {
-  const factory Initial() = _$Initial;
+abstract class MoreInitial implements MoreState {
+  const factory MoreInitial() = _$MoreInitial;
 }
