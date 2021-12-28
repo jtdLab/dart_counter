@@ -56,6 +56,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     Emitter<FriendsState> emit,
   ) async {
     // TODO is this the correct location ?
+    // TODO does this belong to application or infra atm its infra
     _friendService.markReceivedFriendRequestsAsRead();
 
     final dataStream = CombineLatestStream(
@@ -91,6 +92,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     );
   }
 
+  // TODO maybe check if event.friend is element of friends or just use index instead of selectedFriend ??
   void _mapFriendSelectedToState(
     FriendSelected event,
     Emitter<FriendsState> emit,
