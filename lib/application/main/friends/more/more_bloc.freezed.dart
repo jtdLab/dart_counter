@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MoreEventTearOff {
   const _$MoreEventTearOff();
 
-  RemovePressed removePressed({required Friend friend}) {
-    return RemovePressed(
-      friend: friend,
-    );
+  RemovePressed removePressed() {
+    return const RemovePressed();
   }
 }
 
@@ -29,21 +27,19 @@ const $MoreEvent = _$MoreEventTearOff();
 
 /// @nodoc
 mixin _$MoreEvent {
-  Friend get friend => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Friend friend) removePressed,
+    required TResult Function() removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Friend friend)? removePressed,
+    TResult Function()? removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Friend friend)? removePressed,
+    TResult Function()? removePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,19 +59,12 @@ mixin _$MoreEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MoreEventCopyWith<MoreEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $MoreEventCopyWith<$Res> {
   factory $MoreEventCopyWith(MoreEvent value, $Res Function(MoreEvent) then) =
       _$MoreEventCopyWithImpl<$Res>;
-  $Res call({Friend friend});
-
-  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -85,38 +74,13 @@ class _$MoreEventCopyWithImpl<$Res> implements $MoreEventCopyWith<$Res> {
   final MoreEvent _value;
   // ignore: unused_field
   final $Res Function(MoreEvent) _then;
-
-  @override
-  $Res call({
-    Object? friend = freezed,
-  }) {
-    return _then(_value.copyWith(
-      friend: friend == freezed
-          ? _value.friend
-          : friend // ignore: cast_nullable_to_non_nullable
-              as Friend,
-    ));
-  }
-
-  @override
-  $FriendCopyWith<$Res> get friend {
-    return $FriendCopyWith<$Res>(_value.friend, (value) {
-      return _then(_value.copyWith(friend: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class $RemovePressedCopyWith<$Res>
-    implements $MoreEventCopyWith<$Res> {
+abstract class $RemovePressedCopyWith<$Res> {
   factory $RemovePressedCopyWith(
           RemovePressed value, $Res Function(RemovePressed) then) =
       _$RemovePressedCopyWithImpl<$Res>;
-  @override
-  $Res call({Friend friend});
-
-  @override
-  $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
@@ -128,74 +92,51 @@ class _$RemovePressedCopyWithImpl<$Res> extends _$MoreEventCopyWithImpl<$Res>
 
   @override
   RemovePressed get _value => super._value as RemovePressed;
-
-  @override
-  $Res call({
-    Object? friend = freezed,
-  }) {
-    return _then(RemovePressed(
-      friend: friend == freezed
-          ? _value.friend
-          : friend // ignore: cast_nullable_to_non_nullable
-              as Friend,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$RemovePressed implements RemovePressed {
-  const _$RemovePressed({required this.friend});
-
-  @override
-  final Friend friend;
+  const _$RemovePressed();
 
   @override
   String toString() {
-    return 'MoreEvent.removePressed(friend: $friend)';
+    return 'MoreEvent.removePressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is RemovePressed &&
-            const DeepCollectionEquality().equals(other.friend, friend));
+        (other.runtimeType == runtimeType && other is RemovePressed);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(friend));
-
-  @JsonKey(ignore: true)
-  @override
-  $RemovePressedCopyWith<RemovePressed> get copyWith =>
-      _$RemovePressedCopyWithImpl<RemovePressed>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Friend friend) removePressed,
+    required TResult Function() removePressed,
   }) {
-    return removePressed(friend);
+    return removePressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Friend friend)? removePressed,
+    TResult Function()? removePressed,
   }) {
-    return removePressed?.call(friend);
+    return removePressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Friend friend)? removePressed,
+    TResult Function()? removePressed,
     required TResult orElse(),
   }) {
     if (removePressed != null) {
-      return removePressed(friend);
+      return removePressed();
     }
     return orElse();
   }
@@ -230,14 +171,7 @@ class _$RemovePressed implements RemovePressed {
 }
 
 abstract class RemovePressed implements MoreEvent {
-  const factory RemovePressed({required Friend friend}) = _$RemovePressed;
-
-  @override
-  Friend get friend;
-  @override
-  @JsonKey(ignore: true)
-  $RemovePressedCopyWith<RemovePressed> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory RemovePressed() = _$RemovePressed;
 }
 
 /// @nodoc

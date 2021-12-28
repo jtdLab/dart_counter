@@ -1,6 +1,7 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
+// TODO use this in whole app pls
 class AppModal extends StatelessWidget {
   final Widget child;
 

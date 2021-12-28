@@ -9,11 +9,11 @@ import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 
 // MODALS
-import 'modals/search_user/search_user_modal.dart';
-import 'modals/more/more_modal.dart';
+import '../modals/search_user/search_user_modal.dart';
+import '../modals/more/more_modal.dart';
 
 // LOCAL WIDGETS
-import '../../shared/widgets.dart';
+import '../../../shared/widgets.dart';
 part 'widgets.dart';
 
 class OverviewPage extends StatelessWidget {
@@ -30,10 +30,9 @@ class OverviewPage extends StatelessWidget {
         middle: Text(LocaleKeys.friends.tr().toUpperCase()),
         trailing: AppNavigationBarButton(
           noPaddingRight: true,
-          onPressed: () => showCupertinoModalBottomSheet(
-            context: context,
-            builder: (context) => const SearchUserModal(),
-          ),
+          onPressed: () {
+            context.router.push(const SearchUserModalRoute());
+          },
           child: Image.asset(
             AppImages.lupeNew,
           ),

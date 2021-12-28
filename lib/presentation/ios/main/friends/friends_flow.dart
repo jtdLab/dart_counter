@@ -12,7 +12,8 @@ class FriendsFlow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<FriendsBloc>(),
+      create: (context) =>
+          getIt<FriendsBloc>()..add(const FriendsEvent.started()),
       child: const AutoRouter(),
     );
   }

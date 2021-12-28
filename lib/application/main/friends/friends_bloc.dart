@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/application_error.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
@@ -17,6 +18,11 @@ part 'friends_bloc.freezed.dart';
 part 'friends_event.dart';
 part 'friends_state.dart';
 
+// TODO share among other blocs ??
+final dataNotAvailableAtAnUnexpectedPoint = ApplicationError(
+  'Data not available where it is expected to be available',
+);
+
 @lazySingleton
 class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     with AutoResetLazySingleton {
@@ -28,15 +34,33 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     this._friendService,
   ) : super(
           FriendsState.initial(
-            friends: _friendService.getFriends().toOption().toNullable()!,
+            friends: _friendService
+                .getFriends()
+                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
             receivedFriendRequests: _friendService
                 .getReceivedFriendRequests()
-                .toOption()
-                .toNullable()!,
-            sentFriendRequests:
-                _friendService.getSentFriendRequests().toOption().toNullable()!,
+                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+            sentFriendRequests: _friendService
+                .getSentFriendRequests()
+                .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
           ),
         ) {
+    on<Started>((_, emit) async => _mapStartedToState(emit));
+    on<FriendSelected>((event, emit) => _mapFriendSelectedToState(event, emit));
+    on<FriendRequestAccepted>(
+      (event, emit) => _mapFriendRequestAcceptedToState(event),
+    );
+    on<FriendRequestDeclined>(
+      (event, emit) => _mapFriendRequestDeclinedToState(event),
+    );
+  }
+
+  Future<void> _mapStartedToState(
+    Emitter<FriendsState> emit,
+  ) async {
+    // TODO is this the correct location ?
+    _friendService.markReceivedFriendRequestsAsRead();
+
     final dataStream = CombineLatestStream(
       [
         _friendService.watchFriends(),
@@ -46,76 +70,48 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
       (events) => events,
     );
 
-    _dataSubscription = dataStream.listen((data) async {
-      final failureOrFriends =
-          data[0]! as Either<FriendFailure, KtList<Friend>>;
-      final failureOrReceivedFriendRequests =
-          data[1]! as Either<FriendFailure, KtList<FriendRequest>>;
-      final failureOrSentFriendRequests =
-          data[2]! as Either<FriendFailure, KtList<FriendRequest>>;
+    await emit.forEach(
+      dataStream,
+      onData: (List data) {
+        final failureOrFriends =
+            data[0]! as Either<FriendFailure, KtList<Friend>>;
+        final failureOrReceivedFriendRequests =
+            data[1]! as Either<FriendFailure, KtList<FriendRequest>>;
+        final failureOrSentFriendRequests =
+            data[2]! as Either<FriendFailure, KtList<FriendRequest>>;
 
-      if (failureOrFriends.isLeft()) {
-        // yield load failure state
-      } else if (failureOrReceivedFriendRequests.isLeft()) {
-        // yield load failure state
-      } else if (failureOrSentFriendRequests.isLeft()) {
-        // yield load failure state
-      } else {
-        // TODO load photos
+        // TODO load photos here or in infra layer ??
 
-        add(
-          FriendsEvent.dataReceived(
-            friends: failureOrFriends.toOption().toNullable()!,
-            receivedFriendRequests:
-                failureOrReceivedFriendRequests.toOption().toNullable()!,
-            sentFriendRequests:
-                failureOrSentFriendRequests.toOption().toNullable()!,
-          ),
+        return state.copyWith(
+          friends: failureOrFriends
+              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+          receivedFriendRequests: failureOrReceivedFriendRequests
+              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
+          sentFriendRequests: failureOrSentFriendRequests
+              .getOrElse(() => throw dataNotAvailableAtAnUnexpectedPoint),
         );
-      }
-    });
-
-    _friendService.markReceivedFriendRequestsAsRead();
-  }
-
-  @override
-  Stream<FriendsState> mapEventToState(
-    FriendsEvent event,
-  ) async* {
-    yield* event.map(
-      friendSelected: (event) => _mapFriendSelectedToState(event),
-      friendRequestAccepted: (event) => _mapFriendRequestAcceptedToState(event),
-      friendRequestDeclined: (event) => _mapFriendRequestDeclinedToState(event),
-      dataReceived: (event) => _mapDataReceivedToState(event),
+      },
     );
   }
 
-  Stream<FriendsState> _mapFriendSelectedToState(
-    FriendsFriendSelected event,
-  ) async* {
-    yield state.copyWith(selectedFriend: event.friend);
-  }
+  void _mapFriendSelectedToState(
+    FriendSelected event,
+    Emitter<FriendsState> emit,
+  ) =>
+      emit(state.copyWith(selectedFriend: event.friend));
 
-  Stream<FriendsState> _mapFriendRequestAcceptedToState(
-    FriendsFriendRequestAccepted event,
-  ) async* {
+  void _mapFriendRequestAcceptedToState(
+    FriendRequestAccepted event,
+  ) {
+    // TODO await result ??
     _friendService.acceptFriendRequest(friendRequest: event.friendRequest);
   }
 
-  Stream<FriendsState> _mapFriendRequestDeclinedToState(
-    FriendsFriendRequestDeclined event,
-  ) async* {
+  void _mapFriendRequestDeclinedToState(
+    FriendRequestDeclined event,
+  ) {
+    // TODO await result ??
     _friendService.declineFriendRequest(friendRequest: event.friendRequest);
-  }
-
-  Stream<FriendsState> _mapDataReceivedToState(
-    FriendsDataReceived event,
-  ) async* {
-    yield state.copyWith(
-      friends: event.friends,
-      receivedFriendRequests: event.receivedFriendRequests,
-      sentFriendRequests: event.sentFriendRequests,
-    );
   }
 
   @override

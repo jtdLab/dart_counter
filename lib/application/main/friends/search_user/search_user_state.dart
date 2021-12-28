@@ -2,11 +2,10 @@ part of 'search_user_bloc.dart';
 
 @freezed
 class SearchUserState with _$SearchUserState {
-  const factory SearchUserState({
+  const factory SearchUserState.initial() = SearchUserInitial;
+  const factory SearchUserState.loadInProgress() = SearchUserLoadInProgress;
+  const factory SearchUserState.loadSuccess({
     required KtList<UserSnapshot> searchResults,
-  }) = _SearchUserState;
-
-  factory SearchUserState.initial() => const SearchUserState(
-        searchResults: KtList.empty(),
-      );
+  }) = SearchUserLoadSuccess;
+  const factory SearchUserState.loadFailure() = SearchUserLoadFailure;
 }

@@ -1,25 +1,31 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/domain/friend/friend.dart';
+import 'package:dart_counter/application/main/friends/friends_bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
+part 'more_bloc.freezed.dart';
 part 'more_event.dart';
 part 'more_state.dart';
-part 'more_bloc.freezed.dart';
 
-@lazySingleton
 class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
-  IFriendService _friendService;
+  final IFriendService _friendService;
+
+  final FriendsBloc _friendsBloc;
 
   MoreBloc(
     this._friendService,
+    this._friendsBloc,
   ) : super(const MoreState.initial()) {
-    on<RemovePressed>((event, emit) async {
-      await _friendService.removeFriend(friend: event.friend);
-    });
+    on<RemovePressed>((_, __) async => _mapRemovePressedToState());
+  }
+
+  Future<void> _mapRemovePressedToState() async {
+    final friendToRemove = _friendsBloc.state.selectedFriend;
+    if (friendToRemove != null) {
+      await _friendService.removeFriend(friend: friendToRemove);
+    }
   }
 
   @override

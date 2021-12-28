@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -16,7 +17,10 @@ class MoreModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MoreBloc>(),
+      create: (context) => MoreBloc(
+        getIt<IFriendService>(),
+        context.read<FriendsBloc>(),
+      ),
       child: const AppModal(
         child: _MoreWidget(),
       ),

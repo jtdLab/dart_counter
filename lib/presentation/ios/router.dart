@@ -1,4 +1,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/friends/overview/modals/more/more_modal.dart';
+import 'package:dart_counter/presentation/ios/main/friends/overview/modals/search_user/search_user_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
@@ -6,7 +8,8 @@ import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/ad
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
 import 'main/friends/friends_flow.dart';
-import 'main/friends/overview/overview_page.dart' as friends_overview;
+import 'main/friends/overview/overview_flow.dart';
+import 'main/friends/overview/page/overview_page.dart' as friends_overview;
 import 'main/friends/profile/profile_page.dart' as friends_profile;
 import 'main/game_history/details/details_page.dart' as game_history_details;
 import 'main/game_history/game_history_flow.dart';
@@ -68,12 +71,26 @@ import 'main/training/training_flow.dart';
         CupertinoRoute(
           page: FriendsFlow,
           children: [
-            CustomRoute(
+            CupertinoRoute(
               initial: true,
-              name: 'FriendsOverviewPageRoute',
-              path: 'friends-overview-page',
-              customRouteBuilder: customRouteBuilder,
-              page: friends_overview.OverviewPage,
+              page: OverviewFlow,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  name: 'FriendsOverviewPageRoute',
+                  path: 'friends-overview-page',
+                  customRouteBuilder: customRouteBuilder,
+                  page: friends_overview.OverviewPage,
+                ),
+                CustomRoute(
+                  customRouteBuilder: notExpandedModalRouteBuilder,
+                  page: MoreModal,
+                ),
+                CustomRoute(
+                  customRouteBuilder: expandedModalRouteBuilder,
+                  page: SearchUserModal,
+                ),
+              ],
             ),
             CupertinoRoute(
               name: 'FriendsProfilePageRoute',

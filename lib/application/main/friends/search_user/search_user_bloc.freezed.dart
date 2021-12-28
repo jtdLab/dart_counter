@@ -23,8 +23,8 @@ class _$SearchUserEventTearOff {
     );
   }
 
-  ClearSearchStringPressed clearSearchStringPressed() {
-    return const ClearSearchStringPressed();
+  ClearPressed clearPressed() {
+    return const ClearPressed();
   }
 }
 
@@ -36,39 +36,38 @@ mixin _$SearchUserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String newSearchString) searchStringChanged,
-    required TResult Function() clearSearchStringPressed,
+    required TResult Function() clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearSearchStringPressed value)
-        clearSearchStringPressed,
+    required TResult Function(ClearPressed value) clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,7 +157,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String newSearchString) searchStringChanged,
-    required TResult Function() clearSearchStringPressed,
+    required TResult Function() clearPressed,
   }) {
     return searchStringChanged(newSearchString);
   }
@@ -167,7 +166,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
   }) {
     return searchStringChanged?.call(newSearchString);
   }
@@ -176,7 +175,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
     required TResult orElse(),
   }) {
     if (searchStringChanged != null) {
@@ -189,8 +188,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearSearchStringPressed value)
-        clearSearchStringPressed,
+    required TResult Function(ClearPressed value) clearPressed,
   }) {
     return searchStringChanged(this);
   }
@@ -199,7 +197,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
   }) {
     return searchStringChanged?.call(this);
   }
@@ -208,7 +206,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) {
     if (searchStringChanged != null) {
@@ -229,39 +227,38 @@ abstract class SearchStringChanged implements SearchUserEvent {
 }
 
 /// @nodoc
-abstract class $ClearSearchStringPressedCopyWith<$Res> {
-  factory $ClearSearchStringPressedCopyWith(ClearSearchStringPressed value,
-          $Res Function(ClearSearchStringPressed) then) =
-      _$ClearSearchStringPressedCopyWithImpl<$Res>;
+abstract class $ClearPressedCopyWith<$Res> {
+  factory $ClearPressedCopyWith(
+          ClearPressed value, $Res Function(ClearPressed) then) =
+      _$ClearPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ClearSearchStringPressedCopyWithImpl<$Res>
+class _$ClearPressedCopyWithImpl<$Res>
     extends _$SearchUserEventCopyWithImpl<$Res>
-    implements $ClearSearchStringPressedCopyWith<$Res> {
-  _$ClearSearchStringPressedCopyWithImpl(ClearSearchStringPressed _value,
-      $Res Function(ClearSearchStringPressed) _then)
-      : super(_value, (v) => _then(v as ClearSearchStringPressed));
+    implements $ClearPressedCopyWith<$Res> {
+  _$ClearPressedCopyWithImpl(
+      ClearPressed _value, $Res Function(ClearPressed) _then)
+      : super(_value, (v) => _then(v as ClearPressed));
 
   @override
-  ClearSearchStringPressed get _value =>
-      super._value as ClearSearchStringPressed;
+  ClearPressed get _value => super._value as ClearPressed;
 }
 
 /// @nodoc
 
-class _$ClearSearchStringPressed implements ClearSearchStringPressed {
-  const _$ClearSearchStringPressed();
+class _$ClearPressed implements ClearPressed {
+  const _$ClearPressed();
 
   @override
   String toString() {
-    return 'SearchUserEvent.clearSearchStringPressed()';
+    return 'SearchUserEvent.clearPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ClearSearchStringPressed);
+        (other.runtimeType == runtimeType && other is ClearPressed);
   }
 
   @override
@@ -271,29 +268,29 @@ class _$ClearSearchStringPressed implements ClearSearchStringPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String newSearchString) searchStringChanged,
-    required TResult Function() clearSearchStringPressed,
+    required TResult Function() clearPressed,
   }) {
-    return clearSearchStringPressed();
+    return clearPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
   }) {
-    return clearSearchStringPressed?.call();
+    return clearPressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String newSearchString)? searchStringChanged,
-    TResult Function()? clearSearchStringPressed,
+    TResult Function()? clearPressed,
     required TResult orElse(),
   }) {
-    if (clearSearchStringPressed != null) {
-      return clearSearchStringPressed();
+    if (clearPressed != null) {
+      return clearPressed();
     }
     return orElse();
   }
@@ -302,47 +299,59 @@ class _$ClearSearchStringPressed implements ClearSearchStringPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearSearchStringPressed value)
-        clearSearchStringPressed,
+    required TResult Function(ClearPressed value) clearPressed,
   }) {
-    return clearSearchStringPressed(this);
+    return clearPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
   }) {
-    return clearSearchStringPressed?.call(this);
+    return clearPressed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearSearchStringPressed value)? clearSearchStringPressed,
+    TResult Function(ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) {
-    if (clearSearchStringPressed != null) {
-      return clearSearchStringPressed(this);
+    if (clearPressed != null) {
+      return clearPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class ClearSearchStringPressed implements SearchUserEvent {
-  const factory ClearSearchStringPressed() = _$ClearSearchStringPressed;
+abstract class ClearPressed implements SearchUserEvent {
+  const factory ClearPressed() = _$ClearPressed;
 }
 
 /// @nodoc
 class _$SearchUserStateTearOff {
   const _$SearchUserStateTearOff();
 
-  _SearchUserState call({required KtList<UserSnapshot> searchResults}) {
-    return _SearchUserState(
+  SearchUserInitial initial() {
+    return const SearchUserInitial();
+  }
+
+  SearchUserLoadInProgress loadInProgress() {
+    return const SearchUserLoadInProgress();
+  }
+
+  SearchUserLoadSuccess loadSuccess(
+      {required KtList<UserSnapshot> searchResults}) {
+    return SearchUserLoadSuccess(
       searchResults: searchResults,
     );
+  }
+
+  SearchUserLoadFailure loadFailure() {
+    return const SearchUserLoadFailure();
   }
 }
 
@@ -351,10 +360,55 @@ const $SearchUserState = _$SearchUserStateTearOff();
 
 /// @nodoc
 mixin _$SearchUserState {
-  KtList<UserSnapshot> get searchResults => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SearchUserStateCopyWith<SearchUserState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(KtList<UserSnapshot> searchResults) loadSuccess,
+    required TResult Function() loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchUserInitial value) initial,
+    required TResult Function(SearchUserLoadInProgress value) loadInProgress,
+    required TResult Function(SearchUserLoadSuccess value) loadSuccess,
+    required TResult Function(SearchUserLoadFailure value) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -363,7 +417,6 @@ abstract class $SearchUserStateCopyWith<$Res> {
   factory $SearchUserStateCopyWith(
           SearchUserState value, $Res Function(SearchUserState) then) =
       _$SearchUserStateCopyWithImpl<$Res>;
-  $Res call({KtList<UserSnapshot> searchResults});
 }
 
 /// @nodoc
@@ -374,46 +427,267 @@ class _$SearchUserStateCopyWithImpl<$Res>
   final SearchUserState _value;
   // ignore: unused_field
   final $Res Function(SearchUserState) _then;
-
-  @override
-  $Res call({
-    Object? searchResults = freezed,
-  }) {
-    return _then(_value.copyWith(
-      searchResults: searchResults == freezed
-          ? _value.searchResults
-          : searchResults // ignore: cast_nullable_to_non_nullable
-              as KtList<UserSnapshot>,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$SearchUserStateCopyWith<$Res>
-    implements $SearchUserStateCopyWith<$Res> {
-  factory _$SearchUserStateCopyWith(
-          _SearchUserState value, $Res Function(_SearchUserState) then) =
-      __$SearchUserStateCopyWithImpl<$Res>;
+abstract class $SearchUserInitialCopyWith<$Res> {
+  factory $SearchUserInitialCopyWith(
+          SearchUserInitial value, $Res Function(SearchUserInitial) then) =
+      _$SearchUserInitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SearchUserInitialCopyWithImpl<$Res>
+    extends _$SearchUserStateCopyWithImpl<$Res>
+    implements $SearchUserInitialCopyWith<$Res> {
+  _$SearchUserInitialCopyWithImpl(
+      SearchUserInitial _value, $Res Function(SearchUserInitial) _then)
+      : super(_value, (v) => _then(v as SearchUserInitial));
+
   @override
+  SearchUserInitial get _value => super._value as SearchUserInitial;
+}
+
+/// @nodoc
+
+class _$SearchUserInitial implements SearchUserInitial {
+  const _$SearchUserInitial();
+
+  @override
+  String toString() {
+    return 'SearchUserState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SearchUserInitial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(KtList<UserSnapshot> searchResults) loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchUserInitial value) initial,
+    required TResult Function(SearchUserLoadInProgress value) loadInProgress,
+    required TResult Function(SearchUserLoadSuccess value) loadSuccess,
+    required TResult Function(SearchUserLoadFailure value) loadFailure,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchUserInitial implements SearchUserState {
+  const factory SearchUserInitial() = _$SearchUserInitial;
+}
+
+/// @nodoc
+abstract class $SearchUserLoadInProgressCopyWith<$Res> {
+  factory $SearchUserLoadInProgressCopyWith(SearchUserLoadInProgress value,
+          $Res Function(SearchUserLoadInProgress) then) =
+      _$SearchUserLoadInProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SearchUserLoadInProgressCopyWithImpl<$Res>
+    extends _$SearchUserStateCopyWithImpl<$Res>
+    implements $SearchUserLoadInProgressCopyWith<$Res> {
+  _$SearchUserLoadInProgressCopyWithImpl(SearchUserLoadInProgress _value,
+      $Res Function(SearchUserLoadInProgress) _then)
+      : super(_value, (v) => _then(v as SearchUserLoadInProgress));
+
+  @override
+  SearchUserLoadInProgress get _value =>
+      super._value as SearchUserLoadInProgress;
+}
+
+/// @nodoc
+
+class _$SearchUserLoadInProgress implements SearchUserLoadInProgress {
+  const _$SearchUserLoadInProgress();
+
+  @override
+  String toString() {
+    return 'SearchUserState.loadInProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SearchUserLoadInProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(KtList<UserSnapshot> searchResults) loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchUserInitial value) initial,
+    required TResult Function(SearchUserLoadInProgress value) loadInProgress,
+    required TResult Function(SearchUserLoadSuccess value) loadSuccess,
+    required TResult Function(SearchUserLoadFailure value) loadFailure,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+  }) {
+    return loadInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchUserLoadInProgress implements SearchUserState {
+  const factory SearchUserLoadInProgress() = _$SearchUserLoadInProgress;
+}
+
+/// @nodoc
+abstract class $SearchUserLoadSuccessCopyWith<$Res> {
+  factory $SearchUserLoadSuccessCopyWith(SearchUserLoadSuccess value,
+          $Res Function(SearchUserLoadSuccess) then) =
+      _$SearchUserLoadSuccessCopyWithImpl<$Res>;
   $Res call({KtList<UserSnapshot> searchResults});
 }
 
 /// @nodoc
-class __$SearchUserStateCopyWithImpl<$Res>
+class _$SearchUserLoadSuccessCopyWithImpl<$Res>
     extends _$SearchUserStateCopyWithImpl<$Res>
-    implements _$SearchUserStateCopyWith<$Res> {
-  __$SearchUserStateCopyWithImpl(
-      _SearchUserState _value, $Res Function(_SearchUserState) _then)
-      : super(_value, (v) => _then(v as _SearchUserState));
+    implements $SearchUserLoadSuccessCopyWith<$Res> {
+  _$SearchUserLoadSuccessCopyWithImpl(
+      SearchUserLoadSuccess _value, $Res Function(SearchUserLoadSuccess) _then)
+      : super(_value, (v) => _then(v as SearchUserLoadSuccess));
 
   @override
-  _SearchUserState get _value => super._value as _SearchUserState;
+  SearchUserLoadSuccess get _value => super._value as SearchUserLoadSuccess;
 
   @override
   $Res call({
     Object? searchResults = freezed,
   }) {
-    return _then(_SearchUserState(
+    return _then(SearchUserLoadSuccess(
       searchResults: searchResults == freezed
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
@@ -424,22 +698,22 @@ class __$SearchUserStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchUserState implements _SearchUserState {
-  const _$_SearchUserState({required this.searchResults});
+class _$SearchUserLoadSuccess implements SearchUserLoadSuccess {
+  const _$SearchUserLoadSuccess({required this.searchResults});
 
   @override
   final KtList<UserSnapshot> searchResults;
 
   @override
   String toString() {
-    return 'SearchUserState(searchResults: $searchResults)';
+    return 'SearchUserState.loadSuccess(searchResults: $searchResults)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchUserState &&
+            other is SearchUserLoadSuccess &&
             const DeepCollectionEquality()
                 .equals(other.searchResults, searchResults));
   }
@@ -450,18 +724,208 @@ class _$_SearchUserState implements _SearchUserState {
 
   @JsonKey(ignore: true)
   @override
-  _$SearchUserStateCopyWith<_SearchUserState> get copyWith =>
-      __$SearchUserStateCopyWithImpl<_SearchUserState>(this, _$identity);
+  $SearchUserLoadSuccessCopyWith<SearchUserLoadSuccess> get copyWith =>
+      _$SearchUserLoadSuccessCopyWithImpl<SearchUserLoadSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(KtList<UserSnapshot> searchResults) loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadSuccess(searchResults);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return loadSuccess?.call(searchResults);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(searchResults);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchUserInitial value) initial,
+    required TResult Function(SearchUserLoadInProgress value) loadInProgress,
+    required TResult Function(SearchUserLoadSuccess value) loadSuccess,
+    required TResult Function(SearchUserLoadFailure value) loadFailure,
+  }) {
+    return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+  }) {
+    return loadSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _SearchUserState implements SearchUserState {
-  const factory _SearchUserState(
-      {required KtList<UserSnapshot> searchResults}) = _$_SearchUserState;
+abstract class SearchUserLoadSuccess implements SearchUserState {
+  const factory SearchUserLoadSuccess(
+      {required KtList<UserSnapshot> searchResults}) = _$SearchUserLoadSuccess;
+
+  KtList<UserSnapshot> get searchResults;
+  @JsonKey(ignore: true)
+  $SearchUserLoadSuccessCopyWith<SearchUserLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchUserLoadFailureCopyWith<$Res> {
+  factory $SearchUserLoadFailureCopyWith(SearchUserLoadFailure value,
+          $Res Function(SearchUserLoadFailure) then) =
+      _$SearchUserLoadFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SearchUserLoadFailureCopyWithImpl<$Res>
+    extends _$SearchUserStateCopyWithImpl<$Res>
+    implements $SearchUserLoadFailureCopyWith<$Res> {
+  _$SearchUserLoadFailureCopyWithImpl(
+      SearchUserLoadFailure _value, $Res Function(SearchUserLoadFailure) _then)
+      : super(_value, (v) => _then(v as SearchUserLoadFailure));
 
   @override
-  KtList<UserSnapshot> get searchResults;
+  SearchUserLoadFailure get _value => super._value as SearchUserLoadFailure;
+}
+
+/// @nodoc
+
+class _$SearchUserLoadFailure implements SearchUserLoadFailure {
+  const _$SearchUserLoadFailure();
+
   @override
-  @JsonKey(ignore: true)
-  _$SearchUserStateCopyWith<_SearchUserState> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'SearchUserState.loadFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SearchUserLoadFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(KtList<UserSnapshot> searchResults) loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+  }) {
+    return loadFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(KtList<UserSnapshot> searchResults)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchUserInitial value) initial,
+    required TResult Function(SearchUserLoadInProgress value) loadInProgress,
+    required TResult Function(SearchUserLoadSuccess value) loadSuccess,
+    required TResult Function(SearchUserLoadFailure value) loadFailure,
+  }) {
+    return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+  }) {
+    return loadFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchUserInitial value)? initial,
+    TResult Function(SearchUserLoadInProgress value)? loadInProgress,
+    TResult Function(SearchUserLoadSuccess value)? loadSuccess,
+    TResult Function(SearchUserLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadFailure != null) {
+      return loadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchUserLoadFailure implements SearchUserState {
+  const factory SearchUserLoadFailure() = _$SearchUserLoadFailure;
 }

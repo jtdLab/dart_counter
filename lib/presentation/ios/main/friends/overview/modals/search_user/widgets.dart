@@ -15,58 +15,71 @@ class _SearchUserWidgetState extends State<_SearchUserWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchUserBloc, SearchUserState>(
       builder: (context, state) {
-        final searchResults = state.searchResults;
+        return state.map(
+          initial: (initial) {
+            return const Center(child: Text('initial - TODO'));
+          },
+          loadInProgress: (loadInProgress) {
+            return const Center(child: Text('loadInProgress - TODO'));
+          },
+          loadSuccess: (loadSuccess) {
+            final searchResults = loadSuccess.searchResults;
 
-        return AppColumn(
-          spacing: size6(context),
-          children: [
-            AppTextField(
-              onClear: () => context.read<SearchUserBloc>().add(
-                    const SearchUserEvent.clearSearchStringPressed(),
-                  ),
-              showClear: true,
-              placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
-              onChanged: (newSearchString) {
-                context.read<SearchUserBloc>().add(
-                      SearchUserEvent.searchStringChanged(
-                        newSearchString: newSearchString,
+            return AppColumn(
+              spacing: size6(context),
+              children: [
+                AppTextField(
+                  onClear: () => context.read<SearchUserBloc>().add(
+                        const SearchUserEvent.clearPressed(),
                       ),
-                    );
-              },
-            ),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: constraints.copyWith(
-                      maxHeight: constraints.maxHeight +
-                          MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    child: Builder(
-                      builder: (context) {
-                        if (searchResults.isEmpty()) {
-                          return const Center(
-                            child: Text('No results'), // TODO translate
-                          );
-                        } else {
-                          return AppColumn(
-                            spacing: size6(context),
-                            children: searchResults
-                                .map(
-                                  (item) => _UserItem(
-                                    name: item.name.getOrCrash(),
-                                  ),
-                                )
-                                .asList(),
-                          );
-                        }
-                      },
+                  showClear: true,
+                  placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
+                  onChanged: (newSearchString) {
+                    context.read<SearchUserBloc>().add(
+                          SearchUserEvent.searchStringChanged(
+                            newSearchString: newSearchString,
+                          ),
+                        );
+                  },
+                ),
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: constraints.copyWith(
+                          maxHeight: constraints.maxHeight +
+                              MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: Builder(
+                          builder: (context) {
+                            if (searchResults.isEmpty()) {
+                              return const Center(
+                                child: Text('No results'), // TODO translate
+                              );
+                            } else {
+                              return AppColumn(
+                                spacing: size6(context),
+                                children: searchResults
+                                    .map(
+                                      (item) => _UserItem(
+                                        name: item.name.getOrCrash(),
+                                      ),
+                                    )
+                                    .asList(),
+                              );
+                            }
+                          },
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
+          loadFailure: (loadFailure) {
+            return const Center(child: Text('loadFailure - TODO'));
+          },
         );
       },
     );

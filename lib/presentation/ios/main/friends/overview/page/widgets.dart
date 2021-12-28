@@ -169,17 +169,14 @@ class _FriendsCardItem extends StatelessWidget {
           const Spacer(),
           AppIconButton(
             onPressed: () {
+              // TODO pass friend not thru ui ???
               context.read<FriendsBloc>().add(
                     FriendsEvent.friendSelected(
                       friend: friend,
                     ),
-                  ); // TODO real user
+                  );
 
-              showCupertinoModalBottomSheet(
-                backgroundColor: Colors.white70,
-                context: context,
-                builder: (context) => MoreModal(),
-              );
+              context.router.push(const MoreModalRoute());
             },
             icon: Image.asset(
               AppImages.settingsNew,

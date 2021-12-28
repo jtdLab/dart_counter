@@ -2,18 +2,14 @@ part of 'friends_bloc.dart';
 
 @freezed
 class FriendsEvent with _$FriendsEvent {
+  const factory FriendsEvent.started() = Started;
   const factory FriendsEvent.friendSelected({
     required Friend friend,
-  }) = FriendsFriendSelected;
+  }) = FriendSelected;
   const factory FriendsEvent.friendRequestAccepted({
     required FriendRequest friendRequest,
-  }) = FriendsFriendRequestAccepted;
+  }) = FriendRequestAccepted;
   const factory FriendsEvent.friendRequestDeclined({
     required FriendRequest friendRequest,
-  }) = FriendsFriendRequestDeclined;
-  const factory FriendsEvent.dataReceived({
-    required KtList<Friend> friends,
-    required KtList<FriendRequest> receivedFriendRequests,
-    required KtList<FriendRequest> sentFriendRequests,
-  }) = FriendsDataReceived;
+  }) = FriendRequestDeclined;
 }

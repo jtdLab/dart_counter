@@ -29,11 +29,7 @@ class _MoreWidget extends StatelessWidget {
           // text: LocaleKeys.choosePhoto.tr().toUpperCase(),
           text: 'Remove'.toUpperCase(), // TODO
           onPressed: () {
-            context.read<MoreBloc>().add(
-                  MoreEvent.removePressed(
-                    friend: context.read<FriendsBloc>().state.selectedFriend!,
-                  ),
-                ); // TODO real user
+            context.read<MoreBloc>().add(const MoreEvent.removePressed());
             context.router.pop();
           },
         ),
