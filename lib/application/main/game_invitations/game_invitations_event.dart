@@ -5,14 +5,14 @@ class GameInvitationsEvent with _$GameInvitationsEvent {
   const factory GameInvitationsEvent.dataReceived({
     required KtList<GameInvitation> receivedGameInvitations,
     required KtList<GameInvitation> sentGameInvitations,
-  }) = GameInvitationsDataReceived;
+  }) = DataReceived;
   const factory GameInvitationsEvent.gameReceived({
-    required AbstractGameSnapshot gameSnapshot
-  }) = GameInvitationsGameReceived;
+    required AbstractGameSnapshot gameSnapshot,
+  }) = GameReceived;
   const factory GameInvitationsEvent.invitationAccepted({
     required GameInvitation gameInvitation,
-  }) = GameInvitationsInvitationAccepted;
+  }) = InvitationAccepted;
   const factory GameInvitationsEvent.invitationDeclined({
     required GameInvitation gameInvitation,
-  }) = GameInvitationsInvitationDeclined;
+  }) = InvitationDeclined;
 }

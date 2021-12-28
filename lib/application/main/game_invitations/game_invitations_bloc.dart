@@ -105,7 +105,7 @@ class GameInvitationsBloc
   }
 
   Stream<GameInvitationsState> _mapDataReceivedToState(
-    GameInvitationsDataReceived event,
+    DataReceived event,
   ) async* {
     yield state.copyWith(
       receivedGameInvitations: event.receivedGameInvitations,
@@ -114,7 +114,7 @@ class GameInvitationsBloc
   }
 
   Stream<GameInvitationsState> _mapInvitationAcceptedToState(
-    GameInvitationsInvitationAccepted event,
+    InvitationAccepted event,
   ) async* {
     final gameId = event.gameInvitation.gameId;
 
@@ -126,20 +126,20 @@ class GameInvitationsBloc
         yield state.copyWith(loading: false, failure: failure);
       },
       (_) async* {
-       // _playBloc.add(const PlayEvent.gameJoined()); // TODO
+        // _playBloc.add(const PlayEvent.gameJoined()); // TODO
         await _gameInvitationService.accept(invitation: event.gameInvitation);
       },
     );
   }
 
   Stream<GameInvitationsState> _mapInvitationDeclinedToState(
-    GameInvitationsInvitationDeclined event,
+    InvitationDeclined event,
   ) async* {
     _gameInvitationService.decline(invitation: event.gameInvitation);
   }
 
   Stream<GameInvitationsState> _mapGameReceivedToState(
-    GameInvitationsGameReceived event,
+    GameReceived event,
   ) async* {
     yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
