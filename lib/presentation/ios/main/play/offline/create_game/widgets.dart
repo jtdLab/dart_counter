@@ -1,4 +1,4 @@
-part of 'create_offline_game_page.dart';
+part of 'page/create_offline_game_page.dart';
 
 // BODY
 class _CreateOfflineGameWidget extends StatelessWidget {
