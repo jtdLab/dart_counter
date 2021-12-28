@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/online/in_game/in_online_game_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/key_board_type.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,7 +20,10 @@ void main() {
     final underTest = InOnlineGameBloc(mockPlayOfflineService);
 
     // Assert
-    expect(underTest.state, const InGameState.initial());
+    expect(
+      underTest.state,
+      const InGameState.initial(keyBoardType: KeyBoardType.standard),
+    );
   });
 
   group('GameCanceled', () {
