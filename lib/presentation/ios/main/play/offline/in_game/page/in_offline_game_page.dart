@@ -1,10 +1,14 @@
 // CORE
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
 
 // BLOCS
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/key_board_type.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
@@ -45,8 +49,33 @@ class InOfflineGamePage extends StatelessWidget {
 
         return BlocListener<ShowCheckoutDetailsCubit, bool>(
           listener: (context, state) {
+            final keyBoardType =
+                context.read<InOfflineGameBloc>().state.keyBoardType;
+            final Bloc<CheckoutDetailsEvent, CheckoutDetailsState> bloc;
+            // TODO rly speech also here
+            if (keyBoardType == KeyBoardType.standard ||
+                keyBoardType == KeyBoardType.speech) {
+              bloc = CheckoutDetailsPointsBloc(
+                context.read<InOfflineGameBloc>(),
+                context.read<PointsLeftCubit>(),
+                context.read<PointsCubit>(),
+                getIt<IDartUtils>(),
+              );
+            } else {
+              bloc = CheckoutDetailsDartsBloc(
+                context.read<InOfflineGameBloc>(),
+                context.read<PointsLeftCubit>(),
+                context.read<DartsCubit>(),
+                getIt<IDartUtils>(),
+              );
+            }
+
             if (state) {
-              context.router.push(const CheckoutDetailsModalRoute());
+              context.router.push(
+                CheckoutDetailsModalRoute(
+                  bloc: bloc,
+                ),
+              );
 
               /**
                  * showCupertinoModalBottomSheet(

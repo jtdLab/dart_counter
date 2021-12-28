@@ -1,4 +1,6 @@
 // CORE
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
@@ -12,7 +14,6 @@ import 'package:dart_counter/application/main/play/shared/advanced_settings/adva
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/check_button/check_button_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/digit_button/standard_digit_button_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/erease_button/standard_erease_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
@@ -150,7 +151,7 @@ class _StandardDigitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
     final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final inputCubit = context.read<InputCubit>();
+    final pointsCubit = context.read<PointsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
     final dartUtils = getIt<IDartUtils>();
 
@@ -158,7 +159,7 @@ class _StandardDigitButton extends StatelessWidget {
       create: (context) => StandardDigitButtonBloc(
         digit,
         pointsLeftCubit,
-        inputCubit,
+        pointsCubit,
         advancedSettingsBloc,
         dartUtils,
       )..add(const StandardDigitButtonEvent.started()),
@@ -192,7 +193,7 @@ class _CheckButton extends StatelessWidget {
     // TODO dependency injection like this seems not to be good practice
     final standardInputAreaBloc = context.read<StandardInputAreaBloc>();
     final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final inputCubit = context.read<InputCubit>();
+    final pointsCubit = context.read<PointsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
     final dartUtils = getIt<IDartUtils>();
 
@@ -200,7 +201,7 @@ class _CheckButton extends StatelessWidget {
       create: (context) => CheckButtonBloc(
         standardInputAreaBloc,
         pointsLeftCubit,
-        inputCubit,
+        pointsCubit,
         advancedSettingsBloc,
         dartUtils,
       )..add(const CheckButtonEvent.started()),
@@ -232,12 +233,12 @@ class _StandardEreaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
-    final inputCubit = context.read<InputCubit>();
+    final pointsCubit = context.read<PointsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
 
     return BlocProvider(
       create: (context) => StandardEreaseButtonBloc(
-        inputCubit,
+        pointsCubit,
         advancedSettingsBloc,
       )..add(const StandardEreaseButtonEvent.started()),
       child: BlocBuilder<StandardEreaseButtonBloc, StandardEreaseButtonState>(
@@ -282,16 +283,7 @@ class DetailedInputArea extends StatelessWidget {
           child: AppColumn(
             spacing: size6(context),
             children: [
-              Expanded(
-                child: BlocBuilder<InputCubit, InputState>(
-                  builder: (context, state) {
-                    return _DartsDisplayer(
-                      darts: state.whenOrNull(darts: (darts) => darts) ??
-                          const KtList.empty(),
-                    );
-                  },
-                ),
-              ),
+              const Expanded(child: _DartsDisplayer()), // TODO expanded 1 ebene down
               Expanded(
                 flex: 3,
                 child: _InputRow(
@@ -403,7 +395,7 @@ class _DetailedDigitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
     final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
-    final inputCubit = context.read<InputCubit>();
+    final dartsCubit = context.read<DartsCubit>();
     final pointsLeftCubit = context.read<PointsLeftCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
     final dartUtils = getIt<IDartUtils>();
@@ -412,7 +404,7 @@ class _DetailedDigitButton extends StatelessWidget {
       create: (context) => DetailedDigitButtonBloc(
         digit,
         detailedInputAreaBloc,
-        inputCubit,
+        dartsCubit,
         pointsLeftCubit,
         advancedSettingsBloc,
         dartUtils,
@@ -477,13 +469,13 @@ class _DetailedEreaseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
     final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
-    final inputCubit = context.read<InputCubit>();
+    final dartsCubit = context.read<DartsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
 
     return BlocProvider(
       create: (context) => DetailedEreaseButtonBloc(
         detailedInputAreaBloc,
-        inputCubit,
+        dartsCubit,
         advancedSettingsBloc,
       )..add(const DetailedEreaseButtonEvent.started()),
       child: BlocBuilder<DetailedEreaseButtonBloc, DetailedEreaseButtonState>(
@@ -624,12 +616,7 @@ class OpticalInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-          BlocBuilder<InputCubit, InputState>(
-            //  TODO maybe in the _DartDisplayer bloc builtit
-            builder: (context, state) => _DartsDisplayer(
-              darts: state.whenOrNull(darts: (darts) => darts)!,
-            ),
-          ),
+          _DartsDisplayer(),
           _InputRow(
             onUndoPressed: onUndoPressed,
             onPerformThrowPressed: onPerformThrowPressed,
@@ -1431,56 +1418,59 @@ class _PlayerItemSmallFinishRecommendationDisplayer extends StatelessWidget {
 
 // TODO responsive
 class _DartsDisplayer extends StatelessWidget {
-  final KtList<Dart> darts;
-
   const _DartsDisplayer({
     Key? key,
-    required this.darts,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.black,
-      child: AppRow(
-        spacing: size6(context),
-        children: [
-          const Spacer(),
-          Image.asset(AppImages.flightWhiteOne),
-          AutoSizeText(
-            _mapDartToString(
-              dart: darts.size > 0 ? darts.get(0) : null,
-            ),
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .textStyle
-                .copyWith(color: AppColors.white),
+    return BlocBuilder<DartsCubit, KtList<Dart>>(
+      builder: (context, state) {
+        final darts = state;
+
+        return Container(
+          color: AppColors.black,
+          child: AppRow(
+            spacing: size6(context),
+            children: [
+              const Spacer(),
+              Image.asset(AppImages.flightWhiteOne),
+              AutoSizeText(
+                _mapDartToString(
+                  dart: darts.size > 0 ? darts.get(0) : null,
+                ),
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.white),
+              ),
+              const Spacer(),
+              Image.asset(AppImages.flightWhiteTwo),
+              AutoSizeText(
+                _mapDartToString(
+                  dart: darts.size > 1 ? darts.get(1) : null,
+                ),
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.white),
+              ),
+              const Spacer(),
+              Image.asset(AppImages.flightWhiteThree),
+              AutoSizeText(
+                _mapDartToString(
+                  dart: darts.size > 2 ? darts.get(2) : null,
+                ),
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.white),
+              ),
+              const Spacer(),
+            ],
           ),
-          const Spacer(),
-          Image.asset(AppImages.flightWhiteTwo),
-          AutoSizeText(
-            _mapDartToString(
-              dart: darts.size > 1 ? darts.get(1) : null,
-            ),
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .textStyle
-                .copyWith(color: AppColors.white),
-          ),
-          const Spacer(),
-          Image.asset(AppImages.flightWhiteThree),
-          AutoSizeText(
-            _mapDartToString(
-              dart: darts.size > 2 ? darts.get(2) : null,
-            ),
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .textStyle
-                .copyWith(color: AppColors.white),
-          ),
-          const Spacer(),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -1561,15 +1551,9 @@ class _InputRow extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: BlocBuilder<InputCubit, InputState>(
+          child: BlocBuilder<PointsCubit, int>(
             builder: (context, state) {
-              return _InputPointsDisplayer(
-                input: state.when(
-                  points: (input) => input,
-                  darts: (darts) =>
-                      darts.foldRight(0, (dart, acc) => acc + dart.points()),
-                ),
-              );
+              return _InputPointsDisplayer(points: state);
             },
           ),
         ),
@@ -1584,11 +1568,11 @@ class _InputRow extends StatelessWidget {
 }
 
 class _InputPointsDisplayer extends StatelessWidget {
-  final int input;
+  final int points;
 
   const _InputPointsDisplayer({
     Key? key,
-    required this.input,
+    required this.points,
   }) : super(key: key);
 
   @override
@@ -1601,7 +1585,7 @@ class _InputPointsDisplayer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          input.toString(),
+          points.toString(),
           style: const TextStyle(fontSize: 28), // TODO
         ),
       ),

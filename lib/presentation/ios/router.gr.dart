@@ -12,6 +12,10 @@ import 'package:auto_route/auto_route.dart' as _i36;
 import 'package:flutter/material.dart' as _i37;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i40;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
+    as _i41;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
+    as _i42;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i39;
 import 'main/contact/contact_page.dart' as _i6;
@@ -191,9 +195,10 @@ class Router extends _i36.RootStackRouter {
           barrierDismissible: false);
     },
     CheckoutDetailsModalRoute.name: (routeData) {
+      final args = routeData.argsAs<CheckoutDetailsModalRouteArgs>();
       return _i36.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i24.CheckoutDetailsModal(),
+          child: _i24.CheckoutDetailsModal(key: args.key, bloc: args.bloc),
           customRouteBuilder: _i38.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -651,11 +656,30 @@ class InOfflineGamePageRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.CheckoutDetailsModal]
-class CheckoutDetailsModalRoute extends _i36.PageRouteInfo<void> {
-  const CheckoutDetailsModalRoute()
-      : super(CheckoutDetailsModalRoute.name, path: 'checkout-details-modal');
+class CheckoutDetailsModalRoute
+    extends _i36.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
+  CheckoutDetailsModalRoute(
+      {_i39.Key? key,
+      required _i39.Bloc<_i41.CheckoutDetailsEvent, _i42.CheckoutDetailsState>
+          bloc})
+      : super(CheckoutDetailsModalRoute.name,
+            path: 'checkout-details-modal',
+            args: CheckoutDetailsModalRouteArgs(key: key, bloc: bloc));
 
   static const String name = 'CheckoutDetailsModalRoute';
+}
+
+class CheckoutDetailsModalRouteArgs {
+  const CheckoutDetailsModalRouteArgs({this.key, required this.bloc});
+
+  final _i39.Key? key;
+
+  final _i39.Bloc<_i41.CheckoutDetailsEvent, _i42.CheckoutDetailsState> bloc;
+
+  @override
+  String toString() {
+    return 'CheckoutDetailsModalRouteArgs{key: $key, bloc: $bloc}';
+  }
 }
 
 /// generated route for

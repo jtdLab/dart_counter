@@ -33,7 +33,7 @@ import 'application/main/play/offline/create_game/create_offline_game_bloc.dart'
 import 'application/main/play/offline/in_game/in_offline_game_bloc.dart'
     as _i35;
 import 'application/main/play/offline/watcher/play_offline_watcher_cubit.dart'
-    as _i37;
+    as _i36;
 import 'application/main/play/online/create_game/add_player/add_player_bloc.dart'
     as _i3;
 import 'application/main/play/online/create_game/create_online_game_bloc.dart'
@@ -41,7 +41,7 @@ import 'application/main/play/online/create_game/create_online_game_bloc.dart'
 import 'application/main/play/online/in_game/in_online_game_bloc.dart' as _i64;
 import 'application/main/play/online/watcher/play_online_watcher_cubit.dart'
     as _i66;
-import 'application/main/play/shared/in_game/input/input_cubit.dart' as _i36;
+import 'application/main/play/shared/in_game/points/points_cubit.dart' as _i37;
 import 'application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart'
     as _i41;
 import 'application/main/profile/profile_bloc.dart' as _i38;
@@ -79,8 +79,8 @@ import 'domain/training/single/i_single_training_service.dart' as _i31;
 import 'domain/user/i_user_service.dart' as _i33;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i57;
 import 'infrastructure/auth/mocked_auth_service.dart' as _i13;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i18;
-import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i17;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i17;
+import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i18;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i77;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i76;
 import 'infrastructure/friend/friend_service.dart' as _i73;
@@ -132,11 +132,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i17.MockedConnectivityService(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i18.ConnectivityService(get<_i4.Connectivity>()),
+      () => _i17.ConnectivityService(get<_i4.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i16.IConnectivityService>(
+      () => _i18.MockedConnectivityService(),
+      registerFor: {_dev});
   gh.lazySingleton<_i19.IDartUtils>(() => _i20.DartUtils());
   gh.lazySingleton<_i21.IDoubleTrainingService>(
       () => _i22.DoubleTrainingService(),
@@ -160,10 +160,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_dev});
   gh.lazySingleton<_i35.InOfflineGameBloc>(
       () => _i35.InOfflineGameBloc(get<_i27.IPlayOfflineService>()));
-  gh.lazySingleton<_i36.InputCubit>(() => _i36.InputCubit());
-  gh.lazySingleton<_i37.PlayOfflineWatcherCubit>(() =>
-      _i37.PlayOfflineWatcherCubit(
+  gh.lazySingleton<_i36.PlayOfflineWatcherCubit>(() =>
+      _i36.PlayOfflineWatcherCubit(
           get<_i27.IPlayOfflineService>(), get<_i33.IUserService>()));
+  gh.lazySingleton<_i37.PointsCubit>(() => _i37.PointsCubit());
   gh.lazySingleton<_i38.ProfileBloc>(
       () => _i38.ProfileBloc(get<_i33.IUserService>()));
   gh.lazySingleton<_i39.ScoreTrainingBloc>(

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
@@ -16,7 +16,7 @@ part 'check_button_state.dart';
 class CheckButtonBloc extends Bloc<CheckButtonEvent, CheckButtonState> {
   final StandardInputAreaBloc _inputAreaBloc;
   final PointsLeftCubit _pointsLeftCubit;
-  final InputCubit _inputCubit;
+  final PointsCubit _pointsCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
 
   final IDartUtils _dartUtils;
@@ -24,7 +24,7 @@ class CheckButtonBloc extends Bloc<CheckButtonEvent, CheckButtonState> {
   CheckButtonBloc(
     this._inputAreaBloc,
     this._pointsLeftCubit,
-    this._inputCubit,
+    this._pointsCubit,
     this._advancedSettingsBloc,
     this._dartUtils,
   ) : super(
@@ -61,7 +61,7 @@ class CheckButtonBloc extends Bloc<CheckButtonEvent, CheckButtonState> {
   ) async {
     await Future.wait(
       [
-        _inputCubit.stream.forEach((_) => _refreshState(emit)),
+        _pointsCubit.stream.forEach((_) => _refreshState(emit)),
         _pointsLeftCubit.stream.forEach((_) => _refreshState(emit)),
         _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit)),
       ],
@@ -92,7 +92,7 @@ class CheckButtonBloc extends Bloc<CheckButtonEvent, CheckButtonState> {
             }
 
             // else set input to pointsLeft
-            _inputCubit.update(newInput: left(pointsLeft));
+            _pointsCubit.update(pointsLeft);
 
             // and perform the throw
             _inputAreaBloc

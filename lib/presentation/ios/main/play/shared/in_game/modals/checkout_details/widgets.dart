@@ -1,6 +1,7 @@
 part of 'checkout_details_modal.dart';
 
-// BODY
+// TODO is this file located coorectly or must it be in a sperate shared folder ?? be consistent with other shared widgets
+
 class _CheckoutDetailsWidget extends StatelessWidget {
   const _CheckoutDetailsWidget({
     Key? key,
@@ -8,7 +9,8 @@ class _CheckoutDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CheckoutDetailsBloc, CheckoutDetailsState>(
+    return BlocBuilder<Bloc<CheckoutDetailsEvent, CheckoutDetailsState>,
+        CheckoutDetailsState>(
       builder: (context, state) {
         final minDartsThrown = state.minDartsThrown;
         final maxDartsThrown = state.maxDartsThrown;
@@ -37,13 +39,16 @@ class _CheckoutDetailsWidget extends StatelessWidget {
                         Expanded(
                           child: _CheckoutDetailsButton(
                             selected: i == selectedDartsThrown,
-                            onPressed: () =>
-                                context.read<CheckoutDetailsBloc>().add(
-                                      CheckoutDetailsEvent
-                                          .selectedDartsThrownUpdated(
-                                        newSelectedDartsThrown: i,
-                                      ),
-                                    ),
+                            onPressed: () => context
+                                .read<
+                                    Bloc<CheckoutDetailsEvent,
+                                        CheckoutDetailsState>>()
+                                .add(
+                                  CheckoutDetailsEvent
+                                      .selectedDartsThrownUpdated(
+                                    newSelectedDartsThrown: i,
+                                  ),
+                                ),
                             text: i.toString(),
                           ),
                         ),
@@ -72,13 +77,16 @@ class _CheckoutDetailsWidget extends StatelessWidget {
                         Expanded(
                           child: _CheckoutDetailsButton(
                             selected: i == selectedDartsOnDouble,
-                            onPressed: () =>
-                                context.read<CheckoutDetailsBloc>().add(
-                                      CheckoutDetailsEvent
-                                          .selectedDartsOnDoubleUpdated(
-                                        newSelectedDartsOnDouble: i,
-                                      ),
-                                    ),
+                            onPressed: () => context
+                                .read<
+                                    Bloc<CheckoutDetailsEvent,
+                                        CheckoutDetailsState>>()
+                                .add(
+                                  CheckoutDetailsEvent
+                                      .selectedDartsOnDoubleUpdated(
+                                    newSelectedDartsOnDouble: i,
+                                  ),
+                                ),
                             text: i.toString(),
                           ),
                         ),
@@ -94,7 +102,7 @@ class _CheckoutDetailsWidget extends StatelessWidget {
               color: AppColors.orangeNew,
               onPressed: () {
                 context
-                    .read<CheckoutDetailsBloc>()
+                    .read<Bloc<CheckoutDetailsEvent, CheckoutDetailsState>>()
                     .add(const CheckoutDetailsEvent.confirmPressed());
                 context.router.pop();
               },

@@ -7,6 +7,9 @@ class _AdvancedSettingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    // TODO impl ui
+    return const Center(
+      child: Text('TODO advancedSettings'),
+    );
   }
 }

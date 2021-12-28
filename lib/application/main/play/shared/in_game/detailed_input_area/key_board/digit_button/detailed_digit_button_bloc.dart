@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
@@ -18,7 +18,7 @@ part 'detailed_digit_button_state.dart';
 // TODO implement with fewer lines
 // bugs known
 // when 3 darts already input then there are some key still not disabled
-// Throw.zero get autofilled and darts on double are 3 by user then there is error in model 
+// Throw.zero get autofilled and darts on double are 3 by user then there is error in model
 // => Throw.zero needs to be modeled better
 
 class DetailedDigitButtonBloc
@@ -26,7 +26,7 @@ class DetailedDigitButtonBloc
   final int _digit;
 
   final DetailedInputAreaBloc _inputAreaBloc;
-  final InputCubit _inputCubit;
+  final DartsCubit _dartsCubit;
   final PointsLeftCubit _pointsLeftCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
 
@@ -35,7 +35,7 @@ class DetailedDigitButtonBloc
   DetailedDigitButtonBloc(
     this._digit,
     this._inputAreaBloc,
-    this._inputCubit,
+    this._dartsCubit,
     this._pointsLeftCubit,
     this._advancedSettingsBloc,
     this._dartUtils,
@@ -114,7 +114,7 @@ class DetailedDigitButtonBloc
     await Future.wait(
       [
         _inputAreaBloc.stream.forEach((_) => _refreshState(emit)),
-        _inputCubit.stream.forEach((_) => _refreshState(emit)),
+        _dartsCubit.stream.forEach((_) => _refreshState(emit)),
         _pointsLeftCubit.stream.forEach((_) => _refreshState(emit)),
         _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit)),
       ],
@@ -134,12 +134,7 @@ class DetailedDigitButtonBloc
       },
       disabled: (_) => throw pressedWhileDisabledError,
       focused: (focused) {
-        final darts = _inputCubit.state
-            .when(
-              points: (input) => throw dartsExpectedError,
-              darts: (darts) => darts,
-            )
-            .toMutableList();
+        final darts = _dartsCubit.state.toMutableList();
         final dartTyp = focused.dartType;
         final focusedValue = focused.value;
 
@@ -148,7 +143,7 @@ class DetailedDigitButtonBloc
         // remove add dart represented by this button to darts
         final newDarts = darts..add(Dart(type: dartTyp, value: focusedValue));
         // set input to new darts
-        _inputCubit.update(newInput: right(newDarts));
+        _dartsCubit.update(newDarts);
       },
     );
   }
@@ -163,11 +158,8 @@ class DetailedDigitButtonBloc
         final smartKeyBoardActivated =
             inGame.currentTurnAdvancedSettings.smartKeyBoardActivated;
 
-        final points = _inputCubit.state.when(
-          points: (points) => throw dartsExpectedError,
-          darts: (darts) =>
-              darts.fold<int>(0, (acc, dart) => acc + dart.points()),
-        );
+        final points =
+            _dartsCubit.state.fold<int>(0, (acc, dart) => acc + dart.points());
 
         // when smart keyboard is active
         if (smartKeyBoardActivated) {

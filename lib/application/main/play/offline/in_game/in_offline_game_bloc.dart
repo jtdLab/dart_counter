@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/in_game_event.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/in_game_state.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/key_board_type.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
@@ -16,12 +17,22 @@ class InOfflineGameBloc extends Bloc<InGameEvent, InGameState>
 
   InOfflineGameBloc(
     this._playOfflineService,
-  ) : super(const InGameState.initial()) {
+  ) : super(const InGameState.initial(keyBoardType: KeyBoardType.standard)) {
+    on<KeyBoardTypeChanged>(
+      (event, emit) => _mapKeyBoardTypeChangedToState(event, emit),
+    );
     on<GameCanceled>((_, __) => _mapGameCanceledToState());
     on<UndoThrowPressed>((_, __) => _mapUndoThrowPressedToState());
     on<PerformThrowPressed>(
       (event, _) => _mapPerformThrowPressedToState(event),
     );
+  }
+
+  void _mapKeyBoardTypeChangedToState(
+    KeyBoardTypeChanged event,
+    Emitter<InGameState> emit,
+  ) {
+    emit(state.copyWith(keyBoardType: event.newKeyBoardType));
   }
 
   void _mapGameCanceledToState() {

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+// import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dartz/dartz.dart';
@@ -22,15 +22,17 @@ class OpticalInputAreaBloc
     with AutoResetLazySingleton {
   final Cubit<AbstractGameSnapshot> _playWatcherCubit;
   final Bloc<InGameEvent, InGameState> _inGameBloc;
-  final InputCubit _inputCubit;
+  // final InputCubit _inputCubit;
 
   OpticalInputAreaBloc(
     this._playWatcherCubit,
     this._inGameBloc,
-    this._inputCubit,
+    //this._inputCubit,
   ) : super(const OpticalInputAreaState.initial()) {
-    on<_DartPressed>((event, __) => _mapDartPressedToState(event));
-    on<_UndoDartPressed>((_, __) => _mapUndoDartPressedToState());
+    on<_DartPressed>(
+        throw Error() /**(event, __) => _mapDartPressedToState(event) */);
+    on<_UndoDartPressed>(
+        throw Error() /**(_, __) => _mapUndoDartPressedToState()*/);
   }
 
   /**
@@ -94,7 +96,8 @@ class OpticalInputAreaBloc
 
    */
 
-  void _mapDartPressedToState(
+  /**
+  *  void _mapDartPressedToState(
     _DartPressed event,
   ) {
     final darts = _inputCubit.state
@@ -130,4 +133,5 @@ class OpticalInputAreaBloc
       _inputCubit.update(newInput: right(darts..removeAt(darts.size - 1)));
     }
   }
+  */
 }

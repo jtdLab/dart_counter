@@ -2,10 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'standard_digit_button_bloc.freezed.dart';
@@ -16,7 +15,7 @@ class StandardDigitButtonBloc
     extends Bloc<StandardDigitButtonEvent, StandardDigitButtonState> {
   final int _digit;
   final PointsLeftCubit _pointsLeftCubit;
-  final InputCubit _inputCubit;
+  final PointsCubit _pointsCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
 
   final IDartUtils _dartUtils;
@@ -24,7 +23,7 @@ class StandardDigitButtonBloc
   StandardDigitButtonBloc(
     this._digit,
     this._pointsLeftCubit,
-    this._inputCubit,
+    this._pointsCubit,
     this._advancedSettingsBloc,
     this._dartUtils,
   ) : super(
@@ -70,7 +69,7 @@ class StandardDigitButtonBloc
   ) async {
     await Future.wait(
       [
-        _inputCubit.stream.forEach((_) => _refreshState(emit)),
+        _pointsCubit.stream.forEach((_) => _refreshState(emit)),
         _pointsLeftCubit.stream.forEach((_) => _refreshState(emit)),
         _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit)),
       ],
@@ -92,10 +91,7 @@ class StandardDigitButtonBloc
             final pointsLeft = _pointsLeftCubit.state;
 
             // calc newPoints
-            final points = _inputCubit.state.when(
-              points: (points) => points,
-              darts: (darts) => throw pointsExpectedError,
-            );
+            final points = _pointsCubit.state;
 
             final newPoints = int.parse(
               points.toString() + _digit.toString(),
@@ -114,7 +110,7 @@ class StandardDigitButtonBloc
             }
 
             // else set input to newPoints
-            _inputCubit.update(newInput: left(newPoints));
+            _pointsCubit.update(newPoints);
           },
         );
       },
@@ -134,10 +130,7 @@ class StandardDigitButtonBloc
 
         // when smart keyboard is active
         if (smartKeyBoardActivated) {
-          final points = _inputCubit.state.when(
-            points: (points) => points,
-            darts: (darts) => throw pointsExpectedError,
-          );
+          final points = _pointsCubit.state;
 
           // and this button represents 0 and points are 0
           if (_digit == 0 && points == 0) {

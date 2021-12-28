@@ -2,7 +2,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
-import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -28,6 +27,7 @@ import 'main/play/online/in_game/page/in_online_game_page.dart';
 import 'main/play/online/play_online_flow.dart';
 import 'main/play/online/post_game/post_online_game_page.dart';
 import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart';
+import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
 import 'main/settings/settings_page.dart';

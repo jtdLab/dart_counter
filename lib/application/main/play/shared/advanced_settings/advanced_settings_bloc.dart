@@ -47,6 +47,7 @@ class AdvancedSettingsBloc
   Future<void> _mapStartedToState(
     Emitter<AdvancedSettingsState> emit,
   ) async {
+    //_onGameSnapshot(_playWatcherCubit.state, emit); // TODO
     await _playWatcherCubit.stream.forEach(
       (gameSnapshot) => _onGameSnapshot(gameSnapshot, emit),
     );

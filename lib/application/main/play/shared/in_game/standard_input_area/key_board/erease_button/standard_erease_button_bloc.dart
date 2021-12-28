@@ -2,8 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'standard_erease_button_bloc.freezed.dart';
@@ -12,11 +11,11 @@ part 'standard_erease_button_state.dart';
 
 class StandardEreaseButtonBloc
     extends Bloc<StandardEreaseButtonEvent, StandardEreaseButtonState> {
-  final InputCubit _inputCubit;
+  final PointsCubit _pointsCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
 
   StandardEreaseButtonBloc(
-    this._inputCubit,
+    this._pointsCubit,
     this._advancedSettingsBloc,
   ) : super(
           _advancedSettingsBloc.state.map(
@@ -38,7 +37,7 @@ class StandardEreaseButtonBloc
   Future<void> _mapStartedToState(
     Emitter<StandardEreaseButtonState> emit,
   ) async {
-    await _inputCubit.stream.forEach((_) => _refreshState(emit));
+    await _pointsCubit.stream.forEach((_) => _refreshState(emit));
     await _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit));
   }
 
@@ -53,10 +52,7 @@ class StandardEreaseButtonBloc
             final smartKeyBoardActivated =
                 inGame.currentTurnAdvancedSettings.smartKeyBoardActivated;
 
-            final points = _inputCubit.state.when(
-              points: (points) => points,
-              darts: (_) => throw pointsExpectedError,
-            );
+            final points = _pointsCubit.state;
 
             // when smart keyboard is not active
             if (!smartKeyBoardActivated) {
@@ -79,7 +75,7 @@ class StandardEreaseButtonBloc
             }
 
             // set input to newPoints
-            _inputCubit.update(newInput: left(newPoints));
+            _pointsCubit.update(newPoints);
           },
         );
       },
@@ -99,10 +95,7 @@ class StandardEreaseButtonBloc
 
         // when smart keyboard is active
         if (smartKeyBoardActivated) {
-          final points = _inputCubit.state.when(
-            points: (points) => points,
-            darts: (_) => throw pointsExpectedError,
-          );
+          final points = _pointsCubit.state;
 
           // and points = 0
           if (points == 0) {

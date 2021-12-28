@@ -1,16 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_event.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_state.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../in_game_event.dart';
-import '../in_game_state.dart';
 
 part 'standard_input_area_bloc.freezed.dart';
 part 'standard_input_area_event.dart';
@@ -21,7 +18,7 @@ class StandardInputAreaBloc
     with AutoResetLazySingleton {
   final Bloc<InGameEvent, InGameState> _inGameBloc;
   final PointsLeftCubit _pointsLeftCubit;
-  final InputCubit _inputCubit;
+  final PointsCubit _pointsCubit;
   final ShowCheckoutDetailsCubit _showCheckoutDetailsCubit;
 
   final IDartUtils _dartUtils;
@@ -29,7 +26,7 @@ class StandardInputAreaBloc
   StandardInputAreaBloc(
     this._inGameBloc,
     this._pointsLeftCubit,
-    this._inputCubit,
+    this._pointsCubit,
     this._showCheckoutDetailsCubit,
     this._dartUtils,
   ) : super(const StandardInputAreaState.initial()) {
@@ -41,10 +38,7 @@ class StandardInputAreaBloc
       _inGameBloc.add(const InGameEvent.undoThrowPressed());
 
   void _mapPerformThrowPressedToState() {
-    final points = _inputCubit.state.when(
-      points: (points) => points,
-      darts: (darts) => throw pointsExpectedError,
-    );
+    final points = _pointsCubit.state;
 
     final pointsLeft = _pointsLeftCubit.state;
 
@@ -87,7 +81,7 @@ class StandardInputAreaBloc
       );
 
       // reset input to 0
-      _inputCubit.update(newInput: left(0));
+      _pointsCubit.update(0);
     }
   }
 }

@@ -18,6 +18,7 @@ class PlayOfflineFlow extends StatelessWidget {
           create: (context) => getIt<PlayOfflineWatcherCubit>(),
         ),
         BlocProvider(
+          lazy: false,
           create: (context) => AdvancedSettingsBloc(
             context.read<PlayOfflineWatcherCubit>(),
           )..add(const AdvancedSettingsEvent.started()),

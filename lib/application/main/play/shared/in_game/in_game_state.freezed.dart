@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InGameStateTearOff {
   const _$InGameStateTearOff();
 
-  InGameInitial initial() {
-    return const InGameInitial();
+  InGameInitial initial({required KeyBoardType keyBoardType}) {
+    return InGameInitial(
+      keyBoardType: keyBoardType,
+    );
   }
 }
 
@@ -27,19 +29,21 @@ const $InGameState = _$InGameStateTearOff();
 
 /// @nodoc
 mixin _$InGameState {
+  KeyBoardType get keyBoardType => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(KeyBoardType keyBoardType) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(KeyBoardType keyBoardType)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(KeyBoardType keyBoardType)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,10 @@ mixin _$InGameState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $InGameStateCopyWith<InGameState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -66,6 +74,7 @@ abstract class $InGameStateCopyWith<$Res> {
   factory $InGameStateCopyWith(
           InGameState value, $Res Function(InGameState) then) =
       _$InGameStateCopyWithImpl<$Res>;
+  $Res call({KeyBoardType keyBoardType});
 }
 
 /// @nodoc
@@ -75,13 +84,28 @@ class _$InGameStateCopyWithImpl<$Res> implements $InGameStateCopyWith<$Res> {
   final InGameState _value;
   // ignore: unused_field
   final $Res Function(InGameState) _then;
+
+  @override
+  $Res call({
+    Object? keyBoardType = freezed,
+  }) {
+    return _then(_value.copyWith(
+      keyBoardType: keyBoardType == freezed
+          ? _value.keyBoardType
+          : keyBoardType // ignore: cast_nullable_to_non_nullable
+              as KeyBoardType,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $InGameInitialCopyWith<$Res> {
+abstract class $InGameInitialCopyWith<$Res>
+    implements $InGameStateCopyWith<$Res> {
   factory $InGameInitialCopyWith(
           InGameInitial value, $Res Function(InGameInitial) then) =
       _$InGameInitialCopyWithImpl<$Res>;
+  @override
+  $Res call({KeyBoardType keyBoardType});
 }
 
 /// @nodoc
@@ -93,51 +117,75 @@ class _$InGameInitialCopyWithImpl<$Res> extends _$InGameStateCopyWithImpl<$Res>
 
   @override
   InGameInitial get _value => super._value as InGameInitial;
+
+  @override
+  $Res call({
+    Object? keyBoardType = freezed,
+  }) {
+    return _then(InGameInitial(
+      keyBoardType: keyBoardType == freezed
+          ? _value.keyBoardType
+          : keyBoardType // ignore: cast_nullable_to_non_nullable
+              as KeyBoardType,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InGameInitial implements InGameInitial {
-  const _$InGameInitial();
+  const _$InGameInitial({required this.keyBoardType});
+
+  @override
+  final KeyBoardType keyBoardType;
 
   @override
   String toString() {
-    return 'InGameState.initial()';
+    return 'InGameState.initial(keyBoardType: $keyBoardType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is InGameInitial);
+        (other.runtimeType == runtimeType &&
+            other is InGameInitial &&
+            const DeepCollectionEquality()
+                .equals(other.keyBoardType, keyBoardType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(keyBoardType));
+
+  @JsonKey(ignore: true)
+  @override
+  $InGameInitialCopyWith<InGameInitial> get copyWith =>
+      _$InGameInitialCopyWithImpl<InGameInitial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(KeyBoardType keyBoardType) initial,
   }) {
-    return initial();
+    return initial(keyBoardType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(KeyBoardType keyBoardType)? initial,
   }) {
-    return initial?.call();
+    return initial?.call(keyBoardType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(KeyBoardType keyBoardType)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(keyBoardType);
     }
     return orElse();
   }
@@ -172,5 +220,13 @@ class _$InGameInitial implements InGameInitial {
 }
 
 abstract class InGameInitial implements InGameState {
-  const factory InGameInitial() = _$InGameInitial;
+  const factory InGameInitial({required KeyBoardType keyBoardType}) =
+      _$InGameInitial;
+
+  @override
+  KeyBoardType get keyBoardType;
+  @override
+  @JsonKey(ignore: true)
+  $InGameInitialCopyWith<InGameInitial> get copyWith =>
+      throw _privateConstructorUsedError;
 }

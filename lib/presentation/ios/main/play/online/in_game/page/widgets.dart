@@ -38,7 +38,7 @@ class _InOnlineGameWidget extends StatelessWidget {
                 create: (context) => StandardInputAreaBloc(
                   context.read<InOnlineGameBloc>(),
                   context.read<PointsLeftCubit>(),
-                  getIt<InputCubit>(),
+                  context.read<PointsCubit>(),
                   getIt<ShowCheckoutDetailsCubit>(),
                   getIt<IDartUtils>(),
                 ),
@@ -48,7 +48,7 @@ class _InOnlineGameWidget extends StatelessWidget {
                 create: (context) => DetailedInputAreaBloc(
                   context.read<InOnlineGameBloc>(),
                   context.read<PointsLeftCubit>(),
-                  getIt<InputCubit>(),
+                  context.read<DartsCubit>(),
                   getIt<ShowCheckoutDetailsCubit>(),
                   getIt<IDartUtils>(),
                 ),
@@ -73,17 +73,25 @@ class _InOnlineGameWidget extends StatelessWidget {
   }) {
     switch (keyBoardIndex) {
       case 0:
-        context.read<InputCubit>().update(newInput: left(0));
+        context.read<InOnlineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.standard,
+              ),
+            );
         break;
       case 1:
-        context
-            .read<InputCubit>()
-            .update(newInput: right(const KtList.empty()));
+        context.read<InOnlineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.detailed,
+              ),
+            );
         break;
       case 2:
-        context
-            .read<InputCubit>()
-            .update(newInput: right(const KtList.empty()));
+        context.read<InOnlineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.speech,
+              ),
+            );
         break;
     }
   }
