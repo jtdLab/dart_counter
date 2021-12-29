@@ -49,7 +49,7 @@ class GameHistoryService implements IGameHistoryService {
         games.add(OfflineGameDto.fromJson(json).toDomain());
       }
 
-      return right(List10(games));
+      return right(List10(games.toImmutableList()));
     } catch (e) {
       print(e);
       return left(const GameHistoryFailure.unexpected()); // TODO name better
@@ -99,7 +99,7 @@ class GameHistoryService implements IGameHistoryService {
         games.add(dto.copyWith(players: players).toDomain());
       }
 
-      return right(List10(games));
+      return right(List10(games.toImmutableList()));
     } catch (e) {
       print(e);
       return left(const GameHistoryFailure.unexpected()); // TODO name better

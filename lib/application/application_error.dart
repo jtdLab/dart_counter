@@ -11,4 +11,8 @@ class ApplicationError extends Error {
   factory ApplicationError.unexpectedMissingData() => ApplicationError(
         'Data not available where it is expected to be available',
       );
+
+  factory ApplicationError.unexpectedMissingUser() => ApplicationError(
+        'User not available where it is expected to be available',
+      );
 }

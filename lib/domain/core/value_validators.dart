@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:kt_dart/kt.dart';
 
 import 'failures.dart';
 
@@ -63,11 +64,11 @@ Either<ValueFailure<String>, String> validatePassword({
 /// Returns [list] if valid list.
 ///
 /// Returns ValueFailure else.
-Either<ValueFailure<List<T>>, List<T>> validateMaxListLength<T>({
-  required List<T> list,
+Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>({
+  required KtList<T> list,
   required int maxLength,
 }) {
-  if (list.length <= maxLength) {
+  if (list.size <= maxLength) {
     return right(list);
   } else {
     return left(

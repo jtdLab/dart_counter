@@ -2,6 +2,7 @@ import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
@@ -110,27 +111,33 @@ class UniqueId extends ValueObject<String> {
 }
 
 /// A value object containing a list with max. length of 10 or failure.
-class List10<T> extends ValueObject<List<T>> {
+class List10<T> extends ValueObject<KtList<T>> {
   @override
-  final Either<ValueFailure<List<T>>, List<T>> value;
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
 
   static const maxLength = 10;
 
-  factory List10(List<T> list) {
+  factory List10(KtList<T> list) {
     return List10._(
       validateMaxListLength(list: list, maxLength: maxLength),
     );
   }
 
-  factory List10.empty() => List10(const []);
+  factory List10.empty() => List10(const KtList.empty());
 
   const List10._(this.value);
 
   int get length {
-    return getOrCrash().length;
+    return getOrCrash().size;
   }
 
   bool get isFull {
     return length == maxLength;
   }
+
+  @override
+  bool operator ==(Object o) => o is List10 && value == o.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }

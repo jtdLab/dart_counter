@@ -30,6 +30,7 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     );
     on<ClearPressed>((_, emit) => _mapClearPressedToState(emit));
   }
+  
 
   Future<void> _mapSearchStringChangedToState(
     SearchStringChanged event,

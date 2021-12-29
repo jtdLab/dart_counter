@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IGameHistoryService)
@@ -32,7 +33,7 @@ class MockedGameHistoryService implements IGameHistoryService {
 
       games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
 
-      return right(List10(games));
+      return right(List10(games.toImmutableList()));
     }
 
     return left(const GameHistoryFailure.noNetworkAccess());
@@ -53,7 +54,7 @@ class MockedGameHistoryService implements IGameHistoryService {
 
       games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
 
-      return right(List10(games));
+      return right(List10(games.toImmutableList()));
     }
 
     return left(const GameHistoryFailure.noNetworkAccess());

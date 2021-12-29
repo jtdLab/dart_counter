@@ -89,12 +89,14 @@ void main() {
               .toOption()
               .toNullable()!
               .getOrCrash()
+              .asList()
               .map((e) => e.createdAt)
               .toList(),
           failurOrUnit
               .toOption()
               .toNullable()!
               .getOrCrash()
+              .asList()
               .map((e) => e.createdAt)
               .toList()
             ..sort(
@@ -163,12 +165,14 @@ void main() {
               .toOption()
               .toNullable()!
               .getOrCrash()
+              .asList()
               .map((e) => e.createdAt)
               .toList(),
           failurOrUnit
               .toOption()
               .toNullable()!
               .getOrCrash()
+              .asList()
               .map((e) => e.createdAt)
               .toList()
             ..sort(

@@ -1,22 +1,20 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/application_error.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
+import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
+part 'game_history_bloc.freezed.dart';
 part 'game_history_event.dart';
 part 'game_history_state.dart';
-part 'game_history_bloc.freezed.dart';
-
-// TODO transform to bloc v.8.0.0
-
 
 @lazySingleton
 class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
@@ -27,27 +25,28 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   GameHistoryBloc(
     this._userService,
     this._gameHistoryService,
-  ) : super(const GameHistoryState.loadInProgress());
-
-  @override
-  Stream<GameHistoryState> mapEventToState(
-    GameHistoryEvent event,
-  ) async* {
-    yield* event.map(
-      fetchGameHistoryAllRequested: (_) =>
-          _mapFetchGameHistoryAllRequestedToState(),
-      fetchGameHistoryOfflineRequested: (_) =>
-          _mapFetchGameHistoryOfflineRequestedToState(),
-      fetchGameHistoryOnlineRequested: (event) =>
-          _mapFetchGameHistoryOnlineRequestedToState(event),
-      gameSelected: (event) => _mapGameSelectedToState(event),
+  ) : super(const GameHistoryState.loadInProgress()) {
+    on<FetchGameHistoryAllRequested>(
+      (_, emit) async => _mapFetchGameHistoryAllRequestedToState(emit),
+    );
+    on<FetchGameHistoryOfflineRequested>(
+      (_, emit) async => _mapFetchGameHistoryOfflineRequestedToState(emit),
+    );
+    on<FetchGameHistoryOnlineRequested>(
+      (event, emit) async =>
+          _mapFetchGameHistoryOnlineRequestedToState(event, emit),
+    );
+    on<GameSelected>(
+      (event, emit) async => _mapGameSelectedToState(event, emit),
     );
   }
 
-  Stream<GameHistoryState> _mapFetchGameHistoryAllRequestedToState() async* {
+  Future<void> _mapFetchGameHistoryAllRequestedToState(
+    Emitter<GameHistoryState> emit,
+  ) async {
     final failureOrUser = _userService.getUser();
     final uid = failureOrUser.fold(
-      (failure) => throw Error(), // TODO failure here pls
+      (failure) => throw ApplicationError.unexpectedMissingUser(),
       (user) => user.id,
     );
 
@@ -56,69 +55,76 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     final failureOrOfflineGameHistory =
         await _gameHistoryService.fetchGameHistoryOffline();
 
-    yield failureOrOnlineGameHistory.fold(
-      (failure) => GameHistoryState.loadFailure(failure: failure),
-      (onlineGameHistory) => failureOrOfflineGameHistory.fold(
+    emit(
+      failureOrOnlineGameHistory.fold(
         (failure) => GameHistoryState.loadFailure(failure: failure),
-        (offlineGameHistory) {
-          final allGameHistory = <AbstractGame>[];
+        (onlineGameHistory) => failureOrOfflineGameHistory.fold(
+          (failure) => GameHistoryState.loadFailure(failure: failure),
+          (offlineGameHistory) {
+            final allGameHistory = <AbstractGame>[];
 
-          allGameHistory.addAll(onlineGameHistory.getOrCrash());
-          allGameHistory.addAll(offlineGameHistory.getOrCrash());
+            allGameHistory.addAll(onlineGameHistory.getOrCrash().asList());
+            allGameHistory.addAll(offlineGameHistory.getOrCrash().asList());
 
-          /// TODO is descending or need to reverse ???
-          allGameHistory
-              .sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
+            allGameHistory.sort(
+              (game, game1) => game.createdAt.compareTo(game1.createdAt),
+            );
 
-          return GameHistoryState.loadSuccess(
-            gameHistory: List10(allGameHistory.take(10).toList()),
-          );
-        },
+            return GameHistoryState.loadSuccess(
+              gameHistory: List10(allGameHistory.take(10).toImmutableList()),
+            );
+          },
+        ),
       ),
     );
   }
 
-  Stream<GameHistoryState>
-      _mapFetchGameHistoryOfflineRequestedToState() async* {
+  Future<void> _mapFetchGameHistoryOfflineRequestedToState(
+    Emitter<GameHistoryState> emit,
+  ) async {
     final failureOrGameHistory =
         await _gameHistoryService.fetchGameHistoryOffline();
 
-    yield failureOrGameHistory.fold(
-      (failure) => GameHistoryState.loadFailure(failure: failure),
-      (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
+    emit(
+      failureOrGameHistory.fold(
+        (failure) => GameHistoryState.loadFailure(failure: failure),
+        (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
+      ),
     );
   }
 
-  Stream<GameHistoryState> _mapFetchGameHistoryOnlineRequestedToState(
+  Future<void> _mapFetchGameHistoryOnlineRequestedToState(
     FetchGameHistoryOnlineRequested event,
-  ) async* {
-    final UniqueId uid;
+    Emitter<GameHistoryState> emit,
+  ) async {
+    var uid = event.userId;
 
-    if (event.userId == null) {
+    if (uid == null) {
       final failureOrUser = _userService.getUser();
       uid = failureOrUser.fold(
-        (failure) => throw Error(), // TODO failure here pls
+        (failure) => throw throw ApplicationError.unexpectedMissingUser(),
         (user) => user.id,
       );
-    } else {
-      uid = event.userId!;
     }
 
-    final failureOrGameHistory =
-        await _gameHistoryService.fetchGameHistoryOnline(uid: uid.getOrCrash());
-    yield failureOrGameHistory.fold(
-      (failure) => GameHistoryState.loadFailure(failure: failure),
-      (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
+    final failureOrGameHistory = await _gameHistoryService
+        .fetchGameHistoryOnline(uid: uid!.getOrCrash());
+    emit(
+      failureOrGameHistory.fold(
+        (failure) => GameHistoryState.loadFailure(failure: failure),
+        (gameHistory) => GameHistoryState.loadSuccess(gameHistory: gameHistory),
+      ),
     );
   }
 
-  Stream<GameHistoryState> _mapGameSelectedToState(
+  void _mapGameSelectedToState(
     GameSelected event,
-  ) async* {
+    Emitter<GameHistoryState> emit,
+  ) {
     final state = this.state;
 
     if (state is GameHistoryLoadSuccess) {
-      yield state.copyWith(selectedGame: event.game);
+      emit(state.copyWith(selectedGame: event.game));
     }
   }
 
