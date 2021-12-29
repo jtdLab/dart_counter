@@ -16,6 +16,8 @@ part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
+// TODO maybe provide user in seperate bloc and remove this bloc
+
 @lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
     with AutoResetLazySingleton {
@@ -45,7 +47,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
                 ),
           ),
         ) {
-    on<Started>(
+    on<_Started>(
       (_, emit) async => _mapStartedToState(emit),
     );
   }

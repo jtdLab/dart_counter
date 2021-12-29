@@ -5,5 +5,5 @@ class SingleTrainingState with _$SingleTrainingState {
   const factory SingleTrainingState.initial({
     required KtList<Hit> hits,
     required Mode mode,
-  }) = _SingleTrainingInitial;
+  }) = SingleTrainingInitial;
 }

@@ -17,26 +17,26 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FriendsEventTearOff {
   const _$FriendsEventTearOff();
 
-  Started started() {
-    return const Started();
+  _Started started() {
+    return const _Started();
   }
 
-  FriendSelected friendSelected({required Friend friend}) {
-    return FriendSelected(
+  _FriendSelected friendSelected({required Friend friend}) {
+    return _FriendSelected(
       friend: friend,
     );
   }
 
-  FriendRequestAccepted friendRequestAccepted(
+  _FriendRequestAccepted friendRequestAccepted(
       {required FriendRequest friendRequest}) {
-    return FriendRequestAccepted(
+    return _FriendRequestAccepted(
       friendRequest: friendRequest,
     );
   }
 
-  FriendRequestDeclined friendRequestDeclined(
+  _FriendRequestDeclined friendRequestDeclined(
       {required FriendRequest friendRequest}) {
-    return FriendRequestDeclined(
+    return _FriendRequestDeclined(
       friendRequest: friendRequest,
     );
   }
@@ -76,28 +76,28 @@ mixin _$FriendsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FriendSelected value) friendSelected,
-    required TResult Function(FriendRequestAccepted value)
+    required TResult Function(_Started value) started,
+    required TResult Function(_FriendSelected value) friendSelected,
+    required TResult Function(_FriendRequestAccepted value)
         friendRequestAccepted,
-    required TResult Function(FriendRequestDeclined value)
+    required TResult Function(_FriendRequestDeclined value)
         friendRequestDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,25 +120,25 @@ class _$FriendsEventCopyWithImpl<$Res> implements $FriendsEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $StartedCopyWith<$Res> {
-  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
-      _$StartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$StartedCopyWithImpl<$Res> extends _$FriendsEventCopyWithImpl<$Res>
-    implements $StartedCopyWith<$Res> {
-  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
-      : super(_value, (v) => _then(v as Started));
+class __$StartedCopyWithImpl<$Res> extends _$FriendsEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  Started get _value => super._value as Started;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -148,7 +148,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Started);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -196,11 +196,11 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FriendSelected value) friendSelected,
-    required TResult Function(FriendRequestAccepted value)
+    required TResult Function(_Started value) started,
+    required TResult Function(_FriendSelected value) friendSelected,
+    required TResult Function(_FriendRequestAccepted value)
         friendRequestAccepted,
-    required TResult Function(FriendRequestDeclined value)
+    required TResult Function(_FriendRequestDeclined value)
         friendRequestDeclined,
   }) {
     return started(this);
@@ -209,10 +209,10 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
   }) {
     return started?.call(this);
   }
@@ -220,10 +220,10 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -233,36 +233,36 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements FriendsEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements FriendsEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class $FriendSelectedCopyWith<$Res> {
-  factory $FriendSelectedCopyWith(
-          FriendSelected value, $Res Function(FriendSelected) then) =
-      _$FriendSelectedCopyWithImpl<$Res>;
+abstract class _$FriendSelectedCopyWith<$Res> {
+  factory _$FriendSelectedCopyWith(
+          _FriendSelected value, $Res Function(_FriendSelected) then) =
+      __$FriendSelectedCopyWithImpl<$Res>;
   $Res call({Friend friend});
 
   $FriendCopyWith<$Res> get friend;
 }
 
 /// @nodoc
-class _$FriendSelectedCopyWithImpl<$Res>
+class __$FriendSelectedCopyWithImpl<$Res>
     extends _$FriendsEventCopyWithImpl<$Res>
-    implements $FriendSelectedCopyWith<$Res> {
-  _$FriendSelectedCopyWithImpl(
-      FriendSelected _value, $Res Function(FriendSelected) _then)
-      : super(_value, (v) => _then(v as FriendSelected));
+    implements _$FriendSelectedCopyWith<$Res> {
+  __$FriendSelectedCopyWithImpl(
+      _FriendSelected _value, $Res Function(_FriendSelected) _then)
+      : super(_value, (v) => _then(v as _FriendSelected));
 
   @override
-  FriendSelected get _value => super._value as FriendSelected;
+  _FriendSelected get _value => super._value as _FriendSelected;
 
   @override
   $Res call({
     Object? friend = freezed,
   }) {
-    return _then(FriendSelected(
+    return _then(_FriendSelected(
       friend: friend == freezed
           ? _value.friend
           : friend // ignore: cast_nullable_to_non_nullable
@@ -280,8 +280,8 @@ class _$FriendSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FriendSelected implements FriendSelected {
-  const _$FriendSelected({required this.friend});
+class _$_FriendSelected implements _FriendSelected {
+  const _$_FriendSelected({required this.friend});
 
   @override
   final Friend friend;
@@ -295,7 +295,7 @@ class _$FriendSelected implements FriendSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FriendSelected &&
+            other is _FriendSelected &&
             const DeepCollectionEquality().equals(other.friend, friend));
   }
 
@@ -305,8 +305,8 @@ class _$FriendSelected implements FriendSelected {
 
   @JsonKey(ignore: true)
   @override
-  $FriendSelectedCopyWith<FriendSelected> get copyWith =>
-      _$FriendSelectedCopyWithImpl<FriendSelected>(this, _$identity);
+  _$FriendSelectedCopyWith<_FriendSelected> get copyWith =>
+      __$FriendSelectedCopyWithImpl<_FriendSelected>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -350,11 +350,11 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FriendSelected value) friendSelected,
-    required TResult Function(FriendRequestAccepted value)
+    required TResult Function(_Started value) started,
+    required TResult Function(_FriendSelected value) friendSelected,
+    required TResult Function(_FriendRequestAccepted value)
         friendRequestAccepted,
-    required TResult Function(FriendRequestDeclined value)
+    required TResult Function(_FriendRequestDeclined value)
         friendRequestDeclined,
   }) {
     return friendSelected(this);
@@ -363,10 +363,10 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
   }) {
     return friendSelected?.call(this);
   }
@@ -374,10 +374,10 @@ class _$FriendSelected implements FriendSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
     required TResult orElse(),
   }) {
     if (friendSelected != null) {
@@ -387,41 +387,41 @@ class _$FriendSelected implements FriendSelected {
   }
 }
 
-abstract class FriendSelected implements FriendsEvent {
-  const factory FriendSelected({required Friend friend}) = _$FriendSelected;
+abstract class _FriendSelected implements FriendsEvent {
+  const factory _FriendSelected({required Friend friend}) = _$_FriendSelected;
 
   Friend get friend;
   @JsonKey(ignore: true)
-  $FriendSelectedCopyWith<FriendSelected> get copyWith =>
+  _$FriendSelectedCopyWith<_FriendSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FriendRequestAcceptedCopyWith<$Res> {
-  factory $FriendRequestAcceptedCopyWith(FriendRequestAccepted value,
-          $Res Function(FriendRequestAccepted) then) =
-      _$FriendRequestAcceptedCopyWithImpl<$Res>;
+abstract class _$FriendRequestAcceptedCopyWith<$Res> {
+  factory _$FriendRequestAcceptedCopyWith(_FriendRequestAccepted value,
+          $Res Function(_FriendRequestAccepted) then) =
+      __$FriendRequestAcceptedCopyWithImpl<$Res>;
   $Res call({FriendRequest friendRequest});
 
   $FriendRequestCopyWith<$Res> get friendRequest;
 }
 
 /// @nodoc
-class _$FriendRequestAcceptedCopyWithImpl<$Res>
+class __$FriendRequestAcceptedCopyWithImpl<$Res>
     extends _$FriendsEventCopyWithImpl<$Res>
-    implements $FriendRequestAcceptedCopyWith<$Res> {
-  _$FriendRequestAcceptedCopyWithImpl(
-      FriendRequestAccepted _value, $Res Function(FriendRequestAccepted) _then)
-      : super(_value, (v) => _then(v as FriendRequestAccepted));
+    implements _$FriendRequestAcceptedCopyWith<$Res> {
+  __$FriendRequestAcceptedCopyWithImpl(_FriendRequestAccepted _value,
+      $Res Function(_FriendRequestAccepted) _then)
+      : super(_value, (v) => _then(v as _FriendRequestAccepted));
 
   @override
-  FriendRequestAccepted get _value => super._value as FriendRequestAccepted;
+  _FriendRequestAccepted get _value => super._value as _FriendRequestAccepted;
 
   @override
   $Res call({
     Object? friendRequest = freezed,
   }) {
-    return _then(FriendRequestAccepted(
+    return _then(_FriendRequestAccepted(
       friendRequest: friendRequest == freezed
           ? _value.friendRequest
           : friendRequest // ignore: cast_nullable_to_non_nullable
@@ -439,8 +439,8 @@ class _$FriendRequestAcceptedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FriendRequestAccepted implements FriendRequestAccepted {
-  const _$FriendRequestAccepted({required this.friendRequest});
+class _$_FriendRequestAccepted implements _FriendRequestAccepted {
+  const _$_FriendRequestAccepted({required this.friendRequest});
 
   @override
   final FriendRequest friendRequest;
@@ -454,7 +454,7 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FriendRequestAccepted &&
+            other is _FriendRequestAccepted &&
             const DeepCollectionEquality()
                 .equals(other.friendRequest, friendRequest));
   }
@@ -465,8 +465,8 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
 
   @JsonKey(ignore: true)
   @override
-  $FriendRequestAcceptedCopyWith<FriendRequestAccepted> get copyWith =>
-      _$FriendRequestAcceptedCopyWithImpl<FriendRequestAccepted>(
+  _$FriendRequestAcceptedCopyWith<_FriendRequestAccepted> get copyWith =>
+      __$FriendRequestAcceptedCopyWithImpl<_FriendRequestAccepted>(
           this, _$identity);
 
   @override
@@ -511,11 +511,11 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FriendSelected value) friendSelected,
-    required TResult Function(FriendRequestAccepted value)
+    required TResult Function(_Started value) started,
+    required TResult Function(_FriendSelected value) friendSelected,
+    required TResult Function(_FriendRequestAccepted value)
         friendRequestAccepted,
-    required TResult Function(FriendRequestDeclined value)
+    required TResult Function(_FriendRequestDeclined value)
         friendRequestDeclined,
   }) {
     return friendRequestAccepted(this);
@@ -524,10 +524,10 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
   }) {
     return friendRequestAccepted?.call(this);
   }
@@ -535,10 +535,10 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
     required TResult orElse(),
   }) {
     if (friendRequestAccepted != null) {
@@ -548,42 +548,42 @@ class _$FriendRequestAccepted implements FriendRequestAccepted {
   }
 }
 
-abstract class FriendRequestAccepted implements FriendsEvent {
-  const factory FriendRequestAccepted({required FriendRequest friendRequest}) =
-      _$FriendRequestAccepted;
+abstract class _FriendRequestAccepted implements FriendsEvent {
+  const factory _FriendRequestAccepted({required FriendRequest friendRequest}) =
+      _$_FriendRequestAccepted;
 
   FriendRequest get friendRequest;
   @JsonKey(ignore: true)
-  $FriendRequestAcceptedCopyWith<FriendRequestAccepted> get copyWith =>
+  _$FriendRequestAcceptedCopyWith<_FriendRequestAccepted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FriendRequestDeclinedCopyWith<$Res> {
-  factory $FriendRequestDeclinedCopyWith(FriendRequestDeclined value,
-          $Res Function(FriendRequestDeclined) then) =
-      _$FriendRequestDeclinedCopyWithImpl<$Res>;
+abstract class _$FriendRequestDeclinedCopyWith<$Res> {
+  factory _$FriendRequestDeclinedCopyWith(_FriendRequestDeclined value,
+          $Res Function(_FriendRequestDeclined) then) =
+      __$FriendRequestDeclinedCopyWithImpl<$Res>;
   $Res call({FriendRequest friendRequest});
 
   $FriendRequestCopyWith<$Res> get friendRequest;
 }
 
 /// @nodoc
-class _$FriendRequestDeclinedCopyWithImpl<$Res>
+class __$FriendRequestDeclinedCopyWithImpl<$Res>
     extends _$FriendsEventCopyWithImpl<$Res>
-    implements $FriendRequestDeclinedCopyWith<$Res> {
-  _$FriendRequestDeclinedCopyWithImpl(
-      FriendRequestDeclined _value, $Res Function(FriendRequestDeclined) _then)
-      : super(_value, (v) => _then(v as FriendRequestDeclined));
+    implements _$FriendRequestDeclinedCopyWith<$Res> {
+  __$FriendRequestDeclinedCopyWithImpl(_FriendRequestDeclined _value,
+      $Res Function(_FriendRequestDeclined) _then)
+      : super(_value, (v) => _then(v as _FriendRequestDeclined));
 
   @override
-  FriendRequestDeclined get _value => super._value as FriendRequestDeclined;
+  _FriendRequestDeclined get _value => super._value as _FriendRequestDeclined;
 
   @override
   $Res call({
     Object? friendRequest = freezed,
   }) {
-    return _then(FriendRequestDeclined(
+    return _then(_FriendRequestDeclined(
       friendRequest: friendRequest == freezed
           ? _value.friendRequest
           : friendRequest // ignore: cast_nullable_to_non_nullable
@@ -601,8 +601,8 @@ class _$FriendRequestDeclinedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FriendRequestDeclined implements FriendRequestDeclined {
-  const _$FriendRequestDeclined({required this.friendRequest});
+class _$_FriendRequestDeclined implements _FriendRequestDeclined {
+  const _$_FriendRequestDeclined({required this.friendRequest});
 
   @override
   final FriendRequest friendRequest;
@@ -616,7 +616,7 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FriendRequestDeclined &&
+            other is _FriendRequestDeclined &&
             const DeepCollectionEquality()
                 .equals(other.friendRequest, friendRequest));
   }
@@ -627,8 +627,8 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
 
   @JsonKey(ignore: true)
   @override
-  $FriendRequestDeclinedCopyWith<FriendRequestDeclined> get copyWith =>
-      _$FriendRequestDeclinedCopyWithImpl<FriendRequestDeclined>(
+  _$FriendRequestDeclinedCopyWith<_FriendRequestDeclined> get copyWith =>
+      __$FriendRequestDeclinedCopyWithImpl<_FriendRequestDeclined>(
           this, _$identity);
 
   @override
@@ -673,11 +673,11 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FriendSelected value) friendSelected,
-    required TResult Function(FriendRequestAccepted value)
+    required TResult Function(_Started value) started,
+    required TResult Function(_FriendSelected value) friendSelected,
+    required TResult Function(_FriendRequestAccepted value)
         friendRequestAccepted,
-    required TResult Function(FriendRequestDeclined value)
+    required TResult Function(_FriendRequestDeclined value)
         friendRequestDeclined,
   }) {
     return friendRequestDeclined(this);
@@ -686,10 +686,10 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
   }) {
     return friendRequestDeclined?.call(this);
   }
@@ -697,10 +697,10 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FriendSelected value)? friendSelected,
-    TResult Function(FriendRequestAccepted value)? friendRequestAccepted,
-    TResult Function(FriendRequestDeclined value)? friendRequestDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_FriendSelected value)? friendSelected,
+    TResult Function(_FriendRequestAccepted value)? friendRequestAccepted,
+    TResult Function(_FriendRequestDeclined value)? friendRequestDeclined,
     required TResult orElse(),
   }) {
     if (friendRequestDeclined != null) {
@@ -710,13 +710,13 @@ class _$FriendRequestDeclined implements FriendRequestDeclined {
   }
 }
 
-abstract class FriendRequestDeclined implements FriendsEvent {
-  const factory FriendRequestDeclined({required FriendRequest friendRequest}) =
-      _$FriendRequestDeclined;
+abstract class _FriendRequestDeclined implements FriendsEvent {
+  const factory _FriendRequestDeclined({required FriendRequest friendRequest}) =
+      _$_FriendRequestDeclined;
 
   FriendRequest get friendRequest;
   @JsonKey(ignore: true)
-  $FriendRequestDeclinedCopyWith<FriendRequestDeclined> get copyWith =>
+  _$FriendRequestDeclinedCopyWith<_FriendRequestDeclined> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

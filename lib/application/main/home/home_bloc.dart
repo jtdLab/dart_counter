@@ -10,13 +10,12 @@ import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
-import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/injection.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/widgets.dart'; // TODO shouldnt be here
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -37,7 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     this._gameInvitationService,
     this._friendService,
   ) : super(const HomeState.loadInProgress()) {
-    on<_WatchDataStarted>(
+    on<_Started>(
       (_, emit) async => _mapWatchDataStartedToState(emit),
       transformer: restartable(),
     );

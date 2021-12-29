@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeEventTearOff {
   const _$HomeEventTearOff();
 
-  _WatchDataStarted watchDataStarted() {
-    return const _WatchDataStarted();
+  _Started started() {
+    return const _Started();
   }
 }
 
@@ -29,33 +29,33 @@ const $HomeEvent = _$HomeEventTearOff();
 mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,38 +77,35 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WatchDataStartedCopyWith<$Res> {
-  factory _$WatchDataStartedCopyWith(
-          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
-      __$WatchDataStartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchDataStartedCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res>
-    implements _$WatchDataStartedCopyWith<$Res> {
-  __$WatchDataStartedCopyWithImpl(
-      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
-      : super(_value, (v) => _then(v as _WatchDataStarted));
+class __$StartedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  _WatchDataStarted get _value => super._value as _WatchDataStarted;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$_WatchDataStarted implements _WatchDataStarted {
-  const _$_WatchDataStarted();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
-    return 'HomeEvent.watchDataStarted()';
+    return 'HomeEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WatchDataStarted);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -117,27 +114,27 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
   }) {
-    return watchDataStarted();
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
   }) {
-    return watchDataStarted?.call();
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
-    if (watchDataStarted != null) {
-      return watchDataStarted();
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -145,34 +142,34 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
   }) {
-    return watchDataStarted(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
   }) {
-    return watchDataStarted?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
-    if (watchDataStarted != null) {
-      return watchDataStarted(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _WatchDataStarted implements HomeEvent {
-  const factory _WatchDataStarted() = _$_WatchDataStarted;
+abstract class _Started implements HomeEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc

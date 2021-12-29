@@ -18,7 +18,7 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
     this._friendService,
     this._friendsBloc,
   ) : super(const MoreState.initial()) {
-    on<RemovePressed>((_, __) async => _mapRemovePressedToState());
+    on<_RemovePressed>((_, __) async => _mapRemovePressedToState());
   }
 
   Future<void> _mapRemovePressedToState() async {

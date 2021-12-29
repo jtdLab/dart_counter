@@ -26,17 +26,17 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     this._userService,
     this._gameHistoryService,
   ) : super(const GameHistoryState.loadInProgress()) {
-    on<FetchGameHistoryAllRequested>(
+    on<_FetchGameHistoryAllRequested>(
       (_, emit) async => _mapFetchGameHistoryAllRequestedToState(emit),
     );
-    on<FetchGameHistoryOfflineRequested>(
+    on<_FetchGameHistoryOfflineRequested>(
       (_, emit) async => _mapFetchGameHistoryOfflineRequestedToState(emit),
     );
-    on<FetchGameHistoryOnlineRequested>(
+    on<_FetchGameHistoryOnlineRequested>(
       (event, emit) async =>
           _mapFetchGameHistoryOnlineRequestedToState(event, emit),
     );
-    on<GameSelected>(
+    on<_GameSelected>(
       (event, emit) => _mapGameSelectedToState(event, emit),
     );
   }
@@ -94,7 +94,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   }
 
   Future<void> _mapFetchGameHistoryOnlineRequestedToState(
-    FetchGameHistoryOnlineRequested event,
+    _FetchGameHistoryOnlineRequested event,
     Emitter<GameHistoryState> emit,
   ) async {
     var uid = event.userId;
@@ -118,7 +118,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
   }
 
   void _mapGameSelectedToState(
-    GameSelected event,
+    _GameSelected event,
     Emitter<GameHistoryState> emit,
   ) {
     final state = this.state;

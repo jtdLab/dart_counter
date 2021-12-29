@@ -5,5 +5,5 @@ class ScoreTrainingState with _$ScoreTrainingState {
   const factory ScoreTrainingState.initial({
     required int points,
     required int numberOfTakes,
-  }) = _ScoreTrainingInitial;
+  }) = ScoreTrainingInitial;
 }

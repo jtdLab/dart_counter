@@ -5,5 +5,5 @@ class DoubleTrainingState with _$DoubleTrainingState {
   const factory DoubleTrainingState.initial({
     required KtList<Hit> hits,
     required Mode mode,
-  }) = _DoubleTrainingInitial;
+  }) = DoubleTrainingInitial;
 }

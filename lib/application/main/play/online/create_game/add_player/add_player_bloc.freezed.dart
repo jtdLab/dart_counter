@@ -178,8 +178,8 @@ abstract class _Started implements AddPlayerEvent {
 class _$AddPlayerStateTearOff {
   const _$AddPlayerStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  AddPlayerInitial initial() {
+    return const AddPlayerInitial();
   }
 }
 
@@ -206,17 +206,17 @@ mixin _$AddPlayerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(AddPlayerInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(AddPlayerInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(AddPlayerInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -240,25 +240,28 @@ class _$AddPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class $AddPlayerInitialCopyWith<$Res> {
+  factory $AddPlayerInitialCopyWith(
+          AddPlayerInitial value, $Res Function(AddPlayerInitial) then) =
+      _$AddPlayerInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AddPlayerStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class _$AddPlayerInitialCopyWithImpl<$Res>
+    extends _$AddPlayerStateCopyWithImpl<$Res>
+    implements $AddPlayerInitialCopyWith<$Res> {
+  _$AddPlayerInitialCopyWithImpl(
+      AddPlayerInitial _value, $Res Function(AddPlayerInitial) _then)
+      : super(_value, (v) => _then(v as AddPlayerInitial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  AddPlayerInitial get _value => super._value as AddPlayerInitial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$AddPlayerInitial implements AddPlayerInitial {
+  const _$AddPlayerInitial();
 
   @override
   String toString() {
@@ -268,7 +271,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is AddPlayerInitial);
   }
 
   @override
@@ -305,7 +308,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(AddPlayerInitial value) initial,
   }) {
     return initial(this);
   }
@@ -313,7 +316,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(AddPlayerInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -321,7 +324,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(AddPlayerInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -331,6 +334,6 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AddPlayerState {
-  const factory _Initial() = _$_Initial;
+abstract class AddPlayerInitial implements AddPlayerState {
+  const factory AddPlayerInitial() = _$AddPlayerInitial;
 }

@@ -10,8 +10,6 @@ part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-// TODO move to shared
-
 @lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
   final IAuthService _authService;
@@ -23,14 +21,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
               ? const AuthState.authenticated()
               : const AuthState.unauthenticated(),
         ) {
-    on<_AuthStarted>(
+    on<_Started>(
       (event, emit) async => _mapAuthStartedToState(event, emit),
       transformer: restartable(),
     );
   }
 
   Future<void> _mapAuthStartedToState(
-    _AuthStarted event,
+    _Started event,
     Emitter<AuthState> emit,
   ) async {
     await emit.forEach(

@@ -93,7 +93,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
@@ -134,7 +134,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
@@ -175,7 +175,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
@@ -214,7 +214,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         HomeState.loadSuccess(
@@ -257,7 +257,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
@@ -293,7 +293,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
@@ -329,7 +329,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
@@ -367,7 +367,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         HomeState.loadSuccess(
@@ -422,7 +422,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         HomeState.loadSuccess(
@@ -477,7 +477,7 @@ void main() {
           mockFriendService,
         );
       },
-      act: (bloc) => bloc.add(const HomeEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const HomeEvent.started()),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
         HomeState.loadSuccess(

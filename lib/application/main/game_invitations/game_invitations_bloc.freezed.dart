@@ -17,20 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameInvitationsEventTearOff {
   const _$GameInvitationsEventTearOff();
 
-  Started started() {
-    return const Started();
+  _Started started() {
+    return const _Started();
   }
 
-  InvitationAccepted invitationAccepted(
+  _InvitationAccepted invitationAccepted(
       {required GameInvitation gameInvitation}) {
-    return InvitationAccepted(
+    return _InvitationAccepted(
       gameInvitation: gameInvitation,
     );
   }
 
-  InvitationDeclined invitationDeclined(
+  _InvitationDeclined invitationDeclined(
       {required GameInvitation gameInvitation}) {
-    return InvitationDeclined(
+    return _InvitationDeclined(
       gameInvitation: gameInvitation,
     );
   }
@@ -65,23 +65,23 @@ mixin _$GameInvitationsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(InvitationAccepted value) invitationAccepted,
-    required TResult Function(InvitationDeclined value) invitationDeclined,
+    required TResult Function(_Started value) started,
+    required TResult Function(_InvitationAccepted value) invitationAccepted,
+    required TResult Function(_InvitationDeclined value) invitationDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,26 +105,26 @@ class _$GameInvitationsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $StartedCopyWith<$Res> {
-  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
-      _$StartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$StartedCopyWithImpl<$Res>
+class __$StartedCopyWithImpl<$Res>
     extends _$GameInvitationsEventCopyWithImpl<$Res>
-    implements $StartedCopyWith<$Res> {
-  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
-      : super(_value, (v) => _then(v as Started));
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  Started get _value => super._value as Started;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -134,7 +134,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Started);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -177,9 +177,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(InvitationAccepted value) invitationAccepted,
-    required TResult Function(InvitationDeclined value) invitationDeclined,
+    required TResult Function(_Started value) started,
+    required TResult Function(_InvitationAccepted value) invitationAccepted,
+    required TResult Function(_InvitationDeclined value) invitationDeclined,
   }) {
     return started(this);
   }
@@ -187,9 +187,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
   }) {
     return started?.call(this);
   }
@@ -197,9 +197,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -209,36 +209,36 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements GameInvitationsEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements GameInvitationsEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class $InvitationAcceptedCopyWith<$Res> {
-  factory $InvitationAcceptedCopyWith(
-          InvitationAccepted value, $Res Function(InvitationAccepted) then) =
-      _$InvitationAcceptedCopyWithImpl<$Res>;
+abstract class _$InvitationAcceptedCopyWith<$Res> {
+  factory _$InvitationAcceptedCopyWith(
+          _InvitationAccepted value, $Res Function(_InvitationAccepted) then) =
+      __$InvitationAcceptedCopyWithImpl<$Res>;
   $Res call({GameInvitation gameInvitation});
 
   $GameInvitationCopyWith<$Res> get gameInvitation;
 }
 
 /// @nodoc
-class _$InvitationAcceptedCopyWithImpl<$Res>
+class __$InvitationAcceptedCopyWithImpl<$Res>
     extends _$GameInvitationsEventCopyWithImpl<$Res>
-    implements $InvitationAcceptedCopyWith<$Res> {
-  _$InvitationAcceptedCopyWithImpl(
-      InvitationAccepted _value, $Res Function(InvitationAccepted) _then)
-      : super(_value, (v) => _then(v as InvitationAccepted));
+    implements _$InvitationAcceptedCopyWith<$Res> {
+  __$InvitationAcceptedCopyWithImpl(
+      _InvitationAccepted _value, $Res Function(_InvitationAccepted) _then)
+      : super(_value, (v) => _then(v as _InvitationAccepted));
 
   @override
-  InvitationAccepted get _value => super._value as InvitationAccepted;
+  _InvitationAccepted get _value => super._value as _InvitationAccepted;
 
   @override
   $Res call({
     Object? gameInvitation = freezed,
   }) {
-    return _then(InvitationAccepted(
+    return _then(_InvitationAccepted(
       gameInvitation: gameInvitation == freezed
           ? _value.gameInvitation
           : gameInvitation // ignore: cast_nullable_to_non_nullable
@@ -256,8 +256,8 @@ class _$InvitationAcceptedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvitationAccepted implements InvitationAccepted {
-  const _$InvitationAccepted({required this.gameInvitation});
+class _$_InvitationAccepted implements _InvitationAccepted {
+  const _$_InvitationAccepted({required this.gameInvitation});
 
   @override
   final GameInvitation gameInvitation;
@@ -271,7 +271,7 @@ class _$InvitationAccepted implements InvitationAccepted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InvitationAccepted &&
+            other is _InvitationAccepted &&
             const DeepCollectionEquality()
                 .equals(other.gameInvitation, gameInvitation));
   }
@@ -282,8 +282,8 @@ class _$InvitationAccepted implements InvitationAccepted {
 
   @JsonKey(ignore: true)
   @override
-  $InvitationAcceptedCopyWith<InvitationAccepted> get copyWith =>
-      _$InvitationAcceptedCopyWithImpl<InvitationAccepted>(this, _$identity);
+  _$InvitationAcceptedCopyWith<_InvitationAccepted> get copyWith =>
+      __$InvitationAcceptedCopyWithImpl<_InvitationAccepted>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -322,9 +322,9 @@ class _$InvitationAccepted implements InvitationAccepted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(InvitationAccepted value) invitationAccepted,
-    required TResult Function(InvitationDeclined value) invitationDeclined,
+    required TResult Function(_Started value) started,
+    required TResult Function(_InvitationAccepted value) invitationAccepted,
+    required TResult Function(_InvitationDeclined value) invitationDeclined,
   }) {
     return invitationAccepted(this);
   }
@@ -332,9 +332,9 @@ class _$InvitationAccepted implements InvitationAccepted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
   }) {
     return invitationAccepted?.call(this);
   }
@@ -342,9 +342,9 @@ class _$InvitationAccepted implements InvitationAccepted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
     required TResult orElse(),
   }) {
     if (invitationAccepted != null) {
@@ -354,42 +354,42 @@ class _$InvitationAccepted implements InvitationAccepted {
   }
 }
 
-abstract class InvitationAccepted implements GameInvitationsEvent {
-  const factory InvitationAccepted({required GameInvitation gameInvitation}) =
-      _$InvitationAccepted;
+abstract class _InvitationAccepted implements GameInvitationsEvent {
+  const factory _InvitationAccepted({required GameInvitation gameInvitation}) =
+      _$_InvitationAccepted;
 
   GameInvitation get gameInvitation;
   @JsonKey(ignore: true)
-  $InvitationAcceptedCopyWith<InvitationAccepted> get copyWith =>
+  _$InvitationAcceptedCopyWith<_InvitationAccepted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvitationDeclinedCopyWith<$Res> {
-  factory $InvitationDeclinedCopyWith(
-          InvitationDeclined value, $Res Function(InvitationDeclined) then) =
-      _$InvitationDeclinedCopyWithImpl<$Res>;
+abstract class _$InvitationDeclinedCopyWith<$Res> {
+  factory _$InvitationDeclinedCopyWith(
+          _InvitationDeclined value, $Res Function(_InvitationDeclined) then) =
+      __$InvitationDeclinedCopyWithImpl<$Res>;
   $Res call({GameInvitation gameInvitation});
 
   $GameInvitationCopyWith<$Res> get gameInvitation;
 }
 
 /// @nodoc
-class _$InvitationDeclinedCopyWithImpl<$Res>
+class __$InvitationDeclinedCopyWithImpl<$Res>
     extends _$GameInvitationsEventCopyWithImpl<$Res>
-    implements $InvitationDeclinedCopyWith<$Res> {
-  _$InvitationDeclinedCopyWithImpl(
-      InvitationDeclined _value, $Res Function(InvitationDeclined) _then)
-      : super(_value, (v) => _then(v as InvitationDeclined));
+    implements _$InvitationDeclinedCopyWith<$Res> {
+  __$InvitationDeclinedCopyWithImpl(
+      _InvitationDeclined _value, $Res Function(_InvitationDeclined) _then)
+      : super(_value, (v) => _then(v as _InvitationDeclined));
 
   @override
-  InvitationDeclined get _value => super._value as InvitationDeclined;
+  _InvitationDeclined get _value => super._value as _InvitationDeclined;
 
   @override
   $Res call({
     Object? gameInvitation = freezed,
   }) {
-    return _then(InvitationDeclined(
+    return _then(_InvitationDeclined(
       gameInvitation: gameInvitation == freezed
           ? _value.gameInvitation
           : gameInvitation // ignore: cast_nullable_to_non_nullable
@@ -407,8 +407,8 @@ class _$InvitationDeclinedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvitationDeclined implements InvitationDeclined {
-  const _$InvitationDeclined({required this.gameInvitation});
+class _$_InvitationDeclined implements _InvitationDeclined {
+  const _$_InvitationDeclined({required this.gameInvitation});
 
   @override
   final GameInvitation gameInvitation;
@@ -422,7 +422,7 @@ class _$InvitationDeclined implements InvitationDeclined {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InvitationDeclined &&
+            other is _InvitationDeclined &&
             const DeepCollectionEquality()
                 .equals(other.gameInvitation, gameInvitation));
   }
@@ -433,8 +433,8 @@ class _$InvitationDeclined implements InvitationDeclined {
 
   @JsonKey(ignore: true)
   @override
-  $InvitationDeclinedCopyWith<InvitationDeclined> get copyWith =>
-      _$InvitationDeclinedCopyWithImpl<InvitationDeclined>(this, _$identity);
+  _$InvitationDeclinedCopyWith<_InvitationDeclined> get copyWith =>
+      __$InvitationDeclinedCopyWithImpl<_InvitationDeclined>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -473,9 +473,9 @@ class _$InvitationDeclined implements InvitationDeclined {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(InvitationAccepted value) invitationAccepted,
-    required TResult Function(InvitationDeclined value) invitationDeclined,
+    required TResult Function(_Started value) started,
+    required TResult Function(_InvitationAccepted value) invitationAccepted,
+    required TResult Function(_InvitationDeclined value) invitationDeclined,
   }) {
     return invitationDeclined(this);
   }
@@ -483,9 +483,9 @@ class _$InvitationDeclined implements InvitationDeclined {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
   }) {
     return invitationDeclined?.call(this);
   }
@@ -493,9 +493,9 @@ class _$InvitationDeclined implements InvitationDeclined {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(InvitationAccepted value)? invitationAccepted,
-    TResult Function(InvitationDeclined value)? invitationDeclined,
+    TResult Function(_Started value)? started,
+    TResult Function(_InvitationAccepted value)? invitationAccepted,
+    TResult Function(_InvitationDeclined value)? invitationDeclined,
     required TResult orElse(),
   }) {
     if (invitationDeclined != null) {
@@ -505,13 +505,13 @@ class _$InvitationDeclined implements InvitationDeclined {
   }
 }
 
-abstract class InvitationDeclined implements GameInvitationsEvent {
-  const factory InvitationDeclined({required GameInvitation gameInvitation}) =
-      _$InvitationDeclined;
+abstract class _InvitationDeclined implements GameInvitationsEvent {
+  const factory _InvitationDeclined({required GameInvitation gameInvitation}) =
+      _$_InvitationDeclined;
 
   GameInvitation get gameInvitation;
   @JsonKey(ignore: true)
-  $InvitationDeclinedCopyWith<InvitationDeclined> get copyWith =>
+  _$InvitationDeclinedCopyWith<_InvitationDeclined> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

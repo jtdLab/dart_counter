@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MoreEventTearOff {
   const _$MoreEventTearOff();
 
-  RemovePressed removePressed() {
-    return const RemovePressed();
+  _RemovePressed removePressed() {
+    return const _RemovePressed();
   }
 }
 
@@ -45,17 +45,17 @@ mixin _$MoreEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RemovePressed value) removePressed,
+    required TResult Function(_RemovePressed value) removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(_RemovePressed value)? removePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(_RemovePressed value)? removePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,27 +77,27 @@ class _$MoreEventCopyWithImpl<$Res> implements $MoreEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $RemovePressedCopyWith<$Res> {
-  factory $RemovePressedCopyWith(
-          RemovePressed value, $Res Function(RemovePressed) then) =
-      _$RemovePressedCopyWithImpl<$Res>;
+abstract class _$RemovePressedCopyWith<$Res> {
+  factory _$RemovePressedCopyWith(
+          _RemovePressed value, $Res Function(_RemovePressed) then) =
+      __$RemovePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RemovePressedCopyWithImpl<$Res> extends _$MoreEventCopyWithImpl<$Res>
-    implements $RemovePressedCopyWith<$Res> {
-  _$RemovePressedCopyWithImpl(
-      RemovePressed _value, $Res Function(RemovePressed) _then)
-      : super(_value, (v) => _then(v as RemovePressed));
+class __$RemovePressedCopyWithImpl<$Res> extends _$MoreEventCopyWithImpl<$Res>
+    implements _$RemovePressedCopyWith<$Res> {
+  __$RemovePressedCopyWithImpl(
+      _RemovePressed _value, $Res Function(_RemovePressed) _then)
+      : super(_value, (v) => _then(v as _RemovePressed));
 
   @override
-  RemovePressed get _value => super._value as RemovePressed;
+  _RemovePressed get _value => super._value as _RemovePressed;
 }
 
 /// @nodoc
 
-class _$RemovePressed implements RemovePressed {
-  const _$RemovePressed();
+class _$_RemovePressed implements _RemovePressed {
+  const _$_RemovePressed();
 
   @override
   String toString() {
@@ -107,7 +107,7 @@ class _$RemovePressed implements RemovePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is RemovePressed);
+        (other.runtimeType == runtimeType && other is _RemovePressed);
   }
 
   @override
@@ -144,7 +144,7 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RemovePressed value) removePressed,
+    required TResult Function(_RemovePressed value) removePressed,
   }) {
     return removePressed(this);
   }
@@ -152,7 +152,7 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(_RemovePressed value)? removePressed,
   }) {
     return removePressed?.call(this);
   }
@@ -160,7 +160,7 @@ class _$RemovePressed implements RemovePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RemovePressed value)? removePressed,
+    TResult Function(_RemovePressed value)? removePressed,
     required TResult orElse(),
   }) {
     if (removePressed != null) {
@@ -170,8 +170,8 @@ class _$RemovePressed implements RemovePressed {
   }
 }
 
-abstract class RemovePressed implements MoreEvent {
-  const factory RemovePressed() = _$RemovePressed;
+abstract class _RemovePressed implements MoreEvent {
+  const factory _RemovePressed() = _$_RemovePressed;
 }
 
 /// @nodoc

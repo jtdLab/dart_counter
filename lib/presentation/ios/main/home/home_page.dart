@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<HomeBloc>()..add(const HomeEvent.watchDataStarted()),
+          create: (context) => getIt<HomeBloc>()..add(const HomeEvent.started()),
         ),
         BlocProvider(
           create: (context) => getIt<CreateOnlineGameCubit>(),

@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
-  Started started() {
-    return const Started();
+  _Started started() {
+    return const _Started();
   }
 }
 
@@ -45,17 +45,17 @@ mixin _$ProfileEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,25 +78,25 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $StartedCopyWith<$Res> {
-  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
-      _$StartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$StartedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements $StartedCopyWith<$Res> {
-  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
-      : super(_value, (v) => _then(v as Started));
+class __$StartedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  Started get _value => super._value as Started;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -106,7 +106,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Started);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -143,7 +143,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
+    required TResult Function(_Started value) started,
   }) {
     return started(this);
   }
@@ -151,7 +151,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(_Started value)? started,
   }) {
     return started?.call(this);
   }
@@ -159,7 +159,7 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -169,8 +169,8 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements ProfileEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements ProfileEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc

@@ -1192,9 +1192,9 @@ abstract class _SingleTrainingMissHitPressed implements SingleTrainingEvent {
 class _$SingleTrainingStateTearOff {
   const _$SingleTrainingStateTearOff();
 
-  _SingleTrainingInitial initial(
+  SingleTrainingInitial initial(
       {required KtList<Hit> hits, required Mode mode}) {
-    return _SingleTrainingInitial(
+    return SingleTrainingInitial(
       hits: hits,
       mode: mode,
     );
@@ -1227,17 +1227,17 @@ mixin _$SingleTrainingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SingleTrainingInitial value) initial,
+    required TResult Function(SingleTrainingInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SingleTrainingInitial value)? initial,
+    TResult Function(SingleTrainingInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SingleTrainingInitial value)? initial,
+    TResult Function(SingleTrainingInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1283,32 +1283,32 @@ class _$SingleTrainingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SingleTrainingInitialCopyWith<$Res>
+abstract class $SingleTrainingInitialCopyWith<$Res>
     implements $SingleTrainingStateCopyWith<$Res> {
-  factory _$SingleTrainingInitialCopyWith(_SingleTrainingInitial value,
-          $Res Function(_SingleTrainingInitial) then) =
-      __$SingleTrainingInitialCopyWithImpl<$Res>;
+  factory $SingleTrainingInitialCopyWith(SingleTrainingInitial value,
+          $Res Function(SingleTrainingInitial) then) =
+      _$SingleTrainingInitialCopyWithImpl<$Res>;
   @override
   $Res call({KtList<Hit> hits, Mode mode});
 }
 
 /// @nodoc
-class __$SingleTrainingInitialCopyWithImpl<$Res>
+class _$SingleTrainingInitialCopyWithImpl<$Res>
     extends _$SingleTrainingStateCopyWithImpl<$Res>
-    implements _$SingleTrainingInitialCopyWith<$Res> {
-  __$SingleTrainingInitialCopyWithImpl(_SingleTrainingInitial _value,
-      $Res Function(_SingleTrainingInitial) _then)
-      : super(_value, (v) => _then(v as _SingleTrainingInitial));
+    implements $SingleTrainingInitialCopyWith<$Res> {
+  _$SingleTrainingInitialCopyWithImpl(
+      SingleTrainingInitial _value, $Res Function(SingleTrainingInitial) _then)
+      : super(_value, (v) => _then(v as SingleTrainingInitial));
 
   @override
-  _SingleTrainingInitial get _value => super._value as _SingleTrainingInitial;
+  SingleTrainingInitial get _value => super._value as SingleTrainingInitial;
 
   @override
   $Res call({
     Object? hits = freezed,
     Object? mode = freezed,
   }) {
-    return _then(_SingleTrainingInitial(
+    return _then(SingleTrainingInitial(
       hits: hits == freezed
           ? _value.hits
           : hits // ignore: cast_nullable_to_non_nullable
@@ -1323,8 +1323,8 @@ class __$SingleTrainingInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SingleTrainingInitial implements _SingleTrainingInitial {
-  const _$_SingleTrainingInitial({required this.hits, required this.mode});
+class _$SingleTrainingInitial implements SingleTrainingInitial {
+  const _$SingleTrainingInitial({required this.hits, required this.mode});
 
   @override
   final KtList<Hit> hits;
@@ -1340,7 +1340,7 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SingleTrainingInitial &&
+            other is SingleTrainingInitial &&
             const DeepCollectionEquality().equals(other.hits, hits) &&
             const DeepCollectionEquality().equals(other.mode, mode));
   }
@@ -1353,8 +1353,8 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
 
   @JsonKey(ignore: true)
   @override
-  _$SingleTrainingInitialCopyWith<_SingleTrainingInitial> get copyWith =>
-      __$SingleTrainingInitialCopyWithImpl<_SingleTrainingInitial>(
+  $SingleTrainingInitialCopyWith<SingleTrainingInitial> get copyWith =>
+      _$SingleTrainingInitialCopyWithImpl<SingleTrainingInitial>(
           this, _$identity);
 
   @override
@@ -1388,7 +1388,7 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SingleTrainingInitial value) initial,
+    required TResult Function(SingleTrainingInitial value) initial,
   }) {
     return initial(this);
   }
@@ -1396,7 +1396,7 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SingleTrainingInitial value)? initial,
+    TResult Function(SingleTrainingInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -1404,7 +1404,7 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SingleTrainingInitial value)? initial,
+    TResult Function(SingleTrainingInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1414,10 +1414,10 @@ class _$_SingleTrainingInitial implements _SingleTrainingInitial {
   }
 }
 
-abstract class _SingleTrainingInitial implements SingleTrainingState {
-  const factory _SingleTrainingInitial(
+abstract class SingleTrainingInitial implements SingleTrainingState {
+  const factory SingleTrainingInitial(
       {required KtList<Hit> hits,
-      required Mode mode}) = _$_SingleTrainingInitial;
+      required Mode mode}) = _$SingleTrainingInitial;
 
   @override
   KtList<Hit> get hits;
@@ -1425,6 +1425,6 @@ abstract class _SingleTrainingInitial implements SingleTrainingState {
   Mode get mode;
   @override
   @JsonKey(ignore: true)
-  _$SingleTrainingInitialCopyWith<_SingleTrainingInitial> get copyWith =>
+  $SingleTrainingInitialCopyWith<SingleTrainingInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

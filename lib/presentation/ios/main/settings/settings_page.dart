@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<SettingsBloc>()..add(const SettingsEvent.watchDataStarted()),
+          getIt<SettingsBloc>()..add(const SettingsEvent.started()),
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Unauthenticated) {

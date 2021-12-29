@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SettingsEventTearOff {
   const _$SettingsEventTearOff();
 
-  _WatchDataStarted watchDataStarted() {
-    return const _WatchDataStarted();
+  _Started started() {
+    return const _Started();
   }
 
   _LocaleChanged localeChanged() {
@@ -37,21 +37,21 @@ const $SettingsEvent = _$SettingsEventTearOff();
 mixin _$SettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -59,21 +59,21 @@ mixin _$SettingsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_LocaleChanged value) localeChanged,
     required TResult Function(_SignOutPressed value) signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
@@ -99,38 +99,35 @@ class _$SettingsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WatchDataStartedCopyWith<$Res> {
-  factory _$WatchDataStartedCopyWith(
-          _WatchDataStarted value, $Res Function(_WatchDataStarted) then) =
-      __$WatchDataStartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchDataStartedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$WatchDataStartedCopyWith<$Res> {
-  __$WatchDataStartedCopyWithImpl(
-      _WatchDataStarted _value, $Res Function(_WatchDataStarted) _then)
-      : super(_value, (v) => _then(v as _WatchDataStarted));
+class __$StartedCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  _WatchDataStarted get _value => super._value as _WatchDataStarted;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$_WatchDataStarted implements _WatchDataStarted {
-  const _$_WatchDataStarted();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
-    return 'SettingsEvent.watchDataStarted()';
+    return 'SettingsEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WatchDataStarted);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -139,33 +136,33 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
-    return watchDataStarted();
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
-    return watchDataStarted?.call();
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
   }) {
-    if (watchDataStarted != null) {
-      return watchDataStarted();
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -173,40 +170,40 @@ class _$_WatchDataStarted implements _WatchDataStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_LocaleChanged value) localeChanged,
     required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
-    return watchDataStarted(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
-    return watchDataStarted?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
   }) {
-    if (watchDataStarted != null) {
-      return watchDataStarted(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _WatchDataStarted implements SettingsEvent {
-  const factory _WatchDataStarted() = _$_WatchDataStarted;
+abstract class _Started implements SettingsEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
@@ -250,7 +247,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -260,7 +257,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -270,7 +267,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -284,7 +281,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_LocaleChanged value) localeChanged,
     required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
@@ -294,7 +291,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
@@ -304,7 +301,7 @@ class _$_LocaleChanged implements _LocaleChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),
@@ -361,7 +358,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchDataStarted,
+    required TResult Function() started,
     required TResult Function() localeChanged,
     required TResult Function() signOutPressed,
   }) {
@@ -371,7 +368,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
   }) {
@@ -381,7 +378,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchDataStarted,
+    TResult Function()? started,
     TResult Function()? localeChanged,
     TResult Function()? signOutPressed,
     required TResult orElse(),
@@ -395,7 +392,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchDataStarted value) watchDataStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_LocaleChanged value) localeChanged,
     required TResult Function(_SignOutPressed value) signOutPressed,
   }) {
@@ -405,7 +402,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
   }) {
@@ -415,7 +412,7 @@ class _$_SignOutPressed implements _SignOutPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchDataStarted value)? watchDataStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_LocaleChanged value)? localeChanged,
     TResult Function(_SignOutPressed value)? signOutPressed,
     required TResult orElse(),

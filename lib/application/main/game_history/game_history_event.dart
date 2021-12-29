@@ -3,13 +3,13 @@ part of 'game_history_bloc.dart';
 @freezed
 class GameHistoryEvent with _$GameHistoryEvent {
   const factory GameHistoryEvent.fetchGameHistoryAllRequested() =
-      FetchGameHistoryAllRequested;
+      _FetchGameHistoryAllRequested;
   const factory GameHistoryEvent.fetchGameHistoryOfflineRequested() =
-      FetchGameHistoryOfflineRequested;
+      _FetchGameHistoryOfflineRequested;
   const factory GameHistoryEvent.fetchGameHistoryOnlineRequested({
     UniqueId? userId,
-  }) = FetchGameHistoryOnlineRequested;
+  }) = _FetchGameHistoryOnlineRequested;
   const factory GameHistoryEvent.gameSelected({
     required AbstractGame game,
-  }) = GameSelected;
+  }) = _GameSelected;
 }

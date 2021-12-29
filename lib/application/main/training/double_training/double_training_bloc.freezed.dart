@@ -808,9 +808,9 @@ abstract class _DoubleTrainingMissHitPressed implements DoubleTrainingEvent {
 class _$DoubleTrainingStateTearOff {
   const _$DoubleTrainingStateTearOff();
 
-  _DoubleTrainingInitial initial(
+  DoubleTrainingInitial initial(
       {required KtList<Hit> hits, required Mode mode}) {
-    return _DoubleTrainingInitial(
+    return DoubleTrainingInitial(
       hits: hits,
       mode: mode,
     );
@@ -843,17 +843,17 @@ mixin _$DoubleTrainingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DoubleTrainingInitial value) initial,
+    required TResult Function(DoubleTrainingInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DoubleTrainingInitial value)? initial,
+    TResult Function(DoubleTrainingInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DoubleTrainingInitial value)? initial,
+    TResult Function(DoubleTrainingInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -899,32 +899,32 @@ class _$DoubleTrainingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DoubleTrainingInitialCopyWith<$Res>
+abstract class $DoubleTrainingInitialCopyWith<$Res>
     implements $DoubleTrainingStateCopyWith<$Res> {
-  factory _$DoubleTrainingInitialCopyWith(_DoubleTrainingInitial value,
-          $Res Function(_DoubleTrainingInitial) then) =
-      __$DoubleTrainingInitialCopyWithImpl<$Res>;
+  factory $DoubleTrainingInitialCopyWith(DoubleTrainingInitial value,
+          $Res Function(DoubleTrainingInitial) then) =
+      _$DoubleTrainingInitialCopyWithImpl<$Res>;
   @override
   $Res call({KtList<Hit> hits, Mode mode});
 }
 
 /// @nodoc
-class __$DoubleTrainingInitialCopyWithImpl<$Res>
+class _$DoubleTrainingInitialCopyWithImpl<$Res>
     extends _$DoubleTrainingStateCopyWithImpl<$Res>
-    implements _$DoubleTrainingInitialCopyWith<$Res> {
-  __$DoubleTrainingInitialCopyWithImpl(_DoubleTrainingInitial _value,
-      $Res Function(_DoubleTrainingInitial) _then)
-      : super(_value, (v) => _then(v as _DoubleTrainingInitial));
+    implements $DoubleTrainingInitialCopyWith<$Res> {
+  _$DoubleTrainingInitialCopyWithImpl(
+      DoubleTrainingInitial _value, $Res Function(DoubleTrainingInitial) _then)
+      : super(_value, (v) => _then(v as DoubleTrainingInitial));
 
   @override
-  _DoubleTrainingInitial get _value => super._value as _DoubleTrainingInitial;
+  DoubleTrainingInitial get _value => super._value as DoubleTrainingInitial;
 
   @override
   $Res call({
     Object? hits = freezed,
     Object? mode = freezed,
   }) {
-    return _then(_DoubleTrainingInitial(
+    return _then(DoubleTrainingInitial(
       hits: hits == freezed
           ? _value.hits
           : hits // ignore: cast_nullable_to_non_nullable
@@ -939,8 +939,8 @@ class __$DoubleTrainingInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
-  const _$_DoubleTrainingInitial({required this.hits, required this.mode});
+class _$DoubleTrainingInitial implements DoubleTrainingInitial {
+  const _$DoubleTrainingInitial({required this.hits, required this.mode});
 
   @override
   final KtList<Hit> hits;
@@ -956,7 +956,7 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DoubleTrainingInitial &&
+            other is DoubleTrainingInitial &&
             const DeepCollectionEquality().equals(other.hits, hits) &&
             const DeepCollectionEquality().equals(other.mode, mode));
   }
@@ -969,8 +969,8 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
 
   @JsonKey(ignore: true)
   @override
-  _$DoubleTrainingInitialCopyWith<_DoubleTrainingInitial> get copyWith =>
-      __$DoubleTrainingInitialCopyWithImpl<_DoubleTrainingInitial>(
+  $DoubleTrainingInitialCopyWith<DoubleTrainingInitial> get copyWith =>
+      _$DoubleTrainingInitialCopyWithImpl<DoubleTrainingInitial>(
           this, _$identity);
 
   @override
@@ -1004,7 +1004,7 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DoubleTrainingInitial value) initial,
+    required TResult Function(DoubleTrainingInitial value) initial,
   }) {
     return initial(this);
   }
@@ -1012,7 +1012,7 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DoubleTrainingInitial value)? initial,
+    TResult Function(DoubleTrainingInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -1020,7 +1020,7 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DoubleTrainingInitial value)? initial,
+    TResult Function(DoubleTrainingInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1030,10 +1030,10 @@ class _$_DoubleTrainingInitial implements _DoubleTrainingInitial {
   }
 }
 
-abstract class _DoubleTrainingInitial implements DoubleTrainingState {
-  const factory _DoubleTrainingInitial(
+abstract class DoubleTrainingInitial implements DoubleTrainingState {
+  const factory DoubleTrainingInitial(
       {required KtList<Hit> hits,
-      required Mode mode}) = _$_DoubleTrainingInitial;
+      required Mode mode}) = _$DoubleTrainingInitial;
 
   @override
   KtList<Hit> get hits;
@@ -1041,6 +1041,6 @@ abstract class _DoubleTrainingInitial implements DoubleTrainingState {
   Mode get mode;
   @override
   @JsonKey(ignore: true)
-  _$DoubleTrainingInitialCopyWith<_DoubleTrainingInitial> get copyWith =>
+  $DoubleTrainingInitialCopyWith<DoubleTrainingInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

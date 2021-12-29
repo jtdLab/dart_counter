@@ -847,9 +847,9 @@ abstract class _ScoreTrainingEreasePressed implements ScoreTrainingEvent {
 class _$ScoreTrainingStateTearOff {
   const _$ScoreTrainingStateTearOff();
 
-  _ScoreTrainingInitial initial(
+  ScoreTrainingInitial initial(
       {required int points, required int numberOfTakes}) {
-    return _ScoreTrainingInitial(
+    return ScoreTrainingInitial(
       points: points,
       numberOfTakes: numberOfTakes,
     );
@@ -882,17 +882,17 @@ mixin _$ScoreTrainingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ScoreTrainingInitial value) initial,
+    required TResult Function(ScoreTrainingInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ScoreTrainingInitial value)? initial,
+    TResult Function(ScoreTrainingInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ScoreTrainingInitial value)? initial,
+    TResult Function(ScoreTrainingInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -938,32 +938,32 @@ class _$ScoreTrainingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScoreTrainingInitialCopyWith<$Res>
+abstract class $ScoreTrainingInitialCopyWith<$Res>
     implements $ScoreTrainingStateCopyWith<$Res> {
-  factory _$ScoreTrainingInitialCopyWith(_ScoreTrainingInitial value,
-          $Res Function(_ScoreTrainingInitial) then) =
-      __$ScoreTrainingInitialCopyWithImpl<$Res>;
+  factory $ScoreTrainingInitialCopyWith(ScoreTrainingInitial value,
+          $Res Function(ScoreTrainingInitial) then) =
+      _$ScoreTrainingInitialCopyWithImpl<$Res>;
   @override
   $Res call({int points, int numberOfTakes});
 }
 
 /// @nodoc
-class __$ScoreTrainingInitialCopyWithImpl<$Res>
+class _$ScoreTrainingInitialCopyWithImpl<$Res>
     extends _$ScoreTrainingStateCopyWithImpl<$Res>
-    implements _$ScoreTrainingInitialCopyWith<$Res> {
-  __$ScoreTrainingInitialCopyWithImpl(
-      _ScoreTrainingInitial _value, $Res Function(_ScoreTrainingInitial) _then)
-      : super(_value, (v) => _then(v as _ScoreTrainingInitial));
+    implements $ScoreTrainingInitialCopyWith<$Res> {
+  _$ScoreTrainingInitialCopyWithImpl(
+      ScoreTrainingInitial _value, $Res Function(ScoreTrainingInitial) _then)
+      : super(_value, (v) => _then(v as ScoreTrainingInitial));
 
   @override
-  _ScoreTrainingInitial get _value => super._value as _ScoreTrainingInitial;
+  ScoreTrainingInitial get _value => super._value as ScoreTrainingInitial;
 
   @override
   $Res call({
     Object? points = freezed,
     Object? numberOfTakes = freezed,
   }) {
-    return _then(_ScoreTrainingInitial(
+    return _then(ScoreTrainingInitial(
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -978,8 +978,8 @@ class __$ScoreTrainingInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
-  const _$_ScoreTrainingInitial(
+class _$ScoreTrainingInitial implements ScoreTrainingInitial {
+  const _$ScoreTrainingInitial(
       {required this.points, required this.numberOfTakes});
 
   @override
@@ -996,7 +996,7 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScoreTrainingInitial &&
+            other is ScoreTrainingInitial &&
             const DeepCollectionEquality().equals(other.points, points) &&
             const DeepCollectionEquality()
                 .equals(other.numberOfTakes, numberOfTakes));
@@ -1010,8 +1010,8 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
 
   @JsonKey(ignore: true)
   @override
-  _$ScoreTrainingInitialCopyWith<_ScoreTrainingInitial> get copyWith =>
-      __$ScoreTrainingInitialCopyWithImpl<_ScoreTrainingInitial>(
+  $ScoreTrainingInitialCopyWith<ScoreTrainingInitial> get copyWith =>
+      _$ScoreTrainingInitialCopyWithImpl<ScoreTrainingInitial>(
           this, _$identity);
 
   @override
@@ -1045,7 +1045,7 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ScoreTrainingInitial value) initial,
+    required TResult Function(ScoreTrainingInitial value) initial,
   }) {
     return initial(this);
   }
@@ -1053,7 +1053,7 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ScoreTrainingInitial value)? initial,
+    TResult Function(ScoreTrainingInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -1061,7 +1061,7 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ScoreTrainingInitial value)? initial,
+    TResult Function(ScoreTrainingInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1071,10 +1071,10 @@ class _$_ScoreTrainingInitial implements _ScoreTrainingInitial {
   }
 }
 
-abstract class _ScoreTrainingInitial implements ScoreTrainingState {
-  const factory _ScoreTrainingInitial(
+abstract class ScoreTrainingInitial implements ScoreTrainingState {
+  const factory ScoreTrainingInitial(
       {required int points,
-      required int numberOfTakes}) = _$_ScoreTrainingInitial;
+      required int numberOfTakes}) = _$ScoreTrainingInitial;
 
   @override
   int get points;
@@ -1082,6 +1082,6 @@ abstract class _ScoreTrainingInitial implements ScoreTrainingState {
   int get numberOfTakes;
   @override
   @JsonKey(ignore: true)
-  _$ScoreTrainingInitialCopyWith<_ScoreTrainingInitial> get copyWith =>
+  $ScoreTrainingInitialCopyWith<ScoreTrainingInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

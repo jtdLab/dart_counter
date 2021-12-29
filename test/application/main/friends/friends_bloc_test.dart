@@ -103,6 +103,23 @@ void main() {
   group(
     'Started',
     () {
+      blocTest<FriendsBloc, FriendsState>(
+        'calls markReceivedFriendRequestsAsRead',
+        setUp: () {
+          when(() => mockFriendService.markReceivedFriendRequestsAsRead())
+              .thenAnswer((_) async => right(unit));
+        },
+        build: () => FriendsBloc(
+          mockFriendService,
+        ),
+        act: (bloc) => bloc.add(const FriendsEvent.started()),
+        verify: (_) {
+          verify(() => mockFriendService.markReceivedFriendRequestsAsRead())
+              .called(1);
+        },
+      );
+      
+
       // TODO gar kein bock
       /**
       *  blocTest<FriendsBloc, FriendsState>(

@@ -15,13 +15,10 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:rxdart/rxdart.dart';
 
 part 'game_invitations_bloc.freezed.dart';
 part 'game_invitations_event.dart';
 part 'game_invitations_state.dart';
-
-// TODO transform to bloc v.8.0.0
 
 @lazySingleton
 class GameInvitationsBloc
@@ -46,14 +43,14 @@ class GameInvitationsBloc
             loading: false,
           ),
         ) {
-    on<Started>(
+    on<_Started>(
       (_, emit) async => _mapStartedToState(emit),
       transformer: restartable(),
     );
-    on<InvitationAccepted>(
+    on<_InvitationAccepted>(
       (event, emit) async => _mapInvitationAcceptedToState(event, emit),
     );
-    on<InvitationDeclined>(
+    on<_InvitationDeclined>(
       (event, _) => _mapInvitationDeclinedToState(event),
     );
   }
@@ -65,33 +62,34 @@ class GameInvitationsBloc
     // TODO does this belong to application or infra atm its infra
     _gameInvitationService.markReceivedInvitationsAsRead();
 
-    final dataStream = CombineLatestStream(
-      [
-        _gameInvitationService.watchReceivedGameInvitations(),
-        _gameInvitationService.watchSentInvitations(),
-      ],
-      (events) => events,
-    );
-
     // TODO test if this gets canceld on first error occurence
     await Future.wait(
       [
         emit.forEach(
-          dataStream,
-          onData: (List data) {
-            final failureOrReceivedGameInvitations = data[0]!
-                as Either<GameInvitationFailure, KtList<GameInvitation>>;
-            final failureOrSentGameInvitations = data[1]!
-                as Either<GameInvitationFailure, KtList<GameInvitation>>;
-
-            return state.copyWith(
-              receivedGameInvitations:
-                  failureOrReceivedGameInvitations.getOrElse(
-                      () => throw ApplicationError.unexpectedMissingData()),
-              sentGameInvitations: failureOrSentGameInvitations.getOrElse(
-                  () => throw ApplicationError.unexpectedMissingData()),
-            );
-          },
+          _gameInvitationService.watchReceivedGameInvitations(),
+          onData: (
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrReceivedGameInvitations,
+          ) =>
+              state.copyWith(
+            receivedGameInvitations: failureOrReceivedGameInvitations.getOrElse(
+              () => throw ApplicationError
+                  .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+            ),
+          ),
+        ),
+        emit.forEach(
+          _gameInvitationService.watchSentInvitations(),
+          onData: (
+            Either<GameInvitationFailure, KtList<GameInvitation>>
+                failureOrSentGameInvitations,
+          ) =>
+              state.copyWith(
+            sentGameInvitations: failureOrSentGameInvitations.getOrElse(
+              () => throw ApplicationError
+                  .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+            ),
+          ),
         ),
         emit.forEach(
           _playOnlineService.watchGame(),
@@ -104,7 +102,7 @@ class GameInvitationsBloc
   }
 
   Future<void> _mapInvitationAcceptedToState(
-    InvitationAccepted event,
+    _InvitationAccepted event,
     Emitter<GameInvitationsState> emit,
   ) async {
     final gameId = event.gameInvitation.gameId;
@@ -124,7 +122,7 @@ class GameInvitationsBloc
   }
 
   void _mapInvitationDeclinedToState(
-    InvitationDeclined event,
+    _InvitationDeclined event,
   ) {
     // TODO await result ???
     _gameInvitationService.decline(invitation: event.gameInvitation);

@@ -874,8 +874,8 @@ abstract class _BobsTwentySevenTrainingMissHitPressed
 class _$BobsTwentySevenStateTearOff {
   const _$BobsTwentySevenStateTearOff();
 
-  _BobsTwentySevenInitial initial({required KtList<Hit> hits}) {
-    return _BobsTwentySevenInitial(
+  BobsTwentySevenInitial initial({required KtList<Hit> hits}) {
+    return BobsTwentySevenInitial(
       hits: hits,
     );
   }
@@ -906,17 +906,17 @@ mixin _$BobsTwentySevenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_BobsTwentySevenInitial value) initial,
+    required TResult Function(BobsTwentySevenInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_BobsTwentySevenInitial value)? initial,
+    TResult Function(BobsTwentySevenInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_BobsTwentySevenInitial value)? initial,
+    TResult Function(BobsTwentySevenInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -957,31 +957,31 @@ class _$BobsTwentySevenStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BobsTwentySevenInitialCopyWith<$Res>
+abstract class $BobsTwentySevenInitialCopyWith<$Res>
     implements $BobsTwentySevenStateCopyWith<$Res> {
-  factory _$BobsTwentySevenInitialCopyWith(_BobsTwentySevenInitial value,
-          $Res Function(_BobsTwentySevenInitial) then) =
-      __$BobsTwentySevenInitialCopyWithImpl<$Res>;
+  factory $BobsTwentySevenInitialCopyWith(BobsTwentySevenInitial value,
+          $Res Function(BobsTwentySevenInitial) then) =
+      _$BobsTwentySevenInitialCopyWithImpl<$Res>;
   @override
   $Res call({KtList<Hit> hits});
 }
 
 /// @nodoc
-class __$BobsTwentySevenInitialCopyWithImpl<$Res>
+class _$BobsTwentySevenInitialCopyWithImpl<$Res>
     extends _$BobsTwentySevenStateCopyWithImpl<$Res>
-    implements _$BobsTwentySevenInitialCopyWith<$Res> {
-  __$BobsTwentySevenInitialCopyWithImpl(_BobsTwentySevenInitial _value,
-      $Res Function(_BobsTwentySevenInitial) _then)
-      : super(_value, (v) => _then(v as _BobsTwentySevenInitial));
+    implements $BobsTwentySevenInitialCopyWith<$Res> {
+  _$BobsTwentySevenInitialCopyWithImpl(BobsTwentySevenInitial _value,
+      $Res Function(BobsTwentySevenInitial) _then)
+      : super(_value, (v) => _then(v as BobsTwentySevenInitial));
 
   @override
-  _BobsTwentySevenInitial get _value => super._value as _BobsTwentySevenInitial;
+  BobsTwentySevenInitial get _value => super._value as BobsTwentySevenInitial;
 
   @override
   $Res call({
     Object? hits = freezed,
   }) {
-    return _then(_BobsTwentySevenInitial(
+    return _then(BobsTwentySevenInitial(
       hits: hits == freezed
           ? _value.hits
           : hits // ignore: cast_nullable_to_non_nullable
@@ -992,8 +992,8 @@ class __$BobsTwentySevenInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
-  const _$_BobsTwentySevenInitial({required this.hits});
+class _$BobsTwentySevenInitial implements BobsTwentySevenInitial {
+  const _$BobsTwentySevenInitial({required this.hits});
 
   @override
   final KtList<Hit> hits;
@@ -1007,7 +1007,7 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BobsTwentySevenInitial &&
+            other is BobsTwentySevenInitial &&
             const DeepCollectionEquality().equals(other.hits, hits));
   }
 
@@ -1017,8 +1017,8 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
 
   @JsonKey(ignore: true)
   @override
-  _$BobsTwentySevenInitialCopyWith<_BobsTwentySevenInitial> get copyWith =>
-      __$BobsTwentySevenInitialCopyWithImpl<_BobsTwentySevenInitial>(
+  $BobsTwentySevenInitialCopyWith<BobsTwentySevenInitial> get copyWith =>
+      _$BobsTwentySevenInitialCopyWithImpl<BobsTwentySevenInitial>(
           this, _$identity);
 
   @override
@@ -1052,7 +1052,7 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_BobsTwentySevenInitial value) initial,
+    required TResult Function(BobsTwentySevenInitial value) initial,
   }) {
     return initial(this);
   }
@@ -1060,7 +1060,7 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_BobsTwentySevenInitial value)? initial,
+    TResult Function(BobsTwentySevenInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -1068,7 +1068,7 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_BobsTwentySevenInitial value)? initial,
+    TResult Function(BobsTwentySevenInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1078,14 +1078,14 @@ class _$_BobsTwentySevenInitial implements _BobsTwentySevenInitial {
   }
 }
 
-abstract class _BobsTwentySevenInitial implements BobsTwentySevenState {
-  const factory _BobsTwentySevenInitial({required KtList<Hit> hits}) =
-      _$_BobsTwentySevenInitial;
+abstract class BobsTwentySevenInitial implements BobsTwentySevenState {
+  const factory BobsTwentySevenInitial({required KtList<Hit> hits}) =
+      _$BobsTwentySevenInitial;
 
   @override
   KtList<Hit> get hits;
   @override
   @JsonKey(ignore: true)
-  _$BobsTwentySevenInitialCopyWith<_BobsTwentySevenInitial> get copyWith =>
+  $BobsTwentySevenInitialCopyWith<BobsTwentySevenInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }

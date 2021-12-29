@@ -17,23 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameHistoryEventTearOff {
   const _$GameHistoryEventTearOff();
 
-  FetchGameHistoryAllRequested fetchGameHistoryAllRequested() {
-    return const FetchGameHistoryAllRequested();
+  _FetchGameHistoryAllRequested fetchGameHistoryAllRequested() {
+    return const _FetchGameHistoryAllRequested();
   }
 
-  FetchGameHistoryOfflineRequested fetchGameHistoryOfflineRequested() {
-    return const FetchGameHistoryOfflineRequested();
+  _FetchGameHistoryOfflineRequested fetchGameHistoryOfflineRequested() {
+    return const _FetchGameHistoryOfflineRequested();
   }
 
-  FetchGameHistoryOnlineRequested fetchGameHistoryOnlineRequested(
+  _FetchGameHistoryOnlineRequested fetchGameHistoryOnlineRequested(
       {UniqueId? userId}) {
-    return FetchGameHistoryOnlineRequested(
+    return _FetchGameHistoryOnlineRequested(
       userId: userId,
     );
   }
 
-  GameSelected gameSelected({required AbstractGame game}) {
-    return GameSelected(
+  _GameSelected gameSelected({required AbstractGame game}) {
+    return _GameSelected(
       game: game,
     );
   }
@@ -71,35 +71,35 @@ mixin _$GameHistoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchGameHistoryAllRequested value)
+    required TResult Function(_FetchGameHistoryAllRequested value)
         fetchGameHistoryAllRequested,
-    required TResult Function(FetchGameHistoryOfflineRequested value)
+    required TResult Function(_FetchGameHistoryOfflineRequested value)
         fetchGameHistoryOfflineRequested,
-    required TResult Function(FetchGameHistoryOnlineRequested value)
+    required TResult Function(_FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
-    required TResult Function(GameSelected value) gameSelected,
+    required TResult Function(_GameSelected value) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,31 +123,31 @@ class _$GameHistoryEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $FetchGameHistoryAllRequestedCopyWith<$Res> {
-  factory $FetchGameHistoryAllRequestedCopyWith(
-          FetchGameHistoryAllRequested value,
-          $Res Function(FetchGameHistoryAllRequested) then) =
-      _$FetchGameHistoryAllRequestedCopyWithImpl<$Res>;
+abstract class _$FetchGameHistoryAllRequestedCopyWith<$Res> {
+  factory _$FetchGameHistoryAllRequestedCopyWith(
+          _FetchGameHistoryAllRequested value,
+          $Res Function(_FetchGameHistoryAllRequested) then) =
+      __$FetchGameHistoryAllRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FetchGameHistoryAllRequestedCopyWithImpl<$Res>
+class __$FetchGameHistoryAllRequestedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $FetchGameHistoryAllRequestedCopyWith<$Res> {
-  _$FetchGameHistoryAllRequestedCopyWithImpl(
-      FetchGameHistoryAllRequested _value,
-      $Res Function(FetchGameHistoryAllRequested) _then)
-      : super(_value, (v) => _then(v as FetchGameHistoryAllRequested));
+    implements _$FetchGameHistoryAllRequestedCopyWith<$Res> {
+  __$FetchGameHistoryAllRequestedCopyWithImpl(
+      _FetchGameHistoryAllRequested _value,
+      $Res Function(_FetchGameHistoryAllRequested) _then)
+      : super(_value, (v) => _then(v as _FetchGameHistoryAllRequested));
 
   @override
-  FetchGameHistoryAllRequested get _value =>
-      super._value as FetchGameHistoryAllRequested;
+  _FetchGameHistoryAllRequested get _value =>
+      super._value as _FetchGameHistoryAllRequested;
 }
 
 /// @nodoc
 
-class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
-  const _$FetchGameHistoryAllRequested();
+class _$_FetchGameHistoryAllRequested implements _FetchGameHistoryAllRequested {
+  const _$_FetchGameHistoryAllRequested();
 
   @override
   String toString() {
@@ -158,7 +158,7 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FetchGameHistoryAllRequested);
+            other is _FetchGameHistoryAllRequested);
   }
 
   @override
@@ -204,13 +204,13 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchGameHistoryAllRequested value)
+    required TResult Function(_FetchGameHistoryAllRequested value)
         fetchGameHistoryAllRequested,
-    required TResult Function(FetchGameHistoryOfflineRequested value)
+    required TResult Function(_FetchGameHistoryOfflineRequested value)
         fetchGameHistoryOfflineRequested,
-    required TResult Function(FetchGameHistoryOnlineRequested value)
+    required TResult Function(_FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
-    required TResult Function(GameSelected value) gameSelected,
+    required TResult Function(_GameSelected value) gameSelected,
   }) {
     return fetchGameHistoryAllRequested(this);
   }
@@ -218,13 +218,13 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
   }) {
     return fetchGameHistoryAllRequested?.call(this);
   }
@@ -232,13 +232,13 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryAllRequested != null) {
@@ -248,37 +248,38 @@ class _$FetchGameHistoryAllRequested implements FetchGameHistoryAllRequested {
   }
 }
 
-abstract class FetchGameHistoryAllRequested implements GameHistoryEvent {
-  const factory FetchGameHistoryAllRequested() = _$FetchGameHistoryAllRequested;
+abstract class _FetchGameHistoryAllRequested implements GameHistoryEvent {
+  const factory _FetchGameHistoryAllRequested() =
+      _$_FetchGameHistoryAllRequested;
 }
 
 /// @nodoc
-abstract class $FetchGameHistoryOfflineRequestedCopyWith<$Res> {
-  factory $FetchGameHistoryOfflineRequestedCopyWith(
-          FetchGameHistoryOfflineRequested value,
-          $Res Function(FetchGameHistoryOfflineRequested) then) =
-      _$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>;
+abstract class _$FetchGameHistoryOfflineRequestedCopyWith<$Res> {
+  factory _$FetchGameHistoryOfflineRequestedCopyWith(
+          _FetchGameHistoryOfflineRequested value,
+          $Res Function(_FetchGameHistoryOfflineRequested) then) =
+      __$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>
+class __$FetchGameHistoryOfflineRequestedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $FetchGameHistoryOfflineRequestedCopyWith<$Res> {
-  _$FetchGameHistoryOfflineRequestedCopyWithImpl(
-      FetchGameHistoryOfflineRequested _value,
-      $Res Function(FetchGameHistoryOfflineRequested) _then)
-      : super(_value, (v) => _then(v as FetchGameHistoryOfflineRequested));
+    implements _$FetchGameHistoryOfflineRequestedCopyWith<$Res> {
+  __$FetchGameHistoryOfflineRequestedCopyWithImpl(
+      _FetchGameHistoryOfflineRequested _value,
+      $Res Function(_FetchGameHistoryOfflineRequested) _then)
+      : super(_value, (v) => _then(v as _FetchGameHistoryOfflineRequested));
 
   @override
-  FetchGameHistoryOfflineRequested get _value =>
-      super._value as FetchGameHistoryOfflineRequested;
+  _FetchGameHistoryOfflineRequested get _value =>
+      super._value as _FetchGameHistoryOfflineRequested;
 }
 
 /// @nodoc
 
-class _$FetchGameHistoryOfflineRequested
-    implements FetchGameHistoryOfflineRequested {
-  const _$FetchGameHistoryOfflineRequested();
+class _$_FetchGameHistoryOfflineRequested
+    implements _FetchGameHistoryOfflineRequested {
+  const _$_FetchGameHistoryOfflineRequested();
 
   @override
   String toString() {
@@ -289,7 +290,7 @@ class _$FetchGameHistoryOfflineRequested
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FetchGameHistoryOfflineRequested);
+            other is _FetchGameHistoryOfflineRequested);
   }
 
   @override
@@ -335,13 +336,13 @@ class _$FetchGameHistoryOfflineRequested
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchGameHistoryAllRequested value)
+    required TResult Function(_FetchGameHistoryAllRequested value)
         fetchGameHistoryAllRequested,
-    required TResult Function(FetchGameHistoryOfflineRequested value)
+    required TResult Function(_FetchGameHistoryOfflineRequested value)
         fetchGameHistoryOfflineRequested,
-    required TResult Function(FetchGameHistoryOnlineRequested value)
+    required TResult Function(_FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
-    required TResult Function(GameSelected value) gameSelected,
+    required TResult Function(_GameSelected value) gameSelected,
   }) {
     return fetchGameHistoryOfflineRequested(this);
   }
@@ -349,13 +350,13 @@ class _$FetchGameHistoryOfflineRequested
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
   }) {
     return fetchGameHistoryOfflineRequested?.call(this);
   }
@@ -363,13 +364,13 @@ class _$FetchGameHistoryOfflineRequested
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryOfflineRequested != null) {
@@ -379,38 +380,38 @@ class _$FetchGameHistoryOfflineRequested
   }
 }
 
-abstract class FetchGameHistoryOfflineRequested implements GameHistoryEvent {
-  const factory FetchGameHistoryOfflineRequested() =
-      _$FetchGameHistoryOfflineRequested;
+abstract class _FetchGameHistoryOfflineRequested implements GameHistoryEvent {
+  const factory _FetchGameHistoryOfflineRequested() =
+      _$_FetchGameHistoryOfflineRequested;
 }
 
 /// @nodoc
-abstract class $FetchGameHistoryOnlineRequestedCopyWith<$Res> {
-  factory $FetchGameHistoryOnlineRequestedCopyWith(
-          FetchGameHistoryOnlineRequested value,
-          $Res Function(FetchGameHistoryOnlineRequested) then) =
-      _$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>;
+abstract class _$FetchGameHistoryOnlineRequestedCopyWith<$Res> {
+  factory _$FetchGameHistoryOnlineRequestedCopyWith(
+          _FetchGameHistoryOnlineRequested value,
+          $Res Function(_FetchGameHistoryOnlineRequested) then) =
+      __$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>;
   $Res call({UniqueId? userId});
 }
 
 /// @nodoc
-class _$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>
+class __$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $FetchGameHistoryOnlineRequestedCopyWith<$Res> {
-  _$FetchGameHistoryOnlineRequestedCopyWithImpl(
-      FetchGameHistoryOnlineRequested _value,
-      $Res Function(FetchGameHistoryOnlineRequested) _then)
-      : super(_value, (v) => _then(v as FetchGameHistoryOnlineRequested));
+    implements _$FetchGameHistoryOnlineRequestedCopyWith<$Res> {
+  __$FetchGameHistoryOnlineRequestedCopyWithImpl(
+      _FetchGameHistoryOnlineRequested _value,
+      $Res Function(_FetchGameHistoryOnlineRequested) _then)
+      : super(_value, (v) => _then(v as _FetchGameHistoryOnlineRequested));
 
   @override
-  FetchGameHistoryOnlineRequested get _value =>
-      super._value as FetchGameHistoryOnlineRequested;
+  _FetchGameHistoryOnlineRequested get _value =>
+      super._value as _FetchGameHistoryOnlineRequested;
 
   @override
   $Res call({
     Object? userId = freezed,
   }) {
-    return _then(FetchGameHistoryOnlineRequested(
+    return _then(_FetchGameHistoryOnlineRequested(
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -421,9 +422,9 @@ class _$FetchGameHistoryOnlineRequestedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchGameHistoryOnlineRequested
-    implements FetchGameHistoryOnlineRequested {
-  const _$FetchGameHistoryOnlineRequested({this.userId});
+class _$_FetchGameHistoryOnlineRequested
+    implements _FetchGameHistoryOnlineRequested {
+  const _$_FetchGameHistoryOnlineRequested({this.userId});
 
   @override
   final UniqueId? userId;
@@ -437,7 +438,7 @@ class _$FetchGameHistoryOnlineRequested
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FetchGameHistoryOnlineRequested &&
+            other is _FetchGameHistoryOnlineRequested &&
             const DeepCollectionEquality().equals(other.userId, userId));
   }
 
@@ -447,9 +448,9 @@ class _$FetchGameHistoryOnlineRequested
 
   @JsonKey(ignore: true)
   @override
-  $FetchGameHistoryOnlineRequestedCopyWith<FetchGameHistoryOnlineRequested>
-      get copyWith => _$FetchGameHistoryOnlineRequestedCopyWithImpl<
-          FetchGameHistoryOnlineRequested>(this, _$identity);
+  _$FetchGameHistoryOnlineRequestedCopyWith<_FetchGameHistoryOnlineRequested>
+      get copyWith => __$FetchGameHistoryOnlineRequestedCopyWithImpl<
+          _FetchGameHistoryOnlineRequested>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -491,13 +492,13 @@ class _$FetchGameHistoryOnlineRequested
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchGameHistoryAllRequested value)
+    required TResult Function(_FetchGameHistoryAllRequested value)
         fetchGameHistoryAllRequested,
-    required TResult Function(FetchGameHistoryOfflineRequested value)
+    required TResult Function(_FetchGameHistoryOfflineRequested value)
         fetchGameHistoryOfflineRequested,
-    required TResult Function(FetchGameHistoryOnlineRequested value)
+    required TResult Function(_FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
-    required TResult Function(GameSelected value) gameSelected,
+    required TResult Function(_GameSelected value) gameSelected,
   }) {
     return fetchGameHistoryOnlineRequested(this);
   }
@@ -505,13 +506,13 @@ class _$FetchGameHistoryOnlineRequested
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
   }) {
     return fetchGameHistoryOnlineRequested?.call(this);
   }
@@ -519,13 +520,13 @@ class _$FetchGameHistoryOnlineRequested
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
     if (fetchGameHistoryOnlineRequested != null) {
@@ -535,40 +536,40 @@ class _$FetchGameHistoryOnlineRequested
   }
 }
 
-abstract class FetchGameHistoryOnlineRequested implements GameHistoryEvent {
-  const factory FetchGameHistoryOnlineRequested({UniqueId? userId}) =
-      _$FetchGameHistoryOnlineRequested;
+abstract class _FetchGameHistoryOnlineRequested implements GameHistoryEvent {
+  const factory _FetchGameHistoryOnlineRequested({UniqueId? userId}) =
+      _$_FetchGameHistoryOnlineRequested;
 
   UniqueId? get userId;
   @JsonKey(ignore: true)
-  $FetchGameHistoryOnlineRequestedCopyWith<FetchGameHistoryOnlineRequested>
+  _$FetchGameHistoryOnlineRequestedCopyWith<_FetchGameHistoryOnlineRequested>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameSelectedCopyWith<$Res> {
-  factory $GameSelectedCopyWith(
-          GameSelected value, $Res Function(GameSelected) then) =
-      _$GameSelectedCopyWithImpl<$Res>;
+abstract class _$GameSelectedCopyWith<$Res> {
+  factory _$GameSelectedCopyWith(
+          _GameSelected value, $Res Function(_GameSelected) then) =
+      __$GameSelectedCopyWithImpl<$Res>;
   $Res call({AbstractGame game});
 }
 
 /// @nodoc
-class _$GameSelectedCopyWithImpl<$Res>
+class __$GameSelectedCopyWithImpl<$Res>
     extends _$GameHistoryEventCopyWithImpl<$Res>
-    implements $GameSelectedCopyWith<$Res> {
-  _$GameSelectedCopyWithImpl(
-      GameSelected _value, $Res Function(GameSelected) _then)
-      : super(_value, (v) => _then(v as GameSelected));
+    implements _$GameSelectedCopyWith<$Res> {
+  __$GameSelectedCopyWithImpl(
+      _GameSelected _value, $Res Function(_GameSelected) _then)
+      : super(_value, (v) => _then(v as _GameSelected));
 
   @override
-  GameSelected get _value => super._value as GameSelected;
+  _GameSelected get _value => super._value as _GameSelected;
 
   @override
   $Res call({
     Object? game = freezed,
   }) {
-    return _then(GameSelected(
+    return _then(_GameSelected(
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
@@ -579,8 +580,8 @@ class _$GameSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GameSelected implements GameSelected {
-  const _$GameSelected({required this.game});
+class _$_GameSelected implements _GameSelected {
+  const _$_GameSelected({required this.game});
 
   @override
   final AbstractGame game;
@@ -594,7 +595,7 @@ class _$GameSelected implements GameSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameSelected &&
+            other is _GameSelected &&
             const DeepCollectionEquality().equals(other.game, game));
   }
 
@@ -604,8 +605,8 @@ class _$GameSelected implements GameSelected {
 
   @JsonKey(ignore: true)
   @override
-  $GameSelectedCopyWith<GameSelected> get copyWith =>
-      _$GameSelectedCopyWithImpl<GameSelected>(this, _$identity);
+  _$GameSelectedCopyWith<_GameSelected> get copyWith =>
+      __$GameSelectedCopyWithImpl<_GameSelected>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -647,13 +648,13 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchGameHistoryAllRequested value)
+    required TResult Function(_FetchGameHistoryAllRequested value)
         fetchGameHistoryAllRequested,
-    required TResult Function(FetchGameHistoryOfflineRequested value)
+    required TResult Function(_FetchGameHistoryOfflineRequested value)
         fetchGameHistoryOfflineRequested,
-    required TResult Function(FetchGameHistoryOnlineRequested value)
+    required TResult Function(_FetchGameHistoryOnlineRequested value)
         fetchGameHistoryOnlineRequested,
-    required TResult Function(GameSelected value) gameSelected,
+    required TResult Function(_GameSelected value) gameSelected,
   }) {
     return gameSelected(this);
   }
@@ -661,13 +662,13 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
   }) {
     return gameSelected?.call(this);
   }
@@ -675,13 +676,13 @@ class _$GameSelected implements GameSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchGameHistoryAllRequested value)?
+    TResult Function(_FetchGameHistoryAllRequested value)?
         fetchGameHistoryAllRequested,
-    TResult Function(FetchGameHistoryOfflineRequested value)?
+    TResult Function(_FetchGameHistoryOfflineRequested value)?
         fetchGameHistoryOfflineRequested,
-    TResult Function(FetchGameHistoryOnlineRequested value)?
+    TResult Function(_FetchGameHistoryOnlineRequested value)?
         fetchGameHistoryOnlineRequested,
-    TResult Function(GameSelected value)? gameSelected,
+    TResult Function(_GameSelected value)? gameSelected,
     required TResult orElse(),
   }) {
     if (gameSelected != null) {
@@ -691,12 +692,12 @@ class _$GameSelected implements GameSelected {
   }
 }
 
-abstract class GameSelected implements GameHistoryEvent {
-  const factory GameSelected({required AbstractGame game}) = _$GameSelected;
+abstract class _GameSelected implements GameHistoryEvent {
+  const factory _GameSelected({required AbstractGame game}) = _$_GameSelected;
 
   AbstractGame get game;
   @JsonKey(ignore: true)
-  $GameSelectedCopyWith<GameSelected> get copyWith =>
+  _$GameSelectedCopyWith<_GameSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

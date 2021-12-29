@@ -44,10 +44,10 @@ void main() {
     );
   });
 
-  group('WatchDataStarted', () {
+  group('Started', () {
     blocTest<SettingsBloc, SettingsState>(
       'emits [SettingsInitial] with updated user each time a new user arrives '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
@@ -62,7 +62,7 @@ void main() {
       },
       seed: () =>
           SettingsState.initial(user: initialUser, localeChanged: false),
-      act: (bloc) => bloc.add(const SettingsEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const SettingsEvent.started()),
       expect: () => <SettingsState>[
         SettingsState.initial(
           user: updatedUser,
@@ -73,7 +73,7 @@ void main() {
 
     blocTest<SettingsBloc, SettingsState>(
       'emits [] each time a new user failure arrives '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
@@ -89,7 +89,7 @@ void main() {
       },
       seed: () =>
           SettingsState.initial(user: initialUser, localeChanged: false),
-      act: (bloc) => bloc.add(const SettingsEvent.watchDataStarted()),
+      act: (bloc) => bloc.add(const SettingsEvent.started()),
       expect: () => <SettingsState>[],
     );
   });

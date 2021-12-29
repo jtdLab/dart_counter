@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-  _AuthStarted started() {
-    return const _AuthStarted();
+  _Started started() {
+    return const _Started();
   }
 }
 
@@ -45,17 +45,17 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthStarted value) started,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStarted value)? started,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthStarted value)? started,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,27 +77,25 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AuthStartedCopyWith<$Res> {
-  factory _$AuthStartedCopyWith(
-          _AuthStarted value, $Res Function(_AuthStarted) then) =
-      __$AuthStartedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$AuthStartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
-    implements _$AuthStartedCopyWith<$Res> {
-  __$AuthStartedCopyWithImpl(
-      _AuthStarted _value, $Res Function(_AuthStarted) _then)
-      : super(_value, (v) => _then(v as _AuthStarted));
+class __$StartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  _AuthStarted get _value => super._value as _AuthStarted;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$_AuthStarted implements _AuthStarted {
-  const _$_AuthStarted();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -107,7 +105,7 @@ class _$_AuthStarted implements _AuthStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _AuthStarted);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -144,7 +142,7 @@ class _$_AuthStarted implements _AuthStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthStarted value) started,
+    required TResult Function(_Started value) started,
   }) {
     return started(this);
   }
@@ -152,7 +150,7 @@ class _$_AuthStarted implements _AuthStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStarted value)? started,
+    TResult Function(_Started value)? started,
   }) {
     return started?.call(this);
   }
@@ -160,7 +158,7 @@ class _$_AuthStarted implements _AuthStarted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthStarted value)? started,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -170,8 +168,8 @@ class _$_AuthStarted implements _AuthStarted {
   }
 }
 
-abstract class _AuthStarted implements AuthEvent {
-  const factory _AuthStarted() = _$_AuthStarted;
+abstract class _Started implements AuthEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc

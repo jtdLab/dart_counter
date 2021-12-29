@@ -9,7 +9,6 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -34,7 +33,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
             localeChanged: false,
           ),
         ) {
-    on<_WatchDataStarted>(
+    on<_Started>(
       (_, emit) async => _mapWatchDataStartedToState(emit),
       transformer: restartable(),
     );

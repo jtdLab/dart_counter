@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/application_error.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
@@ -23,8 +24,6 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     with AutoResetLazySingleton {
   final IFriendService _friendService;
 
-  StreamSubscription? _dataSubscription;
-
   FriendsBloc(
     this._friendService,
   ) : super(
@@ -42,12 +41,15 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
                     ),
           ),
         ) {
-    on<Started>((_, emit) async => _mapStartedToState(emit));
-    on<FriendSelected>((event, emit) => _mapFriendSelectedToState(event, emit));
-    on<FriendRequestAccepted>(
+    on<_Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
+    on<_FriendSelected>((event, emit) => _mapFriendSelectedToState(event, emit));
+    on<_FriendRequestAccepted>(
       (event, emit) => _mapFriendRequestAcceptedToState(event),
     );
-    on<FriendRequestDeclined>(
+    on<_FriendRequestDeclined>(
       (event, emit) => _mapFriendRequestDeclinedToState(event),
     );
   }
@@ -57,58 +59,70 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
   ) async {
     // TODO is this the correct location ?
     // TODO does this belong to application or infra atm its infra
+    // TODOD this is wrong becaus it waits to every stream emit at leas 1 value
     _friendService.markReceivedFriendRequestsAsRead();
 
-    final dataStream = CombineLatestStream(
+    // TODO load photos here or in infra layer ??
+
+    await Future.wait(
       [
-        _friendService.watchFriends(),
-        _friendService.watchReceivedFriendRequests(),
-        _friendService.watchSentFriendRequests(),
+        emit.forEach(
+          _friendService.watchFriends(),
+          onData: (Either<FriendFailure, KtList<Friend>> failureOrFriends) =>
+              state.copyWith(
+            friends: failureOrFriends.getOrElse(
+              () => throw ApplicationError
+                  .unexpectedMissingData(), // TODO thats no dev error
+            ),
+          ),
+        ),
+        emit.forEach(
+          _friendService.watchReceivedFriendRequests(),
+          onData: (
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrReceivedFriendRequests,
+          ) =>
+              state.copyWith(
+            receivedFriendRequests: failureOrReceivedFriendRequests.getOrElse(
+              () => throw ApplicationError
+                  .unexpectedMissingData(), // TODO thats no dev error
+            ),
+          ),
+        ),
+        emit.forEach(
+          _friendService.watchSentFriendRequests(),
+          onData: (
+            Either<FriendFailure, KtList<FriendRequest>>
+                failureOrSentFriendRequests,
+          ) =>
+              state.copyWith(
+            sentFriendRequests: failureOrSentFriendRequests.getOrElse(
+              () => throw ApplicationError
+                  .unexpectedMissingData(), // TODO thats no dev error
+            ),
+          ),
+        ),
       ],
-      (events) => events,
-    );
-
-    // TODO test if this gets canceld on first error occurence
-    await emit.forEach(
-      dataStream,
-      onData: (List data) {
-        final failureOrFriends =
-            data[0]! as Either<FriendFailure, KtList<Friend>>;
-        final failureOrReceivedFriendRequests =
-            data[1]! as Either<FriendFailure, KtList<FriendRequest>>;
-        final failureOrSentFriendRequests =
-            data[2]! as Either<FriendFailure, KtList<FriendRequest>>;
-
-        // TODO load photos here or in infra layer ??
-
-        return state.copyWith(
-          friends: failureOrFriends
-              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
-          receivedFriendRequests: failureOrReceivedFriendRequests
-              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
-          sentFriendRequests: failureOrSentFriendRequests
-              .getOrElse(() => throw ApplicationError.unexpectedMissingData()),
-        );
-      },
+      eagerError: true,
     );
   }
 
   // TODO maybe check if event.friend is element of friends or just use index instead of selectedFriend ??
   void _mapFriendSelectedToState(
-    FriendSelected event,
+    _FriendSelected event,
     Emitter<FriendsState> emit,
   ) =>
       emit(state.copyWith(selectedFriend: event.friend));
 
   void _mapFriendRequestAcceptedToState(
-    FriendRequestAccepted event,
+    _FriendRequestAccepted event,
   ) {
     // TODO await result ??
     _friendService.acceptFriendRequest(friendRequest: event.friendRequest);
   }
 
   void _mapFriendRequestDeclinedToState(
-    FriendRequestDeclined event,
+    _FriendRequestDeclined event,
   ) {
     // TODO await result ??
     _friendService.declineFriendRequest(friendRequest: event.friendRequest);
@@ -116,8 +130,6 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
 
   @override
   Future<void> close() {
-    _dataSubscription?.cancel();
-
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<FriendsBloc>()) {
       getIt.resetLazySingleton<FriendsBloc>();

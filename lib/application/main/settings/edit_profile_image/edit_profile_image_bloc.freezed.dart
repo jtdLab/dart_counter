@@ -17,16 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$EditProfileImageEventTearOff {
   const _$EditProfileImageEventTearOff();
 
-  DeletePressed deletePressed() {
-    return const DeletePressed();
+  _DeletePressed deletePressed() {
+    return const _DeletePressed();
   }
 
-  TakePressed takePressed() {
-    return const TakePressed();
+  _TakePressed takePressed() {
+    return const _TakePressed();
   }
 
-  ChoosePressed choosePressed() {
-    return const ChoosePressed();
+  _ChoosePressed choosePressed() {
+    return const _ChoosePressed();
   }
 }
 
@@ -59,23 +59,23 @@ mixin _$EditProfileImageEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeletePressed value) deletePressed,
-    required TResult Function(TakePressed value) takePressed,
-    required TResult Function(ChoosePressed value) choosePressed,
+    required TResult Function(_DeletePressed value) deletePressed,
+    required TResult Function(_TakePressed value) takePressed,
+    required TResult Function(_ChoosePressed value) choosePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,28 +99,28 @@ class _$EditProfileImageEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $DeletePressedCopyWith<$Res> {
-  factory $DeletePressedCopyWith(
-          DeletePressed value, $Res Function(DeletePressed) then) =
-      _$DeletePressedCopyWithImpl<$Res>;
+abstract class _$DeletePressedCopyWith<$Res> {
+  factory _$DeletePressedCopyWith(
+          _DeletePressed value, $Res Function(_DeletePressed) then) =
+      __$DeletePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DeletePressedCopyWithImpl<$Res>
+class __$DeletePressedCopyWithImpl<$Res>
     extends _$EditProfileImageEventCopyWithImpl<$Res>
-    implements $DeletePressedCopyWith<$Res> {
-  _$DeletePressedCopyWithImpl(
-      DeletePressed _value, $Res Function(DeletePressed) _then)
-      : super(_value, (v) => _then(v as DeletePressed));
+    implements _$DeletePressedCopyWith<$Res> {
+  __$DeletePressedCopyWithImpl(
+      _DeletePressed _value, $Res Function(_DeletePressed) _then)
+      : super(_value, (v) => _then(v as _DeletePressed));
 
   @override
-  DeletePressed get _value => super._value as DeletePressed;
+  _DeletePressed get _value => super._value as _DeletePressed;
 }
 
 /// @nodoc
 
-class _$DeletePressed implements DeletePressed {
-  const _$DeletePressed();
+class _$_DeletePressed implements _DeletePressed {
+  const _$_DeletePressed();
 
   @override
   String toString() {
@@ -130,7 +130,7 @@ class _$DeletePressed implements DeletePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is DeletePressed);
+        (other.runtimeType == runtimeType && other is _DeletePressed);
   }
 
   @override
@@ -173,9 +173,9 @@ class _$DeletePressed implements DeletePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeletePressed value) deletePressed,
-    required TResult Function(TakePressed value) takePressed,
-    required TResult Function(ChoosePressed value) choosePressed,
+    required TResult Function(_DeletePressed value) deletePressed,
+    required TResult Function(_TakePressed value) takePressed,
+    required TResult Function(_ChoosePressed value) choosePressed,
   }) {
     return deletePressed(this);
   }
@@ -183,9 +183,9 @@ class _$DeletePressed implements DeletePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
   }) {
     return deletePressed?.call(this);
   }
@@ -193,9 +193,9 @@ class _$DeletePressed implements DeletePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (deletePressed != null) {
@@ -205,33 +205,33 @@ class _$DeletePressed implements DeletePressed {
   }
 }
 
-abstract class DeletePressed implements EditProfileImageEvent {
-  const factory DeletePressed() = _$DeletePressed;
+abstract class _DeletePressed implements EditProfileImageEvent {
+  const factory _DeletePressed() = _$_DeletePressed;
 }
 
 /// @nodoc
-abstract class $TakePressedCopyWith<$Res> {
-  factory $TakePressedCopyWith(
-          TakePressed value, $Res Function(TakePressed) then) =
-      _$TakePressedCopyWithImpl<$Res>;
+abstract class _$TakePressedCopyWith<$Res> {
+  factory _$TakePressedCopyWith(
+          _TakePressed value, $Res Function(_TakePressed) then) =
+      __$TakePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TakePressedCopyWithImpl<$Res>
+class __$TakePressedCopyWithImpl<$Res>
     extends _$EditProfileImageEventCopyWithImpl<$Res>
-    implements $TakePressedCopyWith<$Res> {
-  _$TakePressedCopyWithImpl(
-      TakePressed _value, $Res Function(TakePressed) _then)
-      : super(_value, (v) => _then(v as TakePressed));
+    implements _$TakePressedCopyWith<$Res> {
+  __$TakePressedCopyWithImpl(
+      _TakePressed _value, $Res Function(_TakePressed) _then)
+      : super(_value, (v) => _then(v as _TakePressed));
 
   @override
-  TakePressed get _value => super._value as TakePressed;
+  _TakePressed get _value => super._value as _TakePressed;
 }
 
 /// @nodoc
 
-class _$TakePressed implements TakePressed {
-  const _$TakePressed();
+class _$_TakePressed implements _TakePressed {
+  const _$_TakePressed();
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ class _$TakePressed implements TakePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TakePressed);
+        (other.runtimeType == runtimeType && other is _TakePressed);
   }
 
   @override
@@ -284,9 +284,9 @@ class _$TakePressed implements TakePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeletePressed value) deletePressed,
-    required TResult Function(TakePressed value) takePressed,
-    required TResult Function(ChoosePressed value) choosePressed,
+    required TResult Function(_DeletePressed value) deletePressed,
+    required TResult Function(_TakePressed value) takePressed,
+    required TResult Function(_ChoosePressed value) choosePressed,
   }) {
     return takePressed(this);
   }
@@ -294,9 +294,9 @@ class _$TakePressed implements TakePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
   }) {
     return takePressed?.call(this);
   }
@@ -304,9 +304,9 @@ class _$TakePressed implements TakePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (takePressed != null) {
@@ -316,33 +316,33 @@ class _$TakePressed implements TakePressed {
   }
 }
 
-abstract class TakePressed implements EditProfileImageEvent {
-  const factory TakePressed() = _$TakePressed;
+abstract class _TakePressed implements EditProfileImageEvent {
+  const factory _TakePressed() = _$_TakePressed;
 }
 
 /// @nodoc
-abstract class $ChoosePressedCopyWith<$Res> {
-  factory $ChoosePressedCopyWith(
-          ChoosePressed value, $Res Function(ChoosePressed) then) =
-      _$ChoosePressedCopyWithImpl<$Res>;
+abstract class _$ChoosePressedCopyWith<$Res> {
+  factory _$ChoosePressedCopyWith(
+          _ChoosePressed value, $Res Function(_ChoosePressed) then) =
+      __$ChoosePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ChoosePressedCopyWithImpl<$Res>
+class __$ChoosePressedCopyWithImpl<$Res>
     extends _$EditProfileImageEventCopyWithImpl<$Res>
-    implements $ChoosePressedCopyWith<$Res> {
-  _$ChoosePressedCopyWithImpl(
-      ChoosePressed _value, $Res Function(ChoosePressed) _then)
-      : super(_value, (v) => _then(v as ChoosePressed));
+    implements _$ChoosePressedCopyWith<$Res> {
+  __$ChoosePressedCopyWithImpl(
+      _ChoosePressed _value, $Res Function(_ChoosePressed) _then)
+      : super(_value, (v) => _then(v as _ChoosePressed));
 
   @override
-  ChoosePressed get _value => super._value as ChoosePressed;
+  _ChoosePressed get _value => super._value as _ChoosePressed;
 }
 
 /// @nodoc
 
-class _$ChoosePressed implements ChoosePressed {
-  const _$ChoosePressed();
+class _$_ChoosePressed implements _ChoosePressed {
+  const _$_ChoosePressed();
 
   @override
   String toString() {
@@ -352,7 +352,7 @@ class _$ChoosePressed implements ChoosePressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ChoosePressed);
+        (other.runtimeType == runtimeType && other is _ChoosePressed);
   }
 
   @override
@@ -395,9 +395,9 @@ class _$ChoosePressed implements ChoosePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DeletePressed value) deletePressed,
-    required TResult Function(TakePressed value) takePressed,
-    required TResult Function(ChoosePressed value) choosePressed,
+    required TResult Function(_DeletePressed value) deletePressed,
+    required TResult Function(_TakePressed value) takePressed,
+    required TResult Function(_ChoosePressed value) choosePressed,
   }) {
     return choosePressed(this);
   }
@@ -405,9 +405,9 @@ class _$ChoosePressed implements ChoosePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
   }) {
     return choosePressed?.call(this);
   }
@@ -415,9 +415,9 @@ class _$ChoosePressed implements ChoosePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DeletePressed value)? deletePressed,
-    TResult Function(TakePressed value)? takePressed,
-    TResult Function(ChoosePressed value)? choosePressed,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_TakePressed value)? takePressed,
+    TResult Function(_ChoosePressed value)? choosePressed,
     required TResult orElse(),
   }) {
     if (choosePressed != null) {
@@ -427,8 +427,8 @@ class _$ChoosePressed implements ChoosePressed {
   }
 }
 
-abstract class ChoosePressed implements EditProfileImageEvent {
-  const factory ChoosePressed() = _$ChoosePressed;
+abstract class _ChoosePressed implements EditProfileImageEvent {
+  const factory _ChoosePressed() = _$_ChoosePressed;
 }
 
 /// @nodoc

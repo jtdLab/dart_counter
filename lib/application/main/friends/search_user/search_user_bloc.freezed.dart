@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SearchUserEventTearOff {
   const _$SearchUserEventTearOff();
 
-  SearchStringChanged searchStringChanged({required String newSearchString}) {
-    return SearchStringChanged(
+  _SearchStringChanged searchStringChanged({required String newSearchString}) {
+    return _SearchStringChanged(
       newSearchString: newSearchString,
     );
   }
 
-  ClearPressed clearPressed() {
-    return const ClearPressed();
+  _ClearPressed clearPressed() {
+    return const _ClearPressed();
   }
 }
 
@@ -54,20 +54,20 @@ mixin _$SearchUserEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearPressed value) clearPressed,
+    required TResult Function(_SearchStringChanged value) searchStringChanged,
+    required TResult Function(_ClearPressed value) clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,29 +91,29 @@ class _$SearchUserEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SearchStringChangedCopyWith<$Res> {
-  factory $SearchStringChangedCopyWith(
-          SearchStringChanged value, $Res Function(SearchStringChanged) then) =
-      _$SearchStringChangedCopyWithImpl<$Res>;
+abstract class _$SearchStringChangedCopyWith<$Res> {
+  factory _$SearchStringChangedCopyWith(_SearchStringChanged value,
+          $Res Function(_SearchStringChanged) then) =
+      __$SearchStringChangedCopyWithImpl<$Res>;
   $Res call({String newSearchString});
 }
 
 /// @nodoc
-class _$SearchStringChangedCopyWithImpl<$Res>
+class __$SearchStringChangedCopyWithImpl<$Res>
     extends _$SearchUserEventCopyWithImpl<$Res>
-    implements $SearchStringChangedCopyWith<$Res> {
-  _$SearchStringChangedCopyWithImpl(
-      SearchStringChanged _value, $Res Function(SearchStringChanged) _then)
-      : super(_value, (v) => _then(v as SearchStringChanged));
+    implements _$SearchStringChangedCopyWith<$Res> {
+  __$SearchStringChangedCopyWithImpl(
+      _SearchStringChanged _value, $Res Function(_SearchStringChanged) _then)
+      : super(_value, (v) => _then(v as _SearchStringChanged));
 
   @override
-  SearchStringChanged get _value => super._value as SearchStringChanged;
+  _SearchStringChanged get _value => super._value as _SearchStringChanged;
 
   @override
   $Res call({
     Object? newSearchString = freezed,
   }) {
-    return _then(SearchStringChanged(
+    return _then(_SearchStringChanged(
       newSearchString: newSearchString == freezed
           ? _value.newSearchString
           : newSearchString // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class _$SearchStringChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchStringChanged implements SearchStringChanged {
-  const _$SearchStringChanged({required this.newSearchString});
+class _$_SearchStringChanged implements _SearchStringChanged {
+  const _$_SearchStringChanged({required this.newSearchString});
 
   @override
   final String newSearchString;
@@ -139,7 +139,7 @@ class _$SearchStringChanged implements SearchStringChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SearchStringChanged &&
+            other is _SearchStringChanged &&
             const DeepCollectionEquality()
                 .equals(other.newSearchString, newSearchString));
   }
@@ -150,8 +150,9 @@ class _$SearchStringChanged implements SearchStringChanged {
 
   @JsonKey(ignore: true)
   @override
-  $SearchStringChangedCopyWith<SearchStringChanged> get copyWith =>
-      _$SearchStringChangedCopyWithImpl<SearchStringChanged>(this, _$identity);
+  _$SearchStringChangedCopyWith<_SearchStringChanged> get copyWith =>
+      __$SearchStringChangedCopyWithImpl<_SearchStringChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -187,8 +188,8 @@ class _$SearchStringChanged implements SearchStringChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearPressed value) clearPressed,
+    required TResult Function(_SearchStringChanged value) searchStringChanged,
+    required TResult Function(_ClearPressed value) clearPressed,
   }) {
     return searchStringChanged(this);
   }
@@ -196,8 +197,8 @@ class _$SearchStringChanged implements SearchStringChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
   }) {
     return searchStringChanged?.call(this);
   }
@@ -205,8 +206,8 @@ class _$SearchStringChanged implements SearchStringChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) {
     if (searchStringChanged != null) {
@@ -216,39 +217,39 @@ class _$SearchStringChanged implements SearchStringChanged {
   }
 }
 
-abstract class SearchStringChanged implements SearchUserEvent {
-  const factory SearchStringChanged({required String newSearchString}) =
-      _$SearchStringChanged;
+abstract class _SearchStringChanged implements SearchUserEvent {
+  const factory _SearchStringChanged({required String newSearchString}) =
+      _$_SearchStringChanged;
 
   String get newSearchString;
   @JsonKey(ignore: true)
-  $SearchStringChangedCopyWith<SearchStringChanged> get copyWith =>
+  _$SearchStringChangedCopyWith<_SearchStringChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClearPressedCopyWith<$Res> {
-  factory $ClearPressedCopyWith(
-          ClearPressed value, $Res Function(ClearPressed) then) =
-      _$ClearPressedCopyWithImpl<$Res>;
+abstract class _$ClearPressedCopyWith<$Res> {
+  factory _$ClearPressedCopyWith(
+          _ClearPressed value, $Res Function(_ClearPressed) then) =
+      __$ClearPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ClearPressedCopyWithImpl<$Res>
+class __$ClearPressedCopyWithImpl<$Res>
     extends _$SearchUserEventCopyWithImpl<$Res>
-    implements $ClearPressedCopyWith<$Res> {
-  _$ClearPressedCopyWithImpl(
-      ClearPressed _value, $Res Function(ClearPressed) _then)
-      : super(_value, (v) => _then(v as ClearPressed));
+    implements _$ClearPressedCopyWith<$Res> {
+  __$ClearPressedCopyWithImpl(
+      _ClearPressed _value, $Res Function(_ClearPressed) _then)
+      : super(_value, (v) => _then(v as _ClearPressed));
 
   @override
-  ClearPressed get _value => super._value as ClearPressed;
+  _ClearPressed get _value => super._value as _ClearPressed;
 }
 
 /// @nodoc
 
-class _$ClearPressed implements ClearPressed {
-  const _$ClearPressed();
+class _$_ClearPressed implements _ClearPressed {
+  const _$_ClearPressed();
 
   @override
   String toString() {
@@ -258,7 +259,7 @@ class _$ClearPressed implements ClearPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ClearPressed);
+        (other.runtimeType == runtimeType && other is _ClearPressed);
   }
 
   @override
@@ -298,8 +299,8 @@ class _$ClearPressed implements ClearPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SearchStringChanged value) searchStringChanged,
-    required TResult Function(ClearPressed value) clearPressed,
+    required TResult Function(_SearchStringChanged value) searchStringChanged,
+    required TResult Function(_ClearPressed value) clearPressed,
   }) {
     return clearPressed(this);
   }
@@ -307,8 +308,8 @@ class _$ClearPressed implements ClearPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
   }) {
     return clearPressed?.call(this);
   }
@@ -316,8 +317,8 @@ class _$ClearPressed implements ClearPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchStringChanged value)? searchStringChanged,
-    TResult Function(ClearPressed value)? clearPressed,
+    TResult Function(_SearchStringChanged value)? searchStringChanged,
+    TResult Function(_ClearPressed value)? clearPressed,
     required TResult orElse(),
   }) {
     if (clearPressed != null) {
@@ -327,8 +328,8 @@ class _$ClearPressed implements ClearPressed {
   }
 }
 
-abstract class ClearPressed implements SearchUserEvent {
-  const factory ClearPressed() = _$ClearPressed;
+abstract class _ClearPressed implements SearchUserEvent {
+  const factory _ClearPressed() = _$_ClearPressed;
 }
 
 /// @nodoc
