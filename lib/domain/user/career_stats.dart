@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'career_stats_x.dart';
 part 'career_stats.freezed.dart';
 
 /// Indicates wheter a specific stat increased, declined or did not change in recent time.

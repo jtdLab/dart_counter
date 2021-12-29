@@ -152,3 +152,8 @@ void main() {
     );
   });
 }
+
+
+TODO the comibination of multiple source streams is not implemented consitently in blocs 
+
+make extension part of the class the extend part and part of statments

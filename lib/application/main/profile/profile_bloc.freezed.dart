@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
-  UserReceived userReceived({required User user}) {
-    return UserReceived(
-      user: user,
-    );
+  Started started() {
+    return const Started();
   }
 }
 
@@ -29,43 +27,37 @@ const $ProfileEvent = _$ProfileEventTearOff();
 
 /// @nodoc
 mixin _$ProfileEvent {
-  User get user => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(Started value)? started,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ProfileEventCopyWith<ProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,9 +66,6 @@ abstract class $ProfileEventCopyWith<$Res> {
   factory $ProfileEventCopyWith(
           ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -86,117 +75,67 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
   final ProfileEvent _value;
   // ignore: unused_field
   final $Res Function(ProfileEvent) _then;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class $UserReceivedCopyWith<$Res>
-    implements $ProfileEventCopyWith<$Res> {
-  factory $UserReceivedCopyWith(
-          UserReceived value, $Res Function(UserReceived) then) =
-      _$UserReceivedCopyWithImpl<$Res>;
-  @override
-  $Res call({User user});
-
-  @override
-  $UserCopyWith<$Res> get user;
+abstract class $StartedCopyWith<$Res> {
+  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
+      _$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserReceivedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
-    implements $UserReceivedCopyWith<$Res> {
-  _$UserReceivedCopyWithImpl(
-      UserReceived _value, $Res Function(UserReceived) _then)
-      : super(_value, (v) => _then(v as UserReceived));
+class _$StartedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements $StartedCopyWith<$Res> {
+  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
+      : super(_value, (v) => _then(v as Started));
 
   @override
-  UserReceived get _value => super._value as UserReceived;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(UserReceived(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
+  Started get _value => super._value as Started;
 }
 
 /// @nodoc
 
-class _$UserReceived implements UserReceived {
-  const _$UserReceived({required this.user});
-
-  @override
-  final User user;
+class _$Started implements Started {
+  const _$Started();
 
   @override
   String toString() {
-    return 'ProfileEvent.userReceived(user: $user)';
+    return 'ProfileEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserReceived &&
-            const DeepCollectionEquality().equals(other.user, user));
+        (other.runtimeType == runtimeType && other is Started);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      _$UserReceivedCopyWithImpl<UserReceived>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userReceived,
+    required TResult Function() started,
   }) {
-    return userReceived(user);
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function()? started,
   }) {
-    return userReceived?.call(user);
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userReceived,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(user);
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -204,41 +143,34 @@ class _$UserReceived implements UserReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UserReceived value) userReceived,
+    required TResult Function(Started value) started,
   }) {
-    return userReceived(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(Started value)? started,
   }) {
-    return userReceived?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserReceived value)? userReceived,
+    TResult Function(Started value)? started,
     required TResult orElse(),
   }) {
-    if (userReceived != null) {
-      return userReceived(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class UserReceived implements ProfileEvent {
-  const factory UserReceived({required User user}) = _$UserReceived;
-
-  @override
-  User get user;
-  @override
-  @JsonKey(ignore: true)
-  $UserReceivedCopyWith<UserReceived> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class Started implements ProfileEvent {
+  const factory Started() = _$Started;
 }
 
 /// @nodoc

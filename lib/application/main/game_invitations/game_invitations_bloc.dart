@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dart_counter/application/application_error.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
@@ -28,25 +30,41 @@ class GameInvitationsBloc
   final IPlayOnlineService _playOnlineService;
   final IGameInvitationService _gameInvitationService;
 
-  StreamSubscription? _dataSubscription;
-  StreamSubscription? _gameSnapshotsSubscription;
-
   GameInvitationsBloc(
     this._playOnlineService,
     this._gameInvitationService,
   ) : super(
           GameInvitationsState.initial(
-            receivedGameInvitations: _gameInvitationService
-                .getReceivedGameInvitations()
-                .toOption()
-                .toNullable()!,
-            sentGameInvitations: _gameInvitationService
-                .getSentGameInvitations()
-                .toOption()
-                .toNullable()!,
+            receivedGameInvitations:
+                _gameInvitationService.getReceivedGameInvitations().getOrElse(
+                      () => throw ApplicationError.unexpectedMissingData(),
+                    ),
+            sentGameInvitations:
+                _gameInvitationService.getSentGameInvitations().getOrElse(
+                      () => throw ApplicationError.unexpectedMissingData(),
+                    ),
             loading: false,
           ),
         ) {
+    on<Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
+    on<InvitationAccepted>(
+      (event, emit) async => _mapInvitationAcceptedToState(event, emit),
+    );
+    on<InvitationDeclined>(
+      (event, _) => _mapInvitationDeclinedToState(event),
+    );
+  }
+
+  Future<void> _mapStartedToState(
+    Emitter<GameInvitationsState> emit,
+  ) async {
+    // TODO is this the correct location ?
+    // TODO does this belong to application or infra atm its infra
+    _gameInvitationService.markReceivedInvitationsAsRead();
+
     final dataStream = CombineLatestStream(
       [
         _gameInvitationService.watchReceivedGameInvitations(),
@@ -55,100 +73,65 @@ class GameInvitationsBloc
       (events) => events,
     );
 
-    _dataSubscription = dataStream.listen((data) async {
-      final failureOrReceivedGameInvitations =
-          data[0]! as Either<GameInvitationFailure, KtList<GameInvitation>>;
-      final failureOrSentGameInvitations =
-          data[1]! as Either<GameInvitationFailure, KtList<GameInvitation>>;
+    // TODO test if this gets canceld on first error occurence
+    await Future.wait(
+      [
+        emit.forEach(
+          dataStream,
+          onData: (List data) {
+            final failureOrReceivedGameInvitations = data[0]!
+                as Either<GameInvitationFailure, KtList<GameInvitation>>;
+            final failureOrSentGameInvitations = data[1]!
+                as Either<GameInvitationFailure, KtList<GameInvitation>>;
 
-      if (failureOrReceivedGameInvitations.isLeft()) {
-        // yield load failure state
-      } else if (failureOrSentGameInvitations.isLeft()) {
-        // yield load failure state
-      } else {
-        // TODO load photos
-
-        add(
-          GameInvitationsEvent.dataReceived(
-            receivedGameInvitations:
-                failureOrReceivedGameInvitations.toOption().toNullable()!,
-            sentGameInvitations:
-                failureOrSentGameInvitations.toOption().toNullable()!,
-          ),
-        );
-      }
-    });
-
-    // TODO
-    /**
-   *   _gameSnapshotsSubscription = _playBloc.stream.listen((playState) {
-      if (playState is PlayGameInProgress) {
-        final gameSnapshot = playState.gameSnapshot;
-        add(GameInvitationsEvent.gameReceived(gameSnapshot: gameSnapshot));
-      }
-    });
-
-   */
-    _gameInvitationService.markReceivedInvitationsAsRead();
-  }
-
-  @override
-  Stream<GameInvitationsState> mapEventToState(
-    GameInvitationsEvent event,
-  ) async* {
-    yield* event.map(
-      dataReceived: (event) => _mapDataReceivedToState(event),
-      invitationAccepted: (event) => _mapInvitationAcceptedToState(event),
-      invitationDeclined: (event) => _mapInvitationDeclinedToState(event),
-      gameReceived: (event) => _mapGameReceivedToState(event),
+            return state.copyWith(
+              receivedGameInvitations:
+                  failureOrReceivedGameInvitations.getOrElse(
+                      () => throw ApplicationError.unexpectedMissingData()),
+              sentGameInvitations: failureOrSentGameInvitations.getOrElse(
+                  () => throw ApplicationError.unexpectedMissingData()),
+            );
+          },
+        ),
+        emit.forEach(
+          _playOnlineService.watchGame(),
+          onData: (OnlineGameSnapshot gameSnapshot) =>
+              state.copyWith(gameSnapshot: gameSnapshot),
+        ),
+      ],
+      eagerError: true,
     );
   }
 
-  Stream<GameInvitationsState> _mapDataReceivedToState(
-    DataReceived event,
-  ) async* {
-    yield state.copyWith(
-      receivedGameInvitations: event.receivedGameInvitations,
-      sentGameInvitations: event.sentGameInvitations,
-    );
-  }
-
-  Stream<GameInvitationsState> _mapInvitationAcceptedToState(
+  Future<void> _mapInvitationAcceptedToState(
     InvitationAccepted event,
-  ) async* {
+    Emitter<GameInvitationsState> emit,
+  ) async {
     final gameId = event.gameInvitation.gameId;
 
-    yield state.copyWith(loading: true);
+    emit(state.copyWith(loading: true));
     await Future.delayed(const Duration(milliseconds: 500));
     final failureOrUnit = await _playOnlineService.joinGame(gameId: gameId);
-    yield* failureOrUnit.fold(
-      (failure) async* {
-        yield state.copyWith(loading: false, failure: failure);
-      },
-      (_) async* {
-        // _playBloc.add(const PlayEvent.gameJoined()); // TODO
+
+    failureOrUnit.fold(
+      (failure) => emit(state.copyWith(loading: false, failure: failure)),
+      (_) async {
+        // TODO await response ???
+        await _playOnlineService.joinGame(gameId: gameId);
         await _gameInvitationService.accept(invitation: event.gameInvitation);
       },
     );
   }
 
-  Stream<GameInvitationsState> _mapInvitationDeclinedToState(
+  void _mapInvitationDeclinedToState(
     InvitationDeclined event,
-  ) async* {
+  ) {
+    // TODO await result ???
     _gameInvitationService.decline(invitation: event.gameInvitation);
-  }
-
-  Stream<GameInvitationsState> _mapGameReceivedToState(
-    GameReceived event,
-  ) async* {
-    yield state.copyWith(gameSnapshot: event.gameSnapshot);
   }
 
   @override
   Future<void> close() {
-    _dataSubscription?.cancel();
-    _gameSnapshotsSubscription?.cancel();
-
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<GameInvitationsBloc>()) {
       getIt.resetLazySingleton<GameInvitationsBloc>();

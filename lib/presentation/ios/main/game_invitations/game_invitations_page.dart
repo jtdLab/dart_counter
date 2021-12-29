@@ -19,7 +19,8 @@ class GameInvitationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GameInvitationsBloc>(),
+      create: (context) => getIt<GameInvitationsBloc>()
+        ..add(const GameInvitationsEvent.started()),
       child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
         listener: (context, state) {
           if (state.gameSnapshot != null) {

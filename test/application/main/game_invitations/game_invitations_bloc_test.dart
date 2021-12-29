@@ -9,6 +9,7 @@ class MockPlayOnlineService extends Mock implements IPlayOnlineService {}
 class MockGameInvitationService extends Mock implements IGameInvitationService {
 }
 
+
 void main() {
   late MockPlayOnlineService mockPlayOnlineService;
   late MockGameInvitationService mockGameInvitationService;

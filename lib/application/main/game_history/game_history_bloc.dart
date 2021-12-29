@@ -37,7 +37,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
           _mapFetchGameHistoryOnlineRequestedToState(event, emit),
     );
     on<GameSelected>(
-      (event, emit) async => _mapGameSelectedToState(event, emit),
+      (event, emit) => _mapGameSelectedToState(event, emit),
     );
   }
 

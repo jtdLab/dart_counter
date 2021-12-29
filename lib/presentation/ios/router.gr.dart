@@ -12,10 +12,8 @@ import 'package:auto_route/auto_route.dart' as _i39;
 import 'package:flutter/material.dart' as _i40;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i43;
-import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
+import '../../application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart'
     as _i44;
-import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
-    as _i45;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i42;
 import 'main/contact/contact_page.dart' as _i6;
@@ -721,7 +719,7 @@ class CheckoutDetailsModalRoute
     extends _i39.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
   CheckoutDetailsModalRoute(
       {_i42.Key? key,
-      required _i42.Bloc<_i44.CheckoutDetailsEvent, _i45.CheckoutDetailsState>
+      required _i42.Bloc<_i44.CheckoutDetailsEvent, _i44.CheckoutDetailsState>
           bloc})
       : super(CheckoutDetailsModalRoute.name,
             path: 'checkout-details-modal',
@@ -735,7 +733,7 @@ class CheckoutDetailsModalRouteArgs {
 
   final _i42.Key? key;
 
-  final _i42.Bloc<_i44.CheckoutDetailsEvent, _i45.CheckoutDetailsState> bloc;
+  final _i42.Bloc<_i44.CheckoutDetailsEvent, _i44.CheckoutDetailsState> bloc;
 
   @override
   String toString() {

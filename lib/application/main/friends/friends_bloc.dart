@@ -68,6 +68,7 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
       (events) => events,
     );
 
+    // TODO test if this gets canceld on first error occurence
     await emit.forEach(
       dataStream,
       onData: (List data) {
