@@ -106,14 +106,14 @@ void main() {
         setUp: () {
           when(
             () => mockFriendService.searchUserByUsername(
-              username: 'username',
+              username: 'username1',
             ),
           ).thenAnswer((_) async => right(searchResults1));
           when(
             () => mockFriendService.searchUserByUsername(
               username: 'username2',
             ),
-          ).thenAnswer((_) async => right(searchResults1));
+          ).thenAnswer((_) async => right(searchResults2));
         },
         build: () => SearchUserBloc(
           mockFriendService,
@@ -134,7 +134,6 @@ void main() {
             ),
           );
         },
-        wait: const Duration(milliseconds: 300),
         expect: () => [
           const SearchUserState.loadInProgress(),
           SearchUserState.loadSuccess(searchResults: searchResults1),

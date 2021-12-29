@@ -24,13 +24,14 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
   ) : super(const SearchUserState.initial()) {
     on<SearchStringChanged>(
       (event, emit) async => _mapSearchStringChangedToState(event, emit),
-      transformer: (events, _) {
-        return events.throttleTime(const Duration(milliseconds: 300));
-      },
+      transformer: (events, mapper) => events
+          .throttleTime(
+            const Duration(milliseconds: 300),
+          )
+          .flatMap(mapper),
     );
     on<ClearPressed>((_, emit) => _mapClearPressedToState(emit));
   }
-  
 
   Future<void> _mapSearchStringChangedToState(
     SearchStringChanged event,
