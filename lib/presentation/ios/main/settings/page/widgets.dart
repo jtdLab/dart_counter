@@ -16,11 +16,15 @@ class _SettingsWidget extends StatelessWidget {
           children: [
             CupertinoButton(
               onPressed: () {
-                showCupertinoModalBottomSheet(
+                // TODO background
+                /**
+                *  showCupertinoModalBottomSheet(
                   backgroundColor: Colors.white70,
                   context: context,
                   builder: (context) => EditProfileImageModal(),
                 );
+                */
+                context.router.push(const EditProfileImageModalRoute());
               },
               child: ProfileImageDisplayer(
                 photoUrl: photoUrl,
@@ -200,8 +204,6 @@ class _AccountCard extends StatelessWidget {
           onPressed: () => context.router.push(const ChangeEmailModalRoute()),
         ),
       ],
-
-      
     );
   }
 }

@@ -45,6 +45,7 @@ import 'main/settings/modals/change_email/initial/initial_page.dart';
 import 'main/settings/modals/change_email/success/success_page.dart';
 import 'main/settings/modals/change_password/initial/initial_page.dart';
 import 'main/settings/modals/change_password/success/success_page.dart';
+import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'main/training/create_training/create_training_page.dart';
 import 'main/training/in_training/in_training_page.dart';
 import 'main/training/post_training/post_training_page.dart';
@@ -114,13 +115,10 @@ import 'main/training/training_flow.dart';
                 ),
               ],
             ),
-            /**
-            *
             CustomRoute(
-              customRouteBuilder: notExpandedModalRouteBuilder
-              page: null,
+              customRouteBuilder: notExpandedModalRouteBuilder,
+              page: EditProfileImageModal,
             ),
-            */
           ],
         ),
         CupertinoRoute(
