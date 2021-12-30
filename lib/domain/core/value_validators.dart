@@ -27,15 +27,17 @@ Either<ValueFailure<String>, String> validateEmailAddress({
 Either<ValueFailure<String>, String> validateUsername({
   required String usernameString,
 }) {
-  if (usernameString.length >= 3 && usernameString.length <= 15) {
+  if (usernameString.length < 3) {
+    return left(ValueFailure.shortUsername(failedValue: usernameString));
+  } else if (usernameString.length > 15) {
+    return left(ValueFailure.longUsername(failedValue: usernameString));
+  } else {
     const usernameRegex = r"""^[a-zA-Z0-9_.-]*$""";
     if (RegExp(usernameRegex).hasMatch(usernameString)) {
       return right(usernameString);
     } else {
       return left(ValueFailure.invalidCharacters(failedValue: usernameString));
     }
-  } else {
-    return left(ValueFailure.shortUsername(failedValue: usernameString));
   }
 }
 

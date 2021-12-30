@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'failures.freezed.dart';
 
@@ -12,6 +12,9 @@ class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortUsername({
     required T failedValue,
   }) = _ShortUsername<T>;
+  const factory ValueFailure.longUsername({
+    required T failedValue,
+  }) = _LongUsername<T>;
   const factory ValueFailure.invalidCharacters({
     required T failedValue,
   }) = _InValidCharacters<T>;

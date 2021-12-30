@@ -134,6 +134,7 @@ class List10<T> extends ValueObject<KtList<T>> {
     return length == maxLength;
   }
 
+  // TODO remove == and hashCode needed ?
   @override
   bool operator ==(Object o) => o is List10 && value == o.value;
 
