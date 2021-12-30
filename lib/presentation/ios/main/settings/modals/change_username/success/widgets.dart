@@ -1,8 +1,8 @@
-part of '../change_username_modal.dart';
+part of 'success_page.dart';
 
 // BODY
-class _SuccessWidget extends StatelessWidget {
-  const _SuccessWidget({
+class _ChangeUsernameSuccessWidget extends StatelessWidget {
+  const _ChangeUsernameSuccessWidget({
     Key? key,
   }) : super(key: key);
 

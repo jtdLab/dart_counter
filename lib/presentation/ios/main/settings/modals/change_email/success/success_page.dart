@@ -1,4 +1,8 @@
-part of '../change_email_modal.dart';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// WIDGETS
+part 'widgets.dart';
 
 class ChangeEmailSuccessPage extends StatelessWidget {
   const ChangeEmailSuccessPage({

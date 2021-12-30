@@ -1,4 +1,4 @@
-part of '../change_password_modal.dart';
+part of 'success_page.dart';
 
 // BODY
 class _SuccessWidget extends StatelessWidget {

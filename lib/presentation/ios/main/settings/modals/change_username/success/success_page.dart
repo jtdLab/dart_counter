@@ -1,14 +1,18 @@
-part of '../change_username_modal.dart';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
-class _SuccessPage extends StatelessWidget {
-  const _SuccessPage({
+// WIDGETS
+part 'widgets.dart';
+
+class ChangeUsernameSuccessPage extends StatelessWidget {
+  const ChangeUsernameSuccessPage({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const AppPage(
-      child: _SuccessWidget(),
+      child: _ChangeUsernameSuccessWidget(),
     );
   }
 }

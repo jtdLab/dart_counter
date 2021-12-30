@@ -1,4 +1,4 @@
-part of '../change_email_modal.dart';
+part of 'success_page.dart';
 
 // BODY
 class _ChangeEmailSuccessWidget extends StatelessWidget {

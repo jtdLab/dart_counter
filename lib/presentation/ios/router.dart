@@ -5,7 +5,9 @@ import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offli
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/change_email_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/initial/initial_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_password/change_password_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_username/change_username_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
 
@@ -37,6 +39,12 @@ import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_
 import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
+import 'main/settings/modals/change_username/initial/initial_page.dart';
+import 'main/settings/modals/change_username/success/success_page.dart';
+import 'main/settings/modals/change_email/initial/initial_page.dart';
+import 'main/settings/modals/change_email/success/success_page.dart';
+import 'main/settings/modals/change_password/initial/initial_page.dart';
+import 'main/settings/modals/change_password/success/success_page.dart';
 import 'main/training/create_training/create_training_page.dart';
 import 'main/training/in_training/in_training_page.dart';
 import 'main/training/post_training/post_training_page.dart';
@@ -93,21 +101,21 @@ import 'main/training/training_flow.dart';
                 ),
               ],
             ),
-            /**
-            *
             CustomRoute(
               customRouteBuilder: expandedModalRouteBuilder,
-              page: null,
+              page: ChangeUsernameModal,
               children: [
                 CustomRoute(
                   initial: true,
-                  page: null,
+                  page: ChangeUsernameInitialPage,
                 ),
                 CustomRoute(
-                  page: null,
+                  page: ChangeUsernameSuccessPage,
                 ),
               ],
             ),
+            /**
+            *
             CustomRoute(
               customRouteBuilder: notExpandedModalRouteBuilder
               page: null,

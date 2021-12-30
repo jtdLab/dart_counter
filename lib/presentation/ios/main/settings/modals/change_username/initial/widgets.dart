@@ -1,8 +1,7 @@
-part of '../change_username_modal.dart';
+part of 'initial_page.dart';
 
-// BODY
-class _InitialWidget extends StatelessWidget {
-  const _InitialWidget({
+class _ChangeUsernameInitialWidget extends StatelessWidget {
+  const _ChangeUsernameInitialWidget({
     Key? key,
   }) : super(key: key);
 

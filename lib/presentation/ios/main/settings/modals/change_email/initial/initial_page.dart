@@ -1,4 +1,11 @@
-part of '../change_email_modal.dart';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// BLOCS
+import 'package:dart_counter/application/main/settings/change_email/change_email_bloc.dart';
+
+// WIDGETS
+part 'widgets.dart';
 
 class ChangeEmailInitialPage extends StatelessWidget {
   const ChangeEmailInitialPage({

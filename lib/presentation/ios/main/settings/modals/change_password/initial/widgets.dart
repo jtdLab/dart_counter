@@ -1,4 +1,4 @@
-part of '../change_password_modal.dart';
+part of 'initial_page.dart';
 
 // BODY
 class _ChangePasswordInitialWidget extends StatelessWidget {

@@ -1,4 +1,8 @@
-part of '../change_password_modal.dart';
+// CORE
+import 'package:dart_counter/presentation/ios/core/core.dart';
+
+// WIDGETS
+part 'widgets.dart';
 
 class ChangePasswordSuccessPage extends StatelessWidget {
   const ChangePasswordSuccessPage({
