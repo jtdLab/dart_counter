@@ -1,9 +1,9 @@
 // CORE
+import 'package:dart_counter/presentation/core/route_observer.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-import 'package:dart_counter/presentation/ios/route_observer.dart';
 
 // TODO is this global var even used or is it done over context
 // Fore more info look auto_route pub dev read.me
