@@ -1,3 +1,5 @@
+// TODO this and errors.dart same file ?
+
 class DomainError extends Error {
   final String msg;
 

@@ -1,11 +1,10 @@
 import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/core/failures.dart';
 import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
-
-import 'failures.dart';
 
 /// Base class for domain specific object holding either [T] or a [ValueFailure].
 @immutable

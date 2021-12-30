@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'friend_failure.freezed.dart';
 
+// TODO remove not needed failure types
+
 /// All failures of the friend domain.
 @freezed
 class FriendFailure with _$FriendFailure {

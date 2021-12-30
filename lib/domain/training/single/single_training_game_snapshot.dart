@@ -1,11 +1,10 @@
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
+import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-
-import '../mode.dart';
 
 part 'single_training_game_snapshot.freezed.dart';
 

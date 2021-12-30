@@ -1,12 +1,11 @@
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-
-import '../abstract_game_snapshot.dart';
-import '../abstract_player_snapshot.dart';
 
 part 'online_game_snapshot.freezed.dart';
 

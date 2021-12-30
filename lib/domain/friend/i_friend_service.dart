@@ -1,12 +1,11 @@
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
+import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-
-import 'friend.dart';
-import 'friend_request.dart';
 
 /// Domain service for all actions related to friends/friendships of the app-user.
 abstract class IFriendService {

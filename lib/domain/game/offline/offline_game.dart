@@ -1,13 +1,12 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/game/abstract_game.dart';
+import 'package:dart_counter/domain/game/abstract_player.dart';
+import 'package:dart_counter/domain/game/mode.dart';
+import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/domain/game/type.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
-
-import '../abstract_game.dart';
-import '../abstract_player.dart';
-import '../mode.dart';
-import '../status.dart';
-import '../type.dart';
 
 part 'offline_game.freezed.dart';
 

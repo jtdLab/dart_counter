@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_failure.freezed.dart';
 
+// TODO remove not needed failure types
+
 /// All failures of the user domain.
 @freezed
 class UserFailure with _$UserFailure {

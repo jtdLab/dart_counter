@@ -1,13 +1,12 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/game/leg.dart';
+import 'package:dart_counter/domain/game/offline/dartbot.dart';
+import 'package:dart_counter/domain/game/offline/offline_player.dart';
+import 'package:dart_counter/domain/game/online/online_player.dart';
 import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:dart_counter/domain/game/set.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-
-import './offline/dartbot.dart';
-import './offline/offline_player.dart';
-import './online/online_player.dart';
-import 'leg.dart';
 
 export './offline/dartbot.dart';
 export './offline/offline_player.dart';

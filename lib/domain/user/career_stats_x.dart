@@ -1,7 +1,8 @@
 part of 'career_stats.dart';
 
 extension CareerStatsX on CareerStats {
-  /// Merges [this] and [careerStats].
+  // TODO better docs lingu
+  /// Merges [this] with [other].
   ///
   /// Calulcates new [CareerStats] where [this] and [careerStats]
   /// are weighted according to the number of games.

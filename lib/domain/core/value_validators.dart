@@ -1,7 +1,6 @@
+import 'package:dart_counter/domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-
-import 'failures.dart';
 
 /// Validates [emailString].
 ///

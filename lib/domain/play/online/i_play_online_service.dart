@@ -1,9 +1,8 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
+import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dartz/dartz.dart';
-
-import '../play_failure.dart';
 
 /// Domain service for all actions related playing an online game
 /// hosted on a server against other players.

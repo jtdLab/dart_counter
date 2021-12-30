@@ -1,7 +1,4 @@
 // Utility functions helpful for things like validation of user input a. o. when playing dart games.
-import 'package:dart_counter/domain/game/dart.dart';
-import 'package:kt_dart/kt.dart';
-
 abstract class IDartUtils {
   /// Returns `true` if [points] is valid when a player has [pointsLeft].
   bool validatePoints({
@@ -9,6 +6,7 @@ abstract class IDartUtils {
     required int points,
   });
 
+  // TODO keep or remove
   /**
   *  /// Returns `true` if [darts] is valid when a player has [pointsLeft].
   bool validateDarts({

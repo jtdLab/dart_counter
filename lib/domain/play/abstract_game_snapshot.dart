@@ -1,12 +1,10 @@
+import 'package:dart_counter/domain/game/mode.dart';
+import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/domain/game/type.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
+import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:kt_dart/kt.dart';
-
-import './offline/offline_game_snapshot.dart';
-import './online/online_game_snapshot.dart';
-
-import '../game/mode.dart';
-import '../game/status.dart';
-import '../game/type.dart';
-import 'abstract_player_snapshot.dart';
 
 export './offline/offline_game_snapshot.dart';
 export './online/online_game_snapshot.dart';

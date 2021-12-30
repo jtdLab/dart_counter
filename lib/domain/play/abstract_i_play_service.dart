@@ -1,6 +1,6 @@
 import 'package:dart_counter/domain/game/mode.dart';
-import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/game/throw.dart';
+import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dartz/dartz.dart';

@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game_history_failure.freezed.dart';
 
+// TODO remove not needed failure types
+
 /// All failures of the game history domain.
 @freezed
 class GameHistoryFailure with _$GameHistoryFailure {
