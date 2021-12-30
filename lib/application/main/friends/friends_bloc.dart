@@ -13,7 +13,6 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:rxdart/rxdart.dart';
 
 part 'friends_bloc.freezed.dart';
 part 'friends_event.dart';
@@ -45,7 +44,9 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
       (_, emit) async => _mapStartedToState(emit),
       transformer: restartable(),
     );
-    on<_FriendSelected>((event, emit) => _mapFriendSelectedToState(event, emit));
+    on<_FriendSelected>(
+      (event, emit) => _mapFriendSelectedToState(event, emit),
+    );
     on<_FriendRequestAccepted>(
       (event, emit) => _mapFriendRequestAcceptedToState(event),
     );
