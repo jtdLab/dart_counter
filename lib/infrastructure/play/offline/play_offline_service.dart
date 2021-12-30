@@ -35,7 +35,8 @@ class PlayOfflineService implements IPlayOfflineService {
 
   PlayOfflineService() : _gameController = BehaviorSubject() {
     _gameController.stream.listen((gameSnapshot) {
-      if(gameSnapshot.status == Status.canceled || gameSnapshot.status == Status.finished) {
+      if (gameSnapshot.status == Status.canceled ||
+          gameSnapshot.status == Status.finished) {
         // TODO reset
       }
     });
@@ -232,12 +233,17 @@ class PlayOfflineService implements IPlayOfflineService {
       return player;
     }).toList();
 
-    _gameController.add(
-      offlineGameSnapshotDto
-          .copyWith(
-            players: playersWithPhotos,
-          )
-          .toDomain(),
-    );
+    final offlineGameSnapshot = offlineGameSnapshotDto
+        .copyWith(
+          players: playersWithPhotos,
+        )
+        .toDomain();
+
+    _gameController.add(offlineGameSnapshot);
+
+    if (offlineGameSnapshot.status == Status.canceled ||
+        offlineGameSnapshot.status == Status.finished) {
+      _game = null;
+    }
   }
 }
