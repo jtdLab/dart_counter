@@ -16,8 +16,8 @@ import '../modals/more/more_modal.dart';
 import '../../../shared/widgets.dart';
 part 'widgets.dart';
 
-class OverviewPage extends StatelessWidget {
-  const OverviewPage({
+class FriendsOverviewPage extends StatelessWidget {
+  const FriendsOverviewPage({
     Key? key,
   }) : super(key: key);
 

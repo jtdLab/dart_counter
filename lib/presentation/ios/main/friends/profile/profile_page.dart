@@ -12,8 +12,8 @@ import 'package:dart_counter/domain/user/career_stats.dart';
 import '../../shared/widgets.dart';
 part 'widgets.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({
+class FriendsProfilePage extends StatelessWidget {
+  const FriendsProfilePage({
     Key? key,
   }) : super(key: key);
 

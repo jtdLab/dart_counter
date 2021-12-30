@@ -12,7 +12,7 @@ import 'package:auto_route/auto_route.dart' as _i50;
 import 'package:flutter/material.dart' as _i51;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i54;
-import '../../application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart'
+import '../../application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart'
     as _i55;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i53;
@@ -85,7 +85,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i1.AuthFlow(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -150,7 +150,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i14.SettingsPage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -228,19 +228,19 @@ class Router extends _i50.RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    OverviewFlowRoute.name: (routeData) {
+    FriendsOverviewFlowRoute.name: (routeData) {
       return _i50.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i25.OverviewFlow());
+          routeData: routeData, child: const _i25.FriendsOverviewFlow());
     },
     FriendsProfilePageRoute.name: (routeData) {
       return _i50.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i26.ProfilePage());
+          routeData: routeData, child: const _i26.FriendsProfilePage());
     },
     FriendsOverviewPageRoute.name: (routeData) {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i27.OverviewPage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          child: const _i27.FriendsOverviewPage(),
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -262,11 +262,11 @@ class Router extends _i50.RootStackRouter {
     },
     GameHistoryOverviewPageRoute.name: (routeData) {
       return _i50.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i30.OverviewPage());
+          routeData: routeData, child: const _i30.GameHistoryOverviewPage());
     },
     GameHistoryDetailsPageRoute.name: (routeData) {
       return _i50.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i31.DetailsPage());
+          routeData: routeData, child: const _i31.GameHistoryDetailsPage());
     },
     CreateOfflineGameFlowRoute.name: (routeData) {
       return _i50.CustomPage<dynamic>(
@@ -287,7 +287,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i35.CreateOfflineGamePage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -305,7 +305,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i37.InOfflineGamePage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -353,7 +353,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i44.CreateOnlineGamePage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -361,7 +361,7 @@ class Router extends _i50.RootStackRouter {
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i45.InOnlineGamePage(),
-          customRouteBuilder: _i52.customRouteBuilder,
+          customRouteBuilder: _i52.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
@@ -443,23 +443,18 @@ class Router extends _i50.RootStackRouter {
               path: 'friends-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i50.RouteConfig(OverviewFlowRoute.name,
+                _i50.RouteConfig(FriendsOverviewFlowRoute.name,
                     path: '',
                     parent: FriendsFlowRoute.name,
                     children: [
-                      _i50.RouteConfig('#redirect',
-                          path: '',
-                          parent: OverviewFlowRoute.name,
-                          redirectTo: 'friends-overview-page',
-                          fullMatch: true),
                       _i50.RouteConfig(FriendsOverviewPageRoute.name,
-                          path: 'friends-overview-page',
-                          parent: OverviewFlowRoute.name),
+                          path: '', parent: FriendsOverviewFlowRoute.name),
                       _i50.RouteConfig(MoreModalRoute.name,
-                          path: 'more-modal', parent: OverviewFlowRoute.name),
+                          path: 'more-modal',
+                          parent: FriendsOverviewFlowRoute.name),
                       _i50.RouteConfig(SearchUserModalRoute.name,
                           path: 'search-user-modal',
-                          parent: OverviewFlowRoute.name)
+                          parent: FriendsOverviewFlowRoute.name)
                     ]),
                 _i50.RouteConfig(FriendsProfilePageRoute.name,
                     path: 'friends-profile-page', parent: FriendsFlowRoute.name)
@@ -470,14 +465,8 @@ class Router extends _i50.RootStackRouter {
               path: 'game-history-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i50.RouteConfig('#redirect',
-                    path: '',
-                    parent: GameHistoryFlowRoute.name,
-                    redirectTo: 'game-history-overview-page',
-                    fullMatch: true),
                 _i50.RouteConfig(GameHistoryOverviewPageRoute.name,
-                    path: 'game-history-overview-page',
-                    parent: GameHistoryFlowRoute.name),
+                    path: '', parent: GameHistoryFlowRoute.name),
                 _i50.RouteConfig(GameHistoryDetailsPageRoute.name,
                     path: 'game-history-details-page',
                     parent: GameHistoryFlowRoute.name)
@@ -813,16 +802,17 @@ class ChangeUsernameSuccessPageRoute extends _i50.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i25.OverviewFlow]
-class OverviewFlowRoute extends _i50.PageRouteInfo<void> {
-  const OverviewFlowRoute({List<_i50.PageRouteInfo>? children})
-      : super(OverviewFlowRoute.name, path: '', initialChildren: children);
+/// [_i25.FriendsOverviewFlow]
+class FriendsOverviewFlowRoute extends _i50.PageRouteInfo<void> {
+  const FriendsOverviewFlowRoute({List<_i50.PageRouteInfo>? children})
+      : super(FriendsOverviewFlowRoute.name,
+            path: '', initialChildren: children);
 
-  static const String name = 'OverviewFlowRoute';
+  static const String name = 'FriendsOverviewFlowRoute';
 }
 
 /// generated route for
-/// [_i26.ProfilePage]
+/// [_i26.FriendsProfilePage]
 class FriendsProfilePageRoute extends _i50.PageRouteInfo<void> {
   const FriendsProfilePageRoute()
       : super(FriendsProfilePageRoute.name, path: 'friends-profile-page');
@@ -831,10 +821,10 @@ class FriendsProfilePageRoute extends _i50.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i27.OverviewPage]
+/// [_i27.FriendsOverviewPage]
 class FriendsOverviewPageRoute extends _i50.PageRouteInfo<void> {
   const FriendsOverviewPageRoute()
-      : super(FriendsOverviewPageRoute.name, path: 'friends-overview-page');
+      : super(FriendsOverviewPageRoute.name, path: '');
 
   static const String name = 'FriendsOverviewPageRoute';
 }
@@ -857,17 +847,16 @@ class SearchUserModalRoute extends _i50.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i30.OverviewPage]
+/// [_i30.GameHistoryOverviewPage]
 class GameHistoryOverviewPageRoute extends _i50.PageRouteInfo<void> {
   const GameHistoryOverviewPageRoute()
-      : super(GameHistoryOverviewPageRoute.name,
-            path: 'game-history-overview-page');
+      : super(GameHistoryOverviewPageRoute.name, path: '');
 
   static const String name = 'GameHistoryOverviewPageRoute';
 }
 
 /// generated route for
-/// [_i31.DetailsPage]
+/// [_i31.GameHistoryDetailsPage]
 class GameHistoryDetailsPageRoute extends _i50.PageRouteInfo<void> {
   const GameHistoryDetailsPageRoute()
       : super(GameHistoryDetailsPageRoute.name,

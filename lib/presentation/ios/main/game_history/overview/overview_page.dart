@@ -14,8 +14,8 @@ import 'package:dart_counter/domain/game/abstract_game.dart';
 import '../../shared/widgets.dart';
 part 'widgets.dart';
 
-class OverviewPage extends StatelessWidget {
-  const OverviewPage({
+class GameHistoryOverviewPage extends StatelessWidget {
+  const GameHistoryOverviewPage({
     Key? key,
   }) : super(key: key);
 

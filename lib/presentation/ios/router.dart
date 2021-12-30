@@ -15,11 +15,11 @@ import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
 import 'main/friends/friends_flow.dart';
 import 'main/friends/overview/overview_flow.dart';
-import 'main/friends/overview/page/overview_page.dart' as friends_overview;
-import 'main/friends/profile/profile_page.dart' as friends_profile;
-import 'main/game_history/details/details_page.dart' as game_history_details;
+import 'main/friends/overview/page/overview_page.dart';
+import 'main/friends/profile/profile_page.dart';
+import 'main/game_history/details/details_page.dart';
 import 'main/game_history/game_history_flow.dart';
-import 'main/game_history/overview/overview_page.dart' as game_history_overview;
+import 'main/game_history/overview/overview_page.dart';
 import 'main/game_invitations/game_invitations_page.dart';
 import 'main/home/home_page.dart';
 import 'main/main_flow.dart';
@@ -39,12 +39,12 @@ import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_
 import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
-import 'main/settings/modals/change_username/initial/initial_page.dart';
-import 'main/settings/modals/change_username/success/success_page.dart';
 import 'main/settings/modals/change_email/initial/initial_page.dart';
 import 'main/settings/modals/change_email/success/success_page.dart';
 import 'main/settings/modals/change_password/initial/initial_page.dart';
 import 'main/settings/modals/change_password/success/success_page.dart';
+import 'main/settings/modals/change_username/initial/initial_page.dart';
+import 'main/settings/modals/change_username/success/success_page.dart';
 import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'main/training/create_training/create_training_page.dart';
 import 'main/training/in_training/in_training_page.dart';
@@ -58,7 +58,7 @@ import 'main/training/training_flow.dart';
   routes: <AutoRoute>[
     // TODO if possible to the same as pageview using autrouter
     CustomRoute(
-      customRouteBuilder: customRouteBuilder,
+      customRouteBuilder: modalParentRouteBuilder,
       page: AuthFlow,
     ),
     CustomRoute(
@@ -73,7 +73,7 @@ import 'main/training/training_flow.dart';
           children: [
             CustomRoute(
               initial: true,
-              customRouteBuilder: customRouteBuilder,
+              customRouteBuilder: modalParentRouteBuilder,
               page: SettingsPage,
             ),
             CustomRoute(
@@ -135,14 +135,12 @@ import 'main/training/training_flow.dart';
           children: [
             CupertinoRoute(
               initial: true,
-              page: OverviewFlow,
+              page: FriendsOverviewFlow,
               children: [
                 CustomRoute(
                   initial: true,
-                  name: 'FriendsOverviewPageRoute',
-                  path: 'friends-overview-page',
-                  customRouteBuilder: customRouteBuilder,
-                  page: friends_overview.OverviewPage,
+                  customRouteBuilder: modalParentRouteBuilder,
+                  page: FriendsOverviewPage,
                 ),
                 CustomRoute(
                   customRouteBuilder: notExpandedModalRouteBuilder,
@@ -155,9 +153,7 @@ import 'main/training/training_flow.dart';
               ],
             ),
             CupertinoRoute(
-              name: 'FriendsProfilePageRoute',
-              path: 'friends-profile-page',
-              page: friends_profile.ProfilePage,
+              page: FriendsProfilePage,
             ),
           ],
         ),
@@ -169,14 +165,10 @@ import 'main/training/training_flow.dart';
           children: [
             CupertinoRoute(
               initial: true,
-              name: 'GameHistoryOverviewPageRoute',
-              path: 'game-history-overview-page',
-              page: game_history_overview.OverviewPage,
+              page: GameHistoryOverviewPage,
             ),
             CupertinoRoute(
-              name: 'GameHistoryDetailsPageRoute',
-              path: 'game-history-details-page',
-              page: game_history_details.DetailsPage,
+              page: GameHistoryDetailsPage,
             ),
           ],
         ),
@@ -189,7 +181,7 @@ import 'main/training/training_flow.dart';
               children: [
                 CustomRoute(
                   initial: true,
-                  customRouteBuilder: customRouteBuilder,
+                  customRouteBuilder: modalParentRouteBuilder,
                   page: CreateOfflineGamePage,
                 ),
                 CustomRoute(
@@ -203,7 +195,7 @@ import 'main/training/training_flow.dart';
               children: [
                 CustomRoute(
                   initial: true,
-                  customRouteBuilder: customRouteBuilder,
+                  customRouteBuilder: modalParentRouteBuilder,
                   page: InOfflineGamePage,
                 ),
                 CustomRoute(
@@ -234,7 +226,7 @@ import 'main/training/training_flow.dart';
               children: [
                 CustomRoute(
                   initial: true,
-                  customRouteBuilder: customRouteBuilder,
+                  customRouteBuilder: modalParentRouteBuilder,
                   page: CreateOnlineGamePage,
                 ),
                 CustomRoute(
@@ -248,7 +240,7 @@ import 'main/training/training_flow.dart';
               children: [
                 CustomRoute(
                   initial: true,
-                  customRouteBuilder: customRouteBuilder,
+                  customRouteBuilder: modalParentRouteBuilder,
                   page: InOnlineGamePage,
                 ),
                 CustomRoute(
@@ -291,12 +283,14 @@ import 'main/training/training_flow.dart';
 )
 class $Router {}
 
+// TODO maybe move the following part into seperate file??
+
 /// Route builder for pages with modal views.
 ///
 /// This is needed to get the correct visual ios effect (the background page gets zoom back
 ///
 /// a little bit when a modal page gets pushed via modal bottom sheet).
-Route<T> customRouteBuilder<T>(
+Route<T> modalParentRouteBuilder<T>(
   BuildContext context,
   Widget widget,
   CustomPage page,
