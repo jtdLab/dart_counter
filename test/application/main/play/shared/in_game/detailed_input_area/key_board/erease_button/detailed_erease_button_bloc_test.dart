@@ -1,7 +1,7 @@
 // TODO
 /**
  * import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/application_error.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/key_board/erease_button/detailed_erease_button_bloc.dart';

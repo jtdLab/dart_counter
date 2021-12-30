@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
+import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 // import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';

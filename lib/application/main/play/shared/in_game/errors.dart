@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/application_error.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 
 // Errors in shard in game atm but // TODO place this file in correct location in filesystem application/main/play
 

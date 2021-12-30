@@ -12,7 +12,7 @@ import 'package:auto_route/auto_route.dart' as _i50;
 import 'package:flutter/material.dart' as _i51;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i54;
-import '../../application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart'
+import '../../application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart'
     as _i55;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i53;
