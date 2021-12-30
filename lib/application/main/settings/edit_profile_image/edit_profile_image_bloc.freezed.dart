@@ -435,8 +435,8 @@ abstract class _ChoosePressed implements EditProfileImageEvent {
 class _$EditProfileImageStateTearOff {
   const _$EditProfileImageStateTearOff();
 
-  Initial initial() {
-    return const Initial();
+  EditProfileImageInitial initial() {
+    return const EditProfileImageInitial();
   }
 }
 
@@ -463,17 +463,17 @@ mixin _$EditProfileImageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(EditProfileImageInitial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(EditProfileImageInitial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(EditProfileImageInitial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -497,26 +497,28 @@ class _$EditProfileImageStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class $EditProfileImageInitialCopyWith<$Res> {
+  factory $EditProfileImageInitialCopyWith(EditProfileImageInitial value,
+          $Res Function(EditProfileImageInitial) then) =
+      _$EditProfileImageInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res>
+class _$EditProfileImageInitialCopyWithImpl<$Res>
     extends _$EditProfileImageStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+    implements $EditProfileImageInitialCopyWith<$Res> {
+  _$EditProfileImageInitialCopyWithImpl(EditProfileImageInitial _value,
+      $Res Function(EditProfileImageInitial) _then)
+      : super(_value, (v) => _then(v as EditProfileImageInitial));
 
   @override
-  Initial get _value => super._value as Initial;
+  EditProfileImageInitial get _value => super._value as EditProfileImageInitial;
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$EditProfileImageInitial implements EditProfileImageInitial {
+  const _$EditProfileImageInitial();
 
   @override
   String toString() {
@@ -526,7 +528,7 @@ class _$Initial implements Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Initial);
+        (other.runtimeType == runtimeType && other is EditProfileImageInitial);
   }
 
   @override
@@ -563,7 +565,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(EditProfileImageInitial value) initial,
   }) {
     return initial(this);
   }
@@ -571,7 +573,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(EditProfileImageInitial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -579,7 +581,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(EditProfileImageInitial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -589,6 +591,6 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements EditProfileImageState {
-  const factory Initial() = _$Initial;
+abstract class EditProfileImageInitial implements EditProfileImageState {
+  const factory EditProfileImageInitial() = _$EditProfileImageInitial;
 }

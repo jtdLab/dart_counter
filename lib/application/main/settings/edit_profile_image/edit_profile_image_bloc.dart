@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart'; // TODO should this be in infra layer ???
 import 'package:injectable/injectable.dart';
 
+part 'edit_profile_image_bloc.freezed.dart';
 part 'edit_profile_image_event.dart';
 part 'edit_profile_image_state.dart';
-part 'edit_profile_image_bloc.freezed.dart';
 
 @lazySingleton
 class EditProfileImageBloc
@@ -21,24 +20,18 @@ class EditProfileImageBloc
 
   EditProfileImageBloc(
     this._userService,
-  ) : super(const EditProfileImageState.initial());
-
-  @override
-  Stream<EditProfileImageState> mapEventToState(
-    EditProfileImageEvent event,
-  ) async* {
-    yield* event.map(
-      deletePressed: (_) => _mapDeletePressedToState(),
-      takePressed: (_) => _mapTakePressedToState(),
-      choosePressed: (_) => _mapChoosePressedToState(),
-    );
+  ) : super(const EditProfileImageState.initial()) {
+    on<_DeletePressed>((_, __) => _mapDeletePressedToState());
+    on<_TakePressed>((_, __) => _mapTakePressedToState());
+    on<_ChoosePressed>((_, __) => _mapChoosePressedToState());
   }
 
-  Stream<EditProfileImageState> _mapDeletePressedToState() async* {
+  void _mapDeletePressedToState() {
+    // TODO await result ???
     _userService.deleteProfilePhoto();
   }
 
-  Stream<EditProfileImageState> _mapTakePressedToState() async* {
+  Future<void> _mapTakePressedToState() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile == null) {
@@ -50,7 +43,7 @@ class EditProfileImageBloc
     );
   }
 
-  Stream<EditProfileImageState> _mapChoosePressedToState() async* {
+  Future<void> _mapChoosePressedToState() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile == null) {
