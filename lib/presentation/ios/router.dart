@@ -5,6 +5,7 @@ import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offli
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/change_email_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_password/change_password_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
 
@@ -79,20 +80,21 @@ import 'main/training/training_flow.dart';
                 ),
               ],
             ),
-            /**
-            *  CustomRoute(
+            CustomRoute(
               customRouteBuilder: expandedModalRouteBuilder,
-              page: null,
+              page: ChangePasswordModal,
               children: [
                 CustomRoute(
                   initial: true,
-                  page: null,
+                  page: ChangePasswordInitialPage,
                 ),
                 CustomRoute(
-                  page: null,
+                  page: ChangePasswordSuccessPage,
                 ),
               ],
             ),
+            /**
+            *
             CustomRoute(
               customRouteBuilder: expandedModalRouteBuilder,
               page: null,

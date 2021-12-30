@@ -1,8 +1,8 @@
 part of '../change_password_modal.dart';
 
 // BODY
-class _InitialWidget extends StatelessWidget {
-  const _InitialWidget({
+class _ChangePasswordInitialWidget extends StatelessWidget {
+  const _ChangePasswordInitialWidget({
     Key? key,
   }) : super(key: key);
 

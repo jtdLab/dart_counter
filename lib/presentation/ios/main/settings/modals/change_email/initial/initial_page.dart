@@ -43,7 +43,7 @@ class ChangeEmailInitialPage extends StatelessWidget {
                 constraints: constraints.copyWith(
                   maxHeight: constraints.maxHeight + bottomInsets,
                 ),
-                child: const _ChnageEmailInitialWidget(),
+                child: const _ChangeEmailInitialWidget(),
               ),
             );
           },

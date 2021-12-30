@@ -1,7 +1,7 @@
 part of '../change_password_modal.dart';
 
-class _SuccessPage extends StatelessWidget {
-  const _SuccessPage({
+class ChangePasswordSuccessPage extends StatelessWidget {
+  const ChangePasswordSuccessPage({
     Key? key,
   }) : super(key: key);
 

@@ -197,13 +197,8 @@ class _AccountCard extends StatelessWidget {
         ),
         _AccountItem(
           title: LocaleKeys.password.tr(),
-          onPressed: () {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => const ChangePasswordModal(),
-            );
-          },
+          onPressed: () =>
+              context.router.push(const ChangePasswordModalRoute()),
         ),
         _AccountItem(
           title: LocaleKeys.email.tr(),
