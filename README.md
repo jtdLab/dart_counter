@@ -159,3 +159,5 @@ TODO the comibination of multiple source streams is not implemented consitently 
 make extension part of the class the extend part and part of statments
 
 TODO marks invitations and friendrequest as read doesnt work
+
+page transitions with better effects could be done e.g from auth_flow to main_flow after sign in or other

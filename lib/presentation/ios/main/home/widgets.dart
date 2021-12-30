@@ -26,7 +26,7 @@ class _GameInvitationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final unreadReceivedInvitations =
-        context.read<HomeLoadSuccess>().unreadGameInvitations;
+        context.watch<HomeLoadSuccess>().unreadGameInvitations;
 
     if (unreadReceivedInvitations == 0) {
       return AppNavigationBarButton(
@@ -69,7 +69,7 @@ class _FriendsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final unreadFriendRequests =
-        context.read<HomeLoadSuccess>().unreadFriendRequests;
+        context.watch<HomeLoadSuccess>().unreadFriendRequests;
 
     if (unreadFriendRequests == 0) {
       return AppNavigationBarButton(
