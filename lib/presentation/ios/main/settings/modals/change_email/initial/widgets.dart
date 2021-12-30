@@ -1,8 +1,8 @@
 part of '../change_email_modal.dart';
 
 // BODY
-class _InitialWidget extends StatelessWidget {
-  const _InitialWidget({
+class _ChnageEmailInitialWidget extends StatelessWidget {
+  const _ChnageEmailInitialWidget({
     Key? key,
   }) : super(key: key);
 

@@ -1,8 +1,8 @@
 part of '../change_email_modal.dart';
 
 // BODY
-class _SuccessWidget extends StatelessWidget {
-  const _SuccessWidget({
+class _ChangeEmailSuccessWidget extends StatelessWidget {
+  const _ChangeEmailSuccessWidget({
     Key? key,
   }) : super(key: key);
 

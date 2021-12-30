@@ -207,13 +207,7 @@ class _AccountCard extends StatelessWidget {
         ),
         _AccountItem(
           title: LocaleKeys.email.tr(),
-          onPressed: () {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => const ChangeEmailModal(),
-            );
-          },
+          onPressed: () => context.router.push(const ChangeEmailModalRoute()),
         ),
       ],
     );

@@ -10,7 +10,7 @@ class _SettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
       noPaddingLeft: true,
-      onPressed: () => context.router.push(const SettingsPageRoute()),
+      onPressed: () => context.router.push(const SettingsFlowRoute()),
       child: Image.asset(
         AppImages.settingsNew,
       ),

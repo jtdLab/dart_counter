@@ -4,6 +4,9 @@ import 'package:dart_counter/presentation/ios/main/friends/overview/modals/searc
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/change_email_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
+import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -33,7 +36,6 @@ import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_
 import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
 import 'main/privacy_policy/privacy_policy_page.dart';
 import 'main/profile/profile_page.dart';
-import 'main/settings/settings_page.dart';
 import 'main/training/create_training/create_training_page.dart';
 import 'main/training/in_training/in_training_page.dart';
 import 'main/training/post_training/post_training_page.dart';
@@ -44,6 +46,7 @@ import 'main/training/training_flow.dart';
 /// For more info see: https://pub.dev/packages/auto_route
 @CustomAutoRouter(
   routes: <AutoRoute>[
+    // TODO if possible to the same as pageview using autrouter
     CustomRoute(
       customRouteBuilder: customRouteBuilder,
       page: AuthFlow,
@@ -55,9 +58,60 @@ import 'main/training/training_flow.dart';
           initial: true,
           page: HomePage,
         ),
-        CustomRoute(
-          customRouteBuilder: customRouteBuilder,
-          page: SettingsPage,
+        CupertinoRoute(
+          page: SettingsFlow,
+          children: [
+            CustomRoute(
+              initial: true,
+              customRouteBuilder: customRouteBuilder,
+              page: SettingsPage,
+            ),
+            CustomRoute(
+              customRouteBuilder: expandedModalRouteBuilder,
+              page: ChangeEmailModal,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  page: ChangeEmailInitialPage,
+                ),
+                CustomRoute(
+                  page: ChangeEmailSuccessPage,
+                ),
+              ],
+            ),
+            /**
+            *  CustomRoute(
+              customRouteBuilder: expandedModalRouteBuilder,
+              page: null,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  page: null,
+                ),
+                CustomRoute(
+                  page: null,
+                ),
+              ],
+            ),
+            CustomRoute(
+              customRouteBuilder: expandedModalRouteBuilder,
+              page: null,
+              children: [
+                CustomRoute(
+                  initial: true,
+                  page: null,
+                ),
+                CustomRoute(
+                  page: null,
+                ),
+              ],
+            ),
+            CustomRoute(
+              customRouteBuilder: notExpandedModalRouteBuilder
+              page: null,
+            ),
+            */
+          ],
         ),
         CupertinoRoute(
           page: PrivacyPolicyPage,
