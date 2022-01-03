@@ -5,7 +5,7 @@ part 'app_user_event.dart';
 part 'app_user_state.dart';
 part 'app_user_bloc.freezed.dart';
 
-// TODO design and impl this
+// TODO design and impl this and keep or remove this ???
 
 class AppUserBloc extends Bloc<AppUserEvent, AppUserState> {
   AppUserBloc() : super(const AppUserState.initial()) {
