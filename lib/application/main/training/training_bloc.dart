@@ -33,7 +33,7 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
 
   final IUserService _userService;
 
-  StreamSubscription? _gameSnapshotsSubscription;
+  late StreamSubscription _gameSnapshotsSubscription;
 
   TrainingBloc(
     this._singleTrainingService,
@@ -179,14 +179,14 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
           break;
       }
     });
-    on<TrainingTypeChanged>((event, emit) {
+    on<TrainingTypeChanged>((event, emit) async {
       final user = _userService.getUser().fold(
             (failure) => null,
             (user) => user,
           );
 
       if (user != null) {
-        _gameSnapshotsSubscription?.cancel();
+        await _gameSnapshotsSubscription.cancel();
 
         final currentType = state.type;
         final newType = event.newType;
@@ -336,16 +336,11 @@ class TrainingBloc extends Bloc<TrainingEvent, TrainingState>
 
       emit(state.copyWith(gameSnapshot: gameSnapshot));
     });
-
-    _gameSnapshotsSubscription =
-        _singleTrainingService.watchGame().listen((gameSnapshot) {
-      add(TrainingEvent.gameSnapshotReceived(gameSnapshot: gameSnapshot));
-    });
   }
 
   @override
   Future<void> close() {
-    _gameSnapshotsSubscription?.cancel();
+    _gameSnapshotsSubscription.cancel();
 
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<TrainingBloc>()) {

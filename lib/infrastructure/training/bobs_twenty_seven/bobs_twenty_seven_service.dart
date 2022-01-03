@@ -31,9 +31,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
 
   @override
   void cancel() {
-    return _tryPerform(
-      action: () => _game!.cancel(),
-    );
+    _game?.cancel();
   }
 
   @override

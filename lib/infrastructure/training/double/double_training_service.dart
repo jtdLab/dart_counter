@@ -31,9 +31,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
-      action: () => _game!.cancel(),
-    );
+    _game?.cancel();
   }
 
   @override

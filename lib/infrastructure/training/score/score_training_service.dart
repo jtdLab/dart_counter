@@ -30,9 +30,7 @@ class ScoreTrainingService implements IScoreTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
-      action: () => _game!.cancel(),
-    );
+    _game?.cancel();
   }
 
   @override
