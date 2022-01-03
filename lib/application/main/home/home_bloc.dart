@@ -41,6 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       transformer: restartable(),
     );
   }
+  
 
   Future<void> _mapWatchDataStartedToState(
     Emitter<HomeState> emit,

@@ -9,7 +9,6 @@ class MockPlayOnlineService extends Mock implements IPlayOnlineService {}
 class MockGameInvitationService extends Mock implements IGameInvitationService {
 }
 
-
 void main() {
   late MockPlayOnlineService mockPlayOnlineService;
   late MockGameInvitationService mockGameInvitationService;
@@ -33,11 +32,7 @@ void main() {
     );
   });
 
-  group('DataReceived', () {
-    // TODO implement tests
-  });
-
-  group('GameReceived', () {
+  group('Started', () {
     // TODO implement tests
   });
 

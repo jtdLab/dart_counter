@@ -58,11 +58,11 @@ void main() {
     expect(underTest.state, const HomeState.loadInProgress());
   });
 
-  group('WatchDataStarted', () {
+  group('Started', () {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'emits [HomeLoadInProgress, HomeLoadFailure] if user failure arrives '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -103,7 +103,7 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'emits [HomeLoadInProgress, HomeLoadFailure] if user game invitation failure arrives '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -144,7 +144,7 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'emits [HomeLoadInProgress, HomeLoadFailure] if friend failure arrives '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -184,7 +184,7 @@ void main() {
 
     blocTest<HomeBloc, HomeState>(
       'emits [HomeLoadInProgress, HomeLoadSuccess] when all data arrived '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -228,8 +228,8 @@ void main() {
     );
 
     blocTest<HomeBloc, HomeState>(
-      'emits [HomeLoadInProgress] when not all data arrived '
-      'after WatchDataStarted was added.',
+      'emits [HomeLoadInProgress] when no user arrived '
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -264,8 +264,8 @@ void main() {
     );
 
     blocTest<HomeBloc, HomeState>(
-      'emits [HomeLoadInProgress] when not all data arrived '
-      'after WatchDataStarted was added.',
+      'emits [HomeLoadInProgress] when no reveived game invitations arrived '
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -300,8 +300,8 @@ void main() {
     );
 
     blocTest<HomeBloc, HomeState>(
-      'emits [HomeLoadInProgress] when not all data arrived '
-      'after WatchDataStarted was added.',
+      'emits [HomeLoadInProgress] when no reveived friend requests arrived '
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -337,7 +337,7 @@ void main() {
 
     blocTest<HomeBloc, HomeState>(
       'emits [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new user '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -389,7 +389,7 @@ void main() {
 
     blocTest<HomeBloc, HomeState>(
       'emits [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received game invitations '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),
@@ -444,7 +444,7 @@ void main() {
 
     blocTest<HomeBloc, HomeState>(
       'emits [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received friend requests '
-      'after WatchDataStarted was added.',
+      'after Started was added.',
       build: () {
         when<Stream<Either<UserFailure, User>>>(
           () => mockUserService.watchUser(),

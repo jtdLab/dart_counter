@@ -1,14 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/friends/friends_bloc.dart';
 import 'package:dart_counter/application/main/friends/more/more_bloc.dart';
-import 'package:dart_counter/application/main/home/home_bloc.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
-import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/domain/user/user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
