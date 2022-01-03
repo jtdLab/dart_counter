@@ -185,3 +185,124 @@ class CancelButton extends StatelessWidget {
     );
   }
 }
+
+// INPUT ROW
+// TODO location in file strucuture
+class InputRow extends StatelessWidget {
+  final VoidCallback onUndoPressed;
+  final VoidCallback onPerformThrowPressed;
+  final int points;
+
+  const InputRow({
+    Key? key,
+    required this.onUndoPressed,
+    required this.onPerformThrowPressed,
+    required this.points,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppRow(
+      spacing: size6(context),
+      children: [
+        Expanded(
+          child: UndoButton(
+            onPressed: onUndoPressed,
+          ),
+        ),
+        Expanded(
+          child: InputPointsDisplayer(points: points),
+        ),
+        Expanded(
+          child: DoButton(
+            onPressed: onPerformThrowPressed,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class InputPointsDisplayer extends StatelessWidget {
+  final int points;
+
+  const InputPointsDisplayer({
+    Key? key,
+    required this.points,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: border4(context),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          points.toString(),
+          style: const TextStyle(fontSize: 28), // TODO
+        ),
+      ),
+    );
+  }
+}
+
+class UndoButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+
+  const UndoButton({
+    Key? key,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      minSize: 0,
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.red,
+            width: border4(context),
+          ),
+        ),
+        child: Center(
+          child: Image.asset(AppImages.chevronRedBackNew),
+        ),
+      ),
+    );
+  }
+}
+
+class DoButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+
+  const DoButton({
+    Key? key,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      minSize: 0,
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.green,
+            width: border4(context),
+          ),
+        ),
+        child: Center(
+          child: Image.asset(AppImages.chevronGreenForwardNew),
+        ),
+      ),
+    );
+  }
+}

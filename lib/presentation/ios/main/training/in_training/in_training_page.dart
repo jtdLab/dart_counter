@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -33,7 +34,9 @@ class InTrainingPage extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          final type = state.type;
           final game = state.gameSnapshot;
+
           return AppPage(
             navigationBar: AppNavigationBar(
               leading: CancelButton(
@@ -58,8 +61,15 @@ class InTrainingPage extends StatelessWidget {
                   );
                 },
               ),
+              // TODO localekeys
               middle: Text(
-                'TRAINING', // game.description(),
+                type == Type.single
+                    ? 'SINGLE TRAINING'
+                    : type == Type.double
+                        ? 'DOUBLE TRAINING'
+                        : type == Type.score
+                            ? 'SCORE TRAINING'
+                            : 'BOBS 27',
               ),
             ),
             child: const _InTrainingWidget(),

@@ -23,6 +23,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/standard_input
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 
 // NAVBAR
 class StatsButton extends StatelessWidget {
@@ -69,13 +70,20 @@ class StandardInputArea extends StatelessWidget {
               ),
               Expanded(
                 flex: 30,
-                child: _InputRow(
-                  onUndoPressed: () => context
-                      .read<StandardInputAreaBloc>()
-                      .add(const StandardInputAreaEvent.undoThrowPressed()),
-                  onPerformThrowPressed: () => context
-                      .read<StandardInputAreaBloc>()
-                      .add(const StandardInputAreaEvent.performThrowPressed()),
+                child: BlocBuilder<PointsCubit, int>(
+                  builder: (context, state) {
+                    return InputRow(
+                      onUndoPressed: () => context
+                          .read<StandardInputAreaBloc>()
+                          .add(const StandardInputAreaEvent.undoThrowPressed()),
+                      onPerformThrowPressed: () => context
+                          .read<StandardInputAreaBloc>()
+                          .add(
+                            const StandardInputAreaEvent.performThrowPressed(),
+                          ),
+                      points: state,
+                    );
+                  },
                 ),
               ),
             ],
@@ -283,17 +291,27 @@ class DetailedInputArea extends StatelessWidget {
           child: AppColumn(
             spacing: size6(context),
             children: [
-              const Expanded(child: _DartsDisplayer()), // TODO expanded 1 ebene down
+              const Expanded(
+                child: _DartsDisplayer(),
+              ),
+
+              // TODO expanded 1 ebene down
               Expanded(
                 flex: 3,
-                child: _InputRow(
-                  onUndoPressed: () => context
-                      .read<DetailedInputAreaBloc>()
-                      .add(const DetailedInputAreaEvent.undoThrowPressed()),
-                  onPerformThrowPressed: () =>
-                      context.read<DetailedInputAreaBloc>().add(
+                child: BlocBuilder<PointsCubit, int>(
+                  builder: (context, state) {
+                    return InputRow(
+                      onUndoPressed: () => context
+                          .read<DetailedInputAreaBloc>()
+                          .add(const DetailedInputAreaEvent.undoThrowPressed()),
+                      onPerformThrowPressed: () => context
+                          .read<DetailedInputAreaBloc>()
+                          .add(
                             const DetailedInputAreaEvent.performThrowPressed(),
                           ),
+                      points: state,
+                    );
+                  },
                 ),
               ),
             ],
@@ -552,7 +570,7 @@ class SpeechInputArea extends StatelessWidget {
                         children: [
                           const Spacer(),
                           Expanded(
-                            child: _UndoButton(
+                            child: UndoButton(
                               onPressed: () =>
                                   context.read<SpeechInputAreaBloc>().add(
                                         const SpeechInputAreaEvent
@@ -616,10 +634,15 @@ class OpticalInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-          _DartsDisplayer(),
-          _InputRow(
-            onUndoPressed: onUndoPressed,
-            onPerformThrowPressed: onPerformThrowPressed,
+          const _DartsDisplayer(),
+          BlocBuilder<PointsCubit, int>(
+            builder: (context, state) {
+              return InputRow(
+                onUndoPressed: onUndoPressed,
+                onPerformThrowPressed: onPerformThrowPressed,
+                points: state,
+              );
+            },
           ),
           const _OpticalKeyBoard(),
         ],
@@ -1495,129 +1518,5 @@ class _DartsDisplayer extends StatelessWidget {
 
       return string + dart.value.toString();
     }
-  }
-}
-
-// UNDO BUTTON
-class _UndoButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-
-  const _UndoButton({
-    Key? key,
-    this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoButton(
-      minSize: 0,
-      padding: EdgeInsets.zero,
-      onPressed: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.red,
-            width: border4(context),
-          ),
-        ),
-        child: Center(
-          child: Image.asset(AppImages.chevronRedBackNew),
-        ),
-      ),
-    );
-  }
-}
-
-// INPUT ROW
-// TODO location in file strucuture
-class _InputRow extends StatelessWidget {
-  final VoidCallback onUndoPressed;
-  final VoidCallback onPerformThrowPressed;
-
-  const _InputRow({
-    Key? key,
-    required this.onUndoPressed,
-    required this.onPerformThrowPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppRow(
-      spacing: size6(context),
-      children: [
-        Expanded(
-          child: _UndoButton(
-            onPressed: onUndoPressed,
-          ),
-        ),
-        Expanded(
-          child: BlocBuilder<PointsCubit, int>(
-            builder: (context, state) {
-              return _InputPointsDisplayer(points: state);
-            },
-          ),
-        ),
-        Expanded(
-          child: _DoButton(
-            onPressed: onPerformThrowPressed,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _InputPointsDisplayer extends StatelessWidget {
-  final int points;
-
-  const _InputPointsDisplayer({
-    Key? key,
-    required this.points,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: border4(context),
-        ),
-      ),
-      child: Center(
-        child: Text(
-          points.toString(),
-          style: const TextStyle(fontSize: 28), // TODO
-        ),
-      ),
-    );
-  }
-}
-
-class _DoButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-
-  const _DoButton({
-    Key? key,
-    this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoButton(
-      minSize: 0,
-      padding: EdgeInsets.zero,
-      onPressed: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.green,
-            width: border4(context),
-          ),
-        ),
-        child: Center(
-          child: Image.asset(AppImages.chevronGreenForwardNew),
-        ),
-      ),
-    );
   }
 }
