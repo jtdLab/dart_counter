@@ -164,3 +164,6 @@ page transitions with better effects could be done e.g from auth_flow to main_fl
 
 the routing now works well with the seperate flow widgets to give the chance of providing a bloc for a flow -> can this approach be optimized and fewer boilerplate flow code can be written or is the current approach the best possible to fill all requirements
 (maybe evaluated the package flow_builder to replace all of this in future projects)
+
+
+// TODO carrerstats and otther domain objects should validate them selfe ??

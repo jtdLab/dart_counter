@@ -7,6 +7,8 @@ extension CareerStatsX on CareerStats {
   ///
   /// Calulcates new [CareerStats] where [this] and [careerStats]
   /// are weighted according to the number of games.
+  /// The trend of the resulting [CareerStats] is taken from [this] or [careerStats] depending
+  /// which one has more games. 
   CareerStats merge(
     CareerStats other,
   ) {
@@ -27,16 +29,18 @@ extension CareerStatsX on CareerStats {
       );
     }
 
-    // TODO trend calc
     return CareerStats(
       average: (average * games + other.average * otherGames) / allGames,
-      averageTrend: Trend.none,
+      averageTrend: games > otherGames ? averageTrend : other.averageTrend,
       checkoutPercentage:
           (checkoutPercentage * games + other.checkoutPercentage * otherGames) /
               allGames,
-      checkoutPercentageTrend: Trend.none,
+      checkoutPercentageTrend: games > otherGames
+          ? checkoutPercentageTrend
+          : other.checkoutPercentageTrend,
       firstNine: (firstNine * games + other.firstNine * otherGames) / allGames,
-      firstNineTrend: Trend.none,
+      firstNineTrend:
+          games > otherGames ? firstNineTrend : other.firstNineTrend,
       games: allGames,
       wins: wins + other.wins,
       defeats: defeats + other.defeats,
