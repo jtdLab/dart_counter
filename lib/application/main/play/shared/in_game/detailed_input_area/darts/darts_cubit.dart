@@ -11,7 +11,7 @@ class DartsCubit extends Cubit<KtList<Dart>> {
   ) : super(const KtList.empty());
 
   void update(KtList<Dart> newDarts) {
-    _pointsCubit.update(newDarts.fold(0, (acc, dart) => dart.points()));
+    _pointsCubit.update(newDarts.fold(0, (acc, dart) => acc + dart.points()));
     emit(newDarts);
   }
 }
