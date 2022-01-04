@@ -277,6 +277,7 @@ class DetailedInputArea extends StatelessWidget {
   static const flexTop = 1;
   static const flexBottom = 3;
 
+
   const DetailedInputArea({
     Key? key,
   }) : super(key: key);

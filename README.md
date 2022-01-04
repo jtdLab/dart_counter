@@ -167,3 +167,6 @@ the routing now works well with the seperate flow widgets to give the chance of 
 
 
 // TODO carrerstats and otther domain objects should validate them selfe ??
+
+// Throw.zero get autofilled and darts on double are 3 by user then there is error in model
+// => Throw.zero needs to be modeled better // this is solved by filling Dart(type: double, value 0);

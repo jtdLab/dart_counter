@@ -425,15 +425,15 @@ class DetailedDigitButtonBloc
                     return;
                   }
                 }
-
-                // emit focused with dartType and focusedValue
-                emit(
-                  DetailedDigitButtonState.focused(
-                    dartType: type,
-                    value: focusedValue,
-                  ),
-                );
               }
+              
+              // emit focused with dartType and focusedValue
+              emit(
+                DetailedDigitButtonState.focused(
+                  dartType: type,
+                  value: focusedValue,
+                ),
+              );
             },
           );
         }
