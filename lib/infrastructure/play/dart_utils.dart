@@ -41,16 +41,38 @@ class DartUtils implements IDartUtils {
   }) =>
       ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
 
-  // TODO impl better darts on double are not considered atm
+  // TODO move this impl to ex package maybe check if this is correctly impl
   @override
   bool validateDarts({
     required int pointsLeft,
     required KtList<Dart> darts,
-  }) =>
-      ex.DartUtils.validatePoints(
-        pointsLeft: pointsLeft,
-        points: darts.fold(0, (acc, dart) => acc + dart.points()),
-      );
+  }) {
+    final int points = darts.fold(0, (acc, dart) => acc + dart.points());
+
+    if (darts.size > 3) {
+      return false;
+    }
+
+    if (pointsLeft == 2 &&
+        darts.count((dart) => dart.type != DartType.double) != 0) {
+      return false;
+    }
+
+    if (points == pointsLeft) {
+      if (darts.isEmpty()) {
+        return false;
+      }
+
+      if (darts.get(darts.lastIndex).type != DartType.double) {
+        return false;
+      }
+    }
+
+    return ex.DartUtils.validatePoints(
+      pointsLeft: pointsLeft,
+      points: points,
+    );
+  }
 
   @override
   bool isFinish({

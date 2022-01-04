@@ -14,14 +14,6 @@ part 'detailed_digit_button_bloc.freezed.dart';
 part 'detailed_digit_button_event.dart';
 part 'detailed_digit_button_state.dart';
 
-// TODO implement with fewer lines
-// bugs known
-// when 3 darts already input then there are some key still not disabled
-// Throw.zero get autofilled and darts on double are 3 by user then there is error in model
-// => Throw.zero needs to be modeled better
-
-// if smart is off check that points cant get > than pointsLeft
-
 class DetailedDigitButtonBloc
     extends Bloc<DetailedDigitButtonEvent, DetailedDigitButtonState> {
   final int _digit;
@@ -41,34 +33,34 @@ class DetailedDigitButtonBloc
     this._advancedSettingsBloc,
     this._dartUtils,
   ) : super(
-          // TODO cleaner intial state calc
           _advancedSettingsBloc.state.map(
             createGame: (_) => throw advancedSettingsInGameExpectedError,
             inGame: (inGame) {
               return _inputAreaBloc.state.map(
                 initial: (_) {
-                  final pointsLeft = _pointsLeftCubit.state;
-
                   final smartKeyBoardActivated =
                       inGame.currentTurnAdvancedSettings.smartKeyBoardActivated;
 
                   if (smartKeyBoardActivated) {
                     // calulates the types that are valid in focused state for this button in current game state
-                    List<DartType> calcValidDartTypes() {
+                    // TODO duplicate is the same logic as _onRefresh
+                    List<DartType> calcValidDartTypes(
+                      int pointsLeft,
+                      int digit,
+                    ) {
                       final validTypes = <DartType>[];
                       for (final dartType in DartType.values) {
-                        final multiplier = dartType == DartType.single
-                            ? 1
-                            : dartType == DartType.double
-                                ? 2
-                                : 3;
+                        final newDarts = _dartsCubit.state.toMutableList()
+                          ..add(Dart(type: dartType, value: _digit));
 
-                        final newPoints = multiplier * _digit;
-
-                        if (_dartUtils.validatePoints(
+                        if (_dartUtils.validateDarts(
                           pointsLeft: pointsLeft,
-                          points: newPoints,
+                          darts: newDarts,
                         )) {
+                          final newPoints = newDarts.fold<int>(
+                            0,
+                            (acc, dart) => acc + dart.points(),
+                          );
                           if (newPoints == pointsLeft) {
                             if (dartType == DartType.double) {
                               validTypes.add(dartType);
@@ -81,7 +73,9 @@ class DetailedDigitButtonBloc
                       return validTypes;
                     }
 
-                    final validTypes = calcValidDartTypes();
+                    final pointsLeft = _pointsLeftCubit.state;
+
+                    final validTypes = calcValidDartTypes(pointsLeft, _digit);
                     // when only one dartType is possible
                     if (validTypes.isEmpty) {
                       // initial state is disabled
@@ -170,9 +164,7 @@ class DetailedDigitButtonBloc
         final smartKeyBoardActivated =
             inGame.currentTurnAdvancedSettings.smartKeyBoardActivated;
 
-        final points =
-            _dartsCubit.state.fold<int>(0, (acc, dart) => acc + dart.points());
-
+        // calcs the type of this button for given focused value. null if button is disabled
         DartType? calcType(int focusedValue) {
           final leftSide = [
             0,
@@ -233,51 +225,50 @@ class DetailedDigitButtonBloc
           }
         }
 
-        // when smart keyboard is active
-        if (smartKeyBoardActivated) {
-          // calulates the types that are valid in focused state for this button in current game state
-          List<DartType> calcValidDartTypes(int pointsLeft) {
-            final validTypes = <DartType>[];
-            for (final dartType in DartType.values) {
-              final multiplier = dartType == DartType.single
-                  ? 1
-                  : dartType == DartType.double
-                      ? 2
-                      : 3;
+        // calulates the types that are valid in focused state for this button in current game state
+        List<DartType> calcAllowedTypes(int pointsLeft, int digit) {
+          final validTypes = <DartType>[];
+          for (final dartType in DartType.values) {
+            final newDarts = _dartsCubit.state.toMutableList()
+              ..add(Dart(type: dartType, value: digit));
 
-              final newPoints = points + (multiplier * _digit);
+            if (_dartUtils.validateDarts(
+              pointsLeft: pointsLeft,
+              darts: newDarts,
+            )) {
+              final newPoints =
+                  newDarts.fold<int>(0, (acc, dart) => acc + dart.points());
 
-              if (_dartUtils.validatePoints(
-                pointsLeft: pointsLeft,
-                points: newPoints,
-              )) {
-                if (newPoints == pointsLeft) {
-                  if (dartType == DartType.double) {
-                    validTypes.add(dartType);
-                  }
-                } else {
+              if (newPoints == pointsLeft) {
+                if (dartType == DartType.double) {
                   validTypes.add(dartType);
                 }
+              } else {
+                validTypes.add(dartType);
               }
             }
-            return validTypes;
           }
 
-          _inputAreaBloc.state.map(
-            initial: (initial) {
+          return validTypes;
+        }
+
+        _inputAreaBloc.state.map(
+          initial: (initial) {
+            // when smart keyboard is active
+            if (smartKeyBoardActivated) {
               final pointsLeft = _pointsLeftCubit.state;
 
-              final validTypes = calcValidDartTypes(pointsLeft);
+              final allowedTypes = calcAllowedTypes(pointsLeft, _digit);
               // when only one dartType is possible
-              if (validTypes.isEmpty) {
+              if (allowedTypes.isEmpty) {
                 // emit disabled
                 emit(const DetailedDigitButtonState.disabled());
                 // when exactly 1 dartType is possible
-              } else if (validTypes.length == 1) {
+              } else if (allowedTypes.length == 1) {
                 // emit focused
                 emit(
                   DetailedDigitButtonState.focused(
-                    dartType: validTypes.first,
+                    dartType: allowedTypes.first,
                     value: _digit,
                   ),
                 );
@@ -285,104 +276,62 @@ class DetailedDigitButtonBloc
                 // emit disabled
                 emit(const DetailedDigitButtonState.enabled());
               }
-            },
-            focused: (focused) {
-              final focusedValue = focused.focusedValue;
+            } else {
+              // emit enabled
+              emit(const DetailedDigitButtonState.enabled());
+            }
+          },
+          focused: (focused) {
+            final focusedValue = focused.focusedValue;
 
-              // calc maxAllowedType it has to be the max type so the possible new points satisfy
-              // pointsLeft - new points (aka. remaining points) >= 0 but not 1.
+            // Determine type of new state
+            final type = calcType(focusedValue);
+
+            // when smart keyboard is active
+            if (smartKeyBoardActivated) {
               final pointsLeft = _pointsLeftCubit.state;
 
-              final validTypes = calcValidDartTypes(pointsLeft);
+              final maxAllowedType =
+                  calcAllowedTypes(pointsLeft, focusedValue).lastOrNull;
 
-              final maxAllowedType = validTypes.lastOrNull;
-
-              /**
-           *     DartType? maxAllowedType;
-              for (final type in DartType.values) {
-                final multiplier = type == DartType.single
-                    ? 1
-                    : type == DartType.double
-                        ? 2
-                        : 3;
-
-                final newPoints = points + (multiplier * focusedValue);
-                final newRemainingPoints = pointsLeft - newPoints;
-                if (newRemainingPoints >= 0 && newRemainingPoints != 1) {
-                  maxAllowedType = type;
-                }
-              }
-           */
-
+              // when only single is valid
               if (maxAllowedType == DartType.single) {
+                // emit enabled
                 emit(const DetailedDigitButtonState.enabled());
                 return;
               }
 
-              // Determine type of new state
-              final type = calcType(focusedValue);
-
+              // when no type or
+              // when no max allowed type or
+              // when type is larger than max allowed type
+              if (type == null ||
+                  maxAllowedType == null ||
+                  (maxAllowedType == DartType.single &&
+                      type != DartType.single) ||
+                  (maxAllowedType == DartType.double &&
+                      type == DartType.triple)) {
+                // emit disabled
+                emit(const DetailedDigitButtonState.disabled());
+                return;
+              }
+            } else {
+              // when this button is not around the focused button
               if (type == null) {
+                // emit disabled
                 emit(const DetailedDigitButtonState.disabled());
                 return;
               }
+            }
 
-              // disable when no max allowed type
-              if (maxAllowedType == null) {
-                emit(const DetailedDigitButtonState.disabled());
-                return;
-              }
-
-              // disable when type is larger than max allowed type
-              if (maxAllowedType == DartType.single &&
-                  type != DartType.single) {
-                emit(const DetailedDigitButtonState.disabled());
-                return;
-              }
-
-              if (maxAllowedType == DartType.double &&
-                  type == DartType.triple) {
-                emit(const DetailedDigitButtonState.disabled());
-                return;
-              }
-
-              emit(
-                DetailedDigitButtonState.focused(
-                  dartType: type,
-                  value: focusedValue,
-                ),
-              );
-            },
-          );
-        } else {
-          // when smart key board is not active
-          _inputAreaBloc.state.map(
-            initial: (initial) {
-              // emit enabled
-              emit(const DetailedDigitButtonState.enabled());
-            },
-            focused: (focused) {
-              // get focused value
-              final focusedValue = focused.focusedValue;
-
-              // calculate dartType
-              final type = calcType(focusedValue);
-
-              if (type == null) {
-                emit(const DetailedDigitButtonState.disabled());
-                return;
-              }
-
-              // emit focused with dartType and focusedValue
-              emit(
-                DetailedDigitButtonState.focused(
-                  dartType: type,
-                  value: focusedValue,
-                ),
-              );
-            },
-          );
-        }
+            // else emit focused with dartType and focusedValue
+            emit(
+              DetailedDigitButtonState.focused(
+                dartType: type,
+                value: focusedValue,
+              ),
+            );
+          },
+        );
       },
     );
   }

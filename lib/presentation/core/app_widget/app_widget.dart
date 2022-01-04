@@ -31,7 +31,7 @@ class AppWidget extends StatelessWidget {
       child: BlocProvider(
         create: (context) => getIt<AuthBloc>()..add(const AuthEvent.started()),
         child: PlatformWidget(
-          android: (context) => android.AppWidget(),
+          android: (context) => ios.AppWidget(), // TODO provide the ios widget
           ios: (context) => ios.AppWidget(),
         ),
       ),
