@@ -10,14 +10,15 @@ import '../widgets.dart';
 // BODY
 
 class PostGameWidget extends StatelessWidget {
+  final AbstractGameSnapshot gameSnapshot;
+
   const PostGameWidget({
     Key? key,
+    required this.gameSnapshot,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final gameSnapshot = context.read<AbstractGameSnapshot>();
-
     return AppColumn(
       spacing: size12(context),
       children: [

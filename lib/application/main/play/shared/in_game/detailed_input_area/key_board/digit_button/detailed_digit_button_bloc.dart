@@ -14,6 +14,8 @@ part 'detailed_digit_button_bloc.freezed.dart';
 part 'detailed_digit_button_event.dart';
 part 'detailed_digit_button_state.dart';
 
+// TODO double 0 gets displayed instead of normal 0
+
 class DetailedDigitButtonBloc
     extends Bloc<DetailedDigitButtonEvent, DetailedDigitButtonState> {
   final int _digit;
@@ -257,8 +259,8 @@ class DetailedDigitButtonBloc
             // when smart keyboard is active
             if (smartKeyBoardActivated) {
               final pointsLeft = _pointsLeftCubit.state;
-
               final allowedTypes = calcAllowedTypes(pointsLeft, _digit);
+
               // when only one dartType is possible
               if (allowedTypes.isEmpty) {
                 // emit disabled
@@ -290,13 +292,17 @@ class DetailedDigitButtonBloc
             // when smart keyboard is active
             if (smartKeyBoardActivated) {
               final pointsLeft = _pointsLeftCubit.state;
+              final allowedTypes = calcAllowedTypes(pointsLeft, focusedValue);
 
-              final maxAllowedType =
-                  calcAllowedTypes(pointsLeft, focusedValue).lastOrNull;
+              final maxAllowedType = allowedTypes.lastOrNull;
 
               // when only single is valid
               if (maxAllowedType == DartType.single) {
+                if (_digit == 1) {
+                  print(3333);
+                }
                 // emit enabled
+                // TODO is this correct ?? doestn seems so
                 emit(const DetailedDigitButtonState.enabled());
                 return;
               }
