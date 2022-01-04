@@ -7,7 +7,6 @@ import 'package:dart_counter/application/main/play/shared/in_game/errors.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -20,6 +19,8 @@ part 'detailed_digit_button_state.dart';
 // when 3 darts already input then there are some key still not disabled
 // Throw.zero get autofilled and darts on double are 3 by user then there is error in model
 // => Throw.zero needs to be modeled better
+
+// if smart is off check that points cant get > than pointsLeft
 
 class DetailedDigitButtonBloc
     extends Bloc<DetailedDigitButtonEvent, DetailedDigitButtonState> {
@@ -40,6 +41,7 @@ class DetailedDigitButtonBloc
     this._advancedSettingsBloc,
     this._dartUtils,
   ) : super(
+          // TODO cleaner intial state calc
           _advancedSettingsBloc.state.map(
             createGame: (_) => throw advancedSettingsInGameExpectedError,
             inGame: (inGame) {
@@ -143,7 +145,17 @@ class DetailedDigitButtonBloc
         // remove add dart represented by this button to darts
         final newDarts = darts..add(Dart(type: dartTyp, value: focusedValue));
         // set input to new darts
-        _dartsCubit.update(newDarts);
+
+        final pointsLeft = _pointsLeftCubit.state;
+
+        // if new darts are valid in current game state
+        if (_dartUtils.validateDarts(
+          darts: newDarts,
+          pointsLeft: pointsLeft,
+        )) {
+          // set dart cubit to new darts
+          _dartsCubit.update(newDarts);
+        }
       },
     );
   }
@@ -161,41 +173,101 @@ class DetailedDigitButtonBloc
         final points =
             _dartsCubit.state.fold<int>(0, (acc, dart) => acc + dart.points());
 
+        DartType? calcType(int focusedValue) {
+          final leftSide = [
+            0,
+            4,
+            10,
+            16
+          ]; // Buttons with values 0,4,10,16 are on the left side of the keyboard.
+          final rightSide = [
+            3,
+            9,
+            15,
+            25
+          ]; // Buttons with values 3,9,15,25 are on the left side of the keyboard.
+
+          if (leftSide.contains(focusedValue)) {
+            if (_digit == focusedValue) {
+              return DartType.single;
+            } else if (_digit == focusedValue + 1) {
+              return DartType.double;
+            } else if (_digit == focusedValue + 2) {
+              return DartType.triple;
+            }
+          } else if (rightSide.contains(focusedValue)) {
+            if (focusedValue == 25) {
+              if (_digit == 25) {
+                return DartType.double;
+              } else if (_digit == 20) {
+                return DartType.single;
+              }
+            } else {
+              if (_digit == focusedValue) {
+                return DartType.triple;
+              } else if (_digit == focusedValue - 1) {
+                return DartType.double;
+              } else if (_digit == focusedValue - 2) {
+                return DartType.single;
+              }
+            }
+          } else {
+            if (focusedValue == 20) {
+              if (_digit == 19) {
+                return DartType.single;
+              } else if (_digit == focusedValue) {
+                return DartType.double;
+              } else if (_digit == 25) {
+                return DartType.triple;
+              }
+            } else {
+              if (_digit == focusedValue - 1) {
+                return DartType.single;
+              } else if (_digit == focusedValue) {
+                return DartType.double;
+              } else if (_digit == focusedValue + 1) {
+                return DartType.triple;
+              }
+            }
+            return null;
+          }
+        }
+
         // when smart keyboard is active
         if (smartKeyBoardActivated) {
+          // calulates the types that are valid in focused state for this button in current game state
+          List<DartType> calcValidDartTypes(int pointsLeft) {
+            final validTypes = <DartType>[];
+            for (final dartType in DartType.values) {
+              final multiplier = dartType == DartType.single
+                  ? 1
+                  : dartType == DartType.double
+                      ? 2
+                      : 3;
+
+              final newPoints = points + (multiplier * _digit);
+
+              if (_dartUtils.validatePoints(
+                pointsLeft: pointsLeft,
+                points: newPoints,
+              )) {
+                if (newPoints == pointsLeft) {
+                  if (dartType == DartType.double) {
+                    validTypes.add(dartType);
+                  }
+                } else {
+                  validTypes.add(dartType);
+                }
+              }
+            }
+            return validTypes;
+          }
+
           _inputAreaBloc.state.map(
             initial: (initial) {
               final pointsLeft = _pointsLeftCubit.state;
 
-              // calulates the types that are valid in focused state for this button in current game state
-              List<DartType> calcValidDartTypes() {
-                final validTypes = <DartType>[];
-                for (final dartType in DartType.values) {
-                  final multiplier = dartType == DartType.single
-                      ? 1
-                      : dartType == DartType.double
-                          ? 2
-                          : 3;
-
-                  final newPoints = points + (multiplier * _digit);
-
-                  if (_dartUtils.validatePoints(
-                    pointsLeft: pointsLeft,
-                    points: newPoints,
-                  )) {
-                    if (newPoints == pointsLeft) {
-                      if (dartType == DartType.double) {
-                        validTypes.add(dartType);
-                      }
-                    } else {
-                      validTypes.add(dartType);
-                    }
-                  }
-                }
-                return validTypes;
-              }
-
-              final validTypes = calcValidDartTypes();
+              final validTypes = calcValidDartTypes(pointsLeft);
               // when only one dartType is possible
               if (validTypes.isEmpty) {
                 // emit disabled
@@ -221,7 +293,12 @@ class DetailedDigitButtonBloc
               // pointsLeft - new points (aka. remaining points) >= 0 but not 1.
               final pointsLeft = _pointsLeftCubit.state;
 
-              DartType? maxAllowedType;
+              final validTypes = calcValidDartTypes(pointsLeft);
+
+              final maxAllowedType = validTypes.lastOrNull;
+
+              /**
+           *     DartType? maxAllowedType;
               for (final type in DartType.values) {
                 final multiplier = type == DartType.single
                     ? 1
@@ -235,84 +312,19 @@ class DetailedDigitButtonBloc
                   maxAllowedType = type;
                 }
               }
+           */
 
               if (maxAllowedType == DartType.single) {
                 emit(const DetailedDigitButtonState.enabled());
                 return;
               }
 
-              final leftSide = [
-                0,
-                4,
-                10,
-                16
-              ]; // Buttons with values 0,4,10,16 are on the left side of the keyboard.
-              final rightSide = [
-                3,
-                9,
-                15,
-                25
-              ]; // Buttons with values 3,9,15,25 are on the left side of the keyboard.
-
               // Determine type of new state
-              final DartType type;
-              if (leftSide.contains(focusedValue)) {
-                if (_digit == focusedValue) {
-                  type = DartType.single;
-                } else if (_digit == focusedValue + 1) {
-                  type = DartType.double;
-                } else if (_digit == focusedValue + 2) {
-                  type = DartType.triple;
-                } else {
-                  emit(const DetailedDigitButtonState.disabled());
-                  return;
-                }
-              } else if (rightSide.contains(focusedValue)) {
-                if (focusedValue == 25) {
-                  if (_digit == 25) {
-                    type = DartType.double;
-                  } else if (_digit == 20) {
-                    type = DartType.single;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                } else {
-                  if (_digit == focusedValue) {
-                    type = DartType.triple;
-                  } else if (_digit == focusedValue - 1) {
-                    type = DartType.double;
-                  } else if (_digit == focusedValue - 2) {
-                    type = DartType.single;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                }
-              } else {
-                if (focusedValue == 20) {
-                  if (_digit == 19) {
-                    type = DartType.single;
-                  } else if (_digit == focusedValue) {
-                    type = DartType.double;
-                  } else if (_digit == 25) {
-                    type = DartType.triple;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                } else {
-                  if (_digit == focusedValue - 1) {
-                    type = DartType.single;
-                  } else if (_digit == focusedValue) {
-                    type = DartType.double;
-                  } else if (_digit == focusedValue + 1) {
-                    type = DartType.triple;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                }
+              final type = calcType(focusedValue);
+
+              if (type == null) {
+                emit(const DetailedDigitButtonState.disabled());
+                return;
               }
 
               // disable when no max allowed type
@@ -350,83 +362,17 @@ class DetailedDigitButtonBloc
               emit(const DetailedDigitButtonState.enabled());
             },
             focused: (focused) {
-              // calculate focused value
+              // get focused value
               final focusedValue = focused.focusedValue;
 
-              final leftSide = [
-                0,
-                4,
-                10,
-                16
-              ]; // Buttons with values 0,4,10,16 are on the left side of the keyboard.
-              final rightSide = [
-                3,
-                9,
-                15,
-                25
-              ]; // Buttons with values 3,9,15,25 are on the left side of the keyboard.
-
               // calculate dartType
-              final DartType type;
-              if (leftSide.contains(focusedValue)) {
-                if (_digit == focusedValue) {
-                  type = DartType.single;
-                } else if (_digit == focusedValue + 1) {
-                  type = DartType.double;
-                } else if (_digit == focusedValue + 2) {
-                  type = DartType.triple;
-                } else {
-                  emit(const DetailedDigitButtonState.disabled());
-                  return;
-                }
-              } else if (rightSide.contains(focusedValue)) {
-                if (focusedValue == 25) {
-                  if (_digit == 25) {
-                    type = DartType.double;
-                  } else if (_digit == 20) {
-                    type = DartType.single;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                } else {
-                  if (_digit == focusedValue) {
-                    type = DartType.triple;
-                  } else if (_digit == focusedValue - 1) {
-                    type = DartType.double;
-                  } else if (_digit == focusedValue - 2) {
-                    type = DartType.single;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                }
-              } else {
-                if (focusedValue == 20) {
-                  if (_digit == 19) {
-                    type = DartType.single;
-                  } else if (_digit == focusedValue) {
-                    type = DartType.double;
-                  } else if (_digit == 25) {
-                    type = DartType.triple;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                } else {
-                  if (_digit == focusedValue - 1) {
-                    type = DartType.single;
-                  } else if (_digit == focusedValue) {
-                    type = DartType.double;
-                  } else if (_digit == focusedValue + 1) {
-                    type = DartType.triple;
-                  } else {
-                    emit(const DetailedDigitButtonState.disabled());
-                    return;
-                  }
-                }
+              final type = calcType(focusedValue);
+
+              if (type == null) {
+                emit(const DetailedDigitButtonState.disabled());
+                return;
               }
-              
+
               // emit focused with dartType and focusedValue
               emit(
                 DetailedDigitButtonState.focused(

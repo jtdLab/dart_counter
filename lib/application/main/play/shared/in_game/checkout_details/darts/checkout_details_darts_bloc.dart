@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/checkout_details_event.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/checkout_details_state.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
@@ -82,11 +83,9 @@ class CheckoutDetailsDartsBloc
             ),
           ),
         ) {
-    on<CheckoutDetailsEvent>((event, emit) {
-      on<SelectedDartsThrownUpdated>(_mapSelectedDartsThrownUpdatedToState);
-      on<SelectedDartsOnDoubleUpdated>(_mapSelectedDartsOnDoubleUpdatedToState);
-      on<ConfirmPressed>((_, __) => _mapConfirmPressedToState());
-    });
+    on<SelectedDartsThrownUpdated>(_mapSelectedDartsThrownUpdatedToState);
+    on<SelectedDartsOnDoubleUpdated>(_mapSelectedDartsOnDoubleUpdatedToState);
+    on<ConfirmPressed>((_, __) => _mapConfirmPressedToState());
   }
 
   void _mapSelectedDartsThrownUpdatedToState(

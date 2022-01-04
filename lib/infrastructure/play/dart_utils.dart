@@ -1,6 +1,8 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_game/util.dart' as ex;
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 
 @LazySingleton(as: IDartUtils)
 class DartUtils implements IDartUtils {
@@ -38,6 +40,17 @@ class DartUtils implements IDartUtils {
     required int points,
   }) =>
       ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
+
+  // TODO impl better darts on double are not considered atm
+  @override
+  bool validateDarts({
+    required int pointsLeft,
+    required KtList<Dart> darts,
+  }) =>
+      ex.DartUtils.validatePoints(
+        pointsLeft: pointsLeft,
+        points: darts.fold(0, (acc, dart) => acc + dart.points()),
+      );
 
   @override
   bool isFinish({
