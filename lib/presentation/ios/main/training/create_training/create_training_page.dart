@@ -34,7 +34,8 @@ class CreateTrainingPage extends StatelessWidget {
         final game = state.gameSnapshot;
 
         if (game.status == Status.canceled) {
-          context.router.replace(const HomePageRoute());
+          // TODO this never gets called
+          //context.router.replace(const HomePageRoute());
         } else if (game.status == Status.running) {
           // give players without a name a name e.g 'Player 1', 'Player 2', ...
           int unNamedPlayerIndex = 1;
@@ -68,6 +69,7 @@ class CreateTrainingPage extends StatelessWidget {
                         context.read<TrainingBloc>().add(
                               const TrainingEvent.trainingCanceled(),
                             );
+                        context.router.replace(const HomePageRoute());
                       },
                     ),
                   ),

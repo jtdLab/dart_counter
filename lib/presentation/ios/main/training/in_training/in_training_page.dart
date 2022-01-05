@@ -27,7 +27,8 @@ class InTrainingPage extends StatelessWidget {
         listener: (context, state) {
           final game = state.gameSnapshot;
           if (game.status == Status.canceled) {
-            context.router.replace(const HomePageRoute());
+            // TODO never gets called
+            //context.router.replace(const HomePageRoute());
             //getIt<PlayBloc>().add(const PlayEvent.resetRequested());
           } else if (game.status == Status.finished) {
             context.router.replace(const PostTrainingPageRoute());
@@ -50,10 +51,12 @@ class InTrainingPage extends StatelessWidget {
                         create: (context) => getIt<TrainingBloc>(),
                         child: Builder(
                           builder: (context) => YouReallyWantToCancelGameDialog(
-                            onYesPressed: () =>
-                                context.read<TrainingBloc>().add(
-                                      const TrainingEvent.trainingCanceled(),
-                                    ),
+                            onYesPressed: () {
+                              context.read<TrainingBloc>().add(
+                                    const TrainingEvent.trainingCanceled(),
+                                  );
+                              context.router.replace(const HomePageRoute());
+                            },
                           ),
                         ),
                       ),
