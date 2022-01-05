@@ -20,9 +20,12 @@ class AdvancedSettingsModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPage(
+      padding: modalPagePadding(context),
       child: Provider.value(
         value: players,
-        child: const _AdvancedSettingsWidget(),
+        child: const SingleChildScrollView(
+          child: _AdvancedSettingsWidget(),
+        ),
       ),
     );
   }

@@ -13,18 +13,20 @@ class _AdvancedSettingsWidget extends StatelessWidget {
 
         return AppColumn(
           spacing: size12(context),
-          children: advancedSettings.iter
-              .map(
-                (settings) => Column(
-                  children: [
-                    SizedBox(
-                      height: spacerSmall(context),
-                    ),
-                    _AdvancedSettingsPlayerCard(settings: settings),
-                  ],
-                ),
+          children: [
+            for (int index = 0; index < advancedSettings.size; index++)
+              Column(
+                children: [
+                  SizedBox(
+                    height: spacerSmall(context),
+                  ),
+                  _AdvancedSettingsPlayerCard(
+                    settings: advancedSettings[index],
+                    index: index,
+                  ),
+                ],
               )
-              .toList(),
+          ],
         );
       },
     );
@@ -32,10 +34,12 @@ class _AdvancedSettingsWidget extends StatelessWidget {
 }
 
 class _AdvancedSettingsPlayerCard extends StatelessWidget {
+  final int index;
   final AdvancedSettings settings;
 
   const _AdvancedSettingsPlayerCard({
     Key? key,
+    required this.index,
     required this.settings,
   }) : super(key: key);
 
@@ -54,7 +58,151 @@ class _AdvancedSettingsPlayerCard extends StatelessWidget {
             .textStyle
             .copyWith(color: AppColors.white),
       ),
-      children: [Text(settings.toString())],
+      children: [
+        AppColumn(
+          spacing: size6(context),
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CupertinoButton(
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                context.read<AdvancedSettingsBloc>().add(
+                      AdvancedSettingsEvent.showAverageToggled(
+                        index: index,
+                      ),
+                    );
+              },
+              child: AppCardItem.small(
+                content: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size12(context),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        LocaleKeys.showAverrage.tr().toUpperCase(),
+                      ),
+                      BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
+                        builder: (context, state) {
+                          final active = state.map(
+                            createGame: (createGame) => throw Error(), // TODO
+                            inGame: (inGame) =>
+                                inGame.advancedSettings[index].showAverage,
+                          );
+                          return _CheckBox(active: active);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            CupertinoButton(
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                context.read<AdvancedSettingsBloc>().add(
+                      AdvancedSettingsEvent.showCheckoutToggled(
+                        index: index,
+                      ),
+                    );
+              },
+              child: AppCardItem.small(
+                content: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size12(context),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // LocaleKeys.showCheckoutPercentage.tr().toUpperCase(), // TODO
+                      const Text('SHOW CHECKOUT'),
+                      BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
+                        builder: (context, state) {
+                          final active = state.map(
+                            createGame: (createGame) => throw Error(), // TODO
+                            inGame: (inGame) => inGame
+                                .advancedSettings[index].showCheckoutPercentage,
+                          );
+                          return _CheckBox(active: active);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            CupertinoButton(
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                context.read<AdvancedSettingsBloc>().add(
+                      AdvancedSettingsEvent.smartKeyBoardActiveToggled(
+                        index: index,
+                      ),
+                    );
+              },
+              child: AppCardItem.small(
+                content: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size12(context),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // TODO
+                      const Text('SMART KEYBOARD'),
+
+                      BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
+                        builder: (context, state) {
+                          final active = state.map(
+                            createGame: (createGame) => throw Error(), // TODO
+                            inGame: (inGame) => inGame
+                                .advancedSettings[index].smartKeyBoardActivated,
+                          );
+                          return _CheckBox(active: active);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
+  }
+}
+
+// TODO shared with other advanced settings modal
+class _CheckBox extends StatelessWidget {
+  final bool active;
+
+  const _CheckBox({
+    Key? key,
+    required this.active,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (active) {
+      return Padding(
+        padding: EdgeInsets.all(size6(context)),
+        child: Image.asset(
+          AppImages.checkMarkQuadNew,
+        ),
+      );
+    } else {
+      return Padding(
+        padding: EdgeInsets.all(size6(context)),
+        child: Image.asset(
+          AppImages.uncheckedNew,
+        ),
+      );
+    }
   }
 }

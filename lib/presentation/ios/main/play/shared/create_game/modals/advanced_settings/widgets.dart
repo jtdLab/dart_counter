@@ -155,6 +155,7 @@ class _CreateGameAdvancedSettingsWidget extends StatelessWidget {
   }
 }
 
+// TODO shared with other advanced settings 
 class _CheckBox extends StatelessWidget {
   final bool active;
 
