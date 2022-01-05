@@ -14,6 +14,7 @@ import 'package:flutter/material.dart' as _i51;
 import '../../application/main/game_history/game_history_bloc.dart' as _i54;
 import '../../application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart'
     as _i55;
+import '../../domain/play/abstract_player_snapshot.dart' as _i56;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i53;
 import 'main/contact/contact_page.dart' as _i6;
@@ -327,9 +328,11 @@ class Router extends _i50.RootStackRouter {
           barrierDismissible: false);
     },
     AdvancedSettingsModalRoute.name: (routeData) {
+      final args = routeData.argsAs<AdvancedSettingsModalRouteArgs>();
       return _i50.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i40.AdvancedSettingsModal(),
+          child:
+              _i40.AdvancedSettingsModal(key: args.key, players: args.players),
           customRouteBuilder: _i52.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -977,11 +980,29 @@ class OfflineStatsModalRoute extends _i50.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i40.AdvancedSettingsModal]
-class AdvancedSettingsModalRoute extends _i50.PageRouteInfo<void> {
-  const AdvancedSettingsModalRoute()
-      : super(AdvancedSettingsModalRoute.name, path: 'advanced-settings-modal');
+class AdvancedSettingsModalRoute
+    extends _i50.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
+  AdvancedSettingsModalRoute(
+      {_i53.Key? key,
+      required _i53.KtList<_i56.AbstractPlayerSnapshot> players})
+      : super(AdvancedSettingsModalRoute.name,
+            path: 'advanced-settings-modal',
+            args: AdvancedSettingsModalRouteArgs(key: key, players: players));
 
   static const String name = 'AdvancedSettingsModalRoute';
+}
+
+class AdvancedSettingsModalRouteArgs {
+  const AdvancedSettingsModalRouteArgs({this.key, required this.players});
+
+  final _i53.Key? key;
+
+  final _i53.KtList<_i56.AbstractPlayerSnapshot> players;
+
+  @override
+  String toString() {
+    return 'AdvancedSettingsModalRouteArgs{key: $key, players: $players}';
+  }
 }
 
 /// generated route for

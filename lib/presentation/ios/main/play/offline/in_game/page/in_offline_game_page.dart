@@ -139,7 +139,14 @@ class InOfflineGamePage extends StatelessWidget {
                   ),
                   AppNavigationBarButton(
                     onPressed: () {
-                      context.router.push(const AdvancedSettingsModalRoute());
+                      context.router.push(
+                        AdvancedSettingsModalRoute(
+                          players: context
+                              .read<PlayOfflineWatcherCubit>()
+                              .state
+                              .players,
+                        ),
+                      );
                       // TODO show ingame settings modal
                       //context.router.push(const InGameSettingsModalRoute());
                     },

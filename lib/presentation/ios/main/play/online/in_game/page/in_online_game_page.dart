@@ -53,7 +53,7 @@ class InOnlineGamePage extends StatelessWidget {
                 context.read<InOnlineGameBloc>().state.keyBoardType;
             final Bloc<CheckoutDetailsEvent, CheckoutDetailsState> bloc;
             // TODO rly speech also here
-             if (keyBoardType == KeyBoardType.standard ||
+            if (keyBoardType == KeyBoardType.standard ||
                 keyBoardType == KeyBoardType.speech) {
               bloc = CheckoutDetailsPointsBloc(
                 context.read<InOnlineGameBloc>(),
@@ -140,7 +140,14 @@ class InOnlineGamePage extends StatelessWidget {
                   ),
                   AppNavigationBarButton(
                     onPressed: () {
-                      context.router.push(const AdvancedSettingsModalRoute());
+                      context.router.push(
+                        AdvancedSettingsModalRoute(
+                          players: context
+                              .read<PlayOnlineWatcherCubit>()
+                              .state
+                              .players,
+                        ),
+                      );
                       // TODO show ingame settings modal
                       //context.router.push(const InGameSettingsModalRoute());
                     },
