@@ -529,67 +529,40 @@ class SpeechInputArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      // TODO inject correctly not with getit
-      create: (context) => getIt<SpeechInputAreaBloc>(),
-      child: Builder(
-        builder: (context) =>
-            BlocListener<SpeechInputAreaBloc, SpeechInputAreaState>(
-          listener: (context, state) {
-            // TODO how to get darts on double speech ?
-            /**
-           * final showCheckoutDetails = state.showCheckoutDetails;
-
-          if (showCheckoutDetails) {
-            showCupertinoModalBottomSheet(
-              expand: true,
-              context: context,
-              builder: (context) => BlocProvider(
-                create: (context) => getIt<CheckoutDetailsBloc>(),
-                child: const CheckoutDetailsModal(),
-              ),
-            );
-          }
-           */
-          },
+    return AppColumn(
+      spacing: size6(context),
+      children: [
+        const Expanded(
+          flex: 3,
+          child: _SpeechKeyBoard(),
+        ),
+        Expanded(
           child: AppColumn(
             spacing: size6(context),
             children: [
-              const Expanded(
-                flex: 3,
-                child: _SpeechKeyBoard(),
-              ),
+              const Spacer(),
               Expanded(
-                child: AppColumn(
+                flex: 3,
+                child: AppRow(
                   spacing: size6(context),
                   children: [
                     const Spacer(),
                     Expanded(
-                      flex: 3,
-                      child: AppRow(
-                        spacing: size6(context),
-                        children: [
-                          const Spacer(),
-                          Expanded(
-                            child: UndoButton(
-                              onPressed: () =>
-                                  context.read<SpeechInputAreaBloc>().add(
-                                        const SpeechInputAreaEvent
-                                            .undoThrowPressed(),
-                                      ),
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
+                      child: UndoButton(
+                        onPressed: () =>
+                            context.read<SpeechInputAreaBloc>().add(
+                                  const SpeechInputAreaEvent.undoThrowPressed(),
+                                ),
                       ),
                     ),
+                    const Spacer(),
                   ],
                 ),
               ),
             ],
           ),
         ),
-      ),
+      ],
     );
   }
 }

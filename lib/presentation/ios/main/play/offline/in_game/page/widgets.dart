@@ -55,7 +55,10 @@ class _InOfflineGameWidget extends StatelessWidget {
                 ),
                 child: const DetailedInputArea(),
               ),
-              const SpeechInputArea(), // TODO provide bloc
+              BlocProvider(
+                create: (context) => SpeechInputAreaBloc(),
+                child: const SpeechInputArea(),
+              ),
               //OpticalInputArea(),
             ],
           ),
