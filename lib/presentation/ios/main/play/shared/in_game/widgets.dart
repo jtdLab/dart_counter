@@ -48,6 +48,7 @@ class StatsButton extends StatelessWidget {
 
 // BODY
 
+// TODO shared with score training as much as possible
 // STANDARD INPUT AREA
 // TODO flex factors
 class StandardInputArea extends StatelessWidget {
@@ -276,7 +277,6 @@ class _StandardEreaseButton extends StatelessWidget {
 class DetailedInputArea extends StatelessWidget {
   static const flexTop = 1;
   static const flexBottom = 3;
-
 
   const DetailedInputArea({
     Key? key,

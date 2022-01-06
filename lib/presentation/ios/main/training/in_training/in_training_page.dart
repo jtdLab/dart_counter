@@ -12,8 +12,10 @@ import '../../shared/widgets.dart';
 
 part 'widgets.dart';
 
-class InTrainingPage extends StatelessWidget {
-  const InTrainingPage({
+// TODO remove this + widgets.dart
+
+class InTrainingPagex extends StatelessWidget {
+  const InTrainingPagex({
     Key? key,
   }) : super(key: key);
 

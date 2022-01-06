@@ -10,6 +10,10 @@ import 'package:dart_counter/presentation/ios/main/settings/modals/change_passwo
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_username/change_username_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
 
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
@@ -270,7 +274,16 @@ import 'main/training/training_flow.dart';
               page: CreateTrainingPage,
             ),
             CupertinoRoute(
-              page: InTrainingPage,
+              page: InBobyTwentySeventTrainingPage,
+            ),
+            CupertinoRoute(
+              page: InDoubleTrainingPage,
+            ),
+            CupertinoRoute(
+              page: InScoreTrainingPage,
+            ),
+            CupertinoRoute(
+              page: InSingleTrainingPage,
             ),
             CupertinoRoute(
               page: PostTrainingPage,

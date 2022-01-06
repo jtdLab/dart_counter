@@ -52,7 +52,17 @@ class CreateTrainingPage extends StatelessWidget {
             }
           }
 
-          context.router.replace(const InTrainingPageRoute());
+          // TODO
+          //context.router.replace(const InTrainingPageRoute());
+          if (game is BobsTwentySevenGameSnapshot) {
+            context.router.replace(const InBobyTwentySeventTrainingPageRoute());
+          } else if (game is DoubleTrainingGameSnapshot) {
+            context.router.replace(const InDoubleTrainingPageRoute());
+          } else if (game is ScoreTrainingGameSnapshot) {
+            context.router.replace(const InScoreTrainingPageRoute());
+          } else {
+            context.router.replace(const InSingleTrainingPageRoute());
+          }
         }
       },
       child: AppPage(

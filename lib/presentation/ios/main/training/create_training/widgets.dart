@@ -493,7 +493,7 @@ class _OrderCard extends StatelessWidget {
 
           return AppCard(
             middle: AutoSizeText(
-              LocaleKeys.modus.tr().toUpperCase(),
+              'ORDER', // TODO
               minFontSize: 8,
               maxFontSize: 14,
               maxLines: 1,
