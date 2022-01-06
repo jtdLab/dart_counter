@@ -31,6 +31,8 @@ class SingleTrainingBloc extends Bloc<SingleTrainingEvent, SingleTrainingState>
     on<_SingleTrainingPerformPressed>((event, emit) {
       final hits = state.hits;
 
+      // TODO if empty it throws
+
       _trainingService.performHits(
         hit1: hits.get(0),
         hit2: hits.get(1),
