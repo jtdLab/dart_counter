@@ -322,8 +322,26 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.green,
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      builder: (context, state) {
+        final players = state.gameSnapshot.players;
+
+        return AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: PlayerItem(
+                player: players[0] as ScoreTrainingPlayerSnapshot,
+              ),
+            ),
+            Expanded(
+              child: PlayerItem(
+                player: players[1] as ScoreTrainingPlayerSnapshot,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -336,8 +354,34 @@ class _ThreePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.blue,
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      builder: (context, state) {
+        final players = state.gameSnapshot.players;
+
+        return AppRow(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              child: PlayerItem(
+                player: players[0] as ScoreTrainingPlayerSnapshot,
+              ),
+            ),
+            Expanded(
+              child: AppColumn(
+                spacing: size6(context),
+                children: [
+                  PlayerItemSmall(
+                    player: players[2] as ScoreTrainingPlayerSnapshot,
+                  ),
+                  PlayerItemSmall(
+                    player: players[1] as ScoreTrainingPlayerSnapshot,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -350,8 +394,44 @@ class _FourPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.yellow,
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      builder: (context, state) {
+        final players = state.gameSnapshot.players;
+
+        return AppColumn(
+          spacing: size6(context),
+          children: [
+            Expanded(
+              flex: 3,
+              child: AppRow(
+                spacing: size6(context),
+                children: [
+                  PlayerItemSmall(
+                    player: players[0] as ScoreTrainingPlayerSnapshot,
+                  ),
+                  PlayerItemSmall(
+                    player: players[1] as ScoreTrainingPlayerSnapshot,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: AppRow(
+                spacing: size6(context),
+                children: [
+                  PlayerItemSmall(
+                    player: players[2] as ScoreTrainingPlayerSnapshot,
+                  ),
+                  PlayerItemSmall(
+                    player: players[3] as ScoreTrainingPlayerSnapshot,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -775,6 +855,401 @@ class _DetailedEreaseButton extends StatelessWidget {
               .add(const DetailedEreaseButtonEvent.pressed()),
        */
       icon: Image.asset(AppImages.chevronBackNew),
+    );
+  }
+}
+
+// TODO impl
+// SHARED
+// PLAYER ITEM
+class PlayerItem extends StatelessWidget {
+  // final ProfileImagePosition profileImagePosition; TODO
+  final ScoreTrainingPlayerSnapshot player;
+
+  const PlayerItem({
+    Key? key,
+    required this.player,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: border4(context),
+        ),
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            flex: 7,
+            child: _PlayerItemHeader(
+              name: player
+                  .name!, // TODO DartBot has no name maybe do dartbot into seperate item
+            ),
+          ),
+          const Expanded(
+            flex: 6,
+            child: _PlayerItemAverageTitleDisplayer(),
+          ),
+          Expanded(
+            flex: 30,
+            child: _PlayerItemAverageDisplayer(
+              average: player.average,
+            ),
+          ),
+          // TODO introduce a super widghet to this and next widgets with them as a part ??
+          const Expanded(
+            flex: 6,
+            child: _PlayerItemTotalPointsTitleDisplayer(),
+          ),
+          const Expanded(
+            flex: 18,
+            child: _PlayerItemTotalPointsDisplayer(
+              totalPoints: 443, // TODO
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PlayerItemHeader extends StatelessWidget {
+  final Color color;
+  final String? photoUrl;
+  final String name;
+
+  const _PlayerItemHeader({
+    Key? key,
+    this.color = AppColors.blueNew,
+    this.photoUrl,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Row(
+          children: [
+            //const Spacer(),
+            Expanded(
+              flex: 5,
+              child: Container(
+                color: color,
+                child: Padding(
+                  padding: EdgeInsets.all(size6(context) / 4),
+                  child: Center(
+                    child: AutoSizeText(
+                      name,
+                      maxLines: 1,
+                      minFontSize: 4,
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .textStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        /**
+           * Align(
+            alignment: Alignment.centerLeft,
+            child: AppRoundedImage.small(
+              imageName: AppImages.photoPlaceholderNew, // TODO real image
+              border: Border.all(
+                width: border4(context) / 2,
+              ),
+            ),
+          ),
+           */
+      ],
+    );
+  }
+}
+
+class _PlayerItemAverageTitleDisplayer extends StatelessWidget {
+  const _PlayerItemAverageTitleDisplayer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.black,
+      child: Padding(
+        padding: EdgeInsets.all(size6(context) / 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            AutoSizeText(
+              'AVERAGE', // TODO
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerItemAverageDisplayer extends StatelessWidget {
+  final double? average;
+
+  const _PlayerItemAverageDisplayer({
+    Key? key,
+    required this.average,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: border4(context)),
+          bottom: BorderSide(width: border4(context)),
+        ),
+      ),
+      child: Center(
+        child: AutoSizeText(
+          average != null ? average!.toStringAsFixed(2) : '--',
+          style: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle
+              .copyWith(fontSize: 40), // TODO
+          maxLines: 1,
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerItemTotalPointsTitleDisplayer extends StatelessWidget {
+  const _PlayerItemTotalPointsTitleDisplayer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.black,
+      child: Padding(
+        padding: EdgeInsets.all(size6(context) / 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            AutoSizeText(
+              'PUNKTE GESAMT',
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerItemTotalPointsDisplayer extends StatelessWidget {
+  final int totalPoints;
+
+  const _PlayerItemTotalPointsDisplayer({
+    Key? key,
+    required this.totalPoints,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      /** // TODO
+      *  decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: border4(context)),
+          bottom: BorderSide(width: border4(context)),
+        ),
+      ),
+      */
+      child: Center(
+        child: AutoSizeText(
+          totalPoints.toString(),
+          style: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle
+              .copyWith(fontSize: 32), // TODO
+          maxLines: 1,
+        ),
+      ),
+    );
+  }
+}
+
+// PLAYER ITEM SMALL
+class PlayerItemSmall extends StatelessWidget {
+  final ScoreTrainingPlayerSnapshot player;
+
+  const PlayerItemSmall({
+    Key? key,
+    required this.player,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: border4(context),
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 5,
+              child: _PlayerItemSmallHeader(
+                // TODO photorul
+                name: player.name!,
+              ),
+            ),
+            const Expanded(
+              flex: 6,
+              child: _PlayerItemSmallTotalPointsDisplayer(
+                totalPoints: 343, // TODO
+              ),
+            ),
+            Expanded(
+              flex: 17,
+              child: _PlayerItemSmallAverageDisplayer(
+                average: player.average,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerItemSmallHeader extends StatelessWidget {
+  final Color color;
+  final String? photoUrl;
+  final String name;
+
+  const _PlayerItemSmallHeader({
+    Key? key,
+    this.color = AppColors.blueNew,
+    this.photoUrl,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Row(
+          children: [
+            //const Spacer(),
+            Expanded(
+              flex: 5,
+              child: Container(
+                color: color,
+                child: Padding(
+                  padding: EdgeInsets.all(size6(context) / 4),
+                  child: Center(
+                    child: AutoSizeText(
+                      name,
+                      maxLines: 1,
+                      minFontSize: 4,
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .textStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        /**
+           * Align(
+            alignment: Alignment.centerLeft,
+            child: AppRoundedImage.small(
+              imageName: AppImages.photoPlaceholderNew, // TODO real image
+              border: Border.all(
+                width: border4(context) / 2,
+              ),
+            ),
+          ),
+           */
+      ],
+    );
+  }
+}
+
+class _PlayerItemSmallTotalPointsDisplayer extends StatelessWidget {
+  final int totalPoints;
+
+  const _PlayerItemSmallTotalPointsDisplayer({
+    Key? key,
+    required this.totalPoints,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.black,
+      child: Padding(
+        padding: EdgeInsets.all(size6(context) / 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            AutoSizeText(
+              'GES.: $totalPoints',
+              maxLines: 1,
+              minFontSize: 1,
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerItemSmallAverageDisplayer extends StatelessWidget {
+  final double? average;
+
+  const _PlayerItemSmallAverageDisplayer({
+    Key? key,
+    required this.average,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // TODO color
+      child: Center(
+        child: AutoSizeText(
+          average != null ? average!.toStringAsFixed(2) : '--',
+          style: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle
+              .copyWith(fontSize: 40), // TODO
+          maxLines: 1,
+        ),
+      ),
     );
   }
 }

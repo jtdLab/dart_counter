@@ -11,7 +11,7 @@ import 'package:kt_dart/kt.dart';
 part 'bobs_twenty_seven_event.dart';
 part 'bobs_twenty_seven_state.dart';
 part 'bobs_twenty_seven_bloc.freezed.dart';
-
+// TODO rename to bobstwentyseven tarining bloc ?ß
 @lazySingleton
 class BobsTwentySevenBloc
     extends Bloc<BobsTwentySevenEvent, BobsTwentySevenState>
