@@ -4,6 +4,7 @@ import 'package:dart_counter/application/main/training/score_training/score_trai
 import 'package:dart_counter/application/main/training/score_training/standard_input_area/standard_input_area_bloc.dart';
 import 'package:dart_counter/application/main/training/training_bloc.dart';
 import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/training/score/score_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';

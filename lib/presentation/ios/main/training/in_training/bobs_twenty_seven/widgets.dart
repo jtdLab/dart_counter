@@ -37,6 +37,7 @@ class _InBobsTwentySevenTrainingWidget extends StatelessWidget {
   }
 }
 
+// ONE PLAYER DISPLAYER
 class _OnePlayerDisplayer extends StatelessWidget {
   const _OnePlayerDisplayer({
     Key? key,
@@ -44,12 +45,225 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.red,
+    return AppColumn(
+      spacing: size6(context),
+      children: const [
+        Expanded(
+          flex: 3,
+          child: _OnePlayerHeader(),
+        ),
+        Expanded(
+          flex: 6,
+          child: _OnePlayerCenter(),
+        ),
+        Spacer(flex: 4)
+      ],
     );
   }
 }
 
+// SHARED ???? with play and other training one player displayer
+class _OnePlayerHeader extends StatelessWidget {
+  const _OnePlayerHeader({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      // TODO is this builder most inner positioned
+      builder: (context, state) {
+        final player = state.gameSnapshot.players[0];
+
+        return Stack(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: size12(context) + size6(context),
+                ),
+                child: Container(
+                  height: size40(context),
+                  decoration: BoxDecoration(
+                    color: AppColors.orangeNew,
+                    border: Border.all(
+                      width: border4(context),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      player.name!,
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .textStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: AppRoundedImage.large(
+                imageName: AppImages.photoPlaceholderNew,
+                border: Border.all(
+                  width: border4(context),
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _OnePlayerCenter extends StatelessWidget {
+  const _OnePlayerCenter({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        const Spacer(
+          flex: 4,
+        ),
+        Expanded(
+          flex: 7,
+          child: AppColumn(
+            spacing: size6(context),
+            children: const [
+              _OnePlayerHighestPointsDisplayer(),
+              Expanded(
+                child: _OnePlayerPointsAndCheckoutDisplayer(),
+              ),
+            ],
+          ),
+        ),
+        const Spacer(
+          flex: 4,
+        ),
+      ],
+    );
+  }
+}
+
+class _OnePlayerHighestPointsDisplayer extends StatelessWidget {
+  const _OnePlayerHighestPointsDisplayer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      // TODO is this builder most inner positioned
+      builder: (context, state) {
+        final player =
+            state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot;
+
+        return Container(
+          color: AppColors.black,
+          child: Padding(
+            padding: EdgeInsets.all(size6(context) / 4),
+            child: Center(
+              child: Text(
+                // TODO translate
+                'BEST: ${player.highestPoints}',
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(color: AppColors.white),
+              ),
+            ),
+            /**
+            *  child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                if (player.wonSets != null) ...[
+                  Text(
+                    'S:${player.wonSets}',
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(color: AppColors.white),
+                  ),
+                ],
+                Text(
+                  'L:${player.wonLegsCurrentSet}',
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .textStyle
+                      .copyWith(color: AppColors.white),
+                ),
+              ],
+            ),
+            */
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _OnePlayerPointsAndCheckoutDisplayer extends StatelessWidget {
+  const _OnePlayerPointsAndCheckoutDisplayer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TrainingBloc, TrainingState>(
+      // TODO is this builder most inner positioned
+      builder: (context, state) {
+        final player =
+            state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot;
+
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: border4(context),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                flex: 6,
+                child: Center(
+                  child: AutoSizeText(
+                    player.points.toString(),
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(fontSize: 40), // TODO
+                    maxLines: 1,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Center(
+                  child: AutoSizeText(
+                    player.checkoutPercentage?.toString() ?? '--',
+                    maxLines: 1,
+                    maxFontSize: 13,
+                    minFontSize: 6,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// TWO PLAYER DISPLAYER
 class _TwoPlayerDisplayer extends StatelessWidget {
   const _TwoPlayerDisplayer({
     Key? key,
@@ -63,6 +277,7 @@ class _TwoPlayerDisplayer extends StatelessWidget {
   }
 }
 
+// THREE PLAYER DISPLAYER
 class _ThreePlayerDisplayer extends StatelessWidget {
   const _ThreePlayerDisplayer({
     Key? key,
@@ -76,6 +291,7 @@ class _ThreePlayerDisplayer extends StatelessWidget {
   }
 }
 
+// FOUR PLAYER DISPLAYER
 class _FourPlayerDisplayer extends StatelessWidget {
   const _FourPlayerDisplayer({
     Key? key,

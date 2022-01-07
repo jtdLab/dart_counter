@@ -15,6 +15,7 @@ import 'package:dart_counter/presentation/ios/main/training/in_training/double/i
 import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
 
+
 import 'auth/auth_flow.dart';
 import 'main/contact/contact_page.dart';
 import 'main/friends/friends_flow.dart';
@@ -51,7 +52,6 @@ import 'main/settings/modals/change_username/initial/initial_page.dart';
 import 'main/settings/modals/change_username/success/success_page.dart';
 import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'main/training/create_training/create_training_page.dart';
-import 'main/training/in_training/in_training_page.dart';
 import 'main/training/post_training/post_training_page.dart';
 import 'main/training/training_flow.dart';
 

@@ -1,5 +1,6 @@
 import 'package:dart_counter/application/main/training/bobs_twenty_seven/bobs_twenty_seven_bloc.dart';
 import 'package:dart_counter/application/main/training/training_bloc.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
