@@ -12,9 +12,11 @@ import 'package:auto_route/auto_route.dart' as _i53;
 import 'package:flutter/material.dart' as _i54;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i57;
-import '../../application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart'
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
     as _i58;
-import '../../domain/play/abstract_player_snapshot.dart' as _i59;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
+    as _i59;
+import '../../domain/play/abstract_player_snapshot.dart' as _i60;
 import 'auth/auth_flow.dart' as _i1;
 import 'core/core.dart' as _i56;
 import 'main/contact/contact_page.dart' as _i6;
@@ -974,7 +976,7 @@ class CheckoutDetailsModalRoute
     extends _i53.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
   CheckoutDetailsModalRoute(
       {_i56.Key? key,
-      required _i56.Bloc<_i58.CheckoutDetailsEvent, _i58.CheckoutDetailsState>
+      required _i56.Bloc<_i58.CheckoutDetailsEvent, _i59.CheckoutDetailsState>
           bloc})
       : super(CheckoutDetailsModalRoute.name,
             path: 'checkout-details-modal',
@@ -988,7 +990,7 @@ class CheckoutDetailsModalRouteArgs {
 
   final _i56.Key? key;
 
-  final _i56.Bloc<_i58.CheckoutDetailsEvent, _i58.CheckoutDetailsState> bloc;
+  final _i56.Bloc<_i58.CheckoutDetailsEvent, _i59.CheckoutDetailsState> bloc;
 
   @override
   String toString() {
@@ -1011,7 +1013,7 @@ class AdvancedSettingsModalRoute
     extends _i53.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
   AdvancedSettingsModalRoute(
       {_i56.Key? key,
-      required _i56.KtList<_i59.AbstractPlayerSnapshot> players})
+      required _i56.KtList<_i60.AbstractPlayerSnapshot> players})
       : super(AdvancedSettingsModalRoute.name,
             path: 'advanced-settings-modal',
             args: AdvancedSettingsModalRouteArgs(key: key, players: players));
@@ -1024,7 +1026,7 @@ class AdvancedSettingsModalRouteArgs {
 
   final _i56.Key? key;
 
-  final _i56.KtList<_i59.AbstractPlayerSnapshot> players;
+  final _i56.KtList<_i60.AbstractPlayerSnapshot> players;
 
   @override
   String toString() {

@@ -152,13 +152,30 @@ class _KeyBoard extends StatelessWidget {
           text: 'DOUBLE',
           fontSize: 18,
           color: AppColors.white,
-          onPressed: () {}, // TODO
+          onPressed: () => context
+              .read<DoubleTrainingBloc>()
+              .add(const DoubleTrainingEvent.missHitPressed()),
         ),
-        AppActionButton.flexible(
-          text: 'MISSED',
-          fontSize: 18,
-          color: AppColors.white,
-          onPressed: () {}, // TODO
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: [
+              AppActionButton.flexible(
+                text: 'MISSED',
+                fontSize: 18,
+                color: AppColors.white,
+                onPressed: () => context
+                    .read<DoubleTrainingBloc>()
+                    .add(const DoubleTrainingEvent.missHitPressed()),
+              ),
+              AppActionButton.flexible(
+                fontSize: 14,
+                color: AppColors.white,
+                onPressed: () {},
+                icon: Image.asset(AppImages.chevronBackNew),
+              )
+            ],
+          ),
         ),
       ],
     );

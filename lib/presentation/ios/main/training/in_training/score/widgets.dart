@@ -31,12 +31,60 @@ class _InScoreTrainingWidget extends StatelessWidget {
         Expanded(
           flex: 55,
           // TODO
-          child: Container(
-            color: AppColors.orangeNew,
+          child: PageView(
+            onPageChanged: (pageIndex) =>
+                _onKeyBoardChanged(context, keyBoardIndex: pageIndex),
+            children: [
+              BlocProvider(
+                create: (context) => StandardInputAreaBloc(),
+                child: const StandardInputArea(),
+              ),
+              BlocProvider(
+                create: (context) => DetailedInputAreaBloc(),
+                child: const DetailedInputArea(),
+              ),
+
+              //OpticalInputArea(),
+            ],
           ),
         ),
       ],
     );
+  }
+
+  // TODO needed ?
+  // move this into seperate bloc
+
+  // TODO /// Resets the [InputCubit] when the user changes the keyboard by swiping
+  void _onKeyBoardChanged(
+    BuildContext context, {
+    required int keyBoardIndex,
+  }) {
+    /**
+    *  switch (keyBoardIndex) {
+      case 0:
+        context.read<InOfflineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.standard,
+              ),
+            );
+        break;
+      case 1:
+        context.read<InOfflineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.detailed,
+              ),
+            );
+        break;
+      case 2:
+        context.read<InOfflineGameBloc>().add(
+              const InGameEvent.keyBoardTypeChanged(
+                newKeyBoardType: KeyBoardType.speech,
+              ),
+            );
+        break;
+    }
+    */
   }
 }
 
@@ -92,7 +140,6 @@ class _FourPlayerDisplayer extends StatelessWidget {
   }
 }
 
-/*
 // STANDARD INPUT AREA
 // TODO flex factors
 class StandardInputArea extends StatelessWidget {
@@ -115,20 +162,14 @@ class StandardInputArea extends StatelessWidget {
               ),
               Expanded(
                 flex: 30,
-                child: BlocBuilder<PointsCubit, int>(
-                  builder: (context, state) {
-                    return InputRow(
-                      onUndoPressed: () => context
-                          .read<StandardInputAreaBloc>()
-                          .add(const StandardInputAreaEvent.undoThrowPressed()),
-                      onPerformThrowPressed: () => context
-                          .read<StandardInputAreaBloc>()
-                          .add(
-                            const StandardInputAreaEvent.performThrowPressed(),
-                          ),
-                      points: state,
-                    );
-                  },
+                child: InputRow(
+                  onUndoPressed: () => context
+                      .read<ScoreTrainingBloc>()
+                      .add(const ScoreTrainingEvent.undoPressed()),
+                  onPerformThrowPressed: () => context
+                      .read<ScoreTrainingBloc>()
+                      .add(const ScoreTrainingEvent.performPressed()),
+                  points: 0, // TODO
                 ),
               ),
             ],
@@ -181,7 +222,7 @@ class _StandardKeyBoard extends StatelessWidget {
           child: AppRow(
             spacing: size6(context),
             children: const [
-              _CheckButton(),
+              Spacer(),
               _StandardDigitButton(digit: 0),
               _StandardEreaseButton(),
             ],
@@ -202,7 +243,14 @@ class _StandardDigitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
+    return AppActionButton.flexible(
+      fontSize: 28,
+      color: AppColors.white,
+      onPressed: () {}, // TODO
+      text: digit.toString(),
+    );
+    /**
+    *  // TODO dependency injection like this seems not to be good practice
     final pointsLeftCubit = context.read<PointsLeftCubit>();
     final pointsCubit = context.read<PointsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
@@ -233,48 +281,7 @@ class _StandardDigitButton extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class _CheckButton extends StatelessWidget {
-  const _CheckButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
-    final standardInputAreaBloc = context.read<StandardInputAreaBloc>();
-    final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final pointsCubit = context.read<PointsCubit>();
-    final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
-    final dartUtils = getIt<IDartUtils>();
-
-    return BlocProvider(
-      create: (context) => CheckButtonBloc(
-        standardInputAreaBloc,
-        pointsLeftCubit,
-        pointsCubit,
-        advancedSettingsBloc,
-        dartUtils,
-      )..add(const CheckButtonEvent.started()),
-      child: BlocBuilder<CheckButtonBloc, CheckButtonState>(
-        builder: (context, state) {
-          final disabled = state is CheckButtonDisabled;
-
-          return AppActionButton.flexible(
-            fontSize: 18,
-            color: AppColors.white,
-            onPressed: disabled
-                ? null
-                : () => context
-                    .read<CheckButtonBloc>()
-                    .add(const CheckButtonEvent.pressed()),
-            text: 'CHECK',
-          );
-        },
-      ),
-    );
+    */
   }
 }
 
@@ -285,7 +292,16 @@ class _StandardEreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
+    return AppActionButton.flexible(
+      color: AppColors.white,
+      onPressed: () {}, // TODO
+      icon: Image.asset(
+        AppImages.chevronBackNew,
+      ),
+    );
+
+    /**
+     * // TODO dependency injection like this seems not to be good practice
     final pointsCubit = context.read<PointsCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
 
@@ -313,6 +329,7 @@ class _StandardEreaseButton extends StatelessWidget {
         },
       ),
     );
+     */
   }
 }
 
@@ -337,26 +354,22 @@ class DetailedInputArea extends StatelessWidget {
             spacing: size6(context),
             children: [
               const Expanded(
-                child: _DartsDisplayer(),
+                // TODO
+                child: DartsDisplayer(darts: KtList.empty()),
               ),
 
               // TODO expanded 1 ebene down
               Expanded(
                 flex: 3,
-                child: BlocBuilder<PointsCubit, int>(
-                  builder: (context, state) {
-                    return InputRow(
-                      onUndoPressed: () => context
-                          .read<DetailedInputAreaBloc>()
-                          .add(const DetailedInputAreaEvent.undoThrowPressed()),
-                      onPerformThrowPressed: () => context
-                          .read<DetailedInputAreaBloc>()
-                          .add(
+                child: InputRow(
+                  onUndoPressed: () => context
+                      .read<DetailedInputAreaBloc>()
+                      .add(const DetailedInputAreaEvent.undoThrowPressed()),
+                  onPerformThrowPressed: () =>
+                      context.read<DetailedInputAreaBloc>().add(
                             const DetailedInputAreaEvent.performThrowPressed(),
                           ),
-                      points: state,
-                    );
-                  },
+                  points: 0, // TODO real points
                 ),
               ),
             ],
@@ -457,20 +470,24 @@ class _DetailedDigitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO dependency injection like this seems not to be good practice
-    final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
+    /**
+   *   final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
     final dartsCubit = context.read<DartsCubit>();
     final pointsLeftCubit = context.read<PointsLeftCubit>();
     final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
     final dartUtils = getIt<IDartUtils>();
 
+   */
     return BlocProvider(
       create: (context) => DetailedDigitButtonBloc(
         digit,
-        detailedInputAreaBloc,
+        /**
+         * detailedInputAreaBloc,
         dartsCubit,
         pointsLeftCubit,
         advancedSettingsBloc,
         dartUtils,
+         */
       )..add(const DetailedDigitButtonEvent.started()),
       child: BlocBuilder<DetailedDigitButtonBloc, DetailedDigitButtonState>(
         builder: (context, state) {
@@ -530,37 +547,18 @@ class _DetailedEreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO dependency injection like this seems not to be good practice
-    final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
-    final dartsCubit = context.read<DartsCubit>();
-    final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
-
-    return BlocProvider(
-      create: (context) => DetailedEreaseButtonBloc(
-        detailedInputAreaBloc,
-        dartsCubit,
-        advancedSettingsBloc,
-      )..add(const DetailedEreaseButtonEvent.started()),
-      child: BlocBuilder<DetailedEreaseButtonBloc, DetailedEreaseButtonState>(
-        builder: (context, state) {
-          final disabled = state is DetailedEreaseButtonDisabled;
-
-          return AppActionButton.flexible(
-            fontSize: 14,
-            color: AppColors.white,
-            onPressed: disabled
-                ? null
-                : () => context
-                    .read<DetailedEreaseButtonBloc>()
-                    .add(const DetailedEreaseButtonEvent.pressed()),
-            icon: Image.asset(
-              AppImages.chevronBackNew,
-              color: disabled ? CupertinoColors.quaternarySystemFill : null,
-            ),
-          );
-        },
-      ),
+    return AppActionButton.flexible(
+      fontSize: 14,
+      color: AppColors.white,
+      onPressed: () {},
+      /**
+       * onPressed: disabled
+          ? null
+          : () => context
+              .read<DetailedEreaseButtonBloc>()
+              .add(const DetailedEreaseButtonEvent.pressed()),
+       */
+      icon: Image.asset(AppImages.chevronBackNew),
     );
   }
 }
-**/
