@@ -22,7 +22,6 @@ class _AuthWidget extends HookWidget {
   }
 }
 
-// TODO doc
 class _SignInPage extends StatelessWidget {
   const _SignInPage({
     Key? key,

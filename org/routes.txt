@@ -1,10 +1,9 @@
 ###>
 ###>auth_flow
-###>auth_flow###>sign_in
-###>auth_flow###>sign_in###>forgot_password
-###>auth_flow###>sign_in###>forgot_password###>initial
-###>auth_flow###>sign_in###>forgot_password###>success
-###>auth_flow###>sign_up
+###>auth_flow###>auth_page
+###>auth_flow###>forgot_password
+###>auth_flow###>forgot_password###>initial
+###>auth_flow###>forgot_password###>success
 ###>main_flow
 ###>main_flow###>contact
 ###>main_flow###>friends_flow###>over_view_flow
