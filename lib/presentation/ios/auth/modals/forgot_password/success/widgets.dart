@@ -1,7 +1,7 @@
-part of '../forgot_password_modal.dart';
+part of 'success_page.dart';
 
-class _SuccessWidget extends StatelessWidget {
-  const _SuccessWidget({
+class _ForgotPasswordSuccessWidget extends StatelessWidget {
+  const _ForgotPasswordSuccessWidget({
     Key? key,
   }) : super(key: key);
 

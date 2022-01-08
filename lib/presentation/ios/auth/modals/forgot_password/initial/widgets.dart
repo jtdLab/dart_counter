@@ -1,10 +1,9 @@
-part of '../forgot_password_modal.dart';
+part of 'initial_page.dart';
 
-class _InitialWidget extends StatelessWidget {
-  const _InitialWidget({
+class _ForgotPasswordInitialWidget extends StatelessWidget {
+  const _ForgotPasswordInitialWidget({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {

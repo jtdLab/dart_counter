@@ -1,28 +1,13 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-// PAGES
-import 'sign_in/sign_in_page.dart';
-import 'sign_up/sign_up_page.dart';
-
-class AuthFlow extends HookWidget {
+class AuthFlow extends StatelessWidget {
   const AuthFlow({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = usePageController();
-
-    return ListenableProvider.value(
-      value: pageController,
-      child: PageView(
-        controller: pageController,
-        children: const [
-          SignInPage(),
-          SignUpPage(),
-        ],
-      ),
-    );
+    return const AutoRouter();
   }
 }

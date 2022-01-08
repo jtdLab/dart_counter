@@ -1,69 +1,89 @@
+import 'package:dart_counter/presentation/ios/auth/auth_flow.dart';
+import 'package:dart_counter/presentation/ios/auth/modals/forgot_password/forgot_password_modal.dart';
+import 'package:dart_counter/presentation/ios/auth/modals/forgot_password/initial/initial_page.dart';
+import 'package:dart_counter/presentation/ios/auth/modals/forgot_password/success/success_page.dart';
+import 'package:dart_counter/presentation/ios/auth/page/auth_page.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/main/contact/contact_page.dart';
+import 'package:dart_counter/presentation/ios/main/friends/friends_flow.dart';
 import 'package:dart_counter/presentation/ios/main/friends/overview/modals/more/more_modal.dart';
 import 'package:dart_counter/presentation/ios/main/friends/overview/modals/search_user/search_user_modal.dart';
+import 'package:dart_counter/presentation/ios/main/friends/overview/overview_flow.dart';
+import 'package:dart_counter/presentation/ios/main/friends/overview/page/overview_page.dart';
+import 'package:dart_counter/presentation/ios/main/friends/profile/profile_page.dart';
+import 'package:dart_counter/presentation/ios/main/game_history/details/details_page.dart';
+import 'package:dart_counter/presentation/ios/main/game_history/game_history_flow.dart';
+import 'package:dart_counter/presentation/ios/main/game_history/overview/overview_page.dart';
+import 'package:dart_counter/presentation/ios/main/game_invitations/game_invitations_page.dart';
+import 'package:dart_counter/presentation/ios/main/home/home_page.dart';
+import 'package:dart_counter/presentation/ios/main/main_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/create_game/create_offline_game_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/create_game/page/create_offline_game_page.dart';
 import 'package:dart_counter/presentation/ios/main/play/offline/in_game/in_offline_game_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/in_game/modals/stats/offline_stats_modal.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/in_game/page/in_offline_game_page.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/play_offline_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/offline/post_game/post_offline_game_page.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/create_game/create_online_game_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/create_game/page/create_online_game_page.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/in_game/in_online_game_flow.dart';
 import 'package:dart_counter/presentation/ios/main/play/online/in_game/modals/stats/online_stats_modal.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/in_game/page/in_online_game_page.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/play_online_flow.dart';
+import 'package:dart_counter/presentation/ios/main/play/online/post_game/post_online_game_page.dart';
+import 'package:dart_counter/presentation/ios/main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
+import 'package:dart_counter/presentation/ios/main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
+import 'package:dart_counter/presentation/ios/main/privacy_policy/privacy_policy_page.dart';
+import 'package:dart_counter/presentation/ios/main/profile/profile_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/change_email_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/initial/initial_page.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_email/success/success_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_password/change_password_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_password/initial/initial_page.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_password/success/success_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/modals/change_username/change_username_modal.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_username/initial/initial_page.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/change_username/success/success_page.dart';
+import 'package:dart_counter/presentation/ios/main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
-
-
-import 'auth/auth_flow.dart';
-import 'main/contact/contact_page.dart';
-import 'main/friends/friends_flow.dart';
-import 'main/friends/overview/overview_flow.dart';
-import 'main/friends/overview/page/overview_page.dart';
-import 'main/friends/profile/profile_page.dart';
-import 'main/game_history/details/details_page.dart';
-import 'main/game_history/game_history_flow.dart';
-import 'main/game_history/overview/overview_page.dart';
-import 'main/game_invitations/game_invitations_page.dart';
-import 'main/home/home_page.dart';
-import 'main/main_flow.dart';
-import 'main/play/offline/create_game/create_offline_game_flow.dart';
-import 'main/play/offline/create_game/page/create_offline_game_page.dart';
-import 'main/play/offline/in_game/modals/stats/offline_stats_modal.dart';
-import 'main/play/offline/in_game/page/in_offline_game_page.dart';
-import 'main/play/offline/play_offline_flow.dart';
-import 'main/play/offline/post_game/post_offline_game_page.dart';
-import 'main/play/online/create_game/create_online_game_flow.dart';
-import 'main/play/online/create_game/page/create_online_game_page.dart';
-import 'main/play/online/in_game/in_online_game_flow.dart';
-import 'main/play/online/in_game/page/in_online_game_page.dart';
-import 'main/play/online/play_online_flow.dart';
-import 'main/play/online/post_game/post_online_game_page.dart';
-import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart';
-import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart';
-import 'main/privacy_policy/privacy_policy_page.dart';
-import 'main/profile/profile_page.dart';
-import 'main/settings/modals/change_email/initial/initial_page.dart';
-import 'main/settings/modals/change_email/success/success_page.dart';
-import 'main/settings/modals/change_password/initial/initial_page.dart';
-import 'main/settings/modals/change_password/success/success_page.dart';
-import 'main/settings/modals/change_username/initial/initial_page.dart';
-import 'main/settings/modals/change_username/success/success_page.dart';
-import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
-import 'main/training/create_training/create_training_page.dart';
-import 'main/training/post_training/post_training_page.dart';
-import 'main/training/training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/post_training/post_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
 
 /// Setup auto route.
 ///
 /// For more info see: https://pub.dev/packages/auto_route
 @CustomAutoRouter(
   routes: <AutoRoute>[
-    // TODO if possible to the same as pageview using autrouter
+    // TODO if possible do the same as pageview using autrouter
     CustomRoute(
-      customRouteBuilder: modalParentRouteBuilder,
       page: AuthFlow,
+      children: [
+        CustomRoute(
+          initial: true,
+          customRouteBuilder: modalParentRouteBuilder,
+          page: AuthPage,
+        ),
+        CustomRoute(
+          customRouteBuilder: expandedModalRouteBuilder,
+          page: ForgotPasswordModal,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: ForgotPasswordInitialPage,
+            ),
+            CustomRoute(
+              page: ForgotPasswordSuccessPage,
+            ),
+          ],
+        ),
+      ],
     ),
     CustomRoute(
       page: MainFlow,
