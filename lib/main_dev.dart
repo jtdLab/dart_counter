@@ -15,7 +15,7 @@ import 'presentation/core/de_messages.dart';
 /// Config for mocked facades
 
 /// toggle to simulate network/no network
-const hasNetworkConnection = true;
+const hasNetworkConnection = true; // TODO remove
 
 Future<void> main() async {
   timeago.setLocaleMessages('de', DeMessages());
@@ -38,6 +38,6 @@ Future<void> main() async {
     () {
       runApp(AppWidget());
     },
-    blocObserver: false ? DartCounterBlocObserver() : null,
+    blocObserver: DartCounterBlocObserver(),
   );
 }
