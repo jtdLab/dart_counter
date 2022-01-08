@@ -11,6 +11,6 @@ class SignUpState with _$SignUpState {
   }) = SignUpInitial;
   const factory SignUpState.loadInProgress() = SignUpLoadInProgress;
   const factory SignUpState.loadFailure({
-    required AuthFailure authFailure,
+    required AuthFailure failure,
   }) = SignUpLoadFailure;
 }

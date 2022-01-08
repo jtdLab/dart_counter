@@ -18,23 +18,19 @@ class ForgotPasswordInitialPage extends StatelessWidget {
       listenWhen: (_, newState) =>
           newState is ForgotPasswordSubmitSuccess ||
           newState is ForgotPasswordSubmitFailure,
-      listener: (context, state) {
-        if (state is ForgotPasswordSubmitSuccess) {
-          context.router.replace(const ForgotPasswordSuccessPageRoute());
-          return;
-        }
-
-        if (state is ForgotPasswordSubmitFailure) {
-          state.authFailure.maybeWhen(
-            invalidEmail: () => showToast(
-              LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
-            ),
-            orElse: () => showToast(
-              'AutFailure happended',
-            ), // TODO catch other errors also
-          );
-        }
-      },
+      listener: (context, state) => state.mapOrNull(
+        submitSuccess: (_) =>
+            context.router.replace(const ForgotPasswordSuccessPageRoute()),
+        submitFailure: (submitFailure) => submitFailure.authFailure.maybeWhen(
+          invalidEmail: () => showToast(
+            LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
+          ),
+          // TODO display other errors better
+          orElse: () => showToast(
+            'AutFailure happended',
+          ),
+        ),
+      ),
       child: AppPage(
         onTap: () => FocusScope.of(context).unfocus(),
         child: LayoutBuilder(

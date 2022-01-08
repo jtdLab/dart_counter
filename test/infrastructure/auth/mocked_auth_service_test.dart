@@ -79,7 +79,6 @@ void main() {
       'THEN return unit ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -98,7 +97,6 @@ void main() {
       'THEN return invalid email failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -116,8 +114,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.sendPasswordResetEmail(
@@ -132,11 +130,26 @@ void main() {
 
   group('signInWithApple', () {
     test(
+      'GIVEN cancelled by user '
+      'THEN return cancelled by user failure ',
+      () async {
+        // Arrange
+        final underTest = MockedAuthService();
+        underTest.cancelledByUser = true;
+
+        // Act
+        final failurOrUnit = await underTest.signInWithApple();
+
+        // Assert
+        expect(failurOrUnit, left(const AuthFailure.cancelledByUser()));
+      },
+    );
+
+    test(
       'GIVEN network access '
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -157,8 +170,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signInWithApple();
@@ -176,7 +189,6 @@ void main() {
       'THEN return invalid email and password combination failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -197,7 +209,6 @@ void main() {
       'THEN return invalid email and password combination failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -218,7 +229,6 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -242,8 +252,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signInWithEmailAndPassword(
@@ -259,11 +269,26 @@ void main() {
 
   group('signInWithFacebook', () {
     test(
+      'GIVEN cancelled by user '
+      'THEN return cancelled by user failure ',
+      () async {
+        // Arrange
+        final underTest = MockedAuthService();
+        underTest.cancelledByUser = true;
+
+        // Act
+        final failurOrUnit = await underTest.signInWithFacebook();
+
+        // Assert
+        expect(failurOrUnit, left(const AuthFailure.cancelledByUser()));
+      },
+    );
+
+    test(
       'GIVEN network access '
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -284,8 +309,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signInWithFacebook();
@@ -298,11 +323,26 @@ void main() {
 
   group('signInWithGoogle', () {
     test(
+      'GIVEN cancelled by user '
+      'THEN return cancelled by user failure ',
+      () async {
+        // Arrange
+        final underTest = MockedAuthService();
+        underTest.cancelledByUser = true;
+
+        // Act
+        final failurOrUnit = await underTest.signInWithGoogle();
+
+        // Assert
+        expect(failurOrUnit, left(const AuthFailure.cancelledByUser()));
+      },
+    );
+
+    test(
       'GIVEN network access '
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -323,8 +363,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signInWithGoogle();
@@ -342,7 +382,6 @@ void main() {
       'THEN return invalid username and password combination failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -365,7 +404,6 @@ void main() {
       'THEN return invalid username and password combination failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -386,7 +424,6 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -410,8 +447,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signInWithUsernameAndPassword(
@@ -431,7 +468,6 @@ void main() {
       'THEN return unit, update state to unauthenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -452,8 +488,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.signOut();
@@ -471,7 +507,6 @@ void main() {
       'THEN return invalid email failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -493,7 +528,6 @@ void main() {
       'THEN return invalid username failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -515,7 +549,6 @@ void main() {
       'THEN return invalid password failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -532,12 +565,53 @@ void main() {
     );
 
     test(
+      'GIVEN network access and email already in use '
+      'THEN return email already in use failure ',
+      () async {
+        // Arrange
+        final underTest = MockedAuthService();
+        underTest.emailAlreadyInUse = true;
+
+        // Act
+        final failurOrUnit =
+            await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: EmailAddress('a@b.com'),
+          username: Username('aaaaa'),
+          password: Password('abcdefg12'),
+        );
+
+        // Assert
+        expect(failurOrUnit, left(const AuthFailure.emailAlreadyInUse()));
+      },
+    );
+
+    test(
+      'GIVEN network access and username already in use '
+      'THEN return username already in use failure ',
+      () async {
+        // Arrange
+        final underTest = MockedAuthService();
+        underTest.usernameAlreadyInUse = true;
+
+        // Act
+        final failurOrUnit =
+            await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: EmailAddress('a@b.com'),
+          username: Username('aaaaa'),
+          password: Password('abcdefg12'),
+        );
+
+        // Assert
+        expect(failurOrUnit, left(const AuthFailure.usernameAlreadyInUse()));
+      },
+    );
+
+    test(
       'GIVEN network access '
       'WHEN email, username and password are valid '
       'THEN return unit, update state to authenticated and emit updated auth state ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
 
         // Act
@@ -563,8 +637,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit =
@@ -605,7 +679,6 @@ void main() {
       'THEN return invalid old password failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = AuthenticatedMockAuthService();
 
         // Act
@@ -625,7 +698,6 @@ void main() {
       'THEN return invalid new password failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = AuthenticatedMockAuthService();
 
         // Act
@@ -645,7 +717,6 @@ void main() {
       'THEN return unit ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = AuthenticatedMockAuthService();
 
         // Act
@@ -664,8 +735,8 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = AuthenticatedMockAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act
         final failurOrUnit = await underTest.updatePassword(
@@ -718,9 +789,8 @@ void main() {
       () async {
         // Arrange
         final underTest = AuthenticatedMockAuthService();
-        MockedAuthService.hasNetworkConnection = true;
         await underTest.signInWithApple();
-        MockedAuthService.hasNetworkConnection = false;
+        underTest.hasNetworkConnection = false;
 
         // Act & Assert
         expect(underTest.watchIsAuthenticated(), emitsInOrder([true]));
@@ -732,8 +802,8 @@ void main() {
       'THEN emit [false] ',
       () {
         // Arrange
-        MockedAuthService.hasNetworkConnection = false;
         final underTest = MockedAuthService();
+        underTest.hasNetworkConnection = false;
 
         // Act & Assert
         expect(underTest.watchIsAuthenticated(), emitsInOrder([false]));
@@ -741,11 +811,10 @@ void main() {
     );
 
     test(
-      'WHEN authstate changes '
+      'WHEN auth state changes '
       'THEN emit [false, true, false] ',
       () {
         // Arrange
-        MockedAuthService.hasNetworkConnection = true;
         final underTest = MockedAuthService();
         Timer.run(() async {
           await underTest.signInWithApple();

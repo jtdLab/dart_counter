@@ -15,6 +15,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:social_client/clients/i_social_client.dart';
 import 'package:social_client/social_client.dart';
 
+/// Implementation of [IAuthService] using Firebase backend.
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthService)

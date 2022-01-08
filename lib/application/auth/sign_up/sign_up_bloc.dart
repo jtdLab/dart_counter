@@ -108,7 +108,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
           );
           signUpResult.fold(
             (failure) {
-              emit(SignUpState.loadFailure(authFailure: failure));
+              emit(SignUpState.loadFailure(failure: failure));
               emit(initial.copyWith(showErrorMessages: true));
             },
             (_) {},

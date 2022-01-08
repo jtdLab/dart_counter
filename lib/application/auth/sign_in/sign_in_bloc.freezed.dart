@@ -1017,9 +1017,9 @@ class _$SignInStateTearOff {
     return const SignInLoadInProgress();
   }
 
-  SignInLoadFailure loadFailure({required AuthFailure authFailure}) {
+  SignInLoadFailure loadFailure({required AuthFailure failure}) {
     return SignInLoadFailure(
-      authFailure: authFailure,
+      failure: failure,
     );
   }
 }
@@ -1033,21 +1033,21 @@ mixin _$SignInState {
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress email, Password password) initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1167,7 +1167,7 @@ class _$SignInInitial implements SignInInitial {
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress email, Password password) initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
     return initial(email, password);
   }
@@ -1177,7 +1177,7 @@ class _$SignInInitial implements SignInInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
     return initial?.call(email, password);
   }
@@ -1187,7 +1187,7 @@ class _$SignInInitial implements SignInInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1286,7 +1286,7 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress email, Password password) initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -1296,7 +1296,7 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -1306,7 +1306,7 @@ class _$SignInLoadInProgress implements SignInLoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1359,9 +1359,9 @@ abstract class $SignInLoadFailureCopyWith<$Res> {
   factory $SignInLoadFailureCopyWith(
           SignInLoadFailure value, $Res Function(SignInLoadFailure) then) =
       _$SignInLoadFailureCopyWithImpl<$Res>;
-  $Res call({AuthFailure authFailure});
+  $Res call({AuthFailure failure});
 
-  $AuthFailureCopyWith<$Res> get authFailure;
+  $AuthFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -1377,20 +1377,20 @@ class _$SignInLoadFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? authFailure = freezed,
+    Object? failure = freezed,
   }) {
     return _then(SignInLoadFailure(
-      authFailure: authFailure == freezed
-          ? _value.authFailure
-          : authFailure // ignore: cast_nullable_to_non_nullable
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
               as AuthFailure,
     ));
   }
 
   @override
-  $AuthFailureCopyWith<$Res> get authFailure {
-    return $AuthFailureCopyWith<$Res>(_value.authFailure, (value) {
-      return _then(_value.copyWith(authFailure: value));
+  $AuthFailureCopyWith<$Res> get failure {
+    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
     });
   }
 }
@@ -1398,14 +1398,14 @@ class _$SignInLoadFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInLoadFailure implements SignInLoadFailure {
-  const _$SignInLoadFailure({required this.authFailure});
+  const _$SignInLoadFailure({required this.failure});
 
   @override
-  final AuthFailure authFailure;
+  final AuthFailure failure;
 
   @override
   String toString() {
-    return 'SignInState.loadFailure(authFailure: $authFailure)';
+    return 'SignInState.loadFailure(failure: $failure)';
   }
 
   @override
@@ -1413,13 +1413,12 @@ class _$SignInLoadFailure implements SignInLoadFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SignInLoadFailure &&
-            const DeepCollectionEquality()
-                .equals(other.authFailure, authFailure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(authFailure));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -1431,9 +1430,9 @@ class _$SignInLoadFailure implements SignInLoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress email, Password password) initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
-    return loadFailure(authFailure);
+    return loadFailure(failure);
   }
 
   @override
@@ -1441,9 +1440,9 @@ class _$SignInLoadFailure implements SignInLoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
-    return loadFailure?.call(authFailure);
+    return loadFailure?.call(failure);
   }
 
   @override
@@ -1451,11 +1450,11 @@ class _$SignInLoadFailure implements SignInLoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress email, Password password)? initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure(authFailure);
+      return loadFailure(failure);
     }
     return orElse();
   }
@@ -1496,10 +1495,10 @@ class _$SignInLoadFailure implements SignInLoadFailure {
 }
 
 abstract class SignInLoadFailure implements SignInState {
-  const factory SignInLoadFailure({required AuthFailure authFailure}) =
+  const factory SignInLoadFailure({required AuthFailure failure}) =
       _$SignInLoadFailure;
 
-  AuthFailure get authFailure;
+  AuthFailure get failure;
   @JsonKey(ignore: true)
   $SignInLoadFailureCopyWith<SignInLoadFailure> get copyWith =>
       throw _privateConstructorUsedError;

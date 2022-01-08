@@ -82,7 +82,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
         } else {
           emit(
             const SignInState.loadFailure(
-              authFailure: AuthFailure.invalidEmailAndPasswordCombination(),
+              failure: AuthFailure.invalidEmailAndPasswordCombination(),
             ),
           );
           emit(initial);
@@ -139,14 +139,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       initial: (initial) async {
         emit(const SignInState.loadInProgress());
 
-        // TODO in service or here ?
         await Future.delayed(const Duration(milliseconds: 500));
 
         final signInResult = await signInFuture();
 
         signInResult.fold(
           (authFailure) {
-            emit(SignInState.loadFailure(authFailure: authFailure));
+            emit(SignInState.loadFailure(failure: authFailure));
             emit(initial);
           },
           (_) {},

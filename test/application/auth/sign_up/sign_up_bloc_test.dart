@@ -256,7 +256,7 @@ void main() {
       expect: () => [
         const SignUpLoadInProgress(),
         const SignUpLoadFailure(
-          authFailure: AuthFailure.serverError(),
+          failure: AuthFailure.serverError(),
         ),
         SignUpInitial(
           email: EmailAddress('a@b.com'),

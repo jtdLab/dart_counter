@@ -8,6 +8,6 @@ class SignInState with _$SignInState {
   }) = SignInInitial;
   const factory SignInState.loadInProgress() = SignInLoadInProgress;
   const factory SignInState.loadFailure({
-    required AuthFailure authFailure,
+    required AuthFailure failure,
   }) = SignInLoadFailure;
 }

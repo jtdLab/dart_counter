@@ -34,27 +34,24 @@ class _SignInPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                authenticated: () =>
-                    context.router.replace(const MainFlowRoute()),
-              );
-            },
+            listener: (context, state) => state.whenOrNull(
+              authenticated: () =>
+                  context.router.replace(const MainFlowRoute()),
+            ),
           ),
           BlocListener<SignInBloc, SignInState>(
             listenWhen: (_, next) => next is SignInLoadFailure,
-            listener: (context, state) {
-              state.mapOrNull(
-                loadFailure: (signInLoadFailure) {
-                  signInLoadFailure.authFailure.whenOrNull(
-                    serverError: () => showToast(LocaleKeys.errorServer.tr()),
-                    invalidEmailAndPasswordCombination: () => showToast(
-                      LocaleKeys.errorInvalidEmailAndPasswordCombination.tr(),
-                    ),
-                  );
-                },
-              );
-            },
+            listener: (context, state) => state.mapOrNull(
+              loadFailure: (signInLoadFailure) {
+                signInLoadFailure.failure.whenOrNull(
+                  // TODO show server error feels not perfect
+                  serverError: () => showToast(LocaleKeys.errorServer.tr()),
+                  invalidEmailAndPasswordCombination: () => showToast(
+                    LocaleKeys.errorInvalidEmailAndPasswordCombination.tr(),
+                  ),
+                );
+              },
+            ),
           ),
         ],
         child: AppPage(
@@ -230,7 +227,7 @@ class _SignUpPage extends StatelessWidget {
             listener: (context, state) {
               state.mapOrNull(
                 loadFailure: (signInLoadFailure) {
-                  signInLoadFailure.authFailure.whenOrNull(
+                  signInLoadFailure.failure.whenOrNull(
                     serverError: () => showToast(LocaleKeys.errorServer.tr()),
                   );
                 },

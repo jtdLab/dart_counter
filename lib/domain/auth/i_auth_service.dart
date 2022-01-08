@@ -87,8 +87,9 @@ abstract class IAuthService {
   /// Throws [NotAuthenticatedError] if the user is not signed in.
   ///
   /// Possible failures:
-  /// 1. Invalid password
-  /// 2. Server error
+  /// 1. Invalid oldPassword
+  /// 2. Invalid newPassword
+  /// 3. Server error
   Future<Either<AuthFailure, Unit>> updatePassword({
     required Password oldPassword,
     required Password newPassword,

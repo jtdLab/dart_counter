@@ -78,7 +78,7 @@ void main() {
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       expect: () => [
         const SignInLoadFailure(
-          authFailure: AuthFailure.invalidEmailAndPasswordCombination(),
+          failure: AuthFailure.invalidEmailAndPasswordCombination(),
         ),
         SignInInitial(
           email: EmailAddress('invalidEmail'),
@@ -98,7 +98,7 @@ void main() {
       act: (SignInBloc bloc) => bloc.add(const SignInEvent.signInPressed()),
       expect: () => [
         const SignInLoadFailure(
-          authFailure: AuthFailure.invalidEmailAndPasswordCombination(),
+          failure: AuthFailure.invalidEmailAndPasswordCombination(),
         ),
         SignInInitial(
           email: EmailAddress('a@b.com'),
@@ -130,7 +130,7 @@ void main() {
       expect: () => [
         const SignInLoadInProgress(),
         const SignInLoadFailure(
-          authFailure: AuthFailure.serverError(),
+          failure: AuthFailure.serverError(),
         ),
         SignInInitial(
           email: EmailAddress('a@b.com'),
@@ -187,7 +187,7 @@ void main() {
       expect: () => [
         const SignInLoadInProgress(),
         const SignInLoadFailure(
-          authFailure: AuthFailure.serverError(),
+          failure: AuthFailure.serverError(),
         ),
         SignInInitial(
           email: EmailAddress.empty(),
@@ -242,7 +242,7 @@ void main() {
       expect: () => [
         const SignInLoadInProgress(),
         const SignInLoadFailure(
-          authFailure: AuthFailure.serverError(),
+          failure: AuthFailure.serverError(),
         ),
         SignInInitial(
           email: EmailAddress.empty(),
@@ -297,7 +297,7 @@ void main() {
       expect: () => [
         const SignInLoadInProgress(),
         const SignInLoadFailure(
-          authFailure: AuthFailure.serverError(),
+          failure: AuthFailure.serverError(),
         ),
         SignInInitial(
           email: EmailAddress.empty(),

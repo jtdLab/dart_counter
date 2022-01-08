@@ -885,9 +885,9 @@ class _$SignUpStateTearOff {
     return const SignUpLoadInProgress();
   }
 
-  SignUpLoadFailure loadFailure({required AuthFailure authFailure}) {
+  SignUpLoadFailure loadFailure({required AuthFailure failure}) {
     return SignUpLoadFailure(
-      authFailure: authFailure,
+      failure: failure,
     );
   }
 }
@@ -903,7 +903,7 @@ mixin _$SignUpState {
             Password password, Password passwordAgain, bool showErrorMessages)
         initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -912,7 +912,7 @@ mixin _$SignUpState {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -921,7 +921,7 @@ mixin _$SignUpState {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1082,7 +1082,7 @@ class _$SignUpInitial implements SignUpInitial {
             Password password, Password passwordAgain, bool showErrorMessages)
         initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
     return initial(email, username, password, passwordAgain, showErrorMessages);
   }
@@ -1094,7 +1094,7 @@ class _$SignUpInitial implements SignUpInitial {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
     return initial?.call(
         email, username, password, passwordAgain, showErrorMessages);
@@ -1107,7 +1107,7 @@ class _$SignUpInitial implements SignUpInitial {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1215,7 +1215,7 @@ class _$SignUpLoadInProgress implements SignUpLoadInProgress {
             Password password, Password passwordAgain, bool showErrorMessages)
         initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -1227,7 +1227,7 @@ class _$SignUpLoadInProgress implements SignUpLoadInProgress {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -1239,7 +1239,7 @@ class _$SignUpLoadInProgress implements SignUpLoadInProgress {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1292,9 +1292,9 @@ abstract class $SignUpLoadFailureCopyWith<$Res> {
   factory $SignUpLoadFailureCopyWith(
           SignUpLoadFailure value, $Res Function(SignUpLoadFailure) then) =
       _$SignUpLoadFailureCopyWithImpl<$Res>;
-  $Res call({AuthFailure authFailure});
+  $Res call({AuthFailure failure});
 
-  $AuthFailureCopyWith<$Res> get authFailure;
+  $AuthFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -1310,20 +1310,20 @@ class _$SignUpLoadFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? authFailure = freezed,
+    Object? failure = freezed,
   }) {
     return _then(SignUpLoadFailure(
-      authFailure: authFailure == freezed
-          ? _value.authFailure
-          : authFailure // ignore: cast_nullable_to_non_nullable
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
               as AuthFailure,
     ));
   }
 
   @override
-  $AuthFailureCopyWith<$Res> get authFailure {
-    return $AuthFailureCopyWith<$Res>(_value.authFailure, (value) {
-      return _then(_value.copyWith(authFailure: value));
+  $AuthFailureCopyWith<$Res> get failure {
+    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
     });
   }
 }
@@ -1331,14 +1331,14 @@ class _$SignUpLoadFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpLoadFailure implements SignUpLoadFailure {
-  const _$SignUpLoadFailure({required this.authFailure});
+  const _$SignUpLoadFailure({required this.failure});
 
   @override
-  final AuthFailure authFailure;
+  final AuthFailure failure;
 
   @override
   String toString() {
-    return 'SignUpState.loadFailure(authFailure: $authFailure)';
+    return 'SignUpState.loadFailure(failure: $failure)';
   }
 
   @override
@@ -1346,13 +1346,12 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SignUpLoadFailure &&
-            const DeepCollectionEquality()
-                .equals(other.authFailure, authFailure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(authFailure));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -1366,9 +1365,9 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
             Password password, Password passwordAgain, bool showErrorMessages)
         initial,
     required TResult Function() loadInProgress,
-    required TResult Function(AuthFailure authFailure) loadFailure,
+    required TResult Function(AuthFailure failure) loadFailure,
   }) {
-    return loadFailure(authFailure);
+    return loadFailure(failure);
   }
 
   @override
@@ -1378,9 +1377,9 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
   }) {
-    return loadFailure?.call(authFailure);
+    return loadFailure?.call(failure);
   }
 
   @override
@@ -1390,11 +1389,11 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
             Password passwordAgain, bool showErrorMessages)?
         initial,
     TResult Function()? loadInProgress,
-    TResult Function(AuthFailure authFailure)? loadFailure,
+    TResult Function(AuthFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure(authFailure);
+      return loadFailure(failure);
     }
     return orElse();
   }
@@ -1435,10 +1434,10 @@ class _$SignUpLoadFailure implements SignUpLoadFailure {
 }
 
 abstract class SignUpLoadFailure implements SignUpState {
-  const factory SignUpLoadFailure({required AuthFailure authFailure}) =
+  const factory SignUpLoadFailure({required AuthFailure failure}) =
       _$SignUpLoadFailure;
 
-  AuthFailure get authFailure;
+  AuthFailure get failure;
   @JsonKey(ignore: true)
   $SignUpLoadFailureCopyWith<SignUpLoadFailure> get copyWith =>
       throw _privateConstructorUsedError;

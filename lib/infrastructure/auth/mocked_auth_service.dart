@@ -7,15 +7,31 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
+/// Mock implementation of [IAuthService].
+///
+/// Specifiy [hasNetworkConnection] to simulate behaivor with existing/missing network access.
+///
+/// Specify [cancelledByUser] to simulate behaivor when user cancels actions.
+///
+/// Specify [emailAlreadyInUse] to simulate behaivor when email is already in use.
+///
+/// Specify [usernameAlreadyInUse] to simulate behaivor when username is already in use.
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
 class MockedAuthService with Disposable implements IAuthService {
-  static bool hasNetworkConnection = true;
+  bool hasNetworkConnection;
+  bool cancelledByUser;
+  bool emailAlreadyInUse;
+  bool usernameAlreadyInUse;
 
   final BehaviorSubject<bool> _authenticatedController;
 
-  MockedAuthService()
-      : _authenticatedController = BehaviorSubject.seeded(false);
+  MockedAuthService({
+    this.hasNetworkConnection = true,
+    this.cancelledByUser = false,
+    this.emailAlreadyInUse = false,
+    this.usernameAlreadyInUse = false,
+  }) : _authenticatedController = BehaviorSubject.seeded(false);
 
   @override
   Future<String?> idToken() async {
@@ -25,7 +41,6 @@ class MockedAuthService with Disposable implements IAuthService {
 
     return null;
   }
-
 
   @override
   bool isAuthenticated() => _authenticatedController.value;
@@ -47,6 +62,10 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
+    if (cancelledByUser) {
+      return left(const AuthFailure.cancelledByUser());
+    }
+
     if (hasNetworkConnection) {
       _authenticatedController.add(true);
       return right(unit);
@@ -74,6 +93,10 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
+    if (cancelledByUser) {
+      return left(const AuthFailure.cancelledByUser());
+    }
+
     if (hasNetworkConnection) {
       _authenticatedController.add(true);
       return right(unit);
@@ -84,6 +107,10 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
+    if (cancelledByUser) {
+      return left(const AuthFailure.cancelledByUser());
+    }
+
     if (hasNetworkConnection) {
       _authenticatedController.add(true);
       return right(unit);
@@ -136,6 +163,14 @@ class MockedAuthService with Disposable implements IAuthService {
 
       if (!password.isValid()) {
         return left(const AuthFailure.invalidPassword());
+      }
+
+      if (emailAlreadyInUse) {
+        return left(const AuthFailure.emailAlreadyInUse());
+      }
+
+      if (usernameAlreadyInUse) {
+        return left(const AuthFailure.usernameAlreadyInUse());
       }
 
       _authenticatedController.add(true);
