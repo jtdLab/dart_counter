@@ -178,3 +178,9 @@ at undo detailed remove throw and load old into dart and points displayer
 // TODO https://pub.dev/packages/freezed#run-the-generator
 also importing package:flutter/foundation.dart.
 The reason being, importing foundation.dart also imports classes to make an object nicely readable in Flutter's devtool.
+
+
+// add loging 
+info here :
+https://sematext.com/blog/logging-levels/
+https://sematext.com/blog/best-practices-for-efficient-log-management-and-monitoring/#toc-5-use-the-proper-log-level-4
