@@ -28,9 +28,10 @@ class PostOnlineGamePage extends StatelessWidget {
             ),
           ),
           child: SingleChildScrollView(
-              child: PostGameWidget(
-            gameSnapshot: state,
-          )),
+            child: PostGameWidget(
+              gameSnapshot: state,
+            ),
+          ),
         );
       },
     );
