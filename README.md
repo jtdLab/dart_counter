@@ -174,3 +174,7 @@ the routing now works well with the seperate flow widgets to give the chance of 
 at undo detailed remove throw and load old into dart and points displayer
 
 // TODO all code generation should be done in generated folder 
+
+// TODO https://pub.dev/packages/freezed#run-the-generator
+also importing package:flutter/foundation.dart.
+The reason being, importing foundation.dart also imports classes to make an object nicely readable in Flutter's devtool.
