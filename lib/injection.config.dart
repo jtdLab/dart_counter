@@ -77,8 +77,8 @@ import 'domain/training/single/i_single_training_service.dart' as _i31;
 import 'domain/user/i_user_service.dart' as _i33;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i57;
 import 'infrastructure/auth/mocked_auth_service.dart' as _i13;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i17;
-import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i18;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i18;
+import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i17;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i76;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i75;
 import 'infrastructure/friend/friend_service.dart' as _i72;
@@ -130,11 +130,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i17.ConnectivityService(get<_i4.Connectivity>()),
-      registerFor: {_test, _prod});
-  gh.lazySingleton<_i16.IConnectivityService>(
-      () => _i18.MockedConnectivityService(),
+      () => _i17.MockedConnectivityService(),
       registerFor: {_dev});
+  gh.lazySingleton<_i16.IConnectivityService>(
+      () => _i18.ConnectivityService(get<_i4.Connectivity>()),
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i19.IDartUtils>(() => _i20.DartUtils());
   gh.lazySingleton<_i21.IDoubleTrainingService>(
       () => _i22.DoubleTrainingService(),
