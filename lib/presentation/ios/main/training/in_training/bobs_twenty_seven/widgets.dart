@@ -86,7 +86,8 @@ class _OnePlayerHeader extends StatelessWidget {
                 child: Container(
                   height: size40(context),
                   decoration: BoxDecoration(
-                    color: AppColors.orangeNew,
+                    color: Colors
+                        .primaries[Random().nextInt(Colors.primaries.length)],
                     border: Border.all(
                       width: border4(context),
                     ),
@@ -537,13 +538,11 @@ class PlayerItem extends StatelessWidget {
 }
 
 class _PlayerItemHeader extends StatelessWidget {
-  final Color color;
   final String? photoUrl;
   final String name;
 
   const _PlayerItemHeader({
     Key? key,
-    this.color = AppColors.blueNew,
     this.photoUrl,
     required this.name,
   }) : super(key: key);
@@ -558,7 +557,8 @@ class _PlayerItemHeader extends StatelessWidget {
             Expanded(
               flex: 5,
               child: Container(
-                color: color,
+                color:
+                    Colors.primaries[Random().nextInt(Colors.primaries.length)],
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
@@ -763,13 +763,11 @@ class PlayerItemSmall extends StatelessWidget {
 }
 
 class _PlayerItemSmallHeader extends StatelessWidget {
-  final Color color;
   final String? photoUrl;
   final String name;
 
   const _PlayerItemSmallHeader({
     Key? key,
-    this.color = AppColors.blueNew,
     this.photoUrl,
     required this.name,
   }) : super(key: key);
@@ -784,7 +782,8 @@ class _PlayerItemSmallHeader extends StatelessWidget {
             Expanded(
               flex: 5,
               child: Container(
-                color: color,
+                color:
+                    Colors.primaries[Random().nextInt(Colors.primaries.length)],
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
