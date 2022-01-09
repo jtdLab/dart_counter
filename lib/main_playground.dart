@@ -14,6 +14,91 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import 'presentation/core/de_messages.dart';
 
+class Name with ChangeNotifier {
+  int _value = 5;
+  String value2 = 'FFFFF';
+
+  set value(int newValue) {
+    _value = newValue;
+    notifyListeners();
+  }
+
+  int get value => _value;
+}
+
+void main() {
+  final name = Name();
+
+  runApp(
+    CupertinoApp(
+      home: CupertinoPageScaffold(
+        child: ChangeNotifierProvider.value(
+          value: name,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Builder(
+                builder: (context) {
+                  return SuperWidget(a: context.watch<Name>().value, b: 2);
+                },
+              ),
+              CupertinoButton(
+                child: const Text('Press me'),
+                onPressed: () => name.value = 88,
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+class SuperWidget extends StatelessWidget {
+  final int a;
+  final int b;
+
+  const SuperWidget({
+    Key? key,
+    required this.a,
+    required this.b,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print('rebuilt $runtimeType');
+
+    return Column(
+      children: [
+        SubWidget(
+          value: a,
+        ),
+        SubWidget(
+          value: b,
+        ),
+      ],
+    );
+  }
+}
+
+class SubWidget extends StatelessWidget {
+  final int value;
+
+  const SubWidget({
+    Key? key,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print('rebuilt $runtimeType $value');
+
+    return Text(value.toString());
+  }
+}
+
+
+/** 
 Future<void> main() async {
   timeago.setLocaleMessages('de', DeMessages());
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
@@ -127,7 +212,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+**/
 /**
  * import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';

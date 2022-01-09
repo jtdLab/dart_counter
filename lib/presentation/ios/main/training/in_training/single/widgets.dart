@@ -740,12 +740,6 @@ class _PlayerItemPointsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: border4(context)),
-          bottom: BorderSide(width: border4(context)),
-        ),
-      ),
       child: Center(
         child: AutoSizeText(
           points.toString(),
