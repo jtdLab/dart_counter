@@ -1,1 +1,0 @@
-class PlatformNotSupportedError extends Error {}

@@ -1,0 +1,85 @@
+import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
+import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
+import 'package:dart_counter/domain/training/mode.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_game_snapshot_dto.dart';
+import 'package:dart_counter/infrastructure/training/double/double_training_player_snapshot_dto.dart';
+import 'package:dart_game/double_training_game.dart' as ex;
+import 'package:flutter_test/flutter_test.dart';
+import 'package:kt_dart/kt.dart';
+
+void main() {
+  final id = UniqueId.fromUniqueString('dummyId');
+  const idString = 'dummyId';
+
+  final playerDomain = DoubleTrainingPlayerSnapshot(
+    id: id,
+    isCurrentTurn: false,
+    isFinished: false,
+    targetValue: 1,
+    missed: 0,
+    dartsThrown: 0,
+  );
+
+  final domain = DoubleTrainingGameSnapshot(
+    status: Status.pending,
+    mode: Mode.ascending,
+    players: KtList.from([playerDomain]),
+    owner: playerDomain,
+  );
+
+  const playerDto = DoubleTrainingPlayerSnapshotDto(
+    id: idString,
+  );
+
+  const dto = DoubleTrainingGameSnapshotDto(
+    status: 'pending',
+    mode: 'ascending',
+    players: [playerDto],
+    owner: playerDto,
+  );
+
+  final playerExternal = ex.Player.fromData(
+    id: idString,
+  );
+
+  final external = ex.Game.fromData(
+    status: ex.Status.pending,
+    mode: ex.Mode.ascending,
+    players: [playerExternal],
+    owner: playerExternal,
+  );
+  test(
+    'constructor',
+    () {
+      // Assert
+      expect(dto.status, 'pending');
+      expect(dto.mode, 'ascending');
+      expect(dto.players, [playerDto]);
+      expect(dto.owner, playerDto);
+    },
+  );
+
+  test(
+    'toDomain',
+    () {
+      // Act
+      final underTest = dto.toDomain();
+
+      // Assert
+      expect(underTest, domain);
+    },
+  );
+
+  test(
+    'fromExternal',
+    () {
+      // Act
+      final underTest = DoubleTrainingGameSnapshotDto.fromExternal(external);
+
+      // Assert
+      expect(underTest, dto);
+    },
+  );
+}

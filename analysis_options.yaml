@@ -1,11 +1,13 @@
 include: package:lint/analysis_options.yaml
+# include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
-    - parameter_assignments
+     directives_ordering: false
 
 analyzer:
   errors:
     missing_required_param: error
     parameter_assignments: error
     sort_pub_dependencies: ignore
+    include_file_not_found: ignore # sometimes package:lint/analysis_options.yaml isnt found

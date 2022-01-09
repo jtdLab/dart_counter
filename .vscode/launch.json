@@ -1,17 +1,29 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "Flutter Dev",
-        "type": "dart",
-        "request": "launch",
-        "program": "lib/main_dev.dart"
-      },
-      {
-        "name": "Flutter Prod",
-        "type": "dart",
-        "request": "launch",
-        "program": "lib/main_prod.dart"
-      }
-    ]
-  }
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter Dev",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_dev.dart",
+    },
+    {
+      "name": "Flutter Test",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_test.dart"
+    },
+    {
+      "name": "Flutter Prod",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "Flutter Playground",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_playground.dart"
+    },
+  ]
+}
