@@ -74,6 +74,7 @@ dependencies:
   json_annotation: ^4.4.0
   bloc_concurrency: ^0.2.0
   logger: ^1.1.0
+  quiver: ^3.0.1+1
 
 dev_dependencies:
   flutter_test:

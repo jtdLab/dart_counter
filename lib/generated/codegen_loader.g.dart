@@ -125,7 +125,28 @@ class CodegenLoader extends AssetLoader{
   "emailChanged": "E-Mail geändert",
   "practice": "Training",
   "noGamesFound": "Keine Spiele gefunden",
-  "mainMenu": "Hauptmenü"
+  "mainMenu": "Hauptmenü",
+  "single": {
+    "one": "single",
+    "many": "singles"
+  },
+  "double": {
+    "one": "double",
+    "many": "doubles"
+  },
+  "triple": {
+    "one": "triple",
+    "many": "triples"
+  },
+  "missed": "verpasst",
+  "target": "Ziel",
+  "takesLeft": "Noch {} Aufnahmen",
+  "bestPointsShort": "Best: {}",
+  "totalPoints": "Punkte gesamt",
+  "singleTraining": "Single Training",
+  "doubleTraining": "Doppel Training",
+  "scoreTraining": "Score Training",
+  "bobs27": "Bobs 27"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -238,7 +259,28 @@ static const Map<String,dynamic> en = {
   "emailChanged": "Email changed",
   "practice": "Practice",
   "noGamesFound": "No games found",
-  "mainMenu": "Main Menu"
+  "mainMenu": "Main Menu",
+  "single": {
+    "one": "single",
+    "many": "singles"
+  },
+  "double": {
+    "one": "double",
+    "many": "doubles"
+  },
+  "triple": {
+    "one": "triple",
+    "many": "triples"
+  },
+  "missed": "missed",
+  "target": "Target",
+  "takesLeft": "{} takes left",
+  "bestPointsShort": "Best: {}",
+  "totalPoints": "Total points",
+  "singleTraining": "Single Practice",
+  "doubleTraining": "Double Practice",
+  "scoreTraining": "Score Practice",
+  "bobs27": "Bobs 27"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:dart_counter/application/main/training/double_training/double_training_bloc.dart';
 import 'package:dart_counter/application/main/training/training_bloc.dart';
-import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
@@ -43,8 +40,7 @@ class InDoubleTrainingPage extends StatelessWidget {
             );
           },
         ),
-        // TODO localekeys
-        middle: const Text('DOUBLE'),
+        middle: Text(LocaleKeys.doubleTraining.tr().toUpperCase()),
       ),
       child: const _InDoubleTrainingWidget(),
     );

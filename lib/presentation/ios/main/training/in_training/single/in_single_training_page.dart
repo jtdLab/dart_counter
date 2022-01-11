@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:dart_counter/application/main/training/single_training/single_training_bloc.dart';
 import 'package:dart_counter/application/main/training/training_bloc.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
-import 'package:faker/faker.dart';
 
 part 'widgets.dart';
 
@@ -21,7 +18,7 @@ class InSingleTrainingPage extends StatelessWidget {
       navigationBar: AppNavigationBar(
         leading: CancelButton(
           onPressed: () {
-            // show overlay
+            // show overlay // TODO cleaner
             Navigator.of(context).push(
               PageRouteBuilder(
                 reverseTransitionDuration: Duration.zero,
@@ -43,8 +40,7 @@ class InSingleTrainingPage extends StatelessWidget {
             );
           },
         ),
-        // TODO localekeys
-        middle: const Text('SINGLE'),
+        middle: Text(LocaleKeys.singleTraining.tr().toUpperCase()),
       ),
       child: const _InSingleTrainingWidget(),
     );

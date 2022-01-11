@@ -37,11 +37,7 @@ void main() {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Builder(
-                builder: (context) {
-                  return SuperWidget(a: context.watch<Name>().value, b: 2);
-                },
-              ),
+              const SuperWidget(),
               CupertinoButton(
                 child: const Text('Press me'),
                 onPressed: () => name.value = 88,
@@ -55,13 +51,8 @@ void main() {
 }
 
 class SuperWidget extends StatelessWidget {
-  final int a;
-  final int b;
-
   const SuperWidget({
     Key? key,
-    required this.a,
-    required this.b,
   }) : super(key: key);
 
   @override
@@ -71,10 +62,10 @@ class SuperWidget extends StatelessWidget {
     return Column(
       children: [
         SubWidget(
-          value: a,
+          value: context.watch<Name>().value,
         ),
-        SubWidget(
-          value: b,
+        const SubWidget(
+          value: 0,
         ),
       ],
     );

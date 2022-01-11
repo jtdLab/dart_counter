@@ -12,10 +12,9 @@ class _InScoreTrainingWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: BlocBuilder<TrainingBloc, TrainingState>(
-            builder: (context, state) {
-              final amountOfPlayers = state.gameSnapshot.players.size;
-
+          child: BlocSelector<TrainingBloc, TrainingState, int>(
+            selector: (state) => state.gameSnapshot.players.size,
+            builder: (context, amountOfPlayers) {
               if (amountOfPlayers == 1) {
                 return const _OnePlayerDisplayer();
               } else if (amountOfPlayers == 2) {
@@ -30,7 +29,6 @@ class _InScoreTrainingWidget extends StatelessWidget {
         ),
         Expanded(
           flex: 55,
-          // TODO
           child: PageView(
             onPageChanged: (pageIndex) =>
                 _onKeyBoardChanged(context, keyBoardIndex: pageIndex),
@@ -43,8 +41,6 @@ class _InScoreTrainingWidget extends StatelessWidget {
                 create: (context) => DetailedInputAreaBloc(),
                 child: const DetailedInputArea(),
               ),
-
-              //OpticalInputArea(),
             ],
           ),
         ),
@@ -96,219 +92,19 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppColumn(
-      spacing: size6(context),
-      children: const [
-        Expanded(
-          flex: 3,
-          child: _OnePlayerHeader(),
-        ),
-        Expanded(
-          flex: 6,
-          child: _OnePlayerCenter(),
-        ),
-        Spacer(flex: 4)
-      ],
-    );
-  }
-}
-
-// SHARED ???? with play and other training one player displayer
-class _OnePlayerHeader extends StatelessWidget {
-  const _OnePlayerHeader({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      // TODO is this builder most inner positioned
-      builder: (context, state) {
-        final player = state.gameSnapshot.players[0];
-
-        return Stack(
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: size12(context) + size6(context),
-                ),
-                child: Container(
-                  height: size40(context),
-                  decoration: BoxDecoration(
-                    color: Colors
-                        .primaries[Random().nextInt(Colors.primaries.length)],
-                    border: Border.all(
-                      width: border4(context),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      player.name!,
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .textStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: AppRoundedImage.large(
-                imageName: AppImages.photoPlaceholderNew,
-                border: Border.all(
-                  width: border4(context),
-                ),
-              ),
-            )
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _OnePlayerCenter extends StatelessWidget {
-  const _OnePlayerCenter({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const Spacer(
-          flex: 4,
-        ),
-        Expanded(
-          flex: 7,
-          child: AppColumn(
-            spacing: size6(context),
-            children: const [
-              _OnePlayerTakesLeftDisplayer(),
-              Expanded(
-                child: _OnePlayerAverageAndPointsDisplayer(),
-              ),
-            ],
-          ),
-        ),
-        const Spacer(
-          flex: 4,
-        ),
-      ],
-    );
-  }
-}
-
-class _OnePlayerTakesLeftDisplayer extends StatelessWidget {
-  const _OnePlayerTakesLeftDisplayer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      // TODO is this builder most inner positioned
-      builder: (context, state) {
-        final player =
-            state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot;
-
-        return Container(
-          color: AppColors.black,
-          child: Padding(
-            padding: EdgeInsets.all(size6(context) / 4),
-            child: Center(
-              child: Text(
-                // TODO translate
-                'NOCH ${player.takesLeft} AUFNAHMEN',
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .textStyle
-                    .copyWith(color: AppColors.white),
-              ),
-            ),
-            /**
-            *  child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                if (player.wonSets != null) ...[
-                  Text(
-                    'S:${player.wonSets}',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .textStyle
-                        .copyWith(color: AppColors.white),
-                  ),
-                ],
-                Text(
-                  'L:${player.wonLegsCurrentSet}',
-                  style: CupertinoTheme.of(context)
-                      .textTheme
-                      .textStyle
-                      .copyWith(color: AppColors.white),
-                ),
-              ],
-            ),
-            */
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _OnePlayerAverageAndPointsDisplayer extends StatelessWidget {
-  const _OnePlayerAverageAndPointsDisplayer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      // TODO is this builder most inner positioned
-      builder: (context, state) {
-        final player =
-            state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot;
-
-        return Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: border4(context),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                flex: 6,
-                child: Center(
-                  child: AutoSizeText(
-                    player.points.toString(),
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .textStyle
-                        .copyWith(fontSize: 40), // TODO
-                    maxLines: 1,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Center(
-                  child: AutoSizeText(
-                    player.average?.toString() ?? '--',
-                    maxLines: 1,
-                    maxFontSize: 13,
-                    minFontSize: 6,
-                  ),
-                ),
-              ),
-            ],
-          ),
+    return BlocSelector<TrainingBloc, TrainingState,
+        ScoreTrainingPlayerSnapshot>(
+      selector: (state) =>
+          state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot,
+      builder: (context, player1) {
+        return PlayerItemLargeScoreBobs27(
+          color: AppColors.blue,
+          photoUrl: null, // TODO real photoUrl,
+          name: player1.name!, // TODO ! needed ?
+          subHeaderText: LocaleKeys.takesLeft
+              .tr(args: ['${player1.takesLeft}']).toUpperCase(),
+          property: player1.average?.toStringAsFixed(2) ?? '--',
+          subProperty: '${player1.points}',
         );
       },
     );
@@ -323,26 +119,25 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      builder: (context, state) {
-        final players = state.gameSnapshot.players;
-
-        return AppRow(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              child: PlayerItem(
-                player: players[0] as ScoreTrainingPlayerSnapshot,
-              ),
-            ),
-            Expanded(
-              child: PlayerItem(
-                player: players[1] as ScoreTrainingPlayerSnapshot,
-              ),
-            ),
-          ],
-        );
-      },
+    return TwoPlayerDisplayerGrid(
+      player1Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player1) => _PlayerItem(
+          player: player1,
+          color: AppColors.blueNew,
+        ),
+      ),
+      player2Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[1] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player2) => _PlayerItem(
+          player: player2,
+          color: AppColors.green,
+        ),
+      ),
     );
   }
 }
@@ -355,34 +150,34 @@ class _ThreePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      builder: (context, state) {
-        final players = state.gameSnapshot.players;
-
-        return AppRow(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              child: PlayerItem(
-                player: players[0] as ScoreTrainingPlayerSnapshot,
-              ),
-            ),
-            Expanded(
-              child: AppColumn(
-                spacing: size6(context),
-                children: [
-                  PlayerItemSmall(
-                    player: players[2] as ScoreTrainingPlayerSnapshot,
-                  ),
-                  PlayerItemSmall(
-                    player: players[1] as ScoreTrainingPlayerSnapshot,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
+    return ThreePlayerDisplayerGrid(
+      player1Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player1) => _PlayerItem(
+          player: player1,
+          color: AppColors.blueNew,
+        ),
+      ),
+      player2Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[1] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player2) => _PlayerItemSmall(
+          player: player2,
+          color: AppColors.green,
+        ),
+      ),
+      player3Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[2] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player3) => _PlayerItemSmall(
+          player: player3,
+          color: AppColors.red,
+        ),
+      ),
     );
   }
 }
@@ -395,50 +190,49 @@ class _FourPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      builder: (context, state) {
-        final players = state.gameSnapshot.players;
-
-        return AppColumn(
-          spacing: size6(context),
-          children: [
-            Expanded(
-              flex: 3,
-              child: AppRow(
-                spacing: size6(context),
-                children: [
-                  PlayerItemSmall(
-                    player: players[0] as ScoreTrainingPlayerSnapshot,
-                  ),
-                  PlayerItemSmall(
-                    player: players[1] as ScoreTrainingPlayerSnapshot,
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: AppRow(
-                spacing: size6(context),
-                children: [
-                  PlayerItemSmall(
-                    player: players[2] as ScoreTrainingPlayerSnapshot,
-                  ),
-                  PlayerItemSmall(
-                    player: players[3] as ScoreTrainingPlayerSnapshot,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
+    return FourPlayerDisplayerGrid(
+      player1Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[0] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player1) => _PlayerItemSmall(
+          player: player1,
+          color: AppColors.blueNew,
+        ),
+      ),
+      player2Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[1] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player2) => _PlayerItemSmall(
+          player: player2,
+          color: AppColors.green,
+        ),
+      ),
+      player3Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[2] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player3) => _PlayerItemSmall(
+          player: player3,
+          color: AppColors.red,
+        ),
+      ),
+      player4Item: BlocSelector<TrainingBloc, TrainingState,
+          ScoreTrainingPlayerSnapshot>(
+        selector: (state) =>
+            state.gameSnapshot.players[3] as ScoreTrainingPlayerSnapshot,
+        builder: (context, player4) => _PlayerItemSmall(
+          player: player4,
+          color: AppColors.orangeNew,
+        ),
+      ),
     );
   }
 }
 
 // STANDARD INPUT AREA
-// TODO flex factors
+// TODO sharing
 class StandardInputArea extends StatelessWidget {
   const StandardInputArea({
     Key? key,
@@ -450,15 +244,12 @@ class StandardInputArea extends StatelessWidget {
       spacing: size6(context),
       children: [
         Expanded(
-          flex: 10,
           child: AppColumn(
             spacing: size6(context),
             children: [
-              const Spacer(
-                flex: 10,
-              ),
+              const Spacer(),
               Expanded(
-                flex: 30,
+                flex: 3,
                 child: InputRow(
                   onUndoPressed: () => context
                       .read<ScoreTrainingBloc>()
@@ -466,14 +257,14 @@ class StandardInputArea extends StatelessWidget {
                   onPerformThrowPressed: () => context
                       .read<ScoreTrainingBloc>()
                       .add(const ScoreTrainingEvent.performPressed()),
-                  points: 0, // TODO
+                  points: 0, // TODO real value
                 ),
               ),
             ],
           ),
         ),
         const Expanded(
-          flex: 30,
+          flex: 3,
           child: _StandardKeyBoard(),
         )
       ],
@@ -631,11 +422,8 @@ class _StandardEreaseButton extends StatelessWidget {
 }
 
 // DETAILED INPUT AREA
-// TODO flex factors
+// TODO sharing
 class DetailedInputArea extends StatelessWidget {
-  static const flexTop = 1;
-  static const flexBottom = 3;
-
   const DetailedInputArea({
     Key? key,
   }) : super(key: key);
@@ -646,7 +434,6 @@ class DetailedInputArea extends StatelessWidget {
       spacing: size6(context),
       children: [
         Expanded(
-          flex: flexTop,
           child: AppColumn(
             spacing: size6(context),
             children: [
@@ -654,8 +441,6 @@ class DetailedInputArea extends StatelessWidget {
                 // TODO
                 child: DartsDisplayer(darts: KtList.empty()),
               ),
-
-              // TODO expanded 1 ebene down
               Expanded(
                 flex: 3,
                 child: InputRow(
@@ -673,7 +458,7 @@ class DetailedInputArea extends StatelessWidget {
           ),
         ),
         const Expanded(
-          flex: flexBottom,
+          flex: 3,
           child: _DetailedKeyBoard(),
         ),
       ],
@@ -860,395 +645,52 @@ class _DetailedEreaseButton extends StatelessWidget {
   }
 }
 
-// TODO impl
 // SHARED
-// PLAYER ITEM
-class PlayerItem extends StatelessWidget {
+class _PlayerItem extends StatelessWidget {
   // final ProfileImagePosition profileImagePosition; TODO
+  final Color color;
   final ScoreTrainingPlayerSnapshot player;
 
-  const PlayerItem({
+  const _PlayerItem({
     Key? key,
+    required this.color,
     required this.player,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: border4(context),
-        ),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 7,
-            child: _PlayerItemHeader(
-              name: player
-                  .name!, // TODO DartBot has no name maybe do dartbot into seperate item
-            ),
-          ),
-          const Expanded(
-            flex: 6,
-            child: _PlayerItemAverageTitleDisplayer(),
-          ),
-          Expanded(
-            flex: 30,
-            child: _PlayerItemAverageDisplayer(
-              average: player.average,
-            ),
-          ),
-          // TODO introduce a super widghet to this and next widgets with them as a part ??
-          const Expanded(
-            flex: 6,
-            child: _PlayerItemTotalPointsTitleDisplayer(),
-          ),
-          const Expanded(
-            flex: 18,
-            child: _PlayerItemTotalPointsDisplayer(
-              totalPoints: 443, // TODO
-            ),
-          ),
-        ],
-      ),
+    return PlayerItemScoreBobs27(
+      color: color,
+      photoUrl: null, // TODO real value
+      name: player.name!, // TODO ! needed ?
+      title1:
+          LocaleKeys.takesLeft.tr(args: ['${player.takesLeft}']).toUpperCase(),
+      value1: player.average?.toStringAsFixed(2) ?? '--',
+      title2: LocaleKeys.totalPoints.tr().toUpperCase(),
+      value2: '${player.points}',
     );
   }
 }
 
-class _PlayerItemHeader extends StatelessWidget {
-  final String? photoUrl;
-  final String name;
-
-  const _PlayerItemHeader({
-    Key? key,
-    this.photoUrl,
-    required this.name,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          children: [
-            //const Spacer(),
-            Expanded(
-              flex: 5,
-              child: Container(
-                color:
-                    Colors.primaries[Random().nextInt(Colors.primaries.length)],
-                child: Padding(
-                  padding: EdgeInsets.all(size6(context) / 4),
-                  child: Center(
-                    child: AutoSizeText(
-                      name,
-                      maxLines: 1,
-                      minFontSize: 4,
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .textStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        /**
-           * Align(
-            alignment: Alignment.centerLeft,
-            child: AppRoundedImage.small(
-              imageName: AppImages.photoPlaceholderNew, // TODO real image
-              border: Border.all(
-                width: border4(context) / 2,
-              ),
-            ),
-          ),
-           */
-      ],
-    );
-  }
-}
-
-class _PlayerItemAverageTitleDisplayer extends StatelessWidget {
-  const _PlayerItemAverageTitleDisplayer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.black,
-      child: Padding(
-        padding: EdgeInsets.all(size6(context) / 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            AutoSizeText(
-              'AVERAGE', // TODO
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PlayerItemAverageDisplayer extends StatelessWidget {
-  final double? average;
-
-  const _PlayerItemAverageDisplayer({
-    Key? key,
-    required this.average,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: border4(context)),
-          bottom: BorderSide(width: border4(context)),
-        ),
-      ),
-      child: Center(
-        child: AutoSizeText(
-          average != null ? average!.toStringAsFixed(2) : '--',
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(fontSize: 40), // TODO
-          maxLines: 1,
-        ),
-      ),
-    );
-  }
-}
-
-class _PlayerItemTotalPointsTitleDisplayer extends StatelessWidget {
-  const _PlayerItemTotalPointsTitleDisplayer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.black,
-      child: Padding(
-        padding: EdgeInsets.all(size6(context) / 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            AutoSizeText(
-              'PUNKTE GESAMT',
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PlayerItemTotalPointsDisplayer extends StatelessWidget {
-  final int totalPoints;
-
-  const _PlayerItemTotalPointsDisplayer({
-    Key? key,
-    required this.totalPoints,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      /** // TODO
-      *  decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: border4(context)),
-          bottom: BorderSide(width: border4(context)),
-        ),
-      ),
-      */
-      child: Center(
-        child: AutoSizeText(
-          totalPoints.toString(),
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(fontSize: 32), // TODO
-          maxLines: 1,
-        ),
-      ),
-    );
-  }
-}
-
-// PLAYER ITEM SMALL
-class PlayerItemSmall extends StatelessWidget {
+class _PlayerItemSmall extends StatelessWidget {
+  final Color color;
   final ScoreTrainingPlayerSnapshot player;
 
-  const PlayerItemSmall({
+  const _PlayerItemSmall({
     Key? key,
+    required this.color,
     required this.player,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: border4(context),
-          ),
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: _PlayerItemSmallHeader(
-                // TODO photorul
-                name: player.name!,
-              ),
-            ),
-            const Expanded(
-              flex: 6,
-              child: _PlayerItemSmallTotalPointsDisplayer(
-                totalPoints: 343, // TODO
-              ),
-            ),
-            Expanded(
-              flex: 17,
-              child: _PlayerItemSmallAverageDisplayer(
-                average: player.average,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PlayerItemSmallHeader extends StatelessWidget {
-  final String? photoUrl;
-  final String name;
-
-  const _PlayerItemSmallHeader({
-    Key? key,
-    this.photoUrl,
-    required this.name,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          children: [
-            //const Spacer(),
-            Expanded(
-              flex: 5,
-              child: Container(
-                color:
-                    Colors.primaries[Random().nextInt(Colors.primaries.length)],
-                child: Padding(
-                  padding: EdgeInsets.all(size6(context) / 4),
-                  child: Center(
-                    child: AutoSizeText(
-                      name,
-                      maxLines: 1,
-                      minFontSize: 4,
-                      style: CupertinoTheme.of(context)
-                          .textTheme
-                          .textStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        /**
-           * Align(
-            alignment: Alignment.centerLeft,
-            child: AppRoundedImage.small(
-              imageName: AppImages.photoPlaceholderNew, // TODO real image
-              border: Border.all(
-                width: border4(context) / 2,
-              ),
-            ),
-          ),
-           */
-      ],
-    );
-  }
-}
-
-class _PlayerItemSmallTotalPointsDisplayer extends StatelessWidget {
-  final int totalPoints;
-
-  const _PlayerItemSmallTotalPointsDisplayer({
-    Key? key,
-    required this.totalPoints,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.black,
-      child: Padding(
-        padding: EdgeInsets.all(size6(context) / 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            AutoSizeText(
-              'GES.: $totalPoints',
-              maxLines: 1,
-              minFontSize: 1,
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PlayerItemSmallAverageDisplayer extends StatelessWidget {
-  final double? average;
-
-  const _PlayerItemSmallAverageDisplayer({
-    Key? key,
-    required this.average,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // TODO color
-      child: Center(
-        child: AutoSizeText(
-          average != null ? average!.toStringAsFixed(2) : '--',
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(fontSize: 40), // TODO
-          maxLines: 1,
-        ),
-      ),
+    return PlayerItemSmallScoreBobs27(
+      color: color,
+      photoUrl: null, // TODO real value
+      name: player.name!, // TODO ! needed ?
+      title:
+          LocaleKeys.takesLeft.tr(args: ['${player.takesLeft}']).toUpperCase(),
+      value: player.average?.toStringAsFixed(2) ?? '--',
     );
   }
 }

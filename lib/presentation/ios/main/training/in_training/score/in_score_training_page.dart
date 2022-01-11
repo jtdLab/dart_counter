@@ -46,8 +46,7 @@ class InScoreTrainingPage extends StatelessWidget {
             );
           },
         ),
-        // TODO localekeys
-        middle: const Text('SCORE'),
+        middle: Text(LocaleKeys.scoreTraining.tr().toUpperCase()),
       ),
       child: const _InScoreTrainingWidget(),
     );
