@@ -6,4 +6,5 @@ abstract class AbstractTrainingGameSnapshot {
   Status get status;
   KtList<AbstractTrainingPlayerSnapshot> get players;
   AbstractTrainingPlayerSnapshot get owner;
+  AbstractTrainingPlayerSnapshot currentTurn();
 }

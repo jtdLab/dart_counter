@@ -28,4 +28,7 @@ class ValueFailure<T> with _$ValueFailure<T> {
     required T failedValue,
     required int max,
   }) = _ListTooLong<T>;
+  const factory ValueFailure.emptyList({
+    required T failedValue,
+  }) = _EmptyList<T>;
 }

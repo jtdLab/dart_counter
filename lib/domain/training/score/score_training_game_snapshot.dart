@@ -19,6 +19,12 @@ class ScoreTrainingGameSnapshot
     required ScoreTrainingPlayerSnapshot owner,
   }) = _ScoreTrainingGameSnapshot;
 
+  @override
+  ScoreTrainingPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
+  }
+
   factory ScoreTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
         .amount((i) => ScoreTrainingPlayerSnapshot.dummy(), 4);

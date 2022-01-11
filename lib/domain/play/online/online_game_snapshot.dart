@@ -34,7 +34,7 @@ class OnlineGameSnapshot
 
   @override
   OnlinePlayerSnapshot currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
+    return players.first((player) => player.isCurrentTurn); // TODO her eand other throw not running game if status is pending/fininshed
   }
 
   factory OnlineGameSnapshot.dummy() {

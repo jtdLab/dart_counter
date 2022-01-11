@@ -8,6 +8,11 @@ abstract class ISingleTrainingService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<SingleTrainingGameSnapshot> watchGame();
 
+  /// Returns snapshot of current game of the app-user 
+  ///
+  /// Throws Error if no running game // TODO
+  SingleTrainingGameSnapshot getGame();
+
   void createGame({
     required User owner,
     List<String?>? players,

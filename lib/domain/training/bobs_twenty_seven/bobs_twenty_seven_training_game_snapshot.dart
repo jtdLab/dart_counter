@@ -20,6 +20,12 @@ class BobsTwentySevenGameSnapshot
     required BobsTwentySevenPlayerSnapshot owner,
   }) = _BobsTwentySevenGameSnapshot;
 
+  @override
+  BobsTwentySevenPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
+  }
+
   factory BobsTwentySevenGameSnapshot.dummy() {
     final players = faker.randomGenerator
         .amount((i) => BobsTwentySevenPlayerSnapshot.dummy(), 4);

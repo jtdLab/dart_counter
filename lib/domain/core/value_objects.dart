@@ -141,3 +141,28 @@ class List10<T> extends ValueObject<KtList<T>> {
   @override
   int get hashCode => value.hashCode;
 }
+
+/// A value object containing a not empty list or failure.
+class NotEmptyList<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  factory NotEmptyList(KtList<T> list) {
+    return NotEmptyList._(
+      validateNotEmpty(list: list),
+    );
+  }
+
+  const NotEmptyList._(this.value);
+
+  int get length {
+    return getOrCrash().size;
+  }
+
+  // TODO remove == and hashCode needed ?
+  @override
+  bool operator ==(Object o) => o is List10 && value == o.value;
+
+  @override
+  int get hashCode => value.hashCode;
+}

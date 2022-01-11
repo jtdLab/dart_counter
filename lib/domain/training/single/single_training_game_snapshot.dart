@@ -33,6 +33,12 @@ class SingleTrainingGameSnapshot
     );
   }
 
+  @override
+  SingleTrainingPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
+  }
+
   factory SingleTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
         .amount((i) => SingleTrainingPlayerSnapshot.dummy(), 4);

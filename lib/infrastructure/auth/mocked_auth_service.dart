@@ -33,6 +33,9 @@ class MockedAuthService with Disposable implements IAuthService {
     this.usernameAlreadyInUse = false,
   }) : _authenticatedController = BehaviorSubject.seeded(false);
 
+  @factoryMethod
+  factory MockedAuthService.inject() => MockedAuthService();
+
   @override
   Future<String?> idToken() async {
     if (isAuthenticated()) {

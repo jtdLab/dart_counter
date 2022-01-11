@@ -184,3 +184,5 @@ The reason being, importing foundation.dart also imports classes to make an obje
 info here :
 https://sematext.com/blog/logging-levels/
 https://sematext.com/blog/best-practices-for-efficient-log-management-and-monitoring/#toc-5-use-the-proper-log-level-4
+
+// TODO better DI look at mocked auth service e.g @factoryMethod

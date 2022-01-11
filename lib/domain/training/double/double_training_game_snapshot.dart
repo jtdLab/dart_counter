@@ -20,6 +20,12 @@ class DoubleTrainingGameSnapshot
     required DoubleTrainingPlayerSnapshot owner,
   }) = _DoubleTrainingGameSnapshot;
 
+  @override
+  DoubleTrainingPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
+  }
+
   factory DoubleTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
         .amount((i) => DoubleTrainingPlayerSnapshot.dummy(), 4);

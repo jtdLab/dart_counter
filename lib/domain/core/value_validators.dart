@@ -80,3 +80,22 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>({
     );
   }
 }
+
+/// Validates wheter [list] is empty or not empty.
+///
+/// Returns [list] if not empty list.
+///
+/// Returns ValueFailure else.
+Either<ValueFailure<KtList<T>>, KtList<T>> validateNotEmpty<T>({
+  required KtList<T> list,
+}) {
+  if (list.isNotEmpty()) {
+    return right(list);
+  } else {
+    return left(
+      ValueFailure.emptyList(
+        failedValue: list,
+      ),
+    );
+  }
+}

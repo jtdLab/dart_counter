@@ -59,6 +59,12 @@ class _$ValueFailureTearOff {
       max: max,
     );
   }
+
+  _EmptyList<T> emptyList<T>({required T failedValue}) {
+    return _EmptyList<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -77,6 +83,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +95,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +107,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +120,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +132,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -133,6 +144,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -247,6 +259,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return invalidEmail(failedValue);
   }
@@ -261,6 +274,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return invalidEmail?.call(failedValue);
   }
@@ -275,6 +289,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -293,6 +308,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return invalidEmail(this);
   }
@@ -307,6 +323,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return invalidEmail?.call(this);
   }
@@ -321,6 +338,7 @@ class _$_InvalidEmail<T> implements _InvalidEmail<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -416,6 +434,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return shortUsername(failedValue);
   }
@@ -430,6 +449,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return shortUsername?.call(failedValue);
   }
@@ -444,6 +464,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (shortUsername != null) {
@@ -462,6 +483,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return shortUsername(this);
   }
@@ -476,6 +498,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return shortUsername?.call(this);
   }
@@ -490,6 +513,7 @@ class _$_ShortUsername<T> implements _ShortUsername<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (shortUsername != null) {
@@ -585,6 +609,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return longUsername(failedValue);
   }
@@ -599,6 +624,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return longUsername?.call(failedValue);
   }
@@ -613,6 +639,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (longUsername != null) {
@@ -631,6 +658,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return longUsername(this);
   }
@@ -645,6 +673,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return longUsername?.call(this);
   }
@@ -659,6 +688,7 @@ class _$_LongUsername<T> implements _LongUsername<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (longUsername != null) {
@@ -755,6 +785,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return invalidCharacters(failedValue);
   }
@@ -769,6 +800,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return invalidCharacters?.call(failedValue);
   }
@@ -783,6 +815,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidCharacters != null) {
@@ -801,6 +834,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return invalidCharacters(this);
   }
@@ -815,6 +849,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return invalidCharacters?.call(this);
   }
@@ -829,6 +864,7 @@ class _$_InValidCharacters<T> implements _InValidCharacters<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidCharacters != null) {
@@ -925,6 +961,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return shortPassword(failedValue);
   }
@@ -939,6 +976,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return shortPassword?.call(failedValue);
   }
@@ -953,6 +991,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -971,6 +1010,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return shortPassword(this);
   }
@@ -985,6 +1025,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return shortPassword?.call(this);
   }
@@ -999,6 +1040,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -1095,6 +1137,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return invalidWhitespaces(failedValue);
   }
@@ -1109,6 +1152,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return invalidWhitespaces?.call(failedValue);
   }
@@ -1123,6 +1167,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidWhitespaces != null) {
@@ -1141,6 +1186,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return invalidWhitespaces(this);
   }
@@ -1155,6 +1201,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return invalidWhitespaces?.call(this);
   }
@@ -1169,6 +1216,7 @@ class _$_InvalidWhitespaces<T> implements _InvalidWhitespaces<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (invalidWhitespaces != null) {
@@ -1275,6 +1323,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) invalidWhitespaces,
     required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
   }) {
     return listTooLong(failedValue, max);
   }
@@ -1289,6 +1338,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
   }) {
     return listTooLong?.call(failedValue, max);
   }
@@ -1303,6 +1353,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? invalidWhitespaces,
     TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -1321,6 +1372,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
     required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
   }) {
     return listTooLong(this);
   }
@@ -1335,6 +1387,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
   }) {
     return listTooLong?.call(this);
   }
@@ -1349,6 +1402,7 @@ class _$_ListTooLong<T> implements _ListTooLong<T> {
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
     TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -1368,5 +1422,180 @@ abstract class _ListTooLong<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$ListTooLongCopyWith<T, _ListTooLong<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$EmptyListCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$EmptyListCopyWith(
+          _EmptyList<T> value, $Res Function(_EmptyList<T>) then) =
+      __$EmptyListCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$EmptyListCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$EmptyListCopyWith<T, $Res> {
+  __$EmptyListCopyWithImpl(
+      _EmptyList<T> _value, $Res Function(_EmptyList<T>) _then)
+      : super(_value, (v) => _then(v as _EmptyList<T>));
+
+  @override
+  _EmptyList<T> get _value => super._value as _EmptyList<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_EmptyList<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EmptyList<T> implements _EmptyList<T> {
+  const _$_EmptyList({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.emptyList(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _EmptyList<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  _$EmptyListCopyWith<T, _EmptyList<T>> get copyWith =>
+      __$EmptyListCopyWithImpl<T, _EmptyList<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) longUsername,
+    required TResult Function(T failedValue) invalidCharacters,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) invalidWhitespaces,
+    required TResult Function(T failedValue, int max) listTooLong,
+    required TResult Function(T failedValue) emptyList,
+  }) {
+    return emptyList(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? longUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
+  }) {
+    return emptyList?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? longUsername,
+    TResult Function(T failedValue)? invalidCharacters,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? invalidWhitespaces,
+    TResult Function(T failedValue, int max)? listTooLong,
+    TResult Function(T failedValue)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (emptyList != null) {
+      return emptyList(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
+    required TResult Function(_ShortUsername<T> value) shortUsername,
+    required TResult Function(_LongUsername<T> value) longUsername,
+    required TResult Function(_InValidCharacters<T> value) invalidCharacters,
+    required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_InvalidWhitespaces<T> value) invalidWhitespaces,
+    required TResult Function(_ListTooLong<T> value) listTooLong,
+    required TResult Function(_EmptyList<T> value) emptyList,
+  }) {
+    return emptyList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_LongUsername<T> value)? longUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
+  }) {
+    return emptyList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortUsername<T> value)? shortUsername,
+    TResult Function(_LongUsername<T> value)? longUsername,
+    TResult Function(_InValidCharacters<T> value)? invalidCharacters,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_InvalidWhitespaces<T> value)? invalidWhitespaces,
+    TResult Function(_ListTooLong<T> value)? listTooLong,
+    TResult Function(_EmptyList<T> value)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (emptyList != null) {
+      return emptyList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmptyList<T> implements ValueFailure<T> {
+  const factory _EmptyList({required T failedValue}) = _$_EmptyList<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$EmptyListCopyWith<T, _EmptyList<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
