@@ -4,11 +4,13 @@ import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/single/hit.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 part 'input_row_bloc.freezed.dart';
 part 'input_row_event.dart';
 
+@injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final ISingleTrainingService _trainingService;
 
@@ -16,9 +18,10 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
 
   InputRowBloc(
     this._trainingService,
-    this._dartsDisplayerBloc,
-    // set inital state
-  ) : super(0) {
+    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
+  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+   // set inital state
+        super(0) {
     // register event handlers
     on<_UndoPressed>((_, __) => _mapUndoPressedToState());
     on<_CommitPressed>((_, emit) => _mapCommitPressedToState(emit));

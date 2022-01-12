@@ -214,23 +214,13 @@ class _InputArea extends StatelessWidget {
         Expanded(
           child: AppColumn(
             spacing: size6(context),
-            children: [
-              const Expanded(
-                child: DartsDisplayer(
-                  darts: KtList.empty(),
-                ),
+            children: const [
+              Expanded(
+                child: _DartsDisplayer(),
               ),
               Expanded(
                 flex: 3,
-                child: InputRow(
-                  onUndoPressed: () => context
-                      .read<SingleTrainingBloc>()
-                      .add(const SingleTrainingEvent.undoPressed()),
-                  onPerformThrowPressed: () => context
-                      .read<SingleTrainingBloc>()
-                      .add(const SingleTrainingEvent.performPressed()),
-                  points: 0, // TODO real points
-                ),
+                child: _InputRow(),
               ),
             ],
           ),
@@ -240,6 +230,53 @@ class _InputArea extends StatelessWidget {
           child: _KeyBoard(),
         ),
       ],
+    );
+  }
+}
+
+class _DartsDisplayer extends StatelessWidget {
+  const _DartsDisplayer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DartsDisplayerBloc, DartsDisplayerState>(
+      builder: (context, state) {
+        return state.when(
+          initial: () {
+            return const DartsDisplayer(
+              darts: KtList.empty(),
+            );
+          },
+          darts: (darts) {
+            return DartsDisplayer(darts: darts.getOrCrash());
+          },
+        );
+      },
+    );
+  }
+}
+
+class _InputRow extends StatelessWidget {
+  const _InputRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<InputRowBloc, int>(
+      builder: (context, points) {
+        return InputRow(
+          onUndoPressed: () => context
+              .read<InputRowBloc>()
+              .add(const InputRowEvent.undoPressed()),
+          onPerformThrowPressed: () => context
+              .read<InputRowBloc>()
+              .add(const InputRowEvent.commitPressed()),
+          points: points,
+        );
+      },
     );
   }
 }
@@ -264,24 +301,24 @@ class _KeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<SingleTrainingBloc>()
-                    .add(const SingleTrainingEvent.singleHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.singleHitPressed()),
               ),
               AppActionButton.flexible(
                 text: '${LocaleKeys.double}.one'.tr().toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<SingleTrainingBloc>()
-                    .add(const SingleTrainingEvent.doubleHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.doubleHitPressed()),
               ),
               AppActionButton.flexible(
                 text: '${LocaleKeys.triple}.one'.tr().toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<SingleTrainingBloc>()
-                    .add(const SingleTrainingEvent.tripleHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.tripleHitPressed()),
               ),
             ],
           ),
@@ -295,13 +332,15 @@ class _KeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<SingleTrainingBloc>()
-                    .add(const SingleTrainingEvent.missHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.missHitPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
-                onPressed: () {}, // TODO erease callback
+                onPressed: () => context
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )
             ],

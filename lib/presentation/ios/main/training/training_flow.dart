@@ -6,7 +6,6 @@ import 'package:dart_counter/application/main/training/training_bloc.dart';
 import 'package:dart_counter/application/main/training/bobs_twenty_seven/bobs_twenty_seven_bloc.dart';
 import 'package:dart_counter/application/main/training/double_training/double_training_bloc.dart';
 import 'package:dart_counter/application/main/training/score_training/score_training_bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/single_training_bloc.dart';
 
 class TrainingFlow extends StatelessWidget {
   const TrainingFlow({
@@ -20,9 +19,6 @@ class TrainingFlow extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<TrainingBloc>()..add(const TrainingEvent.trainingCreated()),
-        ),
-        BlocProvider(
-          create: (context) => getIt<SingleTrainingBloc>(),
         ),
         BlocProvider(
           create: (context) => getIt<DoubleTrainingBloc>(),

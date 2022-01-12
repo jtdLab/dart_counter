@@ -2,12 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 part 'darts_displayer_bloc.freezed.dart';
 part 'darts_displayer_event.dart';
 part 'darts_displayer_state.dart';
 
+@injectable
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
   DartsDisplayerBloc()

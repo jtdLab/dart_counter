@@ -3,11 +3,13 @@ import 'package:dart_counter/application/main/training/single_training/darts_dis
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'key_board_bloc.freezed.dart';
 part 'key_board_event.dart';
 part 'key_board_state.dart';
 
+@injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final ISingleTrainingService _trainingService;
 
@@ -15,8 +17,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   KeyBoardBloc(
     this._trainingService,
-    this._dartsDisplayerBloc,
-  ) : super(
+    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
+  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+        super(
           // set initial state
           const KeyBoardState.initial(),
         ) {

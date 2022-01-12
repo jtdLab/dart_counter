@@ -450,11 +450,14 @@ class _OrderCard extends StatelessWidget {
                       color: mode == Mode.ascending
                           ? AppColors.orangeNew
                           : AppColors.white,
-                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                      /**
+                           *onPressed: () => context.read<SingleTrainingBloc>().add(
                             const SingleTrainingEvent.modeChanged(
                               newMode: Mode.ascending,
                             ),
                           ),
+                           */
+                      onPressed: () {},
                       icon: Image.asset(AppImages.ascending),
                     ),
                   ),
@@ -463,11 +466,14 @@ class _OrderCard extends StatelessWidget {
                       color: mode == Mode.descending
                           ? AppColors.orangeNew
                           : AppColors.white,
-                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                      /**
+                     *   onPressed: () => context.read<SingleTrainingBloc>().add(
                             const SingleTrainingEvent.modeChanged(
                               newMode: Mode.descending,
                             ),
                           ),
+                     */
+                      onPressed: () {},
                       icon: Image.asset(AppImages.descending),
                     ),
                   ),
@@ -476,11 +482,14 @@ class _OrderCard extends StatelessWidget {
                       color: mode == Mode.random
                           ? AppColors.orangeNew
                           : AppColors.white,
-                      onPressed: () => context.read<SingleTrainingBloc>().add(
+                      /**
+                       * onPressed: () => context.read<SingleTrainingBloc>().add(
                             const SingleTrainingEvent.modeChanged(
                               newMode: Mode.random,
                             ),
                           ),
+                       */
+                      onPressed: () {},
                       icon: Image.asset(AppImages.random),
                     ),
                   ),
