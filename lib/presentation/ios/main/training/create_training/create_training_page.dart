@@ -1,9 +1,9 @@
 // CORE
+import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/training/training_bloc.dart';
-import 'package:dart_counter/application/main/training/in_training/score_training/score_training_bloc.dart';
+import 'package:dart_counter/application/main/training/create_training/create_training_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/training/type.dart';
@@ -26,23 +26,20 @@ class CreateTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<TrainingBloc, TrainingState>(
-      listenWhen: (oldState, newState) =>
-          oldState.gameSnapshot.status != newState.gameSnapshot.status,
-      listener: (context, state) {
-        final game = state.gameSnapshot;
-
-        if (game.status == Status.canceled) {
+    return BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+      listenWhen: (oldState, newState) => oldState.status != newState.status,
+      listener: (context, gameSnapshot) {
+        if (gameSnapshot.status == Status.canceled) {
           // TODO this never gets called
           //context.router.replace(const HomePageRoute());
-        } else if (game.status == Status.running) {
+        } else if (gameSnapshot.status == Status.running) {
           // give players without a name a name e.g 'Player 1', 'Player 2', ...
           int unNamedPlayerIndex = 1;
-          for (final player in game.players.iter) {
+          for (final player in gameSnapshot.players.iter) {
             if (player.name == null) {
-              final index = game.players.indexOf(player);
-              context.read<TrainingBloc>().add(
-                    TrainingEvent.playerNameUpdated(
+              final index = gameSnapshot.players.indexOf(player);
+              context.read<CreateTrainingBloc>().add(
+                    CreateTrainingEvent.playerNameUpdated(
                       index: index,
                       newName: '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
                     ),
@@ -53,11 +50,11 @@ class CreateTrainingPage extends StatelessWidget {
 
           // TODO
           //context.router.replace(const InTrainingPageRoute());
-          if (game is BobsTwentySevenGameSnapshot) {
+          if (gameSnapshot is BobsTwentySevenGameSnapshot) {
             context.router.replace(const InBobyTwentySeventTrainingPageRoute());
-          } else if (game is DoubleTrainingGameSnapshot) {
+          } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
             context.router.replace(const InDoubleTrainingPageRoute());
-          } else if (game is ScoreTrainingGameSnapshot) {
+          } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
             context.router.replace(const InScoreTrainingPageRoute());
           } else {
             context.router.replace(const InSingleTrainingPageRoute());
@@ -68,6 +65,7 @@ class CreateTrainingPage extends StatelessWidget {
         navigationBar: AppNavigationBar(
           leading: CancelButton(
             onPressed: () {
+              // TODO bloc provided ?? like in singel trainig page etc.
               Navigator.of(context).push(
                 PageRouteBuilder(
                   reverseTransitionDuration: Duration.zero,
@@ -75,8 +73,8 @@ class CreateTrainingPage extends StatelessWidget {
                   pageBuilder: (context, _, __) => Builder(
                     builder: (context) => YouReallyWantToCancelGameDialog(
                       onYesPressed: () {
-                        context.read<TrainingBloc>().add(
-                              const TrainingEvent.trainingCanceled(),
+                        context.read<CreateTrainingBloc>().add(
+                              const CreateTrainingEvent.canceled(),
                             );
                         context.router.replace(const HomePageRoute());
                       },

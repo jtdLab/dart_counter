@@ -8,11 +8,15 @@ class _CreateTrainingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      buildWhen: (oldState, newState) => oldState.type != newState.type,
-      builder: (context, state) {
-        final type = state.type;
-
+    return BlocSelector<CreateTrainingBloc, AbstractTrainingGameSnapshot, Type>(
+      selector: (gameSnapshot) => gameSnapshot is SingleTrainingGameSnapshot
+          ? Type.single
+          : gameSnapshot is DoubleTrainingGameSnapshot
+              ? Type.double
+              : gameSnapshot is ScoreTrainingGameSnapshot
+                  ? Type.score
+                  : Type.bobs27,
+      builder: (context, type) {
         return Column(
           children: [
             const _PlayerCard(),
@@ -74,15 +78,15 @@ class _PlayerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      buildWhen: (oldState, newState) {
-        final oldIds = oldState.gameSnapshot.players.map((p) => p.id);
-        final newIds = newState.gameSnapshot.players.map((p) => p.id);
+    return BlocBuilder<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+      buildWhen: (oldGameSnapshot, newGameSnapshot) {
+        final oldIds = oldGameSnapshot.players.map((p) => p.id);
+        final newIds = newGameSnapshot.players.map((p) => p.id);
         return !(oldIds == newIds);
       },
-      builder: (context, state) {
-        final owner = state.gameSnapshot.owner;
-        final players = state.gameSnapshot.players;
+      builder: (context, gameSnapshot) {
+        final owner = gameSnapshot.owner;
+        final players = gameSnapshot.players;
 
         return SizedBox(
           height:
@@ -131,8 +135,8 @@ class _PlayerList extends StatelessWidget {
                 newIndex--;
               }
 
-              context.read<TrainingBloc>().add(
-                    TrainingEvent.playerReordered(
+              context.read<CreateTrainingBloc>().add(
+                    CreateTrainingEvent.playerReordered(
                       oldIndex: oldIndex,
                       newIndex: newIndex,
                     ),
@@ -175,8 +179,8 @@ class _EditablePlayerItem extends StatelessWidget {
           },
           onDismissed: (_) {
             context
-                .read<TrainingBloc>()
-                .add(TrainingEvent.playerRemoved(index: index));
+                .read<CreateTrainingBloc>()
+                .add(CreateTrainingEvent.playerRemoved(index: index));
           },
           child: AppCardItem.large(
             content: Row(
@@ -199,8 +203,8 @@ class _EditablePlayerItem extends StatelessWidget {
                         withErrorDisplayer: false,
                         placeholder: LocaleKeys.name.tr().toUpperCase(),
                         onChanged: (newName) {
-                          context.read<TrainingBloc>().add(
-                                TrainingEvent.playerNameUpdated(
+                          context.read<CreateTrainingBloc>().add(
+                                CreateTrainingEvent.playerNameUpdated(
                                   index: index,
                                   newName: newName,
                                 ),
@@ -260,8 +264,8 @@ class _PlayerItem extends StatelessWidget {
           },
           onDismissed: (_) {
             context
-                .read<TrainingBloc>()
-                .add(TrainingEvent.playerRemoved(index: index));
+                .read<CreateTrainingBloc>()
+                .add(CreateTrainingEvent.playerRemoved(index: index));
           },
           child: AppCardItem.large(
             content: Row(
@@ -304,7 +308,9 @@ class _AddPlayerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.small(
       onPressed: () {
-        context.read<TrainingBloc>().add(const TrainingEvent.playerAdded());
+        context
+            .read<CreateTrainingBloc>()
+            .add(const CreateTrainingEvent.playerAdded());
       },
       text: LocaleKeys.addPlayer.tr().toUpperCase(),
     );
@@ -319,11 +325,15 @@ class _ModusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      buildWhen: (oldState, newState) => oldState.type != newState.type,
-      builder: (context, state) {
-        final type = state.type;
-
+    return BlocSelector<CreateTrainingBloc, AbstractTrainingGameSnapshot, Type>(
+      selector: (gameSnapshot) => gameSnapshot is SingleTrainingGameSnapshot
+          ? Type.single
+          : gameSnapshot is DoubleTrainingGameSnapshot
+              ? Type.double
+              : gameSnapshot is ScoreTrainingGameSnapshot
+                  ? Type.score
+                  : Type.bobs27,
+      builder: (context, type) {
         return AppCard(
           middle: AutoSizeText(
             LocaleKeys.modus.tr().toUpperCase(),
@@ -345,8 +355,8 @@ class _ModusCard extends StatelessWidget {
                         ? AppColors.orangeNew
                         : AppColors.white,
                     onPressed: () {
-                      context.read<TrainingBloc>().add(
-                            const TrainingEvent.typeChanged(
+                      context.read<CreateTrainingBloc>().add(
+                            const CreateTrainingEvent.typeChanged(
                               newType: Type.single,
                             ),
                           );
@@ -360,8 +370,8 @@ class _ModusCard extends StatelessWidget {
                         ? AppColors.orangeNew
                         : AppColors.white,
                     onPressed: () {
-                      context.read<TrainingBloc>().add(
-                            const TrainingEvent.typeChanged(
+                      context.read<CreateTrainingBloc>().add(
+                            const CreateTrainingEvent.typeChanged(
                               newType: Type.double,
                             ),
                           );
@@ -380,8 +390,8 @@ class _ModusCard extends StatelessWidget {
                         ? AppColors.orangeNew
                         : AppColors.white,
                     onPressed: () {
-                      context.read<TrainingBloc>().add(
-                            const TrainingEvent.typeChanged(
+                      context.read<CreateTrainingBloc>().add(
+                            const CreateTrainingEvent.typeChanged(
                               newType: Type.score,
                             ),
                           );
@@ -395,8 +405,8 @@ class _ModusCard extends StatelessWidget {
                         ? AppColors.orangeNew
                         : AppColors.white,
                     onPressed: () {
-                      context.read<TrainingBloc>().add(
-                            const TrainingEvent.typeChanged(
+                      context.read<CreateTrainingBloc>().add(
+                            const CreateTrainingEvent.typeChanged(
                               newType: Type.bobs27,
                             ),
                           );
@@ -421,12 +431,8 @@ class _OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrainingBloc, TrainingState>(
-      buildWhen: (oldState, newState) =>
-          oldState.gameSnapshot != newState.gameSnapshot,
-      builder: (context, state) {
-        final gameSnapshot = state.gameSnapshot;
-
+    return BlocBuilder<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+      builder: (context, gameSnapshot) {
         if (gameSnapshot is SingleTrainingGameSnapshot) {
           final mode = gameSnapshot.mode;
 
@@ -451,8 +457,8 @@ class _OrderCard extends StatelessWidget {
                           ? AppColors.orangeNew
                           : AppColors.white,
                       /**
-                           *onPressed: () => context.read<SingleTrainingBloc>().add(
-                            const SingleTrainingEvent.modeChanged(
+                           *onPressed: () => context.read<SingleCreateTrainingBloc>().add(
+                            const SingleCreateTrainingEvent.modeChanged(
                               newMode: Mode.ascending,
                             ),
                           ),
@@ -467,8 +473,8 @@ class _OrderCard extends StatelessWidget {
                           ? AppColors.orangeNew
                           : AppColors.white,
                       /**
-                     *   onPressed: () => context.read<SingleTrainingBloc>().add(
-                            const SingleTrainingEvent.modeChanged(
+                     *   onPressed: () => context.read<SingleCreateTrainingBloc>().add(
+                            const SingleCreateTrainingEvent.modeChanged(
                               newMode: Mode.descending,
                             ),
                           ),
@@ -483,8 +489,8 @@ class _OrderCard extends StatelessWidget {
                           ? AppColors.orangeNew
                           : AppColors.white,
                       /**
-                       * onPressed: () => context.read<SingleTrainingBloc>().add(
-                            const SingleTrainingEvent.modeChanged(
+                       * onPressed: () => context.read<SingleCreateTrainingBloc>().add(
+                            const SingleCreateTrainingEvent.modeChanged(
                               newMode: Mode.random,
                             ),
                           ),
@@ -597,8 +603,8 @@ class _TakesCard extends StatelessWidget {
       children: [
         AppNumberPicker(
           onChanged: (newNumberOfTakes) {
-            context.read<ScoreTrainingBloc>().add(
-                  ScoreTrainingEvent.numberOfTakesChanged(
+            context.read<CreateTrainingBloc>().add(
+                  CreateTrainingEvent.numberOfTakesChanged(
                     newNumberOfTakes: newNumberOfTakes,
                   ),
                 );
@@ -619,7 +625,9 @@ class _PlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.large(
       onPressed: () {
-        context.read<TrainingBloc>().add(const TrainingEvent.trainingStarted());
+        context
+            .read<CreateTrainingBloc>()
+            .add(const CreateTrainingEvent.started());
       },
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.play.tr().toUpperCase(),

@@ -12,8 +12,9 @@ class _InSingleTrainingWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: BlocSelector<TrainingBloc, TrainingState, int>(
-            selector: (state) => state.gameSnapshot.players.size,
+          child: BlocSelector<SingleTrainingWatcherCubit,
+              SingleTrainingGameSnapshot, int>(
+            selector: (state) => state.players.size,
             builder: (context, amountOfPlayers) {
               if (amountOfPlayers == 1) {
                 return const _OnePlayerDisplayer();
@@ -44,10 +45,9 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<TrainingBloc, TrainingState,
+    return BlocSelector<SingleTrainingWatcherCubit, SingleTrainingGameSnapshot,
         SingleTrainingPlayerSnapshot>(
-      selector: (state) =>
-          state.gameSnapshot.players[0] as SingleTrainingPlayerSnapshot,
+      selector: (state) => state.players[0],
       builder: (context, player1) {
         return PlayerItemLargeSingleDouble(
           color: AppColors.blue,
@@ -89,19 +89,17 @@ class _TwoPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TwoPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as SingleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as SingleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItem(
           player: player2,
           color: AppColors.green,
@@ -120,28 +118,25 @@ class _ThreePlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThreePlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as SingleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as SingleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as SingleTrainingPlayerSnapshot,
+      player3Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
@@ -160,37 +155,33 @@ class _FourPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FourPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as SingleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItemSmall(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as SingleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as SingleTrainingPlayerSnapshot,
+      player3Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
         ),
       ),
-      player4Item: BlocSelector<TrainingBloc, TrainingState,
-          SingleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[3] as SingleTrainingPlayerSnapshot,
+      player4Item: BlocSelector<SingleTrainingWatcherCubit,
+          SingleTrainingGameSnapshot, SingleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[3],
         builder: (context, player4) => _PlayerItemSmall(
           player: player4,
           color: AppColors.orangeNew,

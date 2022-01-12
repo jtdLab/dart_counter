@@ -1,8 +1,10 @@
-import 'package:dart_counter/application/main/training/in_training/single_training/darts_displayer/darts_displayer_bloc.dart';
-import 'package:dart_counter/application/main/training/in_training/single_training/input_area/input_row/input_row_bloc.dart';
-import 'package:dart_counter/application/main/training/in_training/single_training/input_area/key_board/key_board_bloc.dart';
-import 'package:dart_counter/application/main/training/shared/single_training/watcher/single_training_watcher_cubit.dart';
-import 'package:dart_counter/application/main/training/training_bloc.dart';
+import 'package:dart_counter/application/main/training/single_training/in_game/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/training/single_training/in_game/in_single_training_bloc.dart';
+import 'package:dart_counter/application/main/training/single_training/in_game/input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/main/training/single_training/in_game/input_area/key_board/key_board_bloc.dart';
+import 'package:dart_counter/application/main/training/single_training/single_training_watcher_cubit.dart';
+
+import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
@@ -19,6 +21,10 @@ class InSingleTrainingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // TODO InSingleTrainingBloc and SingleTrainingWatcherCubit merge to 1 bloc ??
+        BlocProvider(
+          create: (context) => getIt<InSingleTrainingBloc>(),
+        ),
         BlocProvider(
           create: (context) => getIt<SingleTrainingWatcherCubit>(),
         ),
@@ -44,12 +50,12 @@ class InSingleTrainingPage extends StatelessWidget {
                   reverseTransitionDuration: Duration.zero,
                   opaque: false,
                   pageBuilder: (context, _, __) => BlocProvider(
-                    create: (context) => getIt<TrainingBloc>(),
+                    create: (context) => context.read<InSingleTrainingBloc>(),
                     child: Builder(
                       builder: (context) => YouReallyWantToCancelGameDialog(
                         onYesPressed: () {
-                          context.read<TrainingBloc>().add(
-                                const TrainingEvent.trainingCanceled(),
+                          context.read<InSingleTrainingBloc>().add(
+                                const InSingleTrainingEvent.canceled(),
                               );
                           context.router.replace(const HomePageRoute());
                         },
