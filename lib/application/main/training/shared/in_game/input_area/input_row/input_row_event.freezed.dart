@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'input_row_bloc.dart';
+part of 'input_row_event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,16 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InputRowEventTearOff {
   const _$InputRowEventTearOff();
 
-  _UndoPressed undoPressed() {
-    return const _UndoPressed();
+  UndoPressed undoPressed() {
+    return const UndoPressed();
   }
 
-  _CommitPressed commitPressed() {
-    return const _CommitPressed();
+  CommitPressed commitPressed() {
+    return const CommitPressed();
   }
 
-  _InputChanged inputChanged({required int newInput}) {
-    return _InputChanged(
+  InputChanged inputChanged({required int newInput}) {
+    return InputChanged(
       newInput: newInput,
     );
   }
@@ -61,23 +61,23 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UndoPressed value) undoPressed,
-    required TResult Function(_CommitPressed value) commitPressed,
-    required TResult Function(_InputChanged value) inputChanged,
+    required TResult Function(UndoPressed value) undoPressed,
+    required TResult Function(CommitPressed value) commitPressed,
+    required TResult Function(InputChanged value) inputChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -101,27 +101,27 @@ class _$InputRowEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$UndoPressedCopyWith<$Res> {
-  factory _$UndoPressedCopyWith(
-          _UndoPressed value, $Res Function(_UndoPressed) then) =
-      __$UndoPressedCopyWithImpl<$Res>;
+abstract class $UndoPressedCopyWith<$Res> {
+  factory $UndoPressedCopyWith(
+          UndoPressed value, $Res Function(UndoPressed) then) =
+      _$UndoPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UndoPressedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
-    implements _$UndoPressedCopyWith<$Res> {
-  __$UndoPressedCopyWithImpl(
-      _UndoPressed _value, $Res Function(_UndoPressed) _then)
-      : super(_value, (v) => _then(v as _UndoPressed));
+class _$UndoPressedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
+    implements $UndoPressedCopyWith<$Res> {
+  _$UndoPressedCopyWithImpl(
+      UndoPressed _value, $Res Function(UndoPressed) _then)
+      : super(_value, (v) => _then(v as UndoPressed));
 
   @override
-  _UndoPressed get _value => super._value as _UndoPressed;
+  UndoPressed get _value => super._value as UndoPressed;
 }
 
 /// @nodoc
 
-class _$_UndoPressed implements _UndoPressed {
-  const _$_UndoPressed();
+class _$UndoPressed implements UndoPressed {
+  const _$UndoPressed();
 
   @override
   String toString() {
@@ -131,7 +131,7 @@ class _$_UndoPressed implements _UndoPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UndoPressed);
+        (other.runtimeType == runtimeType && other is UndoPressed);
   }
 
   @override
@@ -174,9 +174,9 @@ class _$_UndoPressed implements _UndoPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UndoPressed value) undoPressed,
-    required TResult Function(_CommitPressed value) commitPressed,
-    required TResult Function(_InputChanged value) inputChanged,
+    required TResult Function(UndoPressed value) undoPressed,
+    required TResult Function(CommitPressed value) commitPressed,
+    required TResult Function(InputChanged value) inputChanged,
   }) {
     return undoPressed(this);
   }
@@ -184,9 +184,9 @@ class _$_UndoPressed implements _UndoPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
   }) {
     return undoPressed?.call(this);
   }
@@ -194,9 +194,9 @@ class _$_UndoPressed implements _UndoPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
     required TResult orElse(),
   }) {
     if (undoPressed != null) {
@@ -206,33 +206,33 @@ class _$_UndoPressed implements _UndoPressed {
   }
 }
 
-abstract class _UndoPressed implements InputRowEvent {
-  const factory _UndoPressed() = _$_UndoPressed;
+abstract class UndoPressed implements InputRowEvent {
+  const factory UndoPressed() = _$UndoPressed;
 }
 
 /// @nodoc
-abstract class _$CommitPressedCopyWith<$Res> {
-  factory _$CommitPressedCopyWith(
-          _CommitPressed value, $Res Function(_CommitPressed) then) =
-      __$CommitPressedCopyWithImpl<$Res>;
+abstract class $CommitPressedCopyWith<$Res> {
+  factory $CommitPressedCopyWith(
+          CommitPressed value, $Res Function(CommitPressed) then) =
+      _$CommitPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CommitPressedCopyWithImpl<$Res>
+class _$CommitPressedCopyWithImpl<$Res>
     extends _$InputRowEventCopyWithImpl<$Res>
-    implements _$CommitPressedCopyWith<$Res> {
-  __$CommitPressedCopyWithImpl(
-      _CommitPressed _value, $Res Function(_CommitPressed) _then)
-      : super(_value, (v) => _then(v as _CommitPressed));
+    implements $CommitPressedCopyWith<$Res> {
+  _$CommitPressedCopyWithImpl(
+      CommitPressed _value, $Res Function(CommitPressed) _then)
+      : super(_value, (v) => _then(v as CommitPressed));
 
   @override
-  _CommitPressed get _value => super._value as _CommitPressed;
+  CommitPressed get _value => super._value as CommitPressed;
 }
 
 /// @nodoc
 
-class _$_CommitPressed implements _CommitPressed {
-  const _$_CommitPressed();
+class _$CommitPressed implements CommitPressed {
+  const _$CommitPressed();
 
   @override
   String toString() {
@@ -242,7 +242,7 @@ class _$_CommitPressed implements _CommitPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _CommitPressed);
+        (other.runtimeType == runtimeType && other is CommitPressed);
   }
 
   @override
@@ -285,9 +285,9 @@ class _$_CommitPressed implements _CommitPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UndoPressed value) undoPressed,
-    required TResult Function(_CommitPressed value) commitPressed,
-    required TResult Function(_InputChanged value) inputChanged,
+    required TResult Function(UndoPressed value) undoPressed,
+    required TResult Function(CommitPressed value) commitPressed,
+    required TResult Function(InputChanged value) inputChanged,
   }) {
     return commitPressed(this);
   }
@@ -295,9 +295,9 @@ class _$_CommitPressed implements _CommitPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
   }) {
     return commitPressed?.call(this);
   }
@@ -305,9 +305,9 @@ class _$_CommitPressed implements _CommitPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
     required TResult orElse(),
   }) {
     if (commitPressed != null) {
@@ -317,34 +317,33 @@ class _$_CommitPressed implements _CommitPressed {
   }
 }
 
-abstract class _CommitPressed implements InputRowEvent {
-  const factory _CommitPressed() = _$_CommitPressed;
+abstract class CommitPressed implements InputRowEvent {
+  const factory CommitPressed() = _$CommitPressed;
 }
 
 /// @nodoc
-abstract class _$InputChangedCopyWith<$Res> {
-  factory _$InputChangedCopyWith(
-          _InputChanged value, $Res Function(_InputChanged) then) =
-      __$InputChangedCopyWithImpl<$Res>;
+abstract class $InputChangedCopyWith<$Res> {
+  factory $InputChangedCopyWith(
+          InputChanged value, $Res Function(InputChanged) then) =
+      _$InputChangedCopyWithImpl<$Res>;
   $Res call({int newInput});
 }
 
 /// @nodoc
-class __$InputChangedCopyWithImpl<$Res>
-    extends _$InputRowEventCopyWithImpl<$Res>
-    implements _$InputChangedCopyWith<$Res> {
-  __$InputChangedCopyWithImpl(
-      _InputChanged _value, $Res Function(_InputChanged) _then)
-      : super(_value, (v) => _then(v as _InputChanged));
+class _$InputChangedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
+    implements $InputChangedCopyWith<$Res> {
+  _$InputChangedCopyWithImpl(
+      InputChanged _value, $Res Function(InputChanged) _then)
+      : super(_value, (v) => _then(v as InputChanged));
 
   @override
-  _InputChanged get _value => super._value as _InputChanged;
+  InputChanged get _value => super._value as InputChanged;
 
   @override
   $Res call({
     Object? newInput = freezed,
   }) {
-    return _then(_InputChanged(
+    return _then(InputChanged(
       newInput: newInput == freezed
           ? _value.newInput
           : newInput // ignore: cast_nullable_to_non_nullable
@@ -355,8 +354,8 @@ class __$InputChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InputChanged implements _InputChanged {
-  const _$_InputChanged({required this.newInput});
+class _$InputChanged implements InputChanged {
+  const _$InputChanged({required this.newInput});
 
   @override
   final int newInput;
@@ -370,7 +369,7 @@ class _$_InputChanged implements _InputChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InputChanged &&
+            other is InputChanged &&
             const DeepCollectionEquality().equals(other.newInput, newInput));
   }
 
@@ -380,8 +379,8 @@ class _$_InputChanged implements _InputChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$InputChangedCopyWith<_InputChanged> get copyWith =>
-      __$InputChangedCopyWithImpl<_InputChanged>(this, _$identity);
+  $InputChangedCopyWith<InputChanged> get copyWith =>
+      _$InputChangedCopyWithImpl<InputChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -420,9 +419,9 @@ class _$_InputChanged implements _InputChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UndoPressed value) undoPressed,
-    required TResult Function(_CommitPressed value) commitPressed,
-    required TResult Function(_InputChanged value) inputChanged,
+    required TResult Function(UndoPressed value) undoPressed,
+    required TResult Function(CommitPressed value) commitPressed,
+    required TResult Function(InputChanged value) inputChanged,
   }) {
     return inputChanged(this);
   }
@@ -430,9 +429,9 @@ class _$_InputChanged implements _InputChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
   }) {
     return inputChanged?.call(this);
   }
@@ -440,9 +439,9 @@ class _$_InputChanged implements _InputChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UndoPressed value)? undoPressed,
-    TResult Function(_CommitPressed value)? commitPressed,
-    TResult Function(_InputChanged value)? inputChanged,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
     required TResult orElse(),
   }) {
     if (inputChanged != null) {
@@ -452,11 +451,11 @@ class _$_InputChanged implements _InputChanged {
   }
 }
 
-abstract class _InputChanged implements InputRowEvent {
-  const factory _InputChanged({required int newInput}) = _$_InputChanged;
+abstract class InputChanged implements InputRowEvent {
+  const factory InputChanged({required int newInput}) = _$InputChanged;
 
   int get newInput;
   @JsonKey(ignore: true)
-  _$InputChangedCopyWith<_InputChanged> get copyWith =>
+  $InputChangedCopyWith<InputChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }

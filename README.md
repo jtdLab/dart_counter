@@ -186,3 +186,9 @@ https://sematext.com/blog/logging-levels/
 https://sematext.com/blog/best-practices-for-efficient-log-management-and-monitoring/#toc-5-use-the-proper-log-level-4
 
 // TODO better DI look at mocked auth service e.g @factoryMethod
+
+// TODO bloc and widget sharing with shared folder or not consistence over whole project todo
+
+// TODO add convenience constructors Dart.zero and Throw.zero ???
+
+// TODO blocs.dart barelle files like in score training with standard and detailed input area every wher in app pls

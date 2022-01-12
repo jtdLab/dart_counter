@@ -9,6 +9,8 @@ part 'darts_displayer_bloc.freezed.dart';
 part 'darts_displayer_event.dart';
 part 'darts_displayer_state.dart';
 
+// TODO maybe impl dartdisplayer bloc without the initial state ???? and use empty kt list instead
+
 @injectable
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {

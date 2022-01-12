@@ -47,7 +47,6 @@ class CreateTrainingBloc
                 .getOrCrash(),
           ),
         ) {
-    // TODO event, emit replace with _, __
     // register event handlers
     on<_Created>((event, emit) async => _mapCreatedToState(event, emit));
     on<_PlayerAdded>((event, emit) => _mapPlayerAddedToState(event, emit));
@@ -72,31 +71,24 @@ class CreateTrainingBloc
     _Created event,
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
-    if (state is CreateTrainingInitial) {
-      final user = _userService.getUser().fold(
-            (failure) => null,
-            (user) => user,
-          );
-
-      if (user != null) {
-        _singleTrainingService.createGame(owner: user);
-
-        final gameSnapshots = _singleTrainingService.watchGame();
-        _snapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
-          add(
-            CreateTrainingEvent.snapshotReceived(gameSnapshot: gameSnapshot),
-          );
-        });
-
-        final gameSnapshot = await gameSnapshots.first;
-
-        emit(
-          CreateTrainingState.initial(
-            type: Type.single,
-            gameSnapshot: gameSnapshot,
-          ),
+    final user = _userService.getUser().fold(
+          (failure) => null,
+          (user) => user,
         );
-      }
+
+    if (user != null) {
+      _singleTrainingService.createGame(owner: user);
+
+      final gameSnapshots = _singleTrainingService.watchGame();
+      _snapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
+        add(
+          CreateTrainingEvent.snapshotReceived(gameSnapshot: gameSnapshot),
+        );
+      });
+
+      final gameSnapshot = await gameSnapshots.first;
+
+      emit(gameSnapshot);
     }
   }
 

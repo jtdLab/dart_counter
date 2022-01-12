@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
-import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/domain/training/single/hit.dart';
-import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
+import 'package:dart_counter/domain/training/double/hit.dart';
+import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -11,7 +10,7 @@ export 'package:dart_counter/application/main/training/shared/in_game/input_area
 
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
-  final ISingleTrainingService _trainingService;
+  final IDoubleTrainingService _trainingService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
@@ -47,20 +46,18 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       },
       // when the user did at least input 1 dart
       darts: (darts) {
-        // convert incoming darts to hits
+        // convert incoming darts to double
         // when incoming darts has less than 3 elements
         // add missed for each missing dart
         // so the resulting list contains 3 elements
-        final hits = darts
-            .getOrCrash()
-            .map<Hit>((dart) => _fromDart(dart))
-            .toMutableList()
-          ..addAll(
-            List.generate(
-              3 - darts.length,
-              (index) => Hit.missed,
-            ).toImmutableList(),
-          );
+        final hits =
+            darts.getOrCrash().map<Hit>((dart) => Hit.double).toMutableList()
+              ..addAll(
+                List.generate(
+                  3 - darts.length,
+                  (index) => Hit.missed,
+                ).toImmutableList(),
+              );
 
         // commit converted hits
         _trainingService.performHits(
@@ -81,17 +78,5 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
 
     // emit new input
     emit(newInput);
-  }
-
-  // TODO share??
-  Hit _fromDart(Dart dart) {
-    switch (dart.type) {
-      case DartType.triple:
-        return Hit.triple;
-      case DartType.double:
-        return Hit.double;
-      case DartType.single:
-        return Hit.single;
-    }
   }
 }

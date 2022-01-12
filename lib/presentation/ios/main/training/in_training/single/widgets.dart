@@ -207,11 +207,11 @@ class _InputArea extends StatelessWidget {
             spacing: size6(context),
             children: const [
               Expanded(
-                child: _DartsDisplayer(),
+                child: DartsDisplayer(),
               ),
               Expanded(
                 flex: 3,
-                child: _InputRow(),
+                child: InputRow(),
               ),
             ],
           ),
@@ -221,53 +221,6 @@ class _InputArea extends StatelessWidget {
           child: _KeyBoard(),
         ),
       ],
-    );
-  }
-}
-
-class _DartsDisplayer extends StatelessWidget {
-  const _DartsDisplayer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<DartsDisplayerBloc, DartsDisplayerState>(
-      builder: (context, state) {
-        return state.when(
-          initial: () {
-            return const DartsDisplayer(
-              darts: KtList.empty(),
-            );
-          },
-          darts: (darts) {
-            return DartsDisplayer(darts: darts.getOrCrash());
-          },
-        );
-      },
-    );
-  }
-}
-
-class _InputRow extends StatelessWidget {
-  const _InputRow({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InputRowBloc, int>(
-      builder: (context, points) {
-        return InputRow(
-          onUndoPressed: () => context
-              .read<InputRowBloc>()
-              .add(const InputRowEvent.undoPressed()),
-          onPerformThrowPressed: () => context
-              .read<InputRowBloc>()
-              .add(const InputRowEvent.commitPressed()),
-          points: points,
-        );
-      },
     );
   }
 }

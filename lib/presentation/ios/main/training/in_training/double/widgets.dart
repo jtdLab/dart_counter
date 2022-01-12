@@ -12,8 +12,9 @@ class _InDoubleTrainingWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: BlocSelector<TrainingBloc, TrainingState, int>(
-            selector: (state) => state.gameSnapshot.players.size,
+          child: BlocSelector<DoubleTrainingWatcherCubit,
+              DoubleTrainingGameSnapshot, int>(
+            selector: (state) => state.players.size,
             builder: (context, amountOfPlayers) {
               if (amountOfPlayers == 1) {
                 return const _OnePlayerDisplayer();
@@ -44,10 +45,9 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<TrainingBloc, TrainingState,
+    return BlocSelector<DoubleTrainingWatcherCubit, DoubleTrainingGameSnapshot,
         DoubleTrainingPlayerSnapshot>(
-      selector: (state) =>
-          state.gameSnapshot.players[0] as DoubleTrainingPlayerSnapshot,
+      selector: (state) => state.players[0],
       builder: (context, player1) {
         return PlayerItemLargeSingleDouble(
           color: AppColors.blue,
@@ -91,19 +91,17 @@ class _TwoPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TwoPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as DoubleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as DoubleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItem(
           player: player2,
           color: AppColors.green,
@@ -122,28 +120,25 @@ class _ThreePlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThreePlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as DoubleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as DoubleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as DoubleTrainingPlayerSnapshot,
+      player3Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
@@ -162,37 +157,33 @@ class _FourPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FourPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as DoubleTrainingPlayerSnapshot,
+      player1Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItemSmall(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as DoubleTrainingPlayerSnapshot,
+      player2Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as DoubleTrainingPlayerSnapshot,
+      player3Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
         ),
       ),
-      player4Item: BlocSelector<TrainingBloc, TrainingState,
-          DoubleTrainingPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[3] as DoubleTrainingPlayerSnapshot,
+      player4Item: BlocSelector<DoubleTrainingWatcherCubit,
+          DoubleTrainingGameSnapshot, DoubleTrainingPlayerSnapshot>(
+        selector: (state) => state.players[3],
         builder: (context, player4) => _PlayerItemSmall(
           player: player4,
           color: AppColors.orangeNew,
@@ -202,6 +193,7 @@ class _FourPlayerDisplayer extends StatelessWidget {
   }
 }
 
+// TODO shared with bobs27 inputarea
 // INPUT AREA
 class _InputArea extends StatelessWidget {
   const _InputArea({
@@ -216,23 +208,13 @@ class _InputArea extends StatelessWidget {
         Expanded(
           child: AppColumn(
             spacing: size6(context),
-            children: [
-              const Expanded(
-                child: DartsDisplayer(
-                  darts: KtList.empty(), // TODO real value
-                ),
+            children: const [
+              Expanded(
+                child: DartsDisplayer(),
               ),
               Expanded(
                 flex: 3,
-                child: InputRow(
-                  onUndoPressed: () => context
-                      .read<DoubleTrainingBloc>()
-                      .add(const DoubleTrainingEvent.undoPressed()),
-                  onPerformThrowPressed: () => context
-                      .read<DoubleTrainingBloc>()
-                      .add(const DoubleTrainingEvent.performPressed()),
-                  points: 0, // TODO real valie
-                ),
+                child: InputRow(),
               ),
             ],
           ),
@@ -261,8 +243,8 @@ class _KeyBoard extends StatelessWidget {
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
-              .read<DoubleTrainingBloc>()
-              .add(const DoubleTrainingEvent.missHitPressed()),
+              .read<KeyBoardBloc>()
+              .add(const KeyBoardEvent.missHitPressed()),
         ),
         Expanded(
           child: AppRow(
@@ -273,13 +255,15 @@ class _KeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<DoubleTrainingBloc>()
-                    .add(const DoubleTrainingEvent.missHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.missHitPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
-                onPressed: () {}, // TODO real callback
+                onPressed: () => context
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )
             ],

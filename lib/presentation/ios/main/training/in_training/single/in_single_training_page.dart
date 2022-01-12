@@ -1,13 +1,13 @@
-import 'package:dart_counter/application/main/training/single_training/in_game/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/in_game/in_single_training_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/in_game/input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/single_training_watcher_cubit.dart';
-
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart'
+    hide InputRow; // TODO remove hide
 import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
 
 part 'widgets.dart';
@@ -21,7 +21,6 @@ class InSingleTrainingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // TODO InSingleTrainingBloc and SingleTrainingWatcherCubit merge to 1 bloc ??
         BlocProvider(
           create: (context) => getIt<InSingleTrainingBloc>(),
         ),
@@ -31,7 +30,7 @@ class InSingleTrainingPage extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<DartsDisplayerBloc>(),
         ),
-        BlocProvider(
+        BlocProvider<Bloc<InputRowEvent, int>>(
           create: (context) =>
               getIt<InputRowBloc>(param1: context.read<DartsDisplayerBloc>()),
         ),

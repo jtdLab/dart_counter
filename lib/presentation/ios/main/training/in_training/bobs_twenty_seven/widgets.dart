@@ -12,10 +12,10 @@ class _InBobsTwentySevenTrainingWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: BlocBuilder<TrainingBloc, TrainingState>(
-            builder: (context, state) {
-              final amountOfPlayers = state.gameSnapshot.players.size;
-
+          child: BlocSelector<BobsTwentySevenWatcherCubit,
+              BobsTwentySevenGameSnapshot, int>(
+            selector: (state) => state.players.size,
+            builder: (context, amountOfPlayers) {
               if (amountOfPlayers == 1) {
                 return const _OnePlayerDisplayer();
               } else if (amountOfPlayers == 2) {
@@ -45,10 +45,9 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<TrainingBloc, TrainingState,
-        BobsTwentySevenPlayerSnapshot>(
-      selector: (state) =>
-          state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot,
+    return BlocSelector<BobsTwentySevenWatcherCubit,
+        BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+      selector: (state) => state.players[0],
       builder: (context, player1) {
         return PlayerItemLargeScoreBobs27(
           color: AppColors.blue,
@@ -75,19 +74,17 @@ class _TwoPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TwoPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot,
+      player1Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as BobsTwentySevenPlayerSnapshot,
+      player2Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItem(
           player: player2,
           color: AppColors.green,
@@ -106,28 +103,25 @@ class _ThreePlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThreePlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot,
+      player1Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItem(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as BobsTwentySevenPlayerSnapshot,
+      player2Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as BobsTwentySevenPlayerSnapshot,
+      player3Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
@@ -146,37 +140,33 @@ class _FourPlayerDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FourPlayerDisplayerGrid(
-      player1Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[0] as BobsTwentySevenPlayerSnapshot,
+      player1Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[0],
         builder: (context, player1) => _PlayerItemSmall(
           player: player1,
           color: AppColors.blueNew,
         ),
       ),
-      player2Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[1] as BobsTwentySevenPlayerSnapshot,
+      player2Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[1],
         builder: (context, player2) => _PlayerItemSmall(
           player: player2,
           color: AppColors.green,
         ),
       ),
-      player3Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[2] as BobsTwentySevenPlayerSnapshot,
+      player3Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[2],
         builder: (context, player3) => _PlayerItemSmall(
           player: player3,
           color: AppColors.red,
         ),
       ),
-      player4Item: BlocSelector<TrainingBloc, TrainingState,
-          BobsTwentySevenPlayerSnapshot>(
-        selector: (state) =>
-            state.gameSnapshot.players[3] as BobsTwentySevenPlayerSnapshot,
+      player4Item: BlocSelector<BobsTwentySevenWatcherCubit,
+          BobsTwentySevenGameSnapshot, BobsTwentySevenPlayerSnapshot>(
+        selector: (state) => state.players[3],
         builder: (context, player4) => _PlayerItemSmall(
           player: player4,
           color: AppColors.orangeNew,
@@ -186,11 +176,9 @@ class _FourPlayerDisplayer extends StatelessWidget {
   }
 }
 
+// TODO shared with double inputarea
 // INPUT AREA
 class _InputArea extends StatelessWidget {
-  static const flexTop = 1;
-  static const flexBottom = 3;
-
   const _InputArea({
     Key? key,
   }) : super(key: key);
@@ -201,34 +189,21 @@ class _InputArea extends StatelessWidget {
       spacing: size6(context),
       children: [
         Expanded(
-          flex: flexTop,
           child: AppColumn(
             spacing: size6(context),
-            children: [
-              const Expanded(
-                child: DartsDisplayer(
-                  darts: KtList.empty(),
-                ),
+            children: const [
+              Expanded(
+                child: DartsDisplayer(),
               ),
-
-              // TODO expanded 1 ebene down
               Expanded(
                 flex: 3,
-                child: InputRow(
-                  onUndoPressed: () => context
-                      .read<BobsTwentySevenBloc>()
-                      .add(const BobsTwentySevenEvent.undoPressed()),
-                  onPerformThrowPressed: () => context
-                      .read<BobsTwentySevenBloc>()
-                      .add(const BobsTwentySevenEvent.performPressed()),
-                  points: 0, // TODO
-                ),
+                child: InputRow(),
               ),
             ],
           ),
         ),
         const Expanded(
-          flex: flexBottom,
+          flex: 3,
           child: _KeyBoard(),
         ),
       ],
@@ -251,8 +226,8 @@ class _KeyBoard extends StatelessWidget {
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
-              .read<BobsTwentySevenBloc>()
-              .add(const BobsTwentySevenEvent.doubleHitPressed()),
+              .read<KeyBoardBloc>()
+              .add(const KeyBoardEvent.doubleHitPressed()),
         ),
         Expanded(
           child: AppRow(
@@ -263,13 +238,15 @@ class _KeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<BobsTwentySevenBloc>()
-                    .add(const BobsTwentySevenEvent.missHitPressed()),
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.missHitPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
-                onPressed: () {},
+                onPressed: () => context
+                    .read<KeyBoardBloc>()
+                    .add(const KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )
             ],

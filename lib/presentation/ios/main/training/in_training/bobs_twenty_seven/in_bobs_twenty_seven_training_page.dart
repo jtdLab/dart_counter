@@ -1,9 +1,13 @@
-import 'dart:math';
-
-import 'package:dart_counter/application/main/training/in_training/bobs_twenty_seven/bobs_twenty_seven_bloc.dart';
+import 'package:dart_counter/application/main/training/bobs_twenty_seven/bobs_twenty_seven_watcher_cubit.dart';
+import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/in_bobs_twenty_seven_bloc.dart';
+import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/input_area/key_board/key_board_bloc.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart'
+    hide InputRow; // TODO remove hide
 import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
 
 part 'widgets.dart';
@@ -15,36 +19,57 @@ class InBobyTwentySeventTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: CancelButton(
-          onPressed: () {
-            // show overlay
-            Navigator.of(context).push(
-              PageRouteBuilder(
-                reverseTransitionDuration: Duration.zero,
-                opaque: false,
-                pageBuilder: (context, _, __) => BlocProvider(
-                  create: (context) => getIt<TrainingBloc>(),
-                  child: Builder(
-                    builder: (context) => YouReallyWantToCancelGameDialog(
-                      onYesPressed: () {
-                        context.read<TrainingBloc>().add(
-                              const TrainingEvent.trainingCanceled(),
-                            );
-                        context.router.replace(const HomePageRoute());
-                      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<InBobsTwentySevenBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<BobsTwentySevenWatcherCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<DartsDisplayerBloc>(),
+        ),
+        BlocProvider<Bloc<InputRowEvent, int>>(
+          create: (context) =>
+              getIt<InputRowBloc>(param1: context.read<DartsDisplayerBloc>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              getIt<KeyBoardBloc>(param1: context.read<DartsDisplayerBloc>()),
+        ),
+      ],
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: CancelButton(
+            onPressed: () {
+              // show overlay
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  reverseTransitionDuration: Duration.zero,
+                  opaque: false,
+                  pageBuilder: (context, _, __) => BlocProvider(
+                    create: (context) => context.read<InBobsTwentySevenBloc>(),
+                    child: Builder(
+                      builder: (context) => YouReallyWantToCancelGameDialog(
+                        onYesPressed: () {
+                          context.read<InBobsTwentySevenBloc>().add(
+                                const InBobsTwentySevenEvent.canceled(),
+                              );
+                          context.router.replace(const HomePageRoute());
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
+          // TODO localekeys
+          middle: const Text('BOBS 27'),
         ),
-        // TODO localekeys
-        middle: const Text('BOBS 27'),
+        child: const _InBobsTwentySevenTrainingWidget(),
       ),
-      child: const _InBobsTwentySevenTrainingWidget(),
     );
   }
 }
