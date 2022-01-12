@@ -26,70 +26,75 @@ class CreateTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
-      listenWhen: (oldState, newState) => oldState.status != newState.status,
-      listener: (context, gameSnapshot) {
-        if (gameSnapshot.status == Status.canceled) {
-          // TODO this never gets called
-          //context.router.replace(const HomePageRoute());
-        } else if (gameSnapshot.status == Status.running) {
-          // give players without a name a name e.g 'Player 1', 'Player 2', ...
-          int unNamedPlayerIndex = 1;
-          for (final player in gameSnapshot.players.iter) {
-            if (player.name == null) {
-              final index = gameSnapshot.players.indexOf(player);
-              context.read<CreateTrainingBloc>().add(
-                    CreateTrainingEvent.playerNameUpdated(
-                      index: index,
-                      newName: '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
-                    ),
-                  );
-              unNamedPlayerIndex++;
+    return BlocProvider(
+      create: (context) => getIt<CreateTrainingBloc>(),
+      child: BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+        listenWhen: (oldState, newState) => oldState.status != newState.status,
+        listener: (context, gameSnapshot) {
+          if (gameSnapshot.status == Status.canceled) {
+            // TODO this never gets called
+            //context.router.replace(const HomePageRoute());
+          } else if (gameSnapshot.status == Status.running) {
+            // give players without a name a name e.g 'Player 1', 'Player 2', ...
+            int unNamedPlayerIndex = 1;
+            for (final player in gameSnapshot.players.iter) {
+              if (player.name == null) {
+                final index = gameSnapshot.players.indexOf(player);
+                context.read<CreateTrainingBloc>().add(
+                      CreateTrainingEvent.playerNameUpdated(
+                        index: index,
+                        newName:
+                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
+                      ),
+                    );
+                unNamedPlayerIndex++;
+              }
+            }
+
+            // TODO
+            //context.router.replace(const InTrainingPageRoute());
+            if (gameSnapshot is BobsTwentySevenGameSnapshot) {
+              context.router
+                  .replace(const InBobyTwentySeventTrainingPageRoute());
+            } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
+              context.router.replace(const InDoubleTrainingPageRoute());
+            } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
+              context.router.replace(const InScoreTrainingPageRoute());
+            } else {
+              context.router.replace(const InSingleTrainingPageRoute());
             }
           }
-
-          // TODO
-          //context.router.replace(const InTrainingPageRoute());
-          if (gameSnapshot is BobsTwentySevenGameSnapshot) {
-            context.router.replace(const InBobyTwentySeventTrainingPageRoute());
-          } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
-            context.router.replace(const InDoubleTrainingPageRoute());
-          } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
-            context.router.replace(const InScoreTrainingPageRoute());
-          } else {
-            context.router.replace(const InSingleTrainingPageRoute());
-          }
-        }
-      },
-      child: AppPage(
-        navigationBar: AppNavigationBar(
-          leading: CancelButton(
-            onPressed: () {
-              // TODO bloc provided ?? like in singel trainig page etc.
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  reverseTransitionDuration: Duration.zero,
-                  opaque: false,
-                  pageBuilder: (context, _, __) => Builder(
-                    builder: (context) => YouReallyWantToCancelGameDialog(
-                      onYesPressed: () {
-                        context.read<CreateTrainingBloc>().add(
-                              const CreateTrainingEvent.canceled(),
-                            );
-                        context.router.replace(const HomePageRoute());
-                      },
+        },
+        child: AppPage(
+          navigationBar: AppNavigationBar(
+            leading: CancelButton(
+              onPressed: () {
+                // TODO bloc provided ?? like in singel trainig page etc.
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    reverseTransitionDuration: Duration.zero,
+                    opaque: false,
+                    pageBuilder: (context, _, __) => Builder(
+                      builder: (context) => YouReallyWantToCancelGameDialog(
+                        onYesPressed: () {
+                          context.read<CreateTrainingBloc>().add(
+                                const CreateTrainingEvent.canceled(),
+                              );
+                          context.router.replace(const HomePageRoute());
+                        },
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
+            middle: Text(
+              LocaleKeys.createGame.tr().toUpperCase(),
+            ),
           ),
-          middle: Text(
-            LocaleKeys.createGame.tr().toUpperCase(),
+          child: const SingleChildScrollView(
+            child: _CreateTrainingWidget(),
           ),
-        ),
-        child: const SingleChildScrollView(
-          child: _CreateTrainingWidget(),
         ),
       ),
     );

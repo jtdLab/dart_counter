@@ -3,25 +3,23 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart'
     as bobs27;
-import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
-import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
-import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'create_training_bloc.freezed.dart';
 part 'create_training_event.dart';
 
+@injectable
 class CreateTrainingBloc
     extends Bloc<CreateTrainingEvent, AbstractTrainingGameSnapshot> {
   // TODO remove
