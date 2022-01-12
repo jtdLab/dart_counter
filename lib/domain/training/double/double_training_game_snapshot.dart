@@ -20,6 +20,8 @@ class DoubleTrainingGameSnapshot
     required DoubleTrainingPlayerSnapshot owner,
   }) = _DoubleTrainingGameSnapshot;
 
+  const DoubleTrainingGameSnapshot._();
+
   @override
   DoubleTrainingPlayerSnapshot currentTurn() {
     // TODO her eand other throw not running game if status is pending/fininshed

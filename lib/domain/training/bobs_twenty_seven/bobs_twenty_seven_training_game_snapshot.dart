@@ -20,6 +20,8 @@ class BobsTwentySevenGameSnapshot
     required BobsTwentySevenPlayerSnapshot owner,
   }) = _BobsTwentySevenGameSnapshot;
 
+  const BobsTwentySevenGameSnapshot._();
+
   @override
   BobsTwentySevenPlayerSnapshot currentTurn() {
     // TODO her eand other throw not running game if status is pending/fininshed

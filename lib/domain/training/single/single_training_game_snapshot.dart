@@ -20,6 +20,8 @@ class SingleTrainingGameSnapshot
     required SingleTrainingPlayerSnapshot owner,
   }) = _SingleTrainingGameSnapshot;
 
+  const SingleTrainingGameSnapshot._();
+
   // TODO needed remove pls
   factory SingleTrainingGameSnapshot.initial({
     String? username,

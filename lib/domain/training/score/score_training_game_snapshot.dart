@@ -19,6 +19,8 @@ class ScoreTrainingGameSnapshot
     required ScoreTrainingPlayerSnapshot owner,
   }) = _ScoreTrainingGameSnapshot;
 
+  const ScoreTrainingGameSnapshot._();
+
   @override
   ScoreTrainingPlayerSnapshot currentTurn() {
     // TODO her eand other throw not running game if status is pending/fininshed
