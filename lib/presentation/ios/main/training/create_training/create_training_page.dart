@@ -3,7 +3,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
 import 'package:dart_counter/application/main/training/training_bloc.dart';
-import 'package:dart_counter/application/main/training/score_training/score_training_bloc.dart';
+import 'package:dart_counter/application/main/training/in_training/score_training/score_training_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/training/type.dart';

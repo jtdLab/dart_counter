@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/training/in_training/single_training/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/single/hit.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
@@ -20,7 +20,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     this._trainingService,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
-   // set inital state
+        // set inital state
         super(0) {
     // register event handlers
     on<_UndoPressed>((_, __) => _mapUndoPressedToState());

@@ -120,6 +120,13 @@ class ScoreTrainingService implements IScoreTrainingService {
     return _gameController.stream;
   }
 
+
+  @override
+  ScoreTrainingGameSnapshot getGame() {
+    // TODO throw no running game error insted of valuestream error
+    return _gameController.value;
+  }
+
   // TODO involve return type bool of action instead of void
   /// Trys to Perform [action].
   void _tryPerform({

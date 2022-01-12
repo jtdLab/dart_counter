@@ -8,6 +8,11 @@ abstract class IDoubleTrainingService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<DoubleTrainingGameSnapshot> watchGame();
 
+  /// Returns snapshot of current game of the app-user
+  ///
+  /// Throws Error if no running game // TODO
+  DoubleTrainingGameSnapshot getGame();
+
   void createGame({
     required User owner,
     List<String?>? players,

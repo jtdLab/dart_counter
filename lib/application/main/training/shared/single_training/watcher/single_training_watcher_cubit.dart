@@ -9,19 +9,19 @@ import 'package:injectable/injectable.dart';
 class SingleTrainingWatcherCubit extends Cubit<SingleTrainingGameSnapshot> {
   final ISingleTrainingService _trainingService;
 
-  late final StreamSubscription _gameSnapshotStreamSubscription;
+  late final StreamSubscription _snapshotStreamSubscription;
 
   SingleTrainingWatcherCubit(
     this._trainingService,
   ) : super(_trainingService.getGame()) {
-    _gameSnapshotStreamSubscription = _trainingService
+    _snapshotStreamSubscription = _trainingService
         .watchGame()
-        .listen((gameSnapshot) => emit(gameSnapshot));
+        .listen((snapshot) => emit(snapshot));
   }
 
   @override
   Future<void> close() {
-    _gameSnapshotStreamSubscription.cancel();
+    _snapshotStreamSubscription.cancel();
 
     return super.close();
   }
