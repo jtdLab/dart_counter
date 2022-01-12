@@ -23,7 +23,7 @@ class SingleTrainingService implements ISingleTrainingService {
   SingleTrainingService() : _gameController = BehaviorSubject();
 
   @override
-  void createGame({
+  SingleTrainingGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -40,7 +40,7 @@ class SingleTrainingService implements ISingleTrainingService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
@@ -195,7 +195,7 @@ class SingleTrainingService implements ISingleTrainingService {
     }
   }
 
-  void _emitSnpashot() {
+  SingleTrainingGameSnapshot _emitSnpashot() {
     final dto = SingleTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -208,14 +208,16 @@ class SingleTrainingService implements ISingleTrainingService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
           )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }

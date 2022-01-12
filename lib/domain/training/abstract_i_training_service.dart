@@ -13,7 +13,7 @@ abstract class AbstractITrainingService {
   /// Returns a stream of the latest received snapshot of the current trainig-game of the app-user.
   AbstractTrainingGameSnapshot getGame();
 
-  void createGame({
+  AbstractTrainingGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   });

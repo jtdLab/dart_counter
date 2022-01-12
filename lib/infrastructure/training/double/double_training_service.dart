@@ -37,7 +37,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }
 
   @override
-  void createGame({
+  DoubleTrainingGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -54,7 +54,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
@@ -163,7 +163,6 @@ class DoubleTrainingService implements IDoubleTrainingService {
     return _gameController.stream;
   }
 
-
   @override
   DoubleTrainingGameSnapshot getGame() {
     // TODO throw no running game error insted of valuestream error
@@ -181,7 +180,7 @@ class DoubleTrainingService implements IDoubleTrainingService {
     }
   }
 
-  void _emitSnpashot() {
+  DoubleTrainingGameSnapshot _emitSnpashot() {
     final dto = DoubleTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -194,14 +193,16 @@ class DoubleTrainingService implements IDoubleTrainingService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
           )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }

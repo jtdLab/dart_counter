@@ -36,7 +36,7 @@ class ScoreTrainingService implements IScoreTrainingService {
   }
 
   @override
-  void createGame({
+  ScoreTrainingGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -53,7 +53,7 @@ class ScoreTrainingService implements IScoreTrainingService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
@@ -120,7 +120,6 @@ class ScoreTrainingService implements IScoreTrainingService {
     return _gameController.stream;
   }
 
-
   @override
   ScoreTrainingGameSnapshot getGame() {
     // TODO throw no running game error insted of valuestream error
@@ -138,7 +137,7 @@ class ScoreTrainingService implements IScoreTrainingService {
     }
   }
 
-  void _emitSnpashot() {
+  ScoreTrainingGameSnapshot _emitSnpashot() {
     final dto = ScoreTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -151,14 +150,16 @@ class ScoreTrainingService implements IScoreTrainingService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
           )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }

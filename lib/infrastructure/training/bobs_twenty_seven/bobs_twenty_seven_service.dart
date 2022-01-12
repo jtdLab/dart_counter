@@ -37,7 +37,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  void createGame({
+  BobsTwentySevenGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -54,7 +54,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
@@ -176,7 +176,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     }
   }
 
-  void _emitSnpashot() {
+  BobsTwentySevenGameSnapshot _emitSnpashot() {
     final dto = BobsTwentySevenGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -189,14 +189,16 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
-          )∏
+          )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }
