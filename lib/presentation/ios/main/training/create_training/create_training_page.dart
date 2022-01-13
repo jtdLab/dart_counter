@@ -70,7 +70,7 @@ class CreateTrainingPage extends StatelessWidget {
           navigationBar: AppNavigationBar(
             leading: CancelButton(
               onPressed: () {
-                // TODO bloc provided ?? like in singel trainig page etc.
+                // overlay TODO cleaner impl
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     reverseTransitionDuration: Duration.zero,

@@ -43,7 +43,7 @@ class InSingleTrainingPage extends StatelessWidget {
         navigationBar: AppNavigationBar(
           leading: CancelButton(
             onPressed: () {
-              // show overlay // TODO cleaner
+              // show overlay // TODO cleaner impl
               Navigator.of(context).push(
                 PageRouteBuilder(
                   reverseTransitionDuration: Duration.zero,
