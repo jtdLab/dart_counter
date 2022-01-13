@@ -192,3 +192,5 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO add convenience constructors Dart.zero and Throw.zero ???
 
 // TODO blocs.dart barelle files like in score training with standard and detailed input area every wher in app pls
+
+// TODO share even more around blocs by sharing event handler impl or make base calss that impls some event handlers if tahts possible with darts

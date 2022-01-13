@@ -42,15 +42,4 @@ class DigitButtonState with _$DigitButtonState {
     required DartType type,
     required int value,
   }) = DigitButtonFocused;
-  /**
-  *  const factory DigitButtonState.single({
-    required int value,
-  }) = DigitButtonSingle;
-  const factory DigitButtonState.double({
-    required int value,
-  }) = DigitButtonDouble;
-  const factory DigitButtonState.triple({
-    required int value,
-  }) = DigitButtonTriple;
-  */
 }

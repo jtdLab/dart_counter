@@ -4,5 +4,9 @@ part 'key_board_event.freezed.dart';
 
 @freezed
 class KeyBoardEvent with _$KeyBoardEvent {
-  const factory KeyBoardEvent.started() = _Started;
+  const factory KeyBoardEvent.digitPressed({
+    required int digit,
+  }) = DigitPressed;
+  const factory KeyBoardEvent.ereasePressed() = EreasePressed;
+  const factory KeyBoardEvent.unfocusRequested() = UnfocusRequested;
 }

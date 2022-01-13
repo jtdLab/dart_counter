@@ -1,5 +1,10 @@
 // CORE
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/index.dart'
+    as doubleBobs27;
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/index.dart'
+    as detailed;
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/index.dart'
+    as standard;
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_state.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -1471,7 +1476,7 @@ class _StandardKeyBoard extends StatelessWidget {
           child: AppRow(
             spacing: size6(context),
             children: const [
-              Spacer(),
+              _CheckButton(),
               _StandardDigitButton(digit: 0),
               _StandardEreaseButton(),
             ],
@@ -1492,45 +1497,56 @@ class _StandardDigitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppActionButton.flexible(
-      fontSize: 28,
-      color: AppColors.white,
-      onPressed: () {}, // TODO
-      text: digit.toString(),
+    return BlocSelector<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>,
+        standard.KeyBoardState, standard.ButtonState>(
+      selector: (state) => _selectFromKeyBoardState(state),
+      builder: (conext, buttonState) {
+        return AppActionButton.flexible(
+          fontSize: 28,
+          color: AppColors.white,
+          onPressed: buttonState == standard.ButtonState.disabled
+              ? null
+              : () => context
+                  .read<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>()
+                  .add(standard.KeyBoardEvent.digitPressed(digit: digit)),
+          text: digit.toString(),
+        );
+      },
     );
-    /**
-    *  // TODO dependency injection like this seems not to be good practice
-    final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final pointsCubit = context.read<PointsCubit>();
-    final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
-    final dartUtils = getIt<IDartUtils>();
+  }
 
-    return BlocProvider(
-      create: (context) => StandardDigitButtonBloc(
-        digit,
-        pointsLeftCubit,
-        pointsCubit,
-        advancedSettingsBloc,
-        dartUtils,
-      )..add(const StandardDigitButtonEvent.started()),
-      child: BlocBuilder<StandardDigitButtonBloc, StandardDigitButtonState>(
-        builder: (context, state) {
-          final disabled = state is StandardDigitButtonDisabled;
-
-          return AppActionButton.flexible(
-            fontSize: 28,
-            color: AppColors.white,
-            onPressed: disabled
-                ? null
-                : () => context
-                    .read<StandardDigitButtonBloc>()
-                    .add(const StandardDigitButtonEvent.pressed()),
-            text: digit.toString(),
-          );
-        },
-      ),
-    );
-    */
+  /// Returns the ButtonState of this digit button stored in [keyBoardState].
+  ///
+  /// Example:
+  /// [digit] = 1 => return keyBoardState.one
+  /// [digit] = 13 => return keyBoardState.thirteen
+  standard.ButtonState _selectFromKeyBoardState(
+    standard.KeyBoardState keyBoardState,
+  ) {
+    switch (digit) {
+      case 0:
+        return keyBoardState.zero;
+      case 1:
+        return keyBoardState.one;
+      case 2:
+        return keyBoardState.two;
+      case 3:
+        return keyBoardState.three;
+      case 4:
+        return keyBoardState.four;
+      case 5:
+        return keyBoardState.five;
+      case 6:
+        return keyBoardState.six;
+      case 7:
+        return keyBoardState.seven;
+      case 8:
+        return keyBoardState.eight;
+      case 9:
+        return keyBoardState.nine;
+      default:
+        throw Error(); // TODO name better
+    }
   }
 }
 
@@ -1541,44 +1557,56 @@ class _StandardEreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppActionButton.flexible(
-      color: AppColors.white,
-      onPressed: () {}, // TODO
-      icon: Image.asset(
-        AppImages.chevronBackNew,
-      ),
+    return BlocSelector<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>,
+        standard.KeyBoardState, standard.ButtonState>(
+      selector: (state) => state.erease,
+      builder: (conext, buttonState) {
+        final disabled = buttonState == standard.ButtonState.disabled;
+
+        return AppActionButton.flexible(
+          color: AppColors.white,
+          onPressed: disabled
+              ? null
+              : () => context
+                  .read<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>()
+                  .add(const standard.KeyBoardEvent.ereasePressed()),
+          icon: Image.asset(
+            AppImages.chevronBackNew,
+            color: disabled ? CupertinoColors.quaternarySystemFill : null,
+          ),
+        );
+      },
     );
+  }
+}
 
-    /**
-     * // TODO dependency injection like this seems not to be good practice
-    final pointsCubit = context.read<PointsCubit>();
-    final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
+class _CheckButton extends StatelessWidget {
+  const _CheckButton({
+    Key? key,
+  }) : super(key: key);
 
-    return BlocProvider(
-      create: (context) => StandardEreaseButtonBloc(
-        pointsCubit,
-        advancedSettingsBloc,
-      )..add(const StandardEreaseButtonEvent.started()),
-      child: BlocBuilder<StandardEreaseButtonBloc, StandardEreaseButtonState>(
-        builder: (context, state) {
-          final disabled = state is StandardEreaseButtonDisabled;
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>,
+        standard.KeyBoardState, standard.ButtonState?>(
+      selector: (state) => state.check,
+      builder: (conext, buttonState) {
+        if (buttonState == null) {
+          return const Spacer();
+        }
 
-          return AppActionButton.flexible(
-            color: AppColors.white,
-            onPressed: disabled
-                ? null
-                : () => context
-                    .read<StandardEreaseButtonBloc>()
-                    .add(const StandardEreaseButtonEvent.pressed()),
-            icon: Image.asset(
-              AppImages.chevronBackNew,
-              color: disabled ? CupertinoColors.quaternarySystemFill : null,
-            ),
-          );
-        },
-      ),
+        return AppActionButton.flexible(
+          fontSize: 18,
+          color: AppColors.white,
+          onPressed: buttonState == standard.ButtonState.disabled
+              ? null
+              : () => context
+                  .read<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>()
+                  .add(const standard.KeyBoardEvent.checkPressed()),
+          text: 'CHECK', // TODO translated pls
+        );
+      },
     );
-     */
   }
 }
 
@@ -1625,11 +1653,9 @@ class _DetailedKeyBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      /**
-       * onTap: () => context
-          .read<DetailedInputAreaBloc>()
-          .add(const DetailedInputAreaEvent.unfocusRequested()),
-       */
+      onTap: () => context
+          .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
+          .add(const detailed.KeyBoardEvent.unfocusRequested()),
       child: AppColumn(
         spacing: size6(context),
         children: [
@@ -1704,81 +1730,113 @@ class _DetailedDigitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppActionButton.flexible(
-      fontSize: 14,
-      color: AppColors.white,
-      onPressed: () {}, // TODO
-      text: digit.toString(),
+    return BlocSelector<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>,
+        detailed.KeyBoardState, detailed.DigitButtonState>(
+      selector: (state) => _selectFromKeyBoardState(state),
+      builder: (conext, buttonState) {
+        return buttonState.when(
+          disabled: () {
+            return AppActionButton.flexible(
+              fontSize: 14,
+              color: AppColors.white,
+              text: digit.toString(),
+            );
+          },
+          enabled: () {
+            return AppActionButton.flexible(
+              fontSize: 14,
+              color: AppColors.white,
+              onPressed: () => context
+                  .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
+                  .add(detailed.KeyBoardEvent.digitPressed(digit: digit)),
+              text: digit.toString(),
+            );
+          },
+          focused: (type, digit) {
+            final color = type == DartType.single
+                ? AppColors.black
+                : type == DartType.double
+                    ? AppColors.red
+                    : AppColors.orangeNew;
+
+            final text = type == DartType.single
+                ? ''
+                : type == DartType.double
+                    ? 'D'
+                    : 'T';
+
+            return AppActionButton.flexible(
+              fontSize: 14,
+              color: AppColors.white,
+              onPressed: () => context
+                  .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
+                  .add(detailed.KeyBoardEvent.digitPressed(digit: digit)),
+              text: '$text$digit',
+              fontColor: color,
+              borderColor: color,
+            );
+          },
+        );
+      },
     );
-    // TODO dependency injection like this seems not to be good practice
-    /**
-   *   final detailedInputAreaBloc = context.read<DetailedInputAreaBloc>();
-    final dartsCubit = context.read<DartsCubit>();
-    final pointsLeftCubit = context.read<PointsLeftCubit>();
-    final advancedSettingsBloc = context.read<AdvancedSettingsBloc>();
-    final dartUtils = getIt<IDartUtils>();
+  }
 
-
-    return BlocProvider(
-      create: (context) => DetailedDigitButtonBloc(
-        digit,
-        /**
-         * detailedInputAreaBloc,
-        dartsCubit,
-        pointsLeftCubit,
-        advancedSettingsBloc,
-        dartUtils,
-         */
-      )..add(const DetailedDigitButtonEvent.started()),
-      child: BlocBuilder<DetailedDigitButtonBloc, DetailedDigitButtonState>(
-        builder: (context, state) {
-          return state.maybeMap(
-            focused: (focused) {
-              final dartType = focused.dartType;
-              final value = focused.value;
-
-              final color = dartType == DartType.single
-                  ? AppColors.black
-                  : dartType == DartType.double
-                      ? AppColors.red
-                      : AppColors.orangeNew;
-
-              final text = dartType == DartType.single
-                  ? ''
-                  : dartType == DartType.double
-                      ? 'D'
-                      : 'T';
-
-              return AppActionButton.flexible(
-                fontSize: 14,
-                color: AppColors.white,
-                onPressed: () => context
-                    .read<DetailedDigitButtonBloc>()
-                    .add(const DetailedDigitButtonEvent.pressed()),
-                text: text + value.toString(),
-                fontColor: color,
-                borderColor: color,
-              );
-            },
-            orElse: () {
-              final disabled = state is DetailedDigitButtonDisabled;
-
-              return AppActionButton.flexible(
-                fontSize: 14,
-                color: AppColors.white,
-                onPressed: disabled
-                    ? null
-                    : () => context
-                        .read<DetailedDigitButtonBloc>()
-                        .add(const DetailedDigitButtonEvent.pressed()),
-                text: digit.toString(),
-              );
-            },
-          );
-        },
-      ),
-    );
-       */
+  /// Returns the DigitButtonState of this digit button stored in [keyBoardState].
+  ///
+  /// Example:
+  /// [digit] = 1 => return keyBoardState.one
+  /// [digit] = 13 => return keyBoardState.thirteen
+  detailed.DigitButtonState _selectFromKeyBoardState(
+    detailed.KeyBoardState keyBoardState,
+  ) {
+    switch (digit) {
+      case 0:
+        return keyBoardState.zero;
+      case 1:
+        return keyBoardState.one;
+      case 2:
+        return keyBoardState.two;
+      case 3:
+        return keyBoardState.three;
+      case 4:
+        return keyBoardState.four;
+      case 5:
+        return keyBoardState.five;
+      case 6:
+        return keyBoardState.six;
+      case 7:
+        return keyBoardState.seven;
+      case 8:
+        return keyBoardState.eight;
+      case 9:
+        return keyBoardState.nine;
+      case 10:
+        return keyBoardState.ten;
+      case 11:
+        return keyBoardState.eleven;
+      case 12:
+        return keyBoardState.twelve;
+      case 13:
+        return keyBoardState.thirteen;
+      case 14:
+        return keyBoardState.fourteen;
+      case 15:
+        return keyBoardState.fifteen;
+      case 16:
+        return keyBoardState.sixteen;
+      case 17:
+        return keyBoardState.seventeen;
+      case 18:
+        return keyBoardState.eighteen;
+      case 19:
+        return keyBoardState.nineteen;
+      case 20:
+        return keyBoardState.twenty;
+      case 25:
+        return keyBoardState.twentyFive;
+      default:
+        throw Error(); // TODO name better
+    }
   }
 }
 
@@ -1789,18 +1847,25 @@ class _DetailedEreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppActionButton.flexible(
-      fontSize: 14,
-      color: AppColors.white,
-      onPressed: () {},
-      /**
-       * onPressed: disabled
-          ? null
-          : () => context
-              .read<DetailedEreaseButtonBloc>()
-              .add(const DetailedEreaseButtonEvent.pressed()),
-       */
-      icon: Image.asset(AppImages.chevronBackNew),
+    return BlocSelector<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>,
+        detailed.KeyBoardState, detailed.ButtonState>(
+      selector: (state) => state.erease,
+      builder: (conext, buttonState) {
+        final disabled = buttonState == detailed.ButtonState.disabled;
+
+        return AppActionButton.flexible(
+          color: AppColors.white,
+          onPressed: disabled
+              ? null
+              : () => context
+                  .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
+                  .add(const detailed.KeyBoardEvent.ereasePressed()),
+          icon: Image.asset(
+            AppImages.chevronBackNew,
+            color: disabled ? CupertinoColors.quaternarySystemFill : null,
+          ),
+        );
+      },
     );
   }
 }
@@ -1854,8 +1919,10 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
-              .read<Bloc<KeyBoardEvent, KeyBoardState>>()
-              .add(const KeyBoardEvent.doubleHitPressed()),
+              .read<
+                  Bloc<doubleBobs27.KeyBoardEvent,
+                      doubleBobs27.KeyBoardState>>()
+              .add(const doubleBobs27.KeyBoardEvent.doubleHitPressed()),
         ),
         Expanded(
           child: AppRow(
@@ -1866,15 +1933,19 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<Bloc<KeyBoardEvent, KeyBoardState>>()
-                    .add(const KeyBoardEvent.missHitPressed()),
+                    .read<
+                        Bloc<doubleBobs27.KeyBoardEvent,
+                            doubleBobs27.KeyBoardState>>()
+                    .add(const doubleBobs27.KeyBoardEvent.missHitPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<Bloc<KeyBoardEvent, KeyBoardState>>()
-                    .add(const KeyBoardEvent.ereasePressed()),
+                    .read<
+                        Bloc<doubleBobs27.KeyBoardEvent,
+                            doubleBobs27.KeyBoardState>>()
+                    .add(const doubleBobs27.KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )
             ],

@@ -37,8 +37,21 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
             erease: ButtonState.enabled,
           ),
         ) {
-    on<KeyBoardEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    // register event handlers
+    on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
+    on<EreasePressed>((event, emit) => _mapEreasePressedToState());
   }
+
+  void _mapDigitPressedToState(
+    DigitPressed event,
+  ) {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  void _mapEreasePressedToState() {
+    // TODO implement
+    throw UnimplementedError();
+  }
+  
 }

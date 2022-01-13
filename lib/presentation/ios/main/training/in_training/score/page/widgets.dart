@@ -38,7 +38,9 @@ class _InScoreTrainingWidget extends StatelessWidget {
                     create: (context) => getIt<standard.InputRowBloc>(),
                   ),
                   BlocProvider(
-                    create: (context) => getIt<standard.KeyBoardBloc>(),
+                    create: (context) => getIt<standard.KeyBoardBloc>(
+                      param1: context.read<Bloc<InputRowEvent, int>>(),
+                    ),
                   ),
                 ],
                 child: const StandardInputArea(),
