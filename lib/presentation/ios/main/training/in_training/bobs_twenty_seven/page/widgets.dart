@@ -28,9 +28,26 @@ class _InBobsTwentySevenTrainingWidget extends StatelessWidget {
             },
           ),
         ),
-        const Expanded(
+        Expanded(
           flex: 55,
-          child: _InputArea(),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<DartsDisplayerBloc>(),
+              ),
+              BlocProvider<Bloc<InputRowEvent, int>>(
+                create: (context) => getIt<InputRowBloc>(
+                  param1: context.read<DartsDisplayerBloc>(),
+                ),
+              ),
+              BlocProvider<Bloc<KeyBoardEvent, KeyBoardState>>(
+                create: (context) => getIt<KeyBoardBloc>(
+                  param1: context.read<DartsDisplayerBloc>(),
+                ),
+              ),
+            ],
+            child: const DoubleBobsTwentySevenInputArea(),
+          ),
         ),
       ],
     );
@@ -172,87 +189,6 @@ class _FourPlayerDisplayer extends StatelessWidget {
           color: AppColors.orangeNew,
         ),
       ),
-    );
-  }
-}
-
-// TODO shared with double inputarea
-// INPUT AREA
-class _InputArea extends StatelessWidget {
-  const _InputArea({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppColumn(
-      spacing: size6(context),
-      children: [
-        Expanded(
-          child: AppColumn(
-            spacing: size6(context),
-            children: const [
-              Expanded(
-                child: DartsDisplayer(),
-              ),
-              Expanded(
-                flex: 3,
-                child: InputRow(),
-              ),
-            ],
-          ),
-        ),
-        const Expanded(
-          flex: 3,
-          child: _KeyBoard(),
-        ),
-      ],
-    );
-  }
-}
-
-class _KeyBoard extends StatelessWidget {
-  const _KeyBoard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppColumn(
-      spacing: size6(context),
-      children: [
-        AppActionButton.flexible(
-          text: 'DOUBLE',
-          fontSize: 18,
-          color: AppColors.white,
-          onPressed: () => context
-              .read<KeyBoardBloc>()
-              .add(const KeyBoardEvent.doubleHitPressed()),
-        ),
-        Expanded(
-          child: AppRow(
-            spacing: size6(context),
-            children: [
-              AppActionButton.flexible(
-                text: 'MISSED',
-                fontSize: 18,
-                color: AppColors.white,
-                onPressed: () => context
-                    .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.missHitPressed()),
-              ),
-              AppActionButton.flexible(
-                fontSize: 14,
-                color: AppColors.white,
-                onPressed: () => context
-                    .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.ereasePressed()),
-                icon: Image.asset(AppImages.chevronBackNew),
-              )
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

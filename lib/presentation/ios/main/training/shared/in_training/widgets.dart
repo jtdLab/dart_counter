@@ -1,4 +1,6 @@
 // CORE
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_state.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -1799,6 +1801,86 @@ class _DetailedEreaseButton extends StatelessWidget {
               .add(const DetailedEreaseButtonEvent.pressed()),
        */
       icon: Image.asset(AppImages.chevronBackNew),
+    );
+  }
+}
+
+// DOUBLE BOBS27 INPUT AREA
+class DoubleBobsTwentySevenInputArea extends StatelessWidget {
+  const DoubleBobsTwentySevenInputArea({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppColumn(
+      spacing: size6(context),
+      children: [
+        Expanded(
+          child: AppColumn(
+            spacing: size6(context),
+            children: const [
+              Expanded(
+                child: DartsDisplayer(),
+              ),
+              Expanded(
+                flex: 3,
+                child: InputRow(),
+              ),
+            ],
+          ),
+        ),
+        const Expanded(
+          flex: 3,
+          child: _DoubleBobsTwentySevenKeyBoard(),
+        ),
+      ],
+    );
+  }
+}
+
+class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
+  const _DoubleBobsTwentySevenKeyBoard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppColumn(
+      spacing: size6(context),
+      children: [
+        AppActionButton.flexible(
+          text: 'DOUBLE',
+          fontSize: 18,
+          color: AppColors.white,
+          onPressed: () => context
+              .read<Bloc<KeyBoardEvent, KeyBoardState>>()
+              .add(const KeyBoardEvent.doubleHitPressed()),
+        ),
+        Expanded(
+          child: AppRow(
+            spacing: size6(context),
+            children: [
+              AppActionButton.flexible(
+                text: 'MISSED',
+                fontSize: 18,
+                color: AppColors.white,
+                onPressed: () => context
+                    .read<Bloc<KeyBoardEvent, KeyBoardState>>()
+                    .add(const KeyBoardEvent.missHitPressed()),
+              ),
+              AppActionButton.flexible(
+                fontSize: 14,
+                color: AppColors.white,
+                onPressed: () => context
+                    .read<Bloc<KeyBoardEvent, KeyBoardState>>()
+                    .add(const KeyBoardEvent.ereasePressed()),
+                icon: Image.asset(AppImages.chevronBackNew),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

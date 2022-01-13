@@ -14,9 +14,11 @@ import 'package:auto_route/auto_route.dart' as _i63;
 import 'package:flutter/material.dart' as _i64;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i67;
-import '../../application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart'
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
     as _i68;
-import '../../domain/play/abstract_player_snapshot.dart' as _i69;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
+    as _i69;
+import '../../domain/play/abstract_player_snapshot.dart' as _i70;
 import 'auth/auth_flow.dart' as _i1;
 import 'auth/modals/forgot_password/forgot_password_modal.dart' as _i4;
 import 'auth/modals/forgot_password/initial/initial_page.dart' as _i5;
@@ -1188,7 +1190,7 @@ class CheckoutDetailsModalRoute
     extends _i63.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
   CheckoutDetailsModalRoute(
       {_i66.Key? key,
-      required _i66.Bloc<_i68.CheckoutDetailsEvent, _i68.CheckoutDetailsState>
+      required _i66.Bloc<_i68.CheckoutDetailsEvent, _i69.CheckoutDetailsState>
           bloc})
       : super(CheckoutDetailsModalRoute.name,
             path: 'checkout-details-modal',
@@ -1202,7 +1204,7 @@ class CheckoutDetailsModalRouteArgs {
 
   final _i66.Key? key;
 
-  final _i66.Bloc<_i68.CheckoutDetailsEvent, _i68.CheckoutDetailsState> bloc;
+  final _i66.Bloc<_i68.CheckoutDetailsEvent, _i69.CheckoutDetailsState> bloc;
 
   @override
   String toString() {
@@ -1225,7 +1227,7 @@ class AdvancedSettingsModalRoute
     extends _i63.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
   AdvancedSettingsModalRoute(
       {_i66.Key? key,
-      required _i66.KtList<_i69.AbstractPlayerSnapshot> players})
+      required _i66.KtList<_i70.AbstractPlayerSnapshot> players})
       : super(AdvancedSettingsModalRoute.name,
             path: 'advanced-settings-modal',
             args: AdvancedSettingsModalRouteArgs(key: key, players: players));
@@ -1238,7 +1240,7 @@ class AdvancedSettingsModalRouteArgs {
 
   final _i66.Key? key;
 
-  final _i66.KtList<_i69.AbstractPlayerSnapshot> players;
+  final _i66.KtList<_i70.AbstractPlayerSnapshot> players;
 
   @override
   String toString() {

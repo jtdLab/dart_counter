@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_state.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'key_board_bloc.freezed.dart';
-part 'key_board_event.dart';
-part 'key_board_state.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_event.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_state.dart';
 
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
@@ -24,9 +24,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           const KeyBoardState.initial(),
         ) {
     // register event handlers
-    on<_DoubleHitPressed>((_, __) => _mapDoubleHitPressedToState());
-    on<_MissHitPressed>((_, __) => _mapMissHitPressedToState());
-    on<_EreasePressed>((_, __) => _mapEreasePressedToState());
+    on<DoubleHitPressed>((_, __) => _mapDoubleHitPressedToState());
+    on<MissHitPressed>((_, __) => _mapMissHitPressedToState());
+    on<EreasePressed>((_, __) => _mapEreasePressedToState());
   }
 
   void _mapDoubleHitPressedToState() {
