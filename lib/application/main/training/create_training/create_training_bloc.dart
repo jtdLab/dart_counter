@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
@@ -32,8 +33,6 @@ class CreateTrainingBloc
   AbstractITrainingService _trainingService;
   final IUserService _userService;
 
-  late StreamSubscription _snapshotsSubscription;
-
   CreateTrainingBloc(
     // TODO remove
     /**
@@ -61,7 +60,10 @@ class CreateTrainingBloc
           */
         ) {
     // register event handlers
-    on<_Created>((_, emit) async => _mapCreatedToState(emit));
+    on<_Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
     on<_PlayerAdded>((_, __) => _mapPlayerAddedToState());
     on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
     on<_PlayerReordered>(
@@ -72,36 +74,19 @@ class CreateTrainingBloc
     );
     on<_TypeChanged>(
       (event, emit) async => _mapTypeChangedToState(event, emit),
+      transformer: restartable(),
     );
-    on<_Started>((_, __) => _mapStartedToState());
-    on<_Canceled>((_, __) => _mapCanceledToState());
-    on<_SnapshotReceived>(
-      (event, emit) => _mapSnapshotReceivedToState(event, emit),
-    );
+    on<_TrainingStarted>((_, __) => _mapTrainingStartedToState());
+    on<_TrainingCanceled>((_, __) => _mapTrainingCanceledToState());
   }
 
-  Future<void> _mapCreatedToState(
+  Future<void> _mapStartedToState(
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
-    final user = _userService.getUser().fold(
-          (failure) => null,
-          (user) => user,
-        );
-
-    if (user != null) {
-      _trainingService.createGame(owner: user);
-
-      final gameSnapshots = _trainingService.watchGame();
-      _snapshotsSubscription = gameSnapshots.listen((gameSnapshot) {
-        add(
-          CreateTrainingEvent.snapshotReceived(gameSnapshot: gameSnapshot),
-        );
-      });
-
-      final gameSnapshot = await gameSnapshots.first;
-
-      emit(gameSnapshot);
-    }
+    await emit.forEach<AbstractTrainingGameSnapshot>(
+      _trainingService.watchGame(),
+      onData: (gameSnapshot) => gameSnapshot,
+    );
   }
 
   void _mapPlayerAddedToState() {
@@ -150,8 +135,6 @@ class CreateTrainingBloc
         );
 
     if (user != null) {
-      await _snapshotsSubscription.cancel();
-
       final newType = event.newType;
 
       _trainingService.cancel();
@@ -186,43 +169,23 @@ class CreateTrainingBloc
           break;
       }
 
-      _snapshotsSubscription =
-          _trainingService.watchGame().listen((gameSnapshot) {
-        add(
-          CreateTrainingEvent.snapshotReceived(
-            gameSnapshot: gameSnapshot,
-          ),
-        );
-      });
-
       _trainingService.createGame(
         owner: user,
         players: players,
       );
+
+      await emit.forEach<AbstractTrainingGameSnapshot>(
+        _trainingService.watchGame(),
+        onData: (gameSnapshot) => gameSnapshot,
+      );
     }
   }
 
-  void _mapStartedToState() {
+  void _mapTrainingStartedToState() {
     _trainingService.start();
   }
 
-  void _mapCanceledToState() {
+  void _mapTrainingCanceledToState() {
     _trainingService.cancel();
-  }
-
-  void _mapSnapshotReceivedToState(
-    _SnapshotReceived event,
-    Emitter<AbstractTrainingGameSnapshot> emit,
-  ) {
-    final snapshot = event.gameSnapshot;
-
-    emit(event.gameSnapshot);
-  }
-
-  @override
-  Future<void> close() {
-    _snapshotsSubscription.cancel();
-
-    return super.close();
   }
 }

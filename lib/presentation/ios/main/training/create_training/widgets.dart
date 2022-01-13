@@ -627,7 +627,7 @@ class _PlayButton extends StatelessWidget {
       onPressed: () {
         context
             .read<CreateTrainingBloc>()
-            .add(const CreateTrainingEvent.started());
+            .add(const CreateTrainingEvent.trainingStarted());
       },
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.play.tr().toUpperCase(),

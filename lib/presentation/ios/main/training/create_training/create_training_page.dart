@@ -27,7 +27,8 @@ class CreateTrainingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<CreateTrainingBloc>(),
+      create: (context) =>
+          getIt<CreateTrainingBloc>()..add(const CreateTrainingEvent.started()),
       child: BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
         listenWhen: (oldState, newState) => oldState.status != newState.status,
         listener: (context, gameSnapshot) {
@@ -74,14 +75,17 @@ class CreateTrainingPage extends StatelessWidget {
                   PageRouteBuilder(
                     reverseTransitionDuration: Duration.zero,
                     opaque: false,
-                    pageBuilder: (context, _, __) => Builder(
-                      builder: (context) => YouReallyWantToCancelGameDialog(
-                        onYesPressed: () {
-                          context.read<CreateTrainingBloc>().add(
-                                const CreateTrainingEvent.canceled(),
-                              );
-                          context.router.replace(const HomePageRoute());
-                        },
+                    pageBuilder: (context, _, __) => BlocProvider(
+                      create: (context) => context.read<CreateTrainingBloc>(),
+                      child: Builder(
+                        builder: (context) => YouReallyWantToCancelGameDialog(
+                          onYesPressed: () {
+                            context.read<CreateTrainingBloc>().add(
+                                  const CreateTrainingEvent.trainingCanceled(),
+                                );
+                            context.router.replace(const HomePageRoute());
+                          },
+                        ),
                       ),
                     ),
                   ),

@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CreateTrainingEventTearOff {
   const _$CreateTrainingEventTearOff();
 
-  _Created created() {
-    return const _Created();
+  _Started started() {
+    return const _Started();
   }
 
   _PlayerAdded playerAdded() {
@@ -53,12 +53,12 @@ class _$CreateTrainingEventTearOff {
     );
   }
 
-  _Started started() {
-    return const _Started();
+  _TrainingStarted trainingStarted() {
+    return const _TrainingStarted();
   }
 
-  _Canceled canceled() {
-    return const _Canceled();
+  _TrainingCanceled trainingCanceled() {
+    return const _TrainingCanceled();
   }
 
   _SingleDoubleModeChanged singleDoubleModeChanged({required Mode newMode}) {
@@ -79,13 +79,6 @@ class _$CreateTrainingEventTearOff {
       newMode: newMode,
     );
   }
-
-  _SnapshotReceived snapshotReceived(
-      {required AbstractTrainingGameSnapshot gameSnapshot}) {
-    return _SnapshotReceived(
-      gameSnapshot: gameSnapshot,
-    );
-  }
 }
 
 /// @nodoc
@@ -95,106 +88,97 @@ const $CreateTrainingEvent = _$CreateTrainingEventTearOff();
 mixin _$CreateTrainingEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -218,36 +202,36 @@ class _$CreateTrainingEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreatedCopyWith<$Res> {
-  factory _$CreatedCopyWith(_Created value, $Res Function(_Created) then) =
-      __$CreatedCopyWithImpl<$Res>;
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CreatedCopyWithImpl<$Res>
+class __$StartedCopyWithImpl<$Res>
     extends _$CreateTrainingEventCopyWithImpl<$Res>
-    implements _$CreatedCopyWith<$Res> {
-  __$CreatedCopyWithImpl(_Created _value, $Res Function(_Created) _then)
-      : super(_value, (v) => _then(v as _Created));
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
 
   @override
-  _Created get _value => super._value as _Created;
+  _Started get _value => super._value as _Started;
 }
 
 /// @nodoc
 
-class _$_Created implements _Created {
-  const _$_Created();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
-    return 'CreateTrainingEvent.created()';
+    return 'CreateTrainingEvent.started()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Created);
+        (other.runtimeType == runtimeType && other is _Started);
   }
 
   @override
@@ -256,63 +240,57 @@ class _$_Created implements _Created {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
-    return created();
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
-    return created?.call();
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
-    if (created != null) {
-      return created();
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -320,71 +298,68 @@ class _$_Created implements _Created {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
-    return created(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
-    return created?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
-    if (created != null) {
-      return created(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _Created implements CreateTrainingEvent {
-  const factory _Created() = _$_Created;
+abstract class _Started implements CreateTrainingEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
@@ -428,19 +403,17 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return playerAdded();
   }
@@ -448,19 +421,17 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return playerAdded?.call();
   }
@@ -468,19 +439,17 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -492,20 +461,19 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerAdded(this);
   }
@@ -513,19 +481,18 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerAdded?.call(this);
   }
@@ -533,19 +500,18 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -624,19 +590,17 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return playerRemoved(index);
   }
@@ -644,19 +608,17 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return playerRemoved?.call(index);
   }
@@ -664,19 +626,17 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -688,20 +648,19 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerRemoved(this);
   }
@@ -709,19 +668,18 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerRemoved?.call(this);
   }
@@ -729,19 +687,18 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -835,19 +792,17 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return playerReordered(oldIndex, newIndex);
   }
@@ -855,19 +810,17 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return playerReordered?.call(oldIndex, newIndex);
   }
@@ -875,19 +828,17 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -899,20 +850,19 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerReordered(this);
   }
@@ -920,19 +870,18 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerReordered?.call(this);
   }
@@ -940,19 +889,18 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -1048,19 +996,17 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return playerNameUpdated(index, newName);
   }
@@ -1068,19 +1014,17 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return playerNameUpdated?.call(index, newName);
   }
@@ -1088,19 +1032,17 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1112,20 +1054,19 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerNameUpdated(this);
   }
@@ -1133,19 +1074,18 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerNameUpdated?.call(this);
   }
@@ -1153,19 +1093,18 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1251,19 +1190,17 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return typeChanged(newType);
   }
@@ -1271,19 +1208,17 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return typeChanged?.call(newType);
   }
@@ -1291,19 +1226,17 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (typeChanged != null) {
@@ -1315,20 +1248,19 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return typeChanged(this);
   }
@@ -1336,19 +1268,18 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return typeChanged?.call(this);
   }
@@ -1356,19 +1287,18 @@ class _$_TypeChanged implements _TypeChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (typeChanged != null) {
@@ -1388,36 +1318,38 @@ abstract class _TypeChanged implements CreateTrainingEvent {
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$TrainingStartedCopyWith<$Res> {
+  factory _$TrainingStartedCopyWith(
+          _TrainingStarted value, $Res Function(_TrainingStarted) then) =
+      __$TrainingStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res>
+class __$TrainingStartedCopyWithImpl<$Res>
     extends _$CreateTrainingEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+    implements _$TrainingStartedCopyWith<$Res> {
+  __$TrainingStartedCopyWithImpl(
+      _TrainingStarted _value, $Res Function(_TrainingStarted) _then)
+      : super(_value, (v) => _then(v as _TrainingStarted));
 
   @override
-  _Started get _value => super._value as _Started;
+  _TrainingStarted get _value => super._value as _TrainingStarted;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_TrainingStarted implements _TrainingStarted {
+  const _$_TrainingStarted();
 
   @override
   String toString() {
-    return 'CreateTrainingEvent.started()';
+    return 'CreateTrainingEvent.trainingStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Started);
+        (other.runtimeType == runtimeType && other is _TrainingStarted);
   }
 
   @override
@@ -1426,63 +1358,57 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
-    return started();
+    return trainingStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
-    return started?.call();
+    return trainingStarted?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (trainingStarted != null) {
+      return trainingStarted();
     }
     return orElse();
   }
@@ -1490,104 +1416,103 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
-    return started(this);
+    return trainingStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
-    return started?.call(this);
+    return trainingStarted?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (trainingStarted != null) {
+      return trainingStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements CreateTrainingEvent {
-  const factory _Started() = _$_Started;
+abstract class _TrainingStarted implements CreateTrainingEvent {
+  const factory _TrainingStarted() = _$_TrainingStarted;
 }
 
 /// @nodoc
-abstract class _$CanceledCopyWith<$Res> {
-  factory _$CanceledCopyWith(_Canceled value, $Res Function(_Canceled) then) =
-      __$CanceledCopyWithImpl<$Res>;
+abstract class _$TrainingCanceledCopyWith<$Res> {
+  factory _$TrainingCanceledCopyWith(
+          _TrainingCanceled value, $Res Function(_TrainingCanceled) then) =
+      __$TrainingCanceledCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CanceledCopyWithImpl<$Res>
+class __$TrainingCanceledCopyWithImpl<$Res>
     extends _$CreateTrainingEventCopyWithImpl<$Res>
-    implements _$CanceledCopyWith<$Res> {
-  __$CanceledCopyWithImpl(_Canceled _value, $Res Function(_Canceled) _then)
-      : super(_value, (v) => _then(v as _Canceled));
+    implements _$TrainingCanceledCopyWith<$Res> {
+  __$TrainingCanceledCopyWithImpl(
+      _TrainingCanceled _value, $Res Function(_TrainingCanceled) _then)
+      : super(_value, (v) => _then(v as _TrainingCanceled));
 
   @override
-  _Canceled get _value => super._value as _Canceled;
+  _TrainingCanceled get _value => super._value as _TrainingCanceled;
 }
 
 /// @nodoc
 
-class _$_Canceled implements _Canceled {
-  const _$_Canceled();
+class _$_TrainingCanceled implements _TrainingCanceled {
+  const _$_TrainingCanceled();
 
   @override
   String toString() {
-    return 'CreateTrainingEvent.canceled()';
+    return 'CreateTrainingEvent.trainingCanceled()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Canceled);
+        (other.runtimeType == runtimeType && other is _TrainingCanceled);
   }
 
   @override
@@ -1596,63 +1521,57 @@ class _$_Canceled implements _Canceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
-    return canceled();
+    return trainingCanceled();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
-    return canceled?.call();
+    return trainingCanceled?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
-    if (canceled != null) {
-      return canceled();
+    if (trainingCanceled != null) {
+      return trainingCanceled();
     }
     return orElse();
   }
@@ -1660,71 +1579,68 @@ class _$_Canceled implements _Canceled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
-    return canceled(this);
+    return trainingCanceled(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
-    return canceled?.call(this);
+    return trainingCanceled?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
-    if (canceled != null) {
-      return canceled(this);
+    if (trainingCanceled != null) {
+      return trainingCanceled(this);
     }
     return orElse();
   }
 }
 
-abstract class _Canceled implements CreateTrainingEvent {
-  const factory _Canceled() = _$_Canceled;
+abstract class _TrainingCanceled implements CreateTrainingEvent {
+  const factory _TrainingCanceled() = _$_TrainingCanceled;
 }
 
 /// @nodoc
@@ -1794,19 +1710,17 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return singleDoubleModeChanged(newMode);
   }
@@ -1814,19 +1728,17 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return singleDoubleModeChanged?.call(newMode);
   }
@@ -1834,19 +1746,17 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (singleDoubleModeChanged != null) {
@@ -1858,20 +1768,19 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return singleDoubleModeChanged(this);
   }
@@ -1879,19 +1788,18 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return singleDoubleModeChanged?.call(this);
   }
@@ -1899,19 +1807,18 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (singleDoubleModeChanged != null) {
@@ -1998,19 +1905,17 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return numberOfTakesChanged(newNumberOfTakes);
   }
@@ -2018,19 +1923,17 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return numberOfTakesChanged?.call(newNumberOfTakes);
   }
@@ -2038,19 +1941,17 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (numberOfTakesChanged != null) {
@@ -2062,20 +1963,19 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return numberOfTakesChanged(this);
   }
@@ -2083,19 +1983,18 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return numberOfTakesChanged?.call(this);
   }
@@ -2103,19 +2002,18 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (numberOfTakesChanged != null) {
@@ -2203,19 +2101,17 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() created,
+    required TResult Function() started,
     required TResult Function() playerAdded,
     required TResult Function(int index) playerRemoved,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function(int index, String newName) playerNameUpdated,
     required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged(newMode);
   }
@@ -2223,19 +2119,17 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged?.call(newMode);
   }
@@ -2243,19 +2137,17 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
+    TResult Function()? started,
     TResult Function()? playerAdded,
     TResult Function(int index)? playerRemoved,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function(int index, String newName)? playerNameUpdated,
     TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
     required TResult orElse(),
   }) {
     if (bobsTwentySevenModeChanged != null) {
@@ -2267,20 +2159,19 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
+    required TResult Function(_Started value) started,
     required TResult Function(_PlayerAdded value) playerAdded,
     required TResult Function(_PlayerRemoved value) playerRemoved,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
     required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
     required TResult Function(_SingleDoubleModeChanged value)
         singleDoubleModeChanged,
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged(this);
   }
@@ -2288,19 +2179,18 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged?.call(this);
   }
@@ -2308,19 +2198,18 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
+    TResult Function(_Started value)? started,
     TResult Function(_PlayerAdded value)? playerAdded,
     TResult Function(_PlayerRemoved value)? playerRemoved,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
     TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
     TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (bobsTwentySevenModeChanged != null) {
@@ -2338,208 +2227,4 @@ abstract class _BobsTwentySevenModeChanged implements CreateTrainingEvent {
   @JsonKey(ignore: true)
   _$BobsTwentySevenModeChangedCopyWith<_BobsTwentySevenModeChanged>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$SnapshotReceivedCopyWith<$Res> {
-  factory _$SnapshotReceivedCopyWith(
-          _SnapshotReceived value, $Res Function(_SnapshotReceived) then) =
-      __$SnapshotReceivedCopyWithImpl<$Res>;
-  $Res call({AbstractTrainingGameSnapshot gameSnapshot});
-}
-
-/// @nodoc
-class __$SnapshotReceivedCopyWithImpl<$Res>
-    extends _$CreateTrainingEventCopyWithImpl<$Res>
-    implements _$SnapshotReceivedCopyWith<$Res> {
-  __$SnapshotReceivedCopyWithImpl(
-      _SnapshotReceived _value, $Res Function(_SnapshotReceived) _then)
-      : super(_value, (v) => _then(v as _SnapshotReceived));
-
-  @override
-  _SnapshotReceived get _value => super._value as _SnapshotReceived;
-
-  @override
-  $Res call({
-    Object? gameSnapshot = freezed,
-  }) {
-    return _then(_SnapshotReceived(
-      gameSnapshot: gameSnapshot == freezed
-          ? _value.gameSnapshot
-          : gameSnapshot // ignore: cast_nullable_to_non_nullable
-              as AbstractTrainingGameSnapshot,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SnapshotReceived implements _SnapshotReceived {
-  const _$_SnapshotReceived({required this.gameSnapshot});
-
-  @override
-  final AbstractTrainingGameSnapshot gameSnapshot;
-
-  @override
-  String toString() {
-    return 'CreateTrainingEvent.snapshotReceived(gameSnapshot: $gameSnapshot)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SnapshotReceived &&
-            const DeepCollectionEquality()
-                .equals(other.gameSnapshot, gameSnapshot));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(gameSnapshot));
-
-  @JsonKey(ignore: true)
-  @override
-  _$SnapshotReceivedCopyWith<_SnapshotReceived> get copyWith =>
-      __$SnapshotReceivedCopyWithImpl<_SnapshotReceived>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() created,
-    required TResult Function() playerAdded,
-    required TResult Function(int index) playerRemoved,
-    required TResult Function(int oldIndex, int newIndex) playerReordered,
-    required TResult Function(int index, String newName) playerNameUpdated,
-    required TResult Function(Type newType) typeChanged,
-    required TResult Function() started,
-    required TResult Function() canceled,
-    required TResult Function(Mode newMode) singleDoubleModeChanged,
-    required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
-    required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
-    required TResult Function(AbstractTrainingGameSnapshot gameSnapshot)
-        snapshotReceived,
-  }) {
-    return snapshotReceived(gameSnapshot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? created,
-    TResult Function()? playerAdded,
-    TResult Function(int index)? playerRemoved,
-    TResult Function(int oldIndex, int newIndex)? playerReordered,
-    TResult Function(int index, String newName)? playerNameUpdated,
-    TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
-    TResult Function(Mode newMode)? singleDoubleModeChanged,
-    TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
-    TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
-  }) {
-    return snapshotReceived?.call(gameSnapshot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? created,
-    TResult Function()? playerAdded,
-    TResult Function(int index)? playerRemoved,
-    TResult Function(int oldIndex, int newIndex)? playerReordered,
-    TResult Function(int index, String newName)? playerNameUpdated,
-    TResult Function(Type newType)? typeChanged,
-    TResult Function()? started,
-    TResult Function()? canceled,
-    TResult Function(Mode newMode)? singleDoubleModeChanged,
-    TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
-    TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
-    TResult Function(AbstractTrainingGameSnapshot gameSnapshot)?
-        snapshotReceived,
-    required TResult orElse(),
-  }) {
-    if (snapshotReceived != null) {
-      return snapshotReceived(gameSnapshot);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Created value) created,
-    required TResult Function(_PlayerAdded value) playerAdded,
-    required TResult Function(_PlayerRemoved value) playerRemoved,
-    required TResult Function(_PlayerReordered value) playerReordered,
-    required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
-    required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Canceled value) canceled,
-    required TResult Function(_SingleDoubleModeChanged value)
-        singleDoubleModeChanged,
-    required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
-    required TResult Function(_BobsTwentySevenModeChanged value)
-        bobsTwentySevenModeChanged,
-    required TResult Function(_SnapshotReceived value) snapshotReceived,
-  }) {
-    return snapshotReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Created value)? created,
-    TResult Function(_PlayerAdded value)? playerAdded,
-    TResult Function(_PlayerRemoved value)? playerRemoved,
-    TResult Function(_PlayerReordered value)? playerReordered,
-    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
-    TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
-    TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
-    TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
-    TResult Function(_BobsTwentySevenModeChanged value)?
-        bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
-  }) {
-    return snapshotReceived?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Created value)? created,
-    TResult Function(_PlayerAdded value)? playerAdded,
-    TResult Function(_PlayerRemoved value)? playerRemoved,
-    TResult Function(_PlayerReordered value)? playerReordered,
-    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
-    TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_Started value)? started,
-    TResult Function(_Canceled value)? canceled,
-    TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
-    TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
-    TResult Function(_BobsTwentySevenModeChanged value)?
-        bobsTwentySevenModeChanged,
-    TResult Function(_SnapshotReceived value)? snapshotReceived,
-    required TResult orElse(),
-  }) {
-    if (snapshotReceived != null) {
-      return snapshotReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SnapshotReceived implements CreateTrainingEvent {
-  const factory _SnapshotReceived(
-          {required AbstractTrainingGameSnapshot gameSnapshot}) =
-      _$_SnapshotReceived;
-
-  AbstractTrainingGameSnapshot get gameSnapshot;
-  @JsonKey(ignore: true)
-  _$SnapshotReceivedCopyWith<_SnapshotReceived> get copyWith =>
-      throw _privateConstructorUsedError;
 }
