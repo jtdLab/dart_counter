@@ -94,27 +94,19 @@ class InOnlineGamePage extends StatelessWidget {
           },
           child: AppPage(
             navigationBar: AppNavigationBar(
-              leading: CancelButton(
-                onPressed: () {
-                  // show overlay // TODO to complicated thiis is only workaround
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      reverseTransitionDuration: Duration.zero,
-                      opaque: false,
-                      pageBuilder: (context, _, __) => BlocProvider(
-                        create: (context) => getIt<InOnlineGameBloc>(),
-                        child: Builder(
-                          builder: (context) => YouReallyWantToCancelGameDialog(
-                            onYesPressed: () =>
-                                context.read<InOnlineGameBloc>().add(
-                                      const InGameEvent.gameCanceled(),
-                                    ),
-                          ),
-                        ),
+              leading: Builder(
+                builder: (context) => CancelButton(
+                  onPressed: () {
+                    context.router.push(
+                      YouReallyWantToCancelGameDialogRoute(
+                        onYesPressed: () =>
+                            context.read<InOnlineGameBloc>().add(
+                                  const InGameEvent.gameCanceled(),
+                                ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
               middle: Text(
                 gameSnapshot.description(),

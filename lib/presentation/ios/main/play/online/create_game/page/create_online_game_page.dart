@@ -45,26 +45,19 @@ class CreateOnlineGamePage extends StatelessWidget {
         child: AppPage(
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
-            leading: CancelButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    reverseTransitionDuration: Duration.zero,
-                    opaque: false,
-                    pageBuilder: (context, _, __) => BlocProvider(
-                      create: (context) => createOnlineGameBloc,
-                      child: Builder(
-                        builder: (context) => YouReallyWantToCancelGameDialog(
-                          onYesPressed: () =>
-                              context.read<CreateOnlineGameBloc>().add(
-                                    const CreateOnlineGameEvent.gameCanceled(),
-                                  ),
-                        ),
-                      ),
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () {
+                  context.router.push(
+                    YouReallyWantToCancelGameDialogRoute(
+                      onYesPressed: () =>
+                          context.read<CreateOnlineGameBloc>().add(
+                                const CreateOnlineGameEvent.gameCanceled(),
+                              ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
             middle: Text(
               LocaleKeys.createGame.tr().toUpperCase(),

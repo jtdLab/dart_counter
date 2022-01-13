@@ -48,6 +48,7 @@ import 'package:dart_counter/presentation/ios/main/settings/modals/change_userna
 import 'package:dart_counter/presentation/ios/main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_page.dart';
@@ -55,6 +56,12 @@ import 'package:dart_counter/presentation/ios/main/training/in_training/score/in
 import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/post_training/post_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
+
+const youReallyWantToCancelGameDialog = CustomRoute(
+  page: YouReallyWantToCancelGameDialog,
+  opaque: false,
+  reverseDurationInMilliseconds: 0,
+);
 
 /// Setup auto route.
 ///
@@ -203,6 +210,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
               initial: true,
               page: CreateOfflineGameFlow,
               children: [
+                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -217,6 +225,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
             CupertinoRoute(
               page: InOfflineGameFlow,
               children: [
+                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -248,6 +257,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
               initial: true,
               page: CreateOnlineGameFlow,
               children: [
+                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -262,6 +272,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
             CupertinoRoute(
               page: InOnlineGameFlow,
               children: [
+                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -289,6 +300,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
         CupertinoRoute(
           page: TrainingFlow,
           children: [
+            // TODO make all of them to flow and add cancel dialog as a route
             CupertinoRoute(
               initial: true,
               page: CreateTrainingPage,

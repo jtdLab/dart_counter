@@ -10,19 +10,21 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i57;
-import 'package:flutter/material.dart' as _i58;
+import 'package:auto_route/auto_route.dart' as _i58;
+import 'package:flutter/material.dart' as _i59;
 
-import '../../application/main/game_history/game_history_bloc.dart' as _i61;
-import '../../application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart'
-    as _i62;
-import '../../domain/play/abstract_player_snapshot.dart' as _i63;
+import '../../application/main/game_history/game_history_bloc.dart' as _i62;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
+    as _i63;
+import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
+    as _i64;
+import '../../domain/play/abstract_player_snapshot.dart' as _i65;
 import 'auth/auth_flow.dart' as _i1;
 import 'auth/modals/forgot_password/forgot_password_modal.dart' as _i4;
 import 'auth/modals/forgot_password/initial/initial_page.dart' as _i5;
 import 'auth/modals/forgot_password/success/success_page.dart' as _i6;
 import 'auth/page/auth_page.dart' as _i3;
-import 'core/core.dart' as _i60;
+import 'core/core.dart' as _i61;
 import 'main/contact/contact_page.dart' as _i10;
 import 'main/friends/friends_flow.dart' as _i12;
 import 'main/friends/overview/modals/more/more_modal.dart' as _i32;
@@ -39,26 +41,26 @@ import 'main/home/home_page.dart' as _i7;
 import 'main/main_flow.dart' as _i2;
 import 'main/play/offline/create_game/create_offline_game_flow.dart' as _i36;
 import 'main/play/offline/create_game/page/create_offline_game_page.dart'
-    as _i39;
+    as _i40;
 import 'main/play/offline/in_game/in_offline_game_flow.dart' as _i37;
 import 'main/play/offline/in_game/modals/stats/offline_stats_modal.dart'
-    as _i43;
-import 'main/play/offline/in_game/page/in_offline_game_page.dart' as _i41;
+    as _i44;
+import 'main/play/offline/in_game/page/in_offline_game_page.dart' as _i42;
 import 'main/play/offline/play_offline_flow.dart' as _i15;
 import 'main/play/offline/post_game/post_offline_game_page.dart' as _i38;
-import 'main/play/online/create_game/create_online_game_flow.dart' as _i45;
-import 'main/play/online/create_game/page/create_online_game_page.dart' as _i48;
-import 'main/play/online/in_game/in_online_game_flow.dart' as _i46;
-import 'main/play/online/in_game/modals/stats/online_stats_modal.dart' as _i50;
-import 'main/play/online/in_game/page/in_online_game_page.dart' as _i49;
+import 'main/play/online/create_game/create_online_game_flow.dart' as _i46;
+import 'main/play/online/create_game/page/create_online_game_page.dart' as _i49;
+import 'main/play/online/in_game/in_online_game_flow.dart' as _i47;
+import 'main/play/online/in_game/modals/stats/online_stats_modal.dart' as _i51;
+import 'main/play/online/in_game/page/in_online_game_page.dart' as _i50;
 import 'main/play/online/play_online_flow.dart' as _i16;
-import 'main/play/online/post_game/post_online_game_page.dart' as _i47;
+import 'main/play/online/post_game/post_online_game_page.dart' as _i48;
 import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart'
-    as _i40;
+    as _i41;
 import 'main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart'
-    as _i44;
+    as _i45;
 import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart'
-    as _i42;
+    as _i43;
 import 'main/privacy_policy/privacy_policy_page.dart' as _i9;
 import 'main/profile/profile_page.dart' as _i13;
 import 'main/settings/modals/change_email/change_email_modal.dart' as _i19;
@@ -76,558 +78,585 @@ import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart'
     as _i22;
 import 'main/settings/page/settings_page.dart' as _i18;
 import 'main/settings/settings_flow.dart' as _i8;
-import 'main/training/create_training/create_training_page.dart' as _i51;
+import 'main/shared/widgets.dart' as _i39;
+import 'main/training/create_training/create_training_page.dart' as _i52;
 import 'main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart'
-    as _i52;
-import 'main/training/in_training/double/in_double_training_page.dart' as _i53;
-import 'main/training/in_training/score/in_score_training_page.dart' as _i54;
-import 'main/training/in_training/single/in_single_training_page.dart' as _i55;
-import 'main/training/post_training/post_training_page.dart' as _i56;
+    as _i53;
+import 'main/training/in_training/double/in_double_training_page.dart' as _i54;
+import 'main/training/in_training/score/in_score_training_page.dart' as _i55;
+import 'main/training/in_training/single/in_single_training_page.dart' as _i56;
+import 'main/training/post_training/post_training_page.dart' as _i57;
 import 'main/training/training_flow.dart' as _i17;
-import 'router.dart' as _i59;
+import 'router.dart' as _i60;
 
-class Router extends _i57.RootStackRouter {
-  Router([_i58.GlobalKey<_i58.NavigatorState>? navigatorKey])
+class Router extends _i58.RootStackRouter {
+  Router([_i59.GlobalKey<_i59.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i57.PageFactory> pagesMap = {
+  final Map<String, _i58.PageFactory> pagesMap = {
     AuthFlowRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i1.AuthFlow(),
           opaque: true,
           barrierDismissible: false);
     },
     MainFlowRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i2.MainFlow(),
           opaque: true,
           barrierDismissible: false);
     },
     AuthPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i3.AuthPage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ForgotPasswordModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i4.ForgotPasswordModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ForgotPasswordInitialPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i5.ForgotPasswordInitialPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ForgotPasswordSuccessPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i6.ForgotPasswordSuccessPage(),
           opaque: true,
           barrierDismissible: false);
     },
     HomePageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: _i7.HomePage(),
           opaque: true,
           barrierDismissible: false);
     },
     SettingsFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i8.SettingsFlow());
     },
     PrivacyPolicyPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i9.PrivacyPolicyPage());
     },
     ContactPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i10.ContactPage());
     },
     GameInvitationsPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i11.GameInvitationsPage());
     },
     FriendsFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i12.FriendsFlow());
     },
     ProfilePageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i13.ProfilePage());
     },
     GameHistoryFlowRoute.name: (routeData) {
       final args = routeData.argsAs<GameHistoryFlowRouteArgs>();
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData,
           child: _i14.GameHistoryFlow(
               key: args.key, gameHistoryBloc: args.gameHistoryBloc));
     },
     PlayOfflineFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i15.PlayOfflineFlow());
     },
     PlayOnlineFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i16.PlayOnlineFlow());
     },
     TrainingFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i17.TrainingFlow());
     },
     SettingsPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i18.SettingsPage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ChangeEmailModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i19.ChangeEmailModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ChangePasswordModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i20.ChangePasswordModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ChangeUsernameModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i21.ChangeUsernameModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     EditProfileImageModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: _i22.EditProfileImageModal(),
-          customRouteBuilder: _i59.notExpandedModalRouteBuilder,
+          customRouteBuilder: _i60.notExpandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     ChangeEmailInitialPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i23.ChangeEmailInitialPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ChangeEmailSuccessPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i24.ChangeEmailSuccessPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ChangePasswordInitialPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i25.ChangePasswordInitialPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ChangePasswordSuccessPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i26.ChangePasswordSuccessPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ChangeUsernameInitialPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i27.ChangeUsernameInitialPage(),
           opaque: true,
           barrierDismissible: false);
     },
     ChangeUsernameSuccessPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i28.ChangeUsernameSuccessPage(),
           opaque: true,
           barrierDismissible: false);
     },
     FriendsOverviewFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i29.FriendsOverviewFlow());
     },
     FriendsProfilePageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i30.FriendsProfilePage());
     },
     FriendsOverviewPageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i31.FriendsOverviewPage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     MoreModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: _i32.MoreModal(),
-          customRouteBuilder: _i59.notExpandedModalRouteBuilder,
+          customRouteBuilder: _i60.notExpandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     SearchUserModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i33.SearchUserModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     GameHistoryOverviewPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i34.GameHistoryOverviewPage());
     },
     GameHistoryDetailsPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i35.GameHistoryDetailsPage());
     },
     CreateOfflineGameFlowRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child: const _i36.CreateOfflineGameFlow(),
           opaque: true,
           barrierDismissible: false);
     },
     InOfflineGameFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i37.InOfflineGameFlow());
     },
     PostOfflineGamePageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData, child: const _i38.PostOfflineGamePage());
     },
-    CreateOfflineGamePageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+    YouReallyWantToCancelGameDialogRoute.name: (routeData) {
+      final args = routeData.argsAs<YouReallyWantToCancelGameDialogRouteArgs>();
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i39.CreateOfflineGamePage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          child: _i39.YouReallyWantToCancelGameDialog(
+              key: args.key, onYesPressed: args.onYesPressed),
+          reverseDurationInMilliseconds: 0,
+          opaque: false,
+          barrierDismissible: false);
+    },
+    CreateOfflineGamePageRoute.name: (routeData) {
+      return _i58.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i40.CreateOfflineGamePage(),
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     CreateGameAdvancedSettingsModalRoute.name: (routeData) {
       final args = routeData.argsAs<CreateGameAdvancedSettingsModalRouteArgs>();
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i40.CreateGameAdvancedSettingsModal(
+          child: _i41.CreateGameAdvancedSettingsModal(
               key: args.key, index: args.index),
-          customRouteBuilder: _i59.notExpandedModalRouteBuilder,
+          customRouteBuilder: _i60.notExpandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     InOfflineGamePageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i41.InOfflineGamePage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          child: const _i42.InOfflineGamePage(),
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     CheckoutDetailsModalRoute.name: (routeData) {
       final args = routeData.argsAs<CheckoutDetailsModalRouteArgs>();
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i42.CheckoutDetailsModal(key: args.key, bloc: args.bloc),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          child: _i43.CheckoutDetailsModal(key: args.key, bloc: args.bloc),
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     OfflineStatsModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i43.OfflineStatsModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          child: const _i44.OfflineStatsModal(),
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     AdvancedSettingsModalRoute.name: (routeData) {
       final args = routeData.argsAs<AdvancedSettingsModalRouteArgs>();
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
           child:
-              _i44.AdvancedSettingsModal(key: args.key, players: args.players),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+              _i45.AdvancedSettingsModal(key: args.key, players: args.players),
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     CreateOnlineGameFlowRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i45.CreateOnlineGameFlow(),
+          child: const _i46.CreateOnlineGameFlow(),
           opaque: true,
           barrierDismissible: false);
     },
     InOnlineGameFlowRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i46.InOnlineGameFlow());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i47.InOnlineGameFlow());
     },
     PostOnlineGamePageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i47.PostOnlineGamePage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i48.PostOnlineGamePage());
     },
     CreateOnlineGamePageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i48.CreateOnlineGamePage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          child: const _i49.CreateOnlineGamePage(),
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     InOnlineGamePageRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i49.InOnlineGamePage(),
-          customRouteBuilder: _i59.modalParentRouteBuilder,
+          child: const _i50.InOnlineGamePage(),
+          customRouteBuilder: _i60.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     OnlineStatsModalRoute.name: (routeData) {
-      return _i57.CustomPage<dynamic>(
+      return _i58.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i50.OnlineStatsModal(),
-          customRouteBuilder: _i59.expandedModalRouteBuilder,
+          child: const _i51.OnlineStatsModal(),
+          customRouteBuilder: _i60.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     CreateTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i51.CreateTrainingPage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i52.CreateTrainingPage());
     },
     InBobyTwentySeventTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
+      return _i58.CupertinoPageX<dynamic>(
           routeData: routeData,
-          child: const _i52.InBobyTwentySeventTrainingPage());
+          child: const _i53.InBobyTwentySeventTrainingPage());
     },
     InDoubleTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i53.InDoubleTrainingPage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i54.InDoubleTrainingPage());
     },
     InScoreTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i54.InScoreTrainingPage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i55.InScoreTrainingPage());
     },
     InSingleTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i55.InSingleTrainingPage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i56.InSingleTrainingPage());
     },
     PostTrainingPageRoute.name: (routeData) {
-      return _i57.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i56.PostTrainingPage());
+      return _i58.CupertinoPageX<dynamic>(
+          routeData: routeData, child: const _i57.PostTrainingPage());
     }
   };
 
   @override
-  List<_i57.RouteConfig> get routes => [
-        _i57.RouteConfig(AuthFlowRoute.name, path: '/auth-flow', children: [
-          _i57.RouteConfig(AuthPageRoute.name,
+  List<_i58.RouteConfig> get routes => [
+        _i58.RouteConfig(AuthFlowRoute.name, path: '/auth-flow', children: [
+          _i58.RouteConfig(AuthPageRoute.name,
               path: '', parent: AuthFlowRoute.name),
-          _i57.RouteConfig(ForgotPasswordModalRoute.name,
+          _i58.RouteConfig(ForgotPasswordModalRoute.name,
               path: 'forgot-password-modal',
               parent: AuthFlowRoute.name,
               children: [
-                _i57.RouteConfig(ForgotPasswordInitialPageRoute.name,
+                _i58.RouteConfig(ForgotPasswordInitialPageRoute.name,
                     path: '', parent: ForgotPasswordModalRoute.name),
-                _i57.RouteConfig(ForgotPasswordSuccessPageRoute.name,
+                _i58.RouteConfig(ForgotPasswordSuccessPageRoute.name,
                     path: 'forgot-password-success-page',
                     parent: ForgotPasswordModalRoute.name)
               ])
         ]),
-        _i57.RouteConfig(MainFlowRoute.name, path: '/main-flow', children: [
-          _i57.RouteConfig(HomePageRoute.name,
+        _i58.RouteConfig(MainFlowRoute.name, path: '/main-flow', children: [
+          _i58.RouteConfig(HomePageRoute.name,
               path: '', parent: MainFlowRoute.name),
-          _i57.RouteConfig(SettingsFlowRoute.name,
+          _i58.RouteConfig(SettingsFlowRoute.name,
               path: 'settings-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(SettingsPageRoute.name,
+                _i58.RouteConfig(SettingsPageRoute.name,
                     path: '', parent: SettingsFlowRoute.name),
-                _i57.RouteConfig(ChangeEmailModalRoute.name,
+                _i58.RouteConfig(ChangeEmailModalRoute.name,
                     path: 'change-email-modal',
                     parent: SettingsFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(ChangeEmailInitialPageRoute.name,
+                      _i58.RouteConfig(ChangeEmailInitialPageRoute.name,
                           path: '', parent: ChangeEmailModalRoute.name),
-                      _i57.RouteConfig(ChangeEmailSuccessPageRoute.name,
+                      _i58.RouteConfig(ChangeEmailSuccessPageRoute.name,
                           path: 'change-email-success-page',
                           parent: ChangeEmailModalRoute.name)
                     ]),
-                _i57.RouteConfig(ChangePasswordModalRoute.name,
+                _i58.RouteConfig(ChangePasswordModalRoute.name,
                     path: 'change-password-modal',
                     parent: SettingsFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(ChangePasswordInitialPageRoute.name,
+                      _i58.RouteConfig(ChangePasswordInitialPageRoute.name,
                           path: '', parent: ChangePasswordModalRoute.name),
-                      _i57.RouteConfig(ChangePasswordSuccessPageRoute.name,
+                      _i58.RouteConfig(ChangePasswordSuccessPageRoute.name,
                           path: 'change-password-success-page',
                           parent: ChangePasswordModalRoute.name)
                     ]),
-                _i57.RouteConfig(ChangeUsernameModalRoute.name,
+                _i58.RouteConfig(ChangeUsernameModalRoute.name,
                     path: 'change-username-modal',
                     parent: SettingsFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(ChangeUsernameInitialPageRoute.name,
+                      _i58.RouteConfig(ChangeUsernameInitialPageRoute.name,
                           path: '', parent: ChangeUsernameModalRoute.name),
-                      _i57.RouteConfig(ChangeUsernameSuccessPageRoute.name,
+                      _i58.RouteConfig(ChangeUsernameSuccessPageRoute.name,
                           path: 'change-username-success-page',
                           parent: ChangeUsernameModalRoute.name)
                     ]),
-                _i57.RouteConfig(EditProfileImageModalRoute.name,
+                _i58.RouteConfig(EditProfileImageModalRoute.name,
                     path: 'edit-profile-image-modal',
                     parent: SettingsFlowRoute.name)
               ]),
-          _i57.RouteConfig(PrivacyPolicyPageRoute.name,
+          _i58.RouteConfig(PrivacyPolicyPageRoute.name,
               path: 'privacy-policy-page', parent: MainFlowRoute.name),
-          _i57.RouteConfig(ContactPageRoute.name,
+          _i58.RouteConfig(ContactPageRoute.name,
               path: 'contact-page', parent: MainFlowRoute.name),
-          _i57.RouteConfig(GameInvitationsPageRoute.name,
+          _i58.RouteConfig(GameInvitationsPageRoute.name,
               path: 'game-invitations-page', parent: MainFlowRoute.name),
-          _i57.RouteConfig(FriendsFlowRoute.name,
+          _i58.RouteConfig(FriendsFlowRoute.name,
               path: 'friends-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(FriendsOverviewFlowRoute.name,
+                _i58.RouteConfig(FriendsOverviewFlowRoute.name,
                     path: '',
                     parent: FriendsFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(FriendsOverviewPageRoute.name,
+                      _i58.RouteConfig(FriendsOverviewPageRoute.name,
                           path: '', parent: FriendsOverviewFlowRoute.name),
-                      _i57.RouteConfig(MoreModalRoute.name,
+                      _i58.RouteConfig(MoreModalRoute.name,
                           path: 'more-modal',
                           parent: FriendsOverviewFlowRoute.name),
-                      _i57.RouteConfig(SearchUserModalRoute.name,
+                      _i58.RouteConfig(SearchUserModalRoute.name,
                           path: 'search-user-modal',
                           parent: FriendsOverviewFlowRoute.name)
                     ]),
-                _i57.RouteConfig(FriendsProfilePageRoute.name,
+                _i58.RouteConfig(FriendsProfilePageRoute.name,
                     path: 'friends-profile-page', parent: FriendsFlowRoute.name)
               ]),
-          _i57.RouteConfig(ProfilePageRoute.name,
+          _i58.RouteConfig(ProfilePageRoute.name,
               path: 'profile-page', parent: MainFlowRoute.name),
-          _i57.RouteConfig(GameHistoryFlowRoute.name,
+          _i58.RouteConfig(GameHistoryFlowRoute.name,
               path: 'game-history-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(GameHistoryOverviewPageRoute.name,
+                _i58.RouteConfig(GameHistoryOverviewPageRoute.name,
                     path: '', parent: GameHistoryFlowRoute.name),
-                _i57.RouteConfig(GameHistoryDetailsPageRoute.name,
+                _i58.RouteConfig(GameHistoryDetailsPageRoute.name,
                     path: 'game-history-details-page',
                     parent: GameHistoryFlowRoute.name)
               ]),
-          _i57.RouteConfig(PlayOfflineFlowRoute.name,
+          _i58.RouteConfig(PlayOfflineFlowRoute.name,
               path: 'play-offline-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(CreateOfflineGameFlowRoute.name,
+                _i58.RouteConfig(CreateOfflineGameFlowRoute.name,
                     path: '',
                     parent: PlayOfflineFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(CreateOfflineGamePageRoute.name,
+                      _i58.RouteConfig(
+                          YouReallyWantToCancelGameDialogRoute.name,
+                          path: 'you-really-want-to-cancel-game-dialog',
+                          parent: CreateOfflineGameFlowRoute.name),
+                      _i58.RouteConfig(CreateOfflineGamePageRoute.name,
                           path: '', parent: CreateOfflineGameFlowRoute.name),
-                      _i57.RouteConfig(
+                      _i58.RouteConfig(
                           CreateGameAdvancedSettingsModalRoute.name,
                           path: 'create-game-advanced-settings-modal',
                           parent: CreateOfflineGameFlowRoute.name)
                     ]),
-                _i57.RouteConfig(InOfflineGameFlowRoute.name,
+                _i58.RouteConfig(InOfflineGameFlowRoute.name,
                     path: 'in-offline-game-flow',
                     parent: PlayOfflineFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(InOfflineGamePageRoute.name,
+                      _i58.RouteConfig(
+                          YouReallyWantToCancelGameDialogRoute.name,
+                          path: 'you-really-want-to-cancel-game-dialog',
+                          parent: InOfflineGameFlowRoute.name),
+                      _i58.RouteConfig(InOfflineGamePageRoute.name,
                           path: '', parent: InOfflineGameFlowRoute.name),
-                      _i57.RouteConfig(CheckoutDetailsModalRoute.name,
+                      _i58.RouteConfig(CheckoutDetailsModalRoute.name,
                           path: 'checkout-details-modal',
                           parent: InOfflineGameFlowRoute.name),
-                      _i57.RouteConfig(OfflineStatsModalRoute.name,
+                      _i58.RouteConfig(OfflineStatsModalRoute.name,
                           path: 'offline-stats-modal',
                           parent: InOfflineGameFlowRoute.name),
-                      _i57.RouteConfig(AdvancedSettingsModalRoute.name,
+                      _i58.RouteConfig(AdvancedSettingsModalRoute.name,
                           path: 'advanced-settings-modal',
                           parent: InOfflineGameFlowRoute.name)
                     ]),
-                _i57.RouteConfig(PostOfflineGamePageRoute.name,
+                _i58.RouteConfig(PostOfflineGamePageRoute.name,
                     path: 'post-offline-game-page',
                     parent: PlayOfflineFlowRoute.name)
               ]),
-          _i57.RouteConfig(PlayOnlineFlowRoute.name,
+          _i58.RouteConfig(PlayOnlineFlowRoute.name,
               path: 'play-online-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(CreateOnlineGameFlowRoute.name,
+                _i58.RouteConfig(CreateOnlineGameFlowRoute.name,
                     path: '',
                     parent: PlayOnlineFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(CreateOnlineGamePageRoute.name,
+                      _i58.RouteConfig(
+                          YouReallyWantToCancelGameDialogRoute.name,
+                          path: 'you-really-want-to-cancel-game-dialog',
+                          parent: CreateOnlineGameFlowRoute.name),
+                      _i58.RouteConfig(CreateOnlineGamePageRoute.name,
                           path: '', parent: CreateOnlineGameFlowRoute.name),
-                      _i57.RouteConfig(
+                      _i58.RouteConfig(
                           CreateGameAdvancedSettingsModalRoute.name,
                           path: 'create-game-advanced-settings-modal',
                           parent: CreateOnlineGameFlowRoute.name)
                     ]),
-                _i57.RouteConfig(InOnlineGameFlowRoute.name,
+                _i58.RouteConfig(InOnlineGameFlowRoute.name,
                     path: 'in-online-game-flow',
                     parent: PlayOnlineFlowRoute.name,
                     children: [
-                      _i57.RouteConfig(InOnlineGamePageRoute.name,
+                      _i58.RouteConfig(
+                          YouReallyWantToCancelGameDialogRoute.name,
+                          path: 'you-really-want-to-cancel-game-dialog',
+                          parent: InOnlineGameFlowRoute.name),
+                      _i58.RouteConfig(InOnlineGamePageRoute.name,
                           path: '', parent: InOnlineGameFlowRoute.name),
-                      _i57.RouteConfig(CheckoutDetailsModalRoute.name,
+                      _i58.RouteConfig(CheckoutDetailsModalRoute.name,
                           path: 'checkout-details-modal',
                           parent: InOnlineGameFlowRoute.name),
-                      _i57.RouteConfig(OnlineStatsModalRoute.name,
+                      _i58.RouteConfig(OnlineStatsModalRoute.name,
                           path: 'online-stats-modal',
                           parent: InOnlineGameFlowRoute.name),
-                      _i57.RouteConfig(AdvancedSettingsModalRoute.name,
+                      _i58.RouteConfig(AdvancedSettingsModalRoute.name,
                           path: 'advanced-settings-modal',
                           parent: InOnlineGameFlowRoute.name)
                     ]),
-                _i57.RouteConfig(PostOnlineGamePageRoute.name,
+                _i58.RouteConfig(PostOnlineGamePageRoute.name,
                     path: 'post-online-game-page',
                     parent: PlayOnlineFlowRoute.name)
               ]),
-          _i57.RouteConfig(TrainingFlowRoute.name,
+          _i58.RouteConfig(TrainingFlowRoute.name,
               path: 'training-flow',
               parent: MainFlowRoute.name,
               children: [
-                _i57.RouteConfig(CreateTrainingPageRoute.name,
+                _i58.RouteConfig(CreateTrainingPageRoute.name,
                     path: '', parent: TrainingFlowRoute.name),
-                _i57.RouteConfig(InBobyTwentySeventTrainingPageRoute.name,
+                _i58.RouteConfig(InBobyTwentySeventTrainingPageRoute.name,
                     path: 'in-boby-twenty-sevent-training-page',
                     parent: TrainingFlowRoute.name),
-                _i57.RouteConfig(InDoubleTrainingPageRoute.name,
+                _i58.RouteConfig(InDoubleTrainingPageRoute.name,
                     path: 'in-double-training-page',
                     parent: TrainingFlowRoute.name),
-                _i57.RouteConfig(InScoreTrainingPageRoute.name,
+                _i58.RouteConfig(InScoreTrainingPageRoute.name,
                     path: 'in-score-training-page',
                     parent: TrainingFlowRoute.name),
-                _i57.RouteConfig(InSingleTrainingPageRoute.name,
+                _i58.RouteConfig(InSingleTrainingPageRoute.name,
                     path: 'in-single-training-page',
                     parent: TrainingFlowRoute.name),
-                _i57.RouteConfig(PostTrainingPageRoute.name,
+                _i58.RouteConfig(PostTrainingPageRoute.name,
                     path: 'post-training-page', parent: TrainingFlowRoute.name)
               ])
         ])
@@ -636,8 +665,8 @@ class Router extends _i57.RootStackRouter {
 
 /// generated route for
 /// [_i1.AuthFlow]
-class AuthFlowRoute extends _i57.PageRouteInfo<void> {
-  const AuthFlowRoute({List<_i57.PageRouteInfo>? children})
+class AuthFlowRoute extends _i58.PageRouteInfo<void> {
+  const AuthFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(AuthFlowRoute.name,
             path: '/auth-flow', initialChildren: children);
 
@@ -646,8 +675,8 @@ class AuthFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.MainFlow]
-class MainFlowRoute extends _i57.PageRouteInfo<void> {
-  const MainFlowRoute({List<_i57.PageRouteInfo>? children})
+class MainFlowRoute extends _i58.PageRouteInfo<void> {
+  const MainFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(MainFlowRoute.name,
             path: '/main-flow', initialChildren: children);
 
@@ -656,7 +685,7 @@ class MainFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AuthPage]
-class AuthPageRoute extends _i57.PageRouteInfo<void> {
+class AuthPageRoute extends _i58.PageRouteInfo<void> {
   const AuthPageRoute() : super(AuthPageRoute.name, path: '');
 
   static const String name = 'AuthPageRoute';
@@ -664,8 +693,8 @@ class AuthPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ForgotPasswordModal]
-class ForgotPasswordModalRoute extends _i57.PageRouteInfo<void> {
-  const ForgotPasswordModalRoute({List<_i57.PageRouteInfo>? children})
+class ForgotPasswordModalRoute extends _i58.PageRouteInfo<void> {
+  const ForgotPasswordModalRoute({List<_i58.PageRouteInfo>? children})
       : super(ForgotPasswordModalRoute.name,
             path: 'forgot-password-modal', initialChildren: children);
 
@@ -674,7 +703,7 @@ class ForgotPasswordModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ForgotPasswordInitialPage]
-class ForgotPasswordInitialPageRoute extends _i57.PageRouteInfo<void> {
+class ForgotPasswordInitialPageRoute extends _i58.PageRouteInfo<void> {
   const ForgotPasswordInitialPageRoute()
       : super(ForgotPasswordInitialPageRoute.name, path: '');
 
@@ -683,7 +712,7 @@ class ForgotPasswordInitialPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.ForgotPasswordSuccessPage]
-class ForgotPasswordSuccessPageRoute extends _i57.PageRouteInfo<void> {
+class ForgotPasswordSuccessPageRoute extends _i58.PageRouteInfo<void> {
   const ForgotPasswordSuccessPageRoute()
       : super(ForgotPasswordSuccessPageRoute.name,
             path: 'forgot-password-success-page');
@@ -693,7 +722,7 @@ class ForgotPasswordSuccessPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.HomePage]
-class HomePageRoute extends _i57.PageRouteInfo<void> {
+class HomePageRoute extends _i58.PageRouteInfo<void> {
   const HomePageRoute() : super(HomePageRoute.name, path: '');
 
   static const String name = 'HomePageRoute';
@@ -701,8 +730,8 @@ class HomePageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.SettingsFlow]
-class SettingsFlowRoute extends _i57.PageRouteInfo<void> {
-  const SettingsFlowRoute({List<_i57.PageRouteInfo>? children})
+class SettingsFlowRoute extends _i58.PageRouteInfo<void> {
+  const SettingsFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(SettingsFlowRoute.name,
             path: 'settings-flow', initialChildren: children);
 
@@ -711,7 +740,7 @@ class SettingsFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.PrivacyPolicyPage]
-class PrivacyPolicyPageRoute extends _i57.PageRouteInfo<void> {
+class PrivacyPolicyPageRoute extends _i58.PageRouteInfo<void> {
   const PrivacyPolicyPageRoute()
       : super(PrivacyPolicyPageRoute.name, path: 'privacy-policy-page');
 
@@ -720,7 +749,7 @@ class PrivacyPolicyPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ContactPage]
-class ContactPageRoute extends _i57.PageRouteInfo<void> {
+class ContactPageRoute extends _i58.PageRouteInfo<void> {
   const ContactPageRoute() : super(ContactPageRoute.name, path: 'contact-page');
 
   static const String name = 'ContactPageRoute';
@@ -728,7 +757,7 @@ class ContactPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.GameInvitationsPage]
-class GameInvitationsPageRoute extends _i57.PageRouteInfo<void> {
+class GameInvitationsPageRoute extends _i58.PageRouteInfo<void> {
   const GameInvitationsPageRoute()
       : super(GameInvitationsPageRoute.name, path: 'game-invitations-page');
 
@@ -737,8 +766,8 @@ class GameInvitationsPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.FriendsFlow]
-class FriendsFlowRoute extends _i57.PageRouteInfo<void> {
-  const FriendsFlowRoute({List<_i57.PageRouteInfo>? children})
+class FriendsFlowRoute extends _i58.PageRouteInfo<void> {
+  const FriendsFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(FriendsFlowRoute.name,
             path: 'friends-flow', initialChildren: children);
 
@@ -747,7 +776,7 @@ class FriendsFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.ProfilePage]
-class ProfilePageRoute extends _i57.PageRouteInfo<void> {
+class ProfilePageRoute extends _i58.PageRouteInfo<void> {
   const ProfilePageRoute() : super(ProfilePageRoute.name, path: 'profile-page');
 
   static const String name = 'ProfilePageRoute';
@@ -756,11 +785,11 @@ class ProfilePageRoute extends _i57.PageRouteInfo<void> {
 /// generated route for
 /// [_i14.GameHistoryFlow]
 class GameHistoryFlowRoute
-    extends _i57.PageRouteInfo<GameHistoryFlowRouteArgs> {
+    extends _i58.PageRouteInfo<GameHistoryFlowRouteArgs> {
   GameHistoryFlowRoute(
-      {_i60.Key? key,
-      required _i61.GameHistoryBloc gameHistoryBloc,
-      List<_i57.PageRouteInfo>? children})
+      {_i61.Key? key,
+      required _i62.GameHistoryBloc gameHistoryBloc,
+      List<_i58.PageRouteInfo>? children})
       : super(GameHistoryFlowRoute.name,
             path: 'game-history-flow',
             args: GameHistoryFlowRouteArgs(
@@ -773,9 +802,9 @@ class GameHistoryFlowRoute
 class GameHistoryFlowRouteArgs {
   const GameHistoryFlowRouteArgs({this.key, required this.gameHistoryBloc});
 
-  final _i60.Key? key;
+  final _i61.Key? key;
 
-  final _i61.GameHistoryBloc gameHistoryBloc;
+  final _i62.GameHistoryBloc gameHistoryBloc;
 
   @override
   String toString() {
@@ -785,8 +814,8 @@ class GameHistoryFlowRouteArgs {
 
 /// generated route for
 /// [_i15.PlayOfflineFlow]
-class PlayOfflineFlowRoute extends _i57.PageRouteInfo<void> {
-  const PlayOfflineFlowRoute({List<_i57.PageRouteInfo>? children})
+class PlayOfflineFlowRoute extends _i58.PageRouteInfo<void> {
+  const PlayOfflineFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(PlayOfflineFlowRoute.name,
             path: 'play-offline-flow', initialChildren: children);
 
@@ -795,8 +824,8 @@ class PlayOfflineFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.PlayOnlineFlow]
-class PlayOnlineFlowRoute extends _i57.PageRouteInfo<void> {
-  const PlayOnlineFlowRoute({List<_i57.PageRouteInfo>? children})
+class PlayOnlineFlowRoute extends _i58.PageRouteInfo<void> {
+  const PlayOnlineFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(PlayOnlineFlowRoute.name,
             path: 'play-online-flow', initialChildren: children);
 
@@ -805,8 +834,8 @@ class PlayOnlineFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.TrainingFlow]
-class TrainingFlowRoute extends _i57.PageRouteInfo<void> {
-  const TrainingFlowRoute({List<_i57.PageRouteInfo>? children})
+class TrainingFlowRoute extends _i58.PageRouteInfo<void> {
+  const TrainingFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(TrainingFlowRoute.name,
             path: 'training-flow', initialChildren: children);
 
@@ -815,7 +844,7 @@ class TrainingFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.SettingsPage]
-class SettingsPageRoute extends _i57.PageRouteInfo<void> {
+class SettingsPageRoute extends _i58.PageRouteInfo<void> {
   const SettingsPageRoute() : super(SettingsPageRoute.name, path: '');
 
   static const String name = 'SettingsPageRoute';
@@ -823,8 +852,8 @@ class SettingsPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.ChangeEmailModal]
-class ChangeEmailModalRoute extends _i57.PageRouteInfo<void> {
-  const ChangeEmailModalRoute({List<_i57.PageRouteInfo>? children})
+class ChangeEmailModalRoute extends _i58.PageRouteInfo<void> {
+  const ChangeEmailModalRoute({List<_i58.PageRouteInfo>? children})
       : super(ChangeEmailModalRoute.name,
             path: 'change-email-modal', initialChildren: children);
 
@@ -833,8 +862,8 @@ class ChangeEmailModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.ChangePasswordModal]
-class ChangePasswordModalRoute extends _i57.PageRouteInfo<void> {
-  const ChangePasswordModalRoute({List<_i57.PageRouteInfo>? children})
+class ChangePasswordModalRoute extends _i58.PageRouteInfo<void> {
+  const ChangePasswordModalRoute({List<_i58.PageRouteInfo>? children})
       : super(ChangePasswordModalRoute.name,
             path: 'change-password-modal', initialChildren: children);
 
@@ -843,8 +872,8 @@ class ChangePasswordModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i21.ChangeUsernameModal]
-class ChangeUsernameModalRoute extends _i57.PageRouteInfo<void> {
-  const ChangeUsernameModalRoute({List<_i57.PageRouteInfo>? children})
+class ChangeUsernameModalRoute extends _i58.PageRouteInfo<void> {
+  const ChangeUsernameModalRoute({List<_i58.PageRouteInfo>? children})
       : super(ChangeUsernameModalRoute.name,
             path: 'change-username-modal', initialChildren: children);
 
@@ -853,7 +882,7 @@ class ChangeUsernameModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.EditProfileImageModal]
-class EditProfileImageModalRoute extends _i57.PageRouteInfo<void> {
+class EditProfileImageModalRoute extends _i58.PageRouteInfo<void> {
   const EditProfileImageModalRoute()
       : super(EditProfileImageModalRoute.name,
             path: 'edit-profile-image-modal');
@@ -863,7 +892,7 @@ class EditProfileImageModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.ChangeEmailInitialPage]
-class ChangeEmailInitialPageRoute extends _i57.PageRouteInfo<void> {
+class ChangeEmailInitialPageRoute extends _i58.PageRouteInfo<void> {
   const ChangeEmailInitialPageRoute()
       : super(ChangeEmailInitialPageRoute.name, path: '');
 
@@ -872,7 +901,7 @@ class ChangeEmailInitialPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.ChangeEmailSuccessPage]
-class ChangeEmailSuccessPageRoute extends _i57.PageRouteInfo<void> {
+class ChangeEmailSuccessPageRoute extends _i58.PageRouteInfo<void> {
   const ChangeEmailSuccessPageRoute()
       : super(ChangeEmailSuccessPageRoute.name,
             path: 'change-email-success-page');
@@ -882,7 +911,7 @@ class ChangeEmailSuccessPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i25.ChangePasswordInitialPage]
-class ChangePasswordInitialPageRoute extends _i57.PageRouteInfo<void> {
+class ChangePasswordInitialPageRoute extends _i58.PageRouteInfo<void> {
   const ChangePasswordInitialPageRoute()
       : super(ChangePasswordInitialPageRoute.name, path: '');
 
@@ -891,7 +920,7 @@ class ChangePasswordInitialPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i26.ChangePasswordSuccessPage]
-class ChangePasswordSuccessPageRoute extends _i57.PageRouteInfo<void> {
+class ChangePasswordSuccessPageRoute extends _i58.PageRouteInfo<void> {
   const ChangePasswordSuccessPageRoute()
       : super(ChangePasswordSuccessPageRoute.name,
             path: 'change-password-success-page');
@@ -901,7 +930,7 @@ class ChangePasswordSuccessPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i27.ChangeUsernameInitialPage]
-class ChangeUsernameInitialPageRoute extends _i57.PageRouteInfo<void> {
+class ChangeUsernameInitialPageRoute extends _i58.PageRouteInfo<void> {
   const ChangeUsernameInitialPageRoute()
       : super(ChangeUsernameInitialPageRoute.name, path: '');
 
@@ -910,7 +939,7 @@ class ChangeUsernameInitialPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i28.ChangeUsernameSuccessPage]
-class ChangeUsernameSuccessPageRoute extends _i57.PageRouteInfo<void> {
+class ChangeUsernameSuccessPageRoute extends _i58.PageRouteInfo<void> {
   const ChangeUsernameSuccessPageRoute()
       : super(ChangeUsernameSuccessPageRoute.name,
             path: 'change-username-success-page');
@@ -920,8 +949,8 @@ class ChangeUsernameSuccessPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i29.FriendsOverviewFlow]
-class FriendsOverviewFlowRoute extends _i57.PageRouteInfo<void> {
-  const FriendsOverviewFlowRoute({List<_i57.PageRouteInfo>? children})
+class FriendsOverviewFlowRoute extends _i58.PageRouteInfo<void> {
+  const FriendsOverviewFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(FriendsOverviewFlowRoute.name,
             path: '', initialChildren: children);
 
@@ -930,7 +959,7 @@ class FriendsOverviewFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i30.FriendsProfilePage]
-class FriendsProfilePageRoute extends _i57.PageRouteInfo<void> {
+class FriendsProfilePageRoute extends _i58.PageRouteInfo<void> {
   const FriendsProfilePageRoute()
       : super(FriendsProfilePageRoute.name, path: 'friends-profile-page');
 
@@ -939,7 +968,7 @@ class FriendsProfilePageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i31.FriendsOverviewPage]
-class FriendsOverviewPageRoute extends _i57.PageRouteInfo<void> {
+class FriendsOverviewPageRoute extends _i58.PageRouteInfo<void> {
   const FriendsOverviewPageRoute()
       : super(FriendsOverviewPageRoute.name, path: '');
 
@@ -948,7 +977,7 @@ class FriendsOverviewPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i32.MoreModal]
-class MoreModalRoute extends _i57.PageRouteInfo<void> {
+class MoreModalRoute extends _i58.PageRouteInfo<void> {
   const MoreModalRoute() : super(MoreModalRoute.name, path: 'more-modal');
 
   static const String name = 'MoreModalRoute';
@@ -956,7 +985,7 @@ class MoreModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i33.SearchUserModal]
-class SearchUserModalRoute extends _i57.PageRouteInfo<void> {
+class SearchUserModalRoute extends _i58.PageRouteInfo<void> {
   const SearchUserModalRoute()
       : super(SearchUserModalRoute.name, path: 'search-user-modal');
 
@@ -965,7 +994,7 @@ class SearchUserModalRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i34.GameHistoryOverviewPage]
-class GameHistoryOverviewPageRoute extends _i57.PageRouteInfo<void> {
+class GameHistoryOverviewPageRoute extends _i58.PageRouteInfo<void> {
   const GameHistoryOverviewPageRoute()
       : super(GameHistoryOverviewPageRoute.name, path: '');
 
@@ -974,7 +1003,7 @@ class GameHistoryOverviewPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i35.GameHistoryDetailsPage]
-class GameHistoryDetailsPageRoute extends _i57.PageRouteInfo<void> {
+class GameHistoryDetailsPageRoute extends _i58.PageRouteInfo<void> {
   const GameHistoryDetailsPageRoute()
       : super(GameHistoryDetailsPageRoute.name,
             path: 'game-history-details-page');
@@ -984,8 +1013,8 @@ class GameHistoryDetailsPageRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i36.CreateOfflineGameFlow]
-class CreateOfflineGameFlowRoute extends _i57.PageRouteInfo<void> {
-  const CreateOfflineGameFlowRoute({List<_i57.PageRouteInfo>? children})
+class CreateOfflineGameFlowRoute extends _i58.PageRouteInfo<void> {
+  const CreateOfflineGameFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(CreateOfflineGameFlowRoute.name,
             path: '', initialChildren: children);
 
@@ -994,8 +1023,8 @@ class CreateOfflineGameFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i37.InOfflineGameFlow]
-class InOfflineGameFlowRoute extends _i57.PageRouteInfo<void> {
-  const InOfflineGameFlowRoute({List<_i57.PageRouteInfo>? children})
+class InOfflineGameFlowRoute extends _i58.PageRouteInfo<void> {
+  const InOfflineGameFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(InOfflineGameFlowRoute.name,
             path: 'in-offline-game-flow', initialChildren: children);
 
@@ -1004,7 +1033,7 @@ class InOfflineGameFlowRoute extends _i57.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i38.PostOfflineGamePage]
-class PostOfflineGamePageRoute extends _i57.PageRouteInfo<void> {
+class PostOfflineGamePageRoute extends _i58.PageRouteInfo<void> {
   const PostOfflineGamePageRoute()
       : super(PostOfflineGamePageRoute.name, path: 'post-offline-game-page');
 
@@ -1012,8 +1041,36 @@ class PostOfflineGamePageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i39.CreateOfflineGamePage]
-class CreateOfflineGamePageRoute extends _i57.PageRouteInfo<void> {
+/// [_i39.YouReallyWantToCancelGameDialog]
+class YouReallyWantToCancelGameDialogRoute
+    extends _i58.PageRouteInfo<YouReallyWantToCancelGameDialogRouteArgs> {
+  YouReallyWantToCancelGameDialogRoute(
+      {_i61.Key? key, required void Function() onYesPressed})
+      : super(YouReallyWantToCancelGameDialogRoute.name,
+            path: 'you-really-want-to-cancel-game-dialog',
+            args: YouReallyWantToCancelGameDialogRouteArgs(
+                key: key, onYesPressed: onYesPressed));
+
+  static const String name = 'YouReallyWantToCancelGameDialogRoute';
+}
+
+class YouReallyWantToCancelGameDialogRouteArgs {
+  const YouReallyWantToCancelGameDialogRouteArgs(
+      {this.key, required this.onYesPressed});
+
+  final _i61.Key? key;
+
+  final void Function() onYesPressed;
+
+  @override
+  String toString() {
+    return 'YouReallyWantToCancelGameDialogRouteArgs{key: $key, onYesPressed: $onYesPressed}';
+  }
+}
+
+/// generated route for
+/// [_i40.CreateOfflineGamePage]
+class CreateOfflineGamePageRoute extends _i58.PageRouteInfo<void> {
   const CreateOfflineGamePageRoute()
       : super(CreateOfflineGamePageRoute.name, path: '');
 
@@ -1021,10 +1078,10 @@ class CreateOfflineGamePageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i40.CreateGameAdvancedSettingsModal]
+/// [_i41.CreateGameAdvancedSettingsModal]
 class CreateGameAdvancedSettingsModalRoute
-    extends _i57.PageRouteInfo<CreateGameAdvancedSettingsModalRouteArgs> {
-  CreateGameAdvancedSettingsModalRoute({_i60.Key? key, required int index})
+    extends _i58.PageRouteInfo<CreateGameAdvancedSettingsModalRouteArgs> {
+  CreateGameAdvancedSettingsModalRoute({_i61.Key? key, required int index})
       : super(CreateGameAdvancedSettingsModalRoute.name,
             path: 'create-game-advanced-settings-modal',
             args: CreateGameAdvancedSettingsModalRouteArgs(
@@ -1037,7 +1094,7 @@ class CreateGameAdvancedSettingsModalRouteArgs {
   const CreateGameAdvancedSettingsModalRouteArgs(
       {this.key, required this.index});
 
-  final _i60.Key? key;
+  final _i61.Key? key;
 
   final int index;
 
@@ -1048,20 +1105,20 @@ class CreateGameAdvancedSettingsModalRouteArgs {
 }
 
 /// generated route for
-/// [_i41.InOfflineGamePage]
-class InOfflineGamePageRoute extends _i57.PageRouteInfo<void> {
+/// [_i42.InOfflineGamePage]
+class InOfflineGamePageRoute extends _i58.PageRouteInfo<void> {
   const InOfflineGamePageRoute() : super(InOfflineGamePageRoute.name, path: '');
 
   static const String name = 'InOfflineGamePageRoute';
 }
 
 /// generated route for
-/// [_i42.CheckoutDetailsModal]
+/// [_i43.CheckoutDetailsModal]
 class CheckoutDetailsModalRoute
-    extends _i57.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
+    extends _i58.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
   CheckoutDetailsModalRoute(
-      {_i60.Key? key,
-      required _i60.Bloc<_i62.CheckoutDetailsEvent, _i62.CheckoutDetailsState>
+      {_i61.Key? key,
+      required _i61.Bloc<_i63.CheckoutDetailsEvent, _i64.CheckoutDetailsState>
           bloc})
       : super(CheckoutDetailsModalRoute.name,
             path: 'checkout-details-modal',
@@ -1073,9 +1130,9 @@ class CheckoutDetailsModalRoute
 class CheckoutDetailsModalRouteArgs {
   const CheckoutDetailsModalRouteArgs({this.key, required this.bloc});
 
-  final _i60.Key? key;
+  final _i61.Key? key;
 
-  final _i60.Bloc<_i62.CheckoutDetailsEvent, _i62.CheckoutDetailsState> bloc;
+  final _i61.Bloc<_i63.CheckoutDetailsEvent, _i64.CheckoutDetailsState> bloc;
 
   @override
   String toString() {
@@ -1084,8 +1141,8 @@ class CheckoutDetailsModalRouteArgs {
 }
 
 /// generated route for
-/// [_i43.OfflineStatsModal]
-class OfflineStatsModalRoute extends _i57.PageRouteInfo<void> {
+/// [_i44.OfflineStatsModal]
+class OfflineStatsModalRoute extends _i58.PageRouteInfo<void> {
   const OfflineStatsModalRoute()
       : super(OfflineStatsModalRoute.name, path: 'offline-stats-modal');
 
@@ -1093,12 +1150,12 @@ class OfflineStatsModalRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i44.AdvancedSettingsModal]
+/// [_i45.AdvancedSettingsModal]
 class AdvancedSettingsModalRoute
-    extends _i57.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
+    extends _i58.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
   AdvancedSettingsModalRoute(
-      {_i60.Key? key,
-      required _i60.KtList<_i63.AbstractPlayerSnapshot> players})
+      {_i61.Key? key,
+      required _i61.KtList<_i65.AbstractPlayerSnapshot> players})
       : super(AdvancedSettingsModalRoute.name,
             path: 'advanced-settings-modal',
             args: AdvancedSettingsModalRouteArgs(key: key, players: players));
@@ -1109,9 +1166,9 @@ class AdvancedSettingsModalRoute
 class AdvancedSettingsModalRouteArgs {
   const AdvancedSettingsModalRouteArgs({this.key, required this.players});
 
-  final _i60.Key? key;
+  final _i61.Key? key;
 
-  final _i60.KtList<_i63.AbstractPlayerSnapshot> players;
+  final _i61.KtList<_i65.AbstractPlayerSnapshot> players;
 
   @override
   String toString() {
@@ -1120,9 +1177,9 @@ class AdvancedSettingsModalRouteArgs {
 }
 
 /// generated route for
-/// [_i45.CreateOnlineGameFlow]
-class CreateOnlineGameFlowRoute extends _i57.PageRouteInfo<void> {
-  const CreateOnlineGameFlowRoute({List<_i57.PageRouteInfo>? children})
+/// [_i46.CreateOnlineGameFlow]
+class CreateOnlineGameFlowRoute extends _i58.PageRouteInfo<void> {
+  const CreateOnlineGameFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(CreateOnlineGameFlowRoute.name,
             path: '', initialChildren: children);
 
@@ -1130,9 +1187,9 @@ class CreateOnlineGameFlowRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i46.InOnlineGameFlow]
-class InOnlineGameFlowRoute extends _i57.PageRouteInfo<void> {
-  const InOnlineGameFlowRoute({List<_i57.PageRouteInfo>? children})
+/// [_i47.InOnlineGameFlow]
+class InOnlineGameFlowRoute extends _i58.PageRouteInfo<void> {
+  const InOnlineGameFlowRoute({List<_i58.PageRouteInfo>? children})
       : super(InOnlineGameFlowRoute.name,
             path: 'in-online-game-flow', initialChildren: children);
 
@@ -1140,8 +1197,8 @@ class InOnlineGameFlowRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i47.PostOnlineGamePage]
-class PostOnlineGamePageRoute extends _i57.PageRouteInfo<void> {
+/// [_i48.PostOnlineGamePage]
+class PostOnlineGamePageRoute extends _i58.PageRouteInfo<void> {
   const PostOnlineGamePageRoute()
       : super(PostOnlineGamePageRoute.name, path: 'post-online-game-page');
 
@@ -1149,8 +1206,8 @@ class PostOnlineGamePageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i48.CreateOnlineGamePage]
-class CreateOnlineGamePageRoute extends _i57.PageRouteInfo<void> {
+/// [_i49.CreateOnlineGamePage]
+class CreateOnlineGamePageRoute extends _i58.PageRouteInfo<void> {
   const CreateOnlineGamePageRoute()
       : super(CreateOnlineGamePageRoute.name, path: '');
 
@@ -1158,16 +1215,16 @@ class CreateOnlineGamePageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i49.InOnlineGamePage]
-class InOnlineGamePageRoute extends _i57.PageRouteInfo<void> {
+/// [_i50.InOnlineGamePage]
+class InOnlineGamePageRoute extends _i58.PageRouteInfo<void> {
   const InOnlineGamePageRoute() : super(InOnlineGamePageRoute.name, path: '');
 
   static const String name = 'InOnlineGamePageRoute';
 }
 
 /// generated route for
-/// [_i50.OnlineStatsModal]
-class OnlineStatsModalRoute extends _i57.PageRouteInfo<void> {
+/// [_i51.OnlineStatsModal]
+class OnlineStatsModalRoute extends _i58.PageRouteInfo<void> {
   const OnlineStatsModalRoute()
       : super(OnlineStatsModalRoute.name, path: 'online-stats-modal');
 
@@ -1175,8 +1232,8 @@ class OnlineStatsModalRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i51.CreateTrainingPage]
-class CreateTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i52.CreateTrainingPage]
+class CreateTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const CreateTrainingPageRoute()
       : super(CreateTrainingPageRoute.name, path: '');
 
@@ -1184,8 +1241,8 @@ class CreateTrainingPageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i52.InBobyTwentySeventTrainingPage]
-class InBobyTwentySeventTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i53.InBobyTwentySeventTrainingPage]
+class InBobyTwentySeventTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const InBobyTwentySeventTrainingPageRoute()
       : super(InBobyTwentySeventTrainingPageRoute.name,
             path: 'in-boby-twenty-sevent-training-page');
@@ -1194,8 +1251,8 @@ class InBobyTwentySeventTrainingPageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i53.InDoubleTrainingPage]
-class InDoubleTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i54.InDoubleTrainingPage]
+class InDoubleTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const InDoubleTrainingPageRoute()
       : super(InDoubleTrainingPageRoute.name, path: 'in-double-training-page');
 
@@ -1203,8 +1260,8 @@ class InDoubleTrainingPageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i54.InScoreTrainingPage]
-class InScoreTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i55.InScoreTrainingPage]
+class InScoreTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const InScoreTrainingPageRoute()
       : super(InScoreTrainingPageRoute.name, path: 'in-score-training-page');
 
@@ -1212,8 +1269,8 @@ class InScoreTrainingPageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i55.InSingleTrainingPage]
-class InSingleTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i56.InSingleTrainingPage]
+class InSingleTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const InSingleTrainingPageRoute()
       : super(InSingleTrainingPageRoute.name, path: 'in-single-training-page');
 
@@ -1221,8 +1278,8 @@ class InSingleTrainingPageRoute extends _i57.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i56.PostTrainingPage]
-class PostTrainingPageRoute extends _i57.PageRouteInfo<void> {
+/// [_i57.PostTrainingPage]
+class PostTrainingPageRoute extends _i58.PageRouteInfo<void> {
   const PostTrainingPageRoute()
       : super(PostTrainingPageRoute.name, path: 'post-training-page');
 
