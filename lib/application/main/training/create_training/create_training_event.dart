@@ -30,6 +30,4 @@ class CreateTrainingEvent with _$CreateTrainingEvent {
   const factory CreateTrainingEvent.bobsTwentySevenModeChanged({
     required bobs27.Mode newMode,
   }) = _BobsTwentySevenModeChanged;
-  //
-
 }

@@ -78,6 +78,15 @@ class CreateTrainingBloc
     );
     on<_TrainingStarted>((_, __) => _mapTrainingStartedToState());
     on<_TrainingCanceled>((_, __) => _mapTrainingCanceledToState());
+    on<_SingleDoubleModeChanged>(
+      (event, __) => _mapSingleDoubleModeChangedToState(event),
+    );
+    on<_NumberOfTakesChanged>(
+      (event, __) => _mapNumberOfTakesChangedToState(event),
+    );
+    on<_BobsTwentySevenModeChanged>(
+      (event, __) => _mapBobsTwentySevenModeChangedToState(event),
+    );
   }
 
   Future<void> _mapStartedToState(
@@ -187,5 +196,42 @@ class CreateTrainingBloc
 
   void _mapTrainingCanceledToState() {
     _trainingService.cancel();
+  }
+
+  void _mapSingleDoubleModeChangedToState(
+    _SingleDoubleModeChanged event,
+  ) {
+    if (_trainingService is ISingleTrainingService) {
+      final newMode = event.newMode;
+
+      (_trainingService as ISingleTrainingService).updateMode(newMode: newMode);
+    }
+    if (_trainingService is IDoubleTrainingService) {
+      final newMode = event.newMode;
+
+      (_trainingService as IDoubleTrainingService).updateMode(newMode: newMode);
+    }
+  }
+
+  void _mapNumberOfTakesChangedToState(
+    _NumberOfTakesChanged event,
+  ) {
+    if (_trainingService is IScoreTrainingService) {
+      final newNumberOfTakes = event.newNumberOfTakes;
+
+      (_trainingService as IScoreTrainingService)
+          .updateNumberOfTakes(newNumberOfTakes: newNumberOfTakes);
+    }
+  }
+
+  void _mapBobsTwentySevenModeChangedToState(
+    _BobsTwentySevenModeChanged event,
+  ) {
+    if (_trainingService is IBobsTwentySevenService) {
+      final newMode = event.newMode;
+
+      (_trainingService as IBobsTwentySevenService)
+          .updateMode(newMode: newMode);
+    }
   }
 }

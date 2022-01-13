@@ -433,149 +433,73 @@ class _OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
       builder: (context, gameSnapshot) {
+        final Mode mode;
         if (gameSnapshot is SingleTrainingGameSnapshot) {
-          final mode = gameSnapshot.mode;
-
-          return AppCard(
-            middle: AutoSizeText(
-              'ORDER', // TODO
-              minFontSize: 8,
-              maxFontSize: 14,
-              maxLines: 1,
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-            children: [
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.ascending
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      /**
-                           *onPressed: () => context.read<SingleCreateTrainingBloc>().add(
-                            const SingleCreateTrainingEvent.modeChanged(
-                              newMode: Mode.ascending,
-                            ),
-                          ),
-                           */
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.ascending),
-                    ),
-                  ),
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.descending
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      /**
-                     *   onPressed: () => context.read<SingleCreateTrainingBloc>().add(
-                            const SingleCreateTrainingEvent.modeChanged(
-                              newMode: Mode.descending,
-                            ),
-                          ),
-                     */
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.descending),
-                    ),
-                  ),
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.random
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      /**
-                       * onPressed: () => context.read<SingleCreateTrainingBloc>().add(
-                            const SingleCreateTrainingEvent.modeChanged(
-                              newMode: Mode.random,
-                            ),
-                          ),
-                       */
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.random),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          );
+          mode = gameSnapshot.mode;
         } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
-          final mode = gameSnapshot.mode;
-
-          return AppCard(
-            middle: AutoSizeText(
-              'ORDER', // TODO
-              minFontSize: 8,
-              maxFontSize: 14,
-              maxLines: 1,
-              style: CupertinoTheme.of(context)
-                  .textTheme
-                  .textStyle
-                  .copyWith(color: AppColors.white),
-            ),
-            children: [
-              AppRow(
-                spacing: size6(context),
-                children: [
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.ascending
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      onPressed: () {},
-                      /**
-               *   onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.firstTo,
-                      ),
-                    ),
-               */
-                      icon: Image.asset(AppImages.ascending),
-                    ),
-                  ),
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.descending
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      onPressed: () {},
-                      /**
-                *  onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.bestOf,
-                      ),
-                    ),
-                */
-                      icon: Image.asset(AppImages.descending),
-                    ),
-                  ),
-                  Expanded(
-                    child: AppActionButton.normal(
-                      color: mode == Mode.random
-                          ? AppColors.orangeNew
-                          : AppColors.white,
-                      onPressed: () {},
-                      /**
-                *  onPressed: () => context.read<CreateGameBloc>().add(
-                      const CreateGameEvent.modeUpdated(
-                        newMode: Mode.bestOf,
-                      ),
-                    ),
-                */
-                      icon: Image.asset(AppImages.random),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          );
+          mode = gameSnapshot.mode;
+        } else {
+          throw Error(); //TODO better
         }
 
-        throw Error();
+        return AppCard(
+          middle: AutoSizeText(
+            'ORDER', // TODO
+            minFontSize: 8,
+            maxFontSize: 14,
+            maxLines: 1,
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle
+                .copyWith(color: AppColors.white),
+          ),
+          children: [
+            AppRow(
+              spacing: size6(context),
+              children: [
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: mode == Mode.ascending
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () => context.read<CreateTrainingBloc>().add(
+                          const CreateTrainingEvent.singleDoubleModeChanged(
+                            newMode: Mode.ascending,
+                          ),
+                        ),
+                    icon: Image.asset(AppImages.ascending),
+                  ),
+                ),
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: mode == Mode.descending
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () => context.read<CreateTrainingBloc>().add(
+                          const CreateTrainingEvent.singleDoubleModeChanged(
+                            newMode: Mode.descending,
+                          ),
+                        ),
+                    icon: Image.asset(AppImages.descending),
+                  ),
+                ),
+                Expanded(
+                  child: AppActionButton.normal(
+                    color: mode == Mode.random
+                        ? AppColors.orangeNew
+                        : AppColors.white,
+                    onPressed: () => context.read<CreateTrainingBloc>().add(
+                          const CreateTrainingEvent.singleDoubleModeChanged(
+                            newMode: Mode.random,
+                          ),
+                        ),
+                    icon: Image.asset(AppImages.random),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
       },
     );
   }

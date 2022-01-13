@@ -116,6 +116,15 @@ class ScoreTrainingService implements IScoreTrainingService {
   }
 
   @override
+  void updateNumberOfTakes({
+    required int newNumberOfTakes,
+  }) {
+    return _tryPerform(
+      action: () => _game!.numberOfTakes = newNumberOfTakes,
+    );
+  }
+
+  @override
   Stream<ScoreTrainingGameSnapshot> watchGame() {
     return _gameController.stream;
   }

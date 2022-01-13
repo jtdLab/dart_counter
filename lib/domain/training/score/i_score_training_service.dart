@@ -22,4 +22,8 @@ abstract class IScoreTrainingService extends AbstractITrainingService {
   });
 
   void undoThrow();
+
+  void updateNumberOfTakes({
+    required int newNumberOfTakes,
+  });
 }
