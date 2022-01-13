@@ -234,4 +234,14 @@ class CreateTrainingBloc
           .updateMode(newMode: newMode);
     }
   }
+
+  // TODO on type change there is a cancled snapshot received dont emit it else the ui will go to home on type change
+  @override
+  void onChange(Change<AbstractTrainingGameSnapshot> change) {
+    print(
+        'current ${change.currentState.runtimeType} ${change.currentState.status} ${change.currentState.hashCode}');
+    print(
+        'next ${change.nextState.runtimeType} ${change.nextState.status} ${change.currentState.hashCode}');
+    super.onChange(change);
+  }
 }

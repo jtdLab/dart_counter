@@ -26,69 +26,61 @@ class CreateTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<CreateTrainingBloc>()..add(const CreateTrainingEvent.started()),
-      child: BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
-        listenWhen: (oldState, newState) => oldState.status != newState.status,
-        listener: (context, gameSnapshot) {
-          if (gameSnapshot.status == Status.canceled) {
-            // TODO this never gets called
-            //context.router.replace(const HomePageRoute());
-          } else if (gameSnapshot.status == Status.running) {
-            // give players without a name a name e.g 'Player 1', 'Player 2', ...
-            int unNamedPlayerIndex = 1;
-            for (final player in gameSnapshot.players.iter) {
-              if (player.name == null) {
-                final index = gameSnapshot.players.indexOf(player);
-                context.read<CreateTrainingBloc>().add(
-                      CreateTrainingEvent.playerNameUpdated(
-                        index: index,
-                        newName:
-                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
-                      ),
-                    );
-                unNamedPlayerIndex++;
-              }
-            }
-
-            // TODO
-            //context.router.replace(const InTrainingPageRoute());
-            if (gameSnapshot is BobsTwentySevenGameSnapshot) {
-              context.router
-                  .replace(const InBobsTwentySevenTrainingFlowRoute());
-            } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
-              context.router.replace(const InDoubleTrainingFlowRoute());
-            } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
-              context.router.replace(const InScoreTrainingFlowRoute());
-            } else {
-              context.router.replace(const InSingleTrainingFlowRoute());
-            }
-          }
-        },
-        child: AppPage(
-          navigationBar: AppNavigationBar(
-            leading: Builder(
-              builder: (context) => CancelButton(
-                onPressed: () {
-                  context.router.push(
-                    YouReallyWantToCancelGameDialogRoute(
-                      onYesPressed: () =>
-                          context.read<CreateTrainingBloc>().add(
-                                const CreateTrainingEvent.trainingCanceled(),
-                              ),
+    return BlocListener<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+      listenWhen: (oldState, newState) => oldState.status != newState.status,
+      listener: (context, gameSnapshot) {
+        if (gameSnapshot.status == Status.canceled) {
+          context.router.replace(const HomePageRoute());
+        } else if (gameSnapshot.status == Status.running) {
+          // give players without a name a name e.g 'Player 1', 'Player 2', ...
+          int unNamedPlayerIndex = 1;
+          for (final player in gameSnapshot.players.iter) {
+            if (player.name == null) {
+              final index = gameSnapshot.players.indexOf(player);
+              context.read<CreateTrainingBloc>().add(
+                    CreateTrainingEvent.playerNameUpdated(
+                      index: index,
+                      newName: '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
                     ),
                   );
-                },
-              ),
-            ),
-            middle: Text(
-              LocaleKeys.createGame.tr().toUpperCase(),
+              unNamedPlayerIndex++;
+            }
+          }
+
+          // TODO
+          //context.router.replace(const InTrainingPageRoute());
+          if (gameSnapshot is BobsTwentySevenGameSnapshot) {
+            context.router.replace(const InBobsTwentySevenTrainingFlowRoute());
+          } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
+            context.router.replace(const InDoubleTrainingFlowRoute());
+          } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
+            context.router.replace(const InScoreTrainingFlowRoute());
+          } else {
+            context.router.replace(const InSingleTrainingFlowRoute());
+          }
+        }
+      },
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: Builder(
+            builder: (context) => CancelButton(
+              onPressed: () {
+                context.router.push(
+                  YouReallyWantToCancelGameDialogRoute(
+                    onYesPressed: () => context.read<CreateTrainingBloc>().add(
+                          const CreateTrainingEvent.trainingCanceled(),
+                        ),
+                  ),
+                );
+              },
             ),
           ),
-          child: const SingleChildScrollView(
-            child: _CreateTrainingWidget(),
+          middle: Text(
+            LocaleKeys.createGame.tr().toUpperCase(),
           ),
+        ),
+        child: const SingleChildScrollView(
+          child: _CreateTrainingWidget(),
         ),
       ),
     );

@@ -313,13 +313,14 @@ const youReallyWantToCancelGameDialog = CustomRoute(
                   initial: true,
                   page: CreateTrainingPage,
                 ),
+                youReallyWantToCancelGameDialog
               ],
             ),
             CupertinoRoute(
               page: InBobsTwentySevenTrainingFlow,
               children: [
                 CupertinoRoute(
-                   initial: true,
+                  initial: true,
                   page: InBobsTwentySeventTrainingPage,
                 ),
                 youReallyWantToCancelGameDialog
@@ -329,7 +330,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
               page: InScoreTrainingFlow,
               children: [
                 CupertinoRoute(
-                   initial: true,
+                  initial: true,
                   page: InScoreTrainingPage,
                 ),
                 youReallyWantToCancelGameDialog
@@ -339,7 +340,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
               page: InSingleTrainingFlow,
               children: [
                 CupertinoRoute(
-                   initial: true,
+                  initial: true,
                   page: InSingleTrainingPage,
                 ),
                 youReallyWantToCancelGameDialog

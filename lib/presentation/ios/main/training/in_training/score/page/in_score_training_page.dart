@@ -6,6 +6,7 @@ import 'package:dart_counter/application/main/training/score_training/in_game/de
 import 'package:dart_counter/application/main/training/score_training/score_training_watcher_cubit.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/score_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -31,24 +32,33 @@ class InScoreTrainingPage extends StatelessWidget {
           create: (context) => getIt<ScoreTrainingWatcherCubit>(),
         ),
       ],
-      child: AppPage(
-        navigationBar: AppNavigationBar(
-          leading: Builder(
-            builder: (context) => CancelButton(
-              onPressed: () {
-                context.router.push(
-                  YouReallyWantToCancelGameDialogRoute(
-                    onYesPressed: () => context.read<InScoreTrainingBloc>().add(
-                          const InScoreTrainingEvent.canceled(),
-                        ),
-                  ),
-                );
-              },
+      child: BlocListener<ScoreTrainingWatcherCubit, ScoreTrainingGameSnapshot>(
+        listenWhen: (oldState, newState) => oldState.status != newState.status,
+        listener: (context, gameSnapshot) {
+          if (gameSnapshot.status == Status.canceled) {
+            context.router.replace(const HomePageRoute());
+          }
+        },
+        child: AppPage(
+          navigationBar: AppNavigationBar(
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () {
+                  context.router.push(
+                    YouReallyWantToCancelGameDialogRoute(
+                      onYesPressed: () =>
+                          context.read<InScoreTrainingBloc>().add(
+                                const InScoreTrainingEvent.canceled(),
+                              ),
+                    ),
+                  );
+                },
+              ),
             ),
+            middle: Text(LocaleKeys.scoreTraining.tr().toUpperCase()),
           ),
-          middle: Text(LocaleKeys.scoreTraining.tr().toUpperCase()),
+          child: const _InScoreTrainingWidget(),
         ),
-        child: const _InScoreTrainingWidget(),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:dart_counter/application/main/training/single_training/in_game/i
 import 'package:dart_counter/application/main/training/single_training/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/in_game/input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/training/single_training/single_training_watcher_cubit.dart';
+import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -39,25 +40,34 @@ class InSingleTrainingPage extends StatelessWidget {
               getIt<KeyBoardBloc>(param1: context.read<DartsDisplayerBloc>()),
         ),
       ],
-      child: AppPage(
-        navigationBar: AppNavigationBar(
-          leading: Builder(
-            builder: (context) => CancelButton(
-              onPressed: () {
-                context.router.push(
-                  YouReallyWantToCancelGameDialogRoute(
-                    onYesPressed: () =>
-                        context.read<InSingleTrainingBloc>().add(
-                              const InSingleTrainingEvent.canceled(),
-                            ),
-                  ),
-                );
-              },
+      child:
+          BlocListener<SingleTrainingWatcherCubit, SingleTrainingGameSnapshot>(
+        listenWhen: (oldState, newState) => oldState.status != newState.status,
+        listener: (context, gameSnapshot) {
+          if (gameSnapshot.status == Status.canceled) {
+            context.router.replace(const HomePageRoute());
+          }
+        },
+        child: AppPage(
+          navigationBar: AppNavigationBar(
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () {
+                  context.router.push(
+                    YouReallyWantToCancelGameDialogRoute(
+                      onYesPressed: () =>
+                          context.read<InSingleTrainingBloc>().add(
+                                const InSingleTrainingEvent.canceled(),
+                              ),
+                    ),
+                  );
+                },
+              ),
             ),
+            middle: Text(LocaleKeys.singleTraining.tr().toUpperCase()),
           ),
-          middle: Text(LocaleKeys.singleTraining.tr().toUpperCase()),
+          child: const _InSingleTrainingWidget(),
         ),
-        child: const _InSingleTrainingWidget(),
       ),
     );
   }
