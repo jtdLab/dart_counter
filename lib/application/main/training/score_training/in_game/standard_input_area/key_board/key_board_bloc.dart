@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_state.dart';
+import 'package:injectable/injectable.dart';
 
-part 'key_board_bloc.freezed.dart';
-part 'key_board_event.dart';
-part 'key_board_state.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_event.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_state.dart';
 
-enum ButtonState { enabled, disabled }
-
+@injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   KeyBoardBloc()
       : super(

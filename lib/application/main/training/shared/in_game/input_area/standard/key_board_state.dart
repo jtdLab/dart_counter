@@ -1,4 +1,8 @@
-part of 'key_board_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'key_board_state.freezed.dart';
+
+enum ButtonState { enabled, disabled }
 
 @freezed
 class KeyBoardState with _$KeyBoardState {

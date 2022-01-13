@@ -1,35 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/domain/game/dart.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
+import 'package:injectable/injectable.dart';
 
-part 'key_board_bloc.freezed.dart';
-part 'key_board_event.dart';
-part 'key_board_state.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
+export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 
-// TODO move button states to state file ??
-enum ButtonState { enabled, disabled }
-
-@freezed
-class DigitButtonState with _$DigitButtonState {
-  const factory DigitButtonState.disabled() = DigitButtonDisabled;
-  const factory DigitButtonState.enabled() = DigitButtonEnabled;
-  const factory DigitButtonState.focused({
-    required DartType type,
-    required int value,
-  }) = DigitButtonFocused;
-  /**
-  *  const factory DigitButtonState.single({
-    required int value,
-  }) = DigitButtonSingle;
-  const factory DigitButtonState.double({
-    required int value,
-  }) = DigitButtonDouble;
-  const factory DigitButtonState.triple({
-    required int value,
-  }) = DigitButtonTriple;
-  */
-}
-
+@injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   KeyBoardBloc()
       : super(

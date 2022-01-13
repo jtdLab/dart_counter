@@ -1,4 +1,6 @@
-part of 'key_board_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'key_board_event.freezed.dart';
 
 @freezed
 class KeyBoardEvent with _$KeyBoardEvent {

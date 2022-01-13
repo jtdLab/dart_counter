@@ -1,4 +1,7 @@
-part of 'key_board_bloc.dart';
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'key_board_state.freezed.dart';
 
 @freezed
 class KeyBoardState with _$KeyBoardState {
@@ -27,4 +30,27 @@ class KeyBoardState with _$KeyBoardState {
     required DigitButtonState zero,
     required ButtonState erease,
   }) = KeyBoardInitial;
+}
+
+enum ButtonState { enabled, disabled }
+
+@freezed
+class DigitButtonState with _$DigitButtonState {
+  const factory DigitButtonState.disabled() = DigitButtonDisabled;
+  const factory DigitButtonState.enabled() = DigitButtonEnabled;
+  const factory DigitButtonState.focused({
+    required DartType type,
+    required int value,
+  }) = DigitButtonFocused;
+  /**
+  *  const factory DigitButtonState.single({
+    required int value,
+  }) = DigitButtonSingle;
+  const factory DigitButtonState.double({
+    required int value,
+  }) = DigitButtonDouble;
+  const factory DigitButtonState.triple({
+    required int value,
+  }) = DigitButtonTriple;
+  */
 }
