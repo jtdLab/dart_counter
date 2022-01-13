@@ -49,11 +49,16 @@ import 'package:dart_counter/presentation/ios/main/settings/modals/edit_profile_
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
-import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/create_training/page/create_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/page/in_bobs_twenty_seven_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/double/page/in_double_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/score/page/in_score_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/single/page/in_single_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/post_training/post_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
 
@@ -210,7 +215,6 @@ const youReallyWantToCancelGameDialog = CustomRoute(
               initial: true,
               page: CreateOfflineGameFlow,
               children: [
-                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -220,12 +224,12 @@ const youReallyWantToCancelGameDialog = CustomRoute(
                   customRouteBuilder: notExpandedModalRouteBuilder,
                   page: CreateGameAdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
               page: InOfflineGameFlow,
               children: [
-                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -243,6 +247,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: AdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -257,7 +262,6 @@ const youReallyWantToCancelGameDialog = CustomRoute(
               initial: true,
               page: CreateOnlineGameFlow,
               children: [
-                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -267,12 +271,12 @@ const youReallyWantToCancelGameDialog = CustomRoute(
                   customRouteBuilder: notExpandedModalRouteBuilder,
                   page: CreateGameAdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
               page: InOnlineGameFlow,
               children: [
-                youReallyWantToCancelGameDialog,
                 CustomRoute(
                   initial: true,
                   customRouteBuilder: modalParentRouteBuilder,
@@ -290,6 +294,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: AdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -300,22 +305,55 @@ const youReallyWantToCancelGameDialog = CustomRoute(
         CupertinoRoute(
           page: TrainingFlow,
           children: [
-            // TODO make all of them to flow and add cancel dialog as a route
             CupertinoRoute(
               initial: true,
-              page: CreateTrainingPage,
+              page: CreateTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: CreateTrainingPage,
+                ),
+              ],
             ),
             CupertinoRoute(
-              page: InBobyTwentySeventTrainingPage,
+              page: InBobsTwentySevenTrainingFlow,
+              children: [
+                CupertinoRoute(
+                   initial: true,
+                  page: InBobsTwentySeventTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InDoubleTrainingPage,
+              page: InScoreTrainingFlow,
+              children: [
+                CupertinoRoute(
+                   initial: true,
+                  page: InScoreTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InScoreTrainingPage,
+              page: InSingleTrainingFlow,
+              children: [
+                CupertinoRoute(
+                   initial: true,
+                  page: InSingleTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InSingleTrainingPage,
+              page: InDoubleTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: InDoubleTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
               page: PostTrainingPage,

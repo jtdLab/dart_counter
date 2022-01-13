@@ -14,9 +14,9 @@ import 'package:dart_counter/domain/training/double/double_training_game_snapsho
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/mode.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 
 // LOCAL WIDGETS
-import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class CreateTrainingPage extends StatelessWidget {
@@ -56,41 +56,31 @@ class CreateTrainingPage extends StatelessWidget {
             //context.router.replace(const InTrainingPageRoute());
             if (gameSnapshot is BobsTwentySevenGameSnapshot) {
               context.router
-                  .replace(const InBobyTwentySeventTrainingPageRoute());
+                  .replace(const InBobsTwentySevenTrainingFlowRoute());
             } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
-              context.router.replace(const InDoubleTrainingPageRoute());
+              context.router.replace(const InDoubleTrainingFlowRoute());
             } else if (gameSnapshot is ScoreTrainingGameSnapshot) {
-              context.router.replace(const InScoreTrainingPageRoute());
+              context.router.replace(const InScoreTrainingFlowRoute());
             } else {
-              context.router.replace(const InSingleTrainingPageRoute());
+              context.router.replace(const InSingleTrainingFlowRoute());
             }
           }
         },
         child: AppPage(
           navigationBar: AppNavigationBar(
-            leading: CancelButton(
-              onPressed: () {
-                // overlay TODO cleaner impl
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    reverseTransitionDuration: Duration.zero,
-                    opaque: false,
-                    pageBuilder: (context, _, __) => BlocProvider(
-                      create: (context) => context.read<CreateTrainingBloc>(),
-                      child: Builder(
-                        builder: (context) => YouReallyWantToCancelGameDialog(
-                          onYesPressed: () {
-                            context.read<CreateTrainingBloc>().add(
-                                  const CreateTrainingEvent.trainingCanceled(),
-                                );
-                            context.router.replace(const HomePageRoute());
-                          },
-                        ),
-                      ),
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () {
+                  context.router.push(
+                    YouReallyWantToCancelGameDialogRoute(
+                      onYesPressed: () =>
+                          context.read<CreateTrainingBloc>().add(
+                                const CreateTrainingEvent.trainingCanceled(),
+                              ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
             middle: Text(
               LocaleKeys.createGame.tr().toUpperCase(),

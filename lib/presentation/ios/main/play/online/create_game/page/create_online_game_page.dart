@@ -19,7 +19,7 @@ import '../../../shared/create_game/modals/add_player/add_player_modal.dart';
 // LOCAL WIDGETS
 import '../../../../shared/widgets.dart';
 import '../../../shared/create_game/widgets.dart';
-part '../widgets.dart';
+part 'widgets.dart';
 
 class CreateOnlineGamePage extends StatelessWidget {
   const CreateOnlineGamePage({

@@ -41,29 +41,19 @@ class InDoubleTrainingPage extends StatelessWidget {
       ],
       child: AppPage(
         navigationBar: AppNavigationBar(
-          leading: CancelButton(
-            onPressed: () {
-              // show overlay
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  reverseTransitionDuration: Duration.zero,
-                  opaque: false,
-                  pageBuilder: (context, _, __) => BlocProvider(
-                    create: (context) => context.read<InDoubleTrainingBloc>(),
-                    child: Builder(
-                      builder: (context) => YouReallyWantToCancelGameDialog(
-                        onYesPressed: () {
-                          context.read<InDoubleTrainingBloc>().add(
-                                const InDoubleTrainingEvent.canceled(),
-                              );
-                          context.router.replace(const HomePageRoute());
-                        },
-                      ),
-                    ),
+          leading: Builder(
+            builder: (context) => CancelButton(
+              onPressed: () {
+                context.router.push(
+                  YouReallyWantToCancelGameDialogRoute(
+                    onYesPressed: () =>
+                        context.read<InDoubleTrainingBloc>().add(
+                              const InDoubleTrainingEvent.canceled(),
+                            ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           middle: Text(LocaleKeys.doubleTraining.tr().toUpperCase()),
         ),

@@ -41,29 +41,19 @@ class InSingleTrainingPage extends StatelessWidget {
       ],
       child: AppPage(
         navigationBar: AppNavigationBar(
-          leading: CancelButton(
-            onPressed: () {
-              // show overlay // TODO cleaner impl
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  reverseTransitionDuration: Duration.zero,
-                  opaque: false,
-                  pageBuilder: (context, _, __) => BlocProvider(
-                    create: (context) => context.read<InSingleTrainingBloc>(),
-                    child: Builder(
-                      builder: (context) => YouReallyWantToCancelGameDialog(
-                        onYesPressed: () {
-                          context.read<InSingleTrainingBloc>().add(
-                                const InSingleTrainingEvent.canceled(),
-                              );
-                          context.router.replace(const HomePageRoute());
-                        },
-                      ),
-                    ),
+          leading: Builder(
+            builder: (context) => CancelButton(
+              onPressed: () {
+                context.router.push(
+                  YouReallyWantToCancelGameDialogRoute(
+                    onYesPressed: () =>
+                        context.read<InSingleTrainingBloc>().add(
+                              const InSingleTrainingEvent.canceled(),
+                            ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           middle: Text(LocaleKeys.singleTraining.tr().toUpperCase()),
         ),

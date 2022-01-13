@@ -12,8 +12,8 @@ import 'package:dart_counter/presentation/ios/main/training/shared/in_training/w
 
 part 'widgets.dart';
 
-class InBobyTwentySeventTrainingPage extends StatelessWidget {
-  const InBobyTwentySeventTrainingPage({
+class InBobsTwentySeventTrainingPage extends StatelessWidget {
+  const InBobsTwentySeventTrainingPage({
     Key? key,
   }) : super(key: key);
 
@@ -41,29 +41,19 @@ class InBobyTwentySeventTrainingPage extends StatelessWidget {
       ],
       child: AppPage(
         navigationBar: AppNavigationBar(
-          leading: CancelButton(
-            onPressed: () {
-              // show overlay
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  reverseTransitionDuration: Duration.zero,
-                  opaque: false,
-                  pageBuilder: (context, _, __) => BlocProvider(
-                    create: (context) => context.read<InBobsTwentySevenBloc>(),
-                    child: Builder(
-                      builder: (context) => YouReallyWantToCancelGameDialog(
-                        onYesPressed: () {
-                          context.read<InBobsTwentySevenBloc>().add(
-                                const InBobsTwentySevenEvent.canceled(),
-                              );
-                          context.router.replace(const HomePageRoute());
-                        },
-                      ),
-                    ),
+          leading: Builder(
+            builder: (context) => CancelButton(
+              onPressed: () {
+                context.router.push(
+                  YouReallyWantToCancelGameDialogRoute(
+                    onYesPressed: () =>
+                        context.read<InBobsTwentySevenBloc>().add(
+                              const InBobsTwentySevenEvent.canceled(),
+                            ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           // TODO localekeys
           middle: const Text('BOBS 27'),
