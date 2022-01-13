@@ -20,6 +20,8 @@ import 'package:injectable/injectable.dart';
 part 'create_training_bloc.freezed.dart';
 part 'create_training_event.dart';
 
+// TODO impl this better it emits canceld snapshots on training type change and isnt implemented to clean
+
 @injectable
 class CreateTrainingBloc
     extends Bloc<CreateTrainingEvent, AbstractTrainingGameSnapshot> {
@@ -94,7 +96,10 @@ class CreateTrainingBloc
   ) async {
     await emit.forEach<AbstractTrainingGameSnapshot>(
       _trainingService.watchGame(),
-      onData: (gameSnapshot) => gameSnapshot,
+      onData: (gameSnapshot) {
+        print('started ${gameSnapshot.runtimeType}');
+        return gameSnapshot;
+      },
     );
   }
 
@@ -185,7 +190,10 @@ class CreateTrainingBloc
 
       await emit.forEach<AbstractTrainingGameSnapshot>(
         _trainingService.watchGame(),
-        onData: (gameSnapshot) => gameSnapshot,
+        onData: (gameSnapshot) {
+          print('changed ${gameSnapshot.runtimeType}');
+          return gameSnapshot;
+        },
       );
     }
   }
@@ -235,7 +243,8 @@ class CreateTrainingBloc
     }
   }
 
-  // TODO on type change there is a cancled snapshot received dont emit it else the ui will go to home on type change
+  /**
+   * // TODO on type change there is a cancled snapshot received dont emit it else the ui will go to home on type change
   @override
   void onChange(Change<AbstractTrainingGameSnapshot> change) {
     print(
@@ -244,4 +253,5 @@ class CreateTrainingBloc
         'next ${change.nextState.runtimeType} ${change.nextState.status} ${change.currentState.hashCode}');
     super.onChange(change);
   }
+   */
 }

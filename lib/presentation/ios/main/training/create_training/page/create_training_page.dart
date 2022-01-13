@@ -30,7 +30,8 @@ class CreateTrainingPage extends StatelessWidget {
       listenWhen: (oldState, newState) => oldState.status != newState.status,
       listener: (context, gameSnapshot) {
         if (gameSnapshot.status == Status.canceled) {
-          context.router.replace(const HomePageRoute());
+          // TODO remove comment when create_training_bloc is fixed
+         // context.router.replace(const HomePageRoute());
         } else if (gameSnapshot.status == Status.running) {
           // give players without a name a name e.g 'Player 1', 'Player 2', ...
           int unNamedPlayerIndex = 1;
