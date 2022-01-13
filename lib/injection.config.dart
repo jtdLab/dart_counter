@@ -220,7 +220,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       (dartsDisplayerBloc, _) => _i48.KeyBoardBloc(
           get<_i22.IDoubleTrainingService>(), dartsDisplayerBloc));
   gh.factoryParam<_i49.KeyBoardBloc, _i45.InputRowBloc?, dynamic>(
-      (inputRowBloc, _) => _i49.KeyBoardBloc(inputRowBloc));
+      (inputRowBloc, _) =>
+          _i49.KeyBoardBloc(get<_i20.IDartUtils>(), inputRowBloc));
   gh.factoryParam<_i50.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i50.KeyBoardBloc(
           get<_i32.ISingleTrainingService>(), dartsDisplayerBloc));
