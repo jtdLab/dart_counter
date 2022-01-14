@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 import 'package:injectable/injectable.dart';
@@ -6,10 +7,16 @@ import 'package:injectable/injectable.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 
+// TODO impl
+
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
-  KeyBoardBloc()
-      : super(
+  final DartsDisplayerBloc _dartsDisplayerBloc;
+
+  KeyBoardBloc(
+    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
+  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+        super(
           // set initial state
           const KeyBoardState.initial(
             one: DigitButtonState.enabled(),
@@ -53,5 +60,4 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     // TODO implement
     throw UnimplementedError();
   }
-  
 }

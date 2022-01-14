@@ -194,3 +194,10 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO blocs.dart barelle files like in score training with standard and detailed input area every wher in app pls
 
 // TODO share even more around blocs by sharing event handler impl or make base calss that impls some event handlers if tahts possible with darts
+
+
+// TODO bobs27 inputrow bloc 
+// TODO score detailed inputrow bloc 
+// TODO score detailed keyboard bloc 
+// TODO double inputrow bloc 
+// TODO single inputrow bloc 

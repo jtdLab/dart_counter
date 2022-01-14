@@ -9,6 +9,8 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 
+// TODO listen to darts displayer to update input
+
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final ISingleTrainingService _trainingService;

@@ -36,8 +36,9 @@ class InSingleTrainingPage extends StatelessWidget {
               getIt<InputRowBloc>(param1: context.read<DartsDisplayerBloc>()),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt<KeyBoardBloc>(param1: context.read<DartsDisplayerBloc>()),
+          create: (context) => getIt<KeyBoardBloc>(
+            param1: context.read<DartsDisplayerBloc>(),
+          ),
         ),
       ],
       child:

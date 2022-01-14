@@ -56,7 +56,9 @@ class _InScoreTrainingWidget extends StatelessWidget {
                     ),
                   ),
                   BlocProvider(
-                    create: (context) => getIt<detailed.KeyBoardBloc>(),
+                    create: (context) => getIt<detailed.KeyBoardBloc>(
+                      param1: context.read<DartsDisplayerBloc>(),
+                    ),
                   ),
                 ],
                 child: const DetailedInputArea(),

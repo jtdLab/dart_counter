@@ -32,7 +32,6 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   void _mapSingleHitPressedToState() {
-    // notify darts displayer bloc
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
@@ -41,34 +40,39 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   void _mapDoubleHitPressedToState() {
-    // notify darts displayer bloc
+    // add dart to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
+        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.double),
       ),
     );
   }
 
   void _mapTripleHitPressedToState() {
-    // notify darts displayer bloc
+    // add dart to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
+        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.triple),
       ),
     );
   }
 
   void _mapMissHitPressedToState() {
-    // notify darts displayer bloc
+    /**
+    *  // add dart to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
       ),
     );
+    */
+
+    // TODO implement
+    throw UnimplementedError();
   }
 
   void _mapEreasePressedToState() {
-    // notify darts displayer bloc
+    // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
   }
 

@@ -22,19 +22,6 @@ class SingleTrainingGameSnapshot
 
   const SingleTrainingGameSnapshot._();
 
-  // TODO needed remove pls
-  factory SingleTrainingGameSnapshot.initial({
-    String? username,
-  }) {
-    final owner = SingleTrainingPlayerSnapshot.initial(username: username);
-    return SingleTrainingGameSnapshot(
-      status: Status.pending,
-      mode: Mode.ascending,
-      players: KtList.from([owner]),
-      owner: owner,
-    );
-  }
-
   @override
   SingleTrainingPlayerSnapshot currentTurn() {
     // TODO her eand other throw not running game if status is pending/fininshed

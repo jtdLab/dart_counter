@@ -28,26 +28,9 @@ class _InBobsTwentySevenTrainingWidget extends StatelessWidget {
             },
           ),
         ),
-        Expanded(
+        const Expanded(
           flex: 55,
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => getIt<DartsDisplayerBloc>(),
-              ),
-              BlocProvider<Bloc<InputRowEvent, int>>(
-                create: (context) => getIt<InputRowBloc>(
-                  param1: context.read<DartsDisplayerBloc>(),
-                ),
-              ),
-              BlocProvider<Bloc<KeyBoardEvent, KeyBoardState>>(
-                create: (context) => getIt<KeyBoardBloc>(
-                  param1: context.read<DartsDisplayerBloc>(),
-                ),
-              ),
-            ],
-            child: const DoubleBobsTwentySevenInputArea(),
-          ),
+          child: DoubleBobsTwentySevenInputArea(),
         ),
       ],
     );

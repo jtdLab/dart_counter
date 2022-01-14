@@ -30,29 +30,34 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   void _mapDoubleHitPressedToState() {
-    // notify darts displayer bloc
+    // add dart to darts displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
+        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.double),
       ),
     );
   }
 
   void _mapMissHitPressedToState() {
-    // notify darts displayer bloc
+    /**
+     * // add dart to darts displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
       ),
     );
+     */
+
+    // TODO implement
+    throw UnimplementedError();
   }
 
   void _mapEreasePressedToState() {
-    // notify darts displayer bloc
+    // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
   }
 
-  /// returns the target value of the current turn of the currently running game.
+  /// Returns the target value of the current turn of the currently running game.
   int _getCurrentTurnTargetValue() {
     return _trainingService.getGame().currentTurn().targetValue;
   }
