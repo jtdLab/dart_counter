@@ -31,7 +31,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     on<_EreasePressed>((_, __) => _mapEreasePressedToState());
   }
 
+  /// handle incoming [_SingleHitPressed] event.
   void _mapSingleHitPressedToState() {
+    // add single to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
@@ -39,8 +41,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
+  /// handle incoming [_DoubleHitPressed] event.
   void _mapDoubleHitPressedToState() {
-    // add dart to dart displayer
+    // add double to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.double),
@@ -48,8 +51,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
+  /// handle incoming [_TripleHitPressed] event.
   void _mapTripleHitPressedToState() {
-    // add dart to dart displayer
+    // add triple to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
         dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.triple),
@@ -57,20 +61,15 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
+  /// handle incoming [_MissHitPressed] event.
   void _mapMissHitPressedToState() {
-    /**
-    *  // add dart to dart displayer
+    // add missed dart to dart displayer
     _dartsDisplayerBloc.add(
-      DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
-      ),
+      const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
     );
-    */
-
-    // TODO implement
-    throw UnimplementedError();
   }
 
+  /// handle incoming [_EreasePressed] event.
   void _mapEreasePressedToState() {
     // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());

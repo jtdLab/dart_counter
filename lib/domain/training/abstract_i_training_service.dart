@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
@@ -35,7 +36,13 @@ abstract class AbstractITrainingService {
     required String newName,
   });
 
-  void cancel();
-
   void start();
+
+  void performThrow({
+    required Throw t,
+  });
+
+  void undoThrow();
+
+  void cancel();
 }

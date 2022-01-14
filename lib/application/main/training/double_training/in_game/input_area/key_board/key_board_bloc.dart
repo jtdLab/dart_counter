@@ -29,28 +29,25 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     on<EreasePressed>((_, __) => _mapEreasePressedToState());
   }
 
+  /// handle incoming [DoubleHitPressed] event.
   void _mapDoubleHitPressedToState() {
-    // add dart to dart displayer
+    // add double to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
+        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.double),
       ),
     );
   }
 
+  /// handle incoming [MissHitPressed] event.
   void _mapMissHitPressedToState() {
-    /**
-    *   // add dart to dart displayer
+    // add missed dart to dart displayer
     _dartsDisplayerBloc.add(
-      DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.single),
-      ),
+      const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
     );
-    */
-    // TODO implement
-    throw UnimplementedError();
   }
 
+  /// handle incoming [EreasePressed] event.
   void _mapEreasePressedToState() {
     // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());

@@ -3,7 +3,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dart.freezed.dart';
 
-enum DartType { single, double, triple }
+enum DartType { missed, single, double, triple }
+// TODO remove
+/**
+ * 
+@freezed
+class MissedDart with _$MissedDart implements AbstractDart {
+  @Implements<AbstractDart>()
+  const factory MissedDart() = _MissedDart;
+
+  const MissedDart._();
+
+  @override
+  int points() => 0;
+}
+ */
 
 @freezed
 class Dart with _$Dart {
@@ -14,9 +28,13 @@ class Dart with _$Dart {
 
   const Dart._();
 
+  static const missed = Dart(type: DartType.missed, value: 0);
+
   int points() {
     int multiplier;
     switch (type) {
+      case DartType.missed:
+        return 0;
       case DartType.single:
         multiplier = 1;
         break;

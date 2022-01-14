@@ -62,9 +62,7 @@ class ScoreTrainingService implements IScoreTrainingService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(
-          t: ThrowDto.fromDomain(t).toExternal(),
-        );
+        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
       },
     );
   }

@@ -1,4 +1,3 @@
-import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -16,12 +15,6 @@ abstract class IScoreTrainingService extends AbstractITrainingService {
     required User owner,
     List<String?>? players,
   });
-
-  void performThrow({
-    required Throw t,
-  });
-
-  void undoThrow();
 
   void updateNumberOfTakes({
     required int newNumberOfTakes,

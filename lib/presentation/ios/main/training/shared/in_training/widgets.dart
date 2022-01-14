@@ -1,11 +1,10 @@
 // CORE
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/index.dart'
-    as doubleBobs27;
+    as double_bobs_27;
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/index.dart'
     as detailed;
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/index.dart'
     as standard;
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/key_board_state.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -1280,8 +1279,10 @@ class DartsDisplayer extends StatelessWidget {
     } else {
       var string = '';
       switch (dart.type) {
+        case DartType.missed:
+          return 'X';
         case DartType.single:
-          string += '';
+          string += 'S';
           break;
         case DartType.double:
           string += 'D';
@@ -1920,9 +1921,9 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
           color: AppColors.white,
           onPressed: () => context
               .read<
-                  Bloc<doubleBobs27.KeyBoardEvent,
-                      doubleBobs27.KeyBoardState>>()
-              .add(const doubleBobs27.KeyBoardEvent.doubleHitPressed()),
+                  Bloc<double_bobs_27.KeyBoardEvent,
+                      double_bobs_27.KeyBoardState>>()
+              .add(const double_bobs_27.KeyBoardEvent.doubleHitPressed()),
         ),
         Expanded(
           child: AppRow(
@@ -1934,18 +1935,18 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
                 color: AppColors.white,
                 onPressed: () => context
                     .read<
-                        Bloc<doubleBobs27.KeyBoardEvent,
-                            doubleBobs27.KeyBoardState>>()
-                    .add(const doubleBobs27.KeyBoardEvent.missHitPressed()),
+                        Bloc<double_bobs_27.KeyBoardEvent,
+                            double_bobs_27.KeyBoardState>>()
+                    .add(const double_bobs_27.KeyBoardEvent.missHitPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
                 onPressed: () => context
                     .read<
-                        Bloc<doubleBobs27.KeyBoardEvent,
-                            doubleBobs27.KeyBoardState>>()
-                    .add(const doubleBobs27.KeyBoardEvent.ereasePressed()),
+                        Bloc<double_bobs_27.KeyBoardEvent,
+                            double_bobs_27.KeyBoardState>>()
+                    .add(const double_bobs_27.KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )
             ],

@@ -1479,6 +1479,8 @@ class _DartsDisplayer extends StatelessWidget {
     } else {
       var string = '';
       switch (dart.type) {
+        case DartType.missed:
+          return 'X';
         case DartType.single:
           string += '';
           break;

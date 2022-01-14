@@ -1,8 +1,10 @@
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/game/dart_dto.dart';
+import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_game_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:injectable/injectable.dart';
@@ -58,41 +60,12 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  void performHits({
-    required Hit hit1,
-    required Hit hit2,
-    required Hit hit3,
+  void performThrow({
+    required Throw t,
   }) {
     return _tryPerform(
       action: () {
-        final hits = [hit1, hit2, hit3];
-        final currentTurn =
-            _game!.players.where((player) => player.isCurrentTurn!).toList()[0];
-        final value = currentTurn.targetValue!;
-
-        final List<ex.Dart> darts = [];
-        for (final hit in hits) {
-          switch (hit) {
-            case Hit.double:
-              darts.add(
-                ex.Dart(
-                  type: ex.DartType.double,
-                  value: value,
-                ),
-              );
-              break;
-            case Hit.missed:
-              darts.add(ex.Dart.missed);
-              break;
-          }
-        }
-
-        _game!.performThrow(
-          t: ex.Throw.fromDarts(
-            darts: darts,
-            dartsOnDouble: 3,
-          ),
-        );
+        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
       },
     );
   }
@@ -127,7 +100,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  void undoHits() {
+  void undoThrow() {
     return _tryPerform(
       action: () => _game!.undoThrow(),
     );

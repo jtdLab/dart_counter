@@ -45,6 +45,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     // register event handlers
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
     on<EreasePressed>((event, emit) => _mapEreasePressedToState());
+    on<UnfocusRequested>((event, emit) => _mapUnfocusRequestedToState());
   }
 
   void _mapDigitPressedToState(
@@ -55,6 +56,11 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   void _mapEreasePressedToState() {
+    // TODO implement
+    throw UnimplementedError();
+  }
+
+  void _mapUnfocusRequestedToState() {
     // TODO implement
     throw UnimplementedError();
   }

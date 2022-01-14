@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
-import 'package:dart_counter/domain/training/double/hit.dart';
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -30,8 +31,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   }
 
   void _mapUndoPressedToState() {
-    // undo hits
-    _trainingService.undoHits();
+    // undo throw
+    _trainingService.undoThrow();
   }
 
   void _mapCommitPressedToState(
@@ -40,33 +41,16 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
       initial: () {
-        // commit 3 missed hits
-        _trainingService.performHits(
-          hit1: Hit.missed,
-          hit2: Hit.missed,
-          hit3: Hit.missed,
+        // perform throw with 3 missed darts
+        _trainingService.performThrow(
+          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 0),
         );
       },
       // when the user did at least input 1 dart
       darts: (darts) {
-        // convert incoming darts to double
-        // when incoming darts has less than 3 elements
-        // add missed for each missing dart
-        // so the resulting list contains 3 elements
-        final hits =
-            darts.getOrCrash().map<Hit>((dart) => Hit.double).toMutableList()
-              ..addAll(
-                List.generate(
-                  3 - darts.length,
-                  (index) => Hit.missed,
-                ).toImmutableList(),
-              );
-
-        // commit converted hits
-        _trainingService.performHits(
-          hit1: hits[0],
-          hit2: hits[1],
-          hit3: hits[2],
+        // perform throw with darts put in by the user
+        _trainingService.performThrow(
+          t: Throw.fromDarts(darts.getOrCrash().asList(), 3),
         );
       },
     );
