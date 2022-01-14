@@ -201,3 +201,6 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO score detailed keyboard bloc 
 // TODO double inputrow bloc 
 // TODO single inputrow bloc 
+
+
+// TODO trainig and play servic eshould return not void but bool or smth that indicated the method got performed successfully or not

@@ -35,6 +35,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   Future<void> _mapStartedToState(
     Emitter<int> emit,
   ) async {
+    // for each incoming darts
     await emit.forEach<DartsDisplayerState>(
       _dartsDisplayerBloc.stream,
       onData: (dartsDisplayerState) => dartsDisplayerState.when(

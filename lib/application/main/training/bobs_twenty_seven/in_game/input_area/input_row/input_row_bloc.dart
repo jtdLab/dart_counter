@@ -10,9 +10,6 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 
-// TODO mulitple undos dont update input correctly listen to _trainingService needed?
-// caused by dart displayer not emiting 2 times ktlist.empty
-
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IBobsTwentySevenService _trainingService;
@@ -30,7 +27,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       (_, emit) async => _mapStartedToState(emit),
       transformer: restartable(),
     );
-    on<UndoPressed>((_, __) => _mapUndoPressedToState());
+    on<UndoPressed>((_, emit) => _mapUndoPressedToState(emit));
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
@@ -72,9 +69,17 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
   }
 
-  void _mapUndoPressedToState() {
+  void _mapUndoPressedToState(
+    Emitter<int> emit,
+  ) {
     // undo hits
     _trainingService.undoHits();
+
+    // read target value of new (after undo) current turn
+    final targetValue = _trainingService.getGame().currentTurn().targetValue;
+
+    // emit 2 times negative new (after undo) current target value
+    emit(-2 * targetValue);
 
     // reset darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
