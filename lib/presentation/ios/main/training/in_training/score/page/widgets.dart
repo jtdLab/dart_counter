@@ -37,7 +37,7 @@ class _InScoreTrainingWidget extends StatelessWidget {
                   BlocProvider<Bloc<InputRowEvent, int>>(
                     create: (context) => getIt<standard.InputRowBloc>(),
                   ),
-                  BlocProvider(
+                  BlocProvider<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
                     create: (context) => getIt<standard.KeyBoardBloc>(
                       param1: context.read<Bloc<InputRowEvent, int>>(),
                     ),
@@ -55,7 +55,7 @@ class _InScoreTrainingWidget extends StatelessWidget {
                       param1: context.read<DartsDisplayerBloc>(),
                     ),
                   ),
-                  BlocProvider(
+                  BlocProvider<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
                     create: (context) => getIt<detailed.KeyBoardBloc>(
                       param1: context.read<DartsDisplayerBloc>(),
                     ),

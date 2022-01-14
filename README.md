@@ -196,11 +196,22 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO share even more around blocs by sharing event handler impl or make base calss that impls some event handlers if tahts possible with darts
 
 
-// TODO bobs27 inputrow bloc 
 // TODO score detailed inputrow bloc 
 // TODO score detailed keyboard bloc 
-// TODO double inputrow bloc 
-// TODO single inputrow bloc 
 
+// TODO double general what to display in input rows input field ???
+// TODO double keyboard bloc 
+// TODO double inputrow bloc 
+
+
+
+// TODO single keyboard bloc 
+
+// TODO bobs27 keyboard bloc 
 
 // TODO trainig and play servic eshould return not void but bool or smth that indicated the method got performed successfully or not
+
+
+!!!!!!! import strucural approach needed who notify who (bloc level) !!!!!!!!!!!!!!!!!
+// TODO input row input changed event never used ??
+// and should it be used and not calc input depeding on icoming dependencies like dart displayer

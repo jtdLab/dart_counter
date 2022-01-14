@@ -7,8 +7,6 @@ import 'package:injectable/injectable.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 
-// TODO impl
-
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final DartsDisplayerBloc _dartsDisplayerBloc;

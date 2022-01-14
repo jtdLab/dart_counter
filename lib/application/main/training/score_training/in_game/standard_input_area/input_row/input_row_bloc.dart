@@ -15,14 +15,19 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     // set inital state
   ) : super(0) {
     // register event handlers
-    on<UndoPressed>((_, __) => _mapUndoPressedToState());
+    on<UndoPressed>((_, emit) => _mapUndoPressedToState(emit));
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
 
-  void _mapUndoPressedToState() {
+  void _mapUndoPressedToState(
+    Emitter<int> emit,
+  ) {
     // undo throw
     _trainingService.undoThrow();
+
+    // reset input
+    emit(0);
   }
 
   void _mapCommitPressedToState(
@@ -32,6 +37,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _trainingService.performThrow(
       t: Throw(points: state, dartsThrown: 3, dartsOnDouble: 0),
     );
+
+    // reset input
+    emit(0);
   }
 
   void _mapInputChangedToState(

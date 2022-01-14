@@ -46,8 +46,14 @@ class InDoubleTrainingPage extends StatelessWidget {
           BlocListener<DoubleTrainingWatcherCubit, DoubleTrainingGameSnapshot>(
         listenWhen: (oldState, newState) => oldState.status != newState.status,
         listener: (context, gameSnapshot) {
-          if (gameSnapshot.status == Status.canceled) {
-            context.router.replace(const HomePageRoute());
+          switch (gameSnapshot.status) {
+            case Status.canceled:
+              context.router.replace(const HomePageRoute());
+              break;
+            case Status.finished:
+              context.router.replace(const PostTrainingPageRoute());
+              break;
+            default:
           }
         },
         child: AppPage(

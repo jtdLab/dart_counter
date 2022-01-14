@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/dart.dart';
@@ -24,14 +25,45 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         // set inital state
         super(0) {
     // register event handlers
+    on<Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
     on<UndoPressed>((_, __) => _mapUndoPressedToState());
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
 
+  Future<void> _mapStartedToState(
+    Emitter<int> emit,
+  ) async {
+    // for each incoming darts
+    await emit.forEach<DartsDisplayerState>(
+      _dartsDisplayerBloc.stream,
+      onData: (dartsDisplayerState) {
+        return dartsDisplayerState.when(
+          // when 0 darts emit 0
+          initial: () => 0,
+          // when more than 0 darts
+          darts: (darts) {
+            // calculate points as the sum of all darts' points
+            final int points =
+                darts.getOrCrash().fold(0, (acc, dart) => acc + dart.value);
+
+            //  emit calculated points
+            return points;
+          },
+        );
+      },
+    );
+  }
+
   void _mapUndoPressedToState() {
     // undo throw
     _trainingService.undoThrow();
+
+    // reset darts displayer
+    _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
   void _mapCommitPressedToState(
@@ -72,6 +104,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         );
       },
     );
+
+    // reset darts displayer
+    _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
   void _mapInputChangedToState(
