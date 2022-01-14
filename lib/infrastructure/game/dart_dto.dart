@@ -28,6 +28,11 @@ extension ExternalDartTypeX on ex.DartType {
   }
 
   static ex.DartType parse(String str) {
+    // TODO only to fit model
+    if (str == 'missed') {
+      return ex.DartType.double;
+    }
+
     return ex.DartType.values.firstWhere(
       (e) => e.toString() == 'DartType.$str',
       orElse: () => throw EnumParseError<ex.DartType>(str),
@@ -42,6 +47,11 @@ extension ClientDartTypeX on c.DartType {
   }
 
   static c.DartType parse(String str) {
+    // TODO only to fit model
+    if (str == 'missed') {
+      return c.DartType.double;
+    }
+
     return c.DartType.values.firstWhere(
       (e) => e.toString() == 'DartType.$str',
       orElse: () => throw EnumParseError<c.DartType>(str),

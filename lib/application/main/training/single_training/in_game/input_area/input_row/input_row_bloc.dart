@@ -47,11 +47,13 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
               0,
               (acc, dart) =>
                   acc +
-                  (dart.type == DartType.single
-                      ? 1
-                      : dart.type == DartType.double
-                          ? 2
-                          : 3),
+                  (dart.type == DartType.missed
+                      ? 0
+                      : dart.type == DartType.single
+                          ? 1
+                          : dart.type == DartType.double
+                              ? 2
+                              : 3),
             ),
       ),
     );

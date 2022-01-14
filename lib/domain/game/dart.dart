@@ -4,20 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'dart.freezed.dart';
 
 enum DartType { missed, single, double, triple }
-// TODO remove
-/**
- * 
-@freezed
-class MissedDart with _$MissedDart implements AbstractDart {
-  @Implements<AbstractDart>()
-  const factory MissedDart() = _MissedDart;
-
-  const MissedDart._();
-
-  @override
-  int points() => 0;
-}
- */
 
 @freezed
 class Dart with _$Dart {

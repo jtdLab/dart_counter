@@ -78,7 +78,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
           t: Throw.fromDarts(
             List.generate(
               3,
-              (_) => const Dart(type: DartType.single, value: 0),
+              (_) => Dart.missed,
             ),
             0,
           ),
@@ -94,7 +94,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
           ..addAll(
             List.generate(
               3 - darts.length,
-              (index) => const Dart(type: DartType.single, value: 0),
+              (index) => Dart.missed,
             ),
           );
 
