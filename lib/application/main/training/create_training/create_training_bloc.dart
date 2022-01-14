@@ -25,41 +25,20 @@ part 'create_training_event.dart';
 @injectable
 class CreateTrainingBloc
     extends Bloc<CreateTrainingEvent, AbstractTrainingGameSnapshot> {
-  // TODO remove
-  /**
-   * final ISingleTrainingService _singleTrainingService;
-  final IDoubleTrainingService _doubleTrainingService;
-  final IScoreTrainingService _scoreTrainingService;
-  final IBobsTwentySevenService _bobsTwentySevenService;
-   */
   AbstractITrainingService _trainingService;
   final IUserService _userService;
 
   CreateTrainingBloc(
-    // TODO remove
-    /**
-     * this._singleTrainingService,
-    this._doubleTrainingService,
-    this._scoreTrainingService,
-    this._bobsTwentySevenService,
-     */
+    ISingleTrainingService singleTrainingService,
     this._userService,
-  )   : _trainingService = getIt<ISingleTrainingService>(),
+  )   : _trainingService = singleTrainingService,
         super(
-          getIt<ISingleTrainingService>().createGame(
-            owner: _userService.getUser().getOrElse(() => throw Error()),
-          ),
           // set initial state
-          /**
-          *  SingleTrainingGameSnapshot.initial(
-            username: _userService
+          singleTrainingService.createGame(
+            owner: _userService
                 .getUser()
-                .getOrElse(() => throw Error())
-                .profile
-                .name
-                .getOrCrash(),
+                .getOrElse(() => throw Error()), // TODO name better
           ),
-          */
         ) {
     // register event handlers
     on<_Started>(

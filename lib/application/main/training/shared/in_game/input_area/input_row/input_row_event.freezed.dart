@@ -17,6 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InputRowEventTearOff {
   const _$InputRowEventTearOff();
 
+  Started started() {
+    return const Started();
+  }
+
   UndoPressed undoPressed() {
     return const UndoPressed();
   }
@@ -39,6 +43,7 @@ const $InputRowEvent = _$InputRowEventTearOff();
 mixin _$InputRowEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() undoPressed,
     required TResult Function() commitPressed,
     required TResult Function(int newInput) inputChanged,
@@ -46,6 +51,7 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -53,6 +59,7 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -61,6 +68,7 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(UndoPressed value) undoPressed,
     required TResult Function(CommitPressed value) commitPressed,
     required TResult Function(InputChanged value) inputChanged,
@@ -68,6 +76,7 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -75,6 +84,7 @@ mixin _$InputRowEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -98,6 +108,120 @@ class _$InputRowEventCopyWithImpl<$Res>
   final InputRowEvent _value;
   // ignore: unused_field
   final $Res Function(InputRowEvent) _then;
+}
+
+/// @nodoc
+abstract class $StartedCopyWith<$Res> {
+  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
+      _$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$StartedCopyWithImpl<$Res> extends _$InputRowEventCopyWithImpl<$Res>
+    implements $StartedCopyWith<$Res> {
+  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
+      : super(_value, (v) => _then(v as Started));
+
+  @override
+  Started get _value => super._value as Started;
+}
+
+/// @nodoc
+
+class _$Started implements Started {
+  const _$Started();
+
+  @override
+  String toString() {
+    return 'InputRowEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() undoPressed,
+    required TResult Function() commitPressed,
+    required TResult Function(int newInput) inputChanged,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? undoPressed,
+    TResult Function()? commitPressed,
+    TResult Function(int newInput)? inputChanged,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? undoPressed,
+    TResult Function()? commitPressed,
+    TResult Function(int newInput)? inputChanged,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(UndoPressed value) undoPressed,
+    required TResult Function(CommitPressed value) commitPressed,
+    required TResult Function(InputChanged value) inputChanged,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(UndoPressed value)? undoPressed,
+    TResult Function(CommitPressed value)? commitPressed,
+    TResult Function(InputChanged value)? inputChanged,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Started implements InputRowEvent {
+  const factory Started() = _$Started;
 }
 
 /// @nodoc
@@ -140,6 +264,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() undoPressed,
     required TResult Function() commitPressed,
     required TResult Function(int newInput) inputChanged,
@@ -150,6 +275,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -160,6 +286,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -174,6 +301,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(UndoPressed value) undoPressed,
     required TResult Function(CommitPressed value) commitPressed,
     required TResult Function(InputChanged value) inputChanged,
@@ -184,6 +312,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -194,6 +323,7 @@ class _$UndoPressed implements UndoPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -251,6 +381,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() undoPressed,
     required TResult Function() commitPressed,
     required TResult Function(int newInput) inputChanged,
@@ -261,6 +392,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -271,6 +403,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -285,6 +418,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(UndoPressed value) undoPressed,
     required TResult Function(CommitPressed value) commitPressed,
     required TResult Function(InputChanged value) inputChanged,
@@ -295,6 +429,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -305,6 +440,7 @@ class _$CommitPressed implements CommitPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -385,6 +521,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() undoPressed,
     required TResult Function() commitPressed,
     required TResult Function(int newInput) inputChanged,
@@ -395,6 +532,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -405,6 +543,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? undoPressed,
     TResult Function()? commitPressed,
     TResult Function(int newInput)? inputChanged,
@@ -419,6 +558,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(UndoPressed value) undoPressed,
     required TResult Function(CommitPressed value) commitPressed,
     required TResult Function(InputChanged value) inputChanged,
@@ -429,6 +569,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,
@@ -439,6 +580,7 @@ class _$InputChanged implements InputChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(UndoPressed value)? undoPressed,
     TResult Function(CommitPressed value)? commitPressed,
     TResult Function(InputChanged value)? inputChanged,

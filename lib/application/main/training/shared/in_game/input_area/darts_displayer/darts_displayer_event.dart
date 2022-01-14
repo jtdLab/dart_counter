@@ -6,4 +6,5 @@ class DartsDisplayerEvent with _$DartsDisplayerEvent {
     required Dart dart,
   }) = _DartAdded;
   const factory DartsDisplayerEvent.dartRemoved() = _DartRemoved;
+  const factory DartsDisplayerEvent.resetRequested() = _ResetRequested;
 }

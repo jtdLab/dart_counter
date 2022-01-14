@@ -26,6 +26,10 @@ class _$DartsDisplayerEventTearOff {
   _DartRemoved dartRemoved() {
     return const _DartRemoved();
   }
+
+  _ResetRequested resetRequested() {
+    return const _ResetRequested();
+  }
 }
 
 /// @nodoc
@@ -37,18 +41,21 @@ mixin _$DartsDisplayerEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Dart dart) dartAdded,
     required TResult Function() dartRemoved,
+    required TResult Function() resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +63,21 @@ mixin _$DartsDisplayerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_DartAdded value) dartAdded,
     required TResult Function(_DartRemoved value) dartRemoved,
+    required TResult Function(_ResetRequested value) resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +175,7 @@ class _$_DartAdded implements _DartAdded {
   TResult when<TResult extends Object?>({
     required TResult Function(Dart dart) dartAdded,
     required TResult Function() dartRemoved,
+    required TResult Function() resetRequested,
   }) {
     return dartAdded(dart);
   }
@@ -174,6 +185,7 @@ class _$_DartAdded implements _DartAdded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
   }) {
     return dartAdded?.call(dart);
   }
@@ -183,6 +195,7 @@ class _$_DartAdded implements _DartAdded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
     if (dartAdded != null) {
@@ -196,6 +209,7 @@ class _$_DartAdded implements _DartAdded {
   TResult map<TResult extends Object?>({
     required TResult Function(_DartAdded value) dartAdded,
     required TResult Function(_DartRemoved value) dartRemoved,
+    required TResult Function(_ResetRequested value) resetRequested,
   }) {
     return dartAdded(this);
   }
@@ -205,6 +219,7 @@ class _$_DartAdded implements _DartAdded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
   }) {
     return dartAdded?.call(this);
   }
@@ -214,6 +229,7 @@ class _$_DartAdded implements _DartAdded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
     required TResult orElse(),
   }) {
     if (dartAdded != null) {
@@ -275,6 +291,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult when<TResult extends Object?>({
     required TResult Function(Dart dart) dartAdded,
     required TResult Function() dartRemoved,
+    required TResult Function() resetRequested,
   }) {
     return dartRemoved();
   }
@@ -284,6 +301,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
   }) {
     return dartRemoved?.call();
   }
@@ -293,6 +311,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Dart dart)? dartAdded,
     TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
     required TResult orElse(),
   }) {
     if (dartRemoved != null) {
@@ -306,6 +325,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult map<TResult extends Object?>({
     required TResult Function(_DartAdded value) dartAdded,
     required TResult Function(_DartRemoved value) dartRemoved,
+    required TResult Function(_ResetRequested value) resetRequested,
   }) {
     return dartRemoved(this);
   }
@@ -315,6 +335,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
   }) {
     return dartRemoved?.call(this);
   }
@@ -324,6 +345,7 @@ class _$_DartRemoved implements _DartRemoved {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DartAdded value)? dartAdded,
     TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
     required TResult orElse(),
   }) {
     if (dartRemoved != null) {
@@ -335,6 +357,117 @@ class _$_DartRemoved implements _DartRemoved {
 
 abstract class _DartRemoved implements DartsDisplayerEvent {
   const factory _DartRemoved() = _$_DartRemoved;
+}
+
+/// @nodoc
+abstract class _$ResetRequestedCopyWith<$Res> {
+  factory _$ResetRequestedCopyWith(
+          _ResetRequested value, $Res Function(_ResetRequested) then) =
+      __$ResetRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ResetRequestedCopyWithImpl<$Res>
+    extends _$DartsDisplayerEventCopyWithImpl<$Res>
+    implements _$ResetRequestedCopyWith<$Res> {
+  __$ResetRequestedCopyWithImpl(
+      _ResetRequested _value, $Res Function(_ResetRequested) _then)
+      : super(_value, (v) => _then(v as _ResetRequested));
+
+  @override
+  _ResetRequested get _value => super._value as _ResetRequested;
+}
+
+/// @nodoc
+
+class _$_ResetRequested implements _ResetRequested {
+  const _$_ResetRequested();
+
+  @override
+  String toString() {
+    return 'DartsDisplayerEvent.resetRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ResetRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Dart dart) dartAdded,
+    required TResult Function() dartRemoved,
+    required TResult Function() resetRequested,
+  }) {
+    return resetRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Dart dart)? dartAdded,
+    TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
+  }) {
+    return resetRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Dart dart)? dartAdded,
+    TResult Function()? dartRemoved,
+    TResult Function()? resetRequested,
+    required TResult orElse(),
+  }) {
+    if (resetRequested != null) {
+      return resetRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_DartAdded value) dartAdded,
+    required TResult Function(_DartRemoved value) dartRemoved,
+    required TResult Function(_ResetRequested value) resetRequested,
+  }) {
+    return resetRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_DartAdded value)? dartAdded,
+    TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
+  }) {
+    return resetRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DartAdded value)? dartAdded,
+    TResult Function(_DartRemoved value)? dartRemoved,
+    TResult Function(_ResetRequested value)? resetRequested,
+    required TResult orElse(),
+  }) {
+    if (resetRequested != null) {
+      return resetRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetRequested implements DartsDisplayerEvent {
+  const factory _ResetRequested() = _$_ResetRequested;
 }
 
 /// @nodoc

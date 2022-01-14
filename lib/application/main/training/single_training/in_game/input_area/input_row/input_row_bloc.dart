@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/dart.dart';
@@ -8,8 +9,6 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
-
-// TODO listen to darts displayer to update input
 
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
@@ -24,14 +23,45 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         // set inital state
         super(0) {
     // register event handlers
+    on<Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
     on<UndoPressed>((_, __) => _mapUndoPressedToState());
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
 
+  Future<void> _mapStartedToState(
+    Emitter<int> emit,
+  ) async {
+    await emit.forEach<DartsDisplayerState>(
+      _dartsDisplayerBloc.stream,
+      onData: (dartsDisplayerState) => dartsDisplayerState.when(
+        // when 0 darts emit 0
+        initial: () => 0,
+        // when > 0 darts emit sum of points calculated from darts
+        // a single counts 1 point, a double counts 2 points, a triple counts 3 points
+        darts: (darts) => darts.getOrCrash().fold(
+              0,
+              (acc, dart) =>
+                  acc +
+                  (dart.type == DartType.single
+                      ? 1
+                      : dart.type == DartType.double
+                          ? 2
+                          : 3),
+            ),
+      ),
+    );
+  }
+
   void _mapUndoPressedToState() {
     // undo hits
     _trainingService.undoHits();
+
+    // reset darts displayer
+    _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
   void _mapCommitPressedToState(
@@ -72,6 +102,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         );
       },
     );
+
+    // reset darts displayer
+    _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
   void _mapInputChangedToState(

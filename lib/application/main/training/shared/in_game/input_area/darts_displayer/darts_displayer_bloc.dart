@@ -22,6 +22,7 @@ class DartsDisplayerBloc
     // register event handlers
     on<_DartAdded>((event, emit) => _mapDartAddedToState(event, emit));
     on<_DartRemoved>((_, emit) => _mapDartRemovedToState(emit));
+    on<_ResetRequested>((_, emit) => _mapResetRequestedToState(emit));
   }
 
   /// handle incoming [_DartAdded] event.
@@ -83,5 +84,13 @@ class DartsDisplayerBloc
         }
       },
     );
+  }
+
+  /// handle incoming [_ResetRequested] event.
+  void _mapResetRequestedToState(
+    Emitter<DartsDisplayerState> emit,
+  ) {
+    // emit initial
+    emit(const DartsDisplayerState.initial());
   }
 }

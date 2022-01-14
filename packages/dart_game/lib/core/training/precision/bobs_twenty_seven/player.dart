@@ -57,7 +57,7 @@ class Player extends AbstractPlayer {
 
         final targetValue = i + 1;
         if (doublesHit == 0) {
-          points -= targetValue;
+          points -= 2 * targetValue;
         } else {
           points += doublesHit * targetValue * 2;
         }
@@ -82,7 +82,7 @@ class Player extends AbstractPlayer {
 
         final targetValue = i + 1;
         if (doublesHit == 0) {
-          points -= targetValue;
+          points -= 2 * targetValue;
         } else {
           points += doublesHit * targetValue * 2;
         }
