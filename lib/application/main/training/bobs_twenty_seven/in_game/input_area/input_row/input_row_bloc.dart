@@ -29,6 +29,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
     on<UndoPressed>((_, emit) => _mapUndoPressedToState(emit));
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
+    // TODO remove this  handler
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
 

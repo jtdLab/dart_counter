@@ -76,6 +76,7 @@ class CreateTrainingBloc
     await emit.forEach<AbstractTrainingGameSnapshot>(
       _trainingService.watchGame(),
       onData: (gameSnapshot) {
+        // TODO remove
         print('started ${gameSnapshot.runtimeType}');
         return gameSnapshot;
       },

@@ -1753,7 +1753,7 @@ class _DetailedDigitButton extends StatelessWidget {
               text: digit.toString(),
             );
           },
-          focused: (type, digit) {
+          focused: (type, focusedDigit) {
             final color = type == DartType.single
                 ? AppColors.black
                 : type == DartType.double
@@ -1772,7 +1772,7 @@ class _DetailedDigitButton extends StatelessWidget {
               onPressed: () => context
                   .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
                   .add(detailed.KeyBoardEvent.digitPressed(digit: digit)),
-              text: '$text$digit',
+              text: '$text$focusedDigit',
               fontColor: color,
               borderColor: color,
             );

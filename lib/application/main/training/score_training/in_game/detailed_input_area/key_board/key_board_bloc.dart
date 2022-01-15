@@ -3,8 +3,6 @@ import 'package:dart_counter/application/main/training/shared/in_game/input_area
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
@@ -12,19 +10,14 @@ export 'package:dart_counter/application/main/training/shared/in_game/input_area
 
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
-  final IScoreTrainingService _trainingService;
-  final IDartUtils _dartUtils;
-
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
   KeyBoardBloc(
-    this._trainingService,
-    this._dartUtils,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
         super(
           // set initial state
-          _calculateState(),
+          allEnabled,
         ) {
     // register event handlers
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event, emit));
@@ -48,8 +41,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
         );
 
-        // unfocus // TODO desc
-        emit(_calculateState());
+        // unfocus and enable all buttons again
+        emit(allEnabled);
         break;
       // when digit button one
       case 1:
@@ -83,8 +76,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -120,8 +113,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -157,8 +150,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -194,8 +187,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -231,8 +224,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -268,8 +261,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -305,8 +298,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -342,8 +335,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -379,8 +372,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -416,8 +409,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -453,8 +446,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -490,8 +483,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -527,8 +520,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -564,8 +557,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -601,8 +594,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -638,8 +631,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -675,8 +668,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -712,8 +705,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -749,8 +742,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -786,8 +779,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -819,8 +812,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               ),
             );
 
-            // unfocus // TODO desc
-            emit(_calculateState());
+            // unfocus and enable all buttons again
+            emit(allEnabled);
           },
         );
         break;
@@ -837,13 +830,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   void _mapUnfocusRequestedToState(
     Emitter<KeyBoardState> emit,
   ) {
-    // unfocus
-    emit(_calculateState());
-  }
-
-  static KeyBoardState _calculateState() {
-    // TODO impl real
-   return allEnabled;
+    // unfocus and enable all buttons again
+    emit(allEnabled);
   }
 
   static const allEnabled = KeyBoardState.initial(
