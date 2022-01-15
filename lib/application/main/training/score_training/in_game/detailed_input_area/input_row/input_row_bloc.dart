@@ -10,8 +10,6 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 
-// TODO listen to dart displayer bloc to update input
-
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IScoreTrainingService _trainingService;
@@ -48,8 +46,20 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
           // when more than 0 darts
           darts: (darts) {
             // calculate points as the sum of all darts' points
-            final int points =
-                darts.getOrCrash().fold(0, (acc, dart) => acc + dart.value);
+            final int points = darts.getOrCrash().fold(
+              0,
+              (acc, dart) {
+                final multiplier = dart.type == DartType.missed
+                    ? 0
+                    : dart.type == DartType.single
+                        ? 1
+                        : dart.type == DartType.double
+                            ? 2
+                            : 3;
+
+                return acc + multiplier * dart.value;
+              },
+            );
 
             //  emit calculated points
             return points;
