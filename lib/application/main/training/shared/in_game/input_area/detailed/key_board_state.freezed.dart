@@ -18,7 +18,8 @@ class _$KeyBoardStateTearOff {
   const _$KeyBoardStateTearOff();
 
   KeyBoardInitial initial(
-      {required DigitButtonState one,
+      {required DigitButtonState zero,
+      required DigitButtonState one,
       required DigitButtonState two,
       required DigitButtonState three,
       required DigitButtonState four,
@@ -39,9 +40,9 @@ class _$KeyBoardStateTearOff {
       required DigitButtonState nineteen,
       required DigitButtonState twenty,
       required DigitButtonState twentyFive,
-      required DigitButtonState zero,
       required ButtonState erease}) {
     return KeyBoardInitial(
+      zero: zero,
       one: one,
       two: two,
       three: three,
@@ -63,7 +64,6 @@ class _$KeyBoardStateTearOff {
       nineteen: nineteen,
       twenty: twenty,
       twentyFive: twentyFive,
-      zero: zero,
       erease: erease,
     );
   }
@@ -74,6 +74,7 @@ const $KeyBoardState = _$KeyBoardStateTearOff();
 
 /// @nodoc
 mixin _$KeyBoardState {
+  DigitButtonState get zero => throw _privateConstructorUsedError;
   DigitButtonState get one => throw _privateConstructorUsedError;
   DigitButtonState get two => throw _privateConstructorUsedError;
   DigitButtonState get three => throw _privateConstructorUsedError;
@@ -95,12 +96,12 @@ mixin _$KeyBoardState {
   DigitButtonState get nineteen => throw _privateConstructorUsedError;
   DigitButtonState get twenty => throw _privateConstructorUsedError;
   DigitButtonState get twentyFive => throw _privateConstructorUsedError;
-  DigitButtonState get zero => throw _privateConstructorUsedError;
   ButtonState get erease => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -122,7 +123,6 @@ mixin _$KeyBoardState {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)
         initial,
   }) =>
@@ -130,6 +130,7 @@ mixin _$KeyBoardState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -151,7 +152,6 @@ mixin _$KeyBoardState {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)?
         initial,
   }) =>
@@ -159,6 +159,7 @@ mixin _$KeyBoardState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -180,7 +181,6 @@ mixin _$KeyBoardState {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)?
         initial,
     required TResult orElse(),
@@ -214,7 +214,8 @@ abstract class $KeyBoardStateCopyWith<$Res> {
           KeyBoardState value, $Res Function(KeyBoardState) then) =
       _$KeyBoardStateCopyWithImpl<$Res>;
   $Res call(
-      {DigitButtonState one,
+      {DigitButtonState zero,
+      DigitButtonState one,
       DigitButtonState two,
       DigitButtonState three,
       DigitButtonState four,
@@ -235,9 +236,9 @@ abstract class $KeyBoardStateCopyWith<$Res> {
       DigitButtonState nineteen,
       DigitButtonState twenty,
       DigitButtonState twentyFive,
-      DigitButtonState zero,
       ButtonState erease});
 
+  $DigitButtonStateCopyWith<$Res> get zero;
   $DigitButtonStateCopyWith<$Res> get one;
   $DigitButtonStateCopyWith<$Res> get two;
   $DigitButtonStateCopyWith<$Res> get three;
@@ -259,7 +260,6 @@ abstract class $KeyBoardStateCopyWith<$Res> {
   $DigitButtonStateCopyWith<$Res> get nineteen;
   $DigitButtonStateCopyWith<$Res> get twenty;
   $DigitButtonStateCopyWith<$Res> get twentyFive;
-  $DigitButtonStateCopyWith<$Res> get zero;
 }
 
 /// @nodoc
@@ -273,6 +273,7 @@ class _$KeyBoardStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? zero = freezed,
     Object? one = freezed,
     Object? two = freezed,
     Object? three = freezed,
@@ -294,10 +295,13 @@ class _$KeyBoardStateCopyWithImpl<$Res>
     Object? nineteen = freezed,
     Object? twenty = freezed,
     Object? twentyFive = freezed,
-    Object? zero = freezed,
     Object? erease = freezed,
   }) {
     return _then(_value.copyWith(
+      zero: zero == freezed
+          ? _value.zero
+          : zero // ignore: cast_nullable_to_non_nullable
+              as DigitButtonState,
       one: one == freezed
           ? _value.one
           : one // ignore: cast_nullable_to_non_nullable
@@ -382,15 +386,18 @@ class _$KeyBoardStateCopyWithImpl<$Res>
           ? _value.twentyFive
           : twentyFive // ignore: cast_nullable_to_non_nullable
               as DigitButtonState,
-      zero: zero == freezed
-          ? _value.zero
-          : zero // ignore: cast_nullable_to_non_nullable
-              as DigitButtonState,
       erease: erease == freezed
           ? _value.erease
           : erease // ignore: cast_nullable_to_non_nullable
               as ButtonState,
     ));
+  }
+
+  @override
+  $DigitButtonStateCopyWith<$Res> get zero {
+    return $DigitButtonStateCopyWith<$Res>(_value.zero, (value) {
+      return _then(_value.copyWith(zero: value));
+    });
   }
 
   @override
@@ -539,13 +546,6 @@ class _$KeyBoardStateCopyWithImpl<$Res>
       return _then(_value.copyWith(twentyFive: value));
     });
   }
-
-  @override
-  $DigitButtonStateCopyWith<$Res> get zero {
-    return $DigitButtonStateCopyWith<$Res>(_value.zero, (value) {
-      return _then(_value.copyWith(zero: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -556,7 +556,8 @@ abstract class $KeyBoardInitialCopyWith<$Res>
       _$KeyBoardInitialCopyWithImpl<$Res>;
   @override
   $Res call(
-      {DigitButtonState one,
+      {DigitButtonState zero,
+      DigitButtonState one,
       DigitButtonState two,
       DigitButtonState three,
       DigitButtonState four,
@@ -577,9 +578,10 @@ abstract class $KeyBoardInitialCopyWith<$Res>
       DigitButtonState nineteen,
       DigitButtonState twenty,
       DigitButtonState twentyFive,
-      DigitButtonState zero,
       ButtonState erease});
 
+  @override
+  $DigitButtonStateCopyWith<$Res> get zero;
   @override
   $DigitButtonStateCopyWith<$Res> get one;
   @override
@@ -622,8 +624,6 @@ abstract class $KeyBoardInitialCopyWith<$Res>
   $DigitButtonStateCopyWith<$Res> get twenty;
   @override
   $DigitButtonStateCopyWith<$Res> get twentyFive;
-  @override
-  $DigitButtonStateCopyWith<$Res> get zero;
 }
 
 /// @nodoc
@@ -639,6 +639,7 @@ class _$KeyBoardInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? zero = freezed,
     Object? one = freezed,
     Object? two = freezed,
     Object? three = freezed,
@@ -660,10 +661,13 @@ class _$KeyBoardInitialCopyWithImpl<$Res>
     Object? nineteen = freezed,
     Object? twenty = freezed,
     Object? twentyFive = freezed,
-    Object? zero = freezed,
     Object? erease = freezed,
   }) {
     return _then(KeyBoardInitial(
+      zero: zero == freezed
+          ? _value.zero
+          : zero // ignore: cast_nullable_to_non_nullable
+              as DigitButtonState,
       one: one == freezed
           ? _value.one
           : one // ignore: cast_nullable_to_non_nullable
@@ -748,10 +752,6 @@ class _$KeyBoardInitialCopyWithImpl<$Res>
           ? _value.twentyFive
           : twentyFive // ignore: cast_nullable_to_non_nullable
               as DigitButtonState,
-      zero: zero == freezed
-          ? _value.zero
-          : zero // ignore: cast_nullable_to_non_nullable
-              as DigitButtonState,
       erease: erease == freezed
           ? _value.erease
           : erease // ignore: cast_nullable_to_non_nullable
@@ -764,7 +764,8 @@ class _$KeyBoardInitialCopyWithImpl<$Res>
 
 class _$KeyBoardInitial implements KeyBoardInitial {
   const _$KeyBoardInitial(
-      {required this.one,
+      {required this.zero,
+      required this.one,
       required this.two,
       required this.three,
       required this.four,
@@ -785,9 +786,10 @@ class _$KeyBoardInitial implements KeyBoardInitial {
       required this.nineteen,
       required this.twenty,
       required this.twentyFive,
-      required this.zero,
       required this.erease});
 
+  @override
+  final DigitButtonState zero;
   @override
   final DigitButtonState one;
   @override
@@ -831,13 +833,11 @@ class _$KeyBoardInitial implements KeyBoardInitial {
   @override
   final DigitButtonState twentyFive;
   @override
-  final DigitButtonState zero;
-  @override
   final ButtonState erease;
 
   @override
   String toString() {
-    return 'KeyBoardState.initial(one: $one, two: $two, three: $three, four: $four, five: $five, six: $six, seven: $seven, eight: $eight, nine: $nine, ten: $ten, eleven: $eleven, twelve: $twelve, thirteen: $thirteen, fourteen: $fourteen, fifteen: $fifteen, sixteen: $sixteen, seventeen: $seventeen, eighteen: $eighteen, nineteen: $nineteen, twenty: $twenty, twentyFive: $twentyFive, zero: $zero, erease: $erease)';
+    return 'KeyBoardState.initial(zero: $zero, one: $one, two: $two, three: $three, four: $four, five: $five, six: $six, seven: $seven, eight: $eight, nine: $nine, ten: $ten, eleven: $eleven, twelve: $twelve, thirteen: $thirteen, fourteen: $fourteen, fifteen: $fifteen, sixteen: $sixteen, seventeen: $seventeen, eighteen: $eighteen, nineteen: $nineteen, twenty: $twenty, twentyFive: $twentyFive, erease: $erease)';
   }
 
   @override
@@ -845,6 +845,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is KeyBoardInitial &&
+            const DeepCollectionEquality().equals(other.zero, zero) &&
             const DeepCollectionEquality().equals(other.one, one) &&
             const DeepCollectionEquality().equals(other.two, two) &&
             const DeepCollectionEquality().equals(other.three, three) &&
@@ -867,13 +868,13 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             const DeepCollectionEquality().equals(other.twenty, twenty) &&
             const DeepCollectionEquality()
                 .equals(other.twentyFive, twentyFive) &&
-            const DeepCollectionEquality().equals(other.zero, zero) &&
             const DeepCollectionEquality().equals(other.erease, erease));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        const DeepCollectionEquality().hash(zero),
         const DeepCollectionEquality().hash(one),
         const DeepCollectionEquality().hash(two),
         const DeepCollectionEquality().hash(three),
@@ -895,7 +896,6 @@ class _$KeyBoardInitial implements KeyBoardInitial {
         const DeepCollectionEquality().hash(nineteen),
         const DeepCollectionEquality().hash(twenty),
         const DeepCollectionEquality().hash(twentyFive),
-        const DeepCollectionEquality().hash(zero),
         const DeepCollectionEquality().hash(erease)
       ]);
 
@@ -908,6 +908,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -929,11 +930,11 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)
         initial,
   }) {
     return initial(
+        zero,
         one,
         two,
         three,
@@ -955,7 +956,6 @@ class _$KeyBoardInitial implements KeyBoardInitial {
         nineteen,
         twenty,
         twentyFive,
-        zero,
         erease);
   }
 
@@ -963,6 +963,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -984,11 +985,11 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)?
         initial,
   }) {
     return initial?.call(
+        zero,
         one,
         two,
         three,
@@ -1010,7 +1011,6 @@ class _$KeyBoardInitial implements KeyBoardInitial {
         nineteen,
         twenty,
         twentyFive,
-        zero,
         erease);
   }
 
@@ -1018,6 +1018,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
+            DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
             DigitButtonState three,
@@ -1039,13 +1040,13 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             DigitButtonState nineteen,
             DigitButtonState twenty,
             DigitButtonState twentyFive,
-            DigitButtonState zero,
             ButtonState erease)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
       return initial(
+          zero,
           one,
           two,
           three,
@@ -1067,7 +1068,6 @@ class _$KeyBoardInitial implements KeyBoardInitial {
           nineteen,
           twenty,
           twentyFive,
-          zero,
           erease);
     }
     return orElse();
@@ -1104,7 +1104,8 @@ class _$KeyBoardInitial implements KeyBoardInitial {
 
 abstract class KeyBoardInitial implements KeyBoardState {
   const factory KeyBoardInitial(
-      {required DigitButtonState one,
+      {required DigitButtonState zero,
+      required DigitButtonState one,
       required DigitButtonState two,
       required DigitButtonState three,
       required DigitButtonState four,
@@ -1125,9 +1126,10 @@ abstract class KeyBoardInitial implements KeyBoardState {
       required DigitButtonState nineteen,
       required DigitButtonState twenty,
       required DigitButtonState twentyFive,
-      required DigitButtonState zero,
       required ButtonState erease}) = _$KeyBoardInitial;
 
+  @override
+  DigitButtonState get zero;
   @override
   DigitButtonState get one;
   @override
@@ -1170,8 +1172,6 @@ abstract class KeyBoardInitial implements KeyBoardState {
   DigitButtonState get twenty;
   @override
   DigitButtonState get twentyFive;
-  @override
-  DigitButtonState get zero;
   @override
   ButtonState get erease;
   @override

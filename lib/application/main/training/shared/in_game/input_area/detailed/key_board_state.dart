@@ -6,6 +6,7 @@ part 'key_board_state.freezed.dart';
 @freezed
 class KeyBoardState with _$KeyBoardState {
   const factory KeyBoardState.initial({
+    required DigitButtonState zero,
     required DigitButtonState one,
     required DigitButtonState two,
     required DigitButtonState three,
@@ -27,7 +28,6 @@ class KeyBoardState with _$KeyBoardState {
     required DigitButtonState nineteen,
     required DigitButtonState twenty,
     required DigitButtonState twentyFive,
-    required DigitButtonState zero,
     required ButtonState erease,
   }) = KeyBoardInitial;
 }
