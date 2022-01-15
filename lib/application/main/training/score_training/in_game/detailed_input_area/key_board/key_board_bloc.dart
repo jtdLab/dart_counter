@@ -568,18 +568,18 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           // is enabled
           enabled: () {
             // emit key board state where all digit buttons are disabled
-            // except button seven, eight and nine
+            // except button thirteen, fourteen and fifteen
             emit(
               allDigitButtonsDisabled.copyWith(
-                seven: DigitButtonState.focused(
+                thirteen: DigitButtonState.focused(
                   type: DartType.single,
                   value: digit,
                 ),
-                eight: DigitButtonState.focused(
+                fourteen: DigitButtonState.focused(
                   type: DartType.double,
                   value: digit,
                 ),
-                nine: DigitButtonState.focused(
+                fifteen: DigitButtonState.focused(
                   type: DartType.triple,
                   value: digit,
                 ),
