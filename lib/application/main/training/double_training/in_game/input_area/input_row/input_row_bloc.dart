@@ -44,7 +44,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       initial: () {
         // perform throw with 3 missed darts
         _trainingService.performThrow(
-          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 0),
+          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 3),
         );
       },
       // when the user did at least input 1 dart

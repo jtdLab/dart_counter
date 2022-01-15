@@ -118,7 +118,6 @@ BLOCBUILDER more close to location where the data they provide is needed and not
 // when doing filling and dartsOnDouble dialog
 // needs to be implemented specialliy in external modal
 
-
 import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
@@ -130,31 +129,31 @@ class MockUserService extends Mock implements IUserService {}
 class MockGameHistoryService extends Mock implements IGameHistoryService {}
 
 void main() {
-  late MockUserService mockUserService;
-  late MockGameHistoryService mockGameHistoryService;
+late MockUserService mockUserService;
+late MockGameHistoryService mockGameHistoryService;
 
-  setUp(() {
-    mockUserService = MockUserService();
-    mockGameHistoryService = MockGameHistoryService();
-  });
+setUp(() {
+mockUserService = MockUserService();
+mockGameHistoryService = MockGameHistoryService();
+});
 
-  test('initial state is TODO', () {
-    // Arrange & Act
-    final underTest = GameHistoryBloc(
-      mockUserService,
-      mockGameHistoryService,
-    );
+test('initial state is TODO', () {
+// Arrange & Act
+final underTest = GameHistoryBloc(
+mockUserService,
+mockGameHistoryService,
+);
 
     // Assert
     expect(
       underTest.state,
       null, // TODO
     );
-  });
+
+});
 }
 
-
-TODO the comibination of multiple source streams is not implemented consitently in blocs 
+TODO the comibination of multiple source streams is not implemented consitently in blocs
 
 make extension part of the class the extend part and part of statments
 
@@ -165,7 +164,6 @@ page transitions with better effects could be done e.g from auth_flow to main_fl
 the routing now works well with the seperate flow widgets to give the chance of providing a bloc for a flow -> can this approach be optimized and fewer boilerplate flow code can be written or is the current approach the best possible to fill all requirements
 (maybe evaluated the package flow_builder to replace all of this in future projects)
 
-
 // TODO carrerstats and otther domain objects should validate them selfe ??
 
 // Throw.zero get autofilled and darts on double are 3 by user then there is error in model
@@ -173,14 +171,13 @@ the routing now works well with the seperate flow widgets to give the chance of 
 
 at undo detailed remove throw and load old into dart and points displayer
 
-// TODO all code generation should be done in generated folder 
+// TODO all code generation should be done in generated folder
 
 // TODO https://pub.dev/packages/freezed#run-the-generator
 also importing package:flutter/foundation.dart.
 The reason being, importing foundation.dart also imports classes to make an object nicely readable in Flutter's devtool.
 
-
-// add loging 
+// add loging
 info here :
 https://sematext.com/blog/logging-levels/
 https://sematext.com/blog/best-practices-for-efficient-log-management-and-monitoring/#toc-5-use-the-proper-log-level-4
@@ -195,23 +192,16 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 
 // TODO share even more around blocs by sharing event handler impl or make base calss that impls some event handlers if tahts possible with darts
 
-
-// TODO score detailed inputrow bloc 
-// TODO score detailed keyboard bloc 
-
 // TODO double general what to display in input rows input field ???
-// TODO double keyboard bloc 
-// TODO double inputrow bloc 
+// TODO double keyboard bloc
+// TODO double inputrow bloc
 
-
-
-// TODO single keyboard bloc 
-
-// TODO bobs27 keyboard bloc 
-
-// TODO trainig and play servic eshould return not void but bool or smth that indicated the method got performed successfully or not
-
+// TODO trainig and play service should return not void but bool or smth that indicated the method got performed successfully or not
 
 !!!!!!! import strucural approach needed who notify who (bloc level) !!!!!!!!!!!!!!!!!
 // TODO input row input changed event never used ??
 // and should it be used and not calc input depeding on icoming dependencies like dart displayer
+
+// remove input changed handler in some input row blocs
+
+// TODO impl and rethink double training blocs + ui
