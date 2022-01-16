@@ -124,5 +124,7 @@ abstract class  LocaleKeys {
   static const doubleTraining = 'doubleTraining';
   static const scoreTraining = 'scoreTraining';
   static const bobs27 = 'bobs27';
+  static const numberOfTakes = 'numberOfTakes';
+  static const order = 'order';
 
 }

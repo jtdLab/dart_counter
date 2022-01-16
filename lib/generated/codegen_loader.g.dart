@@ -146,7 +146,9 @@ class CodegenLoader extends AssetLoader{
   "singleTraining": "Single Training",
   "doubleTraining": "Doppel Training",
   "scoreTraining": "Score Training",
-  "bobs27": "Bobs 27"
+  "bobs27": "Bobs 27",
+  "numberOfTakes": "Anzahl Aufnahmen",
+  "order": "Reihenfolge"
 };
 static const Map<String,dynamic> en = {
   "username": "Username",
@@ -280,7 +282,9 @@ static const Map<String,dynamic> en = {
   "singleTraining": "Single Practice",
   "doubleTraining": "Double Practice",
   "scoreTraining": "Score Practice",
-  "bobs27": "Bobs 27"
+  "bobs27": "Bobs 27",
+  "numberOfTakes": "Number of takes",
+  "order": "Order"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};
 }

@@ -143,5 +143,9 @@
     "singleTraining": "Single Training",
     "doubleTraining": "Doppel Training",
     "scoreTraining": "Score Training",
-    "bobs27": "Bobs 27"
+    "bobs27": "Bobs 27",
+
+    "numberOfTakes" : "Anzahl Aufnahmen",
+
+    "order": "Reihenfolge"
 }

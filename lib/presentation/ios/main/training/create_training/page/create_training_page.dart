@@ -31,7 +31,7 @@ class CreateTrainingPage extends StatelessWidget {
       listener: (context, gameSnapshot) {
         if (gameSnapshot.status == Status.canceled) {
           // TODO remove comment when create_training_bloc is fixed
-         // context.router.replace(const HomePageRoute());
+          // context.router.replace(const HomePageRoute());
         } else if (gameSnapshot.status == Status.running) {
           // give players without a name a name e.g 'Player 1', 'Player 2', ...
           int unNamedPlayerIndex = 1;
@@ -48,8 +48,6 @@ class CreateTrainingPage extends StatelessWidget {
             }
           }
 
-          // TODO
-          //context.router.replace(const InTrainingPageRoute());
           if (gameSnapshot is BobsTwentySevenGameSnapshot) {
             context.router.replace(const InBobsTwentySevenTrainingFlowRoute());
           } else if (gameSnapshot is DoubleTrainingGameSnapshot) {

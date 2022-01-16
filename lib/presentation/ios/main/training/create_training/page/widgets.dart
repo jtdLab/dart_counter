@@ -8,34 +8,24 @@ class _CreateTrainingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<CreateTrainingBloc, AbstractTrainingGameSnapshot, Type>(
-      selector: (gameSnapshot) => gameSnapshot is SingleTrainingGameSnapshot
-          ? Type.single
-          : gameSnapshot is DoubleTrainingGameSnapshot
-              ? Type.double
-              : gameSnapshot is ScoreTrainingGameSnapshot
-                  ? Type.score
-                  : Type.bobs27,
-      builder: (context, type) {
+    return BlocBuilder<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
+      builder: (context, gameSnapshot) {
         return Column(
           children: [
             const _PlayerCard(),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
+            SizedBox(height: spacerLarge(context)),
             const _ModusCard(),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            if (type == Type.single || type == Type.double) ...[
-              const _OrderCard(),
+            SizedBox(height: spacerLarge(context)),
+            if (gameSnapshot is SingleTrainingGameSnapshot) ...[
+              _OrderCard(mode: gameSnapshot.mode),
             ],
-            if (type == Type.score) ...[
+            if (gameSnapshot is DoubleTrainingGameSnapshot) ...[
+              _OrderCard(mode: gameSnapshot.mode),
+            ],
+            if (gameSnapshot is ScoreTrainingGameSnapshot) ...[
               const _TakesCard(),
             ],
-            SizedBox(
-              height: spacerNormal(context),
-            ),
+            SizedBox(height: spacerNormal(context)),
             const _PlayButton(),
           ],
         );
@@ -53,6 +43,7 @@ class _PlayerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
+      // TODO text + fontsize
       middle: AutoSizeText(
         LocaleKeys.player.tr().toUpperCase(),
         minFontSize: 8,
@@ -92,16 +83,11 @@ class _PlayerList extends StatelessWidget {
           height:
               players.size * size70(context) + players.size * size6(context),
           child: ReorderableListView.builder(
-            proxyDecorator: (child, index, animation) {
-              return child;
-            },
+            proxyDecorator: (child, index, animation) => child,
             itemBuilder: (context, index) {
               final player = players[index];
 
-              // TODO bug where multiple widgets with same global key
               if (player == owner) {
-                //final isDismissable = players.size > 1;
-
                 return _PlayerItem(
                   key: ValueKey(player.id),
                   index: index,
@@ -117,16 +103,6 @@ class _PlayerList extends StatelessWidget {
                   player: player,
                   isDismissable: isDismissable,
                 );
-
-                /**
-                *  
-                return _PlayerItem(
-                  key: ValueKey(player.id),
-                  index: index,
-                  player: player,
-                  isDismissable: isDismissable,
-                );
-                */
               }
             },
             itemCount: players.size,
@@ -145,6 +121,68 @@ class _PlayerList extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _PlayerItem extends StatelessWidget {
+  final int index;
+  final AbstractTrainingPlayerSnapshot player;
+  final bool isDismissable;
+
+  const _PlayerItem({
+    required Key key,
+    required this.index,
+    required this.player,
+    required this.isDismissable,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final String? photoUrl = null;
+    // TODO real photourl
+    /**
+    offlinePlayerOrOnlinePlayer.fold(
+      (offlinePlayer) => offlinePlayer.photoUrl,
+      (onlinePlayer) => onlinePlayer.photoUrl,
+    ); */
+
+    return Column(
+      children: [
+        Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          background: Container(color: AppColors.red),
+          confirmDismiss: (_) async => isDismissable,
+          onDismissed: (_) {
+            context
+                .read<CreateTrainingBloc>()
+                .add(CreateTrainingEvent.playerRemoved(index: index));
+          },
+          child: AppCardItem.large(
+            content: Row(
+              children: [
+                SizedBox(width: spacerNormal(context)),
+                if (photoUrl != null) ...[
+                  AppRoundedImage.normal(
+                    child: CachedNetworkImageProvider(
+                      photoUrl,
+                    ),
+                  ),
+                ] else ...[
+                  const AppRoundedImage.normal(
+                    imageName: AppImages.photoPlaceholderNew,
+                  ),
+                ],
+                const Spacer(),
+                Text(player.name!),
+                const Spacer(),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: size6(context)),
+      ],
     );
   }
 }
@@ -168,15 +206,8 @@ class _EditablePlayerItem extends StatelessWidget {
         Dismissible(
           key: key!,
           direction: DismissDirection.endToStart,
-          background: Container(
-            color: AppColors.red,
-          ),
-          confirmDismiss: (_) async {
-            if (isDismissable) {
-              return true;
-            }
-            return false;
-          },
+          background: Container(color: AppColors.red),
+          confirmDismiss: (_) async => isDismissable,
           onDismissed: (_) {
             context
                 .read<CreateTrainingBloc>()
@@ -185,15 +216,11 @@ class _EditablePlayerItem extends StatelessWidget {
           child: AppCardItem.large(
             content: Row(
               children: [
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
+                SizedBox(width: spacerNormal(context)),
                 const AppRoundedImage.normal(
                   imageName: AppImages.photoPlaceholderNew,
                 ),
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
+                SizedBox(width: spacerNormal(context)),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -214,81 +241,7 @@ class _EditablePlayerItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: size6(context)),
-      ],
-    );
-  }
-}
-
-class _PlayerItem extends StatelessWidget {
-  final int index;
-  final AbstractTrainingPlayerSnapshot player;
-  final bool isDismissable;
-
-  const _PlayerItem({
-    required Key key,
-    required this.index,
-    required this.player,
-    required this.isDismissable,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final String? photoUrl = null;
-    /**
-    offlinePlayerOrOnlinePlayer.fold(
-      (offlinePlayer) => offlinePlayer.photoUrl,
-      (onlinePlayer) => onlinePlayer.photoUrl,
-    ); */
-
-    return Column(
-      children: [
-        Dismissible(
-          key: key!,
-          direction: DismissDirection.endToStart,
-          background: Container(
-            color: AppColors.red,
-          ),
-          confirmDismiss: (_) async {
-            if (isDismissable) {
-              return true;
-            }
-            return false;
-          },
-          onDismissed: (_) {
-            context
-                .read<CreateTrainingBloc>()
-                .add(CreateTrainingEvent.playerRemoved(index: index));
-          },
-          child: AppCardItem.large(
-            content: Row(
-              children: [
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
-                if (photoUrl != null) ...[
-                  AppRoundedImage.normal(
-                    child: CachedNetworkImageProvider(
-                      photoUrl,
-                    ),
-                  ),
-                ] else ...[
-                  const AppRoundedImage.normal(
-                    imageName: AppImages.photoPlaceholderNew,
-                  ),
-                ],
-                const Spacer(),
-                Text(
-                  player.name ?? '', // TODO
-                ),
-                const Spacer(),
+                SizedBox(width: spacerNormal(context)),
               ],
             ),
           ),
@@ -335,6 +288,7 @@ class _ModusCard extends StatelessWidget {
                   : Type.bobs27,
       builder: (context, type) {
         return AppCard(
+          // TODO text + fontsize
           middle: AutoSizeText(
             LocaleKeys.modus.tr().toUpperCase(),
             minFontSize: 8,
@@ -361,7 +315,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: 'SINGLES', // TODO
+                    text: LocaleKeys.singleTraining.tr().toUpperCase(),
                   ),
                 ),
                 Expanded(
@@ -376,7 +330,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: 'DOUBLES', // TODo
+                    text: LocaleKeys.doubleTraining.tr().toUpperCase(),
                   ),
                 ),
               ],
@@ -396,7 +350,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: 'SCORE', // TODO
+                    text: LocaleKeys.scoreTraining.tr().toUpperCase(),
                   ),
                 ),
                 Expanded(
@@ -411,7 +365,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: 'BOBS27', // TODo
+                    text: LocaleKeys.bobs27.tr().toUpperCase(),
                   ),
                 ),
               ],
@@ -425,82 +379,72 @@ class _ModusCard extends StatelessWidget {
 
 // OrderCard
 class _OrderCard extends StatelessWidget {
+  final Mode mode;
+
   const _OrderCard({
     Key? key,
+    required this.mode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateTrainingBloc, AbstractTrainingGameSnapshot>(
-      builder: (context, gameSnapshot) {
-        final Mode mode;
-        if (gameSnapshot is SingleTrainingGameSnapshot) {
-          mode = gameSnapshot.mode;
-        } else if (gameSnapshot is DoubleTrainingGameSnapshot) {
-          mode = gameSnapshot.mode;
-        } else {
-          throw Error(); //TODO better
-        }
-
-        return AppCard(
-          middle: AutoSizeText(
-            'ORDER', // TODO
-            minFontSize: 8,
-            maxFontSize: 14,
-            maxLines: 1,
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .textStyle
-                .copyWith(color: AppColors.white),
-          ),
+    return AppCard(
+      // TODO text + fontsize
+      middle: AutoSizeText(
+        LocaleKeys.order.tr().toUpperCase(),
+        minFontSize: 8,
+        maxFontSize: 14,
+        maxLines: 1,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(color: AppColors.white),
+      ),
+      children: [
+        AppRow(
+          spacing: size6(context),
           children: [
-            AppRow(
-              spacing: size6(context),
-              children: [
-                Expanded(
-                  child: AppActionButton.normal(
-                    color: mode == Mode.ascending
-                        ? AppColors.orangeNew
-                        : AppColors.white,
-                    onPressed: () => context.read<CreateTrainingBloc>().add(
-                          const CreateTrainingEvent.singleDoubleModeChanged(
-                            newMode: Mode.ascending,
-                          ),
-                        ),
-                    icon: Image.asset(AppImages.ascending),
-                  ),
-                ),
-                Expanded(
-                  child: AppActionButton.normal(
-                    color: mode == Mode.descending
-                        ? AppColors.orangeNew
-                        : AppColors.white,
-                    onPressed: () => context.read<CreateTrainingBloc>().add(
-                          const CreateTrainingEvent.singleDoubleModeChanged(
-                            newMode: Mode.descending,
-                          ),
-                        ),
-                    icon: Image.asset(AppImages.descending),
-                  ),
-                ),
-                Expanded(
-                  child: AppActionButton.normal(
-                    color: mode == Mode.random
-                        ? AppColors.orangeNew
-                        : AppColors.white,
-                    onPressed: () => context.read<CreateTrainingBloc>().add(
-                          const CreateTrainingEvent.singleDoubleModeChanged(
-                            newMode: Mode.random,
-                          ),
-                        ),
-                    icon: Image.asset(AppImages.random),
-                  ),
-                ),
-              ],
+            Expanded(
+              child: AppActionButton.normal(
+                color: mode == Mode.ascending
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () => context.read<CreateTrainingBloc>().add(
+                      const CreateTrainingEvent.singleDoubleModeChanged(
+                        newMode: Mode.ascending,
+                      ),
+                    ),
+                icon: Image.asset(AppImages.ascending),
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color: mode == Mode.descending
+                    ? AppColors.orangeNew
+                    : AppColors.white,
+                onPressed: () => context.read<CreateTrainingBloc>().add(
+                      const CreateTrainingEvent.singleDoubleModeChanged(
+                        newMode: Mode.descending,
+                      ),
+                    ),
+                icon: Image.asset(AppImages.descending),
+              ),
+            ),
+            Expanded(
+              child: AppActionButton.normal(
+                color:
+                    mode == Mode.random ? AppColors.orangeNew : AppColors.white,
+                onPressed: () => context.read<CreateTrainingBloc>().add(
+                      const CreateTrainingEvent.singleDoubleModeChanged(
+                        newMode: Mode.random,
+                      ),
+                    ),
+                icon: Image.asset(AppImages.random),
+              ),
             ),
           ],
-        );
-      },
+        ),
+      ],
     );
   }
 }
@@ -514,8 +458,9 @@ class _TakesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
+      // TODO text + fontsize
       middle: AutoSizeText(
-        'ANZAHL AUFNAHMEN', // TODO
+        LocaleKeys.numberOfTakes.tr().toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
