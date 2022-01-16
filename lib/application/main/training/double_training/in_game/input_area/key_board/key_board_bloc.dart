@@ -31,19 +31,63 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   /// handle incoming [DoubleHitPressed] event.
   void _mapDoubleHitPressedToState() {
-    // add double to dart displayer
-    _dartsDisplayerBloc.add(
-      DartsDisplayerEvent.dartAdded(
-        dart: Dart(value: _getCurrentTurnTargetValue(), type: DartType.double),
-      ),
+    _dartsDisplayerBloc.state.when(
+      // when the user did not input any darts
+      initial: () {
+        // add double to dart displayer
+        _dartsDisplayerBloc.add(
+          DartsDisplayerEvent.dartAdded(
+            dart: Dart(
+              value: _getCurrentTurnTargetValue(),
+              type: DartType.double,
+            ),
+          ),
+        );
+      },
+      // when the user did at least input 1 dart
+      darts: (darts) {
+        // when darts contains no double
+        if (!darts
+            .getOrCrash()
+            .asList()
+            .any((dart) => dart.type == DartType.double)) {
+          // add double to dart displayer
+          _dartsDisplayerBloc.add(
+            DartsDisplayerEvent.dartAdded(
+              dart: Dart(
+                value: _getCurrentTurnTargetValue(),
+                type: DartType.double,
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
   /// handle incoming [MissHitPressed] event.
   void _mapMissHitPressedToState() {
-    // add missed dart to dart displayer
-    _dartsDisplayerBloc.add(
-      const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+    _dartsDisplayerBloc.state.when(
+      // when the user did not input any darts
+      initial: () {
+        // add missed dart to dart displayer
+        _dartsDisplayerBloc.add(
+          const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+        );
+      },
+      // when the user did at least input 1 dart
+      darts: (darts) {
+        // when darts contains no double
+        if (!darts
+            .getOrCrash()
+            .asList()
+            .any((dart) => dart.type == DartType.double)) {
+          // add missed dart to dart displayer
+          _dartsDisplayerBloc.add(
+            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+          );
+        }
+      },
     );
   }
 

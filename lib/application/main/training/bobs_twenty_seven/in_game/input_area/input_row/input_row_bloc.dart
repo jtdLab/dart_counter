@@ -95,14 +95,26 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       initial: () {
         // perform throw with 3 missed darts
         _trainingService.performThrow(
-          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 0),
+          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 3),
         );
       },
       // when the user did at least input 1 dart
       darts: (darts) {
-        // perform throw with darts put in by the user
+        // when incoming darts has less than 3 elements
+        // add dart with 0 points for each missing dart
+        // so the resulting list contains 3 elements
+        // TODO filling should be done in service/modal
+        final filledDarts = darts.getOrCrash().toMutableList().asList()
+          ..addAll(
+            List.generate(
+              3 - darts.length,
+              (index) => Dart.missed,
+            ),
+          );
+
+        // perform throw
         _trainingService.performThrow(
-          t: Throw.fromDarts(darts.getOrCrash().asList(), darts.length),
+          t: Throw.fromDarts(filledDarts, filledDarts.length),
         );
       },
     );
