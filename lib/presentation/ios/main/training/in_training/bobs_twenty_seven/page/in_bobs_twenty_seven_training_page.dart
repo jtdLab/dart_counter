@@ -72,8 +72,7 @@ class InBobsTwentySeventTrainingPage extends StatelessWidget {
                 },
               ),
             ),
-            // TODO localekeys
-            middle: const Text('BOBS 27'),
+            middle: Text(LocaleKeys.bobs27.tr().toUpperCase()),
           ),
           child: const _InBobsTwentySevenTrainingWidget(),
         ),

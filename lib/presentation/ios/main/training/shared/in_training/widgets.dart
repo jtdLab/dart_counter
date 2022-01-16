@@ -213,6 +213,7 @@ class _PlayerItemLargeSingleDoubleStatDisplayer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       spacing: size6(context),
       children: [
+        // TODO text + fontsize
         Text(name),
         Text(value),
       ],
@@ -303,6 +304,7 @@ class _PlayerItemSingleDoubleHeader extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
+                    // TODO text + fontsize
                     child: AutoSizeText(
                       name,
                       maxLines: 1,
@@ -340,6 +342,7 @@ class _PlayerItemSubHeader extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // TODO text + fontsize
             AutoSizeText(
               text,
               style: CupertinoTheme.of(context)
@@ -365,12 +368,13 @@ class _PlayerItemSingleDoublePointsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
+      // TODO text + fontsize
       child: AutoSizeText(
         points.toString(),
         style: CupertinoTheme.of(context)
             .textTheme
             .textStyle
-            .copyWith(fontSize: 60), // TODO size
+            .copyWith(fontSize: 60),
         maxLines: 1,
       ),
     );
@@ -425,6 +429,7 @@ class _PlayerItemSingleDoubleStatDisplayer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       spacing: size6(context),
       children: [
+        // TODO text + fontsize
         Text(name),
         Text(value),
       ],
@@ -509,6 +514,7 @@ class _PlayerItemSmallSingleDoubleHeader extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
+                    // TODO text + fontsize
                     child: AutoSizeText(
                       name,
                       maxLines: 1,
@@ -524,17 +530,15 @@ class _PlayerItemSmallSingleDoubleHeader extends StatelessWidget {
             ),
           ],
         ),
-        /**
-           * Align(
-            alignment: Alignment.centerLeft,
-            child: AppRoundedImage.small(
-              imageName: AppImages.photoPlaceholderNew, // TODO real photo url
-              border: Border.all(
-                width: border4(context) / 2,
-              ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: AppRoundedImage.small(
+            imageName: AppImages.photoPlaceholderNew, // TODO real photo url
+            border: Border.all(
+              width: border4(context) / 2,
             ),
           ),
-           */
+        ),
       ],
     );
   }
@@ -557,6 +561,7 @@ class _PlayerItemSmallSingleDoubleTargetDisplayer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // TODO text + fontsize
             AutoSizeText(
               text,
               maxLines: 1,
@@ -584,12 +589,13 @@ class _PlayerItemSmallSingleDoublePointsDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
+      // TODO text + fontsize
       child: AutoSizeText(
         '$points',
         style: CupertinoTheme.of(context)
             .textTheme
             .textStyle
-            .copyWith(fontSize: 40), // TODO font size
+            .copyWith(fontSize: 40),
         maxLines: 1,
       ),
     );
@@ -737,6 +743,7 @@ class _PlayerItemScoreBobs27Header extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
+                    // TODO text + fontsize
                     child: AutoSizeText(
                       name,
                       maxLines: 1,
@@ -752,17 +759,15 @@ class _PlayerItemScoreBobs27Header extends StatelessWidget {
             ),
           ],
         ),
-        /**
-           * Align(
-            alignment: Alignment.centerLeft,
-            child: AppRoundedImage.small(
-              imageName: AppImages.photoPlaceholderNew, // TODO real image
-              border: Border.all(
-                width: border4(context) / 2,
-              ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: AppRoundedImage.small(
+            imageName: AppImages.photoPlaceholderNew, // TODO real image
+            border: Border.all(
+              width: border4(context) / 2,
             ),
           ),
-           */
+        ),
       ],
     );
   }
@@ -785,6 +790,7 @@ class _PlayerItemScoreBobs27Title1Displayer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // TODO text + fontsize
             AutoSizeText(
               text,
               style: CupertinoTheme.of(context)
@@ -817,12 +823,13 @@ class _PlayerItemScoreBobs27Value1Displayer extends StatelessWidget {
         ),
       ),
       child: Center(
+        // TODO text + fontsize
         child: AutoSizeText(
           value,
           style: CupertinoTheme.of(context)
               .textTheme
               .textStyle
-              .copyWith(fontSize: 40), // TODO
+              .copyWith(fontSize: 40),
           maxLines: 1,
         ),
       ),
@@ -847,6 +854,7 @@ class _PlayerItemScoreBobs27Title2Displayer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // TODO text + fontsize
             AutoSizeText(
               text,
               style: CupertinoTheme.of(context)
@@ -871,24 +879,15 @@ class _PlayerItemScoreBobs27Value2Displayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      /** // TODO
-      *  decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: border4(context)),
-          bottom: BorderSide(width: border4(context)),
-        ),
-      ),
-      */
-      child: Center(
-        child: AutoSizeText(
-          value,
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(fontSize: 32), // TODO
-          maxLines: 1,
-        ),
+    return Center(
+      // TODO text + fontsize
+      child: AutoSizeText(
+        value,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(fontSize: 32), // TODO
+        maxLines: 1,
       ),
     );
   }
@@ -970,6 +969,7 @@ class _PlayerItemSmallScoreBobs27Header extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
+                    // TODO text + fontsize
                     child: AutoSizeText(
                       name,
                       maxLines: 1,
@@ -985,17 +985,15 @@ class _PlayerItemSmallScoreBobs27Header extends StatelessWidget {
             ),
           ],
         ),
-        /**
-           * Align(
-            alignment: Alignment.centerLeft,
-            child: AppRoundedImage.small(
-              imageName: AppImages.photoPlaceholderNew, // TODO real image
-              border: Border.all(
-                width: border4(context) / 2,
-              ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: AppRoundedImage.small(
+            imageName: AppImages.photoPlaceholderNew, // TODO real image
+            border: Border.all(
+              width: border4(context) / 2,
             ),
           ),
-           */
+        ),
       ],
     );
   }
@@ -1018,6 +1016,7 @@ class _PlayerItemSmallScoreBobs27TitleDisplayer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // TODO text + fontsize
             AutoSizeText(
               text,
               maxLines: 1,
@@ -1044,17 +1043,15 @@ class _PlayerItemSmallScoreBobs27ValueDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // TODO color
-      child: Center(
-        child: AutoSizeText(
-          value,
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(fontSize: 40), // TODO
-          maxLines: 1,
-        ),
+    return Center(
+      // TODO text + fontsize
+      child: AutoSizeText(
+        value,
+        style: CupertinoTheme.of(context)
+            .textTheme
+            .textStyle
+            .copyWith(fontSize: 40),
+        maxLines: 1,
       ),
     );
   }
@@ -1092,6 +1089,7 @@ class _NameAndProfilePhotoDisplayerLarge extends StatelessWidget {
                 ),
               ),
               child: Center(
+                // TODO text + fontsize
                 child: Text(
                   name,
                   style: CupertinoTheme.of(context)
@@ -1148,6 +1146,7 @@ class _PropertyCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(size6(context) / 4),
                   child: Center(
+                    // TODO text + fontsize
                     child: Text(
                       title,
                       style: CupertinoTheme.of(context)
@@ -1168,31 +1167,34 @@ class _PropertyCard extends StatelessWidget {
                   child: subProperty != null
                       ? Column(
                           children: [
+                            // TODO text + fontsize
                             AutoSizeText(
                               property,
                               style: CupertinoTheme.of(context)
                                   .textTheme
                                   .textStyle
-                                  .copyWith(fontSize: 60), // TODO size
+                                  .copyWith(fontSize: 60),
                               maxLines: 1,
                             ),
+
                             AutoSizeText(
                               subProperty!,
                               style: CupertinoTheme.of(context)
                                   .textTheme
                                   .textStyle
-                                  .copyWith(fontSize: 16), // TODO size
+                                  .copyWith(fontSize: 16),
                               maxLines: 1,
                             ),
                           ],
                         )
                       : Center(
+                          // TODO text + fontsize
                           child: AutoSizeText(
                             property,
                             style: CupertinoTheme.of(context)
                                 .textTheme
                                 .textStyle
-                                .copyWith(fontSize: 60), // TODO size
+                                .copyWith(fontSize: 60),
                             maxLines: 1,
                           ),
                         ),
@@ -1232,6 +1234,7 @@ class DartsDisplayer extends StatelessWidget {
             children: [
               const Spacer(),
               Image.asset(AppImages.flightWhiteOne),
+              // TODO text + fontsize
               AutoSizeText(
                 _mapDartToString(
                   dart: darts.size > 0 ? darts.get(0) : null,
@@ -1243,6 +1246,7 @@ class DartsDisplayer extends StatelessWidget {
               ),
               const Spacer(),
               Image.asset(AppImages.flightWhiteTwo),
+              // TODO text + fontsize
               AutoSizeText(
                 _mapDartToString(
                   dart: darts.size > 1 ? darts.get(1) : null,
@@ -1254,6 +1258,7 @@ class DartsDisplayer extends StatelessWidget {
               ),
               const Spacer(),
               Image.asset(AppImages.flightWhiteThree),
+              // TODO text + fontsize
               AutoSizeText(
                 _mapDartToString(
                   dart: darts.size > 2 ? darts.get(2) : null,
@@ -1367,9 +1372,10 @@ class _InputPointsDisplayer extends StatelessWidget {
       child: Center(
         child: BlocBuilder<Bloc<InputRowEvent, int>, int>(
           builder: (context, points) {
+            // TODO text + fontsize
             return Text(
               '$points',
-              style: const TextStyle(fontSize: 28), // TODO
+              style: const TextStyle(fontSize: 28),
             );
           },
         ),
@@ -1604,7 +1610,7 @@ class _CheckButton extends StatelessWidget {
               : () => context
                   .read<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>()
                   .add(const standard.KeyBoardEvent.checkPressed()),
-          text: 'CHECK', // TODO translated pls
+          text: LocaleKeys.check.tr().toUpperCase(),
         );
       },
     );
@@ -1916,7 +1922,7 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
       spacing: size6(context),
       children: [
         AppActionButton.flexible(
-          text: 'DOUBLE',
+          text: LocaleKeys.double.tr().toUpperCase(),
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
@@ -1930,7 +1936,7 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               AppActionButton.flexible(
-                text: 'MISSED',
+                text: LocaleKeys.missed.tr().toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
