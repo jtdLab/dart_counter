@@ -1,4 +1,5 @@
-part of 'standard_digit_button_bloc.dart';
+/**
+ * part of 'standard_digit_button_bloc.dart';
 
 @freezed
 class StandardDigitButtonState with _$StandardDigitButtonState {
@@ -6,3 +7,5 @@ class StandardDigitButtonState with _$StandardDigitButtonState {
   const factory StandardDigitButtonState.disabled() =
       StandardDigitButtonDisabled;
 }
+
+ */

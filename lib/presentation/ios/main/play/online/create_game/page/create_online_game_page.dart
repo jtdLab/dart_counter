@@ -28,14 +28,14 @@ class CreateOnlineGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final createOnlineGameBloc = getIt<CreateOnlineGameBloc>();
-
-    return BlocProvider(
-      create: (context) => createOnlineGameBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<CreateOnlineGameBloc>(),
+        ),
+      ],
       child: BlocListener<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
-        listener: (context, state) {
-          final gameSnapshot = state;
-
+        listener: (context, gameSnapshot) {
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (gameSnapshot.status == Status.running) {
@@ -59,13 +59,9 @@ class CreateOnlineGamePage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(
-              LocaleKeys.createGame.tr().toUpperCase(),
-            ),
+            middle: Text(LocaleKeys.createGame.tr().toUpperCase()),
           ),
-          child: const SingleChildScrollView(
-            child: _CreateOnlineGameWidget(),
-          ),
+          child: const SingleChildScrollView(child: _CreateOnlineGameWidget()),
         ),
       ),
     );

@@ -1,4 +1,5 @@
-part of 'standard_input_area_bloc.dart';
+/**
+ * part of 'standard_input_area_bloc.dart';
 
 @freezed
 class StandardInputAreaEvent with _$StandardInputAreaEvent {
@@ -6,3 +7,5 @@ class StandardInputAreaEvent with _$StandardInputAreaEvent {
   const factory StandardInputAreaEvent.performThrowPressed() =
       _PerformThrowPressed;
 }
+
+ */

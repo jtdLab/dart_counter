@@ -1,4 +1,5 @@
-part of 'detailed_input_area_bloc.dart';
+/**
+ * part of 'detailed_input_area_bloc.dart';
 
 @freezed
 class DetailedInputAreaEvent with _$DetailedInputAreaEvent {
@@ -10,3 +11,5 @@ class DetailedInputAreaEvent with _$DetailedInputAreaEvent {
   }) = _DartFocused;
   const factory DetailedInputAreaEvent.unfocusRequested() = _UnfocusRequested;
 }
+
+ */

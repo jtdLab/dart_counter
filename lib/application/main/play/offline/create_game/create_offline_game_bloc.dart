@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,7 +9,7 @@ part 'create_offline_game_bloc.freezed.dart';
 part 'create_offline_game_event.dart';
 part 'create_offline_game_state.dart';
 
-@lazySingleton
+@injectable
 class CreateOfflineGameBloc
     extends Bloc<CreateOfflineGameEvent, CreateOfflineGameState> {
   final IPlayOfflineService _playOfflineService;
@@ -115,15 +113,5 @@ class CreateOfflineGameBloc
     _playOfflineService.setDartBotTargetAverage(
       targetAverage: event.newTargetAverage,
     );
-  }
-
-  @override
-  Future<void> close() {
-    // TODO should be done in AutoResetLazySingleton
-    if (getIt.isRegistered<CreateOfflineGameBloc>()) {
-      getIt.resetLazySingleton<CreateOfflineGameBloc>();
-    }
-
-    return super.close();
   }
 }

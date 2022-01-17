@@ -1,4 +1,5 @@
-part of 'detailed_digit_button_bloc.dart';
+/**
+ * part of 'detailed_digit_button_bloc.dart';
 
 @freezed
 class DetailedDigitButtonState with _$DetailedDigitButtonState {
@@ -10,3 +11,5 @@ class DetailedDigitButtonState with _$DetailedDigitButtonState {
     required int value,
   }) = DetailedDigitButtonFocused;
 }
+
+ */

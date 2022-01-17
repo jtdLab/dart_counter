@@ -4,24 +4,27 @@ import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/advanced_settings.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
+part 'advanced_settings_bloc.freezed.dart';
 part 'advanced_settings_event.dart';
 part 'advanced_settings_state.dart';
-part 'advanced_settings_bloc.freezed.dart';
 
+@injectable
 class AdvancedSettingsBloc
     extends Bloc<AdvancedSettingsEvent, AdvancedSettingsState> {
   final Cubit<AbstractGameSnapshot> _playWatcherCubit;
 
   AdvancedSettingsBloc(
-    this._playWatcherCubit,
-  ) : super(
+    @factoryParam Cubit<AbstractGameSnapshot>? playWatcherCubit,
+  )   : _playWatcherCubit = playWatcherCubit!,
+        super(
           // TODO load initial advanced settings of user in offline game / dont know in online game ???
           AdvancedSettingsState.createGame(
             advancedSettings: [
               AdvancedSettings(
-                playerId: _playWatcherCubit.state.players.first().id,
+                playerId: playWatcherCubit.state.players.first().id,
                 showAverage: true,
                 showCheckoutPercentage: true,
                 smartKeyBoardActivated: false,

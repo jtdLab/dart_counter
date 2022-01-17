@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,7 +9,7 @@ part 'create_online_game_bloc.freezed.dart';
 part 'create_online_game_event.dart';
 part 'create_online_game_state.dart';
 
-@lazySingleton
+@injectable
 class CreateOnlineGameBloc
     extends Bloc<CreateOnlineGameEvent, CreateOnlineGameState> {
   final IPlayOnlineService _playOnlineService;
@@ -81,15 +80,5 @@ class CreateOnlineGameBloc
 
   void _mapGameStartedToState() {
     _playOnlineService.startGame();
-  }
-
-  @override
-  Future<void> close() {
-    // TODO should be done in AutoResetLazySingleton
-    if (getIt.isRegistered<CreateOnlineGameBloc>()) {
-      getIt.resetLazySingleton<CreateOnlineGameBloc>();
-    }
-
-    return super.close();
   }
 }

@@ -1,4 +1,5 @@
-part of 'detailed_input_area_bloc.dart';
+/**
+ * part of 'detailed_input_area_bloc.dart';
 
 @freezed
 class DetailedInputAreaState with _$DetailedInputAreaState {
@@ -7,3 +8,5 @@ class DetailedInputAreaState with _$DetailedInputAreaState {
     required int focusedValue,
   }) = DetailedInputAreaFocused;
 }
+
+ */

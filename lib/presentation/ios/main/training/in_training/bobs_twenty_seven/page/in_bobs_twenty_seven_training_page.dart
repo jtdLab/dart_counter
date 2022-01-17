@@ -25,6 +25,7 @@ class InBobsTwentySeventTrainingPage extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<InBobsTwentySevenBloc>(),
         ),
+        // TODO move into flow and in other training 2
         BlocProvider(
           create: (context) => getIt<BobsTwentySevenWatcherCubit>(),
         ),

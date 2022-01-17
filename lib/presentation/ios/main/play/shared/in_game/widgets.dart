@@ -47,12 +47,13 @@ class StatsButton extends StatelessWidget {
 }
 
 // BODY
-
+/** 
 // TODO shared with score training as much as possible
 // STANDARD INPUT AREA
 // TODO flex factors
-class StandardInputArea extends StatelessWidget {
-  const StandardInputArea({
+// TODO remove
+class _StandardInputArea extends StatelessWidget {
+  const _StandardInputArea({
     Key? key,
   }) : super(key: key);
 
@@ -274,11 +275,12 @@ class _StandardEreaseButton extends StatelessWidget {
 
 // DETAILED INPUT AREA
 // TODO flex factors
-class DetailedInputArea extends StatelessWidget {
+// TODO remove
+class _DetailedInputArea extends StatelessWidget {
   static const flexTop = 1;
   static const flexBottom = 3;
 
-  const DetailedInputArea({
+  const _DetailedInputArea({
     Key? key,
   }) : super(key: key);
 
@@ -520,6 +522,7 @@ class _DetailedEreaseButton extends StatelessWidget {
   }
 }
 
+*/
 // SPEECH INPUT AREA
 // TODO flex factors
 class SpeechInputArea extends StatelessWidget {
@@ -549,10 +552,13 @@ class SpeechInputArea extends StatelessWidget {
                     const Spacer(),
                     Expanded(
                       child: UndoButton(
-                        onPressed: () =>
+                        onPressed: () {},
+                        /**
+                        *  onPressed: () =>
                             context.read<SpeechInputAreaBloc>().add(
                                   const SpeechInputAreaEvent.undoThrowPressed(),
                                 ),
+                        */
                       ),
                     ),
                     const Spacer(),
@@ -608,16 +614,24 @@ class OpticalInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-          const _DartsDisplayer(),
-          BlocBuilder<PointsCubit, int>(
+         // const _DartsDisplayer(),
+          // just a dummy
+          InputRow(
+            onUndoPressed: onUndoPressed,
+            onPerformThrowPressed: onPerformThrowPressed,
+            points: 88,
+          ),
+          /**
+          *  BlocBuilder<PointsCubit, int>(
             builder: (context, state) {
               return InputRow(
                 onUndoPressed: onUndoPressed,
                 onPerformThrowPressed: onPerformThrowPressed,
-                points: state,
+                points: 88,
               );
             },
           ),
+          */
           const _OpticalKeyBoard(),
         ],
       ),
@@ -1413,7 +1427,8 @@ class _PlayerItemSmallFinishRecommendationDisplayer extends StatelessWidget {
 
 // DART DISPLAYER
 
-// TODO responsive
+/**
+ * // TODO responsive
 class _DartsDisplayer extends StatelessWidget {
   const _DartsDisplayer({
     Key? key,
@@ -1496,3 +1511,5 @@ class _DartsDisplayer extends StatelessWidget {
     }
   }
 }
+≥
+ */

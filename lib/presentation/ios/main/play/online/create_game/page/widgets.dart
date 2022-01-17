@@ -17,9 +17,7 @@ class _CreateOnlineGameWidget extends StatelessWidget {
             builder: (context) => const AddPlayerModal(),
           ),
         ),
-        SizedBox(
-          height: spacerLarge(context),
-        ),
+        SizedBox(height: spacerLarge(context)),
         BlocBuilder<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
           builder: (context, state) {
             final startingPoints = state.startingPoints;
@@ -57,9 +55,7 @@ class _CreateOnlineGameWidget extends StatelessWidget {
             );
           },
         ),
-        SizedBox(
-          height: spacerNormal(context),
-        ),
+        SizedBox(height: spacerNormal(context)),
         PlayButton(
           onPressed: () => context
               .read<CreateOnlineGameBloc>()
@@ -145,9 +141,7 @@ class _PlayerItem extends StatelessWidget {
         Dismissible(
           key: key!,
           direction: DismissDirection.endToStart,
-          background: Container(
-            color: AppColors.red,
-          ),
+          background: Container(color: AppColors.red),
           confirmDismiss: (_) async => isDismissable,
           onDismissed: (_) => context.read<CreateOnlineGameBloc>().add(
                 CreateOnlineGameEvent.playerRemoved(index: index),
@@ -176,13 +170,6 @@ class _PlayerItem extends StatelessWidget {
                     context.router.push(
                       CreateGameAdvancedSettingsModalRoute(index: index),
                     );
-                    /**
-                    *  showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => CreateGameAdvancedSettingsModal(),
-                    );
-                    */
                   },
                   icon: Image.asset(AppImages.settingsNew),
                 ),

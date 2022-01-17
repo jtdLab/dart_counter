@@ -4,12 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
 // TODO maybe add started event if this is convention to start listening to other blocs/services
 
-@lazySingleton
+@injectable
 class PlayOfflineWatcherCubit extends Cubit<OfflineGameSnapshot> {
   final IPlayOfflineService _playOfflineService;
 
@@ -34,11 +33,6 @@ class PlayOfflineWatcherCubit extends Cubit<OfflineGameSnapshot> {
   @override
   Future<void> close() {
     _gameSnapshotStreamSubscription.cancel();
-
-    // TODO should be done in AutoResetLazySingleton
-    if (getIt.isRegistered<PlayOfflineWatcherCubit>()) {
-      getIt.resetLazySingleton<PlayOfflineWatcherCubit>();
-    }
 
     return super.close();
   }

@@ -17,9 +17,7 @@ class _CreateOfflineGameWidget extends StatelessWidget {
               .read<CreateOfflineGameBloc>()
               .add(const CreateOfflineGameEvent.playerAdded()),
         ),
-        SizedBox(
-          height: spacerLarge(context),
-        ),
+        SizedBox(height: spacerLarge(context)),
         BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
           builder: (context, state) {
             final startingPoints = state.startingPoints;
@@ -57,9 +55,7 @@ class _CreateOfflineGameWidget extends StatelessWidget {
             );
           },
         ),
-        SizedBox(
-          height: spacerNormal(context),
-        ),
+        SizedBox(height: spacerNormal(context)),
         PlayButton(
           onPressed: () => context
               .read<CreateOfflineGameBloc>()
@@ -95,9 +91,7 @@ class _DartBotCard extends StatelessWidget {
                     .textStyle
                     .copyWith(color: AppColors.white),
               ),
-              trailing: _DartBotCheckBox(
-                selected: hasDartBot,
-              ),
+              trailing: _DartBotCheckBox(selected: hasDartBot),
               children: hasDartBot
                   ? [
                       AppNumberPicker(
@@ -113,9 +107,7 @@ class _DartBotCard extends StatelessWidget {
                     ]
                   : [],
             ),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
+            SizedBox(height: spacerLarge(context)),
           ],
         );
       },
@@ -275,13 +267,6 @@ class _PlayerItem extends StatelessWidget {
                     context.router.push(
                       CreateGameAdvancedSettingsModalRoute(index: index),
                     );
-                    /**
-                    *  showCupertinoModalBottomSheet(
-                      backgroundColor: Colors.white70,
-                      context: context,
-                      builder: (context) => CreateGameAdvancedSettingsModal(),
-                    );
-                    */
                   },
                   icon: Image.asset(AppImages.settingsNew),
                 ),
@@ -324,15 +309,11 @@ class _EditablePlayerItem extends StatelessWidget {
           child: AppCardItem.large(
             content: Row(
               children: [
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
+                SizedBox(width: spacerNormal(context)),
                 const AppRoundedImage.normal(
                   imageName: AppImages.photoPlaceholderNew,
                 ),
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
+                SizedBox(width: spacerNormal(context)),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -352,9 +333,7 @@ class _EditablePlayerItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
+                SizedBox(width: spacerNormal(context)),
                 AppIconButton(
                   padding: EdgeInsets.all(spacerNormal(context)),
                   onPressed: () {
@@ -401,16 +380,10 @@ class _DartBotItem extends StatelessWidget {
           child: AppCardItem.large(
             content: Row(
               children: [
-                SizedBox(
-                  width: spacerNormal(context),
-                ),
-                const AppRoundedImage.normal(
-                  imageName: AppImages.robotNew,
-                ),
+                SizedBox(width: spacerNormal(context)),
+                const AppRoundedImage.normal(imageName: AppImages.robotNew),
                 const Spacer(),
-                Text(
-                  LocaleKeys.dartBot.tr().toUpperCase(),
-                ),
+                Text(LocaleKeys.dartBot.tr().toUpperCase()),
                 const Spacer(),
                 // TODO
                 /**
