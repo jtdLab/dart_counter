@@ -87,9 +87,11 @@ class SingleTrainingService implements ISingleTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override

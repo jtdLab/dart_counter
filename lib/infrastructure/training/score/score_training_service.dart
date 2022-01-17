@@ -13,7 +13,7 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IScoreTrainingService)
 class ScoreTrainingService implements IScoreTrainingService {
-  final BehaviorSubject<ScoreTrainingGameSnapshot> _gameController;
+  BehaviorSubject<ScoreTrainingGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -30,9 +30,11 @@ class ScoreTrainingService implements IScoreTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override

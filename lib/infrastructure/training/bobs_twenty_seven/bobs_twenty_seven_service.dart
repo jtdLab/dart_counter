@@ -16,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IBobsTwentySevenService)
 class BobsTwentySevenService implements IBobsTwentySevenService {
-  final BehaviorSubject<BobsTwentySevenGameSnapshot> _gameController;
+  BehaviorSubject<BobsTwentySevenGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -33,9 +33,11 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override

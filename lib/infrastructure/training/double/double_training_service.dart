@@ -16,7 +16,7 @@ import 'package:kt_dart/kt.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IDoubleTrainingService)
 class DoubleTrainingService implements IDoubleTrainingService {
-  final BehaviorSubject<DoubleTrainingGameSnapshot> _gameController;
+  BehaviorSubject<DoubleTrainingGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -33,9 +33,11 @@ class DoubleTrainingService implements IDoubleTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override

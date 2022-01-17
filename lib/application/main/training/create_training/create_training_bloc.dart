@@ -85,12 +85,6 @@ class CreateTrainingBloc
     _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
       add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
     });
-    /**
-     * await emit.forEach<AbstractTrainingGameSnapshot>(
-      _trainingService.watchGame(),
-      onData: (gameSnapshot) => gameSnapshot,
-    );
-     */
   }
 
   void _mapPlayerAddedToState() {
@@ -181,12 +175,6 @@ class CreateTrainingBloc
       _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
         add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
       });
-      /**
-     *   await emit.forEach<AbstractTrainingGameSnapshot>(
-        _trainingService.watchGame(),
-        onData: (gameSnapshot) => gameSnapshot,
-      );
-     */
     }
   }
 
