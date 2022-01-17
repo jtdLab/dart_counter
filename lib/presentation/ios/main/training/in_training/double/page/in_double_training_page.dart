@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/main/training/double_training/double_training_watcher_cubit.dart';
+import 'package:dart_counter/application/main/training/double_training/watcher/double_training_watcher_cubit.dart';
 import 'package:dart_counter/application/main/training/double_training/in_game/in_double_training_bloc.dart';
 import 'package:dart_counter/application/main/training/double_training/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/training/double_training/in_game/input_area/key_board/key_board_bloc.dart';

@@ -1,0 +1,1 @@
+enum Hit { double, missed }

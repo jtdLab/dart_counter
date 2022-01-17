@@ -3,7 +3,7 @@ import 'package:dart_counter/application/main/training/score_training/in_game/st
     as standard;
 import 'package:dart_counter/application/main/training/score_training/in_game/detailed_input_area/blocs.dart'
     as detailed;
-import 'package:dart_counter/application/main/training/score_training/score_training_watcher_cubit.dart';
+import 'package:dart_counter/application/main/training/score_training/watcher/score_training_watcher_cubit.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/status.dart';

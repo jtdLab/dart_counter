@@ -51,45 +51,45 @@ import 'application/main/settings/change_username/change_username_bloc.dart'
 import 'application/main/settings/edit_profile_image/edit_profile_image_bloc.dart'
     as _i69;
 import 'application/main/settings/settings_bloc.dart' as _i55;
-import 'application/main/training/bobs_twenty_seven/bobs_twenty_seven_watcher_cubit.dart'
-    as _i62;
 import 'application/main/training/bobs_twenty_seven/in_game/in_bobs_twenty_seven_bloc.dart'
     as _i36;
 import 'application/main/training/bobs_twenty_seven/in_game/input_area/input_row/input_row_bloc.dart'
-    as _i43;
+    as _i44;
 import 'application/main/training/bobs_twenty_seven/in_game/input_area/key_board/key_board_bloc.dart'
-    as _i46;
+    as _i50;
+import 'application/main/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart'
+    as _i62;
 import 'application/main/training/create_training/create_training_bloc.dart'
     as _i67;
-import 'application/main/training/double_training/double_training_watcher_cubit.dart'
-    as _i68;
 import 'application/main/training/double_training/in_game/in_double_training_bloc.dart'
     as _i37;
 import 'application/main/training/double_training/in_game/input_area/input_row/input_row_bloc.dart'
     as _i42;
 import 'application/main/training/double_training/in_game/input_area/key_board/key_board_bloc.dart'
-    as _i48;
+    as _i46;
+import 'application/main/training/double_training/watcher/double_training_watcher_cubit.dart'
+    as _i68;
 import 'application/main/training/score_training/in_game/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i44;
+    as _i41;
 import 'application/main/training/score_training/in_game/detailed_input_area/key_board/key_board_bloc.dart'
     as _i47;
 import 'application/main/training/score_training/in_game/in_score_training_bloc.dart'
     as _i39;
 import 'application/main/training/score_training/in_game/standard_input_area/input_row/input_row_bloc.dart'
-    as _i45;
+    as _i43;
 import 'application/main/training/score_training/in_game/standard_input_area/key_board/key_board_bloc.dart'
-    as _i49;
-import 'application/main/training/score_training/score_training_watcher_cubit.dart'
+    as _i48;
+import 'application/main/training/score_training/watcher/score_training_watcher_cubit.dart'
     as _i54;
 import 'application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart'
     as _i6;
 import 'application/main/training/single_training/in_game/in_single_training_bloc.dart'
     as _i40;
 import 'application/main/training/single_training/in_game/input_area/input_row/input_row_bloc.dart'
-    as _i41;
+    as _i45;
 import 'application/main/training/single_training/in_game/input_area/key_board/key_board_bloc.dart'
-    as _i50;
-import 'application/main/training/single_training/single_training_watcher_cubit.dart'
+    as _i49;
+import 'application/main/training/single_training/watcher/single_training_watcher_cubit.dart'
     as _i59;
 import 'application/shared/auth/auth_bloc.dart' as _i61;
 import 'domain/auth/i_auth_service.dart' as _i13;
@@ -200,32 +200,32 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i40.InSingleTrainingBloc(get<_i32.ISingleTrainingService>()));
   gh.factoryParam<_i41.InputRowBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i41.InputRowBloc(
-          get<_i32.ISingleTrainingService>(), dartsDisplayerBloc));
+          get<_i30.IScoreTrainingService>(), dartsDisplayerBloc));
   gh.factoryParam<_i42.InputRowBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i42.InputRowBloc(
           get<_i22.IDoubleTrainingService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i43.InputRowBloc, _i6.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i43.InputRowBloc(
-          get<_i15.IBobsTwentySevenService>(), dartsDisplayerBloc));
+  gh.factory<_i43.InputRowBloc>(
+      () => _i43.InputRowBloc(get<_i30.IScoreTrainingService>()));
   gh.factoryParam<_i44.InputRowBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i44.InputRowBloc(
-          get<_i30.IScoreTrainingService>(), dartsDisplayerBloc));
-  gh.factory<_i45.InputRowBloc>(
-      () => _i45.InputRowBloc(get<_i30.IScoreTrainingService>()));
+          get<_i15.IBobsTwentySevenService>(), dartsDisplayerBloc));
+  gh.factoryParam<_i45.InputRowBloc, _i6.DartsDisplayerBloc?, dynamic>(
+      (dartsDisplayerBloc, _) => _i45.InputRowBloc(
+          get<_i32.ISingleTrainingService>(), dartsDisplayerBloc));
   gh.factoryParam<_i46.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i46.KeyBoardBloc(
-          get<_i15.IBobsTwentySevenService>(), dartsDisplayerBloc));
+          get<_i22.IDoubleTrainingService>(), dartsDisplayerBloc));
   gh.factoryParam<_i47.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i47.KeyBoardBloc(dartsDisplayerBloc));
-  gh.factoryParam<_i48.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i48.KeyBoardBloc(
-          get<_i22.IDoubleTrainingService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i49.KeyBoardBloc, _i45.InputRowBloc?, dynamic>(
+  gh.factoryParam<_i48.KeyBoardBloc, _i43.InputRowBloc?, dynamic>(
       (inputRowBloc, _) =>
-          _i49.KeyBoardBloc(get<_i20.IDartUtils>(), inputRowBloc));
+          _i48.KeyBoardBloc(get<_i20.IDartUtils>(), inputRowBloc));
+  gh.factoryParam<_i49.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
+      (dartsDisplayerBloc, _) => _i49.KeyBoardBloc(
+          get<_i32.ISingleTrainingService>(), dartsDisplayerBloc));
   gh.factoryParam<_i50.KeyBoardBloc, _i6.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i50.KeyBoardBloc(
-          get<_i32.ISingleTrainingService>(), dartsDisplayerBloc));
+          get<_i15.IBobsTwentySevenService>(), dartsDisplayerBloc));
   gh.lazySingleton<_i51.PlayOfflineWatcherCubit>(() =>
       _i51.PlayOfflineWatcherCubit(
           get<_i28.IPlayOfflineService>(), get<_i34.IUserService>()));

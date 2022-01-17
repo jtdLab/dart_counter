@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/main/training/bobs_twenty_seven/bobs_twenty_seven_watcher_cubit.dart';
+import 'package:dart_counter/application/main/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart';
 import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/in_bobs_twenty_seven_bloc.dart';
 import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_game/input_area/key_board/key_board_bloc.dart';
