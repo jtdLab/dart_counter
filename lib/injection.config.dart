@@ -258,7 +258,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i66.CreateOfflineGameBloc>(
       () => _i66.CreateOfflineGameBloc(get<_i28.IPlayOfflineService>()));
   gh.factory<_i67.CreateTrainingBloc>(() => _i67.CreateTrainingBloc(
-      get<_i32.ISingleTrainingService>(), get<_i34.IUserService>()));
+      get<_i32.ISingleTrainingService>(),
+      get<_i22.IDoubleTrainingService>(),
+      get<_i30.IScoreTrainingService>(),
+      get<_i15.IBobsTwentySevenService>(),
+      get<_i34.IUserService>()));
   gh.factory<_i68.DoubleTrainingWatcherCubit>(() =>
       _i68.DoubleTrainingWatcherCubit(get<_i22.IDoubleTrainingService>()));
   gh.lazySingleton<_i69.EditProfileImageBloc>(

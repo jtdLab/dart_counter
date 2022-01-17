@@ -13,28 +13,34 @@ import 'package:dart_counter/domain/training/score/i_score_training_service.dart
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/type.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'create_training_bloc.freezed.dart';
 part 'create_training_event.dart';
 
-// TODO impl this better it emits canceld snapshots on training type change and isnt implemented to clean
-
 @injectable
 class CreateTrainingBloc
     extends Bloc<CreateTrainingEvent, AbstractTrainingGameSnapshot> {
-  AbstractITrainingService _trainingService;
+  final ISingleTrainingService _singleTrainingService;
+  final IDoubleTrainingService _doubleTrainingService;
+  final IScoreTrainingService _scoreTrainingService;
+  final IBobsTwentySevenService _bobsTwentySevenService;
   final IUserService _userService;
 
+  AbstractITrainingService _trainingService;
+  late StreamSubscription _trainingSubscription;
+
   CreateTrainingBloc(
-    ISingleTrainingService singleTrainingService,
+    this._singleTrainingService,
+    this._doubleTrainingService,
+    this._scoreTrainingService,
+    this._bobsTwentySevenService,
     this._userService,
-  )   : _trainingService = singleTrainingService,
+  )   : _trainingService = _singleTrainingService,
         super(
           // set initial state
-          singleTrainingService.createGame(
+          _singleTrainingService.createGame(
             owner: _userService
                 .getUser()
                 .getOrElse(() => throw Error()), // TODO name better
@@ -68,15 +74,23 @@ class CreateTrainingBloc
     on<_BobsTwentySevenModeChanged>(
       (event, __) => _mapBobsTwentySevenModeChangedToState(event),
     );
+    on<_SnapshotReceived>(
+      (event, emit) => _mapSnapshotReceivedToState(event, emit),
+    );
   }
 
   Future<void> _mapStartedToState(
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
-    await emit.forEach<AbstractTrainingGameSnapshot>(
+    _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
+      add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
+    });
+    /**
+     * await emit.forEach<AbstractTrainingGameSnapshot>(
       _trainingService.watchGame(),
       onData: (gameSnapshot) => gameSnapshot,
     );
+     */
   }
 
   void _mapPlayerAddedToState() {
@@ -127,6 +141,7 @@ class CreateTrainingBloc
     if (user != null) {
       final newType = event.newType;
 
+      _trainingSubscription.cancel();
       _trainingService.cancel();
 
       final players = state.players
@@ -135,26 +150,25 @@ class CreateTrainingBloc
           .map((player) => player.name)
           .toList();
 
-      // TODO reset service singletons here or in service injection
       switch (newType) {
         case Type.single:
           if (_trainingService is! ISingleTrainingService) {
-            _trainingService = getIt<ISingleTrainingService>();
+            _trainingService = _singleTrainingService;
           }
           break;
         case Type.double:
           if (_trainingService is! IDoubleTrainingService) {
-            _trainingService = getIt<IDoubleTrainingService>();
+            _trainingService = _doubleTrainingService;
           }
           break;
         case Type.score:
           if (_trainingService is! IScoreTrainingService) {
-            _trainingService = getIt<IScoreTrainingService>();
+            _trainingService = _scoreTrainingService;
           }
           break;
         case Type.bobs27:
           if (_trainingService is! IBobsTwentySevenService) {
-            _trainingService = getIt<IBobsTwentySevenService>();
+            _trainingService = _bobsTwentySevenService;
           }
           break;
       }
@@ -164,10 +178,15 @@ class CreateTrainingBloc
         players: players,
       );
 
-      await emit.forEach<AbstractTrainingGameSnapshot>(
+      _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
+        add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
+      });
+      /**
+     *   await emit.forEach<AbstractTrainingGameSnapshot>(
         _trainingService.watchGame(),
         onData: (gameSnapshot) => gameSnapshot,
       );
+     */
     }
   }
 
@@ -216,15 +235,17 @@ class CreateTrainingBloc
     }
   }
 
-  /**
-   * // TODO on type change there is a cancled snapshot received dont emit it else the ui will go to home on type change
-  @override
-  void onChange(Change<AbstractTrainingGameSnapshot> change) {
-    print(
-        'current ${change.currentState.runtimeType} ${change.currentState.status} ${change.currentState.hashCode}');
-    print(
-        'next ${change.nextState.runtimeType} ${change.nextState.status} ${change.currentState.hashCode}');
-    super.onChange(change);
+  void _mapSnapshotReceivedToState(
+    _SnapshotReceived event,
+    Emitter<AbstractTrainingGameSnapshot> emit,
+  ) {
+    // emit incoming snapshot
+    emit(event.snapshot);
   }
-   */
+
+  @override
+  Future<void> close() {
+    _trainingSubscription.cancel();
+    return super.close();
+  }
 }

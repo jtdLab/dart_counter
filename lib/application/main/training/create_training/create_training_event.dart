@@ -30,4 +30,8 @@ class CreateTrainingEvent with _$CreateTrainingEvent {
   const factory CreateTrainingEvent.bobsTwentySevenModeChanged({
     required bobs27.Mode newMode,
   }) = _BobsTwentySevenModeChanged;
+
+  const factory CreateTrainingEvent.snapshotReceived({
+    required AbstractTrainingGameSnapshot snapshot,
+  }) = _SnapshotReceived;
 }

@@ -79,6 +79,13 @@ class _$CreateTrainingEventTearOff {
       newMode: newMode,
     );
   }
+
+  _SnapshotReceived snapshotReceived(
+      {required AbstractTrainingGameSnapshot snapshot}) {
+    return _SnapshotReceived(
+      snapshot: snapshot,
+    );
+  }
 }
 
 /// @nodoc
@@ -99,6 +106,8 @@ mixin _$CreateTrainingEvent {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +123,7 @@ mixin _$CreateTrainingEvent {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -129,6 +139,7 @@ mixin _$CreateTrainingEvent {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +158,7 @@ mixin _$CreateTrainingEvent {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -163,6 +175,7 @@ mixin _$CreateTrainingEvent {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,6 +192,7 @@ mixin _$CreateTrainingEvent {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -251,6 +265,8 @@ class _$_Started implements _Started {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return started();
   }
@@ -269,6 +285,7 @@ class _$_Started implements _Started {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return started?.call();
   }
@@ -287,6 +304,7 @@ class _$_Started implements _Started {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -311,6 +329,7 @@ class _$_Started implements _Started {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return started(this);
   }
@@ -330,6 +349,7 @@ class _$_Started implements _Started {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return started?.call(this);
   }
@@ -349,6 +369,7 @@ class _$_Started implements _Started {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -414,6 +435,8 @@ class _$_PlayerAdded implements _PlayerAdded {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return playerAdded();
   }
@@ -432,6 +455,7 @@ class _$_PlayerAdded implements _PlayerAdded {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return playerAdded?.call();
   }
@@ -450,6 +474,7 @@ class _$_PlayerAdded implements _PlayerAdded {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -474,6 +499,7 @@ class _$_PlayerAdded implements _PlayerAdded {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerAdded(this);
   }
@@ -493,6 +519,7 @@ class _$_PlayerAdded implements _PlayerAdded {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerAdded?.call(this);
   }
@@ -512,6 +539,7 @@ class _$_PlayerAdded implements _PlayerAdded {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerAdded != null) {
@@ -601,6 +629,8 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return playerRemoved(index);
   }
@@ -619,6 +649,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return playerRemoved?.call(index);
   }
@@ -637,6 +668,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -661,6 +693,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerRemoved(this);
   }
@@ -680,6 +713,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerRemoved?.call(this);
   }
@@ -699,6 +733,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerRemoved != null) {
@@ -803,6 +838,8 @@ class _$_PlayerReordered implements _PlayerReordered {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return playerReordered(oldIndex, newIndex);
   }
@@ -821,6 +858,7 @@ class _$_PlayerReordered implements _PlayerReordered {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return playerReordered?.call(oldIndex, newIndex);
   }
@@ -839,6 +877,7 @@ class _$_PlayerReordered implements _PlayerReordered {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -863,6 +902,7 @@ class _$_PlayerReordered implements _PlayerReordered {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerReordered(this);
   }
@@ -882,6 +922,7 @@ class _$_PlayerReordered implements _PlayerReordered {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerReordered?.call(this);
   }
@@ -901,6 +942,7 @@ class _$_PlayerReordered implements _PlayerReordered {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerReordered != null) {
@@ -1007,6 +1049,8 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return playerNameUpdated(index, newName);
   }
@@ -1025,6 +1069,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return playerNameUpdated?.call(index, newName);
   }
@@ -1043,6 +1088,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1067,6 +1113,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return playerNameUpdated(this);
   }
@@ -1086,6 +1133,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return playerNameUpdated?.call(this);
   }
@@ -1105,6 +1153,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (playerNameUpdated != null) {
@@ -1201,6 +1250,8 @@ class _$_TypeChanged implements _TypeChanged {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return typeChanged(newType);
   }
@@ -1219,6 +1270,7 @@ class _$_TypeChanged implements _TypeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return typeChanged?.call(newType);
   }
@@ -1237,6 +1289,7 @@ class _$_TypeChanged implements _TypeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (typeChanged != null) {
@@ -1261,6 +1314,7 @@ class _$_TypeChanged implements _TypeChanged {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return typeChanged(this);
   }
@@ -1280,6 +1334,7 @@ class _$_TypeChanged implements _TypeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return typeChanged?.call(this);
   }
@@ -1299,6 +1354,7 @@ class _$_TypeChanged implements _TypeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (typeChanged != null) {
@@ -1369,6 +1425,8 @@ class _$_TrainingStarted implements _TrainingStarted {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return trainingStarted();
   }
@@ -1387,6 +1445,7 @@ class _$_TrainingStarted implements _TrainingStarted {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return trainingStarted?.call();
   }
@@ -1405,6 +1464,7 @@ class _$_TrainingStarted implements _TrainingStarted {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingStarted != null) {
@@ -1429,6 +1489,7 @@ class _$_TrainingStarted implements _TrainingStarted {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return trainingStarted(this);
   }
@@ -1448,6 +1509,7 @@ class _$_TrainingStarted implements _TrainingStarted {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return trainingStarted?.call(this);
   }
@@ -1467,6 +1529,7 @@ class _$_TrainingStarted implements _TrainingStarted {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingStarted != null) {
@@ -1532,6 +1595,8 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return trainingCanceled();
   }
@@ -1550,6 +1615,7 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return trainingCanceled?.call();
   }
@@ -1568,6 +1634,7 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingCanceled != null) {
@@ -1592,6 +1659,7 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return trainingCanceled(this);
   }
@@ -1611,6 +1679,7 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return trainingCanceled?.call(this);
   }
@@ -1630,6 +1699,7 @@ class _$_TrainingCanceled implements _TrainingCanceled {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (trainingCanceled != null) {
@@ -1721,6 +1791,8 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return singleDoubleModeChanged(newMode);
   }
@@ -1739,6 +1811,7 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return singleDoubleModeChanged?.call(newMode);
   }
@@ -1757,6 +1830,7 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (singleDoubleModeChanged != null) {
@@ -1781,6 +1855,7 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return singleDoubleModeChanged(this);
   }
@@ -1800,6 +1875,7 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return singleDoubleModeChanged?.call(this);
   }
@@ -1819,6 +1895,7 @@ class _$_SingleDoubleModeChanged implements _SingleDoubleModeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (singleDoubleModeChanged != null) {
@@ -1916,6 +1993,8 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return numberOfTakesChanged(newNumberOfTakes);
   }
@@ -1934,6 +2013,7 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return numberOfTakesChanged?.call(newNumberOfTakes);
   }
@@ -1952,6 +2032,7 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (numberOfTakesChanged != null) {
@@ -1976,6 +2057,7 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return numberOfTakesChanged(this);
   }
@@ -1995,6 +2077,7 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return numberOfTakesChanged?.call(this);
   }
@@ -2014,6 +2097,7 @@ class _$_NumberOfTakesChanged implements _NumberOfTakesChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (numberOfTakesChanged != null) {
@@ -2112,6 +2196,8 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     required TResult Function(Mode newMode) singleDoubleModeChanged,
     required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
     required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged(newMode);
   }
@@ -2130,6 +2216,7 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged?.call(newMode);
   }
@@ -2148,6 +2235,7 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     TResult Function(Mode newMode)? singleDoubleModeChanged,
     TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
     TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (bobsTwentySevenModeChanged != null) {
@@ -2172,6 +2260,7 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
     required TResult Function(_BobsTwentySevenModeChanged value)
         bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged(this);
   }
@@ -2191,6 +2280,7 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
   }) {
     return bobsTwentySevenModeChanged?.call(this);
   }
@@ -2210,6 +2300,7 @@ class _$_BobsTwentySevenModeChanged implements _BobsTwentySevenModeChanged {
     TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
     TResult Function(_BobsTwentySevenModeChanged value)?
         bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
     required TResult orElse(),
   }) {
     if (bobsTwentySevenModeChanged != null) {
@@ -2227,4 +2318,204 @@ abstract class _BobsTwentySevenModeChanged implements CreateTrainingEvent {
   @JsonKey(ignore: true)
   _$BobsTwentySevenModeChangedCopyWith<_BobsTwentySevenModeChanged>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SnapshotReceivedCopyWith<$Res> {
+  factory _$SnapshotReceivedCopyWith(
+          _SnapshotReceived value, $Res Function(_SnapshotReceived) then) =
+      __$SnapshotReceivedCopyWithImpl<$Res>;
+  $Res call({AbstractTrainingGameSnapshot snapshot});
+}
+
+/// @nodoc
+class __$SnapshotReceivedCopyWithImpl<$Res>
+    extends _$CreateTrainingEventCopyWithImpl<$Res>
+    implements _$SnapshotReceivedCopyWith<$Res> {
+  __$SnapshotReceivedCopyWithImpl(
+      _SnapshotReceived _value, $Res Function(_SnapshotReceived) _then)
+      : super(_value, (v) => _then(v as _SnapshotReceived));
+
+  @override
+  _SnapshotReceived get _value => super._value as _SnapshotReceived;
+
+  @override
+  $Res call({
+    Object? snapshot = freezed,
+  }) {
+    return _then(_SnapshotReceived(
+      snapshot: snapshot == freezed
+          ? _value.snapshot
+          : snapshot // ignore: cast_nullable_to_non_nullable
+              as AbstractTrainingGameSnapshot,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SnapshotReceived implements _SnapshotReceived {
+  const _$_SnapshotReceived({required this.snapshot});
+
+  @override
+  final AbstractTrainingGameSnapshot snapshot;
+
+  @override
+  String toString() {
+    return 'CreateTrainingEvent.snapshotReceived(snapshot: $snapshot)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SnapshotReceived &&
+            const DeepCollectionEquality().equals(other.snapshot, snapshot));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(snapshot));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SnapshotReceivedCopyWith<_SnapshotReceived> get copyWith =>
+      __$SnapshotReceivedCopyWithImpl<_SnapshotReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() playerAdded,
+    required TResult Function(int index) playerRemoved,
+    required TResult Function(int oldIndex, int newIndex) playerReordered,
+    required TResult Function(int index, String newName) playerNameUpdated,
+    required TResult Function(Type newType) typeChanged,
+    required TResult Function() trainingStarted,
+    required TResult Function() trainingCanceled,
+    required TResult Function(Mode newMode) singleDoubleModeChanged,
+    required TResult Function(int newNumberOfTakes) numberOfTakesChanged,
+    required TResult Function(bobs27.Mode newMode) bobsTwentySevenModeChanged,
+    required TResult Function(AbstractTrainingGameSnapshot snapshot)
+        snapshotReceived,
+  }) {
+    return snapshotReceived(snapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
+    TResult Function(Mode newMode)? singleDoubleModeChanged,
+    TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
+    TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
+  }) {
+    return snapshotReceived?.call(snapshot);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(Type newType)? typeChanged,
+    TResult Function()? trainingStarted,
+    TResult Function()? trainingCanceled,
+    TResult Function(Mode newMode)? singleDoubleModeChanged,
+    TResult Function(int newNumberOfTakes)? numberOfTakesChanged,
+    TResult Function(bobs27.Mode newMode)? bobsTwentySevenModeChanged,
+    TResult Function(AbstractTrainingGameSnapshot snapshot)? snapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (snapshotReceived != null) {
+      return snapshotReceived(snapshot);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PlayerAdded value) playerAdded,
+    required TResult Function(_PlayerRemoved value) playerRemoved,
+    required TResult Function(_PlayerReordered value) playerReordered,
+    required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
+    required TResult Function(_TypeChanged value) typeChanged,
+    required TResult Function(_TrainingStarted value) trainingStarted,
+    required TResult Function(_TrainingCanceled value) trainingCanceled,
+    required TResult Function(_SingleDoubleModeChanged value)
+        singleDoubleModeChanged,
+    required TResult Function(_NumberOfTakesChanged value) numberOfTakesChanged,
+    required TResult Function(_BobsTwentySevenModeChanged value)
+        bobsTwentySevenModeChanged,
+    required TResult Function(_SnapshotReceived value) snapshotReceived,
+  }) {
+    return snapshotReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PlayerAdded value)? playerAdded,
+    TResult Function(_PlayerRemoved value)? playerRemoved,
+    TResult Function(_PlayerReordered value)? playerReordered,
+    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(_TypeChanged value)? typeChanged,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
+    TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
+    TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
+    TResult Function(_BobsTwentySevenModeChanged value)?
+        bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
+  }) {
+    return snapshotReceived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PlayerAdded value)? playerAdded,
+    TResult Function(_PlayerRemoved value)? playerRemoved,
+    TResult Function(_PlayerReordered value)? playerReordered,
+    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(_TypeChanged value)? typeChanged,
+    TResult Function(_TrainingStarted value)? trainingStarted,
+    TResult Function(_TrainingCanceled value)? trainingCanceled,
+    TResult Function(_SingleDoubleModeChanged value)? singleDoubleModeChanged,
+    TResult Function(_NumberOfTakesChanged value)? numberOfTakesChanged,
+    TResult Function(_BobsTwentySevenModeChanged value)?
+        bobsTwentySevenModeChanged,
+    TResult Function(_SnapshotReceived value)? snapshotReceived,
+    required TResult orElse(),
+  }) {
+    if (snapshotReceived != null) {
+      return snapshotReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SnapshotReceived implements CreateTrainingEvent {
+  const factory _SnapshotReceived(
+      {required AbstractTrainingGameSnapshot snapshot}) = _$_SnapshotReceived;
+
+  AbstractTrainingGameSnapshot get snapshot;
+  @JsonKey(ignore: true)
+  _$SnapshotReceivedCopyWith<_SnapshotReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
