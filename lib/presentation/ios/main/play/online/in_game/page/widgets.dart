@@ -61,8 +61,11 @@ class _InOnlineGameWidget extends StatelessWidget {
                   BlocProvider<
                       Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
                     create: (context) => getIt<detailed.KeyBoardBloc>(
-                      param1: context.read<DartsDisplayerBloc>(),
-                    ),
+                      param1: [
+                        context.read<AdvancedSettingsBloc>(),
+                        context.read<DartsDisplayerBloc>(),
+                      ],
+                    )..add(const detailed.KeyBoardEvent.started()),
                   ),
                 ],
                 child: const DetailedInputArea(),

@@ -54,7 +54,7 @@ class DartUtils implements IDartUtils {
     }
 
     if (pointsLeft == 2 &&
-        darts.count((dart) => dart.type != DartType.double) != 0) {
+        darts.count((dart) => dart.type == DartType.double) == 0) {
       return false;
     }
 

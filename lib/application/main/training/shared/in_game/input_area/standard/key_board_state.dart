@@ -34,5 +34,6 @@ class KeyBoardState with _$KeyBoardState {
         nine: ButtonState.enabled,
         zero: ButtonState.enabled,
         erease: ButtonState.enabled,
+        check: ButtonState.enabled,
       );
 }

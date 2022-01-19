@@ -137,8 +137,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       final input = _inputRowBloc.state;
 
       // calculate the new state
-      // every digit button is enabled if it would lead to a valid input when pressed
-      // else it is disabled
+      // 1. every digit button is enabled if it would lead to a valid input when pressed
+      // 2. erease button is enabled when input is not 0
+      // else they are disabled
       emit(
         KeyBoardState.initial(
           one: _validateInput(_appendDigit(1, input))

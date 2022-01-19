@@ -30,6 +30,60 @@ class KeyBoardState with _$KeyBoardState {
     required DigitButtonState twentyFive,
     required ButtonState erease,
   }) = KeyBoardInitial;
+
+  /// [KeyBoardInitial] with all buttons enabled.
+  factory KeyBoardState.allEnabled() => const KeyBoardState.initial(
+        zero: DigitButtonState.enabled(),
+        one: DigitButtonState.enabled(),
+        two: DigitButtonState.enabled(),
+        three: DigitButtonState.enabled(),
+        four: DigitButtonState.enabled(),
+        five: DigitButtonState.enabled(),
+        six: DigitButtonState.enabled(),
+        seven: DigitButtonState.enabled(),
+        eight: DigitButtonState.enabled(),
+        nine: DigitButtonState.enabled(),
+        ten: DigitButtonState.enabled(),
+        eleven: DigitButtonState.enabled(),
+        twelve: DigitButtonState.enabled(),
+        thirteen: DigitButtonState.enabled(),
+        fourteen: DigitButtonState.enabled(),
+        fifteen: DigitButtonState.enabled(),
+        sixteen: DigitButtonState.enabled(),
+        seventeen: DigitButtonState.enabled(),
+        eighteen: DigitButtonState.enabled(),
+        nineteen: DigitButtonState.enabled(),
+        twenty: DigitButtonState.enabled(),
+        twentyFive: DigitButtonState.enabled(),
+        erease: ButtonState.enabled,
+      );
+
+  /// [KeyBoardInitial] with all buttons disabled.
+  factory KeyBoardState.allDisabled() => const KeyBoardState.initial(
+        zero: DigitButtonState.disabled(),
+        one: DigitButtonState.disabled(),
+        two: DigitButtonState.disabled(),
+        three: DigitButtonState.disabled(),
+        four: DigitButtonState.disabled(),
+        five: DigitButtonState.disabled(),
+        six: DigitButtonState.disabled(),
+        seven: DigitButtonState.disabled(),
+        eight: DigitButtonState.disabled(),
+        nine: DigitButtonState.disabled(),
+        ten: DigitButtonState.disabled(),
+        eleven: DigitButtonState.disabled(),
+        twelve: DigitButtonState.disabled(),
+        thirteen: DigitButtonState.disabled(),
+        fourteen: DigitButtonState.disabled(),
+        fifteen: DigitButtonState.disabled(),
+        sixteen: DigitButtonState.disabled(),
+        seventeen: DigitButtonState.disabled(),
+        eighteen: DigitButtonState.disabled(),
+        nineteen: DigitButtonState.disabled(),
+        twenty: DigitButtonState.disabled(),
+        twentyFive: DigitButtonState.disabled(),
+        erease: ButtonState.disabled,
+      );
 }
 
 enum ButtonState { enabled, disabled }

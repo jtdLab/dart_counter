@@ -28,7 +28,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         _inputRowBloc = inputRowBloc!,
         super(
           // Set inital state
-          KeyBoardState.allEnabled(),
+          KeyBoardState.allEnabled(), // TODO calc depending on depedencies
         ) {
     // Register event handlers
     on<Started>((_, emit) async => _mapStartedToState(emit));
@@ -40,6 +40,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   Future<void> _mapStartedToState(
     Emitter<KeyBoardState> emit,
   ) async {
+    // TODO maybe user emit.foreach if it forwards errors correctly (in online also pls)
     await Future.wait(
       [
         _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit)),
@@ -84,7 +85,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       final newInput = _appendDigit(digit, input);
 
       // when new input is valid
-      if (_validateInput(newInput)) {
+      if (_validatePoints(newInput)) {
         // update input to the appended version
         _inputRowBloc.add(InputRowEvent.inputChanged(newInput: newInput));
       }
@@ -135,40 +136,41 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       final input = _inputRowBloc.state;
 
       // calculate the new state
-      // every digit button is enabled if it would lead to a valid input when pressed
-      // else it is disabled
+      // 1. every digit button is enabled if it would lead to a valid input when pressed
+      // 2. erease button is enabled when input is not 0
+      // else they are disabled
       emit(
         KeyBoardState.initial(
-          one: _validateInput(_appendDigit(1, input))
+          one: _validatePoints(_appendDigit(1, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          two: _validateInput(_appendDigit(2, input))
+          two: _validatePoints(_appendDigit(2, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          three: _validateInput(_appendDigit(3, input))
+          three: _validatePoints(_appendDigit(3, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          four: _validateInput(_appendDigit(4, input))
+          four: _validatePoints(_appendDigit(4, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          five: _validateInput(_appendDigit(5, input))
+          five: _validatePoints(_appendDigit(5, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          six: _validateInput(_appendDigit(6, input))
+          six: _validatePoints(_appendDigit(6, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          seven: _validateInput(_appendDigit(7, input))
+          seven: _validatePoints(_appendDigit(7, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          eight: _validateInput(_appendDigit(8, input))
+          eight: _validatePoints(_appendDigit(8, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          nine: _validateInput(_appendDigit(9, input))
+          nine: _validatePoints(_appendDigit(9, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
           zero: input == 0
               ? ButtonState.disabled
-              : _validateInput(_appendDigit(0, input))
+              : _validatePoints(_appendDigit(0, input))
                   ? ButtonState.enabled
                   : ButtonState.disabled,
           erease: input == 0 ? ButtonState.disabled : ButtonState.enabled,
@@ -242,10 +244,10 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     return int.parse(cutInputString.isEmpty ? '0' : cutInputString);
   }
 
-  /// Returns true if [input] is valid points for next throw in current game state.
-  bool _validateInput(int input) {
+  /// Returns true if [points] is valid for next throw in current game state.
+  bool _validatePoints(int points) {
     return _dartUtils.validatePoints(
-      points: input,
+      points: points,
       pointsLeft: _playOfflineService.getGame().currentTurn().pointsLeft,
     );
   }
