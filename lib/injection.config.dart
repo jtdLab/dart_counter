@@ -259,7 +259,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factoryParam<_i56.KeyBoardBloc, _i4.AdvancedSettingsBloc?,
           _i45.InputRowBloc?>(
       (advancedSettingsBloc, inputRowBloc) => _i56.KeyBoardBloc(
-          get<_i23.IDartUtils>(), advancedSettingsBloc, inputRowBloc));
+          get<_i23.IDartUtils>(),
+          get<_i31.IPlayOfflineService>(),
+          advancedSettingsBloc,
+          inputRowBloc));
   gh.factoryParam<_i57.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(
       (dartsDisplayerBloc, _) => _i57.KeyBoardBloc(dartsDisplayerBloc));
   gh.factoryParam<_i58.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(

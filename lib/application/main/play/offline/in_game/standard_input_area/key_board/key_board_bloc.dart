@@ -5,6 +5,7 @@ import 'package:dart_counter/application/main/play/shared/advanced_settings/adva
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_state.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/key_board_event.dart';
@@ -13,19 +14,21 @@ export 'package:dart_counter/application/main/training/shared/in_game/input_area
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
+  final IPlayOfflineService _playOfflineService;
 
   final AdvancedSettingsBloc _advancedSettingsBloc;
   final InputRowBloc _inputRowBloc;
 
   KeyBoardBloc(
     this._dartUtils,
+    this._playOfflineService,
     @factoryParam AdvancedSettingsBloc? advancedSettingsBloc,
     @factoryParam InputRowBloc? inputRowBloc,
   )   : _advancedSettingsBloc = advancedSettingsBloc!,
         _inputRowBloc = inputRowBloc!,
         super(
           // Set inital state
-          allEnabled,
+          KeyBoardState.allEnabled(),
         ) {
     // Register event handlers
     on<Started>((_, emit) async => _mapStartedToState(emit));
@@ -80,8 +83,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       // else append incoming digit to current input
       final newInput = _appendDigit(digit, input);
 
-      // when new input would lead to valid input
-      if (_dartUtils.validatePoints(points: _appendDigit(digit, newInput))) {
+      // when new input is valid
+      if (_validateInput(newInput)) {
         // update input to the appended version
         _inputRowBloc.add(InputRowEvent.inputChanged(newInput: newInput));
       }
@@ -136,36 +139,36 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       // else it is disabled
       emit(
         KeyBoardState.initial(
-          one: _dartUtils.validatePoints(points: _appendDigit(1, input))
+          one: _validateInput(_appendDigit(1, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          two: _dartUtils.validatePoints(points: _appendDigit(2, input))
+          two: _validateInput(_appendDigit(2, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          three: _dartUtils.validatePoints(points: _appendDigit(3, input))
+          three: _validateInput(_appendDigit(3, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          four: _dartUtils.validatePoints(points: _appendDigit(4, input))
+          four: _validateInput(_appendDigit(4, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          five: _dartUtils.validatePoints(points: _appendDigit(5, input))
+          five: _validateInput(_appendDigit(5, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          six: _dartUtils.validatePoints(points: _appendDigit(6, input))
+          six: _validateInput(_appendDigit(6, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          seven: _dartUtils.validatePoints(points: _appendDigit(7, input))
+          seven: _validateInput(_appendDigit(7, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          eight: _dartUtils.validatePoints(points: _appendDigit(8, input))
+          eight: _validateInput(_appendDigit(8, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
-          nine: _dartUtils.validatePoints(points: _appendDigit(9, input))
+          nine: _validateInput(_appendDigit(9, input))
               ? ButtonState.enabled
               : ButtonState.disabled,
           zero: input == 0
               ? ButtonState.disabled
-              : _dartUtils.validatePoints(points: _appendDigit(0, input))
+              : _validateInput(_appendDigit(0, input))
                   ? ButtonState.enabled
                   : ButtonState.disabled,
           erease: input == 0 ? ButtonState.disabled : ButtonState.enabled,
@@ -174,7 +177,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       // when smart key board is not enabled
     } else {
       // emit new state with all buttons enabled
-      emit(allEnabled);
+      emit(KeyBoardState.allEnabled());
     }
   }
 
@@ -239,18 +242,11 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     return int.parse(cutInputString.isEmpty ? '0' : cutInputString);
   }
 
-  /// [KeyBoardState] with all buttons enabled.
-  static const allEnabled = KeyBoardState.initial(
-    one: ButtonState.enabled,
-    two: ButtonState.enabled,
-    three: ButtonState.enabled,
-    four: ButtonState.enabled,
-    five: ButtonState.enabled,
-    six: ButtonState.enabled,
-    seven: ButtonState.enabled,
-    eight: ButtonState.enabled,
-    nine: ButtonState.enabled,
-    zero: ButtonState.enabled,
-    erease: ButtonState.enabled,
-  );
+  /// Returns true if [input] is valid points for next throw in current game state.
+  bool _validateInput(int input) {
+    return _dartUtils.validatePoints(
+      points: input,
+      pointsLeft: _playOfflineService.getGame().currentTurn().pointsLeft,
+    );
+  }
 }

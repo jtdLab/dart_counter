@@ -20,4 +20,19 @@ class KeyBoardState with _$KeyBoardState {
     required ButtonState erease,
     ButtonState? check,
   }) = KeyBoardInitial;
+
+  /// [KeyBoardInitial] with all buttons enabled.
+  factory KeyBoardState.allEnabled() => const KeyBoardState.initial(
+        one: ButtonState.enabled,
+        two: ButtonState.enabled,
+        three: ButtonState.enabled,
+        four: ButtonState.enabled,
+        five: ButtonState.enabled,
+        six: ButtonState.enabled,
+        seven: ButtonState.enabled,
+        eight: ButtonState.enabled,
+        nine: ButtonState.enabled,
+        zero: ButtonState.enabled,
+        erease: ButtonState.enabled,
+      );
 }
