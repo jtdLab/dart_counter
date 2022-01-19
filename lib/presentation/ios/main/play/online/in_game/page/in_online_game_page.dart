@@ -17,9 +17,9 @@ import 'package:dart_counter/application/main/play/online/watcher/play_online_wa
 import 'package:dart_counter/application/main/play/online/in_game/in_online_game_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
-import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/blocs.dart'
+import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/blocs.dart'
     as standard;
-import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/blocs.dart'
+import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/blocs.dart'
     as detailed;
 
 // DOMAIN

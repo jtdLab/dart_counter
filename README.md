@@ -205,4 +205,4 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // remove input changed handler in some input row blocs
 
 // TODO play online/offline detailed input area input row commit pressed 
-// TODO play online/offline all keyboard blocs
+// TODO play online/offline detailed keyboard blocs
