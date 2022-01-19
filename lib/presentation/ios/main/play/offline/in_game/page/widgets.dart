@@ -43,8 +43,9 @@ class _InOfflineGameWidget extends StatelessWidget {
                   BlocProvider<
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
                     create: (context) => getIt<standard.KeyBoardBloc>(
-                      param1: context.read<Bloc<InputRowEvent, int>>(),
-                    ),
+                      param1: context.read<AdvancedSettingsBloc>(),
+                      param2: context.read<Bloc<InputRowEvent, int>>(),
+                    )..add(const standard.KeyBoardEvent.started()),
                   ),
                 ],
                 child: const StandardInputArea(),
