@@ -4,6 +4,7 @@ part 'key_board_event.freezed.dart';
 
 @freezed
 class KeyBoardEvent with _$KeyBoardEvent {
+  const factory KeyBoardEvent.started() = Started;
   const factory KeyBoardEvent.digitPressed({
     required int digit,
   }) = DigitPressed;
