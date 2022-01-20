@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/input_row/input_row_bloc.dart'
     hide Started;
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
@@ -31,7 +32,10 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           KeyBoardState.allEnabled(), // TODO calc depending on depedencies
         ) {
     // Register event handlers
-    on<Started>((_, emit) async => _mapStartedToState(emit));
+    on<Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
     on<EreasePressed>((event, emit) => _mapEreasePressedToState());
   }

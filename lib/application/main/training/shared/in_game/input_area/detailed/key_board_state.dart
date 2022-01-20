@@ -31,6 +31,32 @@ class KeyBoardState with _$KeyBoardState {
     required ButtonState erease,
   }) = KeyBoardInitial;
 
+  const factory KeyBoardState.focused({
+    required DigitButtonState zero,
+    required DigitButtonState one,
+    required DigitButtonState two,
+    required DigitButtonState three,
+    required DigitButtonState four,
+    required DigitButtonState five,
+    required DigitButtonState six,
+    required DigitButtonState seven,
+    required DigitButtonState eight,
+    required DigitButtonState nine,
+    required DigitButtonState ten,
+    required DigitButtonState eleven,
+    required DigitButtonState twelve,
+    required DigitButtonState thirteen,
+    required DigitButtonState fourteen,
+    required DigitButtonState fifteen,
+    required DigitButtonState sixteen,
+    required DigitButtonState seventeen,
+    required DigitButtonState eighteen,
+    required DigitButtonState nineteen,
+    required DigitButtonState twenty,
+    required DigitButtonState twentyFive,
+    required ButtonState erease,
+  }) = KeyBoardFocused;
+
   /// [KeyBoardInitial] with all buttons enabled.
   factory KeyBoardState.allEnabled() => const KeyBoardState.initial(
         zero: DigitButtonState.enabled(),

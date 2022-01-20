@@ -1,13 +1,17 @@
+import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
+import 'package:dart_counter/core/stream_extensions.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:rxdart/rxdart.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
@@ -45,7 +49,10 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           ),
         ) {
     // Register event handlers
-    on<Started>((_, emit) async => _mapStartedToState(emit));
+    on<Started>(
+      (_, emit) async => _mapStartedToState(emit),
+      transformer: restartable(),
+    );
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event, emit));
     on<EreasePressed>((_, __) => _mapEreasePressedToState());
     on<UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
@@ -55,13 +62,28 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   Future<void> _mapStartedToState(
     Emitter<KeyBoardState> emit,
   ) async {
-    // TODO maybe user emit.foreach if it forwards errors correctly (in online also pls)
-    await Future.wait(
-      [
-        _advancedSettingsBloc.stream.forEach((_) => _refreshState(emit)),
-        _dartsDisplayerBloc.stream.forEach((_) => _refreshState(emit)),
-      ],
-      eagerError: true,
+    await emit.forEach(
+      StreamGroup.merge(
+        [
+          _advancedSettingsBloc.stream
+              // expect advanced settings bloc to only emit
+              // [AdvancedSettingsInGame] events while we listening here
+              // TODO name better
+              .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(Error()),
+          _dartsDisplayerBloc.stream,
+        ],
+      ),
+      onData: (data) {
+        // TODO is get unfocused state a subset of refresh state and can it be impl in on fct??
+        // so the if is not needed
+        if (data is AdvancedSettingsInGame) {
+          print('advanced');
+          return _getRefreshedState();
+        } else {
+          print('darts');
+          return _getUnfocusedState();
+        }
+      },
     );
   }
 
@@ -713,12 +735,55 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     emit(_getUnfocusedState());
   }
 
-  /// Recalculates the state of this bloc.
-  void _refreshState(
-    Emitter<KeyBoardState> emit,
-  ) {
-    // TODO
-    emit(_getUnfocusedState());
+  // TODO doc
+  KeyBoardState _getRefreshedState() {
+    final isFocused = state is KeyBoardFocused;
+
+    DigitButtonState recalculateDigitButtonState(DigitButtonState old) {
+      return old.maybeMap(
+        focused: (focused) {
+          final digit = focused.value;
+          final dartType = focused.type;
+
+          final validDartTypes = _calcValidDartTypes(digit);
+
+          if (validDartTypes.contains(dartType)) {
+            return focused;
+          } else {
+            return const DigitButtonState.disabled();
+          }
+        },
+        orElse: () => old,
+      );
+    }
+
+    if (isFocused) {
+      return state.copyWith(
+        one: recalculateDigitButtonState(state.one),
+        two: recalculateDigitButtonState(state.two),
+        three: recalculateDigitButtonState(state.three),
+        four: recalculateDigitButtonState(state.four),
+        five: recalculateDigitButtonState(state.five),
+        six: recalculateDigitButtonState(state.six),
+        seven: recalculateDigitButtonState(state.seven),
+        eight: recalculateDigitButtonState(state.eight),
+        nine: recalculateDigitButtonState(state.nine),
+        ten: recalculateDigitButtonState(state.ten),
+        eleven: recalculateDigitButtonState(state.eleven),
+        twelve: recalculateDigitButtonState(state.twelve),
+        thirteen: recalculateDigitButtonState(state.thirteen),
+        fourteen: recalculateDigitButtonState(state.fourteen),
+        fifteen: recalculateDigitButtonState(state.fifteen),
+        sixteen: recalculateDigitButtonState(state.sixteen),
+        seventeen: recalculateDigitButtonState(state.seventeen),
+        eighteen: recalculateDigitButtonState(state.eighteen),
+        nineteen: recalculateDigitButtonState(state.nineteen),
+        twenty: recalculateDigitButtonState(state.twenty),
+        twentyFive: recalculateDigitButtonState(state.twentyFive),
+      );
+    } else {
+      return _getUnfocusedState();
+    }
   }
 
   /// Returns [KeyBoardState] where as much buttons as possible are enabled.

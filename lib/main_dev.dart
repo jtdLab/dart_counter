@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/bloc_observer.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
@@ -39,5 +40,6 @@ Future<void> main() async {
       runApp(AppWidget());
     },
     blocObserver: DartCounterBlocObserver(),
+    eventTransformer: sequential(),
   );
 }
