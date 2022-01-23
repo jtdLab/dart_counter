@@ -1,8 +1,8 @@
 // CORE
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/key_board_type.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';

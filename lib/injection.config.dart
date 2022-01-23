@@ -58,7 +58,7 @@ import 'application/main/play/online/watcher/play_online_watcher_cubit.dart'
     as _i91;
 import 'application/main/play/shared/advanced_settings/advanced_settings_bloc.dart'
     as _i4;
-import 'application/main/play/shared/darts_displayer/darts_displayer_bloc.dart'
+import 'application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart'
     as _i45;
 import 'application/main/profile/profile_bloc.dart' as _i60;
 import 'application/main/settings/change_email/change_email_bloc.dart' as _i69;

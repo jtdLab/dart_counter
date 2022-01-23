@@ -1,8 +1,9 @@
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 import 'package:dart_counter/core/stream_extensions.dart';
@@ -26,7 +27,7 @@ export 'package:dart_counter/application/main/training/shared/in_game/input_area
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
-  final IPlayOnlineService _playOnlineService;
+  final IPlayOnlineService _playService;
 
   final AdvancedSettingsBloc _advancedSettingsBloc;
   final DartsDisplayerBloc _dartsDisplayerBloc;
@@ -38,7 +39,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   /// 2. Instance of [DartsDisplayerBloc]
   KeyBoardBloc(
     this._dartUtils,
-    this._playOnlineService,
+    this._playService,
     @factoryParam List<Object>? otherDependencies,
   )   : _advancedSettingsBloc = otherDependencies![0] as AdvancedSettingsBloc,
         _dartsDisplayerBloc = otherDependencies[1] as DartsDisplayerBloc,
@@ -49,7 +50,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
               otherDependencies[0] as AdvancedSettingsBloc,
             ),
             __darts(otherDependencies[1] as DartsDisplayerBloc),
-            __pointsLeft(_playOnlineService),
+            __pointsLeft(_playService),
             _dartUtils,
           ),
         ) {
@@ -72,10 +73,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       StreamGroup.merge(
         [
           _advancedSettingsBloc.stream
-              // expect advanced settings bloc to only emit
-              // [AdvancedSettingsInGame] events while we listening here
-              // TODO name better
-              .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(Error()),
+              .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(
+            ApplicationError.onlyAdvancedSettingsInGameExpected(),
+          ),
           _dartsDisplayerBloc.stream,
         ],
       ),
@@ -103,7 +103,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         } else {
           // emit new state where all buttons are disabled except buttons
           // around value are focused if valid
-          emit(_focusValue(value));
+          emit(_getFocusedState(value));
         }
       },
       focused: (_) => throw Error(), // TODO name better
@@ -121,7 +121,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         final type = event.type;
         final value = focused.focusedValue;
 
-        // add missed dart to darts displayer
+        // add missed dart with incoming type and value
         _dartsDisplayerBloc.add(
           DartsDisplayerEvent.dartAdded(dart: Dart(type: type, value: value)),
         );
@@ -132,36 +132,14 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /**
-   *  /// Handle incoming [DigitPressed] event.
-  void _handleDigitPressed(
-    DigitPressed event,
-    Emitter<KeyBoardState> emit,
-  ) {
-    // read incoming digit
-    final digit = event.digit;
-
-    if (digit == 0) {
-      // add missed dart to darts displayer
-      _dartsDisplayerBloc.add(
-        const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-      );
-
-      // unfocus and enable all valid buttons
-      emit(_getUnfocusedState());
-    } else {
-      // emit new state and maybe update darts displayer
-      emit(_handleNonZeroDigitPressed(digit));
-    }
-  }
-   */
-
   /// Handle incoming [EreasePressed] event.
   void _handleEreasePressed() {
     // when erease button is enabled
     if (state.erease == ButtonState.enabled) {
       // remove dart from darts displayer
       _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
+    } else {
+      throw Error(); // TODO name better
     }
   }
 
@@ -182,7 +160,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         return _getUnfocusedState();
       },
       focused: (focused) {
-        return _focusValue(focused.focusedValue);
+        final focusedValue = focused.focusedValue;
+
+        return _getFocusedState(focusedValue);
       },
     );
   }
@@ -192,6 +172,426 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   KeyBoardState _getUnfocusedState() {
     return __getUnfocusedState(
       _isSmartKeyBoardEnabled(),
+      _darts(),
+      _pointsLeft(),
+      _dartUtils,
+    );
+  }
+
+  // TODO docs
+  KeyBoardState _getFocusedState(int value) {
+    final validDartTypes = _calcValidDartTypes(value);
+
+    if (validDartTypes.size == 1) {
+      return _getUnfocusedState();
+    }
+
+    switch (value) {
+      case 1:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.oneFocused().copyWith(
+            zero: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.oneFocused().zero
+                : const DigitButtonState.disabled(),
+            one: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.oneFocused().one
+                : const DigitButtonState.disabled(),
+            two: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.oneFocused().two
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.oneFocused();
+        }
+      case 2:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.twoFocused().copyWith(
+            zero: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.twoFocused().one
+                : const DigitButtonState.disabled(),
+            one: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.twoFocused().two
+                : const DigitButtonState.disabled(),
+            two: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.twoFocused().three
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.twoFocused();
+        }
+      case 3:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.threeFocused().copyWith(
+            one: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.threeFocused().one
+                : const DigitButtonState.disabled(),
+            two: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.threeFocused().two
+                : const DigitButtonState.disabled(),
+            three: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.threeFocused().three
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.threeFocused();
+        }
+      case 4:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.fourFocused().copyWith(
+            four: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.fourFocused().four
+                : const DigitButtonState.disabled(),
+            five: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.fourFocused().five
+                : const DigitButtonState.disabled(),
+            six: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.fourFocused().six
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.fourFocused();
+        }
+      case 5:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.fiveFocused().copyWith(
+            four: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.fiveFocused().four
+                : const DigitButtonState.disabled(),
+            five: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.fiveFocused().five
+                : const DigitButtonState.disabled(),
+            six: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.fiveFocused().six
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.fiveFocused();
+        }
+      case 6:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.sixFocused().copyWith(
+            five: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.sixFocused().five
+                : const DigitButtonState.disabled(),
+            six: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.sixFocused().six
+                : const DigitButtonState.disabled(),
+            seven: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.sixFocused().seven
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.sixFocused();
+        }
+      case 7:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.sevenFocused().copyWith(
+            six: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.sevenFocused().six
+                : const DigitButtonState.disabled(),
+            seven: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.sevenFocused().seven
+                : const DigitButtonState.disabled(),
+            eight: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.sevenFocused().eight
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.sevenFocused();
+        }
+      case 8:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.eightFocused().copyWith(
+            seven: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.eightFocused().seven
+                : const DigitButtonState.disabled(),
+            eight: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.eightFocused().eight
+                : const DigitButtonState.disabled(),
+            nine: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.eightFocused().nine
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.eightFocused();
+        }
+      case 9:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.nineFocused().copyWith(
+            seven: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.nineFocused().seven
+                : const DigitButtonState.disabled(),
+            eight: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.nineFocused().eight
+                : const DigitButtonState.disabled(),
+            nine: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.nineFocused().nine
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.nineFocused();
+        }
+      case 10:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.tenFocused().copyWith(
+            ten: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.tenFocused().ten
+                : const DigitButtonState.disabled(),
+            eleven: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.tenFocused().eleven
+                : const DigitButtonState.disabled(),
+            twelve: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.tenFocused().twelve
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.tenFocused();
+        }
+      case 11:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.elevenFocused().copyWith(
+            ten: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.elevenFocused().ten
+                : const DigitButtonState.disabled(),
+            eleven: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.elevenFocused().eleven
+                : const DigitButtonState.disabled(),
+            twelve: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.elevenFocused().twelve
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.elevenFocused();
+        }
+      case 12:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.twelveFocused().copyWith(
+            eleven: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.twelveFocused().eleven
+                : const DigitButtonState.disabled(),
+            twelve: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.twelveFocused().twelve
+                : const DigitButtonState.disabled(),
+            thirteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.twelveFocused().thirteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.twelveFocused();
+        }
+      case 13:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.thirteenFocused().copyWith(
+            twelve: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.thirteenFocused().twelve
+                : const DigitButtonState.disabled(),
+            thirteen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.thirteenFocused().thirteen
+                : const DigitButtonState.disabled(),
+            fourteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.thirteenFocused().fourteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.thirteenFocused();
+        }
+      case 14:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.fourteenFocused().copyWith(
+            thirteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.fourteenFocused().thirteen
+                : const DigitButtonState.disabled(),
+            fourteen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.fourteenFocused().fourteen
+                : const DigitButtonState.disabled(),
+            fifteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.fourteenFocused().fifteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.fourteenFocused();
+        }
+      case 15:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.fifteenFocused().copyWith(
+            thirteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.fifteenFocused().thirteen
+                : const DigitButtonState.disabled(),
+            fourteen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.fifteenFocused().fourteen
+                : const DigitButtonState.disabled(),
+            fifteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.fifteenFocused().fifteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.fifteenFocused();
+        }
+      case 16:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.sixteenFocused().copyWith(
+            sixteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.sixteenFocused().sixteen
+                : const DigitButtonState.disabled(),
+            seventeen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.sixteenFocused().seventeen
+                : const DigitButtonState.disabled(),
+            eighteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.sixteenFocused().eighteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.sixteenFocused();
+        }
+      case 17:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.seventeenFocused().copyWith(
+            sixteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.seventeenFocused().sixteen
+                : const DigitButtonState.disabled(),
+            seventeen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.seventeenFocused().seventeen
+                : const DigitButtonState.disabled(),
+            eighteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.seventeenFocused().eighteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.seventeenFocused();
+        }
+      case 18:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.eighteenFocused().copyWith(
+            seventeen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.eighteenFocused().seventeen
+                : const DigitButtonState.disabled(),
+            eighteen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.eighteenFocused().eighteen
+                : const DigitButtonState.disabled(),
+            nineteen: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.eighteenFocused().nineteen
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.eighteenFocused();
+        }
+      case 19:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.nineteenFocused().copyWith(
+            eighteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.nineteenFocused().eighteen
+                : const DigitButtonState.disabled(),
+            nineteen: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.nineteenFocused().nineteen
+                : const DigitButtonState.disabled(),
+            twenty: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.nineteenFocused().twenty
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.nineteenFocused();
+        }
+      case 20:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.twentyFocused().copyWith(
+            nineteen: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.twentyFocused().nineteen
+                : const DigitButtonState.disabled(),
+            twenty: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.twentyFocused().twenty
+                : const DigitButtonState.disabled(),
+            twentyFive: validDartTypes.contains(DartType.triple)
+                ? KeyBoardState.twentyFocused().twentyFive
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.twentyFocused();
+        }
+      case 25:
+        // when smart keyboard is enabled
+        if (_isSmartKeyBoardEnabled()) {
+          return KeyBoardState.twentyFiveFocused().copyWith(
+            twenty: validDartTypes.contains(DartType.single)
+                ? KeyBoardState.twentyFiveFocused().twenty
+                : const DigitButtonState.disabled(),
+            twentyFive: validDartTypes.contains(DartType.double)
+                ? KeyBoardState.twentyFiveFocused().twentyFive
+                : const DigitButtonState.disabled(),
+          );
+          // when smart keyboard is not enabled
+        } else {
+          return KeyBoardState.twentyFiveFocused();
+        }
+      default:
+        throw Error(); // TODO name better
+    }
+  }
+
+  /// Returns `true` when the current turn has smart keyboard enabled.
+  bool _isSmartKeyBoardEnabled() {
+    return __isSmartKeyBoardEnabled(_advancedSettingsBloc);
+  }
+
+  /// Returns the current darts input by the user
+  KtList<Dart> _darts() {
+    return __darts(_dartsDisplayerBloc);
+  }
+
+  /// Returns the points left of the current turn.
+  int _pointsLeft() {
+    return __pointsLeft(_playService);
+  }
+
+  /// Returns list that contains all [DartType]s which would lead to valid next throw.
+  ///
+  /// A [DartType] X gets added to the list when Dart(type: X, value: [digit]) appended
+  ///
+  /// to current darts would lead to valid next throw.
+  KtList<DartType> _calcValidDartTypes(
+    int digit,
+  ) {
+    return __calcValidDartTypes(
+      digit,
       _darts(),
       _pointsLeft(),
       _dartUtils,
@@ -265,118 +665,6 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     }
   }
 
-  // TODO docs
-  KeyBoardState _focusValue(int value) {
-    final list = [
-      [state.one, KeyBoardState.oneFocused()],
-      [state.two, KeyBoardState.twoFocused()],
-      [state.three, KeyBoardState.threeFocused()],
-      [state.four, KeyBoardState.fourFocused()],
-      [state.five, KeyBoardState.fiveFocused()],
-      [state.six, KeyBoardState.sixFocused()],
-      [state.seven, KeyBoardState.sevenFocused()],
-      [state.eight, KeyBoardState.eightFocused()],
-      [state.nine, KeyBoardState.nineFocused()],
-      [state.ten, KeyBoardState.tenFocused()],
-      [state.eleven, KeyBoardState.elevenFocused()],
-      [state.twelve, KeyBoardState.twelveFocused()],
-      [state.thirteen, KeyBoardState.thirteenFocused()],
-      [state.fourteen, KeyBoardState.fourteenFocused()],
-      [state.fifteen, KeyBoardState.fifteenFocused()],
-      [state.sixteen, KeyBoardState.sixteenFocused()],
-      [state.seventeen, KeyBoardState.seventeenFocused()],
-      [state.eighteen, KeyBoardState.eighteenFocused()],
-      [state.nineteen, KeyBoardState.nineteenFocused()],
-      [state.twenty, KeyBoardState.twentyFocused()],
-      [state.twentyFive, KeyBoardState.twentyFiveFocused()],
-    ];
-
-    final index = value == 25 ? 20 : value - 1;
-    final digitButtonState = list[index][0] as DigitButtonState;
-    final focusedKeyBoardState = list[index][1] as KeyBoardState;
-
-    return digitButtonState.when(
-      // is enabled
-      enabled: () {
-        final KeyBoardState newState;
-
-        // when smart keyboard is enabled
-        if (_isSmartKeyBoardEnabled()) {
-          DigitButtonState recalculateDigitButtonState(DigitButtonState old) {
-            if (old is DigitButtonFocused) {
-              final dartType = old.type;
-              final validDartTypes = _calcValidDartTypes(value);
-
-              if (!validDartTypes.contains(dartType)) {
-                return const DigitButtonState.disabled();
-              }
-            }
-
-            return old;
-          }
-
-          // new state where all digit buttons are disabled
-          // except button around the focused digit that are valid in current game state
-          // and maybe erease
-          newState = focusedKeyBoardState.copyWith(
-            one: recalculateDigitButtonState(state.one),
-            two: recalculateDigitButtonState(state.two),
-            three: recalculateDigitButtonState(state.three),
-            four: recalculateDigitButtonState(state.four),
-            five: recalculateDigitButtonState(state.five),
-            six: recalculateDigitButtonState(state.six),
-            seven: recalculateDigitButtonState(state.seven),
-            eight: recalculateDigitButtonState(state.eight),
-            nine: recalculateDigitButtonState(state.nine),
-            ten: recalculateDigitButtonState(state.ten),
-            eleven: recalculateDigitButtonState(state.eleven),
-            twelve: recalculateDigitButtonState(state.twelve),
-            thirteen: recalculateDigitButtonState(state.thirteen),
-            fourteen: recalculateDigitButtonState(state.fourteen),
-            fifteen: recalculateDigitButtonState(state.fifteen),
-            sixteen: recalculateDigitButtonState(state.sixteen),
-            seventeen: recalculateDigitButtonState(state.seventeen),
-            eighteen: recalculateDigitButtonState(state.eighteen),
-            nineteen: recalculateDigitButtonState(state.nineteen),
-            twenty: recalculateDigitButtonState(state.twenty),
-            twentyFive: recalculateDigitButtonState(state.twentyFive),
-          );
-          // when smart keyboard is not enabled
-        } else {
-          // new state where all digit buttons are disabled
-          // except button around the focused digit and maybe erease
-          newState = focusedKeyBoardState;
-        }
-
-        return newState.copyWith(
-          erease: _dartsDisplayerBloc.state is DartsDisplayerInitial
-              ? ButtonState.disabled
-              : ButtonState.enabled,
-        );
-      },
-      // is focused
-      focused: (type, value) {
-        // add dart with incoming type and value to darts displayer
-        _dartsDisplayerBloc.add(
-          DartsDisplayerEvent.dartAdded(
-            dart: Dart(type: type, value: value),
-          ),
-        );
-
-        // unfocus and enable all valid buttons
-        return _getUnfocusedState();
-      },
-      disabled: () {
-        throw Error(); // TODO name better
-      },
-    );
-  }
-
-  /// Returns `true` when the current turn has smart keyboard enabled.
-  bool _isSmartKeyBoardEnabled() {
-    return __isSmartKeyBoardEnabled(_advancedSettingsBloc);
-  }
-
   /// Returns `true` when the current turn has smart keyboard enabled using [bloc].
   static bool __isSmartKeyBoardEnabled(
     AdvancedSettingsBloc bloc,
@@ -386,11 +674,6 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       inGame: (inGame) =>
           inGame.currentTurnAdvancedSettings.smartKeyBoardActivated,
     );
-  }
-
-  /// Returns the current darts input by the user
-  KtList<Dart> _darts() {
-    return __darts(_dartsDisplayerBloc);
   }
 
   /// Returns the current darts input by the user using [bloc].
@@ -403,40 +686,11 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// Returns the points left of the current turn.
-  int _pointsLeft() {
-    return __pointsLeft(_playOnlineService);
-  }
-
   /// Returns the points left of the current turn using [service].
   static int __pointsLeft(
     IPlayOnlineService service,
   ) {
     return service.getGame().currentTurn().pointsLeft;
-  }
-
-  /// Returns list of darts where [dart] was appended to [darts].
-  static KtList<Dart> _appendDart(
-    Dart dart,
-    KtList<Dart> darts,
-  ) {
-    return darts.toMutableList()..add(dart);
-  }
-
-  /// Returns list that contains all [DartType]s which would lead to valid next throw.
-  ///
-  /// A [DartType] X gets added to the list when Dart(type: X, value: [digit]) appended
-  ///
-  /// to current darts would lead to valid next throw.
-  KtList<DartType> _calcValidDartTypes(
-    int digit,
-  ) {
-    return __calcValidDartTypes(
-      digit,
-      _darts(),
-      _pointsLeft(),
-      _dartUtils,
-    );
   }
 
   // TODO docs
@@ -467,7 +721,11 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       final dart = Dart(type: dartType, value: digit);
 
       // when the build dart leads to valid input
-      if (__validateDarts(_appendDart(dart, darts), pointsLeft, dartUtils)) {
+      if (__validateDarts(
+        darts.toMutableList()..add(dart),
+        pointsLeft,
+        dartUtils,
+      )) {
         // increase valid dartTypes
         validDartTypes.add(dartType);
         // when build dart doesnt lead to valid input
@@ -479,17 +737,6 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
     // return the result
     return validDartTypes.toImmutableList();
-  }
-
-  /// Returns `true` if [darts] is valid for next throw in current game state.
-  bool _validateDarts(
-    KtList<Dart> darts,
-  ) {
-    return __validateDarts(
-      darts,
-      _playOnlineService.getGame().currentTurn().pointsLeft,
-      _dartUtils,
-    );
   }
 
   /// Returns `true` if [darts] is valid with [pointsLeft] using [dartUtils] to validate.
