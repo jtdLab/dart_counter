@@ -60,42 +60,126 @@ class AdvancedSettingsBloc
     _ShowAverageToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {
-    final int index = event.index;
-    final current = state.advancedSettings.get(index);
-    final newAdvancedSettings = state.advancedSettings.toMutableList();
-    newAdvancedSettings.set(
-      index,
-      current.copyWith(showAverage: !current.showAverage),
+    state.map(
+      createGame: (createGame) {
+        final int index = event.index;
+        final current = createGame.advancedSettings.get(index);
+        final newAdvancedSettings = createGame.advancedSettings.toMutableList();
+        newAdvancedSettings.set(
+          index,
+          current.copyWith(
+            showAverage: !current.showAverage,
+          ),
+        );
+        emit(createGame.copyWith(advancedSettings: newAdvancedSettings));
+      },
+      inGame: (inGame) {
+        final int index = event.index;
+        final current = inGame.advancedSettings.get(index);
+        final newAdvancedSettings = inGame.advancedSettings.toMutableList();
+        final updated = current.copyWith(
+          showAverage: !current.showAverage,
+        );
+        newAdvancedSettings.set(
+          index,
+          updated,
+        );
+        if (current == inGame.currentTurnAdvancedSettings) {
+          emit(
+            inGame.copyWith(
+              advancedSettings: newAdvancedSettings,
+              currentTurnAdvancedSettings: updated,
+            ),
+          );
+        } else {
+          emit(inGame.copyWith(advancedSettings: newAdvancedSettings));
+        }
+      },
     );
-    emit(state.copyWith(advancedSettings: newAdvancedSettings));
   }
 
   void _mapShowCheckoutToggledToState(
     _ShowCheckoutToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {
-    final int index = event.index;
-    final current = state.advancedSettings.get(index);
-    final newAdvancedSettings = state.advancedSettings.toMutableList();
-    newAdvancedSettings.set(
-      index,
-      current.copyWith(showCheckoutPercentage: !current.showCheckoutPercentage),
+    state.map(
+      createGame: (createGame) {
+        final int index = event.index;
+        final current = createGame.advancedSettings.get(index);
+        final newAdvancedSettings = createGame.advancedSettings.toMutableList();
+        newAdvancedSettings.set(
+          index,
+          current.copyWith(
+            showCheckoutPercentage: !current.showCheckoutPercentage,
+          ),
+        );
+        emit(createGame.copyWith(advancedSettings: newAdvancedSettings));
+      },
+      inGame: (inGame) {
+        final int index = event.index;
+        final current = inGame.advancedSettings.get(index);
+        final newAdvancedSettings = inGame.advancedSettings.toMutableList();
+        final updated = current.copyWith(
+          showCheckoutPercentage: !current.showCheckoutPercentage,
+        );
+        newAdvancedSettings.set(
+          index,
+          updated,
+        );
+        if (current == inGame.currentTurnAdvancedSettings) {
+          emit(
+            inGame.copyWith(
+              advancedSettings: newAdvancedSettings,
+              currentTurnAdvancedSettings: updated,
+            ),
+          );
+        } else {
+          emit(inGame.copyWith(advancedSettings: newAdvancedSettings));
+        }
+      },
     );
-    emit(state.copyWith(advancedSettings: newAdvancedSettings));
   }
 
   void _mapSmartKeyBoardActiveToggledToState(
     _SmartKeyBoardActiveToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {
-    final int index = event.index;
-    final current = state.advancedSettings.get(index);
-    final newAdvancedSettings = state.advancedSettings.toMutableList();
-    newAdvancedSettings.set(
-      index,
-      current.copyWith(smartKeyBoardActivated: !current.smartKeyBoardActivated),
+    state.map(
+      createGame: (createGame) {
+        final int index = event.index;
+        final current = createGame.advancedSettings.get(index);
+        final newAdvancedSettings = createGame.advancedSettings.toMutableList();
+        newAdvancedSettings.set(
+          index,
+          current.copyWith(
+            smartKeyBoardActivated: !current.smartKeyBoardActivated,
+          ),
+        );
+        emit(createGame.copyWith(advancedSettings: newAdvancedSettings));
+      },
+      inGame: (inGame) {
+        final int index = event.index;
+        final current = inGame.advancedSettings.get(index);
+        final newAdvancedSettings = inGame.advancedSettings.toMutableList();
+        final updated = current.copyWith(
+          smartKeyBoardActivated: !current.smartKeyBoardActivated,
+        );
+        newAdvancedSettings.set(
+          index,
+          updated,
+        );
+        if (current == inGame.currentTurnAdvancedSettings) {
+          emit(
+            inGame.copyWith(
+              advancedSettings: newAdvancedSettings,
+              currentTurnAdvancedSettings: updated,
+            ),
+          );
+        } else {
+          emit(inGame.copyWith(advancedSettings: newAdvancedSettings));
+        }
+      },
     );
-    emit(state.copyWith(advancedSettings: newAdvancedSettings));
   }
 
   void _onGameSnapshot(
