@@ -3,7 +3,8 @@ import 'package:dart_counter/application/main/training/shared/in_game/input_area
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
+import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -11,12 +12,19 @@ export 'package:dart_counter/application/main/training/shared/in_game/input_area
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_state.dart';
 
 // TODO maybe impl dartdisplayer bloc without the initial state ???? and use empty kt list instead
+// TODO this and training impl in one classe and just give play service as a nullable param that doesnt get used if not available
 
 @injectable
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
-  DartsDisplayerBloc()
-      : super(
+  final IDartUtils _dartUtils;
+  final AbstractIPlayService _playService;
+
+  DartsDisplayerBloc(
+    this._dartUtils,
+    @factoryParam AbstractIPlayService? playService,
+  )   : _playService = playService!,
+        super(
           // set initial state
           const DartsDisplayerState.initial(),
         ) {
@@ -31,31 +39,41 @@ class DartsDisplayerBloc
     DartAdded event,
     Emitter<DartsDisplayerState> emit,
   ) {
+    // validates [newDarts] and emits darts with [newDarts] when succeeds.
+    void emitWhenValid(KtList<Dart> newDarts) {
+      // if new darts are valid in current game state
+      if (_dartUtils.validateDarts(
+        pointsLeft: _playService.getGame().currentTurn().pointsLeft,
+        darts: newDarts,
+      )) {
+        // emit darts with new darts
+        emit(
+          DartsDisplayerState.darts(
+            darts: NotEmptyList(newDarts),
+          ),
+        );
+      }
+    }
+
     // incoming dart
     final dart = event.dart;
 
     state.when(
       // when state is initial
       initial: () {
-        // emit darts with incoming dart as the only element
-        emit(
-          DartsDisplayerState.darts(
-            darts: NotEmptyList([dart].toImmutableList()),
-          ),
-        );
+        // the new darts where incoming dart is the only element
+        final newDarts = [dart].toImmutableList();
+
+        emitWhenValid(newDarts);
       },
       // when state is darts
       darts: (darts) {
         // and darts has less than 3 elements
         if (darts.length < 3) {
-          // emit updated darts with incoming dart added
-          emit(
-            DartsDisplayerState.darts(
-              darts: NotEmptyList(
-                darts.getOrCrash().toMutableList()..add(dart),
-              ),
-            ),
-          );
+          // the new darts where incoming dart is added to the end
+          final newDarts = darts.getOrCrash().toMutableList()..add(dart);
+
+          emitWhenValid(newDarts);
         }
       },
     );

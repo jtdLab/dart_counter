@@ -17,15 +17,33 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
         super(
           // set initial state
-          allEnabled,
+          KeyBoardState.initialAllEnabled(),
         ) {
     // register event handlers
-    on<DigitPressed>((event, emit) => _mapDigitPressedToState(event, emit));
+    on<ValueSelected>((event, emit) => _mapValueSelectedToState(event, emit));
+    on<TypeSelected>((event, emit) => _mapTypeSelectedToState(event, emit));
     on<EreasePressed>((_, __) => _mapEreasePressedToState());
     on<UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
   }
 
-  /// handle incoming [DigitPressed] event.
+  /// handle incoming [ValueSelected] event.
+  void _mapValueSelectedToState(
+    ValueSelected event,
+    Emitter<KeyBoardState> emit,
+  ) {
+    // TODO impl
+  }
+
+  /// handle incoming [TypeSelected] event.
+  void _mapTypeSelectedToState(
+    TypeSelected event,
+    Emitter<KeyBoardState> emit,
+  ) {
+    // TODO impl
+  }
+
+  /**
+   * /// handle incoming [DigitPressed] event.
   void _mapDigitPressedToState(
     DigitPressed event,
     Emitter<KeyBoardState> emit,
@@ -820,6 +838,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     }
   }
 
+   */
+
   /// handle incoming [EreasePressed] event.
   void _mapEreasePressedToState() {
     // remove dart from darts displayer
@@ -831,58 +851,6 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     Emitter<KeyBoardState> emit,
   ) {
     // unfocus and enable all buttons again
-    emit(allEnabled);
+    emit(KeyBoardState.initialAllEnabled());
   }
-
-  static const allEnabled = KeyBoardState.initial(
-    zero: DigitButtonState.enabled(),
-    one: DigitButtonState.enabled(),
-    two: DigitButtonState.enabled(),
-    three: DigitButtonState.enabled(),
-    four: DigitButtonState.enabled(),
-    five: DigitButtonState.enabled(),
-    six: DigitButtonState.enabled(),
-    seven: DigitButtonState.enabled(),
-    eight: DigitButtonState.enabled(),
-    nine: DigitButtonState.enabled(),
-    ten: DigitButtonState.enabled(),
-    eleven: DigitButtonState.enabled(),
-    twelve: DigitButtonState.enabled(),
-    thirteen: DigitButtonState.enabled(),
-    fourteen: DigitButtonState.enabled(),
-    fifteen: DigitButtonState.enabled(),
-    sixteen: DigitButtonState.enabled(),
-    seventeen: DigitButtonState.enabled(),
-    eighteen: DigitButtonState.enabled(),
-    nineteen: DigitButtonState.enabled(),
-    twenty: DigitButtonState.enabled(),
-    twentyFive: DigitButtonState.enabled(),
-    erease: ButtonState.enabled,
-  );
-
-  static const allDigitButtonsDisabled = KeyBoardState.initial(
-    zero: DigitButtonState.disabled(),
-    one: DigitButtonState.disabled(),
-    two: DigitButtonState.disabled(),
-    three: DigitButtonState.disabled(),
-    four: DigitButtonState.disabled(),
-    five: DigitButtonState.disabled(),
-    six: DigitButtonState.disabled(),
-    seven: DigitButtonState.disabled(),
-    eight: DigitButtonState.disabled(),
-    nine: DigitButtonState.disabled(),
-    ten: DigitButtonState.disabled(),
-    eleven: DigitButtonState.disabled(),
-    twelve: DigitButtonState.disabled(),
-    thirteen: DigitButtonState.disabled(),
-    fourteen: DigitButtonState.disabled(),
-    fifteen: DigitButtonState.disabled(),
-    sixteen: DigitButtonState.disabled(),
-    seventeen: DigitButtonState.disabled(),
-    eighteen: DigitButtonState.disabled(),
-    nineteen: DigitButtonState.disabled(),
-    twenty: DigitButtonState.disabled(),
-    twentyFive: DigitButtonState.disabled(),
-    erease: ButtonState.enabled,
-  );
 }

@@ -21,9 +21,15 @@ class _$KeyBoardEventTearOff {
     return const Started();
   }
 
-  DigitPressed digitPressed({required int digit}) {
-    return DigitPressed(
-      digit: digit,
+  ValueSelected valueSelected({required int value}) {
+    return ValueSelected(
+      value: value,
+    );
+  }
+
+  TypeSelected typeSelected({required DartType type}) {
+    return TypeSelected(
+      type: type,
     );
   }
 
@@ -44,7 +50,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int digit) digitPressed,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
     required TResult Function() ereasePressed,
     required TResult Function() unfocusRequested,
   }) =>
@@ -52,7 +59,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
   }) =>
@@ -60,7 +68,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
     required TResult orElse(),
@@ -69,7 +78,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(DigitPressed value) digitPressed,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
     required TResult Function(EreasePressed value) ereasePressed,
     required TResult Function(UnfocusRequested value) unfocusRequested,
   }) =>
@@ -77,7 +87,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
   }) =>
@@ -85,7 +96,8 @@ mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
     required TResult orElse(),
@@ -149,7 +161,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int digit) digitPressed,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
     required TResult Function() ereasePressed,
     required TResult Function() unfocusRequested,
   }) {
@@ -160,7 +173,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
   }) {
@@ -171,7 +185,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
     required TResult orElse(),
@@ -186,7 +201,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(DigitPressed value) digitPressed,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
     required TResult Function(EreasePressed value) ereasePressed,
     required TResult Function(UnfocusRequested value) unfocusRequested,
   }) {
@@ -197,7 +213,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
   }) {
@@ -208,7 +225,8 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
     required TResult orElse(),
@@ -225,31 +243,32 @@ abstract class Started implements KeyBoardEvent {
 }
 
 /// @nodoc
-abstract class $DigitPressedCopyWith<$Res> {
-  factory $DigitPressedCopyWith(
-          DigitPressed value, $Res Function(DigitPressed) then) =
-      _$DigitPressedCopyWithImpl<$Res>;
-  $Res call({int digit});
+abstract class $ValueSelectedCopyWith<$Res> {
+  factory $ValueSelectedCopyWith(
+          ValueSelected value, $Res Function(ValueSelected) then) =
+      _$ValueSelectedCopyWithImpl<$Res>;
+  $Res call({int value});
 }
 
 /// @nodoc
-class _$DigitPressedCopyWithImpl<$Res> extends _$KeyBoardEventCopyWithImpl<$Res>
-    implements $DigitPressedCopyWith<$Res> {
-  _$DigitPressedCopyWithImpl(
-      DigitPressed _value, $Res Function(DigitPressed) _then)
-      : super(_value, (v) => _then(v as DigitPressed));
+class _$ValueSelectedCopyWithImpl<$Res>
+    extends _$KeyBoardEventCopyWithImpl<$Res>
+    implements $ValueSelectedCopyWith<$Res> {
+  _$ValueSelectedCopyWithImpl(
+      ValueSelected _value, $Res Function(ValueSelected) _then)
+      : super(_value, (v) => _then(v as ValueSelected));
 
   @override
-  DigitPressed get _value => super._value as DigitPressed;
+  ValueSelected get _value => super._value as ValueSelected;
 
   @override
   $Res call({
-    Object? digit = freezed,
+    Object? value = freezed,
   }) {
-    return _then(DigitPressed(
-      digit: digit == freezed
-          ? _value.digit
-          : digit // ignore: cast_nullable_to_non_nullable
+    return _then(ValueSelected(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -257,67 +276,70 @@ class _$DigitPressedCopyWithImpl<$Res> extends _$KeyBoardEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DigitPressed implements DigitPressed {
-  const _$DigitPressed({required this.digit});
+class _$ValueSelected implements ValueSelected {
+  const _$ValueSelected({required this.value});
 
   @override
-  final int digit;
+  final int value;
 
   @override
   String toString() {
-    return 'KeyBoardEvent.digitPressed(digit: $digit)';
+    return 'KeyBoardEvent.valueSelected(value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DigitPressed &&
-            const DeepCollectionEquality().equals(other.digit, digit));
+            other is ValueSelected &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(digit));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
-  $DigitPressedCopyWith<DigitPressed> get copyWith =>
-      _$DigitPressedCopyWithImpl<DigitPressed>(this, _$identity);
+  $ValueSelectedCopyWith<ValueSelected> get copyWith =>
+      _$ValueSelectedCopyWithImpl<ValueSelected>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int digit) digitPressed,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
     required TResult Function() ereasePressed,
     required TResult Function() unfocusRequested,
   }) {
-    return digitPressed(digit);
+    return valueSelected(value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
   }) {
-    return digitPressed?.call(digit);
+    return valueSelected?.call(value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
     required TResult orElse(),
   }) {
-    if (digitPressed != null) {
-      return digitPressed(digit);
+    if (valueSelected != null) {
+      return valueSelected(value);
     }
     return orElse();
   }
@@ -326,46 +348,200 @@ class _$DigitPressed implements DigitPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(DigitPressed value) digitPressed,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
     required TResult Function(EreasePressed value) ereasePressed,
     required TResult Function(UnfocusRequested value) unfocusRequested,
   }) {
-    return digitPressed(this);
+    return valueSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
   }) {
-    return digitPressed?.call(this);
+    return valueSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
     required TResult orElse(),
   }) {
-    if (digitPressed != null) {
-      return digitPressed(this);
+    if (valueSelected != null) {
+      return valueSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class DigitPressed implements KeyBoardEvent {
-  const factory DigitPressed({required int digit}) = _$DigitPressed;
+abstract class ValueSelected implements KeyBoardEvent {
+  const factory ValueSelected({required int value}) = _$ValueSelected;
 
-  int get digit;
+  int get value;
   @JsonKey(ignore: true)
-  $DigitPressedCopyWith<DigitPressed> get copyWith =>
+  $ValueSelectedCopyWith<ValueSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TypeSelectedCopyWith<$Res> {
+  factory $TypeSelectedCopyWith(
+          TypeSelected value, $Res Function(TypeSelected) then) =
+      _$TypeSelectedCopyWithImpl<$Res>;
+  $Res call({DartType type});
+}
+
+/// @nodoc
+class _$TypeSelectedCopyWithImpl<$Res> extends _$KeyBoardEventCopyWithImpl<$Res>
+    implements $TypeSelectedCopyWith<$Res> {
+  _$TypeSelectedCopyWithImpl(
+      TypeSelected _value, $Res Function(TypeSelected) _then)
+      : super(_value, (v) => _then(v as TypeSelected));
+
+  @override
+  TypeSelected get _value => super._value as TypeSelected;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+  }) {
+    return _then(TypeSelected(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DartType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TypeSelected implements TypeSelected {
+  const _$TypeSelected({required this.type});
+
+  @override
+  final DartType type;
+
+  @override
+  String toString() {
+    return 'KeyBoardEvent.typeSelected(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TypeSelected &&
+            const DeepCollectionEquality().equals(other.type, type));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(type));
+
+  @JsonKey(ignore: true)
+  @override
+  $TypeSelectedCopyWith<TypeSelected> get copyWith =>
+      _$TypeSelectedCopyWithImpl<TypeSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
+    required TResult Function() ereasePressed,
+    required TResult Function() unfocusRequested,
+  }) {
+    return typeSelected(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
+    TResult Function()? ereasePressed,
+    TResult Function()? unfocusRequested,
+  }) {
+    return typeSelected?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
+    TResult Function()? ereasePressed,
+    TResult Function()? unfocusRequested,
+    required TResult orElse(),
+  }) {
+    if (typeSelected != null) {
+      return typeSelected(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
+    required TResult Function(EreasePressed value) ereasePressed,
+    required TResult Function(UnfocusRequested value) unfocusRequested,
+  }) {
+    return typeSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
+    TResult Function(EreasePressed value)? ereasePressed,
+    TResult Function(UnfocusRequested value)? unfocusRequested,
+  }) {
+    return typeSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
+    TResult Function(EreasePressed value)? ereasePressed,
+    TResult Function(UnfocusRequested value)? unfocusRequested,
+    required TResult orElse(),
+  }) {
+    if (typeSelected != null) {
+      return typeSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TypeSelected implements KeyBoardEvent {
+  const factory TypeSelected({required DartType type}) = _$TypeSelected;
+
+  DartType get type;
+  @JsonKey(ignore: true)
+  $TypeSelectedCopyWith<TypeSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -411,7 +587,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int digit) digitPressed,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
     required TResult Function() ereasePressed,
     required TResult Function() unfocusRequested,
   }) {
@@ -422,7 +599,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
   }) {
@@ -433,7 +611,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
     required TResult orElse(),
@@ -448,7 +627,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(DigitPressed value) digitPressed,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
     required TResult Function(EreasePressed value) ereasePressed,
     required TResult Function(UnfocusRequested value) unfocusRequested,
   }) {
@@ -459,7 +639,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
   }) {
@@ -470,7 +651,8 @@ class _$EreasePressed implements EreasePressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
     required TResult orElse(),
@@ -528,7 +710,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int digit) digitPressed,
+    required TResult Function(int value) valueSelected,
+    required TResult Function(DartType type) typeSelected,
     required TResult Function() ereasePressed,
     required TResult Function() unfocusRequested,
   }) {
@@ -539,7 +722,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
   }) {
@@ -550,7 +734,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int digit)? digitPressed,
+    TResult Function(int value)? valueSelected,
+    TResult Function(DartType type)? typeSelected,
     TResult Function()? ereasePressed,
     TResult Function()? unfocusRequested,
     required TResult orElse(),
@@ -565,7 +750,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(DigitPressed value) digitPressed,
+    required TResult Function(ValueSelected value) valueSelected,
+    required TResult Function(TypeSelected value) typeSelected,
     required TResult Function(EreasePressed value) ereasePressed,
     required TResult Function(UnfocusRequested value) unfocusRequested,
   }) {
@@ -576,7 +762,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
   }) {
@@ -587,7 +774,8 @@ class _$UnfocusRequested implements UnfocusRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(DigitPressed value)? digitPressed,
+    TResult Function(ValueSelected value)? valueSelected,
+    TResult Function(TypeSelected value)? typeSelected,
     TResult Function(EreasePressed value)? ereasePressed,
     TResult Function(UnfocusRequested value)? unfocusRequested,
     required TResult orElse(),

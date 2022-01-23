@@ -50,13 +50,13 @@ dependencies:
   firebase_core: ^1.11.0
   firebase_storage: ^10.2.5
   flutter_bloc: ^8.0.1
-  flutter_facebook_auth: ^4.0.0
+  flutter_facebook_auth: ^4.0.1
   flutter_hooks: ^0.18.2
   flutter_signin_button: ^2.0.0
   fluttertoast: ^8.0.8
   freezed_annotation: ^1.1.0
   get_it: ^7.2.0
-  google_sign_in: ^5.2.1
+  google_sign_in: ^5.2.3
   image_picker: ^0.8.4+4
   injectable: ^1.5.0
   kt_dart: ^0.10.0

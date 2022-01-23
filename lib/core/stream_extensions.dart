@@ -1,5 +1,3 @@
-import 'package:rxdart/rxdart.dart';
-
 extension StreamX<A> on Stream<A> {
   /// The first event that does not match [T] leads to this stream completing with [error].
   Stream<A> notMatchingTypeCompleteWithError<T>(Object error) => map(

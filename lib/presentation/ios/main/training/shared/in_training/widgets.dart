@@ -1220,7 +1220,8 @@ class DartsDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DartsDisplayerBloc, DartsDisplayerState>(
+    return BlocBuilder<Bloc<DartsDisplayerEvent, DartsDisplayerState>,
+        DartsDisplayerState>(
       builder: (context, state) {
         final darts = state.when(
           initial: () => const KtList<Dart>.empty(),
@@ -1755,7 +1756,7 @@ class _DetailedDigitButton extends StatelessWidget {
               color: AppColors.white,
               onPressed: () => context
                   .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
-                  .add(detailed.KeyBoardEvent.digitPressed(digit: digit)),
+                  .add(detailed.KeyBoardEvent.valueSelected(value: digit)),
               text: digit.toString(),
             );
           },
@@ -1777,7 +1778,7 @@ class _DetailedDigitButton extends StatelessWidget {
               color: AppColors.white,
               onPressed: () => context
                   .read<Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>()
-                  .add(detailed.KeyBoardEvent.digitPressed(digit: digit)),
+                  .add(detailed.KeyBoardEvent.typeSelected(type: type)),
               text: '$text$focusedDigit',
               fontColor: color,
               borderColor: color,

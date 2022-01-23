@@ -69,7 +69,8 @@ class _$KeyBoardStateTearOff {
   }
 
   KeyBoardFocused focused(
-      {required DigitButtonState zero,
+      {required int focusedValue,
+      required DigitButtonState zero,
       required DigitButtonState one,
       required DigitButtonState two,
       required DigitButtonState three,
@@ -93,6 +94,7 @@ class _$KeyBoardStateTearOff {
       required DigitButtonState twentyFive,
       required ButtonState erease}) {
     return KeyBoardFocused(
+      focusedValue: focusedValue,
       zero: zero,
       one: one,
       two: two,
@@ -177,6 +179,7 @@ mixin _$KeyBoardState {
             ButtonState erease)
         initial,
     required TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -231,6 +234,7 @@ mixin _$KeyBoardState {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -285,6 +289,7 @@ mixin _$KeyBoardState {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1062,6 +1067,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             ButtonState erease)
         initial,
     required TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1142,6 +1148,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1222,6 +1229,7 @@ class _$KeyBoardInitial implements KeyBoardInitial {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1395,7 +1403,8 @@ abstract class $KeyBoardFocusedCopyWith<$Res>
       _$KeyBoardFocusedCopyWithImpl<$Res>;
   @override
   $Res call(
-      {DigitButtonState zero,
+      {int focusedValue,
+      DigitButtonState zero,
       DigitButtonState one,
       DigitButtonState two,
       DigitButtonState three,
@@ -1478,6 +1487,7 @@ class _$KeyBoardFocusedCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? focusedValue = freezed,
     Object? zero = freezed,
     Object? one = freezed,
     Object? two = freezed,
@@ -1503,6 +1513,10 @@ class _$KeyBoardFocusedCopyWithImpl<$Res>
     Object? erease = freezed,
   }) {
     return _then(KeyBoardFocused(
+      focusedValue: focusedValue == freezed
+          ? _value.focusedValue
+          : focusedValue // ignore: cast_nullable_to_non_nullable
+              as int,
       zero: zero == freezed
           ? _value.zero
           : zero // ignore: cast_nullable_to_non_nullable
@@ -1603,7 +1617,8 @@ class _$KeyBoardFocusedCopyWithImpl<$Res>
 
 class _$KeyBoardFocused implements KeyBoardFocused {
   const _$KeyBoardFocused(
-      {required this.zero,
+      {required this.focusedValue,
+      required this.zero,
       required this.one,
       required this.two,
       required this.three,
@@ -1627,6 +1642,8 @@ class _$KeyBoardFocused implements KeyBoardFocused {
       required this.twentyFive,
       required this.erease});
 
+  @override
+  final int focusedValue;
   @override
   final DigitButtonState zero;
   @override
@@ -1676,7 +1693,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
 
   @override
   String toString() {
-    return 'KeyBoardState.focused(zero: $zero, one: $one, two: $two, three: $three, four: $four, five: $five, six: $six, seven: $seven, eight: $eight, nine: $nine, ten: $ten, eleven: $eleven, twelve: $twelve, thirteen: $thirteen, fourteen: $fourteen, fifteen: $fifteen, sixteen: $sixteen, seventeen: $seventeen, eighteen: $eighteen, nineteen: $nineteen, twenty: $twenty, twentyFive: $twentyFive, erease: $erease)';
+    return 'KeyBoardState.focused(focusedValue: $focusedValue, zero: $zero, one: $one, two: $two, three: $three, four: $four, five: $five, six: $six, seven: $seven, eight: $eight, nine: $nine, ten: $ten, eleven: $eleven, twelve: $twelve, thirteen: $thirteen, fourteen: $fourteen, fifteen: $fifteen, sixteen: $sixteen, seventeen: $seventeen, eighteen: $eighteen, nineteen: $nineteen, twenty: $twenty, twentyFive: $twentyFive, erease: $erease)';
   }
 
   @override
@@ -1684,6 +1701,8 @@ class _$KeyBoardFocused implements KeyBoardFocused {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is KeyBoardFocused &&
+            const DeepCollectionEquality()
+                .equals(other.focusedValue, focusedValue) &&
             const DeepCollectionEquality().equals(other.zero, zero) &&
             const DeepCollectionEquality().equals(other.one, one) &&
             const DeepCollectionEquality().equals(other.two, two) &&
@@ -1713,6 +1732,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        const DeepCollectionEquality().hash(focusedValue),
         const DeepCollectionEquality().hash(zero),
         const DeepCollectionEquality().hash(one),
         const DeepCollectionEquality().hash(two),
@@ -1772,6 +1792,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
             ButtonState erease)
         initial,
     required TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1798,6 +1819,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
         focused,
   }) {
     return focused(
+        focusedValue,
         zero,
         one,
         two,
@@ -1852,6 +1874,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1878,6 +1901,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
         focused,
   }) {
     return focused?.call(
+        focusedValue,
         zero,
         one,
         two,
@@ -1932,6 +1956,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
             ButtonState erease)?
         initial,
     TResult Function(
+            int focusedValue,
             DigitButtonState zero,
             DigitButtonState one,
             DigitButtonState two,
@@ -1960,6 +1985,7 @@ class _$KeyBoardFocused implements KeyBoardFocused {
   }) {
     if (focused != null) {
       return focused(
+          focusedValue,
           zero,
           one,
           two,
@@ -2021,7 +2047,8 @@ class _$KeyBoardFocused implements KeyBoardFocused {
 
 abstract class KeyBoardFocused implements KeyBoardState {
   const factory KeyBoardFocused(
-      {required DigitButtonState zero,
+      {required int focusedValue,
+      required DigitButtonState zero,
       required DigitButtonState one,
       required DigitButtonState two,
       required DigitButtonState three,
@@ -2045,6 +2072,7 @@ abstract class KeyBoardFocused implements KeyBoardState {
       required DigitButtonState twentyFive,
       required ButtonState erease}) = _$KeyBoardFocused;
 
+  int get focusedValue;
   @override
   DigitButtonState get zero;
   @override

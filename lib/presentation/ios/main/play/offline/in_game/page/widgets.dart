@@ -52,13 +52,17 @@ class _InOfflineGameWidget extends StatelessWidget {
               ),
               MultiBlocProvider(
                 providers: [
-                  BlocProvider(
-                    create: (context) => getIt<DartsDisplayerBloc>(),
+                  BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
+                    create: (context) => getIt<DartsDisplayerBloc>(
+                      // TODO ideal ? should ui know services ??
+                      param1: getIt<IPlayOfflineService>(),
+                    ),
                   ),
                   BlocProvider<Bloc<InputRowEvent, int>>(
                     create: (context) => getIt<detailed.InputRowBloc>(
                       param1: context.read<InOfflineGameBloc>(),
-                      param2: context.read<DartsDisplayerBloc>(),
+                      param2: context.read<
+                          Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
                     )..add(const InputRowEvent.started()),
                   ),
                   BlocProvider<
@@ -66,7 +70,8 @@ class _InOfflineGameWidget extends StatelessWidget {
                     create: (context) => getIt<detailed.KeyBoardBloc>(
                       param1: [
                         context.read<AdvancedSettingsBloc>(),
-                        context.read<DartsDisplayerBloc>(),
+                        context.read<
+                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
                       ],
                     )..add(const detailed.KeyBoardEvent.started()),
                   ),

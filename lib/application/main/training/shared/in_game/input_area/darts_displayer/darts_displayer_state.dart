@@ -1,4 +1,8 @@
-part of 'darts_displayer_bloc.dart';
+import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'darts_displayer_state.freezed.dart';
 
 @freezed
 class DartsDisplayerState with _$DartsDisplayerState {

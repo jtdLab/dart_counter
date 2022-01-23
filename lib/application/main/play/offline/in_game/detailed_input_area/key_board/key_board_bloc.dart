@@ -1,8 +1,9 @@
 import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 import 'package:dart_counter/core/stream_extensions.dart';
@@ -11,12 +12,17 @@ import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:rxdart/rxdart.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_event.dart';
 export 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/key_board_state.dart';
 
 // if some functions are only caled in 1 other make the scope noc class lvl sondern function level
+
+// wann new state?
+// 1. digit button pressed
+// 2. unfocus requested
+// 4. advanced settings changed
+// 5. darts changed
 
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
@@ -26,7 +32,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final AdvancedSettingsBloc _advancedSettingsBloc;
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
-  /// **[otherDependencies] should contain in following order:**
+  /// **[otherDependencies] must contain in following order:**
   ///
   /// 1. Instance of [AdvancedSettingsBloc]
   ///
@@ -50,740 +56,115 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         ) {
     // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
-    on<DigitPressed>((event, emit) => _mapDigitPressedToState(event, emit));
-    on<EreasePressed>((_, __) => _mapEreasePressedToState());
-    on<UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
+    on<ValueSelected>((event, emit) => _handleValueSelected(event, emit));
+    on<TypeSelected>((event, emit) => _handleTypeSelected(event, emit));
+    on<EreasePressed>((_, __) => _handleEreasePressed());
+    on<UnfocusRequested>((_, emit) => _handleUnfocusRequested(emit));
   }
 
   /// Handle incoming [Started] event.
-  Future<void> _mapStartedToState(
+  Future<void> _handleStarted(
     Emitter<KeyBoardState> emit,
   ) async {
     await emit.forEach(
       StreamGroup.merge(
         [
           _advancedSettingsBloc.stream
-              // expect advanced settings bloc to only emit
-              // [AdvancedSettingsInGame] events while we listening here
-              // TODO name better
-              .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(Error()),
+              .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(
+            ApplicationError.onlyAdvancedSettingsInGameExpected(),
+          ),
           _dartsDisplayerBloc.stream,
         ],
       ),
-      onData: (data) {
-        // TODO is get unfocused state a subset of refresh state and can it be impl in on fct??
-        // so the if is not needed
-        if (data is AdvancedSettingsInGame) {
-          print('advanced');
-          return _getRefreshedState();
-        } else {
-          print('darts');
-          return _getUnfocusedState();
-        }
-      },
+      onData: (_) => _getRefreshedState(),
     );
   }
 
-  /// Handle incoming [DigitPressed] event.
-  void _mapDigitPressedToState(
-    DigitPressed event,
+  /// Handle incoming [ValueSelected] event.
+  void _handleValueSelected(
+    ValueSelected event,
     Emitter<KeyBoardState> emit,
   ) {
-    void handleFocused(DartType type, int value) {
-      // add dart with incoming type and value to darts displayer
-      _dartsDisplayerBloc.add(
-        DartsDisplayerEvent.dartAdded(
-          dart: Dart(type: type, value: value),
-        ),
-      );
+    state.map(
+      initial: (initial) {
+        final value = event.value;
 
-      // unfocus and enable all valid buttons
-      emit(_getUnfocusedState());
-    }
+        if (value == 0) {
+          // add missed dart to darts displayer
+          _dartsDisplayerBloc.add(
+            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+          );
 
-    ButtonState getEreaseButtonState() {
-      return _dartsDisplayerBloc.state is DartsDisplayerInitial
-          ? ButtonState.disabled
-          : ButtonState.enabled;
-    }
+          // unfocus and enable all valid buttons
+          emit(_getUnfocusedState());
+        } else {
+          // emit new state where all buttons are disabled except buttons
+          // around value are focused if valid
+          emit(_getFocusedState(value));
+        }
+      },
+      focused: (_) => throw Error(), // TODO name better
+    );
+  }
 
-    // read incoming digit
-    final digit = event.digit;
+  /// Handle incoming [TypeSelected] event.
+  void _handleTypeSelected(
+    TypeSelected event,
+    Emitter<KeyBoardState> emit,
+  ) {
+    state.map(
+      initial: (_) => throw Error(), // TODO name better
+      focused: (focused) {
+        final type = event.type;
+        final value = focused.focusedValue;
 
-    switch (digit) {
-      // when digit button 0
-      case 0:
-        // add missed dart to darts displayer
+        // add missed dart with incoming type and value
         _dartsDisplayerBloc.add(
-          const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+          DartsDisplayerEvent.dartAdded(dart: Dart(type: type, value: value)),
         );
 
         // unfocus and enable all valid buttons
         emit(_getUnfocusedState());
-        break;
-      // when digit button one
-      case 1:
-        state.one.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button zero, one and two and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                zero: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                one: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                two: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button two
-      case 2:
-        state.two.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button one, two and three and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                one: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                two: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                three: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button three
-      case 3:
-        state.three.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button one, two and three and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                one: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                two: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                three: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button four
-      case 4:
-        state.four.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button four, five and six and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                four: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                five: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                six: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button five
-      case 5:
-        state.five.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button four, five and six and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                four: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                five: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                six: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button six
-      case 6:
-        state.six.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button five, six and seven and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                five: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                six: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                seven: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button seven
-      case 7:
-        state.seven.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button six, seven and eight and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                six: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                seven: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                eight: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button eight
-      case 8:
-        state.eight.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button seven, eight and nine and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                seven: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                eight: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                nine: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button nine
-      case 9:
-        state.nine.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button seven, eight and nine and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                seven: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                eight: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                nine: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button ten
-      case 10:
-        state.ten.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button ten, eleven and twelve and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                ten: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                eleven: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                twelve: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button eleven
-      case 11:
-        state.eleven.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button ten, eleven and twelve and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                ten: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                eleven: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                twelve: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button twelve
-      case 12:
-        state.twelve.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button eleven, twelve and thirteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                eleven: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                twelve: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                thirteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button thirteen
-      case 13:
-        state.thirteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button twelve, thirteen and fourteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                twelve: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                thirteen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                fourteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button fourteen
-      case 14:
-        state.fourteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button thirteen, fourteen and fifteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                thirteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                fourteen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                fifteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button fifteen
-      case 15:
-        state.fifteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button thirteen, fourteen and fifteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                thirteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                fourteen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                fifteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button sixteen
-      case 16:
-        state.sixteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button sixteen, seventeen and eighteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                sixteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                seventeen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                eighteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button seventeen
-      case 17:
-        state.seventeen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button sixteen, seventeen and eighteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                sixteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                seventeen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                eighteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button eighteen
-      case 18:
-        state.eighteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button seventeen, eighteen and nineteen and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                seventeen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                eighteen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                nineteen: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button nineteen
-      case 19:
-        state.nineteen.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button eighteen, nineteen and twenty and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                eighteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                nineteen: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                twenty: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button twenty
-      case 20:
-        state.twenty.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button nineteen, twenty and twentyFive and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                nineteen: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                twenty: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                twentyFive: DigitButtonState.focused(
-                  type: DartType.triple,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-      // when digit button twentyFive
-      case 25:
-        state.twentyFive.whenOrNull(
-          // is enabled
-          enabled: () {
-            // emit key board state where all digit buttons are disabled
-            // except button twenty and twentyFive and maybe erease
-            emit(
-              KeyBoardState.allDisabled().copyWith(
-                twenty: DigitButtonState.focused(
-                  type: DartType.single,
-                  value: digit,
-                ),
-                twentyFive: DigitButtonState.focused(
-                  type: DartType.double,
-                  value: digit,
-                ),
-                erease: getEreaseButtonState(),
-              ),
-            );
-          },
-          focused: (type, value) => handleFocused(type, value),
-        );
-        break;
-    }
+      },
+    );
   }
 
   /// Handle incoming [EreasePressed] event.
-  void _mapEreasePressedToState() {
-    // when smart key board is enabled
-    if (_isSmartKeyBoardEnabled()) {
-      // and erease button is enabled
-      if (state.erease == ButtonState.enabled) {
-        // remove dart from darts displayer
-        _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
-      }
-      // when smart key board is not enabled
-    } else {
+  void _handleEreasePressed() {
+    // when erease button is enabled
+    if (state.erease == ButtonState.enabled) {
       // remove dart from darts displayer
       _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
+    } else {
+      throw Error(); // TODO name better
     }
   }
 
   /// Handle incoming [UnfocusRequested] event.
-  void _mapUnfocusRequestedToState(
+  void _handleUnfocusRequested(
     Emitter<KeyBoardState> emit,
   ) {
     // unfocus and enable all valid buttons
     emit(_getUnfocusedState());
   }
 
+  // # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # //
+
   // TODO doc
   KeyBoardState _getRefreshedState() {
-    final isFocused = state is KeyBoardFocused;
+    return state.map(
+      initial: (initial) {
+        return _getUnfocusedState();
+      },
+      focused: (focused) {
+        final focusedValue = focused.focusedValue;
 
-    DigitButtonState recalculateDigitButtonState(DigitButtonState old) {
-      return old.maybeMap(
-        focused: (focused) {
-          final digit = focused.value;
-          final dartType = focused.type;
-
-          final validDartTypes = _calcValidDartTypes(digit);
-
-          if (validDartTypes.contains(dartType)) {
-            return focused;
-          } else {
-            return const DigitButtonState.disabled();
-          }
-        },
-        orElse: () => old,
-      );
-    }
-
-    if (isFocused) {
-      return state.copyWith(
-        one: recalculateDigitButtonState(state.one),
-        two: recalculateDigitButtonState(state.two),
-        three: recalculateDigitButtonState(state.three),
-        four: recalculateDigitButtonState(state.four),
-        five: recalculateDigitButtonState(state.five),
-        six: recalculateDigitButtonState(state.six),
-        seven: recalculateDigitButtonState(state.seven),
-        eight: recalculateDigitButtonState(state.eight),
-        nine: recalculateDigitButtonState(state.nine),
-        ten: recalculateDigitButtonState(state.ten),
-        eleven: recalculateDigitButtonState(state.eleven),
-        twelve: recalculateDigitButtonState(state.twelve),
-        thirteen: recalculateDigitButtonState(state.thirteen),
-        fourteen: recalculateDigitButtonState(state.fourteen),
-        fifteen: recalculateDigitButtonState(state.fifteen),
-        sixteen: recalculateDigitButtonState(state.sixteen),
-        seventeen: recalculateDigitButtonState(state.seventeen),
-        eighteen: recalculateDigitButtonState(state.eighteen),
-        nineteen: recalculateDigitButtonState(state.nineteen),
-        twenty: recalculateDigitButtonState(state.twenty),
-        twentyFive: recalculateDigitButtonState(state.twentyFive),
-      );
-    } else {
-      return _getUnfocusedState();
-    }
+        return _getFocusedState(focusedValue);
+      },
+    );
   }
 
   /// Returns [KeyBoardState] where as much buttons as possible are enabled.
@@ -860,7 +241,271 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
       // when smart key board is not enabled
     } else {
       // return new state with all buttons enabled
-      return KeyBoardState.allEnabled();
+      return KeyBoardState.initialAllEnabled();
+    }
+  }
+
+  // TODO docs
+  KeyBoardState _getFocusedState(int value) {
+    final validDartTypes = _calcValidDartTypes(value);
+
+    if (validDartTypes.size == 1) {
+      return _getUnfocusedState();
+    }
+
+    switch (value) {
+      case 1:
+        return KeyBoardState.oneFocused().copyWith(
+          zero: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.oneFocused().zero
+              : const DigitButtonState.disabled(),
+          one: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.oneFocused().one
+              : const DigitButtonState.disabled(),
+          two: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.oneFocused().two
+              : const DigitButtonState.disabled(),
+        );
+      case 2:
+        return KeyBoardState.twoFocused().copyWith(
+          zero: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.twoFocused().one
+              : const DigitButtonState.disabled(),
+          one: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.twoFocused().two
+              : const DigitButtonState.disabled(),
+          two: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.twoFocused().three
+              : const DigitButtonState.disabled(),
+        );
+      case 3:
+        return KeyBoardState.threeFocused().copyWith(
+          one: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.threeFocused().one
+              : const DigitButtonState.disabled(),
+          two: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.threeFocused().two
+              : const DigitButtonState.disabled(),
+          three: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.threeFocused().three
+              : const DigitButtonState.disabled(),
+        );
+
+      case 4:
+        return KeyBoardState.fourFocused().copyWith(
+          four: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.fourFocused().four
+              : const DigitButtonState.disabled(),
+          five: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.fourFocused().five
+              : const DigitButtonState.disabled(),
+          six: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.fourFocused().six
+              : const DigitButtonState.disabled(),
+        );
+      case 5:
+        return KeyBoardState.fiveFocused().copyWith(
+          four: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.fiveFocused().four
+              : const DigitButtonState.disabled(),
+          five: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.fiveFocused().five
+              : const DigitButtonState.disabled(),
+          six: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.fiveFocused().six
+              : const DigitButtonState.disabled(),
+        );
+      case 6:
+        return KeyBoardState.sixFocused().copyWith(
+          five: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.sixFocused().five
+              : const DigitButtonState.disabled(),
+          six: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.sixFocused().six
+              : const DigitButtonState.disabled(),
+          seven: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.sixFocused().seven
+              : const DigitButtonState.disabled(),
+        );
+      case 7:
+        return KeyBoardState.sevenFocused().copyWith(
+          six: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.sevenFocused().six
+              : const DigitButtonState.disabled(),
+          seven: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.sevenFocused().seven
+              : const DigitButtonState.disabled(),
+          eight: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.sevenFocused().eight
+              : const DigitButtonState.disabled(),
+        );
+      case 8:
+        return KeyBoardState.eightFocused().copyWith(
+          seven: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.eightFocused().seven
+              : const DigitButtonState.disabled(),
+          eight: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.eightFocused().eight
+              : const DigitButtonState.disabled(),
+          nine: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.eightFocused().nine
+              : const DigitButtonState.disabled(),
+        );
+      case 9:
+        return KeyBoardState.nineFocused().copyWith(
+          seven: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.nineFocused().seven
+              : const DigitButtonState.disabled(),
+          eight: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.nineFocused().eight
+              : const DigitButtonState.disabled(),
+          nine: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.nineFocused().nine
+              : const DigitButtonState.disabled(),
+        );
+      case 10:
+        return KeyBoardState.tenFocused().copyWith(
+          ten: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.tenFocused().ten
+              : const DigitButtonState.disabled(),
+          eleven: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.tenFocused().eleven
+              : const DigitButtonState.disabled(),
+          twelve: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.tenFocused().twelve
+              : const DigitButtonState.disabled(),
+        );
+      case 11:
+        return KeyBoardState.elevenFocused().copyWith(
+          ten: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.elevenFocused().ten
+              : const DigitButtonState.disabled(),
+          eleven: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.elevenFocused().eleven
+              : const DigitButtonState.disabled(),
+          twelve: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.elevenFocused().twelve
+              : const DigitButtonState.disabled(),
+        );
+      case 12:
+        return KeyBoardState.twelveFocused().copyWith(
+          eleven: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.twelveFocused().eleven
+              : const DigitButtonState.disabled(),
+          twelve: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.twelveFocused().twelve
+              : const DigitButtonState.disabled(),
+          thirteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.twelveFocused().thirteen
+              : const DigitButtonState.disabled(),
+        );
+      case 13:
+        return KeyBoardState.thirteenFocused().copyWith(
+          twelve: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.thirteenFocused().twelve
+              : const DigitButtonState.disabled(),
+          thirteen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.thirteenFocused().thirteen
+              : const DigitButtonState.disabled(),
+          fourteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.thirteenFocused().fourteen
+              : const DigitButtonState.disabled(),
+        );
+      case 14:
+        return KeyBoardState.fourteenFocused().copyWith(
+          thirteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.fourteenFocused().thirteen
+              : const DigitButtonState.disabled(),
+          fourteen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.fourteenFocused().fourteen
+              : const DigitButtonState.disabled(),
+          fifteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.fourteenFocused().fifteen
+              : const DigitButtonState.disabled(),
+        );
+      case 15:
+        return KeyBoardState.fifteenFocused().copyWith(
+          thirteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.fifteenFocused().thirteen
+              : const DigitButtonState.disabled(),
+          fourteen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.fifteenFocused().fourteen
+              : const DigitButtonState.disabled(),
+          fifteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.fifteenFocused().fifteen
+              : const DigitButtonState.disabled(),
+        );
+      case 16:
+        return KeyBoardState.sixteenFocused().copyWith(
+          sixteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.sixteenFocused().sixteen
+              : const DigitButtonState.disabled(),
+          seventeen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.sixteenFocused().seventeen
+              : const DigitButtonState.disabled(),
+          eighteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.sixteenFocused().eighteen
+              : const DigitButtonState.disabled(),
+        );
+      case 17:
+        return KeyBoardState.seventeenFocused().copyWith(
+          sixteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.seventeenFocused().sixteen
+              : const DigitButtonState.disabled(),
+          seventeen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.seventeenFocused().seventeen
+              : const DigitButtonState.disabled(),
+          eighteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.seventeenFocused().eighteen
+              : const DigitButtonState.disabled(),
+        );
+      case 18:
+        return KeyBoardState.eighteenFocused().copyWith(
+          seventeen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.eighteenFocused().seventeen
+              : const DigitButtonState.disabled(),
+          eighteen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.eighteenFocused().eighteen
+              : const DigitButtonState.disabled(),
+          nineteen: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.eighteenFocused().nineteen
+              : const DigitButtonState.disabled(),
+        );
+      case 19:
+        return KeyBoardState.nineteenFocused().copyWith(
+          eighteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.nineteenFocused().eighteen
+              : const DigitButtonState.disabled(),
+          nineteen: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.nineteenFocused().nineteen
+              : const DigitButtonState.disabled(),
+          twenty: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.nineteenFocused().twenty
+              : const DigitButtonState.disabled(),
+        );
+      case 20:
+        return KeyBoardState.twentyFocused().copyWith(
+          nineteen: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.twentyFocused().nineteen
+              : const DigitButtonState.disabled(),
+          twenty: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.twentyFocused().twenty
+              : const DigitButtonState.disabled(),
+          twentyFive: validDartTypes.contains(DartType.triple)
+              ? KeyBoardState.twentyFocused().twentyFive
+              : const DigitButtonState.disabled(),
+        );
+      case 25:
+        return KeyBoardState.twentyFiveFocused().copyWith(
+          twenty: validDartTypes.contains(DartType.single)
+              ? KeyBoardState.twentyFiveFocused().twenty
+              : const DigitButtonState.disabled(),
+          twentyFive: validDartTypes.contains(DartType.double)
+              ? KeyBoardState.twentyFiveFocused().twentyFive
+              : const DigitButtonState.disabled(),
+        );
+      default:
+        throw Error();
     }
   }
 
