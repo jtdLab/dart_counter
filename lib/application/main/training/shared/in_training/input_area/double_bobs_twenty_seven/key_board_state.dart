@@ -6,3 +6,4 @@ part 'key_board_state.freezed.dart';
 class KeyBoardState with _$KeyBoardState {
   const factory KeyBoardState.initial() = KeyBoardStateInitial;
 }
+// TODO remove

@@ -8,24 +8,22 @@ import 'package:kt_dart/kt.dart';
 export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
 export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 
-// TODO maybe impl dartdisplayer bloc without the initial state ???? and use empty kt list instead
-
 @injectable
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
   DartsDisplayerBloc()
       : super(
           // Set initial state
-          const DartsDisplayerState.initial(),
+          const DartsDisplayerState.empty(),
         ) {
     // Register event handlers
-    on<DartAdded>((event, emit) => _mapDartAddedToState(event, emit));
-    on<DartRemoved>((_, emit) => _mapDartRemovedToState(emit));
-    on<ResetRequested>((_, emit) => _mapResetRequestedToState(emit));
+    on<DartAdded>((event, emit) => _handleDartAdded(event, emit));
+    on<DartRemoved>((_, emit) => _handleRemoved(emit));
+    on<ResetRequested>((_, emit) => _handleResetRequested(emit));
   }
 
-  /// handle incoming [DartAdded] event.
-  void _mapDartAddedToState(
+  /// Handle incoming [DartAdded] event.
+  void _handleDartAdded(
     DartAdded event,
     Emitter<DartsDisplayerState> emit,
   ) {
@@ -34,21 +32,21 @@ class DartsDisplayerBloc
 
     state.when(
       // when state is initial
-      initial: () {
+      empty: () {
         // emit darts with incoming dart as the only element
         emit(
-          DartsDisplayerState.darts(
+          DartsDisplayerState.notEmpty(
             darts: NotEmptyList([dart].toImmutableList()),
           ),
         );
       },
       // when state is darts
-      darts: (darts) {
+      notEmpty: (darts) {
         // and darts has less than 3 elements
         if (darts.length < 3) {
           // emit updated darts with incoming dart added
           emit(
-            DartsDisplayerState.darts(
+            DartsDisplayerState.notEmpty(
               darts: NotEmptyList(
                 darts.getOrCrash().toMutableList()..add(dart),
               ),
@@ -59,22 +57,22 @@ class DartsDisplayerBloc
     );
   }
 
-  /// handle incoming [DartRemoved] event.
-  void _mapDartRemovedToState(
+  /// Handle incoming [DartRemoved] event.
+  void _handleRemoved(
     Emitter<DartsDisplayerState> emit,
   ) {
     state.whenOrNull(
       // when state is darts
-      darts: (darts) {
+      notEmpty: (darts) {
         // and darts has 1 element
         if (darts.length == 1) {
           // emit initial
-          emit(const DartsDisplayerState.initial());
+          emit(const DartsDisplayerState.empty());
           // else
         } else {
           // emit updated darts with last dart removed
           emit(
-            DartsDisplayerState.darts(
+            DartsDisplayerState.notEmpty(
               darts: NotEmptyList(
                 darts.getOrCrash().toMutableList()..removeLast(),
               ),
@@ -85,11 +83,11 @@ class DartsDisplayerBloc
     );
   }
 
-  /// handle incoming [ResetRequested] event.
-  void _mapResetRequestedToState(
+  /// Handle incoming [ResetRequested] event.
+  void _handleResetRequested(
     Emitter<DartsDisplayerState> emit,
   ) {
     // emit initial
-    emit(const DartsDisplayerState.initial());
+    emit(const DartsDisplayerState.empty());
   }
 }

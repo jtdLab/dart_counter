@@ -42,9 +42,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       onData: (dartsDisplayerState) {
         return dartsDisplayerState.when(
           // when 0 darts emit 0
-          initial: () => 0,
+          empty: () => 0,
           // when more than 0 darts
-          darts: (darts) {
+          notEmpty: (darts) {
             // calculate points as the sum of all darts' points
             final int points = darts.getOrCrash().fold(
               0,
@@ -82,7 +82,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   ) {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
-      initial: () {
+      empty: () {
         // perform throw with 3 darts with 0 points
         // TODO filling should be done in service/modal
         _trainingService.performThrow(
@@ -96,7 +96,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         );
       },
       // when the user did at least input 1 dart
-      darts: (darts) {
+      notEmpty: (darts) {
         // when incoming darts has less than 3 elements
         // add dart with 0 points for each missing dart
         // so the resulting list contains 3 elements

@@ -1225,8 +1225,8 @@ class DartsDisplayer extends StatelessWidget {
         DartsDisplayerState>(
       builder: (context, state) {
         final darts = state.when(
-          initial: () => const KtList<Dart>.empty(),
-          darts: (darts) => darts.getOrCrash(),
+          empty: () => const KtList<Dart>.empty(),
+          notEmpty: (darts) => darts.getOrCrash(),
         );
 
         return Container(

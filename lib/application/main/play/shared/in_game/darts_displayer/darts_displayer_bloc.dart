@@ -26,7 +26,7 @@ class DartsDisplayerBloc
   )   : _playService = playService!,
         super(
           // set initial state
-          const DartsDisplayerState.initial(),
+          const DartsDisplayerState.empty(),
         ) {
     // register event handlers
     on<DartAdded>((event, emit) => _mapDartAddedToState(event, emit));
@@ -48,7 +48,7 @@ class DartsDisplayerBloc
       )) {
         // emit darts with new darts
         emit(
-          DartsDisplayerState.darts(
+          DartsDisplayerState.notEmpty(
             darts: NotEmptyList(newDarts),
           ),
         );
@@ -60,14 +60,14 @@ class DartsDisplayerBloc
 
     state.when(
       // when state is initial
-      initial: () {
+      empty: () {
         // the new darts where incoming dart is the only element
         final newDarts = [dart].toImmutableList();
 
         emitWhenValid(newDarts);
       },
       // when state is darts
-      darts: (darts) {
+      notEmpty: (darts) {
         // and darts has less than 3 elements
         if (darts.length < 3) {
           // the new darts where incoming dart is added to the end
@@ -85,16 +85,16 @@ class DartsDisplayerBloc
   ) {
     state.whenOrNull(
       // when state is darts
-      darts: (darts) {
+      notEmpty: (darts) {
         // and darts has 1 element
         if (darts.length == 1) {
           // emit initial
-          emit(const DartsDisplayerState.initial());
+          emit(const DartsDisplayerState.empty());
           // else
         } else {
           // emit updated darts with last dart removed
           emit(
-            DartsDisplayerState.darts(
+            DartsDisplayerState.notEmpty(
               darts: NotEmptyList(
                 darts.getOrCrash().toMutableList()..removeLast(),
               ),
@@ -110,6 +110,6 @@ class DartsDisplayerBloc
     Emitter<DartsDisplayerState> emit,
   ) {
     // emit initial
-    emit(const DartsDisplayerState.initial());
+    emit(const DartsDisplayerState.empty());
   }
 }

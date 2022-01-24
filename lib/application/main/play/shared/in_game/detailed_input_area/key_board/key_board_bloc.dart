@@ -671,8 +671,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     DartsDisplayerBloc bloc,
   ) {
     return bloc.state.when(
-      initial: () => const KtList<Dart>.empty(),
-      darts: (darts) => darts.getOrCrash(),
+      empty: () => const KtList<Dart>.empty(),
+      notEmpty: (darts) => darts.getOrCrash(),
     );
   }
 

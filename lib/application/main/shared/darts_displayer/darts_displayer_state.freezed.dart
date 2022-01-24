@@ -17,12 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DartsDisplayerStateTearOff {
   const _$DartsDisplayerStateTearOff();
 
-  DartsDisplayerInitial initial() {
-    return const DartsDisplayerInitial();
+  DartsDisplayerEmpty empty() {
+    return const DartsDisplayerEmpty();
   }
 
-  DartsDisplayerDarts darts({required NotEmptyList<Dart> darts}) {
-    return DartsDisplayerDarts(
+  DartsDisplayerNotEmpty notEmpty({required NotEmptyList<Dart> darts}) {
+    return DartsDisplayerNotEmpty(
       darts: darts,
     );
   }
@@ -35,39 +35,39 @@ const $DartsDisplayerState = _$DartsDisplayerStateTearOff();
 mixin _$DartsDisplayerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(NotEmptyList<Dart> darts) darts,
+    required TResult Function() empty,
+    required TResult Function(NotEmptyList<Dart> darts) notEmpty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DartsDisplayerInitial value) initial,
-    required TResult Function(DartsDisplayerDarts value) darts,
+    required TResult Function(DartsDisplayerEmpty value) empty,
+    required TResult Function(DartsDisplayerNotEmpty value) notEmpty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,38 +91,38 @@ class _$DartsDisplayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $DartsDisplayerInitialCopyWith<$Res> {
-  factory $DartsDisplayerInitialCopyWith(DartsDisplayerInitial value,
-          $Res Function(DartsDisplayerInitial) then) =
-      _$DartsDisplayerInitialCopyWithImpl<$Res>;
+abstract class $DartsDisplayerEmptyCopyWith<$Res> {
+  factory $DartsDisplayerEmptyCopyWith(
+          DartsDisplayerEmpty value, $Res Function(DartsDisplayerEmpty) then) =
+      _$DartsDisplayerEmptyCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DartsDisplayerInitialCopyWithImpl<$Res>
+class _$DartsDisplayerEmptyCopyWithImpl<$Res>
     extends _$DartsDisplayerStateCopyWithImpl<$Res>
-    implements $DartsDisplayerInitialCopyWith<$Res> {
-  _$DartsDisplayerInitialCopyWithImpl(
-      DartsDisplayerInitial _value, $Res Function(DartsDisplayerInitial) _then)
-      : super(_value, (v) => _then(v as DartsDisplayerInitial));
+    implements $DartsDisplayerEmptyCopyWith<$Res> {
+  _$DartsDisplayerEmptyCopyWithImpl(
+      DartsDisplayerEmpty _value, $Res Function(DartsDisplayerEmpty) _then)
+      : super(_value, (v) => _then(v as DartsDisplayerEmpty));
 
   @override
-  DartsDisplayerInitial get _value => super._value as DartsDisplayerInitial;
+  DartsDisplayerEmpty get _value => super._value as DartsDisplayerEmpty;
 }
 
 /// @nodoc
 
-class _$DartsDisplayerInitial implements DartsDisplayerInitial {
-  const _$DartsDisplayerInitial();
+class _$DartsDisplayerEmpty implements DartsDisplayerEmpty {
+  const _$DartsDisplayerEmpty();
 
   @override
   String toString() {
-    return 'DartsDisplayerState.initial()';
+    return 'DartsDisplayerState.empty()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is DartsDisplayerInitial);
+        (other.runtimeType == runtimeType && other is DartsDisplayerEmpty);
   }
 
   @override
@@ -131,30 +131,30 @@ class _$DartsDisplayerInitial implements DartsDisplayerInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(NotEmptyList<Dart> darts) darts,
+    required TResult Function() empty,
+    required TResult Function(NotEmptyList<Dart> darts) notEmpty,
   }) {
-    return initial();
+    return empty();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
   }) {
-    return initial?.call();
+    return empty?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (empty != null) {
+      return empty();
     }
     return orElse();
   }
@@ -162,63 +162,63 @@ class _$DartsDisplayerInitial implements DartsDisplayerInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DartsDisplayerInitial value) initial,
-    required TResult Function(DartsDisplayerDarts value) darts,
+    required TResult Function(DartsDisplayerEmpty value) empty,
+    required TResult Function(DartsDisplayerNotEmpty value) notEmpty,
   }) {
-    return initial(this);
+    return empty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
   }) {
-    return initial?.call(this);
+    return empty?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (empty != null) {
+      return empty(this);
     }
     return orElse();
   }
 }
 
-abstract class DartsDisplayerInitial implements DartsDisplayerState {
-  const factory DartsDisplayerInitial() = _$DartsDisplayerInitial;
+abstract class DartsDisplayerEmpty implements DartsDisplayerState {
+  const factory DartsDisplayerEmpty() = _$DartsDisplayerEmpty;
 }
 
 /// @nodoc
-abstract class $DartsDisplayerDartsCopyWith<$Res> {
-  factory $DartsDisplayerDartsCopyWith(
-          DartsDisplayerDarts value, $Res Function(DartsDisplayerDarts) then) =
-      _$DartsDisplayerDartsCopyWithImpl<$Res>;
+abstract class $DartsDisplayerNotEmptyCopyWith<$Res> {
+  factory $DartsDisplayerNotEmptyCopyWith(DartsDisplayerNotEmpty value,
+          $Res Function(DartsDisplayerNotEmpty) then) =
+      _$DartsDisplayerNotEmptyCopyWithImpl<$Res>;
   $Res call({NotEmptyList<Dart> darts});
 }
 
 /// @nodoc
-class _$DartsDisplayerDartsCopyWithImpl<$Res>
+class _$DartsDisplayerNotEmptyCopyWithImpl<$Res>
     extends _$DartsDisplayerStateCopyWithImpl<$Res>
-    implements $DartsDisplayerDartsCopyWith<$Res> {
-  _$DartsDisplayerDartsCopyWithImpl(
-      DartsDisplayerDarts _value, $Res Function(DartsDisplayerDarts) _then)
-      : super(_value, (v) => _then(v as DartsDisplayerDarts));
+    implements $DartsDisplayerNotEmptyCopyWith<$Res> {
+  _$DartsDisplayerNotEmptyCopyWithImpl(DartsDisplayerNotEmpty _value,
+      $Res Function(DartsDisplayerNotEmpty) _then)
+      : super(_value, (v) => _then(v as DartsDisplayerNotEmpty));
 
   @override
-  DartsDisplayerDarts get _value => super._value as DartsDisplayerDarts;
+  DartsDisplayerNotEmpty get _value => super._value as DartsDisplayerNotEmpty;
 
   @override
   $Res call({
     Object? darts = freezed,
   }) {
-    return _then(DartsDisplayerDarts(
+    return _then(DartsDisplayerNotEmpty(
       darts: darts == freezed
           ? _value.darts
           : darts // ignore: cast_nullable_to_non_nullable
@@ -229,22 +229,22 @@ class _$DartsDisplayerDartsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DartsDisplayerDarts implements DartsDisplayerDarts {
-  const _$DartsDisplayerDarts({required this.darts});
+class _$DartsDisplayerNotEmpty implements DartsDisplayerNotEmpty {
+  const _$DartsDisplayerNotEmpty({required this.darts});
 
   @override
   final NotEmptyList<Dart> darts;
 
   @override
   String toString() {
-    return 'DartsDisplayerState.darts(darts: $darts)';
+    return 'DartsDisplayerState.notEmpty(darts: $darts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DartsDisplayerDarts &&
+            other is DartsDisplayerNotEmpty &&
             const DeepCollectionEquality().equals(other.darts, darts));
   }
 
@@ -254,36 +254,37 @@ class _$DartsDisplayerDarts implements DartsDisplayerDarts {
 
   @JsonKey(ignore: true)
   @override
-  $DartsDisplayerDartsCopyWith<DartsDisplayerDarts> get copyWith =>
-      _$DartsDisplayerDartsCopyWithImpl<DartsDisplayerDarts>(this, _$identity);
+  $DartsDisplayerNotEmptyCopyWith<DartsDisplayerNotEmpty> get copyWith =>
+      _$DartsDisplayerNotEmptyCopyWithImpl<DartsDisplayerNotEmpty>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(NotEmptyList<Dart> darts) darts,
+    required TResult Function() empty,
+    required TResult Function(NotEmptyList<Dart> darts) notEmpty,
   }) {
-    return darts(this.darts);
+    return notEmpty(darts);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
   }) {
-    return darts?.call(this.darts);
+    return notEmpty?.call(darts);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(NotEmptyList<Dart> darts)? darts,
+    TResult Function()? empty,
+    TResult Function(NotEmptyList<Dart> darts)? notEmpty,
     required TResult orElse(),
   }) {
-    if (darts != null) {
-      return darts(this.darts);
+    if (notEmpty != null) {
+      return notEmpty(darts);
     }
     return orElse();
   }
@@ -291,41 +292,41 @@ class _$DartsDisplayerDarts implements DartsDisplayerDarts {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DartsDisplayerInitial value) initial,
-    required TResult Function(DartsDisplayerDarts value) darts,
+    required TResult Function(DartsDisplayerEmpty value) empty,
+    required TResult Function(DartsDisplayerNotEmpty value) notEmpty,
   }) {
-    return darts(this);
+    return notEmpty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
   }) {
-    return darts?.call(this);
+    return notEmpty?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DartsDisplayerInitial value)? initial,
-    TResult Function(DartsDisplayerDarts value)? darts,
+    TResult Function(DartsDisplayerEmpty value)? empty,
+    TResult Function(DartsDisplayerNotEmpty value)? notEmpty,
     required TResult orElse(),
   }) {
-    if (darts != null) {
-      return darts(this);
+    if (notEmpty != null) {
+      return notEmpty(this);
     }
     return orElse();
   }
 }
 
-abstract class DartsDisplayerDarts implements DartsDisplayerState {
-  const factory DartsDisplayerDarts({required NotEmptyList<Dart> darts}) =
-      _$DartsDisplayerDarts;
+abstract class DartsDisplayerNotEmpty implements DartsDisplayerState {
+  const factory DartsDisplayerNotEmpty({required NotEmptyList<Dart> darts}) =
+      _$DartsDisplayerNotEmpty;
 
   NotEmptyList<Dart> get darts;
   @JsonKey(ignore: true)
-  $DartsDisplayerDartsCopyWith<DartsDisplayerDarts> get copyWith =>
+  $DartsDisplayerNotEmptyCopyWith<DartsDisplayerNotEmpty> get copyWith =>
       throw _privateConstructorUsedError;
 }

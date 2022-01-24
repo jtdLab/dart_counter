@@ -6,8 +6,8 @@ part 'darts_displayer_state.freezed.dart';
 
 @freezed
 class DartsDisplayerState with _$DartsDisplayerState {
-  const factory DartsDisplayerState.initial() = DartsDisplayerInitial;
-  const factory DartsDisplayerState.darts({
+  const factory DartsDisplayerState.empty() = DartsDisplayerEmpty;
+  const factory DartsDisplayerState.notEmpty({
     required NotEmptyList<Dart> darts,
-  }) = DartsDisplayerDarts;
+  }) = DartsDisplayerNotEmpty;
 }

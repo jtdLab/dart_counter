@@ -6,5 +6,4 @@ part 'in_training_state.freezed.dart';
 class InTrainingState with _$InTrainingState {
   const factory InTrainingState.initial() = InTrainingInitial;
 }
-
 // TODO remove this

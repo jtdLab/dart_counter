@@ -33,7 +33,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   void _mapDoubleHitPressedToState() {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
-      initial: () {
+      empty: () {
         // add double to dart displayer
         _dartsDisplayerBloc.add(
           DartsDisplayerEvent.dartAdded(
@@ -45,7 +45,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         );
       },
       // when the user did at least input 1 dart
-      darts: (darts) {
+      notEmpty: (darts) {
         // when darts contains no double
         if (!darts
             .getOrCrash()
@@ -69,14 +69,14 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   void _mapMissHitPressedToState() {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
-      initial: () {
+      empty: () {
         // add missed dart to dart displayer
         _dartsDisplayerBloc.add(
           const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
         );
       },
       // when the user did at least input 1 dart
-      darts: (darts) {
+      notEmpty: (darts) {
         // when darts contains no double
         if (!darts
             .getOrCrash()
