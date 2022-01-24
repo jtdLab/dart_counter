@@ -10,30 +10,43 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
+// TODO single_training_input_row_bloc real doc this is just a blueprint
+/// {@template single_training_input_row_bloc}
+/// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
+///
+/// Supported actions:
+///
+/// 1. Cancel training.
+///
+/// {@endtemplate}
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final ISingleTrainingService _trainingService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
+  /// {@macro single_training_input_row_bloc}
   InputRowBloc(
     this._trainingService,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
-        // set inital state
-        super(0) {
-    // register event handlers
+        super(
+          // Set inital state
+          0,
+        ) {
+    // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
-      transformer: restartable(),
+      (_, emit) async => _handleStarted(emit),
+      transformer: restartable(), // TODO test restartability
     );
-    on<UndoPressed>((_, __) => _mapUndoPressedToState());
-    on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
+    on<UndoPressed>((_, __) => _handleUndoPressed());
+    on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
     // TODO remove this  handler
-    on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
+    on<InputChanged>((event, emit) => _handleInputChanged(event, emit));
   }
 
-  Future<void> _mapStartedToState(
+  /// Handle incoming [Started] event.
+  Future<void> _handleStarted(
     Emitter<int> emit,
   ) async {
     // for each incoming darts
@@ -60,7 +73,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
   }
 
-  void _mapUndoPressedToState() {
+  /// Handle incoming [UndoPressed] event.
+  void _handleUndoPressed() {
     // undo throw
     _trainingService.undoThrow();
 
@@ -68,7 +82,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
-  void _mapCommitPressedToState(
+  /// Handle incoming [CommitPressed] event.
+  void _handleCommitPressed(
     Emitter<int> emit,
   ) {
     _dartsDisplayerBloc.state.when(
@@ -104,7 +119,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
-  void _mapInputChangedToState(
+  /// Handle incoming [InputChanged] event.
+  void _handleInputChanged(
     InputChanged event,
     Emitter<int> emit,
   ) {

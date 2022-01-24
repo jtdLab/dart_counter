@@ -3,6 +3,8 @@ import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:injectable/injectable.dart';
 
+// TODO test correct param passing if possible
+
 @injectable
 class BobsTwentySevenWatcherCubit
     extends WatcherCubit<BobsTwentySevenGameSnapshot> {

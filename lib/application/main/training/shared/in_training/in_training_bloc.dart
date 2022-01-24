@@ -4,6 +4,7 @@ import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_training/in_training_event.dart';
 
+// TODO better doc in_training_bloc all blocs should have events states description or smth similar
 /// {@template in_training_bloc}
 /// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
 ///

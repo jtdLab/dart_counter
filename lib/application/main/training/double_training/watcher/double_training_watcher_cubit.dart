@@ -3,6 +3,8 @@ import 'package:dart_counter/domain/training/double/double_training_game_snapsho
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
 import 'package:injectable/injectable.dart';
 
+// TODO test correct param passing if possible
+
 @injectable
 class DoubleTrainingWatcherCubit
     extends WatcherCubit<DoubleTrainingGameSnapshot> {

@@ -9,30 +9,40 @@ part 'key_board_bloc.freezed.dart';
 part 'key_board_event.dart';
 part 'key_board_state.dart';
 
+// TODO single_training_key_board_bloc real doc this is just a blueprint
+/// {@template single_training_key_board_bloc}
+/// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
+///
+/// Supported actions:
+///
+/// 1. Cancel training.
+///
+/// {@endtemplate}
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final ISingleTrainingService _trainingService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
+  /// {@macro single_training_key_board_bloc}
   KeyBoardBloc(
     this._trainingService,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
         super(
-          // set initial state
+          // Set initial state
           const KeyBoardState.initial(),
         ) {
-    // register event handlers
-    on<_SingleHitPressed>((_, __) => _mapSingleHitPressedToState());
-    on<_DoubleHitPressed>((_, __) => _mapDoubleHitPressedToState());
-    on<_TripleHitPressed>((_, __) => _mapTripleHitPressedToState());
-    on<_MissHitPressed>((_, __) => _mapMissHitPressedToState());
-    on<_EreasePressed>((_, __) => _mapEreasePressedToState());
+    // Register event handlers
+    on<_SingleHitPressed>((_, __) => _handleSingleHitPressed());
+    on<_DoubleHitPressed>((_, __) => _handleDoubleHitPressed());
+    on<_TripleHitPressed>((_, __) => _handleTripleHitPressed());
+    on<_MissHitPressed>((_, __) => _handleMissHitPressed());
+    on<_EreasePressed>((_, __) => _handleEreasePressed());
   }
 
-  /// handle incoming [_SingleHitPressed] event.
-  void _mapSingleHitPressedToState() {
+  /// Handle incoming [_SingleHitPressed] event.
+  void _handleSingleHitPressed() {
     // add single to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
@@ -41,8 +51,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// handle incoming [_DoubleHitPressed] event.
-  void _mapDoubleHitPressedToState() {
+  /// Handle incoming [_DoubleHitPressed] event.
+  void _handleDoubleHitPressed() {
     // add double to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
@@ -51,8 +61,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// handle incoming [_TripleHitPressed] event.
-  void _mapTripleHitPressedToState() {
+  /// Handle incoming [_TripleHitPressed] event.
+  void _handleTripleHitPressed() {
     // add triple to dart displayer
     _dartsDisplayerBloc.add(
       DartsDisplayerEvent.dartAdded(
@@ -61,21 +71,21 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// handle incoming [_MissHitPressed] event.
-  void _mapMissHitPressedToState() {
+  /// Handle incoming [_MissHitPressed] event.
+  void _handleMissHitPressed() {
     // add missed dart to dart displayer
     _dartsDisplayerBloc.add(
       const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
     );
   }
 
-  /// handle incoming [_EreasePressed] event.
-  void _mapEreasePressedToState() {
+  /// Handle incoming [_EreasePressed] event.
+  void _handleEreasePressed() {
     // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
   }
 
-  /// returns the target value of the current turn of the currently running game.
+  /// Returns the target value of the current turn of the currently running game.
   int _getCurrentTurnTargetValue() {
     return _trainingService.getGame().currentTurn().targetValue;
   }

@@ -8,9 +8,19 @@ import 'package:kt_dart/kt.dart';
 export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
 export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 
+// TODO darts_displayer_bloc real doc this is just a blueprint
+/// {@template darts_displayer_bloc}
+/// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
+///
+/// Supported actions:
+///
+/// 1. Cancel training.
+///
+/// {@endtemplate}
 @injectable
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
+  /// {@macro darts_displayer_bloc}
   DartsDisplayerBloc()
       : super(
           // Set initial state

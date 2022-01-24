@@ -3,6 +3,8 @@ import 'package:dart_counter/domain/training/single/i_single_training_service.da
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:injectable/injectable.dart';
 
+// TODO test correct param passing if possible
+
 @injectable
 class SingleTrainingWatcherCubit
     extends WatcherCubit<SingleTrainingGameSnapshot> {

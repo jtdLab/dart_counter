@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
@@ -41,15 +42,16 @@ class CreateTrainingBloc
         super(
           // set initial state
           _singleTrainingService.createGame(
-            owner: _userService
-                .getUser()
-                .getOrElse(() => throw Error()), // TODO name better
+            // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
+            owner: _userService.getUser().getOrElse(
+                  () => throw ApplicationError.unexpectedMissingUser(),
+                ),
           ),
         ) {
     // register event handlers
     on<_Started>(
       (_, emit) async => _mapStartedToState(emit),
-      transformer: restartable(),
+      transformer: restartable(), // TODO test restartability
     );
     on<_PlayerAdded>((_, __) => _mapPlayerAddedToState());
     on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
@@ -61,7 +63,7 @@ class CreateTrainingBloc
     );
     on<_TypeChanged>(
       (event, emit) async => _mapTypeChangedToState(event, emit),
-      transformer: restartable(),
+      transformer: restartable(), // TODO test restartability
     );
     on<_TrainingStarted>((_, __) => _mapTrainingStartedToState());
     on<_TrainingCanceled>((_, __) => _mapTrainingCanceledToState());
