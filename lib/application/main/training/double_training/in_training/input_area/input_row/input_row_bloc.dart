@@ -32,6 +32,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     // TODO remove this  handler
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
+  
 
   Future<void> _mapStartedToState(
     Emitter<int> emit,

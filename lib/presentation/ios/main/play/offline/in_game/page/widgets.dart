@@ -1,5 +1,6 @@
 part of 'in_offline_game_page.dart';
 
+
 // BODY
 class _InOfflineGameWidget extends StatelessWidget {
   const _InOfflineGameWidget({
@@ -36,13 +37,13 @@ class _InOfflineGameWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<InputRowEvent, int>>(
-                    create: (context) => getIt<standard.InputRowBloc>(
-                      param1: context.read<InOfflineGameBloc>(),
-                    ),
+                    create: (context) =>
+                        getIt<InputRowBlocOfflineStandardInputArea>(),
                   ),
                   BlocProvider<
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
-                    create: (context) => getIt<standard.KeyBoardBloc>(
+                    create: (context) =>
+                        getIt<KeyBoardBlocOfflineStandardInputArea>(
                       param1: context.read<AdvancedSettingsBloc>(),
                       param2: context.read<Bloc<InputRowEvent, int>>(),
                     )..add(const standard.KeyBoardEvent.started()),
