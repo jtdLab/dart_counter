@@ -14,7 +14,7 @@ void main() {
     expect(underTest.state, initialState);
   });
 
-  blocTest(
+  blocTest<WatcherCubit<int>, int>(
     'emits same elements as the stream that was passed via constructor',
     build: () {
       return WatcherCubit(0, Stream.fromIterable([1, 2, 3]));
