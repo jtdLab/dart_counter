@@ -161,7 +161,7 @@ class NotEmptyList<T> extends ValueObject<KtList<T>> {
 
   // TODO remove == and hashCode needed ?
   @override
-  bool operator ==(Object o) => o is List10 && value == o.value;
+  bool operator ==(Object o) => o is NotEmptyList && value == o.value;
 
   @override
   int get hashCode => value.hashCode;

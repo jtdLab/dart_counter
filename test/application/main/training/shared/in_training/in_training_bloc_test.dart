@@ -15,7 +15,7 @@ void main() {
   });
 
   blocTest<InTrainingBloc, void>(
-    'cancels the training when Canceled was added',
+    'Cancels the training when Canceled was added',
     setUp: () {
       when(() => trainingService.cancel());
     },

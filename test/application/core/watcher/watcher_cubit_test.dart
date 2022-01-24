@@ -3,7 +3,7 @@ import 'package:dart_counter/application/core/watcher/watcher_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('initial state set to the initial state passed via constructor', () {
+  test('Initial state set to the initial state passed via constructor', () {
     // Arrange
     const initialState = 88;
 
@@ -15,7 +15,7 @@ void main() {
   });
 
   blocTest<WatcherCubit<int>, int>(
-    'emits same elements as the stream that was passed via constructor',
+    'Emits same elements as the stream that was passed via constructor',
     build: () {
       return WatcherCubit(0, Stream.fromIterable([1, 2, 3]));
     },

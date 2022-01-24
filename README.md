@@ -212,3 +212,13 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO watcher cubits 1 base watcher cubit
 
 // in blocs that use super bloc call to close needed ?
+
+blocTest<DartsDisplayerBloc, DartsDisplayerState>(
+    'cancels the training when Canceled was added',
+    setUp: () {
+      when(() => trainingService.cancel());
+    },
+    build: () => InTrainingBloc(trainingService),
+    act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+    verify: (_) => verify(() => trainingService.cancel()).called(1),
+  );

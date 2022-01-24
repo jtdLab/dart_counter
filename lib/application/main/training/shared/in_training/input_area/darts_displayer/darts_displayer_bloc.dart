@@ -31,20 +31,20 @@ class DartsDisplayerBloc
     final dart = event.dart;
 
     state.when(
-      // when state is initial
+      // when state is empty
       empty: () {
-        // emit darts with incoming dart as the only element
+        // emit not empty with incoming dart as the only element
         emit(
           DartsDisplayerState.notEmpty(
             darts: NotEmptyList([dart].toImmutableList()),
           ),
         );
       },
-      // when state is darts
+      // when state is not empty
       notEmpty: (darts) {
         // and darts has less than 3 elements
         if (darts.length < 3) {
-          // emit updated darts with incoming dart added
+          // emit not empty with updated darts where incoming dart was added
           emit(
             DartsDisplayerState.notEmpty(
               darts: NotEmptyList(
@@ -62,15 +62,15 @@ class DartsDisplayerBloc
     Emitter<DartsDisplayerState> emit,
   ) {
     state.whenOrNull(
-      // when state is darts
+      // when state is not empty
       notEmpty: (darts) {
         // and darts has 1 element
         if (darts.length == 1) {
-          // emit initial
+          // emit empty
           emit(const DartsDisplayerState.empty());
           // else
         } else {
-          // emit updated darts with last dart removed
+          // emit not empty with last dart removed
           emit(
             DartsDisplayerState.notEmpty(
               darts: NotEmptyList(
@@ -87,7 +87,7 @@ class DartsDisplayerBloc
   void _handleResetRequested(
     Emitter<DartsDisplayerState> emit,
   ) {
-    // emit initial
+    // emit empty
     emit(const DartsDisplayerState.empty());
   }
 }
