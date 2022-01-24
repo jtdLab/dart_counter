@@ -1,28 +1,11 @@
 // CORE
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
 import 'dart:math' as math;
 
-// BLOCS
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/key_board/digit_button/detailed_digit_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/key_board/erease_button/detailed_erease_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/check_button/check_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/digit_button/standard_digit_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/erease_button/standard_erease_button_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
-
-// DOMAIN
-import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
-import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 
 // NAVBAR
@@ -614,7 +597,7 @@ class OpticalInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-         // const _DartsDisplayer(),
+          // const _DartsDisplayer(),
           // just a dummy
           InputRow(
             onUndoPressed: onUndoPressed,

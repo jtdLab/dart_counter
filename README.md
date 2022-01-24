@@ -208,3 +208,7 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // TODO play online/offline detailed keyboard blocs
 
 // TODO inject dart displayer bloc correctly into ui in play and training
+
+// TODO watcher cubits 1 base watcher cubit
+
+// in blocs that use super bloc call to close needed ?

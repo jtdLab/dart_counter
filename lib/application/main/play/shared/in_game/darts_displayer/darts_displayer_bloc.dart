@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_event.dart';
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_state.dart';
+import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
+import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
@@ -8,8 +8,8 @@ import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
-export 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_event.dart';
-export 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_state.dart';
+export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
+export 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 
 // TODO maybe impl dartdisplayer bloc without the initial state ???? and use empty kt list instead
 // TODO this and training impl in one classe and just give play service as a nullable param that doesnt get used if not available

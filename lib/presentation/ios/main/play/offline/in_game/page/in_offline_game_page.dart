@@ -2,37 +2,22 @@
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/darts/checkout_details_darts_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/points/checkout_details_points_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
-
-// BLOCS
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/key_board_type.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/show_checkout_details/show_checkout_details_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/blocs.dart'
-    as standard;
-import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/blocs.dart'
+import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/blocs.dart'
     as detailed;
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
-
+import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/blocs.dart'
+    as standard;
 // DOMAIN
 import 'package:dart_counter/domain/game/status.dart';
-import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
-
-// LOCAL WIDGETS
-import '../../../../shared/widgets.dart';
 // MODALS
-import '../../../shared/in_game/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/play/shared/in_game/widgets.dart';
+// LOCAL WIDGETS
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/training/shared/in_training/widgets.dart';
 
 part 'widgets.dart';
 

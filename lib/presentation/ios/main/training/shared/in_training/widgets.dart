@@ -1,15 +1,16 @@
 // CORE
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/double_bobs_twenty_seven/index.dart'
-    as double_bobs_27;
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/detailed/index.dart'
-    as detailed;
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/standard/index.dart'
+import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
+import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
+import 'package:dart_counter/application/main/shared/standard_input_area/index.dart'
     as standard;
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/input_row/input_row_event.dart';
+import 'package:dart_counter/application/main/shared/detailed_input_area/index.dart'
+    as detailed;
+import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
+import 'package:dart_counter/application/main/training/shared/in_training/input_area/double_bobs_twenty_seven/index.dart'
+    as double_bobs_27;
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/training/shared/in_game/input_area/darts_displayer/darts_displayer_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/game/dart.dart';
