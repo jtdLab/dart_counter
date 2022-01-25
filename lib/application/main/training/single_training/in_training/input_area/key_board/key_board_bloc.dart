@@ -7,7 +7,6 @@ import 'package:injectable/injectable.dart';
 
 part 'key_board_bloc.freezed.dart';
 part 'key_board_event.dart';
-part 'key_board_state.dart';
 
 // TODO single_training_key_board_bloc real doc this is just a blueprint
 /// {@template single_training_key_board_bloc}
@@ -19,7 +18,7 @@ part 'key_board_state.dart';
 ///
 /// {@endtemplate}
 @injectable
-class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
+class KeyBoardBloc extends Bloc<KeyBoardEvent, void> {
   final ISingleTrainingService _trainingService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;
@@ -31,17 +30,17 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
         super(
           // Set initial state
-          const KeyBoardState.initial(),
+          null,
         ) {
     // Register event handlers
-    on<_SingleHitPressed>((_, __) => _handleSingleHitPressed());
-    on<_DoubleHitPressed>((_, __) => _handleDoubleHitPressed());
-    on<_TripleHitPressed>((_, __) => _handleTripleHitPressed());
-    on<_MissHitPressed>((_, __) => _handleMissHitPressed());
+    on<_SinglePressed>((_, __) => _handleSingleHitPressed());
+    on<_DoublePressed>((_, __) => _handleDoubleHitPressed());
+    on<_TriplePressed>((_, __) => _handleTripleHitPressed());
+    on<_MissedPressed>((_, __) => _handleMissHitPressed());
     on<_EreasePressed>((_, __) => _handleEreasePressed());
   }
 
-  /// Handle incoming [_SingleHitPressed] event.
+  /// Handle incoming [_SinglePressed] event.
   void _handleSingleHitPressed() {
     // add single to dart displayer
     _dartsDisplayerBloc.add(
@@ -51,7 +50,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// Handle incoming [_DoubleHitPressed] event.
+  /// Handle incoming [_DoublePressed] event.
   void _handleDoubleHitPressed() {
     // add double to dart displayer
     _dartsDisplayerBloc.add(
@@ -61,7 +60,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// Handle incoming [_TripleHitPressed] event.
+  /// Handle incoming [_TriplePressed] event.
   void _handleTripleHitPressed() {
     // add triple to dart displayer
     _dartsDisplayerBloc.add(
@@ -71,7 +70,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     );
   }
 
-  /// Handle incoming [_MissHitPressed] event.
+  /// Handle incoming [_MissedPressed] event.
   void _handleMissHitPressed() {
     // add missed dart to dart displayer
     _dartsDisplayerBloc.add(

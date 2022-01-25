@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
@@ -58,7 +59,20 @@ class SingleTrainingService implements ISingleTrainingService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        // when incoming darts has less than 3 elements
+        // add dart with 0 points for each missing dart
+        // so the resulting list contains 3 elements
+        final filledThrow = t.copyWith(
+          darts: t.darts!.toMutableList()
+            ..addAll(
+              List.generate(
+                3 - t.darts!.size,
+                (index) => Dart.missed,
+              ).toImmutableList(),
+            ),
+        );
+
+        _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
       },
     );
   }

@@ -16,9 +16,6 @@ void main() {
 
   blocTest<InTrainingBloc, void>(
     'Cancels the training when Canceled was added',
-    setUp: () {
-      when(() => trainingService.cancel());
-    },
     build: () => InTrainingBloc(trainingService),
     act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
     verify: (_) => verify(() => trainingService.cancel()).called(1),

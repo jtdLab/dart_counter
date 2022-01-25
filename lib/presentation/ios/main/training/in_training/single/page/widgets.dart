@@ -246,7 +246,7 @@ class _KeyBoard extends StatelessWidget {
                 color: AppColors.white,
                 onPressed: () => context
                     .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.singleHitPressed()),
+                    .add(const KeyBoardEvent.singlePressed()),
               ),
               AppActionButton.flexible(
                 text: '${LocaleKeys.double}.one'.tr().toUpperCase(),
@@ -254,7 +254,7 @@ class _KeyBoard extends StatelessWidget {
                 color: AppColors.white,
                 onPressed: () => context
                     .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.doubleHitPressed()),
+                    .add(const KeyBoardEvent.doublePressed()),
               ),
               AppActionButton.flexible(
                 text: '${LocaleKeys.triple}.one'.tr().toUpperCase(),
@@ -262,7 +262,7 @@ class _KeyBoard extends StatelessWidget {
                 color: AppColors.white,
                 onPressed: () => context
                     .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.tripleHitPressed()),
+                    .add(const KeyBoardEvent.triplePressed()),
               ),
             ],
           ),
@@ -277,7 +277,7 @@ class _KeyBoard extends StatelessWidget {
                 color: AppColors.white,
                 onPressed: () => context
                     .read<KeyBoardBloc>()
-                    .add(const KeyBoardEvent.missHitPressed()),
+                    .add(const KeyBoardEvent.missedPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
