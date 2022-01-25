@@ -4,6 +4,8 @@ import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_training/in_training_bloc.dart';
 
+// TODO test correct param passing if possible
+
 @injectable
 class InSingleTrainingBloc extends InTrainingBloc {
   InSingleTrainingBloc(
