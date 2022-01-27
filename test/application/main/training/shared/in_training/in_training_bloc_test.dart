@@ -14,10 +14,12 @@ void main() {
     trainingService = MockAbstractITrainingService();
   });
 
-  blocTest<InTrainingBloc, void>(
-    'Cancels the training when Canceled was added',
-    build: () => InTrainingBloc(trainingService),
-    act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
-    verify: (_) => verify(() => trainingService.cancel()).called(1),
-  );
+  group('Canceled', () {
+    blocTest<InTrainingBloc, void>(
+      'Cancels the training.',
+      build: () => InTrainingBloc(trainingService),
+      act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+      verify: (_) => verify(() => trainingService.cancel()).called(1),
+    );
+  });
 }

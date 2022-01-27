@@ -15,17 +15,17 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
         super(
-          // set initial state
+          // Set initial state
           KeyBoardState.initialAllEnabled(),
         ) {
-    // register event handlers
+    // Register event handlers
     on<ValueSelected>((event, emit) => _mapValueSelectedToState(event, emit));
     on<TypeSelected>((event, emit) => _mapTypeSelectedToState(event, emit));
     on<EreasePressed>((_, __) => _mapEreasePressedToState());
     on<UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
   }
 
-  /// handle incoming [ValueSelected] event.
+  /// Handle incoming [ValueSelected] event.
   void _mapValueSelectedToState(
     ValueSelected event,
     Emitter<KeyBoardState> emit,
@@ -33,7 +33,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     // TODO impl
   }
 
-  /// handle incoming [TypeSelected] event.
+  /// Handle incoming [TypeSelected] event.
   void _mapTypeSelectedToState(
     TypeSelected event,
     Emitter<KeyBoardState> emit,
@@ -839,13 +839,13 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
    */
 
-  /// handle incoming [EreasePressed] event.
+  /// Handle incoming [EreasePressed] event.
   void _mapEreasePressedToState() {
     // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
   }
 
-  /// handle incoming [UnfocusRequested] event.
+  /// Handle incoming [UnfocusRequested] event.
   void _mapUnfocusRequestedToState(
     Emitter<KeyBoardState> emit,
   ) {

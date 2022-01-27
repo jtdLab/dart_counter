@@ -96,6 +96,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
       },
     );
 
+
     // reset darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }

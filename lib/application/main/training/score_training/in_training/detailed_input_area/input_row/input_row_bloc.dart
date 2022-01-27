@@ -20,12 +20,14 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     this._trainingService,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
-        // set inital state
-        super(0) {
-    // register event handlers
+        super(
+          // Set inital state
+          0,
+        ) {
+    // Register event handlers
     on<Started>(
       (_, emit) async => _mapStartedToState(emit),
-      transformer: restartable(),
+      transformer: restartable(), // TODO test restarability
     );
     on<UndoPressed>((_, __) => _mapUndoPressedToState());
     on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
@@ -33,6 +35,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
   }
 
+  /// Handle incoming [Started] event.
   Future<void> _mapStartedToState(
     Emitter<int> emit,
   ) async {
@@ -69,6 +72,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
   }
 
+  /// Handle incoming [UndoPressed] event.
   void _mapUndoPressedToState() {
     // undo throw
     _trainingService.undoThrow();
@@ -120,6 +124,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
+  /// Handle incoming [InputChanged] event.
   void _mapInputChangedToState(
     InputChanged event,
     Emitter<int> emit,

@@ -19,7 +19,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     @factoryParam InputRowBloc? inputRowBloc,
   )   : _inputRowBloc = inputRowBloc!,
         super(
-          // set inital state
+          // Set inital state
           const KeyBoardState.initial(
             one: ButtonState.enabled,
             two: ButtonState.enabled,
@@ -34,11 +34,12 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
             erease: ButtonState.enabled,
           ),
         ) {
-    // register event handlers
+    // Register event handlers
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
     on<EreasePressed>((event, emit) => _mapEreasePressedToState());
   }
 
+  /// Handle incoming [DigitPressed] event.
   void _mapDigitPressedToState(
     DigitPressed event,
   ) {
@@ -59,6 +60,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     }
   }
 
+  /// Handle incoming [EreasePressed] event.
   void _mapEreasePressedToState() {
     // read the current input
     final input = _inputRowBloc.state;
