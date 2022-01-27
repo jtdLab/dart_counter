@@ -19,14 +19,14 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           KeyBoardState.initialAllEnabled(),
         ) {
     // Register event handlers
-    on<ValueSelected>((event, emit) => _mapValueSelectedToState(event, emit));
-    on<TypeSelected>((event, emit) => _mapTypeSelectedToState(event, emit));
-    on<EreasePressed>((_, __) => _mapEreasePressedToState());
-    on<UnfocusRequested>((_, emit) => _mapUnfocusRequestedToState(emit));
+    on<ValueSelected>((event, emit) => _handleValueSelected(event, emit));
+    on<TypeSelected>((event, emit) => _handleTypeSelected(event, emit));
+    on<EreasePressed>((_, __) => _handleEreasePressed());
+    on<UnfocusRequested>((_, emit) => _handleUnfocusRequested(emit));
   }
 
   /// Handle incoming [ValueSelected] event.
-  void _mapValueSelectedToState(
+  void _handleValueSelected(
     ValueSelected event,
     Emitter<KeyBoardState> emit,
   ) {
@@ -34,7 +34,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   /// Handle incoming [TypeSelected] event.
-  void _mapTypeSelectedToState(
+  void _handleTypeSelected(
     TypeSelected event,
     Emitter<KeyBoardState> emit,
   ) {
@@ -840,13 +840,13 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
    */
 
   /// Handle incoming [EreasePressed] event.
-  void _mapEreasePressedToState() {
+  void _handleEreasePressed() {
     // remove dart from darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved());
   }
 
   /// Handle incoming [UnfocusRequested] event.
-  void _mapUnfocusRequestedToState(
+  void _handleUnfocusRequested(
     Emitter<KeyBoardState> emit,
   ) {
     // unfocus and enable all buttons again

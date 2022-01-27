@@ -40,7 +40,7 @@ class CreateTrainingBloc
     this._userService,
   )   : _trainingService = _singleTrainingService,
         super(
-          // set initial state
+          // Set initial state
           _singleTrainingService.createGame(
             // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
             owner: _userService.getUser().getOrElse(
@@ -48,40 +48,41 @@ class CreateTrainingBloc
                 ),
           ),
         ) {
-    // register event handlers
+    // Register event handlers
     on<_Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(), // TODO test restartability
     );
-    on<_PlayerAdded>((_, __) => _mapPlayerAddedToState());
-    on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
+    on<_PlayerAdded>((_, __) => _handlePlayerAdded());
+    on<_PlayerRemoved>((event, _) => _handlePlayerRemoved(event));
     on<_PlayerReordered>(
-      (event, _) => _mapPlayerReorderedToState(event),
+      (event, _) => _handlePlayerReordered(event),
     );
     on<_PlayerNameUpdated>(
-      (event, _) => _mapPlayerNameUpdatedToState(event),
+      (event, _) => _handlePlayerNameUpdated(event),
     );
     on<_TypeChanged>(
-      (event, emit) async => _mapTypeChangedToState(event, emit),
+      (event, emit) async => _handleTypeChanged(event, emit),
       transformer: restartable(), // TODO test restartability
     );
-    on<_TrainingStarted>((_, __) => _mapTrainingStartedToState());
-    on<_TrainingCanceled>((_, __) => _mapTrainingCanceledToState());
+    on<_TrainingStarted>((_, __) => _handleTrainingStarted());
+    on<_TrainingCanceled>((_, __) => _handleTrainingCanceled());
     on<_SingleDoubleModeChanged>(
-      (event, __) => _mapSingleDoubleModeChangedToState(event),
+      (event, __) => _handleSingleDoubleModeChanged(event),
     );
     on<_NumberOfTakesChanged>(
-      (event, __) => _mapNumberOfTakesChangedToState(event),
+      (event, __) => _handleNumberOfTakesChanged(event),
     );
     on<_BobsTwentySevenModeChanged>(
-      (event, __) => _mapBobsTwentySevenModeChangedToState(event),
+      (event, __) => _handleBobsTwentySevenModeChanged(event),
     );
     on<_SnapshotReceived>(
-      (event, emit) => _mapSnapshotReceivedToState(event, emit),
+      (event, emit) => _handleSnapshotReceived(event, emit),
     );
   }
 
-  Future<void> _mapStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
     _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
@@ -89,11 +90,13 @@ class CreateTrainingBloc
     });
   }
 
-  void _mapPlayerAddedToState() {
+  /// Handle incoming [_PlayerAdded] event.
+  void _handlePlayerAdded() {
     _trainingService.addPlayer();
   }
 
-  void _mapPlayerRemovedToState(
+  /// Handle incoming [_PlayerRemoved] event.
+  void _handlePlayerRemoved(
     _PlayerRemoved event,
   ) {
     final index = event.index;
@@ -101,7 +104,8 @@ class CreateTrainingBloc
     _trainingService.removePlayer(index: index);
   }
 
-  void _mapPlayerReorderedToState(
+  /// Handle incoming [_PlayerReordered] event.
+  void _handlePlayerReordered(
     _PlayerReordered event,
   ) {
     final oldIndex = event.oldIndex;
@@ -113,7 +117,8 @@ class CreateTrainingBloc
     );
   }
 
-  void _mapPlayerNameUpdatedToState(
+  /// Handle incoming [_PlayerNameUpdated] event.
+  void _handlePlayerNameUpdated(
     _PlayerNameUpdated event,
   ) {
     final index = event.index;
@@ -125,7 +130,8 @@ class CreateTrainingBloc
     );
   }
 
-  Future<void> _mapTypeChangedToState(
+  /// Handle incoming [_TypeChanged] event.
+  Future<void> _handleTypeChanged(
     _TypeChanged event,
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
@@ -180,15 +186,18 @@ class CreateTrainingBloc
     }
   }
 
-  void _mapTrainingStartedToState() {
+  /// Handle incoming [_TrainingStarted] event.
+  void _handleTrainingStarted() {
     _trainingService.start();
   }
 
-  void _mapTrainingCanceledToState() {
+  /// Handle incoming [_TrainingCanceled] event.
+  void _handleTrainingCanceled() {
     _trainingService.cancel();
   }
 
-  void _mapSingleDoubleModeChangedToState(
+  /// Handle incoming [_SingleDoubleModeChanged] event.
+  void _handleSingleDoubleModeChanged(
     _SingleDoubleModeChanged event,
   ) {
     if (_trainingService is ISingleTrainingService) {
@@ -203,7 +212,8 @@ class CreateTrainingBloc
     }
   }
 
-  void _mapNumberOfTakesChangedToState(
+  /// Handle incoming [_NumberOfTakesChanged] event.
+  void _handleNumberOfTakesChanged(
     _NumberOfTakesChanged event,
   ) {
     if (_trainingService is IScoreTrainingService) {
@@ -214,7 +224,8 @@ class CreateTrainingBloc
     }
   }
 
-  void _mapBobsTwentySevenModeChangedToState(
+  /// Handle incoming [_BobsTwentySevenModeChanged] event.
+  void _handleBobsTwentySevenModeChanged(
     _BobsTwentySevenModeChanged event,
   ) {
     if (_trainingService is IBobsTwentySevenService) {
@@ -225,7 +236,8 @@ class CreateTrainingBloc
     }
   }
 
-  void _mapSnapshotReceivedToState(
+  /// Handle incoming [_SnapshotReceived] event.
+  void _handleSnapshotReceived(
     _SnapshotReceived event,
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) {

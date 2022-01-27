@@ -26,17 +26,15 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
         ) {
     // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(), // TODO test restarability
     );
-    on<UndoPressed>((_, __) => _mapUndoPressedToState());
-    on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
-    // TODO remove this  handler
-    on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
+    on<UndoPressed>((_, __) => _handleUndoPressed());
+    on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
   }
 
   /// Handle incoming [Started] event.
-  Future<void> _mapStartedToState(
+  Future<void> _handleStarted(
     Emitter<int> emit,
   ) async {
     // for each incoming darts
@@ -73,7 +71,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   }
 
   /// Handle incoming [UndoPressed] event.
-  void _mapUndoPressedToState() {
+  void _handleUndoPressed() {
     // undo throw
     _trainingService.undoThrow();
 
@@ -81,58 +79,28 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
-  void _mapCommitPressedToState(
+  /// Handle incoming [CommitPressed] event.
+  void _handleCommitPressed(
     Emitter<int> emit,
   ) {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
       empty: () {
         // perform throw with 3 darts with 0 points
-        // TODO filling should be done in service/modal
         _trainingService.performThrow(
-          t: Throw.fromDarts(
-            List.generate(
-              3,
-              (_) => Dart.missed,
-            ),
-            0,
-          ),
+          t: Throw.fromDarts(List.empty(), 0),
         );
       },
       // when the user did at least input 1 dart
       notEmpty: (darts) {
-        // when incoming darts has less than 3 elements
-        // add dart with 0 points for each missing dart
-        // so the resulting list contains 3 elements
-        // TODO filling should be done in service/modal
-        final filledDarts = darts.getOrCrash().toMutableList().asList()
-          ..addAll(
-            List.generate(
-              3 - darts.length,
-              (index) => Dart.missed,
-            ),
-          );
-
-        // commit converted hits
+        // perform throw
         _trainingService.performThrow(
-          t: Throw.fromDarts(filledDarts, 0),
+          t: Throw.fromDarts(darts.getOrCrash().asList(), 0),
         );
       },
     );
 
     // reset darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
-  }
-
-  /// Handle incoming [InputChanged] event.
-  void _mapInputChangedToState(
-    InputChanged event,
-    Emitter<int> emit,
-  ) {
-    // incoming new input
-    final newInput = event.newInput;
-
-    // emit new input
-    emit(newInput);
   }
 }

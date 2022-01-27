@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
@@ -6,6 +7,7 @@ import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/score/score_training_game_snapshot_dto.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
@@ -64,7 +66,24 @@ class ScoreTrainingService implements IScoreTrainingService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        if (t.darts != null) {
+          // when incoming darts has less than 3 elements
+          // add dart with 0 points for each missing dart
+          // so the resulting list contains 3 elements
+          final filledThrow = t.copyWith(
+            darts: t.darts!.toMutableList()
+              ..addAll(
+                List.generate(
+                  3 - t.darts!.size,
+                  (index) => Dart.missed,
+                ).toImmutableList(),
+              ),
+            dartsOnDouble: 0,
+          );
+          _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
+        } else {
+          _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        }
       },
     );
   }

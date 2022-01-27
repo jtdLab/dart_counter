@@ -23,12 +23,12 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           KeyBoardState.allEnabled().copyWith(check: ButtonState.disabled),
         ) {
     // Register event handlers
-    on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
-    on<EreasePressed>((event, emit) => _mapEreasePressedToState());
+    on<DigitPressed>((event, emit) => _handleDigitPressed(event));
+    on<EreasePressed>((event, emit) => _handleEreasePressed());
   }
 
   /// Handle incoming [DigitPressed] event.
-  void _mapDigitPressedToState(
+  void _handleDigitPressed(
     DigitPressed event,
   ) {
     // read the current input
@@ -49,7 +49,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   /// Handle incoming [EreasePressed] event.
-  void _mapEreasePressedToState() {
+  void _handleEreasePressed() {
     // read the current input
     final input = _inputRowBloc.state;
 

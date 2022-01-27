@@ -17,13 +17,13 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
           0,
         ) {
     // Register event handlers
-    on<UndoPressed>((_, emit) => _mapUndoPressedToState(emit));
-    on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
-    on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
+    on<UndoPressed>((_, emit) => _handleUndoPressed(emit));
+    on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
+    on<InputChanged>((event, emit) => _handleInputChanged(event, emit));
   }
 
   /// Handle incoming [UndoPressed] event.
-  void _mapUndoPressedToState(
+  void _handleUndoPressed(
     Emitter<int> emit,
   ) {
     // undo throw
@@ -34,7 +34,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   }
 
   /// Handle incoming [CommitPressed] event.
-  void _mapCommitPressedToState(
+  void _handleCommitPressed(
     Emitter<int> emit,
   ) {
     // perform throw with current input
@@ -47,7 +47,7 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   }
 
   /// Handle incoming [InputChanged] event.
-  void _mapInputChangedToState(
+  void _handleInputChanged(
     InputChanged event,
     Emitter<int> emit,
   ) {
