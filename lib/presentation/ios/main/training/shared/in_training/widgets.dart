@@ -1928,10 +1928,8 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
-              .read<
-                  Bloc<double_bobs_27.KeyBoardEvent,
-                      double_bobs_27.KeyBoardState>>()
-              .add(const double_bobs_27.KeyBoardEvent.doubleHitPressed()),
+              .read<Bloc<double_bobs_27.KeyBoardEvent, void>>()
+              .add(const double_bobs_27.KeyBoardEvent.doublePressed()),
         ),
         Expanded(
           child: AppRow(
@@ -1942,18 +1940,14 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<
-                        Bloc<double_bobs_27.KeyBoardEvent,
-                            double_bobs_27.KeyBoardState>>()
-                    .add(const double_bobs_27.KeyBoardEvent.missHitPressed()),
+                    .read<Bloc<double_bobs_27.KeyBoardEvent, void>>()
+                    .add(const double_bobs_27.KeyBoardEvent.missedPressed()),
               ),
               AppActionButton.flexible(
                 fontSize: 14,
                 color: AppColors.white,
                 onPressed: () => context
-                    .read<
-                        Bloc<double_bobs_27.KeyBoardEvent,
-                            double_bobs_27.KeyBoardState>>()
+                    .read<Bloc<double_bobs_27.KeyBoardEvent, void>>()
                     .add(const double_bobs_27.KeyBoardEvent.ereasePressed()),
                 icon: Image.asset(AppImages.chevronBackNew),
               )

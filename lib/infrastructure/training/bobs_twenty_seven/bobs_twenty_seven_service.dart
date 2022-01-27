@@ -1,9 +1,9 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/infrastructure/game/dart_dto.dart';
 import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_game_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
@@ -67,7 +67,20 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        // when incoming darts has less than 3 elements
+        // add dart with 0 points for each missing dart
+        // so the resulting list contains 3 elements
+        final filledThrow = t.copyWith(
+          darts: t.darts!.toMutableList()
+            ..addAll(
+              List.generate(
+                3 - t.darts!.size,
+                (index) => Dart.missed,
+              ).toImmutableList(),
+            ),
+          dartsOnDouble: 3,
+        );
+        _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
       },
     );
   }

@@ -36,7 +36,7 @@ class InDoubleTrainingPage extends StatelessWidget {
             param1: context.read<DartsDisplayerBloc>(),
           )..add(const InputRowEvent.started()),
         ),
-        BlocProvider<Bloc<KeyBoardEvent, KeyBoardState>>(
+        BlocProvider<Bloc<KeyBoardEvent, void>>(
           create: (context) => getIt<KeyBoardBloc>(
             param1: context.read<DartsDisplayerBloc>(),
           ),

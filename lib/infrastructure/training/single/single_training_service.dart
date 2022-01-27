@@ -70,6 +70,7 @@ class SingleTrainingService implements ISingleTrainingService {
                 (index) => Dart.missed,
               ).toImmutableList(),
             ),
+          dartsOnDouble: 3,
         );
 
         _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());

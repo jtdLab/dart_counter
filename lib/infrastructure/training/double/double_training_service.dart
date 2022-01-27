@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
@@ -67,7 +68,25 @@ class DoubleTrainingService implements IDoubleTrainingService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        if (!t.darts!.asList().any((dart) => dart.type == DartType.double)) {
+          // when incoming darts has less than 3 elements
+          // add dart with 0 points for each missing dart
+          // so the resulting list contains 3 elements
+          final filledThrow = t.copyWith(
+            darts: t.darts!.toMutableList()
+              ..addAll(
+                List.generate(
+                  3 - t.darts!.size,
+                  (index) => Dart.missed,
+                ).toImmutableList(),
+              ),
+            dartsOnDouble: 3,
+          );
+
+          _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
+        } else {
+          _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        }
       },
     );
   }

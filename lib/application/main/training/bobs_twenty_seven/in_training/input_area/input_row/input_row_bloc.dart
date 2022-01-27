@@ -10,30 +10,42 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
+// TODO add test case for not exisiting input changed
+
+// TODO bobs_twenty_seven_training_input_row_bloc real doc this is just a blueprint
+/// {@template bobs_twenty_seven_training_input_row_bloc}
+/// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
+///
+/// Supported actions:
+///
+/// 1. Cancel training.
+///
+/// {@endtemplate}
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IBobsTwentySevenService _trainingService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
+  /// {@macro bobs_twenty_seven_training_input_row_bloc}
   InputRowBloc(
     this._trainingService,
     @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
   )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
-        // set inital state
+        // Set inital state
         super(-2 * _trainingService.getGame().currentTurn().targetValue) {
-    // register event handlers
+    // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
-      transformer: restartable(),
+      (_, emit) async => _handleStarted(emit),
+      transformer: restartable(), // TODO test restartability
     );
-    on<UndoPressed>((_, emit) => _mapUndoPressedToState(emit));
-    on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
-    // TODO remove this  handler
-    on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
+    on<UndoPressed>((_, emit) => _handleUndoPressed(emit));
+    on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
   }
+  
 
-  Future<void> _mapStartedToState(
+  /// Handle incoming [Started] event.
+  Future<void> _handleStarted(
     Emitter<int> emit,
   ) async {
     // for each incoming darts
@@ -71,7 +83,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
   }
 
-  void _mapUndoPressedToState(
+  /// Handle incoming [UndoPressed] event.
+  void _handleUndoPressed(
     Emitter<int> emit,
   ) {
     // undo throw
@@ -87,49 +100,25 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
-  void _mapCommitPressedToState(
+  /// Handle incoming [CommitPressed] event.
+  void _handleCommitPressed(
     Emitter<int> emit,
   ) {
     _dartsDisplayerBloc.state.when(
       // when the user did not input any darts
       empty: () {
         // perform throw with 3 missed darts
-        _trainingService.performThrow(
-          t: Throw.fromDarts(List.generate(3, (index) => Dart.missed), 3),
-        );
+        _trainingService.performThrow(t: Throw.fromDarts(List.empty(), 3));
       },
       // when the user did at least input 1 dart
       notEmpty: (darts) {
-        // when incoming darts has less than 3 elements
-        // add dart with 0 points for each missing dart
-        // so the resulting list contains 3 elements
-        // TODO filling should be done in service/modal
-        final filledDarts = darts.getOrCrash().toMutableList().asList()
-          ..addAll(
-            List.generate(
-              3 - darts.length,
-              (index) => Dart.missed,
-            ),
-          );
-
         // perform throw
         _trainingService.performThrow(
-          t: Throw.fromDarts(filledDarts, filledDarts.length),
+          t: Throw.fromDarts(darts.getOrCrash().asList(), 3),
         );
       },
     );
     // reset darts displayer
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
-  }
-
-  void _mapInputChangedToState(
-    InputChanged event,
-    Emitter<int> emit,
-  ) {
-    // incoming new input
-    final newInput = event.newInput;
-
-    // emit new input
-    emit(newInput);
   }
 }

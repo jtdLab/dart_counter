@@ -10,6 +10,8 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
+// TODO add test case for not exisiting input changed
+
 // TODO single_training_input_row_bloc real doc this is just a blueprint
 /// {@template single_training_input_row_bloc}
 /// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].

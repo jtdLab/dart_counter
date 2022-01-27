@@ -17,12 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$KeyBoardEventTearOff {
   const _$KeyBoardEventTearOff();
 
-  DoubleHitPressed doubleHitPressed() {
-    return const DoubleHitPressed();
+  DoublePressed doublePressed() {
+    return const DoublePressed();
   }
 
-  MissHitPressed missHitPressed() {
-    return const MissHitPressed();
+  MissedPressed missedPressed() {
+    return const MissedPressed();
   }
 
   EreasePressed ereasePressed() {
@@ -37,44 +37,44 @@ const $KeyBoardEvent = _$KeyBoardEventTearOff();
 mixin _$KeyBoardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() doubleHitPressed,
-    required TResult Function() missHitPressed,
+    required TResult Function() doublePressed,
+    required TResult Function() missedPressed,
     required TResult Function() ereasePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DoubleHitPressed value) doubleHitPressed,
-    required TResult Function(MissHitPressed value) missHitPressed,
+    required TResult Function(DoublePressed value) doublePressed,
+    required TResult Function(MissedPressed value) missedPressed,
     required TResult Function(EreasePressed value) ereasePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
     required TResult orElse(),
   }) =>
@@ -99,38 +99,38 @@ class _$KeyBoardEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $DoubleHitPressedCopyWith<$Res> {
-  factory $DoubleHitPressedCopyWith(
-          DoubleHitPressed value, $Res Function(DoubleHitPressed) then) =
-      _$DoubleHitPressedCopyWithImpl<$Res>;
+abstract class $DoublePressedCopyWith<$Res> {
+  factory $DoublePressedCopyWith(
+          DoublePressed value, $Res Function(DoublePressed) then) =
+      _$DoublePressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DoubleHitPressedCopyWithImpl<$Res>
+class _$DoublePressedCopyWithImpl<$Res>
     extends _$KeyBoardEventCopyWithImpl<$Res>
-    implements $DoubleHitPressedCopyWith<$Res> {
-  _$DoubleHitPressedCopyWithImpl(
-      DoubleHitPressed _value, $Res Function(DoubleHitPressed) _then)
-      : super(_value, (v) => _then(v as DoubleHitPressed));
+    implements $DoublePressedCopyWith<$Res> {
+  _$DoublePressedCopyWithImpl(
+      DoublePressed _value, $Res Function(DoublePressed) _then)
+      : super(_value, (v) => _then(v as DoublePressed));
 
   @override
-  DoubleHitPressed get _value => super._value as DoubleHitPressed;
+  DoublePressed get _value => super._value as DoublePressed;
 }
 
 /// @nodoc
 
-class _$DoubleHitPressed implements DoubleHitPressed {
-  const _$DoubleHitPressed();
+class _$DoublePressed implements DoublePressed {
+  const _$DoublePressed();
 
   @override
   String toString() {
-    return 'KeyBoardEvent.doubleHitPressed()';
+    return 'KeyBoardEvent.doublePressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is DoubleHitPressed);
+        (other.runtimeType == runtimeType && other is DoublePressed);
   }
 
   @override
@@ -139,33 +139,33 @@ class _$DoubleHitPressed implements DoubleHitPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() doubleHitPressed,
-    required TResult Function() missHitPressed,
+    required TResult Function() doublePressed,
+    required TResult Function() missedPressed,
     required TResult Function() ereasePressed,
   }) {
-    return doubleHitPressed();
+    return doublePressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
   }) {
-    return doubleHitPressed?.call();
+    return doublePressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
     required TResult orElse(),
   }) {
-    if (doubleHitPressed != null) {
-      return doubleHitPressed();
+    if (doublePressed != null) {
+      return doublePressed();
     }
     return orElse();
   }
@@ -173,75 +173,75 @@ class _$DoubleHitPressed implements DoubleHitPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DoubleHitPressed value) doubleHitPressed,
-    required TResult Function(MissHitPressed value) missHitPressed,
+    required TResult Function(DoublePressed value) doublePressed,
+    required TResult Function(MissedPressed value) missedPressed,
     required TResult Function(EreasePressed value) ereasePressed,
   }) {
-    return doubleHitPressed(this);
+    return doublePressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
   }) {
-    return doubleHitPressed?.call(this);
+    return doublePressed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
     required TResult orElse(),
   }) {
-    if (doubleHitPressed != null) {
-      return doubleHitPressed(this);
+    if (doublePressed != null) {
+      return doublePressed(this);
     }
     return orElse();
   }
 }
 
-abstract class DoubleHitPressed implements KeyBoardEvent {
-  const factory DoubleHitPressed() = _$DoubleHitPressed;
+abstract class DoublePressed implements KeyBoardEvent {
+  const factory DoublePressed() = _$DoublePressed;
 }
 
 /// @nodoc
-abstract class $MissHitPressedCopyWith<$Res> {
-  factory $MissHitPressedCopyWith(
-          MissHitPressed value, $Res Function(MissHitPressed) then) =
-      _$MissHitPressedCopyWithImpl<$Res>;
+abstract class $MissedPressedCopyWith<$Res> {
+  factory $MissedPressedCopyWith(
+          MissedPressed value, $Res Function(MissedPressed) then) =
+      _$MissedPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MissHitPressedCopyWithImpl<$Res>
+class _$MissedPressedCopyWithImpl<$Res>
     extends _$KeyBoardEventCopyWithImpl<$Res>
-    implements $MissHitPressedCopyWith<$Res> {
-  _$MissHitPressedCopyWithImpl(
-      MissHitPressed _value, $Res Function(MissHitPressed) _then)
-      : super(_value, (v) => _then(v as MissHitPressed));
+    implements $MissedPressedCopyWith<$Res> {
+  _$MissedPressedCopyWithImpl(
+      MissedPressed _value, $Res Function(MissedPressed) _then)
+      : super(_value, (v) => _then(v as MissedPressed));
 
   @override
-  MissHitPressed get _value => super._value as MissHitPressed;
+  MissedPressed get _value => super._value as MissedPressed;
 }
 
 /// @nodoc
 
-class _$MissHitPressed implements MissHitPressed {
-  const _$MissHitPressed();
+class _$MissedPressed implements MissedPressed {
+  const _$MissedPressed();
 
   @override
   String toString() {
-    return 'KeyBoardEvent.missHitPressed()';
+    return 'KeyBoardEvent.missedPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is MissHitPressed);
+        (other.runtimeType == runtimeType && other is MissedPressed);
   }
 
   @override
@@ -250,33 +250,33 @@ class _$MissHitPressed implements MissHitPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() doubleHitPressed,
-    required TResult Function() missHitPressed,
+    required TResult Function() doublePressed,
+    required TResult Function() missedPressed,
     required TResult Function() ereasePressed,
   }) {
-    return missHitPressed();
+    return missedPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
   }) {
-    return missHitPressed?.call();
+    return missedPressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
     required TResult orElse(),
   }) {
-    if (missHitPressed != null) {
-      return missHitPressed();
+    if (missedPressed != null) {
+      return missedPressed();
     }
     return orElse();
   }
@@ -284,40 +284,40 @@ class _$MissHitPressed implements MissHitPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DoubleHitPressed value) doubleHitPressed,
-    required TResult Function(MissHitPressed value) missHitPressed,
+    required TResult Function(DoublePressed value) doublePressed,
+    required TResult Function(MissedPressed value) missedPressed,
     required TResult Function(EreasePressed value) ereasePressed,
   }) {
-    return missHitPressed(this);
+    return missedPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
   }) {
-    return missHitPressed?.call(this);
+    return missedPressed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
     required TResult orElse(),
   }) {
-    if (missHitPressed != null) {
-      return missHitPressed(this);
+    if (missedPressed != null) {
+      return missedPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class MissHitPressed implements KeyBoardEvent {
-  const factory MissHitPressed() = _$MissHitPressed;
+abstract class MissedPressed implements KeyBoardEvent {
+  const factory MissedPressed() = _$MissedPressed;
 }
 
 /// @nodoc
@@ -361,8 +361,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() doubleHitPressed,
-    required TResult Function() missHitPressed,
+    required TResult Function() doublePressed,
+    required TResult Function() missedPressed,
     required TResult Function() ereasePressed,
   }) {
     return ereasePressed();
@@ -371,8 +371,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
   }) {
     return ereasePressed?.call();
@@ -381,8 +381,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? doubleHitPressed,
-    TResult Function()? missHitPressed,
+    TResult Function()? doublePressed,
+    TResult Function()? missedPressed,
     TResult Function()? ereasePressed,
     required TResult orElse(),
   }) {
@@ -395,8 +395,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(DoubleHitPressed value) doubleHitPressed,
-    required TResult Function(MissHitPressed value) missHitPressed,
+    required TResult Function(DoublePressed value) doublePressed,
+    required TResult Function(MissedPressed value) missedPressed,
     required TResult Function(EreasePressed value) ereasePressed,
   }) {
     return ereasePressed(this);
@@ -405,8 +405,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
   }) {
     return ereasePressed?.call(this);
@@ -415,8 +415,8 @@ class _$EreasePressed implements EreasePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(DoubleHitPressed value)? doubleHitPressed,
-    TResult Function(MissHitPressed value)? missHitPressed,
+    TResult Function(DoublePressed value)? doublePressed,
+    TResult Function(MissedPressed value)? missedPressed,
     TResult Function(EreasePressed value)? ereasePressed,
     required TResult orElse(),
   }) {
