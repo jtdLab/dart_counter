@@ -21,6 +21,7 @@ class MockDartsDisplayerBloc
     extends MockBloc<DartsDisplayerEvent, DartsDisplayerState>
     implements DartsDisplayerBloc {}
 
+
 void main() {
   late MockSingleTrainingService singleTrainingService;
   late MockSingleTrainingPlayerSnapshot singleTrainingPlayerSnapshot;

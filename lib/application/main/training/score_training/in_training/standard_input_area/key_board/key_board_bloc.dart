@@ -20,19 +20,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   )   : _inputRowBloc = inputRowBloc!,
         super(
           // Set inital state
-          const KeyBoardState.initial(
-            one: ButtonState.enabled,
-            two: ButtonState.enabled,
-            three: ButtonState.enabled,
-            four: ButtonState.enabled,
-            five: ButtonState.enabled,
-            six: ButtonState.enabled,
-            seven: ButtonState.enabled,
-            eight: ButtonState.enabled,
-            nine: ButtonState.enabled,
-            zero: ButtonState.enabled,
-            erease: ButtonState.enabled,
-          ),
+          KeyBoardState.allEnabled().copyWith(check: ButtonState.disabled),
         ) {
     // Register event handlers
     on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
