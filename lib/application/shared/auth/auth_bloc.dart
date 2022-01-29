@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,8 +9,8 @@ part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-@lazySingleton
-class AuthBloc extends Bloc<AuthEvent, AuthState> with AutoResetLazySingleton {
+@injectable
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthService _authService;
 
   AuthBloc(
