@@ -22,7 +22,7 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  test('Initial state is SignInInitial with email and password empty', () {
+  test('Initial state set to SignInInitial with email and password empty', () {
     // Arrange & Act
     final underTest = SignInBloc(mockAuthService);
 

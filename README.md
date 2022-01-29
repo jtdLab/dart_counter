@@ -222,3 +222,6 @@ blocTest<DartsDisplayerBloc, DartsDisplayerState>(
     act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
     verify: (_) => verify(() => trainingService.cancel()).called(1),
   );
+
+
+  // TODO setup of all tests
