@@ -266,10 +266,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i58.ScoreTrainingWatcherCubit(get<_i33.IScoreTrainingService>()));
   gh.lazySingleton<_i59.SettingsBloc>(() =>
       _i59.SettingsBloc(get<_i16.IAuthService>(), get<_i37.IUserService>()));
-  gh.lazySingleton<_i60.SignInBloc>(
-      () => _i60.SignInBloc(get<_i16.IAuthService>()));
-  gh.lazySingleton<_i61.SignUpBloc>(
-      () => _i61.SignUpBloc(get<_i16.IAuthService>()));
+  gh.factory<_i60.SignInBloc>(() => _i60.SignInBloc(get<_i16.IAuthService>()));
+  gh.factory<_i61.SignUpBloc>(() => _i61.SignUpBloc(get<_i16.IAuthService>()));
   gh.factory<_i62.SingleTrainingWatcherCubit>(() =>
       _i62.SingleTrainingWatcherCubit(get<_i35.ISingleTrainingService>()));
   gh.lazySingleton<_i63.SocialClient>(() => jtdInjectableModule.socialClient);
@@ -298,7 +296,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i73.DoubleTrainingWatcherCubit(get<_i25.IDoubleTrainingService>()));
   gh.lazySingleton<_i74.EditProfileImageBloc>(
       () => _i74.EditProfileImageBloc(get<_i37.IUserService>()));
-  gh.lazySingleton<_i75.ForgotPasswordBloc>(
+  gh.factory<_i75.ForgotPasswordBloc>(
       () => _i75.ForgotPasswordBloc(get<_i16.IAuthService>()));
   gh.lazySingleton<_i76.GameHistoryBloc>(() => _i76.GameHistoryBloc(
       get<_i37.IUserService>(), get<_i27.IGameHistoryService>()));

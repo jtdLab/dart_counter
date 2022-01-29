@@ -21,7 +21,9 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  test('initial state initialized correctly', () {
+  test(
+      'Initial state set to ForgotPasswordInitial with email empty and show error messages false.',
+      () {
     // Arrange & Act
     final underTest = ForgotPasswordBloc(mockAuthService);
 
@@ -37,7 +39,7 @@ void main() {
 
   group('EmailChanged', () {
     blocTest(
-      'emits [ForgotPasswordInitial] when current state is ForgotPasswordInitial ',
+      'Emit [ForgotPasswordInitial] when current state is ForgotPasswordInitial.',
       build: () => ForgotPasswordBloc(mockAuthService),
       act: (ForgotPasswordBloc bloc) =>
           bloc.add(const ForgotPasswordEvent.emailChanged(newEmail: 'abcd')),
@@ -50,7 +52,7 @@ void main() {
     );
 
     blocTest(
-      'emits [ForgotPasswordInitial] when current state is ForgotPasswordSubmitFailure ',
+      'Emit [ForgotPasswordInitial] when current state is ForgotPasswordSubmitFailure.',
       build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => const ForgotPasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
@@ -68,8 +70,8 @@ void main() {
 
   group('ConfirmPressed', () {
     blocTest(
-      'emits [ForgotPasswordSubmitInProgress, ForgotPasswordSubmitSuccess] '
-      'when current state is ForgotPasswordInitial with valid and existing email ',
+      'WHEN current state is ForgotPasswordInitial with valid and existing email '
+      'THEN emit [ForgotPasswordSubmitInProgress, ForgotPasswordSubmitSuccess].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.sendPasswordResetEmail(
@@ -94,8 +96,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ForgotPasswordSubmitInProgress, ForgotPasswordSubmitFailure] '
-      'when current state is ForgotPasswordInitial with valid and not existing email ',
+      'WHEN current state is ForgotPasswordInitial with valid and not existing email '
+      'THEN emit [ForgotPasswordSubmitInProgress, ForgotPasswordSubmitFailure].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.sendPasswordResetEmail(
@@ -122,8 +124,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ForgotPasswordSubmitFailure] '
-      'when current state is ForgotPasswordInitial with invalid email ',
+      'WHEN current state is ForgotPasswordInitial with invalid email '
+      'THEN emit [ForgotPasswordSubmitFailure].',
       build: () => ForgotPasswordBloc(mockAuthService),
       seed: () => ForgotPasswordState.initial(
         email: EmailAddress('abd'),

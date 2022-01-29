@@ -25,7 +25,7 @@ void main() {
 
   test(
       'Initial state set to SignUpInitial with email, username, password and password again '
-      'empty and show error messages false', () {
+      'empty and show error messages false.', () {
     // Arrange & Act
     final underTest = SignUpBloc(mockAuthService);
 
@@ -44,7 +44,7 @@ void main() {
 
   group('EmailChanged', () {
     blocTest(
-      'Emit [SignUpInitial] with updated email',
+      'Emit [SignUpInitial] with updated email.',
       build: () => SignUpBloc(mockAuthService),
       act: (SignUpBloc bloc) =>
           bloc.add(const SignUpEvent.emailChanged(newEmail: 'abcd')),
@@ -62,7 +62,7 @@ void main() {
 
   group('UsernameChanged', () {
     blocTest(
-      'Emit [SignUpInitial] with updated username',
+      'Emit [SignUpInitial] with updated username.',
       build: () => SignUpBloc(mockAuthService),
       act: (SignUpBloc bloc) =>
           bloc.add(const SignUpEvent.usernameChanged(newUsername: 'abcd')),
@@ -80,7 +80,7 @@ void main() {
 
   group('PasswordChanged', () {
     blocTest(
-      'Emit [SignUpInitial] with updated password',
+      'Emit [SignUpInitial] with updated password.',
       build: () => SignUpBloc(mockAuthService),
       act: (SignUpBloc bloc) =>
           bloc.add(const SignUpEvent.passwordChanged(newPassword: 'abcd')),
@@ -98,7 +98,7 @@ void main() {
 
   group('PasswordChanged', () {
     blocTest(
-      'Emit [SignUpInitial] with updated password',
+      'Emit [SignUpInitial] with updated password.',
       build: () => SignUpBloc(mockAuthService),
       act: (SignUpBloc bloc) => bloc.add(
         const SignUpEvent.passwordAgainChanged(newPasswordAgain: 'abcd'),
@@ -118,7 +118,7 @@ void main() {
   group('SignUpPressed', () {
     blocTest(
       'GIVEN SignInInitial with invalid email '
-      'THEN emit [SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInInitial] with showErrorMessages set to true.',
       build: () => SignUpBloc(mockAuthService),
       seed: () => SignUpState.initial(
         email: EmailAddress('invalidEmail'),
@@ -141,7 +141,7 @@ void main() {
 
     blocTest(
       'GIVEN SignInInitial with invalid username '
-      'THEN emit [SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInInitial] with showErrorMessages set to true.',
       build: () => SignUpBloc(mockAuthService),
       seed: () => SignUpState.initial(
         email: EmailAddress('a@b.com'),
@@ -164,7 +164,7 @@ void main() {
 
     blocTest(
       'GIVEN SignInInitial with invalid password '
-      'THEN emit [SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInInitial] with showErrorMessages set to true.',
       build: () => SignUpBloc(mockAuthService),
       seed: () => SignUpState.initial(
         email: EmailAddress('a@b.com'),
@@ -187,7 +187,7 @@ void main() {
 
     blocTest(
       'GIVEN SignInInitial with invalid passwordAgain '
-      'THEN emit [SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInInitial] with showErrorMessages set to true.',
       build: () => SignUpBloc(mockAuthService),
       seed: () => SignUpState.initial(
         email: EmailAddress('a@b.com'),
@@ -210,7 +210,7 @@ void main() {
 
     blocTest(
       'GIVEN SignInInitial with not matching password and passwordAgain '
-      'THEN emit [SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInInitial] with showErrorMessages set to true.',
       build: () => SignUpBloc(mockAuthService),
       seed: () => SignUpState.initial(
         email: EmailAddress('a@b.com'),
@@ -234,7 +234,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial with valid email, username, password and passwordAgain '
       'WHEN signin fails '
-      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial] with showErrorMessages set to true',
+      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial] with showErrorMessages set to true.',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signUpWithEmailAndUsernameAndPassword(
@@ -273,7 +273,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial with valid email, username, password and passwordAgain '
       'WHEN signin succeeds '
-      'THEN emit [SignInLoadInProgress]',
+      'THEN emit [SignInLoadInProgress].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signUpWithEmailAndUsernameAndPassword(

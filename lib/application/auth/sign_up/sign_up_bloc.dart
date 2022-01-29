@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -14,9 +13,8 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 // TODO doc
-@lazySingleton
-class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
-    with AutoResetLazySingleton {
+@injectable
+class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final IAuthService _authService;
 
   SignUpBloc(
