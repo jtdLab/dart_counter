@@ -47,20 +47,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
           // when more than 0 darts
           notEmpty: (darts) {
             // calculate points as the sum of all darts' points
-            final int points = darts.getOrCrash().fold(
-              0,
-              (acc, dart) {
-                final multiplier = dart.type == DartType.missed
-                    ? 0
-                    : dart.type == DartType.single
-                        ? 1
-                        : dart.type == DartType.double
-                            ? 2
-                            : 3;
-
-                return acc + multiplier * dart.value;
-              },
-            );
+            final int points =
+                darts.getOrCrash().fold(0, (acc, dart) => acc + dart.points());
 
             //  emit calculated points
             return points;

@@ -140,7 +140,7 @@ void main() {
   group('CommitPressed', () {
     blocTest<InputRowBloc, int>(
       'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
-      'THEN perform throw with empty darts and request reset of DartsDisplayerBloc.',
+      'THEN perform throw with empty darts, dartsOnDouble 3 and request reset of DartsDisplayerBloc.',
       setUp: () {
         when(() => dartsDisplayerBloc.state).thenReturn(
           const DartsDisplayerState.empty(),

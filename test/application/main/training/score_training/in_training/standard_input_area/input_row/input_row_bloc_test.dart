@@ -39,7 +39,7 @@ void main() {
   group('CommitPressed', () {
     blocTest<InputRowBloc, int>(
       'GIVEN current state is 100 '
-      'Perform throw with current points: 100, dartsThrown: 3, dartsOnDouble: 0 and emit [0].',
+      'THEN perform throw with current points: 100, dartsThrown: 3, dartsOnDouble: 0 and emit [0].',
       build: () {
         return InputRowBloc(trainingService);
       },
@@ -59,7 +59,7 @@ void main() {
   group('InputChanged', () {
     blocTest<InputRowBloc, int>(
       'GIVEN incoming newInput is 88 '
-      'Emit [88].',
+      'THEN emit [88].',
       build: () {
         return InputRowBloc(trainingService);
       },
