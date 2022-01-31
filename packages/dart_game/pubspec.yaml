@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dartz: ^0.10.0-nullsafety.1
+  dartz: ^0.10.1
   uuid: ^3.0.5
   collection: ^1.15.0
   quiver: ^3.0.1+1
