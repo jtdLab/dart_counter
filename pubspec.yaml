@@ -33,7 +33,7 @@ dependencies:
     path: packages/social_client
 
   async: ^2.8.2
-  auto_route: ^3.2.1
+  auto_route: ^3.2.2
   auto_size_text:  ^3.0.0
   badges: ^2.0.2
   cached_network_image: ^3.2.0
@@ -57,7 +57,7 @@ dependencies:
   freezed_annotation: ^1.1.0
   get_it: ^7.2.0
   google_sign_in: ^5.2.3
-  image_picker: ^0.8.4+4
+  image_picker: ^0.8.4+5
   injectable: ^1.5.0
   kt_dart: ^0.10.0
   lottie: ^1.2.1
@@ -65,11 +65,11 @@ dependencies:
   provider: ^6.0.2
   responsive_builder: ^0.4.0-nullsafety.1
   rxdart: ^0.27.3
-  shared_preferences: ^2.0.11
+  shared_preferences: ^2.0.12
   sign_in_with_apple: ^3.3.0
-  timeago: ^3.1.0
+  timeago: ^3.2.1
   touchable: ^1.0.0
-  url_launcher: ^6.0.17
+  url_launcher: ^6.0.18
   uuid: ^3.0.5
   json_annotation: ^4.4.0
   bloc_concurrency: ^0.2.0
@@ -85,7 +85,7 @@ dev_dependencies:
   freezed: ^1.1.0
   injectable_generator: ^1.5.2
   json_serializable: ^6.1.3
-  lint: ^1.8.1
+  lint: ^1.8.2
   flutter_lints: ^1.0.4
   fake_cloud_firestore: ^1.2.0
   firebase_storage_mocks: ^0.5.0
