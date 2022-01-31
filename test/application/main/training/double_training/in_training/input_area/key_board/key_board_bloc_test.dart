@@ -60,7 +60,7 @@ void main() {
           const DartsDisplayerState.empty(),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
       verify: (_) {
         verify(
@@ -89,7 +89,7 @@ void main() {
           ),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
       verify: (_) {
         verify(
@@ -120,7 +120,7 @@ void main() {
           ),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
       verify: (_) {
         verifyNever(
@@ -146,7 +146,7 @@ void main() {
           const DartsDisplayerState.empty(),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
       verify: (_) {
         verify(
@@ -172,7 +172,7 @@ void main() {
           ),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
       verify: (_) {
         verify(
@@ -200,7 +200,7 @@ void main() {
           ),
         );
       },
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
       verify: (_) {
         verifyNever(
@@ -215,7 +215,7 @@ void main() {
   group('EreasePressed', () {
     blocTest<KeyBoardBloc, void>(
       'Remove last dart from DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
       verify: (_) {
         verify(

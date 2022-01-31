@@ -10,11 +10,14 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
-
 // TODO add test case for not exisiting input changed
 
 // TODO bobs_twenty_seven_training_input_row_bloc real doc this is just a blueprint
 /// {@template bobs_twenty_seven_training_input_row_bloc}
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [DartsDisplayerBloc]
+///
 /// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
 ///
 /// Supported actions:
@@ -31,8 +34,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   /// {@macro bobs_twenty_seven_training_input_row_bloc}
   InputRowBloc(
     this._trainingService,
-    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
-  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
         // Set inital state
         super(-2 * _trainingService.getGame().currentTurn().targetValue) {
     // Register event handlers
@@ -43,7 +46,6 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     on<UndoPressed>((_, emit) => _handleUndoPressed(emit));
     on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
   }
-  
 
   /// Handle incoming [Started] event.
   Future<void> _handleStarted(

@@ -14,6 +14,10 @@ export 'package:dart_counter/application/main/shared/input_row/input_row_event.d
 
 // TODO single_training_input_row_bloc real doc this is just a blueprint
 /// {@template single_training_input_row_bloc}
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [DartsDisplayerBloc]
+///
 /// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
 ///
 /// Supported actions:
@@ -30,8 +34,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   /// {@macro single_training_input_row_bloc}
   InputRowBloc(
     this._trainingService,
-    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
-  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
         super(
           // Set inital state
           0,

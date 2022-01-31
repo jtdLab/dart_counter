@@ -30,17 +30,21 @@ class InBobsTwentySeventTrainingPage extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<BobsTwentySevenWatcherCubit>(),
         ),
-        BlocProvider(
+        BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
           create: (context) => getIt<DartsDisplayerBloc>(),
         ),
         BlocProvider<Bloc<InputRowEvent, int>>(
           create: (context) => getIt<InputRowBloc>(
-            param1: context.read<DartsDisplayerBloc>(),
+            param1: [
+              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+            ],
           )..add(const InputRowEvent.started()),
         ),
         BlocProvider<Bloc<KeyBoardEvent, void>>(
           create: (context) => getIt<KeyBoardBloc>(
-            param1: context.read<DartsDisplayerBloc>(),
+            param1: [
+              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+            ],
           ),
         ),
       ],

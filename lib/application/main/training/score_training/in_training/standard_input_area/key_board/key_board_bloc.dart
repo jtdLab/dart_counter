@@ -8,6 +8,10 @@ import 'package:injectable/injectable.dart';
 export 'package:dart_counter/application/main/shared/standard_input_area/key_board_event.dart';
 export 'package:dart_counter/application/main/shared/standard_input_area/key_board_state.dart';
 
+// TODO doc
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [InputRowBloc]
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
@@ -16,8 +20,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   KeyBoardBloc(
     this._dartUtils,
-    @factoryParam InputRowBloc? inputRowBloc,
-  )   : _inputRowBloc = inputRowBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _inputRowBloc = otherDependencies![0] as InputRowBloc,
         super(
           // Set inital state
           KeyBoardState.allEnabled().copyWith(check: ButtonState.disabled),

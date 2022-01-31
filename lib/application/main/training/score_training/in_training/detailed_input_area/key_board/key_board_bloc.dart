@@ -10,13 +10,16 @@ export 'package:dart_counter/application/main/shared/detailed_input_area/key_boa
 export 'package:dart_counter/application/main/shared/detailed_input_area/key_board_state.dart';
 
 // TODO doc
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [DartsDisplayerBloc]
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
   KeyBoardBloc(
-    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
-  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
         super(
           // Set initial state
           KeyBoardState.initialAllEnabled(),

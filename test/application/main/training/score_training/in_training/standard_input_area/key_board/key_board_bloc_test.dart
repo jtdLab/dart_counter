@@ -29,7 +29,7 @@ void main() {
       'Initial state set to KeyBoardInitial with all buttons enabled except check button.',
       () {
     // Act
-    final underTest = KeyBoardBloc(dartUtils, inputRowBloc);
+    final underTest = KeyBoardBloc(dartUtils,[inputRowBloc]);
 
     // Assert
     expect(
@@ -56,7 +56,7 @@ void main() {
       'GIVEN current input is 0 '
       'Takes the incoming digit as the new input and validates it.',
       build: () {
-        return KeyBoardBloc(dartUtils, inputRowBloc);
+        return KeyBoardBloc(dartUtils,[inputRowBloc]);
       },
       act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
       verify: (_) {
@@ -71,7 +71,7 @@ void main() {
         when(() => inputRowBloc.state).thenReturn(31);
       },
       build: () {
-        return KeyBoardBloc(dartUtils, inputRowBloc);
+        return KeyBoardBloc(dartUtils,[inputRowBloc]);
       },
       act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
       verify: (_) {
@@ -87,7 +87,7 @@ void main() {
             .thenReturn(true);
       },
       build: () {
-        return KeyBoardBloc(dartUtils, inputRowBloc);
+        return KeyBoardBloc(dartUtils,[inputRowBloc]);
       },
       act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
       verify: (_) {
@@ -106,7 +106,7 @@ void main() {
         when(() => inputRowBloc.state).thenReturn(10);
       },
       build: () {
-        return KeyBoardBloc(dartUtils, inputRowBloc);
+        return KeyBoardBloc(dartUtils,[inputRowBloc]);
       },
       act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
       verify: (_) {
@@ -123,7 +123,7 @@ void main() {
         when(() => inputRowBloc.state).thenReturn(7);
       },
       build: () {
-        return KeyBoardBloc(dartUtils, inputRowBloc);
+        return KeyBoardBloc(dartUtils,[inputRowBloc]);
       },
       act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
       verify: (_) {

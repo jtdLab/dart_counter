@@ -27,7 +27,7 @@ void main() {
 
   test('Initial state set to 0.', () {
     // Act
-    final underTest = InputRowBloc(singleTrainingService, dartsDisplayerBloc);
+    final underTest = InputRowBloc(singleTrainingService, [dartsDisplayerBloc]);
 
     // Assert
     expect(underTest.state, 0);
@@ -43,7 +43,7 @@ void main() {
           Stream.value(const DartsDisplayerState.empty()),
         );
       },
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [0],
     );
@@ -68,7 +68,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [6],
     );
@@ -93,7 +93,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [6],
     );
@@ -102,7 +102,7 @@ void main() {
   group('UndoPressed', () {
     blocTest<InputRowBloc, int>(
       'Undo the throw and request reset of DartsDisplayerBloc.',
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
       verify: (_) {
         verify(() => singleTrainingService.undoThrow()).called(1);
@@ -115,7 +115,7 @@ void main() {
     );
   });
 
-// TODO filling of darts 
+// TODO filling of darts
   group('CommitPressed', () {
     blocTest<InputRowBloc, int>(
       'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
@@ -125,7 +125,7 @@ void main() {
           const DartsDisplayerState.empty(),
         );
       },
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(
@@ -156,7 +156,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(

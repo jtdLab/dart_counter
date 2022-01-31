@@ -58,7 +58,7 @@ void main() {
         ).thenReturn(bobsTwentySevenTrainingGameSnapshot);
       },
       build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
       verify: (_) {
         verify(
@@ -76,7 +76,7 @@ void main() {
     blocTest<KeyBoardBloc, void>(
       'Add Dart(missed) to DartsDisplayerBloc.',
       build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
       verify: (_) {
         verify(
@@ -92,7 +92,7 @@ void main() {
     blocTest<KeyBoardBloc, void>(
       'Remove last dart from DartsDisplayerBloc.',
       build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
       verify: (_) {
         verify(

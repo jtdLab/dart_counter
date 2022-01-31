@@ -48,7 +48,7 @@ void main() {
   });
   test('Initial state set to 0.', () {
     // Act
-    final underTest = InputRowBloc(doubleTrainingService, dartsDisplayerBloc);
+    final underTest = InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]);
 
     // Assert
     expect(underTest.state, 0);
@@ -64,7 +64,7 @@ void main() {
           Stream.value(const DartsDisplayerState.empty()),
         );
       },
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [0],
     );
@@ -89,7 +89,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [6],
     );
@@ -114,7 +114,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [120],
     );
@@ -123,7 +123,7 @@ void main() {
   group('UndoPressed', () {
     blocTest<InputRowBloc, int>(
       'Undo the throw and request reset of DartsDisplayerBloc.',
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
       verify: (_) {
         verify(() => doubleTrainingService.undoThrow()).called(1);
@@ -146,7 +146,7 @@ void main() {
           const DartsDisplayerState.empty(),
         );
       },
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(
@@ -177,7 +177,7 @@ void main() {
           ),
         );
       },
-      build: () => InputRowBloc(doubleTrainingService, dartsDisplayerBloc),
+      build: () => InputRowBloc(doubleTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(

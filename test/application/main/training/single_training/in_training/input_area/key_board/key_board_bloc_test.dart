@@ -21,7 +21,6 @@ class MockDartsDisplayerBloc
     extends MockBloc<DartsDisplayerEvent, DartsDisplayerState>
     implements DartsDisplayerBloc {}
 
-
 void main() {
   late MockSingleTrainingService singleTrainingService;
   late MockSingleTrainingPlayerSnapshot singleTrainingPlayerSnapshot;
@@ -54,7 +53,7 @@ void main() {
           () => singleTrainingService.getGame(),
         ).thenReturn(singleTrainingGameSnapshot);
       },
-      build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.singlePressed()),
       verify: (_) {
         verify(
@@ -77,7 +76,7 @@ void main() {
           () => singleTrainingService.getGame(),
         ).thenReturn(singleTrainingGameSnapshot);
       },
-      build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
       verify: (_) {
         verify(
@@ -100,7 +99,7 @@ void main() {
           () => singleTrainingService.getGame(),
         ).thenReturn(singleTrainingGameSnapshot);
       },
-      build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.triplePressed()),
       verify: (_) {
         verify(
@@ -117,7 +116,7 @@ void main() {
   group('MissedPressed', () {
     blocTest<KeyBoardBloc, void>(
       'Add Dart(missed) to DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
       verify: (_) {
         verify(
@@ -132,7 +131,7 @@ void main() {
   group('EreasePressed', () {
     blocTest<KeyBoardBloc, void>(
       'Remove last dart from DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
+      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
       verify: (_) {
         verify(

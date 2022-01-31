@@ -10,6 +10,10 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
+// TODO doc
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [DartsDisplayerBloc]
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IScoreTrainingService _trainingService;
@@ -18,8 +22,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
 
   InputRowBloc(
     this._trainingService,
-    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
-  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
         super(
           // Set inital state
           0,

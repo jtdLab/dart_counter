@@ -126,7 +126,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     );
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SignUpBloc>()) {
@@ -135,4 +136,5 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
     return super.close();
   }
+   */
 }

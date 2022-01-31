@@ -89,7 +89,8 @@ class ForgotPasswordBloc
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ForgotPasswordBloc>()) {
@@ -98,4 +99,5 @@ class ForgotPasswordBloc
 
     return super.close();
   }
+  */
 }

@@ -10,6 +10,10 @@ part 'key_board_event.dart';
 
 // TODO single_training_key_board_bloc real doc this is just a blueprint
 /// {@template single_training_key_board_bloc}
+/// [otherDependencies] must contain in follwoing order:
+///
+/// 1. Instance of [DartsDisplayerBloc]
+///
 /// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
 ///
 /// Supported actions:
@@ -26,8 +30,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, void> {
   /// {@macro single_training_key_board_bloc}
   KeyBoardBloc(
     this._trainingService,
-    @factoryParam DartsDisplayerBloc? dartsDisplayerBloc,
-  )   : _dartsDisplayerBloc = dartsDisplayerBloc!,
+    @factoryParam List<Object>? otherDependencies,
+  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
         super(
           // Set initial state
           null,

@@ -223,35 +223,35 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i43.InSingleTrainingBloc(get<_i35.ISingleTrainingService>()));
   gh.factory<_i44.InputRowBloc>(
       () => _i44.InputRowBloc(get<_i33.IScoreTrainingService>()));
-  gh.factoryParam<_i45.InputRowBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i45.InputRowBloc(
-          get<_i33.IScoreTrainingService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i46.InputRowBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i46.InputRowBloc(
-          get<_i25.IDoubleTrainingService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i47.InputRowBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i47.InputRowBloc(
-          get<_i18.IBobsTwentySevenService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i48.InputRowBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i48.InputRowBloc(
-          get<_i35.ISingleTrainingService>(), dartsDisplayerBloc));
+  gh.factoryParam<_i45.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i45.InputRowBloc(get<_i33.IScoreTrainingService>(), otherDependencies));
+  gh.factoryParam<_i46.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i46.InputRowBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
+  gh.factoryParam<_i47.InputRowBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) => _i47.InputRowBloc(
+          get<_i18.IBobsTwentySevenService>(), otherDependencies));
+  gh.factoryParam<_i48.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i48.InputRowBloc(get<_i35.ISingleTrainingService>(), otherDependencies));
   gh.factory<_i49.InputRowBlocOfflineStandardInputArea>(() =>
       _i49.InputRowBlocOfflineStandardInputArea(get<_i23.IDartUtils>(),
           get<_i31.IPlayOfflineService>(), get<_i41.InOfflineGameBloc>()));
-  gh.factoryParam<_i50.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i50.KeyBoardBloc(
-          get<_i18.IBobsTwentySevenService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i51.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i51.KeyBoardBloc(dartsDisplayerBloc));
-  gh.factoryParam<_i52.KeyBoardBloc, _i44.InputRowBloc?, dynamic>(
-      (inputRowBloc, _) =>
-          _i52.KeyBoardBloc(get<_i23.IDartUtils>(), inputRowBloc));
-  gh.factoryParam<_i53.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i53.KeyBoardBloc(
-          get<_i25.IDoubleTrainingService>(), dartsDisplayerBloc));
-  gh.factoryParam<_i54.KeyBoardBloc, _i9.DartsDisplayerBloc?, dynamic>(
-      (dartsDisplayerBloc, _) => _i54.KeyBoardBloc(
-          get<_i35.ISingleTrainingService>(), dartsDisplayerBloc));
+  gh.factoryParam<_i50.KeyBoardBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) => _i50.KeyBoardBloc(
+          get<_i18.IBobsTwentySevenService>(), otherDependencies));
+  gh.factoryParam<_i51.KeyBoardBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) => _i51.KeyBoardBloc(otherDependencies));
+  gh.factoryParam<_i52.KeyBoardBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) =>
+          _i52.KeyBoardBloc(get<_i23.IDartUtils>(), otherDependencies));
+  gh.factoryParam<_i53.KeyBoardBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i53.KeyBoardBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
+  gh.factoryParam<_i54.KeyBoardBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i54.KeyBoardBloc(get<_i35.ISingleTrainingService>(), otherDependencies));
   gh.factory<_i55.KeyBoardBlocOfflineStandardInputArea>(() =>
       _i55.KeyBoardBlocOfflineStandardInputArea(
           get<_i23.IDartUtils>(),
@@ -271,8 +271,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i62.SingleTrainingWatcherCubit>(() =>
       _i62.SingleTrainingWatcherCubit(get<_i35.ISingleTrainingService>()));
   gh.lazySingleton<_i63.SocialClient>(() => jtdInjectableModule.socialClient);
-  gh.lazySingleton<_i64.AuthBloc>(
-      () => _i64.AuthBloc(get<_i16.IAuthService>()));
+  gh.factory<_i64.AuthBloc>(() => _i64.AuthBloc(get<_i16.IAuthService>()));
   gh.factory<_i65.BobsTwentySevenWatcherCubit>(() =>
       _i65.BobsTwentySevenWatcherCubit(get<_i18.IBobsTwentySevenService>()));
   gh.lazySingleton<_i66.ChangeEmailBloc>(

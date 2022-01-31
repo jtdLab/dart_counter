@@ -65,7 +65,7 @@ void main() {
   test('Initial state set to -2 times the target value of curernt turn.', () {
     // Act
     final underTest =
-        InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc);
+        InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]);
 
     // Assert
     expect(underTest.state, -2 * targetValue);
@@ -82,7 +82,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [-2 * targetValue],
     );
@@ -109,7 +109,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [4],
     );
@@ -137,7 +137,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [120],
     );
@@ -161,7 +161,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.started()),
       expect: () => [-2 * targetValue],
     );
@@ -175,7 +175,7 @@ void main() {
         setTargetValue(3);
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
       expect: () => [-2 * targetValue],
       verify: (_) {
@@ -200,7 +200,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(
@@ -232,7 +232,7 @@ void main() {
         );
       },
       build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService, dartsDisplayerBloc),
+          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
       act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
       verify: (_) {
         verify(
