@@ -131,12 +131,12 @@ class _$_PlayerJoinedPacket extends _PlayerJoinedPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlayerJoinedPacket &&
-            (identical(other.username, username) ||
-                other.username == username));
+            const DeepCollectionEquality().equals(other.username, username));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(username));
 
   @JsonKey(ignore: true)
   @override

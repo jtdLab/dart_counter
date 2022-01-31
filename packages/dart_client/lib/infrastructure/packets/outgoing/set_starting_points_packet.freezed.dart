@@ -133,12 +133,13 @@ class _$_SetStartingPointsPacket extends _SetStartingPointsPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetStartingPointsPacket &&
-            (identical(other.startingPoints, startingPoints) ||
-                other.startingPoints == startingPoints));
+            const DeepCollectionEquality()
+                .equals(other.startingPoints, startingPoints));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startingPoints);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(startingPoints));
 
   @JsonKey(ignore: true)
   @override

@@ -131,11 +131,12 @@ class _$_SetSizePacket extends _SetSizePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetSizePacket &&
-            (identical(other.size, size) || other.size == size));
+            const DeepCollectionEquality().equals(other.size, size));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, size);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(size));
 
   @JsonKey(ignore: true)
   @override

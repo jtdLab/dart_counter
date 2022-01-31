@@ -131,11 +131,12 @@ class _$_RemovePlayerPacket extends _RemovePlayerPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _RemovePlayerPacket &&
-            (identical(other.index, index) || other.index == index));
+            const DeepCollectionEquality().equals(other.index, index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
 
   @JsonKey(ignore: true)
   @override

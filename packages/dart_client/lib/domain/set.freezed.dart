@@ -111,11 +111,12 @@ class _$_Set implements _Set {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Set &&
-            (identical(other.legs, legs) || other.legs == legs));
+            const DeepCollectionEquality().equals(other.legs, legs));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, legs);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(legs));
 
   @JsonKey(ignore: true)
   @override

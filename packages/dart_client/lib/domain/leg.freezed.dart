@@ -111,11 +111,12 @@ class _$_Leg implements _Leg {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Leg &&
-            (identical(other.throws, throws) || other.throws == throws));
+            const DeepCollectionEquality().equals(other.throws, throws));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, throws);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(throws));
 
   @JsonKey(ignore: true)
   @override

@@ -164,14 +164,16 @@ class _$_JoinGameResponsePacket extends _JoinGameResponsePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _JoinGameResponsePacket &&
-            (identical(other.successful, successful) ||
-                other.successful == successful) &&
-            (identical(other.snapshot, snapshot) ||
-                other.snapshot == snapshot));
+            const DeepCollectionEquality()
+                .equals(other.successful, successful) &&
+            const DeepCollectionEquality().equals(other.snapshot, snapshot));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, successful, snapshot);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(successful),
+      const DeepCollectionEquality().hash(snapshot));
 
   @JsonKey(ignore: true)
   @override

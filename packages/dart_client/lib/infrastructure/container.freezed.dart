@@ -144,15 +144,18 @@ class _$_Container extends _Container {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Container &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
-            (identical(other.payloadType, payloadType) ||
-                other.payloadType == payloadType) &&
-            (identical(other.payload, payload) || other.payload == payload));
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
+            const DeepCollectionEquality()
+                .equals(other.payloadType, payloadType) &&
+            const DeepCollectionEquality().equals(other.payload, payload));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, timestamp, payloadType, payload);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(timestamp),
+      const DeepCollectionEquality().hash(payloadType),
+      const DeepCollectionEquality().hash(payload));
 
   @JsonKey(ignore: true)
   @override

@@ -143,11 +143,12 @@ class _$_PerformThrowPacket extends _PerformThrowPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PerformThrowPacket &&
-            (identical(other.t, t) || other.t == t));
+            const DeepCollectionEquality().equals(other.t, t));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, t);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(t));
 
   @JsonKey(ignore: true)
   @override

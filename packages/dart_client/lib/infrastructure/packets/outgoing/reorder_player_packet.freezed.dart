@@ -146,14 +146,15 @@ class _$_ReorderPlayerPacket extends _ReorderPlayerPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ReorderPlayerPacket &&
-            (identical(other.oldIndex, oldIndex) ||
-                other.oldIndex == oldIndex) &&
-            (identical(other.newIndex, newIndex) ||
-                other.newIndex == newIndex));
+            const DeepCollectionEquality().equals(other.oldIndex, oldIndex) &&
+            const DeepCollectionEquality().equals(other.newIndex, newIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(oldIndex),
+      const DeepCollectionEquality().hash(newIndex));
 
   @JsonKey(ignore: true)
   @override

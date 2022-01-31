@@ -131,12 +131,13 @@ class _$_AuthResponsePacket extends _AuthResponsePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthResponsePacket &&
-            (identical(other.successful, successful) ||
-                other.successful == successful));
+            const DeepCollectionEquality()
+                .equals(other.successful, successful));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, successful);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(successful));
 
   @JsonKey(ignore: true)
   @override

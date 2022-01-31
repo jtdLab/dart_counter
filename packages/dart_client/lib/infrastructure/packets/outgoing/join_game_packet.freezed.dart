@@ -131,12 +131,12 @@ class _$_JoinGamePacket extends _JoinGamePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _JoinGamePacket &&
-            (identical(other.gameCode, gameCode) ||
-                other.gameCode == gameCode));
+            const DeepCollectionEquality().equals(other.gameCode, gameCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gameCode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameCode));
 
   @JsonKey(ignore: true)
   @override

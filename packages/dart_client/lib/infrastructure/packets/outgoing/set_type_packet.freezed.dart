@@ -131,11 +131,12 @@ class _$_SetTypePacket extends _SetTypePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetTypePacket &&
-            (identical(other.type, type) || other.type == type));
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override

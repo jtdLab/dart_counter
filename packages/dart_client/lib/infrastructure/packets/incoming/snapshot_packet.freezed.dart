@@ -143,12 +143,12 @@ class _$_SnapshotPacket extends _SnapshotPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SnapshotPacket &&
-            (identical(other.snapshot, snapshot) ||
-                other.snapshot == snapshot));
+            const DeepCollectionEquality().equals(other.snapshot, snapshot));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, snapshot);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(snapshot));
 
   @JsonKey(ignore: true)
   @override

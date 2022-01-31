@@ -131,11 +131,12 @@ class _$_SetModePacket extends _SetModePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetModePacket &&
-            (identical(other.mode, mode) || other.mode == mode));
+            const DeepCollectionEquality().equals(other.mode, mode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(mode));
 
   @JsonKey(ignore: true)
   @override

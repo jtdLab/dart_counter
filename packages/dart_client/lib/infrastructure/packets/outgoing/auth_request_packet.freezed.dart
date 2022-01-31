@@ -131,11 +131,12 @@ class _$_AuthRequestPacket extends _AuthRequestPacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthRequestPacket &&
-            (identical(other.idToken, idToken) || other.idToken == idToken));
+            const DeepCollectionEquality().equals(other.idToken, idToken));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, idToken);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(idToken));
 
   @JsonKey(ignore: true)
   @override
