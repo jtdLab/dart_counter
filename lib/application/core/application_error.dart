@@ -21,4 +21,12 @@ class ApplicationError extends Error {
         'AdvancedSettingsBloc did emit state other than AdvancedSettingsInGame. '
         'But only AdvancedSettingsInGame are expected.',
       );
+
+  factory ApplicationError.keyBoardInitialExpected() => ApplicationError(
+        'Expected KeyBoardInitial but KeyBoardFocused found.',
+      );
+
+  factory ApplicationError.keyBoardFocusedExpected() => ApplicationError(
+        'Expected KeyBoardFocused but KeyBoardInitial found.',
+      );
 }
