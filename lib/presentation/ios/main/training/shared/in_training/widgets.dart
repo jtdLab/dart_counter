@@ -1924,7 +1924,7 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
       spacing: size6(context),
       children: [
         AppActionButton.flexible(
-          text: LocaleKeys.double.tr().toUpperCase(),
+          text: '${LocaleKeys.double}.one'.tr().toUpperCase(),
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context

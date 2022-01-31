@@ -24,7 +24,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   )   : _inputRowBloc = otherDependencies![0] as InputRowBloc,
         super(
           // Set inital state
-          KeyBoardState.allEnabled().copyWith(check: ButtonState.disabled),
+          KeyBoardState.allEnabled().copyWith(check: null),
         ) {
     // Register event handlers
     on<DigitPressed>((event, emit) => _handleDigitPressed(event));
