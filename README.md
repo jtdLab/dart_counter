@@ -4,6 +4,13 @@ DartCounter for Android and iOS.
 
 ## Important commands for development
 
+// run test
+flutter test --coverage
+
+// remove certain files from coverage
+lcov --remove coverage/lcov.info 'lib/mock/*' 'lib/utils/l10n/*' 'lib/utils/colors.dart' -o coverage/new_lcov.info
+
+// generate html view
 genhtml coverage/lcov.info -o coverage/output/
 
 flutter pub run easy_localization:generate -S assets/languages -f keys -o locale_keys.g.dart

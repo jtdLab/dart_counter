@@ -3,15 +3,14 @@ import 'package:dart_counter/domain/training/single/i_single_training_service.da
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:injectable/injectable.dart';
 
-// TODO test correct param passing if possible
-
+// TODO doc
 @injectable
 class SingleTrainingWatcherCubit
     extends WatcherCubit<SingleTrainingGameSnapshot> {
   SingleTrainingWatcherCubit(
     ISingleTrainingService trainingService,
   ) : super(
-          trainingService.getGame(), // TODO good practice ?? to pass here
+          trainingService.getGame(),
           trainingService.watchGame(),
         );
 }

@@ -6,7 +6,7 @@ import 'package:dart_counter/application/main/play/shared/advanced_settings/adva
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_event.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_state.dart';
-import 'package:dart_counter/core/stream_extensions.dart';
+import 'package:dart_counter/core/stream_x.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';

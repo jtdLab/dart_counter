@@ -3,15 +3,14 @@ import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:injectable/injectable.dart';
 
-// TODO test correct param passing if possible
-
+// TODO doc
 @injectable
 class BobsTwentySevenWatcherCubit
     extends WatcherCubit<BobsTwentySevenGameSnapshot> {
   BobsTwentySevenWatcherCubit(
     IBobsTwentySevenService trainingService,
   ) : super(
-          trainingService.getGame(), // TODO good practice ?? to pass here
+          trainingService.getGame(),
           trainingService.watchGame(),
         );
 }

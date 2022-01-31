@@ -9,7 +9,7 @@ import 'package:bloc/bloc.dart';
 /// state of the [WatcherCubit] before [emit] has been called.
 ///
 /// {@endtemplate}
-class WatcherCubit<T> extends Cubit<T> {
+abstract class WatcherCubit<T> extends Cubit<T> {
   late final StreamSubscription _subscription;
 
   /// {@macro watcher_cubit}
