@@ -30,7 +30,7 @@ class AppPrimaryButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0), // TODO
             child: Lottie.asset(
-              AppAnimations.loading_circle_white,
+              AppAnimations.loadingCircleWhite,
               width: size12(context),
               height: size12(context),
             ),

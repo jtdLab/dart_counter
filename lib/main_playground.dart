@@ -1,18 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'package:timeago/timeago.dart' as timeago;
-
-import 'presentation/core/de_messages.dart';
 
 class Name with ChangeNotifier {
   int _value = 5;
