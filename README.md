@@ -4,6 +4,8 @@ DartCounter for Android and iOS.
 
 ## Important commands for development
 
+genhtml coverage/lcov.info -o coverage/output/
+
 flutter pub run easy_localization:generate -S assets/languages -f keys -o locale_keys.g.dart
 flutter pub run build_runner watch --delete-conflicting-outputs
 flutter pub run easy_localization:generate -S assets/languages
@@ -214,14 +216,13 @@ https://sematext.com/blog/best-practices-for-efficient-log-management-and-monito
 // in blocs that use super bloc call to close needed ?
 
 blocTest<DartsDisplayerBloc, DartsDisplayerState>(
-    'cancels the training when Canceled was added',
-    setUp: () {
-      when(() => trainingService.cancel());
-    },
-    build: () => InTrainingBloc(trainingService),
-    act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
-    verify: (_) => verify(() => trainingService.cancel()).called(1),
-  );
+'cancels the training when Canceled was added',
+setUp: () {
+when(() => trainingService.cancel());
+},
+build: () => InTrainingBloc(trainingService),
+act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+verify: (\_) => verify(() => trainingService.cancel()).called(1),
+);
 
-
-  // TODO setup of all tests
+// TODO setup of all tests
