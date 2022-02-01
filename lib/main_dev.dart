@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/bloc_observer.dart';
 import 'package:dart_counter/injection.dart';

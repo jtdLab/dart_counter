@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class Name with ChangeNotifier {

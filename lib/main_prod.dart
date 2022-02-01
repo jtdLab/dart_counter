@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
