@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -13,9 +12,9 @@ part 'change_username_bloc.freezed.dart';
 part 'change_username_event.dart';
 part 'change_username_state.dart';
 
-@lazySingleton
-class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
-    with AutoResetLazySingleton {
+@injectable
+class ChangeUsernameBloc
+    extends Bloc<ChangeUsernameEvent, ChangeUsernameState> {
   final IUserService _userService;
 
   ChangeUsernameBloc(
@@ -84,7 +83,8 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangeUsernameBloc>()) {
@@ -93,4 +93,5 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
 
     return super.close();
   }
+  */
 }

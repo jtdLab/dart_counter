@@ -36,7 +36,7 @@ void main() {
   });
 
   blocTest<ScoreTrainingWatcherCubit, ScoreTrainingGameSnapshot>(
-    'Emits game snapshots.',
+    'Emit game snapshots.',
     build: () {
       return ScoreTrainingWatcherCubit(trainingService);
     },

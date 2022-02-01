@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,9 +14,8 @@ part 'settings_bloc.freezed.dart';
 part 'settings_event.dart';
 part 'settings_state.dart';
 
-@lazySingleton
-class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
-    with AutoResetLazySingleton {
+@injectable
+class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final IAuthService _authService;
   final IUserService _userService;
 
@@ -61,7 +58,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
 
   Future<void> _mapSignOutPressedToState() async => _authService.signOut();
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SettingsBloc>()) {
@@ -70,4 +68,5 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
 
     return super.close();
   }
+  */
 }

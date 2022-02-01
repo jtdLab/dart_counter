@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -14,9 +12,8 @@ part 'search_user_bloc.freezed.dart';
 part 'search_user_event.dart';
 part 'search_user_state.dart';
 
-@lazySingleton
-class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
-    with AutoResetLazySingleton {
+@injectable
+class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
   final IFriendService _friendService;
 
   SearchUserBloc(
@@ -58,7 +55,8 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
   ) =>
       emit(const SearchUserState.initial());
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SearchUserBloc>()) {
@@ -67,4 +65,5 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
 
     return super.close();
   }
+  */
 }

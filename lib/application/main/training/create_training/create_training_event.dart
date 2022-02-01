@@ -22,6 +22,7 @@ class CreateTrainingEvent with _$CreateTrainingEvent {
   }) = _TypeChanged;
   const factory CreateTrainingEvent.trainingStarted() = _TrainingStarted;
   const factory CreateTrainingEvent.trainingCanceled() = _TrainingCanceled;
+
   // TODO this event show that sperate bloc are needed
   const factory CreateTrainingEvent.singleDoubleModeChanged({
     required Mode newMode,

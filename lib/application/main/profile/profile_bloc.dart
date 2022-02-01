@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -18,9 +17,8 @@ part 'profile_state.dart';
 
 // TODO maybe provide user in seperate bloc and remove this bloc
 
-@lazySingleton
-class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
-    with AutoResetLazySingleton {
+@injectable
+class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final IUserService _userService;
 
   ProfileBloc(
@@ -71,7 +69,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ProfileBloc>()) {
@@ -80,4 +79,5 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>
 
     return super.close();
   }
+  */
 }

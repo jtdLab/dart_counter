@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -13,9 +12,8 @@ part 'change_email_bloc.freezed.dart';
 part 'change_email_event.dart';
 part 'change_email_state.dart';
 
-@lazySingleton
-class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
-    with AutoResetLazySingleton {
+@injectable
+class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
   final IUserService _userService;
 
   ChangeEmailBloc(
@@ -84,7 +82,8 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     );
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangeEmailBloc>()) {
@@ -93,4 +92,5 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
 
     return super.close();
   }
+   */
 }

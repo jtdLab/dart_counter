@@ -3,6 +3,7 @@ import 'package:dart_counter/application/main/play/online/create_game/create_onl
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -11,7 +12,7 @@ class MockPlayOnlineService extends Mock implements IPlayOnlineService {}
 void main() {
   late MockPlayOnlineService mockPlayOnlineService;
 
-  setUp(() {
+  setUpAll(() {
     mockPlayOnlineService = MockPlayOnlineService();
   });
 
@@ -26,6 +27,11 @@ void main() {
   group('GameCanceled', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.cancelGame()).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(const CreateOnlineGameEvent.gameCanceled()),
       verify: (_) => verify(() => mockPlayOnlineService.cancelGame()).called(1),
@@ -35,6 +41,13 @@ void main() {
   group('PlayerReordered', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(
+          () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
+        ).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.playerReordered(oldIndex: 0, newIndex: 1),
@@ -48,6 +61,11 @@ void main() {
   group('PlayerRemoved', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.removePlayer(index: 0)).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.playerRemoved(index: 0),
@@ -61,6 +79,13 @@ void main() {
   group('StartingPointsUpdated', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(
+          () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
+        ).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.startingPointsUpdated(
@@ -76,6 +101,11 @@ void main() {
   group('ModeUpdated', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.setMode(mode: Mode.bestOf)).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.modeUpdated(newMode: Mode.bestOf),
@@ -89,6 +119,11 @@ void main() {
   group('SizeUpdated', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.setSize(size: 10)).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.sizeUpdated(newSize: 10),
@@ -102,6 +137,11 @@ void main() {
   group('TypeUpdated', () {
     blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
       'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.setType(type: Type.sets)).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
       build: () => CreateOnlineGameBloc(mockPlayOnlineService),
       act: (bloc) => bloc.add(
         const CreateOnlineGameEvent.typeUpdated(newType: Type.sets),

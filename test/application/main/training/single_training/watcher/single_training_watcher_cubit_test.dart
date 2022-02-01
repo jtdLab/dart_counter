@@ -37,7 +37,7 @@ void main() {
   });
 
   blocTest<SingleTrainingWatcherCubit, SingleTrainingGameSnapshot>(
-    'Emits game snapshots.',
+    'Emit game snapshots.',
     build: () {
       return SingleTrainingWatcherCubit(trainingService);
     },

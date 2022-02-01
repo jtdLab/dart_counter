@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -16,9 +14,8 @@ part 'game_history_bloc.freezed.dart';
 part 'game_history_event.dart';
 part 'game_history_state.dart';
 
-@lazySingleton
-class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
-    with AutoResetLazySingleton {
+@injectable
+class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   final IUserService _userService;
   final IGameHistoryService _gameHistoryService;
 
@@ -128,7 +125,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     }
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<GameHistoryBloc>()) {
@@ -137,4 +135,5 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
 
     return super.close();
   }
+  */
 }

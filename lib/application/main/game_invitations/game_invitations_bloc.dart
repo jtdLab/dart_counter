@@ -3,14 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -20,10 +18,9 @@ part 'game_invitations_bloc.freezed.dart';
 part 'game_invitations_event.dart';
 part 'game_invitations_state.dart';
 
-@lazySingleton
+@injectable
 class GameInvitationsBloc
-    extends Bloc<GameInvitationsEvent, GameInvitationsState>
-    with AutoResetLazySingleton {
+    extends Bloc<GameInvitationsEvent, GameInvitationsState> {
   final IPlayOnlineService _playOnlineService;
   final IGameInvitationService _gameInvitationService;
 
@@ -128,7 +125,8 @@ class GameInvitationsBloc
     _gameInvitationService.decline(invitation: event.gameInvitation);
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<GameInvitationsBloc>()) {
@@ -137,4 +135,5 @@ class GameInvitationsBloc
 
     return super.close();
   }
+  */
 }

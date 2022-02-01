@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,10 +11,9 @@ part 'edit_profile_image_bloc.freezed.dart';
 part 'edit_profile_image_event.dart';
 part 'edit_profile_image_state.dart';
 
-@lazySingleton
+@injectable
 class EditProfileImageBloc
-    extends Bloc<EditProfileImageEvent, EditProfileImageState>
-    with AutoResetLazySingleton {
+    extends Bloc<EditProfileImageEvent, EditProfileImageState> {
   final IUserService _userService;
 
   EditProfileImageBloc(
@@ -55,7 +53,8 @@ class EditProfileImageBloc
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<EditProfileImageBloc>()) {
@@ -64,4 +63,5 @@ class EditProfileImageBloc
 
     return super.close();
   }
+  */
 }

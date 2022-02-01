@@ -21,6 +21,7 @@ import 'application/auth/forgot_password/forgot_password_bloc.dart' as _i75;
 import 'application/auth/sign_in/sign_in_bloc.dart' as _i60;
 import 'application/auth/sign_up/sign_up_bloc.dart' as _i61;
 import 'application/main/friends/friends_bloc.dart' as _i95;
+import 'application/main/friends/more/more_bloc.dart' as _i101;
 import 'application/main/friends/search_user/search_user_bloc.dart' as _i92;
 import 'application/main/game_history/game_history_bloc.dart' as _i76;
 import 'application/main/game_invitations/game_invitations_bloc.dart' as _i96;
@@ -72,7 +73,7 @@ import 'application/main/settings/settings_bloc.dart' as _i59;
 import 'application/main/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart'
     as _i39;
 import 'application/main/training/bobs_twenty_seven/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i47;
+    as _i48;
 import 'application/main/training/bobs_twenty_seven/in_training/input_area/key_board/key_board_bloc.dart'
     as _i52;
 import 'application/main/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart'
@@ -82,15 +83,15 @@ import 'application/main/training/create_training/create_training_bloc.dart'
 import 'application/main/training/double_training/in_training/in_double_training_bloc.dart'
     as _i40;
 import 'application/main/training/double_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i48;
+    as _i46;
 import 'application/main/training/double_training/in_training/input_area/key_board/key_board_bloc.dart'
-    as _i50;
+    as _i51;
 import 'application/main/training/double_training/watcher/double_training_watcher_cubit.dart'
     as _i73;
 import 'application/main/training/score_training/in_training/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i46;
+    as _i45;
 import 'application/main/training/score_training/in_training/detailed_input_area/key_board/key_board_bloc.dart'
-    as _i51;
+    as _i50;
 import 'application/main/training/score_training/in_training/in_score_training_bloc.dart'
     as _i42;
 import 'application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart'
@@ -104,7 +105,7 @@ import 'application/main/training/shared/in_training/input_area/darts_displayer/
 import 'application/main/training/single_training/in_training/in_single_training_bloc.dart'
     as _i43;
 import 'application/main/training/single_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i45;
+    as _i47;
 import 'application/main/training/single_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i54;
 import 'application/main/training/single_training/watcher/single_training_watcher_cubit.dart'
@@ -130,8 +131,8 @@ import 'infrastructure/auth/firebase_auth_service.dart' as _i77;
 import 'infrastructure/auth/mocked_auth_service.dart' as _i17;
 import 'infrastructure/connectivity/connectivity_service.dart' as _i22;
 import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i21;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i102;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i101;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i103;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i102;
 import 'infrastructure/friend/friend_service.dart' as _i98;
 import 'infrastructure/friend/mocked_friend_service.dart' as _i79;
 import 'infrastructure/game_history/game_history_service.dart' as _i99;
@@ -225,24 +226,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i44.InputRowBloc(get<_i33.IScoreTrainingService>()));
   gh.factoryParam<_i45.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
-      _i45.InputRowBloc(get<_i35.ISingleTrainingService>(), otherDependencies));
+      _i45.InputRowBloc(get<_i33.IScoreTrainingService>(), otherDependencies));
   gh.factoryParam<_i46.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
-      _i46.InputRowBloc(get<_i33.IScoreTrainingService>(), otherDependencies));
-  gh.factoryParam<_i47.InputRowBloc, List<Object>?, dynamic>(
-      (otherDependencies, _) => _i47.InputRowBloc(
-          get<_i18.IBobsTwentySevenService>(), otherDependencies));
-  gh.factoryParam<_i48.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
+      _i46.InputRowBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
+  gh.factoryParam<_i47.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
-      _i48.InputRowBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
+      _i47.InputRowBloc(get<_i35.ISingleTrainingService>(), otherDependencies));
+  gh.factoryParam<_i48.InputRowBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) => _i48.InputRowBloc(
+          get<_i18.IBobsTwentySevenService>(), otherDependencies));
   gh.factory<_i49.InputRowBlocOfflineStandardInputArea>(() =>
       _i49.InputRowBlocOfflineStandardInputArea(get<_i23.IDartUtils>(),
           get<_i31.IPlayOfflineService>(), get<_i41.InOfflineGameBloc>()));
-  gh.factoryParam<_i50.KeyBoardBloc, List<Object>?, dynamic>((otherDependencies,
+  gh.factoryParam<_i50.KeyBoardBloc, List<Object>?, dynamic>(
+      (otherDependencies, _) => _i50.KeyBoardBloc(otherDependencies));
+  gh.factoryParam<_i51.KeyBoardBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
-      _i50.KeyBoardBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
-  gh.factoryParam<_i51.KeyBoardBloc, List<Object>?, dynamic>(
-      (otherDependencies, _) => _i51.KeyBoardBloc(otherDependencies));
+      _i51.KeyBoardBloc(get<_i25.IDoubleTrainingService>(), otherDependencies));
   gh.factoryParam<_i52.KeyBoardBloc, List<Object>?, dynamic>(
       (otherDependencies, _) => _i52.KeyBoardBloc(
           get<_i18.IBobsTwentySevenService>(), otherDependencies));
@@ -260,11 +261,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i49.InputRowBlocOfflineStandardInputArea>()));
   gh.factory<_i56.PlayOfflineWatcherCubit>(() => _i56.PlayOfflineWatcherCubit(
       get<_i31.IPlayOfflineService>(), get<_i37.IUserService>()));
-  gh.lazySingleton<_i57.ProfileBloc>(
+  gh.factory<_i57.ProfileBloc>(
       () => _i57.ProfileBloc(get<_i37.IUserService>()));
   gh.factory<_i58.ScoreTrainingWatcherCubit>(
       () => _i58.ScoreTrainingWatcherCubit(get<_i33.IScoreTrainingService>()));
-  gh.lazySingleton<_i59.SettingsBloc>(() =>
+  gh.factory<_i59.SettingsBloc>(() =>
       _i59.SettingsBloc(get<_i16.IAuthService>(), get<_i37.IUserService>()));
   gh.factory<_i60.SignInBloc>(() => _i60.SignInBloc(get<_i16.IAuthService>()));
   gh.factory<_i61.SignUpBloc>(() => _i61.SignUpBloc(get<_i16.IAuthService>()));
@@ -274,11 +275,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i64.AuthBloc>(() => _i64.AuthBloc(get<_i16.IAuthService>()));
   gh.factory<_i65.BobsTwentySevenWatcherCubit>(() =>
       _i65.BobsTwentySevenWatcherCubit(get<_i18.IBobsTwentySevenService>()));
-  gh.lazySingleton<_i66.ChangeEmailBloc>(
+  gh.factory<_i66.ChangeEmailBloc>(
       () => _i66.ChangeEmailBloc(get<_i37.IUserService>()));
-  gh.lazySingleton<_i67.ChangePasswordBloc>(
+  gh.factory<_i67.ChangePasswordBloc>(
       () => _i67.ChangePasswordBloc(get<_i16.IAuthService>()));
-  gh.lazySingleton<_i68.ChangeUsernameBloc>(
+  gh.factory<_i68.ChangeUsernameBloc>(
       () => _i68.ChangeUsernameBloc(get<_i37.IUserService>()));
   gh.factory<_i69.CreateOfflineGameBloc>(
       () => _i69.CreateOfflineGameBloc(get<_i31.IPlayOfflineService>()));
@@ -293,11 +294,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           _i71.DartsDisplayerBloc(get<_i23.IDartUtils>(), playService));
   gh.factory<_i73.DoubleTrainingWatcherCubit>(() =>
       _i73.DoubleTrainingWatcherCubit(get<_i25.IDoubleTrainingService>()));
-  gh.lazySingleton<_i74.EditProfileImageBloc>(
+  gh.factory<_i74.EditProfileImageBloc>(
       () => _i74.EditProfileImageBloc(get<_i37.IUserService>()));
   gh.factory<_i75.ForgotPasswordBloc>(
       () => _i75.ForgotPasswordBloc(get<_i16.IAuthService>()));
-  gh.lazySingleton<_i76.GameHistoryBloc>(() => _i76.GameHistoryBloc(
+  gh.factory<_i76.GameHistoryBloc>(() => _i76.GameHistoryBloc(
       get<_i37.IUserService>(), get<_i27.IGameHistoryService>()));
   gh.lazySingleton<_i16.IAuthService>(
       () => _i77.FirebaseAuthService(
@@ -358,17 +359,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i87.InputRowBlocOnlineStandardInputArea>()));
   gh.factory<_i91.PlayOnlineWatcherCubit>(
       () => _i91.PlayOnlineWatcherCubit(get<_i81.IPlayOnlineService>()));
-  gh.lazySingleton<_i92.SearchUserBloc>(
+  gh.factory<_i92.SearchUserBloc>(
       () => _i92.SearchUserBloc(get<_i78.IFriendService>()));
   gh.factory<_i93.CreateOnlineGameBloc>(
       () => _i93.CreateOnlineGameBloc(get<_i81.IPlayOnlineService>()));
-  gh.lazySingleton<_i94.CreateOnlineGameCubit>(
+  gh.factory<_i94.CreateOnlineGameCubit>(
       () => _i94.CreateOnlineGameCubit(get<_i81.IPlayOnlineService>()));
-  gh.lazySingleton<_i95.FriendsBloc>(
+  gh.factory<_i95.FriendsBloc>(
       () => _i95.FriendsBloc(get<_i78.IFriendService>()));
-  gh.lazySingleton<_i96.GameInvitationsBloc>(() => _i96.GameInvitationsBloc(
+  gh.factory<_i96.GameInvitationsBloc>(() => _i96.GameInvitationsBloc(
       get<_i81.IPlayOnlineService>(), get<_i29.IGameInvitationService>()));
-  gh.lazySingleton<_i97.HomeBloc>(() => _i97.HomeBloc(get<_i37.IUserService>(),
+  gh.factory<_i97.HomeBloc>(() => _i97.HomeBloc(get<_i37.IUserService>(),
       get<_i29.IGameInvitationService>(), get<_i78.IFriendService>()));
   gh.lazySingleton<_i78.IFriendService>(
       () => _i98.FriendService(
@@ -385,9 +386,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i100.PlayOnlineService(get<_i8.DartClient>(),
           get<_i37.IUserService>(), get<_i78.IFriendService>()),
       registerFor: {_test, _prod});
+  gh.factory<_i101.MoreBloc>(() =>
+      _i101.MoreBloc(get<_i78.IFriendService>(), get<_i95.FriendsBloc>()));
   return get;
 }
 
-class _$JtdInjectableModule extends _i101.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i102.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i102.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i103.FireBaseInjectableModule {}

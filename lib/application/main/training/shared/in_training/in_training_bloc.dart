@@ -13,7 +13,7 @@ export 'package:dart_counter/application/main/training/shared/in_training/in_tra
 /// 1. Cancel training.
 ///
 /// {@endtemplate}
-class InTrainingBloc extends Bloc<InTrainingEvent, void> {
+abstract class InTrainingBloc extends Bloc<InTrainingEvent, void> {
   final AbstractITrainingService _trainingService;
 
   /// {@macro in_training_bloc}

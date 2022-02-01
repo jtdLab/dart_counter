@@ -6,7 +6,7 @@ import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
 export 'package:dart_counter/application/main/play/shared/in_game/in_game_event.dart';
 export 'package:dart_counter/application/main/play/shared/in_game/in_game_state.dart';
 
-class InGameBloc extends Bloc<InGameEvent, InGameState> {
+abstract class InGameBloc extends Bloc<InGameEvent, InGameState> {
   final AbstractIPlayService _playService;
 
   InGameBloc(

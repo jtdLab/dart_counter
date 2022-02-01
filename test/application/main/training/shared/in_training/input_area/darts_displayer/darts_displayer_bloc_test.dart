@@ -96,7 +96,7 @@ void main() {
 
   group('ResetRequested', () {
     blocTest<DartsDisplayerBloc, DartsDisplayerState>(
-      'emit [DartsDisplayerEmpty].',
+      'Emit [DartsDisplayerEmpty].',
       build: () => DartsDisplayerBloc(),
       act: (bloc) => bloc.add(const DartsDisplayerEvent.resetRequested()),
       expect: () => [const DartsDisplayerState.empty()],

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
@@ -13,7 +12,6 @@ import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.da
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart'; // TODO shouldnt be here
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,8 +23,8 @@ part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-@lazySingleton
-class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
+@injectable
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IUserService _userService;
   final IGameInvitationService _gameInvitationService;
   final IFriendService _friendService;
@@ -41,7 +39,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
       transformer: restartable(),
     );
   }
-  
 
   Future<void> _mapWatchDataStartedToState(
     Emitter<HomeState> emit,
@@ -128,7 +125,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
     await completer.future;
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<HomeBloc>()) {
@@ -137,4 +135,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with AutoResetLazySingleton {
 
     return super.close();
   }
+}
+   */
 }

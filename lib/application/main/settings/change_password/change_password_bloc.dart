@@ -13,9 +13,9 @@ part 'change_password_bloc.freezed.dart';
 part 'change_password_event.dart';
 part 'change_password_state.dart';
 
-@lazySingleton
-class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
-    with AutoResetLazySingleton {
+@injectable
+class ChangePasswordBloc
+    extends Bloc<ChangePasswordEvent, ChangePasswordState> {
   final IAuthService _authService;
 
   ChangePasswordBloc(
@@ -153,7 +153,8 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
     );
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangePasswordBloc>()) {
@@ -162,4 +163,5 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState>
 
     return super.close();
   }
+   */
 }

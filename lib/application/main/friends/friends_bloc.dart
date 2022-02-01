@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,9 +16,8 @@ part 'friends_bloc.freezed.dart';
 part 'friends_event.dart';
 part 'friends_state.dart';
 
-@lazySingleton
-class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
-    with AutoResetLazySingleton {
+@injectable
+class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
   final IFriendService _friendService;
 
   FriendsBloc(
@@ -129,7 +126,8 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     _friendService.declineFriendRequest(friendRequest: event.friendRequest);
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<FriendsBloc>()) {
@@ -138,4 +136,5 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
 
     return super.close();
   }
+   */
 }

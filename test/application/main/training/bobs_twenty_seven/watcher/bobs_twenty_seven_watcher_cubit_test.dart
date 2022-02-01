@@ -37,7 +37,7 @@ void main() {
   });
 
   blocTest<BobsTwentySevenWatcherCubit, BobsTwentySevenGameSnapshot>(
-    'Emits game snapshots.',
+    'Emit game snapshots.',
     build: () {
       return BobsTwentySevenWatcherCubit(trainingService);
     },

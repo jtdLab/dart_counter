@@ -16,7 +16,7 @@ void main() {
 
   group('Canceled', () {
     blocTest<InSingleTrainingBloc, void>(
-      'Cancels the training.',
+      'Cancel the training.',
       build: () => InSingleTrainingBloc(trainingService),
       act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
       verify: (_) => verify(() => trainingService.cancel()).called(1),
