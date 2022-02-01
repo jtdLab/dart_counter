@@ -11,6 +11,7 @@ part 'online_player_snapshot.freezed.dart';
 class OnlinePlayerSnapshot
     with _$OnlinePlayerSnapshot
     implements AbstractPlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractPlayerSnapshot>()
   const factory OnlinePlayerSnapshot({
     required UniqueId id,
@@ -50,4 +51,5 @@ class OnlinePlayerSnapshot
         dartsThrownCurrentLeg: 6,
         stats: PlayerStats.dummy(),
       );
+  // coverage:ignore-end
 }

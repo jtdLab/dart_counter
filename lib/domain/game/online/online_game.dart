@@ -12,6 +12,7 @@ part 'online_game.freezed.dart';
 
 @freezed
 class OnlineGame with _$OnlineGame implements AbstractGame {
+  // coverage:ignore-start
   @Implements<AbstractGame>()
   const factory OnlineGame({
     required UniqueId id,
@@ -26,10 +27,6 @@ class OnlineGame with _$OnlineGame implements AbstractGame {
   }) = _OnlineGame;
 
   const OnlineGame._();
-
-  @override
-  String description() =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 
   factory OnlineGame.dummy() => OnlineGame(
         id: UniqueId.fromUniqueString(
@@ -60,4 +57,9 @@ class OnlineGame with _$OnlineGame implements AbstractGame {
             .amount((i) => OnlinePlayer.dummy(), 4)
             .toImmutableList(),
       );
+  // coverage:ignore-end
+
+  @override
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 }

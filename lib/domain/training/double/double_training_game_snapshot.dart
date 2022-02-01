@@ -12,6 +12,7 @@ part 'double_training_game_snapshot.freezed.dart';
 class DoubleTrainingGameSnapshot
     with _$DoubleTrainingGameSnapshot
     implements AbstractTrainingGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingGameSnapshot>()
   const factory DoubleTrainingGameSnapshot({
     required Status status,
@@ -21,12 +22,6 @@ class DoubleTrainingGameSnapshot
   }) = _DoubleTrainingGameSnapshot;
 
   const DoubleTrainingGameSnapshot._();
-
-  @override
-  DoubleTrainingPlayerSnapshot currentTurn() {
-    // TODO her eand other throw not running game if status is pending/fininshed
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory DoubleTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
@@ -38,5 +33,12 @@ class DoubleTrainingGameSnapshot
       players: players.toImmutableList(),
       owner: players[0],
     );
+  }
+  // coverage:ignore-end
+
+  @override
+  DoubleTrainingPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
   }
 }

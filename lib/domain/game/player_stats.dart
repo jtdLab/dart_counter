@@ -5,6 +5,7 @@ part 'player_stats.freezed.dart';
 
 @freezed
 class PlayerStats with _$PlayerStats {
+  // coverage:ignore-start
   const factory PlayerStats({
     double? average,
     double? checkoutPercentage,
@@ -44,4 +45,5 @@ class PlayerStats with _$PlayerStats {
         hundredSixtyPlus: faker.randomGenerator.integer(5),
         hundredEighty: faker.randomGenerator.integer(4),
       );
+  // coverage:ignore-end
 }

@@ -11,6 +11,7 @@ part 'dartbot_snapshot.freezed.dart';
 class DartBotSnapshot
     with _$DartBotSnapshot
     implements AbstractOfflinePlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractOfflinePlayerSnapshot>()
   const factory DartBotSnapshot({
     required UniqueId id,
@@ -50,4 +51,5 @@ class DartBotSnapshot
         stats: PlayerStats.dummy(),
         targetAverage: 100,
       );
+  // coverage:ignore-end
 }

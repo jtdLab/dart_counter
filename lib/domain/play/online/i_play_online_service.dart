@@ -16,8 +16,6 @@ abstract class IPlayOnlineService extends AbstractIPlayService {
   /// Creates a new game.
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame();
 
-  /// Changes the position of a player from [oldIndex] to [newIndex].
-
   /// Joins the game with [gameId].
   Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,

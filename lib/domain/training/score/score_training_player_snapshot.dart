@@ -9,6 +9,7 @@ part 'score_training_player_snapshot.freezed.dart';
 class ScoreTrainingPlayerSnapshot
     with _$ScoreTrainingPlayerSnapshot
     implements AbstractTrainingPlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingPlayerSnapshot>()
   const factory ScoreTrainingPlayerSnapshot({
     required UniqueId id,
@@ -33,4 +34,5 @@ class ScoreTrainingPlayerSnapshot
         secondDartAverage: faker.randomGenerator.element([10.54, 23.44, 18.43]),
         thirdDartAverage: faker.randomGenerator.element([10.54, 23.44, 18.43]),
       );
+  // coverage:ignore-end
 }

@@ -10,6 +10,7 @@ part 'user.freezed.dart';
 /// Domain model of an app-user.
 @freezed
 class User with _$User {
+  // coverage:ignore-start
   const factory User({
     required UniqueId id,
     required String idToken,
@@ -35,4 +36,5 @@ class User with _$User {
       careerStatsOffline: CareerStats.dummy(),
     );
   }
+  // coverage:ignore-end
 }

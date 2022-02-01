@@ -11,6 +11,7 @@ part 'offline_player_snapshot.freezed.dart';
 class OfflinePlayerSnapshot
     with _$OfflinePlayerSnapshot
     implements AbstractOfflinePlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractOfflinePlayerSnapshot>()
   const factory OfflinePlayerSnapshot({
     required UniqueId id,
@@ -48,4 +49,5 @@ class OfflinePlayerSnapshot
         dartsThrownCurrentLeg: 6,
         stats: PlayerStats.dummy(),
       );
+  // coverage:ignore-end
 }

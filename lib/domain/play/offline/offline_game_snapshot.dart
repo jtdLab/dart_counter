@@ -13,6 +13,7 @@ part 'offline_game_snapshot.freezed.dart';
 class OfflineGameSnapshot
     with _$OfflineGameSnapshot
     implements AbstractGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractGameSnapshot>()
   const factory OfflineGameSnapshot({
     required Status status,
@@ -24,6 +25,21 @@ class OfflineGameSnapshot
   }) = _OfflineGameSnapshot;
 
   const OfflineGameSnapshot._();
+
+  factory OfflineGameSnapshot.dummy() {
+    return OfflineGameSnapshot(
+      status: faker.randomGenerator.element(Status.values),
+      mode: faker.randomGenerator.element(Mode.values),
+      size: faker.randomGenerator.integer(20, min: 1),
+      type: faker.randomGenerator.element(Type.values),
+      startingPoints: faker.randomGenerator.element([301, 501, 701]),
+      players: List.generate(
+        faker.randomGenerator.integer(4, min: 1),
+        (index) => OfflinePlayerSnapshot.dummy(),
+      ).toImmutableList(),
+    );
+  }
+  // coverage:ignore-end
 
   @override
   bool hasDartBot() {
@@ -41,19 +57,5 @@ class OfflineGameSnapshot
   @override
   AbstractOfflinePlayerSnapshot currentTurn() {
     return players.first((player) => player.isCurrentTurn);
-  }
-
-  factory OfflineGameSnapshot.dummy() {
-    return OfflineGameSnapshot(
-      status: faker.randomGenerator.element(Status.values),
-      mode: faker.randomGenerator.element(Mode.values),
-      size: faker.randomGenerator.integer(20, min: 1),
-      type: faker.randomGenerator.element(Type.values),
-      startingPoints: faker.randomGenerator.element([301, 501, 701]),
-      players: List.generate(
-        faker.randomGenerator.integer(4, min: 1),
-        (index) => OfflinePlayerSnapshot.dummy(),
-      ).toImmutableList(),
-    );
   }
 }

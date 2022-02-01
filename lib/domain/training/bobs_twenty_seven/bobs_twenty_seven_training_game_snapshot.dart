@@ -12,6 +12,7 @@ part 'bobs_twenty_seven_training_game_snapshot.freezed.dart';
 class BobsTwentySevenGameSnapshot
     with _$BobsTwentySevenGameSnapshot
     implements AbstractTrainingGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingGameSnapshot>()
   const factory BobsTwentySevenGameSnapshot({
     required Status status,
@@ -21,12 +22,6 @@ class BobsTwentySevenGameSnapshot
   }) = _BobsTwentySevenGameSnapshot;
 
   const BobsTwentySevenGameSnapshot._();
-
-  @override
-  BobsTwentySevenPlayerSnapshot currentTurn() {
-    // TODO her eand other throw not running game if status is pending/fininshed
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory BobsTwentySevenGameSnapshot.dummy() {
     final players = faker.randomGenerator
@@ -38,5 +33,12 @@ class BobsTwentySevenGameSnapshot
       players: players.toImmutableList(),
       owner: players[0],
     );
+  }
+  // coverage:ignore-end
+
+  @override
+  BobsTwentySevenPlayerSnapshot currentTurn() {
+    // TODO her eand other throw not running game if status is pending/fininshed
+    return players.first((player) => player.isCurrentTurn);
   }
 }

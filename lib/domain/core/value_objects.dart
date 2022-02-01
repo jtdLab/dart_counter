@@ -1,10 +1,11 @@
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/failures.dart';
-import 'package:dart_counter/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:uuid/uuid.dart';
+
+part 'value_validators.dart';
 
 /// Base class for domain specific object holding either [T] or a [ValueFailure].
 @immutable
@@ -40,10 +41,10 @@ class EmailAddress extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory EmailAddress(String emailString) {
-    return EmailAddress._(
-      validateEmailAddress(emailString: emailString),
-    );
+  factory EmailAddress(
+    String emailString,
+  ) {
+    return EmailAddress._(_validateEmailAddress(emailString: emailString));
   }
 
   factory EmailAddress.empty() {
@@ -58,10 +59,10 @@ class Username extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory Username(String usernameString) {
-    return Username._(
-      validateUsername(usernameString: usernameString),
-    );
+  factory Username(
+    String usernameString,
+  ) {
+    return Username._(_validateUsername(usernameString: usernameString));
   }
 
   factory Username.empty() {
@@ -76,10 +77,10 @@ class Password extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory Password(String passwordString) {
-    return Password._(
-      validatePassword(passwordString: passwordString),
-    );
+  factory Password(
+    String passwordString,
+  ) {
+    return Password._(_validatePassword(passwordString: passwordString));
   }
 
   factory Password.empty() {
@@ -116,10 +117,10 @@ class List10<T> extends ValueObject<KtList<T>> {
 
   static const maxLength = 10;
 
-  factory List10(KtList<T> list) {
-    return List10._(
-      validateMaxListLength(list: list, maxLength: maxLength),
-    );
+  factory List10(
+    KtList<T> list,
+  ) {
+    return List10._(_validateMaxListLength(list: list, maxLength: maxLength));
   }
 
   factory List10.empty() => List10(const KtList.empty());
@@ -133,13 +134,6 @@ class List10<T> extends ValueObject<KtList<T>> {
   bool get isFull {
     return length == maxLength;
   }
-
-  // TODO remove == and hashCode needed ?
-  @override
-  bool operator ==(Object o) => o is List10 && value == o.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }
 
 /// A value object containing a not empty list or failure.
@@ -147,10 +141,10 @@ class NotEmptyList<T> extends ValueObject<KtList<T>> {
   @override
   final Either<ValueFailure<KtList<T>>, KtList<T>> value;
 
-  factory NotEmptyList(KtList<T> list) {
-    return NotEmptyList._(
-      validateNotEmpty(list: list),
-    );
+  factory NotEmptyList(
+    KtList<T> list,
+  ) {
+    return NotEmptyList._(_validateNotEmptyList(list: list));
   }
 
   const NotEmptyList._(this.value);
@@ -158,11 +152,4 @@ class NotEmptyList<T> extends ValueObject<KtList<T>> {
   int get length {
     return getOrCrash().size;
   }
-
-  // TODO remove == and hashCode needed ?
-  @override
-  bool operator ==(Object o) => o is NotEmptyList && value == o.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }

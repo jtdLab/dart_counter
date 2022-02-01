@@ -7,12 +7,29 @@ enum DartType { missed, single, double, triple }
 
 @freezed
 class Dart with _$Dart {
+  // coverage:ignore-start
   const factory Dart({
     required DartType type,
     required int value,
   }) = _Dart;
 
   const Dart._();
+
+  factory Dart.dummy() {
+    final type = faker.randomGenerator.element([
+      DartType.single,
+      DartType.double,
+      DartType.triple,
+    ]);
+    return Dart(
+      type: type,
+      value: faker.randomGenerator.element(
+        (List.generate(20, (index) => index + 1).toList()) +
+            (type == DartType.triple ? [25] : []),
+      ),
+    );
+  }
+  // coverage:ignore-end
 
   static const missed = Dart(type: DartType.missed, value: 0);
 
@@ -32,20 +49,5 @@ class Dart with _$Dart {
     }
 
     return multiplier * value;
-  }
-
-  factory Dart.dummy() {
-    final type = faker.randomGenerator.element([
-      DartType.single,
-      DartType.double,
-      DartType.triple,
-    ]);
-    return Dart(
-      type: type,
-      value: faker.randomGenerator.element(
-        (List.generate(20, (index) => index + 1).toList()) +
-            (type == DartType.triple ? [25] : []),
-      ),
-    );
   }
 }

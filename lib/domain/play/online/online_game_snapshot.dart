@@ -13,6 +13,7 @@ part 'online_game_snapshot.freezed.dart';
 class OnlineGameSnapshot
     with _$OnlineGameSnapshot
     implements AbstractGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractGameSnapshot>()
   const factory OnlineGameSnapshot({
     required Status status,
@@ -24,18 +25,6 @@ class OnlineGameSnapshot
   }) = _OnlineGameSnapshot;
 
   const OnlineGameSnapshot._();
-
-  @override
-  bool hasDartBot() => false;
-
-  @override
-  String description() =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  OnlinePlayerSnapshot currentTurn() {
-    return players.first((player) => player.isCurrentTurn); // TODO her eand other throw not running game if status is pending/fininshed
-  }
 
   factory OnlineGameSnapshot.dummy() {
     return OnlineGameSnapshot(
@@ -49,5 +38,19 @@ class OnlineGameSnapshot
         (index) => OnlinePlayerSnapshot.dummy(),
       ).toImmutableList(),
     );
+  }
+  // coverage:ignore-end
+
+  @override
+  bool hasDartBot() => false;
+
+  @override
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
+
+  @override
+  OnlinePlayerSnapshot currentTurn() {
+    return players.first((player) => player
+        .isCurrentTurn); // TODO her eand other throw not running game if status is pending/fininshed
   }
 }

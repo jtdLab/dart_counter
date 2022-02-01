@@ -6,6 +6,7 @@ part 'game_invitation.freezed.dart';
 
 @freezed
 class GameInvitation with _$GameInvitation {
+  // coverage:ignore-start
   const factory GameInvitation({
     required UniqueId id,
     required UniqueId gameId,
@@ -44,4 +45,5 @@ class GameInvitation with _$GameInvitation {
         read: faker.randomGenerator.boolean(),
         createdAt: DateTime.now(),
       );
+  // coverage:ignore-end
 }

@@ -6,6 +6,7 @@ part 'advanced_settings.freezed.dart';
 
 @freezed
 class AdvancedSettings with _$AdvancedSettings {
+  // coverage:ignore-start
   const factory AdvancedSettings({
     required UniqueId playerId,
     required bool showAverage,
@@ -21,4 +22,5 @@ class AdvancedSettings with _$AdvancedSettings {
         showCheckoutPercentage: faker.randomGenerator.boolean(),
         smartKeyBoardActivated: faker.randomGenerator.boolean(),
       );
+  // coverage:ignore-end
 }
