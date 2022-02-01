@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

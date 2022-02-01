@@ -1210,7 +1210,7 @@ packages:
     source: hosted
     version: "1.0.1"
   source_gen:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: source_gen
       url: "https://pub.dartlang.org"

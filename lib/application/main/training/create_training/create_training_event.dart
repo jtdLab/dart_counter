@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'create_training_bloc.dart';
 
 @freezed

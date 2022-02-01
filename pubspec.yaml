@@ -93,6 +93,7 @@ dev_dependencies:
   google_sign_in_mocks: ^0.2.1
   bloc_test: ^9.0.2
   mocktail: ^0.2.0
+  source_gen: ^1.2.1
 
 # The following section is specific to Flutter.
 flutter:

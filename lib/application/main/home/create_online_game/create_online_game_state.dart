@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'create_online_game_cubit.dart';
 
 @freezed

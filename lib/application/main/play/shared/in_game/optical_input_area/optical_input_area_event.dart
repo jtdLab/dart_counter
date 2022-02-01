@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'optical_input_area_bloc.dart';
 
 @freezed

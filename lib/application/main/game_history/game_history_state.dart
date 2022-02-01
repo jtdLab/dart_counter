@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'game_history_bloc.dart';
 
 @freezed

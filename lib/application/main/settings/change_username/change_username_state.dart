@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'change_username_bloc.dart';
 
 @freezed

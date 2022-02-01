@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'edit_profile_image_bloc.dart';
 
 @freezed

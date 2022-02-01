@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'auth_bloc.dart';
 
 @freezed

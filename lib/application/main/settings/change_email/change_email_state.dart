@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'change_email_bloc.dart';
 
 @freezed

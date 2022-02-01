@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'forgot_password_bloc.dart';
 
 @freezed

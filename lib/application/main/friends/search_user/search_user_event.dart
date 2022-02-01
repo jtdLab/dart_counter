@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'search_user_bloc.dart';
 
 @freezed

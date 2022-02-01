@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'key_board_bloc.dart';
 
 @freezed
