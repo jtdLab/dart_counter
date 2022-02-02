@@ -23,6 +23,10 @@ void main() {
 
   final friendRequest = FriendRequest.dummy();
 
+  setUpAll(() {
+    registerFallbackValue(FriendRequest.dummy());
+  });
+
   setUp(() {
     mockFriendService = MockFriendService();
 
@@ -108,6 +112,13 @@ void main() {
         setUp: () {
           when(() => mockFriendService.markReceivedFriendRequestsAsRead())
               .thenAnswer((_) async => right(unit));
+
+          when(() => mockFriendService.watchFriends())
+              .thenAnswer((_) => Stream.value(right(friends)));
+          when(() => mockFriendService.watchReceivedFriendRequests())
+              .thenAnswer((_) => Stream.value(right(receivedFriendRequests)));
+          when(() => mockFriendService.watchSentFriendRequests())
+              .thenAnswer((_) => Stream.value(right(sentFriendRequests)));
         },
         build: () => FriendsBloc(
           mockFriendService,
@@ -158,6 +169,13 @@ void main() {
     () {
       blocTest<FriendsBloc, FriendsState>(
         'calls acceptFriendRequest with incoming friendRequest as param ',
+        setUp: () {
+          when(
+            () => mockFriendService.acceptFriendRequest(
+              friendRequest: any(named: 'friendRequest'),
+            ),
+          ).thenAnswer((_) async => right(unit));
+        },
         build: () => FriendsBloc(
           mockFriendService,
         ),
@@ -180,6 +198,13 @@ void main() {
     () {
       blocTest<FriendsBloc, FriendsState>(
         'calls declineFriendRequest with incoming friendRequest as param ',
+        setUp: () {
+          when(
+            () => mockFriendService.declineFriendRequest(
+              friendRequest: any(named: 'friendRequest'),
+            ),
+          ).thenAnswer((_) async => right(unit));
+        },
         build: () => FriendsBloc(
           mockFriendService,
         ),

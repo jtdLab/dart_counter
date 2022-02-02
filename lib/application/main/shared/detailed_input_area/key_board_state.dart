@@ -475,10 +475,12 @@ enum ButtonState { enabled, disabled }
 // TODO rename digit button is not appropriate
 @freezed
 class DigitButtonState with _$DigitButtonState {
+  // coverage:ignore-start
   const factory DigitButtonState.disabled() = DigitButtonDisabled;
   const factory DigitButtonState.enabled() = DigitButtonEnabled;
   const factory DigitButtonState.focused({
     required DartType type,
     required int value,
   }) = DigitButtonFocused;
+  // coverage:ignore-end
 }

@@ -18,7 +18,9 @@ void main() {
     mockGameInvitationService = MockGameInvitationService();
   });
 
-  test('initial state is TODO', () {
+  // TODO impl
+  /**
+   * test('initial state is TODO', () {
     // Arrange & Act
     final underTest = GameInvitationsBloc(
       mockPlayOnlineService,
@@ -31,6 +33,7 @@ void main() {
       null, // TODO
     );
   });
+   */
 
   group('Started', () {
     // TODO implement tests
