@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/mode.dart';
@@ -36,9 +37,15 @@ class SingleTrainingGameSnapshot
   }
   // coverage:ignore-end
 
+  // TODO docs
   @override
   SingleTrainingPlayerSnapshot currentTurn() {
-    // TODO her eand other throw not running game if status is pending/fininshed
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
     return players.first((player) => player.isCurrentTurn);
   }
 }

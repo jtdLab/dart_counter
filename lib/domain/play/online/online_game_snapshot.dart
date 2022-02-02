@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
@@ -41,16 +42,25 @@ class OnlineGameSnapshot
   }
   // coverage:ignore-end
 
+  // TODO doc
   @override
   bool hasDartBot() => false;
 
+  // TODO doc
+  @override
+  OnlinePlayerSnapshot currentTurn() {
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
+    return players.first((player) => player.isCurrentTurn);
+  }
+
+  // TODO doc
+  // TODO move to base class
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  OnlinePlayerSnapshot currentTurn() {
-    return players.first((player) => player
-        .isCurrentTurn); // TODO her eand other throw not running game if status is pending/fininshed
-  }
 }

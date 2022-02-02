@@ -55,6 +55,8 @@ class OfflineGame with _$OfflineGame implements AbstractGame {
       );
   // coverage:ignore-end
 
+  // TODO move to base class ?
+  // TODO doc
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';

@@ -9,4 +9,8 @@ class DomainError extends Error {
   String toString() {
     return 'DomainError: $msg';
   }
+
+  factory DomainError.gameNotRunning() => DomainError(
+        'Expected status of game to be running but it was not.',
+      );
 }

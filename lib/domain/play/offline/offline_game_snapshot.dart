@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
@@ -41,21 +42,27 @@ class OfflineGameSnapshot
   }
   // coverage:ignore-end
 
+  // TODO doc
   @override
   bool hasDartBot() {
-    if (players.size < 2) {
-      return false;
-    }
-
     return players.any((player) => player is DartBotSnapshot);
   }
 
+  // TODO doc
+  @override
+  AbstractOfflinePlayerSnapshot currentTurn() {
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
+    return players.first((player) => player.isCurrentTurn);
+  }
+
+  // TODO doc
+  // TODO move to base class
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  AbstractOfflinePlayerSnapshot currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
-  }
 }
