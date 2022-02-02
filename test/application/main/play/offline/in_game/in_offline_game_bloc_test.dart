@@ -1,3 +1,7 @@
+void main() {
+  // TODO impl tests
+}
+
 /**
  * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';

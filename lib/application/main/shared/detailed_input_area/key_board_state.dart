@@ -5,6 +5,7 @@ part 'key_board_state.freezed.dart';
 
 @freezed
 class KeyBoardState with _$KeyBoardState {
+  // coverage:ignore-start
   const factory KeyBoardState.initial({
     required DigitButtonState zero,
     required DigitButtonState one,
@@ -57,6 +58,7 @@ class KeyBoardState with _$KeyBoardState {
     required DigitButtonState twentyFive,
     required ButtonState erease,
   }) = KeyBoardFocused;
+  // coverage:ignore-end
 
   /// [KeyBoardInitial] with all buttons enabled.
   factory KeyBoardState.initialAllEnabled() => const KeyBoardState.initial(

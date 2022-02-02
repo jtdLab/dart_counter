@@ -1,4 +1,6 @@
-// TODO
+void main() {
+  // TODO impl tests
+}
 /**
  * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/core/application_error.dart';

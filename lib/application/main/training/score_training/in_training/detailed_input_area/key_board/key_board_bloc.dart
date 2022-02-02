@@ -142,10 +142,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         return KeyBoardState.nineteenFocused();
       case 20:
         return KeyBoardState.twentyFocused();
-      case 25:
-        return KeyBoardState.twentyFiveFocused();
       default:
-        throw Error(); // TODO name better
+        return KeyBoardState.twentyFiveFocused();
     }
   }
 }

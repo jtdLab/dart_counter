@@ -1,3 +1,7 @@
+void main() {
+  // TODO impl tests
+}
+
 // TODO
 /**
  * import 'package:bloc_test/bloc_test.dart';

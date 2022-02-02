@@ -1,3 +1,7 @@
+void main() {
+  // TODO impl tests
+}
+
 /**
  * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/button/detailed_key_board_button_cubit.dart';
