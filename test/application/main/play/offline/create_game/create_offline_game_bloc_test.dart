@@ -211,6 +211,24 @@ void main() {
     );
   });
 
+  group('GameStarted', () {
+    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
+      'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOfflineService.startGame()).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
+      build: () => CreateOfflineGameBloc(mockPlayOfflineService),
+      act: (bloc) => bloc.add(
+        const CreateOfflineGameEvent.gameStarted(),
+      ),
+      verify: (_) => verify(
+        () => mockPlayOfflineService.startGame(),
+      ).called(1),
+    );
+  });
+
   group('DartBotRemoved', () {
     blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
       'calls the correct method of the play service.',
