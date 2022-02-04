@@ -33,7 +33,7 @@ class _ChangeUsernameInitialWidget extends StatelessWidget {
           onChanged: (newUsernameString) =>
               context.read<ChangeUsernameBloc>().add(
                     ChangeUsernameEvent.newUsernameChanged(
-                      newUsername: newUsernameString,
+                      newNewUsername: newUsernameString,
                     ),
                   ),
         ),

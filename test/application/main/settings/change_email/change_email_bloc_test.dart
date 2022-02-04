@@ -21,7 +21,9 @@ void main() {
     mockUserService = MockUserService();
   });
 
-  test('initial state initialized correctly', () {
+  test(
+      'Initial state set to ChangeEmailInitial with empty email and showErrorMessages false.',
+      () {
     // Arrange & Act
     final underTest = ChangeEmailBloc(mockUserService);
 
@@ -29,7 +31,7 @@ void main() {
     expect(
       underTest.state,
       ChangeEmailState.initial(
-        email: EmailAddress.empty(),
+        newEmail: EmailAddress.empty(),
         showErrorMessages: false,
       ),
     );
@@ -37,20 +39,22 @@ void main() {
 
   group('NewEmailChanged', () {
     blocTest(
-      'emits [ChangeEmailInitial] when current state is ChangeEmailInitial ',
+      'GIVEN current state is ChangeEmailInitial '
+      'THEN emit [ChangeEmailInitial].',
       build: () => ChangeEmailBloc(mockUserService),
       act: (ChangeEmailBloc bloc) =>
           bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
       expect: () => [
         ChangeEmailInitial(
-          email: EmailAddress('abcd'),
+          newEmail: EmailAddress('abcd'),
           showErrorMessages: false,
         ),
       ],
     );
 
     blocTest(
-      'emits [ChangeEmailInitial] when current state is ChangeEmailSubmitFailure ',
+      'GIVEN current state is ChangeEmailSubmitFailure '
+      'THEN emit [ChangeEmailInitial].',
       build: () => ChangeEmailBloc(mockUserService),
       seed: () => const ChangeEmailState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
@@ -59,7 +63,7 @@ void main() {
           bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
       expect: () => [
         ChangeEmailInitial(
-          email: EmailAddress('abcd'),
+          newEmail: EmailAddress('abcd'),
           showErrorMessages: true,
         ),
       ],
@@ -68,8 +72,8 @@ void main() {
 
   group('ConfirmPressed', () {
     blocTest(
-      'emits [ChangeEmailSubmitInProgress, ChangeEmailSubmitSuccess] '
-      'when current state is ChangeEmailInitial with valid and available email ',
+      'GIVEN current state is ChangeEmailInitial with valid and available email '
+      'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitSuccess].',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
           () => mockUserService.updateEmailAddress(
@@ -80,7 +84,7 @@ void main() {
         return ChangeEmailBloc(mockUserService);
       },
       seed: () => ChangeEmailState.initial(
-        email: EmailAddress('a@b.com'),
+        newEmail: EmailAddress('a@b.com'),
         showErrorMessages: false,
       ),
       act: (ChangeEmailBloc bloc) => bloc.add(
@@ -94,8 +98,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangeEmailSubmitInProgress, ChangeEmailSubmitFailure] '
-      'when current state is ChangeEmailInitial with valid and not available email ',
+      'GIVEN current state is ChangeEmailInitial with valid and not available email '
+      'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitFailure].',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
           () => mockUserService.updateEmailAddress(
@@ -106,7 +110,7 @@ void main() {
         return ChangeEmailBloc(mockUserService);
       },
       seed: () => ChangeEmailState.initial(
-        email: EmailAddress('a@b.com'),
+        newEmail: EmailAddress('a@b.com'),
         showErrorMessages: false,
       ),
       act: (ChangeEmailBloc bloc) => bloc.add(
@@ -122,11 +126,11 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangeEmailSubmitFailure] '
-      'when current state is ChangeEmailInitial with invalid email ',
+      'GIVEN current state is ChangeEmailInitial with invalid email '
+      'THEN emit [ChangeEmailSubmitFailure].',
       build: () => ChangeEmailBloc(mockUserService),
       seed: () => ChangeEmailState.initial(
-        email: EmailAddress('abd'),
+        newEmail: EmailAddress('abd'),
         showErrorMessages: false,
       ),
       act: (ChangeEmailBloc bloc) => bloc.add(

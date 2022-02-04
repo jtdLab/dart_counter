@@ -37,8 +37,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       (_, emit) async => _handleStarted(emit),
       transformer: restartable(), // TODO test
     );
-    on<_LocaleChanged>((_, emit) => _mapLocaleChangedToState(emit));
-    on<_SignOutPressed>((_, __) async => _mapSignOutPressedToState());
+    on<_LocaleChanged>((_, emit) => _handleLocaleChanged(emit));
+    on<_SignOutPressed>((_, __) async => _handleSignOutPressed());
   }
 
   /// Handle incoming [_Started] event.
@@ -55,14 +55,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   /// Handle incoming [_LocaleChanged] event.
-  void _mapLocaleChangedToState(Emitter<SettingsState> emit) {
+  void _handleLocaleChanged(Emitter<SettingsState> emit) {
     // TODO Only work around because EasyLocalization doesn't rebuilt properly.
     emit(state.copyWith(localeChanged: true));
     emit(state.copyWith(localeChanged: false));
   }
 
   /// Handle incoming [_SignOutPressed] event.
-  Future<void> _mapSignOutPressedToState() async => _authService.signOut();
+  Future<void> _handleSignOutPressed() async => _authService.signOut();
 
   /**
   *  @override

@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,16 +18,19 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
   ChangeEmailBloc(
     this._userService,
   ) : super(
+          // Set initial state
           ChangeEmailState.initial(
-            email: EmailAddress.empty(),
+            newEmail: EmailAddress.empty(),
             showErrorMessages: false,
           ),
         ) {
-    on<_NewEmailChanged>(_mapEmailChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_NewEmailChanged>(_handleEmailChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapEmailChangedToState(
+  /// Handle incoming [_NewEmailChanged] event.
+  void _handleEmailChanged(
     _NewEmailChanged event,
     Emitter<ChangeEmailState> emit,
   ) {
@@ -36,12 +38,12 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
 
     state.mapOrNull(
       initial: (initial) {
-        emit(initial.copyWith(email: EmailAddress(email)));
+        emit(initial.copyWith(newEmail: EmailAddress(email)));
       },
       submitFailure: (_) {
         emit(
           ChangeEmailState.initial(
-            email: EmailAddress(email),
+            newEmail: EmailAddress(email),
             showErrorMessages: true,
           ),
         );
@@ -49,14 +51,15 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ChangeEmailState> emit,
   ) async {
     await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
-        final email = initial.email;
+        final email = initial.newEmail;
 
         if (email.isValid()) {
           emit(const ChangeEmailState.submitInProgress());

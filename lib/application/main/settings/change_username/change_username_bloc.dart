@@ -20,29 +20,32 @@ class ChangeUsernameBloc
   ChangeUsernameBloc(
     this._userService,
   ) : super(
+          // Set initial state
           ChangeUsernameState.initial(
-            username: Username.empty(),
+            newUsername: Username.empty(),
             showErrorMessages: false,
           ),
         ) {
-    on<_UsernameChanged>(_mapUsernameChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_NewUsernameChanged>(_handleUsernameChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapUsernameChangedToState(
-    _UsernameChanged event,
+  /// Handle incoming [_NewUsernameChanged] event.
+  void _handleUsernameChanged(
+    _NewUsernameChanged event,
     Emitter<ChangeUsernameState> emit,
   ) {
-    final username = event.newUsername;
+    final username = event.newNewUsername;
 
     state.mapOrNull(
       initial: (initial) {
-        emit(initial.copyWith(username: Username(username)));
+        emit(initial.copyWith(newUsername: Username(username)));
       },
       submitFailure: (_) {
         emit(
           ChangeUsernameState.initial(
-            username: Username(username),
+            newUsername: Username(username),
             showErrorMessages: true,
           ),
         );
@@ -50,14 +53,15 @@ class ChangeUsernameBloc
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ChangeUsernameState> emit,
   ) async {
     await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
-        final username = initial.username;
+        final username = initial.newUsername;
 
         if (username.isValid()) {
           emit(const ChangeUsernameState.submitInProgress());

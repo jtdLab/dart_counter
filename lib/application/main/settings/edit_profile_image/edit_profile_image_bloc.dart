@@ -2,34 +2,37 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart'; // TODO should this be in infra layer ???
 import 'package:injectable/injectable.dart';
 
 part 'edit_profile_image_bloc.freezed.dart';
 part 'edit_profile_image_event.dart';
-part 'edit_profile_image_state.dart';
 
 @injectable
-class EditProfileImageBloc
-    extends Bloc<EditProfileImageEvent, EditProfileImageState> {
+class EditProfileImageBloc extends Bloc<EditProfileImageEvent, void> {
   final IUserService _userService;
 
   EditProfileImageBloc(
     this._userService,
-  ) : super(const EditProfileImageState.initial()) {
-    on<_DeletePressed>((_, __) => _mapDeletePressedToState());
-    on<_TakePressed>((_, __) => _mapTakePressedToState());
-    on<_ChoosePressed>((_, __) => _mapChoosePressedToState());
+  ) : super(
+          // Set initial state
+          null,
+        ) {
+    // Register event handlers
+    on<_DeletePressed>((_, __) => _handleDeletePressed());
+    on<_TakePressed>((_, __) => _handleTakePressed());
+    on<_ChoosePressed>((_, __) => _handleChoosePressed());
   }
 
-  void _mapDeletePressedToState() {
+  /// Handle incoming [_DeletePressed] event.
+  void _handleDeletePressed() {
     // TODO await result ???
     _userService.deleteProfilePhoto();
   }
 
-  Future<void> _mapTakePressedToState() async {
+  /// Handle incoming [_TakePressed] event.
+  Future<void> _handleTakePressed() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile == null) {
@@ -41,7 +44,8 @@ class EditProfileImageBloc
     );
   }
 
-  Future<void> _mapChoosePressedToState() async {
+  /// Handle incoming [_ChoosePressed] event.
+  Future<void> _handleChoosePressed() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile == null) {

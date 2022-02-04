@@ -21,6 +21,7 @@ class ChangePasswordBloc
   ChangePasswordBloc(
     this._authService,
   ) : super(
+          // Set initial state
           ChangePasswordState.initial(
             oldPassword: Password.empty(),
             newPassword: Password.empty(),
@@ -28,13 +29,15 @@ class ChangePasswordBloc
             showErrorMessages: false,
           ),
         ) {
-    on<_OldPasswordChanged>(_mapOldPasswordChangedToState);
-    on<_NewPasswordChanged>(_mapNewPasswordChangedToState);
-    on<_NewPasswordAgainChanged>(_mapNewPasswordAgainChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_OldPasswordChanged>(_handleOldPasswordChanged);
+    on<_NewPasswordChanged>(_handleNewPasswordChanged);
+    on<_NewPasswordAgainChanged>(_handleNewPasswordAgainChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapOldPasswordChangedToState(
+  /// Handle incoming [_OldPasswordChanged] event.
+  void _handleOldPasswordChanged(
     _OldPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
@@ -61,7 +64,8 @@ class ChangePasswordBloc
     );
   }
 
-  void _mapNewPasswordChangedToState(
+  /// Handle incoming [_NewPasswordChanged] event.
+  void _handleNewPasswordChanged(
     _NewPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
@@ -84,7 +88,8 @@ class ChangePasswordBloc
     );
   }
 
-  void _mapNewPasswordAgainChangedToState(
+  /// Handle incoming [_NewPasswordAgainChanged] event.
+  void _handleNewPasswordAgainChanged(
     _NewPasswordAgainChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
@@ -107,7 +112,8 @@ class ChangePasswordBloc
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ChangePasswordState> emit,
   ) async {

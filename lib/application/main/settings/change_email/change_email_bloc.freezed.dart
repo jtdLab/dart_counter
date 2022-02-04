@@ -336,9 +336,9 @@ class _$ChangeEmailStateTearOff {
   const _$ChangeEmailStateTearOff();
 
   ChangeEmailInitial initial(
-      {required EmailAddress email, required bool showErrorMessages}) {
+      {required EmailAddress newEmail, required bool showErrorMessages}) {
     return ChangeEmailInitial(
-      email: email,
+      newEmail: newEmail,
       showErrorMessages: showErrorMessages,
     );
   }
@@ -365,7 +365,7 @@ const $ChangeEmailState = _$ChangeEmailStateTearOff();
 mixin _$ChangeEmailState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool showErrorMessages)
+    required TResult Function(EmailAddress newEmail, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -374,7 +374,7 @@ mixin _$ChangeEmailState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -382,7 +382,7 @@ mixin _$ChangeEmailState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -439,7 +439,7 @@ abstract class $ChangeEmailInitialCopyWith<$Res> {
   factory $ChangeEmailInitialCopyWith(
           ChangeEmailInitial value, $Res Function(ChangeEmailInitial) then) =
       _$ChangeEmailInitialCopyWithImpl<$Res>;
-  $Res call({EmailAddress email, bool showErrorMessages});
+  $Res call({EmailAddress newEmail, bool showErrorMessages});
 }
 
 /// @nodoc
@@ -455,13 +455,13 @@ class _$ChangeEmailInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? newEmail = freezed,
     Object? showErrorMessages = freezed,
   }) {
     return _then(ChangeEmailInitial(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      newEmail: newEmail == freezed
+          ? _value.newEmail
+          : newEmail // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
@@ -475,16 +475,16 @@ class _$ChangeEmailInitialCopyWithImpl<$Res>
 
 class _$ChangeEmailInitial implements ChangeEmailInitial {
   const _$ChangeEmailInitial(
-      {required this.email, required this.showErrorMessages});
+      {required this.newEmail, required this.showErrorMessages});
 
   @override
-  final EmailAddress email;
+  final EmailAddress newEmail;
   @override
   final bool showErrorMessages;
 
   @override
   String toString() {
-    return 'ChangeEmailState.initial(email: $email, showErrorMessages: $showErrorMessages)';
+    return 'ChangeEmailState.initial(newEmail: $newEmail, showErrorMessages: $showErrorMessages)';
   }
 
   @override
@@ -492,7 +492,7 @@ class _$ChangeEmailInitial implements ChangeEmailInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeEmailInitial &&
-            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.newEmail, newEmail) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages));
   }
@@ -500,7 +500,7 @@ class _$ChangeEmailInitial implements ChangeEmailInitial {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(newEmail),
       const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
@@ -511,37 +511,37 @@ class _$ChangeEmailInitial implements ChangeEmailInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool showErrorMessages)
+    required TResult Function(EmailAddress newEmail, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
     required TResult Function(UserFailure userFailure) submitFailure,
   }) {
-    return initial(email, showErrorMessages);
+    return initial(newEmail, showErrorMessages);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
   }) {
-    return initial?.call(email, showErrorMessages);
+    return initial?.call(newEmail, showErrorMessages);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(email, showErrorMessages);
+      return initial(newEmail, showErrorMessages);
     }
     return orElse();
   }
@@ -587,10 +587,10 @@ class _$ChangeEmailInitial implements ChangeEmailInitial {
 
 abstract class ChangeEmailInitial implements ChangeEmailState {
   const factory ChangeEmailInitial(
-      {required EmailAddress email,
+      {required EmailAddress newEmail,
       required bool showErrorMessages}) = _$ChangeEmailInitial;
 
-  EmailAddress get email;
+  EmailAddress get newEmail;
   bool get showErrorMessages;
   @JsonKey(ignore: true)
   $ChangeEmailInitialCopyWith<ChangeEmailInitial> get copyWith =>
@@ -641,7 +641,7 @@ class _$ChangeEmailSubmitInProgress implements ChangeEmailSubmitInProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool showErrorMessages)
+    required TResult Function(EmailAddress newEmail, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -653,7 +653,7 @@ class _$ChangeEmailSubmitInProgress implements ChangeEmailSubmitInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -664,7 +664,7 @@ class _$ChangeEmailSubmitInProgress implements ChangeEmailSubmitInProgress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -761,7 +761,7 @@ class _$ChangeEmailSubmitSuccess implements ChangeEmailSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool showErrorMessages)
+    required TResult Function(EmailAddress newEmail, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -773,7 +773,7 @@ class _$ChangeEmailSubmitSuccess implements ChangeEmailSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -784,7 +784,7 @@ class _$ChangeEmailSubmitSuccess implements ChangeEmailSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -916,7 +916,7 @@ class _$ChangeEmailSubmitFailure implements ChangeEmailSubmitFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmailAddress email, bool showErrorMessages)
+    required TResult Function(EmailAddress newEmail, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -928,7 +928,7 @@ class _$ChangeEmailSubmitFailure implements ChangeEmailSubmitFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -939,7 +939,7 @@ class _$ChangeEmailSubmitFailure implements ChangeEmailSubmitFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailAddress email, bool showErrorMessages)? initial,
+    TResult Function(EmailAddress newEmail, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,

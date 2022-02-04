@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ChangeUsernameEventTearOff {
   const _$ChangeUsernameEventTearOff();
 
-  _UsernameChanged newUsernameChanged({required String newUsername}) {
-    return _UsernameChanged(
-      newUsername: newUsername,
+  _NewUsernameChanged newUsernameChanged({required String newNewUsername}) {
+    return _NewUsernameChanged(
+      newNewUsername: newNewUsername,
     );
   }
 
@@ -35,38 +35,38 @@ const $ChangeUsernameEvent = _$ChangeUsernameEventTearOff();
 mixin _$ChangeUsernameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newUsername) newUsernameChanged,
+    required TResult Function(String newNewUsername) newUsernameChanged,
     required TResult Function() confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_NewUsernameChanged value) newUsernameChanged,
     required TResult Function(_ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
@@ -91,32 +91,32 @@ class _$ChangeUsernameEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$UsernameChangedCopyWith<$Res> {
-  factory _$UsernameChangedCopyWith(
-          _UsernameChanged value, $Res Function(_UsernameChanged) then) =
-      __$UsernameChangedCopyWithImpl<$Res>;
-  $Res call({String newUsername});
+abstract class _$NewUsernameChangedCopyWith<$Res> {
+  factory _$NewUsernameChangedCopyWith(
+          _NewUsernameChanged value, $Res Function(_NewUsernameChanged) then) =
+      __$NewUsernameChangedCopyWithImpl<$Res>;
+  $Res call({String newNewUsername});
 }
 
 /// @nodoc
-class __$UsernameChangedCopyWithImpl<$Res>
+class __$NewUsernameChangedCopyWithImpl<$Res>
     extends _$ChangeUsernameEventCopyWithImpl<$Res>
-    implements _$UsernameChangedCopyWith<$Res> {
-  __$UsernameChangedCopyWithImpl(
-      _UsernameChanged _value, $Res Function(_UsernameChanged) _then)
-      : super(_value, (v) => _then(v as _UsernameChanged));
+    implements _$NewUsernameChangedCopyWith<$Res> {
+  __$NewUsernameChangedCopyWithImpl(
+      _NewUsernameChanged _value, $Res Function(_NewUsernameChanged) _then)
+      : super(_value, (v) => _then(v as _NewUsernameChanged));
 
   @override
-  _UsernameChanged get _value => super._value as _UsernameChanged;
+  _NewUsernameChanged get _value => super._value as _NewUsernameChanged;
 
   @override
   $Res call({
-    Object? newUsername = freezed,
+    Object? newNewUsername = freezed,
   }) {
-    return _then(_UsernameChanged(
-      newUsername: newUsername == freezed
-          ? _value.newUsername
-          : newUsername // ignore: cast_nullable_to_non_nullable
+    return _then(_NewUsernameChanged(
+      newNewUsername: newNewUsername == freezed
+          ? _value.newNewUsername
+          : newNewUsername // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -124,62 +124,62 @@ class __$UsernameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UsernameChanged implements _UsernameChanged {
-  const _$_UsernameChanged({required this.newUsername});
+class _$_NewUsernameChanged implements _NewUsernameChanged {
+  const _$_NewUsernameChanged({required this.newNewUsername});
 
   @override
-  final String newUsername;
+  final String newNewUsername;
 
   @override
   String toString() {
-    return 'ChangeUsernameEvent.newUsernameChanged(newUsername: $newUsername)';
+    return 'ChangeUsernameEvent.newUsernameChanged(newNewUsername: $newNewUsername)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UsernameChanged &&
+            other is _NewUsernameChanged &&
             const DeepCollectionEquality()
-                .equals(other.newUsername, newUsername));
+                .equals(other.newNewUsername, newNewUsername));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(newUsername));
+      runtimeType, const DeepCollectionEquality().hash(newNewUsername));
 
   @JsonKey(ignore: true)
   @override
-  _$UsernameChangedCopyWith<_UsernameChanged> get copyWith =>
-      __$UsernameChangedCopyWithImpl<_UsernameChanged>(this, _$identity);
+  _$NewUsernameChangedCopyWith<_NewUsernameChanged> get copyWith =>
+      __$NewUsernameChangedCopyWithImpl<_NewUsernameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newUsername) newUsernameChanged,
+    required TResult Function(String newNewUsername) newUsernameChanged,
     required TResult Function() confirmPressed,
   }) {
-    return newUsernameChanged(newUsername);
+    return newUsernameChanged(newNewUsername);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
   }) {
-    return newUsernameChanged?.call(newUsername);
+    return newUsernameChanged?.call(newNewUsername);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
     if (newUsernameChanged != null) {
-      return newUsernameChanged(newUsername);
+      return newUsernameChanged(newNewUsername);
     }
     return orElse();
   }
@@ -187,7 +187,7 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_NewUsernameChanged value) newUsernameChanged,
     required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return newUsernameChanged(this);
@@ -196,7 +196,7 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return newUsernameChanged?.call(this);
@@ -205,7 +205,7 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
@@ -216,13 +216,13 @@ class _$_UsernameChanged implements _UsernameChanged {
   }
 }
 
-abstract class _UsernameChanged implements ChangeUsernameEvent {
-  const factory _UsernameChanged({required String newUsername}) =
-      _$_UsernameChanged;
+abstract class _NewUsernameChanged implements ChangeUsernameEvent {
+  const factory _NewUsernameChanged({required String newNewUsername}) =
+      _$_NewUsernameChanged;
 
-  String get newUsername;
+  String get newNewUsername;
   @JsonKey(ignore: true)
-  _$UsernameChangedCopyWith<_UsernameChanged> get copyWith =>
+  _$NewUsernameChangedCopyWith<_NewUsernameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -267,7 +267,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newUsername) newUsernameChanged,
+    required TResult Function(String newNewUsername) newUsernameChanged,
     required TResult Function() confirmPressed,
   }) {
     return confirmPressed();
@@ -276,7 +276,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
   }) {
     return confirmPressed?.call();
@@ -285,7 +285,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newUsername)? newUsernameChanged,
+    TResult Function(String newNewUsername)? newUsernameChanged,
     TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
@@ -298,7 +298,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UsernameChanged value) newUsernameChanged,
+    required TResult Function(_NewUsernameChanged value) newUsernameChanged,
     required TResult Function(_ConfirmPressed value) confirmPressed,
   }) {
     return confirmPressed(this);
@@ -307,7 +307,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
   }) {
     return confirmPressed?.call(this);
@@ -316,7 +316,7 @@ class _$_ConfirmPressed implements _ConfirmPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UsernameChanged value)? newUsernameChanged,
+    TResult Function(_NewUsernameChanged value)? newUsernameChanged,
     TResult Function(_ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
@@ -336,9 +336,9 @@ class _$ChangeUsernameStateTearOff {
   const _$ChangeUsernameStateTearOff();
 
   ChangeUsernameInitial initial(
-      {required Username username, required bool showErrorMessages}) {
+      {required Username newUsername, required bool showErrorMessages}) {
     return ChangeUsernameInitial(
-      username: username,
+      newUsername: newUsername,
       showErrorMessages: showErrorMessages,
     );
   }
@@ -366,7 +366,7 @@ const $ChangeUsernameState = _$ChangeUsernameStateTearOff();
 mixin _$ChangeUsernameState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Username username, bool showErrorMessages)
+    required TResult Function(Username newUsername, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -375,7 +375,7 @@ mixin _$ChangeUsernameState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -383,7 +383,7 @@ mixin _$ChangeUsernameState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -440,7 +440,7 @@ abstract class $ChangeUsernameInitialCopyWith<$Res> {
   factory $ChangeUsernameInitialCopyWith(ChangeUsernameInitial value,
           $Res Function(ChangeUsernameInitial) then) =
       _$ChangeUsernameInitialCopyWithImpl<$Res>;
-  $Res call({Username username, bool showErrorMessages});
+  $Res call({Username newUsername, bool showErrorMessages});
 }
 
 /// @nodoc
@@ -456,13 +456,13 @@ class _$ChangeUsernameInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? username = freezed,
+    Object? newUsername = freezed,
     Object? showErrorMessages = freezed,
   }) {
     return _then(ChangeUsernameInitial(
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      newUsername: newUsername == freezed
+          ? _value.newUsername
+          : newUsername // ignore: cast_nullable_to_non_nullable
               as Username,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
@@ -476,16 +476,16 @@ class _$ChangeUsernameInitialCopyWithImpl<$Res>
 
 class _$ChangeUsernameInitial implements ChangeUsernameInitial {
   const _$ChangeUsernameInitial(
-      {required this.username, required this.showErrorMessages});
+      {required this.newUsername, required this.showErrorMessages});
 
   @override
-  final Username username;
+  final Username newUsername;
   @override
   final bool showErrorMessages;
 
   @override
   String toString() {
-    return 'ChangeUsernameState.initial(username: $username, showErrorMessages: $showErrorMessages)';
+    return 'ChangeUsernameState.initial(newUsername: $newUsername, showErrorMessages: $showErrorMessages)';
   }
 
   @override
@@ -493,7 +493,8 @@ class _$ChangeUsernameInitial implements ChangeUsernameInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ChangeUsernameInitial &&
-            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality()
+                .equals(other.newUsername, newUsername) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages));
   }
@@ -501,7 +502,7 @@ class _$ChangeUsernameInitial implements ChangeUsernameInitial {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(newUsername),
       const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
@@ -513,37 +514,37 @@ class _$ChangeUsernameInitial implements ChangeUsernameInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Username username, bool showErrorMessages)
+    required TResult Function(Username newUsername, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
     required TResult Function(UserFailure userFailure) submitFailure,
   }) {
-    return initial(username, showErrorMessages);
+    return initial(newUsername, showErrorMessages);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
   }) {
-    return initial?.call(username, showErrorMessages);
+    return initial?.call(newUsername, showErrorMessages);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(username, showErrorMessages);
+      return initial(newUsername, showErrorMessages);
     }
     return orElse();
   }
@@ -589,10 +590,10 @@ class _$ChangeUsernameInitial implements ChangeUsernameInitial {
 
 abstract class ChangeUsernameInitial implements ChangeUsernameState {
   const factory ChangeUsernameInitial(
-      {required Username username,
+      {required Username newUsername,
       required bool showErrorMessages}) = _$ChangeUsernameInitial;
 
-  Username get username;
+  Username get newUsername;
   bool get showErrorMessages;
   @JsonKey(ignore: true)
   $ChangeUsernameInitialCopyWith<ChangeUsernameInitial> get copyWith =>
@@ -645,7 +646,7 @@ class _$ChangeUsernameSubmitInProgress
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Username username, bool showErrorMessages)
+    required TResult Function(Username newUsername, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -657,7 +658,7 @@ class _$ChangeUsernameSubmitInProgress
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -668,7 +669,7 @@ class _$ChangeUsernameSubmitInProgress
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -768,7 +769,7 @@ class _$ChangeUsernameSubmitSuccess implements ChangeUsernameSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Username username, bool showErrorMessages)
+    required TResult Function(Username newUsername, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -780,7 +781,7 @@ class _$ChangeUsernameSubmitSuccess implements ChangeUsernameSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -791,7 +792,7 @@ class _$ChangeUsernameSubmitSuccess implements ChangeUsernameSubmitSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -924,7 +925,7 @@ class _$ChangeUsernameSubmitFailure implements ChangeUsernameSubmitFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Username username, bool showErrorMessages)
+    required TResult Function(Username newUsername, bool showErrorMessages)
         initial,
     required TResult Function() submitInProgress,
     required TResult Function() submitSuccess,
@@ -936,7 +937,7 @@ class _$ChangeUsernameSubmitFailure implements ChangeUsernameSubmitFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
@@ -947,7 +948,7 @@ class _$ChangeUsernameSubmitFailure implements ChangeUsernameSubmitFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, bool showErrorMessages)? initial,
+    TResult Function(Username newUsername, bool showErrorMessages)? initial,
     TResult Function()? submitInProgress,
     TResult Function()? submitSuccess,
     TResult Function(UserFailure userFailure)? submitFailure,
