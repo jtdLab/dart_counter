@@ -38,13 +38,12 @@ class GameInvitationsBloc
                 _gameInvitationService.getSentGameInvitations().getOrElse(
                       () => throw ApplicationError.unexpectedMissingData(),
                     ),
-            loading: false,
           ),
         ) {
     // Register event handlers
     on<_Started>(
       (_, emit) async => _handleStarted(emit),
-      transformer: restartable(),
+      transformer: restartable(), // TODO test
     );
     on<_InvitationAccepted>(
       (event, emit) async => _handleInvitationAccepted(event, emit),
@@ -71,11 +70,16 @@ class GameInvitationsBloc
             Either<GameInvitationFailure, KtList<GameInvitation>>
                 failureOrReceivedGameInvitations,
           ) =>
-              state.copyWith(
-            receivedGameInvitations: failureOrReceivedGameInvitations.getOrElse(
-              () => throw ApplicationError
-                  .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+              state.map(
+            initial: (initial) => initial.copyWith(
+              receivedGameInvitations:
+                  failureOrReceivedGameInvitations.getOrElse(
+                () => throw ApplicationError
+                    .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+              ),
             ),
+            loadInProgress: (loadInProgress) => throw Error(),
+            failure: (failure) => throw Error(),
           ),
         ),
         emit.forEach(
@@ -84,17 +88,26 @@ class GameInvitationsBloc
             Either<GameInvitationFailure, KtList<GameInvitation>>
                 failureOrSentGameInvitations,
           ) =>
-              state.copyWith(
-            sentGameInvitations: failureOrSentGameInvitations.getOrElse(
-              () => throw ApplicationError
-                  .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+              state.map(
+            initial: (initial) => initial.copyWith(
+              sentGameInvitations: failureOrSentGameInvitations.getOrElse(
+                () => throw ApplicationError
+                    .unexpectedMissingData(), // TODO no dev error its a failure so handle it
+              ),
             ),
+            loadInProgress: (loadInProgress) => throw Error(),
+            failure: (failure) => throw Error(),
           ),
         ),
         emit.forEach(
           _playOnlineService.watchGame(),
-          onData: (OnlineGameSnapshot gameSnapshot) =>
-              state.copyWith(gameSnapshot: gameSnapshot),
+          onData: (OnlineGameSnapshot gameSnapshot) => state.map(
+            initial: (initial) => initial.copyWith(
+              gameSnapshot: gameSnapshot,
+            ),
+            loadInProgress: (loadInProgress) => throw Error(),
+            failure: (failure) => throw Error(),
+          ),
         ),
       ],
       eagerError: true,
@@ -108,15 +121,14 @@ class GameInvitationsBloc
   ) async {
     final gameId = event.gameInvitation.gameId;
 
-    emit(state.copyWith(loading: true));
+    emit(const GameInvitationsState.loadInProgress());
     await Future.delayed(const Duration(milliseconds: 500));
     final failureOrUnit = await _playOnlineService.joinGame(gameId: gameId);
 
     failureOrUnit.fold(
-      (failure) => emit(state.copyWith(loading: false, failure: failure)),
+      (failure) => emit(GameInvitationsState.failure(failure: failure)),
       (_) async {
         // TODO await response ???
-        await _playOnlineService.joinGame(gameId: gameId);
         await _gameInvitationService.accept(invitation: event.gameInvitation);
       },
     );

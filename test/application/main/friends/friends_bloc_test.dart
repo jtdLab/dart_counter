@@ -40,7 +40,7 @@ void main() {
   test(
       'GIVEN data from friendService is available '
       'THEN initial state set to FriendsInitial.', () {
-    // Arrange & Act
+    // Act
     final underTest = FriendsBloc(
       mockFriendService,
     );

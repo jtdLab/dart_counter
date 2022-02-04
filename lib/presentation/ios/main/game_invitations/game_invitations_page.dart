@@ -22,24 +22,29 @@ class GameInvitationsPage extends StatelessWidget {
       create: (context) => getIt<GameInvitationsBloc>()
         ..add(const GameInvitationsEvent.started()),
       child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
+        listenWhen: (oldState, newState) => newState is GameInvitationsInitial,
         listener: (context, state) {
-          if (state.gameSnapshot != null) {
-            context.router.replaceAll([const PlayOnlineFlowRoute()]);
-          }
+          state.mapOrNull(
+            initial: (initial) {
+              if (initial.gameSnapshot != null) {
+                context.router.replaceAll([const PlayOnlineFlowRoute()]);
+              }
+            },
+          );
         },
         builder: (context, state) {
-          if (state.loading) {
-            return const AppPage(child: LoadingWidget());
-          }
-
-          return AppPage(
-            navigationBar: AppNavigationBar(
-              leading: const BackButton(),
-              middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
+          return state.map(
+            initial: (_) => AppPage(
+              navigationBar: AppNavigationBar(
+                leading: const BackButton(),
+                middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
+              ),
+              child: const SingleChildScrollView(
+                child: _GameInvitationsWidget(),
+              ),
             ),
-            child: const SingleChildScrollView(
-              child: _GameInvitationsWidget(),
-            ),
+            loadInProgress: (_) => const AppPage(child: LoadingWidget()),
+            failure: (failure) => const Text('FAILURE '), // TODO
           );
         },
       ),

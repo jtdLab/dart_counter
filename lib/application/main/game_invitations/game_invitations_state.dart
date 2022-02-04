@@ -8,7 +8,10 @@ class GameInvitationsState with _$GameInvitationsState {
     required KtList<GameInvitation> receivedGameInvitations,
     required KtList<GameInvitation> sentGameInvitations,
     AbstractGameSnapshot? gameSnapshot,
-    required bool loading,
-    PlayFailure? failure,
   }) = GameInvitationsInitial;
+  const factory GameInvitationsState.loadInProgress() =
+      GameInvitationsLoadInProgress;
+  const factory GameInvitationsState.failure({
+    required PlayFailure failure,
+  }) = GameInvitationsFailure;
 }
