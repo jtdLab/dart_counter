@@ -26,7 +26,7 @@ class CreateOnlineGameBloc
     on<_TypeUpdated>(_mapTypeUpdatedToState);
     on<_GameStarted>((_, __) => _mapGameStartedToState());
   }
-
+  
   void _mapGameCanceledToState() {
     _playOnlineService.cancelGame();
   }

@@ -151,4 +151,22 @@ void main() {
       ).called(1),
     );
   });
+
+  group('TypeUpdated', () {
+    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
+      'calls the correct method of the play service.',
+      setUp: () {
+        when(() => mockPlayOnlineService.startGame()).thenAnswer(
+          (_) async => right(unit),
+        );
+      },
+      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+      act: (bloc) => bloc.add(
+        const CreateOnlineGameEvent.gameStarted(),
+      ),
+      verify: (_) => verify(
+        () => mockPlayOnlineService.startGame(),
+      ).called(1),
+    );
+  });
 }
