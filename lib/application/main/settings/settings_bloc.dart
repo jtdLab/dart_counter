@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
@@ -23,22 +24,25 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     this._authService,
     this._userService,
   ) : super(
+          // Set initial state
           SettingsState.initial(
-            user: _userService
-                .getUser()
-                .getOrElse(() => throw Error()), // TODO better error
+            user: _userService.getUser().getOrElse(
+                  () => throw ApplicationError.unexpectedMissingUser(),
+                ),
             localeChanged: false,
           ),
         ) {
+    // Register event handlers
     on<_Started>(
-      (_, emit) async => _mapWatchDataStartedToState(emit),
-      transformer: restartable(),
+      (_, emit) async => _handleStarted(emit),
+      transformer: restartable(), // TODO test
     );
     on<_LocaleChanged>((_, emit) => _mapLocaleChangedToState(emit));
     on<_SignOutPressed>((_, __) async => _mapSignOutPressedToState());
   }
 
-  Future<void> _mapWatchDataStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     Emitter<SettingsState> emit,
   ) async {
     await emit.forEach(
@@ -50,12 +54,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
   }
 
+  /// Handle incoming [_LocaleChanged] event.
   void _mapLocaleChangedToState(Emitter<SettingsState> emit) {
     // TODO Only work around because EasyLocalization doesn't rebuilt properly.
     emit(state.copyWith(localeChanged: true));
     emit(state.copyWith(localeChanged: false));
   }
 
+  /// Handle incoming [_SignOutPressed] event.
   Future<void> _mapSignOutPressedToState() async => _authService.signOut();
 
   /**
