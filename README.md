@@ -233,3 +233,11 @@ verify: (\_) => verify(() => trainingService.cancel()).called(1),
 );
 
 // TODO setup of all tests
+
+
+ _singleTrainingService.createGame(
+            // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
+            owner: _userService.getUser().getOrElse(
+                  () => throw ApplicationError.unexpectedMissingUser(),
+                ),
+          ),

@@ -8,6 +8,7 @@ part 'create_online_game_cubit.freezed.dart';
 part 'create_online_game_state.dart';
 
 // TODO understand and maybe replace if better option is available
+  // TODO convert to bloc
 
 @injectable
 class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
@@ -15,7 +16,10 @@ class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
 
   CreateOnlineGameCubit(
     this._playOnlineService,
-  ) : super(const CreateOnlineGameState.initial());
+  ) : super(
+          // Set initial state
+          const CreateOnlineGameState.initial(),
+        );
 
   Future<void> createGame() async {
     final failureOrGameSnapshot = await _playOnlineService.createGame();

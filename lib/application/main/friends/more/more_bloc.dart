@@ -17,11 +17,16 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> {
   MoreBloc(
     this._friendService,
     this._friendsBloc,
-  ) : super(const MoreState.initial()) {
-    on<_RemovePressed>((_, __) async => _mapRemovePressedToState());
+  ) : super(
+          // Set inital state
+          const MoreState.initial(),
+        ) {
+    // Register event handlers
+    on<_RemovePressed>((_, __) async => _handleRemovePressed());
   }
 
-  Future<void> _mapRemovePressedToState() async {
+  /// Handle incoming [_RemovePressed] event.
+  Future<void> _handleRemovePressed() async {
     final friendToRemove = _friendsBloc.state.selectedFriend;
     if (friendToRemove != null) {
       await _friendService.removeFriend(friend: friendToRemove);

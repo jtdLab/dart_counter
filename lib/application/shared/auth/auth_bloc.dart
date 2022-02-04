@@ -8,6 +8,7 @@ part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+// TODO doc
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthService _authService;
@@ -15,17 +16,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(
     this._authService,
   ) : super(
+          // Set inital state
           _authService.isAuthenticated()
               ? const AuthState.authenticated()
               : const AuthState.unauthenticated(),
         ) {
+    // Register event handlers
     on<_Started>(
-      (event, emit) async => _mapAuthStartedToState(event, emit),
+      (event, emit) async => _handleStarted(event, emit),
       transformer: restartable(),
     );
   }
 
-  Future<void> _mapAuthStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     _Started event,
     Emitter<AuthState> emit,
   ) async {

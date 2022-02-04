@@ -28,6 +28,7 @@ class GameInvitationsBloc
     this._playOnlineService,
     this._gameInvitationService,
   ) : super(
+          // Set inital state
           GameInvitationsState.initial(
             receivedGameInvitations:
                 _gameInvitationService.getReceivedGameInvitations().getOrElse(
@@ -40,19 +41,21 @@ class GameInvitationsBloc
             loading: false,
           ),
         ) {
+    // Register event handlers
     on<_Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
     on<_InvitationAccepted>(
-      (event, emit) async => _mapInvitationAcceptedToState(event, emit),
+      (event, emit) async => _handleInvitationAccepted(event, emit),
     );
     on<_InvitationDeclined>(
-      (event, _) => _mapInvitationDeclinedToState(event),
+      (event, _) => _handleInvitationDeclined(event),
     );
   }
 
-  Future<void> _mapStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     Emitter<GameInvitationsState> emit,
   ) async {
     // TODO is this the correct location ?
@@ -98,7 +101,8 @@ class GameInvitationsBloc
     );
   }
 
-  Future<void> _mapInvitationAcceptedToState(
+  /// Handle incoming [_InvitationAccepted] event.
+  Future<void> _handleInvitationAccepted(
     _InvitationAccepted event,
     Emitter<GameInvitationsState> emit,
   ) async {
@@ -118,7 +122,8 @@ class GameInvitationsBloc
     );
   }
 
-  void _mapInvitationDeclinedToState(
+  /// Handle incoming [_InvitationDeclined] event.
+  void _handleInvitationDeclined(
     _InvitationDeclined event,
   ) {
     // TODO await result ???

@@ -18,19 +18,24 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
 
   SearchUserBloc(
     this._friendService,
-  ) : super(const SearchUserState.initial()) {
+  ) : super(
+          // Set inital state
+          const SearchUserState.initial(),
+        ) {
+    // Register event handlers
     on<_SearchStringChanged>(
-      (event, emit) async => _mapSearchStringChangedToState(event, emit),
+      (event, emit) async => _handleSearchStringChanged(event, emit),
       transformer: (events, mapper) => events
           .throttleTime(
             const Duration(milliseconds: 300),
           )
           .flatMap(mapper),
     );
-    on<_ClearPressed>((_, emit) => _mapClearPressedToState(emit));
+    on<_ClearPressed>((_, emit) => _handleClearPressed(emit));
   }
 
-  Future<void> _mapSearchStringChangedToState(
+  /// Handle incoming [_SearchStringChanged] event.
+  Future<void> _handleSearchStringChanged(
     _SearchStringChanged event,
     Emitter<SearchUserState> emit,
   ) async {
@@ -50,7 +55,8 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
     );
   }
 
-  void _mapClearPressedToState(
+  /// Handle incoming [_ClearPressed] event.
+  void _handleClearPressed(
     Emitter<SearchUserState> emit,
   ) =>
       emit(const SearchUserState.initial());

@@ -33,14 +33,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this._userService,
     this._gameInvitationService,
     this._friendService,
-  ) : super(const HomeState.loadInProgress()) {
+  ) : super(
+          // Set initial state
+          const HomeState.loadInProgress(),
+        ) {
+    // Register event handlers
     on<_Started>(
-      (_, emit) async => _mapWatchDataStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
   }
 
-  Future<void> _mapWatchDataStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     Emitter<HomeState> emit,
   ) async {
     emit(const HomeState.loadInProgress());

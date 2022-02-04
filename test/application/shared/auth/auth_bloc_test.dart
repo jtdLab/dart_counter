@@ -56,7 +56,8 @@ void main() {
   });
 
   blocTest(
-    'Emit [Authenticated, Unauthenticated] on auth state change.',
+    'GIVEN authenticated and then not authenticated '
+    'THEN emit [Authenticated, Unauthenticated] on auth state change.',
     build: () {
       when(
         () => mockAuthService.isAuthenticated(),

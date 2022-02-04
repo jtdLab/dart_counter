@@ -22,23 +22,28 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   GameHistoryBloc(
     this._userService,
     this._gameHistoryService,
-  ) : super(const GameHistoryState.loadInProgress()) {
+  ) : super(
+          // Set initial state
+          const GameHistoryState.loadInProgress(),
+        ) {
+    // Register event handlers
     on<_FetchGameHistoryAllRequested>(
-      (_, emit) async => _mapFetchGameHistoryAllRequestedToState(emit),
+      (_, emit) async => _handleFetchGameHistoryAllRequested(emit),
     );
     on<_FetchGameHistoryOfflineRequested>(
-      (_, emit) async => _mapFetchGameHistoryOfflineRequestedToState(emit),
+      (_, emit) async => _handleFetchGameHistoryOfflineRequested(emit),
     );
     on<_FetchGameHistoryOnlineRequested>(
       (event, emit) async =>
-          _mapFetchGameHistoryOnlineRequestedToState(event, emit),
+          _handleFetchGameHistoryOnlineRequested(event, emit),
     );
     on<_GameSelected>(
-      (event, emit) => _mapGameSelectedToState(event, emit),
+      (event, emit) => _handleGameSelected(event, emit),
     );
   }
 
-  Future<void> _mapFetchGameHistoryAllRequestedToState(
+  /// Handle incoming [_FetchGameHistoryAllRequested] event.
+  Future<void> _handleFetchGameHistoryAllRequested(
     Emitter<GameHistoryState> emit,
   ) async {
     final failureOrUser = _userService.getUser();
@@ -64,7 +69,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
             allGameHistory.addAll(offlineGameHistory.getOrCrash().asList());
 
             allGameHistory.sort(
-              (game, game1) => game.createdAt.compareTo(game1.createdAt),
+              (game, game1) => game1.createdAt.compareTo(game.createdAt),
             );
 
             return GameHistoryState.loadSuccess(
@@ -76,7 +81,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     );
   }
 
-  Future<void> _mapFetchGameHistoryOfflineRequestedToState(
+  /// Handle incoming [_FetchGameHistoryOfflineRequested] event.
+  Future<void> _handleFetchGameHistoryOfflineRequested(
     Emitter<GameHistoryState> emit,
   ) async {
     final failureOrGameHistory =
@@ -90,7 +96,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     );
   }
 
-  Future<void> _mapFetchGameHistoryOnlineRequestedToState(
+  /// Handle incoming [_FetchGameHistoryOnlineRequested] event.
+  Future<void> _handleFetchGameHistoryOnlineRequested(
     _FetchGameHistoryOnlineRequested event,
     Emitter<GameHistoryState> emit,
   ) async {
@@ -114,7 +121,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     );
   }
 
-  void _mapGameSelectedToState(
+  /// Handle incoming [_GameSelected] event.
+  void _handleGameSelected(
     _GameSelected event,
     Emitter<GameHistoryState> emit,
   ) {

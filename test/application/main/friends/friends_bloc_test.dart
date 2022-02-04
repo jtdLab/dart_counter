@@ -38,8 +38,8 @@ void main() {
   });
 
   test(
-      'initial state is FriendsInitial '
-      'when data from friendService is available', () {
+      'GIVEN data from friendService is available '
+      'THEN initial state set to FriendsInitial.', () {
     // Arrange & Act
     final underTest = FriendsBloc(
       mockFriendService,
@@ -57,8 +57,8 @@ void main() {
   });
 
   test(
-      'throws ApplicationError '
-      'when friends is not available', () {
+      'GIVEN friends is not available '
+      'THEN throw ApplicationError.', () {
     // Arrange
     when(() => mockFriendService.getFriends())
         .thenReturn(left(const FriendFailure.unableToRead()));
@@ -73,8 +73,8 @@ void main() {
   });
 
   test(
-      'throws ApplicationError '
-      'when receivedFriendRequests is not available', () {
+      'GIVEN receivedFriendRequests is not available '
+      'THEN throw ApplicationError.', () {
     // Arrange
     when(() => mockFriendService.getReceivedFriendRequests())
         .thenReturn(left(const FriendFailure.unableToRead()));
@@ -89,8 +89,8 @@ void main() {
   });
 
   test(
-      'throws ApplicationError '
-      'when sentFriendRequests is not available', () {
+      'GIVEN sentFriendRequests is not available '
+      'THEN throw ApplicationError.', () {
     // Arrange
     when(() => mockFriendService.getSentFriendRequests())
         .thenReturn(left(const FriendFailure.unableToRead()));
@@ -108,7 +108,7 @@ void main() {
     'Started',
     () {
       blocTest<FriendsBloc, FriendsState>(
-        'calls markReceivedFriendRequestsAsRead',
+        'Call markReceivedFriendRequestsAsRead.',
         setUp: () {
           when(() => mockFriendService.markReceivedFriendRequestsAsRead())
               .thenAnswer((_) async => right(unit));
@@ -146,7 +146,7 @@ void main() {
     'FriendSelected',
     () {
       blocTest<FriendsBloc, FriendsState>(
-        'emits FriendsInitial with updated selectedFriend',
+        'Emit FriendsInitial with updated selectedFriend.',
         build: () => FriendsBloc(
           mockFriendService,
         ),
@@ -168,7 +168,7 @@ void main() {
     'FriendRequestAccepted',
     () {
       blocTest<FriendsBloc, FriendsState>(
-        'calls acceptFriendRequest with incoming friendRequest as param ',
+        'Call acceptFriendRequest with incoming friendRequest as param.',
         setUp: () {
           when(
             () => mockFriendService.acceptFriendRequest(
@@ -197,7 +197,7 @@ void main() {
     'FriendRequestDeclined',
     () {
       blocTest<FriendsBloc, FriendsState>(
-        'calls declineFriendRequest with incoming friendRequest as param ',
+        'Call declineFriendRequest with incoming friendRequest as param.',
         setUp: () {
           when(
             () => mockFriendService.declineFriendRequest(
