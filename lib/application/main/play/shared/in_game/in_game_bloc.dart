@@ -11,8 +11,10 @@ abstract class InGameBloc extends Bloc<InGameEvent, InGameState> {
 
   InGameBloc(
     this._playService,
-    // set initial state
-  ) : super(const InGameState.initial(showCheckoutDetails: false)) {
+  ) : super(
+          // Set initial state
+          const InGameState.initial(showCheckoutDetails: false),
+        ) {
     on<ShowCheckoutDetailsChanged>(
       (event, emit) => _mapShowCheckoutDetailsChangedToState(event, emit),
     );
