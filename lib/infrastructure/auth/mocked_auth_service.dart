@@ -2,8 +2,7 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/infrastructure/core/utils.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -16,37 +15,27 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 ///
 /// Specifiy [hasNetworkConnection] to simulate behaivor with existing/missing network access.
 ///
-/// Specify [cancelledByUser] to simulate behaivor when user cancels actions.
-///
 /// Specify [emailAlreadyInUse] to simulate behaivor when email is already in use.
 ///
 /// Specify [usernameAlreadyInUse] to simulate behaivor when username is already in use.
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
 class MockedAuthService with Disposable implements IAuthService {
-  bool hasNetworkConnection;
-  bool cancelledByUser;
-  bool emailAlreadyInUse;
-  bool usernameAlreadyInUse;
+  bool hasNetworkConnection = true;
+  bool emailAlreadyInUse = false;
+  bool usernameAlreadyInUse = false;
+
+  final AppleSignIn _appleSignIn;
   final GoogleSignIn _googleSignIn;
   final FacebookAuth _facebookAuth;
 
   final BehaviorSubject<bool> _authenticatedController;
 
   MockedAuthService(
+    this._appleSignIn,
     this._googleSignIn,
-    this._facebookAuth, {
-    this.hasNetworkConnection = true,
-    this.cancelledByUser = false,
-    this.emailAlreadyInUse = false,
-    this.usernameAlreadyInUse = false,
-  }) : _authenticatedController = BehaviorSubject.seeded(false);
-
-  @factoryMethod
-  factory MockedAuthService.inject() => MockedAuthService(
-        getIt<GoogleSignIn>(),
-        getIt<FacebookAuth>(),
-      );
+    this._facebookAuth,
+  ) : _authenticatedController = BehaviorSubject.seeded(false);
 
   @override
   Future<String?> idToken() async {
@@ -77,22 +66,14 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
-    // To prevent replay attacks with the credential returned from Apple, we
-    // include a nonce in the credential request. When signing in in with
-    // Firebase, the nonce in the id token returned by Apple, is expected to
-    // match the sha256 hash of `rawNonce`.
     final rawNonce = generateNonce();
-    final nonce = rawNonce.toSha256();
 
-    // TODO crashes here
-    // Request credential for the currently signed in Apple account.
-    await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      nonce: nonce,
-    );
+    // Trigger the sign-in flow
+    final idToken = await _appleSignIn.signIn(rawNonce: rawNonce);
+
+    if (idToken == null) {
+      return left(const AuthFailure.cancelledByUser());
+    }
 
     if (hasNetworkConnection) {
       _authenticatedController.add(true);
@@ -122,7 +103,8 @@ class MockedAuthService with Disposable implements IAuthService {
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
     // Trigger the sign-in flow
-    final result = await _facebookAuth.login(); // TODO CRASH HERE
+    // TODO CRASH HERE
+    final result = await _facebookAuth.login();
     final accessToken = result.accessToken;
 
     if (accessToken == null) {
