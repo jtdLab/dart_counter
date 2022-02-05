@@ -62,10 +62,10 @@ DA:90,5
 DA:98,1
 DA:99,1
 DA:100,2
-DA:104,54
-DA:105,54
-DA:106,54
-DA:110,54
+DA:104,55
+DA:105,55
+DA:106,55
+DA:110,55
 DA:120,3
 DA:123,6
 DA:126,2
@@ -4117,8 +4117,8 @@ DA:25,1
 DA:26,1
 DA:29,1
 DA:30,3
-DA:31,0
-DA:34,1
+DA:31,2
+DA:34,5
 DA:36,3
 DA:39,1
 DA:44,1
@@ -4133,7 +4133,7 @@ DA:64,1
 DA:65,2
 DA:66,1
 LF:20
-LH:18
+LH:19
 end_of_record
 SF:lib/infrastructure/game_invitation/game_invitation_dto.dart
 DA:20,1
