@@ -25,17 +25,17 @@ class DartsDisplayerBloc
     @factoryParam AbstractIPlayService? playService,
   )   : _playService = playService!,
         super(
-          // set initial state
+          // Set initial state
           const DartsDisplayerState.empty(),
         ) {
-    // register event handlers
-    on<DartAdded>((event, emit) => _mapDartAddedToState(event, emit));
-    on<DartRemoved>((_, emit) => _mapDartRemovedToState(emit));
-    on<ResetRequested>((_, emit) => _mapResetRequestedToState(emit));
+    // Register event handlers
+    on<DartAdded>((event, emit) => _handleDartAdded(event, emit));
+    on<DartRemoved>((_, emit) => _handleDartRemoved(emit));
+    on<ResetRequested>((_, emit) => _handleResetRequested(emit));
   }
 
-  /// handle incoming [DartAdded] event.
-  void _mapDartAddedToState(
+  /// Handle incoming [DartAdded] event.
+  void _handleDartAdded(
     DartAdded event,
     Emitter<DartsDisplayerState> emit,
   ) {
@@ -79,8 +79,8 @@ class DartsDisplayerBloc
     );
   }
 
-  /// handle incoming [DartRemoved] event.
-  void _mapDartRemovedToState(
+  /// Handle incoming [DartRemoved] event.
+  void _handleDartRemoved(
     Emitter<DartsDisplayerState> emit,
   ) {
     state.whenOrNull(
@@ -105,8 +105,8 @@ class DartsDisplayerBloc
     );
   }
 
-  /// handle incoming [ResetRequested] event.
-  void _mapResetRequestedToState(
+  /// Handle incoming [ResetRequested] event.
+  void _handleResetRequested(
     Emitter<DartsDisplayerState> emit,
   ) {
     // emit initial

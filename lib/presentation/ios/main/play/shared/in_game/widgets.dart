@@ -3,7 +3,6 @@
 // OTHER
 import 'dart:math' as math;
 
-import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
@@ -576,7 +575,7 @@ class _SpeechKeyBoard extends StatelessWidget {
     );
   }
 }
-
+/** 
 // OPTICAL INPUT AREA
 // TODO make responsive
 class OpticalInputArea extends StatelessWidget {
@@ -775,7 +774,7 @@ class _DartBoardPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-
+*/
 // SHARED
 
 // PLAYER ITEM

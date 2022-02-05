@@ -10,8 +10,6 @@ class MockAuthService extends Mock implements IAuthService {}
 
 class MockUserService extends Mock implements IUserService {}
 
-
-
 void main() {
   setUpAll(() async {
     // mocktail related setup
