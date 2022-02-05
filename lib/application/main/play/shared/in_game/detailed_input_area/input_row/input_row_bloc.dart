@@ -17,9 +17,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   InputRowBloc(
     this._playService,
     this._dartsDisplayerBloc,
-  ) : // set inital state
+  ) : // Set inital state
         super(0) {
-    // register event handlers
+    // Register event handlers
     on<Started>(
       (_, emit) async => _mapStartedToState(emit),
       transformer: restartable(),

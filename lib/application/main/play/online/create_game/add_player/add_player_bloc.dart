@@ -6,11 +6,16 @@ part 'add_player_bloc.freezed.dart';
 part 'add_player_event.dart';
 part 'add_player_state.dart';
 
-// TODO
+// TODO design
 
 @injectable
 class AddPlayerBloc extends Bloc<AddPlayerEvent, AddPlayerState> {
-  AddPlayerBloc() : super(const AddPlayerState.initial()) {
+  AddPlayerBloc()
+      : super(
+          // Set initial state
+          const AddPlayerState.initial(),
+        ) {
+    // Register event handlers
     on<AddPlayerEvent>((event, emit) {
       // TODO: implement event handler
     });

@@ -5,6 +5,8 @@ import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:injectable/injectable.dart';
 
+export 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/key_board_bloc.dart';
+
 @injectable
 class KeyBoardBlocOfflineStandardInputArea extends KeyBoardBloc {
   KeyBoardBlocOfflineStandardInputArea(

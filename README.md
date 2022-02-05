@@ -241,3 +241,6 @@ verify: (\_) => verify(() => trainingService.cancel()).called(1),
                   () => throw ApplicationError.unexpectedMissingUser(),
                 ),
           ),
+
+
+          // TODO training bloc test strategy black box atm switch to inherited testing like in play section
