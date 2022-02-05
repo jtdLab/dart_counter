@@ -72,6 +72,7 @@ class FirebaseAuthService with Disposable implements IAuthService {
       final rawNonce = generateNonce();
       final nonce = rawNonce.toSha256();
 
+      // TODO crashes here
       // Request credential for the currently signed in Apple account.
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
@@ -151,6 +152,7 @@ class FirebaseAuthService with Disposable implements IAuthService {
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
     try {
+      // Trigger the sign-in flow
       final googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
@@ -159,11 +161,13 @@ class FirebaseAuthService with Disposable implements IAuthService {
 
       final googleAuthentication = await googleUser.authentication;
 
+      // Create a credential from the id token and access token
       final authCredential = GoogleAuthProvider.credential(
         idToken: googleAuthentication.idToken,
         accessToken: googleAuthentication.accessToken,
       );
 
+      // Once signed in, return the UserCredential
       await _auth.signInWithCredential(authCredential);
 
       return right(unit);

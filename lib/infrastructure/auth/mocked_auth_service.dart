@@ -2,10 +2,15 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/infrastructure/core/utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 /// Mock implementation of [IAuthService].
 ///
@@ -23,10 +28,14 @@ class MockedAuthService with Disposable implements IAuthService {
   bool cancelledByUser;
   bool emailAlreadyInUse;
   bool usernameAlreadyInUse;
+  final GoogleSignIn _googleSignIn;
+  final FacebookAuth _facebookAuth;
 
   final BehaviorSubject<bool> _authenticatedController;
 
-  MockedAuthService({
+  MockedAuthService(
+    this._googleSignIn,
+    this._facebookAuth, {
     this.hasNetworkConnection = true,
     this.cancelledByUser = false,
     this.emailAlreadyInUse = false,
@@ -34,7 +43,10 @@ class MockedAuthService with Disposable implements IAuthService {
   }) : _authenticatedController = BehaviorSubject.seeded(false);
 
   @factoryMethod
-  factory MockedAuthService.inject() => MockedAuthService();
+  factory MockedAuthService.inject() => MockedAuthService(
+        getIt<GoogleSignIn>(),
+        getIt<FacebookAuth>(),
+      );
 
   @override
   Future<String?> idToken() async {
@@ -65,9 +77,22 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
-    if (cancelledByUser) {
-      return left(const AuthFailure.cancelledByUser());
-    }
+    // To prevent replay attacks with the credential returned from Apple, we
+    // include a nonce in the credential request. When signing in in with
+    // Firebase, the nonce in the id token returned by Apple, is expected to
+    // match the sha256 hash of `rawNonce`.
+    final rawNonce = generateNonce();
+    final nonce = rawNonce.toSha256();
+
+    // TODO crashes here
+    // Request credential for the currently signed in Apple account.
+    await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: nonce,
+    );
 
     if (hasNetworkConnection) {
       _authenticatedController.add(true);
@@ -96,7 +121,11 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
-    if (cancelledByUser) {
+    // Trigger the sign-in flow
+    final result = await _facebookAuth.login(); // TODO CRASH HERE
+    final accessToken = result.accessToken;
+
+    if (accessToken == null) {
       return left(const AuthFailure.cancelledByUser());
     }
 
@@ -110,7 +139,10 @@ class MockedAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    if (cancelledByUser) {
+    // Trigger the sign-in flow
+    final googleUser = await _googleSignIn.signIn();
+
+    if (googleUser == null) {
       return left(const AuthFailure.cancelledByUser());
     }
 
