@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:social_client/social_client.dart';
 
-// TODO make testable 
+// TODO make testable
 
 @module
 abstract class JtdInjectableModule {

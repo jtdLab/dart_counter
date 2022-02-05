@@ -69,7 +69,7 @@ class FirebaseAuthService with Disposable implements IAuthService {
       // include a nonce in the credential request. When signing in in with
       // Firebase, the nonce in the id token returned by Apple, is expected to
       // match the sha256 hash of `rawNonce`.
-      final rawNonce = _generateNonce();
+      final rawNonce = generateNonce();
       final nonce = rawNonce.toSha256();
 
       // Request credential for the currently signed in Apple account.
@@ -82,14 +82,14 @@ class FirebaseAuthService with Disposable implements IAuthService {
       );
 
       // Create an `OAuthCredential` from the credential returned by Apple.
-      final oauthCredential = OAuthProvider("apple.com").credential(
+      final appleAuthCredential = OAuthProvider("apple.com").credential(
         idToken: appleCredential.identityToken,
         rawNonce: rawNonce,
       );
 
       // Sign in the user with Firebase. If the nonce we generated earlier does
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
-      await _auth.signInWithCredential(oauthCredential);
+      await _auth.signInWithCredential(appleAuthCredential);
       return right(unit);
     } catch (e) {
       print(e);
@@ -124,14 +124,15 @@ class FirebaseAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
-    // Trigger the sign-in flow
-    final LoginResult result = await _facebookAuth.login(); // TODO CRASH HERE
-    final AccessToken? accessToken = result.accessToken;
-    if (accessToken == null) {
-      return left(const AuthFailure.cancelledByUser());
-    }
-
     try {
+      // Trigger the sign-in flow
+      final result = await _facebookAuth.login(); // TODO CRASH HERE
+      final accessToken = result.accessToken;
+
+      if (accessToken == null) {
+        return left(const AuthFailure.cancelledByUser());
+      }
+
       // Create a credential from the access token
       final facebookAuthCredential =
           FacebookAuthProvider.credential(accessToken.token);
@@ -148,12 +149,13 @@ class FirebaseAuthService with Disposable implements IAuthService {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    final googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) {
-      return left(const AuthFailure.cancelledByUser());
-    }
-
     try {
+      final googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+        return left(const AuthFailure.cancelledByUser());
+      }
+
       final googleAuthentication = await googleUser.authentication;
 
       final authCredential = GoogleAuthProvider.credential(
@@ -300,15 +302,5 @@ class FirebaseAuthService with Disposable implements IAuthService {
   @override
   void onDispose() {
     // TODO implement
-  }
-
-  /// Generates a cryptographically secure random nonce, to be included in a
-  /// credential request.
-  String _generateNonce([int length = 32]) {
-    const charset =
-        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
-    final random = Random.secure();
-    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
-        .join();
   }
 }
