@@ -1,3 +1,5 @@
+// TODO merge with infra errors
+
 /// Error that may occur when parsing a String to a [Enum]
 class EnumParseError<T extends Enum> extends Error {
   final String notParsableString;

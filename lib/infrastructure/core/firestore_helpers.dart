@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/injection.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
+// TODO make testable
 
 /// App specific extensions on firebase firestore
 extension FirestoreX on FirebaseFirestore {

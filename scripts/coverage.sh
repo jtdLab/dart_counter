@@ -1,6 +1,6 @@
 #!/bin/bash
 # Go to working directory
-cd ..
+cd ../dart_counter
 # Run tests with coverage
 flutter test --coverage
 # Remove generated files
