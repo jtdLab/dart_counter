@@ -90,6 +90,7 @@ class FirebaseAuthService with Disposable implements IAuthService {
       // Sign in the user with Firebase. If the nonce we generated earlier does
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
       await _auth.signInWithCredential(appleAuthCredential);
+
       return right(unit);
     } catch (e) {
       print(e);
