@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'dart:math';
 
-import 'package:crypto/crypto.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/infrastructure/core/utils.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -71,7 +70,7 @@ class FirebaseAuthService with Disposable implements IAuthService {
       // Firebase, the nonce in the id token returned by Apple, is expected to
       // match the sha256 hash of `rawNonce`.
       final rawNonce = _generateNonce();
-      final nonce = _sha256ofString(rawNonce);
+      final nonce = rawNonce.toSha256();
 
       // Request credential for the currently signed in Apple account.
       final appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -311,12 +310,5 @@ class FirebaseAuthService with Disposable implements IAuthService {
     final random = Random.secure();
     return List.generate(length, (_) => charset[random.nextInt(charset.length)])
         .join();
-  }
-
-  /// Returns the sha256 hash of [input] in hex notation.
-  String _sha256ofString(String input) {
-    final bytes = utf8.encode(input);
-    final digest = sha256.convert(bytes);
-    return digest.toString();
   }
 }
