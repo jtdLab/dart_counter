@@ -25,7 +25,7 @@ void main() {
   });
 
   test(
-      'Is subclass of InputRowBloc and takes IDartUtils, IPlayOnlineService and InOfflineGameBloc as a param.',
+      'Is subclass of InputRowBloc and takes IDartUtils, IPlayOnlineService and InOnlineGameBloc as a param.',
       () {
     final underTest = InputRowBlocOnlineStandardInputArea(
       dartUtils,

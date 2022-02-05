@@ -88,7 +88,7 @@ class InOnlineGamePage extends StatelessWidget {
                         YouReallyWantToCancelGameDialogRoute(
                           onYesPressed: () =>
                               context.read<InOnlineGameBloc>().add(
-                                    const InGameEvent.gameCanceled(),
+                                    const InGameEvent.canceled(),
                                   ),
                         ),
                       );

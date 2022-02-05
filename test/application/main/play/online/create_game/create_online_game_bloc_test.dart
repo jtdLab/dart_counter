@@ -16,17 +16,9 @@ void main() {
     mockPlayOnlineService = MockPlayOnlineService();
   });
 
-  test('initial state initialized correctly', () {
-    // Act
-    final underTest = CreateOnlineGameBloc(mockPlayOnlineService);
-
-    // Assert
-    expect(underTest.state, const CreateOnlineGameState.initial());
-  });
-
   group('GameCanceled', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Cancel the game.',
       setUp: () {
         when(() => mockPlayOnlineService.cancelGame()).thenAnswer(
           (_) async => right(unit),
@@ -39,8 +31,8 @@ void main() {
   });
 
   group('PlayerReordered', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Reorder players with incoming indices.',
       setUp: () {
         when(
           () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
@@ -59,8 +51,8 @@ void main() {
   });
 
   group('PlayerRemoved', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Remove player at incoming index.',
       setUp: () {
         when(() => mockPlayOnlineService.removePlayer(index: 0)).thenAnswer(
           (_) async => right(unit),
@@ -77,8 +69,8 @@ void main() {
   });
 
   group('StartingPointsUpdated', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Update starting points to incoming newStartingPoints.',
       setUp: () {
         when(
           () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
@@ -99,8 +91,8 @@ void main() {
   });
 
   group('ModeUpdated', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Update mode to incoming newMode.',
       setUp: () {
         when(() => mockPlayOnlineService.setMode(mode: Mode.bestOf)).thenAnswer(
           (_) async => right(unit),
@@ -117,8 +109,8 @@ void main() {
   });
 
   group('SizeUpdated', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Update size to incoming newSize.',
       setUp: () {
         when(() => mockPlayOnlineService.setSize(size: 10)).thenAnswer(
           (_) async => right(unit),
@@ -135,8 +127,8 @@ void main() {
   });
 
   group('TypeUpdated', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOnlineGameBloc, void>(
+      'Update type to incoming newType.',
       setUp: () {
         when(() => mockPlayOnlineService.setType(type: Type.sets)).thenAnswer(
           (_) async => right(unit),
@@ -152,9 +144,9 @@ void main() {
     );
   });
 
-  group('TypeUpdated', () {
-    blocTest<CreateOnlineGameBloc, CreateOnlineGameState>(
-      'calls the correct method of the play service.',
+  group('GameStarted', () {
+    blocTest<CreateOnlineGameBloc, void>(
+      'Start the game.',
       setUp: () {
         when(() => mockPlayOnlineService.startGame()).thenAnswer(
           (_) async => right(unit),

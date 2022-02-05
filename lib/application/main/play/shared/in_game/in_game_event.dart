@@ -9,5 +9,5 @@ class InGameEvent with _$InGameEvent {
   const factory InGameEvent.showCheckoutDetailsChanged({
     required bool newShowCheckoutDetails,
   }) = ShowCheckoutDetailsChanged;
-  const factory InGameEvent.gameCanceled() = GameCanceled;
+  const factory InGameEvent.canceled() = Canceled;
 }

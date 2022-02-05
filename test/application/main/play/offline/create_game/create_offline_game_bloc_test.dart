@@ -16,17 +16,9 @@ void main() {
     mockPlayOfflineService = MockPlayOfflineService();
   });
 
-  test('initial state initialized correctly', () {
-    // Act
-    final underTest = CreateOfflineGameBloc(mockPlayOfflineService);
-
-    // Assert
-    expect(underTest.state, const CreateOfflineGameState.initial());
-  });
-
   group('GameCanceled', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Cancel the game.',
       setUp: () {
         when(() => mockPlayOfflineService.cancelGame()).thenAnswer(
           (_) async => right(unit),
@@ -40,8 +32,8 @@ void main() {
   });
 
   group('PlayerReordered', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Reorder players with incoming indices.',
       setUp: () {
         when(() =>
                 mockPlayOfflineService.reorderPlayer(oldIndex: 0, newIndex: 1))
@@ -60,8 +52,8 @@ void main() {
   });
 
   group('PlayerAdded', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Add new player.',
       setUp: () {
         when(() => mockPlayOfflineService.addPlayer()).thenAnswer(
           (_) async => right(unit),
@@ -74,8 +66,8 @@ void main() {
   });
 
   group('PlayerRemoved', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Remove player at incoming index.',
       setUp: () {
         when(() => mockPlayOfflineService.removePlayer(index: 0)).thenAnswer(
           (_) async => right(unit),
@@ -92,8 +84,8 @@ void main() {
   });
 
   group('PlayerNameUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Update the name of player at index to incoming newName.',
       setUp: () {
         when(
           () =>
@@ -116,8 +108,8 @@ void main() {
   });
 
   group('StartingPointsUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Update starting points to incoming newStartingPoints.',
       setUp: () {
         when(
           () => mockPlayOfflineService.setStartingPoints(startingPoints: 701),
@@ -138,8 +130,8 @@ void main() {
   });
 
   group('ModeUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Update mode to incoming newMode.',
       setUp: () {
         when(
           () => mockPlayOfflineService.setMode(mode: Mode.bestOf),
@@ -158,8 +150,8 @@ void main() {
   });
 
   group('SizeUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Update size to incoming newSize.',
       setUp: () {
         when(() => mockPlayOfflineService.setSize(size: 10)).thenAnswer(
           (_) async => right(unit),
@@ -176,8 +168,8 @@ void main() {
   });
 
   group('TypeUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Update type to incoming newType.',
       setUp: () {
         when(() => mockPlayOfflineService.setType(type: Type.sets)).thenAnswer(
           (_) async => right(unit),
@@ -194,8 +186,8 @@ void main() {
   });
 
   group('DartBotAdded', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Add a dartbot.',
       setUp: () {
         when(() => mockPlayOfflineService.addDartBot()).thenAnswer(
           (_) async => right(unit),
@@ -212,8 +204,8 @@ void main() {
   });
 
   group('GameStarted', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
-      'calls the correct method of the play service.',
+    blocTest<CreateOfflineGameBloc, void>(
+      'Start the game.',
       setUp: () {
         when(() => mockPlayOfflineService.startGame()).thenAnswer(
           (_) async => right(unit),
@@ -230,7 +222,7 @@ void main() {
   });
 
   group('DartBotRemoved', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
+    blocTest<CreateOfflineGameBloc, void>(
       'calls the correct method of the play service.',
       setUp: () {
         when(() => mockPlayOfflineService.removeDartBot()).thenAnswer(
@@ -248,7 +240,7 @@ void main() {
   });
 
   group('DartBotTargetAverageUpdated', () {
-    blocTest<CreateOfflineGameBloc, CreateOfflineGameState>(
+    blocTest<CreateOfflineGameBloc, void>(
       'calls the correct method of the play service.',
       setUp: () {
         when(

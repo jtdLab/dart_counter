@@ -7,33 +7,40 @@ import 'package:injectable/injectable.dart';
 
 part 'create_online_game_bloc.freezed.dart';
 part 'create_online_game_event.dart';
-part 'create_online_game_state.dart';
+
+// TODO doc
 
 @injectable
-class CreateOnlineGameBloc
-    extends Bloc<CreateOnlineGameEvent, CreateOnlineGameState> {
+class CreateOnlineGameBloc extends Bloc<CreateOnlineGameEvent, void> {
   final IPlayOnlineService _playOnlineService;
 
   CreateOnlineGameBloc(
     this._playOnlineService,
-  ) : super(const CreateOnlineGameState.initial()) {
+  ) : super(
+          // Set initial state
+          null,
+        ) {
+    // Register event handlers
     on<_GameCanceled>((_, __) => _mapGameCanceledToState());
-    on<_PlayerReordered>(_mapPlayerReorderedToState);
-    on<_PlayerRemoved>(_mapPlayerRemovedToState);
-    on<_StartingPointsUpdated>(_mapStartingPointsUpdatedToState);
-    on<_ModeUpdated>(_mapModeUpdatedToState);
-    on<_SizeUpdated>(_mapSizeUpdatedToState);
-    on<_TypeUpdated>(_mapTypeUpdatedToState);
+    on<_PlayerReordered>((event, _) => _mapPlayerReorderedToState(event));
+    on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
+    on<_StartingPointsUpdated>(
+      (event, _) => _mapStartingPointsUpdatedToState(event),
+    );
+    on<_ModeUpdated>((event, _) => _mapModeUpdatedToState(event));
+    on<_SizeUpdated>((event, _) => _mapSizeUpdatedToState(event));
+    on<_TypeUpdated>((event, _) => _mapTypeUpdatedToState(event));
     on<_GameStarted>((_, __) => _mapGameStartedToState());
   }
-  
+
+  /// Handle incoming [_GameCanceled] event.
   void _mapGameCanceledToState() {
     _playOnlineService.cancelGame();
   }
 
+  /// Handle incoming [_PlayerReordered] event.
   void _mapPlayerReorderedToState(
     _PlayerReordered event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.reorderPlayer(
       oldIndex: event.oldIndex,
@@ -41,43 +48,44 @@ class CreateOnlineGameBloc
     );
   }
 
+  /// Handle incoming [_PlayerRemoved] event.
   void _mapPlayerRemovedToState(
     _PlayerRemoved event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.removePlayer(index: event.index);
   }
 
+  /// Handle incoming [_StartingPointsUpdated] event.
   void _mapStartingPointsUpdatedToState(
     _StartingPointsUpdated event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.setStartingPoints(
       startingPoints: event.newStartingPoints,
     );
   }
 
+  /// Handle incoming [_ModeUpdated] event.
   void _mapModeUpdatedToState(
     _ModeUpdated event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.setMode(mode: event.newMode);
   }
 
+  /// Handle incoming [_SizeUpdated] event.
   void _mapSizeUpdatedToState(
     _SizeUpdated event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.setSize(size: event.newSize);
   }
 
+  /// Handle incoming [_TypeUpdated] event.
   void _mapTypeUpdatedToState(
     _TypeUpdated event,
-    Emitter<CreateOnlineGameState> emit,
   ) {
     _playOnlineService.setType(type: event.newType);
   }
 
+  /// Handle incoming [_GameStarted] event.
   void _mapGameStartedToState() {
     _playOnlineService.startGame();
   }

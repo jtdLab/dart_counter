@@ -24,8 +24,8 @@ class _$InGameEventTearOff {
     );
   }
 
-  GameCanceled gameCanceled() {
-    return const GameCanceled();
+  Canceled canceled() {
+    return const Canceled();
   }
 }
 
@@ -38,19 +38,19 @@ mixin _$InGameEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool newShowCheckoutDetails)
         showCheckoutDetailsChanged,
-    required TResult Function() gameCanceled,
+    required TResult Function() canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,21 +58,21 @@ mixin _$InGameEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowCheckoutDetailsChanged value)
         showCheckoutDetailsChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
+    required TResult Function(Canceled value) canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,7 +165,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(bool newShowCheckoutDetails)
         showCheckoutDetailsChanged,
-    required TResult Function() gameCanceled,
+    required TResult Function() canceled,
   }) {
     return showCheckoutDetailsChanged(newShowCheckoutDetails);
   }
@@ -174,7 +174,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
   }) {
     return showCheckoutDetailsChanged?.call(newShowCheckoutDetails);
   }
@@ -183,7 +183,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) {
     if (showCheckoutDetailsChanged != null) {
@@ -197,7 +197,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowCheckoutDetailsChanged value)
         showCheckoutDetailsChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
+    required TResult Function(Canceled value) canceled,
   }) {
     return showCheckoutDetailsChanged(this);
   }
@@ -207,7 +207,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
   }) {
     return showCheckoutDetailsChanged?.call(this);
   }
@@ -217,7 +217,7 @@ class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) {
     if (showCheckoutDetailsChanged != null) {
@@ -238,37 +238,35 @@ abstract class ShowCheckoutDetailsChanged implements InGameEvent {
 }
 
 /// @nodoc
-abstract class $GameCanceledCopyWith<$Res> {
-  factory $GameCanceledCopyWith(
-          GameCanceled value, $Res Function(GameCanceled) then) =
-      _$GameCanceledCopyWithImpl<$Res>;
+abstract class $CanceledCopyWith<$Res> {
+  factory $CanceledCopyWith(Canceled value, $Res Function(Canceled) then) =
+      _$CanceledCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GameCanceledCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
-    implements $GameCanceledCopyWith<$Res> {
-  _$GameCanceledCopyWithImpl(
-      GameCanceled _value, $Res Function(GameCanceled) _then)
-      : super(_value, (v) => _then(v as GameCanceled));
+class _$CanceledCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
+    implements $CanceledCopyWith<$Res> {
+  _$CanceledCopyWithImpl(Canceled _value, $Res Function(Canceled) _then)
+      : super(_value, (v) => _then(v as Canceled));
 
   @override
-  GameCanceled get _value => super._value as GameCanceled;
+  Canceled get _value => super._value as Canceled;
 }
 
 /// @nodoc
 
-class _$GameCanceled implements GameCanceled {
-  const _$GameCanceled();
+class _$Canceled implements Canceled {
+  const _$Canceled();
 
   @override
   String toString() {
-    return 'InGameEvent.gameCanceled()';
+    return 'InGameEvent.canceled()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GameCanceled);
+        (other.runtimeType == runtimeType && other is Canceled);
   }
 
   @override
@@ -279,29 +277,29 @@ class _$GameCanceled implements GameCanceled {
   TResult when<TResult extends Object?>({
     required TResult Function(bool newShowCheckoutDetails)
         showCheckoutDetailsChanged,
-    required TResult Function() gameCanceled,
+    required TResult Function() canceled,
   }) {
-    return gameCanceled();
+    return canceled();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
   }) {
-    return gameCanceled?.call();
+    return canceled?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
-    TResult Function()? gameCanceled,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) {
-    if (gameCanceled != null) {
-      return gameCanceled();
+    if (canceled != null) {
+      return canceled();
     }
     return orElse();
   }
@@ -311,9 +309,9 @@ class _$GameCanceled implements GameCanceled {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowCheckoutDetailsChanged value)
         showCheckoutDetailsChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
+    required TResult Function(Canceled value) canceled,
   }) {
-    return gameCanceled(this);
+    return canceled(this);
   }
 
   @override
@@ -321,9 +319,9 @@ class _$GameCanceled implements GameCanceled {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
   }) {
-    return gameCanceled?.call(this);
+    return canceled?.call(this);
   }
 
   @override
@@ -331,16 +329,16 @@ class _$GameCanceled implements GameCanceled {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowCheckoutDetailsChanged value)?
         showCheckoutDetailsChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) {
-    if (gameCanceled != null) {
-      return gameCanceled(this);
+    if (canceled != null) {
+      return canceled(this);
     }
     return orElse();
   }
 }
 
-abstract class GameCanceled implements InGameEvent {
-  const factory GameCanceled() = _$GameCanceled;
+abstract class Canceled implements InGameEvent {
+  const factory Canceled() = _$Canceled;
 }

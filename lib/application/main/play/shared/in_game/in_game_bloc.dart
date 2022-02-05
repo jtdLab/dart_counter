@@ -15,13 +15,13 @@ abstract class InGameBloc extends Bloc<InGameEvent, InGameState> {
           // Set initial state
           const InGameState.initial(showCheckoutDetails: false),
         ) {
-    on<ShowCheckoutDetailsChanged>(
-      (event, emit) => _mapShowCheckoutDetailsChangedToState(event, emit),
-    );
-    on<GameCanceled>((_, __) => _mapGameCanceledToState());
+    // Register event handlers
+    on<ShowCheckoutDetailsChanged>(_handleShowCheckoutDetailsChanged);
+    on<Canceled>((_, __) => _handleCanceled());
   }
 
-  void _mapShowCheckoutDetailsChangedToState(
+  /// Handle incoming [ShowCheckoutDetailsChanged] event.
+  void _handleShowCheckoutDetailsChanged(
     ShowCheckoutDetailsChanged event,
     Emitter<InGameState> emit,
   ) {
@@ -29,7 +29,8 @@ abstract class InGameBloc extends Bloc<InGameEvent, InGameState> {
     emit(state.copyWith(showCheckoutDetails: newShowCheckoutDetails));
   }
 
-  void _mapGameCanceledToState() {
+  /// Handle incoming [Canceled] event.
+  void _handleCanceled() {
     _playService.cancelGame();
   }
 }

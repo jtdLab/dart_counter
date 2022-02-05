@@ -6,6 +6,8 @@ import 'package:dart_counter/domain/user/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+// TODO blackbox testing atm but move to inherited testing in future
+
 class MockPlayOfflineService extends Mock implements IPlayOnlineService {}
 
 void main() {
@@ -36,7 +38,7 @@ void main() {
     );
   });
 
-  test('initial state initialized correctly', () {
+  test('Initial state set to current gameSnapshot of playService.', () {
     // Arrange & Act
     final underTest = PlayOnlineWatcherCubit(
       mockPlayOnlineService,
@@ -47,7 +49,7 @@ void main() {
   });
 
   blocTest<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
-    'emits the snapshots received from play service.',
+    'Emit the snapshots received from play service.',
     build: () {
       return PlayOnlineWatcherCubit(
         mockPlayOnlineService,
