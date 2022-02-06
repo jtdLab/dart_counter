@@ -34,8 +34,21 @@ class MockedAuthService with Disposable implements IAuthService {
   MockedAuthService(
     this._appleSignIn,
     this._googleSignIn,
-    this._facebookAuth,
-  ) : _authenticatedController = BehaviorSubject.seeded(false);
+    this._facebookAuth, {
+    bool isAuthenticated = false,
+  }) : _authenticatedController = BehaviorSubject.seeded(isAuthenticated);
+
+  @factoryMethod
+  factory MockedAuthService.inject(
+    AppleSignIn _appleSignIn,
+    GoogleSignIn _googleSignIn,
+    FacebookAuth _facebookAuth,
+  ) =>
+      MockedAuthService(
+        _appleSignIn,
+        _googleSignIn,
+        _facebookAuth,
+      );
 
   @override
   Future<String?> idToken() async {
@@ -105,9 +118,9 @@ class MockedAuthService with Disposable implements IAuthService {
     // Trigger the sign-in flow
     // TODO CRASH HERE
     final result = await _facebookAuth.login();
-    final accessToken = result.accessToken;
+    final status = result.status;
 
-    if (accessToken == null) {
+    if (status == LoginStatus.cancelled) {
       return left(const AuthFailure.cancelledByUser());
     }
 
@@ -228,8 +241,10 @@ class MockedAuthService with Disposable implements IAuthService {
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
 
+  // coverage:ignore-start
   @override
   void onDispose() {
     _authenticatedController.close();
   }
+  // coverage:ignore-end
 }

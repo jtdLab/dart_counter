@@ -3,22 +3,26 @@ import 'dart:async';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dart_counter/infrastructure/auth/mocked_auth_service.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mocktail/mocktail.dart';
 
-class AuthenticatedMockAuthService extends MockedAuthService {
-  @override
-  bool isAuthenticated() => true;
-}
+class MockAppleSignIn extends Mock implements AppleSignIn {}
 
-class UnauthenticatedMockAuthService extends MockedAuthService {
-  @override
-  bool isAuthenticated() => false;
-}
+class MockGoogleSignIn extends Mock implements GoogleSignIn {}
+
+class MockFacebookAuth extends Mock implements FacebookAuth {}
 
 void main() {
+  late MockAppleSignIn appleSignIn;
+  late MockGoogleSignIn googleSignIn;
+  late MockFacebookAuth facebookAuth;
+
   setUpAll(() {
     // mocktail related setup
     registerFallbackValue(EmailAddress.empty());
@@ -26,13 +30,54 @@ void main() {
     registerFallbackValue(Password.empty());
   });
 
+  setUp(() {
+    appleSignIn = MockAppleSignIn();
+    when(
+      () => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')),
+    ).thenAnswer((_) async => 'idToken');
+    googleSignIn = MockGoogleSignIn();
+    when(
+      () => googleSignIn.signIn(),
+    ).thenAnswer((_) async => MockGoogleSignInAccount());
+    facebookAuth = MockFacebookAuth();
+    when(
+      () => facebookAuth.login(),
+    ).thenAnswer(
+      (_) async => LoginResult(
+        status: LoginStatus.success,
+      ),
+    );
+  });
+
+  group('inject', () {
+    // TODO could this be tested better
+    test(
+        'GIVEN create instance '
+        'THEN isAuthenticated set to false.', () {
+      // Act
+      final underTest = MockedAuthService.inject(
+        appleSignIn,
+        googleSignIn,
+        facebookAuth,
+      );
+
+      // Assert
+      expect(underTest.isAuthenticated(), false);
+    });
+  });
+
   group('idToken', () {
     test(
       'GIVEN authenticated user '
-      'THEN return dummyIdToken ',
+      'THEN return dummyIdToken.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
 
         // Act
         final idToken = await underTest.idToken();
@@ -44,10 +89,14 @@ void main() {
 
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () async {
         // Arrange
-        final underTest = UnauthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final idToken = await underTest.idToken();
@@ -60,11 +109,32 @@ void main() {
 
   group('isAuthenticated', () {
     test(
-      'GIVEN new created mocked auth service '
-      'THEN return false ',
+      'GIVEN authenticated user '
+      'THEN return true.',
       () async {
         // Arrange & Act
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
+
+        // Assert
+        expect(underTest.isAuthenticated(), true);
+      },
+    );
+
+    test(
+      'GIVEN not authenticated user '
+      'THEN return false.',
+      () async {
+        // Arrange & Act
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Assert
         expect(underTest.isAuthenticated(), false);
@@ -76,10 +146,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email is valid '
-      'THEN return unit ',
+      'THEN return right unit.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.sendPasswordResetEmail(
@@ -94,10 +168,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email is invalid '
-      'THEN return invalid email failure ',
+      'THEN return invalid email failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.sendPasswordResetEmail(
@@ -111,10 +189,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -131,11 +213,17 @@ void main() {
   group('signInWithApple', () {
     test(
       'GIVEN cancelled by user '
-      'THEN return cancelled by user failure ',
+      'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
-        underTest.cancelledByUser = true;
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
+        when(
+          () => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')),
+        ).thenAnswer((_) async => null);
 
         // Act
         final failurOrUnit = await underTest.signInWithApple();
@@ -147,10 +235,14 @@ void main() {
 
     test(
       'GIVEN network access '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithApple();
@@ -167,10 +259,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -186,10 +282,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email is invalid '
-      'THEN return invalid email and password combination failure ',
+      'THEN return invalid email and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithEmailAndPassword(
@@ -206,10 +306,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN password is invalid '
-      'THEN return invalid email and password combination failure ',
+      'THEN return invalid email and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithEmailAndPassword(
@@ -226,10 +330,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email and password are valid '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithEmailAndPassword(
@@ -249,10 +357,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -270,11 +382,17 @@ void main() {
   group('signInWithFacebook', () {
     test(
       'GIVEN cancelled by user '
-      'THEN return cancelled by user failure ',
+      'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
-        underTest.cancelledByUser = true;
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
+        when(
+          () => facebookAuth.login(),
+        ).thenAnswer((_) async => LoginResult(status: LoginStatus.cancelled));
 
         // Act
         final failurOrUnit = await underTest.signInWithFacebook();
@@ -286,10 +404,14 @@ void main() {
 
     test(
       'GIVEN network access '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithFacebook();
@@ -306,10 +428,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -324,11 +450,15 @@ void main() {
   group('signInWithGoogle', () {
     test(
       'GIVEN cancelled by user '
-      'THEN return cancelled by user failure ',
+      'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
-        underTest.cancelledByUser = true;
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
+        when(() => googleSignIn.signIn()).thenAnswer((_) async => null);
 
         // Act
         final failurOrUnit = await underTest.signInWithGoogle();
@@ -340,10 +470,14 @@ void main() {
 
     test(
       'GIVEN network access '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithGoogle();
@@ -360,10 +494,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -379,10 +517,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN username is invalid '
-      'THEN return invalid username and password combination failure ',
+      'THEN return invalid username and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithUsernameAndPassword(
@@ -401,10 +543,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN password is invalid '
-      'THEN return invalid username and password combination failure ',
+      'THEN return invalid username and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithUsernameAndPassword(
@@ -421,10 +567,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN username and password are valid '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signInWithUsernameAndPassword(
@@ -444,10 +594,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -465,10 +619,14 @@ void main() {
   group('signOut', () {
     test(
       'GIVEN network access '
-      'THEN return unit, update state to unauthenticated and emit updated auth state ',
+      'THEN return unit, update state to unauthenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit = await underTest.signOut();
@@ -485,10 +643,14 @@ void main() {
 
     test(
       'GIVEN no network access '
-      'THEN return server error failure ',
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -504,10 +666,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email is invalid '
-      'THEN return invalid email failure ',
+      'THEN return invalid email failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit =
@@ -525,10 +691,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN username is invalid '
-      'THEN return invalid username failure ',
+      'THEN return invalid username failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit =
@@ -546,10 +716,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN password is invalid '
-      'THEN return invalid password failure ',
+      'THEN return invalid password failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit =
@@ -566,10 +740,14 @@ void main() {
 
     test(
       'GIVEN network access and email already in use '
-      'THEN return email already in use failure ',
+      'THEN return email already in use failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.emailAlreadyInUse = true;
 
         // Act
@@ -587,10 +765,14 @@ void main() {
 
     test(
       'GIVEN network access and username already in use '
-      'THEN return username already in use failure ',
+      'THEN return username already in use failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.usernameAlreadyInUse = true;
 
         // Act
@@ -609,10 +791,14 @@ void main() {
     test(
       'GIVEN network access '
       'WHEN email, username and password are valid '
-      'THEN return unit, update state to authenticated and emit updated auth state ',
+      'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final failurOrUnit =
@@ -637,7 +823,11 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -657,10 +847,14 @@ void main() {
   group('updatePassword', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () async {
         // Arrange
-        final underTest = UnauthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act & Assert
         expect(
@@ -676,11 +870,15 @@ void main() {
     test(
       'GIVEN authenticated user and network access '
       'WHEN oldPassword is invalid '
-      'THEN return invalid old password failure ',
+      'THEN return invalid old password failure.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
-
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
         // Act
         final failurOrUnit = await underTest.updatePassword(
           oldPassword: Password('a'),
@@ -695,10 +893,15 @@ void main() {
     test(
       'GIVEN authenticated user and network access '
       'WHEN newPassword is invalid '
-      'THEN return invalid new password failure ',
+      'THEN return invalid new password failure.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
 
         // Act
         final failurOrUnit = await underTest.updatePassword(
@@ -714,10 +917,15 @@ void main() {
     test(
       'GIVEN authenticated user and network access '
       'WHEN old password and new password are valid '
-      'THEN return unit ',
+      'THEN return unit.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
 
         // Act
         final failurOrUnit = await underTest.updatePassword(
@@ -731,11 +939,16 @@ void main() {
     );
 
     test(
-      'GIVEN authenticated user and network access '
-      'THEN return server error failure ',
+      'GIVEN authenticated user and no network access '
+      'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act
@@ -753,10 +966,15 @@ void main() {
   group('userId', () {
     test(
       'GIVEN authenticated user '
-      'THEN return dummyIdToken ',
+      'THEN return dummyIdToken.',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
 
         // Act
         final userId = underTest.userId();
@@ -768,10 +986,14 @@ void main() {
 
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN return null.',
       () async {
         // Arrange
-        final underTest = UnauthenticatedMockAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
 
         // Act
         final userId = underTest.userId();
@@ -784,12 +1006,16 @@ void main() {
 
   group('watchIsAuthenticated', () {
     test(
-      'GIVEN authenticated but has no network access '
-      'THEN emit [true] ',
+      'GIVEN authenticated user but has no network access '
+      'THEN emit [true].',
       () async {
         // Arrange
-        final underTest = AuthenticatedMockAuthService();
-        await underTest.signInWithApple();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+          isAuthenticated: true,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act & Assert
@@ -798,11 +1024,15 @@ void main() {
     );
 
     test(
-      'GIVEN unauthenticated that has no network access '
-      'THEN emit [false] ',
+      'GIVEN unauthenticated user that has no network access '
+      'THEN emit [false].',
       () {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         underTest.hasNetworkConnection = false;
 
         // Act & Assert
@@ -811,11 +1041,16 @@ void main() {
     );
 
     test(
-      'WHEN auth state changes '
-      'THEN emit [false, true, false] ',
+      'GIVEN not authenticated user '
+      'WHEN sign in and then sign out '
+      'THEN emit [false, true, false].',
       () {
         // Arrange
-        final underTest = MockedAuthService();
+        final underTest = MockedAuthService(
+          appleSignIn,
+          googleSignIn,
+          facebookAuth,
+        );
         Timer.run(() async {
           await underTest.signInWithApple();
           await underTest.signOut();

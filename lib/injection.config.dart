@@ -184,7 +184,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i16.GoogleSignIn>(() => jtdInjectableModule.googleSignIn);
   gh.lazySingleton<_i17.IAuthService>(
-      () => _i18.MockedAuthService(get<_i7.AppleSignIn>(),
+      () => _i18.MockedAuthService.inject(get<_i7.AppleSignIn>(),
           get<_i16.GoogleSignIn>(), get<_i11.FacebookAuth>()),
       registerFor: {_dev});
   gh.lazySingleton<_i19.IBobsTwentySevenService>(

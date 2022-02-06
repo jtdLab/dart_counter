@@ -101,7 +101,6 @@ class FirebaseAuthService implements IAuthService {
     }
   }
 
-  // TODO detect cancelled by user
   @override
   Future<Either<AuthFailure, Unit>> signInWithApple() async {
     try {
@@ -160,15 +159,17 @@ class FirebaseAuthService implements IAuthService {
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
     try {
       // Trigger the sign-in flow
-      final result = await _facebookAuth.login(); // TODO CRASH HERE
-      final accessToken = result.accessToken;
+      // TODO CRASH HERE
+      final result = await _facebookAuth.login();
+      final status = result.status;
 
-      if (accessToken == null) {
+      if (status == LoginStatus.cancelled) {
         return left(const AuthFailure.cancelledByUser());
       }
 
       // Create a credential from the access token
-      final oAuthCredential = _getFacebookCredential(accessToken.token);
+      final accessToken = result.accessToken;
+      final oAuthCredential = _getFacebookCredential(accessToken!.token);
 
       // Once signed in, return the UserCredential
       await _auth.signInWithCredential(oAuthCredential);
