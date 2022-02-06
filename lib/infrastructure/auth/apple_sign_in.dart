@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 typedef GetAppleCredential = Future<AuthorizationCredentialAppleID> Function(
-  String,
+  String rawNonce,
 );
 
 @lazySingleton
@@ -14,6 +14,7 @@ class AppleSignIn {
     this._getAppleCredential,
   );
 
+  // coverage:ignore-start
   @factoryMethod
   factory AppleSignIn.inject() => AppleSignIn(
         (rawNonce) => SignInWithApple.getAppleIDCredential(
@@ -24,6 +25,7 @@ class AppleSignIn {
           nonce: rawNonce,
         ),
       );
+  // coverage:ignore-end
 
   Future<String?> signIn({
     required String rawNonce,
@@ -35,7 +37,6 @@ class AppleSignIn {
       // match the sha256 hash of `rawNonce`.
 
       // TODO STUCKS HERE and validates password forever + if not signed in on phone some weird stuff happens
-
       final result = await _getAppleCredential(rawNonce.toSha256());
       return result.identityToken;
     } catch (e) {

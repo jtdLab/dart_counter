@@ -38,6 +38,7 @@ class MockedAuthService with Disposable implements IAuthService {
     bool isAuthenticated = false,
   }) : _authenticatedController = BehaviorSubject.seeded(isAuthenticated);
 
+  // coverage:ignore-start
   @factoryMethod
   factory MockedAuthService.inject(
     AppleSignIn _appleSignIn,
@@ -49,6 +50,7 @@ class MockedAuthService with Disposable implements IAuthService {
         _googleSignIn,
         _facebookAuth,
       );
+  // coverage:ignore-end
 
   @override
   Future<String?> idToken() async {

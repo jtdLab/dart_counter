@@ -49,23 +49,6 @@ void main() {
     );
   });
 
-  group('inject', () {
-    // TODO could this be tested better
-    test(
-        'GIVEN create instance '
-        'THEN isAuthenticated set to false.', () {
-      // Act
-      final underTest = MockedAuthService.inject(
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-      );
-
-      // Assert
-      expect(underTest.isAuthenticated(), false);
-    });
-  });
-
   group('idToken', () {
     test(
       'GIVEN authenticated user '

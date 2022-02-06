@@ -46,6 +46,7 @@ class FirebaseAuthService implements IAuthService {
     this._socialClient,
   );
 
+  // coverage:ignore-start
   @factoryMethod
   factory FirebaseAuthService.inject(
     FirebaseAuth _auth,
@@ -70,6 +71,7 @@ class FirebaseAuthService implements IAuthService {
         (token) => FacebookAuthProvider.credential(token),
         _socialClient,
       );
+  // coverage:ignore-end
 
   @override
   Future<String?> idToken() async {
