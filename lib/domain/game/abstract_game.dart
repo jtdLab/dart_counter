@@ -21,9 +21,4 @@ abstract class AbstractGame {
   int get startingPoints;
   KtList<AbstractPlayer> get players;
   String description();
-  // TODO move from subclasses to here
-  /**
-   * =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-   */
 }

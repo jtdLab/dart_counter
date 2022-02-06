@@ -55,7 +55,7 @@ class OfflineGame with _$OfflineGame implements AbstractGame {
       );
   // coverage:ignore-end
 
-  // TODO move to base class ?
+  // TODO move to base class not possible in current freezed ?
   // TODO doc
   @override
   String description() =>

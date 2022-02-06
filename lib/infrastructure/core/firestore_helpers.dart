@@ -3,8 +3,6 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/errors.dart';
 import 'package:dart_counter/injection.dart';
 
-// TODO make testable
-
 /// App specific extensions on firebase firestore
 extension FirestoreX on FirebaseFirestore {
   /// Returns a reference to the user document of the app-user.
@@ -38,7 +36,7 @@ extension FirestoreX on FirebaseFirestore {
   /// Throws [NotAuthenticatedError] if app user is not signed in.
   CollectionReference receivedGameInvitationsCollection() {
     try {
-      return userDocument().collection('receivedGamedInvitations');
+      return userDocument().collection('receivedGameInvitations');
     } catch (e) {
       rethrow;
     }
@@ -49,7 +47,7 @@ extension FirestoreX on FirebaseFirestore {
   /// Throws [NotAuthenticatedError] if app user is not signed in.
   CollectionReference sentGameInvitationsCollection() {
     try {
-      return userDocument().collection('sentGamedInvitations');
+      return userDocument().collection('sentGameInvitations');
     } catch (e) {
       rethrow;
     }
@@ -93,6 +91,7 @@ extension FirestoreX on FirebaseFirestore {
   }
 }
 
+// TODO keep or remove
 /**
  * /// Helps dealing with firestore timestamps.
 // TODO more doc

@@ -20,6 +20,10 @@ typedef GetOAuthCredentialFromGoogle = OAuthCredential Function(
   String? idToken,
   String? accessToken,
 );
+typedef GetAuthCredentialFromEmail = AuthCredential Function(
+  String email,
+  String password,
+);
 
 /// Implementation of [IAuthService] using Firebase backend.
 @Environment(Environment.test)
@@ -34,6 +38,7 @@ class FirebaseAuthService implements IAuthService {
   final FacebookAuth _facebookAuth;
   final GetOAuthCredentialFromFacebook _getFacebookCredential;
   final SocialClient _socialClient;
+  final GetAuthCredentialFromEmail _getEmailCredential;
 
   FirebaseAuthService(
     this._auth,
@@ -44,6 +49,7 @@ class FirebaseAuthService implements IAuthService {
     this._facebookAuth,
     this._getFacebookCredential,
     this._socialClient,
+    this._getEmailCredential,
   );
 
   // coverage:ignore-start
@@ -70,6 +76,10 @@ class FirebaseAuthService implements IAuthService {
         _facebookAuth,
         (token) => FacebookAuthProvider.credential(token),
         _socialClient,
+        (email, password) => EmailAuthProvider.credential(
+          email: email,
+          password: password,
+        ),
       );
   // coverage:ignore-end
 
@@ -85,7 +95,7 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  bool isAuthenticated() => _auth.currentUser?.uid != null;
+  bool isAuthenticated() => _auth.currentUser != null;
 
   @override
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
@@ -98,7 +108,7 @@ class FirebaseAuthService implements IAuthService {
       await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -127,7 +137,7 @@ class FirebaseAuthService implements IAuthService {
 
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -170,15 +180,15 @@ class FirebaseAuthService implements IAuthService {
       }
 
       // Create a credential from the access token
-      final accessToken = result.accessToken;
-      final oAuthCredential = _getFacebookCredential(accessToken!.token);
+      final accessToken = result.accessToken!;
+      final oAuthCredential = _getFacebookCredential(accessToken.token);
 
       // Once signed in, return the UserCredential
       await _auth.signInWithCredential(oAuthCredential);
 
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -206,7 +216,7 @@ class FirebaseAuthService implements IAuthService {
 
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -221,17 +231,21 @@ class FirebaseAuthService implements IAuthService {
     }
 
     try {
-      // TODO call server endpoint and return invalid username password combination failure
-      // this return email
-      // and sign in with email and password
-      final emailAddress = EmailAddress.empty(); // TODO real email
+      final emailAddress = await _socialClient.getEmailByUsername(
+        username: username.getOrCrash(),
+        password: password.getOrCrash(),
+      );
+
+      if (emailAddress == null) {
+        return left(const AuthFailure.invalidUsernameAndPasswordCombination());
+      }
 
       return signInWithEmailAndPassword(
-        emailAddress: emailAddress,
+        emailAddress: EmailAddress(emailAddress),
         password: password,
       );
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -242,12 +256,13 @@ class FirebaseAuthService implements IAuthService {
       await Future.wait(
         [
           _googleSignIn.signOut(),
+          _facebookAuth.logOut(),
           _auth.signOut(),
         ],
       );
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
@@ -270,9 +285,8 @@ class FirebaseAuthService implements IAuthService {
       return left(const AuthFailure.invalidPassword());
     }
 
-    final bool success;
     try {
-      success = await _socialClient.createUser(
+      final success = await _socialClient.createUser(
         email: emailAddress.getOrCrash(),
         username: username.getOrCrash(),
         password: password.getOrCrash(),
@@ -285,6 +299,7 @@ class FirebaseAuthService implements IAuthService {
         );
       }
     } catch (e) {
+      print(e); // TODO log
       if (e is EmailAlreadyInUseError) {
         return left(const AuthFailure.emailAlreadyInUse());
       } else if (e is UsernameAlreadyInUseError) {
@@ -309,28 +324,28 @@ class FirebaseAuthService implements IAuthService {
 
     try {
       final user = _auth.currentUser!;
-      final credential = EmailAuthProvider.credential(
-        email: user.email!,
-        password: oldPassword.getOrCrash(),
+      final credential = _getEmailCredential(
+        user.email!,
+        oldPassword.getOrCrash(),
       );
       await user.reauthenticateWithCredential(credential);
       await user.updatePassword(newPassword.getOrCrash());
       return right(unit);
     } catch (e) {
-      print(e);
+      print(e); // TODO log
       return left(const AuthFailure.serverError());
     }
   }
 
   @override
   UniqueId? userId() {
-    final uid = _auth.currentUser?.uid;
+    final user = _auth.currentUser;
 
-    if (uid == null) {
+    if (user == null) {
       return null;
     }
 
-    return UniqueId.fromUniqueString(uid);
+    return UniqueId.fromUniqueString(user.uid);
   }
 
   @override

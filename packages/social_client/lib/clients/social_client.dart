@@ -252,8 +252,7 @@ class SocialClient implements ISocialClient {
     return res.statusCode == 200;
   }
 
-  /**
-  *  @override
+  @override
   Future<String?> getEmailByUsername({
     required String username,
     required String password,
@@ -278,7 +277,6 @@ class SocialClient implements ISocialClient {
 
     return null;
   }
-  */
 
   @override
   Future<bool> updateEmail({

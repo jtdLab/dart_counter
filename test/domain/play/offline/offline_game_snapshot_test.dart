@@ -119,6 +119,38 @@ void main() {
   });
 
   group('description()', () {
-    // TODO test
+    test(
+        'GIVEN mode is firstTo size is X and type is legs '
+        'THEN return "FIRST TO X LEGS".', () {
+      const mode = Mode.firstTo;
+      const size = 11;
+      const type = Type.legs;
+      final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
+        mode: mode,
+        size: size,
+        type: type,
+      );
+
+      final underTest = offlineGameSnapshot.description();
+
+      expect(underTest, 'FIRST TO $size LEGS');
+    });
+
+    test(
+        'GIVEN mode is bestOf size is X and type is sets '
+        'THEN return "BEST OF X SETS".', () {
+      const mode = Mode.bestOf;
+      const size = 11;
+      const type = Type.sets;
+      final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
+        mode: mode,
+        size: size,
+        type: type,
+      );
+
+      final underTest = offlineGameSnapshot.description();
+
+      expect(underTest, 'BEST OF $size SETS');
+    });
   });
 }

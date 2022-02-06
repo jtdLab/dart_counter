@@ -60,8 +60,8 @@ class OfflineGameSnapshot
     return players.first((player) => player.isCurrentTurn);
   }
 
+  // TODO move to base class not possible in current freezed ?
   // TODO doc
-  // TODO move to base class
   @override
   String description() =>
       '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
