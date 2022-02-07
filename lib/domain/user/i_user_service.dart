@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dartz/dartz.dart';
 
 /// Domain service for all actions related to the app-user.

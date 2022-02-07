@@ -3,6 +3,8 @@ import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
+import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dartz/dartz.dart';
 
 /// Base class for [IPlayOfflineService] and [IPlayOnlineService].
