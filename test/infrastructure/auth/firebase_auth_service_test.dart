@@ -1,4 +1,5 @@
 import 'package:dart_counter/domain/auth/auth_failure.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dart_counter/infrastructure/auth/firebase_auth_service.dart';
@@ -10,7 +11,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:social_client/social_client.dart';
-
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
@@ -104,11 +104,11 @@ void main() {
         getEmailCredential,
       );
 
-      // Act
-      final underTest = await firebaseAuthService.idToken();
-
-      // Assert
-      expect(underTest, null);
+      // Act & Assert
+      expect(
+        () async => firebaseAuthService.idToken(),
+        throwsA(isA<NotAuthenticatedError>()),
+      );
     });
   });
 
@@ -737,11 +737,11 @@ void main() {
         getEmailCredential,
       );
 
-      // Act
-      final underTest = firebaseAuthService.userId();
-
-      // Assert
-      expect(underTest, null);
+      // Act & Assert
+      expect(
+        () async => firebaseAuthService.userId(),
+        throwsA(isA<NotAuthenticatedError>()),
+      );
     });
   });
 

@@ -5,7 +5,6 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';

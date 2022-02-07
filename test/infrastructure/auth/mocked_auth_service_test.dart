@@ -81,11 +81,11 @@ void main() {
           facebookAuth,
         );
 
-        // Act
-        final idToken = await underTest.idToken();
-
-        // Assert
-        expect(idToken, null);
+        // Act & Assert
+        expect(
+          () async => underTest.idToken(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
       },
     );
   });
@@ -978,11 +978,11 @@ void main() {
           facebookAuth,
         );
 
-        // Act
-        final userId = underTest.userId();
-
-        // Assert
-        expect(userId, null);
+        // Act & Assert
+        expect(
+          () async => underTest.userId(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
       },
     );
   });
