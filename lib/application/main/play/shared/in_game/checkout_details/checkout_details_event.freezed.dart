@@ -17,8 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CheckoutDetailsEventTearOff {
   const _$CheckoutDetailsEventTearOff();
 
-  Started started() {
-    return const Started();
+  SelectedDartsThrownUpdated selectedDartsThrownUpdated(
+      {required int newSelectedDartsThrown}) {
+    return SelectedDartsThrownUpdated(
+      newSelectedDartsThrown: newSelectedDartsThrown,
+    );
+  }
+
+  SelectedDartsOnDoubleUpdated selectedDartsOnDoubleUpdated(
+      {required int newSelectedDartsOnDouble}) {
+    return SelectedDartsOnDoubleUpdated(
+      newSelectedDartsOnDouble: newSelectedDartsOnDouble,
+    );
+  }
+
+  ConfirmPressed confirmPressed() {
+    return const ConfirmPressed();
   }
 }
 
@@ -29,33 +43,55 @@ const $CheckoutDetailsEvent = _$CheckoutDetailsEventTearOff();
 mixin _$CheckoutDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,36 +115,350 @@ class _$CheckoutDetailsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $StartedCopyWith<$Res> {
-  factory $StartedCopyWith(Started value, $Res Function(Started) then) =
-      _$StartedCopyWithImpl<$Res>;
+abstract class $SelectedDartsThrownUpdatedCopyWith<$Res> {
+  factory $SelectedDartsThrownUpdatedCopyWith(SelectedDartsThrownUpdated value,
+          $Res Function(SelectedDartsThrownUpdated) then) =
+      _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>;
+  $Res call({int newSelectedDartsThrown});
 }
 
 /// @nodoc
-class _$StartedCopyWithImpl<$Res>
+class _$SelectedDartsThrownUpdatedCopyWithImpl<$Res>
     extends _$CheckoutDetailsEventCopyWithImpl<$Res>
-    implements $StartedCopyWith<$Res> {
-  _$StartedCopyWithImpl(Started _value, $Res Function(Started) _then)
-      : super(_value, (v) => _then(v as Started));
+    implements $SelectedDartsThrownUpdatedCopyWith<$Res> {
+  _$SelectedDartsThrownUpdatedCopyWithImpl(SelectedDartsThrownUpdated _value,
+      $Res Function(SelectedDartsThrownUpdated) _then)
+      : super(_value, (v) => _then(v as SelectedDartsThrownUpdated));
 
   @override
-  Started get _value => super._value as Started;
+  SelectedDartsThrownUpdated get _value =>
+      super._value as SelectedDartsThrownUpdated;
+
+  @override
+  $Res call({
+    Object? newSelectedDartsThrown = freezed,
+  }) {
+    return _then(SelectedDartsThrownUpdated(
+      newSelectedDartsThrown: newSelectedDartsThrown == freezed
+          ? _value.newSelectedDartsThrown
+          : newSelectedDartsThrown // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$SelectedDartsThrownUpdated implements SelectedDartsThrownUpdated {
+  const _$SelectedDartsThrownUpdated({required this.newSelectedDartsThrown});
+
+  @override
+  final int newSelectedDartsThrown;
 
   @override
   String toString() {
-    return 'CheckoutDetailsEvent.started()';
+    return 'CheckoutDetailsEvent.selectedDartsThrownUpdated(newSelectedDartsThrown: $newSelectedDartsThrown)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Started);
+        (other.runtimeType == runtimeType &&
+            other is SelectedDartsThrownUpdated &&
+            const DeepCollectionEquality()
+                .equals(other.newSelectedDartsThrown, newSelectedDartsThrown));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(newSelectedDartsThrown));
+
+  @JsonKey(ignore: true)
+  @override
+  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
+      get copyWith =>
+          _$SelectedDartsThrownUpdatedCopyWithImpl<SelectedDartsThrownUpdated>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated(newSelectedDartsThrown);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated?.call(newSelectedDartsThrown);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsThrownUpdated != null) {
+      return selectedDartsThrownUpdated(newSelectedDartsThrown);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return selectedDartsThrownUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsThrownUpdated != null) {
+      return selectedDartsThrownUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectedDartsThrownUpdated implements CheckoutDetailsEvent {
+  const factory SelectedDartsThrownUpdated(
+      {required int newSelectedDartsThrown}) = _$SelectedDartsThrownUpdated;
+
+  int get newSelectedDartsThrown;
+  @JsonKey(ignore: true)
+  $SelectedDartsThrownUpdatedCopyWith<SelectedDartsThrownUpdated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  factory $SelectedDartsOnDoubleUpdatedCopyWith(
+          SelectedDartsOnDoubleUpdated value,
+          $Res Function(SelectedDartsOnDoubleUpdated) then) =
+      _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>;
+  $Res call({int newSelectedDartsOnDouble});
+}
+
+/// @nodoc
+class _$SelectedDartsOnDoubleUpdatedCopyWithImpl<$Res>
+    extends _$CheckoutDetailsEventCopyWithImpl<$Res>
+    implements $SelectedDartsOnDoubleUpdatedCopyWith<$Res> {
+  _$SelectedDartsOnDoubleUpdatedCopyWithImpl(
+      SelectedDartsOnDoubleUpdated _value,
+      $Res Function(SelectedDartsOnDoubleUpdated) _then)
+      : super(_value, (v) => _then(v as SelectedDartsOnDoubleUpdated));
+
+  @override
+  SelectedDartsOnDoubleUpdated get _value =>
+      super._value as SelectedDartsOnDoubleUpdated;
+
+  @override
+  $Res call({
+    Object? newSelectedDartsOnDouble = freezed,
+  }) {
+    return _then(SelectedDartsOnDoubleUpdated(
+      newSelectedDartsOnDouble: newSelectedDartsOnDouble == freezed
+          ? _value.newSelectedDartsOnDouble
+          : newSelectedDartsOnDouble // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectedDartsOnDoubleUpdated implements SelectedDartsOnDoubleUpdated {
+  const _$SelectedDartsOnDoubleUpdated(
+      {required this.newSelectedDartsOnDouble});
+
+  @override
+  final int newSelectedDartsOnDouble;
+
+  @override
+  String toString() {
+    return 'CheckoutDetailsEvent.selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble: $newSelectedDartsOnDouble)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SelectedDartsOnDoubleUpdated &&
+            const DeepCollectionEquality().equals(
+                other.newSelectedDartsOnDouble, newSelectedDartsOnDouble));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(newSelectedDartsOnDouble));
+
+  @JsonKey(ignore: true)
+  @override
+  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
+      get copyWith => _$SelectedDartsOnDoubleUpdatedCopyWithImpl<
+          SelectedDartsOnDoubleUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated?.call(newSelectedDartsOnDouble);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsOnDoubleUpdated != null) {
+      return selectedDartsOnDoubleUpdated(newSelectedDartsOnDouble);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+  }) {
+    return selectedDartsOnDoubleUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
+    required TResult orElse(),
+  }) {
+    if (selectedDartsOnDoubleUpdated != null) {
+      return selectedDartsOnDoubleUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectedDartsOnDoubleUpdated implements CheckoutDetailsEvent {
+  const factory SelectedDartsOnDoubleUpdated(
+      {required int newSelectedDartsOnDouble}) = _$SelectedDartsOnDoubleUpdated;
+
+  int get newSelectedDartsOnDouble;
+  @JsonKey(ignore: true)
+  $SelectedDartsOnDoubleUpdatedCopyWith<SelectedDartsOnDoubleUpdated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConfirmPressedCopyWith<$Res> {
+  factory $ConfirmPressedCopyWith(
+          ConfirmPressed value, $Res Function(ConfirmPressed) then) =
+      _$ConfirmPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ConfirmPressedCopyWithImpl<$Res>
+    extends _$CheckoutDetailsEventCopyWithImpl<$Res>
+    implements $ConfirmPressedCopyWith<$Res> {
+  _$ConfirmPressedCopyWithImpl(
+      ConfirmPressed _value, $Res Function(ConfirmPressed) _then)
+      : super(_value, (v) => _then(v as ConfirmPressed));
+
+  @override
+  ConfirmPressed get _value => super._value as ConfirmPressed;
+}
+
+/// @nodoc
+
+class _$ConfirmPressed implements ConfirmPressed {
+  const _$ConfirmPressed();
+
+  @override
+  String toString() {
+    return 'CheckoutDetailsEvent.confirmPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ConfirmPressed);
   }
 
   @override
@@ -117,27 +467,37 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(int newSelectedDartsThrown)
+        selectedDartsThrownUpdated,
+    required TResult Function(int newSelectedDartsOnDouble)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function() confirmPressed,
   }) {
-    return started();
+    return confirmPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
   }) {
-    return started?.call();
+    return confirmPressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(int newSelectedDartsThrown)? selectedDartsThrownUpdated,
+    TResult Function(int newSelectedDartsOnDouble)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function()? confirmPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (confirmPressed != null) {
+      return confirmPressed();
     }
     return orElse();
   }
@@ -145,32 +505,44 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
+    required TResult Function(SelectedDartsThrownUpdated value)
+        selectedDartsThrownUpdated,
+    required TResult Function(SelectedDartsOnDoubleUpdated value)
+        selectedDartsOnDoubleUpdated,
+    required TResult Function(ConfirmPressed value) confirmPressed,
   }) {
-    return started(this);
+    return confirmPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
   }) {
-    return started?.call(this);
+    return confirmPressed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
+    TResult Function(SelectedDartsThrownUpdated value)?
+        selectedDartsThrownUpdated,
+    TResult Function(SelectedDartsOnDoubleUpdated value)?
+        selectedDartsOnDoubleUpdated,
+    TResult Function(ConfirmPressed value)? confirmPressed,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (confirmPressed != null) {
+      return confirmPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class Started implements CheckoutDetailsEvent {
-  const factory Started() = _$Started;
+abstract class ConfirmPressed implements CheckoutDetailsEvent {
+  const factory ConfirmPressed() = _$ConfirmPressed;
 }
