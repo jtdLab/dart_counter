@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/core/domain_error.dart';
-import 'package:dart_counter/domain/core/failures.dart';
+import 'package:dart_counter/domain/core/value_failures.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';

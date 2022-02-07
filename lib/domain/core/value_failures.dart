@@ -3,7 +3,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'failures.freezed.dart';
+part 'value_failures.freezed.dart';
 
 /// All failures of a [ValueObject].
 @freezed

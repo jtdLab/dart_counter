@@ -1,4 +1,4 @@
-import 'package:dart_counter/domain/core/failures.dart';
+import 'package:dart_counter/domain/core/value_failures.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 
 class DomainError extends Error {
