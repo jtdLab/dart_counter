@@ -1,5 +1,6 @@
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dartz/dartz.dart';
@@ -84,11 +85,11 @@ class FirebaseAuthService implements IAuthService {
   // coverage:ignore-end
 
   @override
-  Future<String?> idToken() async {
+  Future<String> idToken() async {
     final user = _auth.currentUser;
 
     if (user == null) {
-      return null;
+      throw NotAuthenticatedError();
     }
 
     return user.getIdToken();
@@ -315,6 +316,10 @@ class FirebaseAuthService implements IAuthService {
     required Password oldPassword,
     required Password newPassword,
   }) async {
+    if (!isAuthenticated()) {
+      throw NotAuthenticatedError();
+    }
+
     if (!oldPassword.isValid()) {
       return left(const AuthFailure.invalidPassword());
     }
@@ -330,6 +335,7 @@ class FirebaseAuthService implements IAuthService {
       );
       await user.reauthenticateWithCredential(credential);
       await user.updatePassword(newPassword.getOrCrash());
+
       return right(unit);
     } catch (e) {
       print(e); // TODO log
@@ -338,11 +344,11 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  UniqueId? userId() {
+  UniqueId userId() {
     final user = _auth.currentUser;
 
     if (user == null) {
-      return null;
+      throw NotAuthenticatedError();
     }
 
     return UniqueId.fromUniqueString(user.uid);

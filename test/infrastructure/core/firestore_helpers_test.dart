@@ -30,7 +30,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(
@@ -61,7 +61,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(
@@ -92,7 +92,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(
@@ -124,7 +124,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(
@@ -155,7 +155,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(
@@ -187,7 +187,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
-      when(() => authService.userId()).thenReturn(null);
+      when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
       expect(

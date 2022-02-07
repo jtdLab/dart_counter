@@ -1,11 +1,14 @@
 import 'package:dart_counter/domain/auth/auth_failure.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 
 /// Domain service for all actions related to authentication.
 abstract class IAuthService {
-  /// Returns the idToken of the app-user if authenticated or `null` if not authenticated.
-  Future<String?> idToken();
+  /// Returns the idToken of the authenticated app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not authenticated.
+  Future<String> idToken();
 
   /// Returns `true` if the app-user is authenticated.
   bool isAuthenticated();
@@ -94,8 +97,10 @@ abstract class IAuthService {
     required Password newPassword,
   });
 
-  /// Returns the id of the app-user if authenticated or `null` if not authenticated.
-  UniqueId? userId();
+  /// Returns the id of the authenticated app-user.
+  ///
+  /// Throws [NotAuthenticatedError] if the app-user is not authenticated.
+  UniqueId userId();
 
   /// Returns a stream that indicates whether or not the app-user is authenticated.
   Stream<bool> watchIsAuthenticated();

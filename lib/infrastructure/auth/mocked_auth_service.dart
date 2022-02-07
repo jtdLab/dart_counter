@@ -20,7 +20,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 /// Specify [usernameAlreadyInUse] to simulate behaivor when username is already in use.
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
-class MockedAuthService with Disposable implements IAuthService {
+class MockedAuthService implements IAuthService {
   bool hasNetworkConnection = true;
   bool emailAlreadyInUse = false;
   bool usernameAlreadyInUse = false;
@@ -53,12 +53,12 @@ class MockedAuthService with Disposable implements IAuthService {
   // coverage:ignore-end
 
   @override
-  Future<String?> idToken() async {
+  Future<String> idToken() async {
     if (isAuthenticated()) {
       return 'dummyIdToken';
     }
 
-    return null;
+    throw NotAuthenticatedError();
   }
 
   @override
@@ -237,17 +237,10 @@ class MockedAuthService with Disposable implements IAuthService {
   }
 
   @override
-  UniqueId? userId() =>
-      isAuthenticated() ? UniqueId.fromUniqueString('dummyUid') : null;
+  UniqueId userId() => isAuthenticated()
+      ? UniqueId.fromUniqueString('dummyUid')
+      : throw NotAuthenticatedError();
 
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
-
-  // TODO needed ?
-  // coverage:ignore-start
-  @override
-  void onDispose() {
-    _authenticatedController.close();
-  }
-  // coverage:ignore-end
 }

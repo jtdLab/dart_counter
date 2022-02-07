@@ -153,7 +153,7 @@ class UserService with Disposable implements IUserService {
       rethrow;
     }
 
-    final idToken = (await _authService.idToken())!;
+    final idToken = await _authService.idToken();
 
     yield* userDoc.snapshots().map<Either<UserFailure, User>>(
       (doc) {
