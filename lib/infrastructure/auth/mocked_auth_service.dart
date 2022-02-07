@@ -1,6 +1,6 @@
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
-import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
 import 'package:dartz/dartz.dart';

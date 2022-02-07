@@ -1,10 +1,9 @@
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
-import 'package:dart_counter/domain/core/errors.dart';
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/friend/mocked_friend_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:dartz/dartz.dart';
 
 class MockAuthService extends Mock implements IAuthService {}
 

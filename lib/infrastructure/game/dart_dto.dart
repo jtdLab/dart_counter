@@ -1,5 +1,5 @@
 import 'package:dart_client/dart_client.dart' as c;
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
