@@ -243,6 +243,7 @@ class MockedAuthService with Disposable implements IAuthService {
   @override
   Stream<bool> watchIsAuthenticated() => _authenticatedController.stream;
 
+  // TODO needed ?
   // coverage:ignore-start
   @override
   void onDispose() {
