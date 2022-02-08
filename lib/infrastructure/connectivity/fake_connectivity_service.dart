@@ -4,12 +4,12 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IConnectivityService)
-class MockedConnectivityService implements IConnectivityService {
+class FakeConnectivityService implements IConnectivityService {
   static bool hasNetworkConnection = true;
 
   final BehaviorSubject<bool> _isOfflineController;
 
-  MockedConnectivityService()
+  FakeConnectivityService()
       : _isOfflineController = BehaviorSubject.seeded(!hasNetworkConnection);
 
   @override

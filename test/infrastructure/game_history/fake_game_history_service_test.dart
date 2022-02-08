@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
-import 'package:dart_counter/infrastructure/game_history/mocked_game_history_service.dart';
+import 'package:dart_counter/infrastructure/game_history/fake_game_history_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -40,7 +40,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameHistoryService(mockAuthService);
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -56,8 +56,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameHistoryService.hasNetworkConnection = false;
-        final underTest = MockedGameHistoryService(mockAuthService);
+        FakeGameHistoryService.hasNetworkConnection = false;
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.fetchGameHistoryOffline();
@@ -76,8 +76,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameHistoryService.hasNetworkConnection = true;
-        final underTest = MockedGameHistoryService(mockAuthService);
+        FakeGameHistoryService.hasNetworkConnection = true;
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.fetchGameHistoryOffline();
@@ -114,7 +114,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameHistoryService(mockAuthService);
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -130,8 +130,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameHistoryService.hasNetworkConnection = false;
-        final underTest = MockedGameHistoryService(mockAuthService);
+        FakeGameHistoryService.hasNetworkConnection = false;
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
         final failurOrUnit =
@@ -151,8 +151,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameHistoryService.hasNetworkConnection = true;
-        final underTest = MockedGameHistoryService(mockAuthService);
+        FakeGameHistoryService.hasNetworkConnection = true;
+        final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
         final failurOrUnit =

@@ -15,7 +15,7 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
-class MockedUserService with Disposable implements IUserService {
+class FakeUserService with Disposable implements IUserService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
@@ -24,7 +24,7 @@ class MockedUserService with Disposable implements IUserService {
 
   BehaviorSubject<Either<UserFailure, User>>? _userController;
 
-  MockedUserService(
+  FakeUserService(
     this._authService,
   ) : _userController = _createUserController() {
     _authSubscription =

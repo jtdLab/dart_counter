@@ -1,7 +1,7 @@
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/infrastructure/friend/mocked_friend_service.dart';
+import 'package:dart_counter/infrastructure/friend/fake_friend_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -87,7 +87,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedFriendService(mockAuthService, mockUserService);
+        final underTest = FakeFriendService(mockAuthService, mockUserService);
 
         // Act & Assert
         expect(
@@ -100,7 +100,7 @@ void main() {
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService, mockUserService);
+      final underTest = FakeFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchFriends().listen(
@@ -120,7 +120,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedFriendService(mockAuthService, mockUserService);
+        final underTest = FakeFriendService(mockAuthService, mockUserService);
 
         // Act & Assert
         expect(
@@ -133,7 +133,7 @@ void main() {
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService, mockUserService);
+      final underTest = FakeFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchReceivedFriendRequests().listen(
@@ -156,7 +156,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedFriendService(mockAuthService, mockUserService);
+        final underTest = FakeFriendService(mockAuthService, mockUserService);
 
         // Act & Assert
         expect(
@@ -169,7 +169,7 @@ void main() {
     test('emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      final underTest = MockedFriendService(mockAuthService, mockUserService);
+      final underTest = FakeFriendService(mockAuthService, mockUserService);
 
       // Assert
       underTest.watchReceivedFriendRequests().listen(

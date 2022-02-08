@@ -19,7 +19,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 /// Specify [usernameAlreadyInUse] to simulate behaivor when username is already in use.
 @Environment(Environment.dev)
 @LazySingleton(as: IAuthService)
-class MockedAuthService implements IAuthService {
+class FakeAuthService implements IAuthService {
   bool hasNetworkConnection = true;
   bool emailAlreadyInUse = false;
   bool usernameAlreadyInUse = false;
@@ -30,7 +30,7 @@ class MockedAuthService implements IAuthService {
 
   final BehaviorSubject<bool> _authenticatedController;
 
-  MockedAuthService(
+  FakeAuthService(
     this._appleSignIn,
     this._googleSignIn,
     this._facebookAuth, {
@@ -39,12 +39,12 @@ class MockedAuthService implements IAuthService {
 
   // coverage:ignore-start
   @factoryMethod
-  factory MockedAuthService.inject(
+  factory FakeAuthService.inject(
     AppleSignIn _appleSignIn,
     GoogleSignIn _googleSignIn,
     FacebookAuth _facebookAuth,
   ) =>
-      MockedAuthService(
+      FakeAuthService(
         _appleSignIn,
         _googleSignIn,
         _facebookAuth,

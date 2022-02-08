@@ -4,7 +4,7 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
-import 'package:dart_counter/infrastructure/auth/mocked_auth_service.dart';
+import 'package:dart_counter/infrastructure/auth/fake_auth_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -55,7 +55,7 @@ void main() {
       'THEN return dummyIdToken.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -75,7 +75,7 @@ void main() {
       'THEN throw NotAuthenticatedError.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -96,7 +96,7 @@ void main() {
       'THEN return true.',
       () async {
         // Arrange & Act
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -113,7 +113,7 @@ void main() {
       'THEN return false.',
       () async {
         // Arrange & Act
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -132,7 +132,7 @@ void main() {
       'THEN return right unit.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -154,7 +154,7 @@ void main() {
       'THEN return invalid email failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -175,7 +175,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -199,7 +199,7 @@ void main() {
       'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -221,7 +221,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -245,7 +245,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -268,7 +268,7 @@ void main() {
       'THEN return invalid email and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -292,7 +292,7 @@ void main() {
       'THEN return invalid email and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -316,7 +316,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -343,7 +343,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -368,7 +368,7 @@ void main() {
       'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -390,7 +390,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -414,7 +414,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -436,7 +436,7 @@ void main() {
       'THEN return cancelled by user failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -456,7 +456,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -480,7 +480,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -503,7 +503,7 @@ void main() {
       'THEN return invalid username and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -529,7 +529,7 @@ void main() {
       'THEN return invalid username and password combination failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -553,7 +553,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -580,7 +580,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -605,7 +605,7 @@ void main() {
       'THEN return unit, update state to unauthenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -629,7 +629,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -652,7 +652,7 @@ void main() {
       'THEN return invalid email failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -677,7 +677,7 @@ void main() {
       'THEN return invalid username failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -702,7 +702,7 @@ void main() {
       'THEN return invalid password failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -726,7 +726,7 @@ void main() {
       'THEN return email already in use failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -751,7 +751,7 @@ void main() {
       'THEN return username already in use failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -777,7 +777,7 @@ void main() {
       'THEN return unit, update state to authenticated and emit updated auth state.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -806,7 +806,7 @@ void main() {
       'THEN return server error failure ',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -833,7 +833,7 @@ void main() {
       'THEN throw NotAuthenticatedError.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -856,7 +856,7 @@ void main() {
       'THEN return invalid old password failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -879,7 +879,7 @@ void main() {
       'THEN return invalid new password failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -903,7 +903,7 @@ void main() {
       'THEN return unit.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -926,7 +926,7 @@ void main() {
       'THEN return server error failure.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -952,7 +952,7 @@ void main() {
       'THEN return dummyIdToken.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -972,7 +972,7 @@ void main() {
       'THEN return null.',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -993,7 +993,7 @@ void main() {
       'THEN emit [true].',
       () async {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -1011,7 +1011,7 @@ void main() {
       'THEN emit [false].',
       () {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,
@@ -1029,7 +1029,7 @@ void main() {
       'THEN emit [false, true, false].',
       () {
         // Arrange
-        final underTest = MockedAuthService(
+        final underTest = FakeAuthService(
           appleSignIn,
           googleSignIn,
           facebookAuth,

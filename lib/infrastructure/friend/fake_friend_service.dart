@@ -19,7 +19,7 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
-class MockedFriendService implements IFriendService {
+class FakeFriendService implements IFriendService {
   final IAuthService _authService;
   final IUserService _userService;
 
@@ -33,7 +33,7 @@ class MockedFriendService implements IFriendService {
 
   final List<UserSnapshot> _userSearchResults;
 
-  MockedFriendService(
+  FakeFriendService(
     this._authService,
     this._userService,
   )   : _friendsController = _createFriendsController(),

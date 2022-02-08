@@ -11,12 +11,12 @@ import 'package:kt_dart/kt.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IGameHistoryService)
-class MockedGameHistoryService implements IGameHistoryService {
+class FakeGameHistoryService implements IGameHistoryService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
 
-  MockedGameHistoryService(
+  FakeGameHistoryService(
     this._authService,
   );
 

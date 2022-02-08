@@ -84,19 +84,19 @@ import 'application/main/training/create_training/create_training_bloc.dart'
 import 'application/main/training/double_training/in_training/in_double_training_bloc.dart'
     as _i42;
 import 'application/main/training/double_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i49;
+    as _i46;
 import 'application/main/training/double_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i53;
 import 'application/main/training/double_training/watcher/double_training_watcher_cubit.dart'
     as _i75;
 import 'application/main/training/score_training/in_training/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i48;
+    as _i49;
 import 'application/main/training/score_training/in_training/detailed_input_area/key_board/key_board_bloc.dart'
     as _i54;
 import 'application/main/training/score_training/in_training/in_score_training_bloc.dart'
     as _i44;
 import 'application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart'
-    as _i46;
+    as _i48;
 import 'application/main/training/score_training/in_training/standard_input_area/key_board/key_board_bloc.dart'
     as _i55;
 import 'application/main/training/score_training/watcher/score_training_watcher_cubit.dart'
@@ -129,29 +129,29 @@ import 'domain/training/score/i_score_training_service.dart' as _i34;
 import 'domain/training/single/i_single_training_service.dart' as _i36;
 import 'domain/user/i_user_service.dart' as _i38;
 import 'infrastructure/auth/apple_sign_in.dart' as _i7;
+import 'infrastructure/auth/fake_auth_service.dart' as _i18;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i79;
-import 'infrastructure/auth/mocked_auth_service.dart' as _i18;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i23;
-import 'infrastructure/connectivity/mocked_connectivity_service.dart' as _i22;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i22;
+import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i23;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i105;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i104;
+import 'infrastructure/friend/fake_friend_service.dart' as _i81;
 import 'infrastructure/friend/friend_service.dart' as _i100;
-import 'infrastructure/friend/mocked_friend_service.dart' as _i81;
+import 'infrastructure/game_history/fake_game_history_service.dart' as _i29;
 import 'infrastructure/game_history/game_history_service.dart' as _i101;
-import 'infrastructure/game_history/mocked_game_history_service.dart' as _i29;
-import 'infrastructure/game_invitation/game_invitation_service.dart' as _i82;
-import 'infrastructure/game_invitation/mocked_game_invitation_service.dart'
+import 'infrastructure/game_invitation/fake_game_invitation_service.dart'
     as _i31;
+import 'infrastructure/game_invitation/game_invitation_service.dart' as _i82;
 import 'infrastructure/play/dart_utils.dart' as _i25;
 import 'infrastructure/play/offline/play_offline_service.dart' as _i33;
-import 'infrastructure/play/online/mocked_play_online_service.dart' as _i84;
+import 'infrastructure/play/online/fake_play_online_service.dart' as _i84;
 import 'infrastructure/play/online/play_online_service.dart' as _i102;
 import 'infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_service.dart'
     as _i20;
 import 'infrastructure/training/double/double_training_service.dart' as _i27;
 import 'infrastructure/training/score/score_training_service.dart' as _i35;
 import 'infrastructure/training/single/single_training_service.dart' as _i37;
-import 'infrastructure/user/mocked_user_service.dart' as _i39;
+import 'infrastructure/user/fake_user_service.dart' as _i39;
 import 'infrastructure/user/user_service.dart' as _i85;
 
 const String _dev = 'dev';
@@ -184,27 +184,27 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i16.GoogleSignIn>(() => jtdInjectableModule.googleSignIn);
   gh.lazySingleton<_i17.IAuthService>(
-      () => _i18.MockedAuthService.inject(get<_i7.AppleSignIn>(),
+      () => _i18.FakeAuthService.inject(get<_i7.AppleSignIn>(),
           get<_i16.GoogleSignIn>(), get<_i11.FacebookAuth>()),
       registerFor: {_dev});
   gh.lazySingleton<_i19.IBobsTwentySevenService>(
       () => _i20.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i21.IConnectivityService>(
-      () => _i22.MockedConnectivityService(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i21.IConnectivityService>(
-      () => _i23.ConnectivityService(get<_i8.Connectivity>()),
+      () => _i22.ConnectivityService(get<_i8.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i21.IConnectivityService>(
+      () => _i23.FakeConnectivityService(),
+      registerFor: {_dev});
   gh.lazySingleton<_i24.IDartUtils>(() => _i25.DartUtils());
   gh.lazySingleton<_i26.IDoubleTrainingService>(
       () => _i27.DoubleTrainingService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i28.IGameHistoryService>(
-      () => _i29.MockedGameHistoryService(get<_i17.IAuthService>()),
+      () => _i29.FakeGameHistoryService(get<_i17.IAuthService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i30.IGameInvitationService>(
-      () => _i31.MockedGameInvitationService(get<_i17.IAuthService>()),
+      () => _i31.FakeGameInvitationService(get<_i17.IAuthService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i32.IPlayOfflineService>(() => _i33.PlayOfflineService(),
       registerFor: {_dev, _test, _prod});
@@ -215,7 +215,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i37.SingleTrainingService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i38.IUserService>(
-      () => _i39.MockedUserService(get<_i17.IAuthService>()),
+      () => _i39.FakeUserService(get<_i17.IAuthService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i40.ImagePicker>(() => jtdInjectableModule.imagePicker);
   gh.factory<_i41.InBobsTwentySevenBloc>(
@@ -228,17 +228,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i44.InScoreTrainingBloc(get<_i34.IScoreTrainingService>()));
   gh.factory<_i45.InSingleTrainingBloc>(
       () => _i45.InSingleTrainingBloc(get<_i36.ISingleTrainingService>()));
-  gh.factory<_i46.InputRowBloc>(
-      () => _i46.InputRowBloc(get<_i34.IScoreTrainingService>()));
+  gh.factoryParam<_i46.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
+          _) =>
+      _i46.InputRowBloc(get<_i26.IDoubleTrainingService>(), otherDependencies));
   gh.factoryParam<_i47.InputRowBloc, List<Object>?, dynamic>(
       (otherDependencies, _) => _i47.InputRowBloc(
           get<_i19.IBobsTwentySevenService>(), otherDependencies));
-  gh.factoryParam<_i48.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
-          _) =>
-      _i48.InputRowBloc(get<_i34.IScoreTrainingService>(), otherDependencies));
+  gh.factory<_i48.InputRowBloc>(
+      () => _i48.InputRowBloc(get<_i34.IScoreTrainingService>()));
   gh.factoryParam<_i49.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
-      _i49.InputRowBloc(get<_i26.IDoubleTrainingService>(), otherDependencies));
+      _i49.InputRowBloc(get<_i34.IScoreTrainingService>(), otherDependencies));
   gh.factoryParam<_i50.InputRowBloc, List<Object>?, dynamic>((otherDependencies,
           _) =>
       _i50.InputRowBloc(get<_i36.ISingleTrainingService>(), otherDependencies));
@@ -315,7 +315,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i65.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i80.IFriendService>(
-      () => _i81.MockedFriendService(
+      () => _i81.FakeFriendService(
           get<_i17.IAuthService>(), get<_i38.IUserService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i30.IGameInvitationService>(
@@ -326,7 +326,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i9.DartClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i83.IPlayOnlineService>(
-      () => _i84.MockedPlayOnlineService(get<_i38.IUserService>()),
+      () => _i84.FakePlayOnlineService(get<_i38.IUserService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i38.IUserService>(
       () => _i85.UserService(

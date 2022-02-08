@@ -1,4 +1,4 @@
-import 'package:dart_counter/infrastructure/connectivity/mocked_connectivity_service.dart';
+import 'package:dart_counter/infrastructure/connectivity/fake_connectivity_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -8,8 +8,8 @@ void main() {
       'THEN return false ',
       () async {
         // Arrange
-        MockedConnectivityService.hasNetworkConnection = true;
-        final underTest = MockedConnectivityService();
+        FakeConnectivityService.hasNetworkConnection = true;
+        final underTest = FakeConnectivityService();
 
         // Act
         final isOffline = await underTest.isOffline();
@@ -24,8 +24,8 @@ void main() {
       'THEN return true ',
       () async {
         // Arrange
-        MockedConnectivityService.hasNetworkConnection = false;
-        final underTest = MockedConnectivityService();
+        FakeConnectivityService.hasNetworkConnection = false;
+        final underTest = FakeConnectivityService();
 
         // Act
         final isOffline = await underTest.isOffline();
@@ -42,8 +42,8 @@ void main() {
       'THEN emit [false] ',
       () {
         // Arrange
-        MockedConnectivityService.hasNetworkConnection = true;
-        final underTest = MockedConnectivityService();
+        FakeConnectivityService.hasNetworkConnection = true;
+        final underTest = FakeConnectivityService();
 
         // Act
         final stream = underTest.watchIsOffline();
@@ -58,8 +58,8 @@ void main() {
       'THEN emit [true] ',
       () {
         // Arrange
-        MockedConnectivityService.hasNetworkConnection = false;
-        final underTest = MockedConnectivityService();
+        FakeConnectivityService.hasNetworkConnection = false;
+        final underTest = FakeConnectivityService();
 
         // Act
         final stream = underTest.watchIsOffline();

@@ -4,7 +4,7 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/infrastructure/user/mocked_user_service.dart';
+import 'package:dart_counter/infrastructure/user/fake_user_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -49,7 +49,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -65,8 +65,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.deleteProfilePhoto();
@@ -85,8 +85,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.deleteProfilePhoto();
@@ -116,7 +116,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -132,8 +132,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUser = underTest.getUser();
@@ -152,8 +152,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUser = underTest.getUser();
@@ -171,7 +171,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -190,8 +190,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.updateEmailAddress(
@@ -213,8 +213,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final newEmail = EmailAddress('a@b.com');
@@ -247,7 +247,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -265,8 +265,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.updateProfilePhoto(
@@ -287,8 +287,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.updateProfilePhoto(
@@ -320,7 +320,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -337,8 +337,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final failurOrUnit = await underTest.updateUsername(
@@ -360,8 +360,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act
         final newUsername = Username('dummyUsername');
@@ -394,7 +394,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedUserService(mockAuthService);
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -410,8 +410,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = false;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = false;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -427,8 +427,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedUserService.hasNetworkConnection = true;
-        final underTest = MockedUserService(mockAuthService);
+        FakeUserService.hasNetworkConnection = true;
+        final underTest = FakeUserService(mockAuthService);
 
         // Act & Assert
         underTest.watchUser().listen(

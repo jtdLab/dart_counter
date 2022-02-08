@@ -3,7 +3,7 @@ import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
-import 'package:dart_counter/infrastructure/game_invitation/mocked_game_invitation_service.dart';
+import 'package:dart_counter/infrastructure/game_invitation/fake_game_invitation_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,7 +42,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -58,8 +58,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failurOrUnit =
@@ -80,8 +80,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
         final acceptedInvitation = underTest
             .getReceivedGameInvitations()
             .toOption()
@@ -117,7 +117,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -133,8 +133,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failurOrUnit =
@@ -155,8 +155,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
         final canceledInvitation =
             underTest.getSentGameInvitations().toOption().toNullable()!.get(0);
 
@@ -189,7 +189,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -205,8 +205,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failurOrUnit =
@@ -227,8 +227,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
         final declinedInvitation = underTest
             .getReceivedGameInvitations()
             .toOption()
@@ -264,7 +264,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -280,8 +280,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrReceivedGameInvitations =
@@ -301,8 +301,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrReceivedGameInvitations =
@@ -321,7 +321,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -337,8 +337,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrSentGameInvitations = underTest.getSentGameInvitations();
@@ -357,8 +357,8 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrSentGameInvitations = underTest.getSentGameInvitations();
@@ -375,8 +375,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrUnit = await underTest.markReceivedInvitationsAsRead();
@@ -406,7 +406,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -425,8 +425,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = false;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrUnit = await underTest.sendGameInvitation(
@@ -449,8 +449,8 @@ void main() {
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
-        MockedGameInvitationService.hasNetworkConnection = true;
-        final underTest = MockedGameInvitationService(mockAuthService);
+        FakeGameInvitationService.hasNetworkConnection = true;
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
         final failureOrUnit = await underTest.sendGameInvitation(
@@ -481,7 +481,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -496,8 +496,8 @@ void main() {
         'THEN emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      MockedGameInvitationService.hasNetworkConnection = true;
-      final underTest = MockedGameInvitationService(mockAuthService);
+      FakeGameInvitationService.hasNetworkConnection = true;
+      final underTest = FakeGameInvitationService(mockAuthService);
 
       // Assert
       underTest.watchReceivedGameInvitations().listen(
@@ -516,7 +516,7 @@ void main() {
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = MockedGameInvitationService(mockAuthService);
+        final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act & Assert
         expect(
@@ -531,8 +531,8 @@ void main() {
         'THEN emit value on listen', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
-      MockedGameInvitationService.hasNetworkConnection = true;
-      final underTest = MockedGameInvitationService(mockAuthService);
+      FakeGameInvitationService.hasNetworkConnection = true;
+      final underTest = FakeGameInvitationService(mockAuthService);
 
       // Assert
       underTest.watchSentInvitations().listen(

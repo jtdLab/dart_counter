@@ -11,7 +11,7 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IGameInvitationService)
-class MockedGameInvitationService implements IGameInvitationService {
+class FakeGameInvitationService implements IGameInvitationService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
@@ -22,7 +22,7 @@ class MockedGameInvitationService implements IGameInvitationService {
   BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>?
       _sentGameInvitationsController;
 
-  MockedGameInvitationService(
+  FakeGameInvitationService(
     this._authService,
   )   : _receivedGameInvitationsController =
             _createReceivedGameInvitationsController(),
