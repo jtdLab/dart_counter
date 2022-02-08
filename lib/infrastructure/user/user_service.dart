@@ -55,6 +55,7 @@ class UserService with Disposable implements IUserService {
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     _checkAuth();
+
     try {
       final photosRef = _storage.profilePhotoReference();
       await photosRef.delete();
@@ -64,13 +65,14 @@ class UserService with Disposable implements IUserService {
       return right(unit);
     } catch (e) {
       print(e);
-      return left(const UserFailure.failure()); // TODO name better
+      return left(const UserFailure.unexpected());
     }
   }
 
   @override
   Either<UserFailure, User> getUser() {
     _checkAuth();
+
     final failureOrUser = _userController!.value;
 
     return failureOrUser;
@@ -81,6 +83,7 @@ class UserService with Disposable implements IUserService {
     required EmailAddress newEmailAddress,
   }) async {
     _checkAuth();
+
     if (!newEmailAddress.isValid()) {
       return left(const UserFailure.invalidEmail());
     }
@@ -92,7 +95,7 @@ class UserService with Disposable implements IUserService {
       return right(unit);
     }
 
-    return left(const UserFailure.failure()); // TODO name better
+    return left(const UserFailure.unexpected());
   }
 
   @override
@@ -100,10 +103,11 @@ class UserService with Disposable implements IUserService {
     required Uint8List newPhotoData,
   }) async {
     _checkAuth();
+
     final decodedImage = decodeImage(newPhotoData);
     if (decodedImage == null) {
       print('couldn not decode image.');
-      return left(const UserFailure.failure()); // TODO name better
+      return left(const UserFailure.unexpected());
     }
 
     try {
@@ -119,7 +123,7 @@ class UserService with Disposable implements IUserService {
       return right(unit);
     } catch (e) {
       print(e);
-      return left(const UserFailure.failure()); // TODO name better
+      return left(const UserFailure.unexpected());
     }
   }
 
@@ -128,34 +132,28 @@ class UserService with Disposable implements IUserService {
     required Username newUsername,
   }) async {
     _checkAuth();
+
     if (!newUsername.isValid()) {
       return left(const UserFailure.invalidUsername());
     }
 
-    final success = await _socialClient.updateName(
+    final nameUpdated = await _socialClient.updateName(
       newName: newUsername.getOrCrash(),
     );
 
-    if (success) {
+    if (nameUpdated) {
       return right(unit);
     }
 
-    return left(const UserFailure.failure()); // TODO name better
+    return left(const UserFailure.unexpected());
   }
 
   @override
-  Stream<Either<UserFailure, User>> watchUser() async* {
+  Stream<Either<UserFailure, User>> watchUser() {
     _checkAuth();
-    final DocumentReference<Object?> userDoc;
-    try {
-      userDoc = _firestore.userDocument();
-    } catch (e) {
-      rethrow;
-    }
 
-    final idToken = await _authService.idToken();
-
-    yield* userDoc.snapshots().map<Either<UserFailure, User>>(
+    final userDoc = _firestore.userDocument();
+    return userDoc.snapshots().map<Either<UserFailure, User>>(
       (doc) {
         final json = (doc.data() ?? {}) as Map<String, dynamic>;
 
@@ -166,13 +164,11 @@ class UserService with Disposable implements IUserService {
         return right(UserDto.fromJson(json).toDomain());
       },
     ).onErrorReturnWith(
-      (error, stack) => left(
-        const UserFailure.failure(), // TODO more specific
-      ),
+      // TODO more specific
+      (error, stack) => left(const UserFailure.unexpected()),
     );
   }
 
-  // TODO this should not be impl here
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
     if (!_authService.isAuthenticated()) {
@@ -183,6 +179,5 @@ class UserService with Disposable implements IUserService {
   @override
   void onDispose() {
     _authSubscription?.cancel();
-    _userController?.close();
   }
 }

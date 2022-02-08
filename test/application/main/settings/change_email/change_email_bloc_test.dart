@@ -105,7 +105,7 @@ void main() {
           () => mockUserService.updateEmailAddress(
             newEmailAddress: any(named: 'newEmailAddress'),
           ),
-        ).thenAnswer((_) async => left(const UserFailure.failure()));
+        ).thenAnswer((_) async => left(const UserFailure.unexpected()));
 
         return ChangeEmailBloc(mockUserService);
       },
@@ -120,7 +120,7 @@ void main() {
       expect: () => [
         const ChangeEmailSubmitInProgress(),
         const ChangeEmailSubmitFailure(
-          userFailure: UserFailure.failure(),
+          userFailure: UserFailure.unexpected(),
         ),
       ],
     );

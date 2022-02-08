@@ -39,6 +39,7 @@ class FakeUserService with Disposable implements IUserService {
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       final user = _userController!.value.toOption().toNullable()!;
       final newProfile = user.profile.copyWith(photoUrl: null);
@@ -51,6 +52,7 @@ class FakeUserService with Disposable implements IUserService {
   @override
   Either<UserFailure, User> getUser() {
     _checkAuth();
+
     if (hasNetworkConnection) {
       return _userController!.value;
     }
@@ -63,6 +65,7 @@ class FakeUserService with Disposable implements IUserService {
     required EmailAddress newEmailAddress,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       if (newEmailAddress.isValid()) {
         final user = getUser().toOption().toNullable()!;
@@ -137,6 +140,5 @@ class FakeUserService with Disposable implements IUserService {
   @override
   void onDispose() {
     _authSubscription?.cancel();
-    _userController?.close();
   }
 }

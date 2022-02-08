@@ -105,7 +105,7 @@ void main() {
           () => mockUserService.updateUsername(
             newUsername: any(named: 'newUsername'),
           ),
-        ).thenAnswer((_) async => left(const UserFailure.failure()));
+        ).thenAnswer((_) async => left(const UserFailure.unexpected()));
 
         return ChangeUsernameBloc(mockUserService);
       },
@@ -120,7 +120,7 @@ void main() {
       expect: () => [
         const ChangeUsernameSubmitInProgress(),
         const ChangeUsernameSubmitFailure(
-          userFailure: UserFailure.failure(),
+          userFailure: UserFailure.unexpected(),
         ),
       ],
     );
