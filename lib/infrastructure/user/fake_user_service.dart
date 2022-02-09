@@ -84,6 +84,7 @@ class FakeUserService with Disposable implements IUserService {
     required Uint8List newPhotoData,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       final user = getUser().toOption().toNullable()!;
       final newProfile = user.profile.copyWith(
@@ -101,6 +102,7 @@ class FakeUserService with Disposable implements IUserService {
     required Username newUsername,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       if (newUsername.isValid()) {
         final user = getUser().toOption().toNullable()!;

@@ -28,9 +28,9 @@ class UserService with Disposable implements IUserService {
   final IAuthService _authService;
   final SocialClient _socialClient;
 
-  StreamSubscription? _authSubscription;
+  late StreamSubscription _authSubscription;
 
-  BehaviorSubject<Either<UserFailure, User>>? _userController;
+  BehaviorSubject<Either<UserFailure, User>> _userController;
 
   UserService(
     this._firestore,
@@ -43,15 +43,16 @@ class UserService with Disposable implements IUserService {
       if (isAuthenticated) {
         if (!_authService.isAuthenticated()) {
           _userController = BehaviorSubject();
-          _userController!.addStream(watchUser());
+          _userController.addStream(watchUser());
         }
       } else {
-        await _userController!.close();
-        _userController = null;
+        await _userController.close();
       }
     });
   }
 
+  // TODO test
+  // FERTIG
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
     _checkAuth();
@@ -61,7 +62,7 @@ class UserService with Disposable implements IUserService {
       await photosRef.delete();
 
       final userDoc = _firestore.userDocument();
-      userDoc.update({'profile.photoUrl': null});
+      await userDoc.update({'profile.photoUrl': null});
       return right(unit);
     } catch (e) {
       print(e);
@@ -73,11 +74,13 @@ class UserService with Disposable implements IUserService {
   Either<UserFailure, User> getUser() {
     _checkAuth();
 
-    final failureOrUser = _userController!.value;
+    final failureOrUser = _userController.value;
 
     return failureOrUser;
   }
 
+  // TODO test
+  // FERTIG
   @override
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
@@ -98,6 +101,8 @@ class UserService with Disposable implements IUserService {
     return left(const UserFailure.unexpected());
   }
 
+  // TODO test
+  // FERTIG
   @override
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
     required Uint8List newPhotoData,
@@ -127,6 +132,8 @@ class UserService with Disposable implements IUserService {
     }
   }
 
+  // TODO test
+  // FERTIG
   @override
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
@@ -178,6 +185,6 @@ class UserService with Disposable implements IUserService {
 
   @override
   void onDispose() {
-    _authSubscription?.cancel();
+    _authSubscription.cancel();
   }
 }
