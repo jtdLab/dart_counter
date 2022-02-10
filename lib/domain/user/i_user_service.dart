@@ -18,7 +18,7 @@ abstract class IUserService {
   /// Returns the app-user or failure.
   ///
   /// {@macro not_authenticated_error}
-  Either<UserFailure, User> fetchUser();
+  Future<Either<UserFailure, User>> getUser();
 
   /// Updates the email address of the user.
   ///

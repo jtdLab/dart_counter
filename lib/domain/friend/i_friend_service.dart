@@ -33,17 +33,18 @@ abstract class IFriendService {
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<Friend>> getFriends();
+  Future<Either<FriendFailure, KtList<Friend>>> getFriends();
 
   /// Returns the received friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests();
+  Future<Either<FriendFailure, KtList<FriendRequest>>>
+      getReceivedFriendRequests();
 
   /// Returns the sent friend requests of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests();
+  Future<Either<FriendFailure, KtList<FriendRequest>>> getSentFriendRequests();
 
   /// Marks the received friend requests of the app-user globally as read.
   ///

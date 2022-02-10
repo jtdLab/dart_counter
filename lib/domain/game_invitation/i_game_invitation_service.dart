@@ -31,13 +31,13 @@ abstract class IGameInvitationService {
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getReceivedGameInvitations();
 
   /// Returns the received game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Either<GameInvitationFailure, KtList<GameInvitation>>
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getSentGameInvitations();
 
   /// Marks the received game invitations of the app-user globally as read.

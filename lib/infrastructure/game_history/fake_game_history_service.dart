@@ -22,7 +22,7 @@ class FakeGameHistoryService implements IGameHistoryService {
 
   @override
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
-      fetchGameHistoryOffline() async {
+      getGameHistoryOffline() async {
     _checkAuth();
 
     if (hasNetworkConnection) {
@@ -41,7 +41,7 @@ class FakeGameHistoryService implements IGameHistoryService {
 
   @override
   Future<Either<GameHistoryFailure, List10<OnlineGame>>>
-      fetchGameHistoryOnline({
+      getGameHistoryOnline({
     required String uid,
   }) async {
     _checkAuth();

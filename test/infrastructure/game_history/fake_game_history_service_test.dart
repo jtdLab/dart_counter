@@ -44,7 +44,7 @@ void main() {
 
         // Act & Assert
         expect(
-          underTest.fetchGameHistoryOffline(),
+          underTest.getGameHistoryOffline(),
           throwsA(isA<NotAuthenticatedError>()),
         );
       },
@@ -60,7 +60,7 @@ void main() {
         final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
-        final failurOrUnit = await underTest.fetchGameHistoryOffline();
+        final failurOrUnit = await underTest.getGameHistoryOffline();
 
         // Assert
         expect(
@@ -80,7 +80,7 @@ void main() {
         final underTest = FakeGameHistoryService(mockAuthService);
 
         // Act
-        final failurOrUnit = await underTest.fetchGameHistoryOffline();
+        final failurOrUnit = await underTest.getGameHistoryOffline();
 
         // Assert
         expect(failurOrUnit.isRight(), true);
@@ -118,7 +118,7 @@ void main() {
 
         // Act & Assert
         expect(
-          underTest.fetchGameHistoryOnline(uid: 'randomId'),
+          underTest.getGameHistoryOnline(uid: 'randomId'),
           throwsA(isA<NotAuthenticatedError>()),
         );
       },
@@ -135,7 +135,7 @@ void main() {
 
         // Act
         final failurOrUnit =
-            await underTest.fetchGameHistoryOnline(uid: 'randomId45380');
+            await underTest.getGameHistoryOnline(uid: 'randomId45380');
 
         // Assert
         expect(
@@ -156,7 +156,7 @@ void main() {
 
         // Act
         final failurOrUnit =
-            await underTest.fetchGameHistoryOnline(uid: 'randomIdw438');
+            await underTest.getGameHistoryOnline(uid: 'randomIdw438');
 
         // Assert
         expect(failurOrUnit.isRight(), true);

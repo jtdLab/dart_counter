@@ -45,10 +45,10 @@ void main() {
     mockGameHistoryService = MockGameHistoryService();
 
     when(() => mockUserService.getUser()).thenReturn(right(User.dummy()));
-    when(() => mockGameHistoryService.fetchGameHistoryOffline())
+    when(() => mockGameHistoryService.getGameHistoryOffline())
         .thenAnswer((_) async => right(gameHistoryOffline));
     when(
-      () => mockGameHistoryService.fetchGameHistoryOnline(
+      () => mockGameHistoryService.getGameHistoryOnline(
         uid: any(named: 'uid'),
       ),
     ).thenAnswer((_) async => right(gameHistoryOnline));
@@ -87,7 +87,7 @@ void main() {
       'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
-          () => mockGameHistoryService.fetchGameHistoryOnline(
+          () => mockGameHistoryService.getGameHistoryOnline(
             uid: any(named: 'uid'),
           ),
         ).thenAnswer((_) async => left(gameHistoryFailure));
@@ -104,7 +104,7 @@ void main() {
       'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
-          () => mockGameHistoryService.fetchGameHistoryOffline(),
+          () => mockGameHistoryService.getGameHistoryOffline(),
         ).thenAnswer((_) async => left(gameHistoryFailure));
       },
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
@@ -148,7 +148,7 @@ void main() {
       'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
-          () => mockGameHistoryService.fetchGameHistoryOffline(),
+          () => mockGameHistoryService.getGameHistoryOffline(),
         ).thenAnswer((_) async => left(gameHistoryFailure));
       },
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
@@ -192,7 +192,7 @@ void main() {
       'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
-          () => mockGameHistoryService.fetchGameHistoryOnline(
+          () => mockGameHistoryService.getGameHistoryOnline(
             uid: any(named: 'uid'),
           ),
         ).thenAnswer((_) async => left(gameHistoryFailure));
@@ -212,7 +212,7 @@ void main() {
       'THEN call fetchGameHistoryOnline with correct uid.',
       setUp: () {
         when(
-          () => mockGameHistoryService.fetchGameHistoryOnline(
+          () => mockGameHistoryService.getGameHistoryOnline(
             uid: any(named: 'uid'),
           ),
         ).thenAnswer((_) async => left(gameHistoryFailure));
@@ -225,7 +225,7 @@ void main() {
       ),
       verify: (_) {
         verify(
-          () => mockGameHistoryService.fetchGameHistoryOnline(uid: 'dummyId'),
+          () => mockGameHistoryService.getGameHistoryOnline(uid: 'dummyId'),
         ).called(1);
       },
     );

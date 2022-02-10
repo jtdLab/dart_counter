@@ -10,13 +10,13 @@ abstract class IGameHistoryService {
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
-      fetchGameHistoryOffline();
+      getGameHistoryOffline();
 
   /// Fetches the online game history of the user with [uid].
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
   Future<Either<GameHistoryFailure, List10<OnlineGame>>>
-      fetchGameHistoryOnline({
+      getGameHistoryOnline({
     required String uid,
   });
 }

@@ -53,9 +53,9 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     );
 
     final failureOrOnlineGameHistory =
-        await _gameHistoryService.fetchGameHistoryOnline(uid: uid.getOrCrash());
+        await _gameHistoryService.getGameHistoryOnline(uid: uid.getOrCrash());
     final failureOrOfflineGameHistory =
-        await _gameHistoryService.fetchGameHistoryOffline();
+        await _gameHistoryService.getGameHistoryOffline();
 
     emit(
       failureOrOnlineGameHistory.fold(
@@ -86,7 +86,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     Emitter<GameHistoryState> emit,
   ) async {
     final failureOrGameHistory =
-        await _gameHistoryService.fetchGameHistoryOffline();
+        await _gameHistoryService.getGameHistoryOffline();
 
     emit(
       failureOrGameHistory.fold(
@@ -112,7 +112,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     }
 
     final failureOrGameHistory = await _gameHistoryService
-        .fetchGameHistoryOnline(uid: uid!.getOrCrash());
+        .getGameHistoryOnline(uid: uid!.getOrCrash());
     emit(
       failureOrGameHistory.fold(
         (failure) => GameHistoryState.loadFailure(failure: failure),

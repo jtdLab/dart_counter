@@ -29,7 +29,7 @@ class GameHistoryService implements IGameHistoryService {
 
   @override
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
-      fetchGameHistoryOffline() async {
+      getGameHistoryOffline() async {
     try {
       final collection = _firestore.gameHistoryOfflineCollection();
       final querySnapshot = await collection.get();
@@ -58,7 +58,7 @@ class GameHistoryService implements IGameHistoryService {
 
   @override
   Future<Either<GameHistoryFailure, List10<OnlineGame>>>
-      fetchGameHistoryOnline({
+      getGameHistoryOnline({
     required String uid,
   }) async {
     try {
