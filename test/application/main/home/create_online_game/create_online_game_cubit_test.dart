@@ -22,7 +22,7 @@ void main() {
     mockPlayOnlineService = MockPlayOnlineService();
   });
 
-  test('initial state initialized correctly', () {
+  test('Initial state set to CreateOnlineGameInitial.', () {
     // Arrange & Act
     final underTest = CreateOnlineGameCubit(mockPlayOnlineService);
 
@@ -33,7 +33,7 @@ void main() {
   group('createGame', () {
     blocTest<CreateOnlineGameCubit, CreateOnlineGameState>(
       'GIVEN create game fails '
-      'emits [CreateOnlineGameFailure] when createGame called.',
+      'THEN emit [CreateOnlineGameFailure].',
       build: () {
         when<Future<Either<PlayFailure, OnlineGameSnapshot>>>(
           () => mockPlayOnlineService.createGame(),
@@ -51,7 +51,7 @@ void main() {
 
     blocTest<CreateOnlineGameCubit, CreateOnlineGameState>(
       'GIVEN create game succeeds '
-      'emits [CreateOnlineGameSuccess] when createGame called.',
+      'THEN emit [CreateOnlineGameSuccess].',
       build: () {
         when<Future<Either<PlayFailure, OnlineGameSnapshot>>>(
           () => mockPlayOnlineService.createGame(),

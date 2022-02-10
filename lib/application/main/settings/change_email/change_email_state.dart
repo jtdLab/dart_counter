@@ -1,9 +1,11 @@
+// coverage:ignore-file
+
 part of 'change_email_bloc.dart';
 
 @freezed
 class ChangeEmailState with _$ChangeEmailState {
  const factory ChangeEmailState.initial({
-    required EmailAddress email,
+    required EmailAddress newEmail,
     required bool showErrorMessages,
   }) = ChangeEmailInitial;
   const factory ChangeEmailState.submitInProgress() =

@@ -8,6 +8,7 @@ part 'leg.freezed.dart';
 
 @freezed
 class Leg with _$Leg {
+  // coverage:ignore-start
   const factory Leg({
     required bool won,
     required KtList<Throw> throws,
@@ -23,4 +24,5 @@ class Leg with _$Leg {
       stats: LegStats.dummy(),
     );
   }
+  // coverage:ignore-end
 }

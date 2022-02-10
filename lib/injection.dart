@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:dart_counter/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';

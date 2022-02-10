@@ -5,6 +5,7 @@ part 'set_stats.freezed.dart';
 
 @freezed
 class SetStats with _$SetStats {
+  // coverage:ignore-start
   const factory SetStats({
     double? average,
     double? checkoutPercentage,
@@ -41,4 +42,5 @@ class SetStats with _$SetStats {
         hundredSixtyPlus: faker.randomGenerator.integer(5),
         hundredEighty: faker.randomGenerator.integer(4),
       );
+  // coverage:ignore-end
 }

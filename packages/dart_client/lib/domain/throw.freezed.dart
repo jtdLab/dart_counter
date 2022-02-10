@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'throw.dart';
@@ -163,17 +164,21 @@ class _$_Throw implements _Throw {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Throw &&
-            (identical(other.points, points) || other.points == points) &&
-            (identical(other.dartsThrown, dartsThrown) ||
-                other.dartsThrown == dartsThrown) &&
-            (identical(other.dartsOnDouble, dartsOnDouble) ||
-                other.dartsOnDouble == dartsOnDouble) &&
-            (identical(other.darts, darts) || other.darts == darts));
+            const DeepCollectionEquality().equals(other.points, points) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsThrown, dartsThrown) &&
+            const DeepCollectionEquality()
+                .equals(other.dartsOnDouble, dartsOnDouble) &&
+            const DeepCollectionEquality().equals(other.darts, darts));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, points, dartsThrown, dartsOnDouble, darts);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(points),
+      const DeepCollectionEquality().hash(dartsThrown),
+      const DeepCollectionEquality().hash(dartsOnDouble),
+      const DeepCollectionEquality().hash(darts));
 
   @JsonKey(ignore: true)
   @override

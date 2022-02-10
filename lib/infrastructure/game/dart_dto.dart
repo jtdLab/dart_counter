@@ -1,5 +1,5 @@
 import 'package:dart_client/dart_client.dart' as c;
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -28,6 +28,11 @@ extension ExternalDartTypeX on ex.DartType {
   }
 
   static ex.DartType parse(String str) {
+    // TODO only to fit model
+    if (str == 'missed') {
+      return ex.DartType.double;
+    }
+
     return ex.DartType.values.firstWhere(
       (e) => e.toString() == 'DartType.$str',
       orElse: () => throw EnumParseError<ex.DartType>(str),
@@ -42,6 +47,11 @@ extension ClientDartTypeX on c.DartType {
   }
 
   static c.DartType parse(String str) {
+    // TODO only to fit model
+    if (str == 'missed') {
+      return c.DartType.double;
+    }
+
     return c.DartType.values.firstWhere(
       (e) => e.toString() == 'DartType.$str',
       orElse: () => throw EnumParseError<c.DartType>(str),

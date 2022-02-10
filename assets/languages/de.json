@@ -116,5 +116,36 @@
 
     "noGamesFound": "Keine Spiele gefunden",
 
-    "mainMenu": "Hauptmenü"
+    "mainMenu": "Hauptmenü",
+
+    "single": {
+        "one": "single",
+        "many": "singles"
+    },
+    "double": {
+        "one": "double",
+        "many": "doubles"
+    },
+    "triple": {
+        "one": "triple",
+        "many": "triples"
+    },
+    "missed": "verpasst",
+
+    "target": "Ziel",
+
+    "takesLeft": "Noch {} Aufnahmen",
+
+    "bestPointsShort":"Best: {}",
+
+    "totalPoints": "Punkte gesamt",
+
+    "singleTraining": "Single Training",
+    "doubleTraining": "Doppel Training",
+    "scoreTraining": "Score Training",
+    "bobs27": "Bobs 27",
+
+    "numberOfTakes" : "Anzahl Aufnahmen",
+
+    "order": "Reihenfolge"
 }

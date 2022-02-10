@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'create_offline_game_bloc.dart';
 
 @freezed

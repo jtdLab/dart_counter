@@ -7,6 +7,7 @@ part 'user.freezed.dart';
 
 @freezed
 class User with _$User {
+  // coverage:ignore-start
   const factory User({
     required UniqueId id,
     required Profile profile,
@@ -16,4 +17,5 @@ class User with _$User {
         id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
         profile: Profile.dummy(),
       );
+  // coverage:ignore-end
 }

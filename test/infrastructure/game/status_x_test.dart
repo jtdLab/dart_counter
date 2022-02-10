@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/game/status.dart';
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_counter/infrastructure/game/status_x.dart';
 import 'package:dart_client/dart_client.dart' as c;

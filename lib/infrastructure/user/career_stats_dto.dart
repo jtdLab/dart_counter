@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/user/career_stats.dart';
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'career_stats_dto.freezed.dart';

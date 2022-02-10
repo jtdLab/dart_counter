@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'home_bloc.dart';
 
 @freezed

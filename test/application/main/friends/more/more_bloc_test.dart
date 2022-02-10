@@ -32,7 +32,7 @@ void main() {
     ).thenAnswer((_) async => right(unit));
   });
 
-  test('initial state is MoreInitial', () {
+  test('Initial state set to MoreInitial.', () {
     // Arrange & Act
     final underTest = MoreBloc(
       mockFriendService,
@@ -47,8 +47,8 @@ void main() {
     'RemovePressed',
     () {
       blocTest<MoreBloc, MoreState>(
-        'calls removeFriend with friendToRemove as param '
-        'when selected friend is not null',
+        'GIVEN selected friend is not null '
+        'THEN call removeFriend with friendToRemove as param.',
         setUp: () {
           when(() => mockFriendsBloc.state).thenReturn(
             FriendsState.initial(
@@ -72,8 +72,8 @@ void main() {
       );
 
       blocTest<MoreBloc, MoreState>(
-        'does nothing '
-        'when selected friend is null',
+        'GIVEN selected friend is null '
+        'THEN do nothing.',
         setUp: () {
           when(() => mockFriendsBloc.state).thenReturn(
             const FriendsState.initial(

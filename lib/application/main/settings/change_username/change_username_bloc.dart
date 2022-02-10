@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
@@ -13,37 +12,40 @@ part 'change_username_bloc.freezed.dart';
 part 'change_username_event.dart';
 part 'change_username_state.dart';
 
-@lazySingleton
-class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
-    with AutoResetLazySingleton {
+@injectable
+class ChangeUsernameBloc
+    extends Bloc<ChangeUsernameEvent, ChangeUsernameState> {
   final IUserService _userService;
 
   ChangeUsernameBloc(
     this._userService,
   ) : super(
+          // Set initial state
           ChangeUsernameState.initial(
-            username: Username.empty(),
+            newUsername: Username.empty(),
             showErrorMessages: false,
           ),
         ) {
-    on<_UsernameChanged>(_mapUsernameChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_NewUsernameChanged>(_handleUsernameChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapUsernameChangedToState(
-    _UsernameChanged event,
+  /// Handle incoming [_NewUsernameChanged] event.
+  void _handleUsernameChanged(
+    _NewUsernameChanged event,
     Emitter<ChangeUsernameState> emit,
   ) {
-    final username = event.newUsername;
+    final username = event.newNewUsername;
 
     state.mapOrNull(
       initial: (initial) {
-        emit(initial.copyWith(username: Username(username)));
+        emit(initial.copyWith(newUsername: Username(username)));
       },
       submitFailure: (_) {
         emit(
           ChangeUsernameState.initial(
-            username: Username(username),
+            newUsername: Username(username),
             showErrorMessages: true,
           ),
         );
@@ -51,14 +53,15 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ChangeUsernameState> emit,
   ) async {
     await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
-        final username = initial.username;
+        final username = initial.newUsername;
 
         if (username.isValid()) {
           emit(const ChangeUsernameState.submitInProgress());
@@ -84,7 +87,8 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangeUsernameBloc>()) {
@@ -93,4 +97,5 @@ class ChangeUsernameBloc extends Bloc<ChangeUsernameEvent, ChangeUsernameState>
 
     return super.close();
   }
+  */
 }

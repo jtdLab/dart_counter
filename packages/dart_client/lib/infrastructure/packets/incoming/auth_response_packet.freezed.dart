@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_response_packet.dart';
@@ -131,12 +132,13 @@ class _$_AuthResponsePacket extends _AuthResponsePacket {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthResponsePacket &&
-            (identical(other.successful, successful) ||
-                other.successful == successful));
+            const DeepCollectionEquality()
+                .equals(other.successful, successful));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, successful);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(successful));
 
   @JsonKey(ignore: true)
   @override

@@ -19,7 +19,7 @@ import '../../../shared/create_game/modals/advanced_settings/advanced_settings_m
 // LOCAL WIDGETS
 import '../../../../shared/widgets.dart';
 import '../../../shared/create_game/widgets.dart';
-part '../widgets.dart';
+part 'widgets.dart';
 
 class CreateOfflineGamePage extends StatelessWidget {
   const CreateOfflineGamePage({
@@ -28,14 +28,14 @@ class CreateOfflineGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final createOfflineGameBloc = getIt<CreateOfflineGameBloc>();
-
-    return BlocProvider(
-      create: (context) => createOfflineGameBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<CreateOfflineGameBloc>(),
+        ),
+      ],
       child: BlocListener<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
-        listener: (context, state) {
-          final gameSnapshot = state;
-
+        listener: (context, gameSnapshot) {
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (gameSnapshot.status == Status.running) {
@@ -62,34 +62,23 @@ class CreateOfflineGamePage extends StatelessWidget {
         child: AppPage(
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
-            leading: CancelButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    reverseTransitionDuration: Duration.zero,
-                    opaque: false,
-                    pageBuilder: (context, _, __) => BlocProvider(
-                      create: (context) => createOfflineGameBloc,
-                      child: Builder(
-                        builder: (context) => YouReallyWantToCancelGameDialog(
-                          onYesPressed: () =>
-                              context.read<CreateOfflineGameBloc>().add(
-                                    const CreateOfflineGameEvent.gameCanceled(),
-                                  ),
-                        ),
-                      ),
+            leading: Builder(
+              builder: (context) => CancelButton(
+                onPressed: () {
+                  context.router.push(
+                    YouReallyWantToCancelGameDialogRoute(
+                      onYesPressed: () =>
+                          context.read<CreateOfflineGameBloc>().add(
+                                const CreateOfflineGameEvent.gameCanceled(),
+                              ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-            middle: Text(
-              LocaleKeys.createGame.tr().toUpperCase(),
-            ),
+            middle: Text(LocaleKeys.createGame.tr().toUpperCase()),
           ),
-          child: const SingleChildScrollView(
-            child: _CreateOfflineGameWidget(),
-          ),
+          child: const SingleChildScrollView(child: _CreateOfflineGameWidget()),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:dart_counter/domain/training/mode.dart';
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:dart_game/core/training/precision/mode.dart' as ex;
 
 /// Utility methods to convert a [String] to [Mode] and vice versa.

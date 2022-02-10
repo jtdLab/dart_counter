@@ -8,6 +8,7 @@ part 'profile.freezed.dart';
 /// Domain model of an app-users profile.
 @freezed
 class Profile with _$Profile {
+  // coverage:ignore-start
   const factory Profile({
     String? photoUrl,
     required Username name,
@@ -30,4 +31,5 @@ class Profile with _$Profile {
         ),
         careerStatsOnline: CareerStats.dummy(),
       );
+  // coverage:ignore-end
 }

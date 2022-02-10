@@ -2,6 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // TODO animate prev and next + show them like cuprtino picker
+// TODO add initial value property
 class AppNumberPicker extends StatefulWidget {
   final String? title;
   final Function(int)? onChanged;

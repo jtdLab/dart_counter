@@ -15,4 +15,18 @@ class ApplicationError extends Error {
   factory ApplicationError.unexpectedMissingUser() => ApplicationError(
         'User not available where it is expected to be available',
       );
+
+  factory ApplicationError.onlyAdvancedSettingsInGameExpected() =>
+      ApplicationError(
+        'AdvancedSettingsBloc did emit state other than AdvancedSettingsInGame. '
+        'But only AdvancedSettingsInGame are expected.',
+      );
+
+  factory ApplicationError.keyBoardInitialExpected() => ApplicationError(
+        'Expected KeyBoardInitial but KeyBoardFocused found.',
+      );
+
+  factory ApplicationError.keyBoardFocusedExpected() => ApplicationError(
+        'Expected KeyBoardFocused but KeyBoardInitial found.',
+      );
 }

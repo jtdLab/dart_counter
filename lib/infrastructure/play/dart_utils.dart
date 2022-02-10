@@ -36,7 +36,7 @@ class DartUtils implements IDartUtils {
 
   @override
   bool validatePoints({
-    required int pointsLeft,
+    int? pointsLeft,
     required int points,
   }) =>
       ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
@@ -54,7 +54,7 @@ class DartUtils implements IDartUtils {
     }
 
     if (pointsLeft == 2 &&
-        darts.count((dart) => dart.type != DartType.double) != 0) {
+        darts.count((dart) => dart.type == DartType.double) == 0) {
       return false;
     }
 

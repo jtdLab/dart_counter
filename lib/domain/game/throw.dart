@@ -7,19 +7,13 @@ part 'throw.freezed.dart';
 
 @freezed
 class Throw with _$Throw {
+  // coverage:ignore-start
   const factory Throw({
     required int points,
     required int dartsThrown,
     required int dartsOnDouble,
     KtList<Dart>? darts,
   }) = _Throw;
-
-  factory Throw.fromDarts(List<Dart> darts, int dartsOnDouble) => Throw(
-        points: darts.map((dart) => dart.points()).toList().sum,
-        dartsThrown: darts.length,
-        dartsOnDouble: dartsOnDouble,
-        darts: KtList.from(darts),
-      );
 
   factory Throw.dummy({
     int dartsOnDouble = 0,
@@ -36,4 +30,12 @@ class Throw with _$Throw {
       dartsOnDouble: dartsOnDouble,
     );
   }
+  // coverage:ignore-end
+
+  factory Throw.fromDarts(List<Dart> darts, int dartsOnDouble) => Throw(
+        points: darts.map((dart) => dart.points()).toList().sum,
+        dartsThrown: darts.length,
+        dartsOnDouble: dartsOnDouble,
+        darts: KtList.from(darts),
+      );
 }

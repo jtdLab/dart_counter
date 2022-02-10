@@ -17,7 +17,7 @@ void main() {
     mockFriendService = MockFriendService();
   });
 
-  test('initial state is SearchUserInitial', () {
+  test('Initial state set to SearchUserInitial', () {
     // Arrange & Act
     final underTest = SearchUserBloc(
       mockFriendService,
@@ -37,8 +37,8 @@ void main() {
           KtList.from([UserSnapshot.dummy(), UserSnapshot.dummy()]);
 
       blocTest<SearchUserBloc, SearchUserState>(
-        'emits SearchUserInitial '
-        'when newSearchString is empty string',
+        'GIVEN newSearchString is empty string '
+        'THEN emit SearchUserInitial.',
         build: () => SearchUserBloc(
           mockFriendService,
         ),
@@ -50,9 +50,9 @@ void main() {
       );
 
       blocTest<SearchUserBloc, SearchUserState>(
-        'emits [SearchUserLoadInProgress, SearchUserLoadFailure] '
-        'when newSearchString is not empty string '
-        'and searchUserByUsername returns failure',
+        'GIVEN newSearchString is not empty string '
+        'and searchUserByUsername returns failure '
+        'THEN emit [SearchUserLoadInProgress, SearchUserLoadFailure].',
         setUp: () {
           when(
             () => mockFriendService.searchUserByUsername(
@@ -76,9 +76,9 @@ void main() {
       );
 
       blocTest<SearchUserBloc, SearchUserState>(
-        'emits [SearchUserLoadInProgress, SearchUserLoadSuccess] '
-        'when newSearchString is not empty string '
-        'and searchUserByUsername returns results',
+        'GIVEN newSearchString is not empty string '
+        'and searchUserByUsername returns results '
+        'THEN emit [SearchUserLoadInProgress, SearchUserLoadSuccess].',
         setUp: () {
           when(
             () => mockFriendService.searchUserByUsername(
@@ -102,7 +102,7 @@ void main() {
       );
 
       blocTest<SearchUserBloc, SearchUserState>(
-        'emits throttled states with a delay of 300ms',
+        'Emit throttled states with a delay of 300ms.',
         setUp: () {
           when(
             () => mockFriendService.searchUserByUsername(
@@ -148,7 +148,7 @@ void main() {
     'ClearPressed',
     () {
       blocTest<SearchUserBloc, SearchUserState>(
-        'emits SearchUserInitial',
+        'Emit SearchUserInitial.',
         build: () => SearchUserBloc(
           mockFriendService,
         ),

@@ -12,6 +12,7 @@ part 'offline_game.freezed.dart';
 
 @freezed
 class OfflineGame with _$OfflineGame implements AbstractGame {
+  // coverage:ignore-start
   @Implements<AbstractGame>()
   const factory OfflineGame({
     required UniqueId id,
@@ -25,10 +26,6 @@ class OfflineGame with _$OfflineGame implements AbstractGame {
   }) = _OfflineGame;
 
   const OfflineGame._();
-
-  @override
-  String description() =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 
   factory OfflineGame.dummy() => OfflineGame(
         id: UniqueId.fromUniqueString(
@@ -56,4 +53,11 @@ class OfflineGame with _$OfflineGame implements AbstractGame {
             .amount((i) => OfflinePlayer.dummy(), 4)
             .toImmutableList(),
       );
+  // coverage:ignore-end
+
+  // TODO move to base class not possible in current freezed ?
+  // TODO doc
+  @override
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 }

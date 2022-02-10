@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -13,24 +12,28 @@ part 'forgot_password_bloc.freezed.dart';
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
-@lazySingleton
-class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
-    with AutoResetLazySingleton {
+// TODO doc
+@injectable
+class ForgotPasswordBloc
+    extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   final IAuthService _authService;
 
   ForgotPasswordBloc(
     this._authService,
   ) : super(
+          // Set initial state
           ForgotPasswordState.initial(
             email: EmailAddress.empty(),
             showErrorMessages: false,
           ),
         ) {
-    on<_EmailChanged>(_mapEmailChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_EmailChanged>(_handleEmailChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapEmailChangedToState(
+  /// Handle incoming [_EmailChanged] event.Ï
+  void _handleEmailChanged(
     _EmailChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
@@ -51,7 +54,8 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ForgotPasswordState> emit,
   ) async {
@@ -85,7 +89,8 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
     );
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ForgotPasswordBloc>()) {
@@ -94,4 +99,5 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
 
     return super.close();
   }
+  */
 }

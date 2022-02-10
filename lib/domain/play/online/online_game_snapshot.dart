@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
@@ -13,6 +14,7 @@ part 'online_game_snapshot.freezed.dart';
 class OnlineGameSnapshot
     with _$OnlineGameSnapshot
     implements AbstractGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractGameSnapshot>()
   const factory OnlineGameSnapshot({
     required Status status,
@@ -24,18 +26,6 @@ class OnlineGameSnapshot
   }) = _OnlineGameSnapshot;
 
   const OnlineGameSnapshot._();
-
-  @override
-  bool hasDartBot() => false;
-
-  @override
-  String description() =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  OnlinePlayerSnapshot currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory OnlineGameSnapshot.dummy() {
     return OnlineGameSnapshot(
@@ -50,4 +40,27 @@ class OnlineGameSnapshot
       ).toImmutableList(),
     );
   }
+  // coverage:ignore-end
+
+  // TODO doc
+  @override
+  bool hasDartBot() => false;
+
+  // TODO doc
+  @override
+  OnlinePlayerSnapshot currentTurn() {
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
+    return players.first((player) => player.isCurrentTurn);
+  }
+
+  // TODO move to base class not possible in current freezed ?
+  // TODO doc
+  @override
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 }

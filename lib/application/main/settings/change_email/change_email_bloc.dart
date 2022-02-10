@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,24 +11,26 @@ part 'change_email_bloc.freezed.dart';
 part 'change_email_event.dart';
 part 'change_email_state.dart';
 
-@lazySingleton
-class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
-    with AutoResetLazySingleton {
+@injectable
+class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
   final IUserService _userService;
 
   ChangeEmailBloc(
     this._userService,
   ) : super(
+          // Set initial state
           ChangeEmailState.initial(
-            email: EmailAddress.empty(),
+            newEmail: EmailAddress.empty(),
             showErrorMessages: false,
           ),
         ) {
-    on<_NewEmailChanged>(_mapEmailChangedToState);
-    on<_ConfirmPressed>(_mapConfirmPressedToState);
+    // Register event handlers
+    on<_NewEmailChanged>(_handleEmailChanged);
+    on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
-  void _mapEmailChangedToState(
+  /// Handle incoming [_NewEmailChanged] event.
+  void _handleEmailChanged(
     _NewEmailChanged event,
     Emitter<ChangeEmailState> emit,
   ) {
@@ -38,12 +38,12 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
 
     state.mapOrNull(
       initial: (initial) {
-        emit(initial.copyWith(email: EmailAddress(email)));
+        emit(initial.copyWith(newEmail: EmailAddress(email)));
       },
       submitFailure: (_) {
         emit(
           ChangeEmailState.initial(
-            email: EmailAddress(email),
+            newEmail: EmailAddress(email),
             showErrorMessages: true,
           ),
         );
@@ -51,14 +51,15 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     );
   }
 
-  Future<void> _mapConfirmPressedToState(
+  /// Handle incoming [_ConfirmPressed] event.
+  Future<void> _handleConfirmPressed(
     _ConfirmPressed event,
     Emitter<ChangeEmailState> emit,
   ) async {
     await state.mapOrNull(
       initial: (initial) async {
         UserFailure? userFailure;
-        final email = initial.email;
+        final email = initial.newEmail;
 
         if (email.isValid()) {
           emit(const ChangeEmailState.submitInProgress());
@@ -84,7 +85,8 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
     );
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<ChangeEmailBloc>()) {
@@ -93,4 +95,5 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState>
 
     return super.close();
   }
+   */
 }

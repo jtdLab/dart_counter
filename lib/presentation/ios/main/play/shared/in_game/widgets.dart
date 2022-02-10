@@ -1,28 +1,10 @@
 // CORE
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/darts/darts_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points/points_cubit.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
 import 'dart:math' as math;
 
-// BLOCS
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/key_board/digit_button/detailed_digit_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/key_board/erease_button/detailed_erease_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/detailed_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/check_button/check_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/digit_button/standard_digit_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/erease_button/standard_erease_button_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/optical_input_area/optical_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/speech_input_area/speech_input_area_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/standard_input_area_bloc.dart';
-
-// DOMAIN
-import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
-import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
 
 // NAVBAR
@@ -47,12 +29,13 @@ class StatsButton extends StatelessWidget {
 }
 
 // BODY
-
+/** 
 // TODO shared with score training as much as possible
 // STANDARD INPUT AREA
 // TODO flex factors
-class StandardInputArea extends StatelessWidget {
-  const StandardInputArea({
+// TODO remove
+class _StandardInputArea extends StatelessWidget {
+  const _StandardInputArea({
     Key? key,
   }) : super(key: key);
 
@@ -274,11 +257,12 @@ class _StandardEreaseButton extends StatelessWidget {
 
 // DETAILED INPUT AREA
 // TODO flex factors
-class DetailedInputArea extends StatelessWidget {
+// TODO remove
+class _DetailedInputArea extends StatelessWidget {
   static const flexTop = 1;
   static const flexBottom = 3;
 
-  const DetailedInputArea({
+  const _DetailedInputArea({
     Key? key,
   }) : super(key: key);
 
@@ -520,6 +504,7 @@ class _DetailedEreaseButton extends StatelessWidget {
   }
 }
 
+*/
 // SPEECH INPUT AREA
 // TODO flex factors
 class SpeechInputArea extends StatelessWidget {
@@ -549,10 +534,13 @@ class SpeechInputArea extends StatelessWidget {
                     const Spacer(),
                     Expanded(
                       child: UndoButton(
-                        onPressed: () =>
+                        onPressed: () {},
+                        /**
+                        *  onPressed: () =>
                             context.read<SpeechInputAreaBloc>().add(
                                   const SpeechInputAreaEvent.undoThrowPressed(),
                                 ),
+                        */
                       ),
                     ),
                     const Spacer(),
@@ -587,7 +575,7 @@ class _SpeechKeyBoard extends StatelessWidget {
     );
   }
 }
-
+/** 
 // OPTICAL INPUT AREA
 // TODO make responsive
 class OpticalInputArea extends StatelessWidget {
@@ -608,16 +596,24 @@ class OpticalInputArea extends StatelessWidget {
       child: AppColumn(
         spacing: size6(context),
         children: [
-          const _DartsDisplayer(),
-          BlocBuilder<PointsCubit, int>(
+          // const _DartsDisplayer(),
+          // just a dummy
+          InputRow(
+            onUndoPressed: onUndoPressed,
+            onPerformThrowPressed: onPerformThrowPressed,
+            points: 88,
+          ),
+          /**
+          *  BlocBuilder<PointsCubit, int>(
             builder: (context, state) {
               return InputRow(
                 onUndoPressed: onUndoPressed,
                 onPerformThrowPressed: onPerformThrowPressed,
-                points: state,
+                points: 88,
               );
             },
           ),
+          */
           const _OpticalKeyBoard(),
         ],
       ),
@@ -778,7 +774,7 @@ class _DartBoardPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-
+*/
 // SHARED
 
 // PLAYER ITEM
@@ -1413,7 +1409,8 @@ class _PlayerItemSmallFinishRecommendationDisplayer extends StatelessWidget {
 
 // DART DISPLAYER
 
-// TODO responsive
+/**
+ * // TODO responsive
 class _DartsDisplayer extends StatelessWidget {
   const _DartsDisplayer({
     Key? key,
@@ -1479,6 +1476,8 @@ class _DartsDisplayer extends StatelessWidget {
     } else {
       var string = '';
       switch (dart.type) {
+        case DartType.missed:
+          return 'X';
         case DartType.single:
           string += '';
           break;
@@ -1494,3 +1493,5 @@ class _DartsDisplayer extends StatelessWidget {
     }
   }
 }
+≥
+ */

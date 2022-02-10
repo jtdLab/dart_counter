@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -16,32 +14,36 @@ part 'game_history_bloc.freezed.dart';
 part 'game_history_event.dart';
 part 'game_history_state.dart';
 
-@lazySingleton
-class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
-    with AutoResetLazySingleton {
+@injectable
+class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   final IUserService _userService;
   final IGameHistoryService _gameHistoryService;
 
   GameHistoryBloc(
     this._userService,
     this._gameHistoryService,
-  ) : super(const GameHistoryState.loadInProgress()) {
+  ) : super(
+          // Set initial state
+          const GameHistoryState.loadInProgress(),
+        ) {
+    // Register event handlers
     on<_FetchGameHistoryAllRequested>(
-      (_, emit) async => _mapFetchGameHistoryAllRequestedToState(emit),
+      (_, emit) async => _handleFetchGameHistoryAllRequested(emit),
     );
     on<_FetchGameHistoryOfflineRequested>(
-      (_, emit) async => _mapFetchGameHistoryOfflineRequestedToState(emit),
+      (_, emit) async => _handleFetchGameHistoryOfflineRequested(emit),
     );
     on<_FetchGameHistoryOnlineRequested>(
       (event, emit) async =>
-          _mapFetchGameHistoryOnlineRequestedToState(event, emit),
+          _handleFetchGameHistoryOnlineRequested(event, emit),
     );
     on<_GameSelected>(
-      (event, emit) => _mapGameSelectedToState(event, emit),
+      (event, emit) => _handleGameSelected(event, emit),
     );
   }
 
-  Future<void> _mapFetchGameHistoryAllRequestedToState(
+  /// Handle incoming [_FetchGameHistoryAllRequested] event.
+  Future<void> _handleFetchGameHistoryAllRequested(
     Emitter<GameHistoryState> emit,
   ) async {
     final failureOrUser = _userService.getUser();
@@ -67,7 +69,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
             allGameHistory.addAll(offlineGameHistory.getOrCrash().asList());
 
             allGameHistory.sort(
-              (game, game1) => game.createdAt.compareTo(game1.createdAt),
+              (game, game1) => game1.createdAt.compareTo(game.createdAt),
             );
 
             return GameHistoryState.loadSuccess(
@@ -79,7 +81,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     );
   }
 
-  Future<void> _mapFetchGameHistoryOfflineRequestedToState(
+  /// Handle incoming [_FetchGameHistoryOfflineRequested] event.
+  Future<void> _handleFetchGameHistoryOfflineRequested(
     Emitter<GameHistoryState> emit,
   ) async {
     final failureOrGameHistory =
@@ -93,7 +96,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     );
   }
 
-  Future<void> _mapFetchGameHistoryOnlineRequestedToState(
+  /// Handle incoming [_FetchGameHistoryOnlineRequested] event.
+  Future<void> _handleFetchGameHistoryOnlineRequested(
     _FetchGameHistoryOnlineRequested event,
     Emitter<GameHistoryState> emit,
   ) async {
@@ -117,7 +121,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     );
   }
 
-  void _mapGameSelectedToState(
+  /// Handle incoming [_GameSelected] event.
+  void _handleGameSelected(
     _GameSelected event,
     Emitter<GameHistoryState> emit,
   ) {
@@ -128,7 +133,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
     }
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<GameHistoryBloc>()) {
@@ -137,4 +143,5 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState>
 
     return super.close();
   }
+  */
 }

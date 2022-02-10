@@ -17,25 +17,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$InGameEventTearOff {
   const _$InGameEventTearOff();
 
-  KeyBoardTypeChanged keyBoardTypeChanged(
-      {required KeyBoardType newKeyBoardType}) {
-    return KeyBoardTypeChanged(
-      newKeyBoardType: newKeyBoardType,
+  ShowCheckoutDetailsChanged showCheckoutDetailsChanged(
+      {required bool newShowCheckoutDetails}) {
+    return ShowCheckoutDetailsChanged(
+      newShowCheckoutDetails: newShowCheckoutDetails,
     );
   }
 
-  GameCanceled gameCanceled() {
-    return const GameCanceled();
-  }
-
-  UndoThrowPressed undoThrowPressed() {
-    return const UndoThrowPressed();
-  }
-
-  PerformThrowPressed performThrowPressed({required Throw t}) {
-    return PerformThrowPressed(
-      t: t,
-    );
+  Canceled canceled() {
+    return const Canceled();
   }
 }
 
@@ -46,51 +36,43 @@ const $InGameEvent = _$InGameEventTearOff();
 mixin _$InGameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(KeyBoardType newKeyBoardType) keyBoardTypeChanged,
-    required TResult Function() gameCanceled,
-    required TResult Function() undoThrowPressed,
-    required TResult Function(Throw t) performThrowPressed,
+    required TResult Function(bool newShowCheckoutDetails)
+        showCheckoutDetailsChanged,
+    required TResult Function() canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(KeyBoardTypeChanged value) keyBoardTypeChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(UndoThrowPressed value) undoThrowPressed,
-    required TResult Function(PerformThrowPressed value) performThrowPressed,
+    required TResult Function(ShowCheckoutDetailsChanged value)
+        showCheckoutDetailsChanged,
+    required TResult Function(Canceled value) canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,101 +95,99 @@ class _$InGameEventCopyWithImpl<$Res> implements $InGameEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $KeyBoardTypeChangedCopyWith<$Res> {
-  factory $KeyBoardTypeChangedCopyWith(
-          KeyBoardTypeChanged value, $Res Function(KeyBoardTypeChanged) then) =
-      _$KeyBoardTypeChangedCopyWithImpl<$Res>;
-  $Res call({KeyBoardType newKeyBoardType});
+abstract class $ShowCheckoutDetailsChangedCopyWith<$Res> {
+  factory $ShowCheckoutDetailsChangedCopyWith(ShowCheckoutDetailsChanged value,
+          $Res Function(ShowCheckoutDetailsChanged) then) =
+      _$ShowCheckoutDetailsChangedCopyWithImpl<$Res>;
+  $Res call({bool newShowCheckoutDetails});
 }
 
 /// @nodoc
-class _$KeyBoardTypeChangedCopyWithImpl<$Res>
+class _$ShowCheckoutDetailsChangedCopyWithImpl<$Res>
     extends _$InGameEventCopyWithImpl<$Res>
-    implements $KeyBoardTypeChangedCopyWith<$Res> {
-  _$KeyBoardTypeChangedCopyWithImpl(
-      KeyBoardTypeChanged _value, $Res Function(KeyBoardTypeChanged) _then)
-      : super(_value, (v) => _then(v as KeyBoardTypeChanged));
+    implements $ShowCheckoutDetailsChangedCopyWith<$Res> {
+  _$ShowCheckoutDetailsChangedCopyWithImpl(ShowCheckoutDetailsChanged _value,
+      $Res Function(ShowCheckoutDetailsChanged) _then)
+      : super(_value, (v) => _then(v as ShowCheckoutDetailsChanged));
 
   @override
-  KeyBoardTypeChanged get _value => super._value as KeyBoardTypeChanged;
+  ShowCheckoutDetailsChanged get _value =>
+      super._value as ShowCheckoutDetailsChanged;
 
   @override
   $Res call({
-    Object? newKeyBoardType = freezed,
+    Object? newShowCheckoutDetails = freezed,
   }) {
-    return _then(KeyBoardTypeChanged(
-      newKeyBoardType: newKeyBoardType == freezed
-          ? _value.newKeyBoardType
-          : newKeyBoardType // ignore: cast_nullable_to_non_nullable
-              as KeyBoardType,
+    return _then(ShowCheckoutDetailsChanged(
+      newShowCheckoutDetails: newShowCheckoutDetails == freezed
+          ? _value.newShowCheckoutDetails
+          : newShowCheckoutDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$KeyBoardTypeChanged implements KeyBoardTypeChanged {
-  const _$KeyBoardTypeChanged({required this.newKeyBoardType});
+class _$ShowCheckoutDetailsChanged implements ShowCheckoutDetailsChanged {
+  const _$ShowCheckoutDetailsChanged({required this.newShowCheckoutDetails});
 
   @override
-  final KeyBoardType newKeyBoardType;
+  final bool newShowCheckoutDetails;
 
   @override
   String toString() {
-    return 'InGameEvent.keyBoardTypeChanged(newKeyBoardType: $newKeyBoardType)';
+    return 'InGameEvent.showCheckoutDetailsChanged(newShowCheckoutDetails: $newShowCheckoutDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is KeyBoardTypeChanged &&
+            other is ShowCheckoutDetailsChanged &&
             const DeepCollectionEquality()
-                .equals(other.newKeyBoardType, newKeyBoardType));
+                .equals(other.newShowCheckoutDetails, newShowCheckoutDetails));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(newKeyBoardType));
+      runtimeType, const DeepCollectionEquality().hash(newShowCheckoutDetails));
 
   @JsonKey(ignore: true)
   @override
-  $KeyBoardTypeChangedCopyWith<KeyBoardTypeChanged> get copyWith =>
-      _$KeyBoardTypeChangedCopyWithImpl<KeyBoardTypeChanged>(this, _$identity);
+  $ShowCheckoutDetailsChangedCopyWith<ShowCheckoutDetailsChanged>
+      get copyWith =>
+          _$ShowCheckoutDetailsChangedCopyWithImpl<ShowCheckoutDetailsChanged>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(KeyBoardType newKeyBoardType) keyBoardTypeChanged,
-    required TResult Function() gameCanceled,
-    required TResult Function() undoThrowPressed,
-    required TResult Function(Throw t) performThrowPressed,
+    required TResult Function(bool newShowCheckoutDetails)
+        showCheckoutDetailsChanged,
+    required TResult Function() canceled,
   }) {
-    return keyBoardTypeChanged(newKeyBoardType);
+    return showCheckoutDetailsChanged(newShowCheckoutDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
   }) {
-    return keyBoardTypeChanged?.call(newKeyBoardType);
+    return showCheckoutDetailsChanged?.call(newShowCheckoutDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) {
-    if (keyBoardTypeChanged != null) {
-      return keyBoardTypeChanged(newKeyBoardType);
+    if (showCheckoutDetailsChanged != null) {
+      return showCheckoutDetailsChanged(newShowCheckoutDetails);
     }
     return orElse();
   }
@@ -215,83 +195,78 @@ class _$KeyBoardTypeChanged implements KeyBoardTypeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(KeyBoardTypeChanged value) keyBoardTypeChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(UndoThrowPressed value) undoThrowPressed,
-    required TResult Function(PerformThrowPressed value) performThrowPressed,
+    required TResult Function(ShowCheckoutDetailsChanged value)
+        showCheckoutDetailsChanged,
+    required TResult Function(Canceled value) canceled,
   }) {
-    return keyBoardTypeChanged(this);
+    return showCheckoutDetailsChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
   }) {
-    return keyBoardTypeChanged?.call(this);
+    return showCheckoutDetailsChanged?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) {
-    if (keyBoardTypeChanged != null) {
-      return keyBoardTypeChanged(this);
+    if (showCheckoutDetailsChanged != null) {
+      return showCheckoutDetailsChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class KeyBoardTypeChanged implements InGameEvent {
-  const factory KeyBoardTypeChanged({required KeyBoardType newKeyBoardType}) =
-      _$KeyBoardTypeChanged;
+abstract class ShowCheckoutDetailsChanged implements InGameEvent {
+  const factory ShowCheckoutDetailsChanged(
+      {required bool newShowCheckoutDetails}) = _$ShowCheckoutDetailsChanged;
 
-  KeyBoardType get newKeyBoardType;
+  bool get newShowCheckoutDetails;
   @JsonKey(ignore: true)
-  $KeyBoardTypeChangedCopyWith<KeyBoardTypeChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ShowCheckoutDetailsChangedCopyWith<ShowCheckoutDetailsChanged>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameCanceledCopyWith<$Res> {
-  factory $GameCanceledCopyWith(
-          GameCanceled value, $Res Function(GameCanceled) then) =
-      _$GameCanceledCopyWithImpl<$Res>;
+abstract class $CanceledCopyWith<$Res> {
+  factory $CanceledCopyWith(Canceled value, $Res Function(Canceled) then) =
+      _$CanceledCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GameCanceledCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
-    implements $GameCanceledCopyWith<$Res> {
-  _$GameCanceledCopyWithImpl(
-      GameCanceled _value, $Res Function(GameCanceled) _then)
-      : super(_value, (v) => _then(v as GameCanceled));
+class _$CanceledCopyWithImpl<$Res> extends _$InGameEventCopyWithImpl<$Res>
+    implements $CanceledCopyWith<$Res> {
+  _$CanceledCopyWithImpl(Canceled _value, $Res Function(Canceled) _then)
+      : super(_value, (v) => _then(v as Canceled));
 
   @override
-  GameCanceled get _value => super._value as GameCanceled;
+  Canceled get _value => super._value as Canceled;
 }
 
 /// @nodoc
 
-class _$GameCanceled implements GameCanceled {
-  const _$GameCanceled();
+class _$Canceled implements Canceled {
+  const _$Canceled();
 
   @override
   String toString() {
-    return 'InGameEvent.gameCanceled()';
+    return 'InGameEvent.canceled()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GameCanceled);
+        (other.runtimeType == runtimeType && other is Canceled);
   }
 
   @override
@@ -300,36 +275,31 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(KeyBoardType newKeyBoardType) keyBoardTypeChanged,
-    required TResult Function() gameCanceled,
-    required TResult Function() undoThrowPressed,
-    required TResult Function(Throw t) performThrowPressed,
+    required TResult Function(bool newShowCheckoutDetails)
+        showCheckoutDetailsChanged,
+    required TResult Function() canceled,
   }) {
-    return gameCanceled();
+    return canceled();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
   }) {
-    return gameCanceled?.call();
+    return canceled?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
+    TResult Function(bool newShowCheckoutDetails)? showCheckoutDetailsChanged,
+    TResult Function()? canceled,
     required TResult orElse(),
   }) {
-    if (gameCanceled != null) {
-      return gameCanceled();
+    if (canceled != null) {
+      return canceled();
     }
     return orElse();
   }
@@ -337,313 +307,38 @@ class _$GameCanceled implements GameCanceled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(KeyBoardTypeChanged value) keyBoardTypeChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(UndoThrowPressed value) undoThrowPressed,
-    required TResult Function(PerformThrowPressed value) performThrowPressed,
+    required TResult Function(ShowCheckoutDetailsChanged value)
+        showCheckoutDetailsChanged,
+    required TResult Function(Canceled value) canceled,
   }) {
-    return gameCanceled(this);
+    return canceled(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
   }) {
-    return gameCanceled?.call(this);
+    return canceled?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
+    TResult Function(ShowCheckoutDetailsChanged value)?
+        showCheckoutDetailsChanged,
+    TResult Function(Canceled value)? canceled,
     required TResult orElse(),
   }) {
-    if (gameCanceled != null) {
-      return gameCanceled(this);
+    if (canceled != null) {
+      return canceled(this);
     }
     return orElse();
   }
 }
 
-abstract class GameCanceled implements InGameEvent {
-  const factory GameCanceled() = _$GameCanceled;
-}
-
-/// @nodoc
-abstract class $UndoThrowPressedCopyWith<$Res> {
-  factory $UndoThrowPressedCopyWith(
-          UndoThrowPressed value, $Res Function(UndoThrowPressed) then) =
-      _$UndoThrowPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$UndoThrowPressedCopyWithImpl<$Res>
-    extends _$InGameEventCopyWithImpl<$Res>
-    implements $UndoThrowPressedCopyWith<$Res> {
-  _$UndoThrowPressedCopyWithImpl(
-      UndoThrowPressed _value, $Res Function(UndoThrowPressed) _then)
-      : super(_value, (v) => _then(v as UndoThrowPressed));
-
-  @override
-  UndoThrowPressed get _value => super._value as UndoThrowPressed;
-}
-
-/// @nodoc
-
-class _$UndoThrowPressed implements UndoThrowPressed {
-  const _$UndoThrowPressed();
-
-  @override
-  String toString() {
-    return 'InGameEvent.undoThrowPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UndoThrowPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(KeyBoardType newKeyBoardType) keyBoardTypeChanged,
-    required TResult Function() gameCanceled,
-    required TResult Function() undoThrowPressed,
-    required TResult Function(Throw t) performThrowPressed,
-  }) {
-    return undoThrowPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
-  }) {
-    return undoThrowPressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
-    required TResult orElse(),
-  }) {
-    if (undoThrowPressed != null) {
-      return undoThrowPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(KeyBoardTypeChanged value) keyBoardTypeChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(UndoThrowPressed value) undoThrowPressed,
-    required TResult Function(PerformThrowPressed value) performThrowPressed,
-  }) {
-    return undoThrowPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
-  }) {
-    return undoThrowPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
-    required TResult orElse(),
-  }) {
-    if (undoThrowPressed != null) {
-      return undoThrowPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UndoThrowPressed implements InGameEvent {
-  const factory UndoThrowPressed() = _$UndoThrowPressed;
-}
-
-/// @nodoc
-abstract class $PerformThrowPressedCopyWith<$Res> {
-  factory $PerformThrowPressedCopyWith(
-          PerformThrowPressed value, $Res Function(PerformThrowPressed) then) =
-      _$PerformThrowPressedCopyWithImpl<$Res>;
-  $Res call({Throw t});
-
-  $ThrowCopyWith<$Res> get t;
-}
-
-/// @nodoc
-class _$PerformThrowPressedCopyWithImpl<$Res>
-    extends _$InGameEventCopyWithImpl<$Res>
-    implements $PerformThrowPressedCopyWith<$Res> {
-  _$PerformThrowPressedCopyWithImpl(
-      PerformThrowPressed _value, $Res Function(PerformThrowPressed) _then)
-      : super(_value, (v) => _then(v as PerformThrowPressed));
-
-  @override
-  PerformThrowPressed get _value => super._value as PerformThrowPressed;
-
-  @override
-  $Res call({
-    Object? t = freezed,
-  }) {
-    return _then(PerformThrowPressed(
-      t: t == freezed
-          ? _value.t
-          : t // ignore: cast_nullable_to_non_nullable
-              as Throw,
-    ));
-  }
-
-  @override
-  $ThrowCopyWith<$Res> get t {
-    return $ThrowCopyWith<$Res>(_value.t, (value) {
-      return _then(_value.copyWith(t: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$PerformThrowPressed implements PerformThrowPressed {
-  const _$PerformThrowPressed({required this.t});
-
-  @override
-  final Throw t;
-
-  @override
-  String toString() {
-    return 'InGameEvent.performThrowPressed(t: $t)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is PerformThrowPressed &&
-            const DeepCollectionEquality().equals(other.t, t));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(t));
-
-  @JsonKey(ignore: true)
-  @override
-  $PerformThrowPressedCopyWith<PerformThrowPressed> get copyWith =>
-      _$PerformThrowPressedCopyWithImpl<PerformThrowPressed>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(KeyBoardType newKeyBoardType) keyBoardTypeChanged,
-    required TResult Function() gameCanceled,
-    required TResult Function() undoThrowPressed,
-    required TResult Function(Throw t) performThrowPressed,
-  }) {
-    return performThrowPressed(t);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
-  }) {
-    return performThrowPressed?.call(t);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(KeyBoardType newKeyBoardType)? keyBoardTypeChanged,
-    TResult Function()? gameCanceled,
-    TResult Function()? undoThrowPressed,
-    TResult Function(Throw t)? performThrowPressed,
-    required TResult orElse(),
-  }) {
-    if (performThrowPressed != null) {
-      return performThrowPressed(t);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(KeyBoardTypeChanged value) keyBoardTypeChanged,
-    required TResult Function(GameCanceled value) gameCanceled,
-    required TResult Function(UndoThrowPressed value) undoThrowPressed,
-    required TResult Function(PerformThrowPressed value) performThrowPressed,
-  }) {
-    return performThrowPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
-  }) {
-    return performThrowPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(KeyBoardTypeChanged value)? keyBoardTypeChanged,
-    TResult Function(GameCanceled value)? gameCanceled,
-    TResult Function(UndoThrowPressed value)? undoThrowPressed,
-    TResult Function(PerformThrowPressed value)? performThrowPressed,
-    required TResult orElse(),
-  }) {
-    if (performThrowPressed != null) {
-      return performThrowPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PerformThrowPressed implements InGameEvent {
-  const factory PerformThrowPressed({required Throw t}) = _$PerformThrowPressed;
-
-  Throw get t;
-  @JsonKey(ignore: true)
-  $PerformThrowPressedCopyWith<PerformThrowPressed> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class Canceled implements InGameEvent {
+  const factory Canceled() = _$Canceled;
 }

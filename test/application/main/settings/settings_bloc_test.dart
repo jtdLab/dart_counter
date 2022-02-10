@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/settings/settings_bloc.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
@@ -26,7 +27,26 @@ void main() {
     mockUserService = MockUserService();
   });
 
-  test('initial state initialized correctly when user available', () {
+  test(
+      'GIVEN user is not available '
+      'THEN throw ApplicationError.', () {
+    // Arrange
+    when(() => mockUserService.getUser())
+        .thenReturn(left(const UserFailure.unableToLoadData()));
+
+    // Act & Assert
+    expect(
+      () => SettingsBloc(
+        mockAuthService,
+        mockUserService,
+      ),
+      throwsA(isA<ApplicationError>()),
+    );
+  });
+
+  test(
+      'GIVEN user available '
+      'THEN initial state set to SettingsInitial.', () {
     // Arrange & Act
     when<Either<UserFailure, User>>(
       () => mockUserService.getUser(),
@@ -46,8 +66,7 @@ void main() {
 
   group('Started', () {
     blocTest<SettingsBloc, SettingsState>(
-      'emits [SettingsInitial] with updated user each time a new user arrives '
-      'after Started was added.',
+      'Emit [SettingsInitial] with updated user each time a new user arrives.',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
@@ -72,8 +91,7 @@ void main() {
     );
 
     blocTest<SettingsBloc, SettingsState>(
-      'emits [] each time a new user failure arrives '
-      'after Started was added.',
+      'Emit [] each time a new user failure arrives.',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
@@ -96,7 +114,7 @@ void main() {
 
   group('LocaleChanged', () {
     blocTest<SettingsBloc, SettingsState>(
-      'emits [SettingsInitial, SettingsInitial] when LocaleChanged was added.',
+      'Emit [SettingsInitial, SettingsInitial].',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
@@ -116,8 +134,11 @@ void main() {
 
   group('SignOutPressed', () {
     blocTest<SettingsBloc, SettingsState>(
-      'emits [] when SignOutPressed was added.',
+      'Emit [].',
       build: () {
+        when(() => mockAuthService.signOut()).thenAnswer(
+          (_) async => right(unit),
+        );
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),
         ).thenAnswer((_) => right(initialUser));

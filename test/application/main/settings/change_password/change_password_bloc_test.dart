@@ -21,7 +21,9 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  test('initial state initialized correctly', () {
+  test(
+      'Initial state set to ChangePasswordInitial with empty oldPassword, empty newPassowrd '
+      'empty newPasswordAgain and showErrorMessages false.', () {
     // Arrange & Act
     final underTest = ChangePasswordBloc(mockAuthService);
 
@@ -39,7 +41,8 @@ void main() {
 
   group('OldPasswordChanged', () {
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
+      'GIVEN current state is ChangePasswordInitial '
+      'THEN emit [ChangePasswordInitial].',
       build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.oldPasswordChanged(newOldPassword: 'abcd'),
@@ -55,7 +58,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
+      'GIVEN current state is ChangePasswordSubmitFailure '
+      'THEN emit [ChangePasswordInitial].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
@@ -76,7 +80,8 @@ void main() {
 
   group('NewPasswordChanged', () {
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
+      'GIVEN current state is ChangePasswordInitial '
+      'THEN emit [ChangePasswordInitial]',
       build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordChanged(newNewPassword: 'abcd'),
@@ -92,7 +97,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
+      'GIVEN current state is ChangePasswordSubmitFailure '
+      'THEN emit [ChangePasswordInitial].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
@@ -113,7 +119,8 @@ void main() {
 
   group('NewPasswordAgainChanged', () {
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordInitial ',
+      'GIVEN current state is ChangePasswordInitial '
+      'THEN emit [ChangePasswordInitial].',
       build: () => ChangePasswordBloc(mockAuthService),
       act: (ChangePasswordBloc bloc) => bloc.add(
         const ChangePasswordEvent.newPasswordAgainChanged(
@@ -131,7 +138,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordInitial] when current state is ChangePasswordSubmitFailure ',
+      'GIVEN current state is ChangePasswordSubmitFailure '
+      'THEN emit [ChangePasswordInitial].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => const ChangePasswordState.submitFailure(
         authFailure: AuthFailure.invalidEmail(),
@@ -154,9 +162,9 @@ void main() {
 
   group('ConfirmPressed', () {
     blocTest(
-      'emits [ChangePasswordSubmitInProgress, ChangePasswordSubmitSuccess] '
-      'when current state is ChangePasswordInitial with valid and correct old password '
-      'and valid new password which matches new password-again ',
+      'GIVEN current state is ChangePasswordInitial with valid and correct old password '
+      'and valid new password which matches new password-again '
+      'THEN emit [ChangePasswordSubmitInProgress, ChangePasswordSubmitSuccess].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.updatePassword(
@@ -184,8 +192,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordSubmitFailure] '
-      'when current state is ChangePasswordInitial with not matching new password and new password-again ',
+      'GIVEN current state is ChangePasswordInitial with not matching new password and new password-again '
+      'THEN emit [ChangePasswordSubmitFailure].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
@@ -204,8 +212,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordSubmitFailure] '
-      'when current state is ChangePasswordInitial with invalid old password ',
+      'GIVEN current state is ChangePasswordInitial with invalid old password '
+      'THEN emit [ChangePasswordSubmitFailure].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('a'),
@@ -224,8 +232,8 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordSubmitFailure] '
-      'when current state is ChangePasswordInitial with invalid new password ',
+      'GIVEN current state is ChangePasswordInitial with invalid new password '
+      'THEN emit [ChangePasswordSubmitFailure].',
       build: () => ChangePasswordBloc(mockAuthService),
       seed: () => ChangePasswordState.initial(
         oldPassword: Password('oldPassword'),
@@ -244,9 +252,9 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangePasswordSubmitInProgress, ChangePasswordSubmitFailure] '
-      'when current state is ChangePasswordInitial with valid and correct old password '
-      'and valid new password which matches new password-again but backend error occurs ',
+      'GIVEN current state is ChangePasswordInitial with valid and correct old password '
+      'and valid new password which matches new password-again but backend error occurs '
+      'THEN emit [ChangePasswordSubmitInProgress, ChangePasswordSubmitFailure].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.updatePassword(

@@ -23,7 +23,9 @@ void main() {
     when(() => mockUserService.getUser()).thenReturn(right(initialUser));
   });
 
-  test('throws when user is not available', () {
+  test(
+      'GIVEN user is not available '
+      'THEN throw ApplicationError.', () {
     // Arrange
     when(() => mockUserService.getUser())
         .thenReturn(left(const UserFailure.unableToLoadData()));
@@ -38,7 +40,8 @@ void main() {
   });
 
   test(
-      'initial state is PofileInitial with correct user and correct calculated career stats',
+      'GIVEN user is available '
+      'THEN initial state set to PofileInitial with correct user and correct calculated career stats.',
       () {
     // Arrange & Act
     final underTest = ProfileBloc(
@@ -58,8 +61,7 @@ void main() {
 
   group('Started', () {
     blocTest<ProfileBloc, ProfileState>(
-      'emits [SettingsProfile] with updated user and careerStats each time a new user arrives '
-      'after Started was added.',
+      'Emit [SettingsProfile] with updated user and careerStats each time a new user arrives.',
       build: () {
         when<Either<UserFailure, User>>(
           () => mockUserService.getUser(),

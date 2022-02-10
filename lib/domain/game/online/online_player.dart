@@ -12,6 +12,7 @@ part 'online_player.freezed.dart';
 
 @freezed
 class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
+  // coverage:ignore-start
   @Implements<AbstractPlayer>()
   const factory OnlinePlayer({
     required UniqueId id,
@@ -54,4 +55,5 @@ class OnlinePlayer with _$OnlinePlayer implements AbstractPlayer {
         wonLegsOrSets: 0,
         stats: PlayerStats.dummy(),
       );
+  // coverage:ignore-end
 }

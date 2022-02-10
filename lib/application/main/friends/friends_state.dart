@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'friends_bloc.dart';
 
 @freezed

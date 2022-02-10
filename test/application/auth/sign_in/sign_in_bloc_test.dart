@@ -22,7 +22,7 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  test('initial state initialized correctly', () {
+  test('Initial state set to SignInInitial with email and password empty.', () {
     // Arrange & Act
     final underTest = SignInBloc(mockAuthService);
 
@@ -38,7 +38,7 @@ void main() {
 
   group('EmailChanged', () {
     blocTest(
-      'emits [SignInInitial] with updated email',
+      'Emit [SignInInitial] with updated email.',
       build: () => SignInBloc(mockAuthService),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.emailChanged(newEmail: 'abcd')),
@@ -53,7 +53,7 @@ void main() {
 
   group('PasswordChanged', () {
     blocTest(
-      'emits [SignInInitial] with updated password',
+      'Emit [SignInInitial] with updated password.',
       build: () => SignInBloc(mockAuthService),
       act: (SignInBloc bloc) =>
           bloc.add(const SignInEvent.passwordChanged(newPassword: 'abcd')),
@@ -69,7 +69,7 @@ void main() {
   group('SignInPressed', () {
     blocTest(
       'GIVEN SignInInitial with invalid email '
-      'emits [SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadFailure, SignInInitial].',
       build: () => SignInBloc(mockAuthService),
       seed: () => SignInState.initial(
         email: EmailAddress('invalidEmail'),
@@ -89,7 +89,7 @@ void main() {
 
     blocTest(
       'GIVEN SignInInitial with invalid password '
-      'emits [SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadFailure, SignInInitial].',
       build: () => SignInBloc(mockAuthService),
       seed: () => SignInState.initial(
         email: EmailAddress('a@b.com'),
@@ -110,7 +110,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial with valid email and password '
       'WHEN signin fails '
-      'emits [SignInLoadInProgress, SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithEmailAndPassword(
@@ -142,7 +142,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial with valid email and password '
       'WHEN signin succeeds '
-      'emits [SignInLoadInProgress]',
+      'THEN emit [SignInLoadInProgress].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithEmailAndPassword(
@@ -169,7 +169,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin fails '
-      'emits [SignInLoadInProgress, SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithFacebook(),
@@ -199,7 +199,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin succeeds '
-      'emits [SignInLoadInProgress]',
+      'THEN emit [SignInLoadInProgress].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithFacebook(),
@@ -224,7 +224,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin fails '
-      'emits [SignInLoadInProgress, SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithGoogle(),
@@ -254,7 +254,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin succeeds '
-      'emits [SignInLoadInProgress]',
+      'THEN emit [SignInLoadInProgress].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithGoogle(),
@@ -279,7 +279,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin fails '
-      'emits [SignInLoadInProgress, SignInLoadFailure, SignInInitial]',
+      'THEN emit [SignInLoadInProgress, SignInLoadFailure, SignInInitial].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithApple(),
@@ -309,7 +309,7 @@ void main() {
     blocTest(
       'GIVEN SignInInitial '
       'WHEN signin succeeds '
-      'emits [SignInLoadInProgress]',
+      'THEN emit [SignInLoadInProgress].',
       build: () {
         when<Future<Either<AuthFailure, Unit>>>(
           () => mockAuthService.signInWithApple(),

@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'game_invitations_bloc.dart';
 
 @freezed

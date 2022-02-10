@@ -112,5 +112,19 @@ abstract class  LocaleKeys {
   static const practice = 'practice';
   static const noGamesFound = 'noGamesFound';
   static const mainMenu = 'mainMenu';
+  static const single = 'single';
+  static const double = 'double';
+  static const triple = 'triple';
+  static const missed = 'missed';
+  static const target = 'target';
+  static const takesLeft = 'takesLeft';
+  static const bestPointsShort = 'bestPointsShort';
+  static const totalPoints = 'totalPoints';
+  static const singleTraining = 'singleTraining';
+  static const doubleTraining = 'doubleTraining';
+  static const scoreTraining = 'scoreTraining';
+  static const bobs27 = 'bobs27';
+  static const numberOfTakes = 'numberOfTakes';
+  static const order = 'order';
 
 }

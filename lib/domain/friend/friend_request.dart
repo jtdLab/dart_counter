@@ -6,6 +6,7 @@ part 'friend_request.freezed.dart';
 
 @freezed
 class FriendRequest with _$FriendRequest {
+  // coverage:ignore-start
   const factory FriendRequest({
     required UniqueId id,
     required UniqueId toId,
@@ -23,4 +24,5 @@ class FriendRequest with _$FriendRequest {
         read: faker.randomGenerator.boolean(),
         createdAt: DateTime.now(),
       );
+  // coverage:ignore-end
 }

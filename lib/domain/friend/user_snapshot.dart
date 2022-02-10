@@ -6,6 +6,7 @@ part 'user_snapshot.freezed.dart';
 
 @freezed
 class UserSnapshot with _$UserSnapshot {
+  // coverage:ignore-start
   const factory UserSnapshot({
     required UniqueId id,
     String? photoUrl,
@@ -28,4 +29,5 @@ class UserSnapshot with _$UserSnapshot {
           ]),
         ),
       );
+  // coverage:ignore-end
 }

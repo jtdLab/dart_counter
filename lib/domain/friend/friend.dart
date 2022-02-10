@@ -7,6 +7,7 @@ part 'friend.freezed.dart';
 
 @freezed
 class Friend with _$Friend {
+  // coverage:ignore-start
   const factory Friend({
     required UniqueId id,
     required Profile profile,
@@ -16,4 +17,5 @@ class Friend with _$Friend {
         id: UniqueId.fromUniqueString(faker.randomGenerator.string(10)),
         profile: Profile.dummy(),
       );
+  // coverage:ignore-end
 }

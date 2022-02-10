@@ -1,18 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:dart_counter/injection.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'package:timeago/timeago.dart' as timeago;
+// coverage:ignore-file
 
-import 'presentation/core/de_messages.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class Name with ChangeNotifier {
   int _value = 5;
@@ -37,11 +25,7 @@ void main() {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Builder(
-                builder: (context) {
-                  return SuperWidget(a: context.watch<Name>().value, b: 2);
-                },
-              ),
+              const SuperWidget(),
               CupertinoButton(
                 child: const Text('Press me'),
                 onPressed: () => name.value = 88,
@@ -55,13 +39,8 @@ void main() {
 }
 
 class SuperWidget extends StatelessWidget {
-  final int a;
-  final int b;
-
   const SuperWidget({
     Key? key,
-    required this.a,
-    required this.b,
   }) : super(key: key);
 
   @override
@@ -71,10 +50,10 @@ class SuperWidget extends StatelessWidget {
     return Column(
       children: [
         SubWidget(
-          value: a,
+          value: context.watch<Name>().value,
         ),
-        SubWidget(
-          value: b,
+        const SubWidget(
+          value: 0,
         ),
       ],
     );

@@ -9,6 +9,7 @@ part 'double_training_player_snapshot.freezed.dart';
 class DoubleTrainingPlayerSnapshot
     with _$DoubleTrainingPlayerSnapshot
     implements AbstractTrainingPlayerSnapshot {
+      // coverage:ignore-start
   @Implements<AbstractTrainingPlayerSnapshot>()
   const factory DoubleTrainingPlayerSnapshot({
     required UniqueId id,
@@ -32,4 +33,5 @@ class DoubleTrainingPlayerSnapshot
         missed: faker.randomGenerator.integer(30),
         dartsThrown: faker.randomGenerator.integer(50),
       );
+      // coverage:ignore-end
 }

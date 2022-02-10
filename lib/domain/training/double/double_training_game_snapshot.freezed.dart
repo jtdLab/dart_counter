@@ -166,12 +166,13 @@ class __$DoubleTrainingGameSnapshotCopyWithImpl<$Res>
 /// @nodoc
 
 @Implements<AbstractTrainingGameSnapshot>()
-class _$_DoubleTrainingGameSnapshot implements _DoubleTrainingGameSnapshot {
+class _$_DoubleTrainingGameSnapshot extends _DoubleTrainingGameSnapshot {
   const _$_DoubleTrainingGameSnapshot(
       {required this.status,
       required this.mode,
       required this.players,
-      required this.owner});
+      required this.owner})
+      : super._();
 
   @override
   final Status status;
@@ -213,14 +214,15 @@ class _$_DoubleTrainingGameSnapshot implements _DoubleTrainingGameSnapshot {
           _DoubleTrainingGameSnapshot>(this, _$identity);
 }
 
-abstract class _DoubleTrainingGameSnapshot
-    implements DoubleTrainingGameSnapshot, AbstractTrainingGameSnapshot {
+abstract class _DoubleTrainingGameSnapshot extends DoubleTrainingGameSnapshot
+    implements AbstractTrainingGameSnapshot {
   const factory _DoubleTrainingGameSnapshot(
           {required Status status,
           required Mode mode,
           required KtList<DoubleTrainingPlayerSnapshot> players,
           required DoubleTrainingPlayerSnapshot owner}) =
       _$_DoubleTrainingGameSnapshot;
+  const _DoubleTrainingGameSnapshot._() : super._();
 
   @override
   Status get status;

@@ -18,6 +18,7 @@ class PlayOnlineFlow extends StatelessWidget {
           create: (context) => getIt<PlayOnlineWatcherCubit>(),
         ),
         BlocProvider(
+          lazy: false, // TODO right but why??
           create: (context) => AdvancedSettingsBloc(
             context.read<PlayOnlineWatcherCubit>(),
           )..add(const AdvancedSettingsEvent.started()),

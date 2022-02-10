@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,34 +12,37 @@ part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
-@lazySingleton
-class SignInBloc extends Bloc<SignInEvent, SignInState>
-    with AutoResetLazySingleton {
+// TODO desc
+@injectable
+class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final IAuthService _authService;
 
   SignInBloc(
     this._authService,
   ) : super(
+          // Set initial state
           SignInState.initial(
             email: EmailAddress.empty(),
             password: Password.empty(),
           ),
         ) {
-    on<_EmailChanged>(_mapEmailChangedToState);
-    on<_PasswordChanged>(_mapPasswordChangedToState);
-    on<_SignInPressed>((_, emit) async => _mapSignInPressedToState(emit));
+    // Register event handlers
+    on<_EmailChanged>(_handleEmailChanged);
+    on<_PasswordChanged>(_handlePasswordChanged);
+    on<_SignInPressed>((_, emit) async => _handleSignInPressed(emit));
     on<_SignInWithFacebookPressed>(
-      (_, emit) async => _mapSignInWithFacebookPressedToState(emit),
+      (_, emit) async => _handleSignInWithFacebookPressed(emit),
     );
     on<_SignInWithGooglePressed>(
-      (_, emit) async => _mapSignInWithGooglePressedToState(emit),
+      (_, emit) async => _handleSignInWithGooglePressed(emit),
     );
     on<_SignInWithApplePressed>(
-      (_, emit) async => _mapSignInWithApplePressedToState(emit),
+      (_, emit) async => _handleSignInWithApplePressed(emit),
     );
   }
 
-  void _mapEmailChangedToState(
+  /// Handle incoming [_EmailChanged] event.
+  void _handleEmailChanged(
     _EmailChanged event,
     Emitter<SignInState> emit,
   ) {
@@ -52,7 +53,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
   }
 
-  void _mapPasswordChangedToState(
+  /// Handle incoming [_PasswordChanged] event.
+  void _handlePasswordChanged(
     _PasswordChanged event,
     Emitter<SignInState> emit,
   ) {
@@ -63,7 +65,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
   }
 
-  Future<void> _mapSignInPressedToState(
+  /// Handle incoming [_SignInPressed] event.
+  Future<void> _handleSignInPressed(
     Emitter<SignInState> emit,
   ) async {
     await state.mapOrNull(
@@ -91,7 +94,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
   }
 
-  Future<void> _mapSignInWithFacebookPressedToState(
+  /// Handle incoming [_SignInWithFacebookPressed] event.
+  Future<void> _handleSignInWithFacebookPressed(
     Emitter<SignInState> emit,
   ) async {
     await state.mapOrNull(
@@ -104,7 +108,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
   }
 
-  Future<void> _mapSignInWithGooglePressedToState(
+  /// Handle incoming [_SignInWithGooglePressed] event.
+  Future<void> _handleSignInWithGooglePressed(
     Emitter<SignInState> emit,
   ) async {
     await state.mapOrNull(
@@ -117,7 +122,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
   }
 
-  Future<void> _mapSignInWithApplePressedToState(
+  /// Handle incoming [_SignInWithApplePressed] event.
+  Future<void> _handleSignInWithApplePressed(
     Emitter<SignInState> emit,
   ) async {
     await state.mapOrNull(
@@ -135,7 +141,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     Future<Either<AuthFailure, Unit>> Function() signInFuture, {
     required Emitter<SignInState> emit,
   }) async {
-    await state.maybeMap(
+    await state.mapOrNull(
       initial: (initial) async {
         emit(const SignInState.loadInProgress());
 
@@ -151,11 +157,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
           (_) {},
         );
       },
-      orElse: () {},
     );
   }
 
-  @override
+/**
+ *   @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SignInBloc>()) {
@@ -164,4 +170,5 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
 
     return super.close();
   }
+ */
 }

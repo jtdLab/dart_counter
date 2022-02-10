@@ -8,7 +8,7 @@ class LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Lottie.asset(
-        AppAnimations.loading_dots_black,
+        AppAnimations.loadingDotsBlack,
         width: 2 * size50(context),
         height: 2 * size50(context),
       ),

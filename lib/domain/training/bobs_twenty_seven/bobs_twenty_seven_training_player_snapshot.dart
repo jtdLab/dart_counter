@@ -9,6 +9,7 @@ part 'bobs_twenty_seven_training_player_snapshot.freezed.dart';
 class BobsTwentySevenPlayerSnapshot
     with _$BobsTwentySevenPlayerSnapshot
     implements AbstractTrainingPlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingPlayerSnapshot>()
   const factory BobsTwentySevenPlayerSnapshot({
     required UniqueId id,
@@ -33,4 +34,5 @@ class BobsTwentySevenPlayerSnapshot
         points: faker.randomGenerator.integer(50),
         highestPoints: faker.randomGenerator.integer(50, min: 27),
       );
+  // coverage:ignore-end
 }

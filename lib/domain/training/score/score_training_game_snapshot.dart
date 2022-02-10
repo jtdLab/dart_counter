@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/score_training_player_snapshot.dart';
@@ -11,6 +12,7 @@ part 'score_training_game_snapshot.freezed.dart';
 class ScoreTrainingGameSnapshot
     with _$ScoreTrainingGameSnapshot
     implements AbstractTrainingGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingGameSnapshot>()
   const factory ScoreTrainingGameSnapshot({
     required Status status,
@@ -18,6 +20,8 @@ class ScoreTrainingGameSnapshot
     required KtList<ScoreTrainingPlayerSnapshot> players,
     required ScoreTrainingPlayerSnapshot owner,
   }) = _ScoreTrainingGameSnapshot;
+
+  const ScoreTrainingGameSnapshot._();
 
   factory ScoreTrainingGameSnapshot.dummy() {
     final players = faker.randomGenerator
@@ -29,5 +33,18 @@ class ScoreTrainingGameSnapshot
       players: players.toImmutableList(),
       owner: players[0],
     );
+  }
+  // coverage:ignore-end
+
+  // TODO docs
+  @override
+  ScoreTrainingPlayerSnapshot currentTurn() {
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
+    return players.first((player) => player.isCurrentTurn);
   }
 }

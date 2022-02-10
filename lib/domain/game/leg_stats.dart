@@ -5,6 +5,7 @@ part 'leg_stats.freezed.dart';
 
 @freezed
 class LegStats with _$LegStats {
+  // coverage:ignore-start
   const factory LegStats({
     double? average,
     double? checkoutPercentage,
@@ -38,4 +39,5 @@ class LegStats with _$LegStats {
         hundredSixtyPlus: faker.randomGenerator.integer(5),
         hundredEighty: faker.randomGenerator.integer(4),
       );
+  // coverage:ignore-end
 }

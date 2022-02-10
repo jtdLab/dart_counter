@@ -48,13 +48,25 @@ import 'package:dart_counter/presentation/ios/main/settings/modals/change_userna
 import 'package:dart_counter/presentation/ios/main/settings/modals/edit_profile_image/edit_profile_image_modal.dart';
 import 'package:dart_counter/presentation/ios/main/settings/page/settings_page.dart';
 import 'package:dart_counter/presentation/ios/main/settings/settings_flow.dart';
-import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_page.dart';
-import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/shared/widgets.dart';
+import 'package:dart_counter/presentation/ios/main/training/create_training/create_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/create_training/page/create_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/bobs_twenty_seven/page/in_bobs_twenty_seven_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/double/in_double_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/double/page/in_double_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/score/in_score_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/score/page/in_score_training_page.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/single/in_single_training_flow.dart';
+import 'package:dart_counter/presentation/ios/main/training/in_training/single/page/in_single_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/post_training/post_training_page.dart';
 import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
+
+const youReallyWantToCancelGameDialog = CustomRoute(
+  page: YouReallyWantToCancelGameDialog,
+  opaque: false,
+  reverseDurationInMilliseconds: 0,
+);
 
 /// Setup auto route.
 ///
@@ -212,6 +224,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
                   customRouteBuilder: notExpandedModalRouteBuilder,
                   page: CreateGameAdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -234,6 +247,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: AdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -257,6 +271,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
                   customRouteBuilder: notExpandedModalRouteBuilder,
                   page: CreateGameAdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -279,6 +294,7 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
                   customRouteBuilder: expandedModalRouteBuilder,
                   page: AdvancedSettingsModal,
                 ),
+                youReallyWantToCancelGameDialog,
               ],
             ),
             CupertinoRoute(
@@ -291,19 +307,54 @@ import 'package:dart_counter/presentation/ios/main/training/training_flow.dart';
           children: [
             CupertinoRoute(
               initial: true,
-              page: CreateTrainingPage,
+              page: CreateTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: CreateTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InBobyTwentySeventTrainingPage,
+              page: InBobsTwentySevenTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: InBobsTwentySeventTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InDoubleTrainingPage,
+              page: InScoreTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: InScoreTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InScoreTrainingPage,
+              page: InSingleTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: InSingleTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
-              page: InSingleTrainingPage,
+              page: InDoubleTrainingFlow,
+              children: [
+                CupertinoRoute(
+                  initial: true,
+                  page: InDoubleTrainingPage,
+                ),
+                youReallyWantToCancelGameDialog
+              ],
             ),
             CupertinoRoute(
               page: PostTrainingPage,

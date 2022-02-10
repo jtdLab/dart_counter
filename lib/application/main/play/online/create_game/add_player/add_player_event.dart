@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'add_player_bloc.dart';
 
 @freezed

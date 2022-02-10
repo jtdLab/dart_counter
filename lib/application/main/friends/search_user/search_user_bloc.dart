@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -14,26 +12,30 @@ part 'search_user_bloc.freezed.dart';
 part 'search_user_event.dart';
 part 'search_user_state.dart';
 
-@lazySingleton
-class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
-    with AutoResetLazySingleton {
+@injectable
+class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
   final IFriendService _friendService;
 
   SearchUserBloc(
     this._friendService,
-  ) : super(const SearchUserState.initial()) {
+  ) : super(
+          // Set inital state
+          const SearchUserState.initial(),
+        ) {
+    // Register event handlers
     on<_SearchStringChanged>(
-      (event, emit) async => _mapSearchStringChangedToState(event, emit),
+      (event, emit) async => _handleSearchStringChanged(event, emit),
       transformer: (events, mapper) => events
           .throttleTime(
             const Duration(milliseconds: 300),
           )
           .flatMap(mapper),
     );
-    on<_ClearPressed>((_, emit) => _mapClearPressedToState(emit));
+    on<_ClearPressed>((_, emit) => _handleClearPressed(emit));
   }
 
-  Future<void> _mapSearchStringChangedToState(
+  /// Handle incoming [_SearchStringChanged] event.
+  Future<void> _handleSearchStringChanged(
     _SearchStringChanged event,
     Emitter<SearchUserState> emit,
   ) async {
@@ -53,12 +55,14 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
     );
   }
 
-  void _mapClearPressedToState(
+  /// Handle incoming [_ClearPressed] event.
+  void _handleClearPressed(
     Emitter<SearchUserState> emit,
   ) =>
       emit(const SearchUserState.initial());
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SearchUserBloc>()) {
@@ -67,4 +71,5 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState>
 
     return super.close();
   }
+  */
 }

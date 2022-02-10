@@ -21,22 +21,23 @@ void main() {
   late MockUserService mockUserService;
   late MockGameHistoryService mockGameHistoryService;
 
+  final offlineGames = List.generate(
+    10,
+    (index) => OfflineGame.dummy().copyWith(
+      createdAt: DateTime(1980 + 2 * index),
+    ),
+  );
   final gameHistoryOffline = List10(
-    List.generate(
-      11,
-      (index) => OfflineGame.dummy().copyWith(
-        createdAt: DateTime(1980 + 2 * index),
-      ),
-    ).toImmutableList(),
+    offlineGames.toImmutableList(),
   );
-  final gameHistoryOnline = List10(
-    List.generate(
-      11,
-      (index) => OnlineGame.dummy().copyWith(
-        createdAt: DateTime(1981 + 2 * index),
-      ),
-    ).toImmutableList(),
+  final onlineGames = List.generate(
+    10,
+    (index) => OnlineGame.dummy().copyWith(
+      createdAt: DateTime(1981 + 2 * index),
+    ),
   );
+  final gameHistoryOnline = List10(onlineGames.toImmutableList());
+
   const gameHistoryFailure = GameHistoryFailure.unexpected();
 
   setUp(() {
@@ -53,7 +54,7 @@ void main() {
     ).thenAnswer((_) async => right(gameHistoryOnline));
   });
 
-  test('initial state is GameHistoryLoadInProgress', () {
+  test('Initial state set to GameHistoryLoadInProgress.', () {
     // Arrange & Act
     final underTest = GameHistoryBloc(
       mockUserService,
@@ -69,8 +70,8 @@ void main() {
 
   group('FetchGameHistoryAllRequested', () {
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'throws ApplicationError '
-      'when user is not available',
+      'GIVEN user is not available '
+      'THEN throws ApplicationError.',
       setUp: () {
         when(() => mockUserService.getUser())
             .thenReturn(left(const UserFailure.unableToLoadData()));
@@ -82,8 +83,8 @@ void main() {
     );
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadFailure '
-      'when fetching online game history fails',
+      'GIVEN fetching online game history fails '
+      'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
           () => mockGameHistoryService.fetchGameHistoryOnline(
@@ -99,8 +100,8 @@ void main() {
     );
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadFailure '
-      'when fetching offline game history fails',
+      'GIVEN fetching offline game history fails '
+      'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
           () => mockGameHistoryService.fetchGameHistoryOffline(),
@@ -113,10 +114,10 @@ void main() {
           [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
     );
 
-    // TODO
+// TODO test sorting better
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadSucess with merged gameHistory containing the 10 recent game sorted by date '
-      'when fetching online and offline game history succeeds',
+      'GIVEN fetching online and offline game history succeeds '
+      'THEN emit GameHistoryLoadSucess with merged gameHistory containing the 10 recent game sorted by date',
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
       act: (bloc) =>
           bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
@@ -124,36 +125,16 @@ void main() {
         GameHistoryState.loadSuccess(
           gameHistory: List10(
             [
-              OnlineGame.dummy().copyWith(
-                createdAt: DateTime(2001),
-              ),
-              OfflineGame.dummy().copyWith(
-                createdAt: DateTime(2000),
-              ),
-              OnlineGame.dummy().copyWith(
-                createdAt: DateTime(1999),
-              ),
-              OfflineGame.dummy().copyWith(
-                createdAt: DateTime(1998),
-              ),
-              OnlineGame.dummy().copyWith(
-                createdAt: DateTime(1997),
-              ),
-              OfflineGame.dummy().copyWith(
-                createdAt: DateTime(1996),
-              ),
-              OnlineGame.dummy().copyWith(
-                createdAt: DateTime(1995),
-              ),
-              OfflineGame.dummy().copyWith(
-                createdAt: DateTime(1994),
-              ),
-              OnlineGame.dummy().copyWith(
-                createdAt: DateTime(1993),
-              ),
-              OfflineGame.dummy().copyWith(
-                createdAt: DateTime(1992),
-              ),
+              onlineGames[9],
+              offlineGames[9],
+              onlineGames[8],
+              offlineGames[8],
+              onlineGames[7],
+              offlineGames[7],
+              onlineGames[6],
+              offlineGames[6],
+              onlineGames[5],
+              offlineGames[5],
             ].toImmutableList(),
           ),
         ),
@@ -163,8 +144,8 @@ void main() {
 
   group('FetchGameHistoryOfflineRequested', () {
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadFailure '
-      'when fetching offline game history fails',
+      'GIVEN fetching offline game history fails '
+      'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
           () => mockGameHistoryService.fetchGameHistoryOffline(),
@@ -177,27 +158,23 @@ void main() {
           [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
     );
 
-    // TODO
+    // TODO test sorting better
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date '
-      'when fetching succeeds',
+      'GIVEN fetching succeeds '
+      'THEN emit GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date.',
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
       act: (bloc) =>
           bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
       expect: () => [
-        GameHistoryState.loadSuccess(
-          gameHistory: List10(
-            <AbstractGame>[].toImmutableList(),
-          ),
-        ),
+        GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
       ],
     );
   });
 
   group('FetchGameHistoryOnlineRequested', () {
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'throws ApplicationError '
-      'when userId is null and fetching user fails',
+      'GIVEN userId is null and fetching user fails '
+      'THEN throw ApplicationError.',
       setUp: () {
         when(
           () => mockUserService.getUser(),
@@ -211,8 +188,8 @@ void main() {
     );
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadFailure '
-      'when fetching online game history fails',
+      'GIVEN fetching online game history fails '
+      'THEN emit GameHistoryLoadFailure.',
       setUp: () {
         when(
           () => mockGameHistoryService.fetchGameHistoryOnline(
@@ -231,8 +208,8 @@ void main() {
     );
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'calls fetchGameHistoryOnline with correct uid '
-      'when fetching online game history fails',
+      'GIVEN fetching online game history fails '
+      'THEN call fetchGameHistoryOnline with correct uid.',
       setUp: () {
         when(
           () => mockGameHistoryService.fetchGameHistoryOnline(
@@ -253,19 +230,15 @@ void main() {
       },
     );
 
-    // TODO
+    // TODO test sorting better
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadSucess with online gameHistory containing the 10 recent game sorted by date '
-      'when fetching succeeds',
+      'GIVEN fetching succeeds '
+      'THEN emit GameHistoryLoadSucess with online gameHistory containing the 10 recent game sorted by date.',
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
       act: (bloc) =>
           bloc.add(const GameHistoryEvent.fetchGameHistoryOnlineRequested()),
       expect: () => [
-        GameHistoryState.loadSuccess(
-          gameHistory: List10(
-            <AbstractGame>[].toImmutableList(),
-          ),
-        ),
+        GameHistoryState.loadSuccess(gameHistory: gameHistoryOnline),
       ],
     );
   });
@@ -274,8 +247,8 @@ void main() {
     final selectedGame = OfflineGame.dummy();
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'emits GameHistoryLoadSuccess with updated selectedGame '
-      'when state is GameHistoryLoadSuccess',
+      'GIVEN state is GameHistoryLoadSuccess '
+      'THEN emit GameHistoryLoadSuccess with updated selectedGame.',
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
       seed: () => GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
       act: (bloc) =>
@@ -289,8 +262,8 @@ void main() {
     );
 
     blocTest<GameHistoryBloc, GameHistoryState>(
-      'do nothing '
-      'when state is not GameHistoryLoadSuccess',
+      'GIVEN state is not GameHistoryLoadSuccess '
+      'THEN do nothing.',
       build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
       seed: () => const GameHistoryState.loadInProgress(),
       act: (bloc) =>

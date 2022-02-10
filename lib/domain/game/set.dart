@@ -8,6 +8,7 @@ part 'set.freezed.dart';
 
 @freezed
 class Set with _$Set {
+  // coverage:ignore-start
   const factory Set({
     required KtList<Leg> legs,
     required bool won,
@@ -25,4 +26,5 @@ class Set with _$Set {
       stats: SetStats.dummy(),
     );
   }
+  // coverage:ignore-end
 }

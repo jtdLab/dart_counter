@@ -1,6 +1,6 @@
 import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_counter/domain/game/type.dart';
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:dart_counter/infrastructure/game/type_x.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:flutter_test/flutter_test.dart';

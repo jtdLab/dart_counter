@@ -1,5 +1,6 @@
 part of 'in_offline_game_page.dart';
 
+
 // BODY
 class _InOfflineGameWidget extends StatelessWidget {
   const _InOfflineGameWidget({
@@ -32,33 +33,53 @@ class _InOfflineGameWidget extends StatelessWidget {
         Expanded(
           flex: 55,
           child: PageView(
-            onPageChanged: (pageIndex) =>
-                _onKeyBoardChanged(context, keyBoardIndex: pageIndex),
             children: [
-              BlocProvider(
-                create: (context) => StandardInputAreaBloc(
-                  context.read<InOfflineGameBloc>(),
-                  context.read<PointsLeftCubit>(),
-                  context.read<PointsCubit>(),
-                  getIt<ShowCheckoutDetailsCubit>(),
-                  getIt<IDartUtils>(),
-                ),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider<Bloc<InputRowEvent, int>>(
+                    create: (context) =>
+                        getIt<InputRowBlocOfflineStandardInputArea>(),
+                  ),
+                  BlocProvider<
+                      Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
+                    create: (context) =>
+                        getIt<KeyBoardBlocOfflineStandardInputArea>(
+                      param1: context.read<AdvancedSettingsBloc>(),
+                      param2: context.read<Bloc<InputRowEvent, int>>(),
+                    )..add(const standard.KeyBoardEvent.started()),
+                  ),
+                ],
                 child: const StandardInputArea(),
               ),
-              BlocProvider(
-                create: (context) => DetailedInputAreaBloc(
-                  context.read<InOfflineGameBloc>(),
-                  context.read<PointsLeftCubit>(),
-                  context.read<DartsCubit>(),
-                  getIt<ShowCheckoutDetailsCubit>(),
-                  getIt<IDartUtils>(),
-                ),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
+                    create: (context) => getIt<DartsDisplayerBloc>(
+                      // TODO ideal ? should ui know services ??
+                      param1: getIt<IPlayOfflineService>(),
+                    ),
+                  ),
+                  BlocProvider<Bloc<InputRowEvent, int>>(
+                    create: (context) => getIt<detailed.InputRowBloc>(
+                      param1: context.read<InOfflineGameBloc>(),
+                      param2: context.read<
+                          Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
+                    )..add(const InputRowEvent.started()),
+                  ),
+                  BlocProvider<
+                      Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
+                    create: (context) => getIt<detailed.KeyBoardBloc>(
+                      param1: [
+                        context.read<AdvancedSettingsBloc>(),
+                        context.read<
+                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
+                      ],
+                    )..add(const detailed.KeyBoardEvent.started()),
+                  ),
+                ],
                 child: const DetailedInputArea(),
               ),
-              BlocProvider(
-                create: (context) => SpeechInputAreaBloc(),
-                child: const SpeechInputArea(),
-              ),
+              // SpeechInputArea(),
               //OpticalInputArea(),
             ],
           ),
@@ -66,41 +87,7 @@ class _InOfflineGameWidget extends StatelessWidget {
       ],
     );
   }
-
-  // TODO needed ?
-  // move this into seperate bloc
-
-  /// Resets the [InputCubit] when the user changes the keyboard by swiping
-  void _onKeyBoardChanged(
-    BuildContext context, {
-    required int keyBoardIndex,
-  }) {
-    switch (keyBoardIndex) {
-      case 0:
-        context.read<InOfflineGameBloc>().add(
-              const InGameEvent.keyBoardTypeChanged(
-                newKeyBoardType: KeyBoardType.standard,
-              ),
-            );
-        break;
-      case 1:
-        context.read<InOfflineGameBloc>().add(
-              const InGameEvent.keyBoardTypeChanged(
-                newKeyBoardType: KeyBoardType.detailed,
-              ),
-            );
-        break;
-      case 2:
-        context.read<InOfflineGameBloc>().add(
-              const InGameEvent.keyBoardTypeChanged(
-                newKeyBoardType: KeyBoardType.speech,
-              ),
-            );
-        break;
-    }
-  }
 }
-
 
 // ONE PLAYER DISPLAYER
 class _OnePlayerDisplayer extends StatelessWidget {

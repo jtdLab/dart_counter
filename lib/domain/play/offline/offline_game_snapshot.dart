@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/type.dart';
@@ -13,6 +14,7 @@ part 'offline_game_snapshot.freezed.dart';
 class OfflineGameSnapshot
     with _$OfflineGameSnapshot
     implements AbstractGameSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractGameSnapshot>()
   const factory OfflineGameSnapshot({
     required Status status,
@@ -24,24 +26,6 @@ class OfflineGameSnapshot
   }) = _OfflineGameSnapshot;
 
   const OfflineGameSnapshot._();
-
-  @override
-  bool hasDartBot() {
-    if (players.size < 2) {
-      return false;
-    }
-
-    return players.any((player) => player is DartBotSnapshot);
-  }
-
-  @override
-  String description() =>
-      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
-
-  @override
-  AbstractOfflinePlayerSnapshot currentTurn() {
-    return players.first((player) => player.isCurrentTurn);
-  }
 
   factory OfflineGameSnapshot.dummy() {
     return OfflineGameSnapshot(
@@ -56,4 +40,29 @@ class OfflineGameSnapshot
       ).toImmutableList(),
     );
   }
+  // coverage:ignore-end
+
+  // TODO doc
+  @override
+  bool hasDartBot() {
+    return players.any((player) => player is DartBotSnapshot);
+  }
+
+  // TODO doc
+  @override
+  AbstractOfflinePlayerSnapshot currentTurn() {
+    if (status == Status.pending ||
+        status == Status.canceled ||
+        status == Status.finished) {
+      throw DomainError.gameNotRunning();
+    }
+
+    return players.first((player) => player.isCurrentTurn);
+  }
+
+  // TODO move to base class not possible in current freezed ?
+  // TODO doc
+  @override
+  String description() =>
+      '${mode == Mode.firstTo ? 'First to'.toUpperCase() : 'Best of'.toUpperCase()}${' $size '}${type == Type.legs ? 'Legs'.toUpperCase() : 'Sets'.toUpperCase()}';
 }

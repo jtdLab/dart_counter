@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,14 +16,14 @@ part 'friends_bloc.freezed.dart';
 part 'friends_event.dart';
 part 'friends_state.dart';
 
-@lazySingleton
-class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
-    with AutoResetLazySingleton {
+@injectable
+class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
   final IFriendService _friendService;
 
   FriendsBloc(
     this._friendService,
   ) : super(
+          // Set inital state
           FriendsState.initial(
             friends: _friendService.getFriends().getOrElse(
                   () => throw ApplicationError.unexpectedMissingData(),
@@ -40,22 +38,24 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
                     ),
           ),
         ) {
+    // Register event handlers
     on<_Started>(
-      (_, emit) async => _mapStartedToState(emit),
-      transformer: restartable(),
+      (_, emit) async => _handleStarted(emit),
+      transformer: restartable(), // TODO test
     );
     on<_FriendSelected>(
-      (event, emit) => _mapFriendSelectedToState(event, emit),
+      (event, emit) => _handleFriendSelected(event, emit),
     );
     on<_FriendRequestAccepted>(
-      (event, emit) => _mapFriendRequestAcceptedToState(event),
+      (event, emit) => _handleFriendRequestAccepted(event),
     );
     on<_FriendRequestDeclined>(
-      (event, emit) => _mapFriendRequestDeclinedToState(event),
+      (event, emit) => _handleFriendRequestDeclined(event),
     );
   }
 
-  Future<void> _mapStartedToState(
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
     Emitter<FriendsState> emit,
   ) async {
     // TODO is this the correct location ?
@@ -108,28 +108,32 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
     );
   }
 
+  /// Handle incoming [_FriendSelected] event.
   // TODO maybe check if event.friend is element of friends or just use index instead of selectedFriend ??
-  void _mapFriendSelectedToState(
+  void _handleFriendSelected(
     _FriendSelected event,
     Emitter<FriendsState> emit,
   ) =>
       emit(state.copyWith(selectedFriend: event.friend));
 
-  void _mapFriendRequestAcceptedToState(
+  /// Handle incoming [_FriendRequestAccepted] event.
+  void _handleFriendRequestAccepted(
     _FriendRequestAccepted event,
   ) {
     // TODO await result ??
     _friendService.acceptFriendRequest(friendRequest: event.friendRequest);
   }
 
-  void _mapFriendRequestDeclinedToState(
+  /// Handle incoming [_FriendRequestDeclined] event.
+  void _handleFriendRequestDeclined(
     _FriendRequestDeclined event,
   ) {
     // TODO await result ??
     _friendService.declineFriendRequest(friendRequest: event.friendRequest);
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<FriendsBloc>()) {
@@ -138,4 +142,5 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState>
 
     return super.close();
   }
+   */
 }

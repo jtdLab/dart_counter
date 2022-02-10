@@ -10,6 +10,7 @@ enum Trend { up, down, none }
 /// Domain model of the stats an app-user has achieved since created.
 @freezed
 class CareerStats with _$CareerStats {
+   // coverage:ignore-start
   const factory CareerStats({
     required double average,
     required Trend averageTrend,
@@ -21,18 +22,6 @@ class CareerStats with _$CareerStats {
     required int wins,
     required int defeats,
   }) = _CareerStats;
-
-  factory CareerStats.empty() => const CareerStats(
-        average: 0.0,
-        averageTrend: Trend.none,
-        checkoutPercentage: 0.0,
-        checkoutPercentageTrend: Trend.none,
-        firstNine: 0.0,
-        firstNineTrend: Trend.none,
-        games: 0,
-        wins: 0,
-        defeats: 0,
-      );
 
   factory CareerStats.dummy() {
     final games = faker.randomGenerator.integer(200);
@@ -84,4 +73,17 @@ class CareerStats with _$CareerStats {
       defeats: defeats,
     );
   }
+  // coverage:ignore-end
+
+  factory CareerStats.empty() => const CareerStats(
+        average: 0.0,
+        averageTrend: Trend.none,
+        checkoutPercentage: 0.0,
+        checkoutPercentageTrend: Trend.none,
+        firstNine: 0.0,
+        firstNineTrend: Trend.none,
+        games: 0,
+        wins: 0,
+        defeats: 0,
+      );
 }

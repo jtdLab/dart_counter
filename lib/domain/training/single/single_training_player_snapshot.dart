@@ -9,6 +9,7 @@ part 'single_training_player_snapshot.freezed.dart';
 class SingleTrainingPlayerSnapshot
     with _$SingleTrainingPlayerSnapshot
     implements AbstractTrainingPlayerSnapshot {
+  // coverage:ignore-start
   @Implements<AbstractTrainingPlayerSnapshot>()
   const factory SingleTrainingPlayerSnapshot({
     required UniqueId id,
@@ -21,23 +22,6 @@ class SingleTrainingPlayerSnapshot
     required int triples,
     required int missed,
   }) = _SingleTrainingPlayerSnapshot;
-
-  // TODO needed remove pls
-  factory SingleTrainingPlayerSnapshot.initial({
-    String? username,
-  }) {
-    return SingleTrainingPlayerSnapshot(
-      id: UniqueId.fromUniqueString(faker.randomGenerator.string(28, min: 28)),
-      name: username,
-      isCurrentTurn: false,
-      targetValue: 1,
-      points: 0,
-      singles: 0,
-      doubles: 0,
-      triples: 0,
-      missed: 0,
-    );
-  }
 
   factory SingleTrainingPlayerSnapshot.dummy() {
     return SingleTrainingPlayerSnapshot(
@@ -53,4 +37,5 @@ class SingleTrainingPlayerSnapshot
       missed: faker.randomGenerator.integer(50),
     );
   }
+  // coverage:ignore-end
 }

@@ -13,7 +13,9 @@ void main() {
     mockAuthService = MockAuthService();
   });
 
-  test('initial state initialized correctly when unauthenticated', () {
+  test(
+      'WHEN not authenticated '
+      'THEN initial state set to Unauthenticated.', () {
     // Arrange
     when(
       () => mockAuthService.isAuthenticated(),
@@ -32,7 +34,9 @@ void main() {
     );
   });
 
-  test('initial state initialized correctly when authenticated', () {
+  test(
+      'WHEN authenticated '
+      'THEN initial state set to Authenticated.', () {
     // Arrange
     when(
       () => mockAuthService.isAuthenticated(),
@@ -52,7 +56,8 @@ void main() {
   });
 
   blocTest(
-    'emits [Authenticated, Unauthenticated] on auth state change ',
+    'GIVEN authenticated and then not authenticated '
+    'THEN emit [Authenticated, Unauthenticated] on auth state change.',
     build: () {
       when(
         () => mockAuthService.isAuthenticated(),

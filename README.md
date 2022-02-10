@@ -4,6 +4,15 @@ DartCounter for Android and iOS.
 
 ## Important commands for development
 
+// run test
+flutter test --coverage
+
+// remove certain files from coverage
+lcov --remove coverage/lcov.info 'lib/mock/*' 'lib/utils/l10n/*' 'lib/utils/colors.dart' -o coverage/new_lcov.info
+
+// generate html view
+genhtml coverage/lcov.info -o coverage/output/
+
 flutter pub run easy_localization:generate -S assets/languages -f keys -o locale_keys.g.dart
 flutter pub run build_runner watch --delete-conflicting-outputs
 flutter pub run easy_localization:generate -S assets/languages
@@ -118,7 +127,6 @@ BLOCBUILDER more close to location where the data they provide is needed and not
 // when doing filling and dartsOnDouble dialog
 // needs to be implemented specialliy in external modal
 
-
 import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
@@ -130,31 +138,31 @@ class MockUserService extends Mock implements IUserService {}
 class MockGameHistoryService extends Mock implements IGameHistoryService {}
 
 void main() {
-  late MockUserService mockUserService;
-  late MockGameHistoryService mockGameHistoryService;
+late MockUserService mockUserService;
+late MockGameHistoryService mockGameHistoryService;
 
-  setUp(() {
-    mockUserService = MockUserService();
-    mockGameHistoryService = MockGameHistoryService();
-  });
+setUp(() {
+mockUserService = MockUserService();
+mockGameHistoryService = MockGameHistoryService();
+});
 
-  test('initial state is TODO', () {
-    // Arrange & Act
-    final underTest = GameHistoryBloc(
-      mockUserService,
-      mockGameHistoryService,
-    );
+test('initial state is TODO', () {
+// Arrange & Act
+final underTest = GameHistoryBloc(
+mockUserService,
+mockGameHistoryService,
+);
 
     // Assert
     expect(
       underTest.state,
       null, // TODO
     );
-  });
+
+});
 }
 
-
-TODO the comibination of multiple source streams is not implemented consitently in blocs 
+TODO the comibination of multiple source streams is not implemented consitently in blocs
 
 make extension part of the class the extend part and part of statments
 
@@ -165,7 +173,6 @@ page transitions with better effects could be done e.g from auth_flow to main_fl
 the routing now works well with the seperate flow widgets to give the chance of providing a bloc for a flow -> can this approach be optimized and fewer boilerplate flow code can be written or is the current approach the best possible to fill all requirements
 (maybe evaluated the package flow_builder to replace all of this in future projects)
 
-
 // TODO carrerstats and otther domain objects should validate them selfe ??
 
 // Throw.zero get autofilled and darts on double are 3 by user then there is error in model
@@ -173,14 +180,69 @@ the routing now works well with the seperate flow widgets to give the chance of 
 
 at undo detailed remove throw and load old into dart and points displayer
 
-// TODO all code generation should be done in generated folder 
+// TODO all code generation should be done in generated folder
 
 // TODO https://pub.dev/packages/freezed#run-the-generator
 also importing package:flutter/foundation.dart.
 The reason being, importing foundation.dart also imports classes to make an object nicely readable in Flutter's devtool.
 
-
-// add loging 
+// add loging
 info here :
 https://sematext.com/blog/logging-levels/
 https://sematext.com/blog/best-practices-for-efficient-log-management-and-monitoring/#toc-5-use-the-proper-log-level-4
+
+// TODO better DI look at mocked auth service e.g @factoryMethod
+
+// TODO bloc and widget sharing with shared folder or not consistence over whole project todo
+
+// TODO add convenience constructors Dart.zero and Throw.zero ???
+
+// TODO blocs.dart barelle files like in score training with standard and detailed input area every wher in app pls
+
+// TODO share even more around blocs by sharing event handler impl or make base calss that impls some event handlers if tahts possible with darts
+
+// TODO double general what to display in input rows input field ???
+// TODO double keyboard bloc
+// TODO double inputrow bloc
+
+// TODO trainig and play service should return not void but bool or smth that indicated the method got performed successfully or not
+
+!!!!!!! import strucural approach needed who notify who (bloc level) !!!!!!!!!!!!!!!!!
+// TODO input row input changed event never used ??
+// and should it be used and not calc input depeding on icoming dependencies like dart displayer
+
+// remove input changed handler in some input row blocs
+
+// TODO play online/offline detailed input area input row commit pressed
+// TODO play online/offline detailed keyboard blocs
+
+// TODO inject dart displayer bloc correctly into ui in play and training
+
+// TODO watcher cubits 1 base watcher cubit
+
+// in blocs that use super bloc call to close needed ?
+
+blocTest<DartsDisplayerBloc, DartsDisplayerState>(
+'cancels the training when Canceled was added',
+setUp: () {
+when(() => trainingService.cancel());
+},
+build: () => InTrainingBloc(trainingService),
+act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+verify: (\_) => verify(() => trainingService.cancel()).called(1),
+);
+
+// TODO setup of all tests
+
+
+ _singleTrainingService.createGame(
+            // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
+            owner: _userService.getUser().getOrElse(
+                  () => throw ApplicationError.unexpectedMissingUser(),
+                ),
+          ),
+
+
+          // TODO training bloc test strategy black box atm switch to inherited testing like in play section
+
+          // TODO test abstract classes like ingame_bloc_test does

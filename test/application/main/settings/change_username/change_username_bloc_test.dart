@@ -21,7 +21,7 @@ void main() {
     mockUserService = MockUserService();
   });
 
-  test('initial state initialized correctly', () {
+  test('Initial state set to ChangeUsernameInitial with empty username.', () {
     // Arrange & Act
     final underTest = ChangeUsernameBloc(mockUserService);
 
@@ -29,7 +29,7 @@ void main() {
     expect(
       underTest.state,
       ChangeUsernameState.initial(
-        username: Username.empty(),
+        newUsername: Username.empty(),
         showErrorMessages: false,
       ),
     );
@@ -37,31 +37,33 @@ void main() {
 
   group('UsernameChanged', () {
     blocTest(
-      'emits [ChangeUsernameInitial] when current state is ChangeUsernameInitial ',
+      'GIVEN current state is ChangeUsernameInitial '
+      'THEN emit [ChangeUsernameInitial].',
       build: () => ChangeUsernameBloc(mockUserService),
       act: (ChangeUsernameBloc bloc) => bloc.add(
-        const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
+        const ChangeUsernameEvent.newUsernameChanged(newNewUsername: 'abcd'),
       ),
       expect: () => [
         ChangeUsernameInitial(
-          username: Username('abcd'),
+          newUsername: Username('abcd'),
           showErrorMessages: false,
         ),
       ],
     );
 
     blocTest(
-      'emits [ChangeUsernameInitial] when current state is ChangeUsernameSubmitFailure ',
+      'GIVEN current state is ChangeUsernameSubmitFailure '
+      'THEN emit [ChangeUsernameInitial].',
       build: () => ChangeUsernameBloc(mockUserService),
       seed: () => const ChangeUsernameState.submitFailure(
         userFailure: UserFailure.invalidEmail(),
       ),
       act: (ChangeUsernameBloc bloc) => bloc.add(
-        const ChangeUsernameEvent.newUsernameChanged(newUsername: 'abcd'),
+        const ChangeUsernameEvent.newUsernameChanged(newNewUsername: 'abcd'),
       ),
       expect: () => [
         ChangeUsernameInitial(
-          username: Username('abcd'),
+          newUsername: Username('abcd'),
           showErrorMessages: true,
         ),
       ],
@@ -70,8 +72,8 @@ void main() {
 
   group('ConfirmPressed', () {
     blocTest(
-      'emits [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitSuccess] '
-      'when current state is ChangeUsernameInitial with valid and available username ',
+      'GIVEN current state is ChangeUsernameInitial with valid and available username '
+      'THEN emit [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitSuccess].',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
           () => mockUserService.updateUsername(
@@ -82,7 +84,7 @@ void main() {
         return ChangeUsernameBloc(mockUserService);
       },
       seed: () => ChangeUsernameState.initial(
-        username: Username('dummyUsername'),
+        newUsername: Username('dummyUsername'),
         showErrorMessages: false,
       ),
       act: (ChangeUsernameBloc bloc) => bloc.add(
@@ -96,19 +98,19 @@ void main() {
     );
 
     blocTest(
-      'emits [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitFailure] '
-      'when current state is ChangeUsernameInitial with valid and not available username ',
+      'GIVEN current state is ChangeUsernameInitial with valid and not available username '
+      'THEN emit [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitFailure].',
       build: () {
         when<Future<Either<UserFailure, Unit>>>(
           () => mockUserService.updateUsername(
             newUsername: any(named: 'newUsername'),
           ),
-        ).thenAnswer((_) async => left(const UserFailure.failure()));
+        ).thenAnswer((_) async => left(const UserFailure.unexpected()));
 
         return ChangeUsernameBloc(mockUserService);
       },
       seed: () => ChangeUsernameState.initial(
-        username: Username('dummyUsername'),
+        newUsername: Username('dummyUsername'),
         showErrorMessages: false,
       ),
       act: (ChangeUsernameBloc bloc) => bloc.add(
@@ -118,17 +120,17 @@ void main() {
       expect: () => [
         const ChangeUsernameSubmitInProgress(),
         const ChangeUsernameSubmitFailure(
-          userFailure: UserFailure.failure(),
+          userFailure: UserFailure.unexpected(),
         ),
       ],
     );
 
     blocTest(
-      'emits [ChangeUsernameSubmitFailure] '
-      'when current state is ChangeUsernameInitial with invalid username ',
+      'GIVEN current state is ChangeUsernameInitial with invalid username '
+      'THEN emit [ChangeUsernameSubmitFailure].',
       build: () => ChangeUsernameBloc(mockUserService),
       seed: () => ChangeUsernameState.initial(
-        username: Username('a'),
+        newUsername: Username('a'),
         showErrorMessages: false,
       ),
       act: (ChangeUsernameBloc bloc) => bloc.add(

@@ -1,9 +1,11 @@
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/infrastructure/core/errors.dart';
+import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:dart_counter/infrastructure/game/dart_dto.dart';
 import 'package:dart_client/dart_client.dart' as c;
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:flutter_test/flutter_test.dart';
+
+// TODO add test for Dart.missed
 
 void main() {
   const types = DartType.values;
@@ -15,7 +17,7 @@ void main() {
   final domains = List.generate(
     3,
     (index) => Dart(
-      type: types[index],
+      type: types[index+1],
       value: value,
     ),
   );
@@ -319,7 +321,7 @@ void main() {
       final domain = dtos[i].toDomain();
 
       // Assert
-      expect(domain.type, types[i]);
+      expect(domain.type, types[i+1]);
       expect(domain.value, value);
     }
   });

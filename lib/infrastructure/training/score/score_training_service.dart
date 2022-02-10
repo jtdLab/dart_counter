@@ -1,3 +1,4 @@
+import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
@@ -6,6 +7,7 @@ import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/score/score_training_game_snapshot_dto.dart';
 import 'package:dart_game/score_training_game.dart' as ex;
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
@@ -13,7 +15,7 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IScoreTrainingService)
 class ScoreTrainingService implements IScoreTrainingService {
-  final BehaviorSubject<ScoreTrainingGameSnapshot> _gameController;
+  BehaviorSubject<ScoreTrainingGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -30,13 +32,15 @@ class ScoreTrainingService implements IScoreTrainingService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override
-  void createGame({
+  ScoreTrainingGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -53,7 +57,7 @@ class ScoreTrainingService implements IScoreTrainingService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
@@ -62,9 +66,24 @@ class ScoreTrainingService implements IScoreTrainingService {
   }) {
     return _tryPerform(
       action: () {
-        _game!.performThrow(
-          t: ThrowDto.fromDomain(t).toExternal(),
-        );
+        if (t.darts != null) {
+          // when incoming darts has less than 3 elements
+          // add dart with 0 points for each missing dart
+          // so the resulting list contains 3 elements
+          final filledThrow = t.copyWith(
+            darts: t.darts!.toMutableList()
+              ..addAll(
+                List.generate(
+                  3 - t.darts!.size,
+                  (index) => Dart.missed,
+                ).toImmutableList(),
+              ),
+            dartsOnDouble: 0,
+          );
+          _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
+        } else {
+          _game!.performThrow(t: ThrowDto.fromDomain(t).toExternal());
+        }
       },
     );
   }
@@ -116,8 +135,23 @@ class ScoreTrainingService implements IScoreTrainingService {
   }
 
   @override
+  void updateNumberOfTakes({
+    required int newNumberOfTakes,
+  }) {
+    return _tryPerform(
+      action: () => _game!.numberOfTakes = newNumberOfTakes,
+    );
+  }
+
+  @override
   Stream<ScoreTrainingGameSnapshot> watchGame() {
     return _gameController.stream;
+  }
+
+  @override
+  ScoreTrainingGameSnapshot getGame() {
+    // TODO throw no running game error insted of valuestream error
+    return _gameController.value;
   }
 
   // TODO involve return type bool of action instead of void
@@ -131,7 +165,7 @@ class ScoreTrainingService implements IScoreTrainingService {
     }
   }
 
-  void _emitSnpashot() {
+  ScoreTrainingGameSnapshot _emitSnpashot() {
     final dto = ScoreTrainingGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -144,14 +178,16 @@ class ScoreTrainingService implements IScoreTrainingService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
           )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }

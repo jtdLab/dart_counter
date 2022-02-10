@@ -11,3 +11,6 @@ analyzer:
     parameter_assignments: error
     sort_pub_dependencies: ignore
     include_file_not_found: ignore # sometimes package:lint/analysis_options.yaml isnt found
+    depend_on_referenced_packages: ignore
+    always_use_package_imports: ignore
+    

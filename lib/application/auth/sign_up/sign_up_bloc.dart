@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -13,14 +12,15 @@ part 'sign_up_bloc.freezed.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
-@lazySingleton
-class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
-    with AutoResetLazySingleton {
+// TODO doc
+@injectable
+class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final IAuthService _authService;
 
   SignUpBloc(
     this._authService,
   ) : super(
+          // Set initial state
           SignUpState.initial(
             email: EmailAddress.empty(),
             username: Username.empty(),
@@ -29,14 +29,16 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
             showErrorMessages: false,
           ),
         ) {
-    on<_EmailChanged>(_mapEmailChangedToState);
-    on<_UsernameChanged>(_mapUsernameChangedToState);
-    on<_PasswordChanged>(_mapPasswordChangedToState);
-    on<_PasswordAgainChanged>(_mapPasswordAgainChangedToState);
-    on<_SignUpPressed>((_, emit) async => _mapSignUpPressedToState(emit));
+    // Register event handlers
+    on<_EmailChanged>(_handleEmailChanged);
+    on<_UsernameChanged>(_handleUsernameChanged);
+    on<_PasswordChanged>(_handlePasswordChanged);
+    on<_PasswordAgainChanged>(_handlePasswordAgainChanged);
+    on<_SignUpPressed>((_, emit) async => _handleSignUpPressed(emit));
   }
 
-  void _mapEmailChangedToState(
+  /// Handle incoming [_EmailChanged] event.
+  void _handleEmailChanged(
     _EmailChanged event,
     Emitter<SignUpState> emit,
   ) {
@@ -47,7 +49,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     );
   }
 
-  void _mapUsernameChangedToState(
+  /// Handle incoming [_UsernameChanged] event.
+  void _handleUsernameChanged(
     _UsernameChanged event,
     Emitter<SignUpState> emit,
   ) {
@@ -58,7 +61,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     );
   }
 
-  void _mapPasswordChangedToState(
+  /// Handle incoming [_PasswordChanged] event.
+  void _handlePasswordChanged(
     _PasswordChanged event,
     Emitter<SignUpState> emit,
   ) {
@@ -69,7 +73,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     );
   }
 
-  void _mapPasswordAgainChangedToState(
+  /// Handle incoming [_PasswordAgainChanged] event.
+  void _handlePasswordAgainChanged(
     _PasswordAgainChanged event,
     Emitter<SignUpState> emit,
   ) {
@@ -80,7 +85,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     );
   }
 
-  Future<void> _mapSignUpPressedToState(
+  /// Handle incoming [_SignUpPressed] event.
+  Future<void> _handleSignUpPressed(
     Emitter<SignUpState> emit,
   ) async {
     await state.mapOrNull(
@@ -120,7 +126,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     );
   }
 
-  @override
+  /**
+   * @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<SignUpBloc>()) {
@@ -129,4 +136,5 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
 
     return super.close();
   }
+   */
 }

@@ -1,8 +1,10 @@
+import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
-import 'package:dart_counter/domain/training/bobs_twenty_seven/hit.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/mode.dart';
 import 'package:dart_counter/domain/user/user.dart';
+import 'package:dart_counter/infrastructure/game/throw_dto.dart';
 import 'package:dart_counter/infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_game_snapshot_dto.dart';
 import 'package:dart_game/bobs_twenty_seven_training_game.dart' as ex;
 import 'package:injectable/injectable.dart';
@@ -14,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
 @Environment(Environment.prod)
 @LazySingleton(as: IBobsTwentySevenService)
 class BobsTwentySevenService implements IBobsTwentySevenService {
-  final BehaviorSubject<BobsTwentySevenGameSnapshot> _gameController;
+  BehaviorSubject<BobsTwentySevenGameSnapshot> _gameController;
 
   ex.Game? _game;
   User? _owner;
@@ -31,13 +33,15 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
 
   @override
   void cancel() {
-    return _tryPerform(
+    _tryPerform(
       action: () => _game?.cancel(),
     );
+
+    _gameController = BehaviorSubject();
   }
 
   @override
-  void createGame({
+  BobsTwentySevenGameSnapshot createGame({
     required User owner,
     List<String?>? players,
   }) {
@@ -54,45 +58,29 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     _owner = owner;
     _ownerPlayerId = _game!.players[0].id;
 
-    _emitSnpashot();
+    return _emitSnpashot();
   }
 
   @override
-  void performHits({
-    required Hit hit1,
-    required Hit hit2,
-    required Hit hit3,
+  void performThrow({
+    required Throw t,
   }) {
     return _tryPerform(
       action: () {
-        final hits = [hit1, hit2, hit3];
-        final currentTurn =
-            _game!.players.where((player) => player.isCurrentTurn!).toList()[0];
-        final value = currentTurn.targetValue!;
-
-        final List<ex.Dart> darts = [];
-        for (final hit in hits) {
-          switch (hit) {
-            case Hit.double:
-              darts.add(
-                ex.Dart(
-                  type: ex.DartType.double,
-                  value: value,
-                ),
-              );
-              break;
-            case Hit.missed:
-              darts.add(ex.Dart.missed);
-              break;
-          }
-        }
-
-        _game!.performThrow(
-          t: ex.Throw.fromDarts(
-            darts: darts,
-            dartsOnDouble: 3,
-          ),
+        // when incoming darts has less than 3 elements
+        // add dart with 0 points for each missing dart
+        // so the resulting list contains 3 elements
+        final filledThrow = t.copyWith(
+          darts: t.darts!.toMutableList()
+            ..addAll(
+              List.generate(
+                3 - t.darts!.size,
+                (index) => Dart.missed,
+              ).toImmutableList(),
+            ),
+          dartsOnDouble: 3,
         );
+        _game!.performThrow(t: ThrowDto.fromDomain(filledThrow).toExternal());
       },
     );
   }
@@ -127,7 +115,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
   }
 
   @override
-  void undoHits() {
+  void undoThrow() {
     return _tryPerform(
       action: () => _game!.undoThrow(),
     );
@@ -159,6 +147,12 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     return _gameController.stream;
   }
 
+  @override
+  BobsTwentySevenGameSnapshot getGame() {
+    // TODO throw no running game error insted of valuestream error
+    return _gameController.value;
+  }
+
   // TODO involve return type bool of action instead of void
   /// Trys to Perform [action].
   void _tryPerform({
@@ -170,7 +164,7 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
     }
   }
 
-  void _emitSnpashot() {
+  BobsTwentySevenGameSnapshot _emitSnpashot() {
     final dto = BobsTwentySevenGameSnapshotDto.fromExternal(_game!);
 
     final playersWithPhotos = dto.players.map((player) {
@@ -183,14 +177,16 @@ class BobsTwentySevenService implements IBobsTwentySevenService {
       return player;
     }).toList();
 
-    _gameController.add(
-      dto
-          /**
+    final domain = dto
+        /**
          *   .copyWith(
             players: playersWithPhotos,
-          )∏
+          )
          */
-          .toDomain(),
-    );
+        .toDomain();
+
+    _gameController.add(domain);
+
+    return domain;
   }
 }

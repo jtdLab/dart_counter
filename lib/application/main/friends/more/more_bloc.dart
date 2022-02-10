@@ -1,15 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/core/auto_reset_lazy_singelton.dart';
 import 'package:dart_counter/application/main/friends/friends_bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
-import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'more_bloc.freezed.dart';
 part 'more_event.dart';
 part 'more_state.dart';
 
-class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
+@injectable
+class MoreBloc extends Bloc<MoreEvent, MoreState> {
   final IFriendService _friendService;
 
   final FriendsBloc _friendsBloc;
@@ -17,18 +17,24 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
   MoreBloc(
     this._friendService,
     this._friendsBloc,
-  ) : super(const MoreState.initial()) {
-    on<_RemovePressed>((_, __) async => _mapRemovePressedToState());
+  ) : super(
+          // Set inital state
+          const MoreState.initial(),
+        ) {
+    // Register event handlers
+    on<_RemovePressed>((_, __) async => _handleRemovePressed());
   }
 
-  Future<void> _mapRemovePressedToState() async {
+  /// Handle incoming [_RemovePressed] event.
+  Future<void> _handleRemovePressed() async {
     final friendToRemove = _friendsBloc.state.selectedFriend;
     if (friendToRemove != null) {
       await _friendService.removeFriend(friend: friendToRemove);
     }
   }
 
-  @override
+  /**
+  *  @override
   Future<void> close() {
     // TODO should be done in AutoResetLazySingleton
     if (getIt.isRegistered<MoreBloc>()) {
@@ -37,4 +43,5 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> with AutoResetLazySingleton {
 
     return super.close();
   }
+  */
 }

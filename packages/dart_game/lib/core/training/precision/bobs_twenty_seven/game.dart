@@ -67,6 +67,10 @@ class Game extends AbstractGame<Player> {
           // points <0 => disqualify player
           _currentTurn!._isDisqualified = true;
         }
+      } else {
+        final nextTargetValue = _currentTurn!._throws!.length + 1;
+
+        _currentTurn!._targetValue = nextTargetValue;
       }
 
       final disqualifiedPlayers =
@@ -85,7 +89,7 @@ class Game extends AbstractGame<Player> {
         // every player is disqualified or has done all his takes => finish game
         status = Status.finished;
       } else {
-        // update current turn◊
+        // update current turn
         _currentTurn!.isCurrentTurn = false;
         if (mode == Mode.hard) {
           // recursive function to update turn index to next not disqualified player

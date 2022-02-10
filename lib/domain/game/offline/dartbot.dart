@@ -12,6 +12,7 @@ part 'dartbot.freezed.dart';
 
 @freezed
 class DartBot with _$DartBot implements AbstractPlayer {
+  // coverage:ignore-start
   @Implements<AbstractPlayer>()
   const factory DartBot({
     required UniqueId id,
@@ -40,4 +41,5 @@ class DartBot with _$DartBot implements AbstractPlayer {
         stats: PlayerStats.dummy(),
         targetAverage: faker.randomGenerator.integer(100, min: 10),
       );
+  // coverage:ignore-end
 }

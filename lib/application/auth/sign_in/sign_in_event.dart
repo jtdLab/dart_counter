@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 part of 'sign_in_bloc.dart';
 
 @freezed
