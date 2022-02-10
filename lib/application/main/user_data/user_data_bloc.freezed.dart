@@ -182,8 +182,19 @@ class _$UserDataStateTearOff {
     return const UserDataLoadInProgress();
   }
 
-  UserDataLoadSuccess loadSuccess() {
-    return const UserDataLoadSuccess();
+  UserDataLoadSuccess loadSuccess(
+      {required User user,
+      required KtList<FriendRequest> receivedFriendRequests,
+      required KtList<FriendRequest> sentFriendRequests,
+      required KtList<GameInvitation> receivedGameInvitations,
+      required KtList<GameInvitation> sentGameInvitations}) {
+    return UserDataLoadSuccess(
+      user: user,
+      receivedFriendRequests: receivedFriendRequests,
+      sentFriendRequests: sentFriendRequests,
+      receivedGameInvitations: receivedGameInvitations,
+      sentGameInvitations: sentGameInvitations,
+    );
   }
 
   UserDataLoadFailure loadFailure() {
@@ -199,21 +210,39 @@ mixin _$UserDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() loadSuccess,
+    required TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)
+        loadSuccess,
     required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) =>
@@ -301,7 +330,13 @@ class _$UserDataLoadInProgress implements UserDataLoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() loadSuccess,
+    required TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)
+        loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadInProgress();
@@ -311,7 +346,13 @@ class _$UserDataLoadInProgress implements UserDataLoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadInProgress?.call();
@@ -321,7 +362,13 @@ class _$UserDataLoadInProgress implements UserDataLoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -375,6 +422,14 @@ abstract class $UserDataLoadSuccessCopyWith<$Res> {
   factory $UserDataLoadSuccessCopyWith(
           UserDataLoadSuccess value, $Res Function(UserDataLoadSuccess) then) =
       _$UserDataLoadSuccessCopyWithImpl<$Res>;
+  $Res call(
+      {User user,
+      KtList<FriendRequest> receivedFriendRequests,
+      KtList<FriendRequest> sentFriendRequests,
+      KtList<GameInvitation> receivedGameInvitations,
+      KtList<GameInvitation> sentGameInvitations});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -387,57 +442,154 @@ class _$UserDataLoadSuccessCopyWithImpl<$Res>
 
   @override
   UserDataLoadSuccess get _value => super._value as UserDataLoadSuccess;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+    Object? receivedFriendRequests = freezed,
+    Object? sentFriendRequests = freezed,
+    Object? receivedGameInvitations = freezed,
+    Object? sentGameInvitations = freezed,
+  }) {
+    return _then(UserDataLoadSuccess(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      receivedFriendRequests: receivedFriendRequests == freezed
+          ? _value.receivedFriendRequests
+          : receivedFriendRequests // ignore: cast_nullable_to_non_nullable
+              as KtList<FriendRequest>,
+      sentFriendRequests: sentFriendRequests == freezed
+          ? _value.sentFriendRequests
+          : sentFriendRequests // ignore: cast_nullable_to_non_nullable
+              as KtList<FriendRequest>,
+      receivedGameInvitations: receivedGameInvitations == freezed
+          ? _value.receivedGameInvitations
+          : receivedGameInvitations // ignore: cast_nullable_to_non_nullable
+              as KtList<GameInvitation>,
+      sentGameInvitations: sentGameInvitations == freezed
+          ? _value.sentGameInvitations
+          : sentGameInvitations // ignore: cast_nullable_to_non_nullable
+              as KtList<GameInvitation>,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$UserDataLoadSuccess implements UserDataLoadSuccess {
-  const _$UserDataLoadSuccess();
+  const _$UserDataLoadSuccess(
+      {required this.user,
+      required this.receivedFriendRequests,
+      required this.sentFriendRequests,
+      required this.receivedGameInvitations,
+      required this.sentGameInvitations});
+
+  @override
+  final User user;
+  @override
+  final KtList<FriendRequest> receivedFriendRequests;
+  @override
+  final KtList<FriendRequest> sentFriendRequests;
+  @override
+  final KtList<GameInvitation> receivedGameInvitations;
+  @override
+  final KtList<GameInvitation> sentGameInvitations;
 
   @override
   String toString() {
-    return 'UserDataState.loadSuccess()';
+    return 'UserDataState.loadSuccess(user: $user, receivedFriendRequests: $receivedFriendRequests, sentFriendRequests: $sentFriendRequests, receivedGameInvitations: $receivedGameInvitations, sentGameInvitations: $sentGameInvitations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserDataLoadSuccess);
+        (other.runtimeType == runtimeType &&
+            other is UserDataLoadSuccess &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.receivedFriendRequests, receivedFriendRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.sentFriendRequests, sentFriendRequests) &&
+            const DeepCollectionEquality().equals(
+                other.receivedGameInvitations, receivedGameInvitations) &&
+            const DeepCollectionEquality()
+                .equals(other.sentGameInvitations, sentGameInvitations));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(receivedFriendRequests),
+      const DeepCollectionEquality().hash(sentFriendRequests),
+      const DeepCollectionEquality().hash(receivedGameInvitations),
+      const DeepCollectionEquality().hash(sentGameInvitations));
+
+  @JsonKey(ignore: true)
+  @override
+  $UserDataLoadSuccessCopyWith<UserDataLoadSuccess> get copyWith =>
+      _$UserDataLoadSuccessCopyWithImpl<UserDataLoadSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() loadSuccess,
+    required TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)
+        loadSuccess,
     required TResult Function() loadFailure,
   }) {
-    return loadSuccess();
+    return loadSuccess(user, receivedFriendRequests, sentFriendRequests,
+        receivedGameInvitations, sentGameInvitations);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
   }) {
-    return loadSuccess?.call();
+    return loadSuccess?.call(user, receivedFriendRequests, sentFriendRequests,
+        receivedGameInvitations, sentGameInvitations);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess();
+      return loadSuccess(user, receivedFriendRequests, sentFriendRequests,
+          receivedGameInvitations, sentGameInvitations);
     }
     return orElse();
   }
@@ -478,7 +630,22 @@ class _$UserDataLoadSuccess implements UserDataLoadSuccess {
 }
 
 abstract class UserDataLoadSuccess implements UserDataState {
-  const factory UserDataLoadSuccess() = _$UserDataLoadSuccess;
+  const factory UserDataLoadSuccess(
+          {required User user,
+          required KtList<FriendRequest> receivedFriendRequests,
+          required KtList<FriendRequest> sentFriendRequests,
+          required KtList<GameInvitation> receivedGameInvitations,
+          required KtList<GameInvitation> sentGameInvitations}) =
+      _$UserDataLoadSuccess;
+
+  User get user;
+  KtList<FriendRequest> get receivedFriendRequests;
+  KtList<FriendRequest> get sentFriendRequests;
+  KtList<GameInvitation> get receivedGameInvitations;
+  KtList<GameInvitation> get sentGameInvitations;
+  @JsonKey(ignore: true)
+  $UserDataLoadSuccessCopyWith<UserDataLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -523,7 +690,13 @@ class _$UserDataLoadFailure implements UserDataLoadFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() loadSuccess,
+    required TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)
+        loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadFailure();
@@ -533,7 +706,13 @@ class _$UserDataLoadFailure implements UserDataLoadFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadFailure?.call();
@@ -543,7 +722,13 @@ class _$UserDataLoadFailure implements UserDataLoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
+    TResult Function(
+            User user,
+            KtList<FriendRequest> receivedFriendRequests,
+            KtList<FriendRequest> sentFriendRequests,
+            KtList<GameInvitation> receivedGameInvitations,
+            KtList<GameInvitation> sentGameInvitations)?
+        loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
