@@ -22,16 +22,23 @@ class FakeUserService with Disposable implements IUserService {
 
   StreamSubscription? _authSubscription;
 
-  BehaviorSubject<Either<UserFailure, User>>? _userController;
+  final BehaviorSubject<Either<UserFailure, User>?> _userController;
 
   FakeUserService(
     this._authService,
-  ) : _userController = _createUserController() {
+  ) : _userController = _authService.isAuthenticated()
+            ? hasNetworkConnection
+                ? BehaviorSubject.seeded(right(User.dummy()))
+                : BehaviorSubject.seeded(
+                    left(const UserFailure.noNetworkAccess()),
+                  )
+            : BehaviorSubject.seeded(null) {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (!isAuthenticated) {
-        await _userController?.close();
-        _userController = _createUserController();
+      if (isAuthenticated) {
+        _userController.add(right(User.dummy()));
+      } else {
+        _userController.add(null);
       }
     });
   }
@@ -41,9 +48,9 @@ class FakeUserService with Disposable implements IUserService {
     _checkAuth();
 
     if (hasNetworkConnection) {
-      final user = _userController!.value.toOption().toNullable()!;
+      final user = getUser().toOption().toNullable()!;
       final newProfile = user.profile.copyWith(photoUrl: null);
-      _userController!.add(right(user.copyWith(profile: newProfile)));
+      _userController.add(right(user.copyWith(profile: newProfile)));
       return right(unit);
     }
     return left(const UserFailure.noNetworkAccess());
@@ -53,11 +60,11 @@ class FakeUserService with Disposable implements IUserService {
   Either<UserFailure, User> getUser() {
     _checkAuth();
 
-    if (hasNetworkConnection) {
-      return _userController!.value;
+    try {
+      return _userController.value!;
+    } catch (e) {
+      throw UnexpectedMissingValueError();
     }
-
-    return left(const UserFailure.noNetworkAccess());
   }
 
   @override
@@ -69,7 +76,7 @@ class FakeUserService with Disposable implements IUserService {
     if (hasNetworkConnection) {
       if (newEmailAddress.isValid()) {
         final user = getUser().toOption().toNullable()!;
-        _userController!.add(
+        _userController.add(
           right(user.copyWith(email: newEmailAddress)),
         );
         return right(unit);
@@ -90,7 +97,7 @@ class FakeUserService with Disposable implements IUserService {
       final newProfile = user.profile.copyWith(
         photoUrl: faker.image.image(width: 200, height: 200),
       );
-      _userController!.add(right(user.copyWith(profile: newProfile)));
+      _userController.add(right(user.copyWith(profile: newProfile)));
       return right(unit);
     }
 
@@ -107,7 +114,7 @@ class FakeUserService with Disposable implements IUserService {
       if (newUsername.isValid()) {
         final user = getUser().toOption().toNullable()!;
         final newProfile = user.profile.copyWith(name: newUsername);
-        _userController!.add(right(user.copyWith(profile: newProfile)));
+        _userController.add(right(user.copyWith(profile: newProfile)));
         return right(unit);
       }
     }
@@ -119,7 +126,9 @@ class FakeUserService with Disposable implements IUserService {
   Stream<Either<UserFailure, User>> watchUser() {
     _checkAuth();
 
-    return _userController!.stream;
+    return _userController.stream
+        .where((event) => event != null)
+        .cast<Either<UserFailure, User>>();
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
@@ -127,16 +136,6 @@ class FakeUserService with Disposable implements IUserService {
     if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
-  }
-
-  /// Creates a new user controller seeded with either a [User] or [UserFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<UserFailure, User>> _createUserController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(User.dummy())
-          : left(const UserFailure.noNetworkAccess()),
-    );
   }
 
   @override

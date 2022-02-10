@@ -16,6 +16,11 @@ class DomainError extends Error {
       );
 }
 
+class UnexpectedMissingValueError extends DomainError {
+  UnexpectedMissingValueError()
+      : super('Expected value to be available but was not.');
+}
+
 /// This error indicates that an action which requires authentication was issued by an unauthenticated user.
 class NotAuthenticatedError extends DomainError {
   NotAuthenticatedError()

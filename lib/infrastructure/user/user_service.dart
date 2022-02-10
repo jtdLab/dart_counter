@@ -30,23 +30,20 @@ class UserService with Disposable implements IUserService {
 
   late StreamSubscription _authSubscription;
 
-  BehaviorSubject<Either<UserFailure, User>> _userController;
+  BehaviorSubject<Either<UserFailure, User>?> _userController;
 
   UserService(
     this._firestore,
     this._storage,
     this._authService,
     this._socialClient,
-  ) : _userController = BehaviorSubject() {
+  ) : _userController = BehaviorSubject.seeded(null) {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) async {
       if (isAuthenticated) {
-        if (!_authService.isAuthenticated()) {
-          _userController = BehaviorSubject();
-          _userController.addStream(watchUser());
-        }
+        _userController.addStream(_watchUser());
       } else {
-        await _userController.close();
+        _userController.add(null);
       }
     });
   }
@@ -74,9 +71,11 @@ class UserService with Disposable implements IUserService {
   Either<UserFailure, User> getUser() {
     _checkAuth();
 
-    final failureOrUser = _userController.value;
-
-    return failureOrUser;
+    try {
+      return _userController.value!;
+    } catch (e) {
+      throw UnexpectedMissingValueError();
+    }
   }
 
   // TODO test
@@ -90,11 +89,11 @@ class UserService with Disposable implements IUserService {
     if (!newEmailAddress.isValid()) {
       return left(const UserFailure.invalidEmail());
     }
-    final success = await _socialClient.updateEmail(
+    final emailUpdated = await _socialClient.updateEmail(
       newEmail: newEmailAddress.getOrCrash(),
     );
 
-    if (success) {
+    if (emailUpdated) {
       return right(unit);
     }
 
@@ -157,6 +156,14 @@ class UserService with Disposable implements IUserService {
 
   @override
   Stream<Either<UserFailure, User>> watchUser() {
+    _checkAuth();
+
+    return _userController.stream
+        .where((event) => event != null)
+        .cast<Either<UserFailure, User>>();
+  }
+
+  Stream<Either<UserFailure, User>> _watchUser() {
     _checkAuth();
 
     final userDoc = _firestore.userDocument();
