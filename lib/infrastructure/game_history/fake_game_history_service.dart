@@ -40,8 +40,7 @@ class FakeGameHistoryService implements IGameHistoryService {
   }
 
   @override
-  Future<Either<GameHistoryFailure, List10<OnlineGame>>>
-      getGameHistoryOnline({
+  Future<Either<GameHistoryFailure, List10<OnlineGame>>> getGameHistoryOnline({
     required String uid,
   }) async {
     _checkAuth();
