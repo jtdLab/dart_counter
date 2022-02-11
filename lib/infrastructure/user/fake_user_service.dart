@@ -22,104 +22,119 @@ class FakeUserService with Disposable implements IUserService {
 
   StreamSubscription? _authSubscription;
 
-  BehaviorSubject<Either<UserFailure, User>>? _userController;
+  final BehaviorSubject<User?> _userController;
 
   FakeUserService(
     this._authService,
-  ) : _userController = _createUserController() {
+  ) : _userController = BehaviorSubject.seeded(
+          _authService.isAuthenticated() ? User.dummy() : null,
+        ) {
     _authSubscription =
-        _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (!isAuthenticated) {
-        await _userController?.close();
-        _userController = _createUserController();
+        _authService.watchIsAuthenticated().listen((isAuthenticated) {
+      if (isAuthenticated) {
+        _userController.add(User.dummy());
+      } else {
+        _userController.add(null);
       }
     });
   }
 
   @override
   Future<Either<UserFailure, Unit>> deleteProfilePhoto() async {
-    _checkAuth();
+    final userOrFailure = await getUser();
 
-    if (hasNetworkConnection) {
-      final user = _userController!.value.toOption().toNullable()!;
-      final newProfile = user.profile.copyWith(photoUrl: null);
-      _userController!.add(right(user.copyWith(profile: newProfile)));
-      return right(unit);
-    }
-    return left(const UserFailure.noNetworkAccess());
+    return userOrFailure.fold(
+      (failure) => left(failure),
+      (user) {
+        final newProfile = user.profile.copyWith(photoUrl: null);
+        _userController.add(user.copyWith(profile: newProfile));
+        return right(unit);
+      },
+    );
   }
 
   @override
-  Either<UserFailure, User> getUser() {
+  Future<Either<UserFailure, User>> getUser() async {
     _checkAuth();
 
     if (hasNetworkConnection) {
-      return _userController!.value;
+      final user = _userController.valueOrNull;
+
+      if (user != null) {
+        return right(user);
+      }
     }
 
-    return left(const UserFailure.noNetworkAccess());
+    return left(const UserFailure.unexpected());
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateEmailAddress({
     required EmailAddress newEmailAddress,
   }) async {
-    _checkAuth();
+    final userOrFailure = await getUser();
 
-    if (hasNetworkConnection) {
-      if (newEmailAddress.isValid()) {
-        final user = getUser().toOption().toNullable()!;
-        _userController!.add(
-          right(user.copyWith(email: newEmailAddress)),
-        );
-        return right(unit);
-      }
-    }
+    return userOrFailure.fold(
+      (failure) => left(failure),
+      (user) {
+        if (newEmailAddress.isValid()) {
+          _userController.add(user.copyWith(email: newEmailAddress));
+          return right(unit);
+        }
 
-    return left(const UserFailure.noNetworkAccess());
+        return left(const UserFailure.invalidEmail());
+      },
+    );
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateProfilePhoto({
     required Uint8List newPhotoData,
   }) async {
-    _checkAuth();
+    final userOrFailure = await getUser();
 
-    if (hasNetworkConnection) {
-      final user = getUser().toOption().toNullable()!;
-      final newProfile = user.profile.copyWith(
-        photoUrl: faker.image.image(width: 200, height: 200),
-      );
-      _userController!.add(right(user.copyWith(profile: newProfile)));
-      return right(unit);
-    }
-
-    return left(const UserFailure.noNetworkAccess());
+    return userOrFailure.fold(
+      (failure) => left(failure),
+      (user) {
+        final newProfile = user.profile.copyWith(
+          photoUrl: faker.image.image(width: 200, height: 200),
+        );
+        _userController.add(user.copyWith(profile: newProfile));
+        return right(unit);
+      },
+    );
   }
 
   @override
   Future<Either<UserFailure, Unit>> updateUsername({
     required Username newUsername,
   }) async {
-    _checkAuth();
+    final userOrFailure = await getUser();
 
-    if (hasNetworkConnection) {
-      if (newUsername.isValid()) {
-        final user = getUser().toOption().toNullable()!;
-        final newProfile = user.profile.copyWith(name: newUsername);
-        _userController!.add(right(user.copyWith(profile: newProfile)));
-        return right(unit);
-      }
-    }
+    return userOrFailure.fold(
+      (failure) => left(failure),
+      (user) {
+        if (newUsername.isValid()) {
+          final newProfile = user.profile.copyWith(name: newUsername);
+          _userController.add(user.copyWith(profile: newProfile));
+          return right(unit);
+        }
 
-    return left(const UserFailure.noNetworkAccess());
+        return left(const UserFailure.invalidUsername());
+      },
+    );
   }
 
   @override
   Stream<Either<UserFailure, User>> watchUser() {
     _checkAuth();
 
-    return _userController!.stream;
+    return _userController
+        .map<Either<UserFailure, User>>(
+          (userOption) =>
+              userOption != null ? right(userOption) : throw Error(),
+        )
+        .onErrorReturnWith((error, _) => left(const UserFailure.unexpected()));
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
@@ -127,16 +142,6 @@ class FakeUserService with Disposable implements IUserService {
     if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
-  }
-
-  /// Creates a new user controller seeded with either a [User] or [UserFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<UserFailure, User>> _createUserController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(User.dummy())
-          : left(const UserFailure.noNetworkAccess()),
-    );
   }
 
   @override

@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'career_stats_dto.freezed.dart';
 part 'career_stats_dto.g.dart';
 
+// TODO other file
 /// Utility methods to convert a [String] to [Trend] and vice versa.
 extension TrendX on Trend {
   String toShortString() {
