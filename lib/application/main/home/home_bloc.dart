@@ -70,6 +70,43 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> _handleStarted(
     Emitter<HomeState> emit,
   ) async {
+    CombineLatestStream<Object, HomeState>(
+      [
+        _userCubit.stream,
+        _friendsCubit.stream,
+        _gameInvitationsCubit.stream,
+      ],
+      (list) {
+        final userState = list[0] as UserState;
+        final friendsState = list[1] as FriendsState;
+        final gameInvitationsState = list[2] as GameInvitationsState;
+
+        return userState.when(
+          loadInProgress: () => const HomeState.loadInProgress(),
+          loadSuccess: (user) => friendsState.when(
+            loadInProgress: () => const HomeState.loadInProgress(),
+            loadSuccess: (_, receivedFriendRequests, __) =>
+                gameInvitationsState.when(
+              loadInProgress: () => const HomeState.loadInProgress(),
+              loadSuccess: (receivedGameInvitations, _) =>
+                  HomeState.loadSuccess(
+                user: user,
+                unreadFriendRequests:
+                    receivedFriendRequests.count((element) => !element.read),
+                unreadGameInvitations:
+                    receivedGameInvitations.count((element) => !element.read),
+              ),
+              loadFailure: (_) => const HomeState.loadFailure(),
+            ),
+            loadFailure: (_) => const HomeState.loadFailure(),
+          ),
+          loadFailure: (_) => const HomeState.loadFailure(),
+        );
+      },
+    ).listen((value) {
+      print(value);
+    });
+
     await emit.forEach(
       CombineLatestStream<Object, HomeState>(
         [

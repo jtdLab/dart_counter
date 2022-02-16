@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 
 /// Global logger of this app.
 final logger = Logger(
-  level: Level.debug,
+  level: Level.verbose,
   printer: PrettyPrinter(
     methodCount: 0,
     printTime: true,

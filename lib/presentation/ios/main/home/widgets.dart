@@ -9,7 +9,7 @@ class _SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
-      key: const Key('settings_button'), // TODO move up or not
+     // key: const Key('settings_button'), // TODO move up or not
       noPaddingLeft: true,
       onPressed: () => context.router.push(const SettingsFlowRoute()),
       child: Image.asset(AppImages.settingsNew),
@@ -28,7 +28,7 @@ class _GameInvitationsButton extends StatelessWidget {
       selector: (state) => (state as HomeLoadSuccess).unreadGameInvitations,
       builder: (context, unreadReceivedInvitations) {
         return AppNavigationBarButton(
-          key: const Key('game_invitations_button'), // TODO move up or not
+          //key: const Key('game_invitations_button'), // TODO move up or not
           onPressed: () =>
               context.router.push(const GameInvitationsPageRoute()),
           child: unreadReceivedInvitations == 0
@@ -65,7 +65,7 @@ class _FriendsButton extends StatelessWidget {
       selector: (state) => (state as HomeLoadSuccess).unreadFriendRequests,
       builder: (context, unreadFriendRequests) {
         return AppNavigationBarButton(
-          key: const Key('friends_button'), // TODO move up or not
+          // key: const Key('friends_button'), // TODO move up or not
           onPressed: () => context.router.push(const FriendsFlowRoute()),
           child: unreadFriendRequests == 0
               ? Image.asset(AppImages.playerNew)
@@ -95,7 +95,7 @@ class _StatsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
-      key: const Key('stats_button'), // TODO move up or not
+      //key: const Key('stats_button'), // TODO move up or not
       noPaddingRight: true,
       onPressed: () => context.router.push(const ProfilePageRoute()),
       child: Image.asset(AppImages.statsNew),
@@ -205,7 +205,7 @@ class _PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      key: const Key('play_online_button'), // TODO move up or not
+      // key: const Key('play_online_button'), // TODO move up or not
       onPressed: () => context.read<CreateOnlineGameCubit>().createGame(),
       color: AppColors.orangeNew,
       fontColor: AppColors.black,
@@ -219,7 +219,7 @@ class _PlayOfflineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      key: const Key('play_offline_button'), // TODO move up or not
+      // key: const Key('play_offline_button'), // TODO move up or not
       onPressed: () => context.router.replace(const PlayOfflineFlowRoute()),
       color: AppColors.white,
       fontColor: AppColors.black,
@@ -233,7 +233,7 @@ class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      key: const Key('train_button'), // TODO move up or not
+     // key: const Key('train_button'), // TODO move up or not
       onPressed: () => context.router.replace(const TrainingFlowRoute()),
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
@@ -250,7 +250,7 @@ class _InstagramButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      key: const Key('instagramm_button'), // TODO move up or not
+      // key: const Key('instagramm_button'), // TODO move up or not
       onPressed: () async {
         // TODO does this logic belong in ui or application
         const url = 'https://www.instagram.com/darts_ger/';
@@ -276,7 +276,7 @@ class _YoutubeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      key: const Key('youtube_button'), // TODO move up or not
+      // key: const Key('youtube_button'), // TODO move up or not
       onPressed: () async {
         // TODO does this logic belong in ui or application
         const url = 'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ';

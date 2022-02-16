@@ -4,11 +4,11 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - cloud_firestore (3.1.7):
+  - cloud_firestore (3.1.8):
     - Firebase/Firestore (= 8.11.0)
     - firebase_core
     - Flutter
-  - cloud_functions (3.2.6):
+  - cloud_functions (3.2.7):
     - Firebase/Functions (= 8.11.0)
     - firebase_core
     - Flutter
@@ -37,14 +37,14 @@ PODS:
   - Firebase/Storage (8.11.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 8.11.0)
-  - firebase_auth (3.3.6):
+  - firebase_auth (3.3.7):
     - Firebase/Auth (= 8.11.0)
     - firebase_core
     - Flutter
   - firebase_core (1.12.0):
     - Firebase/CoreOnly (= 8.11.0)
     - Flutter
-  - firebase_storage (10.2.6):
+  - firebase_storage (10.2.7):
     - Firebase/Storage (= 8.11.0)
     - firebase_core
     - Flutter
@@ -226,17 +226,17 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  cloud_firestore: 86f87680a19c805cb0c80b75ecb17ca2d18085f9
-  cloud_functions: 82094959d8145378c8c7a8ebd883d9c87635c1db
+  cloud_firestore: 8bd22e19f6ccf3a0d1976ea298e0ce37c9ad5839
+  cloud_functions: c024d02ed3046e5ee7f8cd03e6c306c56044678c
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   FBAEMKit: 4cea610d0bc1680572f2aad7b25db7a2f2690d82
   FBSDKCoreKit: 5b1992fe65802ca26be7e68bc4fac5f59fa39908
   FBSDKCoreKit_Basics: a6a92ca628e05f86f458a4721574c5ddfb058ba3
   FBSDKLoginKit: 7467b7f988ca4fdf48f12a839bcfce4264752429
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  firebase_auth: ccdb84a0d52a2d7897898ae8121689da6e13d71f
+  firebase_auth: 20bf788012988ef04ce608fada5b8d8cd1069302
   firebase_core: 443bccfd6aa6b42f07be365b500773dc69db2d87
-  firebase_storage: e1ac35b46a4ead41de4d8d6dd44728c476fb87b3
+  firebase_storage: 627bc138c31654fc1320b262e16e3fad770dea6f
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
@@ -253,7 +253,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
-  image_picker: 0d37d1cb66231c2473a0e3ccb8d062d0c2b3d297
+  image_picker: 541dcbb3b9cf32d87eacbd957845d8651d6c62c3
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58

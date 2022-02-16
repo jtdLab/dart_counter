@@ -41,7 +41,6 @@ class HomePage extends StatelessWidget {
           selector: (state) => state is HomeLoadSuccess,
           builder: (context, hasNavigationBar) {
             return AppPage(
-              key: const Key('home_page'),
               navigationBar: hasNavigationBar
                   ? AppNavigationBar(
                       leading: const _SettingsButton(),
