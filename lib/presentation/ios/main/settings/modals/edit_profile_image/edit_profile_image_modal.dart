@@ -12,7 +12,7 @@ class EditProfileImageModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<EditProfileImageBloc>(),
+      create: (context) => EditProfileImageBloc.getIt(),
       child: const AppModal(
         child: _EditProfileImageWidget(),
       ),

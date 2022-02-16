@@ -4,15 +4,13 @@ import 'package:dart_counter/application/main/shared/input_row/input_row_event.d
 import 'package:dart_counter/application/main/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
 // TODO doc
-/// [otherDependencies] must contain in follwoing order:
-///
-/// 1. Instance of [DartsDisplayerBloc]
 @injectable
 class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IScoreTrainingService _trainingService;
@@ -21,9 +19,8 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
 
   InputRowBloc(
     this._trainingService,
-    @factoryParam List<Object>? otherDependencies,
-  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
-        super(
+    this._dartsDisplayerBloc,
+  ) : super(
           // Set inital state
           0,
         ) {
@@ -35,6 +32,29 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     on<UndoPressed>((_, __) => _handleUndoPressed());
     on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
   }
+
+  /// Returns instance registered inside getIt.
+  factory InputRowBloc.getIt(
+    DartsDisplayerBloc dartsDisplayerBloc,
+  ) =>
+      getIt<InputRowBloc>(
+        param1: [dartsDisplayerBloc],
+      );
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [DartsDisplayerBloc].
+  @factoryMethod
+  factory InputRowBloc.injectable(
+    IScoreTrainingService scoreTrainingService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      InputRowBloc(
+        scoreTrainingService,
+        otherDependencies![0] as DartsDisplayerBloc,
+      );
 
   /// Handle incoming [Started] event.
   Future<void> _handleStarted(

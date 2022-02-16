@@ -29,7 +29,7 @@ class AppWidget extends StatelessWidget {
       path: 'assets/languages',
       assetLoader: const CodegenLoader(),
       child: BlocProvider(
-        create: (context) => getIt<AuthBloc>()..add(const AuthEvent.started()),
+        create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
         child: PlatformWidget(
           android: (context) => ios.AppWidget(), // TODO provide the ios widget
           ios: (context) => ios.AppWidget(),

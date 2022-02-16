@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -33,6 +34,9 @@ class SearchUserBloc extends Bloc<SearchUserEvent, SearchUserState> {
     );
     on<_ClearPressed>((_, emit) => _handleClearPressed(emit));
   }
+
+  /// Returns instance registered inside getIt.
+  factory SearchUserBloc.getIt() => getIt<SearchUserBloc>();
 
   /// Handle incoming [_SearchStringChanged] event.
   Future<void> _handleSearchStringChanged(

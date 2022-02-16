@@ -33,15 +33,20 @@ class _InOnlineGameWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<InputRowEvent, int>>(
-                    create: (context) => getIt<standard.InputRowBloc>(
-                      param1: context.read<InOnlineGameBloc>(),
+                    create: (context) =>
+                        InputRowBlocOnlineStandardInputArea.getIt(
+                      context.read<PlayOnlineCubit>(),
+                      context.read<InOnlineGameBloc>(),
                     ),
                   ),
                   BlocProvider<
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
-                    create: (context) => getIt<standard.KeyBoardBloc>(
-                      param1: context.read<AdvancedSettingsBloc>(),
-                      param2: context.read<Bloc<InputRowEvent, int>>(),
+                    create: (context) =>
+                        KeyBoardBlocOnlineStandardInputArea.getIt(
+                      context.read<PlayOnlineCubit>(),
+                      context.read<AdvancedSettingsBloc>(),
+                      context.read<Bloc<InputRowEvent, int>>()
+                          as InputRowBlocOnlineStandardInputArea,
                     )..add(const standard.KeyBoardEvent.started()),
                   ),
                 ],
@@ -50,26 +55,27 @@ class _InOnlineGameWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
-                    create: (context) => getIt<DartsDisplayerBloc>(
-                      // TODO ideal ??should ui know services ??
-                      param1: getIt<IPlayOnlineService>(),
+                    create: (context) => DartsDisplayerBloc.getIt(
+                      context.read<PlayOnlineWatcherCubit>(), // TODO
                     ),
                   ),
                   BlocProvider<Bloc<InputRowEvent, int>>(
-                    create: (context) => getIt<detailed.InputRowBloc>(
-                      param1: context.read<InOnlineGameBloc>(),
-                      param2: context.read<
-                          Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
+                    create: (context) =>
+                        InputRowBlocOnlineDetailedInputArea.getIt(
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     )..add(const InputRowEvent.started()),
                   ),
                   BlocProvider<
                       Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
-                    create: (context) => getIt<detailed.KeyBoardBloc>(
-                      param1: [
-                        context.read<AdvancedSettingsBloc>(),
-                        context.read<
-                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
-                      ],
+                    create: (context) =>
+                        KeyBoardBlocOnlineDetailedInputArea.getIt(
+                      context.read<PlayOnlineCubit>(),
+                      context.read<AdvancedSettingsBloc>(),
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     )..add(const detailed.KeyBoardEvent.started()),
                   ),
                 ],

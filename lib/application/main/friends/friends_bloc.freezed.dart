@@ -724,15 +724,8 @@ abstract class _FriendRequestDeclined implements FriendsEvent {
 class _$FriendsStateTearOff {
   const _$FriendsStateTearOff();
 
-  FriendsInitial initial(
-      {required KtList<Friend> friends,
-      required KtList<FriendRequest> receivedFriendRequests,
-      required KtList<FriendRequest> sentFriendRequests,
-      Friend? selectedFriend}) {
+  FriendsInitial initial({Friend? selectedFriend}) {
     return FriendsInitial(
-      friends: friends,
-      receivedFriendRequests: receivedFriendRequests,
-      sentFriendRequests: sentFriendRequests,
       selectedFriend: selectedFriend,
     );
   }
@@ -743,41 +736,21 @@ const $FriendsState = _$FriendsStateTearOff();
 
 /// @nodoc
 mixin _$FriendsState {
-  KtList<Friend> get friends => throw _privateConstructorUsedError;
-  KtList<FriendRequest> get receivedFriendRequests =>
-      throw _privateConstructorUsedError;
-  KtList<FriendRequest> get sentFriendRequests =>
-      throw _privateConstructorUsedError;
   Friend? get selectedFriend => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)
-        initial,
+    required TResult Function(Friend? selectedFriend) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)?
-        initial,
+    TResult Function(Friend? selectedFriend)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)?
-        initial,
+    TResult Function(Friend? selectedFriend)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -808,11 +781,7 @@ abstract class $FriendsStateCopyWith<$Res> {
   factory $FriendsStateCopyWith(
           FriendsState value, $Res Function(FriendsState) then) =
       _$FriendsStateCopyWithImpl<$Res>;
-  $Res call(
-      {KtList<Friend> friends,
-      KtList<FriendRequest> receivedFriendRequests,
-      KtList<FriendRequest> sentFriendRequests,
-      Friend? selectedFriend});
+  $Res call({Friend? selectedFriend});
 
   $FriendCopyWith<$Res>? get selectedFriend;
 }
@@ -827,24 +796,9 @@ class _$FriendsStateCopyWithImpl<$Res> implements $FriendsStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? friends = freezed,
-    Object? receivedFriendRequests = freezed,
-    Object? sentFriendRequests = freezed,
     Object? selectedFriend = freezed,
   }) {
     return _then(_value.copyWith(
-      friends: friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
-              as KtList<Friend>,
-      receivedFriendRequests: receivedFriendRequests == freezed
-          ? _value.receivedFriendRequests
-          : receivedFriendRequests // ignore: cast_nullable_to_non_nullable
-              as KtList<FriendRequest>,
-      sentFriendRequests: sentFriendRequests == freezed
-          ? _value.sentFriendRequests
-          : sentFriendRequests // ignore: cast_nullable_to_non_nullable
-              as KtList<FriendRequest>,
       selectedFriend: selectedFriend == freezed
           ? _value.selectedFriend
           : selectedFriend // ignore: cast_nullable_to_non_nullable
@@ -871,11 +825,7 @@ abstract class $FriendsInitialCopyWith<$Res>
           FriendsInitial value, $Res Function(FriendsInitial) then) =
       _$FriendsInitialCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {KtList<Friend> friends,
-      KtList<FriendRequest> receivedFriendRequests,
-      KtList<FriendRequest> sentFriendRequests,
-      Friend? selectedFriend});
+  $Res call({Friend? selectedFriend});
 
   @override
   $FriendCopyWith<$Res>? get selectedFriend;
@@ -894,24 +844,9 @@ class _$FriendsInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? friends = freezed,
-    Object? receivedFriendRequests = freezed,
-    Object? sentFriendRequests = freezed,
     Object? selectedFriend = freezed,
   }) {
     return _then(FriendsInitial(
-      friends: friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
-              as KtList<Friend>,
-      receivedFriendRequests: receivedFriendRequests == freezed
-          ? _value.receivedFriendRequests
-          : receivedFriendRequests // ignore: cast_nullable_to_non_nullable
-              as KtList<FriendRequest>,
-      sentFriendRequests: sentFriendRequests == freezed
-          ? _value.sentFriendRequests
-          : sentFriendRequests // ignore: cast_nullable_to_non_nullable
-              as KtList<FriendRequest>,
       selectedFriend: selectedFriend == freezed
           ? _value.selectedFriend
           : selectedFriend // ignore: cast_nullable_to_non_nullable
@@ -923,24 +858,14 @@ class _$FriendsInitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FriendsInitial implements FriendsInitial {
-  const _$FriendsInitial(
-      {required this.friends,
-      required this.receivedFriendRequests,
-      required this.sentFriendRequests,
-      this.selectedFriend});
+  const _$FriendsInitial({this.selectedFriend});
 
-  @override
-  final KtList<Friend> friends;
-  @override
-  final KtList<FriendRequest> receivedFriendRequests;
-  @override
-  final KtList<FriendRequest> sentFriendRequests;
   @override
   final Friend? selectedFriend;
 
   @override
   String toString() {
-    return 'FriendsState.initial(friends: $friends, receivedFriendRequests: $receivedFriendRequests, sentFriendRequests: $sentFriendRequests, selectedFriend: $selectedFriend)';
+    return 'FriendsState.initial(selectedFriend: $selectedFriend)';
   }
 
   @override
@@ -948,22 +873,13 @@ class _$FriendsInitial implements FriendsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FriendsInitial &&
-            const DeepCollectionEquality().equals(other.friends, friends) &&
-            const DeepCollectionEquality()
-                .equals(other.receivedFriendRequests, receivedFriendRequests) &&
-            const DeepCollectionEquality()
-                .equals(other.sentFriendRequests, sentFriendRequests) &&
             const DeepCollectionEquality()
                 .equals(other.selectedFriend, selectedFriend));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(friends),
-      const DeepCollectionEquality().hash(receivedFriendRequests),
-      const DeepCollectionEquality().hash(sentFriendRequests),
-      const DeepCollectionEquality().hash(selectedFriend));
+      runtimeType, const DeepCollectionEquality().hash(selectedFriend));
 
   @JsonKey(ignore: true)
   @override
@@ -973,45 +889,27 @@ class _$FriendsInitial implements FriendsInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)
-        initial,
+    required TResult Function(Friend? selectedFriend) initial,
   }) {
-    return initial(
-        friends, receivedFriendRequests, sentFriendRequests, selectedFriend);
+    return initial(selectedFriend);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)?
-        initial,
+    TResult Function(Friend? selectedFriend)? initial,
   }) {
-    return initial?.call(
-        friends, receivedFriendRequests, sentFriendRequests, selectedFriend);
+    return initial?.call(selectedFriend);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<Friend> friends,
-            KtList<FriendRequest> receivedFriendRequests,
-            KtList<FriendRequest> sentFriendRequests,
-            Friend? selectedFriend)?
-        initial,
+    TResult Function(Friend? selectedFriend)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(
-          friends, receivedFriendRequests, sentFriendRequests, selectedFriend);
+      return initial(selectedFriend);
     }
     return orElse();
   }
@@ -1046,18 +944,8 @@ class _$FriendsInitial implements FriendsInitial {
 }
 
 abstract class FriendsInitial implements FriendsState {
-  const factory FriendsInitial(
-      {required KtList<Friend> friends,
-      required KtList<FriendRequest> receivedFriendRequests,
-      required KtList<FriendRequest> sentFriendRequests,
-      Friend? selectedFriend}) = _$FriendsInitial;
+  const factory FriendsInitial({Friend? selectedFriend}) = _$FriendsInitial;
 
-  @override
-  KtList<Friend> get friends;
-  @override
-  KtList<FriendRequest> get receivedFriendRequests;
-  @override
-  KtList<FriendRequest> get sentFriendRequests;
   @override
   Friend? get selectedFriend;
   @override

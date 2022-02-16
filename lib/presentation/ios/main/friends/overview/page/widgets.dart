@@ -31,7 +31,7 @@ class _FriendRequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FriendsBloc, FriendsState>(
+    return BlocBuilder<watcher.FriendsCubit, watcher.FriendsState>(
       builder: (context, state) {
         final receivedFriendRequests = state.receivedFriendRequests;
 
@@ -112,7 +112,7 @@ class _FriendsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FriendsBloc, FriendsState>(
+    return BlocBuilder<watcher.FriendsCubit, watcher.FriendsState>(
       builder: (context, state) {
         final friends = state.friends;
 

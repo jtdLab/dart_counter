@@ -8,7 +8,7 @@ class _SettingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         final photoUrl = state.user.profile.photoUrl;
 

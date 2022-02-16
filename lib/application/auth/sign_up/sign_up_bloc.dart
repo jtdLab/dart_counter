@@ -37,6 +37,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<_SignUpPressed>((_, emit) async => _handleSignUpPressed(emit));
   }
 
+  /// Returns instance registered inside getIt.
+  factory SignUpBloc.getIt() => getIt<SignUpBloc>();
+
   /// Handle incoming [_EmailChanged] event.
   void _handleEmailChanged(
     _EmailChanged event,

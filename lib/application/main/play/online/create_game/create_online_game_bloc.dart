@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -32,6 +33,9 @@ class CreateOnlineGameBloc extends Bloc<CreateOnlineGameEvent, void> {
     on<_TypeUpdated>((event, _) => _mapTypeUpdatedToState(event));
     on<_GameStarted>((_, __) => _mapGameStartedToState());
   }
+
+  /// Returns instance registered inside getIt.
+  factory CreateOnlineGameBloc.getIt() => getIt<CreateOnlineGameBloc>();
 
   /// Handle incoming [_GameCanceled] event.
   void _mapGameCanceledToState() {

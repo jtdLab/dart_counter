@@ -1,12 +1,15 @@
 // CORE
-import 'package:dart_counter/presentation/ios/core/core.dart';
-
+import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
+import 'package:dart_counter/application/main/home/create_online_game/create_online_game_cubit.dart';
 // BLOCS
 import 'package:dart_counter/application/main/home/home_bloc.dart';
-import 'package:dart_counter/application/main/home/create_online_game/create_online_game_cubit.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // LOCAL WIDGETS
 import '../shared/widgets.dart';
+
 part 'widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,10 +18,14 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<HomeBloc>()..add(const HomeEvent.started()),
+          create: (context) => HomeBloc.getIt(
+            context.read<UserCubit>(),
+            context.read<FriendsCubit>(),
+            context.read<GameInvitationsCubit>(),
+          )..add(const HomeEvent.started()),
         ),
         BlocProvider(
-          create: (context) => getIt<CreateOnlineGameCubit>(),
+          create: (context) => CreateOnlineGameCubit.getIt(),
         )
       ],
       child: BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
@@ -26,21 +33,17 @@ class HomePage extends StatelessWidget {
           state.mapOrNull(
             success: (success) =>
                 context.router.replace(const PlayOnlineFlowRoute()),
-            failure: (failure) {
-              // TODO show toast with error msg why could not creat egame
-            },
+            // TODO localize + test
+            failure: (failure) => showToast('Could not create game.'),
           );
         },
-        child: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return state.map(
-              loadInProgress: (loadInProgress) =>
-                  const AppPage(child: LoadingWidget()),
-              loadSuccess: (loadSuccess) {
-                return Provider.value(
-                  value: loadSuccess,
-                  child: AppPage(
-                    navigationBar: AppNavigationBar(
+        child: BlocSelector<HomeBloc, HomeState, bool>(
+          selector: (state) => state is HomeLoadSuccess,
+          builder: (context, hasNavigationBar) {
+            return AppPage(
+              key: const Key('home_page'),
+              navigationBar: hasNavigationBar
+                  ? AppNavigationBar(
                       leading: const _SettingsButton(),
                       trailing: Row(
                         children: const [
@@ -49,14 +52,9 @@ class HomePage extends StatelessWidget {
                           _StatsButton(),
                         ],
                       ),
-                    ),
-                    child: _HomeWidget(),
-                  ),
-                );
-              },
-              loadFailure: (loadFailure) {
-                return const Text('TODO');
-              },
+                    )
+                  : null,
+              child: const _HomeWidget(),
             );
           },
         ),

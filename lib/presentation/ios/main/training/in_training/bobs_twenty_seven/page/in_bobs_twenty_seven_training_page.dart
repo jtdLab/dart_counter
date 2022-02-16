@@ -24,27 +24,25 @@ class InBobsTwentySeventTrainingPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<InBobsTwentySevenBloc>(),
+          create: (context) => InBobsTwentySevenBloc.getIt(),
         ),
         // TODO move into flow and in other training 2
         BlocProvider(
-          create: (context) => getIt<BobsTwentySevenWatcherCubit>(),
+          create: (context) => BobsTwentySevenWatcherCubit.getIt(),
         ),
         BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
-          create: (context) => getIt<DartsDisplayerBloc>(),
+          create: (context) => DartsDisplayerBloc.getIt(),
         ),
         BlocProvider<Bloc<InputRowEvent, int>>(
-          create: (context) => getIt<InputRowBloc>(
-            param1: [
-              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-            ],
+          create: (context) => InputRowBloc.getIt(
+            context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                as DartsDisplayerBloc,
           )..add(const InputRowEvent.started()),
         ),
         BlocProvider<Bloc<KeyBoardEvent, void>>(
-          create: (context) => getIt<KeyBoardBloc>(
-            param1: [
-              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-            ],
+          create: (context) => KeyBoardBloc.getIt(
+            context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                as DartsDisplayerBloc,
           ),
         ),
       ],

@@ -118,7 +118,7 @@ class FakeFriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<Friend>> getFriends() {
+  Future<Either<FriendFailure, KtList<Friend>>> getFriends() async {
     _checkAuth();
     if (hasNetworkConnection) {
       return _friendsController!.value;
@@ -128,7 +128,8 @@ class FakeFriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
+  Future<Either<FriendFailure, KtList<FriendRequest>>>
+      getReceivedFriendRequests() async {
     _checkAuth();
     if (hasNetworkConnection) {
       return _receivedFriendRequestController!.value;
@@ -138,7 +139,8 @@ class FakeFriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
+  Future<Either<FriendFailure, KtList<FriendRequest>>>
+      getSentFriendRequests() async {
     _checkAuth();
     if (hasNetworkConnection) {
       return _sentFriendRequestController!.value;

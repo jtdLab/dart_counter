@@ -14,9 +14,8 @@ class AppleSignIn {
     this._getAppleCredential,
   );
 
-  // coverage:ignore-start
   @factoryMethod
-  factory AppleSignIn.inject() => AppleSignIn(
+  factory AppleSignIn.injectable() => AppleSignIn(
         (rawNonce) => SignInWithApple.getAppleIDCredential(
           scopes: [
             AppleIDAuthorizationScopes.email,
@@ -25,7 +24,6 @@ class AppleSignIn {
           nonce: rawNonce,
         ),
       );
-  // coverage:ignore-end
 
   Future<String?> signIn({
     required String rawNonce,

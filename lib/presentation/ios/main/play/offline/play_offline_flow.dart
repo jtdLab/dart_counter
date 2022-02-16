@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -15,7 +16,9 @@ class PlayOfflineFlow extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<PlayOfflineWatcherCubit>(),
+          create: (context) => PlayOfflineWatcherCubit.getIt(
+            context.read<UserCubit>(),
+          ),
         ),
         BlocProvider(
           lazy: false, // TODO right but why??

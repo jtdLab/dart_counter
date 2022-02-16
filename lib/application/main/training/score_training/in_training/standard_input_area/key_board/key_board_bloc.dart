@@ -3,15 +3,13 @@ import 'package:dart_counter/application/main/shared/standard_input_area/key_boa
 import 'package:dart_counter/application/main/shared/standard_input_area/key_board_state.dart';
 import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/shared/standard_input_area/key_board_event.dart';
 export 'package:dart_counter/application/main/shared/standard_input_area/key_board_state.dart';
 
 // TODO doc
-/// [otherDependencies] must contain in follwoing order:
-///
-/// 1. Instance of [InputRowBloc]
 @injectable
 class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
@@ -20,9 +18,8 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   KeyBoardBloc(
     this._dartUtils,
-    @factoryParam List<Object>? otherDependencies,
-  )   : _inputRowBloc = otherDependencies![0] as InputRowBloc,
-        super(
+    this._inputRowBloc,
+  ) : super(
           // Set inital state
           KeyBoardState.allEnabled().copyWith(check: null),
         ) {
@@ -30,6 +27,29 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     on<DigitPressed>((event, emit) => _handleDigitPressed(event));
     on<EreasePressed>((event, emit) => _handleEreasePressed());
   }
+
+  /// Returns instance registered inside getIt.
+  factory KeyBoardBloc.getIt(
+    InputRowBloc inputRowBloc,
+  ) =>
+      getIt<KeyBoardBloc>(
+        param1: [inputRowBloc],
+      );
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [InputRowBloc].
+  @factoryMethod
+  factory KeyBoardBloc.injectable(
+    IDartUtils dartUtils,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      KeyBoardBloc(
+        dartUtils,
+        otherDependencies![0] as InputRowBloc,
+      );
 
   /// Handle incoming [DigitPressed] event.
   void _handleDigitPressed(

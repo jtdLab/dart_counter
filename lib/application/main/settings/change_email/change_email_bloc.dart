@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -28,6 +29,9 @@ class ChangeEmailBloc extends Bloc<ChangeEmailEvent, ChangeEmailState> {
     on<_NewEmailChanged>(_handleEmailChanged);
     on<_ConfirmPressed>(_handleConfirmPressed);
   }
+
+  /// Returns instance registered inside getIt.
+  factory ChangeEmailBloc.getIt() => getIt<ChangeEmailBloc>();
 
   /// Handle incoming [_NewEmailChanged] event.
   void _handleEmailChanged(

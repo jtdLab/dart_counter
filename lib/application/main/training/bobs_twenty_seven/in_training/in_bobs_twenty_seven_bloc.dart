@@ -1,5 +1,6 @@
 import 'package:dart_counter/application/main/training/shared/in_training/in_training_bloc.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/training/shared/in_training/in_training_bloc.dart';
@@ -11,4 +12,7 @@ class InBobsTwentySevenBloc extends InTrainingBloc {
   ) : super(
           bobsTwentySevenService,
         );
+
+  /// Returns instance registered inside getIt.
+  factory InBobsTwentySevenBloc.getIt() => getIt<InBobsTwentySevenBloc>();
 }

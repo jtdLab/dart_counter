@@ -10,4 +10,3 @@ final logger = Logger(
     printTime: true,
   ),
 );
-

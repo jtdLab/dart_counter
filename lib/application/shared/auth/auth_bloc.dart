@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,6 +28,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       transformer: restartable(),
     );
   }
+
+  /// Returns instance registered inside getIt.
+  factory AuthBloc.getIt() => getIt<AuthBloc>();
 
   /// Handle incoming [_Started] event.
   Future<void> _handleStarted(

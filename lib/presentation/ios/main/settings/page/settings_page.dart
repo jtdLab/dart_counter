@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOC
@@ -23,8 +24,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          getIt<SettingsBloc>()..add(const SettingsEvent.started()),
+      create: (context) => SettingsBloc.getIt(),
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Unauthenticated) {
@@ -33,9 +33,8 @@ class SettingsPage extends StatelessWidget {
         },
         child: BlocBuilder<SettingsBloc, SettingsState>(
           buildWhen: (oldState, newState) =>
-              oldState.user != newState.user ||
-              (oldState.localeChanged != newState.localeChanged &&
-                  newState.localeChanged),
+              oldState.localeChanged != newState.localeChanged &&
+              newState.localeChanged,
           builder: (context, state) {
             return AppPage(
               navigationBar: AppNavigationBar(

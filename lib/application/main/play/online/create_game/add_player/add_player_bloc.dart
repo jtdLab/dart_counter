@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,4 +21,7 @@ class AddPlayerBloc extends Bloc<AddPlayerEvent, AddPlayerState> {
       // TODO: implement event handler
     });
   }
+
+  /// Returns instance registered inside getIt.
+  factory AddPlayerBloc.getIt() => getIt<AddPlayerBloc>();
 }

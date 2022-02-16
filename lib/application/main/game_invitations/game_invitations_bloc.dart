@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
-import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -27,91 +26,56 @@ class GameInvitationsBloc
   GameInvitationsBloc(
     this._playOnlineService,
     this._gameInvitationService,
+    GameInvitationsCubit gameInvitationsCubit,
   ) : super(
           // Set inital state
-          GameInvitationsState.initial(
-            receivedGameInvitations:
-                _gameInvitationService.getReceivedGameInvitations().getOrElse(
-                      () => throw ApplicationError.unexpectedMissingData(),
-                    ),
-            sentGameInvitations:
-                _gameInvitationService.getSentGameInvitations().getOrElse(
-                      () => throw ApplicationError.unexpectedMissingData(),
-                    ),
+          gameInvitationsCubit.state.maybeWhen(
+            loadSuccess: (receivedGameInvitations, sentGameInvitations) =>
+                GameInvitationsState.initial(
+              receivedGameInvitations: receivedGameInvitations,
+              sentGameInvitations: sentGameInvitations,
+            ),
+            orElse: () => throw ApplicationError.unexpectedMissingData(),
           ),
         ) {
     // Register event handlers
-    on<_Started>(
-      (_, emit) async => _handleStarted(emit),
-      transformer: restartable(), // TODO test
-    );
+    on<_Started>((_, emit) async => _handleStarted(emit));
     on<_InvitationAccepted>(
       (event, emit) async => _handleInvitationAccepted(event, emit),
     );
-    on<_InvitationDeclined>(
-      (event, _) => _handleInvitationDeclined(event),
-    );
+    on<_InvitationDeclined>((event, _) => _handleInvitationDeclined(event));
   }
 
+  /// Returns instance registered inside getIt.
+  factory GameInvitationsBloc.getIt(
+    GameInvitationsCubit gameInvitationsCubit,
+  ) =>
+      getIt<GameInvitationsBloc>(param1: [gameInvitationsCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [GameInvitationsCubit].
+  @factoryMethod
+  factory GameInvitationsBloc.injectable(
+    IPlayOnlineService playOnlineService,
+    IGameInvitationService gameInvitationService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      GameInvitationsBloc(
+        playOnlineService,
+        gameInvitationService,
+        otherDependencies![0] as GameInvitationsCubit,
+      );
+
   /// Handle incoming [_Started] event.
-  Future<void> _handleStarted(
+  void _handleStarted(
     Emitter<GameInvitationsState> emit,
-  ) async {
+  ) {
     // TODO is this the correct location ?
     // TODO does this belong to application or infra atm its infra
     _gameInvitationService.markReceivedInvitationsAsRead();
-
-    // TODO test if this gets canceld on first error occurence
-    await Future.wait(
-      [
-        emit.forEach(
-          _gameInvitationService.watchReceivedGameInvitations(),
-          onData: (
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrReceivedGameInvitations,
-          ) =>
-              state.map(
-            initial: (initial) => initial.copyWith(
-              receivedGameInvitations:
-                  failureOrReceivedGameInvitations.getOrElse(
-                () => throw ApplicationError
-                    .unexpectedMissingData(), // TODO no dev error its a failure so handle it
-              ),
-            ),
-            loadInProgress: (loadInProgress) => throw Error(),
-            failure: (failure) => throw Error(),
-          ),
-        ),
-        emit.forEach(
-          _gameInvitationService.watchSentInvitations(),
-          onData: (
-            Either<GameInvitationFailure, KtList<GameInvitation>>
-                failureOrSentGameInvitations,
-          ) =>
-              state.map(
-            initial: (initial) => initial.copyWith(
-              sentGameInvitations: failureOrSentGameInvitations.getOrElse(
-                () => throw ApplicationError
-                    .unexpectedMissingData(), // TODO no dev error its a failure so handle it
-              ),
-            ),
-            loadInProgress: (loadInProgress) => throw Error(),
-            failure: (failure) => throw Error(),
-          ),
-        ),
-        emit.forEach(
-          _playOnlineService.watchGame(),
-          onData: (OnlineGameSnapshot gameSnapshot) => state.map(
-            initial: (initial) => initial.copyWith(
-              gameSnapshot: gameSnapshot,
-            ),
-            loadInProgress: (loadInProgress) => throw Error(),
-            failure: (failure) => throw Error(),
-          ),
-        ),
-      ],
-      eagerError: true,
-    );
   }
 
   /// Handle incoming [_InvitationAccepted] event.

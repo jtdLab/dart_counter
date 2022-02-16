@@ -3,8 +3,9 @@ import 'package:dart_counter/application/main/shared/darts_displayer/darts_displ
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -18,12 +19,12 @@ export 'package:dart_counter/application/main/shared/darts_displayer/darts_displ
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
   final IDartUtils _dartUtils;
-  final AbstractIPlayService _playService;
+  final Cubit<AbstractGameSnapshot> _playCubit;
 
   DartsDisplayerBloc(
     this._dartUtils,
-    @factoryParam AbstractIPlayService? playService,
-  )   : _playService = playService!,
+    @factoryParam Cubit<AbstractGameSnapshot>? playCubit,
+  )   : _playCubit = playCubit!,
         super(
           // Set initial state
           const DartsDisplayerState.empty(),
@@ -34,6 +35,27 @@ class DartsDisplayerBloc
     on<ResetRequested>((_, emit) => _handleResetRequested(emit));
   }
 
+  /// Returns instance registered inside getIt.
+  factory DartsDisplayerBloc.getIt(
+    Cubit<AbstractGameSnapshot> playCubit,
+  ) =>
+      getIt<DartsDisplayerBloc>(param1: [playCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of `Cubit<AbstractGameSnapshot>`.
+  @factoryMethod
+  factory DartsDisplayerBloc.injectable(
+    IDartUtils dartUtils,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      DartsDisplayerBloc(
+        dartUtils,
+        otherDependencies![0] as Cubit<AbstractGameSnapshot>,
+      );
+
   /// Handle incoming [DartAdded] event.
   void _handleDartAdded(
     DartAdded event,
@@ -43,7 +65,7 @@ class DartsDisplayerBloc
     void emitWhenValid(KtList<Dart> newDarts) {
       // if new darts are valid in current game state
       if (_dartUtils.validateDarts(
-        pointsLeft: _playService.getGame().currentTurn().pointsLeft,
+        pointsLeft: _playCubit.state.currentTurn().pointsLeft,
         darts: newDarts,
       )) {
         // emit darts with new darts

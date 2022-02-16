@@ -53,12 +53,13 @@ class _FriendsProfileWidget extends StatelessWidget {
               text: LocaleKeys.gameHistory.tr().toUpperCase(),
               onPressed: () => context.router.push(
                 GameHistoryFlowRoute(
-                  gameHistoryBloc: getIt<GameHistoryBloc>()
-                    ..add(
-                      GameHistoryEvent.fetchGameHistoryOnlineRequested(
-                        userId: friendId,
-                      ),
-                    ),
+                  gameHistoryBloc:
+                      GameHistoryBloc.getIt(context.read<UserCubit>())
+                        ..add(
+                          GameHistoryEvent.fetchGameHistoryOnlineRequested(
+                            userId: friendId,
+                          ),
+                        ),
                 ),
               ),
             ),

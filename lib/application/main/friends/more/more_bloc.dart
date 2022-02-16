@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/friends/friends_bloc.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,6 +25,27 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> {
     // Register event handlers
     on<_RemovePressed>((_, __) async => _handleRemovePressed());
   }
+
+  /// Returns instance registered inside getIt.
+  factory MoreBloc.getIt(
+    FriendsBloc friendsBloc,
+  ) =>
+      getIt<MoreBloc>(param1: [friendsBloc]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [FriendsBloc].
+  @factoryMethod
+  factory MoreBloc.injectable(
+    IFriendService friendService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      MoreBloc(
+        friendService,
+        otherDependencies![0] as FriendsBloc,
+      );
 
   /// Handle incoming [_RemovePressed] event.
   Future<void> _handleRemovePressed() async {

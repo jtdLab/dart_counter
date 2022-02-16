@@ -12,7 +12,7 @@ class ChangeEmailModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ChangeEmailBloc>(),
+      create: (context) => ChangeEmailBloc.getIt(),
       child: const AutoRouter(),
     );
   }

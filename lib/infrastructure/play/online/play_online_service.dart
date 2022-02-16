@@ -75,7 +75,7 @@ class PlayOnlineService implements IPlayOnlineService {
 
   @override
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame() async {
-    final user = _userService.getUser();
+    final user = await _userService.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,
@@ -99,7 +99,7 @@ class PlayOnlineService implements IPlayOnlineService {
   Future<Either<PlayFailure, OnlineGameSnapshot>> joinGame({
     required UniqueId gameId,
   }) async {
-    final user = _userService.getUser();
+    final user = await _userService.getUser();
     final idToken = user.fold(
       (failure) => null,
       (user) => user.idToken,

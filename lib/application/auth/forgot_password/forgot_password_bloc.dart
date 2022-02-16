@@ -32,6 +32,9 @@ class ForgotPasswordBloc
     on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
+  /// Returns instance registered inside getIt.
+  factory ForgotPasswordBloc.getIt() => getIt<ForgotPasswordBloc>();
+
   /// Handle incoming [_EmailChanged] event.Ï
   void _handleEmailChanged(
     _EmailChanged event,

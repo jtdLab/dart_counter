@@ -24,10 +24,10 @@ class InScoreTrainingPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<InScoreTrainingBloc>(),
+          create: (context) => InScoreTrainingBloc.getIt(),
         ),
         BlocProvider(
-          create: (context) => getIt<ScoreTrainingWatcherCubit>(),
+          create: (context) => ScoreTrainingWatcherCubit.getIt(),
         ),
       ],
       child: BlocListener<ScoreTrainingWatcherCubit, ScoreTrainingGameSnapshot>(

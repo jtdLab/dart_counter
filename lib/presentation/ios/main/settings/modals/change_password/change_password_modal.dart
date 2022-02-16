@@ -12,7 +12,7 @@ class ChangePasswordModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ChangePasswordBloc>(),
+      create: (context) => ChangePasswordBloc.getIt(),
       child: const AutoRouter(),
     );
   }

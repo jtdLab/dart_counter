@@ -15,7 +15,7 @@ class AddPlayerModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AddPlayerBloc>(),
+      create: (context) => AddPlayerBloc.getIt(),
       child: AppPage(
         padding: modalPagePadding(context),
         onTap: () => FocusScope.of(context).unfocus(),

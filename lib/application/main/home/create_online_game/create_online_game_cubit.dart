@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -8,7 +9,7 @@ part 'create_online_game_cubit.freezed.dart';
 part 'create_online_game_state.dart';
 
 // TODO understand and maybe replace if better option is available
-  // TODO convert to bloc
+// TODO convert to bloc
 
 @injectable
 class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
@@ -29,6 +30,9 @@ class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
       (gameSnapshot) => emit(const CreateOnlineGameState.success()),
     );
   }
+
+  /// Returns instance registered inside getIt.
+  factory CreateOnlineGameCubit.getIt() => getIt<CreateOnlineGameCubit>();
 
   /**
   *  @override

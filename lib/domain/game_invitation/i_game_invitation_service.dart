@@ -59,6 +59,7 @@ abstract class IGameInvitationService {
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedGameInvitations();
 
+  // TODO naming 
   /// Returns a stream of the sent game invitations of the app-user.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.

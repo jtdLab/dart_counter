@@ -9,11 +9,10 @@ class _SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      key: const Key('settings_button'), // TODO move up or not
       noPaddingLeft: true,
       onPressed: () => context.router.push(const SettingsFlowRoute()),
-      child: Image.asset(
-        AppImages.settingsNew,
-      ),
+      child: Image.asset(AppImages.settingsNew),
     );
   }
 }
@@ -25,39 +24,33 @@ class _GameInvitationsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final unreadReceivedInvitations =
-        context.watch<HomeLoadSuccess>().unreadGameInvitations;
-
-    if (unreadReceivedInvitations == 0) {
-      return AppNavigationBarButton(
-        onPressed: () => context.router.push(const GameInvitationsPageRoute()),
-        child: Image.asset(
-          AppImages.messageNew,
-        ),
-      );
-    } else {
-      return AppNavigationBarButton(
-        onPressed: () => context.router.push(const GameInvitationsPageRoute()),
-        child: Badge(
-          badgeContent: AutoSizeText(
-            unreadReceivedInvitations.toString(),
-            maxLines: 1,
-            minFontSize: maxFontSizeSmall(context),
-            maxFontSize: maxFontSizeNormal(context),
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .textStyle
-                .copyWith(color: AppColors.white),
-          ),
-          position: BadgePosition.topEnd(
-            top: -13,
-          ),
-          child: Image.asset(
-            AppImages.messageNew,
-          ),
-        ),
-      );
-    }
+    return BlocSelector<HomeBloc, HomeState, int>(
+      selector: (state) => (state as HomeLoadSuccess).unreadGameInvitations,
+      builder: (context, unreadReceivedInvitations) {
+        return AppNavigationBarButton(
+          key: const Key('game_invitations_button'), // TODO move up or not
+          onPressed: () =>
+              context.router.push(const GameInvitationsPageRoute()),
+          child: unreadReceivedInvitations == 0
+              ? Image.asset(AppImages.messageNew)
+              : Badge(
+                  badgeContent: AutoSizeText(
+                    '$unreadReceivedInvitations',
+                    key: const Key('text_unreadReceivedInvitations'),
+                    maxLines: 1,
+                    minFontSize: maxFontSizeSmall(context),
+                    maxFontSize: maxFontSizeNormal(context),
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .textStyle
+                        .copyWith(color: AppColors.white),
+                  ),
+                  position: BadgePosition.topEnd(top: -13),
+                  child: Image.asset(AppImages.messageNew),
+                ),
+        );
+      },
+    );
   }
 }
 
@@ -68,34 +61,29 @@ class _FriendsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final unreadFriendRequests =
-        context.watch<HomeLoadSuccess>().unreadFriendRequests;
-
-    if (unreadFriendRequests == 0) {
-      return AppNavigationBarButton(
-        onPressed: () => context.router.push(const FriendsFlowRoute()),
-        child: Image.asset(
-          AppImages.playerNew,
-        ),
-      );
-    } else {
-      return AppNavigationBarButton(
-        onPressed: () => context.router.push(const FriendsFlowRoute()),
-        child: Badge(
-          badgeContent: Text(
-            unreadFriendRequests.toString(),
-            style: const TextStyle(
-                color: AppColors.white, fontWeight: FontWeight.bold),
-          ),
-          position: BadgePosition.topEnd(
-            top: -13,
-          ),
-          child: Image.asset(
-            AppImages.playerNew,
-          ),
-        ),
-      );
-    }
+    return BlocSelector<HomeBloc, HomeState, int>(
+      selector: (state) => (state as HomeLoadSuccess).unreadFriendRequests,
+      builder: (context, unreadFriendRequests) {
+        return AppNavigationBarButton(
+          key: const Key('friends_button'), // TODO move up or not
+          onPressed: () => context.router.push(const FriendsFlowRoute()),
+          child: unreadFriendRequests == 0
+              ? Image.asset(AppImages.playerNew)
+              : Badge(
+                  badgeContent: Text(
+                    '$unreadFriendRequests',
+                    key: const Key('text_unreadFriendRequests'),
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  position: BadgePosition.topEnd(top: -13),
+                  child: Image.asset(AppImages.playerNew),
+                ),
+        );
+      },
+    );
   }
 }
 
@@ -107,38 +95,61 @@ class _StatsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
+      key: const Key('stats_button'), // TODO move up or not
       noPaddingRight: true,
       onPressed: () => context.router.push(const ProfilePageRoute()),
-      child: Image.asset(
-        AppImages.statsNew,
-      ),
+      child: Image.asset(AppImages.statsNew),
     );
   }
 }
 
 // BODY
 class _HomeWidget extends StatelessWidget {
+  const _HomeWidget() // TODO local changed works with const constructor
+      : super(
+          key: const Key('home_widget'),
+        );
+
   @override
   Widget build(BuildContext context) {
-    final photoUrl = context.read<HomeLoadSuccess>().user.profile.photoUrl;
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) =>
+          previous.runtimeType != current.runtimeType,
+      builder: (context, state) {
+        return state.map(
+          loadInProgress: (_) => const LoadingWidget(),
+          loadSuccess: (_) => const _SuccessWidget(),
+          loadFailure: (_) => const _FailureWidget(),
+        );
+      },
+    );
+  }
+}
 
+class _SuccessWidget extends StatelessWidget {
+  const _SuccessWidget()
+      : super(
+          key: const Key('success_widget'),
+        );
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         const Spacer(),
-        ProfileImageDisplayer(
-          photoUrl: photoUrl,
+        BlocSelector<HomeBloc, HomeState, String?>(
+          selector: (state) => (state as HomeLoadSuccess).user.profile.photoUrl,
+          builder: (context, photoUrl) {
+            return ProfileImageDisplayer(photoUrl: photoUrl);
+          },
         ),
         const Spacer(flex: 2),
         const _NameDisplayer(),
         const Spacer(flex: 2),
         _PlayOnlineButton(),
-        SizedBox(
-          height: spacerNormal(context),
-        ),
+        SizedBox(height: spacerNormal(context)),
         _PlayOfflineButton(),
-        SizedBox(
-          height: spacerNormal(context),
-        ),
+        SizedBox(height: spacerNormal(context)),
         _TrainButton(),
         const Spacer(),
         Row(
@@ -161,27 +172,29 @@ class _NameDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final username =
-        context.read<HomeLoadSuccess>().user.profile.name.getOrCrash();
-
     return Container(
       height: size40(context),
       decoration: BoxDecoration(
         color: AppColors.blueNew,
-        border: Border.all(
-          width: border4(context),
-        ),
+        border: Border.all(width: border4(context)),
       ),
       child: Center(
-        child: AutoSizeText(
-          username.toUpperCase(),
-          maxLines: 1,
-          minFontSize: 8,
-          maxFontSize: maxFontSizeNormal(context),
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle
-              .copyWith(color: AppColors.white),
+        child: BlocSelector<HomeBloc, HomeState, String>(
+          selector: (state) =>
+              (state as HomeLoadSuccess).user.profile.name.getOrCrash(),
+          builder: (context, username) {
+            return AutoSizeText(
+              username.toUpperCase(),
+              key: const Key('text_username'),
+              maxLines: 1,
+              minFontSize: 8,
+              maxFontSize: maxFontSizeNormal(context),
+              style: CupertinoTheme.of(context)
+                  .textTheme
+                  .textStyle
+                  .copyWith(color: AppColors.white),
+            );
+          },
         ),
       ),
     );
@@ -192,6 +205,7 @@ class _PlayOnlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
+      key: const Key('play_online_button'), // TODO move up or not
       onPressed: () => context.read<CreateOnlineGameCubit>().createGame(),
       color: AppColors.orangeNew,
       fontColor: AppColors.black,
@@ -205,6 +219,7 @@ class _PlayOfflineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
+      key: const Key('play_offline_button'), // TODO move up or not
       onPressed: () => context.router.replace(const PlayOfflineFlowRoute()),
       color: AppColors.white,
       fontColor: AppColors.black,
@@ -218,9 +233,8 @@ class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-      onPressed: () {
-        context.router.replace(const TrainingFlowRoute());
-      },
+      key: const Key('train_button'), // TODO move up or not
+      onPressed: () => context.router.replace(const TrainingFlowRoute()),
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
       text: LocaleKeys.practice.tr().toUpperCase(),
@@ -236,10 +250,15 @@ class _InstagramButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      onPressed: () async =>
-          await canLaunch('https://www.instagram.com/darts_ger/')
-              ? await launch('https://www.instagram.com/darts_ger/')
-              : throw 'Could not launch https://www.instagram.com/darts_ger/',
+      key: const Key('instagramm_button'), // TODO move up or not
+      onPressed: () async {
+        // TODO does this logic belong in ui or application
+        const url = 'https://www.instagram.com/darts_ger/';
+        final launchable = await canLaunch(url);
+        if (launchable) {
+          await launch(url);
+        }
+      },
       child: SizedBox(
         width: 3 * size12(context),
         height: 3 * size12(context),
@@ -257,18 +276,32 @@ class _YoutubeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      onPressed: () async => await canLaunch(
-              'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
-          ? await launch(
-              'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ')
-          : throw 'Could not launch https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ',
+      key: const Key('youtube_button'), // TODO move up or not
+      onPressed: () async {
+        // TODO does this logic belong in ui or application
+        const url = 'https://www.youtube.com/channel/UCChe8RMi5XJKri5hU9glisQ';
+        final launchable = await canLaunch(url);
+        if (launchable) {
+          await launch(url);
+        }
+      },
       child: SizedBox(
         width: 3 * size12(context),
         height: 3 * size12(context),
-        child: Image.asset(
-          AppImages.googleNew,
-        ),
+        child: Image.asset(AppImages.googleNew),
       ),
     );
+  }
+}
+
+class _FailureWidget extends StatelessWidget {
+  const _FailureWidget()
+      : super(
+          key: const Key('failure_widget'),
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text('TODO');
   }
 }

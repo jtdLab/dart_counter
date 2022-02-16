@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -16,12 +17,13 @@ part 'game_history_state.dart';
 
 @injectable
 class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
-  final IUserService _userService;
   final IGameHistoryService _gameHistoryService;
 
+  final UserCubit _userCubit;
+
   GameHistoryBloc(
-    this._userService,
     this._gameHistoryService,
+    this._userCubit,
   ) : super(
           // Set initial state
           const GameHistoryState.loadInProgress(),
@@ -42,15 +44,40 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     );
   }
 
+  /// Returns instance registered inside getIt.
+  factory GameHistoryBloc.getIt(
+    UserCubit userCubit,
+  ) =>
+      getIt<GameHistoryBloc>(param1: [userCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [UserCubit].
+  @factoryMethod
+  factory GameHistoryBloc.injectable(
+    IGameHistoryService gameHistoryService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      GameHistoryBloc(
+        gameHistoryService,
+        otherDependencies![0] as UserCubit,
+      );
+
   /// Handle incoming [_FetchGameHistoryAllRequested] event.
   Future<void> _handleFetchGameHistoryAllRequested(
     Emitter<GameHistoryState> emit,
   ) async {
-    final failureOrUser = _userService.getUser();
-    final uid = failureOrUser.fold(
-      (failure) => throw ApplicationError.unexpectedMissingUser(),
-      (user) => user.id,
+    final userOption = _userCubit.state.maybeWhen(
+      loadSuccess: (user) => user,
+      orElse: () => null,
     );
+
+    if (userOption == null) {
+      throw ApplicationError.unexpectedMissingUser();
+    }
+    final uid = userOption.id;
 
     final failureOrOnlineGameHistory =
         await _gameHistoryService.getGameHistoryOnline(uid: uid.getOrCrash());
@@ -104,15 +131,20 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     var uid = event.userId;
 
     if (uid == null) {
-      final failureOrUser = _userService.getUser();
-      uid = failureOrUser.fold(
-        (failure) => throw throw ApplicationError.unexpectedMissingUser(),
-        (user) => user.id,
+      final userOption = _userCubit.state.maybeWhen(
+        loadSuccess: (user) => user,
+        orElse: () => null,
       );
+
+      if (userOption == null) {
+        throw ApplicationError.unexpectedMissingUser();
+      }
+
+      uid = userOption.id;
     }
 
-    final failureOrGameHistory = await _gameHistoryService
-        .getGameHistoryOnline(uid: uid!.getOrCrash());
+    final failureOrGameHistory =
+        await _gameHistoryService.getGameHistoryOnline(uid: uid.getOrCrash());
     emit(
       failureOrGameHistory.fold(
         (failure) => GameHistoryState.loadFailure(failure: failure),

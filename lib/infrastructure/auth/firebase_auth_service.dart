@@ -53,9 +53,8 @@ class FirebaseAuthService implements IAuthService {
     this._getEmailCredential,
   );
 
-  // coverage:ignore-start
   @factoryMethod
-  factory FirebaseAuthService.inject(
+  factory FirebaseAuthService.injectable(
     FirebaseAuth _auth,
     AppleSignIn _appleSignIn,
     GoogleSignIn _googleSignIn,
@@ -82,7 +81,6 @@ class FirebaseAuthService implements IAuthService {
           password: password,
         ),
       );
-  // coverage:ignore-end
 
   @override
   Future<String> idToken() async {

@@ -12,9 +12,6 @@ abstract class AbstractIPlayService {
   /// Returns a stream of the received snapshots of the current game of the app-user.
   Stream<AbstractGameSnapshot> watchGame();
 
-  /// Returns a stream of the latest received snapshot of the current game of the app-user.
-  AbstractGameSnapshot getGame();
-
   /// Changes the position of a player from [oldIndex] to [newIndex].
   Future<Either<PlayFailure, Unit>> reorderPlayer({
     required int oldIndex,

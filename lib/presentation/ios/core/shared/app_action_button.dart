@@ -17,6 +17,7 @@ class AppActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const AppActionButton.small({
+    Key? key,
     this.color = AppColors.orangeNew,
     this.fontColor = AppColors.black,
     this.fontSize,
@@ -26,9 +27,11 @@ class AppActionButton extends StatelessWidget {
     this.text,
     this.onPressed,
   })  : size = AppActionButtonSize.small,
-        assert(text != null || icon != null);
+        assert(text != null || icon != null),
+        super(key: key);
 
   const AppActionButton.normal({
+    Key? key,
     this.color = AppColors.orangeNew,
     this.fontColor = AppColors.black,
     this.fontSize,
@@ -38,9 +41,11 @@ class AppActionButton extends StatelessWidget {
     this.text,
     this.onPressed,
   })  : size = AppActionButtonSize.normal,
-        assert(text != null || icon != null);
+        assert(text != null || icon != null),
+        super(key: key);
 
   const AppActionButton.large({
+    Key? key,
     this.color = AppColors.red,
     this.fontColor = AppColors.white,
     this.fontSize,
@@ -50,9 +55,11 @@ class AppActionButton extends StatelessWidget {
     this.text,
     this.onPressed,
   })  : size = AppActionButtonSize.large,
-        assert(text != null || icon != null);
+        assert(text != null || icon != null),
+        super(key: key);
 
   const AppActionButton.flexible({
+    Key? key,
     this.color = AppColors.red,
     this.fontColor = AppColors.black,
     this.fontSize,
@@ -62,7 +69,8 @@ class AppActionButton extends StatelessWidget {
     this.text,
     this.onPressed,
   })  : size = AppActionButtonSize.flexible,
-        assert(text != null || icon != null);
+        assert(text != null || icon != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

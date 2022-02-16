@@ -5,6 +5,7 @@ import 'package:dart_counter/application/main/training/shared/in_training/input_
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -14,15 +15,6 @@ export 'package:dart_counter/application/main/shared/input_row/input_row_event.d
 
 // TODO bobs_twenty_seven_training_input_row_bloc real doc this is just a blueprint
 /// {@template bobs_twenty_seven_training_input_row_bloc}
-/// [otherDependencies] must contain in follwoing order:
-///
-/// 1. Instance of [DartsDisplayerBloc]
-///
-/// A [InTrainingBloc] is an actor bloc that performs actions on a [AbstractITrainingService].
-///
-/// Supported actions:
-///
-/// 1. Cancel training.
 ///
 /// {@endtemplate}
 @injectable
@@ -34,10 +26,11 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   /// {@macro bobs_twenty_seven_training_input_row_bloc}
   InputRowBloc(
     this._trainingService,
-    @factoryParam List<Object>? otherDependencies,
-  )   : _dartsDisplayerBloc = otherDependencies![0] as DartsDisplayerBloc,
-        // Set inital state
-        super(-2 * _trainingService.getGame().currentTurn().targetValue) {
+    this._dartsDisplayerBloc,
+  ) : super(
+          // Set inital state
+          -2 * _trainingService.getGame().currentTurn().targetValue,
+        ) {
     // Register event handlers
     on<Started>(
       (_, emit) async => _handleStarted(emit),
@@ -46,6 +39,29 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     on<UndoPressed>((_, emit) => _handleUndoPressed(emit));
     on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
   }
+
+  /// Returns instance registered inside getIt.
+  factory InputRowBloc.getIt(
+    DartsDisplayerBloc dartsDisplayerBloc,
+  ) =>
+      getIt<InputRowBloc>(
+        param1: [dartsDisplayerBloc],
+      );
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [DartsDisplayerBloc].
+  @factoryMethod
+  factory InputRowBloc.injectable(
+    IBobsTwentySevenService bobsTwentySevenService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      InputRowBloc(
+        bobsTwentySevenService,
+        otherDependencies![0] as DartsDisplayerBloc,
+      );
 
   /// Handle incoming [Started] event.
   Future<void> _handleStarted(

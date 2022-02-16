@@ -1,6 +1,7 @@
 import 'package:dart_counter/application/core/watcher/watcher_cubit.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
 // TODO doc
@@ -13,4 +14,8 @@ class SingleTrainingWatcherCubit
           trainingService.getGame(),
           trainingService.watchGame(),
         );
+
+  /// Returns instance registered inside getIt.
+  factory SingleTrainingWatcherCubit.getIt() =>
+      getIt<SingleTrainingWatcherCubit>();
 }

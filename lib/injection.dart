@@ -4,7 +4,7 @@ import 'package:dart_counter/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-/// Create the apps dependency injection container.
+/// The apps dependency injection container.
 ///
 /// For more info see: https://pub.dev/packages/get_it
 final getIt = GetIt.instance;

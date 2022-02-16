@@ -9,7 +9,7 @@ import 'package:kt_dart/kt.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 
-class InputRowBloc extends Bloc<InputRowEvent, int> {
+abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
   final AbstractIPlayService _playService;
 
   final DartsDisplayerBloc _dartsDisplayerBloc;

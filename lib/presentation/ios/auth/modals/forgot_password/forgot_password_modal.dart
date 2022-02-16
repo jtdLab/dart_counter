@@ -12,7 +12,7 @@ class ForgotPasswordModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ForgotPasswordBloc>(),
+      create: (context) => ForgotPasswordBloc.getIt(),
       child: const AutoRouter(),
     );
   }

@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,41 +19,22 @@ part 'settings_state.dart';
 @injectable
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final IAuthService _authService;
-  final IUserService _userService;
 
   SettingsBloc(
     this._authService,
-    this._userService,
   ) : super(
           // Set initial state
-          SettingsState.initial(
-            user: _userService.getUser().getOrElse(
-                  () => throw ApplicationError.unexpectedMissingUser(),
-                ),
+          const SettingsState.initial(
             localeChanged: false,
           ),
         ) {
     // Register event handlers
-    on<_Started>(
-      (_, emit) async => _handleStarted(emit),
-      transformer: restartable(), // TODO test
-    );
     on<_LocaleChanged>((_, emit) => _handleLocaleChanged(emit));
     on<_SignOutPressed>((_, __) async => _handleSignOutPressed());
   }
 
-  /// Handle incoming [_Started] event.
-  Future<void> _handleStarted(
-    Emitter<SettingsState> emit,
-  ) async {
-    await emit.forEach(
-      _userService.watchUser(),
-      onData: (Either<UserFailure, User> failureOrUser) => failureOrUser.fold(
-        (failure) => state,
-        (user) => state.copyWith(user: user),
-      ),
-    );
-  }
+  /// Returns instance registered inside getIt.
+  factory SettingsBloc.getIt() => getIt<SettingsBloc>();
 
   /// Handle incoming [_LocaleChanged] event.
   void _handleLocaleChanged(Emitter<SettingsState> emit) {

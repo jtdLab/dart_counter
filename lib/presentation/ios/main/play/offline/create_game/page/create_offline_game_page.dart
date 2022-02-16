@@ -31,7 +31,7 @@ class CreateOfflineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<CreateOfflineGameBloc>(),
+          create: (context) => CreateOfflineGameBloc.getIt(),
         ),
       ],
       child: BlocListener<PlayOfflineWatcherCubit, OfflineGameSnapshot>(

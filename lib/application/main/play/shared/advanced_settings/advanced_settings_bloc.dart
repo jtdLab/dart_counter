@@ -3,6 +3,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/advanced_settings.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -17,14 +18,13 @@ class AdvancedSettingsBloc
   final Cubit<AbstractGameSnapshot> _playWatcherCubit;
 
   AdvancedSettingsBloc(
-    @factoryParam Cubit<AbstractGameSnapshot>? playWatcherCubit,
-  )   : _playWatcherCubit = playWatcherCubit!,
-        super(
+    this._playWatcherCubit,
+  ) : super(
           // TODO load initial advanced settings of user in offline game / dont know in online game ???
           AdvancedSettingsState.createGame(
             advancedSettings: [
               AdvancedSettings(
-                playerId: playWatcherCubit.state.players.first().id,
+                playerId: _playWatcherCubit.state.players.first().id,
                 showAverage: true,
                 showCheckoutPercentage: true,
                 smartKeyBoardActivated: false,
@@ -46,6 +46,25 @@ class AdvancedSettingsBloc
       (event, emit) => _mapSmartKeyBoardActiveToggledToState(event, emit),
     );
   }
+
+  /// Returns instance registered inside getIt.
+  factory AdvancedSettingsBloc.getIt(
+    Cubit<AbstractGameSnapshot> playWatcherCubit,
+  ) =>
+      getIt<AdvancedSettingsBloc>(param1: [playWatcherCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of `Cubit<AbstractGameSnapshot>`.
+  @factoryMethod
+  factory AdvancedSettingsBloc.injectable(
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      AdvancedSettingsBloc(
+        otherDependencies![0] as Cubit<AbstractGameSnapshot>,
+      );
 
   Future<void> _mapStartedToState(
     Emitter<AdvancedSettingsState> emit,

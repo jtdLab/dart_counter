@@ -13,7 +13,7 @@ class FriendsFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<FriendsBloc>()..add(const FriendsEvent.started()),
+          FriendsBloc.getIt()..add(const FriendsEvent.started()),
       child: const AutoRouter(),
     );
   }

@@ -2,7 +2,10 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
+  const LoadingWidget()
+      : super(
+          key: const Key('loading_widget'),
+        );
 
   @override
   Widget build(BuildContext context) {

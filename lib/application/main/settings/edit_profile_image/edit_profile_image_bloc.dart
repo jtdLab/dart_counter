@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -26,6 +27,9 @@ class EditProfileImageBloc extends Bloc<EditProfileImageEvent, void> {
     on<_TakePressed>((_, __) => _handleTakePressed());
     on<_ChoosePressed>((_, __) => _handleChoosePressed());
   }
+
+  /// Returns instance registered inside getIt.
+  factory EditProfileImageBloc.getIt() => getIt<EditProfileImageBloc>();
 
   /// Handle incoming [_DeletePressed] event.
   void _handleDeletePressed() {

@@ -15,7 +15,7 @@ class PlayOnlineFlow extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<PlayOnlineWatcherCubit>(),
+          create: (context) => PlayOnlineWatcherCubit.getIt(),
         ),
         BlocProvider(
           lazy: false, // TODO right but why??

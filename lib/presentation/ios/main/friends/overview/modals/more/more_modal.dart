@@ -17,8 +17,7 @@ class MoreModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MoreBloc(
-        getIt<IFriendService>(),
+      create: (context) => MoreBloc.getIt(
         context.read<FriendsBloc>(),
       ),
       child: const AppModal(

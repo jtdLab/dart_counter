@@ -15,7 +15,7 @@ class SearchUserModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SearchUserBloc>(),
+      create: (context) => SearchUserBloc.getIt(),
       child: AppPage(
         padding: modalPagePadding(context),
         onTap: () => FocusScope.of(context).unfocus(),

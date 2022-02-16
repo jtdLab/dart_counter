@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/main/core/friends/friends_cubit.dart' as watcher;
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS

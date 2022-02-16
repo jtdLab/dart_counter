@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
@@ -21,6 +22,9 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
     on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
     on<InputChanged>((event, emit) => _handleInputChanged(event, emit));
   }
+
+  /// Returns instance registered inside getIt.
+  factory InputRowBloc.getIt() => getIt<InputRowBloc>();
 
   /// Handle incoming [UndoPressed] event.
   void _handleUndoPressed(

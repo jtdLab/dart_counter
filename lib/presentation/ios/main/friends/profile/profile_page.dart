@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOC

@@ -35,12 +35,12 @@ class _InScoreTrainingWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<InputRowEvent, int>>(
-                    create: (context) => getIt<InputRowBloc>(),
+                    create: (context) => InputRowBloc.getIt(),
                   ),
                   BlocProvider<
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
-                    create: (context) => getIt<standard.KeyBoardBloc>(
-                      param1: [context.read<Bloc<InputRowEvent, int>>()],
+                    create: (context) => standard.KeyBoardBloc.getIt(
+                      context.read<Bloc<InputRowEvent, int>>() as InputRowBloc,
                     ),
                   ),
                 ],
@@ -49,23 +49,21 @@ class _InScoreTrainingWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
-                    create: (context) => getIt<DartsDisplayerBloc>(),
+                    create: (context) => DartsDisplayerBloc.getIt(),
                   ),
                   BlocProvider<Bloc<detailed.InputRowEvent, int>>(
-                    create: (context) => getIt<detailed.InputRowBloc>(
-                      param1: [
-                        context.read<
-                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-                      ],
+                    create: (context) => detailed.InputRowBloc.getIt(
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     )..add(const InputRowEvent.started()),
                   ),
                   BlocProvider<
                       Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
-                    create: (context) => getIt<detailed.KeyBoardBloc>(
-                      param1: [
-                        context.read<
-                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-                      ],
+                    create: (context) => detailed.KeyBoardBloc.getIt(
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     ),
                   ),
                 ],

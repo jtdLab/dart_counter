@@ -28,47 +28,23 @@ class FriendService implements IFriendService {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
-  BehaviorSubject<Either<FriendFailure, KtList<Friend>>> _friendsController;
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _receivedFriendRequestsController;
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _sentFriendRequestsController;
-
   FriendService(
     this._authService,
     this._userService,
     this._firestore,
     this._socialClient,
-  )   : _friendsController = BehaviorSubject(),
-        _receivedFriendRequestsController = BehaviorSubject(),
-        _sentFriendRequestsController = BehaviorSubject() {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (isAuthenticated) {
-        _friendsController = BehaviorSubject();
-        _friendsController.addStream(watchFriends());
-        _receivedFriendRequestsController = BehaviorSubject();
-        _receivedFriendRequestsController
-            .addStream(watchReceivedFriendRequests());
-        _sentFriendRequestsController = BehaviorSubject();
-        _sentFriendRequestsController.addStream(watchSentFriendRequests());
-      } else {
-        await _friendsController.close(); // TODO needed
-        await _receivedFriendRequestsController.close(); // TODO needed
-        await _sentFriendRequestsController.close(); // TODO needed
-      }
-    });
-  }
+  );
 
   @override
   Future<Either<FriendFailure, Unit>> acceptFriendRequest({
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
-    final success = await _socialClient.acceptFriendRequest(
+    final friendRequestAccepted = await _socialClient.acceptFriendRequest(
       fromId: friendRequest.fromId.getOrCrash(),
     );
 
-    if (success) {
+    if (friendRequestAccepted) {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
@@ -80,11 +56,11 @@ class FriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
-    final success = await _socialClient.cancelFriendRequest(
+    final friendRequestCanceled = await _socialClient.cancelFriendRequest(
       toId: friendRequest.toId.getOrCrash(),
     );
 
-    if (success) {
+    if (friendRequestCanceled) {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
@@ -96,11 +72,11 @@ class FriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
-    final success = await _socialClient.declineFriendRequest(
+    final friendRequestDeclined = await _socialClient.declineFriendRequest(
       fromId: friendRequest.fromId.getOrCrash(),
     );
 
-    if (success) {
+    if (friendRequestDeclined) {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
@@ -108,24 +84,57 @@ class FriendService implements IFriendService {
   }
 
   @override
-  Either<FriendFailure, KtList<Friend>> getFriends() {
-    _checkAuth();
-
-    return _friendsController.value;
+  Future<Either<FriendFailure, KtList<Friend>>> getFriends() async {
+    // TODO
+    throw UnimplementedError();
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getReceivedFriendRequests() {
-    _checkAuth();
+  Future<Either<FriendFailure, KtList<FriendRequest>>>
+      getReceivedFriendRequests() async {
+    final collection = _firestore.receivedFriendRequestsCollection();
 
-    return _receivedFriendRequestsController.value;
+    final query = await collection.orderBy('createdAt', descending: true).get();
+
+    try {
+      final receivedFriendRequests = query.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
+
+      return right(receivedFriendRequests);
+    } catch (e) {
+      return left(const FriendFailure.unexpected());
+    }
   }
 
   @override
-  Either<FriendFailure, KtList<FriendRequest>> getSentFriendRequests() {
-    _checkAuth();
+  Future<Either<FriendFailure, KtList<FriendRequest>>>
+      getSentFriendRequests() async {
+    final collection = _firestore.sentFriendRequestsCollection();
 
-    return _sentFriendRequestsController.value;
+    final query = await collection.orderBy('createdAt', descending: true).get();
+
+    try {
+      final sentFriendRequests = query.docs.map((doc) {
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        return FriendRequestDto.fromJson(json).toDomain();
+      }).toImmutableList();
+
+      return right(sentFriendRequests);
+    } catch (e) {
+      return left(const FriendFailure.unexpected());
+    }
   }
 
   @override
@@ -159,11 +168,11 @@ class FriendService implements IFriendService {
     required Friend friend,
   }) async {
     _checkAuth();
-    final success = await _socialClient.removeFriend(
+    final friendRemoved = await _socialClient.removeFriend(
       friendId: friend.id.getOrCrash(),
     );
 
-    if (success) {
+    if (friendRemoved) {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
@@ -245,11 +254,11 @@ class FriendService implements IFriendService {
   }) async {
     _checkAuth();
 
-    final success = await _socialClient.sendFriendRequest(
+    final friendRequestSent = await _socialClient.sendFriendRequest(
       toId: toId.getOrCrash(),
     );
 
-    if (success) {
+    if (friendRequestSent) {
       return right(unit);
     } else {
       return left(const FriendFailure.unexpected());
@@ -293,10 +302,10 @@ class FriendService implements IFriendService {
 
   @override
   Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchReceivedFriendRequests() async* {
-    _checkAuth();
+      watchReceivedFriendRequests() {
     final collection = _firestore.receivedFriendRequestsCollection();
-    yield* collection
+
+    return collection
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
@@ -317,10 +326,10 @@ class FriendService implements IFriendService {
 
   @override
   Stream<Either<FriendFailure, KtList<FriendRequest>>>
-      watchSentFriendRequests() async* {
-    _checkAuth();
+      watchSentFriendRequests() {
     final collection = _firestore.sentFriendRequestsCollection();
-    yield* collection
+
+    return collection
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {

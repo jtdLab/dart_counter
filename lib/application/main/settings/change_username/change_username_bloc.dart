@@ -31,6 +31,9 @@ class ChangeUsernameBloc
     on<_ConfirmPressed>(_handleConfirmPressed);
   }
 
+  /// Returns instance registered inside getIt.
+  factory ChangeUsernameBloc.getIt() => getIt<ChangeUsernameBloc>();
+
   /// Handle incoming [_NewUsernameChanged] event.
   void _handleUsernameChanged(
     _NewUsernameChanged event,

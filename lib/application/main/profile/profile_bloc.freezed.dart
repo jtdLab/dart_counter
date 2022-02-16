@@ -177,10 +177,8 @@ abstract class _Started implements ProfileEvent {
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
-  ProfileInitial initial(
-      {required User user, required CareerStats careerStatsAll}) {
+  ProfileInitial initial({required CareerStats careerStatsAll}) {
     return ProfileInitial(
-      user: user,
       careerStatsAll: careerStatsAll,
     );
   }
@@ -191,22 +189,21 @@ const $ProfileState = _$ProfileStateTearOff();
 
 /// @nodoc
 mixin _$ProfileState {
-  User get user => throw _privateConstructorUsedError;
   CareerStats get careerStatsAll => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user, CareerStats careerStatsAll) initial,
+    required TResult Function(CareerStats careerStatsAll) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, CareerStats careerStatsAll)? initial,
+    TResult Function(CareerStats careerStatsAll)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, CareerStats careerStatsAll)? initial,
+    TResult Function(CareerStats careerStatsAll)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -237,9 +234,8 @@ abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res>;
-  $Res call({User user, CareerStats careerStatsAll});
+  $Res call({CareerStats careerStatsAll});
 
-  $UserCopyWith<$Res> get user;
   $CareerStatsCopyWith<$Res> get careerStatsAll;
 }
 
@@ -253,26 +249,14 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? user = freezed,
     Object? careerStatsAll = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
       careerStatsAll: careerStatsAll == freezed
           ? _value.careerStatsAll
           : careerStatsAll // ignore: cast_nullable_to_non_nullable
               as CareerStats,
     ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 
   @override
@@ -290,10 +274,8 @@ abstract class $ProfileInitialCopyWith<$Res>
           ProfileInitial value, $Res Function(ProfileInitial) then) =
       _$ProfileInitialCopyWithImpl<$Res>;
   @override
-  $Res call({User user, CareerStats careerStatsAll});
+  $Res call({CareerStats careerStatsAll});
 
-  @override
-  $UserCopyWith<$Res> get user;
   @override
   $CareerStatsCopyWith<$Res> get careerStatsAll;
 }
@@ -311,14 +293,9 @@ class _$ProfileInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
     Object? careerStatsAll = freezed,
   }) {
     return _then(ProfileInitial(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
       careerStatsAll: careerStatsAll == freezed
           ? _value.careerStatsAll
           : careerStatsAll // ignore: cast_nullable_to_non_nullable
@@ -330,16 +307,14 @@ class _$ProfileInitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileInitial implements ProfileInitial {
-  const _$ProfileInitial({required this.user, required this.careerStatsAll});
+  const _$ProfileInitial({required this.careerStatsAll});
 
-  @override
-  final User user;
   @override
   final CareerStats careerStatsAll;
 
   @override
   String toString() {
-    return 'ProfileState.initial(user: $user, careerStatsAll: $careerStatsAll)';
+    return 'ProfileState.initial(careerStatsAll: $careerStatsAll)';
   }
 
   @override
@@ -347,16 +322,13 @@ class _$ProfileInitial implements ProfileInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ProfileInitial &&
-            const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
                 .equals(other.careerStatsAll, careerStatsAll));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(careerStatsAll));
+      runtimeType, const DeepCollectionEquality().hash(careerStatsAll));
 
   @JsonKey(ignore: true)
   @override
@@ -366,27 +338,27 @@ class _$ProfileInitial implements ProfileInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user, CareerStats careerStatsAll) initial,
+    required TResult Function(CareerStats careerStatsAll) initial,
   }) {
-    return initial(user, careerStatsAll);
+    return initial(careerStatsAll);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, CareerStats careerStatsAll)? initial,
+    TResult Function(CareerStats careerStatsAll)? initial,
   }) {
-    return initial?.call(user, careerStatsAll);
+    return initial?.call(careerStatsAll);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, CareerStats careerStatsAll)? initial,
+    TResult Function(CareerStats careerStatsAll)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(user, careerStatsAll);
+      return initial(careerStatsAll);
     }
     return orElse();
   }
@@ -421,12 +393,9 @@ class _$ProfileInitial implements ProfileInitial {
 }
 
 abstract class ProfileInitial implements ProfileState {
-  const factory ProfileInitial(
-      {required User user,
-      required CareerStats careerStatsAll}) = _$ProfileInitial;
+  const factory ProfileInitial({required CareerStats careerStatsAll}) =
+      _$ProfileInitial;
 
-  @override
-  User get user;
   @override
   CareerStats get careerStatsAll;
   @override

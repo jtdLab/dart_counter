@@ -1,5 +1,10 @@
 // CORE
+import 'package:dart_counter/application/main/core/play/online/play_online_cubit.dart';
+import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/in_online_game_bloc.dart';
+import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/key_board/key_board_bloc.dart';
 // BLOCS
 import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
@@ -11,6 +16,7 @@ import 'package:dart_counter/application/main/play/shared/in_game/standard_input
 import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 // DOMAIN
 import 'package:dart_counter/domain/game/status.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -32,7 +38,7 @@ class InOnlineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<InOnlineGameBloc>(),
+          create: (context) => InOnlineGameBloc.getIt(),
         ),
       ],
       child: BlocConsumer<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
@@ -59,14 +65,14 @@ class InOnlineGamePage extends StatelessWidget {
                   context.read<InOnlineGameBloc>(),
                   context.read<PointsLeftCubit>(),
                   context.read<PointsCubit>(),
-                  getIt<IDartUtils>(),
+                  getIt<IDartUtils>(), // TODO
                 );
               } else {
                 bloc = CheckoutDetailsDartsBloc(
                   context.read<InOnlineGameBloc>(),
                   context.read<PointsLeftCubit>(),
                   context.read<DartsCubit>(),
-                  getIt<IDartUtils>(),
+                  getIt<IDartUtils>(), // TODO
                 );
               }
 

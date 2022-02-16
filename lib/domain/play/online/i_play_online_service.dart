@@ -10,7 +10,6 @@ abstract class IPlayOnlineService extends AbstractIPlayService {
   @override
   Stream<OnlineGameSnapshot> watchGame();
 
-
   /// Creates a new game.
   Future<Either<PlayFailure, OnlineGameSnapshot>> createGame();
 

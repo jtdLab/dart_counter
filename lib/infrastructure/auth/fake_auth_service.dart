@@ -37,9 +37,8 @@ class FakeAuthService implements IAuthService {
     bool isAuthenticated = false,
   }) : _authenticatedController = BehaviorSubject.seeded(isAuthenticated);
 
-  // coverage:ignore-start
   @factoryMethod
-  factory FakeAuthService.inject(
+  factory FakeAuthService.injectable(
     AppleSignIn _appleSignIn,
     GoogleSignIn _googleSignIn,
     FacebookAuth _facebookAuth,
@@ -49,7 +48,6 @@ class FakeAuthService implements IAuthService {
         _googleSignIn,
         _facebookAuth,
       );
-  // coverage:ignore-end
 
   @override
   Future<String> idToken() async {

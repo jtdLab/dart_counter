@@ -31,7 +31,7 @@ class CreateOnlineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<CreateOnlineGameBloc>(),
+          create: (context) => CreateOnlineGameBloc.getIt(),
         ),
       ],
       child: BlocListener<PlayOnlineWatcherCubit, OnlineGameSnapshot>(

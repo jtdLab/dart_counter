@@ -104,16 +104,16 @@ class GameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
-      getReceivedGameInvitations() {
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      getReceivedGameInvitations() async {
     _checkAuth();
 
     return _receivedInvitationsController.value;
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
-      getSentGameInvitations() {
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      getSentGameInvitations() async {
     _checkAuth();
 
     return _sentInvitationsController.value;

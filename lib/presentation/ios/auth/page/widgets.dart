@@ -30,7 +30,7 @@ class _SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SignInBloc>(),
+      create: (context) => SignInBloc.getIt(),
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
@@ -211,7 +211,7 @@ class _SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SignUpBloc>(),
+      create: (context) => SignUpBloc.getIt(),
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(

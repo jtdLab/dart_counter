@@ -23,26 +23,24 @@ class InSingleTrainingPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<InSingleTrainingBloc>(),
+          create: (context) => InSingleTrainingBloc.getIt(),
         ),
         BlocProvider(
-          create: (context) => getIt<SingleTrainingWatcherCubit>(),
+          create: (context) => SingleTrainingWatcherCubit.getIt(),
         ),
         BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
-          create: (context) => getIt<DartsDisplayerBloc>(),
+          create: (context) => DartsDisplayerBloc.getIt(),
         ),
         BlocProvider<Bloc<InputRowEvent, int>>(
-          create: (context) => getIt<InputRowBloc>(
-            param1: [
-              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-            ],
+          create: (context) => InputRowBloc.getIt(
+            context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                as DartsDisplayerBloc,
           )..add(const InputRowEvent.started()),
         ),
         BlocProvider(
-          create: (context) => getIt<KeyBoardBloc>(
-            param1: [
-              context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
-            ],
+          create: (context) => KeyBoardBloc.getIt(
+            context.read<Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                as DartsDisplayerBloc,
           ),
         ),
       ],

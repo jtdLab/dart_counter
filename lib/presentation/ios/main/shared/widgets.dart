@@ -67,9 +67,10 @@ class ProfileImageDisplayer extends StatelessWidget {
   final String? photoUrl;
 
   const ProfileImageDisplayer({
-    Key? key,
     required this.photoUrl,
-  }) : super(key: key);
+  }) : super(
+          key: const Key('profile_image_displayer'),
+        );
 
   @override
   Widget build(BuildContext context) {

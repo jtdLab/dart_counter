@@ -13,7 +13,7 @@ class CreateTrainingFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<CreateTrainingBloc>()..add(const CreateTrainingEvent.started()),
+          CreateTrainingBloc.getIt()..add(const CreateTrainingEvent.started()),
       child: const AutoRouter(),
     );
   }

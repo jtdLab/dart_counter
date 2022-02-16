@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
 import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
@@ -13,7 +13,8 @@ import 'package:dart_counter/domain/training/mode.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/type.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
+import 'package:dart_counter/injection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,7 +28,7 @@ class CreateTrainingBloc
   final IDoubleTrainingService _doubleTrainingService;
   final IScoreTrainingService _scoreTrainingService;
   final IBobsTwentySevenService _bobsTwentySevenService;
-  final IUserService _userService;
+  final UserCubit _userCubit;
 
   AbstractITrainingService _trainingService;
   late StreamSubscription _trainingSubscription;
@@ -37,16 +38,11 @@ class CreateTrainingBloc
     this._doubleTrainingService,
     this._scoreTrainingService,
     this._bobsTwentySevenService,
-    this._userService,
+    this._userCubit,
   )   : _trainingService = _singleTrainingService,
         super(
           // Set initial state
-          _singleTrainingService.createGame(
-            // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
-            owner: _userService.getUser().getOrElse(
-                  () => throw ApplicationError.unexpectedMissingUser(),
-                ),
-          ),
+          _singleTrainingService.createGame(owner: _userCubit.state.user),
         ) {
     // Register event handlers
     on<_Started>(
@@ -80,6 +76,9 @@ class CreateTrainingBloc
       (event, emit) => _handleSnapshotReceived(event, emit),
     );
   }
+
+  /// Returns instance registered inside getIt.
+  factory CreateTrainingBloc.getIt() => getIt<CreateTrainingBloc>();
 
   /// Handle incoming [_Started] event.
   Future<void> _handleStarted(
@@ -135,55 +134,50 @@ class CreateTrainingBloc
     _TypeChanged event,
     Emitter<AbstractTrainingGameSnapshot> emit,
   ) async {
-    final user = _userService.getUser().fold(
-          (failure) => null,
-          (user) => user,
-        );
+    final user = _userCubit.state.user;
 
-    if (user != null) {
-      final newType = event.newType;
+    final newType = event.newType;
 
-      _trainingSubscription.cancel();
-      _trainingService.cancel();
+    _trainingSubscription.cancel();
+    _trainingService.cancel();
 
-      final players = state.players
-          .asList()
-          .where((player) => player != state.owner)
-          .map((player) => player.name)
-          .toList();
+    final players = state.players
+        .asList()
+        .where((player) => player != state.owner)
+        .map((player) => player.name)
+        .toList();
 
-      switch (newType) {
-        case Type.single:
-          if (_trainingService is! ISingleTrainingService) {
-            _trainingService = _singleTrainingService;
-          }
-          break;
-        case Type.double:
-          if (_trainingService is! IDoubleTrainingService) {
-            _trainingService = _doubleTrainingService;
-          }
-          break;
-        case Type.score:
-          if (_trainingService is! IScoreTrainingService) {
-            _trainingService = _scoreTrainingService;
-          }
-          break;
-        case Type.bobs27:
-          if (_trainingService is! IBobsTwentySevenService) {
-            _trainingService = _bobsTwentySevenService;
-          }
-          break;
-      }
-
-      _trainingService.createGame(
-        owner: user,
-        players: players,
-      );
-
-      _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
-        add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
-      });
+    switch (newType) {
+      case Type.single:
+        if (_trainingService is! ISingleTrainingService) {
+          _trainingService = _singleTrainingService;
+        }
+        break;
+      case Type.double:
+        if (_trainingService is! IDoubleTrainingService) {
+          _trainingService = _doubleTrainingService;
+        }
+        break;
+      case Type.score:
+        if (_trainingService is! IScoreTrainingService) {
+          _trainingService = _scoreTrainingService;
+        }
+        break;
+      case Type.bobs27:
+        if (_trainingService is! IBobsTwentySevenService) {
+          _trainingService = _bobsTwentySevenService;
+        }
+        break;
     }
+
+    _trainingService.createGame(
+      owner: user,
+      players: players,
+    );
+
+    _trainingSubscription = _trainingService.watchGame().listen((snapshot) {
+      add(CreateTrainingEvent.snapshotReceived(snapshot: snapshot));
+    });
   }
 
   /// Handle incoming [_TrainingStarted] event.

@@ -9,9 +9,6 @@ abstract class IPlayOfflineService extends AbstractIPlayService {
   @override
   Stream<OfflineGameSnapshot> watchGame();
 
-  @override
-  OfflineGameSnapshot getGame();
-
   /// Creates a new game with [owner].
   ///
   /// Returns the first snapshot of the created game.

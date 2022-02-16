@@ -2,12 +2,14 @@ import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_event.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_state.dart';
 import 'package:dart_counter/core/stream_x.dart';
 import 'package:dart_counter/domain/game/dart.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:kt_dart/kt.dart';
@@ -23,16 +25,16 @@ export 'package:dart_counter/application/main/shared/detailed_input_area/key_boa
 // 4. advanced settings changed
 // 5. darts changed
 
-class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
+abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
-  final AbstractIPlayService _playService;
 
+  final Cubit<PlayState<AbstractGameSnapshot>> _playCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
   KeyBoardBloc(
     this._dartUtils,
-    this._playService,
+    this._playCubit,
     this._advancedSettingsBloc,
     this._dartsDisplayerBloc,
   ) : super(
@@ -40,7 +42,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
           __getUnfocusedState(
             __isSmartKeyBoardEnabled(_advancedSettingsBloc),
             __darts(_dartsDisplayerBloc),
-            __pointsLeft(_playService),
+            __pointsLeft(_playCubit),
             _dartUtils,
           ),
         ) {
@@ -569,7 +571,7 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   /// Returns the points left of the current turn.
   int _pointsLeft() {
-    return __pointsLeft(_playService);
+    return __pointsLeft(_playCubit);
   }
 
   /// Returns list that contains all [DartType]s which would lead to valid next throw.
@@ -678,9 +680,9 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   /// Returns the points left of the current turn using [service].
   static int __pointsLeft(
-    AbstractIPlayService service,
+    Cubit<PlayState<AbstractGameSnapshot>> cubit,
   ) {
-    return service.getGame().currentTurn().pointsLeft;
+    return cubit.state.gameSnapshot.currentTurn().pointsLeft;
   }
 
   // TODO docs

@@ -1,6 +1,5 @@
 part of 'in_offline_game_page.dart';
 
-
 // BODY
 class _InOfflineGameWidget extends StatelessWidget {
   const _InOfflineGameWidget({
@@ -38,14 +37,19 @@ class _InOfflineGameWidget extends StatelessWidget {
                 providers: [
                   BlocProvider<Bloc<InputRowEvent, int>>(
                     create: (context) =>
-                        getIt<InputRowBlocOfflineStandardInputArea>(),
+                        InputRowBlocOfflineStandardInputArea.getIt(
+                      context.read<PlayOfflineCubit>(),
+                      context.read<InOfflineGameBloc>(),
+                    ),
                   ),
                   BlocProvider<
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
                     create: (context) =>
-                        getIt<KeyBoardBlocOfflineStandardInputArea>(
-                      param1: context.read<AdvancedSettingsBloc>(),
-                      param2: context.read<Bloc<InputRowEvent, int>>(),
+                        KeyBoardBlocOfflineStandardInputArea.getIt(
+                      context.read<PlayOfflineCubit>(),
+                      context.read<AdvancedSettingsBloc>(),
+                      context.read<Bloc<InputRowEvent, int>>()
+                          as InputRowBlocOfflineStandardInputArea,
                     )..add(const standard.KeyBoardEvent.started()),
                   ),
                 ],
@@ -54,26 +58,27 @@ class _InOfflineGameWidget extends StatelessWidget {
               MultiBlocProvider(
                 providers: [
                   BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
-                    create: (context) => getIt<DartsDisplayerBloc>(
-                      // TODO ideal ? should ui know services ??
-                      param1: getIt<IPlayOfflineService>(),
+                    create: (context) => DartsDisplayerBloc.getIt(
+                      context.read<PlayOfflineWatcherCubit>(), // TODO
                     ),
                   ),
                   BlocProvider<Bloc<InputRowEvent, int>>(
-                    create: (context) => getIt<detailed.InputRowBloc>(
-                      param1: context.read<InOfflineGameBloc>(),
-                      param2: context.read<
-                          Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
+                    create: (context) =>
+                        InputRowBlocOfflineDetailedInputArea.getIt(
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     )..add(const InputRowEvent.started()),
                   ),
                   BlocProvider<
                       Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
-                    create: (context) => getIt<detailed.KeyBoardBloc>(
-                      param1: [
-                        context.read<AdvancedSettingsBloc>(),
-                        context.read<
-                            Bloc<DartsDisplayerEvent, DartsDisplayerState>>(),
-                      ],
+                    create: (context) =>
+                        KeyBoardBlocOfflineDetailedInputArea.getIt(
+                      context.read<PlayOfflineCubit>(),
+                      context.read<AdvancedSettingsBloc>(),
+                      context.read<
+                              Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
+                          as DartsDisplayerBloc,
                     )..add(const detailed.KeyBoardEvent.started()),
                   ),
                 ],

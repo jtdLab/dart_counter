@@ -1,18 +1,20 @@
 // CORE
+import 'package:dart_counter/application/main/core/play/offline/play_offline_cubit.dart';
+import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
-import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/blocs.dart'
     as detailed;
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/blocs.dart'
     as standard;
+import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 // DOMAIN
 import 'package:dart_counter/domain/game/status.dart';
-import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 // MODALS
@@ -34,7 +36,7 @@ class InOfflineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<InOfflineGameBloc>(),
+          create: (context) => InOfflineGameBloc.getIt(),
         ),
       ],
       child: BlocConsumer<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
@@ -62,14 +64,14 @@ class InOfflineGamePage extends StatelessWidget {
                   context.read<InOfflineGameBloc>(),
                   context.read<PointsLeftCubit>(),
                   context.read<PointsCubit>(),
-                  getIt<IDartUtils>(),
+                  getIt<IDartUtils>(), //TODO
                 );
               } else {
                 bloc = CheckoutDetailsDartsBloc(
                   context.read<InOfflineGameBloc>(),
                   context.read<PointsLeftCubit>(),
                   context.read<DartsCubit>(),
-                  getIt<IDartUtils>(),
+                  getIt<IDartUtils>(), // TODO
                 );
               }
 

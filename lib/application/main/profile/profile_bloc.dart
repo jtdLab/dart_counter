@@ -3,11 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,31 +17,15 @@ part 'profile_state.dart';
 
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final IUserService _userService;
+  final UserCubit _userCubit;
 
   ProfileBloc(
-    this._userService,
+    this._userCubit,
   ) : super(
           // Set initial state
           ProfileState.initial(
-            user: _userService.getUser().getOrElse(
-                  () => throw ApplicationError.unexpectedMissingUser(),
-                ),
-            careerStatsAll: _userService
-                .getUser()
-                .getOrElse(
-                  () => throw ApplicationError.unexpectedMissingUser(),
-                )
-                .profile
-                .careerStatsOnline
-                .merge(
-                  _userService
-                      .getUser()
-                      .getOrElse(
-                        () => throw ApplicationError.unexpectedMissingUser(),
-                      )
-                      .careerStatsOffline,
-                ),
+            careerStatsAll: _userCubit.state.user.profile.careerStatsOnline
+                .merge(_userCubit.state.user.careerStatsOffline),
           ),
         ) {
     // Register event handlers
@@ -53,22 +35,40 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     );
   }
 
+  /// Returns instance registered inside getIt.
+  factory ProfileBloc.getIt(
+    UserCubit userCubit,
+  ) =>
+      getIt<ProfileBloc>(param1: [userCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [UserCubit].
+  @factoryMethod
+  factory ProfileBloc.injectable(
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      ProfileBloc(
+        otherDependencies![0] as UserCubit,
+      );
+      
+
   /// Handle incoming [_Started] event.
   Future<void> _handleStarted(
     Emitter<ProfileState> emit,
   ) async {
     // TODO test if cancels on first error
-    await emit.forEach(
-      _userService.watchUser(),
-      onData: (Either<UserFailure, User> failureOrUser) {
-        return failureOrUser.fold(
-          (failure) => throw ApplicationError
-              .unexpectedMissingUser(), // TODO this is no dev error
-          (user) => ProfileState.initial(
-            user: user,
+    await emit.forEach<UserState>(
+      _userCubit.stream,
+      onData: (userState) {
+        return userState.maybeWhen(
+          loadSuccess: (user) => ProfileState.initial(
             careerStatsAll:
                 user.profile.careerStatsOnline.merge(user.careerStatsOffline),
           ),
+          orElse: () => throw ApplicationError.unexpectedMissingUser(),
         );
       },
     );

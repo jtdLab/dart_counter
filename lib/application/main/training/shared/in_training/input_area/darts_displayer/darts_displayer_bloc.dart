@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -31,6 +32,9 @@ class DartsDisplayerBloc
     on<DartRemoved>((_, emit) => _handleRemoved(emit));
     on<ResetRequested>((_, emit) => _handleResetRequested(emit));
   }
+
+  /// Returns instance registered inside getIt.
+  factory DartsDisplayerBloc.getIt() => getIt<DartsDisplayerBloc>();
 
   /// Handle incoming [DartAdded] event.
   void _handleDartAdded(

@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -20,12 +21,13 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ProfileBloc>(),
+      create: (context) => ProfileBloc.getIt(
+        context.read<UserCubit>(),
+      ),
       child: const AppPage(
         navigationBar: AppNavigationBar(
           leading: BackButton(),
           middle: _NameDisplayer(),
-         
         ),
         child: _ProfileWidget(),
       ),

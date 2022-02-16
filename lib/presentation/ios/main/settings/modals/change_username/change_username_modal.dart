@@ -12,7 +12,7 @@ class ChangeUsernameModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ChangeUsernameBloc>(),
+      create: (context) => ChangeUsernameBloc.getIt(),
       child: const AutoRouter(),
     );
   }

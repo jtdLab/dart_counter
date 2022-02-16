@@ -91,8 +91,8 @@ class FakeGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
-      getReceivedGameInvitations() {
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      getReceivedGameInvitations() async {
     _checkAuth();
     if (hasNetworkConnection) {
       return _receivedGameInvitationsController!.value;
@@ -102,8 +102,8 @@ class FakeGameInvitationService implements IGameInvitationService {
   }
 
   @override
-  Either<GameInvitationFailure, KtList<GameInvitation>>
-      getSentGameInvitations() {
+  Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
+      getSentGameInvitations() async {
     _checkAuth();
     if (hasNetworkConnection) {
       return _sentGameInvitationsController!.value;

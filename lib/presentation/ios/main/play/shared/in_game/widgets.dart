@@ -592,7 +592,7 @@ class OpticalInputArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<OpticalInputAreaBloc>(), // TODO ibject correctly not with getit
+          OpticalInputAreaBloc>.getIt(), // TODO ibject correctly not with getit
       child: AppColumn(
         spacing: size6(context),
         children: [

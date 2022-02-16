@@ -1,4 +1,9 @@
 // CORE
+import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/main/core/play/offline/play_offline_cubit.dart';
+import 'package:dart_counter/application/main/core/play/online/play_online_cubit.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class MainFlow extends StatelessWidget {
@@ -8,6 +13,25 @@ class MainFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AutoRouter();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserCubit.getIt(),
+        ),
+        BlocProvider(
+          create: (context) => FriendsCubit.getIt(),
+        ),
+        BlocProvider(
+          create: (context) => GameInvitationsCubit.getIt(),
+        ),
+        BlocProvider(
+          create: (context) => PlayOfflineCubit.getIt(),
+        ),
+        BlocProvider(
+          create: (context) => PlayOnlineCubit.getIt(),
+        ),
+      ],
+      child: const AutoRouter(),
+    );
   }
 }
