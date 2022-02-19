@@ -5,6 +5,7 @@ import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dartz/dartz.dart';
+import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
@@ -16,25 +17,39 @@ class FakeGameInvitationService implements IGameInvitationService {
 
   final IAuthService _authService;
 
-  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>?
+  final BehaviorSubject<KtList<GameInvitation>>
       _receivedGameInvitationsController;
-
-  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>?
-      _sentGameInvitationsController;
+  final BehaviorSubject<KtList<GameInvitation>> _sentGameInvitationsController;
 
   FakeGameInvitationService(
     this._authService,
-  )   : _receivedGameInvitationsController =
-            _createReceivedGameInvitationsController(),
-        _sentGameInvitationsController =
-            _createSentGameInvitationsController() {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (!isAuthenticated) {
-        await _receivedGameInvitationsController?.close();
-        await _sentGameInvitationsController?.close();
-        _receivedGameInvitationsController =
-            _createReceivedGameInvitationsController();
-        _sentGameInvitationsController = _createSentGameInvitationsController();
+  )   : _receivedGameInvitationsController = BehaviorSubject.seeded(
+          faker.randomGenerator
+              .amount((i) => GameInvitation.dummy(), 5)
+              .toImmutableList(),
+        ),
+        _sentGameInvitationsController = BehaviorSubject.seeded(
+          faker.randomGenerator
+              .amount((i) => GameInvitation.dummy(), 5)
+              .toImmutableList(),
+        ) {
+    _authService.watchIsAuthenticated().listen((isAuthenticated) {
+      if (isAuthenticated) {
+        if (!_receivedGameInvitationsController.hasValue) {
+          _receivedGameInvitationsController.add(
+            faker.randomGenerator
+                .amount((i) => GameInvitation.dummy(), 5)
+                .toImmutableList(),
+          );
+        }
+
+        if (!_sentGameInvitationsController.hasValue) {
+          _sentGameInvitationsController.add(
+            faker.randomGenerator
+                .amount((i) => GameInvitation.dummy(), 5)
+                .toImmutableList(),
+          );
+        }
       }
     });
   }
@@ -44,6 +59,7 @@ class FakeGameInvitationService implements IGameInvitationService {
     required GameInvitation invitation,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       _removeFromReceivedGameInvitations(invitation);
       return right(unit);
@@ -57,20 +73,14 @@ class FakeGameInvitationService implements IGameInvitationService {
     required GameInvitation invitation,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      final sentInvitations = _sentGameInvitationsController!.value
-          .toOption()
-          .toNullable()!
-          .toMutableList()
-          .asList();
+      final sentInvitations =
+          _sentGameInvitationsController.value.toMutableList().asList();
 
-      sentInvitations.removeWhere(
-        (element) => element == invitation,
-      );
+      sentInvitations.removeWhere((element) => element == invitation);
 
-      _sentGameInvitationsController!.add(
-        right(sentInvitations.toImmutableList()),
-      );
+      _sentGameInvitationsController.add(sentInvitations.toImmutableList());
       return right(unit);
     }
 
@@ -82,6 +92,7 @@ class FakeGameInvitationService implements IGameInvitationService {
     required GameInvitation invitation,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       _removeFromReceivedGameInvitations(invitation);
       return right(unit);
@@ -94,8 +105,9 @@ class FakeGameInvitationService implements IGameInvitationService {
   Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getReceivedGameInvitations() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      return _receivedGameInvitationsController!.value;
+      return right(_receivedGameInvitationsController.value);
     }
 
     return left(const GameInvitationFailure.noNetworkAccess());
@@ -105,8 +117,9 @@ class FakeGameInvitationService implements IGameInvitationService {
   Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getSentGameInvitations() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      return _sentGameInvitationsController!.value;
+      return right(_sentGameInvitationsController.value);
     }
 
     return left(const GameInvitationFailure.noNetworkAccess());
@@ -115,17 +128,14 @@ class FakeGameInvitationService implements IGameInvitationService {
   @override
   Future<Either<GameInvitationFailure, Unit>>
       markReceivedInvitationsAsRead() async {
-    final receivedInvitations =
-        _receivedGameInvitationsController!.value.toOption().toNullable()!;
+    _checkAuth();
 
-    _receivedGameInvitationsController!.add(
-      right(
-        receivedInvitations
-            .map(
-              (invitation) => invitation.copyWith(read: true),
-            )
-            .toList(),
-      ),
+    final receivedInvitations = _receivedGameInvitationsController.value;
+
+    _receivedGameInvitationsController.add(
+      receivedInvitations
+          .map((invitation) => invitation.copyWith(read: true))
+          .toList(),
     );
 
     return right(unit);
@@ -137,20 +147,19 @@ class FakeGameInvitationService implements IGameInvitationService {
     required UniqueId toId,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       final sentInvitations =
-          _sentGameInvitationsController!.value.toOption().toNullable()!;
+          _sentGameInvitationsController.value.toMutableList();
 
-      _sentGameInvitationsController!.add(
-        right(
-          sentInvitations.toMutableList()
-            ..add(
-              GameInvitation.dummy().copyWith(
-                gameId: gameId,
-                toId: toId,
-              ),
+      _sentGameInvitationsController.add(
+        sentInvitations.toMutableList()
+          ..add(
+            GameInvitation.dummy().copyWith(
+              gameId: gameId,
+              toId: toId,
             ),
-        ),
+          ),
       );
 
       return right(unit);
@@ -163,68 +172,41 @@ class FakeGameInvitationService implements IGameInvitationService {
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedGameInvitations() {
     _checkAuth();
-    return _receivedGameInvitationsController!.stream;
+
+    if (hasNetworkConnection) {
+      return _receivedGameInvitationsController.stream.map(
+        (receivedGameInvitations) => right(receivedGameInvitations),
+      );
+    } else {
+      return Stream.value(left(const GameInvitationFailure.noNetworkAccess()));
+    }
   }
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchSentInvitations() {
     _checkAuth();
-    return _sentGameInvitationsController!.stream;
-  }
 
-  /// Creates a new received gameInvitation controller seeded with either a list of [GameInvitation] or [GameInvitationFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _createReceivedGameInvitationsController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(
-              [
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-              ].toImmutableList(),
-            )
-          : left(const GameInvitationFailure.noNetworkAccess()),
-    );
-  }
-
-  /// Creates a new sent gameInvitation controller seeded with either a list of [GameInvitation] or [GameInvitationFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _createSentGameInvitationsController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(
-              [
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-                GameInvitation.dummy(),
-              ].toImmutableList(),
-            )
-          : left(const GameInvitationFailure.noNetworkAccess()),
-    );
+    if (hasNetworkConnection) {
+      return _sentGameInvitationsController.stream.map(
+        (sentGameInvitations) => right(sentGameInvitations),
+      );
+    } else {
+      return Stream.value(left(const GameInvitationFailure.noNetworkAccess()));
+    }
   }
 
   /// Removes [invitation] from the receivedGameInvitations and emits event.
   void _removeFromReceivedGameInvitations(GameInvitation invitation) {
-    final receivedInvitations = _receivedGameInvitationsController!.value
-        .toOption()
-        .toNullable()!
-        .toMutableList()
-        .asList();
+    final receivedInvitations =
+        _receivedGameInvitationsController.value.toMutableList().asList();
 
     receivedInvitations.removeWhere(
       (element) => element == invitation,
     );
 
-    _receivedGameInvitationsController!.add(
-      right(receivedInvitations.toImmutableList()),
+    _receivedGameInvitationsController.add(
+      receivedInvitations.toImmutableList(),
     );
   }
 

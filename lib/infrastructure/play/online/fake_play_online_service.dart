@@ -1,28 +1,29 @@
 import 'dart:async';
 
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
-import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/game/mode.dart';
-import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/game/player_stats.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/game/type.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
+import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/game/throw_dto.dart';
-import 'package:dart_counter/main_dev.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_game/dart_game.dart' as ex;
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IPlayOnlineService)
 class FakePlayOnlineService implements IPlayOnlineService {
+  static bool hasNetworkConnection = true;
+
   final IUserService _userService; // TODO use or remove
 
   final BehaviorSubject<OnlineGameSnapshot> _gameController;
@@ -52,8 +53,6 @@ class FakePlayOnlineService implements IPlayOnlineService {
       _game!.players[0].name =
           faker.randomGenerator.element(['Capi', 'Kolle', 'Mirco', 'Baltasar']);
       _images.add(faker.image.image(width: 200, height: 200, random: true));
-
-
 
       _gameController.add(
         _toOnlineGameSnapshot(_game!),

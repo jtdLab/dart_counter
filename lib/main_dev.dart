@@ -14,11 +14,6 @@ import 'package:injectable/injectable.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-/// Config for mocked facades
-
-/// toggle to simulate network/no network
-const hasNetworkConnection = true; // TODO remove
-
 Future<void> main() async {
   timeago.setLocaleMessages('de', DeMessages());
   ResponsiveSizingConfig.instance.setCustomBreakpoints(

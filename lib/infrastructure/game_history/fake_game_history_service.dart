@@ -36,6 +36,7 @@ class FakeGameHistoryService implements IGameHistoryService {
       return right(List10(games.toImmutableList()));
     }
 
+
     return left(const GameHistoryFailure.noNetworkAccess());
   }
 

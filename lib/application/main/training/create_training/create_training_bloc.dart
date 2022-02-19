@@ -78,7 +78,31 @@ class CreateTrainingBloc
   }
 
   /// Returns instance registered inside getIt.
-  factory CreateTrainingBloc.getIt() => getIt<CreateTrainingBloc>();
+  factory CreateTrainingBloc.getIt(
+    UserCubit userCubit,
+  ) =>
+      getIt<CreateTrainingBloc>(param1: [userCubit]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of [GameInvitationsCubit].
+  @factoryMethod
+  factory CreateTrainingBloc.injectable(
+    ISingleTrainingService singleTrainingService,
+    IDoubleTrainingService doubleTrainingService,
+    IScoreTrainingService scoreTrainingService,
+    IBobsTwentySevenService bobsTwentySevenService,
+    @factoryParam List<Object>? otherDependencies,
+  ) =>
+      CreateTrainingBloc(
+        singleTrainingService,
+        doubleTrainingService,
+        scoreTrainingService,
+        bobsTwentySevenService,
+        otherDependencies![0] as UserCubit,
+      );
 
   /// Handle incoming [_Started] event.
   Future<void> _handleStarted(

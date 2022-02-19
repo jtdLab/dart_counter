@@ -22,19 +22,15 @@ class FakeUserService with Disposable implements IUserService {
 
   StreamSubscription? _authSubscription;
 
-  final BehaviorSubject<User?> _userController;
+  final BehaviorSubject<User> _userController;
 
   FakeUserService(
     this._authService,
-  ) : _userController = BehaviorSubject.seeded(
-          _authService.isAuthenticated() ? User.dummy() : null,
-        ) {
+  ) : _userController = BehaviorSubject.seeded(User.dummy()) {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) {
-      if (isAuthenticated) {
+      if (isAuthenticated && !_userController.hasValue) {
         _userController.add(User.dummy());
-      } else {
-        _userController.add(null);
       }
     });
   }
@@ -58,14 +54,12 @@ class FakeUserService with Disposable implements IUserService {
     _checkAuth();
 
     if (hasNetworkConnection) {
-      final user = _userController.valueOrNull;
+      final user = _userController.value;
 
-      if (user != null) {
-        return right(user);
-      }
+      return right(user);
     }
 
-    return left(const UserFailure.unexpected());
+    return left(const UserFailure.noNetworkAccess());
   }
 
   @override
@@ -129,12 +123,11 @@ class FakeUserService with Disposable implements IUserService {
   Stream<Either<UserFailure, User>> watchUser() {
     _checkAuth();
 
-    return _userController
-        .map<Either<UserFailure, User>>(
-          (userOption) =>
-              userOption != null ? right(userOption) : throw Error(),
-        )
-        .onErrorReturnWith((error, _) => left(const UserFailure.unexpected()));
+    if (hasNetworkConnection) {
+      return _userController.stream.map((user) => right(user));
+    } else {
+      return Stream.value(left(const UserFailure.noNetworkAccess()));
+    }
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.

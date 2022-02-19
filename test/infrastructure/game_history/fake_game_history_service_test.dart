@@ -36,7 +36,7 @@ void main() {
   group('fetchGameHistoryOffline', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -52,7 +52,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -72,7 +72,7 @@ void main() {
 
     test(
       'GIVEN authenticated user and has network access '
-      'THEN return right with a game history sorted by createdAt from most recent to oldest ',
+      'THEN return right with a game history sorted by createdAt from most recent to oldest.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -110,7 +110,7 @@ void main() {
   group('fetchGameHistoryOnline', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -126,7 +126,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -147,7 +147,7 @@ void main() {
 
     test(
       'GIVEN authenticated user and has network access '
-      'THEN return right with a game history sorted by createdAt from most recent to oldest ',
+      'THEN return right with a game history sorted by createdAt from most recent to oldest.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();

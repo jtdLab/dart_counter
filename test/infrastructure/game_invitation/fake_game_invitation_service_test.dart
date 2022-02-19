@@ -15,6 +15,7 @@ void main() {
 
   setUp(() {
     mockAuthService = MockAuthService();
+    FakeGameInvitationService.hasNetworkConnection = true;
   });
 
   void setUpMockAuthServiceWithAuthenticatedUser() {
@@ -38,7 +39,7 @@ void main() {
   group('accept', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -54,7 +55,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -76,17 +77,17 @@ void main() {
     test(
       'GIVEN authenticated user and has network access '
       'WHEN called with valid game invitation '
-      'THEN return unit and emit updated received invitations without the accepted invitation ',
+      'THEN return unit and emit updated received invitations without the accepted invitation.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = true;
         final underTest = FakeGameInvitationService(mockAuthService);
-        final acceptedInvitation = underTest
-            .getReceivedGameInvitations()
-            .toOption()
-            .toNullable()!
-            .get(0);
+        final acceptedInvitation =
+            (await underTest.getReceivedGameInvitations())
+                .toOption()
+                .toNullable()!
+                .get(0);
 
         // Act
         final failurOrUnit = await underTest.accept(
@@ -113,7 +114,7 @@ void main() {
   group('cancel', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -129,7 +130,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -151,14 +152,16 @@ void main() {
     test(
       'GIVEN authenticated user and has network access '
       'WHEN called with valid game invitation '
-      'THEN return unit and emit updated sent invitations without the canceled invitation',
+      'THEN return unit and emit updated sent invitations without the canceled invitation.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = true;
         final underTest = FakeGameInvitationService(mockAuthService);
-        final canceledInvitation =
-            underTest.getSentGameInvitations().toOption().toNullable()!.get(0);
+        final canceledInvitation = (await underTest.getSentGameInvitations())
+            .toOption()
+            .toNullable()!
+            .get(0);
 
         // Act
         final failurOrUnit = await underTest.cancel(
@@ -185,7 +188,7 @@ void main() {
   group('decline', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -201,7 +204,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -223,17 +226,17 @@ void main() {
     test(
       'GIVEN authenticated user and has network access '
       'WHEN called with valid game invitation '
-      'THEN return unit and emit updated received invitations without the declinced invitation ',
+      'THEN return unit and emit updated received invitations without the declinced invitation.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = true;
         final underTest = FakeGameInvitationService(mockAuthService);
-        final declinedInvitation = underTest
-            .getReceivedGameInvitations()
-            .toOption()
-            .toNullable()!
-            .get(0);
+        final declinedInvitation =
+            (await underTest.getReceivedGameInvitations())
+                .toOption()
+                .toNullable()!
+                .get(0);
 
         // Act
         final failurOrUnit = await underTest.decline(
@@ -260,7 +263,7 @@ void main() {
   group('getReceivedGameInvitations', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -268,7 +271,7 @@ void main() {
 
         // Act & Assert
         expect(
-          () => underTest.getReceivedGameInvitations(),
+          () async => underTest.getReceivedGameInvitations(),
           throwsA(isA<NotAuthenticatedError>()),
         );
       },
@@ -277,7 +280,7 @@ void main() {
     test(
       'GIVEN authenticated user but has no network access '
       'THEN return no network access failure ',
-      () {
+      () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = false;
@@ -285,7 +288,7 @@ void main() {
 
         // Act
         final failureOrReceivedGameInvitations =
-            underTest.getReceivedGameInvitations();
+            await underTest.getReceivedGameInvitations();
 
         // Assert
         expect(
@@ -297,8 +300,8 @@ void main() {
 
     test(
       'GIVEN authenticated user and has network access '
-      'THEN return unit ',
-      () {
+      'THEN return not empty received game invitations.',
+      () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = true;
@@ -306,10 +309,13 @@ void main() {
 
         // Act
         final failureOrReceivedGameInvitations =
-            underTest.getReceivedGameInvitations();
+            await underTest.getReceivedGameInvitations();
 
         // Assert
         expect(failureOrReceivedGameInvitations.isRight(), true);
+        expect(
+            failureOrReceivedGameInvitations.toOption().toNullable()!.isEmpty(),
+            false);
       },
     );
   });
@@ -317,7 +323,7 @@ void main() {
   group('getSentGameInvitations', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -325,7 +331,7 @@ void main() {
 
         // Act & Assert
         expect(
-          () => underTest.getSentGameInvitations(),
+          () async => underTest.getSentGameInvitations(),
           throwsA(isA<NotAuthenticatedError>()),
         );
       },
@@ -334,14 +340,15 @@ void main() {
     test(
       'GIVEN authenticated user but has no network access '
       'THEN return no network access failure ',
-      () {
+      () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = false;
         final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
-        final failureOrSentGameInvitations = underTest.getSentGameInvitations();
+        final failureOrSentGameInvitations =
+            await underTest.getSentGameInvitations();
 
         // Assert
         expect(
@@ -353,25 +360,46 @@ void main() {
 
     test(
       'GIVEN authenticated user and has network access '
-      'THEN return unit ',
-      () {
+      'THEN return sent game invitations.',
+      () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
         FakeGameInvitationService.hasNetworkConnection = true;
         final underTest = FakeGameInvitationService(mockAuthService);
 
         // Act
-        final failureOrSentGameInvitations = underTest.getSentGameInvitations();
+        final failureOrSentGameInvitations =
+            await underTest.getSentGameInvitations();
 
         // Assert
         expect(failureOrSentGameInvitations.isRight(), true);
+        expect(
+          failureOrSentGameInvitations.toOption().toNullable()!.isEmpty(),
+          false,
+        );
       },
     );
   });
 
   group('markReceivedInvitationsAsRead', () {
     test(
-      'return unit and emit updated received invitations with read flag set to true for every invitation ',
+      'GIVEN not authenticated user '
+      'THEN throw NotAuthenticatedError.',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithNotAuthenticatedUser();
+        final underTest = FakeGameInvitationService(mockAuthService);
+
+        // Act & Assert
+        expect(
+          () async => underTest.markReceivedInvitationsAsRead(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      },
+    );
+
+    test(
+      'Return unit and emit updated received invitations with read flag set to true for every invitation.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -402,7 +430,7 @@ void main() {
   group('sendGameInvitation', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -421,7 +449,7 @@ void main() {
 
     test(
       'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure ',
+      'THEN return no network access failure.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -445,7 +473,7 @@ void main() {
     test(
       'GIVEN authenticated user and has network access '
       'THEN return unit and emit updated sent game invitations '
-      'with the sent invitation as the last element ',
+      'with the sent invitation as the last element.',
       () async {
         // Arrange
         setUpMockAuthServiceWithAuthenticatedUser();
@@ -477,7 +505,7 @@ void main() {
   group('watchReceivedGameInvitations', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -492,8 +520,25 @@ void main() {
     );
 
     test(
+      'GIVEN authenticated user but has no network access '
+      'THEN return stream with no network access failure.',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithAuthenticatedUser();
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
+
+        // Act & Assert
+        expect(
+          underTest.watchReceivedGameInvitations(),
+          emitsInOrder([left(const GameInvitationFailure.noNetworkAccess())]),
+        );
+      },
+    );
+
+    test(
         'GIVEN network connection available '
-        'THEN emit value on listen', () {
+        'THEN emit value on listen.', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
       FakeGameInvitationService.hasNetworkConnection = true;
@@ -512,7 +557,7 @@ void main() {
   group('watchSentInvitations', () {
     test(
       'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError ',
+      'THEN throw NotAuthenticatedError.',
       () {
         // Arrange
         setUpMockAuthServiceWithNotAuthenticatedUser();
@@ -527,8 +572,25 @@ void main() {
     );
 
     test(
+      'GIVEN authenticated user but has no network access '
+      'THEN return stream with no network access failure.',
+      () {
+        // Arrange
+        setUpMockAuthServiceWithAuthenticatedUser();
+        FakeGameInvitationService.hasNetworkConnection = false;
+        final underTest = FakeGameInvitationService(mockAuthService);
+
+        // Act & Assert
+        expect(
+          underTest.watchSentInvitations(),
+          emitsInOrder([left(const GameInvitationFailure.noNetworkAccess())]),
+        );
+      },
+    );
+
+    test(
         'GIVEN network connection available '
-        'THEN emit value on listen', () {
+        'THEN emit value on listen.', () {
       // Arrange
       setUpMockAuthServiceWithAuthenticatedUser();
       FakeGameInvitationService.hasNetworkConnection = true;

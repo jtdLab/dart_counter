@@ -6,50 +6,73 @@ import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/profile.dart';
-import 'package:dart_counter/main_dev.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
-// TODO test and impl
-
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
 class FakeFriendService implements IFriendService {
+  static bool hasNetworkConnection = true;
+
   final IAuthService _authService;
-  final IUserService _userService;
+  // final IUserService _userService;
 
-  BehaviorSubject<Either<FriendFailure, KtList<Friend>>>? _friendsController;
+  final BehaviorSubject<KtList<Friend>> _friendsController;
 
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>?
-      _receivedFriendRequestController;
+  final BehaviorSubject<KtList<FriendRequest>> _receivedFriendRequestController;
 
-  BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>?
-      _sentFriendRequestController;
+  final BehaviorSubject<KtList<FriendRequest>> _sentFriendRequestController;
 
   final List<UserSnapshot> _userSearchResults;
 
   FakeFriendService(
     this._authService,
-    this._userService,
-  )   : _friendsController = _createFriendsController(),
-        _receivedFriendRequestController =
-            _createReceivedFriendRequestsController(),
-        _sentFriendRequestController = _createSentFriendRequestsController(),
+    //this._userService,
+  )   : _friendsController = BehaviorSubject.seeded(
+          faker.randomGenerator
+              .amount((i) => Friend.dummy(), 5)
+              .toImmutableList(),
+        ),
+        _receivedFriendRequestController = BehaviorSubject.seeded(
+          faker.randomGenerator
+              .amount((i) => FriendRequest.dummy(), 10)
+              .toImmutableList(),
+        ),
+        _sentFriendRequestController = BehaviorSubject.seeded(
+          faker.randomGenerator
+              .amount((i) => FriendRequest.dummy(), 10)
+              .toImmutableList(),
+        ),
         _userSearchResults = [] {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (!isAuthenticated) {
-        await _friendsController?.close();
-        await _receivedFriendRequestController?.close();
-        await _sentFriendRequestController?.close();
-        _friendsController = _createFriendsController();
-        _receivedFriendRequestController =
-            _createReceivedFriendRequestsController();
-        _sentFriendRequestController = _createSentFriendRequestsController();
+    _authService.watchIsAuthenticated().listen((isAuthenticated) {
+      if (isAuthenticated) {
+        if (!_friendsController.hasValue) {
+          _friendsController.add(
+            faker.randomGenerator
+                .amount((i) => Friend.dummy(), 5)
+                .toImmutableList(),
+          );
+        }
+
+        if (!_receivedFriendRequestController.hasValue) {
+          _receivedFriendRequestController.add(
+            faker.randomGenerator
+                .amount((i) => FriendRequest.dummy(), 10)
+                .toImmutableList(),
+          );
+        }
+
+        if (!_sentFriendRequestController.hasValue) {
+          _sentFriendRequestController.add(
+            faker.randomGenerator
+                .amount((i) => FriendRequest.dummy(), 10)
+                .toImmutableList(),
+          );
+        }
       }
     });
   }
@@ -59,6 +82,7 @@ class FakeFriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       _removeFromReceivedFriendRequests(friendRequest);
 
@@ -67,11 +91,10 @@ class FakeFriendService implements IFriendService {
         profile: Profile.dummy().copyWith(name: friendRequest.fromName),
       );
 
-      final friends =
-          _friendsController!.value.toOption().toNullable()!.toMutableList();
+      final friends = _friendsController.value.toMutableList();
       friends.add(newFriend);
 
-      _friendsController!.add(right(friends));
+      _friendsController.add(friends);
       return right(unit);
     }
 
@@ -83,20 +106,14 @@ class FakeFriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController!.value
-          .toOption()
-          .toNullable()!
-          .toMutableList()
-          .asList();
+      final sentFriendRequests =
+          _sentFriendRequestController.value.toMutableList().asList();
 
-      sentFriendRequests.removeWhere(
-        (element) => element == friendRequest,
-      );
+      sentFriendRequests.removeWhere((element) => element == friendRequest);
 
-      _sentFriendRequestController!.add(
-        right(sentFriendRequests.toImmutableList()),
-      );
+      _sentFriendRequestController.add(sentFriendRequests.toImmutableList());
 
       return right(unit);
     }
@@ -109,6 +126,7 @@ class FakeFriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       _removeFromReceivedFriendRequests(friendRequest);
       return right(unit);
@@ -120,8 +138,9 @@ class FakeFriendService implements IFriendService {
   @override
   Future<Either<FriendFailure, KtList<Friend>>> getFriends() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      return _friendsController!.value;
+      return right(_friendsController.value);
     }
 
     return left(const FriendFailure.noNetworkAccess());
@@ -131,8 +150,9 @@ class FakeFriendService implements IFriendService {
   Future<Either<FriendFailure, KtList<FriendRequest>>>
       getReceivedFriendRequests() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      return _receivedFriendRequestController!.value;
+      return right(_receivedFriendRequestController.value);
     }
 
     return left(const FriendFailure.noNetworkAccess());
@@ -142,8 +162,9 @@ class FakeFriendService implements IFriendService {
   Future<Either<FriendFailure, KtList<FriendRequest>>>
       getSentFriendRequests() async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      return _sentFriendRequestController!.value;
+      return right(_sentFriendRequestController.value);
     }
 
     return left(const FriendFailure.noNetworkAccess());
@@ -153,17 +174,12 @@ class FakeFriendService implements IFriendService {
   Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
     _checkAuth();
 
-    final receivedFriendRequests =
-        _receivedFriendRequestController!.value.toOption().toNullable()!;
+    final receivedFriendRequests = _receivedFriendRequestController.value;
 
-    _receivedFriendRequestController!.add(
-      right(
-        receivedFriendRequests
-            .map(
-              (friendRequest) => friendRequest.copyWith(read: true),
-            )
-            .toList(),
-      ),
+    _receivedFriendRequestController.add(
+      receivedFriendRequests
+          .map((friendRequest) => friendRequest.copyWith(read: true))
+          .toList(),
     );
 
     return right(unit);
@@ -174,20 +190,13 @@ class FakeFriendService implements IFriendService {
     required Friend friend,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      final friends = _friendsController!.value
-          .toOption()
-          .toNullable()!
-          .toMutableList()
-          .asList();
+      final friends = _friendsController.value.toMutableList().asList();
 
-      friends.removeWhere(
-        (element) => element == friend,
-      );
+      friends.removeWhere((element) => element == friend);
 
-      _friendsController!.add(
-        right(friends.toImmutableList()),
-      );
+      _friendsController.add(friends.toImmutableList());
 
       return right(unit);
     }
@@ -195,7 +204,7 @@ class FakeFriendService implements IFriendService {
     return left(const FriendFailure.noNetworkAccess());
   }
 
-// TODO imple better
+  // TODO imple better and test success case
   @override
   Future<Either<FriendFailure, KtList<UserSnapshot>>> searchUserByUsername({
     required String username,
@@ -203,6 +212,7 @@ class FakeFriendService implements IFriendService {
     int limit = 5,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       if (_userSearchResults.isNotEmpty) {
         final name = _userSearchResults.last.name.getOrCrash();
@@ -221,13 +231,13 @@ class FakeFriendService implements IFriendService {
         }
       }
 
-      if (Username('$username-xxx').isValid()) {
+      if (Username('${username}xxxx').isValid()) {
         _userSearchResults.addAll(
           List.generate(
             limit,
             (index) => UserSnapshot.dummy().copyWith(
               name: Username(
-                '$username-${100 + _userSearchResults.length + index}',
+                '$username${1000 + _userSearchResults.length + index}',
               ),
             ),
           ),
@@ -238,7 +248,7 @@ class FakeFriendService implements IFriendService {
             limit,
             (index) => UserSnapshot.dummy().copyWith(
               name: Username(
-                '${username.substring(0, 5)}-${100 + _userSearchResults.length + index}',
+                '${username.substring(0, 5)}${1000 + _userSearchResults.length + index}',
               ),
             ),
           ),
@@ -256,9 +266,11 @@ class FakeFriendService implements IFriendService {
     required String id,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
       return right(
-          UserSnapshot.dummy().copyWith(id: UniqueId.fromUniqueString(id)));
+        UserSnapshot.dummy().copyWith(id: UniqueId.fromUniqueString(id)),
+      );
     }
 
     return left(const FriendFailure.noNetworkAccess());
@@ -269,18 +281,15 @@ class FakeFriendService implements IFriendService {
     required UniqueId toId,
   }) async {
     _checkAuth();
+
     if (hasNetworkConnection) {
-      final sentFriendRequests = _sentFriendRequestController!.value
-          .toOption()
-          .toNullable()!
-          .toMutableList();
+      final sentFriendRequests =
+          _sentFriendRequestController.value.toMutableList();
 
       sentFriendRequests.add(
         FriendRequest.dummy().copyWith(toId: toId),
       );
-      _sentFriendRequestController!.add(
-        right(sentFriendRequests),
-      );
+      _sentFriendRequestController.add(sentFriendRequests);
       return right(unit);
     }
 
@@ -290,14 +299,28 @@ class FakeFriendService implements IFriendService {
   @override
   Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
-    return _friendsController!.stream;
+
+    if (hasNetworkConnection) {
+      return _friendsController.stream.map(
+        (friends) => right(friends),
+      );
+    } else {
+      return Stream.value(left(const FriendFailure.noNetworkAccess()));
+    }
   }
 
   @override
   Stream<Either<FriendFailure, KtList<FriendRequest>>>
       watchReceivedFriendRequests() {
     _checkAuth();
-    return _receivedFriendRequestController!.stream;
+
+    if (hasNetworkConnection) {
+      return _receivedFriendRequestController.stream.map(
+        (receivedFriendRequests) => right(receivedFriendRequests),
+      );
+    } else {
+      return Stream.value(left(const FriendFailure.noNetworkAccess()));
+    }
   }
 
   @override
@@ -305,7 +328,13 @@ class FakeFriendService implements IFriendService {
       watchSentFriendRequests() {
     _checkAuth();
 
-    return _sentFriendRequestController!.stream;
+    if (hasNetworkConnection) {
+      return _sentFriendRequestController.stream.map(
+        (sentFriendRequests) => right(sentFriendRequests),
+      );
+    } else {
+      return Stream.value(left(const FriendFailure.noNetworkAccess()));
+    }
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
@@ -315,65 +344,19 @@ class FakeFriendService implements IFriendService {
     }
   }
 
-  /// Creates a new friend controller seeded with either a list of [Friend] or [FriendFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<FriendFailure, KtList<Friend>>>
-      _createFriendsController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(
-              faker.randomGenerator
-                  .amount((i) => Friend.dummy(), 5)
-                  .toImmutableList(),
-            )
-          : left(const FriendFailure.noNetworkAccess()),
-    );
-  }
-
-  /// Creates a new received friendRequests controller seeded with either a list of [FriendRequests] or [FriendFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _createReceivedFriendRequestsController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(
-              faker.randomGenerator
-                  .amount((i) => FriendRequest.dummy(), 5)
-                  .toImmutableList(),
-            )
-          : left(const FriendFailure.noNetworkAccess()),
-    );
-  }
-
-  /// Creates a new sent friendRequests controller seeded with either a list of [FriendRequests] or [FriendFailure] depending
-  /// on available network connection.
-  static BehaviorSubject<Either<FriendFailure, KtList<FriendRequest>>>
-      _createSentFriendRequestsController() {
-    return BehaviorSubject.seeded(
-      hasNetworkConnection
-          ? right(
-              faker.randomGenerator
-                  .amount((i) => FriendRequest.dummy(), 20)
-                  .toImmutableList(),
-            )
-          : left(const FriendFailure.noNetworkAccess()),
-    );
-  }
-
   /// Removes [friendRequest] from the receivedFriendRequests and emits event.
-  void _removeFromReceivedFriendRequests(FriendRequest friendRequest) {
-    final receivedFriendRequests = _receivedFriendRequestController!.value
-        .toOption()
-        .toNullable()!
-        .toMutableList()
-        .asList();
+  void _removeFromReceivedFriendRequests(
+    FriendRequest friendRequest,
+  ) {
+    final receivedFriendRequests =
+        _receivedFriendRequestController.value.toMutableList().asList();
 
     receivedFriendRequests.removeWhere(
       (element) => element == friendRequest,
     );
 
-    _receivedFriendRequestController!.add(
-      right(receivedFriendRequests.toImmutableList()),
+    _receivedFriendRequestController.add(
+      receivedFriendRequests.toImmutableList(),
     );
   }
 }
