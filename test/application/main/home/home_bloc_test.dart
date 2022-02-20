@@ -1,12 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/application/main/home/home_bloc.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
-import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dartz/dartz.dart';
@@ -14,19 +14,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockUserService extends Mock implements IUserService {}
+class MockUserCubit extends MockCubit<UserState> implements UserCubit {}
 
-class MockGameInvitationService extends Mock implements IGameInvitationService {
-}
+class MockFriendCubit extends MockCubit<FriendsState> implements FriendsCubit {}
 
-class MockFriendService extends Mock implements IFriendService {}
+class MockGameInvitationCubit extends MockCubit<GameInvitationsState>
+    implements GameInvitationsCubit {}
 
 void main() {
-  late MockUserService mockUserService;
-  late MockGameInvitationService mockGameInvitationService;
-  late MockFriendService mockFriendService;
+  late MockUserCubit mockUserCubit;
+  late MockFriendCubit mockFriendCubit;
+  late MockGameInvitationCubit mockGameInvitationCubit;
 
-  // photoUrl has to be null becaus bloc loads url in background
+  // photoUrl has to be null because bloc loads url in background // TODO should be in infra
   final initialUser = User.dummy().copyWith.profile(photoUrl: null);
   final updatedUser = User.dummy().copyWith.profile(photoUrl: null);
   final initialReceivedGameInvitations =
@@ -41,17 +41,17 @@ void main() {
       .map((element) => element.copyWith(read: !element.read));
 
   setUp(() {
-    mockUserService = MockUserService();
-    mockGameInvitationService = MockGameInvitationService();
-    mockFriendService = MockFriendService();
+    mockUserCubit = MockUserCubit();
+    mockGameInvitationCubit = MockGameInvitationCubit();
+    mockFriendCubit = MockFriendCubit();
   });
 
   test('Initial state set to HomeLoadInProgress.', () {
     // Arrange & Act
     final underTest = HomeBloc(
-      mockUserService,
-      mockGameInvitationService,
-      mockFriendService,
+      mockUserCubit,
+      mockFriendCubit,
+      mockGameInvitationCubit,
     );
 
     // Assert
@@ -62,40 +62,45 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'WHEN user failure arrives '
-      'THEN emit [HomeLoadInProgress, HomeLoadFailure].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [left(const UserFailure.noNetworkAccess())],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
+      'THEN emit [HomeLoadFailure].',
+      setUp: () {
+        const userState =
+            UserState.loadFailure(failure: UserFailure.noNetworkAccess());
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+        const invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: KtList.empty(),
+          sentGameInvitations: KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const friendsState = FriendsState.loadSuccess(
+          friends: KtList.empty(),
+          receivedFriendRequests: KtList.empty(),
+          sentFriendRequests: KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
       ],
     );
@@ -103,40 +108,43 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'WHEN game invitation failure arrives '
-      'THEN emit [HomeLoadInProgress, HomeLoadFailure].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [left(const GameInvitationFailure.noNetworkAccess())],
-          ),
+      'THEN emit [HomeLoadFailure].',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: User.dummy());
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+        const invitationState = GameInvitationsState.loadFailure(
+          failure: GameInvitationFailure.noNetworkAccess(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const friendsState = FriendsState.loadSuccess(
+          friends: KtList.empty(),
+          receivedFriendRequests: KtList.empty(),
+          sentFriendRequests: KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
       ],
     );
@@ -144,79 +152,85 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN current state is HomeLoadInProgress '
       'WHEN friend failure arrives '
-      'THEN emit [HomeLoadInProgress, HomeLoadFailure].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
+      'THEN emit [HomeLoadFailure].',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: User.dummy());
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [left(const FriendFailure.noNetworkAccess())],
-          ),
+        const invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: KtList.empty(),
+          sentGameInvitations: KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const friendsState =
+            FriendsState.loadFailure(failure: FriendFailure.noNetworkAccess());
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         const HomeState.loadFailure(),
       ],
     );
 
     blocTest<HomeBloc, HomeState>(
       'GIVEN all data arrived '
-      'THEN emit [HomeLoadInProgress, HomeLoadSuccess].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+      'THEN emit [HomeLoadSuccess].',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: initialUser);
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        final invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: initialReceivedGameInvitations,
+          sentGameInvitations: const KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
+        );
+
+        final friendsState = FriendsState.loadSuccess(
+          friends: const KtList.empty(),
+          receivedFriendRequests: initialReceivedFriendRequests,
+          sentFriendRequests: const KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         HomeState.loadSuccess(
           user: initialUser,
           unreadGameInvitations:
@@ -230,34 +244,42 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'GIVEN no user arrived '
       'THEN emit [HomeLoadInProgress].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => const Stream.empty(),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+      setUp: () {
+        const userState = UserState.loadInProgress();
+        whenListen(
+          mockUserCubit,
+          const Stream<UserState>.empty(),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: KtList.empty(),
+          sentGameInvitations: KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
+        );
+
+        const friendsState = FriendsState.loadSuccess(
+          friends: KtList.empty(),
+          receivedFriendRequests: KtList.empty(),
+          sentFriendRequests: KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
@@ -266,34 +288,39 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'WHEN no reveived game invitations arrived '
       'THEN emit [HomeLoadInProgress].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => const Stream.empty(),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+      setUp: () {
+        final userState = UserState.loadSuccess(user: User.dummy());
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const invitationState = GameInvitationsState.loadInProgress();
+        whenListen(
+          mockGameInvitationCubit,
+          const Stream<GameInvitationsState>.empty(),
+          initialState: invitationState,
+        );
+
+        const friendsState = FriendsState.loadSuccess(
+          friends: KtList.empty(),
+          receivedFriendRequests: KtList.empty(),
+          sentFriendRequests: KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
@@ -302,73 +329,83 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'WHEN no reveived friend requests arrived '
       'THEN emit [HomeLoadInProgress].',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => const Stream.empty(),
+      setUp: () {
+        final userState = UserState.loadSuccess(user: User.dummy());
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        const invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: KtList.empty(),
+          sentGameInvitations: KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
+        );
+
+        const friendsState = FriendsState.loadInProgress();
+        whenListen(
+          mockFriendCubit,
+          const Stream<FriendsState>.empty(),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
         const HomeState.loadInProgress(),
       ],
     );
 
     blocTest<HomeBloc, HomeState>(
-      'THEN emit [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new user.',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser), right(updatedUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+      'THEN emit [HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new user.',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: initialUser);
+        final updatedUserState = UserState.loadSuccess(user: updatedUser);
+        whenListen(
+          mockUserCubit,
+          Stream.fromIterable([userState, updatedUserState]),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        final invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: initialReceivedGameInvitations,
+          sentGameInvitations: const KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
+        );
+
+        final friendsState = FriendsState.loadSuccess(
+          friends: const KtList.empty(),
+          receivedFriendRequests: initialReceivedFriendRequests,
+          sentFriendRequests: const KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         HomeState.loadSuccess(
           user: initialUser,
           unreadGameInvitations:
@@ -387,42 +424,48 @@ void main() {
     );
 
     blocTest<HomeBloc, HomeState>(
-      'Emit [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received game invitations.',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [
-              right(initialReceivedGameInvitations),
-              right(updatedReceivedGameInvitations)
-            ],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedFriendRequests)],
-          ),
+      'Emit [HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received game invitations.',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: initialUser);
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        final invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: initialReceivedGameInvitations,
+          sentGameInvitations: const KtList.empty(),
+        );
+        final updatedInvitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: updatedReceivedGameInvitations,
+          sentGameInvitations: const KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.fromIterable([invitationState, updatedInvitationState]),
+          initialState: invitationState,
+        );
+
+        final friendsState = FriendsState.loadSuccess(
+          friends: const KtList.empty(),
+          receivedFriendRequests: initialReceivedFriendRequests,
+          sentFriendRequests: const KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.value(friendsState),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         HomeState.loadSuccess(
           user: initialUser,
           unreadGameInvitations:
@@ -441,42 +484,49 @@ void main() {
     );
 
     blocTest<HomeBloc, HomeState>(
-      'Emit [HomeLoadInProgress, HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received friend requests.',
-      build: () {
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialUser)],
-          ),
-        );
-        when<Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>>(
-          () => mockGameInvitationService.watchReceivedGameInvitations(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [right(initialReceivedGameInvitations)],
-          ),
-        );
-        when<Stream<Either<FriendFailure, KtList<FriendRequest>>>>(
-          () => mockFriendService.watchReceivedFriendRequests(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable(
-            [
-              right(initialReceivedFriendRequests),
-              right(updatedReceivedFriendRequests)
-            ],
-          ),
+      'Emit [HomeLoadSuccess, HomeLoadSuccess, ...] after each arrived new received friend requests.',
+      setUp: () {
+        final userState = UserState.loadSuccess(user: initialUser);
+        whenListen(
+          mockUserCubit,
+          Stream.value(userState),
+          initialState: userState,
         );
 
-        return HomeBloc(
-          mockUserService,
-          mockGameInvitationService,
-          mockFriendService,
+        final invitationState = GameInvitationsState.loadSuccess(
+          receivedGameInvitations: initialReceivedGameInvitations,
+          sentGameInvitations: const KtList.empty(),
+        );
+        whenListen(
+          mockGameInvitationCubit,
+          Stream.value(invitationState),
+          initialState: invitationState,
+        );
+
+        final friendsState = FriendsState.loadSuccess(
+          friends: const KtList.empty(),
+          receivedFriendRequests: initialReceivedFriendRequests,
+          sentFriendRequests: const KtList.empty(),
+        );
+        final updatedFriendsState = FriendsState.loadSuccess(
+          friends: const KtList.empty(),
+          receivedFriendRequests: updatedReceivedFriendRequests,
+          sentFriendRequests: const KtList.empty(),
+        );
+        whenListen(
+          mockFriendCubit,
+          Stream.fromIterable([friendsState, updatedFriendsState]),
+          initialState: friendsState,
         );
       },
+      build: () => HomeBloc(
+        mockUserCubit,
+        mockFriendCubit,
+        mockGameInvitationCubit,
+      ),
       act: (bloc) => bloc.add(const HomeEvent.started()),
+      wait: const Duration(milliseconds: 500),
       expect: () => <HomeState>[
-        const HomeState.loadInProgress(),
         HomeState.loadSuccess(
           user: initialUser,
           unreadGameInvitations:
