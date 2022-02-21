@@ -36,7 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // Register event handlers
     on<_Started>(
       (_, emit) async => _handleStarted(emit),
-      transformer: restartable(),
+      transformer: restartable(), // TODO test
     );
   }
 
