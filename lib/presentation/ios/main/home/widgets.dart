@@ -9,7 +9,7 @@ class _SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppNavigationBarButton(
-     // key: const Key('settings_button'), // TODO move up or not
+      // key: const Key('settings_button'), // TODO move up or not
       noPaddingLeft: true,
       onPressed: () => context.router.push(const SettingsFlowRoute()),
       child: Image.asset(AppImages.settingsNew),
@@ -233,7 +233,7 @@ class _TrainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppActionButton.large(
-     // key: const Key('train_button'), // TODO move up or not
+      // key: const Key('train_button'), // TODO move up or not
       onPressed: () => context.router.replace(const TrainingFlowRoute()),
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
