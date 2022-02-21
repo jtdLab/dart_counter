@@ -1,155 +1,111 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/settings/settings_bloc.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
-import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAuthService extends Mock implements IAuthService {}
 
-class MockUserService extends Mock implements IUserService {}
-
 void main() {
   late MockAuthService mockAuthService;
-  late MockUserService mockUserService;
-
-  late User initialUser;
-  late User updatedUser;
 
   setUp(() {
-    initialUser = User.dummy();
-    updatedUser = User.dummy();
     mockAuthService = MockAuthService();
-    mockUserService = MockUserService();
   });
 
-  test(
-      'GIVEN user is not available '
-      'THEN throw ApplicationError.', () {
-    // Arrange
-    when(() => mockUserService.getUser())
-        .thenReturn(left(const UserFailure.unableToLoadData()));
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set to SettingsInitial with localeChanged false.',
+          () {
+        // Act
+        final underTest = SettingsBloc(mockAuthService);
 
-    // Act & Assert
-    expect(
-      () => SettingsBloc(
-        mockAuthService,
-        mockUserService,
-      ),
-      throwsA(isA<ApplicationError>()),
-    );
-  });
+        // Assert
+        expect(
+          underTest.state,
+          const SettingsState.initial(localeChanged: false),
+        );
+      });
+    });
 
-  test(
-      'GIVEN user available '
-      'THEN initial state set to SettingsInitial.', () {
-    // Arrange & Act
-    when<Either<UserFailure, User>>(
-      () => mockUserService.getUser(),
-    ).thenAnswer((_) => right(initialUser));
+    group('#GetIt#', () {
+      test(
+          'GIVEN SettingsBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => SettingsBloc.getIt(), throwsA(anything));
+      });
 
-    final underTest = SettingsBloc(mockAuthService, mockUserService);
-
-    // Assert
-    expect(
-      underTest.state,
-      SettingsState.initial(
-        user: initialUser,
-        localeChanged: false,
-      ),
-    );
-  });
-
-  group('Started', () {
-    blocTest<SettingsBloc, SettingsState>(
-      'Emit [SettingsInitial] with updated user each time a new user arrives.',
-      build: () {
-        when<Either<UserFailure, User>>(
-          () => mockUserService.getUser(),
-        ).thenAnswer((_) => right(initialUser));
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) => Stream.fromIterable([right(updatedUser)]),
+      test(
+          'GIVEN SettingsBloc is registered inside getIt '
+          'THEN initial state set to SettingsInitial with localeChanged false.',
+          () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => SettingsBloc(mockAuthService),
         );
 
-        return SettingsBloc(mockAuthService, mockUserService);
-      },
-      seed: () =>
-          SettingsState.initial(user: initialUser, localeChanged: false),
-      act: (bloc) => bloc.add(const SettingsEvent.started()),
-      expect: () => <SettingsState>[
-        SettingsState.initial(
-          user: updatedUser,
-          localeChanged: false,
-        )
-      ],
-    );
+        // Act
+        final underTest = SettingsBloc.getIt();
 
-    blocTest<SettingsBloc, SettingsState>(
-      'Emit [] each time a new user failure arrives.',
-      build: () {
-        when<Either<UserFailure, User>>(
-          () => mockUserService.getUser(),
-        ).thenAnswer((_) => right(initialUser));
-        when<Stream<Either<UserFailure, User>>>(
-          () => mockUserService.watchUser(),
-        ).thenAnswer(
-          (_) =>
-              Stream.fromIterable([left(const UserFailure.noNetworkAccess())]),
+        // Assert
+        expect(
+          underTest.state,
+          const SettingsState.initial(localeChanged: false),
         );
+      });
 
-        return SettingsBloc(mockAuthService, mockUserService);
-      },
-      seed: () =>
-          SettingsState.initial(user: initialUser, localeChanged: false),
-      act: (bloc) => bloc.add(const SettingsEvent.started()),
-      expect: () => <SettingsState>[],
-    );
+      test(
+          'GIVEN SettingsBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = SettingsBloc(mockAuthService);
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = SettingsBloc.getIt();
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
   });
 
-  group('LocaleChanged', () {
-    blocTest<SettingsBloc, SettingsState>(
-      'Emit [SettingsInitial, SettingsInitial].',
-      build: () {
-        when<Either<UserFailure, User>>(
-          () => mockUserService.getUser(),
-        ).thenAnswer((_) => right(initialUser));
+  group('#Events#', () {
+    group('LocaleChanged', () {
+      blocTest<SettingsBloc, SettingsState>(
+        'GIVEN current state is SettingsInitial with localeChanged false '
+        'THEN emit [SettingsInitial, SettingsInitial].',
+        build: () => SettingsBloc(mockAuthService),
+        seed: () => const SettingsState.initial(localeChanged: false),
+        act: (bloc) => bloc.add(const SettingsEvent.localeChanged()),
+        expect: () => [
+          const SettingsState.initial(localeChanged: true),
+          const SettingsState.initial(localeChanged: false),
+        ],
+      );
+    });
 
-        return SettingsBloc(mockAuthService, mockUserService);
-      },
-      seed: () =>
-          SettingsState.initial(user: initialUser, localeChanged: false),
-      act: (bloc) => bloc.add(const SettingsEvent.localeChanged()),
-      expect: () => <SettingsState>[
-        SettingsState.initial(user: initialUser, localeChanged: true),
-        SettingsState.initial(user: initialUser, localeChanged: false),
-      ],
-    );
-  });
-
-  group('SignOutPressed', () {
-    blocTest<SettingsBloc, SettingsState>(
-      'Emit [].',
-      build: () {
-        when(() => mockAuthService.signOut()).thenAnswer(
-          (_) async => right(unit),
-        );
-        when<Either<UserFailure, User>>(
-          () => mockUserService.getUser(),
-        ).thenAnswer((_) => right(initialUser));
-
-        return SettingsBloc(mockAuthService, mockUserService);
-      },
-      act: (bloc) => bloc.add(const SettingsEvent.signOutPressed()),
-      expect: () => <SettingsState>[],
-      verify: (_) {
-        verify(() => mockAuthService.signOut()).called(1);
-      },
-    );
+    group('SignOutPressed', () {
+      blocTest<SettingsBloc, SettingsState>(
+        'Sign out.',
+        setUp: () {
+          when(() => mockAuthService.signOut()).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => SettingsBloc(mockAuthService),
+        act: (bloc) => bloc.add(const SettingsEvent.signOutPressed()),
+        verify: (_) {
+          verify(() => mockAuthService.signOut()).called(1);
+        },
+      );
+    });
   });
 }

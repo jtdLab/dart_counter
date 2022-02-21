@@ -134,11 +134,12 @@ class ChangePasswordBloc
               emit(const ChangePasswordState.submitInProgress());
 
               await Future.delayed(const Duration(seconds: 1));
-              authFailure = (await _authService.updatePassword(
+
+              final updatePasswordResult = await _authService.updatePassword(
                 oldPassword: oldPassword,
                 newPassword: newPassword,
-              ))
-                  .fold(
+              );
+              authFailure = updatePasswordResult.fold(
                 (failure) => failure,
                 (_) => null,
               );

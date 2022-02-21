@@ -3,6 +3,7 @@ import 'package:dart_counter/application/main/settings/change_email/change_email
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,137 +11,190 @@ import 'package:mocktail/mocktail.dart';
 class MockUserService extends Mock implements IUserService {}
 
 void main() {
+  late MockUserService mockUserService;
+
   setUpAll(() {
-    // mocktail related setup
+    // Mocktail related setup
     registerFallbackValue(EmailAddress.empty());
   });
-
-  late MockUserService mockUserService;
 
   setUp(() {
     mockUserService = MockUserService();
   });
 
-  test(
-      'Initial state set to ChangeEmailInitial with empty email and showErrorMessages false.',
-      () {
-    // Arrange & Act
-    final underTest = ChangeEmailBloc(mockUserService);
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test(
+          'Initial state set to ChangeEmailInitial with empty email and showErrorMessages false.',
+          () {
+        // Arrange & Act
+        final underTest = ChangeEmailBloc(mockUserService);
 
-    // Assert
-    expect(
-      underTest.state,
-      ChangeEmailState.initial(
-        newEmail: EmailAddress.empty(),
-        showErrorMessages: false,
-      ),
-    );
+        // Assert
+        expect(
+          underTest.state,
+          ChangeEmailState.initial(
+            newEmail: EmailAddress.empty(),
+            showErrorMessages: false,
+          ),
+        );
+      });
+    });
+
+    group('#GetIt#', () {
+      test(
+          'GIVEN ChangeEmailBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => ChangeEmailBloc.getIt(), throwsA(anything));
+      });
+
+      test(
+          'GIVEN ChangeEmailBloc is registered inside getIt '
+          'THEN initial state set to ChangeEmailInitial with empty email and showErrorMessages false.',
+          () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => ChangeEmailBloc(mockUserService),
+        );
+
+        // Act
+        final underTest = ChangeEmailBloc.getIt();
+
+        // Assert
+        expect(
+          underTest.state,
+          ChangeEmailState.initial(
+            newEmail: EmailAddress.empty(),
+            showErrorMessages: false,
+          ),
+        );
+      });
+
+      test(
+          'GIVEN ChangeEmailBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = ChangeEmailBloc(mockUserService);
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = ChangeEmailBloc.getIt();
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
   });
 
-  group('NewEmailChanged', () {
-    blocTest(
-      'GIVEN current state is ChangeEmailInitial '
-      'THEN emit [ChangeEmailInitial].',
-      build: () => ChangeEmailBloc(mockUserService),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
-      expect: () => [
-        ChangeEmailInitial(
-          newEmail: EmailAddress('abcd'),
-          showErrorMessages: false,
-        ),
-      ],
-    );
-
-    blocTest(
-      'GIVEN current state is ChangeEmailSubmitFailure '
-      'THEN emit [ChangeEmailInitial].',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => const ChangeEmailState.submitFailure(
-        userFailure: UserFailure.invalidEmail(),
-      ),
-      act: (ChangeEmailBloc bloc) =>
-          bloc.add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
-      expect: () => [
-        ChangeEmailInitial(
-          newEmail: EmailAddress('abcd'),
-          showErrorMessages: true,
-        ),
-      ],
-    );
-  });
-
-  group('ConfirmPressed', () {
-    blocTest(
-      'GIVEN current state is ChangeEmailInitial with valid and available email '
-      'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitSuccess].',
-      build: () {
-        when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserService.updateEmailAddress(
-            newEmailAddress: any(named: 'newEmailAddress'),
+  group('#Events#', () {
+    group('NewEmailChanged', () {
+      blocTest<ChangeEmailBloc, ChangeEmailState>(
+        'GIVEN current state is ChangeEmailInitial '
+        'THEN emit [ChangeEmailInitial].',
+        build: () => ChangeEmailBloc(mockUserService),
+        act: (bloc) => bloc
+            .add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
+        expect: () => [
+          ChangeEmailInitial(
+            newEmail: EmailAddress('abcd'),
+            showErrorMessages: false,
           ),
-        ).thenAnswer((_) async => right(unit));
+        ],
+      );
 
-        return ChangeEmailBloc(mockUserService);
-      },
-      seed: () => ChangeEmailState.initial(
-        newEmail: EmailAddress('a@b.com'),
-        showErrorMessages: false,
-      ),
-      act: (ChangeEmailBloc bloc) => bloc.add(
-        const ChangeEmailEvent.confirmPressed(),
-      ),
-      wait: const Duration(seconds: 1),
-      expect: () => [
-        const ChangeEmailSubmitInProgress(),
-        const ChangeEmailSubmitSuccess(),
-      ],
-    );
-
-    blocTest(
-      'GIVEN current state is ChangeEmailInitial with valid and not available email '
-      'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitFailure].',
-      build: () {
-        when<Future<Either<UserFailure, Unit>>>(
-          () => mockUserService.updateEmailAddress(
-            newEmailAddress: any(named: 'newEmailAddress'),
-          ),
-        ).thenAnswer((_) async => left(const UserFailure.unexpected()));
-
-        return ChangeEmailBloc(mockUserService);
-      },
-      seed: () => ChangeEmailState.initial(
-        newEmail: EmailAddress('a@b.com'),
-        showErrorMessages: false,
-      ),
-      act: (ChangeEmailBloc bloc) => bloc.add(
-        const ChangeEmailEvent.confirmPressed(),
-      ),
-      wait: const Duration(seconds: 1),
-      expect: () => [
-        const ChangeEmailSubmitInProgress(),
-        const ChangeEmailSubmitFailure(
-          userFailure: UserFailure.unexpected(),
-        ),
-      ],
-    );
-
-    blocTest(
-      'GIVEN current state is ChangeEmailInitial with invalid email '
-      'THEN emit [ChangeEmailSubmitFailure].',
-      build: () => ChangeEmailBloc(mockUserService),
-      seed: () => ChangeEmailState.initial(
-        newEmail: EmailAddress('abd'),
-        showErrorMessages: false,
-      ),
-      act: (ChangeEmailBloc bloc) => bloc.add(
-        const ChangeEmailEvent.confirmPressed(),
-      ),
-      expect: () => [
-        const ChangeEmailSubmitFailure(
+      blocTest<ChangeEmailBloc, ChangeEmailState>(
+        'GIVEN current state is ChangeEmailSubmitFailure '
+        'THEN emit [ChangeEmailInitial].',
+        build: () => ChangeEmailBloc(mockUserService),
+        seed: () => const ChangeEmailState.submitFailure(
           userFailure: UserFailure.invalidEmail(),
         ),
-      ],
-    );
+        act: (bloc) => bloc
+            .add(const ChangeEmailEvent.newEmailChanged(newNewEmail: 'abcd')),
+        expect: () => [
+          ChangeEmailInitial(
+            newEmail: EmailAddress('abcd'),
+            showErrorMessages: true,
+          ),
+        ],
+      );
+    });
+
+    group('ConfirmPressed', () {
+      blocTest<ChangeEmailBloc, ChangeEmailState>(
+        'GIVEN current state is ChangeEmailInitial with valid and available email '
+        'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitSuccess].',
+        setUp: () {
+          when(
+            () => mockUserService.updateEmailAddress(
+              newEmailAddress: any(named: 'newEmailAddress'),
+            ),
+          ).thenAnswer((_) async => right(unit));
+        },
+        build: () => ChangeEmailBloc(mockUserService),
+        seed: () => ChangeEmailState.initial(
+          newEmail: EmailAddress('a@b.com'),
+          showErrorMessages: false,
+        ),
+        act: (bloc) => bloc.add(
+          const ChangeEmailEvent.confirmPressed(),
+        ),
+        wait: const Duration(seconds: 1),
+        expect: () => [
+          const ChangeEmailSubmitInProgress(),
+          const ChangeEmailSubmitSuccess(),
+        ],
+      );
+
+      blocTest<ChangeEmailBloc, ChangeEmailState>(
+        'GIVEN current state is ChangeEmailInitial with valid and not available email '
+        'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitFailure].',
+        setUp: () {
+          when(
+            () => mockUserService.updateEmailAddress(
+              newEmailAddress: any(named: 'newEmailAddress'),
+            ),
+          ).thenAnswer((_) async => left(const UserFailure.unexpected()));
+        },
+        build: () => ChangeEmailBloc(mockUserService),
+        seed: () => ChangeEmailState.initial(
+          newEmail: EmailAddress('a@b.com'),
+          showErrorMessages: false,
+        ),
+        act: (bloc) => bloc.add(
+          const ChangeEmailEvent.confirmPressed(),
+        ),
+        wait: const Duration(seconds: 1),
+        expect: () => [
+          const ChangeEmailSubmitInProgress(),
+          const ChangeEmailSubmitFailure(
+            userFailure: UserFailure.unexpected(),
+          ),
+        ],
+      );
+
+      blocTest<ChangeEmailBloc, ChangeEmailState>(
+        'GIVEN current state is ChangeEmailInitial with invalid email '
+        'THEN emit [ChangeEmailSubmitFailure].',
+        build: () => ChangeEmailBloc(mockUserService),
+        seed: () => ChangeEmailState.initial(
+          newEmail: EmailAddress('abd'),
+          showErrorMessages: false,
+        ),
+        act: (bloc) => bloc.add(
+          const ChangeEmailEvent.confirmPressed(),
+        ),
+        expect: () => [
+          const ChangeEmailSubmitFailure(
+            userFailure: UserFailure.invalidEmail(),
+          ),
+        ],
+      );
+    });
   });
 }
