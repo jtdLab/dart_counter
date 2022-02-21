@@ -13,6 +13,7 @@ part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
+// THIS Bloc is not rly needed atm becaus it only listens to the user cubit and merges some careerstats
 // TODO maybe provide user in seperate bloc and remove this bloc
 
 @injectable
@@ -53,7 +54,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       ProfileBloc(
         otherDependencies![0] as UserCubit,
       );
-      
 
   /// Handle incoming [_Started] event.
   Future<void> _handleStarted(

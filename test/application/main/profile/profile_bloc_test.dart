@@ -1,4 +1,7 @@
-import 'package:bloc_test/bloc_test.dart';
+// TODO remove this file if bloc is finaly not neeedd
+
+/**
+ * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/application/main/profile/profile_bloc.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
@@ -92,3 +95,5 @@ void main() {
     // TODO test when user failur arrives
   });
 }
+
+ */

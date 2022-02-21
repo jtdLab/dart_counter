@@ -75,6 +75,7 @@ dependencies:
   bloc_concurrency: ^0.2.0
   logger: ^1.1.0
   quiver: ^3.0.1+1
+  flutter_cache_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:
