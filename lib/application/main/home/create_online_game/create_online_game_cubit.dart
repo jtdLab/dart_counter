@@ -9,7 +9,7 @@ part 'create_online_game_cubit.freezed.dart';
 part 'create_online_game_state.dart';
 
 // TODO understand and maybe replace if better option is available
-// TODO convert to bloc
+// TODO convert to bloc ??
 
 @injectable
 class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
