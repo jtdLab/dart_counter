@@ -8,7 +8,6 @@ import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/widgets.dart'; // TODO shouldnt be here
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -17,6 +16,8 @@ import 'package:rxdart/rxdart.dart';
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
+
+// TODO doc
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -74,34 +75,38 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       UserState userState,
       FriendsState friendsState,
       GameInvitationsState gameInvitationsState,
-    ) {
-      return userState.when(
-        loadInProgress: () => const HomeState.loadInProgress(),
-        loadSuccess: (user) => friendsState.when(
+    ) =>
+        userState.when(
           loadInProgress: () => const HomeState.loadInProgress(),
-          loadSuccess: (_, receivedFriendRequests, __) =>
-              gameInvitationsState.when(
+          loadSuccess: (user) => friendsState.when(
             loadInProgress: () => const HomeState.loadInProgress(),
-            loadSuccess: (receivedGameInvitations, _) => HomeState.loadSuccess(
-              user: user,
-              unreadFriendRequests:
-                  receivedFriendRequests.count((element) => !element.read),
-              unreadGameInvitations:
-                  receivedGameInvitations.count((element) => !element.read),
+            loadSuccess: (_, receivedFriendRequests, __) =>
+                gameInvitationsState.when(
+              loadInProgress: () => const HomeState.loadInProgress(),
+              loadSuccess: (receivedGameInvitations, _) =>
+                  HomeState.loadSuccess(
+                user: user,
+                unreadFriendRequests:
+                    receivedFriendRequests.count((element) => !element.read),
+                unreadGameInvitations:
+                    receivedGameInvitations.count((element) => !element.read),
+              ),
+              loadFailure: (_) => const HomeState.loadFailure(),
             ),
             loadFailure: (_) => const HomeState.loadFailure(),
           ),
           loadFailure: (_) => const HomeState.loadFailure(),
-        ),
-        loadFailure: (_) => const HomeState.loadFailure(),
-      );
-    }
+        );
 
     await Future.delayed(const Duration(milliseconds: 500));
-    final userState = _userCubit.state;
-    final friendsState = _friendsCubit.state;
-    final gameInvitationsState = _gameInvitationsCubit.state;
-    emit(handleStates(userState, friendsState, gameInvitationsState));
+
+    emit(
+      handleStates(
+        _userCubit.state,
+        _friendsCubit.state,
+        _gameInvitationsCubit.state,
+      ),
+    );
 
     await emit.forEach(
       CombineLatestStream<Object, HomeState>(
@@ -110,35 +115,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           _friendsCubit.stream,
           _gameInvitationsCubit.stream,
         ],
-        (list) {
-          final userState = list[0] as UserState;
-          final friendsState = list[1] as FriendsState;
-          final gameInvitationsState = list[2] as GameInvitationsState;
-
-          return handleStates(userState, friendsState, gameInvitationsState);
-        },
+        (list) => handleStates(
+          list[0] as UserState,
+          list[1] as FriendsState,
+          list[2] as GameInvitationsState,
+        ),
       ),
       onData: id,
     );
   }
-
-  /**
-  *  // TODO move this to repo layer or keep here
-  /// Loads and caches image located at [url].
-  Future<void> _fetchImage({
-    required String url,
-  }) async {
-    final Completer<void> completer = Completer<void>();
-    final provider = CachedNetworkImageProvider(url);
-    provider.resolve(ImageConfiguration.empty).addListener(
-      ImageStreamListener((image, synchronousCall) {
-        completer.complete();
-      }),
-    );
-
-    await completer.future;
-  }
-    */
 
   /**
    * @override

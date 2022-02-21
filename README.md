@@ -8,7 +8,7 @@ DartCounter for Android and iOS.
 flutter test --coverage
 
 // remove certain files from coverage
-lcov --remove coverage/lcov.info 'lib/mock/*' 'lib/utils/l10n/*' 'lib/utils/colors.dart' -o coverage/new_lcov.info
+lcov --remove coverage/lcov.info 'lib/mock/_' 'lib/utils/l10n/_' 'lib/utils/colors.dart' -o coverage/new_lcov.info
 
 // generate html view
 genhtml coverage/lcov.info -o coverage/output/
@@ -234,15 +234,34 @@ verify: (\_) => verify(() => trainingService.cancel()).called(1),
 
 // TODO setup of all tests
 
-
- _singleTrainingService.createGame(
-            // TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
-            owner: _userService.getUser().getOrElse(
-                  () => throw ApplicationError.unexpectedMissingUser(),
-                ),
-          ),
-
+\_singleTrainingService.createGame(
+// TODO is this correctly a failure in service or not rethink in general for services failures are at runtime errors at dev time
+owner: \_userService.getUser().getOrElse(
+() => throw ApplicationError.unexpectedMissingUser(),
+),
+),
 
           // TODO training bloc test strategy black box atm switch to inherited testing like in play section
 
           // TODO test abstract classes like ingame_bloc_test does
+
+/\*\*
+
+- // TODO move this to repo layer or keep here
+  /// Loads and caches image located at [url].
+  Future<void> \_fetchImage({
+  required String url,
+  }) async {
+  final Completer<void> completer = Completer<void>();
+  final provider = CachedNetworkImageProvider(url);
+  provider.resolve(ImageConfiguration.empty).addListener(
+  ImageStreamListener((image, synchronousCall) {
+  completer.complete();
+  }),
+  );
+
+
+    await completer.future;
+
+}
+\*/
