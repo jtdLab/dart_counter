@@ -89,10 +89,15 @@ class FakeUserService with Disposable implements IUserService {
 
     return userOrFailure.fold(
       (failure) => left(failure),
-      (user) {
+      (user) async {
+        final newPhotoUrl =
+            faker.image.image(width: 200, height: 200); // TODO remove this
+
         final newProfile = user.profile.copyWith(
-          photoUrl: faker.image.image(width: 200, height: 200),
+          photo: newPhotoData,
+          photoUrl: newPhotoUrl,
         );
+
         _userController.add(user.copyWith(profile: newProfile));
         return right(unit);
       },

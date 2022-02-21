@@ -18,10 +18,12 @@ class _$ProfileTearOff {
   const _$ProfileTearOff();
 
   _Profile call(
-      {String? photoUrl,
+      {Uint8List? photo,
+      String? photoUrl,
       required Username name,
       required CareerStats careerStatsOnline}) {
     return _Profile(
+      photo: photo,
       photoUrl: photoUrl,
       name: name,
       careerStatsOnline: careerStatsOnline,
@@ -34,6 +36,7 @@ const $Profile = _$ProfileTearOff();
 
 /// @nodoc
 mixin _$Profile {
+  Uint8List? get photo => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
   Username get name => throw _privateConstructorUsedError;
   CareerStats get careerStatsOnline => throw _privateConstructorUsedError;
@@ -46,7 +49,11 @@ mixin _$Profile {
 abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res>;
-  $Res call({String? photoUrl, Username name, CareerStats careerStatsOnline});
+  $Res call(
+      {Uint8List? photo,
+      String? photoUrl,
+      Username name,
+      CareerStats careerStatsOnline});
 
   $CareerStatsCopyWith<$Res> get careerStatsOnline;
 }
@@ -61,11 +68,16 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? photo = freezed,
     Object? photoUrl = freezed,
     Object? name = freezed,
     Object? careerStatsOnline = freezed,
   }) {
     return _then(_value.copyWith(
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -94,7 +106,11 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   factory _$ProfileCopyWith(_Profile value, $Res Function(_Profile) then) =
       __$ProfileCopyWithImpl<$Res>;
   @override
-  $Res call({String? photoUrl, Username name, CareerStats careerStatsOnline});
+  $Res call(
+      {Uint8List? photo,
+      String? photoUrl,
+      Username name,
+      CareerStats careerStatsOnline});
 
   @override
   $CareerStatsCopyWith<$Res> get careerStatsOnline;
@@ -111,11 +127,16 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? photo = freezed,
     Object? photoUrl = freezed,
     Object? name = freezed,
     Object? careerStatsOnline = freezed,
   }) {
     return _then(_Profile(
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -136,8 +157,13 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
 class _$_Profile implements _Profile {
   const _$_Profile(
-      {this.photoUrl, required this.name, required this.careerStatsOnline});
+      {this.photo,
+      this.photoUrl,
+      required this.name,
+      required this.careerStatsOnline});
 
+  @override
+  final Uint8List? photo;
   @override
   final String? photoUrl;
   @override
@@ -147,7 +173,7 @@ class _$_Profile implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(photoUrl: $photoUrl, name: $name, careerStatsOnline: $careerStatsOnline)';
+    return 'Profile(photo: $photo, photoUrl: $photoUrl, name: $name, careerStatsOnline: $careerStatsOnline)';
   }
 
   @override
@@ -155,6 +181,7 @@ class _$_Profile implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Profile &&
+            const DeepCollectionEquality().equals(other.photo, photo) &&
             const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -164,6 +191,7 @@ class _$_Profile implements _Profile {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(photo),
       const DeepCollectionEquality().hash(photoUrl),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(careerStatsOnline));
@@ -176,10 +204,13 @@ class _$_Profile implements _Profile {
 
 abstract class _Profile implements Profile {
   const factory _Profile(
-      {String? photoUrl,
+      {Uint8List? photo,
+      String? photoUrl,
       required Username name,
       required CareerStats careerStatsOnline}) = _$_Profile;
 
+  @override
+  Uint8List? get photo;
   @override
   String? get photoUrl;
   @override
