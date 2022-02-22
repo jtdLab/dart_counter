@@ -43,13 +43,13 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [DartsDisplayerBloc].
+  /// 1. Instance of `DartsDisplayerBloc`
   @factoryMethod
   factory KeyBoardBloc.injectable(
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       KeyBoardBloc(
-        otherDependencies![0] as DartsDisplayerBloc,
+        otherDependencies[0] as DartsDisplayerBloc,
       );
 
   /// Handle incoming [ValueSelected] event.

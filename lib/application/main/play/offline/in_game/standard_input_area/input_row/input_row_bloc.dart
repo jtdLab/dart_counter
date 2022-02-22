@@ -37,19 +37,19 @@ class InputRowBlocOfflineStandardInputArea extends InputRowBloc {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [PlayOfflineCubit]
+  /// 1. Instance of `PlayOfflineCubit`
   ///
-  /// 2. Instance of [InOfflineGameBloc]
+  /// 2. Instance of `InOfflineGameBloc`
   @factoryMethod
   factory InputRowBlocOfflineStandardInputArea.injectable(
     IDartUtils dartUtils,
     IPlayOfflineService playOfflineService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       InputRowBlocOfflineStandardInputArea(
         dartUtils,
         playOfflineService,
-        otherDependencies![0] as PlayOfflineCubit,
+        otherDependencies[0] as PlayOfflineCubit,
         otherDependencies[1] as InOfflineGameBloc,
       );
 }

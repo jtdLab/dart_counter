@@ -52,17 +52,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [UserCubit].
+  /// 1. Instance of `UserCubit`
   ///
-  /// 2. Instance of [FriendsCubit].
+  /// 2. Instance of `FriendsCubit`
   ///
-  /// 3. Instance of [GameInvitationsCubit].
+  /// 3. Instance of `GameInvitationsCubit`
   @factoryMethod
   factory HomeBloc.injectable(
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       HomeBloc(
-        otherDependencies![0] as UserCubit,
+        otherDependencies[0] as UserCubit,
         otherDependencies[1] as FriendsCubit,
         otherDependencies[2] as GameInvitationsCubit,
       );

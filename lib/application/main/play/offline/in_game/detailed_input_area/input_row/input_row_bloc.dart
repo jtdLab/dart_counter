@@ -31,14 +31,14 @@ class InputRowBlocOfflineDetailedInputArea extends InputRowBloc {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [DartsDisplayerBloc]
+  /// 1. Instance of `DartsDisplayerBloc`
   @factoryMethod
   factory InputRowBlocOfflineDetailedInputArea.injectable(
     IPlayOfflineService playOfflineService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       InputRowBlocOfflineDetailedInputArea(
         playOfflineService,
-        otherDependencies![0] as DartsDisplayerBloc,
+        otherDependencies[0] as DartsDisplayerBloc,
       );
 }

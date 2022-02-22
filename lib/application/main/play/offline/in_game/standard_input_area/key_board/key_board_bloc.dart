@@ -36,19 +36,19 @@ class KeyBoardBlocOfflineStandardInputArea extends KeyBoardBloc {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [PlayOfflineCubit]
+  /// 1. Instance of `PlayOfflineCubit`
   ///
-  /// 2. Instance of [AdvancedSettingsBloc]
+  /// 2. Instance of `AdvancedSettingsBloc`
   ///
-  /// 3. Instance of [InputRowBlocOfflineStandardInputArea]
+  /// 3. Instance of `InputRowBlocOfflineStandardInputArea`
   @factoryMethod
   factory KeyBoardBlocOfflineStandardInputArea.injectable(
     IDartUtils dartUtils,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       KeyBoardBlocOfflineStandardInputArea(
         dartUtils,
-        otherDependencies![0] as PlayOfflineCubit,
+        otherDependencies[0] as PlayOfflineCubit,
         otherDependencies[1] as AdvancedSettingsBloc,
         otherDependencies[2] as InputRowBlocOfflineStandardInputArea,
       );

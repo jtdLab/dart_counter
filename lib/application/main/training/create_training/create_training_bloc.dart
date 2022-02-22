@@ -87,21 +87,21 @@ class CreateTrainingBloc
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [GameInvitationsCubit].
+  /// 1. Instance of `GameInvitationsCubit`
   @factoryMethod
   factory CreateTrainingBloc.injectable(
     ISingleTrainingService singleTrainingService,
     IDoubleTrainingService doubleTrainingService,
     IScoreTrainingService scoreTrainingService,
     IBobsTwentySevenService bobsTwentySevenService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       CreateTrainingBloc(
         singleTrainingService,
         doubleTrainingService,
         scoreTrainingService,
         bobsTwentySevenService,
-        otherDependencies![0] as UserCubit,
+        otherDependencies[0] as UserCubit,
       );
 
   /// Handle incoming [_Started] event.

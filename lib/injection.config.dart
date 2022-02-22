@@ -170,7 +170,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final jtdInjectableModule = _$JtdInjectableModule();
   final fireBaseInjectableModule = _$FireBaseInjectableModule();
   gh.factory<_i3.AddPlayerBloc>(() => _i3.AddPlayerBloc());
-  gh.factoryParam<_i4.AdvancedSettingsBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i4.AdvancedSettingsBloc, List<Object>, dynamic>(
       (otherDependencies, _) =>
           _i4.AdvancedSettingsBloc.injectable(otherDependencies));
   gh.lazySingleton<_i5.AppleSignIn>(() => _i5.AppleSignIn.injectable());
@@ -188,7 +188,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i14.FirebaseStorage>(
       () => fireBaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i15.GoogleSignIn>(() => jtdInjectableModule.googleSignIn);
-  gh.factoryParam<_i16.HomeBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i16.HomeBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i16.HomeBloc.injectable(otherDependencies));
   gh.lazySingleton<_i17.IAuthService>(
       () => _i18.FakeAuthService.injectable(get<_i5.AppleSignIn>(),
@@ -239,76 +239,76 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i46.InScoreTrainingBloc(get<_i36.IScoreTrainingService>()));
   gh.factory<_i47.InSingleTrainingBloc>(
       () => _i47.InSingleTrainingBloc(get<_i38.ISingleTrainingService>()));
-  gh.factoryParam<_i48.InputRowBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i48.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i48.InputRowBloc.injectable(
           get<_i36.IScoreTrainingService>(), otherDependencies));
-  gh.factoryParam<_i49.InputRowBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i49.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i49.InputRowBloc.injectable(
           get<_i26.IDoubleTrainingService>(), otherDependencies));
-  gh.factoryParam<_i50.InputRowBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i50.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i50.InputRowBloc.injectable(
           get<_i38.ISingleTrainingService>(), otherDependencies));
-  gh.factoryParam<_i51.InputRowBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i51.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i51.InputRowBloc.injectable(
           get<_i19.IBobsTwentySevenService>(), otherDependencies));
   gh.factory<_i52.InputRowBloc>(
       () => _i52.InputRowBloc(get<_i36.IScoreTrainingService>()));
-  gh.factoryParam<_i53.InputRowBlocOfflineDetailedInputArea, List<Object>?,
+  gh.factoryParam<_i53.InputRowBlocOfflineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i53.InputRowBlocOfflineDetailedInputArea.injectable(
               get<_i34.IPlayOfflineService>(), otherDependencies));
-  gh.factoryParam<_i54.InputRowBlocOfflineStandardInputArea, List<Object>?,
+  gh.factoryParam<_i54.InputRowBlocOfflineStandardInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i54.InputRowBlocOfflineStandardInputArea.injectable(
               get<_i24.IDartUtils>(),
               get<_i34.IPlayOfflineService>(),
               otherDependencies));
-  gh.factoryParam<_i55.KeyBoardBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i55.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i55.KeyBoardBloc.injectable(
           get<_i19.IBobsTwentySevenService>(), otherDependencies));
-  gh.factoryParam<_i56.KeyBoardBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i56.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i56.KeyBoardBloc.injectable(
           get<_i26.IDoubleTrainingService>(), otherDependencies));
-  gh.factoryParam<_i57.KeyBoardBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i57.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) =>
           _i57.KeyBoardBloc.injectable(otherDependencies));
-  gh.factoryParam<_i58.KeyBoardBloc, List<Object>?, dynamic>((otherDependencies,
+  gh.factoryParam<_i58.KeyBoardBloc, List<Object>, dynamic>((otherDependencies,
           _) =>
       _i58.KeyBoardBloc.injectable(get<_i24.IDartUtils>(), otherDependencies));
-  gh.factoryParam<_i59.KeyBoardBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i59.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i59.KeyBoardBloc.injectable(
           get<_i38.ISingleTrainingService>(), otherDependencies));
-  gh.factoryParam<_i60.KeyBoardBlocOfflineDetailedInputArea, List<Object>?,
+  gh.factoryParam<_i60.KeyBoardBlocOfflineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i60.KeyBoardBlocOfflineDetailedInputArea.injectable(
               get<_i24.IDartUtils>(), otherDependencies));
-  gh.factoryParam<_i61.KeyBoardBlocOfflineStandardInputArea, List<Object>?,
+  gh.factoryParam<_i61.KeyBoardBlocOfflineStandardInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i61.KeyBoardBlocOfflineStandardInputArea.injectable(
               get<_i24.IDartUtils>(), otherDependencies));
-  gh.factoryParam<_i62.KeyBoardBlocOnlineDetailedInputArea, List<Object>?,
+  gh.factoryParam<_i62.KeyBoardBlocOnlineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i62.KeyBoardBlocOnlineDetailedInputArea.injectable(
               get<_i24.IDartUtils>(), otherDependencies));
-  gh.factoryParam<_i63.KeyBoardBlocOnlineStandardInputArea, List<Object>?,
+  gh.factoryParam<_i63.KeyBoardBlocOnlineStandardInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i63.KeyBoardBlocOnlineStandardInputArea.injectable(
               get<_i24.IDartUtils>(), otherDependencies));
-  gh.factoryParam<_i64.MoreBloc, List<Object>?, dynamic>((otherDependencies,
+  gh.factoryParam<_i64.MoreBloc, List<Object>, dynamic>((otherDependencies,
           _) =>
       _i64.MoreBloc.injectable(get<_i28.IFriendService>(), otherDependencies));
   gh.factory<_i65.PlayOfflineCubit>(() => _i65.PlayOfflineCubit());
-  gh.factoryParam<_i66.PlayOfflineWatcherCubit, List<Object>?, dynamic>(
+  gh.factoryParam<_i66.PlayOfflineWatcherCubit, List<Object>, dynamic>(
       (otherDependencies, _) => _i66.PlayOfflineWatcherCubit.injectable(
           get<_i34.IPlayOfflineService>(), otherDependencies));
   gh.factory<_i67.PlayOnlineCubit>(() => _i67.PlayOnlineCubit());
-  gh.factoryParam<_i68.ProfileBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i68.ProfileBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i68.ProfileBloc.injectable(otherDependencies));
   gh.factory<_i69.ScoreTrainingWatcherCubit>(
       () => _i69.ScoreTrainingWatcherCubit(get<_i36.IScoreTrainingService>()));
@@ -333,14 +333,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i81.ChangeUsernameBloc(get<_i40.IUserService>()));
   gh.factory<_i82.CreateOfflineGameBloc>(
       () => _i82.CreateOfflineGameBloc(get<_i34.IPlayOfflineService>()));
-  gh.factoryParam<_i83.CreateTrainingBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i83.CreateTrainingBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i83.CreateTrainingBloc.injectable(
           get<_i38.ISingleTrainingService>(),
           get<_i26.IDoubleTrainingService>(),
           get<_i36.IScoreTrainingService>(),
           get<_i19.IBobsTwentySevenService>(),
           otherDependencies));
-  gh.factoryParam<_i84.DartsDisplayerBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i84.DartsDisplayerBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i84.DartsDisplayerBloc.injectable(
           get<_i24.IDartUtils>(), otherDependencies));
   gh.factory<_i85.DoubleTrainingWatcherCubit>(() =>
@@ -353,7 +353,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i88.FriendsBloc(get<_i28.IFriendService>()));
   gh.factory<_i89.FriendsCubit>(
       () => _i89.FriendsCubit(get<_i28.IFriendService>()));
-  gh.factoryParam<_i90.GameHistoryBloc, List<Object>?, dynamic>(
+  gh.factoryParam<_i90.GameHistoryBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i90.GameHistoryBloc.injectable(
           get<_i30.IGameHistoryService>(), otherDependencies));
   gh.factory<_i91.GameInvitationsCubit>(
@@ -382,12 +382,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       registerFor: {_test, _prod});
   gh.factory<_i97.InOnlineGameBloc>(
       () => _i97.InOnlineGameBloc(get<_i94.IPlayOnlineService>()));
-  gh.factoryParam<_i98.InputRowBlocOnlineDetailedInputArea, List<Object>?,
+  gh.factoryParam<_i98.InputRowBlocOnlineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i98.InputRowBlocOnlineDetailedInputArea.injectable(
               get<_i94.IPlayOnlineService>(), otherDependencies));
-  gh.factoryParam<_i99.InputRowBlocOnlineStandardInputArea, List<Object>?,
+  gh.factoryParam<_i99.InputRowBlocOnlineStandardInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
           _i99.InputRowBlocOnlineStandardInputArea.injectable(

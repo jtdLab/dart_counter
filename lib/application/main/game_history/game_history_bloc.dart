@@ -54,15 +54,15 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [UserCubit].
+  /// 1. Instance of `UserCubit`
   @factoryMethod
   factory GameHistoryBloc.injectable(
     IGameHistoryService gameHistoryService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       GameHistoryBloc(
         gameHistoryService,
-        otherDependencies![0] as UserCubit,
+        otherDependencies[0] as UserCubit,
       );
 
   /// Handle incoming [_FetchGameHistoryAllRequested] event.

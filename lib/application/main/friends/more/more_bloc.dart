@@ -36,15 +36,15 @@ class MoreBloc extends Bloc<MoreEvent, MoreState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [FriendsBloc].
+  /// 1. Instance of `FriendsBloc`
   @factoryMethod
   factory MoreBloc.injectable(
     IFriendService friendService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       MoreBloc(
         friendService,
-        otherDependencies![0] as FriendsBloc,
+        otherDependencies[0] as FriendsBloc,
       );
 
   /// Handle incoming [_RemovePressed] event.

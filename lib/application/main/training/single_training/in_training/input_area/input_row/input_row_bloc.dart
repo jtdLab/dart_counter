@@ -49,15 +49,15 @@ class InputRowBloc extends Bloc<InputRowEvent, int> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [DartsDisplayerBloc].
+  /// 1. Instance of `DartsDisplayerBloc`
   @factoryMethod
   factory InputRowBloc.injectable(
     ISingleTrainingService singleTrainingService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       InputRowBloc(
         singleTrainingService,
-        otherDependencies![0] as DartsDisplayerBloc,
+        otherDependencies[0] as DartsDisplayerBloc,
       );
 
   /// Handle incoming [Started] event.

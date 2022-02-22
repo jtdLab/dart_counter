@@ -40,15 +40,15 @@ class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [InputRowBloc].
+  /// 1. Instance of `InputRowBloc`
   @factoryMethod
   factory KeyBoardBloc.injectable(
     IDartUtils dartUtils,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       KeyBoardBloc(
         dartUtils,
-        otherDependencies![0] as InputRowBloc,
+        otherDependencies[0] as InputRowBloc,
       );
 
   /// Handle incoming [DigitPressed] event.

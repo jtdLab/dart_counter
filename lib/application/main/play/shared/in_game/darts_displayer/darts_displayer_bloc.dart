@@ -49,11 +49,11 @@ class DartsDisplayerBloc
   @factoryMethod
   factory DartsDisplayerBloc.injectable(
     IDartUtils dartUtils,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       DartsDisplayerBloc(
         dartUtils,
-        otherDependencies![0] as Cubit<AbstractGameSnapshot>,
+        otherDependencies[0] as Cubit<AbstractGameSnapshot>,
       );
 
   /// Handle incoming [DartAdded] event.

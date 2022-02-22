@@ -60,10 +60,10 @@ class AdvancedSettingsBloc
   /// 1. Instance of `Cubit<AbstractGameSnapshot>`.
   @factoryMethod
   factory AdvancedSettingsBloc.injectable(
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       AdvancedSettingsBloc(
-        otherDependencies![0] as Cubit<AbstractGameSnapshot>,
+        otherDependencies[0] as Cubit<AbstractGameSnapshot>,
       );
 
   Future<void> _mapStartedToState(

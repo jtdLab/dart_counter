@@ -37,19 +37,19 @@ class InputRowBlocOnlineStandardInputArea extends InputRowBloc {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [PlayOnlineCubit]
+  /// 1. Instance of `PlayOnlineCubit`
   ///
-  /// 2. Instance of [InOnlineGameBloc]
+  /// 2. Instance of `InOnlineGameBloc`
   @factoryMethod
   factory InputRowBlocOnlineStandardInputArea.injectable(
     IDartUtils dartUtils,
     IPlayOnlineService playOnlineService,
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       InputRowBlocOnlineStandardInputArea(
         dartUtils,
         playOnlineService,
-        otherDependencies![0] as PlayOnlineCubit,
+        otherDependencies[0] as PlayOnlineCubit,
         otherDependencies[1] as InOnlineGameBloc,
       );
 }

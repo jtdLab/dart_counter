@@ -115,16 +115,6 @@ void main() {
 
     group('#Injectable#', () {
       test(
-          'GIVEN otherDependencies is null '
-          'THEN throw error.', () {
-        // Arrange
-        const List<Object>? otherDependencies = null;
-
-        // Act & Assert
-        expect(() => HomeBloc.injectable(otherDependencies), throwsA(anything));
-      });
-
-      test(
           'GIVEN otherDependencies is not [UserCubit, FriendCubit, GameInvitationCubit] '
           'THEN throw error.', () {
         // Arrange

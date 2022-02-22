@@ -46,13 +46,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of [UserCubit].
+  /// 1. Instance of `UserCubit`
   @factoryMethod
   factory ProfileBloc.injectable(
-    @factoryParam List<Object>? otherDependencies,
+    @factoryParam List<Object> otherDependencies,
   ) =>
       ProfileBloc(
-        otherDependencies![0] as UserCubit,
+        otherDependencies[0] as UserCubit,
       );
 
   /// Handle incoming [_Started] event.
