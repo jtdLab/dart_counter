@@ -7,8 +7,10 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/infrastructure/user/cache_keys.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -19,18 +21,37 @@ class FakeUserService with Disposable implements IUserService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
+  final DefaultCacheManager _cache;
 
   StreamSubscription? _authSubscription;
+  StreamSubscription? _userSubscription;
 
   final BehaviorSubject<User> _userController;
 
   FakeUserService(
     this._authService,
+    this._cache,
   ) : _userController = BehaviorSubject.seeded(User.dummy()) {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) {
       if (isAuthenticated && !_userController.hasValue) {
         _userController.add(User.dummy());
+      }
+    });
+
+    _userSubscription = _userController.listen((user) async {
+      final photo = user.profile.photo;
+
+      if (photo == null) {
+        await _cache.removeFile(profileImageKey);
+      } else {
+        final photoUrl = user.profile.photoUrl ??
+            faker.image.image(width: 200, height: 200); // TODO remove later;
+        await _cache.putFile(
+          photoUrl,
+          photo,
+          key: profileImageKey,
+        );
       }
     });
   }
@@ -42,7 +63,10 @@ class FakeUserService with Disposable implements IUserService {
     return userOrFailure.fold(
       (failure) => left(failure),
       (user) {
-        final newProfile = user.profile.copyWith(photoUrl: null);
+        final newProfile = user.profile.copyWith(
+          photoUrl: null, // TODO remove later
+          photo: null,
+        );
         _userController.add(user.copyWith(profile: newProfile));
         return right(unit);
       },
@@ -91,13 +115,11 @@ class FakeUserService with Disposable implements IUserService {
       (failure) => left(failure),
       (user) async {
         final newPhotoUrl =
-            faker.image.image(width: 200, height: 200); // TODO remove this
-
+            faker.image.image(width: 200, height: 200); // TODO remove later
         final newProfile = user.profile.copyWith(
+          photoUrl: newPhotoUrl, // TODO remove later
           photo: newPhotoData,
-          photoUrl: newPhotoUrl,
         );
-
         _userController.add(user.copyWith(profile: newProfile));
         return right(unit);
       },
@@ -145,5 +167,6 @@ class FakeUserService with Disposable implements IUserService {
   @override
   void onDispose() {
     _authSubscription?.cancel();
+    _userSubscription?.cancel();
   }
 }
