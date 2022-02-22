@@ -34,7 +34,7 @@ class FakeUserService with Disposable implements IUserService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
-  final DefaultCacheManager _cache;
+  //final DefaultCacheManager _cache;
 
   StreamSubscription? _authSubscription;
   StreamSubscription? _userSubscription;
@@ -43,7 +43,7 @@ class FakeUserService with Disposable implements IUserService {
 
   FakeUserService(
     this._authService,
-    this._cache,
+    //this._cache,
   ) : _userController = BehaviorSubject.seeded(User.dummy()) {
     _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) {
@@ -56,15 +56,17 @@ class FakeUserService with Disposable implements IUserService {
       final photo = user.profile.photo;
 
       if (photo == null) {
-        await _cache.removeFile(profileImageKey);
+        //await _cache.removeFile(profileImageKey);
       } else {
         final photoUrl = user.profile.photoUrl ??
             faker.image.image(width: 200, height: 200); // TODO remove later;
-        await _cache.putFile(
+        /**
+         * await _cache.putFile(
           photoUrl,
           photo,
           key: profileImageKey,
         );
+         */
       }
     });
   }

@@ -225,8 +225,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i39.SingleTrainingService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i40.IUserService>(
-      () => _i41.FakeUserService(
-          get<_i17.IAuthService>(), get<_i9.DefaultCacheManager>()),
+      () => _i41.FakeUserService(get<_i17.IAuthService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i42.ImagePicker>(() => jtdInjectableModule.imagePicker);
   gh.factory<_i43.InBobsTwentySevenBloc>(
