@@ -92,7 +92,7 @@ void main() {
   });
 
   group('#Events#', () {
-    group('UsernameChanged', () {
+    group('#UsernameChanged#', () {
       blocTest<ChangeUsernameBloc, ChangeUsernameState>(
         'GIVEN current state is ChangeUsernameInitial '
         'THEN emit [ChangeUsernameInitial].',
@@ -127,7 +127,7 @@ void main() {
       );
     });
 
-    group('ConfirmPressed', () {
+    group('#ConfirmPressed#', () {
       blocTest<ChangeUsernameBloc, ChangeUsernameState>(
         'GIVEN current state is ChangeUsernameInitial with valid and available username '
         'THEN emit [ChangeUsernameSubmitInProgress, ChangeUsernameSubmitSuccess].',

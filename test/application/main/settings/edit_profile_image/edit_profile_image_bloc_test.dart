@@ -62,7 +62,7 @@ void main() {
   group('#Events#', () {
     final imageData = Uint8List.fromList([1, 2, 3]);
 
-    group('DeletePressed', () {
+    group('#DeletePressed#', () {
       blocTest<EditProfileImageBloc, void>(
         'Call deleteProfilePhoto.',
         setUp: () {
@@ -78,7 +78,7 @@ void main() {
       );
     });
 
-    group('TakePressed', () {
+    group('#TakePressed#', () {
       blocTest<EditProfileImageBloc, void>(
         'GIVEN user took no image '
         'THEN do nothing.',
@@ -122,7 +122,7 @@ void main() {
       );
     });
 
-    group('ChoosePressed', () {
+    group('#ChoosePressed#', () {
       blocTest<EditProfileImageBloc, void>(
         'GIVEN user chose no image '
         'THEN do nothing.',

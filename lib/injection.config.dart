@@ -400,11 +400,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i101.CreateOnlineGameBloc(get<_i94.IPlayOnlineService>()));
   gh.factory<_i102.CreateOnlineGameCubit>(
       () => _i102.CreateOnlineGameCubit(get<_i94.IPlayOnlineService>()));
-  gh.factoryParam<_i103.GameInvitationsBloc, List<Object>?, dynamic>(
-      (otherDependencies, _) => _i103.GameInvitationsBloc.injectable(
-          get<_i94.IPlayOnlineService>(),
-          get<_i32.IGameInvitationService>(),
-          otherDependencies));
+  gh.factory<_i103.GameInvitationsBloc>(() => _i103.GameInvitationsBloc(
+      get<_i94.IPlayOnlineService>(), get<_i32.IGameInvitationService>()));
   gh.lazySingleton<_i28.IFriendService>(
       () => _i104.FriendService(
           get<_i17.IAuthService>(),

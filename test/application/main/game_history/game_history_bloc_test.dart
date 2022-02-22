@@ -54,221 +54,232 @@ void main() {
     ).thenAnswer((_) async => right(gameHistoryOnline));
   });
 
-  test('Initial state set to GameHistoryLoadInProgress.', () {
-    // Arrange & Act
-    final underTest = GameHistoryBloc(
-      mockUserService,
-      mockGameHistoryService,
-    );
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set to GameHistoryLoadInProgress.', () {
+        // Arrange & Act
+        final underTest = GameHistoryBloc(
+          mockUserService,
+          mockGameHistoryService,
+        );
 
-    // Assert
-    expect(
-      underTest.state,
-      const GameHistoryState.loadInProgress(),
-    );
+        // Assert
+        expect(
+          underTest.state,
+          const GameHistoryState.loadInProgress(),
+        );
+      });
+    });
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
   });
 
-  group('FetchGameHistoryAllRequested', () {
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN user is not available '
-      'THEN throws ApplicationError.',
-      setUp: () {
-        when(() => mockUserService.getUser())
-            .thenReturn(left(const UserFailure.unableToLoadData()));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-      errors: () => [isA<ApplicationError>()],
-    );
+  group('#Events#', () {
+    group('FetchGameHistoryAllRequested', () {
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN user is not available '
+        'THEN throws ApplicationError.',
+        setUp: () {
+          when(() => mockUserService.getUser())
+              .thenReturn(left(const UserFailure.unableToLoadData()));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
+        errors: () => [isA<ApplicationError>()],
+      );
 
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching online game history fails '
-      'THEN emit GameHistoryLoadFailure.',
-      setUp: () {
-        when(
-          () => mockGameHistoryService.getGameHistoryOnline(
-            uid: any(named: 'uid'),
-          ),
-        ).thenAnswer((_) async => left(gameHistoryFailure));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-      expect: () =>
-          [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
-    );
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching online game history fails '
+        'THEN emit GameHistoryLoadFailure.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOnline(
+              uid: any(named: 'uid'),
+            ),
+          ).thenAnswer((_) async => left(gameHistoryFailure));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
+        expect: () =>
+            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+      );
 
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching offline game history fails '
-      'THEN emit GameHistoryLoadFailure.',
-      setUp: () {
-        when(
-          () => mockGameHistoryService.getGameHistoryOffline(),
-        ).thenAnswer((_) async => left(gameHistoryFailure));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-      expect: () =>
-          [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
-    );
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching offline game history fails '
+        'THEN emit GameHistoryLoadFailure.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOffline(),
+          ).thenAnswer((_) async => left(gameHistoryFailure));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
+        expect: () =>
+            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+      );
 
 // TODO test sorting better
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching online and offline game history succeeds '
-      'THEN emit GameHistoryLoadSucess with merged gameHistory containing the 10 recent game sorted by date',
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-      expect: () => [
-        GameHistoryState.loadSuccess(
-          gameHistory: List10(
-            [
-              onlineGames[9],
-              offlineGames[9],
-              onlineGames[8],
-              offlineGames[8],
-              onlineGames[7],
-              offlineGames[7],
-              onlineGames[6],
-              offlineGames[6],
-              onlineGames[5],
-              offlineGames[5],
-            ].toImmutableList(),
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching online and offline game history succeeds '
+        'THEN emit GameHistoryLoadSucess with merged gameHistory containing the 10 recent game sorted by date',
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
+        expect: () => [
+          GameHistoryState.loadSuccess(
+            gameHistory: List10(
+              [
+                onlineGames[9],
+                offlineGames[9],
+                onlineGames[8],
+                offlineGames[8],
+                onlineGames[7],
+                offlineGames[7],
+                onlineGames[6],
+                offlineGames[6],
+                onlineGames[5],
+                offlineGames[5],
+              ].toImmutableList(),
+            ),
+          ),
+        ],
+      );
+    });
+
+    group('FetchGameHistoryOfflineRequested', () {
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching offline game history fails '
+        'THEN emit GameHistoryLoadFailure.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOffline(),
+          ).thenAnswer((_) async => left(gameHistoryFailure));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
+        expect: () =>
+            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+      );
+
+      // TODO test sorting better
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching succeeds '
+        'THEN emit GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date.',
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
+        expect: () => [
+          GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
+        ],
+      );
+    });
+
+    group('FetchGameHistoryOnlineRequested', () {
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN userId is null and fetching user fails '
+        'THEN throw ApplicationError.',
+        setUp: () {
+          when(
+            () => mockUserService.getUser(),
+          ).thenReturn(left(const UserFailure.unableToLoadData()));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) => bloc.add(
+          const GameHistoryEvent.fetchGameHistoryOnlineRequested(),
+        ),
+        errors: () => [isA<ApplicationError>()],
+      );
+
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching online game history fails '
+        'THEN emit GameHistoryLoadFailure.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOnline(
+              uid: any(named: 'uid'),
+            ),
+          ).thenAnswer((_) async => left(gameHistoryFailure));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) => bloc.add(
+          GameHistoryEvent.fetchGameHistoryOnlineRequested(
+            userId: UniqueId.fromUniqueString('dummyId'),
           ),
         ),
-      ],
-    );
-  });
+        expect: () =>
+            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+      );
 
-  group('FetchGameHistoryOfflineRequested', () {
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching offline game history fails '
-      'THEN emit GameHistoryLoadFailure.',
-      setUp: () {
-        when(
-          () => mockGameHistoryService.getGameHistoryOffline(),
-        ).thenAnswer((_) async => left(gameHistoryFailure));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
-      expect: () =>
-          [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
-    );
-
-    // TODO test sorting better
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching succeeds '
-      'THEN emit GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date.',
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
-      expect: () => [
-        GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
-      ],
-    );
-  });
-
-  group('FetchGameHistoryOnlineRequested', () {
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN userId is null and fetching user fails '
-      'THEN throw ApplicationError.',
-      setUp: () {
-        when(
-          () => mockUserService.getUser(),
-        ).thenReturn(left(const UserFailure.unableToLoadData()));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) => bloc.add(
-        const GameHistoryEvent.fetchGameHistoryOnlineRequested(),
-      ),
-      errors: () => [isA<ApplicationError>()],
-    );
-
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching online game history fails '
-      'THEN emit GameHistoryLoadFailure.',
-      setUp: () {
-        when(
-          () => mockGameHistoryService.getGameHistoryOnline(
-            uid: any(named: 'uid'),
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching online game history fails '
+        'THEN call fetchGameHistoryOnline with correct uid.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOnline(
+              uid: any(named: 'uid'),
+            ),
+          ).thenAnswer((_) async => left(gameHistoryFailure));
+        },
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) => bloc.add(
+          GameHistoryEvent.fetchGameHistoryOnlineRequested(
+            userId: UniqueId.fromUniqueString('dummyId'),
           ),
-        ).thenAnswer((_) async => left(gameHistoryFailure));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) => bloc.add(
-        GameHistoryEvent.fetchGameHistoryOnlineRequested(
-          userId: UniqueId.fromUniqueString('dummyId'),
         ),
-      ),
-      expect: () =>
-          [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
-    );
+        verify: (_) {
+          verify(
+            () => mockGameHistoryService.getGameHistoryOnline(uid: 'dummyId'),
+          ).called(1);
+        },
+      );
 
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching online game history fails '
-      'THEN call fetchGameHistoryOnline with correct uid.',
-      setUp: () {
-        when(
-          () => mockGameHistoryService.getGameHistoryOnline(
-            uid: any(named: 'uid'),
+      // TODO test sorting better
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN fetching succeeds '
+        'THEN emit GameHistoryLoadSucess with online gameHistory containing the 10 recent game sorted by date.',
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        act: (bloc) =>
+            bloc.add(const GameHistoryEvent.fetchGameHistoryOnlineRequested()),
+        expect: () => [
+          GameHistoryState.loadSuccess(gameHistory: gameHistoryOnline),
+        ],
+      );
+    });
+
+    group('GameSelected', () {
+      final selectedGame = OfflineGame.dummy();
+
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN state is GameHistoryLoadSuccess '
+        'THEN emit GameHistoryLoadSuccess with updated selectedGame.',
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        seed: () =>
+            GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
+        act: (bloc) =>
+            bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
+        expect: () => [
+          GameHistoryState.loadSuccess(
+            gameHistory: gameHistoryOffline,
+            selectedGame: selectedGame,
           ),
-        ).thenAnswer((_) async => left(gameHistoryFailure));
-      },
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) => bloc.add(
-        GameHistoryEvent.fetchGameHistoryOnlineRequested(
-          userId: UniqueId.fromUniqueString('dummyId'),
-        ),
-      ),
-      verify: (_) {
-        verify(
-          () => mockGameHistoryService.getGameHistoryOnline(uid: 'dummyId'),
-        ).called(1);
-      },
-    );
+        ],
+      );
 
-    // TODO test sorting better
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN fetching succeeds '
-      'THEN emit GameHistoryLoadSucess with online gameHistory containing the 10 recent game sorted by date.',
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      act: (bloc) =>
-          bloc.add(const GameHistoryEvent.fetchGameHistoryOnlineRequested()),
-      expect: () => [
-        GameHistoryState.loadSuccess(gameHistory: gameHistoryOnline),
-      ],
-    );
-  });
-
-  group('GameSelected', () {
-    final selectedGame = OfflineGame.dummy();
-
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN state is GameHistoryLoadSuccess '
-      'THEN emit GameHistoryLoadSuccess with updated selectedGame.',
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      seed: () => GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
-      act: (bloc) =>
-          bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
-      expect: () => [
-        GameHistoryState.loadSuccess(
-          gameHistory: gameHistoryOffline,
-          selectedGame: selectedGame,
-        ),
-      ],
-    );
-
-    blocTest<GameHistoryBloc, GameHistoryState>(
-      'GIVEN state is not GameHistoryLoadSuccess '
-      'THEN do nothing.',
-      build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
-      seed: () => const GameHistoryState.loadInProgress(),
-      act: (bloc) =>
-          bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
-      expect: () => [],
-    );
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN state is not GameHistoryLoadSuccess '
+        'THEN do nothing.',
+        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        seed: () => const GameHistoryState.loadInProgress(),
+        act: (bloc) =>
+            bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
+        expect: () => [],
+      );
+    });
   });
 }

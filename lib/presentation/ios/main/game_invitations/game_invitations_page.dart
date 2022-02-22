@@ -1,6 +1,6 @@
 // CORE
 import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart'
-    hide GameInvitationsState;
+    as cubit;
 // BLOCS
 import 'package:dart_counter/application/main/game_invitations/game_invitations_bloc.dart';
 // DOMAIN
@@ -20,9 +20,8 @@ class GameInvitationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GameInvitationsBloc.getIt(context.read<GameInvitationsCubit>())
-            ..add(const GameInvitationsEvent.started()),
+      create: (context) => GameInvitationsBloc.getIt()
+        ..add(const GameInvitationsEvent.started()),
       child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
         listenWhen: (oldState, newState) => newState is GameInvitationsInitial,
         listener: (context, state) {

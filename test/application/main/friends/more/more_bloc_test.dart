@@ -32,68 +32,78 @@ void main() {
     ).thenAnswer((_) async => right(unit));
   });
 
-  test('Initial state set to MoreInitial.', () {
-    // Arrange & Act
-    final underTest = MoreBloc(
-      mockFriendService,
-      mockFriendsBloc,
-    );
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set to MoreInitial.', () {
+        // Arrange & Act
+        final underTest = MoreBloc(
+          mockFriendService,
+          mockFriendsBloc,
+        );
 
-    // Assert
-    expect(underTest.state, const MoreState.initial());
+        // Assert
+        expect(underTest.state, const MoreState.initial());
+      });
+    });
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
   });
 
-  group(
-    'RemovePressed',
-    () {
-      blocTest<MoreBloc, MoreState>(
-        'GIVEN selected friend is not null '
-        'THEN call removeFriend with friendToRemove as param.',
-        setUp: () {
-          when(() => mockFriendsBloc.state).thenReturn(
-            FriendsState.initial(
-              friends: const KtList.empty(),
-              receivedFriendRequests: const KtList.empty(),
-              sentFriendRequests: const KtList.empty(),
-              selectedFriend: friendToRemove,
-            ),
-          );
-        },
-        build: () => MoreBloc(
-          mockFriendService,
-          mockFriendsBloc,
-        ),
-        act: (bloc) => bloc.add(const MoreEvent.removePressed()),
-        verify: (bloc) {
-          verify(
-            () => mockFriendService.removeFriend(friend: friendToRemove),
-          ).called(1);
-        },
-      );
+  group('#Events#', () {
+    group(
+      'RemovePressed',
+      () {
+        blocTest<MoreBloc, MoreState>(
+          'GIVEN selected friend is not null '
+          'THEN call removeFriend with friendToRemove as param.',
+          setUp: () {
+            when(() => mockFriendsBloc.state).thenReturn(
+              FriendsState.initial(
+                friends: const KtList.empty(),
+                receivedFriendRequests: const KtList.empty(),
+                sentFriendRequests: const KtList.empty(),
+                selectedFriend: friendToRemove,
+              ),
+            );
+          },
+          build: () => MoreBloc(
+            mockFriendService,
+            mockFriendsBloc,
+          ),
+          act: (bloc) => bloc.add(const MoreEvent.removePressed()),
+          verify: (bloc) {
+            verify(
+              () => mockFriendService.removeFriend(friend: friendToRemove),
+            ).called(1);
+          },
+        );
 
-      blocTest<MoreBloc, MoreState>(
-        'GIVEN selected friend is null '
-        'THEN do nothing.',
-        setUp: () {
-          when(() => mockFriendsBloc.state).thenReturn(
-            const FriendsState.initial(
-              friends: KtList.empty(),
-              receivedFriendRequests: KtList.empty(),
-              sentFriendRequests: KtList.empty(),
-            ),
-          );
-        },
-        build: () => MoreBloc(
-          mockFriendService,
-          mockFriendsBloc,
-        ),
-        act: (bloc) => bloc.add(const MoreEvent.removePressed()),
-        verify: (bloc) {
-          verifyNever(
-            () => mockFriendService.removeFriend(friend: friendToRemove),
-          );
-        },
-      );
-    },
-  );
+        blocTest<MoreBloc, MoreState>(
+          'GIVEN selected friend is null '
+          'THEN do nothing.',
+          setUp: () {
+            when(() => mockFriendsBloc.state).thenReturn(
+              const FriendsState.initial(
+                friends: KtList.empty(),
+                receivedFriendRequests: KtList.empty(),
+                sentFriendRequests: KtList.empty(),
+              ),
+            );
+          },
+          build: () => MoreBloc(
+            mockFriendService,
+            mockFriendsBloc,
+          ),
+          act: (bloc) => bloc.add(const MoreEvent.removePressed()),
+          verify: (bloc) {
+            verifyNever(
+              () => mockFriendService.removeFriend(friend: friendToRemove),
+            );
+          },
+        );
+      },
+    );
+  });
 }

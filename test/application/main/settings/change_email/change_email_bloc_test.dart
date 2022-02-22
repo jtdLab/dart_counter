@@ -92,7 +92,7 @@ void main() {
   });
 
   group('#Events#', () {
-    group('NewEmailChanged', () {
+    group('#NewEmailChanged#', () {
       blocTest<ChangeEmailBloc, ChangeEmailState>(
         'GIVEN current state is ChangeEmailInitial '
         'THEN emit [ChangeEmailInitial].',
@@ -125,7 +125,7 @@ void main() {
       );
     });
 
-    group('ConfirmPressed', () {
+    group('#ConfirmPressed#', () {
       blocTest<ChangeEmailBloc, ChangeEmailState>(
         'GIVEN current state is ChangeEmailInitial with valid and available email '
         'THEN emit [ChangeEmailSubmitInProgress, ChangeEmailSubmitSuccess].',

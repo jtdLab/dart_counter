@@ -96,7 +96,7 @@ void main() {
   });
 
   group('#Events#', () {
-    group('OldPasswordChanged', () {
+    group('#OldPasswordChanged#', () {
       blocTest<ChangePasswordBloc, ChangePasswordState>(
         'GIVEN current state is ChangePasswordInitial '
         'THEN emit [ChangePasswordInitial].',
@@ -135,7 +135,7 @@ void main() {
       );
     });
 
-    group('NewPasswordChanged', () {
+    group('#NewPasswordChanged#', () {
       blocTest<ChangePasswordBloc, ChangePasswordState>(
         'GIVEN current state is ChangePasswordInitial '
         'THEN emit [ChangePasswordInitial]',
@@ -174,7 +174,7 @@ void main() {
       );
     });
 
-    group('NewPasswordAgainChanged', () {
+    group('#NewPasswordAgainChanged#', () {
       blocTest<ChangePasswordBloc, ChangePasswordState>(
         'GIVEN current state is ChangePasswordInitial '
         'THEN emit [ChangePasswordInitial].',
@@ -217,7 +217,7 @@ void main() {
       );
     });
 
-    group('ConfirmPressed', () {
+    group('#ConfirmPressed#', () {
       blocTest<ChangePasswordBloc, ChangePasswordState>(
         'GIVEN current state is ChangePasswordInitial with valid and correct old password '
         'and valid new password which matches new password-again '

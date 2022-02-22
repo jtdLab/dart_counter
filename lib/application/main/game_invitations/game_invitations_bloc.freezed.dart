@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'game_invitations_bloc.dart';
@@ -519,13 +520,8 @@ abstract class _InvitationDeclined implements GameInvitationsEvent {
 class _$GameInvitationsStateTearOff {
   const _$GameInvitationsStateTearOff();
 
-  GameInvitationsInitial initial(
-      {required KtList<GameInvitation> receivedGameInvitations,
-      required KtList<GameInvitation> sentGameInvitations,
-      AbstractGameSnapshot? gameSnapshot}) {
+  GameInvitationsInitial initial({AbstractGameSnapshot? gameSnapshot}) {
     return GameInvitationsInitial(
-      receivedGameInvitations: receivedGameInvitations,
-      sentGameInvitations: sentGameInvitations,
       gameSnapshot: gameSnapshot,
     );
   }
@@ -548,33 +544,21 @@ const $GameInvitationsState = _$GameInvitationsStateTearOff();
 mixin _$GameInvitationsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)
-        initial,
+    required TResult Function(AbstractGameSnapshot? gameSnapshot) initial,
     required TResult Function() loadInProgress,
     required TResult Function(PlayFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
@@ -627,10 +611,7 @@ abstract class $GameInvitationsInitialCopyWith<$Res> {
   factory $GameInvitationsInitialCopyWith(GameInvitationsInitial value,
           $Res Function(GameInvitationsInitial) then) =
       _$GameInvitationsInitialCopyWithImpl<$Res>;
-  $Res call(
-      {KtList<GameInvitation> receivedGameInvitations,
-      KtList<GameInvitation> sentGameInvitations,
-      AbstractGameSnapshot? gameSnapshot});
+  $Res call({AbstractGameSnapshot? gameSnapshot});
 }
 
 /// @nodoc
@@ -646,19 +627,9 @@ class _$GameInvitationsInitialCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? receivedGameInvitations = freezed,
-    Object? sentGameInvitations = freezed,
     Object? gameSnapshot = freezed,
   }) {
     return _then(GameInvitationsInitial(
-      receivedGameInvitations: receivedGameInvitations == freezed
-          ? _value.receivedGameInvitations
-          : receivedGameInvitations // ignore: cast_nullable_to_non_nullable
-              as KtList<GameInvitation>,
-      sentGameInvitations: sentGameInvitations == freezed
-          ? _value.sentGameInvitations
-          : sentGameInvitations // ignore: cast_nullable_to_non_nullable
-              as KtList<GameInvitation>,
       gameSnapshot: gameSnapshot == freezed
           ? _value.gameSnapshot
           : gameSnapshot // ignore: cast_nullable_to_non_nullable
@@ -670,21 +641,14 @@ class _$GameInvitationsInitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GameInvitationsInitial implements GameInvitationsInitial {
-  const _$GameInvitationsInitial(
-      {required this.receivedGameInvitations,
-      required this.sentGameInvitations,
-      this.gameSnapshot});
+  const _$GameInvitationsInitial({this.gameSnapshot});
 
-  @override
-  final KtList<GameInvitation> receivedGameInvitations;
-  @override
-  final KtList<GameInvitation> sentGameInvitations;
   @override
   final AbstractGameSnapshot? gameSnapshot;
 
   @override
   String toString() {
-    return 'GameInvitationsState.initial(receivedGameInvitations: $receivedGameInvitations, sentGameInvitations: $sentGameInvitations, gameSnapshot: $gameSnapshot)';
+    return 'GameInvitationsState.initial(gameSnapshot: $gameSnapshot)';
   }
 
   @override
@@ -692,20 +656,13 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GameInvitationsInitial &&
-            const DeepCollectionEquality().equals(
-                other.receivedGameInvitations, receivedGameInvitations) &&
-            const DeepCollectionEquality()
-                .equals(other.sentGameInvitations, sentGameInvitations) &&
             const DeepCollectionEquality()
                 .equals(other.gameSnapshot, gameSnapshot));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(receivedGameInvitations),
-      const DeepCollectionEquality().hash(sentGameInvitations),
-      const DeepCollectionEquality().hash(gameSnapshot));
+      runtimeType, const DeepCollectionEquality().hash(gameSnapshot));
 
   @JsonKey(ignore: true)
   @override
@@ -716,47 +673,33 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)
-        initial,
+    required TResult Function(AbstractGameSnapshot? gameSnapshot) initial,
     required TResult Function() loadInProgress,
     required TResult Function(PlayFailure failure) failure,
   }) {
-    return initial(receivedGameInvitations, sentGameInvitations, gameSnapshot);
+    return initial(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
   }) {
-    return initial?.call(
-        receivedGameInvitations, sentGameInvitations, gameSnapshot);
+    return initial?.call(gameSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(
-          receivedGameInvitations, sentGameInvitations, gameSnapshot);
+      return initial(gameSnapshot);
     }
     return orElse();
   }
@@ -798,13 +741,9 @@ class _$GameInvitationsInitial implements GameInvitationsInitial {
 }
 
 abstract class GameInvitationsInitial implements GameInvitationsState {
-  const factory GameInvitationsInitial(
-      {required KtList<GameInvitation> receivedGameInvitations,
-      required KtList<GameInvitation> sentGameInvitations,
-      AbstractGameSnapshot? gameSnapshot}) = _$GameInvitationsInitial;
+  const factory GameInvitationsInitial({AbstractGameSnapshot? gameSnapshot}) =
+      _$GameInvitationsInitial;
 
-  KtList<GameInvitation> get receivedGameInvitations;
-  KtList<GameInvitation> get sentGameInvitations;
   AbstractGameSnapshot? get gameSnapshot;
   @JsonKey(ignore: true)
   $GameInvitationsInitialCopyWith<GameInvitationsInitial> get copyWith =>
@@ -856,11 +795,7 @@ class _$GameInvitationsLoadInProgress implements GameInvitationsLoadInProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)
-        initial,
+    required TResult Function(AbstractGameSnapshot? gameSnapshot) initial,
     required TResult Function() loadInProgress,
     required TResult Function(PlayFailure failure) failure,
   }) {
@@ -870,11 +805,7 @@ class _$GameInvitationsLoadInProgress implements GameInvitationsLoadInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
   }) {
@@ -884,11 +815,7 @@ class _$GameInvitationsLoadInProgress implements GameInvitationsLoadInProgress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
@@ -1015,11 +942,7 @@ class _$GameInvitationsFailure implements GameInvitationsFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)
-        initial,
+    required TResult Function(AbstractGameSnapshot? gameSnapshot) initial,
     required TResult Function() loadInProgress,
     required TResult Function(PlayFailure failure) failure,
   }) {
@@ -1029,11 +952,7 @@ class _$GameInvitationsFailure implements GameInvitationsFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
   }) {
@@ -1043,11 +962,7 @@ class _$GameInvitationsFailure implements GameInvitationsFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KtList<GameInvitation> receivedGameInvitations,
-            KtList<GameInvitation> sentGameInvitations,
-            AbstractGameSnapshot? gameSnapshot)?
-        initial,
+    TResult Function(AbstractGameSnapshot? gameSnapshot)? initial,
     TResult Function()? loadInProgress,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),

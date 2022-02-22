@@ -15,6 +15,19 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
+/** // TODO use
+ * Future<void> _fetchImage({
+  required String url,
+  }) async {
+  final Completer<void> completer = Completer<void>();
+  final provider = CachedNetworkImageProvider(url);
+  provider.resolve(ImageConfiguration.empty).addListener(
+  ImageStreamListener((image, synchronousCall) {
+  completer.complete();
+  }),
+  );
+ */
+
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
 class FakeUserService with Disposable implements IUserService {

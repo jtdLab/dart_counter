@@ -31,9 +31,9 @@ class _ReceivedGameInvitationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<GameInvitationsBloc, GameInvitationsState,
-        GameInvitationsInitial>(
-      selector: (state) => state as GameInvitationsInitial,
+    return BlocSelector<cubit.GameInvitationsCubit, cubit.GameInvitationsState,
+        cubit.GameInvitationsLoadSuccess>(
+      selector: (state) => state as cubit.GameInvitationsLoadSuccess,
       builder: (context, state) {
         final gameInvitations = state.receivedGameInvitations;
 
@@ -118,9 +118,9 @@ class _SentGameInvitationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<GameInvitationsBloc, GameInvitationsState,
-        GameInvitationsInitial>(
-      selector: (state) => state as GameInvitationsInitial,
+    return BlocSelector<cubit.GameInvitationsCubit, cubit.GameInvitationsState,
+        cubit.GameInvitationsLoadSuccess>(
+      selector: (state) => state as cubit.GameInvitationsLoadSuccess,
       builder: (context, state) {
         final gameInvitations = state.sentGameInvitations;
 

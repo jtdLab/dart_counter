@@ -78,7 +78,7 @@ void main() {
   });
 
   group('#Events#', () {
-    group('LocaleChanged', () {
+    group('#LocaleChanged#', () {
       blocTest<SettingsBloc, SettingsState>(
         'GIVEN current state is SettingsInitial with localeChanged false '
         'THEN emit [SettingsInitial, SettingsInitial].',
@@ -92,7 +92,7 @@ void main() {
       );
     });
 
-    group('SignOutPressed', () {
+    group('#SignOutPressed#', () {
       blocTest<SettingsBloc, SettingsState>(
         'Sign out.',
         setUp: () {
