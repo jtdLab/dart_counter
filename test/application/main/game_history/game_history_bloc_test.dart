@@ -77,7 +77,7 @@ void main() {
   });
 
   group('#Events#', () {
-    group('FetchGameHistoryAllRequested', () {
+    group('#FetchGameHistoryAllRequested#', () {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN user is not available '
         'THEN throws ApplicationError.',
@@ -151,7 +151,7 @@ void main() {
       );
     });
 
-    group('FetchGameHistoryOfflineRequested', () {
+    group('#FetchGameHistoryOfflineRequested#', () {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN fetching offline game history fails '
         'THEN emit GameHistoryLoadFailure.',
@@ -180,7 +180,7 @@ void main() {
       );
     });
 
-    group('FetchGameHistoryOnlineRequested', () {
+    group('#FetchGameHistoryOnlineRequested#', () {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN userId is null and fetching user fails '
         'THEN throw ApplicationError.',
@@ -252,7 +252,7 @@ void main() {
       );
     });
 
-    group('GameSelected', () {
+    group('#GameSelected#', () {
       final selectedGame = OfflineGame.dummy();
 
       blocTest<GameHistoryBloc, GameHistoryState>(

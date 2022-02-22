@@ -3,9 +3,9 @@ import 'package:dart_counter/application/main/friends/friends_bloc.dart';
 import 'package:dart_counter/application/main/friends/more/more_bloc.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockFriendService extends Mock implements IFriendService {}
@@ -17,19 +17,9 @@ void main() {
   late MockFriendService mockFriendService;
   late MockFriendsBloc mockFriendsBloc;
 
-  final friendToRemove = Friend.dummy();
-
-  setUpAll(() {
-    registerFallbackValue(friendToRemove);
-  });
-
   setUp(() {
     mockFriendService = MockFriendService();
     mockFriendsBloc = MockFriendsBloc();
-
-    when(
-      () => mockFriendService.removeFriend(friend: any(named: 'friend')),
-    ).thenAnswer((_) async => right(unit));
   });
 
   group('#Constructors#', () {
@@ -46,26 +36,108 @@ void main() {
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN MoreBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => MoreBloc.getIt(mockFriendsBloc), throwsA(anything));
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN MoreBloc is registered inside getIt '
+          'THEN initial state set to MoreInitial.', () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => MoreBloc.injectable(
+            mockFriendService,
+            [
+              mockFriendsBloc,
+            ],
+          ),
+        );
+
+        // Act
+        final underTest = MoreBloc.getIt(mockFriendsBloc);
+
+        // Assert
+        expect(
+          underTest.state,
+          const MoreState.initial(),
+        );
+      });
+
+      test(
+          'GIVEN MoreBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = MoreBloc.injectable(
+          mockFriendService,
+          [
+            mockFriendsBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = MoreBloc.getIt(mockFriendsBloc);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not [FriendsBloc] '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = ['Hallo'];
+
+        // Act & Assert
+        expect(
+          () => MoreBloc.injectable(mockFriendService, otherDependencies),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN otherDependencies is [FriendsBloc] '
+          'THEN initial state set to MoreInitial.', () {
+        // Arrange
+        final otherDependencies = [
+          mockFriendsBloc,
+        ];
+
+        // Act
+        final underTest =
+            MoreBloc.injectable(mockFriendService, otherDependencies);
+
+        // Assert
+        expect(underTest.state, const MoreState.initial());
+      });
+    });
   });
 
   group('#Events#', () {
     group(
-      'RemovePressed',
+      '#RemovePressed#',
       () {
+        final friendToRemove = Friend.dummy();
+
         blocTest<MoreBloc, MoreState>(
           'GIVEN selected friend is not null '
-          'THEN call removeFriend with friendToRemove as param.',
+          'THEN remove incoming friend.',
           setUp: () {
+            when(
+              () => mockFriendService.removeFriend(friend: friendToRemove),
+            ).thenAnswer((_) async => right(unit));
             when(() => mockFriendsBloc.state).thenReturn(
-              FriendsState.initial(
-                friends: const KtList.empty(),
-                receivedFriendRequests: const KtList.empty(),
-                sentFriendRequests: const KtList.empty(),
-                selectedFriend: friendToRemove,
-              ),
+              FriendsState.initial(selectedFriend: friendToRemove),
             );
           },
           build: () => MoreBloc(
@@ -81,15 +153,11 @@ void main() {
         );
 
         blocTest<MoreBloc, MoreState>(
-          'GIVEN selected friend is null '
+          'GIVEN friendsBloc has state FriendsInitial with selectedFriend null '
           'THEN do nothing.',
           setUp: () {
             when(() => mockFriendsBloc.state).thenReturn(
-              const FriendsState.initial(
-                friends: KtList.empty(),
-                receivedFriendRequests: KtList.empty(),
-                sentFriendRequests: KtList.empty(),
-              ),
+              const FriendsState.initial(),
             );
           },
           build: () => MoreBloc(

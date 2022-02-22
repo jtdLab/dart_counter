@@ -40,7 +40,6 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
   ) {
     // TODO is this the correct location ?
     // TODO does this belong to application or infra atm its infra
-    // TODOD this is wrong becaus it waits to every stream emit at leas 1 value
     _friendService.markReceivedFriendRequestsAsRead();
   }
 
