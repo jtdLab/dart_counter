@@ -260,10 +260,12 @@ owner: \_userService.getUser().getOrElse(
   }),
   );
 
-
-    await completer.future;
+  await completer.future;
 
 }
 \*/
 
 // TODO use flutter_cache_manager
+
+// TODO training folder structure in application could it be create_game, watcher, in_game
+????

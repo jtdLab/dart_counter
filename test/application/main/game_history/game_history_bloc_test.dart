@@ -13,7 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-// TODO test sorting and fix how the tests are written tha means provide fields in nearer scope group
+// TODO test sorting  by data better where needed
 
 class MockGameHistoryService extends Mock implements IGameHistoryService {}
 
@@ -22,6 +22,35 @@ class MockUserCubit extends MockCubit<UserState> implements UserCubit {}
 void main() {
   late MockGameHistoryService mockGameHistoryService;
   late MockUserCubit mockUserCubit;
+
+  // TODO need this for better sorting test
+  /**
+   * final offlineGamesSortedByDate = List.generate(
+    10,
+    (index) => OfflineGame.dummy().copyWith(
+      createdAt: DateTime(1980 + 2 * index),
+    ),
+  );
+  final offlineGamesUnsorted = offlineGamesSortedByDate..shuffle();
+  final gameHistoryOfflineSortedByDate =
+      List10(offlineGamesSortedByDate.toImmutableList());
+  final gameHistoryOfflineUnsorted =
+      List10(offlineGamesUnsorted.toImmutableList());
+
+  final onlineGamesSortedByDate = List.generate(
+    10,
+    (index) => OnlineGame.dummy().copyWith(
+      createdAt: DateTime(1981 + 2 * index),
+    ),
+  );
+  final onlineGamesUnsorted = onlineGamesSortedByDate..shuffle();
+  final gameHistoryOnlineSortedByData =
+      List10(onlineGamesSortedByDate.toImmutableList());
+  final gameHistoryOnlineUnsorted =
+      List10(onlineGamesUnsorted.toImmutableList());
+
+  const gameHistoryFailure = GameHistoryFailure.unexpected();
+   */
 
   final offlineGames = List.generate(
     10,
@@ -43,15 +72,6 @@ void main() {
   setUp(() {
     mockGameHistoryService = MockGameHistoryService();
     mockUserCubit = MockUserCubit();
-
-    when(() => mockUserCubit.state).thenReturn(
-      UserState.loadSuccess(user: User.dummy()),
-    );
-    when(() => mockGameHistoryService.getGameHistoryOffline())
-        .thenAnswer((_) async => right(gameHistoryOffline));
-    when(
-      () => mockGameHistoryService.getGameHistoryOnline(uid: any(named: 'uid')),
-    ).thenAnswer((_) async => right(gameHistoryOnline));
   });
 
   group('#Constructors#', () {
@@ -165,6 +185,19 @@ void main() {
 
   group('#Events#', () {
     group('#FetchGameHistoryAllRequested#', () {
+      setUp(() {
+        when(() => mockUserCubit.state).thenReturn(
+          UserState.loadSuccess(user: User.dummy()),
+        );
+        when(() => mockGameHistoryService.getGameHistoryOffline())
+            .thenAnswer((_) async => right(gameHistoryOffline));
+        when(
+          () => mockGameHistoryService.getGameHistoryOnline(
+            uid: any(named: 'uid'),
+          ),
+        ).thenAnswer((_) async => right(gameHistoryOnline));
+      });
+
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN user is not available '
         'THEN throws ApplicationError.',
@@ -259,6 +292,11 @@ void main() {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN fetching succeeds '
         'THEN emit GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date.',
+        setUp: () {
+          when(
+            () => mockGameHistoryService.getGameHistoryOffline(),
+          ).thenAnswer((_) async => right(gameHistoryOffline));
+        },
         build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
@@ -269,6 +307,18 @@ void main() {
     });
 
     group('#FetchGameHistoryOnlineRequested#', () {
+      setUp(() {
+        when(() => mockUserCubit.state).thenReturn(
+          UserState.loadSuccess(user: User.dummy()),
+        );
+        when(() => mockGameHistoryService.getGameHistoryOffline())
+            .thenAnswer((_) async => right(gameHistoryOffline));
+        when(
+          () => mockGameHistoryService.getGameHistoryOnline(
+              uid: any(named: 'uid')),
+        ).thenAnswer((_) async => right(gameHistoryOnline));
+      });
+
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN user is not available '
         'THEN throw ApplicationError.',
@@ -340,7 +390,7 @@ void main() {
     });
 
     group('#GameSelected#', () {
-      final selectedGame = OfflineGame.dummy();
+      final selectedGame = gameHistoryOffline.getOrCrash().get(0);
 
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN state is GameHistoryLoadSuccess '
@@ -359,10 +409,21 @@ void main() {
       );
 
       blocTest<GameHistoryBloc, GameHistoryState>(
-        'GIVEN state is not GameHistoryLoadSuccess '
+        'GIVEN state is not GameHistoryLoadInProgress '
         'THEN do nothing.',
         build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         seed: () => const GameHistoryState.loadInProgress(),
+        act: (bloc) =>
+            bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
+        expect: () => [],
+      );
+
+      blocTest<GameHistoryBloc, GameHistoryState>(
+        'GIVEN state is not GameHistoryLoadFailure '
+        'THEN do nothing.',
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
+        seed: () =>
+            const GameHistoryState.loadFailure(failure: gameHistoryFailure),
         act: (bloc) =>
             bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),
         expect: () => [],

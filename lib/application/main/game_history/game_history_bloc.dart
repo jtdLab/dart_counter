@@ -68,9 +68,7 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   Future<void> _handleFetchGameHistoryAllRequested(
     Emitter<GameHistoryState> emit,
   ) async {
-    final user = _userCubit.state.user;
-
-    final uid = user.id;
+    final uid = _userCubit.state.user.id;
 
     final failureOrOnlineGameHistory =
         await _gameHistoryService.getGameHistoryOnline(uid: uid.getOrCrash());
