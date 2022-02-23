@@ -1,25 +1,27 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/core/application_error.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockUserService extends Mock implements IUserService {}
+// TODO test sorting and fix 2 tests with ApplicationError
 
 class MockGameHistoryService extends Mock implements IGameHistoryService {}
 
+class MockUserCubit extends MockCubit<UserState> implements UserCubit {}
+
 void main() {
-  late MockUserService mockUserService;
   late MockGameHistoryService mockGameHistoryService;
+  late MockUserCubit mockUserCubit;
 
   final offlineGames = List.generate(
     10,
@@ -27,9 +29,7 @@ void main() {
       createdAt: DateTime(1980 + 2 * index),
     ),
   );
-  final gameHistoryOffline = List10(
-    offlineGames.toImmutableList(),
-  );
+  final gameHistoryOffline = List10(offlineGames.toImmutableList());
   final onlineGames = List.generate(
     10,
     (index) => OnlineGame.dummy().copyWith(
@@ -41,10 +41,12 @@ void main() {
   const gameHistoryFailure = GameHistoryFailure.unexpected();
 
   setUp(() {
-    mockUserService = MockUserService();
     mockGameHistoryService = MockGameHistoryService();
+    mockUserCubit = MockUserCubit();
 
-    when(() => mockUserService.getUser()).thenReturn(right(User.dummy()));
+    when(() => mockUserCubit.state).thenReturn(
+      UserState.loadSuccess(user: User.dummy()),
+    );
     when(() => mockGameHistoryService.getGameHistoryOffline())
         .thenAnswer((_) async => right(gameHistoryOffline));
     when(
@@ -59,8 +61,8 @@ void main() {
       test('Initial state set to GameHistoryLoadInProgress.', () {
         // Arrange & Act
         final underTest = GameHistoryBloc(
-          mockUserService,
           mockGameHistoryService,
+          mockUserCubit,
         );
 
         // Assert
@@ -71,9 +73,96 @@ void main() {
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN GameHistoryBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => GameHistoryBloc.getIt(mockUserCubit), throwsA(anything));
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN GameHistoryBloc is registered inside getIt '
+          'THEN initial state set to GameHistoryLoadInProgress.', () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => GameHistoryBloc.injectable(
+            mockGameHistoryService,
+            [
+              mockUserCubit,
+            ],
+          ),
+        );
+
+        // Act
+        final underTest = GameHistoryBloc.getIt(mockUserCubit);
+
+        // Assert
+        expect(
+          underTest.state,
+          const GameHistoryState.loadInProgress(),
+        );
+      });
+
+      test(
+          'GIVEN GameHistoryBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = GameHistoryBloc.injectable(
+          mockGameHistoryService,
+          [
+            mockUserCubit,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = GameHistoryBloc.getIt(mockUserCubit);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not [UserCubit] '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = ['Hallo'];
+
+        // Act & Assert
+        expect(
+          () => GameHistoryBloc.injectable(
+            mockGameHistoryService,
+            otherDependencies,
+          ),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN otherDependencies is [UserCubit] '
+          'THEN initial state set to GameHistoryLoadInProgress.', () {
+        // Arrange
+        final otherDependencies = [
+          mockUserCubit,
+        ];
+
+        // Act
+        final underTest = GameHistoryBloc.injectable(
+          mockGameHistoryService,
+          otherDependencies,
+        );
+
+        // Assert
+        expect(underTest.state, const GameHistoryState.loadInProgress());
+      });
+    });
   });
 
   group('#Events#', () {
@@ -82,10 +171,11 @@ void main() {
         'GIVEN user is not available '
         'THEN throws ApplicationError.',
         setUp: () {
-          when(() => mockUserService.getUser())
-              .thenReturn(left(const UserFailure.unableToLoadData()));
+          when(() => mockUserCubit.state).thenReturn(
+            const UserState.loadInProgress(),
+          );
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
         errors: () => [isA<ApplicationError>()],
@@ -101,11 +191,12 @@ void main() {
             ),
           ).thenAnswer((_) async => left(gameHistoryFailure));
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-        expect: () =>
-            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+        expect: () => [
+          const GameHistoryState.loadFailure(failure: gameHistoryFailure),
+        ],
       );
 
       blocTest<GameHistoryBloc, GameHistoryState>(
@@ -116,18 +207,18 @@ void main() {
             () => mockGameHistoryService.getGameHistoryOffline(),
           ).thenAnswer((_) async => left(gameHistoryFailure));
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
-        expect: () =>
-            [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
+        expect: () => [
+          const GameHistoryState.loadFailure(failure: gameHistoryFailure),
+        ],
       );
 
-// TODO test sorting better
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN fetching online and offline game history succeeds '
         'THEN emit GameHistoryLoadSucess with merged gameHistory containing the 10 recent game sorted by date',
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryAllRequested()),
         expect: () => [
@@ -160,18 +251,17 @@ void main() {
             () => mockGameHistoryService.getGameHistoryOffline(),
           ).thenAnswer((_) async => left(gameHistoryFailure));
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
         expect: () =>
             [const GameHistoryState.loadFailure(failure: gameHistoryFailure)],
       );
 
-      // TODO test sorting better
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN fetching succeeds '
         'THEN emit GameHistoryLoadSucess with offline gameHistory containing the 10 recent game sorted by date.',
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryOfflineRequested()),
         expect: () => [
@@ -182,14 +272,14 @@ void main() {
 
     group('#FetchGameHistoryOnlineRequested#', () {
       blocTest<GameHistoryBloc, GameHistoryState>(
-        'GIVEN userId is null and fetching user fails '
+        'GIVEN user is not available '
         'THEN throw ApplicationError.',
         setUp: () {
-          when(
-            () => mockUserService.getUser(),
-          ).thenReturn(left(const UserFailure.unableToLoadData()));
+          when(() => mockUserCubit.state).thenReturn(
+            const UserState.loadInProgress(),
+          );
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) => bloc.add(
           const GameHistoryEvent.fetchGameHistoryOnlineRequested(),
         ),
@@ -206,7 +296,7 @@ void main() {
             ),
           ).thenAnswer((_) async => left(gameHistoryFailure));
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) => bloc.add(
           GameHistoryEvent.fetchGameHistoryOnlineRequested(
             userId: UniqueId.fromUniqueString('dummyId'),
@@ -226,7 +316,7 @@ void main() {
             ),
           ).thenAnswer((_) async => left(gameHistoryFailure));
         },
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) => bloc.add(
           GameHistoryEvent.fetchGameHistoryOnlineRequested(
             userId: UniqueId.fromUniqueString('dummyId'),
@@ -239,11 +329,10 @@ void main() {
         },
       );
 
-      // TODO test sorting better
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN fetching succeeds '
         'THEN emit GameHistoryLoadSucess with online gameHistory containing the 10 recent game sorted by date.',
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         act: (bloc) =>
             bloc.add(const GameHistoryEvent.fetchGameHistoryOnlineRequested()),
         expect: () => [
@@ -258,7 +347,7 @@ void main() {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN state is GameHistoryLoadSuccess '
         'THEN emit GameHistoryLoadSuccess with updated selectedGame.',
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         seed: () =>
             GameHistoryState.loadSuccess(gameHistory: gameHistoryOffline),
         act: (bloc) =>
@@ -274,7 +363,7 @@ void main() {
       blocTest<GameHistoryBloc, GameHistoryState>(
         'GIVEN state is not GameHistoryLoadSuccess '
         'THEN do nothing.',
-        build: () => GameHistoryBloc(mockUserService, mockGameHistoryService),
+        build: () => GameHistoryBloc(mockGameHistoryService, mockUserCubit),
         seed: () => const GameHistoryState.loadInProgress(),
         act: (bloc) =>
             bloc.add(GameHistoryEvent.gameSelected(game: selectedGame)),

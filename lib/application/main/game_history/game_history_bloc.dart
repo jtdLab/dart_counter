@@ -69,15 +69,9 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
   Future<void> _handleFetchGameHistoryAllRequested(
     Emitter<GameHistoryState> emit,
   ) async {
-    final userOption = _userCubit.state.maybeWhen(
-      loadSuccess: (user) => user,
-      orElse: () => null,
-    );
+    final user = _userCubit.state.user;
 
-    if (userOption == null) {
-      throw ApplicationError.unexpectedMissingUser();
-    }
-    final uid = userOption.id;
+    final uid = user.id;
 
     final failureOrOnlineGameHistory =
         await _gameHistoryService.getGameHistoryOnline(uid: uid.getOrCrash());
@@ -131,16 +125,8 @@ class GameHistoryBloc extends Bloc<GameHistoryEvent, GameHistoryState> {
     var uid = event.userId;
 
     if (uid == null) {
-      final userOption = _userCubit.state.maybeWhen(
-        loadSuccess: (user) => user,
-        orElse: () => null,
-      );
-
-      if (userOption == null) {
-        throw ApplicationError.unexpectedMissingUser();
-      }
-
-      uid = userOption.id;
+      final user = _userCubit.state.user;
+      uid = user.id;
     }
 
     final failureOrGameHistory =
