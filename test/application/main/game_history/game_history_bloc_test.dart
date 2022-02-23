@@ -50,9 +50,7 @@ void main() {
     when(() => mockGameHistoryService.getGameHistoryOffline())
         .thenAnswer((_) async => right(gameHistoryOffline));
     when(
-      () => mockGameHistoryService.getGameHistoryOnline(
-        uid: any(named: 'uid'),
-      ),
+      () => mockGameHistoryService.getGameHistoryOnline(uid: any(named: 'uid')),
     ).thenAnswer((_) async => right(gameHistoryOnline));
   });
 
