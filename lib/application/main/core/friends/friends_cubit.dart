@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';

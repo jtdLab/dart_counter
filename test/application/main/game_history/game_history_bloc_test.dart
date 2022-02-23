@@ -13,7 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-// TODO test sorting and fix 2 tests with ApplicationError
+// TODO test sorting and fix how the tests are written tha means provide fields in nearer scope group
 
 class MockGameHistoryService extends Mock implements IGameHistoryService {}
 

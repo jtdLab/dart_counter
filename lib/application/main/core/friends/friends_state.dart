@@ -20,7 +20,7 @@ class FriendsState with _$FriendsState {
   KtList<Friend> get friends {
     return maybeWhen(
       loadSuccess: (friends, _, __) => friends,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 
@@ -30,7 +30,7 @@ class FriendsState with _$FriendsState {
   KtList<FriendRequest> get receivedFriendRequests {
     return maybeWhen(
       loadSuccess: (_, receivedFriendRequests, __) => receivedFriendRequests,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 
@@ -40,7 +40,7 @@ class FriendsState with _$FriendsState {
   KtList<FriendRequest> get sentFriendRequests {
     return maybeWhen(
       loadSuccess: (_, __, sentFriendRequests) => sentFriendRequests,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 }

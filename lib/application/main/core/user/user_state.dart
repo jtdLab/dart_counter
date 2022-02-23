@@ -18,7 +18,7 @@ class UserState with _$UserState {
   User get user {
     return maybeWhen(
       loadSuccess: id,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 }

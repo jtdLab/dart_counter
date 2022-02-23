@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';

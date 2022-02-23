@@ -16,6 +16,10 @@ class ApplicationError extends Error {
         'User not available where it is expected to be available',
       );
 
+  factory ApplicationError.unexpectedValue() => ApplicationError(
+        'Value not available.',
+      );
+
   factory ApplicationError.onlyAdvancedSettingsInGameExpected() =>
       ApplicationError(
         'AdvancedSettingsBloc did emit state other than AdvancedSettingsInGame. '

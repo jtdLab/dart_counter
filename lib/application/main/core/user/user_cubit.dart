@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';

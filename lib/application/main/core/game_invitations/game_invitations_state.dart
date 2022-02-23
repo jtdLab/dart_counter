@@ -20,7 +20,7 @@ class GameInvitationsState with _$GameInvitationsState {
   KtList<GameInvitation> get receivedGameInvitations {
     return maybeWhen(
       loadSuccess: (receivedGameInvitations, _) => receivedGameInvitations,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 
@@ -30,7 +30,7 @@ class GameInvitationsState with _$GameInvitationsState {
   KtList<GameInvitation> get sentGameInvitations {
     return maybeWhen(
       loadSuccess: (_, sentGameInvitations) => sentGameInvitations,
-      orElse: () => throw Error(),
+      orElse: () => throw ApplicationError.unexpectedValue(),
     );
   }
 }
