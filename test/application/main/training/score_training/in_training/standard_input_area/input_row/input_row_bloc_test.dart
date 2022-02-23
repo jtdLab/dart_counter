@@ -14,57 +14,67 @@ void main() {
     trainingService = MockScoreTrainingService();
   });
 
-  test('Initial state set 0.', () {
-    // Act
-    final underTest = InputRowBloc(trainingService);
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set 0.', () {
+        // Act
+        final underTest = InputRowBloc(trainingService);
 
-    // Assert
-    expect(underTest.state, 0);
+        // Assert
+        expect(underTest.state, 0);
+      });
+    });
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
   });
 
-  group('UndoThrow', () {
-    blocTest<InputRowBloc, int>(
-      'Undo throw and emit [0].',
-      build: () {
-        return InputRowBloc(trainingService);
-      },
-      act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
-      verify: (_) {
-        verify(() => trainingService.undoThrow()).called(1);
-      },
-      expect: () => [0],
-    );
-  });
+  group('#Events#', () {
+    group('#UndoThrow#', () {
+      blocTest<InputRowBloc, int>(
+        'Undo throw and emit [0].',
+        build: () {
+          return InputRowBloc(trainingService);
+        },
+        act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
+        verify: (_) {
+          verify(() => trainingService.undoThrow()).called(1);
+        },
+        expect: () => [0],
+      );
+    });
 
-  group('CommitPressed', () {
-    blocTest<InputRowBloc, int>(
-      'GIVEN current state is 100 '
-      'THEN perform throw with current points: 100, dartsThrown: 3, dartsOnDouble: 0 and emit [0].',
-      build: () {
-        return InputRowBloc(trainingService);
-      },
-      seed: () => 100,
-      act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
-      verify: (_) {
-        verify(
-          () => trainingService.performThrow(
-            t: const Throw(points: 100, dartsThrown: 3, dartsOnDouble: 0),
-          ),
-        ).called(1);
-      },
-      expect: () => [0],
-    );
-  });
+    group('#CommitPressed#', () {
+      blocTest<InputRowBloc, int>(
+        'GIVEN current state is 100 '
+        'THEN perform throw with current points: 100, dartsThrown: 3, dartsOnDouble: 0 and emit [0].',
+        build: () {
+          return InputRowBloc(trainingService);
+        },
+        seed: () => 100,
+        act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
+        verify: (_) {
+          verify(
+            () => trainingService.performThrow(
+              t: const Throw(points: 100, dartsThrown: 3, dartsOnDouble: 0),
+            ),
+          ).called(1);
+        },
+        expect: () => [0],
+      );
+    });
 
-  group('InputChanged', () {
-    blocTest<InputRowBloc, int>(
-      'GIVEN incoming newInput is 88 '
-      'THEN emit [88].',
-      build: () {
-        return InputRowBloc(trainingService);
-      },
-      act: (bloc) => bloc.add(const InputRowEvent.inputChanged(newInput: 88)),
-      expect: () => [88],
-    );
+    group('#InputChanged#', () {
+      blocTest<InputRowBloc, int>(
+        'GIVEN incoming newInput is 88 '
+        'THEN emit [88].',
+        build: () {
+          return InputRowBloc(trainingService);
+        },
+        act: (bloc) => bloc.add(const InputRowEvent.inputChanged(newInput: 88)),
+        expect: () => [88],
+      );
+    });
   });
 }

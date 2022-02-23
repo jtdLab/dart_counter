@@ -17,30 +17,29 @@ void main() {
     DoubleTrainingGameSnapshot.dummy()
   ];
 
-  setUpAll(() {
+  setUp(() {
     trainingService = MockDoubleTrainingService();
     when(() => trainingService.getGame()).thenReturn(initialGameSnapshot);
-  });
-
-  setUp(() {
     when(() => trainingService.watchGame()).thenAnswer(
       (_) => Stream.fromIterable(gameSnapshots),
     );
   });
 
-  test('Initial state set to current game snapshot.', () {
-    // Act
-    final underTest = DoubleTrainingWatcherCubit(trainingService);
+  group('#Constructors#', () {
+    test('Initial state set to current game snapshot.', () {
+      // Act
+      final underTest = DoubleTrainingWatcherCubit(trainingService);
 
-    // Assert
-    expect(underTest.state, initialGameSnapshot);
+      // Assert
+      expect(underTest.state, initialGameSnapshot);
+    });
+
+    blocTest<DoubleTrainingWatcherCubit, DoubleTrainingGameSnapshot>(
+      'Emit game snapshots.',
+      build: () {
+        return DoubleTrainingWatcherCubit(trainingService);
+      },
+      expect: () => gameSnapshots,
+    );
   });
-
-  blocTest<DoubleTrainingWatcherCubit, DoubleTrainingGameSnapshot>(
-    'Emit game snapshots.',
-    build: () {
-      return DoubleTrainingWatcherCubit(trainingService);
-    },
-    expect: () => gameSnapshots,
-  );
 }

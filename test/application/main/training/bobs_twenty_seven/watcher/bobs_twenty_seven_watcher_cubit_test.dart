@@ -17,30 +17,27 @@ void main() {
     BobsTwentySevenGameSnapshot.dummy()
   ];
 
-  setUpAll(() {
+  setUp(() {
     trainingService = MockBobsTwentySevenTrainingService();
     when(() => trainingService.getGame()).thenReturn(initialGameSnapshot);
-  });
-
-  setUp(() {
     when(() => trainingService.watchGame()).thenAnswer(
       (_) => Stream.fromIterable(gameSnapshots),
     );
   });
 
-  test('Initial state set to current game snapshot.', () {
-    // Act
-    final underTest = BobsTwentySevenWatcherCubit(trainingService);
+  group('#Constructors#', () {
+    test('Initial state set to current game snapshot.', () {
+      // Act
+      final underTest = BobsTwentySevenWatcherCubit(trainingService);
 
-    // Assert
-    expect(underTest.state, initialGameSnapshot);
+      // Assert
+      expect(underTest.state, initialGameSnapshot);
+    });
+
+    blocTest<BobsTwentySevenWatcherCubit, BobsTwentySevenGameSnapshot>(
+      'Emit game snapshots.',
+      build: () => BobsTwentySevenWatcherCubit(trainingService),
+      expect: () => gameSnapshots,
+    );
   });
-
-  blocTest<BobsTwentySevenWatcherCubit, BobsTwentySevenGameSnapshot>(
-    'Emit game snapshots.',
-    build: () {
-      return BobsTwentySevenWatcherCubit(trainingService);
-    },
-    expect: () => gameSnapshots,
-  );
 }

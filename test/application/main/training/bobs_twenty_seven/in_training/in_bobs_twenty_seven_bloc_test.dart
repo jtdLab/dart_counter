@@ -14,12 +14,14 @@ void main() {
     trainingService = MockBobsTwentySevenTrainingService();
   });
 
-  group('Canceled', () {
-    blocTest<InBobsTwentySevenBloc, void>(
-      'Cancel the training.',
-      build: () => InBobsTwentySevenBloc(trainingService),
-      act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
-      verify: (_) => verify(() => trainingService.cancel()).called(1),
-    );
+  group('#Events#', () {
+    group('#Canceled#', () {
+      blocTest<InBobsTwentySevenBloc, void>(
+        'Cancel the training.',
+        build: () => InBobsTwentySevenBloc(trainingService),
+        act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+        verify: (_) => verify(() => trainingService.cancel()).called(1),
+      );
+    });
   });
 }

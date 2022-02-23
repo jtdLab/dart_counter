@@ -48,57 +48,68 @@ void main() {
     dartsDisplayerBloc = MockDartsDisplayerBloc();
   });
 
-  group('DoublePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'Add Dart(double:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => bobsTwentySevenTrainingService.getGame(),
-        ).thenReturn(bobsTwentySevenTrainingGameSnapshot);
-      },
-      build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.double, value: targetValue),
+  group('#Constructors#', () {
+    group('#Standard#', () {});
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
+  });
+
+  group('#Events#', () {
+    group('#DoublePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'Add Dart(double:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => bobsTwentySevenTrainingService.getGame(),
+          ).thenReturn(bobsTwentySevenTrainingGameSnapshot);
+        },
+        build: () =>
+            KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.double, value: targetValue),
+              ),
             ),
-          ),
-        ).called(1);
-      },
-    );
-  });
+          ).called(1);
+        },
+      );
+    });
 
-  group('MissedPressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'Add Dart(missed) to DartsDisplayerBloc.',
-      build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-          ),
-        ).called(1);
-      },
-    );
-  });
+    group('#MissedPressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'Add Dart(missed) to DartsDisplayerBloc.',
+        build: () =>
+            KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+            ),
+          ).called(1);
+        },
+      );
+    });
 
-  group('EreasePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'Remove last dart from DartsDisplayerBloc.',
-      build: () =>
-          KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
-        ).called(1);
-      },
-    );
+    group('#EreasePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'Remove last dart from DartsDisplayerBloc.',
+        build: () =>
+            KeyBoardBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
+        verify: (_) {
+          verify(
+            () =>
+                dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
+          ).called(1);
+        },
+      );
+    });
   });
 }

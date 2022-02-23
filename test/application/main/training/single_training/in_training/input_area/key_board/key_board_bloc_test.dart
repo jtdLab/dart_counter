@@ -44,100 +44,111 @@ void main() {
     dartsDisplayerBloc = MockDartsDisplayerBloc();
   });
 
-  group('SinglePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'Add Dart(single:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => singleTrainingService.getGame(),
-        ).thenReturn(singleTrainingGameSnapshot);
-      },
-      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.singlePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.single, value: targetValue),
+  group('#Constructors#', () {
+    group('#Standard#', () {});
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
+  });
+
+  group('#Events#', () {
+    group('#SinglePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'Add Dart(single:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => singleTrainingService.getGame(),
+          ).thenReturn(singleTrainingGameSnapshot);
+        },
+        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.singlePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.single, value: targetValue),
+              ),
             ),
-          ),
-        ).called(1);
-      },
-    );
-  });
+          ).called(1);
+        },
+      );
+    });
 
-  group('DoublePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'Add Dart(double:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => singleTrainingService.getGame(),
-        ).thenReturn(singleTrainingGameSnapshot);
-      },
-      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.double, value: targetValue),
+    group('#DoublePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'Add Dart(double:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => singleTrainingService.getGame(),
+          ).thenReturn(singleTrainingGameSnapshot);
+        },
+        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.double, value: targetValue),
+              ),
             ),
-          ),
-        ).called(1);
-      },
-    );
-  });
+          ).called(1);
+        },
+      );
+    });
 
-  group('TriplePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'Add Dart(triple:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => singleTrainingService.getGame(),
-        ).thenReturn(singleTrainingGameSnapshot);
-      },
-      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.triplePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.triple, value: targetValue),
+    group('#TriplePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'Add Dart(triple:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => singleTrainingService.getGame(),
+          ).thenReturn(singleTrainingGameSnapshot);
+        },
+        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.triplePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.triple, value: targetValue),
+              ),
             ),
-          ),
-        ).called(1);
-      },
-    );
-  });
+          ).called(1);
+        },
+      );
+    });
 
-  group('MissedPressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'Add Dart(missed) to DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-          ),
-        ).called(1);
-      },
-    );
-  });
+    group('#MissedPressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'Add Dart(missed) to DartsDisplayerBloc.',
+        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+            ),
+          ).called(1);
+        },
+      );
+    });
 
-  group('EreasePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'Remove last dart from DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
-        ).called(1);
-      },
-    );
+    group('#EreasePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'Remove last dart from DartsDisplayerBloc.',
+        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
+        verify: (_) {
+          verify(
+            () =>
+                dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
+          ).called(1);
+        },
+      );
+    });
   });
 }

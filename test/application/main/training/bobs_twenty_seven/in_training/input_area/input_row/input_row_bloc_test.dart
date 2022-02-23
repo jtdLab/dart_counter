@@ -35,13 +35,6 @@ void main() {
 
   late int targetValue;
 
-  setUpAll(() {
-    bobsTwentySevenTrainingPlayerSnapshot =
-        MockBobsTwentySevenTrainingPlayerSnapshot();
-    bobsTwentySevenTrainingGameSnapshot =
-        MockBobsTwentySevenTrainingGameSnapshot();
-  });
-
   void setTargetValue(int newTargetValue) {
     targetValue = newTargetValue;
 
@@ -54,204 +47,221 @@ void main() {
     ).thenReturn(bobsTwentySevenTrainingGameSnapshot);
   }
 
+  setUpAll(() {
+    bobsTwentySevenTrainingPlayerSnapshot =
+        MockBobsTwentySevenTrainingPlayerSnapshot();
+    bobsTwentySevenTrainingGameSnapshot =
+        MockBobsTwentySevenTrainingGameSnapshot();
+  });
+
   setUp(() {
     bobsTwentySevenTrainingService = MockBobsTwentySevenTrainingService();
-
     dartsDisplayerBloc = MockDartsDisplayerBloc();
 
     setTargetValue(1);
   });
 
-  test('Initial state set to -2 times the target value of curernt turn.', () {
-    // Act
-    final underTest =
-        InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]);
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set to -2 times the target value of curernt turn.',
+          () {
+        // Act
+        final underTest =
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]);
 
-    // Assert
-    expect(underTest.state, -2 * targetValue);
+        // Assert
+        expect(underTest.state, -2 * targetValue);
+      });
+    });
+
+    group('#GetIt#', () {});
+
+    group('#Injectable#', () {});
   });
 
-  group('Started', () {
-    blocTest<InputRowBloc, int>(
-      'GIVEN DartsDisplayerBloc emits DartsDisplayerEmpty '
-      'THEN emit [-2 times the target value of curernt turn].',
-      setUp: () {
-        whenListen(
-          dartsDisplayerBloc,
-          Stream.value(const DartsDisplayerState.empty()),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.started()),
-      expect: () => [-2 * targetValue],
-    );
+  group('#Events#', () {
+    group('#Started#', () {
+      blocTest<InputRowBloc, int>(
+        'GIVEN DartsDisplayerBloc emits DartsDisplayerEmpty '
+        'THEN emit [-2 times the target value of curernt turn].',
+        setUp: () {
+          whenListen(
+            dartsDisplayerBloc,
+            Stream.value(const DartsDisplayerState.empty()),
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.started()),
+        expect: () => [-2 * targetValue],
+      );
 
-    blocTest<InputRowBloc, int>(
-      'GIVEN target value of current turn is 1 '
-      'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with '
-      '[Dart(missed), Dart(double:1), Dart(double:1)] '
-      'THEN emit [4].',
-      setUp: () {
-        whenListen(
-          dartsDisplayerBloc,
-          Stream.value(
-            DartsDisplayerState.notEmpty(
-              darts: NotEmptyList(
-                [
-                  Dart.missed,
-                  const Dart(type: DartType.double, value: 1),
-                  const Dart(type: DartType.double, value: 1),
-                ].toImmutableList(),
+      blocTest<InputRowBloc, int>(
+        'GIVEN target value of current turn is 1 '
+        'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with '
+        '[Dart(missed), Dart(double:1), Dart(double:1)] '
+        'THEN emit [4].',
+        setUp: () {
+          whenListen(
+            dartsDisplayerBloc,
+            Stream.value(
+              DartsDisplayerState.notEmpty(
+                darts: NotEmptyList(
+                  [
+                    Dart.missed,
+                    const Dart(type: DartType.double, value: 1),
+                    const Dart(type: DartType.double, value: 1),
+                  ].toImmutableList(),
+                ),
               ),
             ),
-          ),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.started()),
-      expect: () => [4],
-    );
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.started()),
+        expect: () => [4],
+      );
 
-    blocTest<InputRowBloc, int>(
-      'GIVEN target value of current turn is 20 '
-      'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with '
-      '[Dart(double:20), Dart(double:20), Dart(double:20)] '
-      'THEN emit [120].',
-      setUp: () {
-        setTargetValue(20);
-        whenListen(
-          dartsDisplayerBloc,
-          Stream.value(
-            DartsDisplayerState.notEmpty(
-              darts: NotEmptyList(
-                [
-                  const Dart(type: DartType.double, value: 20),
-                  const Dart(type: DartType.double, value: 20),
-                  const Dart(type: DartType.double, value: 20),
-                ].toImmutableList(),
+      blocTest<InputRowBloc, int>(
+        'GIVEN target value of current turn is 20 '
+        'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with '
+        '[Dart(double:20), Dart(double:20), Dart(double:20)] '
+        'THEN emit [120].',
+        setUp: () {
+          setTargetValue(20);
+          whenListen(
+            dartsDisplayerBloc,
+            Stream.value(
+              DartsDisplayerState.notEmpty(
+                darts: NotEmptyList(
+                  [
+                    const Dart(type: DartType.double, value: 20),
+                    const Dart(type: DartType.double, value: 20),
+                    const Dart(type: DartType.double, value: 20),
+                  ].toImmutableList(),
+                ),
               ),
             ),
-          ),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.started()),
-      expect: () => [120],
-    );
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.started()),
+        expect: () => [120],
+      );
 
-    blocTest<InputRowBloc, int>(
-      'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with only Dart(missed) '
-      'THEN emit [-2 times the target value of curernt turn].',
-      setUp: () {
-        whenListen(
-          dartsDisplayerBloc,
-          Stream.value(
-            DartsDisplayerState.notEmpty(
-              darts: NotEmptyList(
-                [
-                  Dart.missed,
-                  Dart.missed,
-                ].toImmutableList(),
+      blocTest<InputRowBloc, int>(
+        'GIVEN DartsDisplayerBloc emits DartsDisplayerNotEmpty with only Dart(missed) '
+        'THEN emit [-2 times the target value of curernt turn].',
+        setUp: () {
+          whenListen(
+            dartsDisplayerBloc,
+            Stream.value(
+              DartsDisplayerState.notEmpty(
+                darts: NotEmptyList(
+                  [
+                    Dart.missed,
+                    Dart.missed,
+                  ].toImmutableList(),
+                ),
               ),
             ),
-          ),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.started()),
-      expect: () => [-2 * targetValue],
-    );
-  });
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.started()),
+        expect: () => [-2 * targetValue],
+      );
+    });
 
-  group('UndoPressed', () {
-    blocTest<InputRowBloc, int>(
-      'Undo the throw, emit -2 times the target value of next curernt turn and '
-      'and request reset of DartsDisplayerBloc.',
-      setUp: () {
-        setTargetValue(3);
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
-      expect: () => [-2 * targetValue],
-      verify: (_) {
-        verify(() => bobsTwentySevenTrainingService.undoThrow()).called(1);
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.resetRequested(),
-          ),
-        ).called(1);
-      },
-    );
-  });
+    group('#UndoPressed#', () {
+      blocTest<InputRowBloc, int>(
+        'Undo the throw, emit -2 times the target value of next curernt turn and '
+        'and request reset of DartsDisplayerBloc.',
+        setUp: () {
+          setTargetValue(3);
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
+        expect: () => [-2 * targetValue],
+        verify: (_) {
+          verify(() => bobsTwentySevenTrainingService.undoThrow()).called(1);
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.resetRequested(),
+            ),
+          ).called(1);
+        },
+      );
+    });
 
 // TODO filling of darts
-  group('CommitPressed', () {
-    blocTest<InputRowBloc, int>(
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
-      'THEN perform throw with empty darts and request reset of DartsDisplayerBloc.',
-      setUp: () {
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          const DartsDisplayerState.empty(),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
-      verify: (_) {
-        verify(
-          () => bobsTwentySevenTrainingService.performThrow(
-            t: Throw.fromDarts(List.empty(), 3),
-          ),
-        ).called(1);
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.resetRequested(),
-          ),
-        ).called(1);
-      },
-    );
+    group('#CommitPressed#', () {
+      blocTest<InputRowBloc, int>(
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
+        'THEN perform throw with empty darts and request reset of DartsDisplayerBloc.',
+        setUp: () {
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            const DartsDisplayerState.empty(),
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
+        verify: (_) {
+          verify(
+            () => bobsTwentySevenTrainingService.performThrow(
+              t: Throw.fromDarts(List.empty(), 3),
+            ),
+          ).called(1);
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.resetRequested(),
+            ),
+          ).called(1);
+        },
+      );
 
-    blocTest<InputRowBloc, int>(
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty '
-      'THEN perform throw with darts and request reset of DartsDisplayerBloc.',
-      setUp: () {
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          DartsDisplayerState.notEmpty(
-            darts: NotEmptyList(
-              [
-                const Dart(type: DartType.single, value: 1),
-                const Dart(type: DartType.triple, value: 1),
-              ].toImmutableList(),
+      blocTest<InputRowBloc, int>(
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty '
+        'THEN perform throw with darts and request reset of DartsDisplayerBloc.',
+        setUp: () {
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            DartsDisplayerState.notEmpty(
+              darts: NotEmptyList(
+                [
+                  const Dart(type: DartType.single, value: 1),
+                  const Dart(type: DartType.triple, value: 1),
+                ].toImmutableList(),
+              ),
             ),
-          ),
-        );
-      },
-      build: () =>
-          InputRowBloc(bobsTwentySevenTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
-      verify: (_) {
-        verify(
-          () => bobsTwentySevenTrainingService.performThrow(
-            t: Throw.fromDarts(
-              [
-                const Dart(type: DartType.single, value: 1),
-                const Dart(type: DartType.triple, value: 1),
-              ],
-              3,
+          );
+        },
+        build: () =>
+            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
+        verify: (_) {
+          verify(
+            () => bobsTwentySevenTrainingService.performThrow(
+              t: Throw.fromDarts(
+                [
+                  const Dart(type: DartType.single, value: 1),
+                  const Dart(type: DartType.triple, value: 1),
+                ],
+                3,
+              ),
             ),
-          ),
-        ).called(1);
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.resetRequested(),
-          ),
-        ).called(1);
-      },
-    );
+          ).called(1);
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.resetRequested(),
+            ),
+          ).called(1);
+        },
+      );
+    });
   });
 }

@@ -14,12 +14,14 @@ void main() {
     trainingService = MockSingleTrainingService();
   });
 
-  group('Canceled', () {
-    blocTest<InSingleTrainingBloc, void>(
-      'Cancel the training.',
-      build: () => InSingleTrainingBloc(trainingService),
-      act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
-      verify: (_) => verify(() => trainingService.cancel()).called(1),
-    );
+  group('#Events#', () {
+    group('#Canceled#', () {
+      blocTest<InSingleTrainingBloc, void>(
+        'Cancel the training.',
+        build: () => InSingleTrainingBloc(trainingService),
+        act: (bloc) => bloc.add(const InTrainingEvent.canceled()),
+        verify: (_) => verify(() => trainingService.cancel()).called(1),
+      );
+    });
   });
 }

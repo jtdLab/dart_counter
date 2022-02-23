@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-
 class MockDoubleTrainingService extends Mock implements IDoubleTrainingService {
 }
 
@@ -47,181 +46,192 @@ void main() {
     dartsDisplayerBloc = MockDartsDisplayerBloc();
   });
 
-  group('DoublePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
-      'Add Dart(double:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          const DartsDisplayerState.empty(),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.double, value: targetValue),
-            ),
-          ),
-        ).called(1);
-      },
-    );
+  group('#Constructors#', () {
+    group('#Standard#', () {});
 
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing only Dart(missed) '
-      'Add Dart(double:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          DartsDisplayerState.notEmpty(
-            darts: NotEmptyList(
-              [Dart.missed, Dart.missed].toImmutableList(),
-            ),
-          ),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.double, value: targetValue),
-            ),
-          ),
-        ).called(1);
-      },
-    );
+    group('#GetIt#', () {});
 
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN current turn has target value X '
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing 1 Dart(double:X) '
-      'do nothing.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          DartsDisplayerState.notEmpty(
-            darts: NotEmptyList(
-              [
-                const Dart(type: DartType.double, value: targetValue),
-              ].toImmutableList(),
-            ),
-          ),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
-      verify: (_) {
-        verifyNever(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(
-              dart: Dart(type: DartType.double, value: targetValue),
-            ),
-          ),
-        );
-      },
-    );
+    group('#Injectable#', () {});
   });
 
-  group('MissedPressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
-      'Add Dart(missed) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          const DartsDisplayerState.empty(),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-          ),
-        ).called(1);
-      },
-    );
-
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing only Dart(missed) '
-      'Add Dart(double:X) to DartsDisplayerBloc.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          DartsDisplayerState.notEmpty(
-            darts: NotEmptyList(
-              [Dart.missed, Dart.missed].toImmutableList(),
+  group('#Events#', () {
+    group('#DoublePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
+        'Add Dart(double:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            const DartsDisplayerState.empty(),
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.double, value: targetValue),
+              ),
             ),
-          ),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-          ),
-        ).called(1);
-      },
-    );
+          ).called(1);
+        },
+      );
 
-    blocTest<KeyBoardBloc, void>(
-      'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing 1 Dart(double:X) '
-      'do nothing.',
-      setUp: () {
-        when(
-          () => doubleTrainingService.getGame(),
-        ).thenReturn(doubleTrainingGameSnapshot);
-        when(() => dartsDisplayerBloc.state).thenReturn(
-          DartsDisplayerState.notEmpty(
-            darts: NotEmptyList(
-              [
-                const Dart(type: DartType.double, value: targetValue),
-              ].toImmutableList(),
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing only Dart(missed) '
+        'Add Dart(double:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            DartsDisplayerState.notEmpty(
+              darts: NotEmptyList(
+                [Dart.missed, Dart.missed].toImmutableList(),
+              ),
             ),
-          ),
-        );
-      },
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
-      verify: (_) {
-        verifyNever(
-          () => dartsDisplayerBloc.add(
-            const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
-          ),
-        );
-      },
-    );
-  });
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.double, value: targetValue),
+              ),
+            ),
+          ).called(1);
+        },
+      );
 
-  group('EreasePressed', () {
-    blocTest<KeyBoardBloc, void>(
-      'Remove last dart from DartsDisplayerBloc.',
-      build: () => KeyBoardBloc(doubleTrainingService,[dartsDisplayerBloc]),
-      act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
-      verify: (_) {
-        verify(
-          () => dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
-        ).called(1);
-      },
-    );
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN current turn has target value X '
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing 1 Dart(double:X) '
+        'do nothing.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            DartsDisplayerState.notEmpty(
+              darts: NotEmptyList(
+                [
+                  const Dart(type: DartType.double, value: targetValue),
+                ].toImmutableList(),
+              ),
+            ),
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
+        verify: (_) {
+          verifyNever(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(
+                dart: Dart(type: DartType.double, value: targetValue),
+              ),
+            ),
+          );
+        },
+      );
+    });
+
+    group('#MissedPressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerEmpty '
+        'Add Dart(missed) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            const DartsDisplayerState.empty(),
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+            ),
+          ).called(1);
+        },
+      );
+
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing only Dart(missed) '
+        'Add Dart(double:X) to DartsDisplayerBloc.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            DartsDisplayerState.notEmpty(
+              darts: NotEmptyList(
+                [Dart.missed, Dart.missed].toImmutableList(),
+              ),
+            ),
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
+        verify: (_) {
+          verify(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+            ),
+          ).called(1);
+        },
+      );
+
+      blocTest<KeyBoardBloc, void>(
+        'GIVEN state of DartsDisplayerBloc is DartsDisplayerNotEmpty with darts containing 1 Dart(double:X) '
+        'do nothing.',
+        setUp: () {
+          when(
+            () => doubleTrainingService.getGame(),
+          ).thenReturn(doubleTrainingGameSnapshot);
+          when(() => dartsDisplayerBloc.state).thenReturn(
+            DartsDisplayerState.notEmpty(
+              darts: NotEmptyList(
+                [
+                  const Dart(type: DartType.double, value: targetValue),
+                ].toImmutableList(),
+              ),
+            ),
+          );
+        },
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
+        verify: (_) {
+          verifyNever(
+            () => dartsDisplayerBloc.add(
+              const DartsDisplayerEvent.dartAdded(dart: Dart.missed),
+            ),
+          );
+        },
+      );
+    });
+
+    group('#EreasePressed#', () {
+      blocTest<KeyBoardBloc, void>(
+        'Remove last dart from DartsDisplayerBloc.',
+        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
+        verify: (_) {
+          verify(
+            () =>
+                dartsDisplayerBloc.add(const DartsDisplayerEvent.dartRemoved()),
+          ).called(1);
+        },
+      );
+    });
   });
 }
