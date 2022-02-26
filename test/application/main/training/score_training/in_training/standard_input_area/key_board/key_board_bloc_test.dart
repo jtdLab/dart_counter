@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -13,6 +14,20 @@ class MockInputRowBloc extends MockBloc<InputRowEvent, int>
 void main() {
   late MockDartUtils dartUtils;
   late MockInputRowBloc inputRowBloc;
+
+  const keyBoardInitialAllEnabledExceptCheck = KeyBoardState.initial(
+    one: ButtonState.enabled,
+    two: ButtonState.enabled,
+    three: ButtonState.enabled,
+    four: ButtonState.enabled,
+    five: ButtonState.enabled,
+    six: ButtonState.enabled,
+    seven: ButtonState.enabled,
+    eight: ButtonState.enabled,
+    nine: ButtonState.enabled,
+    zero: ButtonState.enabled,
+    erease: ButtonState.enabled,
+  );
 
   setUpAll(() {
     dartUtils = MockDartUtils();
@@ -32,31 +47,98 @@ void main() {
           'Initial state set to KeyBoardInitial with all buttons enabled except check button.',
           () {
         // Act
-        final underTest = KeyBoardBloc(dartUtils, [inputRowBloc]);
+        final underTest = KeyBoardBloc(dartUtils, inputRowBloc);
 
         // Assert
         expect(
           underTest.state,
-          const KeyBoardState.initial(
-            one: ButtonState.enabled,
-            two: ButtonState.enabled,
-            three: ButtonState.enabled,
-            four: ButtonState.enabled,
-            five: ButtonState.enabled,
-            six: ButtonState.enabled,
-            seven: ButtonState.enabled,
-            eight: ButtonState.enabled,
-            nine: ButtonState.enabled,
-            zero: ButtonState.enabled,
-            erease: ButtonState.enabled,
-          ),
+          keyBoardInitialAllEnabledExceptCheck,
         );
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN KeyBoardBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.getIt(inputRowBloc),
+          throwsA(anything),
+        );
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN KeyBoardBloc is registered inside getIt '
+          'THEN initial state set to KeyBoardInitial with all buttons enabled except check button.',
+          () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => KeyBoardBloc.injectable(
+            dartUtils,
+            [inputRowBloc],
+          ),
+        );
+
+        // Act
+        final underTest = KeyBoardBloc.getIt(inputRowBloc);
+
+        // Assert
+        expect(underTest.state, keyBoardInitialAllEnabledExceptCheck);
+      });
+
+      test(
+          'GIVEN KeyBoardBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = KeyBoardBloc.injectable(
+          dartUtils,
+          [
+            inputRowBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = KeyBoardBloc.getIt(inputRowBloc);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not [InputRowBloc] '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = [true];
+
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.injectable(dartUtils, otherDependencies),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN otherDependencies is [InputRowBloc] '
+          'THEN initial state set to KeyBoardInitial with all buttons enabled except check button.',
+          () {
+        // Arrange
+        final otherDependencies = [inputRowBloc];
+
+        // Act
+        final underTest = KeyBoardBloc.injectable(dartUtils, otherDependencies);
+
+        // Assert
+        expect(underTest.state, keyBoardInitialAllEnabledExceptCheck);
+      });
+    });
   });
 
   group('#Events#', () {
@@ -65,7 +147,7 @@ void main() {
         'GIVEN current input is 0 '
         'Takes the incoming digit as the new input and validates it.',
         build: () {
-          return KeyBoardBloc(dartUtils, [inputRowBloc]);
+          return KeyBoardBloc(dartUtils, inputRowBloc);
         },
         act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
         verify: (_) {
@@ -80,7 +162,7 @@ void main() {
           when(() => inputRowBloc.state).thenReturn(31);
         },
         build: () {
-          return KeyBoardBloc(dartUtils, [inputRowBloc]);
+          return KeyBoardBloc(dartUtils, inputRowBloc);
         },
         act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
         verify: (_) {
@@ -96,7 +178,7 @@ void main() {
               .thenReturn(true);
         },
         build: () {
-          return KeyBoardBloc(dartUtils, [inputRowBloc]);
+          return KeyBoardBloc(dartUtils, inputRowBloc);
         },
         act: (bloc) => bloc.add(const KeyBoardEvent.digitPressed(digit: 5)),
         verify: (_) {
@@ -116,7 +198,7 @@ void main() {
           when(() => inputRowBloc.state).thenReturn(10);
         },
         build: () {
-          return KeyBoardBloc(dartUtils, [inputRowBloc]);
+          return KeyBoardBloc(dartUtils, inputRowBloc);
         },
         act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
         verify: (_) {
@@ -134,7 +216,7 @@ void main() {
           when(() => inputRowBloc.state).thenReturn(7);
         },
         build: () {
-          return KeyBoardBloc(dartUtils, [inputRowBloc]);
+          return KeyBoardBloc(dartUtils, inputRowBloc);
         },
         act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
         verify: (_) {
