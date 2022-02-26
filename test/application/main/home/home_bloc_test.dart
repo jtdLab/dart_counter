@@ -90,10 +90,12 @@ void main() {
           'GIVEN HomeBloc is registered inside getIt '
           'THEN return the registered instance.', () {
         // Arrange
-        final registeredInstance = HomeBloc(
-          mockUserCubit,
-          mockFriendCubit,
-          mockGameInvitationCubit,
+        final registeredInstance = HomeBloc.injectable(
+          [
+            mockUserCubit,
+            mockFriendCubit,
+            mockGameInvitationCubit,
+          ],
         );
         getIt.registerFactoryParam((param1, _) => registeredInstance);
 

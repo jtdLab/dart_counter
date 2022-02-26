@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -25,9 +26,50 @@ void main() {
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN InputRowBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => InputRowBloc.getIt(), throwsA(anything));
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN initial state set to 0.', () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => InputRowBloc(trainingService),
+        );
+
+        // Act
+        final underTest = InputRowBloc.getIt();
+
+        // Assert
+        expect(
+          underTest.state,
+          0,
+        );
+      });
+
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = InputRowBloc(trainingService);
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = InputRowBloc.getIt();
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
   });
 
   group('#Events#', () {

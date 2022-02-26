@@ -6,6 +6,7 @@ import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
@@ -47,11 +48,62 @@ void main() {
   });
 
   group('#Constructors#', () {
-    group('#Standard#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN KeyBoardBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.getIt(
+            dartsDisplayerBloc,
+          ),
+          throwsA(anything),
+        );
+      });
 
-    group('#GetIt#', () {});
+      test(
+          'GIVEN KeyBoardBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = KeyBoardBloc.injectable(
+          doubleTrainingService,
+          [
+            dartsDisplayerBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
 
-    group('#Injectable#', () {});
+        // Act
+        final underTest = KeyBoardBloc.getIt(
+          dartsDisplayerBloc,
+        );
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not dartsDisplayerBloc '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = [true];
+
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.injectable(
+            doubleTrainingService,
+            otherDependencies,
+          ),
+          throwsA(anything),
+        );
+      });
+    });
   });
 
   group('#Events#', () {
@@ -68,7 +120,7 @@ void main() {
             const DartsDisplayerState.empty(),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
         verify: (_) {
           verify(
@@ -97,7 +149,7 @@ void main() {
             ),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
         verify: (_) {
           verify(
@@ -128,7 +180,7 @@ void main() {
             ),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
         verify: (_) {
           verifyNever(
@@ -154,7 +206,7 @@ void main() {
             const DartsDisplayerState.empty(),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
         verify: (_) {
           verify(
@@ -180,7 +232,7 @@ void main() {
             ),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
         verify: (_) {
           verify(
@@ -208,7 +260,7 @@ void main() {
             ),
           );
         },
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
         verify: (_) {
           verifyNever(
@@ -223,7 +275,7 @@ void main() {
     group('#EreasePressed#', () {
       blocTest<KeyBoardBloc, void>(
         'Remove last dart from DartsDisplayerBloc.',
-        build: () => KeyBoardBloc(doubleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(doubleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
         verify: (_) {
           verify(

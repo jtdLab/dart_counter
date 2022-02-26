@@ -5,6 +5,7 @@ import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -45,11 +46,62 @@ void main() {
   });
 
   group('#Constructors#', () {
-    group('#Standard#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN KeyBoardBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.getIt(
+            dartsDisplayerBloc,
+          ),
+          throwsA(anything),
+        );
+      });
 
-    group('#GetIt#', () {});
+      test(
+          'GIVEN KeyBoardBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = KeyBoardBloc.injectable(
+          singleTrainingService,
+          [
+            dartsDisplayerBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
 
-    group('#Injectable#', () {});
+        // Act
+        final underTest = KeyBoardBloc.getIt(
+          dartsDisplayerBloc,
+        );
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not dartsDisplayerBloc '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = [true];
+
+        // Act & Assert
+        expect(
+          () => KeyBoardBloc.injectable(
+            singleTrainingService,
+            otherDependencies,
+          ),
+          throwsA(anything),
+        );
+      });
+    });
   });
 
   group('#Events#', () {
@@ -62,7 +114,7 @@ void main() {
             () => singleTrainingService.getGame(),
           ).thenReturn(singleTrainingGameSnapshot);
         },
-        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.singlePressed()),
         verify: (_) {
           verify(
@@ -85,7 +137,7 @@ void main() {
             () => singleTrainingService.getGame(),
           ).thenReturn(singleTrainingGameSnapshot);
         },
-        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.doublePressed()),
         verify: (_) {
           verify(
@@ -108,7 +160,7 @@ void main() {
             () => singleTrainingService.getGame(),
           ).thenReturn(singleTrainingGameSnapshot);
         },
-        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.triplePressed()),
         verify: (_) {
           verify(
@@ -125,7 +177,7 @@ void main() {
     group('#MissedPressed#', () {
       blocTest<KeyBoardBloc, void>(
         'Add Dart(missed) to DartsDisplayerBloc.',
-        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.missedPressed()),
         verify: (_) {
           verify(
@@ -140,7 +192,7 @@ void main() {
     group('#EreasePressed#', () {
       blocTest<KeyBoardBloc, void>(
         'Remove last dart from DartsDisplayerBloc.',
-        build: () => KeyBoardBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => KeyBoardBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const KeyBoardEvent.ereasePressed()),
         verify: (_) {
           verify(

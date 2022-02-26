@@ -269,3 +269,5 @@ owner: \_userService.getUser().getOrElse(
 
 // TODO training folder structure in application could it be create_game, watcher, in_game
 ????
+
+// training bloc tests ingame scope of behaivor mocking could be closer

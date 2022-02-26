@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/bobs_twenty_seven_training_player_snapshot.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
@@ -63,20 +64,111 @@ void main() {
 
   group('#Constructors#', () {
     group('#Standard#', () {
-      test('Initial state set to -2 times the target value of curernt turn.',
+      test('Initial state set to -2 times the target value of current turn.',
           () {
         // Act
-        final underTest =
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]);
+        final underTest = InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        );
 
         // Assert
         expect(underTest.state, -2 * targetValue);
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN InputRowBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => InputRowBloc.getIt(dartsDisplayerBloc), throwsA(anything));
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN initial state set to -2 times the target value of current turn.',
+          () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => InputRowBloc.injectable(
+            bobsTwentySevenTrainingService,
+            [
+              dartsDisplayerBloc,
+            ],
+          ),
+        );
+
+        // Act
+        final underTest = InputRowBloc.getIt(dartsDisplayerBloc);
+
+        // Assert
+        expect(
+          underTest.state,
+          -2 * targetValue,
+        );
+      });
+
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = InputRowBloc.injectable(
+          bobsTwentySevenTrainingService,
+          [
+            dartsDisplayerBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = InputRowBloc.getIt(dartsDisplayerBloc);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not [DartsDisplayerBloc] '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = [true];
+
+        // Act & Assert
+        expect(
+          () => InputRowBloc.injectable(
+            bobsTwentySevenTrainingService,
+            otherDependencies,
+          ),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN otherDependencies is [DartsDisplayerBloc] '
+          'THEN initial state set to -2 times the target value of current turn.',
+          () {
+        // Arrange
+        final otherDependencies = [
+          dartsDisplayerBloc,
+        ];
+
+        // Act
+        final underTest = InputRowBloc.injectable(
+          bobsTwentySevenTrainingService,
+          otherDependencies,
+        );
+
+        // Assert
+        expect(underTest.state, -2 * targetValue);
+      });
+    });
   });
 
   group('#Events#', () {
@@ -90,8 +182,10 @@ void main() {
             Stream.value(const DartsDisplayerState.empty()),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [-2 * targetValue],
       );
@@ -117,8 +211,10 @@ void main() {
             ),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [4],
       );
@@ -145,8 +241,10 @@ void main() {
             ),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [120],
       );
@@ -169,8 +267,10 @@ void main() {
             ),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [-2 * targetValue],
       );
@@ -183,8 +283,10 @@ void main() {
         setUp: () {
           setTargetValue(3);
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
         expect: () => [-2 * targetValue],
         verify: (_) {
@@ -208,8 +310,10 @@ void main() {
             const DartsDisplayerState.empty(),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
         verify: (_) {
           verify(
@@ -240,8 +344,10 @@ void main() {
             ),
           );
         },
-        build: () =>
-            InputRowBloc(bobsTwentySevenTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(
+          bobsTwentySevenTrainingService,
+          dartsDisplayerBloc,
+        ),
         act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
         verify: (_) {
           verify(

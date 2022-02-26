@@ -5,6 +5,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
@@ -31,7 +32,7 @@ void main() {
         // Act
         final underTest = InputRowBloc(
           singleTrainingService,
-          [dartsDisplayerBloc],
+          dartsDisplayerBloc,
         );
 
         // Assert
@@ -39,9 +40,96 @@ void main() {
       });
     });
 
-    group('#GetIt#', () {});
+    group('#GetIt#', () {
+      test(
+          'GIVEN InputRowBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(() => InputRowBloc.getIt(dartsDisplayerBloc), throwsA(anything));
+      });
 
-    group('#Injectable#', () {});
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN initial state set to 0.', () {
+        // Arrange
+        getIt.registerFactoryParam(
+          (param1, _) => InputRowBloc.injectable(
+            singleTrainingService,
+            [
+              dartsDisplayerBloc,
+            ],
+          ),
+        );
+
+        // Act
+        final underTest = InputRowBloc.getIt(dartsDisplayerBloc);
+
+        // Assert
+        expect(
+          underTest.state,
+          0,
+        );
+      });
+
+      test(
+          'GIVEN InputRowBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = InputRowBloc.injectable(
+          singleTrainingService,
+          [
+            dartsDisplayerBloc,
+          ],
+        );
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = InputRowBloc.getIt(dartsDisplayerBloc);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
+
+    group('#Injectable#', () {
+      test(
+          'GIVEN otherDependencies is not [DartsDisplayerBloc] '
+          'THEN throw error.', () {
+        // Arrange
+        final otherDependencies = [true];
+
+        // Act & Assert
+        expect(
+          () => InputRowBloc.injectable(
+            singleTrainingService,
+            otherDependencies,
+          ),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN otherDependencies is [DartsDisplayerBloc] '
+          'THEN initial state set to 0.', () {
+        // Arrange
+        final otherDependencies = [
+          dartsDisplayerBloc,
+        ];
+
+        // Act
+        final underTest = InputRowBloc.injectable(
+          singleTrainingService,
+          otherDependencies,
+        );
+
+        // Assert
+        expect(underTest.state, 0);
+      });
+    });
   });
 
   group('#Events#', () {
@@ -55,7 +143,7 @@ void main() {
             Stream.value(const DartsDisplayerState.empty()),
           );
         },
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [0],
       );
@@ -80,7 +168,7 @@ void main() {
             ),
           );
         },
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [6],
       );
@@ -105,7 +193,7 @@ void main() {
             ),
           );
         },
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.started()),
         expect: () => [6],
       );
@@ -114,7 +202,7 @@ void main() {
     group('#UndoPressed#', () {
       blocTest<InputRowBloc, int>(
         'Undo the throw and request reset of DartsDisplayerBloc.',
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.undoPressed()),
         verify: (_) {
           verify(() => singleTrainingService.undoThrow()).called(1);
@@ -137,7 +225,7 @@ void main() {
             const DartsDisplayerState.empty(),
           );
         },
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
         verify: (_) {
           verify(
@@ -168,7 +256,7 @@ void main() {
             ),
           );
         },
-        build: () => InputRowBloc(singleTrainingService, [dartsDisplayerBloc]),
+        build: () => InputRowBloc(singleTrainingService, dartsDisplayerBloc),
         act: (bloc) => bloc.add(const InputRowEvent.commitPressed()),
         verify: (_) {
           verify(
