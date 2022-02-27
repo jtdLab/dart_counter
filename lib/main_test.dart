@@ -39,13 +39,13 @@ Future<void> main() async {
   final internetConnectionChecker = getIt<InternetConnectionChecker>();
 
   connectivity.onConnectivityChanged.listen((event) async {
-    print('Connectivity changed: $event');
+   
     final cony = await connectivity.checkConnectivity();
     if (cony != ConnectivityResult.none) {
-      print((await http.get(Uri.parse('https://www.google.de'))).statusCode);
+    
       return;
     }
-    print('Inet: false');
+    
   });
 
    */

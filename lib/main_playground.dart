@@ -45,8 +45,6 @@ class SuperWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuilt $runtimeType');
-
     return Column(
       children: [
         SubWidget(
@@ -70,8 +68,6 @@ class SubWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuilt $runtimeType $value');
-
     return Text(value.toString());
   }
 }
@@ -133,7 +129,7 @@ Future<void> main() async {
       ),
     ),
   );
-  //print(credential);
+  
 
   //final doc = await FirebaseFirestore.instance.collection('c').doc('d').get();
 
@@ -143,7 +139,7 @@ Future<void> main() async {
       .doc('afl')
       .snapshots()
      .listen((event) {
-       print(event.data());
+      
      });
    */
 
