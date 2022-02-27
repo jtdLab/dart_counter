@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+// TODO remove this becaus abstract classes shoulkdt have test
 // TODO this a machanism to test abstract classes use in other tests too
 class TestInGameBloc extends InGameBloc {
   TestInGameBloc(
