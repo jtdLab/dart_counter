@@ -278,3 +278,5 @@ owner: \_userService.getUser().getOrElse(
 option 1: test functionality of the super class seperate and the inheriting class in 2 
 test classes pro: minimal test code
 option 2: black box test only inheriting classes con: duplicate test code
+
+=> option 2 is the on to go
