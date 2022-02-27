@@ -38,3 +38,4 @@ class PlayOfflineWatcherCubit extends WatcherCubit<OfflineGameSnapshot> {
         otherDependencies[0] as UserCubit,
       );
 }
+

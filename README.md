@@ -271,3 +271,10 @@ owner: \_userService.getUser().getOrElse(
 ????
 
 // training bloc tests ingame scope of behaivor mocking could be closer
+
+// TODO getit constructor test should not test initial state most classed have a testcase for that remove it in the future
+
+// TODO decide how to test abstract baseclasses
+option 1: test functionality of the super class seperate and the inheriting class in 2 
+test classes pro: minimal test code
+option 2: black box test only inheriting classes con: duplicate test code

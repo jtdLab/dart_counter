@@ -64,6 +64,7 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
     await emit.forEach(
       StreamGroup.merge(
         [
+          // TODO is where else coomplete with error even good practice ??
           _advancedSettingsBloc.stream
               .whereTypeElseCompleteWithError<AdvancedSettingsInGame>(
             ApplicationError.onlyAdvancedSettingsInGameExpected(),

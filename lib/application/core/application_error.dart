@@ -8,14 +8,6 @@ class ApplicationError extends Error {
     return 'ApplicationError: $msg';
   }
 
-  factory ApplicationError.unexpectedMissingData() => ApplicationError(
-        'Data not available where it is expected to be available',
-      );
-
-  factory ApplicationError.unexpectedMissingUser() => ApplicationError(
-        'User not available where it is expected to be available',
-      );
-
   factory ApplicationError.unexpectedValue() => ApplicationError(
         'Value not available.',
       );

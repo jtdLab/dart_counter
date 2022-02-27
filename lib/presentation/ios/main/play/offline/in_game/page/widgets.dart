@@ -59,7 +59,7 @@ class _InOfflineGameWidget extends StatelessWidget {
                 providers: [
                   BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
                     create: (context) => DartsDisplayerBloc.getIt(
-                      context.read<PlayOfflineWatcherCubit>(), // TODO
+                      context.read<PlayOfflineCubit>(), // TODO
                     ),
                   ),
                   BlocProvider<Bloc<InputRowEvent, int>>(

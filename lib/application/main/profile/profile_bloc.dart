@@ -63,12 +63,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     await emit.forEach<UserState>(
       _userCubit.stream,
       onData: (userState) {
-        return userState.maybeWhen(
-          loadSuccess: (user) => ProfileState.initial(
-            careerStatsAll:
-                user.profile.careerStatsOnline.merge(user.careerStatsOffline),
-          ),
-          orElse: () => throw ApplicationError.unexpectedMissingUser(),
+        final user = userState.user;
+        return ProfileState.initial(
+          careerStatsAll:
+              user.profile.careerStatsOnline.merge(user.careerStatsOffline),
         );
       },
     );

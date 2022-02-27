@@ -10,6 +10,7 @@ export 'package:dart_counter/application/main/play/shared/in_game/detailed_input
 
 // TODO name + doc
 
+
 @injectable
 class KeyBoardBlocOfflineDetailedInputArea extends KeyBoardBloc {
   KeyBoardBlocOfflineDetailedInputArea(

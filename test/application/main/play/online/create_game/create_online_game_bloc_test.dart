@@ -3,6 +3,7 @@ import 'package:dart_counter/application/main/play/online/create_game/create_onl
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -16,149 +17,185 @@ void main() {
     mockPlayOnlineService = MockPlayOnlineService();
   });
 
-  group('GameCanceled', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Cancel the game.',
-      setUp: () {
-        when(() => mockPlayOnlineService.cancelGame()).thenAnswer(
-          (_) async => right(unit),
+  group('#Constructors#', () {
+    group('#GetIt#', () {
+      test(
+          'GIVEN CreateOnlineGameBloc is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(
+          () => CreateOnlineGameBloc.getIt(),
+          throwsA(anything),
         );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(const CreateOnlineGameEvent.gameCanceled()),
-      verify: (_) => verify(() => mockPlayOnlineService.cancelGame()).called(1),
-    );
+      });
+
+      test(
+          'GIVEN CreateOnlineGameBloc is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance = CreateOnlineGameBloc(mockPlayOnlineService);
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = CreateOnlineGameBloc.getIt();
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
   });
 
-  group('PlayerReordered', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Reorder players with incoming indices.',
-      setUp: () {
-        when(
-          () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
-        ).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.playerReordered(oldIndex: 0, newIndex: 1),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
-      ).called(1),
-    );
-  });
+  group('#Events#', () {
+    group('#GameCanceled#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Cancel the game.',
+        setUp: () {
+          when(() => mockPlayOnlineService.cancelGame()).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(const CreateOnlineGameEvent.gameCanceled()),
+        verify: (_) =>
+            verify(() => mockPlayOnlineService.cancelGame()).called(1),
+      );
+    });
 
-  group('PlayerRemoved', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Remove player at incoming index.',
-      setUp: () {
-        when(() => mockPlayOnlineService.removePlayer(index: 0)).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.playerRemoved(index: 0),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.removePlayer(index: 0),
-      ).called(1),
-    );
-  });
-
-  group('StartingPointsUpdated', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Update starting points to incoming newStartingPoints.',
-      setUp: () {
-        when(
-          () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
-        ).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.startingPointsUpdated(
-          newStartingPoints: 701,
+    group('#PlayerReordered#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Reorder players with incoming indices.',
+        setUp: () {
+          when(
+            () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
+          ).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.playerReordered(oldIndex: 0, newIndex: 1),
         ),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
-      ).called(1),
-    );
-  });
+        verify: (_) => verify(
+          () => mockPlayOnlineService.reorderPlayer(oldIndex: 0, newIndex: 1),
+        ).called(1),
+      );
+    });
 
-  group('ModeUpdated', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Update mode to incoming newMode.',
-      setUp: () {
-        when(() => mockPlayOnlineService.setMode(mode: Mode.bestOf)).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.modeUpdated(newMode: Mode.bestOf),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.setMode(mode: Mode.bestOf),
-      ).called(1),
-    );
-  });
+    group('#PlayerRemoved#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Remove player at incoming index.',
+        setUp: () {
+          when(() => mockPlayOnlineService.removePlayer(index: 0)).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.playerRemoved(index: 0),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.removePlayer(index: 0),
+        ).called(1),
+      );
+    });
 
-  group('SizeUpdated', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Update size to incoming newSize.',
-      setUp: () {
-        when(() => mockPlayOnlineService.setSize(size: 10)).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.sizeUpdated(newSize: 10),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.setSize(size: 10),
-      ).called(1),
-    );
-  });
+    group('#StartingPointsUpdated#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Update starting points to incoming newStartingPoints.',
+        setUp: () {
+          when(
+            () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
+          ).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.startingPointsUpdated(
+            newStartingPoints: 701,
+          ),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.setStartingPoints(startingPoints: 701),
+        ).called(1),
+      );
+    });
 
-  group('TypeUpdated', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Update type to incoming newType.',
-      setUp: () {
-        when(() => mockPlayOnlineService.setType(type: Type.sets)).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.typeUpdated(newType: Type.sets),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.setType(type: Type.sets),
-      ).called(1),
-    );
-  });
+    group('#ModeUpdated#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Update mode to incoming newMode.',
+        setUp: () {
+          when(() => mockPlayOnlineService.setMode(mode: Mode.bestOf))
+              .thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.modeUpdated(newMode: Mode.bestOf),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.setMode(mode: Mode.bestOf),
+        ).called(1),
+      );
+    });
 
-  group('GameStarted', () {
-    blocTest<CreateOnlineGameBloc, void>(
-      'Start the game.',
-      setUp: () {
-        when(() => mockPlayOnlineService.startGame()).thenAnswer(
-          (_) async => right(unit),
-        );
-      },
-      build: () => CreateOnlineGameBloc(mockPlayOnlineService),
-      act: (bloc) => bloc.add(
-        const CreateOnlineGameEvent.gameStarted(),
-      ),
-      verify: (_) => verify(
-        () => mockPlayOnlineService.startGame(),
-      ).called(1),
-    );
+    group('#SizeUpdated#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Update size to incoming newSize.',
+        setUp: () {
+          when(() => mockPlayOnlineService.setSize(size: 10)).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.sizeUpdated(newSize: 10),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.setSize(size: 10),
+        ).called(1),
+      );
+    });
+
+    group('#TypeUpdated#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Update type to incoming newType.',
+        setUp: () {
+          when(() => mockPlayOnlineService.setType(type: Type.sets)).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.typeUpdated(newType: Type.sets),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.setType(type: Type.sets),
+        ).called(1),
+      );
+    });
+
+    group('#GameStarted#', () {
+      blocTest<CreateOnlineGameBloc, void>(
+        'Start the game.',
+        setUp: () {
+          when(() => mockPlayOnlineService.startGame()).thenAnswer(
+            (_) async => right(unit),
+          );
+        },
+        build: () => CreateOnlineGameBloc(mockPlayOnlineService),
+        act: (bloc) => bloc.add(
+          const CreateOnlineGameEvent.gameStarted(),
+        ),
+        verify: (_) => verify(
+          () => mockPlayOnlineService.startGame(),
+        ).called(1),
+      );
+    });
   });
 }

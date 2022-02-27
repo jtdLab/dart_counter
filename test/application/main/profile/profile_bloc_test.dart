@@ -1,3 +1,5 @@
+void main() {}
+
 // TODO remove this file if bloc is finaly not neeedd
 
 /**

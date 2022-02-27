@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -19,13 +20,12 @@ export 'package:dart_counter/application/main/shared/darts_displayer/darts_displ
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
   final IDartUtils _dartUtils;
-  final Cubit<AbstractGameSnapshot> _playCubit;
+  final Cubit<PlayState> _playCubit;
 
   DartsDisplayerBloc(
     this._dartUtils,
-    @factoryParam Cubit<AbstractGameSnapshot>? playCubit,
-  )   : _playCubit = playCubit!,
-        super(
+    this._playCubit,
+  ) : super(
           // Set initial state
           const DartsDisplayerState.empty(),
         ) {
@@ -37,7 +37,7 @@ class DartsDisplayerBloc
 
   /// Returns instance registered inside getIt.
   factory DartsDisplayerBloc.getIt(
-    Cubit<AbstractGameSnapshot> playCubit,
+    Cubit<PlayState> playCubit,
   ) =>
       getIt<DartsDisplayerBloc>(param1: [playCubit]);
 
@@ -45,7 +45,7 @@ class DartsDisplayerBloc
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of `Cubit<AbstractGameSnapshot>`.
+  /// 1. Instance of `Cubit<PlayState>`.
   @factoryMethod
   factory DartsDisplayerBloc.injectable(
     IDartUtils dartUtils,
@@ -53,7 +53,7 @@ class DartsDisplayerBloc
   ) =>
       DartsDisplayerBloc(
         dartUtils,
-        otherDependencies[0] as Cubit<AbstractGameSnapshot>,
+        otherDependencies[0] as Cubit<PlayState>,
       );
 
   /// Handle incoming [DartAdded] event.
@@ -65,7 +65,7 @@ class DartsDisplayerBloc
     void emitWhenValid(KtList<Dart> newDarts) {
       // if new darts are valid in current game state
       if (_dartUtils.validateDarts(
-        pointsLeft: _playCubit.state.currentTurn().pointsLeft,
+        pointsLeft: _playCubit.state.gameSnapshot.currentTurn().pointsLeft,
         darts: newDarts,
       )) {
         // emit darts with new darts
