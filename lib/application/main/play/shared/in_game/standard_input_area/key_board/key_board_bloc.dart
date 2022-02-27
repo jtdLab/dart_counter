@@ -30,15 +30,15 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
         ) {
     // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
-    on<DigitPressed>((event, emit) => _mapDigitPressedToState(event));
-    on<EreasePressed>((event, emit) => _mapEreasePressedToState());
+    on<DigitPressed>((event, emit) => _handleDigitPressed(event));
+    on<EreasePressed>((event, emit) => _handleEreasePressed());
   }
 
   /// Handle incoming [Started] event.
-  Future<void> _mapStartedToState(
+  Future<void> _handleStarted(
     Emitter<KeyBoardState> emit,
   ) async {
     // TODO maybe user emit.foreach if it forwards errors correctly (in online also pls)
@@ -52,7 +52,7 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   /// Handle incoming [DigitPressed] event.
-  void _mapDigitPressedToState(
+  void _handleDigitPressed(
     DigitPressed event,
   ) {
     // the digit of the pressed button
@@ -94,7 +94,7 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   }
 
   /// Handle incoming [EreasePressed] event.
-  void _mapEreasePressedToState() {
+  void _handleEreasePressed() {
     // read the current input
     final input = _inputRowBloc.state;
 

@@ -22,28 +22,28 @@ class CreateOnlineGameBloc extends Bloc<CreateOnlineGameEvent, void> {
           null,
         ) {
     // Register event handlers
-    on<_GameCanceled>((_, __) => _mapGameCanceledToState());
-    on<_PlayerReordered>((event, _) => _mapPlayerReorderedToState(event));
-    on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
+    on<_GameCanceled>((_, __) => _handleGameCanceled());
+    on<_PlayerReordered>((event, _) => _handlePlayerReordered(event));
+    on<_PlayerRemoved>((event, _) => _handlePlayerRemoved(event));
     on<_StartingPointsUpdated>(
-      (event, _) => _mapStartingPointsUpdatedToState(event),
+      (event, _) => _handleStartingPointsUpdated(event),
     );
-    on<_ModeUpdated>((event, _) => _mapModeUpdatedToState(event));
-    on<_SizeUpdated>((event, _) => _mapSizeUpdatedToState(event));
-    on<_TypeUpdated>((event, _) => _mapTypeUpdatedToState(event));
-    on<_GameStarted>((_, __) => _mapGameStartedToState());
+    on<_ModeUpdated>((event, _) => _handleModeUpdated(event));
+    on<_SizeUpdated>((event, _) => _handleSizeUpdated(event));
+    on<_TypeUpdated>((event, _) => _handleTypeUpdated(event));
+    on<_GameStarted>((_, __) => _handleGameStarted());
   }
 
   /// Returns instance registered inside getIt.
   factory CreateOnlineGameBloc.getIt() => getIt<CreateOnlineGameBloc>();
 
   /// Handle incoming [_GameCanceled] event.
-  void _mapGameCanceledToState() {
+  void _handleGameCanceled() {
     _playOnlineService.cancelGame();
   }
 
   /// Handle incoming [_PlayerReordered] event.
-  void _mapPlayerReorderedToState(
+  void _handlePlayerReordered(
     _PlayerReordered event,
   ) {
     _playOnlineService.reorderPlayer(
@@ -53,14 +53,14 @@ class CreateOnlineGameBloc extends Bloc<CreateOnlineGameEvent, void> {
   }
 
   /// Handle incoming [_PlayerRemoved] event.
-  void _mapPlayerRemovedToState(
+  void _handlePlayerRemoved(
     _PlayerRemoved event,
   ) {
     _playOnlineService.removePlayer(index: event.index);
   }
 
   /// Handle incoming [_StartingPointsUpdated] event.
-  void _mapStartingPointsUpdatedToState(
+  void _handleStartingPointsUpdated(
     _StartingPointsUpdated event,
   ) {
     _playOnlineService.setStartingPoints(
@@ -69,28 +69,28 @@ class CreateOnlineGameBloc extends Bloc<CreateOnlineGameEvent, void> {
   }
 
   /// Handle incoming [_ModeUpdated] event.
-  void _mapModeUpdatedToState(
+  void _handleModeUpdated(
     _ModeUpdated event,
   ) {
     _playOnlineService.setMode(mode: event.newMode);
   }
 
   /// Handle incoming [_SizeUpdated] event.
-  void _mapSizeUpdatedToState(
+  void _handleSizeUpdated(
     _SizeUpdated event,
   ) {
     _playOnlineService.setSize(size: event.newSize);
   }
 
   /// Handle incoming [_TypeUpdated] event.
-  void _mapTypeUpdatedToState(
+  void _handleTypeUpdated(
     _TypeUpdated event,
   ) {
     _playOnlineService.setType(type: event.newType);
   }
 
   /// Handle incoming [_GameStarted] event.
-  void _mapGameStartedToState() {
+  void _handleGameStarted() {
     _playOnlineService.startGame();
   }
 }

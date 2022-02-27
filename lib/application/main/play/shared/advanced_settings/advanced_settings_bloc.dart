@@ -33,17 +33,17 @@ class AdvancedSettingsBloc
           ),
         ) {
     on<_Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
     on<_ShowAverageToggled>(
-      (event, emit) => _mapShowAverageToggledToState(event, emit),
+      (event, emit) => _handleShowAverageToggled(event, emit),
     );
     on<_ShowCheckoutToggled>(
-      (event, emit) => _mapShowCheckoutToggledToState(event, emit),
+      (event, emit) => _handleShowCheckoutToggled(event, emit),
     );
     on<_SmartKeyBoardActiveToggled>(
-      (event, emit) => _mapSmartKeyBoardActiveToggledToState(event, emit),
+      (event, emit) => _handleSmartKeyBoardActiveToggled(event, emit),
     );
   }
 
@@ -66,7 +66,7 @@ class AdvancedSettingsBloc
         otherDependencies[0] as Cubit<AbstractGameSnapshot>,
       );
 
-  Future<void> _mapStartedToState(
+  Future<void> _handleStarted(
     Emitter<AdvancedSettingsState> emit,
   ) async {
     //_onGameSnapshot(_playWatcherCubit.state, emit); // TODO
@@ -75,7 +75,7 @@ class AdvancedSettingsBloc
     );
   }
 
-  void _mapShowAverageToggledToState(
+  void _handleShowAverageToggled(
     _ShowAverageToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {
@@ -117,7 +117,7 @@ class AdvancedSettingsBloc
     );
   }
 
-  void _mapShowCheckoutToggledToState(
+  void _handleShowCheckoutToggled(
     _ShowCheckoutToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {
@@ -159,7 +159,7 @@ class AdvancedSettingsBloc
     );
   }
 
-  void _mapSmartKeyBoardActiveToggledToState(
+  void _handleSmartKeyBoardActiveToggled(
     _SmartKeyBoardActiveToggled event,
     Emitter<AdvancedSettingsState> emit,
   ) {

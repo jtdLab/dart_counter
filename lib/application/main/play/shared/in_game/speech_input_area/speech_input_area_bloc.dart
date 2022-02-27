@@ -28,10 +28,10 @@ class SpeechInputAreaBloc
     */
       )
       : super(const SpeechInputAreaState.initial()) {
-    on<_UndoThrowPressed>((_, emit) => _mapUndoThrowPressedToState(emit));
+    on<_UndoThrowPressed>((_, emit) => _handleUndoThrowPressed(emit));
   }
 
-  void _mapUndoThrowPressedToState(
+  void _handleUndoThrowPressed(
     Emitter<SpeechInputAreaState> emit,
   ) {
     // TODO impl

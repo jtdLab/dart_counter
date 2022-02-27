@@ -21,16 +21,16 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
         super(0) {
     // Register event handlers
     on<Started>(
-      (_, emit) async => _mapStartedToState(emit),
+      (_, emit) async => _handleStarted(emit),
       transformer: restartable(),
     );
-    on<UndoPressed>((_, __) => _mapUndoPressedToState());
-    on<CommitPressed>((_, emit) => _mapCommitPressedToState(emit));
+    on<UndoPressed>((_, __) => _handleUndoPressed());
+    on<CommitPressed>((_, emit) => _handleCommitPressed(emit));
     // TODO remove this  handler
-    on<InputChanged>((event, emit) => _mapInputChangedToState(event, emit));
+    on<InputChanged>((event, emit) => _handleInputChanged(event, emit));
   }
 
-  Future<void> _mapStartedToState(
+  Future<void> _handleStarted(
     Emitter<int> emit,
   ) async {
     // for each incoming darts
@@ -66,7 +66,7 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
     );
   }
 
-  void _mapUndoPressedToState() {
+  void _handleUndoPressed() {
     // undo throw
     _playService.undoThrow();
 
@@ -75,7 +75,7 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
   }
 
   // TODO add show checkout details modal logic
-  void _mapCommitPressedToState(
+  void _handleCommitPressed(
     Emitter<int> emit,
   ) {
     _dartsDisplayerBloc.state.when(
@@ -118,7 +118,7 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
     _dartsDisplayerBloc.add(const DartsDisplayerEvent.resetRequested());
   }
 
-  void _mapInputChangedToState(
+  void _handleInputChanged(
     InputChanged event,
     Emitter<int> emit,
   ) {

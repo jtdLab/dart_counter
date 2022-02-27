@@ -22,22 +22,22 @@ class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
           null,
         ) {
     // Register event handlers
-    on<_GameCanceled>((_, __) => _mapGameCanceledToState());
-    on<_PlayerReordered>((event, _) => _mapPlayerReorderedToState(event));
-    on<_PlayerAdded>((_, __) => _mapPlayerAddedToState());
-    on<_PlayerRemoved>((event, _) => _mapPlayerRemovedToState(event));
-    on<_PlayerNameUpdated>((event, _) => _mapPlayerNameUpdatedToState(event));
+    on<_GameCanceled>((_, __) => _handleGameCanceled());
+    on<_PlayerReordered>((event, _) => _handlePlayerReordered(event));
+    on<_PlayerAdded>((_, __) => _handlePlayerAdded());
+    on<_PlayerRemoved>((event, _) => _handlePlayerRemoved(event));
+    on<_PlayerNameUpdated>((event, _) => _handlePlayerNameUpdated(event));
     on<_StartingPointsUpdated>(
-      (event, _) => _mapStartingPointsUpdatedToState(event),
+      (event, _) => _handleStartingPointsUpdated(event),
     );
-    on<_ModeUpdated>((event, _) => _mapModeUpdatedToState(event));
-    on<_SizeUpdated>((event, _) => _mapSizeUpdatedToState(event));
-    on<_TypeUpdated>((event, _) => _mapTypeUpdatedToState(event));
-    on<_GameStarted>((_, __) => _mapGameStartedToState());
-    on<_DartBotAdded>((_, __) => _mapDartBotAddedToState());
-    on<_DartBotRemoved>((_, __) => _mapDartBotRemovedToState());
+    on<_ModeUpdated>((event, _) => _handleModeUpdated(event));
+    on<_SizeUpdated>((event, _) => _handleSizeUpdated(event));
+    on<_TypeUpdated>((event, _) => _handleTypeUpdated(event));
+    on<_GameStarted>((_, __) => _handleGameStarted());
+    on<_DartBotAdded>((_, __) => _handleDartBotAdded());
+    on<_DartBotRemoved>((_, __) => _handleDartBotRemoved());
     on<_DartBotTargetAverageUpdated>(
-      (event, _) => _mapDartBotTargetAverageUpdatedToState(event),
+      (event, _) => _handleDartBotTargetAverageUpdated(event),
     );
   }
 
@@ -45,12 +45,12 @@ class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
   factory CreateOfflineGameBloc.getIt() => getIt<CreateOfflineGameBloc>();
 
   /// Handle incoming [_GameCanceled] event.
-  void _mapGameCanceledToState() {
+  void _handleGameCanceled() {
     _playOfflineService.cancelGame();
   }
 
   /// Handle incoming [_PlayerReordered] event.
-  void _mapPlayerReorderedToState(
+  void _handlePlayerReordered(
     _PlayerReordered event,
   ) {
     _playOfflineService.reorderPlayer(
@@ -60,26 +60,26 @@ class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
   }
 
   /// Handle incoming [_PlayerAdded] event.
-  void _mapPlayerAddedToState() {
+  void _handlePlayerAdded() {
     _playOfflineService.addPlayer();
   }
 
   /// Handle incoming [_PlayerRemoved] event.
-  void _mapPlayerRemovedToState(
+  void _handlePlayerRemoved(
     _PlayerRemoved event,
   ) {
     _playOfflineService.removePlayer(index: event.index);
   }
 
   /// Handle incoming [_PlayerNameUpdated] event.
-  void _mapPlayerNameUpdatedToState(
+  void _handlePlayerNameUpdated(
     _PlayerNameUpdated event,
   ) {
     _playOfflineService.updateName(index: event.index, newName: event.newName);
   }
 
   /// Handle incoming [_StartingPointsUpdated] event.
-  void _mapStartingPointsUpdatedToState(
+  void _handleStartingPointsUpdated(
     _StartingPointsUpdated event,
   ) {
     _playOfflineService.setStartingPoints(
@@ -88,43 +88,43 @@ class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
   }
 
   /// Handle incoming [_ModeUpdated] event.
-  void _mapModeUpdatedToState(
+  void _handleModeUpdated(
     _ModeUpdated event,
   ) {
     _playOfflineService.setMode(mode: event.newMode);
   }
 
   /// Handle incoming [_SizeUpdated] event.
-  void _mapSizeUpdatedToState(
+  void _handleSizeUpdated(
     _SizeUpdated event,
   ) {
     _playOfflineService.setSize(size: event.newSize);
   }
 
   /// Handle incoming [_TypeUpdated] event.
-  void _mapTypeUpdatedToState(
+  void _handleTypeUpdated(
     _TypeUpdated event,
   ) {
     _playOfflineService.setType(type: event.newType);
   }
 
   /// Handle incoming [_GameStarted] event.
-  void _mapGameStartedToState() {
+  void _handleGameStarted() {
     _playOfflineService.startGame();
   }
 
   /// Handle incoming [_DartBotAdded] event.
-  void _mapDartBotAddedToState() {
+  void _handleDartBotAdded() {
     _playOfflineService.addDartBot();
   }
 
   /// Handle incoming [_DartBotRemoved] event.
-  void _mapDartBotRemovedToState() {
+  void _handleDartBotRemoved() {
     _playOfflineService.removeDartBot();
   }
 
   /// Handle incoming [_DartBotTargetAverageUpdated] event.
-  void _mapDartBotTargetAverageUpdatedToState(
+  void _handleDartBotTargetAverageUpdated(
     _DartBotTargetAverageUpdated event,
   ) {
     _playOfflineService.setDartBotTargetAverage(
