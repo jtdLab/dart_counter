@@ -2,10 +2,10 @@ import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('constructor', () {
-    group('empty()', () {
+  group('#Constructors#', () {
+    group('#empty#', () {
       test(
-          'Return career stats with all numbers set to 0 and all trends set to none',
+          'Return career stats with all numbers set to 0 and all trends set to none.',
           () {
         // Act
         final underTest = CareerStats.empty();

@@ -31,9 +31,6 @@ abstract class ValueObject<T> {
 
   @override
   int get hashCode => value.hashCode;
-
-  @override
-  String toString() => 'Value($value)';
 }
 
 /// A value object containing valid email or failure.
@@ -52,6 +49,12 @@ class EmailAddress extends ValueObject<String> {
   }
 
   const EmailAddress._(this.value);
+
+  @override
+  String toString() => value.fold(
+        (failure) => 'Invalid EmailAddress($failure)',
+        (value) => 'Valid EmailAddress($value)',
+      );
 }
 
 /// A value object containing valid username or failure.
@@ -70,6 +73,12 @@ class Username extends ValueObject<String> {
   }
 
   const Username._(this.value);
+
+  @override
+  String toString() => value.fold(
+        (failure) => 'Invalid Username($failure)',
+        (value) => 'Valid Username($value)',
+      );
 }
 
 /// A value object containing valid password or failure.
@@ -88,6 +97,12 @@ class Password extends ValueObject<String> {
   }
 
   const Password._(this.value);
+
+  @override
+  String toString() => value.fold(
+        (failure) => 'Invalid Password($failure)',
+        (value) => 'Valid Password($value)',
+      );
 }
 
 /// A value object containing unique uid or failure.
@@ -101,6 +116,7 @@ class UniqueId extends ValueObject<String> {
     );
   }
 
+  // TODO validated incomingString not empty etc??
   factory UniqueId.fromUniqueString(String uniqueId) {
     return UniqueId._(
       right(uniqueId),
@@ -108,6 +124,9 @@ class UniqueId extends ValueObject<String> {
   }
 
   const UniqueId._(this.value);
+
+  @override
+  String toString() => 'Valid UniqueId($value)';
 }
 
 /// A value object containing a list with max. length of 10 or failure.
@@ -134,6 +153,12 @@ class List10<T> extends ValueObject<KtList<T>> {
   bool get isFull {
     return length == maxLength;
   }
+
+  @override
+  String toString() => value.fold(
+        (failure) => 'Invalid List10($failure)',
+        (value) => 'Valid List10($value)',
+      );
 }
 
 /// A value object containing a not empty list or failure.
@@ -152,4 +177,10 @@ class NotEmptyList<T> extends ValueObject<KtList<T>> {
   int get length {
     return getOrCrash().size;
   }
+
+  @override
+  String toString() => value.fold(
+        (failure) => 'Invalid NotEmptyList($failure)',
+        (value) => 'Valid NotEmptyList($value)',
+      );
 }

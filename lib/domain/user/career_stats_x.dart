@@ -8,7 +8,7 @@ extension CareerStatsX on CareerStats {
   /// Calulcates new [CareerStats] where [this] and [careerStats]
   /// are weighted according to the number of games.
   /// The trend of the resulting [CareerStats] is taken from [this] or [careerStats] depending
-  /// which one has more games. 
+  /// which one has more games.
   CareerStats merge(
     CareerStats other,
   ) {

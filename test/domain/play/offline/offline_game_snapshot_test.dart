@@ -9,148 +9,150 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 
 void main() {
-  group('hasDartBot()', () {
-    test(
-        'GIVEN snapshot with a dartbot '
-        'THEN return true.', () {
-      // Arrange
-      final owner =
-          OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
-      final dartBot = DartBotSnapshot.dummy().copyWith(isCurrentTurn: true);
-      final players = [owner, dartBot];
-      final snapshot = OfflineGameSnapshot(
-        status: Status.running,
-        mode: Mode.firstTo,
-        size: 5,
-        type: Type.legs,
-        startingPoints: 301,
-        players: players.toImmutableList(),
-      );
+  group('#Methods#', () {
+    group('#hasDartBot#', () {
+      test(
+          'GIVEN snapshot with a dartbot '
+          'THEN return true.', () {
+        // Arrange
+        final owner =
+            OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
+        final dartBot = DartBotSnapshot.dummy().copyWith(isCurrentTurn: true);
+        final players = [owner, dartBot];
+        final snapshot = OfflineGameSnapshot(
+          status: Status.running,
+          mode: Mode.firstTo,
+          size: 5,
+          type: Type.legs,
+          startingPoints: 301,
+          players: players.toImmutableList(),
+        );
 
-      // Act
-      final underTest = snapshot.hasDartBot();
+        // Act
+        final underTest = snapshot.hasDartBot();
 
-      // Assert
-      expect(underTest, true);
+        // Assert
+        expect(underTest, true);
+      });
+
+      test(
+          'GIVEN snapshot without a dartbot '
+          'THEN return true.', () {
+        // Arrange
+        final owner =
+            OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
+        final players = [owner];
+        final snapshot = OfflineGameSnapshot(
+          status: Status.running,
+          mode: Mode.firstTo,
+          size: 5,
+          type: Type.legs,
+          startingPoints: 301,
+          players: players.toImmutableList(),
+        );
+
+        // Act
+        final underTest = snapshot.hasDartBot();
+
+        // Assert
+        expect(underTest, false);
+      });
     });
 
-    test(
-        'GIVEN snapshot without a dartbot '
-        'THEN return true.', () {
-      // Arrange
-      final owner =
-          OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
-      final players = [owner];
-      final snapshot = OfflineGameSnapshot(
-        status: Status.running,
-        mode: Mode.firstTo,
-        size: 5,
-        type: Type.legs,
-        startingPoints: 301,
-        players: players.toImmutableList(),
-      );
+    group('#currentTurn#', () {
+      test(
+          'GIVEN snapshot has status pending '
+          'THEN throw DomainError.', () {
+        // Arrange
+        final snapshot =
+            OfflineGameSnapshot.dummy().copyWith(status: Status.pending);
 
-      // Act
-      final underTest = snapshot.hasDartBot();
+        // Act & Assert
+        expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
+      });
 
-      // Assert
-      expect(underTest, false);
-    });
-  });
+      test(
+          'GIVEN snapshot has status canceled '
+          'THEN throw DomainError.', () {
+        // Arrange
+        final snapshot =
+            OfflineGameSnapshot.dummy().copyWith(status: Status.canceled);
 
-  group('currentTurn()', () {
-    test(
-        'GIVEN snapshot has status pending '
-        'THEN throw DomainError.', () {
-      // Arrange
-      final snapshot =
-          OfflineGameSnapshot.dummy().copyWith(status: Status.pending);
+        // Act & Assert
+        expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
+      });
 
-      // Act & Assert
-      expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
-    });
+      test(
+          'GIVEN snapshot has status fininshed '
+          'THEN throw DomainError.', () {
+        // Arrange
+        final snapshot =
+            OfflineGameSnapshot.dummy().copyWith(status: Status.finished);
 
-    test(
-        'GIVEN snapshot has status canceled '
-        'THEN throw DomainError.', () {
-      // Arrange
-      final snapshot =
-          OfflineGameSnapshot.dummy().copyWith(status: Status.canceled);
+        // Act & Assert
+        expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
+      });
 
-      // Act & Assert
-      expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
-    });
+      test(
+          'GIVEN snapshot has status running '
+          'THEN return the player where currentTurn is true.', () {
+        // Arrange
+        final owner =
+            OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
+        final currentTurn =
+            OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: true);
+        final players = [owner, currentTurn];
+        final snapshot = OfflineGameSnapshot(
+          status: Status.running,
+          mode: Mode.firstTo,
+          size: 5,
+          type: Type.legs,
+          startingPoints: 301,
+          players: players.toImmutableList(),
+        );
 
-    test(
-        'GIVEN snapshot has status fininshed '
-        'THEN throw DomainError.', () {
-      // Arrange
-      final snapshot =
-          OfflineGameSnapshot.dummy().copyWith(status: Status.finished);
+        // Act
+        final underTest = snapshot.currentTurn();
 
-      // Act & Assert
-      expect(() => snapshot.currentTurn(), throwsA(isA<DomainError>()));
-    });
-
-    test(
-        'GIVEN snapshot has status running '
-        'THEN return the player where currentTurn is true.', () {
-      // Arrange
-      final owner =
-          OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: false);
-      final currentTurn =
-          OfflinePlayerSnapshot.dummy().copyWith(isCurrentTurn: true);
-      final players = [owner, currentTurn];
-      final snapshot = OfflineGameSnapshot(
-        status: Status.running,
-        mode: Mode.firstTo,
-        size: 5,
-        type: Type.legs,
-        startingPoints: 301,
-        players: players.toImmutableList(),
-      );
-
-      // Act
-      final underTest = snapshot.currentTurn();
-
-      // Assert
-      expect(underTest, currentTurn);
-    });
-  });
-
-  group('description()', () {
-    test(
-        'GIVEN mode is firstTo size is X and type is legs '
-        'THEN return "FIRST TO X LEGS".', () {
-      const mode = Mode.firstTo;
-      const size = 11;
-      const type = Type.legs;
-      final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
-        mode: mode,
-        size: size,
-        type: type,
-      );
-
-      final underTest = offlineGameSnapshot.description();
-
-      expect(underTest, 'FIRST TO $size LEGS');
+        // Assert
+        expect(underTest, currentTurn);
+      });
     });
 
-    test(
-        'GIVEN mode is bestOf size is X and type is sets '
-        'THEN return "BEST OF X SETS".', () {
-      const mode = Mode.bestOf;
-      const size = 11;
-      const type = Type.sets;
-      final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
-        mode: mode,
-        size: size,
-        type: type,
-      );
+    group('#description#', () {
+      test(
+          'GIVEN mode is firstTo size is X and type is legs '
+          'THEN return "FIRST TO X LEGS".', () {
+        const mode = Mode.firstTo;
+        const size = 11;
+        const type = Type.legs;
+        final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
+          mode: mode,
+          size: size,
+          type: type,
+        );
 
-      final underTest = offlineGameSnapshot.description();
+        final underTest = offlineGameSnapshot.description();
 
-      expect(underTest, 'BEST OF $size SETS');
+        expect(underTest, 'FIRST TO $size LEGS');
+      });
+
+      test(
+          'GIVEN mode is bestOf size is X and type is sets '
+          'THEN return "BEST OF X SETS".', () {
+        const mode = Mode.bestOf;
+        const size = 11;
+        const type = Type.sets;
+        final offlineGameSnapshot = OfflineGameSnapshot.dummy().copyWith(
+          mode: mode,
+          size: size,
+          type: type,
+        );
+
+        final underTest = offlineGameSnapshot.description();
+
+        expect(underTest, 'BEST OF $size SETS');
+      });
     });
   });
 }
