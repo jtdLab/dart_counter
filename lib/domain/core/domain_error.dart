@@ -1,6 +1,8 @@
 import 'package:dart_counter/domain/core/value_failures.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 
+// TODO subclasses not factorys?
+/// Base class for an error happening in the domain layer.
 class DomainError extends Error {
   final String msg;
 

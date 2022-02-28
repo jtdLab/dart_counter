@@ -1,4 +1,3 @@
-import 'package:dart_counter/application/core/application_error.dart';
 import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -31,7 +31,7 @@ typedef GetAuthCredentialFromEmail = AuthCredential Function(
 @Environment(Environment.prod)
 @LazySingleton(as: IAuthService)
 class FirebaseAuthService implements IAuthService {
-  final FirebaseAuth _auth;
+  final FirebaseAuth _firebaseAuth;
   final AppleSignIn _appleSignIn;
   final GetOAuthCredentialFromApple _getAppleCredential;
   final GoogleSignIn _googleSignIn;
@@ -42,7 +42,7 @@ class FirebaseAuthService implements IAuthService {
   final GetAuthCredentialFromEmail _getEmailCredential;
 
   FirebaseAuthService(
-    this._auth,
+    this._firebaseAuth,
     this._appleSignIn,
     this._getAppleCredential,
     this._googleSignIn,
@@ -85,7 +85,7 @@ class FirebaseAuthService implements IAuthService {
 
   @override
   Future<String> idToken() async {
-    final user = _auth.currentUser;
+    final user = _firebaseAuth.currentUser;
 
     if (user == null) {
       throw NotAuthenticatedError();
@@ -95,7 +95,7 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  bool isAuthenticated() => _auth.currentUser != null;
+  bool isAuthenticated() => _firebaseAuth.currentUser != null;
 
   @override
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
@@ -105,7 +105,7 @@ class FirebaseAuthService implements IAuthService {
       return left(const AuthFailure.invalidEmail());
     }
     try {
-      await _auth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
+      await _firebaseAuth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
       return right(unit);
     } catch (e) {
       print(e); // TODO log
@@ -133,7 +133,7 @@ class FirebaseAuthService implements IAuthService {
 
       // Sign in the user with Firebase. If the nonce we generated earlier does
       // not match the nonce in `appleCredential.identityToken`, sign in will fail.
-      await _auth.signInWithCredential(oAuthCredential);
+      await _firebaseAuth.signInWithCredential(oAuthCredential);
 
       return right(unit);
     } catch (e) {
@@ -152,7 +152,7 @@ class FirebaseAuthService implements IAuthService {
     }
 
     try {
-      await _auth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: emailAddress.getOrCrash(),
         password: password.getOrCrash(),
       );
@@ -184,7 +184,7 @@ class FirebaseAuthService implements IAuthService {
       final oAuthCredential = _getFacebookCredential(accessToken.token);
 
       // Once signed in, return the UserCredential
-      await _auth.signInWithCredential(oAuthCredential);
+      await _firebaseAuth.signInWithCredential(oAuthCredential);
 
       return right(unit);
     } catch (e) {
@@ -212,7 +212,7 @@ class FirebaseAuthService implements IAuthService {
       );
 
       // Once signed in, return the UserCredential
-      await _auth.signInWithCredential(oAuthCredential);
+      await _firebaseAuth.signInWithCredential(oAuthCredential);
 
       return right(unit);
     } catch (e) {
@@ -257,7 +257,7 @@ class FirebaseAuthService implements IAuthService {
         [
           _googleSignIn.signOut(),
           _facebookAuth.logOut(),
-          _auth.signOut(),
+          _firebaseAuth.signOut(),
         ],
       );
       return right(unit);
@@ -327,7 +327,7 @@ class FirebaseAuthService implements IAuthService {
     }
 
     try {
-      final user = _auth.currentUser!;
+      final user = _firebaseAuth.currentUser!;
       final credential = _getEmailCredential(
         user.email!,
         oldPassword.getOrCrash(),
@@ -344,7 +344,7 @@ class FirebaseAuthService implements IAuthService {
 
   @override
   UniqueId userId() {
-    final user = _auth.currentUser;
+    final user = _firebaseAuth.currentUser;
 
     if (user == null) {
       throw NotAuthenticatedError();
@@ -354,7 +354,7 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  Stream<bool> watchIsAuthenticated() => _auth.authStateChanges().map(
+  Stream<bool> watchIsAuthenticated() => _firebaseAuth.authStateChanges().map(
         (user) => user?.uid != null,
       );
 }

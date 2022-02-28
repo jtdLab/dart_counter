@@ -1,3 +1,5 @@
+// TODO subclasses not factorys?
+/// Base class for an error happening in the application layer.
 class ApplicationError extends Error {
   final String msg;
 

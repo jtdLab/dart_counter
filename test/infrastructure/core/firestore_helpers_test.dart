@@ -3,9 +3,9 @@ import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAuthService extends Mock implements IAuthService {}
@@ -16,16 +16,16 @@ void main() {
 
   const userId = 'userId';
 
-  setUpAll(() async {
+  setUp(() async {
     authService = MockAuthService();
     firestore = FakeFirebaseFirestore();
 
-    await GetIt.I.reset();
-    GetIt.I.registerLazySingleton<IAuthService>(() => authService);
-    GetIt.I.registerLazySingleton<FirebaseFirestore>(() => firestore);
+    await getIt.reset();
+    getIt.registerLazySingleton<IAuthService>(() => authService);
+    getIt.registerLazySingleton<FirebaseFirestore>(() => firestore);
   });
 
-  group('getUserDocument', () {
+  group('#getUserDocument#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -56,7 +56,7 @@ void main() {
     });
   });
 
-  group('gameHistoryOfflineCollection', () {
+  group('#gameHistoryOfflineCollection#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -87,7 +87,7 @@ void main() {
     });
   });
 
-  group('receivedGameInvitationsCollection', () {
+  group('#receivedGameInvitationsCollection#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -119,7 +119,7 @@ void main() {
     });
   });
 
-  group('sentGameInvitationsCollection', () {
+  group('#sentGameInvitationsCollection#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -150,7 +150,7 @@ void main() {
     });
   });
 
-  group('receivedFriendRequestsCollection', () {
+  group('#receivedFriendRequestsCollection#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -182,7 +182,7 @@ void main() {
     });
   });
 
-  group('sentFriendRequestsCollection', () {
+  group('#sentFriendRequestsCollection#', () {
     test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
@@ -213,7 +213,7 @@ void main() {
     });
   });
 
-  group('gameHistoryOnlineCollection', () {
+  group('#gameHistoryOnlineCollection#', () {
     test(
         'GIVEN incoming uid '
         'THEN return collection users/uid/gameHistoryOnline.', () async {
@@ -229,7 +229,7 @@ void main() {
     });
   });
 
-  group('profilesCollection', () {
+  group('#profilesCollection#', () {
     test('Return collection profiles.', () async {
       // Arrange
       when(() => authService.userId()).thenReturn(

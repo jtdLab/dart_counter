@@ -1,5 +1,3 @@
-// coverage:ignore-file
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_client/dart_client.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -9,6 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:social_client/social_client.dart';
 
+/// Class used by injectable to register third party dependencies.
+///
+/// {@macro more_information_injectable_third_party_dependencies}
 @module
 abstract class JtdInjectableModule {
   @lazySingleton

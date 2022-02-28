@@ -280,3 +280,5 @@ test classes pro: minimal test code
 option 2: black box test only inheriting classes con: duplicate test code
 
 => option 2 is the on to go
+
+// infra register 3rd party module one big module or multiple seperate modules what is better?
