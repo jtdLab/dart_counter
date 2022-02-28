@@ -52,6 +52,7 @@ class FirebaseAuthService implements IAuthService {
     this._socialClient,
     this._getEmailCredential,
   );
+  
 
   @factoryMethod
   factory FirebaseAuthService.injectable(
