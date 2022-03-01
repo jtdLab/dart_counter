@@ -37,8 +37,8 @@ dependencies:
   auto_size_text:  ^3.0.0
   badges: ^2.0.2
   cached_network_image: ^3.2.0
-  cloud_firestore: ^3.1.8
-  cloud_functions: ^3.2.7
+  cloud_firestore: ^3.1.10
+  cloud_functions: ^3.2.9
   connectivity_plus: ^2.2.1
   crypto: ^3.0.1
   cupertino_icons: ^1.0.4
@@ -46,18 +46,18 @@ dependencies:
   easy_localization: ^3.0.0
   email_validator: ^2.0.1
   faker: ^2.0.0
-  firebase_auth: ^3.3.7
-  firebase_core: ^1.12.0
-  firebase_storage: ^10.2.7
+  firebase_auth: ^3.3.9
+  firebase_core: ^1.13.1
+  firebase_storage: ^10.2.9
   flutter_bloc: ^8.0.1
-  flutter_facebook_auth: ^4.0.1
+  flutter_facebook_auth: ^4.1.1
   flutter_hooks: ^0.18.2+1
   flutter_signin_button: ^2.0.0
-  fluttertoast: ^8.0.8
+  fluttertoast: ^8.0.9
   freezed_annotation: ^1.1.0
   get_it: ^7.2.0
   google_sign_in: ^5.2.4
-  image_picker: ^0.8.4+9
+  image_picker: ^0.8.4+10
   injectable: ^1.5.3
   kt_dart: ^0.10.0
   lottie: ^1.2.2
@@ -92,9 +92,9 @@ dev_dependencies:
   firebase_storage_mocks: ^0.5.0
   firebase_auth_mocks: ^0.8.2
   google_sign_in_mocks: ^0.2.1
-  bloc_test: ^9.0.2
-  mocktail: ^0.2.0
-  mockingjay: ^0.2.0
+  bloc_test: ^9.0.3
+  mocktail: ^0.3.0
+  #mockingjay: ^0.2.0
   source_gen: ^1.2.1
 
 dependency_overrides:
