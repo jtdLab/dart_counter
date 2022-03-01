@@ -2,7 +2,8 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
+import 'package:dart_counter/infrastructure/auth/core/apple_sign_in.dart';
+import 'package:dart_counter/infrastructure/auth/core/auth_provider_manager.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -12,20 +13,6 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:social_client/clients/i_social_client.dart';
 import 'package:social_client/social_client.dart';
 
-typedef GetOAuthCredentialFromApple = OAuthCredential Function(
-  String? idToken,
-  String? rawNonce,
-);
-typedef GetOAuthCredentialFromFacebook = OAuthCredential Function(String token);
-typedef GetOAuthCredentialFromGoogle = OAuthCredential Function(
-  String? idToken,
-  String? accessToken,
-);
-typedef GetAuthCredentialFromEmail = AuthCredential Function(
-  String email,
-  String password,
-);
-
 /// Implementation of [IAuthService] using Firebase backend.
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -33,55 +20,19 @@ typedef GetAuthCredentialFromEmail = AuthCredential Function(
 class FirebaseAuthService implements IAuthService {
   final FirebaseAuth _firebaseAuth;
   final AppleSignIn _appleSignIn;
-  final GetOAuthCredentialFromApple _getAppleCredential;
   final GoogleSignIn _googleSignIn;
-  final GetOAuthCredentialFromGoogle _getGoogleCredential;
   final FacebookAuth _facebookAuth;
-  final GetOAuthCredentialFromFacebook _getFacebookCredential;
+  final AuthProviderManager _authProviderManager;
   final SocialClient _socialClient;
-  final GetAuthCredentialFromEmail _getEmailCredential;
 
   FirebaseAuthService(
     this._firebaseAuth,
     this._appleSignIn,
-    this._getAppleCredential,
     this._googleSignIn,
-    this._getGoogleCredential,
     this._facebookAuth,
-    this._getFacebookCredential,
+    this._authProviderManager,
     this._socialClient,
-    this._getEmailCredential,
   );
-  
-
-  @factoryMethod
-  factory FirebaseAuthService.injectable(
-    FirebaseAuth _auth,
-    AppleSignIn _appleSignIn,
-    GoogleSignIn _googleSignIn,
-    FacebookAuth _facebookAuth,
-    SocialClient _socialClient,
-  ) =>
-      FirebaseAuthService(
-        _auth,
-        _appleSignIn,
-        (idToken, rawNonce) => OAuthProvider('apple.com').credential(
-          idToken: idToken,
-          rawNonce: rawNonce,
-        ),
-        _googleSignIn,
-        (idToken, accessToken) => GoogleAuthProvider.credential(
-          idToken: idToken,
-          accessToken: accessToken,
-        ),
-        _facebookAuth,
-        (token) => FacebookAuthProvider.credential(token),
-        _socialClient,
-        (email, password) => EmailAuthProvider.credential(
-          email: email,
-          password: password,
-        ),
-      );
 
   @override
   Future<String> idToken() async {
@@ -105,7 +56,8 @@ class FirebaseAuthService implements IAuthService {
       return left(const AuthFailure.invalidEmail());
     }
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: emailAddress.getOrCrash());
+      await _firebaseAuth.sendPasswordResetEmail(
+          email: emailAddress.getOrCrash());
       return right(unit);
     } catch (e) {
       print(e); // TODO log
@@ -126,9 +78,9 @@ class FirebaseAuthService implements IAuthService {
       }
 
       // Create an `OAuthCredential` from the credential returned by Apple.
-      final oAuthCredential = _getAppleCredential(
-        idToken,
-        rawNonce,
+      final oAuthCredential = _authProviderManager.getAppleOAuthCredential(
+        idToken: idToken,
+        rawNonce: rawNonce,
       );
 
       // Sign in the user with Firebase. If the nonce we generated earlier does
@@ -181,7 +133,9 @@ class FirebaseAuthService implements IAuthService {
 
       // Create a credential from the access token
       final accessToken = result.accessToken!;
-      final oAuthCredential = _getFacebookCredential(accessToken.token);
+      final oAuthCredential = _authProviderManager.getFacebookOAuthCredential(
+        accessToken: accessToken,
+      );
 
       // Once signed in, return the UserCredential
       await _firebaseAuth.signInWithCredential(oAuthCredential);
@@ -206,9 +160,8 @@ class FirebaseAuthService implements IAuthService {
       final googleAuthentication = await googleUser.authentication;
 
       // Create a credential from the id token and access token
-      final oAuthCredential = _getGoogleCredential(
-        googleAuthentication.idToken,
-        googleAuthentication.accessToken,
+      final oAuthCredential = _authProviderManager.getGoogleOAuthCredential(
+        authentication: googleAuthentication,
       );
 
       // Once signed in, return the UserCredential
@@ -328,9 +281,9 @@ class FirebaseAuthService implements IAuthService {
 
     try {
       final user = _firebaseAuth.currentUser!;
-      final credential = _getEmailCredential(
-        user.email!,
-        oldPassword.getOrCrash(),
+      final credential = _authProviderManager.getEmailAuthCredential(
+        email: user.email!,
+        password: oldPassword.getOrCrash(),
       );
       await user.reauthenticateWithCredential(credential);
       await user.updatePassword(newPassword.getOrCrash());

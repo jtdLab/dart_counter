@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_client/dart_client.dart';
+import 'package:dart_counter/infrastructure/auth/core/auth_provider_manager.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -32,4 +33,7 @@ abstract class JtdInjectableModule {
 
   @lazySingleton
   DefaultCacheManager get cache => DefaultCacheManager();
+
+  @lazySingleton
+  AuthProviderManager get authProviderManager => AuthProviderManager();
 }

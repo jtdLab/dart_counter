@@ -6,6 +6,7 @@ typedef GetAppleCredential = Future<AuthorizationCredentialAppleID> Function(
   String rawNonce,
 );
 
+// TODO doc
 @lazySingleton
 class AppleSignIn {
   final GetAppleCredential _getAppleCredential;
@@ -14,6 +15,7 @@ class AppleSignIn {
     this._getAppleCredential,
   );
 
+  /// Constructor only for injectable.
   @factoryMethod
   factory AppleSignIn.injectable() => AppleSignIn(
         (rawNonce) => SignInWithApple.getAppleIDCredential(
@@ -25,6 +27,7 @@ class AppleSignIn {
         ),
       );
 
+  // TODO doc
   Future<String?> signIn({
     required String rawNonce,
   }) async {

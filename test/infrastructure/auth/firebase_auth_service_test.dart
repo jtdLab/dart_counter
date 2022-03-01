@@ -1,7 +1,8 @@
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/infrastructure/auth/apple_sign_in.dart';
+import 'package:dart_counter/infrastructure/auth/core/apple_sign_in.dart';
+import 'package:dart_counter/infrastructure/auth/core/auth_provider_manager.dart';
 import 'package:dart_counter/infrastructure/auth/firebase_auth_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:social_client/social_client.dart';
+
+// TODO fix this tests verify calls to auth provider manager
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
@@ -22,44 +25,70 @@ class MockGoogleSignIn extends Mock implements GoogleSignIn {}
 
 class MockFacebookAuth extends Mock implements FacebookAuth {}
 
+class MockAuthProviderManager extends Mock implements AuthProviderManager {}
+
 class MockSocialClient extends Mock implements SocialClient {}
 
 void main() {
   late MockFirebaseAuth auth;
   late MockFirebaseUser firebaseUser;
   late MockAppleSignIn appleSignIn;
-  late GetOAuthCredentialFromApple getAppleCredential;
   late MockGoogleSignIn googleSignIn;
-  late GetOAuthCredentialFromGoogle getGoogleCredential;
   late MockFacebookAuth facebookAuth;
-  late GetOAuthCredentialFromFacebook getFacebookCredential;
+  late AuthProviderManager authProviderManager;
   late MockSocialClient socialClient;
-  late GetAuthCredentialFromEmail getEmailCredential;
 
   const idToken = 'idToken';
   const uid = 'uniqueId';
 
   setUpAll(() {
+    // Mocktail related setup
+  });
+
+  setUp(() {
     auth = MockFirebaseAuth();
     when(() => auth.signOut()).thenAnswer((_) async {});
     firebaseUser = MockFirebaseUser();
     when(() => firebaseUser.getIdToken()).thenAnswer((_) async => idToken);
     when(() => firebaseUser.uid).thenReturn(uid);
     appleSignIn = MockAppleSignIn();
-    getAppleCredential = (idToken, rawNonce) =>
-        const OAuthCredential(providerId: 'apple', signInMethod: 'method');
     googleSignIn = MockGoogleSignIn();
     when(() => googleSignIn.signOut())
         .thenAnswer((_) async => MockGoogleSignInAccount());
-    getGoogleCredential = (idToken, accessToken) =>
-        const OAuthCredential(providerId: 'google', signInMethod: 'method');
     facebookAuth = MockFacebookAuth();
     when(() => facebookAuth.logOut()).thenAnswer((_) async {});
-    getFacebookCredential = (token) =>
-        const OAuthCredential(providerId: 'facebook', signInMethod: 'method');
+    authProviderManager = MockAuthProviderManager();
+    when(
+      () => authProviderManager.getAppleOAuthCredential(
+        idToken: any(named: 'idToken'),
+        rawNonce: any(named: 'rawNonce'),
+      ),
+    ).thenReturn(
+      const OAuthCredential(providerId: 'apple', signInMethod: 'method'),
+    );
+    when(
+      () => authProviderManager.getEmailAuthCredential(
+        email: any(named: 'email'),
+        password: any(named: 'password'),
+      ),
+    ).thenReturn(
+      const OAuthCredential(providerId: 'email', signInMethod: 'method'),
+    );
+    when(
+      () => authProviderManager.getFacebookOAuthCredential(
+        accessToken: any(named: 'accessToken'),
+      ),
+    ).thenReturn(
+      const OAuthCredential(providerId: 'facebook', signInMethod: 'method'),
+    );
+    when(
+      () => authProviderManager.getGoogleOAuthCredential(
+        authentication: any(named: 'authentication'),
+      ),
+    ).thenReturn(
+      const OAuthCredential(providerId: 'google', signInMethod: 'method'),
+    );
     socialClient = MockSocialClient();
-    getEmailCredential = (email, password) =>
-        const AuthCredential(providerId: 'email', signInMethod: 'method');
   });
 
   group('idToken', () {
@@ -71,13 +100,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -95,13 +121,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act & Assert
@@ -121,13 +144,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -145,13 +165,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -171,13 +188,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -201,13 +215,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -231,13 +242,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -267,13 +275,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -301,13 +306,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -342,13 +344,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -383,13 +382,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -423,13 +419,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -464,13 +457,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -489,13 +479,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -513,13 +500,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -544,13 +528,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -581,13 +562,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -618,13 +596,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -662,13 +637,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -704,13 +676,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
@@ -728,13 +697,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act & Assert
@@ -756,13 +722,10 @@ void main() {
       final firebaseAuthService = FirebaseAuthService(
         auth,
         appleSignIn,
-        getAppleCredential,
         googleSignIn,
-        getGoogleCredential,
         facebookAuth,
-        getFacebookCredential,
+        authProviderManager,
         socialClient,
-        getEmailCredential,
       );
 
       // Act
