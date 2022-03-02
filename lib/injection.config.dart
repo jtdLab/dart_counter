@@ -80,7 +80,7 @@ import 'application/main/settings/settings_bloc.dart' as _i72;
 import 'application/main/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart'
     as _i44;
 import 'application/main/training/bobs_twenty_seven/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i51;
+    as _i52;
 import 'application/main/training/bobs_twenty_seven/in_training/input_area/key_board/key_board_bloc.dart'
     as _i56;
 import 'application/main/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart'
@@ -112,7 +112,7 @@ import 'application/main/training/shared/in_training/input_area/darts_displayer/
 import 'application/main/training/single_training/in_training/in_single_training_bloc.dart'
     as _i48;
 import 'application/main/training/single_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i52;
+    as _i51;
 import 'application/main/training/single_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i60;
 import 'application/main/training/single_training/watcher/single_training_watcher_cubit.dart'
@@ -136,8 +136,8 @@ import 'infrastructure/auth/core/apple_sign_in.dart' as _i5;
 import 'infrastructure/auth/core/auth_provider_manager.dart' as _i6;
 import 'infrastructure/auth/fake_auth_service.dart' as _i19;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i93;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i24;
-import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i23;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i23;
+import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i24;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i109;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i108;
 import 'infrastructure/friend/fake_friend_service.dart' as _i30;
@@ -201,11 +201,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i21.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i22.IConnectivityService>(
-      () => _i23.FakeConnectivityService(),
-      registerFor: {_dev});
-  gh.lazySingleton<_i22.IConnectivityService>(
-      () => _i24.ConnectivityService(get<_i7.Connectivity>()),
+      () => _i23.ConnectivityService(get<_i7.Connectivity>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i22.IConnectivityService>(
+      () => _i24.FakeConnectivityService(),
+      registerFor: {_dev});
   gh.lazySingleton<_i25.IDartUtils>(() => _i26.DartUtils());
   gh.lazySingleton<_i27.IDoubleTrainingService>(
       () => _i28.DoubleTrainingService(),
@@ -249,10 +249,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i27.IDoubleTrainingService>(), otherDependencies));
   gh.factoryParam<_i51.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i51.InputRowBloc.injectable(
-          get<_i20.IBobsTwentySevenService>(), otherDependencies));
+          get<_i39.ISingleTrainingService>(), otherDependencies));
   gh.factoryParam<_i52.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i52.InputRowBloc.injectable(
-          get<_i39.ISingleTrainingService>(), otherDependencies));
+          get<_i20.IBobsTwentySevenService>(), otherDependencies));
   gh.factory<_i53.InputRowBloc>(
       () => _i53.InputRowBloc(get<_i37.IScoreTrainingService>()));
   gh.factoryParam<_i54.InputRowBlocOfflineDetailedInputArea, List<Object>,

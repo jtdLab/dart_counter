@@ -13,7 +13,7 @@ import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:social_client/social_client.dart';
 
-// TODO fix this tests verify calls to auth provider manager
+// TODO fix and complete tests
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
@@ -29,6 +29,8 @@ class MockAuthProviderManager extends Mock implements AuthProviderManager {}
 
 class MockSocialClient extends Mock implements SocialClient {}
 
+class MockAccessToken extends Mock implements AccessToken {}
+
 void main() {
   late MockFirebaseAuth auth;
   late MockFirebaseUser firebaseUser;
@@ -42,7 +44,12 @@ void main() {
   const uid = 'uniqueId';
 
   setUpAll(() {
+    final accessToken = MockAccessToken();
+    when(() => accessToken.token).thenReturn('accessToken');
     // Mocktail related setup
+    registerFallbackValue(accessToken);
+
+    registerFallbackValue(MockGoogleSignInAuthentication());
   });
 
   setUp(() {
