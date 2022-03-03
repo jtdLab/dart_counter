@@ -284,3 +284,5 @@ option 2: black box test only inheriting classes con: duplicate test code
 // infra register 3rd party module one big module or multiple seperate modules what is better?
 
 // TODO constructors test groupt sub groups Upercased or lowercased for the constructor name ? be consistent through project
+
+// TODO coverage:ignore-file for all abstract classes ??

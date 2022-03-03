@@ -22,7 +22,7 @@ class MockUserService extends Mock implements IUserService {}
 
 void main() {
   setUpAll(() {
-    // mocktail related setup
+    // Mocktail related setup
     registerFallbackValue(User.dummy());
     registerFallbackValue(OfflineGameSnapshot.dummy());
   });

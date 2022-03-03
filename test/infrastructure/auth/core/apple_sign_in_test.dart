@@ -54,16 +54,16 @@ void main() {
       });
 
       test(
-          'GIVEN AppleSignIn throws while getting the identityToken is not null '
-          'THEN return null.', () async {
+          'GIVEN throws error while getting the identityToken '
+          'THEN throw error.', () async {
         // Arrange
         final appleSignIn = AppleSignIn((rawNonce) async => throw Error());
 
-        // Act
-        final underTest = await appleSignIn.signIn(rawNonce: 'rawNonce');
-
-        // Assert
-        expect(underTest, null);
+        // Act & Assert
+        expect(
+          () async => appleSignIn.signIn(rawNonce: 'rawNonce'),
+          throwsA(isA<Error>()),
+        );
       });
     });
   });

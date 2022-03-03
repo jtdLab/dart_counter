@@ -11,13 +11,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:social_client/clients/i_social_client.dart';
 import 'package:social_client/social_client.dart';
 
-// TODO fix and complete tests
-
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
-
-class MockFirebaseUser extends Mock implements User {}
 
 class MockAppleSignIn extends Mock implements AppleSignIn {}
 
@@ -29,717 +26,1202 @@ class MockAuthProviderManager extends Mock implements AuthProviderManager {}
 
 class MockSocialClient extends Mock implements SocialClient {}
 
+class MockFirebaseUser extends Mock implements User {}
+
 class MockAccessToken extends Mock implements AccessToken {}
 
+class MockUserCrendential extends Mock implements UserCredential {}
+
+class MockIdTokenResult extends Mock implements IdTokenResult {}
+
 void main() {
-  late MockFirebaseAuth auth;
-  late MockFirebaseUser firebaseUser;
+  late MockFirebaseAuth firebaseAuth;
   late MockAppleSignIn appleSignIn;
   late MockGoogleSignIn googleSignIn;
   late MockFacebookAuth facebookAuth;
   late AuthProviderManager authProviderManager;
   late MockSocialClient socialClient;
 
+  late FirebaseAuthService underTest;
+
+  late MockFirebaseUser firebaseUser;
   const idToken = 'idToken';
   const uid = 'uniqueId';
 
   setUpAll(() {
-    final accessToken = MockAccessToken();
-    when(() => accessToken.token).thenReturn('accessToken');
     // Mocktail related setup
-    registerFallbackValue(accessToken);
-
     registerFallbackValue(MockGoogleSignInAuthentication());
+    registerFallbackValue(
+      const AuthCredential(providerId: 'email', signInMethod: 'method'),
+    );
   });
 
   setUp(() {
-    auth = MockFirebaseAuth();
-    when(() => auth.signOut()).thenAnswer((_) async {});
     firebaseUser = MockFirebaseUser();
     when(() => firebaseUser.getIdToken()).thenAnswer((_) async => idToken);
     when(() => firebaseUser.uid).thenReturn(uid);
+
+    firebaseAuth = MockFirebaseAuth();
+    when(() => firebaseAuth.signOut()).thenAnswer((_) async {});
+
     appleSignIn = MockAppleSignIn();
+
     googleSignIn = MockGoogleSignIn();
     when(() => googleSignIn.signOut())
         .thenAnswer((_) async => MockGoogleSignInAccount());
+
     facebookAuth = MockFacebookAuth();
     when(() => facebookAuth.logOut()).thenAnswer((_) async {});
+
     authProviderManager = MockAuthProviderManager();
+
+    socialClient = MockSocialClient();
     when(
-      () => authProviderManager.getAppleOAuthCredential(
-        idToken: any(named: 'idToken'),
-        rawNonce: any(named: 'rawNonce'),
-      ),
-    ).thenReturn(
-      const OAuthCredential(providerId: 'apple', signInMethod: 'method'),
-    );
-    when(
-      () => authProviderManager.getEmailAuthCredential(
+      () => socialClient.createUser(
         email: any(named: 'email'),
+        username: any(named: 'username'),
         password: any(named: 'password'),
       ),
-    ).thenReturn(
-      const OAuthCredential(providerId: 'email', signInMethod: 'method'),
+    ).thenAnswer((_) async => false);
+
+    underTest = FirebaseAuthService(
+      firebaseAuth,
+      appleSignIn,
+      googleSignIn,
+      facebookAuth,
+      authProviderManager,
+      socialClient,
     );
-    when(
-      () => authProviderManager.getFacebookOAuthCredential(
-        accessToken: any(named: 'accessToken'),
-      ),
-    ).thenReturn(
-      const OAuthCredential(providerId: 'facebook', signInMethod: 'method'),
-    );
-    when(
-      () => authProviderManager.getGoogleOAuthCredential(
-        authentication: any(named: 'authentication'),
-      ),
-    ).thenReturn(
-      const OAuthCredential(providerId: 'google', signInMethod: 'method'),
-    );
-    socialClient = MockSocialClient();
   });
 
-  group('idToken', () {
-    test(
-        'GIVEN current user is not null '
-        'THEN return the idToken of that user.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(firebaseUser);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+  group('#Methods#', () {
+    group('#idToken#', () {
+      test(
+          'GIVEN authenticated '
+          'THEN return the idToken of that user.', () async {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(firebaseUser);
 
-      // Act
-      final underTest = await firebaseAuthService.idToken();
+        // Act
+        final result = await underTest.idToken();
 
-      // Assert
-      expect(underTest, idToken);
+        // Assert
+        expect(result, idToken);
+      });
+
+      test(
+          'GIVEN not authenticated '
+          'THEN return null.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(null);
+
+        // Act & Assert
+        expect(
+          () async => underTest.idToken(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      });
     });
 
-    test(
-        'GIVEN current user is null '
-        'THEN return null.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(null);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+    group('#isAuthenticated#', () {
+      test(
+          'GIVEN authenticated '
+          'THEN return true.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(firebaseUser);
 
-      // Act & Assert
-      expect(
-        () async => firebaseAuthService.idToken(),
-        throwsA(isA<NotAuthenticatedError>()),
-      );
-    });
-  });
+        // Act
+        final result = underTest.isAuthenticated();
 
-  group('isAuthenticated', () {
-    test(
-        'GIVEN current user is not null '
-        'THEN return true.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(firebaseUser);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Assert
+        expect(result, true);
+      });
 
-      // Act
-      final underTest = firebaseAuthService.isAuthenticated();
+      test(
+          'GIVEN not authenticated '
+          'THEN return false.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(null);
 
-      // Assert
-      expect(underTest, true);
+        // Act
+        final result = underTest.isAuthenticated();
+
+        // Assert
+        expect(result, false);
+      });
     });
 
-    test(
-        'GIVEN current user is null '
-        'THEN return false.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(null);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+    group('#sendPasswordResetEmail#', () {
+      test(
+          'GIVEN incoming email is not valid '
+          'THEN return failure invalid email.', () async {
+        // Arrange
+        final invalidEmail = EmailAddress('abc');
 
-      // Act
-      final underTest = firebaseAuthService.isAuthenticated();
+        // Act
+        final result = await underTest.sendPasswordResetEmail(
+          emailAddress: invalidEmail,
+        );
 
-      // Assert
-      expect(underTest, false);
-    });
-  });
+        // Assert
+        expect(result, left(const AuthFailure.invalidEmail()));
+      });
 
-  group('sendPasswordResetEmail', () {
-    test(
-        'GIVEN incoming email is not valid '
-        'THEN return failure invalid email.', () async {
-      // Arrange
-      final invalidEmail = EmailAddress('abc');
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN send password reset mail fails '
+          'THEN return failure server error.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        when(
+          () => firebaseAuth.sendPasswordResetEmail(
+              email: validEmail.getOrCrash()),
+        ).thenThrow(Error());
 
-      // Act
-      final underTest = await firebaseAuthService.sendPasswordResetEmail(
-        emailAddress: invalidEmail,
-      );
+        // Act
+        final result = await underTest.sendPasswordResetEmail(
+          emailAddress: validEmail,
+        );
 
-      // Assert
-      expect(underTest, left(const AuthFailure.invalidEmail()));
-    });
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN send password reset mail fails '
-        'THEN return failure server error.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      when(
-        () => auth.sendPasswordResetEmail(email: validEmail.getOrCrash()),
-      ).thenThrow(Error());
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN send password reset mail succeeds '
+          'THEN return unit.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        when(
+          () => firebaseAuth.sendPasswordResetEmail(
+              email: validEmail.getOrCrash()),
+        ).thenAnswer((_) async {});
 
-      // Act
-      final underTest = await firebaseAuthService.sendPasswordResetEmail(
-        emailAddress: validEmail,
-      );
+        // Act
+        final result = await underTest.sendPasswordResetEmail(
+          emailAddress: validEmail,
+        );
 
-      // Assert
-      expect(underTest, left(const AuthFailure.serverError()));
+        // Assert
+        expect(result, right(unit));
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN send password reset mail succeeds '
-        'THEN return unit.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      when(
-        () => auth.sendPasswordResetEmail(email: validEmail.getOrCrash()),
-      ).thenAnswer((_) async {});
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+    group('#signInWithApple#', () {
+      const idToken = 'idToken';
+      const oAuthCredential =
+          OAuthCredential(providerId: 'apple', signInMethod: 'method');
 
-      // Act
-      final underTest = await firebaseAuthService.sendPasswordResetEmail(
-        emailAddress: validEmail,
-      );
+      test(
+          'GIVEN sign in flow throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        when(() => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')))
+            .thenThrow(Error());
 
-      // Assert
-      expect(underTest, right(unit));
-    });
-  });
+        // Act
+        final result = await underTest.signInWithApple();
 
-  group('signInWithApple', () {
-    // TODO implement tests
-  });
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
 
-  group('signInWithEmailAndPassword', () {
-    test(
-        'GIVEN incoming email is not valid '
-        'GIVEN incoming password is valid '
-        'THEN return failure invalid email and password combination.',
-        () async {
-      // Arrange
-      final invalidEmail = EmailAddress('abc');
-      final validPassword = Password('abcde1234');
+      test(
+          'GIVEN sign in returns null '
+          'THEN return cancelled by user failure.', () async {
+        // Arrange
+        when(() => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')))
+            .thenAnswer((_) async => null);
 
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Act
+        final result = await underTest.signInWithApple();
 
-      // Act
-      final underTest = await firebaseAuthService.signInWithEmailAndPassword(
-        emailAddress: invalidEmail,
-        password: validPassword,
-      );
+        // Assert
+        expect(result, left(const AuthFailure.cancelledByUser()));
+      });
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidEmailAndPasswordCombination()),
-      );
-    });
+      test(
+          'GIVEN sign in returns idToken '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        // sign in
+        when(() => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')))
+            .thenAnswer((_) async => idToken);
+        // generate oauth credential
+        when(
+          () => authProviderManager.getAppleOAuthCredential(
+            idToken: any(named: 'idToken'),
+            rawNonce: any(named: 'rawNonce'),
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any())).thenThrow(Error());
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming password is not valid '
-        'THEN return failure invalid email and password combination.',
-        () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final invalidPassword = Password('');
+        // Act
+        final result = await underTest.signInWithApple();
 
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
 
-      // Act
-      final underTest = await firebaseAuthService.signInWithEmailAndPassword(
-        emailAddress: validEmail,
-        password: invalidPassword,
-      );
+      test(
+          'GIVEN sign in returns idToken '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential succeeds '
+          'THEN generate oauth credential from the idToken, sign into firebase with '
+          'the credential and return unit.', () async {
+        // Arrange
+        // sign in
+        when(() => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')))
+            .thenAnswer((_) async => idToken);
+        // generate oauth credential
+        when(
+          () => authProviderManager.getAppleOAuthCredential(
+            idToken: any(named: 'idToken'),
+            rawNonce: any(named: 'rawNonce'),
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any()))
+            .thenAnswer((_) async => MockUserCrendential());
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidEmailAndPasswordCombination()),
-      );
-    });
+        // Act
+        final result = await underTest.signInWithApple();
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming password is valid '
-        'GIVEN sign in fails with error wrong password '
-        'THEN return failure invalid email and password combination.',
-        () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final validPassword = Password('abcde123');
-
-      when(
-        () => auth.signInWithEmailAndPassword(
-          email: validEmail.getOrCrash(),
-          password: validPassword.getOrCrash(),
-        ),
-      ).thenThrow(FirebaseAuthException(code: 'wrong-password'));
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
-
-      // Act
-      final underTest = await firebaseAuthService.signInWithEmailAndPassword(
-        emailAddress: validEmail,
-        password: validPassword,
-      );
-
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidEmailAndPasswordCombination()),
-      );
+        // Assert
+        verify(
+          () => authProviderManager.getAppleOAuthCredential(
+            idToken: idToken,
+            rawNonce: any(named: 'rawNonce'),
+          ),
+        ).called(1);
+        verify(
+          () => firebaseAuth.signInWithCredential(oAuthCredential),
+        ).called(1);
+        expect(result, right(unit));
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming password is valid '
-        'GIVEN sign in fails with error user not found '
-        'THEN return failure invalid email and password combination.',
-        () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final validPassword = Password('abcde123');
+    group('#signInWithEmailAndPassword#', () {
+      test(
+          'GIVEN incoming email is not valid '
+          'GIVEN incoming password is valid '
+          'THEN return failure invalid email and password combination.',
+          () async {
+        // Arrange
+        final invalidEmail = EmailAddress('abc');
+        final validPassword = Password('abcde1234');
 
-      when(
-        () => auth.signInWithEmailAndPassword(
-          email: validEmail.getOrCrash(),
-          password: validPassword.getOrCrash(),
-        ),
-      ).thenThrow(FirebaseAuthException(code: 'user-not-found'));
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: invalidEmail,
+          password: validPassword,
+        );
 
-      // Act
-      final underTest = await firebaseAuthService.signInWithEmailAndPassword(
-        emailAddress: validEmail,
-        password: validPassword,
-      );
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidEmailAndPasswordCombination()),
+        );
+      });
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidEmailAndPasswordCombination()),
-      );
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming password is not valid '
+          'THEN return failure invalid email and password combination.',
+          () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final invalidPassword = Password.empty();
+
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: validEmail,
+          password: invalidPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidEmailAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN sign in fails with error wrong password '
+          'THEN return failure invalid email and password combination.',
+          () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validPassword = Password('abcde123');
+
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: validEmail.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'wrong-password'));
+
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: validEmail,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidEmailAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN sign in fails with error user not found '
+          'THEN return failure invalid email and password combination.',
+          () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validPassword = Password('abcde123');
+
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: validEmail.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'user-not-found'));
+
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: validEmail,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidEmailAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN sign in fails with other auth error '
+          'THEN return failure server error.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validPassword = Password('abcde123');
+
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: validEmail.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'code'));
+
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: validEmail,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.serverError()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN sign in succeeds '
+          'THEN return unit.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validPassword = Password('abcde123');
+
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: validEmail.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenAnswer((_) async => MockUserCrendential());
+
+        // Act
+        final result = await underTest.signInWithEmailAndPassword(
+          emailAddress: validEmail,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          right(unit),
+        );
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming password is valid '
-        'GIVEN sign in fails with other auth error '
-        'THEN return failure server error.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final validPassword = Password('abcde123');
+    group('#signInWithFacebook#', () {
+      const oAuthCredential =
+          OAuthCredential(providerId: 'facebook', signInMethod: 'method');
+      final accessToken = MockAccessToken();
 
-      when(
-        () => auth.signInWithEmailAndPassword(
-          email: validEmail.getOrCrash(),
-          password: validPassword.getOrCrash(),
-        ),
-      ).thenThrow(FirebaseAuthException(code: 'code'));
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+      setUpAll(() {
+        when(() => accessToken.token).thenReturn('token');
+      });
 
-      // Act
-      final underTest = await firebaseAuthService.signInWithEmailAndPassword(
-        emailAddress: validEmail,
-        password: validPassword,
-      );
+      test(
+          'GIVEN log in flow throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        when(() => facebookAuth.login()).thenThrow(Error());
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.serverError()),
-      );
-    });
-  });
+        // Act
+        final result = await underTest.signInWithFacebook();
 
-  group('signInWithFacebook', () {
-    // TODO implement tests
-  });
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
 
-  group('signInWithGoogle', () {
-    // TODO implement tests
-  });
+      test(
+          'GIVEN log in gets cancelled '
+          'THEN return cancelled by user failure.', () async {
+        // Arrange
+        when(() => facebookAuth.login()).thenAnswer(
+          (_) async => LoginResult(status: LoginStatus.cancelled),
+        );
 
-  group('signInWithUsernameAndPassword', () {
-    // TODO implement tests
-  });
+        // Act
+        final result = await underTest.signInWithFacebook();
 
-  group('signOut', () {
-    test('Call sign out of all providers.', () async {
-      // Arrange
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Assert
+        expect(result, left(const AuthFailure.cancelledByUser()));
+      });
 
-      // Act
-      await firebaseAuthService.signOut();
+      test(
+          'GIVEN log in returns login result with access token '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        // log in
+        when(() => facebookAuth.login()).thenAnswer(
+          (_) async => LoginResult(
+            status: LoginStatus.success,
+            accessToken: accessToken,
+          ),
+        );
+        // generate oauth credential
+        when(
+          () => authProviderManager.getFacebookOAuthCredential(
+            accessToken: accessToken,
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any())).thenThrow(Error());
 
-      // Assert
-      verify(() => auth.signOut()).called(1);
-      verify(() => googleSignIn.signOut()).called(1);
-      verify(() => facebookAuth.logOut()).called(1);
-    });
+        // Act
+        final result = await underTest.signInWithFacebook();
 
-    test(
-        'GIVEN sign out from all providers succeed '
-        'THEN return unit.', () async {
-      // Arrange
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
 
-      // Act
-      final underTest = await firebaseAuthService.signOut();
+      test(
+          'GIVEN log in returns login result with access token '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential succeeds '
+          'THEN generate oauth credential from the accessToken, sign into firebase with '
+          'the credential and return unit.', () async {
+        // Arrange
+        // log in
+        when(() => facebookAuth.login()).thenAnswer(
+          (_) async => LoginResult(
+            status: LoginStatus.success,
+            accessToken: accessToken,
+          ),
+        );
+        // generate oauth credential
+        when(
+          () => authProviderManager.getFacebookOAuthCredential(
+            accessToken: accessToken,
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any()))
+            .thenAnswer((_) async => MockUserCrendential());
 
-      // Assert
-      expect(underTest, right(unit));
-    });
+        // Act
+        final result = await underTest.signInWithFacebook();
 
-    test(
-        'GIVEN one of the sign out methods throw '
-        'THEN return failure server error.', () async {
-      // Arrange
-      when(() => googleSignIn.signOut()).thenThrow(Error());
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
-
-      // Act
-      final underTest = await firebaseAuthService.signOut();
-
-      // Assert
-      expect(underTest, left(const AuthFailure.serverError()));
-    });
-  });
-
-  group('signUpWithEmailAndUsernameAndPassword', () {
-    test(
-        'GIVEN incoming email is not valid '
-        'GIVEN incoming username is valid '
-        'GIVEN incoming password is valid '
-        'THEN return failure invalid email.', () async {
-      // Arrange
-      final invalidEmail = EmailAddress('abc');
-      final validUsername = Username('jonas');
-      final validPassword = Password('abcde1234');
-
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
-
-      // Act
-      final underTest =
-          await firebaseAuthService.signUpWithEmailAndUsernameAndPassword(
-        emailAddress: invalidEmail,
-        username: validUsername,
-        password: validPassword,
-      );
-
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidEmail()),
-      );
+        // Assert
+        verify(
+          () => authProviderManager.getFacebookOAuthCredential(
+            accessToken: accessToken,
+          ),
+        ).called(1);
+        verify(
+          () => firebaseAuth.signInWithCredential(oAuthCredential),
+        ).called(1);
+        expect(result, right(unit));
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming username is not valid '
-        'GIVEN incoming password is valid '
-        'THEN return failure invalid email.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final invalidUsername = Username('');
-      final validPassword = Password('abcde1234');
+    group('#signInWithGoogle#', () {
+      const oAuthCredential =
+          OAuthCredential(providerId: 'google', signInMethod: 'method');
+      final googleUser = MockGoogleSignInAccount();
 
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+      test(
+          'GIVEN sign in flow throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        when(() => googleSignIn.signIn()).thenThrow(Error());
 
-      // Act
-      final underTest =
-          await firebaseAuthService.signUpWithEmailAndUsernameAndPassword(
-        emailAddress: validEmail,
-        username: invalidUsername,
-        password: validPassword,
-      );
+        // Act
+        final result = await underTest.signInWithGoogle();
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidUsername()),
-      );
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
+
+      test(
+          'GIVEN sign in gets cancelled '
+          'THEN return cancelled by user failure.', () async {
+        // Arrange
+        when(() => googleSignIn.signIn()).thenAnswer((_) async => null);
+
+        // Act
+        final result = await underTest.signInWithGoogle();
+
+        // Assert
+        expect(result, left(const AuthFailure.cancelledByUser()));
+      });
+
+      test(
+          'GIVEN sign in returns google account with google auth '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential throws '
+          'THEN return server error failure.', () async {
+        // Arrange
+        // sign in
+        when(() => googleSignIn.signIn()).thenAnswer((_) async => googleUser);
+        // generate oauth credential
+        when(
+          () => authProviderManager.getGoogleOAuthCredential(
+            authentication: any(named: 'authentication'),
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any())).thenThrow(Error());
+
+        // Act
+        final result = await underTest.signInWithGoogle();
+
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
+
+      test(
+          'GIVEN sign in returns google account with google auth '
+          'GIVEN generate oauth credential succeeds '
+          'GIVEN sign in with oauth credential succeeds '
+          'THEN generate oauth credential from the authentication, sign into firebase with '
+          'the credential and return unit.', () async {
+        // Arrange
+        // sign in
+        when(() => googleSignIn.signIn()).thenAnswer((_) async => googleUser);
+        // generate oauth credential
+        when(
+          () => authProviderManager.getGoogleOAuthCredential(
+            authentication: any(named: 'authentication'),
+          ),
+        ).thenReturn(oAuthCredential);
+        // sign in with oauth credential
+        when(() => firebaseAuth.signInWithCredential(any()))
+            .thenAnswer((_) async => MockUserCrendential());
+
+        // Act
+        final result = await underTest.signInWithGoogle();
+
+        // Assert
+        verify(
+          () => authProviderManager.getGoogleOAuthCredential(
+            authentication: any(named: 'authentication'),
+          ),
+        ).called(1);
+        verify(
+          () => firebaseAuth.signInWithCredential(oAuthCredential),
+        ).called(1);
+        expect(result, right(unit));
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming username is valid '
-        'GIVEN incoming password is not valid '
-        'THEN return failure invalid email.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final validUsername = Username('jonas');
-      final invalidPassword = Password('');
+    group('#signInWithUsernameAndPassword#', () {
+      setUp(() {
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenAnswer((_) async => MockUserCrendential());
+      });
 
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+      test(
+          'GIVEN incoming username is invalid '
+          'GIVEN incoming password is valid '
+          'THEN return invalid username and password combination failure.',
+          () async {
+        // Arrange
+        final invalidUsername = Username.empty();
+        final validPassword = Password('abcde1234');
 
-      // Act
-      final underTest =
-          await firebaseAuthService.signUpWithEmailAndUsernameAndPassword(
-        emailAddress: validEmail,
-        username: validUsername,
-        password: invalidPassword,
-      );
+        // Act
+        final result = await underTest.signInWithUsernameAndPassword(
+          username: invalidUsername,
+          password: validPassword,
+        );
 
-      // Assert
-      expect(
-        underTest,
-        left(const AuthFailure.invalidPassword()),
-      );
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidUsernameAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is invalid '
+          'THEN return invalid username and password combination failure.',
+          () async {
+        // Arrange
+        final validUsername = Username('jonas');
+        final invalidPassword = Password.empty();
+
+        // Act
+        final result = await underTest.signInWithUsernameAndPassword(
+          username: validUsername,
+          password: invalidPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidUsernameAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN social client throws while getting email '
+          'THEN return server error failure.', () async {
+        // Arrange
+        final validUsername = Username('jonas');
+        final validPassword = Password('aaasf342');
+        when(
+          () => socialClient.getEmailByUsername(
+            username: validUsername.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenThrow(Error());
+
+        // Act
+        final result = await underTest.signInWithUsernameAndPassword(
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.serverError()),
+        );
+      });
+
+      test(
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN social client does not find an email '
+          'THEN return invalid username and password combination failure.',
+          () async {
+        // Arrange
+        final validUsername = Username('jonas');
+        final validPassword = Password('aaasf342');
+        when(
+          () => socialClient.getEmailByUsername(
+            username: validUsername.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenAnswer((_) async => null);
+
+        // Act
+        final result = await underTest.signInWithUsernameAndPassword(
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidUsernameAndPasswordCombination()),
+        );
+      });
+
+      test(
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN social client does find an email '
+          'THEN sign in with email and password.', () async {
+        // Arrange
+        final validUsername = Username('jonas');
+        final validPassword = Password('aaasf342');
+        const email = 'a@b.c';
+        when(
+          () => socialClient.getEmailByUsername(
+            username: validUsername.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).thenAnswer((_) async => email);
+
+        // Act
+        await underTest.signInWithUsernameAndPassword(
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        verify(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: email,
+            password: validPassword.getOrCrash(),
+          ),
+        ).called(1);
+      });
     });
 
-    test(
-        'GIVEN incoming email is valid '
-        'GIVEN incoming username is valid '
-        'GIVEN incoming password is valid '
-        'THEN call create user.', () async {
-      // Arrange
-      final validEmail = EmailAddress('a@b.c');
-      final validUsername = Username('jonas');
-      final validPassword = Password('abcdef123');
-      when(
-        () => socialClient.createUser(
-          email: validPassword.getOrCrash(),
-          username: validUsername.getOrCrash(),
-          password: validPassword.getOrCrash(),
-        ),
-      ).thenAnswer((_) async => false);
+    group('#signOut#', () {
+      test('Sign out of all providers.', () async {
+        // Act
+        await underTest.signOut();
 
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Assert
+        verify(() => firebaseAuth.signOut()).called(1);
+        verify(() => googleSignIn.signOut()).called(1);
+        verify(() => facebookAuth.logOut()).called(1);
+      });
 
-      // Act
-      await firebaseAuthService.signUpWithEmailAndUsernameAndPassword(
-        emailAddress: validEmail,
-        username: validUsername,
-        password: validPassword,
-      );
+      test(
+          'GIVEN sign out from all providers succeed '
+          'THEN return unit.', () async {
+        // Act
+        final result = await underTest.signOut();
 
-      // Assert
-      verify(
-        () => socialClient.createUser(
-          email: validEmail.getOrCrash(),
-          username: validUsername.getOrCrash(),
-          password: validPassword.getOrCrash(),
-        ),
-      ).called(1);
+        // Assert
+        expect(result, right(unit));
+      });
+
+      test(
+          'GIVEN one of the sign out methods throw '
+          'THEN return failure server error.', () async {
+        // Arrange
+        when(() => googleSignIn.signOut()).thenThrow(Error());
+
+        // Act
+        final result = await underTest.signOut();
+
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
     });
 
-    // TODO tests
-  });
+    group('#signUpWithEmailAndUsernameAndPassword#', () {
+      setUp(() {
+        when(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenAnswer((_) async => MockUserCrendential());
+      });
 
-  group('updatePassword', () {
-    // TODO implement tests
-  });
+      test(
+          'GIVEN incoming email is not valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'THEN return failure invalid email.', () async {
+        // Arrange
+        final invalidEmail = EmailAddress('abc');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcde1234');
 
-  group('userId', () {
-    test(
-        'GIVEN current user is not null '
-        'THEN return the uid of that user.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(firebaseUser);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: invalidEmail,
+          username: validUsername,
+          password: validPassword,
+        );
 
-      // Act
-      final underTest = firebaseAuthService.userId();
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidEmail()),
+        );
+      });
 
-      // Assert
-      expect(underTest, UniqueId.fromUniqueString(uid));
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is not valid '
+          'GIVEN incoming password is valid '
+          'THEN return failure invalid username.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final invalidUsername = Username('');
+        final validPassword = Password('abcde1234');
+
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: invalidUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidUsername()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is not valid '
+          'THEN return failure invalid password.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final invalidPassword = Password('');
+
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: invalidPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidPassword()),
+        );
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'THEN call create user.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcdef123');
+
+        // Act
+        await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        verify(
+          () => socialClient.createUser(
+            email: validEmail.getOrCrash(),
+            username: validUsername.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).called(1);
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN create user throws EmailAlreadyInUseError '
+          'THEN return email already in use failure.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcdef123');
+
+        when(
+          () => socialClient.createUser(
+            email: any(named: 'email'),
+            username: any(named: 'username'),
+            password: any(named: 'password'),
+          ),
+        ).thenThrow(EmailAlreadyInUseError());
+
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(result, left(const AuthFailure.emailAlreadyInUse()));
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN create user throws UsernameAlreadyInUseError '
+          'THEN return username already in use failure.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcdef123');
+
+        when(
+          () => socialClient.createUser(
+            email: any(named: 'email'),
+            username: any(named: 'username'),
+            password: any(named: 'password'),
+          ),
+        ).thenThrow(UsernameAlreadyInUseError());
+
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(result, left(const AuthFailure.usernameAlreadyInUse()));
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN create user fails '
+          'THEN return server error failure.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcdef123');
+
+        when(
+          () => socialClient.createUser(
+            email: any(named: 'email'),
+            username: any(named: 'username'),
+            password: any(named: 'password'),
+          ),
+        ).thenAnswer((_) async => false);
+
+        // Act
+        final result = await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: validPassword,
+        );
+
+        // Assert
+        expect(result, left(const AuthFailure.serverError()));
+      });
+
+      test(
+          'GIVEN incoming email is valid '
+          'GIVEN incoming username is valid '
+          'GIVEN incoming password is valid '
+          'GIVEN create user succeeds '
+          'THEN then sign in with email and password.', () async {
+        // Arrange
+        final validEmail = EmailAddress('a@b.c');
+        final validUsername = Username('jonas');
+        final validPassword = Password('abcdef123');
+
+        when(
+          () => socialClient.createUser(
+            email: any(named: 'email'),
+            username: any(named: 'username'),
+            password: any(named: 'password'),
+          ),
+        ).thenAnswer((_) async => true);
+
+        // Act
+        await underTest.signUpWithEmailAndUsernameAndPassword(
+          emailAddress: validEmail,
+          username: validUsername,
+          password: validPassword,
+        );
+
+        verify(
+          () => firebaseAuth.signInWithEmailAndPassword(
+            email: validEmail.getOrCrash(),
+            password: validPassword.getOrCrash(),
+          ),
+        ).called(1);
+      });
     });
 
-    test(
-        'GIVEN current user is null '
-        'THEN return null.', () async {
-      // Arrange
-      when(() => auth.currentUser).thenReturn(null);
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
+    group('#updatePassword#', () {
+      final oldPassword = Password('abc123');
+      final newPassword = Password('abcdefg');
+      const email = 'a@b.c';
+      const newCredential = AuthCredential(
+        providerId: 'email',
+        signInMethod: 'method',
       );
 
-      // Act & Assert
-      expect(
-        () async => firebaseAuthService.userId(),
-        throwsA(isA<NotAuthenticatedError>()),
-      );
+      setUp(() {
+        when(() => firebaseUser.email).thenReturn(email);
+        when(
+          () => authProviderManager.getEmailAuthCredential(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenReturn(newCredential);
+        when(() => firebaseUser.reauthenticateWithCredential(any()))
+            .thenAnswer((_) async => MockUserCrendential());
+        when(() => firebaseUser.updatePassword(any())).thenAnswer((_) async {});
+      });
+
+      test(
+          'GIVEN not authenticated '
+          'THEN throw NotAuthenticatedError.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(null);
+
+        // Act & Assert
+        expect(
+          () async => underTest.updatePassword(
+            oldPassword: oldPassword,
+            newPassword: newPassword,
+          ),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      });
+
+      test(
+          'GIVEN authenticated via a social account '
+          'THEN return invalid account type.', () async {
+        // Arrange
+        // authenticated
+        when(() => firebaseAuth.currentUser).thenReturn(firebaseUser);
+        // via social media
+        final idTokenResult = MockIdTokenResult();
+        when(() => idTokenResult.signInProvider).thenReturn(
+          'some_social_provider',
+        );
+        when(() => firebaseUser.getIdTokenResult())
+            .thenAnswer((_) async => idTokenResult);
+
+        // Act
+        final result = await underTest.updatePassword(
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        );
+
+        // Assert
+        expect(
+          result,
+          left(const AuthFailure.invalidAccountType()),
+        );
+      });
+
+      test(
+          'GIVEN authenticated via password '
+          'THEN request new credential, reauthenticated with the new credential '
+          'update the password and return unit.', () async {
+        // Arrange
+        // authenticated
+        when(() => firebaseAuth.currentUser).thenReturn(firebaseUser);
+        // via password
+        final idTokenResult = MockIdTokenResult();
+        when(() => idTokenResult.signInProvider).thenReturn('password');
+        when(() => firebaseUser.getIdTokenResult()).thenAnswer(
+          (_) async => idTokenResult,
+        );
+
+        // Act
+        final result = await underTest.updatePassword(
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        );
+
+        // Assert
+        verify(
+          () => authProviderManager.getEmailAuthCredential(
+            email: email,
+            password: oldPassword.getOrCrash(),
+          ),
+        ).called(1);
+        verify(
+          () => firebaseUser.reauthenticateWithCredential(newCredential),
+        ).called(1);
+        verify(
+          () => firebaseUser.updatePassword(newPassword.getOrCrash()),
+        ).called(1);
+        expect(result, right(unit));
+      });
     });
-  });
 
-  group('watchIsAuthenticated', () {
-    test(
-        'GIVEN auth state changes emits [User, null, User, null] '
-        'THEN emit [true, false, true, false].', () async {
-      // Arrange
-      when(() => auth.authStateChanges()).thenAnswer(
-        (_) => Stream.fromIterable([firebaseUser, null, firebaseUser, null]),
-      );
-      final firebaseAuthService = FirebaseAuthService(
-        auth,
-        appleSignIn,
-        googleSignIn,
-        facebookAuth,
-        authProviderManager,
-        socialClient,
-      );
+    group('#userId#', () {
+      test(
+          'GIVEN authenticated '
+          'THEN return the uid of that user.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(firebaseUser);
 
-      // Act
-      final underTest = firebaseAuthService.watchIsAuthenticated();
+        // Act
+        final result = underTest.userId();
 
-      // Assert
-      expect(underTest, emitsInOrder([true, false, true, false]));
+        // Assert
+        expect(result, UniqueId.fromUniqueString(uid));
+      });
+
+      test(
+          'GIVEN not authenticated '
+          'THEN return null.', () {
+        // Arrange
+        when(() => firebaseAuth.currentUser).thenReturn(null);
+
+        // Act & Assert
+        expect(
+          () async => underTest.userId(),
+          throwsA(isA<NotAuthenticatedError>()),
+        );
+      });
+    });
+
+    group('#watchIsAuthenticated#', () {
+      test(
+          'GIVEN auth state changes emits [User, null, User, null] '
+          'THEN emit [true, false, true, false].', () {
+        // Arrange
+        when(() => firebaseAuth.authStateChanges()).thenAnswer(
+          (_) => Stream.fromIterable([firebaseUser, null, firebaseUser, null]),
+        );
+
+        // Act
+        final stream = underTest.watchIsAuthenticated();
+
+        // Assert
+        expect(stream, emitsInOrder([true, false, true, false]));
+      });
     });
   });
 }

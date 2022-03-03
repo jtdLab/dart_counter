@@ -136,8 +136,8 @@ import 'infrastructure/auth/core/apple_sign_in.dart' as _i5;
 import 'infrastructure/auth/core/auth_provider_manager.dart' as _i6;
 import 'infrastructure/auth/fake_auth_service.dart' as _i19;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i93;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i23;
-import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i24;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i24;
+import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i23;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i109;
 import 'infrastructure/core/jtd_injectable_module.dart' as _i108;
 import 'infrastructure/friend/fake_friend_service.dart' as _i30;
@@ -174,7 +174,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factoryParam<_i4.AdvancedSettingsBloc, List<Object>, dynamic>(
       (otherDependencies, _) =>
           _i4.AdvancedSettingsBloc.injectable(otherDependencies));
-  gh.lazySingleton<_i5.AppleSignIn>(() => _i5.AppleSignIn.injectable());
+  gh.lazySingleton<_i5.AppleSignIn>(() => jtdInjectableModule.appleSignIn);
   gh.lazySingleton<_i6.AuthProviderManager>(
       () => jtdInjectableModule.authProviderManager);
   gh.lazySingleton<_i7.Connectivity>(() => jtdInjectableModule.connectivity);
@@ -201,11 +201,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i21.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
   gh.lazySingleton<_i22.IConnectivityService>(
-      () => _i23.ConnectivityService(get<_i7.Connectivity>()),
-      registerFor: {_test, _prod});
-  gh.lazySingleton<_i22.IConnectivityService>(
-      () => _i24.FakeConnectivityService(),
+      () => _i23.FakeConnectivityService(),
       registerFor: {_dev});
+  gh.lazySingleton<_i22.IConnectivityService>(
+      () => _i24.ConnectivityService(get<_i7.Connectivity>()),
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i25.IDartUtils>(() => _i26.DartUtils());
   gh.lazySingleton<_i27.IDoubleTrainingService>(
       () => _i28.DoubleTrainingService(),

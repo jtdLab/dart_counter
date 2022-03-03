@@ -20,5 +20,6 @@ class AuthFailure with _$AuthFailure {
       _InvalidUsernameAndPasswordCombination;
   const factory AuthFailure.passwordsNotMatching() = _PasswordsNotMatching;
   const factory AuthFailure.cancelledByUser() = _CancelledByUser;
+  const factory AuthFailure.invalidAccountType() = _InvalidAccountType;
   const factory AuthFailure.serverError() = _ServerError;
 }

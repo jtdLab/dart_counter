@@ -20,7 +20,7 @@ class MockFriendCubit extends MockCubit<FriendsState> implements FriendsCubit {}
 class MockGameInvitationCubit extends MockCubit<GameInvitationsState>
     implements GameInvitationsCubit {}
 
-// TODO test dont complete in multiple runs
+// TODO some tests dont complete in multiple runs
 
 void main() {
   late MockUserCubit mockUserCubit;

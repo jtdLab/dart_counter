@@ -13,7 +13,7 @@ class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
   setUpAll(() {
-    // mocktail related setup
+    // Mocktail related setup
     registerFallbackValue(EmailAddress.empty());
     registerFallbackValue(Username.empty());
   });
