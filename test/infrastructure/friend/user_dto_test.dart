@@ -97,13 +97,13 @@ void main() {
     'profile': profileJson,
   };
 
-  test('constructor', () {
+  test('#Constructor#', () {
     // Assert
     expect(dto.id, idString);
     expect(dto.profile, profileDto);
   });
 
-  test('fromDomain', () {
+  test('#fromDomain#', () {
     // Act
     final dto = UserDto.fromDomain(domain);
 
@@ -112,7 +112,7 @@ void main() {
     expect(dto.profile, profileDto);
   });
 
-  test('toDomain', () {
+  test('#toDomain#', () {
     // Act
     final domain = dto.toDomain();
 
@@ -121,7 +121,7 @@ void main() {
     expect(domain.profile, profileDomain);
   });
 
-  test('fromJson', () {
+  test('#fromJson#', () {
     // Act
     final dto = UserDto.fromJson(json);
 
@@ -130,7 +130,7 @@ void main() {
     expect(dto.profile, profileDto);
   });
 
-  test('toJson', () {
+  test('#toJson#', () {
     // Act
     final json = dto.toJson();
 

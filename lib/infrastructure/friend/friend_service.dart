@@ -28,6 +28,7 @@ class FriendService implements IFriendService {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
+
   FriendService(
     this._authService,
     this._userService,

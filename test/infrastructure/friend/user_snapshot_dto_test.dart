@@ -28,14 +28,14 @@ void main() {
     'name': nameString,
   };
 
-  test('constructor', () {
+  test('#Constructor#', () {
     // Assert
     expect(dto.id, idString);
     expect(dto.photoUrl, photoUrl);
     expect(dto.name, nameString);
   });
 
-  test('fromDomain', () {
+  test('#fromDomain#', () {
     // Act
     final dto = UserSnapshotDto.fromDomain(domain);
 
@@ -45,7 +45,7 @@ void main() {
     expect(dto.name, nameString);
   });
 
-  test('toDomain', () {
+  test('#toDomain#', () {
     // Act
     final domain = dto.toDomain();
 
@@ -55,7 +55,7 @@ void main() {
     expect(domain.name, name);
   });
 
-  test('fromJson', () {
+  test('#fromJson#', () {
     // Act
     final dto = UserSnapshotDto.fromJson(json);
 
@@ -65,7 +65,7 @@ void main() {
     expect(dto.name, nameString);
   });
 
-  test('toJson', () {
+  test('#toJson#', () {
     // Act
     final json = dto.toJson();
 

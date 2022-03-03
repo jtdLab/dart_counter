@@ -13,6 +13,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
 class FakeFriendService implements IFriendService {
