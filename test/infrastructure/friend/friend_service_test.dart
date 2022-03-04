@@ -806,7 +806,7 @@ void main() {
       // TODO implement tests
     });
 
-    group('watchReceivedFriendRequests', () {
+    group('#watchReceivedFriendRequests#', () {
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
@@ -823,10 +823,133 @@ void main() {
         },
       );
 
-      // TODO
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains invalid received friend requests json '
+        'THEN emit unexpected failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // invalid received friend requests json
+          await firebaseFirestore.receivedFriendRequestsCollection().add({
+            'key': 'value',
+          });
+
+          // Act
+          final result = underTest.watchReceivedFriendRequests();
+
+          // Assert
+          expect(
+            result,
+            emitsInOrder([left(const FriendFailure.unexpected())]),
+          );
+        },
+      );
+
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains 0 docs '
+        'THEN emit empty list.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // firestore return 0 docs
+          // do nothing
+
+          // Act
+          final result = underTest.watchReceivedFriendRequests();
+
+          // Assert
+
+          expect(result, emitsInOrder([right(const KtList.empty())]));
+        },
+      );
+
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains valid received friend requests json '
+        'THEN emit received friend requests sorted by createdAt desc.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // valid received friend requests json
+          const id1 = 'id1';
+          const toId1 = 'toId1';
+          const fromId1 = 'fromId1';
+          const fromName1 = 'fromName1';
+          const read1 = true;
+          const createdAt1 = 1;
+          await firebaseFirestore
+              .receivedFriendRequestsCollection()
+              .doc(id1)
+              .set({
+            'toId': toId1,
+            'fromId': fromId1,
+            'fromName': fromName1,
+            'read': read1,
+            'createdAt': createdAt1
+          });
+          const id2 = 'id2';
+          const toId2 = 'toId2';
+          const fromId2 = 'fromId2';
+          const fromName2 = 'fromName2';
+          const read2 = false;
+          const createdAt2 = 2;
+          await firebaseFirestore
+              .receivedFriendRequestsCollection()
+              .doc(id2)
+              .set({
+            'toId': toId2,
+            'fromId': fromId2,
+            'fromName': fromName2,
+            'read': read2,
+            'createdAt': createdAt2
+          });
+
+          // Act
+          final result = underTest.watchReceivedFriendRequests();
+
+          // Assert
+          expect(
+            result,
+            emitsInOrder([
+              right(
+                KtList.from(
+                  [
+                    FriendRequest(
+                      id: UniqueId.fromUniqueString(id2),
+                      toId: UniqueId.fromUniqueString(toId2),
+                      fromId: UniqueId.fromUniqueString(fromId2),
+                      fromName: Username(fromName2),
+                      read: read2,
+                      createdAt:
+                          DateTime.fromMillisecondsSinceEpoch(createdAt2),
+                    ),
+                    FriendRequest(
+                      id: UniqueId.fromUniqueString(id1),
+                      toId: UniqueId.fromUniqueString(toId1),
+                      fromId: UniqueId.fromUniqueString(fromId1),
+                      fromName: Username(fromName1),
+                      read: read1,
+                      createdAt:
+                          DateTime.fromMillisecondsSinceEpoch(createdAt1),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        },
+      );
     });
 
-    group('watchSentFriendRequests', () {
+    group('#watchSentFriendRequests#', () {
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
@@ -843,7 +966,124 @@ void main() {
         },
       );
 
-      // TODO
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains invalid sent friend requests json '
+        'THEN emit unexpected failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // invalid sent friend requests json
+          await firebaseFirestore.sentFriendRequestsCollection().add({
+            'key': 'value',
+          });
+
+          // Act
+          final result = underTest.watchSentFriendRequests();
+
+          // Assert
+          expect(
+            result,
+            emitsInOrder([left(const FriendFailure.unexpected())]),
+          );
+        },
+      );
+
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains 0 docs '
+        'THEN emit empty list.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // firestore return 0 docs
+          // do nothing
+
+          // Act
+          final result = underTest.watchSentFriendRequests();
+
+          // Assert
+
+          expect(result, emitsInOrder([right(const KtList.empty())]));
+        },
+      );
+
+      test(
+        'GIVEN authenticated user '
+        'GIVEN firestore contains valid sent friend requests json '
+        'THEN emit sent friend requests sorted by createdAt desc.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => authService.userId())
+              .thenReturn(UniqueId.fromUniqueString(userId));
+          // valid sent friend requests json
+          const id1 = 'id1';
+          const toId1 = 'toId1';
+          const fromId1 = 'fromId1';
+          const fromName1 = 'fromName1';
+          const read1 = true;
+          const createdAt1 = 1;
+          await firebaseFirestore.sentFriendRequestsCollection().doc(id1).set({
+            'toId': toId1,
+            'fromId': fromId1,
+            'fromName': fromName1,
+            'read': read1,
+            'createdAt': createdAt1
+          });
+          const id2 = 'id2';
+          const toId2 = 'toId2';
+          const fromId2 = 'fromId2';
+          const fromName2 = 'fromName2';
+          const read2 = false;
+          const createdAt2 = 2;
+          await firebaseFirestore.sentFriendRequestsCollection().doc(id2).set({
+            'toId': toId2,
+            'fromId': fromId2,
+            'fromName': fromName2,
+            'read': read2,
+            'createdAt': createdAt2
+          });
+
+          // Act
+          final result = underTest.watchSentFriendRequests();
+
+          // Assert
+          expect(
+            result,
+            emitsInOrder([
+              right(
+                KtList.from(
+                  [
+                    FriendRequest(
+                      id: UniqueId.fromUniqueString(id2),
+                      toId: UniqueId.fromUniqueString(toId2),
+                      fromId: UniqueId.fromUniqueString(fromId2),
+                      fromName: Username(fromName2),
+                      read: read2,
+                      createdAt:
+                          DateTime.fromMillisecondsSinceEpoch(createdAt2),
+                    ),
+                    FriendRequest(
+                      id: UniqueId.fromUniqueString(id1),
+                      toId: UniqueId.fromUniqueString(toId1),
+                      fromId: UniqueId.fromUniqueString(fromId1),
+                      fromName: Username(fromName1),
+                      read: read1,
+                      createdAt:
+                          DateTime.fromMillisecondsSinceEpoch(createdAt1),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        },
+      );
     });
   });
 }
