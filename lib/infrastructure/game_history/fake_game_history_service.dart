@@ -24,19 +24,24 @@ class FakeGameHistoryService implements IGameHistoryService {
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
       getGameHistoryOffline() async {
     _checkAuth();
-
+    // when authenticated
+    // and has network access
     if (hasNetworkConnection) {
+      // generate 0-10 random offline games
       final games = List.generate(
         faker.randomGenerator.integer(11),
         (index) => OfflineGame.dummy(),
       );
 
+      // sort the generated games by date recent-old
       games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
 
+      // return the generated games
       return right(List10(games.toImmutableList()));
     }
 
-
+    // else when no network access
+    // return no network access failure
     return left(const GameHistoryFailure.noNetworkAccess());
   }
 
@@ -45,24 +50,32 @@ class FakeGameHistoryService implements IGameHistoryService {
     required String uid,
   }) async {
     _checkAuth();
-
+    // when authenticated
+    // and has network access
     if (hasNetworkConnection) {
+      // generate 0-10 random online games
       final games = List.generate(
         faker.randomGenerator.integer(11),
         (index) => OnlineGame.dummy(),
       );
 
+      // sort the generated games by date recent-old
       games.sort((game, game1) => game.createdAt.compareTo(game1.createdAt));
 
+      // return the generated games
       return right(List10(games.toImmutableList()));
     }
 
+    // else when no network access
+    // return no network access failure
     return left(const GameHistoryFailure.noNetworkAccess());
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
+    // when not authenticated
     if (!_authService.isAuthenticated()) {
+      // throw not authenticated error
       throw NotAuthenticatedError();
     }
   }

@@ -32,27 +32,7 @@ class FakeGameInvitationService implements IGameInvitationService {
           faker.randomGenerator
               .amount((i) => GameInvitation.dummy(), 5)
               .toImmutableList(),
-        ) {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) {
-      if (isAuthenticated) {
-        if (!_receivedGameInvitationsController.hasValue) {
-          _receivedGameInvitationsController.add(
-            faker.randomGenerator
-                .amount((i) => GameInvitation.dummy(), 5)
-                .toImmutableList(),
-          );
-        }
-
-        if (!_sentGameInvitationsController.hasValue) {
-          _sentGameInvitationsController.add(
-            faker.randomGenerator
-                .amount((i) => GameInvitation.dummy(), 5)
-                .toImmutableList(),
-          );
-        }
-      }
-    });
-  }
+        );
 
   @override
   Future<Either<GameInvitationFailure, Unit>> accept({

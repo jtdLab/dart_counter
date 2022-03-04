@@ -14,14 +14,18 @@ class ConnectivityService implements IConnectivityService {
 
   @override
   Future<bool> isOffline() async {
+    // request connectivity result
     final connectivityResult = await _connectivity.checkConnectivity();
 
+    // when connectivity result is none return true else false
     return connectivityResult == ConnectivityResult.none;
   }
 
   @override
   Stream<bool> watchIsOffline() {
+    // map connectivity results
     return _connectivity.onConnectivityChanged.map(
+      // to true when none else false
       (connectivityResult) => connectivityResult == ConnectivityResult.none,
     );
   }

@@ -413,8 +413,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i76.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i31.IGameHistoryService>(
-      () => _i106.GameHistoryService(get<_i13.FirebaseFirestore>(),
-          get<_i41.IUserService>(), get<_i29.IFriendService>()),
+      () => _i106.GameHistoryService(
+          get<_i13.FirebaseFirestore>(), get<_i29.IFriendService>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i95.IPlayOnlineService>(
       () => _i107.PlayOnlineService(get<_i8.DartClient>(),

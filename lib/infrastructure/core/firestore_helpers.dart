@@ -12,10 +12,12 @@ extension FirestoreX on FirebaseFirestore {
   /// Throws [NotAuthenticatedError] if app user is not signed in.
   DocumentReference userDocument() {
     try {
+      // the id the current authenticated user
       final uid = getIt<IAuthService>().userId();
-      return getIt<FirebaseFirestore>()
-          .collection('users')
-          .doc(uid.getOrCrash());
+      // the firestore instance
+      final firestore = getIt<FirebaseFirestore>();
+
+      return firestore.collection('users').doc(uid.getOrCrash());
     } catch (e) {
       rethrow;
     }

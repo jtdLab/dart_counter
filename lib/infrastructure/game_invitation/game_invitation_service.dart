@@ -24,31 +24,12 @@ class GameInvitationService implements IGameInvitationService {
   final DartClient _dartClient;
   final SocialClient _socialClient;
 
-  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _receivedInvitationsController;
-  BehaviorSubject<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      _sentInvitationsController;
-
   GameInvitationService(
     this._authService,
     this._firestore,
     this._socialClient,
     this._dartClient,
-  )   : _receivedInvitationsController = BehaviorSubject(),
-        _sentInvitationsController = BehaviorSubject() {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) async {
-      if (isAuthenticated) {
-        _receivedInvitationsController = BehaviorSubject();
-        _receivedInvitationsController
-            .addStream(watchReceivedGameInvitations());
-        _sentInvitationsController = BehaviorSubject();
-        _sentInvitationsController.addStream(watchSentInvitations());
-      } else {
-        await _receivedInvitationsController.close(); // TODO needed
-        await _sentInvitationsController.close(); // TODO needed
-      }
-    });
-  }
+  );
 
   @override
   Future<Either<GameInvitationFailure, Unit>> accept({
@@ -76,6 +57,7 @@ class GameInvitationService implements IGameInvitationService {
     required GameInvitation invitation,
   }) async {
     _checkAuth();
+
     final success = await _socialClient.cancelGameInvitation(
       toId: invitation.toId.getOrCrash(),
     );
@@ -92,6 +74,7 @@ class GameInvitationService implements IGameInvitationService {
     required GameInvitation invitation,
   }) async {
     _checkAuth();
+
     final success = await _socialClient.declineGameInvitation(
       fromId: invitation.fromId.getOrCrash(),
     );
@@ -108,7 +91,8 @@ class GameInvitationService implements IGameInvitationService {
       getReceivedGameInvitations() async {
     _checkAuth();
 
-    return _receivedInvitationsController.value;
+    // TODO implement
+    throw UnimplementedError();
   }
 
   @override
@@ -116,19 +100,16 @@ class GameInvitationService implements IGameInvitationService {
       getSentGameInvitations() async {
     _checkAuth();
 
-    return _sentInvitationsController.value;
+    // TODO implement
+    throw UnimplementedError();
   }
 
   @override
   Future<Either<GameInvitationFailure, Unit>>
       markReceivedInvitationsAsRead() async {
     _checkAuth();
-    final CollectionReference<Object?> collection;
-    try {
-      collection = _firestore.receivedGameInvitationsCollection();
-    } catch (e) {
-      rethrow;
-    }
+
+    final collection = _firestore.receivedGameInvitationsCollection();
 
     try {
       final querySnapshot = await collection
@@ -152,6 +133,7 @@ class GameInvitationService implements IGameInvitationService {
     required UniqueId toId,
   }) async {
     _checkAuth();
+
     final success = await _socialClient.sendGameInvitation(
       toId: toId.getOrCrash(),
     );
@@ -166,7 +148,9 @@ class GameInvitationService implements IGameInvitationService {
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchReceivedGameInvitations() async* {
+    // TODO no generator
     _checkAuth();
+
     final collection = _firestore.receivedGameInvitationsCollection();
 
     yield* collection
@@ -194,7 +178,9 @@ class GameInvitationService implements IGameInvitationService {
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
       watchSentInvitations() async* {
+    // TODo no generator
     _checkAuth();
+
     final collection = _firestore.sentGameInvitationsCollection();
 
     yield* collection

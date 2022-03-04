@@ -317,15 +317,14 @@ class FirebaseAuthService implements IAuthService {
       );
       // when error happend while trying to create user
     } catch (e) {
-      // when email already in use error
+      // and it is a email already in use error
       if (e is EmailAlreadyInUseError) {
         // return email already in use failure
         return left(const AuthFailure.emailAlreadyInUse());
-        // when username already in use error
+        // and it is a username already in use error
       } else {
         // return username already in use failure
         return left(const AuthFailure.usernameAlreadyInUse());
-        // when other error
       }
     }
 
@@ -396,7 +395,11 @@ class FirebaseAuthService implements IAuthService {
   }
 
   @override
-  Stream<bool> watchIsAuthenticated() => _firebaseAuth.authStateChanges().map(
-        (user) => user?.uid != null,
-      );
+  Stream<bool> watchIsAuthenticated() {
+    // map incoming users from firebase
+    return _firebaseAuth.authStateChanges().map(
+          // to false when user is null else true
+          (user) => user != null,
+        );
+  }
 }

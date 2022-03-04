@@ -11,175 +11,163 @@ class MockAuthService extends Mock implements IAuthService {}
 void main() {
   late MockAuthService mockAuthService;
 
+  late FakeGameHistoryService underTest;
+
   setUp(() {
     mockAuthService = MockAuthService();
+
+    underTest = FakeGameHistoryService(mockAuthService);
   });
 
-  void setUpMockAuthServiceWithAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => true);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([true]));
-  }
+  group('#Methods#', () {
+    group('#fetchGameHistoryOffline#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(
+            () => mockAuthService.isAuthenticated(),
+          ).thenAnswer((_) => false);
 
-  void setUpMockAuthServiceWithNotAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => false);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([false]));
-  }
+          // Act & Assert
+          expect(
+            underTest.getGameHistoryOffline(),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-  group('fetchGameHistoryOffline', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeGameHistoryService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeGameHistoryService.hasNetworkConnection = false;
 
-        // Act & Assert
-        expect(
-          underTest.getGameHistoryOffline(),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act
+          final result = await underTest.getGameHistoryOffline();
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeGameHistoryService.hasNetworkConnection = false;
-        final underTest = FakeGameHistoryService(mockAuthService);
+          // Assert
+          expect(result, left(const GameHistoryFailure.noNetworkAccess()));
+        },
+      );
 
-        // Act
-        final failurOrUnit = await underTest.getGameHistoryOffline();
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN game history sorted by createdAt from most recent to oldest.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeGameHistoryService.hasNetworkConnection = true;
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const GameHistoryFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Act
+          final result = await underTest.getGameHistoryOffline();
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN return right with a game history sorted by createdAt from most recent to oldest.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeGameHistoryService.hasNetworkConnection = true;
-        final underTest = FakeGameHistoryService(mockAuthService);
+          // Assert
+          expect(
+            result
+                .toOption()
+                .toNullable()!
+                .getOrCrash()
+                .asList()
+                .map((e) => e.createdAt)
+                .toList(),
+            result
+                .toOption()
+                .toNullable()!
+                .getOrCrash()
+                .asList()
+                .map((e) => e.createdAt)
+                .toList()
+              ..sort(
+                (a, b) => a.compareTo(b),
+              ),
+          );
+        },
+      );
+    });
 
-        // Act
-        final failurOrUnit = await underTest.getGameHistoryOffline();
+    group('#fetchGameHistoryOnline#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(
+            () => mockAuthService.isAuthenticated(),
+          ).thenAnswer((_) => false);
 
-        // Assert
-        expect(failurOrUnit.isRight(), true);
-        expect(
-          failurOrUnit
-              .toOption()
-              .toNullable()!
-              .getOrCrash()
-              .asList()
-              .map((e) => e.createdAt)
-              .toList(),
-          failurOrUnit
-              .toOption()
-              .toNullable()!
-              .getOrCrash()
-              .asList()
-              .map((e) => e.createdAt)
-              .toList()
-            ..sort(
-              (a, b) => a.compareTo(b),
-            ),
-        );
-      },
-    );
-  });
+          // Act & Assert
+          expect(
+            underTest.getGameHistoryOnline(uid: 'randomId'),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-  group('fetchGameHistoryOnline', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeGameHistoryService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeGameHistoryService.hasNetworkConnection = false;
 
-        // Act & Assert
-        expect(
-          underTest.getGameHistoryOnline(uid: 'randomId'),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act
+          final result =
+              await underTest.getGameHistoryOnline(uid: 'randomId45380');
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeGameHistoryService.hasNetworkConnection = false;
-        final underTest = FakeGameHistoryService(mockAuthService);
+          // Assert
+          expect(result, left(const GameHistoryFailure.noNetworkAccess()));
+        },
+      );
 
-        // Act
-        final failurOrUnit =
-            await underTest.getGameHistoryOnline(uid: 'randomId45380');
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN game history sorted by createdAt from most recent to oldest.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeGameHistoryService.hasNetworkConnection = true;
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const GameHistoryFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Act
+          final result =
+              await underTest.getGameHistoryOnline(uid: 'randomIdw438');
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN return right with a game history sorted by createdAt from most recent to oldest.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeGameHistoryService.hasNetworkConnection = true;
-        final underTest = FakeGameHistoryService(mockAuthService);
-
-        // Act
-        final failurOrUnit =
-            await underTest.getGameHistoryOnline(uid: 'randomIdw438');
-
-        // Assert
-        expect(failurOrUnit.isRight(), true);
-        expect(
-          failurOrUnit
-              .toOption()
-              .toNullable()!
-              .getOrCrash()
-              .asList()
-              .map((e) => e.createdAt)
-              .toList(),
-          failurOrUnit
-              .toOption()
-              .toNullable()!
-              .getOrCrash()
-              .asList()
-              .map((e) => e.createdAt)
-              .toList()
-            ..sort(
-              (a, b) => a.compareTo(b),
-            ),
-        );
-      },
-    );
+          // Assert
+          expect(
+            result
+                .toOption()
+                .toNullable()!
+                .getOrCrash()
+                .asList()
+                .map((e) => e.createdAt)
+                .toList(),
+            result
+                .toOption()
+                .toNullable()!
+                .getOrCrash()
+                .asList()
+                .map((e) => e.createdAt)
+                .toList()
+              ..sort(
+                (a, b) => a.compareTo(b),
+              ),
+          );
+        },
+      );
+    });
   });
 }

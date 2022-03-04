@@ -34,7 +34,7 @@ class FakeAuthService implements IAuthService {
     this._appleSignIn,
     this._googleSignIn,
     this._facebookAuth, {
-    bool isAuthenticated = false,
+    bool isAuthenticated = false, // TODO not good solution
   }) : _authenticatedController = BehaviorSubject.seeded(isAuthenticated);
 
   @factoryMethod

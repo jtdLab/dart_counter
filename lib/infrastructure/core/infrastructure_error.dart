@@ -15,7 +15,5 @@ class EnumParseError<T extends Enum> extends InfrastructureError {
   final String notParsableString;
 
   EnumParseError(this.notParsableString)
-      : super(
-          'Could not parse $notParsableString to enum $T',
-        );
+      : super('Could not parse $notParsableString to enum $T');
 }

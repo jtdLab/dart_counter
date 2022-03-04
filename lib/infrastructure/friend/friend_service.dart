@@ -350,7 +350,9 @@ class FriendService implements IFriendService {
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
+    // when not authenticated
     if (!_authService.isAuthenticated()) {
+      // throw not authenticated error
       throw NotAuthenticatedError();
     }
   }

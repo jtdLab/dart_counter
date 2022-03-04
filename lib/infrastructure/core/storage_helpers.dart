@@ -12,10 +12,12 @@ extension StorageX on FirebaseStorage {
   /// Throws [NotAuthenticatedError] if app user is not signed in.
   Reference profilePhotoReference() {
     try {
+      // the id the current authenticated user
       final uid = getIt<IAuthService>().userId();
-      return getIt<FirebaseStorage>()
-          .ref('profilePhotos')
-          .child(uid.getOrCrash());
+      // the storage instance
+      final storage = getIt<FirebaseStorage>();
+
+      return storage.ref('profilePhotos').child(uid.getOrCrash());
     } catch (e) {
       rethrow;
     }
