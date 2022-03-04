@@ -2,15 +2,21 @@ import 'package:dart_counter/infrastructure/connectivity/fake_connectivity_servi
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  late FakeConnectivityService underTest;
+
+  setUp(() {
+    underTest = FakeConnectivityService();
+  });
+
   group('#Methods#', () {
     group('#isOffline#', () {
       test(
         'GIVEN network access '
-        'THEN return false ',
+        'THEN return false.',
         () async {
           // Arrange
+          // network access
           FakeConnectivityService.hasNetworkConnection = true;
-          final underTest = FakeConnectivityService();
 
           // Act
           final isOffline = await underTest.isOffline();
@@ -22,11 +28,11 @@ void main() {
 
       test(
         'GIVEN no network access '
-        'THEN return true ',
+        'THEN return true.',
         () async {
           // Arrange
+          // no network access
           FakeConnectivityService.hasNetworkConnection = false;
-          final underTest = FakeConnectivityService();
 
           // Act
           final isOffline = await underTest.isOffline();
@@ -40,11 +46,11 @@ void main() {
     group('#watchIsOffline#', () {
       test(
         'GIVEN network access '
-        'THEN emit [false] ',
+        'THEN emit [false].',
         () {
           // Arrange
+          // network access
           FakeConnectivityService.hasNetworkConnection = true;
-          final underTest = FakeConnectivityService();
 
           // Act
           final stream = underTest.watchIsOffline();
@@ -56,11 +62,11 @@ void main() {
 
       test(
         'GIVEN no network access '
-        'THEN emit [true] ',
+        'THEN emit [true].',
         () {
           // Arrange
+          // no network access
           FakeConnectivityService.hasNetworkConnection = false;
-          final underTest = FakeConnectivityService();
 
           // Act
           final stream = underTest.watchIsOffline();

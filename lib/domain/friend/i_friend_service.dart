@@ -49,7 +49,7 @@ abstract class IFriendService {
   /// Marks the received friend requests of the app-user globally as read.
   ///
   /// Throws [NotAuthenticatedError] if the app-user is not signed in.
-  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead();
+  Future<void> markReceivedFriendRequestsAsRead();
 
   /// Removes the [friend] of the app-user.
   ///

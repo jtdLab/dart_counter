@@ -23,6 +23,10 @@ void main() {
   late MockGoogleSignIn googleSignIn;
   late MockFacebookAuth facebookAuth;
 
+  late FakeAuthService
+      underTest; // TODO standard constructor takes isauthenticated as a param atm
+  // in consideration of testing this is not the best option becaus global under test cant be used
+
   setUpAll(() {
     // Mocktail related setup
     registerFallbackValue(EmailAddress.empty());
@@ -35,10 +39,12 @@ void main() {
     when(
       () => appleSignIn.signIn(rawNonce: any(named: 'rawNonce')),
     ).thenAnswer((_) async => 'idToken');
+
     googleSignIn = MockGoogleSignIn();
     when(
       () => googleSignIn.signIn(),
     ).thenAnswer((_) async => MockGoogleSignInAccount());
+
     facebookAuth = MockFacebookAuth();
     when(
       () => facebookAuth.login(),
@@ -51,14 +57,15 @@ void main() {
 
   group('#Constructors#', () {
     group('#Injectable#', () {
-      test('IsAuthenticated is false.', () {
-        // Arrange
-        final underTest = FakeAuthService.injectable(
+      setUp(() {
+        underTest = FakeAuthService.injectable(
           appleSignIn,
           googleSignIn,
           facebookAuth,
         );
+      });
 
+      test('IsAuthenticated returns false.', () {
         // Act
         final isAuthenticated = underTest.isAuthenticated();
 

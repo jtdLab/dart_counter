@@ -13,26 +13,21 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 @Environment(Environment.dev)
 @LazySingleton(as: IFriendService)
 class FakeFriendService implements IFriendService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
-  // final IUserService _userService;
 
   final BehaviorSubject<KtList<Friend>> _friendsController;
-
   final BehaviorSubject<KtList<FriendRequest>> _receivedFriendRequestController;
-
   final BehaviorSubject<KtList<FriendRequest>> _sentFriendRequestController;
 
   final List<UserSnapshot> _userSearchResults;
 
   FakeFriendService(
     this._authService,
-    //this._userService,
   )   : _friendsController = BehaviorSubject.seeded(
           faker.randomGenerator
               .amount((i) => Friend.dummy(), 5)
@@ -49,7 +44,9 @@ class FakeFriendService implements IFriendService {
               .toImmutableList(),
         ),
         _userSearchResults = [] {
-    _authService.watchIsAuthenticated().listen((isAuthenticated) {
+    // TODO remove
+    /**
+     * _authService.watchIsAuthenticated().listen((isAuthenticated) {
       if (isAuthenticated) {
         if (!_friendsController.hasValue) {
           _friendsController.add(
@@ -76,6 +73,7 @@ class FakeFriendService implements IFriendService {
         }
       }
     });
+   */
   }
 
   @override
@@ -84,21 +82,30 @@ class FakeFriendService implements IFriendService {
   }) async {
     _checkAuth();
 
+    // when has internet connection
     if (hasNetworkConnection) {
+      // remove accepted friend requests from received friend requests
       _removeFromReceivedFriendRequests(friendRequest);
 
+      // create new friend
       final newFriend = Friend.dummy().copyWith(
         id: friendRequest.fromId,
         profile: Profile.dummy().copyWith(name: friendRequest.fromName),
       );
 
+      // add new friend to friends
       final friends = _friendsController.value.toMutableList();
       friends.add(newFriend);
 
+      // emit new friends
       _friendsController.add(friends);
+
+      // return unit
       return right(unit);
+      // when has no internet connection
     }
 
+    // return no network access failure
     return left(const FriendFailure.noNetworkAccess());
   }
 
@@ -172,7 +179,7 @@ class FakeFriendService implements IFriendService {
   }
 
   @override
-  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
+  Future<void> markReceivedFriendRequestsAsRead() async {
     _checkAuth();
 
     final receivedFriendRequests = _receivedFriendRequestController.value;
@@ -182,8 +189,6 @@ class FakeFriendService implements IFriendService {
           .map((friendRequest) => friendRequest.copyWith(read: true))
           .toList(),
     );
-
-    return right(unit);
   }
 
   @override

@@ -286,3 +286,7 @@ option 2: black box test only inheriting classes con: duplicate test code
 // TODO constructors test groupt sub groups Upercased or lowercased for the constructor name ? be consistent through project
 
 // TODO coverage:ignore-file for all abstract classes ??
+
+// TODO all test underTest global available in setup must be the totesting class
+
+// TODO in test dependencies should contain mock in var name

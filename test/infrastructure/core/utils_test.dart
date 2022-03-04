@@ -4,7 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('#ShaX#', () {
     group('#toSha256#', () {
-      test('GIVEN a string X ' 'THEN return the sha256 hash of.', () {
+      test(
+          'GIVEN a string '
+          'THEN return the sha256 hash of it.', () {
         // Arrange
         const string = 'abcdef12345';
 

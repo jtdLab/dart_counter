@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {
+  late AppleSignIn underTest;
+
   group('#Methods#', () {
     group('#signIn#', () {
       test(
@@ -10,7 +12,7 @@ void main() {
           'THEN return null.', () async {
         // Arrange
         const String? identityToken = null;
-        final appleSignIn = AppleSignIn(
+        underTest = AppleSignIn(
           (rawNonce) async => const AuthorizationCredentialAppleID(
             userIdentifier: null,
             givenName: null,
@@ -23,10 +25,10 @@ void main() {
         );
 
         // Act
-        final underTest = await appleSignIn.signIn(rawNonce: 'rawNonce');
+        final result = await underTest.signIn(rawNonce: 'rawNonce');
 
         // Assert
-        expect(underTest, null);
+        expect(result, null);
       });
 
       test(
@@ -34,7 +36,7 @@ void main() {
           'THEN return the identityToken.', () async {
         // Arrange
         const identityToken = 'identityToken';
-        final appleSignIn = AppleSignIn(
+        final underTest = AppleSignIn(
           (rawNonce) async => const AuthorizationCredentialAppleID(
             userIdentifier: null,
             givenName: null,
@@ -47,21 +49,21 @@ void main() {
         );
 
         // Act
-        final underTest = await appleSignIn.signIn(rawNonce: 'rawNonce');
+        final result = await underTest.signIn(rawNonce: 'rawNonce');
 
         // Assert
-        expect(underTest, identityToken);
+        expect(result, identityToken);
       });
 
       test(
           'GIVEN throws error while getting the identityToken '
           'THEN throw error.', () async {
         // Arrange
-        final appleSignIn = AppleSignIn((rawNonce) async => throw Error());
+        underTest = AppleSignIn((rawNonce) async => throw Error());
 
         // Act & Assert
         expect(
-          () async => appleSignIn.signIn(rawNonce: 'rawNonce'),
+          () async => underTest.signIn(rawNonce: 'rawNonce'),
           throwsA(isA<Error>()),
         );
       });

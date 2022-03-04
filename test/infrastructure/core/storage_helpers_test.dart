@@ -30,6 +30,7 @@ void main() {
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.', () {
       // Arrange
+      // not authenticated user
       when(() => authService.userId()).thenThrow(NotAuthenticatedError());
 
       // Act & Assert
@@ -43,6 +44,7 @@ void main() {
         'GIVEN authenticated user '
         'THEN return reference profilePhotos/{userId}.', () async {
       // Arrange
+      // authenticated user
       when(() => authService.userId()).thenReturn(
         UniqueId.fromUniqueString(userId),
       );

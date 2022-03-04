@@ -10,10 +10,10 @@ class MockGoogleSignInAuthentication extends Mock
     implements GoogleSignInAuthentication {}
 
 void main() {
-  late AuthProviderManager authProviderManager;
+  late AuthProviderManager underTest;
 
   setUpAll(() {
-    authProviderManager = AuthProviderManager();
+    underTest = AuthProviderManager();
   });
 
   group('#Methods#', () {
@@ -28,16 +28,16 @@ void main() {
         const rawNonce = 'rawNonce';
 
         // Act
-        final underTest = authProviderManager.getAppleOAuthCredential(
+        final result = underTest.getAppleOAuthCredential(
           idToken: idToken,
           rawNonce: rawNonce,
         );
 
         // Assert
-        expect(underTest.providerId, 'apple.com');
-        expect(underTest.signInMethod, 'oauth');
-        expect(underTest.idToken, idToken);
-        expect(underTest.rawNonce, rawNonce);
+        expect(result.providerId, 'apple.com');
+        expect(result.signInMethod, 'oauth');
+        expect(result.idToken, idToken);
+        expect(result.rawNonce, rawNonce);
       });
     });
 
@@ -51,15 +51,15 @@ void main() {
         const password = 'pw1234';
 
         // Act
-        final underTest = authProviderManager.getEmailAuthCredential(
+        final result = underTest.getEmailAuthCredential(
           email: email,
           password: password,
         );
 
         // Assert
-        expect(underTest.providerId, 'password');
-        expect(underTest.signInMethod, 'password');
-        expect(underTest.token, null);
+        expect(result.providerId, 'password');
+        expect(result.signInMethod, 'password');
+        expect(result.token, null);
       });
     });
 
@@ -74,14 +74,14 @@ void main() {
         when(() => accesToken.token).thenReturn(token);
 
         // Act
-        final underTest = authProviderManager.getFacebookOAuthCredential(
+        final result = underTest.getFacebookOAuthCredential(
           accessToken: accesToken,
         );
 
         // Assert
-        expect(underTest.providerId, 'facebook.com');
-        expect(underTest.signInMethod, 'facebook.com');
-        expect(underTest.token, null);
+        expect(result.providerId, 'facebook.com');
+        expect(result.signInMethod, 'facebook.com');
+        expect(result.token, null);
       });
     });
 
@@ -98,14 +98,14 @@ void main() {
         when(() => authentication.accessToken).thenReturn(accessToken);
 
         // Act
-        final underTest = authProviderManager.getGoogleOAuthCredential(
+        final result = underTest.getGoogleOAuthCredential(
           authentication: authentication,
         );
 
         // Assert
-        expect(underTest.providerId, 'google.com');
-        expect(underTest.signInMethod, 'google.com');
-        expect(underTest.token, null);
+        expect(result.providerId, 'google.com');
+        expect(result.signInMethod, 'google.com');
+        expect(result.token, null);
       });
     });
   });

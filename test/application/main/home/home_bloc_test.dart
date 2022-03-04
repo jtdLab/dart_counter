@@ -20,8 +20,6 @@ class MockFriendCubit extends MockCubit<FriendsState> implements FriendsCubit {}
 class MockGameInvitationCubit extends MockCubit<GameInvitationsState>
     implements GameInvitationsCubit {}
 
-// TODO some tests dont complete in multiple runs
-
 void main() {
   late MockUserCubit mockUserCubit;
   late MockFriendCubit mockFriendCubit;
@@ -152,19 +150,23 @@ void main() {
     final initialUser = User.dummy();
     final updatedUser = User.dummy();
 
-    final initialReceivedGameInvitations =
-        KtList.from(List.generate(3, (index) => GameInvitation.dummy()));
-    final updatedReceivedGameInvitations =
-        KtList.from(List.generate(3, (index) => GameInvitation.dummy()));
+    final initialReceivedGameInvitations = KtList.from(
+      List.generate(3, (index) => GameInvitation.dummy().copyWith(read: false)),
+    );
+    final updatedReceivedGameInvitations = KtList.from(
+      List.generate(3, (index) => GameInvitation.dummy().copyWith(read: true)),
+    );
     final initialUnreadGameInvitations =
         initialReceivedGameInvitations.count((element) => !element.read);
     final updatedUnreadGameInvitations =
         updatedReceivedGameInvitations.count((element) => !element.read);
 
-    final initialReceivedFriendRequests =
-        KtList.from(List.generate(3, (index) => FriendRequest.dummy()));
-    final updatedReceivedFriendRequests =
-        KtList.from(List.generate(3, (index) => FriendRequest.dummy()));
+    final initialReceivedFriendRequests = KtList.from(
+      List.generate(3, (index) => FriendRequest.dummy().copyWith(read: false)),
+    );
+    final updatedReceivedFriendRequests = KtList.from(
+      List.generate(3, (index) => FriendRequest.dummy().copyWith(read: true)),
+    );
     final initialUnreadFriendRequests =
         initialReceivedFriendRequests.count((element) => !element.read);
     final updatedUnreadFriendRequests =

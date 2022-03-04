@@ -10,6 +10,7 @@ import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/friend/user_snapshot_dto.dart';
+import 'package:dart_counter/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -28,7 +29,6 @@ class FriendService implements IFriendService {
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
 
-
   FriendService(
     this._authService,
     this._userService,
@@ -41,6 +41,7 @@ class FriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     final friendRequestAccepted = await _socialClient.acceptFriendRequest(
       fromId: friendRequest.fromId.getOrCrash(),
     );
@@ -57,6 +58,7 @@ class FriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     final friendRequestCanceled = await _socialClient.cancelFriendRequest(
       toId: friendRequest.toId.getOrCrash(),
     );
@@ -73,6 +75,7 @@ class FriendService implements IFriendService {
     required FriendRequest friendRequest,
   }) async {
     _checkAuth();
+
     final friendRequestDeclined = await _socialClient.declineFriendRequest(
       fromId: friendRequest.fromId.getOrCrash(),
     );
@@ -86,7 +89,7 @@ class FriendService implements IFriendService {
 
   @override
   Future<Either<FriendFailure, KtList<Friend>>> getFriends() async {
-    // TODO
+    // TODO implement
     throw UnimplementedError();
   }
 
@@ -110,6 +113,7 @@ class FriendService implements IFriendService {
 
       return right(receivedFriendRequests);
     } catch (e) {
+      logger.e(e);
       return left(const FriendFailure.unexpected());
     }
   }
@@ -134,33 +138,20 @@ class FriendService implements IFriendService {
 
       return right(sentFriendRequests);
     } catch (e) {
+      logger.e(e);
       return left(const FriendFailure.unexpected());
     }
   }
 
   @override
-  Future<Either<FriendFailure, Unit>> markReceivedFriendRequestsAsRead() async {
-    _checkAuth();
-    final CollectionReference<Object?> collection;
-    try {
-      collection = _firestore.receivedFriendRequestsCollection();
-    } catch (e) {
-      rethrow;
-    }
+  Future<void> markReceivedFriendRequestsAsRead() async {
+    final collection = _firestore.receivedFriendRequestsCollection();
 
-    try {
-      final querySnapshot = await collection
-          .where('read', isNotEqualTo: true)
-          .get(const GetOptions(source: Source.cache));
+    final querySnapshot =
+        await collection.where('read', isNotEqualTo: true).get();
 
-      for (final doc in querySnapshot.docs) {
-        await collection.doc(doc.id).update({'read': true});
-      }
-
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const FriendFailure.unexpected()); // TODO name better
+    for (final doc in querySnapshot.docs) {
+      await collection.doc(doc.id).update({'read': true});
     }
   }
 
@@ -169,6 +160,7 @@ class FriendService implements IFriendService {
     required Friend friend,
   }) async {
     _checkAuth();
+
     final friendRemoved = await _socialClient.removeFriend(
       friendId: friend.id.getOrCrash(),
     );
@@ -222,7 +214,7 @@ class FriendService implements IFriendService {
         searchResults.add(UserSnapshotDto.fromJson(json).toDomain());
       }
     } catch (e) {
-      print(e);
+      logger.e(e);
       return left(const FriendFailure.unexpected()); // TODO name better
     }
 
@@ -233,6 +225,8 @@ class FriendService implements IFriendService {
   Future<Either<FriendFailure, UserSnapshot>> getUserById({
     required String id,
   }) async {
+    _checkAuth();
+
     final doc = await _firestore.profilesCollection().doc(id).get();
 
     try {
@@ -244,7 +238,7 @@ class FriendService implements IFriendService {
 
       return right(UserSnapshotDto.fromJson(json).toDomain());
     } catch (e) {
-      print(e);
+      logger.e(e);
       return left(const FriendFailure.unexpected()); // TODO name better
     }
   }
@@ -270,6 +264,7 @@ class FriendService implements IFriendService {
   @override
   Stream<Either<FriendFailure, KtList<Friend>>> watchFriends() {
     _checkAuth();
+
     return _userService
         .watchUser()
         .asyncMap<Either<FriendFailure, KtList<Friend>>>((failureOrUser) {
@@ -319,10 +314,11 @@ class FriendService implements IFriendService {
 
         return FriendRequestDto.fromJson(json).toDomain();
       }).toImmutableList();
+
       return right<FriendFailure, KtList<FriendRequest>>(
         receivedFriendRequests,
       );
-    }).onErrorReturnWith((e, s) => left(const FriendFailure.unexpected()));
+    }).onErrorReturnWith((_, __) => left(const FriendFailure.unexpected()));
   }
 
   @override
@@ -347,7 +343,7 @@ class FriendService implements IFriendService {
       return right<FriendFailure, KtList<FriendRequest>>(
         sentFriendRequests,
       );
-    }).onErrorReturnWith((e, s) {
+    }).onErrorReturnWith((_, __) {
       return left(const FriendFailure.unexpected());
     });
   }

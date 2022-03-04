@@ -8,20 +8,24 @@ class MockConnectivity extends Mock implements Connectivity {}
 void main() {
   late MockConnectivity mockConnectivity;
 
+  late ConnectivityService underTest;
+
   setUp(() {
     mockConnectivity = MockConnectivity();
+
+    underTest = ConnectivityService(mockConnectivity);
   });
 
   group('#Methods#', () {
     group('#isOffline#', () {
       test(
         'GIVEN network access '
-        'THEN return false ',
+        'THEN return false.',
         () async {
           // Arrange
+          // network access
           when(() => mockConnectivity.checkConnectivity())
               .thenAnswer((_) async => ConnectivityResult.mobile);
-          final underTest = ConnectivityService(mockConnectivity);
 
           // Act
           final isOffline = await underTest.isOffline();
@@ -33,13 +37,12 @@ void main() {
 
       test(
         'GIVEN no network access '
-        'THEN return true ',
+        'THEN return true.',
         () async {
           // Arrange
-          // Arrange
+          // no network access
           when(() => mockConnectivity.checkConnectivity())
               .thenAnswer((_) async => ConnectivityResult.none);
-          final underTest = ConnectivityService(mockConnectivity);
 
           // Act
           final isOffline = await underTest.isOffline();
@@ -53,12 +56,12 @@ void main() {
     group('#watchIsOffline#', () {
       test(
         'GIVEN network access '
-        'THEN emit [false] ',
+        'THEN emit [false].',
         () {
           // Arrange
+          // network access
           when(() => mockConnectivity.onConnectivityChanged)
               .thenAnswer((_) => Stream.value(ConnectivityResult.mobile));
-          final underTest = ConnectivityService(mockConnectivity);
 
           // Act
           final stream = underTest.watchIsOffline();
@@ -70,12 +73,12 @@ void main() {
 
       test(
         'GIVEN no network access '
-        'THEN emit [true] ',
+        'THEN emit [true].',
         () {
           // Arrange
+          // no network access
           when(() => mockConnectivity.onConnectivityChanged)
               .thenAnswer((_) => Stream.value(ConnectivityResult.none));
-          final underTest = ConnectivityService(mockConnectivity);
 
           // Act
           final stream = underTest.watchIsOffline();

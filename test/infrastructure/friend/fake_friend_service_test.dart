@@ -4,7 +4,6 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
-import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/friend/fake_friend_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,49 +11,34 @@ import 'package:mocktail/mocktail.dart';
 
 class MockAuthService extends Mock implements IAuthService {}
 
-class MockUserService extends Mock implements IUserService {}
-
 void main() {
   late MockAuthService mockAuthService;
-  late MockUserService mockUserService; // TODO remove if not needed
+
+  late FakeFriendService underTest;
 
   setUp(() {
     mockAuthService = MockAuthService();
-    mockUserService = MockUserService();
+
+    underTest = FakeFriendService(mockAuthService);
     FakeFriendService.hasNetworkConnection = true;
   });
 
-  void setUpMockAuthServiceWithAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => true);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([true]));
-  }
-
-  void setUpMockAuthServiceWithNotAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => false);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([false]));
-  }
-
   group('#Methods#', () {
     group('#acceptFriendRequest#', () {
+      final acceptedFriendRequest = FriendRequest.dummy();
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
-            underTest.acceptFriendRequest(friendRequest: FriendRequest.dummy()),
+            underTest.acceptFriendRequest(friendRequest: acceptedFriendRequest),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -65,32 +49,31 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.acceptFriendRequest(
-            friendRequest: FriendRequest.dummy(),
+          final result = await underTest.acceptFriendRequest(
+            friendRequest: acceptedFriendRequest,
           );
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
       test(
         'GIVEN authenticated user and has network access '
-        'WHEN called with valid friend request '
         'THEN return unit and emit updated received friend requests without the accepted friend request.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
+
           final acceptedFriendRequest =
               (await underTest.getReceivedFriendRequests())
                   .toOption()
@@ -98,12 +81,12 @@ void main() {
                   .get(0);
 
           // Act
-          final failurOrUnit = await underTest.acceptFriendRequest(
+          final result = await underTest.acceptFriendRequest(
             friendRequest: acceptedFriendRequest,
           );
 
           // Assert
-          expect(failurOrUnit.isRight(), true);
+          expect(result, right(unit));
           underTest.watchReceivedFriendRequests().listen(
                 expectAsync1(
                   (failureOrFriendRequests) => expect(
@@ -120,17 +103,20 @@ void main() {
     });
 
     group('#cancelFriendRequest#', () {
+      final canceledFriendRequest = FriendRequest.dummy();
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
-            underTest.cancelFriendRequest(friendRequest: FriendRequest.dummy()),
+            underTest.cancelFriendRequest(friendRequest: canceledFriendRequest),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -141,20 +127,18 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.cancelFriendRequest(
-            friendRequest: FriendRequest.dummy(),
+          final result = await underTest.cancelFriendRequest(
+            friendRequest: canceledFriendRequest,
           );
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -164,9 +148,10 @@ void main() {
         'THEN return unit and emit updated sent friend requests without the canceled friend request.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
           final canceledFriendRequest =
               (await underTest.getSentFriendRequests())
                   .toOption()
@@ -174,12 +159,12 @@ void main() {
                   .get(0);
 
           // Act
-          final failurOrUnit = await underTest.cancelFriendRequest(
+          final result = await underTest.cancelFriendRequest(
             friendRequest: canceledFriendRequest,
           );
 
           // Assert
-          expect(failurOrUnit.isRight(), true);
+          expect(result, right(unit));
           underTest.watchSentFriendRequests().listen(
                 expectAsync1(
                   (failureOrFriendRequests) => expect(
@@ -196,18 +181,22 @@ void main() {
     });
 
     group('#declineFriendRequest#', () {
+      final declinedFriendRequest = FriendRequest.dummy();
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          //not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
             underTest.declineFriendRequest(
-                friendRequest: FriendRequest.dummy()),
+              friendRequest: declinedFriendRequest,
+            ),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -218,19 +207,18 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.declineFriendRequest(
-              friendRequest: FriendRequest.dummy());
+          final result = await underTest.declineFriendRequest(
+            friendRequest: declinedFriendRequest,
+          );
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -240,9 +228,11 @@ void main() {
         'THEN return unit and emit updated received friend requests without the declinced friend request.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
+
           final declinedFriendRequest =
               (await underTest.getReceivedFriendRequests())
                   .toOption()
@@ -250,12 +240,12 @@ void main() {
                   .get(0);
 
           // Act
-          final failurOrUnit = await underTest.declineFriendRequest(
+          final result = await underTest.declineFriendRequest(
             friendRequest: declinedFriendRequest,
           );
 
           // Assert
-          expect(failurOrUnit.isRight(), true);
+          expect(result, right(unit));
           underTest.watchReceivedFriendRequests().listen(
                 expectAsync1(
                   (failureOrFriendRequests) => expect(
@@ -277,8 +267,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -293,18 +284,16 @@ void main() {
         'THEN return no network access failure ',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrFriends = await underTest.getFriends();
+          final result = await underTest.getFriends();
 
           // Assert
-          expect(
-            failureOrFriends,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -313,16 +302,16 @@ void main() {
         'THEN return not empty friend.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrFriends = await underTest.getFriends();
+          final result = await underTest.getFriends();
 
           // Assert
-          expect(failureOrFriends.isRight(), true);
-          expect(failureOrFriends.toOption().toNullable()!.isEmpty(), false);
+          expect(result.toOption().toNullable()!.isEmpty(), false);
         },
       );
     });
@@ -333,8 +322,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -349,19 +339,16 @@ void main() {
         'THEN return no network access failure ',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrReceivedFriendRequests =
-              await underTest.getReceivedFriendRequests();
+          final result = await underTest.getReceivedFriendRequests();
 
           // Assert
-          expect(
-            failureOrReceivedFriendRequests,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -370,20 +357,16 @@ void main() {
         'THEN return not empty received friend requests.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrReceivedFriendRequests =
-              await underTest.getReceivedFriendRequests();
+          final result = await underTest.getReceivedFriendRequests();
 
           // Assert
-          expect(failureOrReceivedFriendRequests.isRight(), true);
-          expect(
-            failureOrReceivedFriendRequests.toOption().toNullable()!.isEmpty(),
-            false,
-          );
+          expect(result.toOption().toNullable()!.isEmpty(), false);
         },
       );
     });
@@ -394,8 +377,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -410,19 +394,16 @@ void main() {
         'THEN return no network access failure ',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrSentFriendRequests =
-              await underTest.getSentFriendRequests();
+          final result = await underTest.getSentFriendRequests();
 
           // Assert
-          expect(
-            failureOrSentFriendRequests,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -431,20 +412,16 @@ void main() {
         'THEN return not empty sent friend requests.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrSentFriendRequests =
-              await underTest.getSentFriendRequests();
+          final result = await underTest.getSentFriendRequests();
 
           // Assert
-          expect(failureOrSentFriendRequests.isRight(), true);
-          expect(
-            failureOrSentFriendRequests.toOption().toNullable()!.isEmpty(),
-            false,
-          );
+          expect(result.toOption().toNullable()!.isEmpty(), false);
         },
       );
     });
@@ -455,8 +432,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -467,19 +445,21 @@ void main() {
       );
 
       test(
-        'Return unit and emit updated received friend requests with read flag set to true for every friend request.',
+        'GIVEN not authenticated user '
+        'GIVEN has network access '
+        'THEN emit updated received friend requests with read flag set to true for every friend request.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failureOrUnit =
-              await underTest.markReceivedFriendRequestsAsRead();
+          final result = await underTest.markReceivedFriendRequestsAsRead();
 
           // Assert
-          expect(failureOrUnit.isRight(), true);
+
           underTest.watchReceivedFriendRequests().listen(
                 expectAsync1(
                   (failureOrFriendRequests) => expect(
@@ -497,17 +477,20 @@ void main() {
     });
 
     group('#removeFriend#', () {
+      final removedFriend = Friend.dummy();
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
-            underTest.removeFriend(friend: Friend.dummy()),
+            underTest.removeFriend(friend: removedFriend),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -518,20 +501,16 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.removeFriend(
-            friend: Friend.dummy(),
-          );
+          final result = await underTest.removeFriend(friend: removedFriend);
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -541,19 +520,19 @@ void main() {
         'THEN return unit and emit updated friends without the removed friend.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
+
           final removedFriend =
               (await underTest.getFriends()).toOption().toNullable()!.get(0);
 
           // Act
-          final failurOrUnit = await underTest.removeFriend(
-            friend: removedFriend,
-          );
+          final result = await underTest.removeFriend(friend: removedFriend);
 
           // Assert
-          expect(failurOrUnit.isRight(), true);
+          expect(result, right(unit));
           underTest.watchFriends().listen(
                 expectAsync1(
                   (failureOrFriends) => expect(
@@ -569,18 +548,21 @@ void main() {
       );
     });
 
-    group('#searchUserByUsername#', () {
+    group('searchUserByUsername', () {
+      const username = 'username';
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
-            underTest.searchUserByUsername(username: 'username'),
+            underTest.searchUserByUsername(username: username),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -591,19 +573,17 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit =
-              await underTest.searchUserByUsername(username: 'username');
+          final result =
+              await underTest.searchUserByUsername(username: username);
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -611,17 +591,20 @@ void main() {
     });
 
     group('#getUserById#', () {
+      const userId = 'userId';
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
-            underTest.getUserById(id: 'userId'),
+            underTest.getUserById(id: userId),
             throwsA(isA<NotAuthenticatedError>()),
           );
         },
@@ -632,18 +615,16 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.getUserById(id: 'userId');
+          final result = await underTest.getUserById(id: userId);
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -652,33 +633,35 @@ void main() {
           'WHEN called with id '
           'THEN return user snapshot that has the provided id.', () async {
         // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
+        // authenticated user
+        when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+        // network access
         FakeFriendService.hasNetworkConnection = true;
-        final underTest = FakeFriendService(mockAuthService);
-        const id = 'userId';
 
         // Act
-        final failurOrUnit = await underTest.getUserById(
-          id: id,
+        final result = await underTest.getUserById(
+          id: userId,
         );
 
         // Assert
-        expect(failurOrUnit.isRight(), true);
         expect(
-          failurOrUnit.toOption().toNullable()!.id,
-          UniqueId.fromUniqueString(id),
+          result.toOption().toNullable()!.id,
+          UniqueId.fromUniqueString(userId),
         );
       });
     });
 
     group('#sendFriendRequest#', () {
+      final toId = UniqueId.fromUniqueString('toId');
+
       test(
         'GIVEN not authenticated user '
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -693,20 +676,16 @@ void main() {
         'THEN return no network access failure.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act
-          final failurOrUnit = await underTest.sendFriendRequest(
-            toId: UniqueId(),
-          );
+          final result = await underTest.sendFriendRequest(toId: toId);
 
           // Assert
-          expect(
-            failurOrUnit,
-            left(const FriendFailure.noNetworkAccess()),
-          );
+          expect(result, left(const FriendFailure.noNetworkAccess()));
         },
       );
 
@@ -716,16 +695,16 @@ void main() {
         'THEN return unit and emit updated sent friend requests which contain the sent friend request.',
         () async {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
           FakeFriendService.hasNetworkConnection = true;
-          final underTest = FakeFriendService(mockAuthService);
-          final toId = UniqueId();
 
           // Act
-          final failurOrUnit = await underTest.sendFriendRequest(toId: toId);
+          final result = await underTest.sendFriendRequest(toId: toId);
 
           // Assert
-          expect(failurOrUnit.isRight(), true);
+          expect(result, right(unit));
           underTest.watchSentFriendRequests().listen(
                 expectAsync1(
                   (failureOrFriendRequests) => expect(
@@ -748,8 +727,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -764,9 +744,10 @@ void main() {
         'THEN return stream with no network access failure.',
         () {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act & Assert
           expect(
@@ -777,12 +758,13 @@ void main() {
       );
 
       test(
-          'GIVEN network connection available '
+          'GIVEN authenticated user and has network access '
           'THEN emit value on listen.', () {
         // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
+        // authenticated user
+        when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+        // network access
         FakeFriendService.hasNetworkConnection = true;
-        final underTest = FakeFriendService(mockAuthService);
 
         // Assert
         underTest.watchFriends().listen(
@@ -799,8 +781,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -815,9 +798,10 @@ void main() {
         'THEN return stream with no network access failure.',
         () {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act & Assert
           expect(
@@ -828,12 +812,13 @@ void main() {
       );
 
       test(
-          'GIVEN network connection available '
+          'GIVEN authenticated user and has network access '
           'THEN emit value on listen.', () {
         // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
+        // authenticated user
+        when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+        // network access
         FakeFriendService.hasNetworkConnection = true;
-        final underTest = FakeFriendService(mockAuthService);
 
         // Assert
         underTest.watchReceivedFriendRequests().listen(
@@ -851,8 +836,9 @@ void main() {
         'THEN throw NotAuthenticatedError.',
         () {
           // Arrange
-          setUpMockAuthServiceWithNotAuthenticatedUser();
-          final underTest = FakeFriendService(mockAuthService);
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
           // Act & Assert
           expect(
@@ -867,9 +853,10 @@ void main() {
         'THEN return stream with no network access failure.',
         () {
           // Arrange
-          setUpMockAuthServiceWithAuthenticatedUser();
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
           FakeFriendService.hasNetworkConnection = false;
-          final underTest = FakeFriendService(mockAuthService);
 
           // Act & Assert
           expect(
@@ -880,12 +867,13 @@ void main() {
       );
 
       test(
-          'GIVEN network connection available '
+          'GIVEN authenticated user and has network access '
           'THEN emit value on listen.', () {
         // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
+        // authenticated user
+        when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+        // network access
         FakeFriendService.hasNetworkConnection = true;
-        final underTest = FakeFriendService(mockAuthService);
 
         // Assert
         underTest.watchSentFriendRequests().listen(

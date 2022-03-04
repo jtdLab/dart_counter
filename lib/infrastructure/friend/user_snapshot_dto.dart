@@ -15,11 +15,11 @@ class UserSnapshotDto with _$UserSnapshotDto {
 
   const UserSnapshotDto._();
 
-  factory UserSnapshotDto.fromDomain(UserSnapshot userSearchResult) {
+  factory UserSnapshotDto.fromDomain(UserSnapshot userSnapshot) {
     return UserSnapshotDto(
-      id: userSearchResult.id.getOrCrash(),
-      photoUrl: userSearchResult.photoUrl,
-      name: userSearchResult.name.getOrCrash(),
+      id: userSnapshot.id.getOrCrash(),
+      photoUrl: userSnapshot.photoUrl,
+      name: userSnapshot.name.getOrCrash(),
     );
   }
 

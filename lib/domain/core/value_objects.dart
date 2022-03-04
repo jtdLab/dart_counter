@@ -126,7 +126,7 @@ class UniqueId extends ValueObject<String> {
   const UniqueId._(this.value);
 
   @override
-  String toString() => 'Valid UniqueId($value)';
+  String toString() => 'Valid UniqueId(${value.toOption().toNullable()!})';
 }
 
 /// A value object containing a list with max. length of 10 or failure.
