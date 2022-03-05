@@ -1,6 +1,7 @@
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/profile.dart';
+import 'package:dart_counter/domain/user/trend.dart';
 import 'package:dart_counter/infrastructure/user/career_stats_dto.dart';
 import 'package:dart_counter/infrastructure/user/profile_dto.dart';
 import 'package:flutter_test/flutter_test.dart';

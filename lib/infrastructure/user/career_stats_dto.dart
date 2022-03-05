@@ -1,24 +1,10 @@
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/infrastructure/core/infrastructure_error.dart';
+import 'package:dart_counter/infrastructure/user/trend_x.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'career_stats_dto.freezed.dart';
 part 'career_stats_dto.g.dart';
-
-// TODO other file
-/// Utility methods to convert a [String] to [Trend] and vice versa.
-extension TrendX on Trend {
-  String toShortString() {
-    return toString().split('.').last;
-  }
-
-  static Trend parse(String str) {
-    return Trend.values.firstWhere(
-      (e) => e.toString() == 'Trend.$str',
-      orElse: () => throw EnumParseError<Trend>(str),
-    );
-  }
-}
 
 /// Data transfer object corresponing to [CareerStats].
 @freezed

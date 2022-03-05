@@ -1,5 +1,6 @@
 // CORE
 import 'package:dart_counter/application/main/core/user/user_cubit.dart';
+import 'package:dart_counter/domain/user/trend.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS

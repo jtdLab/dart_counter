@@ -1,16 +1,14 @@
+import 'package:dart_counter/domain/user/trend.dart';
 import 'package:faker/faker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'career_stats.freezed.dart';
 part 'career_stats_x.dart';
 
-/// Indicates wheter a specific stat increased, declined or did not change in recent time.
-enum Trend { up, down, none }
-
 /// Domain model of the stats an app-user has achieved since created.
 @freezed
 class CareerStats with _$CareerStats {
-   // coverage:ignore-start
+  // coverage:ignore-start
   const factory CareerStats({
     required double average,
     required Trend averageTrend,
