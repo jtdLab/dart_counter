@@ -7,7 +7,6 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/infrastructure/user/cache_keys.dart';
 import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -30,14 +29,11 @@ import 'package:rxdart/rxdart.dart';
 
 @Environment(Environment.dev)
 @LazySingleton(as: IUserService)
-class FakeUserService with Disposable implements IUserService {
+class FakeUserService implements IUserService {
   static bool hasNetworkConnection = true;
 
   final IAuthService _authService;
   //final DefaultCacheManager _cache;
-
-  StreamSubscription? _authSubscription;
-  StreamSubscription? _userSubscription;
 
   final BehaviorSubject<User> _userController;
 
@@ -45,7 +41,8 @@ class FakeUserService with Disposable implements IUserService {
     this._authService,
     //this._cache,
   ) : _userController = BehaviorSubject.seeded(User.dummy()) {
-    _authSubscription =
+    /**
+    *  _authSubscription =
         _authService.watchIsAuthenticated().listen((isAuthenticated) {
       if (isAuthenticated && !_userController.hasValue) {
         _userController.add(User.dummy());
@@ -69,6 +66,7 @@ class FakeUserService with Disposable implements IUserService {
          */
       }
     });
+    */
   }
 
   @override
@@ -177,11 +175,5 @@ class FakeUserService with Disposable implements IUserService {
     if (!_authService.isAuthenticated()) {
       throw NotAuthenticatedError();
     }
-  }
-
-  @override
-  void onDispose() {
-    _authSubscription?.cancel();
-    _userSubscription?.cancel();
   }
 }

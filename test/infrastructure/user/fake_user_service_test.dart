@@ -12,433 +12,460 @@ import 'package:mocktail/mocktail.dart';
 class MockAuthService extends Mock implements IAuthService {}
 
 void main() {
+  late MockAuthService mockAuthService;
+
+  late FakeUserService underTest;
+
   setUpAll(() {
     // Mocktail related setup
     registerFallbackValue(EmailAddress.empty());
     registerFallbackValue(Username.empty());
   });
 
-  late MockAuthService mockAuthService;
-
   setUp(() {
     mockAuthService = MockAuthService();
     FakeUserService.hasNetworkConnection = true;
+
+    underTest = FakeUserService(mockAuthService);
   });
 
-  void setUpMockAuthServiceWithAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => true);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([true]));
-  }
+  group('#Methods#', () {
+    group('#deleteProfilePhoto#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-  void setUpMockAuthServiceWithNotAuthenticatedUser() {
-    when(
-      () => mockAuthService.isAuthenticated(),
-    ).thenAnswer((_) => false);
-    when(
-      () => mockAuthService.watchIsAuthenticated(),
-    ).thenAnswer((_) => Stream.fromIterable([false]));
-  }
+          // Act & Assert
+          expect(
+            underTest.deleteProfilePhoto(),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-  group('deleteProfilePhoto', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
 
-        // Act & Assert
-        expect(
-          underTest.deleteProfilePhoto(),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act
+          final failurOrUnit = await underTest.deleteProfilePhoto();
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.noNetworkAccess()));
+        },
+      );
 
-        // Act
-        final failurOrUnit = await underTest.deleteProfilePhoto();
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN return unit, set users photoUrl to null and emit updated user.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const UserFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Act
+          final failurOrUnit = await underTest.deleteProfilePhoto();
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN return unit, set users photoUrl to null and emit updated user.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
-
-        // Act
-        final failurOrUnit = await underTest.deleteProfilePhoto();
-
-        // Assert
-        expect(failurOrUnit, right(unit));
-        final user = await underTest.getUser();
-        expect(user.toOption().toNullable()!.profile.photoUrl, null);
-        underTest.watchUser().listen(
-              expectAsync1(
-                (failurOrUser) => expect(
-                  failurOrUser.toOption().toNullable()!.profile.photoUrl,
-                  null,
+          // Assert
+          expect(failurOrUnit, right(unit));
+          final user = await underTest.getUser();
+          expect(user.toOption().toNullable()!.profile.photoUrl, null);
+          underTest.watchUser().listen(
+                expectAsync1(
+                  (failurOrUser) => expect(
+                    failurOrUser.toOption().toNullable()!.profile.photoUrl,
+                    null,
+                  ),
                 ),
-              ),
-            );
-      },
-    );
-  });
+              );
+        },
+      );
+    });
 
-  group('getUser', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+    group('#getUser#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-        // Act & Assert
-        expect(
-          () async => underTest.getUser(),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act & Assert
+          expect(
+            () async => underTest.getUser(),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
 
-        // Act
-        final failurOrUser = await underTest.getUser();
+          // Act
+          final failurOrUser = await underTest.getUser();
 
-        // Assert
-        expect(
-          failurOrUser,
-          left(const UserFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Assert
+          expect(failurOrUser, left(const UserFailure.noNetworkAccess()));
+        },
+      );
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN return the user.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN return the user.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Act
-        final failurOrUser = await underTest.getUser();
+          // Act
+          final failurOrUser = await underTest.getUser();
 
-        // Assert
-        expect(failurOrUser.isRight(), true);
-      },
-    );
-  });
+          // Assert
+          expect(failurOrUser.isRight(), true);
+        },
+      );
+    });
 
-  group('updateEmailAddress', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+    group('#updateEmailAddress#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-        // Act & Assert
-        expect(
-          underTest.updateEmailAddress(
-            newEmailAddress: EmailAddress('a@b.com'),
-          ),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act & Assert
+          expect(
+            underTest.updateEmailAddress(
+              newEmailAddress: EmailAddress('a@b.com'),
+            ),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'WHEN valid email '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'WHEN valid email '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
 
-        // Act
-        final failurOrUnit = await underTest.updateEmailAddress(
-          newEmailAddress: EmailAddress('a@b.com'),
-        );
+          // Act
+          final validEmail = EmailAddress('a@b.com');
+          final failurOrUnit = await underTest.updateEmailAddress(
+            newEmailAddress: validEmail,
+          );
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const UserFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.noNetworkAccess()));
+        },
+      );
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'WHEN valid email '
-      'THEN return unit, set users email to the new email and emit updated user.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user and has network access '
+        'WHEN invalid email '
+        'THEN return invalid email failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Act
-        final newEmail = EmailAddress('a@b.com');
-        final failurOrUnit = await underTest.updateEmailAddress(
-          newEmailAddress: newEmail,
-        );
+          // Act
+          final invalidEmail = EmailAddress.empty();
+          final failurOrUnit = await underTest.updateEmailAddress(
+            newEmailAddress: invalidEmail,
+          );
 
-        // Assert
-        expect(failurOrUnit.isRight(), true);
-        final user = await underTest.getUser();
-        expect(
-          user.toOption().toNullable()!.email,
-          newEmail,
-        );
-        underTest.watchUser().listen(
-              expectAsync1(
-                (failurOrUser) => expect(
-                  user.toOption().toNullable()!.email,
-                  newEmail,
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.invalidEmail()));
+        },
+      );
+
+      test(
+        'GIVEN authenticated user and has network access '
+        'WHEN valid email '
+        'THEN return unit, set users email to the new email and emit updated user.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
+
+          // Act
+          final validEmail = EmailAddress('a@b.com');
+          final failurOrUnit = await underTest.updateEmailAddress(
+            newEmailAddress: validEmail,
+          );
+
+          // Assert
+          expect(failurOrUnit.isRight(), true);
+          final user = await underTest.getUser();
+          expect(user.toOption().toNullable()!.email, validEmail);
+          underTest.watchUser().listen(
+                expectAsync1(
+                  (failurOrUser) => expect(
+                    user.toOption().toNullable()!.email,
+                    validEmail,
+                  ),
                 ),
-              ),
-            );
-      },
-    );
-  });
+              );
+        },
+      );
+    });
 
-  group('updateProfilePhoto', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+    group('#updateProfilePhoto#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-        // Act & Assert
-        expect(
-          underTest.updateProfilePhoto(
+          // Act & Assert
+          expect(
+            underTest.updateProfilePhoto(newPhotoData: Uint8List.fromList([])),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
+
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return no network access failure.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
+
+          // Act
+          final failurOrUnit = await underTest.updateProfilePhoto(
             newPhotoData: Uint8List.fromList([]),
-          ),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          );
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.noNetworkAccess()));
+        },
+      );
 
-        // Act
-        final failurOrUnit = await underTest.updateProfilePhoto(
-          newPhotoData: Uint8List.fromList([]),
-        );
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN return unit, set users photoUrl to the url of the new photo and emit updated user.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const UserFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Act
+          final failurOrUnit = await underTest.updateProfilePhoto(
+            newPhotoData: Uint8List.fromList([]),
+          );
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN return unit, set users photoUrl to the url of the new photo and emit updated user.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
-
-        // Act
-        final failurOrUnit = await underTest.updateProfilePhoto(
-          newPhotoData: Uint8List.fromList([]),
-        );
-
-        // Assert
-        expect(failurOrUnit.isRight(), true);
-        final user = await underTest.getUser();
-        expect(
-          user.toOption().toNullable()!.profile.photoUrl,
-          isInstanceOf<String>(),
-        );
-        underTest.watchUser().listen(
-              expectAsync1(
-                (failurOrUser) => expect(
-                  user.toOption().toNullable()!.profile.photoUrl,
-                  isInstanceOf<String>(),
+          // Assert
+          expect(failurOrUnit.isRight(), true);
+          final user = await underTest.getUser();
+          expect(
+            user.toOption().toNullable()!.profile.photoUrl,
+            isInstanceOf<String>(),
+          );
+          underTest.watchUser().listen(
+                expectAsync1(
+                  (failurOrUser) => expect(
+                    user.toOption().toNullable()!.profile.photoUrl,
+                    isInstanceOf<String>(),
+                  ),
                 ),
-              ),
-            );
-      },
-    );
-  });
+              );
+        },
+      );
+    });
 
-  group('updateUsername', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+    group('#updateUsername#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-        // Act & Assert
-        expect(
-          underTest.updateUsername(newUsername: Username('dummyUsername')),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act & Assert
+          expect(
+            underTest.updateUsername(newUsername: Username('dummyUsername')),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'WHEN valid username '
-      'THEN return no network access failure.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'WHEN valid username '
+        'THEN return no network access failure.',
+        () async {
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
 
-        // Act
-        final failurOrUnit = await underTest.updateUsername(
-          newUsername: Username('dummyUsername'),
-        );
+          // Act
+          final validUsername = Username('dummyUsername');
+          final failurOrUnit = await underTest.updateUsername(
+            newUsername: validUsername,
+          );
 
-        // Assert
-        expect(
-          failurOrUnit,
-          left(const UserFailure.noNetworkAccess()),
-        );
-      },
-    );
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.noNetworkAccess()));
+        },
+      );
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'WHEN valid username '
-      'THEN return unit, set users username to the new username and emit updated user.',
-      () async {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user and has network access '
+        'WHEN invalid username '
+        'THEN return invalid username failure.',
+        () async {
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Act
-        final newUsername = Username('dummyUsername');
-        final failurOrUnit = await underTest.updateUsername(
-          newUsername: newUsername,
-        );
+          // Act
+          final invalidUsername = Username.empty();
+          final failurOrUnit = await underTest.updateUsername(
+            newUsername: invalidUsername,
+          );
 
-        // Assert
-        expect(failurOrUnit.isRight(), true);
-        final user = await underTest.getUser();
-        expect(
-          user.toOption().toNullable()!.profile.name,
-          newUsername,
-        );
-        underTest.watchUser().listen(
-              expectAsync1(
-                (failurOrUser) => expect(
-                  user.toOption().toNullable()!.profile.name,
-                  newUsername,
+          // Assert
+          expect(failurOrUnit, left(const UserFailure.invalidUsername()));
+        },
+      );
+
+      test(
+        'GIVEN authenticated user and has network access '
+        'WHEN valid username '
+        'THEN return unit, set users username to the new username and emit updated user.',
+        () async {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
+
+          // Act
+          final validUsername = Username('dummyUsername');
+          final failurOrUnit = await underTest.updateUsername(
+            newUsername: validUsername,
+          );
+
+          // Assert
+          expect(failurOrUnit.isRight(), true);
+          final user = await underTest.getUser();
+          expect(user.toOption().toNullable()!.profile.name, validUsername);
+          underTest.watchUser().listen(
+                expectAsync1(
+                  (failurOrUser) => expect(
+                    user.toOption().toNullable()!.profile.name,
+                    validUsername,
+                  ),
                 ),
-              ),
-            );
-      },
-    );
-  });
+              );
+        },
+      );
+    });
 
-  group('watchUser', () {
-    test(
-      'GIVEN not authenticated user '
-      'THEN throw NotAuthenticatedError.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithNotAuthenticatedUser();
-        final underTest = FakeUserService(mockAuthService);
+    group('#watchUser#', () {
+      test(
+        'GIVEN not authenticated user '
+        'THEN throw NotAuthenticatedError.',
+        () {
+          // Arrange
+          // not authenticated user
+          when(() => mockAuthService.isAuthenticated())
+              .thenAnswer((_) => false);
 
-        // Act & Assert
-        expect(
-          () => underTest.watchUser(),
-          throwsA(isA<NotAuthenticatedError>()),
-        );
-      },
-    );
+          // Act & Assert
+          expect(
+            () => underTest.watchUser(),
+            throwsA(isA<NotAuthenticatedError>()),
+          );
+        },
+      );
 
-    test(
-      'GIVEN authenticated user but has no network access '
-      'THEN return stream with no network access failure.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = false;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user but has no network access '
+        'THEN return stream with no network access failure.',
+        () {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // no network access
+          FakeUserService.hasNetworkConnection = false;
 
-        // Act & Assert
-        expect(
-          underTest.watchUser(),
-          emitsInOrder([left(const UserFailure.noNetworkAccess())]),
-        );
-      },
-    );
+          // Act & Assert
+          expect(
+            underTest.watchUser(),
+            emitsInOrder([left(const UserFailure.noNetworkAccess())]),
+          );
+        },
+      );
 
-    test(
-      'GIVEN authenticated user and has network access '
-      'THEN emit value on listen.',
-      () {
-        // Arrange
-        setUpMockAuthServiceWithAuthenticatedUser();
-        FakeUserService.hasNetworkConnection = true;
-        final underTest = FakeUserService(mockAuthService);
+      test(
+        'GIVEN authenticated user and has network access '
+        'THEN emit value on listen.',
+        () {
+          // Arrange
+          // authenticated user
+          when(() => mockAuthService.isAuthenticated()).thenAnswer((_) => true);
+          // network access
+          FakeUserService.hasNetworkConnection = true;
 
-        // Act & Assert
-        underTest.watchUser().listen(
-              expectAsync1(
-                (failurOrUser) => expect(failurOrUser.isRight(), true),
-              ),
-            );
-      },
-    );
+          // Act & Assert
+          underTest.watchUser().listen(
+                expectAsync1(
+                  (failurOrUser) => expect(failurOrUser.isRight(), true),
+                ),
+              );
+        },
+      );
+    });
   });
 }
