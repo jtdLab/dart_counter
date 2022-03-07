@@ -9,6 +9,7 @@ import 'package:dart_counter/domain/user/user_failure.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
+import 'package:dart_counter/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart';
@@ -36,11 +37,13 @@ class UserService implements IUserService {
     final userDoc = _firestore.userDocument();
 
     try {
-      await photosRef.delete();
+      await photosRef.delete(); 
       await userDoc.update({'profile.photoUrl': null});
       return right(unit);
     } catch (e) {
-      print(e);
+      // log error
+      logger.e(e);
+      // return unexpected failure
       return left(const UserFailure.unexpected());
     }
   }
@@ -59,7 +62,9 @@ class UserService implements IUserService {
 
       return right(UserDto.fromJson(json).toDomain());
     } catch (e) {
-      print(e);
+      // log error
+      logger.e(e);
+      // return unexpected failure
       return left(const UserFailure.unexpected());
     }
   }
@@ -79,6 +84,7 @@ class UserService implements IUserService {
       return right(unit);
     }
 
+    // return unexpected failure
     return left(const UserFailure.unexpected());
   }
 
@@ -88,7 +94,9 @@ class UserService implements IUserService {
   }) async {
     final decodedImage = decodeImage(newPhotoData);
     if (decodedImage == null) {
-      print('couldn not decode image.');
+      // log error
+      logger.e('couldn not decode image.');
+      // return unexpected failure
       return left(const UserFailure.unexpected());
     }
 
@@ -105,7 +113,9 @@ class UserService implements IUserService {
       await userDoc.update({'profile.photoUrl': photoUrl});
       return right(unit);
     } catch (e) {
-      print(e);
+      // log error
+      logger.e(e);
+      // return unexpected failure
       return left(const UserFailure.unexpected());
     }
   }
@@ -126,6 +136,7 @@ class UserService implements IUserService {
       return right(unit);
     }
 
+    // return unexpected failure
     return left(const UserFailure.unexpected());
   }
 
@@ -143,6 +154,11 @@ class UserService implements IUserService {
 
         return right(UserDto.fromJson(json).toDomain());
       },
-    ).onErrorReturnWith((error, _) => left(const UserFailure.unexpected()));
+    ).onErrorReturnWith((e, _) {
+      // log error
+      logger.e(e);
+      // return unexpected failure
+      return left(const UserFailure.unexpected());
+    });
   }
 }
