@@ -3,39 +3,59 @@ import '../core/throw.dart';
 /// Contains some utility functions for dart games.
 class DartUtils {
   /// Returns `true` if a player needs min. 1 dart to finish [points].
-  static bool isOneDartFinish({
+  static bool isOneDartFinishStatic({
     required int points,
   }) {
     return _oneDartFinishes.contains(points);
   }
 
+  bool isOneDartFinish({
+    required int points,
+  }) =>
+      isOneDartFinishStatic(points: points);
+
   /// Returns `true` if a player needs min. 2 darts to finish [points].
-  static bool isTwoDartFinish({
+  static bool isTwoDartFinishStatic({
     required int points,
   }) {
     return _twoDartFinishes.contains(points);
   }
 
+  bool isTwoDartFinish({
+    required int points,
+  }) =>
+      isTwoDartFinishStatic(points: points);
+
   /// Returns `true` if a player needs min. 3 darts to finish [points].
-  static bool isThreeDartFinish({
+  static bool isThreeDartFinishStatic({
     required int points,
   }) {
     return _threeDartFinishes.contains(points);
   }
 
+  bool isThreeDartFinish({
+    required int points,
+  }) =>
+      isThreeDartFinishStatic(points: points);
+
   /// Returns `true` if [points] is finishable.
-  static bool isFinish({
+  static bool isFinishStatic({
     required int points,
   }) {
-    return isOneDartFinish(points: points) ||
-        isTwoDartFinish(points: points) ||
-        isThreeDartFinish(points: points);
+    return isOneDartFinishStatic(points: points) ||
+        isTwoDartFinishStatic(points: points) ||
+        isThreeDartFinishStatic(points: points);
   }
+
+  bool isFinish({
+    required int points,
+  }) =>
+      isFinishStatic(points: points);
 
   /// Returns `true` if [points] is valid when a player has [pointsLeft].
   ///
   /// If [pointsLeft] is null they are not considered.
-  static bool validatePoints({
+  static bool validatePointsStatic({
     int? pointsLeft,
     required int points,
   }) {
@@ -53,8 +73,14 @@ class DartUtils {
     return true;
   }
 
+  bool validatePoints({
+    int? pointsLeft,
+    required int points,
+  }) =>
+      validatePointsStatic(pointsLeft: pointsLeft, points: points);
+
   /// Returns `true` if [t] is valid next throw when a player has [pointsLeft].
-  static bool validateThrow({
+  static bool validateThrowStatic({
     required int pointsLeft,
     required Throw t,
   }) {
@@ -81,15 +107,15 @@ class DartUtils {
     }
 
     if (t.dartsOnDouble == 3) {
-      if (isOneDartFinish(points: pointsLeft)) {
+      if (isOneDartFinishStatic(points: pointsLeft)) {
         return true;
       } else {
         return false;
       }
     } else if (t.dartsOnDouble == 2) {
-      if (isOneDartFinish(points: pointsLeft)) {
+      if (isOneDartFinishStatic(points: pointsLeft)) {
         return true;
-      } else if (isTwoDartFinish(points: pointsLeft)) {
+      } else if (isTwoDartFinishStatic(points: pointsLeft)) {
         if (diff <= 50) {
           return true;
         } else {
@@ -99,11 +125,11 @@ class DartUtils {
         return false;
       }
     } else if (t.dartsOnDouble == 1) {
-      if (isOneDartFinish(points: pointsLeft)) {
+      if (isOneDartFinishStatic(points: pointsLeft)) {
         return true;
-      } else if (isTwoDartFinish(points: pointsLeft)) {
+      } else if (isTwoDartFinishStatic(points: pointsLeft)) {
         return true;
-      } else if (isThreeDartFinish(points: pointsLeft)) {
+      } else if (isThreeDartFinishStatic(points: pointsLeft)) {
         if (diff <= 50) {
           return true;
         } else {
@@ -117,13 +143,19 @@ class DartUtils {
     }
   }
 
+  bool validateThrow({
+    required int pointsLeft,
+    required Throw t,
+  }) =>
+      validateThrowStatic(pointsLeft: pointsLeft, t: t);
+
   /// Returns the min. possible dartsThrown depending on [pointsLeft] and [points].
   ///
   /// {@template dart_utils_min_max_error}
   /// Throws [ArgumentError] if [pointsLeft] - [points] == 1, [points] are not possible,
   /// [point] == [pointsLeft] == a not finishable number or [points] > [pointsLeft].
   /// {@endtemplate}
-  static int minDartsThrown({
+  static int minDartsThrownStatic({
     required int pointsLeft,
     required int points,
   }) {
@@ -144,11 +176,11 @@ class DartUtils {
       throw ArgumentError('$pointsLeft can`t be finished.');
     }
 
-    if (isOneDartFinish(points: pointsLeft)) {
+    if (isOneDartFinishStatic(points: pointsLeft)) {
       if (diff == 0) {
         return 1;
       }
-    } else if (isTwoDartFinish(points: pointsLeft)) {
+    } else if (isTwoDartFinishStatic(points: pointsLeft)) {
       if (diff == 0) {
         return 2;
       }
@@ -157,10 +189,16 @@ class DartUtils {
     return 3;
   }
 
+  int minDartsThrown({
+    required int pointsLeft,
+    required int points,
+  }) =>
+      minDartsThrownStatic(pointsLeft: pointsLeft, points: points);
+
   /// Returns the max. possible dartsThrown depending on [pointsLeft] and [points].
   ///
   /// {@macro dart_utils_min_max_error}
-  static int maxDartsThrown({
+  static int maxDartsThrownStatic({
     required int pointsLeft,
     required int points,
   }) {
@@ -184,10 +222,16 @@ class DartUtils {
     return 3;
   }
 
+  int maxDartsThrown({
+    required int pointsLeft,
+    required int points,
+  }) =>
+      maxDartsThrownStatic(pointsLeft: pointsLeft, points: points);
+
   /// Returns the min. possible dartsOnDouble depending on [pointsLeft] and [points].
   ///
   /// {@macro dart_utils_min_max_error}
-  static int minDartsOnDouble({
+  static int minDartsOnDoubleStatic({
     required int pointsLeft,
     required int points,
   }) {
@@ -219,10 +263,16 @@ class DartUtils {
     return 0;
   }
 
+  int minDartsOnDouble({
+    required int pointsLeft,
+    required int points,
+  }) =>
+      minDartsOnDoubleStatic(pointsLeft: pointsLeft, points: points);
+
   /// Returns the max. possible dartsOnDouble depending on [pointsLeft] and [points].
   ///
   /// {@macro dart_utils_min_max_error}
-  static int maxDartsOnDouble({
+  static int maxDartsOnDoubleStatic({
     required int pointsLeft,
     required int points,
   }) {
@@ -243,13 +293,13 @@ class DartUtils {
       throw ArgumentError('$pointsLeft can`t be finished.');
     }
 
-    if (isOneDartFinish(points: pointsLeft)) {
+    if (isOneDartFinishStatic(points: pointsLeft)) {
       return 3;
-    } else if (isTwoDartFinish(points: pointsLeft)) {
+    } else if (isTwoDartFinishStatic(points: pointsLeft)) {
       if (diff <= 50) {
         return 2;
       }
-    } else if (isThreeDartFinish(points: pointsLeft)) {
+    } else if (isThreeDartFinishStatic(points: pointsLeft)) {
       if (diff <= 50) {
         return 1;
       }
@@ -257,6 +307,12 @@ class DartUtils {
 
     return 0;
   }
+
+  int maxDartsOnDouble({
+    required int pointsLeft,
+    required int points,
+  }) =>
+      maxDartsOnDoubleStatic(pointsLeft: pointsLeft, points: points);
 
   /// Points a player needs min. 1 dart to finish them.
   static List<int> _oneDartFinishes = [

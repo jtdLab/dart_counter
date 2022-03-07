@@ -65,7 +65,7 @@ class ThrowGenerator {
       }
 
       if (generatedPoints >= pointsLeft) {
-        if (DartUtils.isFinish(points: pointsLeft)) {
+        if (DartUtils.isFinishStatic(points: pointsLeft)) {
           return Throw(points: pointsLeft, dartsOnDouble: 1);
         } else {
           // if pointsLeft not finishable retry

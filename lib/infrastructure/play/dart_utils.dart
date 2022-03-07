@@ -11,35 +11,35 @@ class DartUtils implements IDartUtils {
     required int pointsLeft,
     required int points,
   }) =>
-      ex.DartUtils.maxDartsOnDouble(pointsLeft: pointsLeft, points: points);
+      ex.DartUtils.maxDartsOnDoubleStatic(pointsLeft: pointsLeft, points: points);
 
   @override
   int maxDartsThrown({
     required int pointsLeft,
     required int points,
   }) =>
-      ex.DartUtils.maxDartsThrown(pointsLeft: pointsLeft, points: points);
+      ex.DartUtils.maxDartsThrownStatic(pointsLeft: pointsLeft, points: points);
 
   @override
   int minDartsOnDouble({
     required int pointsLeft,
     required int points,
   }) =>
-      ex.DartUtils.minDartsOnDouble(pointsLeft: pointsLeft, points: points);
+      ex.DartUtils.minDartsOnDoubleStatic(pointsLeft: pointsLeft, points: points);
 
   @override
   int minDartsThrown({
     required int pointsLeft,
     required int points,
   }) =>
-      ex.DartUtils.minDartsThrown(pointsLeft: pointsLeft, points: points);
+      ex.DartUtils.minDartsThrownStatic(pointsLeft: pointsLeft, points: points);
 
   @override
   bool validatePoints({
     int? pointsLeft,
     required int points,
   }) =>
-      ex.DartUtils.validatePoints(pointsLeft: pointsLeft, points: points);
+      ex.DartUtils.validatePointsStatic(pointsLeft: pointsLeft, points: points);
 
   // TODO move this impl to ex package maybe check if this is correctly impl
   @override
@@ -68,7 +68,7 @@ class DartUtils implements IDartUtils {
       }
     }
 
-    return ex.DartUtils.validatePoints(
+    return ex.DartUtils.validatePointsStatic(
       pointsLeft: pointsLeft,
       points: points,
     );
@@ -78,5 +78,5 @@ class DartUtils implements IDartUtils {
   bool isFinish({
     required int points,
   }) =>
-      ex.DartUtils.isFinish(points: points);
+      ex.DartUtils.isFinishStatic(points: points);
 }

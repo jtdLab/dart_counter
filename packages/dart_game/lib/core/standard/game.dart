@@ -117,7 +117,7 @@ class Game extends AbstractGame<Player> {
     required Throw t,
   }) {
     if (status == Status.running) {
-      if (DartUtils.validateThrow(
+      if (DartUtils.validateThrowStatic(
         pointsLeft: _currentTurn!.pointsLeft!,
         t: t,
       )) {
