@@ -49,7 +49,7 @@ void main() {
     'createdAt': createdAtInt,
   };
 
-  test('constructor', () {
+  test('#Constructor#', () {
     // Assert
     expect(dto.id, idString);
     expect(dto.gameId, gameIdString);
@@ -60,7 +60,7 @@ void main() {
     expect(dto.createdAt, createdAtInt);
   });
 
-  test('fromDomain', () {
+  test('#fromDomain#', () {
     // Act
     final dto = GameInvitationDto.fromDomain(domain);
 
@@ -74,7 +74,7 @@ void main() {
     expect(dto.createdAt, createdAtInt);
   });
 
-  test('toDomain', () {
+  test('#toDomain#', () {
     // Act
     final domain = dto.toDomain();
 
@@ -88,7 +88,7 @@ void main() {
     expect(domain.createdAt, createdAt);
   });
 
-  test('fromJson', () {
+  test('#fromJson#', () {
     // Act
     final dto = GameInvitationDto.fromJson(json);
 
@@ -102,7 +102,7 @@ void main() {
     expect(dto.createdAt, createdAtInt);
   });
 
-  test('toJson', () {
+  test('#toJson#', () {
     // Act
     final json = dto.toJson();
 

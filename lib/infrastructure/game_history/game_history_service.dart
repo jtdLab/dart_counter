@@ -27,20 +27,20 @@ class GameHistoryService implements IGameHistoryService {
   @override
   Future<Either<GameHistoryFailure, List10<OfflineGame>>>
       getGameHistoryOffline() async {
+    // the reference to the offline game history collection
+    // of the currently authenticated user
+    final collection = _firestore.gameHistoryOfflineCollection();
+
+    // fetch offline game history
+    final querySnapshot = await collection.get();
+
+    // when offline game history contains 0 games
+    if (querySnapshot.size == 0) {
+      // return empty list
+      return right(List10.empty());
+    }
+
     try {
-      // the reference to the offline game history collection
-      // of the currently authenticated user
-      final collection = _firestore.gameHistoryOfflineCollection();
-
-      // fetch offline game history
-      final querySnapshot = await collection.get();
-
-      // when offline game history contains 0 games
-      if (querySnapshot.size == 0) {
-        // return empty list
-        return right(List10.empty());
-      }
-
       // when offline game history contains at least 1 game
       // the output variable wich will contain all offline games
       // after they are parsed from json
@@ -73,19 +73,19 @@ class GameHistoryService implements IGameHistoryService {
   Future<Either<GameHistoryFailure, List10<OnlineGame>>> getGameHistoryOnline({
     required String uid,
   }) async {
+    // the reference to the online game history collection of the user with uid
+    final collection = _firestore.gameHistoryOnlineCollection(uid: uid);
+
+    // fetch online game history
+    final querySnapshot = await collection.get();
+
+    // when offline game history contains 0 games
+    if (querySnapshot.size == 0) {
+      // return empty list
+      return right(List10.empty());
+    }
+
     try {
-      // the reference to the online game history collection of the user with uid
-      final collection = _firestore.gameHistoryOnlineCollection(uid: uid);
-
-      // fetch online game history
-      final querySnapshot = await collection.get();
-
-      // when offline game history contains 0 games
-      if (querySnapshot.size == 0) {
-        // return empty list
-        return right(List10.empty());
-      }
-
       // when online game history contains at least 1 game
       // the output variable wich will contain all online games after
       // they are parsed from json
