@@ -382,8 +382,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i97.FakePlayOnlineService(get<_i42.IUserService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i42.IUserService>(
-      () => _i98.UserService(get<_i14.FirebaseFirestore>(),
-          get<_i16.FirebaseStorage>(), get<_i77.SocialClient>()),
+      () => _i98.UserService(
+          get<_i14.FirebaseFirestore>(),
+          get<_i16.FirebaseStorage>(),
+          get<_i19.IAuthService>(),
+          get<_i77.SocialClient>()),
       registerFor: {_test, _prod});
   gh.factory<_i99.InOnlineGameBloc>(
       () => _i99.InOnlineGameBloc(get<_i96.IPlayOnlineService>()));

@@ -16,12 +16,6 @@ void main() {
 
   late FakeUserService underTest;
 
-  setUpAll(() {
-    // Mocktail related setup
-    registerFallbackValue(EmailAddress.empty());
-    registerFallbackValue(Username.empty());
-  });
-
   setUp(() {
     mockAuthService = MockAuthService();
     FakeUserService.hasNetworkConnection = true;
