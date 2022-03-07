@@ -30,7 +30,7 @@ class FakeGameHistoryService implements IGameHistoryService {
       // generate 0-10 random offline games
       final games = List.generate(
         faker.randomGenerator.integer(11),
-        (index) => OfflineGame.dummy(),
+        (_) => OfflineGame.dummy(),
       );
 
       // sort the generated games by date recent-old
@@ -56,7 +56,7 @@ class FakeGameHistoryService implements IGameHistoryService {
       // generate 0-10 random online games
       final games = List.generate(
         faker.randomGenerator.integer(11),
-        (index) => OnlineGame.dummy(),
+        (_) => OnlineGame.dummy(),
       );
 
       // sort the generated games by date recent-old
