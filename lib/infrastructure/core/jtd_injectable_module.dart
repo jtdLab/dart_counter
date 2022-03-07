@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:social_client/social_client.dart';
+import 'package:dart_game/util.dart' as ex;
 
 /// Class used by injectable to register third party dependencies.
 ///
@@ -52,4 +53,7 @@ abstract class JtdInjectableModule {
 
   @lazySingleton
   AuthProviderManager get authProviderManager => AuthProviderManager();
+
+  @lazySingleton
+  ex.DartUtils get dartUtils => ex.DartUtils();
 }

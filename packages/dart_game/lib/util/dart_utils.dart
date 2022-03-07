@@ -1,3 +1,5 @@
+import 'package:dart_game/core/dart.dart';
+
 import '../core/throw.dart';
 
 /// Contains some utility functions for dart games.
@@ -78,6 +80,44 @@ class DartUtils {
     required int points,
   }) =>
       validatePointsStatic(pointsLeft: pointsLeft, points: points);
+
+// check if this impl is correct
+  static bool validateDartsStatic({
+    required int pointsLeft,
+    required List<Dart> darts,
+  }) {
+    final int points = darts.fold(0, (acc, dart) => acc + dart.points);
+
+    if (darts.length > 3) {
+      return false;
+    }
+
+    final doubles = darts.where((dart) => dart.type == DartType.double).length;
+    if (pointsLeft == 2 && doubles == 0) {
+      return false;
+    }
+
+    if (points == pointsLeft) {
+      if (darts.isEmpty) {
+        return false;
+      }
+
+      if (darts.last != DartType.double) {
+        return false;
+      }
+    }
+
+    return validatePointsStatic(
+      pointsLeft: pointsLeft,
+      points: points,
+    );
+  }
+
+  bool validateDarts({
+    required int pointsLeft,
+    required List<Dart> darts,
+  }) =>
+      validateDartsStatic(pointsLeft: pointsLeft, darts: darts);
 
   /// Returns `true` if [t] is valid next throw when a player has [pointsLeft].
   static bool validateThrowStatic({
