@@ -7,6 +7,7 @@ import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
+import 'package:dart_counter/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -37,17 +38,22 @@ class GameInvitationService implements IGameInvitationService {
   }) async {
     _checkAuth();
     // TODO this should be in on call and handled server side
+    // try to join the game via dart client
     bool success = await _dartClient.joinGame(
       gameId: invitation.gameId.getOrCrash(),
     );
 
+    // try to accepted the game invitation via social client
     success &= await _socialClient.acceptGameInvitation(
       fromId: invitation.fromId.getOrCrash(),
     );
 
+    // when join game and accept game invitation succeeded
     if (success) {
+      // return unit
       return right(unit);
     } else {
+      // else return unexpected failure
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
@@ -58,13 +64,17 @@ class GameInvitationService implements IGameInvitationService {
   }) async {
     _checkAuth();
 
+    // try to cancel the game invitation
     final success = await _socialClient.cancelGameInvitation(
       toId: invitation.toId.getOrCrash(),
     );
 
+    // when cancel game inviation succeeded
     if (success) {
+      // return unit
       return right(unit);
     } else {
+      // else return unexpected failure
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
@@ -75,13 +85,17 @@ class GameInvitationService implements IGameInvitationService {
   }) async {
     _checkAuth();
 
+    // try to decline game inviation
     final success = await _socialClient.declineGameInvitation(
       fromId: invitation.fromId.getOrCrash(),
     );
 
+    // when decline game inviation succeeded
     if (success) {
+      // retrun unit
       return right(unit);
     } else {
+      // else return unexpected failure
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
@@ -89,74 +103,125 @@ class GameInvitationService implements IGameInvitationService {
   @override
   Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getReceivedGameInvitations() async {
-    _checkAuth();
+    // the reference to the received game invitations collection
+    final collection = _firestore.receivedGameInvitationsCollection();
 
-    // TODO implement
-    throw UnimplementedError();
+    // fetch the received game invations sorted by createdAt from firestore
+    final query = await collection.orderBy('createdAt', descending: true).get();
+
+    try {
+      // for each received game invitation
+      final receivedGameInvitations = query.docs.map((doc) {
+        // get the json
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        // and try to parse the json the GameInvitation
+        return GameInvitationDto.fromJson(json).toDomain();
+      }).toImmutableList();
+      return right<GameInvitationFailure, KtList<GameInvitation>>(
+        receivedGameInvitations,
+      );
+      // when error occures while parsing
+    } catch (e) {
+      // log error
+      logger.e(e);
+      // return unexpected failure
+      return left(const GameInvitationFailure.unexpected());
+    }
   }
 
   @override
   Future<Either<GameInvitationFailure, KtList<GameInvitation>>>
       getSentGameInvitations() async {
-    _checkAuth();
+    // the reference to the sent game invitations collection
+    final collection = _firestore.sentGameInvitationsCollection();
 
-    // TODO implement
-    throw UnimplementedError();
+    // fetch the sent game invations sorted by createdAt from firestore
+    final query = await collection.orderBy('createdAt', descending: true).get();
+
+    try {
+      // for each sent game invitation
+      final sentGameInvitations = query.docs.map((doc) {
+        // get the json
+        final json = (doc.data() ?? {}) as Map<String, dynamic>;
+
+        json.addAll({
+          'id': doc.id,
+        });
+
+        // and try to parse the json the GameInvitation
+        return GameInvitationDto.fromJson(json).toDomain();
+      }).toImmutableList();
+      return right<GameInvitationFailure, KtList<GameInvitation>>(
+        sentGameInvitations,
+      );
+      // when error occures while parsing
+    } catch (e) {
+      // log error
+      logger.e(e);
+      // return unexpected failure
+      return left(const GameInvitationFailure.unexpected());
+    }
   }
 
   @override
   Future<Either<GameInvitationFailure, Unit>>
       markReceivedInvitationsAsRead() async {
-    _checkAuth();
-
+    // the reference to the received game invitations collection
     final collection = _firestore.receivedGameInvitationsCollection();
 
-    try {
-      final querySnapshot = await collection
-          .where('read', isNotEqualTo: true)
-          .get(const GetOptions(source: Source.cache));
+    // fetch unread received game invitations from firestore
+    final querySnapshot =
+        await collection.where('read', isNotEqualTo: true).get();
 
-      for (final doc in querySnapshot.docs) {
-        await collection.doc(doc.id).update({'read': true});
-      }
-
-      return right(unit);
-    } catch (e) {
-      print(e);
-      return left(const GameInvitationFailure.unexpected()); // TODO name better
+    // for each unread received game invitation
+    for (final doc in querySnapshot.docs) {
+      // set the read property to true
+      await collection.doc(doc.id).update({'read': true});
     }
+
+    // return unit
+    return right(unit);
   }
 
   @override
   Future<Either<GameInvitationFailure, Unit>> sendGameInvitation({
-    required UniqueId gameId,
+    required UniqueId gameId, // TODO for what is this
     required UniqueId toId,
   }) async {
     _checkAuth();
 
+    // try to send the game inviation via social client
     final success = await _socialClient.sendGameInvitation(
       toId: toId.getOrCrash(),
     );
 
+    // when send game inviation succeeds
     if (success) {
+      // return unit
       return right(unit);
     } else {
+      // else return unexpected failure
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     }
   }
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchReceivedGameInvitations() async* {
-    // TODO no generator
-    _checkAuth();
-
+      watchReceivedGameInvitations() {
+    // the reference to the received game inviations collection
     final collection = _firestore.receivedGameInvitationsCollection();
 
-    yield* collection
+    // for each incoming snapshot of received game inviations ordered by createdAt
+    return collection
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
+      // get the json
       final receivedGameInvitations = snapshot.docs.map((doc) {
         final json = (doc.data() ?? {}) as Map<String, dynamic>;
 
@@ -164,29 +229,33 @@ class GameInvitationService implements IGameInvitationService {
           'id': doc.id,
         });
 
+        // and try to parse the json the GameInvitation
         return GameInvitationDto.fromJson(json).toDomain();
       }).toImmutableList();
+
+      // return the received game invitations
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         receivedGameInvitations,
       );
-    }).onErrorReturnWith((e, s) {
-      return left(
-          const GameInvitationFailure.unableToRead()); // TODO name better
+      // when error occurs while parsing
+    }).onErrorReturnWith((e, _) {
+      // return unexpected failure
+      return left(const GameInvitationFailure.unexpected()); // TODO name better
     });
   }
 
   @override
   Stream<Either<GameInvitationFailure, KtList<GameInvitation>>>
-      watchSentInvitations() async* {
-    // TODo no generator
-    _checkAuth();
-
+      watchSentInvitations() {
+    // the reference to the sent game inviations collection
     final collection = _firestore.sentGameInvitationsCollection();
 
-    yield* collection
+    // for each incoming snapshot of sent game inviations ordered by createdAt
+    return collection
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
+      // get the json
       final sentGameInvitations = snapshot.docs.map((doc) {
         final json = (doc.data() ?? {}) as Map<String, dynamic>;
 
@@ -194,19 +263,25 @@ class GameInvitationService implements IGameInvitationService {
           'id': doc.id,
         });
 
+        // and try to parse the json the GameInvitation
         return GameInvitationDto.fromJson(json).toDomain();
       }).toImmutableList();
+      // return the sent game invitations
       return right<GameInvitationFailure, KtList<GameInvitation>>(
         sentGameInvitations,
       );
-    }).onErrorReturnWith((e, s) {
+      // when error occurs while parsing
+    }).onErrorReturnWith((e, _) {
+      // return unexpected failure
       return left(const GameInvitationFailure.unexpected()); // TODO name better
     });
   }
 
   /// Throws [NotAuthenticatedError] if app-user is not signed in.
   void _checkAuth() {
+    // when not authenticated
     if (!_authService.isAuthenticated()) {
+      // throw not authenticated error
       throw NotAuthenticatedError();
     }
   }

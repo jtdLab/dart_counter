@@ -20,6 +20,8 @@ import 'package:social_client/social_client.dart';
 import 'friend_dto.dart';
 import 'friend_request_dto.dart';
 
+// TODO docs
+
 @Environment(Environment.test)
 @Environment(Environment.prod)
 @LazySingleton(as: IFriendService)
