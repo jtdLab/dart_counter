@@ -155,6 +155,7 @@ class FirebaseAuthService implements IAuthService {
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
     try {
       // TODO CRASH HERE
+      // more info https: //facebook.meedu.app/docs/4.x.x/user-information
       // trigger the sign-in flow which returns a login result
       final result = await _facebookAuth.login();
       // the status of login result
