@@ -20,7 +20,6 @@ class AppleSignIn {
     // Firebase, the nonce in the id token returned by Apple, is expected to
     // match the sha256 hash of `rawNonce`.
 
-    // TODO STUCKS HERE and validates password forever + if not signed in on phone some weird stuff happens
     final result = await _getAppleCredential(rawNonce.toSha256());
     return result.identityToken;
   }
