@@ -5,6 +5,8 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/application/auth/sign_up/sign_up_bloc.dart';
 import 'package:dart_counter/application/auth/sign_in/sign_in_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 part 'widgets.dart';
 

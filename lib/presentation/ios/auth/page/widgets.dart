@@ -159,22 +159,32 @@ class _SignInWidget extends StatelessWidget {
               onPressed: () => context.read<SignInBloc>().add(
                     const SignInEvent.signInWithFacebookPressed(),
                   ),
-              child: Image.asset(AppImages.fbNew),
+              child: const FaIcon(
+                FontAwesomeIcons.facebookSquare,
+                size: 50,
+              ),
             ),
             _SocialSignInButton(
               onPressed: () => context.read<SignInBloc>().add(
                     const SignInEvent.signInWithApplePressed(),
                   ),
-              child: Image.asset(AppImages.igNew),
+              child: const FaIcon(
+                FontAwesomeIcons.apple,
+                size: 50,
+              ),
             ),
             _SocialSignInButton(
               onPressed: () => context.read<SignInBloc>().add(
                     const SignInEvent.signInWithGooglePressed(),
                   ),
-              child: Image.asset(AppImages.googleNew),
+              child: const FaIcon(
+                FontAwesomeIcons.googlePlusSquare,
+                size: 50,
+              ),
             ),
           ],
         ),
+        const SizedBox(height: 20), // TODO clean ?
       ],
     );
   }
