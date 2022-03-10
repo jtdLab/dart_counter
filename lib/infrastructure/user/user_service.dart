@@ -8,6 +8,7 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/infrastructure/cache/i_cache.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
@@ -27,12 +28,14 @@ class UserService implements IUserService {
   final FirebaseStorage _storage;
   final IAuthService _authService;
   final SocialClient _socialClient;
+  //final ICache _cache;
 
   UserService(
     this._firestore,
     this._storage,
     this._authService,
     this._socialClient,
+    //this._cache,
   );
 
   @override

@@ -290,3 +290,5 @@ option 2: black box test only inheriting classes con: duplicate test code
 // TODO all test underTest global available in setup must be the totesting class
 
 // TODO in test dependencies should contain mock in var name
+
+// firebase and chaching https://medium.com/firebase-developers/firestore-clients-to-cache-or-not-to-cache-or-both-8f66a239c329
