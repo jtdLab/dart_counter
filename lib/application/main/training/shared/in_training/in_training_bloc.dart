@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/training/shared/in_training/in_training_event.dart';
 import 'package:dart_counter/domain/training/abstract_i_training_service.dart';
