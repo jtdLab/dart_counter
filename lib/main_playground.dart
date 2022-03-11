@@ -1,36 +1,19 @@
 // coverage:ignore-file
 
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
-class Name with ChangeNotifier {
-  int _value = 5;
-  String value2 = 'FFFFF';
-
-  set value(int newValue) {
-    _value = newValue;
-    notifyListeners();
-  }
-
-  int get value => _value;
-}
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 void main() {
-  final name = Name();
-
   runApp(
-    CupertinoApp(
+    const CupertinoApp(
       home: CupertinoPageScaffold(
-        child: ChangeNotifierProvider.value(
-          value: name,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SuperWidget(),
-              CupertinoButton(
-                child: const Text('Press me'),
-                onPressed: () => name.value = 88,
-              )
-            ],
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: LineChart(),
+            ),
           ),
         ),
       ),
@@ -38,200 +21,94 @@ void main() {
   );
 }
 
-class SuperWidget extends StatelessWidget {
-  const SuperWidget({
+class LineChart extends StatelessWidget {
+  const LineChart({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SubWidget(
-          value: context.watch<Name>().value,
-        ),
-        const SubWidget(
-          value: 0,
-        ),
+    return SfCartesianChart(
+      zoomPanBehavior: ZoomPanBehavior(enableDoubleTapZooming: true),
+      primaryXAxis: CategoryAxis(),
+      
+      series: <LineSeries<_SalesData, String>>[
+        LineSeries<_SalesData, String>(
+          color: Colors.black,
+          dataSource: <_SalesData>[
+            _SalesData('Jan', 35),
+            _SalesData('Feb', 28),
+            _SalesData('Mar', 34),
+            _SalesData('Apr', 32),
+            _SalesData('May', 40),
+            _SalesData('Jun', 10),
+            _SalesData('Jul', 5),
+            _SalesData('Aug', 20),
+            _SalesData('Sep', 33),
+            _SalesData('Oct', 24),
+            _SalesData('Nov', 19),
+            _SalesData('Dez', 17),
+          ],
+          xValueMapper: (_SalesData sales, _) => sales.year,
+          yValueMapper: (_SalesData sales, _) => sales.sales,
+        )
       ],
     );
   }
 }
 
-class SubWidget extends StatelessWidget {
-  final int value;
+class _SalesData {
+  _SalesData(this.year, this.sales);
 
-  const SubWidget({
+  final String year;
+  final double sales;
+}
+
+class PieChart extends StatelessWidget {
+  const PieChart({
     Key? key,
-    required this.value,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(value.toString());
-  }
-}
-
-
-/** 
-Future<void> main() async {
-  timeago.setLocaleMessages('de', DeMessages());
-  ResponsiveSizingConfig.instance.setCustomBreakpoints(
-    null,
-    customRefinedBreakpoints: const RefinedBreakpoints(mobileNormal: 360),
-  );
-  WidgetsFlutterBinding.ensureInitialized();
-  /**
-   * await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-   */
-  await EasyLocalization.ensureInitialized();
-  configureInjection(Environment.test);
-  await Firebase.initializeApp();
-
-  FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5002);
-  FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
-  FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-
-  runApp(
-    CupertinoApp(
-      home: AppPage(
-        child: Container(
-          color: AppColors.green,
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.red,
-                  border: Border.all(width: 4),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      color: AppColors.yellow,
-                    ),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      color: AppColors.blue,
-                    ),
-                  ],
-                ),
-              ),
+    return SfCircularChart(
+      title: ChartTitle(text: 'Sales by sales person'),
+      //legend: Legend(isVisible: true),
+      series: <PieSeries<_PieData, String>>[
+        PieSeries<_PieData, String>(
+            explode: true,
+            explodeIndex: 0,
+            dataSource: [
+              _PieData('Jonas', 22, 'Jonas'),
+              _PieData('David', 21, 'David'),
+              _PieData('Anna', 19, 'Anna'),
+              _PieData('Elias', 14, 'Elias'),
+              _PieData('Eva', 51, 'Eva'),
+              _PieData('Jochen', 50, 'Jochen'),
             ],
-          ),
-        ),
-      ),
-    ),
-  );
-  
-
-  //final doc = await FirebaseFirestore.instance.collection('c').doc('d').get();
-
-  /**
-   * final doc = await FirebaseFirestore.instance
-      .collection('bengel')
-      .doc('afl')
-      .snapshots()
-     .listen((event) {
-      
-     });
-   */
-
-  //final idToken = await FirebaseAuth.instance.currentUser!.getIdToken();
-
-  /**
-   * DartClient client = DartClient(host: 'localhost', port: 7777);
-  client.watchGame().listen((event) {
-    
-  });
-  await client.connect(idToken: idToken);
-  client.joinGame(gameId: '3J3Kg2gW23R30K4c');
-
-   */
-
-  // runApp(
-  //   AppWidget(),
-  // );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoApp(
-      home: AppPage(
-        child: Column(
-          children: [
-            for (int i = 0; i < 5; i++) ...[
-              Container(
-                color: AppColors.red,
-                height: 100,
-              ),
-              Container(
-                color: AppColors.green,
-                height: 100,
-              ),
-            ]
-          ],
-        ),
-      ),
-    );
-  }
-}
-**/
-/**
- * import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:dart_counter/presentation/ios/core/widgets/shared/app_navigation_bar/app_navigation_bar.dart';
-
-class AppPage extends StatelessWidget {
-  final VoidCallback? onTap;
-  final double? maxHeight;
-  final AppNavigationBar? navigationBar;
-  final Widget child;
-
-  const AppPage({
-    Key? key,
-    this.maxHeight,
-    this.navigationBar,
-    required this.child,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: CupertinoPageScaffold(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-            child: Column(
-              children: [
-                navigationBar ?? Container(),
-                const AppSpacer.large(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: IntrinsicHeight(
-                      child: child,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+            xValueMapper: (_PieData data, _) => data.xData,
+            yValueMapper: (_PieData data, _) => data.yData,
+            dataLabelMapper: (_PieData data, _) => data.text,
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
+            pointColorMapper: (_, index) {
+              switch (index % 3) {
+                case 0:
+                  return Colors.black;
+                case 1:
+                  return Colors.red;
+                default:
+                  return Colors.yellow;
+              }
+            }),
+      ],
     );
   }
 }
 
- */
+class _PieData {
+  _PieData(this.xData, this.yData, [this.text = 'empty']);
+
+  final String xData;
+  final num yData;
+  final String text;
+}

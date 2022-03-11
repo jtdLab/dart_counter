@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
