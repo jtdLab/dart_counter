@@ -12,9 +12,9 @@ import '../shared/widgets.dart';
 
 part 'widgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget implements AutoRouteWrapper {
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -28,35 +28,40 @@ class HomePage extends StatelessWidget {
           create: (context) => CreateOnlineGameCubit.getIt(),
         )
       ],
-      child: BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
-        listener: (context, state) {
-          state.mapOrNull(
-            success: (success) =>
-                context.router.replace(const PlayOnlineFlowRoute()),
-            // TODO localize + test
-            failure: (failure) => showToast('Could not create game.'),
+      child: this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
+      listener: (context, state) {
+        state.mapOrNull(
+          success: (success) =>
+              context.router.replace(const PlayOnlineFlowRoute()),
+          // TODO localize + test
+          failure: (failure) => showToast('Could not create game.'),
+        );
+      },
+      child: BlocSelector<HomeBloc, HomeState, bool>(
+        selector: (state) => state is HomeLoadSuccess,
+        builder: (context, hasNavigationBar) {
+          return AppPage(
+            navigationBar: hasNavigationBar
+                ? AppNavigationBar(
+                    leading: const _SettingsButton(),
+                    trailing: Row(
+                      children: const [
+                        _GameInvitationsButton(),
+                        _FriendsButton(),
+                        _StatsButton(),
+                      ],
+                    ),
+                  )
+                : null,
+            child: const _HomeWidget(),
           );
         },
-        child: BlocSelector<HomeBloc, HomeState, bool>(
-          selector: (state) => state is HomeLoadSuccess,
-          builder: (context, hasNavigationBar) {
-            return AppPage(
-              navigationBar: hasNavigationBar
-                  ? AppNavigationBar(
-                      leading: const _SettingsButton(),
-                      trailing: Row(
-                        children: const [
-                          _GameInvitationsButton(),
-                          _FriendsButton(),
-                          _StatsButton(),
-                        ],
-                      ),
-                    )
-                  : null,
-              child: const _HomeWidget(),
-            );
-          },
-        ),
       ),
     );
   }
