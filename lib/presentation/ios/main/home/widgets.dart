@@ -46,7 +46,10 @@ class _GameInvitationsButton extends StatelessWidget {
                         .copyWith(color: AppColors.white),
                   ),
                   position: BadgePosition.topEnd(top: -13),
-                  child: Image.asset(AppImages.messageNew),
+                  child: const FaIcon(
+                    FontAwesomeIcons.solidEnvelope,
+                    size: 24,
+                  ),
                 ),
         );
       },
@@ -79,7 +82,10 @@ class _FriendsButton extends StatelessWidget {
                     ),
                   ),
                   position: BadgePosition.topEnd(top: -13),
-                  child: Image.asset(AppImages.playerNew),
+                  child: const FaIcon(
+                    FontAwesomeIcons.userAlt,
+                    size: 22,
+                  ),
                 ),
         );
       },
@@ -98,7 +104,10 @@ class _StatsButton extends StatelessWidget {
       //key: const Key('stats_button'), // TODO move up or not
       noPaddingRight: true,
       onPressed: () => context.router.push(const ProfilePageRoute()),
-      child: Image.asset(AppImages.statsNew),
+      child: const FaIcon(
+        FontAwesomeIcons.chartPie,
+        size: 24,
+      ),
     );
   }
 }
@@ -262,7 +271,10 @@ class _InstagramButton extends StatelessWidget {
       child: SizedBox(
         width: 3 * size12(context),
         height: 3 * size12(context),
-        child: Image.asset(AppImages.igNew),
+        child: const FaIcon(
+          FontAwesomeIcons.instagram,
+          size: 50,
+        ),
       ),
     );
   }
@@ -288,7 +300,10 @@ class _YoutubeButton extends StatelessWidget {
       child: SizedBox(
         width: 3 * size12(context),
         height: 3 * size12(context),
-        child: Image.asset(AppImages.googleNew),
+        child: const FaIcon(
+          FontAwesomeIcons.youtube,
+          size: 50,
+        ),
       ),
     );
   }
