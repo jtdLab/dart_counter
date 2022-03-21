@@ -1,5 +1,3 @@
-// coverage:ignore-file
-
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/in_game_bloc.dart';
