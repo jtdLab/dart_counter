@@ -135,6 +135,7 @@ class _HomeWidget extends StatelessWidget {
   }
 }
 
+// Success
 class _SuccessWidget extends StatelessWidget {
   const _SuccessWidget()
       : super(
@@ -309,6 +310,7 @@ class _YoutubeButton extends StatelessWidget {
   }
 }
 
+// Failure
 class _FailureWidget extends StatelessWidget {
   const _FailureWidget()
       : super(

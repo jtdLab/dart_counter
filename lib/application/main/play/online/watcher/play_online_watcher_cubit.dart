@@ -9,8 +9,8 @@ class PlayOnlineWatcherCubit extends WatcherCubit<OnlineGameSnapshot> {
   PlayOnlineWatcherCubit(
     IPlayOnlineService playOnlineService,
   ) : super(
-          OnlineGameSnapshot
-              .dummy(), //playOnlineService.getGame(), // TODO good practice ?? to pass here
+          OnlineGameSnapshot.dummy(),
+          //playOnlineService.getGame(), // TODO good practice ?? to pass here
           playOnlineService.watchGame(),
         );
 

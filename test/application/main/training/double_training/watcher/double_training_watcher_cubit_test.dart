@@ -68,8 +68,6 @@ void main() {
     });
   });
 
-  // TODO
-
   blocTest<DoubleTrainingWatcherCubit, DoubleTrainingGameSnapshot>(
     'Emit game snapshots.',
     build: () {

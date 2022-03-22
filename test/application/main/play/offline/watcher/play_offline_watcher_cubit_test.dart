@@ -1,70 +1,112 @@
 void main() {}
-
-// TODO remove or keep and fix
-
 /**
  * import 'package:bloc_test/bloc_test.dart';
+import 'package:dart_counter/application/main/core/user/user_cubit.dart';
 import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
+import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-// TODO blackbox testing atm but move to inherited testing in future
-
 class MockPlayOfflineService extends Mock implements IPlayOfflineService {}
 
-class MockUserService extends Mock implements IUserService {}
+class MockUserCubit extends MockCubit<UserState> implements UserCubit {}
 
 void main() {
+  late MockPlayOfflineService mockPlayOfflineService;
+  late MockUserCubit mockUserCubit;
+
+  late PlayOfflineWatcherCubit underTest;
+
+  final gameSnapshot1 = OfflineGameSnapshot.dummy();
+  final gameSnapshot2 = OfflineGameSnapshot.dummy();
+
   setUpAll(() {
     // Mocktail related setup
     registerFallbackValue(User.dummy());
     registerFallbackValue(OfflineGameSnapshot.dummy());
   });
 
-  late MockPlayOfflineService mockPlayOfflineService;
-  late MockUserService mockUserService;
-
-  final gameSnapshot1 = OfflineGameSnapshot.dummy();
-  final gameSnapshot2 = OfflineGameSnapshot.dummy();
-
   setUp(() {
     mockPlayOfflineService = MockPlayOfflineService();
-    mockUserService = MockUserService();
+    mockUserCubit = MockUserCubit();
 
-    when<OfflineGameSnapshot>(
+    when(
       () => mockPlayOfflineService.createGame(owner: any(named: 'owner')),
     ).thenAnswer(
       (_) => gameSnapshot1,
     );
 
-    when<Stream<OfflineGameSnapshot>>(
+    when(
       () => mockPlayOfflineService.watchGame(),
     ).thenAnswer(
       (_) => Stream.fromIterable([gameSnapshot2]),
     );
 
-    when<Either<UserFailure, User>>(
-      () => mockUserService.getUser(),
-    ).thenAnswer(
-      (_) => right(User.dummy()),
-    );
+    final user = User.dummy();
+    whenListen(mockUserCubit, Stream.value(user), initialState: user);
   });
 
-  test('Initial state set to current gameSnapshot of playService.', () {
-    // Arrange & Act
-    final underTest = PlayOfflineWatcherCubit(
-      mockPlayOfflineService,
-      mockUserService,
-    );
+  group('#Constructors#', () {
+    group('#Standard#', () {
+      test('Initial state set to current gameSnapshot of playService.', () {
+        // Arrange & Act
+        final underTest = PlayOfflineWatcherCubit(
+          mockPlayOfflineService,
+          mockUserCubit,
+        );
 
-    // Assert
-    expect(underTest.state, gameSnapshot1);
+        // Assert
+        expect(underTest.state, gameSnapshot1);
+      });
+    });
+
+    group('#GetIt#', () {
+      test('Initial state set to current gameSnapshot of playService.', () {
+        // Arrange & Act
+        final underTest = PlayOfflineWatcherCubit(
+          mockPlayOfflineService,
+          mockUserCubit,
+        );
+
+        // Assert
+        expect(underTest.state, gameSnapshot1);
+      });
+    
+      test(
+          'GIVEN PlayOfflineWatcherCubit is not registered inside getIt '
+          'THEN throw error.', () {
+        // Act & Assert
+        expect(
+          () => PlayOfflineWatcherCubit.getIt(mockUserCubit),
+          throwsA(anything),
+        );
+      });
+
+      test(
+          'GIVEN PlayOfflineWatcherCubit is registered inside getIt '
+          'THEN return the registered instance.', () {
+        // Arrange
+        final registeredInstance =
+            PlayOfflineWatcherCubit(mockPlayOfflineService, mockUserCubit);
+        getIt.registerFactoryParam((param1, _) => registeredInstance);
+
+        // Act
+        final underTest = PlayOfflineWatcherCubit.getIt(mockUserCubit);
+
+        // Assert
+        expect(underTest, registeredInstance);
+      });
+
+      tearDown(() async {
+        await getIt.reset();
+      });
+    });
   });
 
   blocTest<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
@@ -72,7 +114,7 @@ void main() {
     build: () {
       return PlayOfflineWatcherCubit(
         mockPlayOfflineService,
-        mockUserService,
+        mockUserCubit,
       );
     },
     expect: () => <OfflineGameSnapshot>[gameSnapshot2],

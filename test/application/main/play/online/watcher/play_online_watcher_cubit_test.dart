@@ -1,7 +1,4 @@
 void main() {}
-
-// TODO remove or keep and fix
-
 /**
  * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
@@ -30,13 +27,13 @@ void main() {
   setUp(() {
     mockPlayOnlineService = MockPlayOfflineService();
 
-    when<OnlineGameSnapshot>(
+    when(
       () => mockPlayOnlineService.getGame(),
     ).thenAnswer(
       (_) => gameSnapshot1,
     );
 
-    when<Stream<OnlineGameSnapshot>>(
+    when(
       () => mockPlayOnlineService.watchGame(),
     ).thenAnswer(
       (_) => Stream.fromIterable([gameSnapshot2]),

@@ -24,12 +24,14 @@ class MainFlow extends StatelessWidget {
         BlocProvider(
           create: (context) => GameInvitationsCubit.getIt(),
         ),
-        BlocProvider(
+        /** // TODO remove
+        *  BlocProvider(
           create: (context) => PlayOfflineCubit.getIt(),
         ),
         BlocProvider(
           create: (context) => PlayOnlineCubit.getIt(),
         ),
+        */
       ],
       child: const AutoRouter(),
     );
