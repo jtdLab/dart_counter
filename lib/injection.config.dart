@@ -19,22 +19,24 @@ import 'package:image_picker/image_picker.dart' as _i47;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:social_client/social_client.dart' as _i79;
 
-import 'application/auth/forgot_password/forgot_password_bloc.dart' as _i91;
+import 'application/auth/forgot_password/forgot_password_bloc.dart' as _i92;
 import 'application/auth/sign_in/sign_in_bloc.dart' as _i76;
 import 'application/auth/sign_up/sign_up_bloc.dart' as _i77;
-import 'application/main/core/friends/friends_cubit.dart' as _i93;
+import 'application/main/core/friends/friends_cubit.dart' as _i94;
 import 'application/main/core/game_invitations/game_invitations_cubit.dart'
-    as _i95;
+    as _i96;
 import 'application/main/core/play/offline/play_offline_cubit.dart' as _i70;
-import 'application/main/core/play/online/play_online_cubit.dart' as _i104;
+import 'application/main/core/play/online/play_online_cubit.dart' as _i105;
 import 'application/main/core/user/user_cubit.dart' as _i80;
-import 'application/main/friends/friends_bloc.dart' as _i92;
+import 'application/main/friends/friends_bloc.dart' as _i93;
 import 'application/main/friends/more/more_bloc.dart' as _i69;
 import 'application/main/friends/search_user/search_user_bloc.dart' as _i74;
-import 'application/main/game_history/game_history_bloc.dart' as _i94;
-import 'application/main/game_invitations/game_invitations_bloc.dart' as _i108;
+import 'application/main/game_history/game_history_bloc.dart' as _i95;
+import 'application/main/game_invitations/game_invitations_bloc.dart' as _i109;
+import 'application/main/home/create_offline_game/create_offline_game_cubit.dart'
+    as _i87;
 import 'application/main/home/create_online_game/create_online_game_cubit.dart'
-    as _i107;
+    as _i108;
 import 'application/main/home/home_bloc.dart' as _i18;
 import 'application/main/play/offline/create_game/create_offline_game_bloc.dart'
     as _i86;
@@ -53,22 +55,22 @@ import 'application/main/play/offline/watcher/play_offline_watcher_cubit.dart'
 import 'application/main/play/online/create_game/add_player/add_player_bloc.dart'
     as _i3;
 import 'application/main/play/online/create_game/create_online_game_bloc.dart'
-    as _i106;
+    as _i107;
 import 'application/main/play/online/in_game/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i102;
+    as _i103;
 import 'application/main/play/online/in_game/detailed_input_area/key_board/key_board_bloc.dart'
     as _i67;
-import 'application/main/play/online/in_game/in_online_game_bloc.dart' as _i101;
+import 'application/main/play/online/in_game/in_online_game_bloc.dart' as _i102;
 import 'application/main/play/online/in_game/standard_input_area/input_row/input_row_bloc.dart'
-    as _i103;
+    as _i104;
 import 'application/main/play/online/in_game/standard_input_area/key_board/key_board_bloc.dart'
     as _i68;
 import 'application/main/play/online/watcher/play_online_watcher_cubit.dart'
-    as _i105;
+    as _i106;
 import 'application/main/play/shared/advanced_settings/advanced_settings_bloc.dart'
     as _i4;
 import 'application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart'
-    as _i88;
+    as _i89;
 import 'application/main/profile/profile_bloc.dart' as _i72;
 import 'application/main/settings/change_email/change_email_bloc.dart' as _i83;
 import 'application/main/settings/change_password/change_password_bloc.dart'
@@ -76,7 +78,7 @@ import 'application/main/settings/change_password/change_password_bloc.dart'
 import 'application/main/settings/change_username/change_username_bloc.dart'
     as _i85;
 import 'application/main/settings/edit_profile_image/edit_profile_image_bloc.dart'
-    as _i90;
+    as _i91;
 import 'application/main/settings/settings_bloc.dart' as _i75;
 import 'application/main/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart'
     as _i48;
@@ -87,7 +89,7 @@ import 'application/main/training/bobs_twenty_seven/in_training/input_area/key_b
 import 'application/main/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart'
     as _i82;
 import 'application/main/training/create_training/create_training_bloc.dart'
-    as _i87;
+    as _i88;
 import 'application/main/training/double_training/in_training/in_double_training_bloc.dart'
     as _i49;
 import 'application/main/training/double_training/in_training/input_area/input_row/input_row_bloc.dart'
@@ -95,15 +97,15 @@ import 'application/main/training/double_training/in_training/input_area/input_r
 import 'application/main/training/double_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i61;
 import 'application/main/training/double_training/watcher/double_training_watcher_cubit.dart'
-    as _i89;
+    as _i90;
 import 'application/main/training/score_training/in_training/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i54;
+    as _i53;
 import 'application/main/training/score_training/in_training/detailed_input_area/key_board/key_board_bloc.dart'
     as _i62;
 import 'application/main/training/score_training/in_training/in_score_training_bloc.dart'
     as _i51;
 import 'application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart'
-    as _i53;
+    as _i57;
 import 'application/main/training/score_training/in_training/standard_input_area/key_board/key_board_bloc.dart'
     as _i63;
 import 'application/main/training/score_training/watcher/score_training_watcher_cubit.dart'
@@ -113,7 +115,7 @@ import 'application/main/training/shared/in_training/input_area/darts_displayer/
 import 'application/main/training/single_training/in_training/in_single_training_bloc.dart'
     as _i52;
 import 'application/main/training/single_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i57;
+    as _i54;
 import 'application/main/training/single_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i64;
 import 'application/main/training/single_training/watcher/single_training_watcher_cubit.dart'
@@ -126,7 +128,7 @@ import 'domain/game_history/i_game_history_service.dart' as _i35;
 import 'domain/game_invitation/i_game_invitation_service.dart' as _i37;
 import 'domain/play/i_dart_utils.dart' as _i29;
 import 'domain/play/offline/i_play_offline_service.dart' as _i39;
-import 'domain/play/online/i_play_online_service.dart' as _i98;
+import 'domain/play/online/i_play_online_service.dart' as _i99;
 import 'domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart'
     as _i21;
 import 'domain/training/double/i_double_training_service.dart' as _i31;
@@ -136,32 +138,32 @@ import 'domain/user/i_user_service.dart' as _i45;
 import 'infrastructure/auth/core/apple_sign_in.dart' as _i5;
 import 'infrastructure/auth/core/auth_provider_manager.dart' as _i6;
 import 'infrastructure/auth/fake_auth_service.dart' as _i20;
-import 'infrastructure/auth/firebase_auth_service.dart' as _i96;
-import 'infrastructure/cache/fake_cache.dart' as _i24;
+import 'infrastructure/auth/firebase_auth_service.dart' as _i97;
+import 'infrastructure/cache/fake_cache.dart' as _i25;
 import 'infrastructure/cache/i_cache.dart' as _i23;
-import 'infrastructure/cache/sqflite_cache.dart' as _i25;
-import 'infrastructure/connectivity/connectivity_service.dart' as _i27;
-import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i28;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i113;
-import 'infrastructure/core/jtd_injectable_module.dart' as _i112;
+import 'infrastructure/cache/sqflite_cache.dart' as _i24;
+import 'infrastructure/connectivity/connectivity_service.dart' as _i28;
+import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i27;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i114;
+import 'infrastructure/core/jtd_injectable_module.dart' as _i113;
 import 'infrastructure/friend/fake_friend_service.dart' as _i34;
-import 'infrastructure/friend/friend_service.dart' as _i109;
+import 'infrastructure/friend/friend_service.dart' as _i110;
 import 'infrastructure/game_history/fake_game_history_service.dart' as _i36;
-import 'infrastructure/game_history/game_history_service.dart' as _i110;
+import 'infrastructure/game_history/game_history_service.dart' as _i111;
 import 'infrastructure/game_invitation/fake_game_invitation_service.dart'
     as _i38;
-import 'infrastructure/game_invitation/game_invitation_service.dart' as _i97;
+import 'infrastructure/game_invitation/game_invitation_service.dart' as _i98;
 import 'infrastructure/play/dart_utils.dart' as _i30;
 import 'infrastructure/play/offline/play_offline_service.dart' as _i40;
-import 'infrastructure/play/online/fake_play_online_service.dart' as _i99;
-import 'infrastructure/play/online/play_online_service.dart' as _i111;
+import 'infrastructure/play/online/fake_play_online_service.dart' as _i100;
+import 'infrastructure/play/online/play_online_service.dart' as _i112;
 import 'infrastructure/training/bobs_twenty_seven/bobs_twenty_seven_service.dart'
     as _i22;
 import 'infrastructure/training/double/double_training_service.dart' as _i32;
 import 'infrastructure/training/score/score_training_service.dart' as _i42;
 import 'infrastructure/training/single/single_training_service.dart' as _i44;
 import 'infrastructure/user/fake_user_service.dart' as _i46;
-import 'infrastructure/user/user_service.dart' as _i100;
+import 'infrastructure/user/user_service.dart' as _i101;
 
 const String _dev = 'dev';
 const String _test = 'test';
@@ -205,16 +207,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i21.IBobsTwentySevenService>(
       () => _i22.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
-  gh.lazySingleton<_i23.ICache>(() => _i24.FakeCache(), registerFor: {_dev});
   gh.lazySingleton<_i23.ICache>(
-      () => _i25.SqfliteCache(get<_i11.DefaultCacheManager>()),
+      () => _i24.SqfliteCache(get<_i11.DefaultCacheManager>()),
       registerFor: {_test, _prod});
+  gh.lazySingleton<_i23.ICache>(() => _i25.FakeCache(), registerFor: {_dev});
   gh.lazySingleton<_i26.IConnectivityService>(
-      () => _i27.ConnectivityService(get<_i7.Connectivity>()),
-      registerFor: {_test, _prod});
-  gh.lazySingleton<_i26.IConnectivityService>(
-      () => _i28.FakeConnectivityService(),
+      () => _i27.FakeConnectivityService(),
       registerFor: {_dev});
+  gh.lazySingleton<_i26.IConnectivityService>(
+      () => _i28.ConnectivityService(get<_i7.Connectivity>()),
+      registerFor: {_test, _prod});
   gh.lazySingleton<_i29.IDartUtils>(() => _i30.DartUtils(get<_i9.DartUtils>()));
   gh.lazySingleton<_i31.IDoubleTrainingService>(
       () => _i32.DoubleTrainingService(),
@@ -250,20 +252,20 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i51.InScoreTrainingBloc(get<_i41.IScoreTrainingService>()));
   gh.factory<_i52.InSingleTrainingBloc>(
       () => _i52.InSingleTrainingBloc(get<_i43.ISingleTrainingService>()));
-  gh.factory<_i53.InputRowBloc>(
-      () => _i53.InputRowBloc(get<_i41.IScoreTrainingService>()));
+  gh.factoryParam<_i53.InputRowBloc, List<Object>, dynamic>(
+      (otherDependencies, _) => _i53.InputRowBloc.injectable(
+          get<_i41.IScoreTrainingService>(), otherDependencies));
   gh.factoryParam<_i54.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i54.InputRowBloc.injectable(
-          get<_i41.IScoreTrainingService>(), otherDependencies));
+          get<_i43.ISingleTrainingService>(), otherDependencies));
   gh.factoryParam<_i55.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i55.InputRowBloc.injectable(
           get<_i31.IDoubleTrainingService>(), otherDependencies));
   gh.factoryParam<_i56.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i56.InputRowBloc.injectable(
           get<_i21.IBobsTwentySevenService>(), otherDependencies));
-  gh.factoryParam<_i57.InputRowBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i57.InputRowBloc.injectable(
-          get<_i43.ISingleTrainingService>(), otherDependencies));
+  gh.factory<_i57.InputRowBloc>(
+      () => _i57.InputRowBloc(get<_i41.IScoreTrainingService>()));
   gh.factoryParam<_i58.InputRowBlocOfflineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
@@ -345,33 +347,35 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i85.ChangeUsernameBloc(get<_i45.IUserService>()));
   gh.factory<_i86.CreateOfflineGameBloc>(
       () => _i86.CreateOfflineGameBloc(get<_i39.IPlayOfflineService>()));
-  gh.factoryParam<_i87.CreateTrainingBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i87.CreateTrainingBloc.injectable(
+  gh.factory<_i87.CreateOfflineGameCubit>(
+      () => _i87.CreateOfflineGameCubit(get<_i39.IPlayOfflineService>()));
+  gh.factoryParam<_i88.CreateTrainingBloc, List<Object>, dynamic>(
+      (otherDependencies, _) => _i88.CreateTrainingBloc.injectable(
           get<_i43.ISingleTrainingService>(),
           get<_i31.IDoubleTrainingService>(),
           get<_i41.IScoreTrainingService>(),
           get<_i21.IBobsTwentySevenService>(),
           otherDependencies));
-  gh.factoryParam<_i88.DartsDisplayerBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i88.DartsDisplayerBloc.injectable(
+  gh.factoryParam<_i89.DartsDisplayerBloc, List<Object>, dynamic>(
+      (otherDependencies, _) => _i89.DartsDisplayerBloc.injectable(
           get<_i29.IDartUtils>(), otherDependencies));
-  gh.factory<_i89.DoubleTrainingWatcherCubit>(() =>
-      _i89.DoubleTrainingWatcherCubit(get<_i31.IDoubleTrainingService>()));
-  gh.factory<_i90.EditProfileImageBloc>(() => _i90.EditProfileImageBloc(
+  gh.factory<_i90.DoubleTrainingWatcherCubit>(() =>
+      _i90.DoubleTrainingWatcherCubit(get<_i31.IDoubleTrainingService>()));
+  gh.factory<_i91.EditProfileImageBloc>(() => _i91.EditProfileImageBloc(
       get<_i47.ImagePicker>(), get<_i45.IUserService>()));
-  gh.factory<_i91.ForgotPasswordBloc>(
-      () => _i91.ForgotPasswordBloc(get<_i19.IAuthService>()));
-  gh.factory<_i92.FriendsBloc>(
-      () => _i92.FriendsBloc(get<_i33.IFriendService>()));
-  gh.factory<_i93.FriendsCubit>(
-      () => _i93.FriendsCubit(get<_i33.IFriendService>()));
-  gh.factoryParam<_i94.GameHistoryBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i94.GameHistoryBloc.injectable(
+  gh.factory<_i92.ForgotPasswordBloc>(
+      () => _i92.ForgotPasswordBloc(get<_i19.IAuthService>()));
+  gh.factory<_i93.FriendsBloc>(
+      () => _i93.FriendsBloc(get<_i33.IFriendService>()));
+  gh.factory<_i94.FriendsCubit>(
+      () => _i94.FriendsCubit(get<_i33.IFriendService>()));
+  gh.factoryParam<_i95.GameHistoryBloc, List<Object>, dynamic>(
+      (otherDependencies, _) => _i95.GameHistoryBloc.injectable(
           get<_i35.IGameHistoryService>(), otherDependencies));
-  gh.factory<_i95.GameInvitationsCubit>(
-      () => _i95.GameInvitationsCubit(get<_i37.IGameInvitationService>()));
+  gh.factory<_i96.GameInvitationsCubit>(
+      () => _i96.GameInvitationsCubit(get<_i37.IGameInvitationService>()));
   gh.lazySingleton<_i19.IAuthService>(
-      () => _i96.FirebaseAuthService(
+      () => _i97.FirebaseAuthService(
           get<_i13.FirebaseAuth>(),
           get<_i5.AppleSignIn>(),
           get<_i17.GoogleSignIn>(),
@@ -380,64 +384,65 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i79.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i37.IGameInvitationService>(
-      () => _i97.GameInvitationService(
+      () => _i98.GameInvitationService(
           get<_i19.IAuthService>(),
           get<_i14.FirebaseFirestore>(),
           get<_i79.SocialClient>(),
           get<_i8.DartClient>()),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i98.IPlayOnlineService>(
-      () => _i99.FakePlayOnlineService(get<_i45.IUserService>()),
+  gh.lazySingleton<_i99.IPlayOnlineService>(
+      () => _i100.FakePlayOnlineService(get<_i45.IUserService>()),
       registerFor: {_dev});
   gh.lazySingleton<_i45.IUserService>(
-      () => _i100.UserService(
+      () => _i101.UserService(
           get<_i14.FirebaseFirestore>(),
           get<_i16.FirebaseStorage>(),
           get<_i19.IAuthService>(),
           get<_i79.SocialClient>()),
       registerFor: {_test, _prod});
-  gh.factory<_i101.InOnlineGameBloc>(
-      () => _i101.InOnlineGameBloc(get<_i98.IPlayOnlineService>()));
-  gh.factoryParam<_i102.InputRowBlocOnlineDetailedInputArea, List<Object>,
+  gh.factory<_i102.InOnlineGameBloc>(
+      () => _i102.InOnlineGameBloc(get<_i99.IPlayOnlineService>()));
+  gh.factoryParam<_i103.InputRowBlocOnlineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
-          _i102.InputRowBlocOnlineDetailedInputArea.injectable(
-              get<_i98.IPlayOnlineService>(), otherDependencies));
-  gh.factoryParam<_i103.InputRowBlocOnlineStandardInputArea, List<Object>,
+          _i103.InputRowBlocOnlineDetailedInputArea.injectable(
+              get<_i99.IPlayOnlineService>(), otherDependencies));
+  gh.factoryParam<_i104.InputRowBlocOnlineStandardInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
-          _i103.InputRowBlocOnlineStandardInputArea.injectable(
+          _i104.InputRowBlocOnlineStandardInputArea.injectable(
               get<_i29.IDartUtils>(),
-              get<_i98.IPlayOnlineService>(),
+              get<_i99.IPlayOnlineService>(),
               otherDependencies));
-  gh.factory<_i104.PlayOnlineCubit>(
-      () => _i104.PlayOnlineCubit(get<_i98.IPlayOnlineService>()));
-  gh.factory<_i105.PlayOnlineWatcherCubit>(
-      () => _i105.PlayOnlineWatcherCubit(get<_i98.IPlayOnlineService>()));
-  gh.factory<_i106.CreateOnlineGameBloc>(
-      () => _i106.CreateOnlineGameBloc(get<_i98.IPlayOnlineService>()));
-  gh.factory<_i107.CreateOnlineGameCubit>(
-      () => _i107.CreateOnlineGameCubit(get<_i98.IPlayOnlineService>()));
-  gh.factory<_i108.GameInvitationsBloc>(() => _i108.GameInvitationsBloc(
-      get<_i98.IPlayOnlineService>(), get<_i37.IGameInvitationService>()));
+  gh.factory<_i105.PlayOnlineCubit>(
+      () => _i105.PlayOnlineCubit(get<_i99.IPlayOnlineService>()));
+  gh.factoryParam<_i106.PlayOnlineWatcherCubit, List<Object>, dynamic>(
+      (otherDependencies, _) => _i106.PlayOnlineWatcherCubit.injectable(
+          get<_i99.IPlayOnlineService>(), otherDependencies));
+  gh.factory<_i107.CreateOnlineGameBloc>(
+      () => _i107.CreateOnlineGameBloc(get<_i99.IPlayOnlineService>()));
+  gh.factory<_i108.CreateOnlineGameCubit>(
+      () => _i108.CreateOnlineGameCubit(get<_i99.IPlayOnlineService>()));
+  gh.factory<_i109.GameInvitationsBloc>(() => _i109.GameInvitationsBloc(
+      get<_i99.IPlayOnlineService>(), get<_i37.IGameInvitationService>()));
   gh.lazySingleton<_i33.IFriendService>(
-      () => _i109.FriendService(
+      () => _i110.FriendService(
           get<_i19.IAuthService>(),
           get<_i45.IUserService>(),
           get<_i14.FirebaseFirestore>(),
           get<_i79.SocialClient>()),
       registerFor: {_test, _prod});
   gh.lazySingleton<_i35.IGameHistoryService>(
-      () => _i110.GameHistoryService(
+      () => _i111.GameHistoryService(
           get<_i14.FirebaseFirestore>(), get<_i33.IFriendService>()),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i98.IPlayOnlineService>(
-      () => _i111.PlayOnlineService(get<_i8.DartClient>(),
+  gh.lazySingleton<_i99.IPlayOnlineService>(
+      () => _i112.PlayOnlineService(get<_i8.DartClient>(),
           get<_i45.IUserService>(), get<_i33.IFriendService>()),
       registerFor: {_test, _prod});
   return get;
 }
 
-class _$JtdInjectableModule extends _i112.JtdInjectableModule {}
+class _$JtdInjectableModule extends _i113.JtdInjectableModule {}
 
-class _$FireBaseInjectableModule extends _i113.FireBaseInjectableModule {}
+class _$FireBaseInjectableModule extends _i114.FireBaseInjectableModule {}

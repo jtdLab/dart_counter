@@ -9,25 +9,23 @@ import 'package:injectable/injectable.dart';
 class PlayOfflineWatcherCubit extends WatcherCubit<OfflineGameSnapshot> {
   PlayOfflineWatcherCubit(
     IPlayOfflineService playOfflineService,
-    UserCubit userCubit,
+    OfflineGameSnapshot initialState,
   ) : super(
-          playOfflineService.createGame(
-            owner: userCubit.state.user,
-          ), // TODO good practice ?? to pass here
+          initialState,
           playOfflineService.watchGame(),
         );
 
   /// Returns instance registered inside getIt.
   factory PlayOfflineWatcherCubit.getIt(
-    UserCubit userCubit,
+    OfflineGameSnapshot initialState,
   ) =>
-      getIt<PlayOfflineWatcherCubit>(param1: [userCubit]);
+      getIt<PlayOfflineWatcherCubit>(param1: [initialState]);
 
   /// Constructor only for injectable.
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of `UserCubit`
+  /// 1. Instance of `OfflineGameSnapshot`
   @factoryMethod
   factory PlayOfflineWatcherCubit.injectable(
     IPlayOfflineService playOfflineService,
@@ -35,6 +33,6 @@ class PlayOfflineWatcherCubit extends WatcherCubit<OfflineGameSnapshot> {
   ) =>
       PlayOfflineWatcherCubit(
         playOfflineService,
-        otherDependencies[0] as UserCubit,
+        otherDependencies[0] as OfflineGameSnapshot,
       );
 }

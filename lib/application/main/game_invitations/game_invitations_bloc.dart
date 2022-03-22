@@ -14,6 +14,8 @@ part 'game_invitations_bloc.freezed.dart';
 part 'game_invitations_event.dart';
 part 'game_invitations_state.dart';
 
+// TODO join game logic into seperated join game bloc like create game bloc in home session
+
 @injectable
 class GameInvitationsBloc
     extends Bloc<GameInvitationsEvent, GameInvitationsState> {

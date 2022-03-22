@@ -26,9 +26,14 @@ class GameInvitationsPage extends StatelessWidget {
         listenWhen: (oldState, newState) => newState is GameInvitationsInitial,
         listener: (context, state) {
           state.mapOrNull(
+            // TODO move this logic to sepreate join game bloc 
             initial: (initial) {
-              if (initial.gameSnapshot != null) {
-                context.router.replaceAll([const PlayOnlineFlowRoute()]);
+              final initialSnapshot = initial.gameSnapshot;
+
+              if (initialSnapshot != null) {
+                context.router.replaceAll(
+                  [PlayOnlineFlowRoute(initialSnapshot: initialSnapshot)],
+                );
               }
             },
           );

@@ -22,8 +22,11 @@ class _$CreateOnlineGameStateTearOff {
     return const CreateOnlineGameInitial();
   }
 
-  CreateOnlineGameSuccess success() {
-    return const CreateOnlineGameSuccess();
+  CreateOnlineGameSuccess success(
+      {required OnlineGameSnapshot initialSnapshot}) {
+    return CreateOnlineGameSuccess(
+      initialSnapshot: initialSnapshot,
+    );
   }
 
   CreateOnlineGameFailure failure({required PlayFailure failure}) {
@@ -41,21 +44,21 @@ mixin _$CreateOnlineGameState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() success,
+    required TResult Function(OnlineGameSnapshot initialSnapshot) success,
     required TResult Function(PlayFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
   }) =>
@@ -143,7 +146,7 @@ class _$CreateOnlineGameInitial implements CreateOnlineGameInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() success,
+    required TResult Function(OnlineGameSnapshot initialSnapshot) success,
     required TResult Function(PlayFailure failure) failure,
   }) {
     return initial();
@@ -153,7 +156,7 @@ class _$CreateOnlineGameInitial implements CreateOnlineGameInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
   }) {
     return initial?.call();
@@ -163,7 +166,7 @@ class _$CreateOnlineGameInitial implements CreateOnlineGameInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -217,6 +220,9 @@ abstract class $CreateOnlineGameSuccessCopyWith<$Res> {
   factory $CreateOnlineGameSuccessCopyWith(CreateOnlineGameSuccess value,
           $Res Function(CreateOnlineGameSuccess) then) =
       _$CreateOnlineGameSuccessCopyWithImpl<$Res>;
+  $Res call({OnlineGameSnapshot initialSnapshot});
+
+  $OnlineGameSnapshotCopyWith<$Res> get initialSnapshot;
 }
 
 /// @nodoc
@@ -229,57 +235,89 @@ class _$CreateOnlineGameSuccessCopyWithImpl<$Res>
 
   @override
   CreateOnlineGameSuccess get _value => super._value as CreateOnlineGameSuccess;
+
+  @override
+  $Res call({
+    Object? initialSnapshot = freezed,
+  }) {
+    return _then(CreateOnlineGameSuccess(
+      initialSnapshot: initialSnapshot == freezed
+          ? _value.initialSnapshot
+          : initialSnapshot // ignore: cast_nullable_to_non_nullable
+              as OnlineGameSnapshot,
+    ));
+  }
+
+  @override
+  $OnlineGameSnapshotCopyWith<$Res> get initialSnapshot {
+    return $OnlineGameSnapshotCopyWith<$Res>(_value.initialSnapshot, (value) {
+      return _then(_value.copyWith(initialSnapshot: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$CreateOnlineGameSuccess implements CreateOnlineGameSuccess {
-  const _$CreateOnlineGameSuccess();
+  const _$CreateOnlineGameSuccess({required this.initialSnapshot});
+
+  @override
+  final OnlineGameSnapshot initialSnapshot;
 
   @override
   String toString() {
-    return 'CreateOnlineGameState.success()';
+    return 'CreateOnlineGameState.success(initialSnapshot: $initialSnapshot)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CreateOnlineGameSuccess);
+        (other.runtimeType == runtimeType &&
+            other is CreateOnlineGameSuccess &&
+            const DeepCollectionEquality()
+                .equals(other.initialSnapshot, initialSnapshot));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(initialSnapshot));
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateOnlineGameSuccessCopyWith<CreateOnlineGameSuccess> get copyWith =>
+      _$CreateOnlineGameSuccessCopyWithImpl<CreateOnlineGameSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() success,
+    required TResult Function(OnlineGameSnapshot initialSnapshot) success,
     required TResult Function(PlayFailure failure) failure,
   }) {
-    return success();
+    return success(initialSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
   }) {
-    return success?.call();
+    return success?.call(initialSnapshot);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(initialSnapshot);
     }
     return orElse();
   }
@@ -320,7 +358,14 @@ class _$CreateOnlineGameSuccess implements CreateOnlineGameSuccess {
 }
 
 abstract class CreateOnlineGameSuccess implements CreateOnlineGameState {
-  const factory CreateOnlineGameSuccess() = _$CreateOnlineGameSuccess;
+  const factory CreateOnlineGameSuccess(
+          {required OnlineGameSnapshot initialSnapshot}) =
+      _$CreateOnlineGameSuccess;
+
+  OnlineGameSnapshot get initialSnapshot;
+  @JsonKey(ignore: true)
+  $CreateOnlineGameSuccessCopyWith<CreateOnlineGameSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -399,7 +444,7 @@ class _$CreateOnlineGameFailure implements CreateOnlineGameFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() success,
+    required TResult Function(OnlineGameSnapshot initialSnapshot) success,
     required TResult Function(PlayFailure failure) failure,
   }) {
     return failure(this.failure);
@@ -409,7 +454,7 @@ class _$CreateOnlineGameFailure implements CreateOnlineGameFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
@@ -419,7 +464,7 @@ class _$CreateOnlineGameFailure implements CreateOnlineGameFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? success,
+    TResult Function(OnlineGameSnapshot initialSnapshot)? success,
     TResult Function(PlayFailure failure)? failure,
     required TResult orElse(),
   }) {

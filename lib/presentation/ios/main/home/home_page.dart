@@ -2,11 +2,11 @@
 import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
 import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
 import 'package:dart_counter/application/main/core/user/user_cubit.dart';
+import 'package:dart_counter/application/main/home/create_offline_game/create_offline_game_cubit.dart';
 import 'package:dart_counter/application/main/home/create_online_game/create_online_game_cubit.dart';
 // BLOCS
 import 'package:dart_counter/application/main/home/home_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-
 
 // LOCAL WIDGETS
 import '../shared/widgets.dart';
@@ -25,8 +25,12 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
             context.read<GameInvitationsCubit>(),
           )..add(const HomeEvent.started()),
         ),
+        // TODO this to blocs can be part of home bloc
         BlocProvider(
           create: (context) => CreateOnlineGameCubit.getIt(),
+        ),
+        BlocProvider(
+          create: (context) => CreateOfflineGameCubit.getIt(),
         )
       ],
       child: this,
@@ -38,31 +42,48 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
     return BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
       listener: (context, state) {
         state.mapOrNull(
-          success: (success) =>
-              context.router.replace(const PlayOnlineFlowRoute()),
+          success: (success) {
+            final initialSnapshot = success.initialSnapshot;
+            context.router.replace(
+              PlayOnlineFlowRoute(initialSnapshot: initialSnapshot),
+            );
+          },
           // TODO localize + test
           failure: (failure) => showToast('Could not create game.'),
         );
       },
-      child: BlocSelector<HomeBloc, HomeState, bool>(
-        selector: (state) => state is HomeLoadSuccess,
-        builder: (context, hasNavigationBar) {
-          return AppPage(
-            navigationBar: hasNavigationBar
-                ? AppNavigationBar(
-                    leading: const _SettingsButton(),
-                    trailing: Row(
-                      children: const [
-                        _GameInvitationsButton(),
-                        _FriendsButton(),
-                        _StatsButton(),
-                      ],
-                    ),
-                  )
-                : null,
-            child: const _HomeWidget(),
+      child: BlocListener<CreateOfflineGameCubit, CreateOfflineGameState>(
+        listener: (context, state) {
+          state.mapOrNull(
+            success: (success) {
+              final initialSnapshot = success.initialSnapshot;
+
+              context.router.replace(
+                PlayOfflineFlowRoute(initialSnapshot: initialSnapshot),
+              );
+            },
           );
         },
+        child: BlocSelector<HomeBloc, HomeState, bool>(
+          selector: (state) => state is HomeLoadSuccess,
+          builder: (context, hasNavigationBar) {
+            return AppPage(
+              navigationBar: hasNavigationBar
+                  ? AppNavigationBar(
+                      leading: const _SettingsButton(),
+                      trailing: Row(
+                        children: const [
+                          _GameInvitationsButton(),
+                          _FriendsButton(),
+                          _StatsButton(),
+                        ],
+                      ),
+                    )
+                  : null,
+              child: const _HomeWidget(),
+            );
+          },
+        ),
       ),
     );
   }

@@ -230,7 +230,7 @@ class _PlayOfflineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.large(
       // key: const Key('play_offline_button'), // TODO move up or not
-      onPressed: () => context.router.replace(const PlayOfflineFlowRoute()),
+      onPressed: () => context.read<CreateOfflineGameCubit>().createGame(),
       color: AppColors.white,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.robotNew),

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
+import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,7 +28,9 @@ class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
 
     failureOrGameSnapshot.fold(
       (failure) => emit(CreateOnlineGameState.failure(failure: failure)),
-      (gameSnapshot) => emit(const CreateOnlineGameState.success()),
+      (initialSnapshot) => emit(
+        CreateOnlineGameState.success(initialSnapshot: initialSnapshot),
+      ),
     );
   }
 

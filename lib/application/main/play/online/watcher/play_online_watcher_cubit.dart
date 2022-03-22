@@ -8,12 +8,30 @@ import 'package:injectable/injectable.dart';
 class PlayOnlineWatcherCubit extends WatcherCubit<OnlineGameSnapshot> {
   PlayOnlineWatcherCubit(
     IPlayOnlineService playOnlineService,
+    OnlineGameSnapshot initialState,
   ) : super(
-          OnlineGameSnapshot.dummy(),
-          //playOnlineService.getGame(), // TODO good practice ?? to pass here
+          initialState,
           playOnlineService.watchGame(),
         );
 
   /// Returns instance registered inside getIt.
-  factory PlayOnlineWatcherCubit.getIt() => getIt<PlayOnlineWatcherCubit>();
+  factory PlayOnlineWatcherCubit.getIt(
+    OnlineGameSnapshot initialState,
+  ) =>
+      getIt<PlayOnlineWatcherCubit>(param1: [initialState]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of `OnlineGameSnapshot`
+  @factoryMethod
+  factory PlayOnlineWatcherCubit.injectable(
+    IPlayOnlineService playOnlineService,
+    @factoryParam List<Object> otherDependencies,
+  ) =>
+      PlayOnlineWatcherCubit(
+        playOnlineService,
+        otherDependencies[0] as OnlineGameSnapshot,
+      );
 }
