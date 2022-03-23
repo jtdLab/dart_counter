@@ -4,6 +4,7 @@ part of 'create_online_game_bloc.dart';
 
 @freezed
 class CreateOnlineGameEvent with _$CreateOnlineGameEvent {
+  const factory CreateOnlineGameEvent.started() = _Started;
   const factory CreateOnlineGameEvent.gameCanceled() = _GameCanceled;
   const factory CreateOnlineGameEvent.playerReordered({
     required int oldIndex,

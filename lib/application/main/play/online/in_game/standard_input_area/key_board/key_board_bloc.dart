@@ -1,4 +1,4 @@
-import 'package:dart_counter/application/main/core/play/online/play_online_cubit.dart';
+import 'package:dart_counter/application/main/play/online/in_game/in_online_game_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/key_board/key_board_bloc.dart';
@@ -13,33 +13,33 @@ export 'package:dart_counter/application/main/play/shared/in_game/standard_input
 class KeyBoardBlocOnlineStandardInputArea extends KeyBoardBloc {
   KeyBoardBlocOnlineStandardInputArea(
     IDartUtils dartUtils,
-    PlayOnlineCubit playOnlineCubit,
     AdvancedSettingsBloc advancedSettingsBloc,
+    InOnlineGameBloc inOnlineGameBloc,
     InputRowBlocOnlineStandardInputArea inputRowBloc,
   ) : super(
           dartUtils,
-          playOnlineCubit,
           advancedSettingsBloc,
+          inOnlineGameBloc,
           inputRowBloc,
         );
 
   /// Returns instance registered inside getIt.
   factory KeyBoardBlocOnlineStandardInputArea.getIt(
-    PlayOnlineCubit playOnlineCubit,
     AdvancedSettingsBloc advancedSettingsBloc,
+    InOnlineGameBloc inOnlineGameBloc,
     InputRowBlocOnlineStandardInputArea inputRowBloc,
   ) =>
       getIt<KeyBoardBlocOnlineStandardInputArea>(
-        param1: [playOnlineCubit, advancedSettingsBloc, inputRowBloc],
+        param1: [advancedSettingsBloc, inOnlineGameBloc, inputRowBloc],
       );
 
   /// Constructor only for injectable.
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of `PlayOnlineCubit`
+  /// 1. Instance of `AdvancedSettingsBloc`
   ///
-  /// 2. Instance of `AdvancedSettingsBloc`
+  /// 2. Instance of `InOnlineGameBloc`
   ///
   /// 3. Instance of `InputRowBlocOnlineStandardInputArea`
   @factoryMethod
@@ -49,8 +49,8 @@ class KeyBoardBlocOnlineStandardInputArea extends KeyBoardBloc {
   ) =>
       KeyBoardBlocOnlineStandardInputArea(
         dartUtils,
-        otherDependencies[0] as PlayOnlineCubit,
-        otherDependencies[1] as AdvancedSettingsBloc,
+        otherDependencies[0] as AdvancedSettingsBloc,
+        otherDependencies[1] as InOnlineGameBloc,
         otherDependencies[2] as InputRowBlocOnlineStandardInputArea,
       );
 }

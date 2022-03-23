@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CreateOfflineGameEventTearOff {
   const _$CreateOfflineGameEventTearOff();
 
+  _Started started() {
+    return const _Started();
+  }
+
   _GameCanceled gameCanceled() {
     return const _GameCanceled();
   }
@@ -100,6 +104,7 @@ const $CreateOfflineGameEvent = _$CreateOfflineGameEventTearOff();
 mixin _$CreateOfflineGameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -117,6 +122,7 @@ mixin _$CreateOfflineGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -134,6 +140,7 @@ mixin _$CreateOfflineGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -152,6 +159,7 @@ mixin _$CreateOfflineGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -171,6 +179,7 @@ mixin _$CreateOfflineGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -189,6 +198,7 @@ mixin _$CreateOfflineGameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -223,6 +233,185 @@ class _$CreateOfflineGameEventCopyWithImpl<$Res>
   final CreateOfflineGameEvent _value;
   // ignore: unused_field
   final $Res Function(CreateOfflineGameEvent) _then;
+}
+
+/// @nodoc
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartedCopyWithImpl<$Res>
+    extends _$CreateOfflineGameEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
+
+  @override
+  _Started get _value => super._value as _Started;
+}
+
+/// @nodoc
+
+class _$_Started implements _Started {
+  const _$_Started();
+
+  @override
+  String toString() {
+    return 'CreateOfflineGameEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() gameCanceled,
+    required TResult Function(int oldIndex, int newIndex) playerReordered,
+    required TResult Function() playerAdded,
+    required TResult Function(int index) playerRemoved,
+    required TResult Function(int index, String newName) playerNameUpdated,
+    required TResult Function(int newStartingPoints) startingPointsUpdated,
+    required TResult Function(Mode newMode) modeUpdated,
+    required TResult Function(int newSize) sizeUpdated,
+    required TResult Function(Type newType) typeUpdated,
+    required TResult Function() gameStarted,
+    required TResult Function() dartBotAdded,
+    required TResult Function() dartBotRemoved,
+    required TResult Function(int newTargetAverage) dartBotTargetAverageUpdated,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? gameCanceled,
+    TResult Function(int oldIndex, int newIndex)? playerReordered,
+    TResult Function()? playerAdded,
+    TResult Function(int index)? playerRemoved,
+    TResult Function(int index, String newName)? playerNameUpdated,
+    TResult Function(int newStartingPoints)? startingPointsUpdated,
+    TResult Function(Mode newMode)? modeUpdated,
+    TResult Function(int newSize)? sizeUpdated,
+    TResult Function(Type newType)? typeUpdated,
+    TResult Function()? gameStarted,
+    TResult Function()? dartBotAdded,
+    TResult Function()? dartBotRemoved,
+    TResult Function(int newTargetAverage)? dartBotTargetAverageUpdated,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GameCanceled value) gameCanceled,
+    required TResult Function(_PlayerReordered value) playerReordered,
+    required TResult Function(_PlayerAdded value) playerAdded,
+    required TResult Function(_PlayerRemoved value) playerRemoved,
+    required TResult Function(_PlayerNameUpdated value) playerNameUpdated,
+    required TResult Function(_StartingPointsUpdated value)
+        startingPointsUpdated,
+    required TResult Function(_ModeUpdated value) modeUpdated,
+    required TResult Function(_SizeUpdated value) sizeUpdated,
+    required TResult Function(_TypeUpdated value) typeUpdated,
+    required TResult Function(_GameStarted value) gameStarted,
+    required TResult Function(_DartBotAdded value) dartBotAdded,
+    required TResult Function(_DartBotRemoved value) dartBotRemoved,
+    required TResult Function(_DartBotTargetAverageUpdated value)
+        dartBotTargetAverageUpdated,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GameCanceled value)? gameCanceled,
+    TResult Function(_PlayerReordered value)? playerReordered,
+    TResult Function(_PlayerAdded value)? playerAdded,
+    TResult Function(_PlayerRemoved value)? playerRemoved,
+    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(_StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(_ModeUpdated value)? modeUpdated,
+    TResult Function(_SizeUpdated value)? sizeUpdated,
+    TResult Function(_TypeUpdated value)? typeUpdated,
+    TResult Function(_GameStarted value)? gameStarted,
+    TResult Function(_DartBotAdded value)? dartBotAdded,
+    TResult Function(_DartBotRemoved value)? dartBotRemoved,
+    TResult Function(_DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GameCanceled value)? gameCanceled,
+    TResult Function(_PlayerReordered value)? playerReordered,
+    TResult Function(_PlayerAdded value)? playerAdded,
+    TResult Function(_PlayerRemoved value)? playerRemoved,
+    TResult Function(_PlayerNameUpdated value)? playerNameUpdated,
+    TResult Function(_StartingPointsUpdated value)? startingPointsUpdated,
+    TResult Function(_ModeUpdated value)? modeUpdated,
+    TResult Function(_SizeUpdated value)? sizeUpdated,
+    TResult Function(_TypeUpdated value)? typeUpdated,
+    TResult Function(_GameStarted value)? gameStarted,
+    TResult Function(_DartBotAdded value)? dartBotAdded,
+    TResult Function(_DartBotRemoved value)? dartBotRemoved,
+    TResult Function(_DartBotTargetAverageUpdated value)?
+        dartBotTargetAverageUpdated,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Started implements CreateOfflineGameEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
@@ -266,6 +455,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -286,6 +476,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -306,6 +497,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -330,6 +522,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -352,6 +545,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -373,6 +567,7 @@ class _$_GameCanceled implements _GameCanceled {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -475,6 +670,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -495,6 +691,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -515,6 +712,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -539,6 +737,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -561,6 +760,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -582,6 +782,7 @@ class _$_PlayerReordered implements _PlayerReordered {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -657,6 +858,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -677,6 +879,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -697,6 +900,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -721,6 +925,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -743,6 +948,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -764,6 +970,7 @@ class _$_PlayerAdded implements _PlayerAdded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -856,6 +1063,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -876,6 +1084,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -896,6 +1105,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -920,6 +1130,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -942,6 +1153,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -963,6 +1175,7 @@ class _$_PlayerRemoved implements _PlayerRemoved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1070,6 +1283,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1090,6 +1304,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1110,6 +1325,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1134,6 +1350,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -1156,6 +1373,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1177,6 +1395,7 @@ class _$_PlayerNameUpdated implements _PlayerNameUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1278,6 +1497,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1298,6 +1518,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1318,6 +1539,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1342,6 +1564,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -1364,6 +1587,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1385,6 +1609,7 @@ class _$_StartingPointsUpdated implements _StartingPointsUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1483,6 +1708,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1503,6 +1729,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1523,6 +1750,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1547,6 +1775,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -1569,6 +1798,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1590,6 +1820,7 @@ class _$_ModeUpdated implements _ModeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1687,6 +1918,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1707,6 +1939,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1727,6 +1960,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1751,6 +1985,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -1773,6 +2008,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1794,6 +2030,7 @@ class _$_SizeUpdated implements _SizeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1891,6 +2128,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -1911,6 +2149,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1931,6 +2170,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -1955,6 +2195,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -1977,6 +2218,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -1998,6 +2240,7 @@ class _$_TypeUpdated implements _TypeUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2071,6 +2314,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2091,6 +2335,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2111,6 +2356,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2135,6 +2381,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -2157,6 +2404,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2178,6 +2426,7 @@ class _$_GameStarted implements _GameStarted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2246,6 +2495,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2266,6 +2516,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2286,6 +2537,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2310,6 +2562,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -2332,6 +2585,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2353,6 +2607,7 @@ class _$_DartBotAdded implements _DartBotAdded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2421,6 +2676,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2441,6 +2697,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2461,6 +2718,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2485,6 +2743,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -2507,6 +2766,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2528,6 +2788,7 @@ class _$_DartBotRemoved implements _DartBotRemoved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2625,6 +2886,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() gameCanceled,
     required TResult Function(int oldIndex, int newIndex) playerReordered,
     required TResult Function() playerAdded,
@@ -2645,6 +2907,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2665,6 +2928,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? gameCanceled,
     TResult Function(int oldIndex, int newIndex)? playerReordered,
     TResult Function()? playerAdded,
@@ -2689,6 +2953,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_GameCanceled value) gameCanceled,
     required TResult Function(_PlayerReordered value) playerReordered,
     required TResult Function(_PlayerAdded value) playerAdded,
@@ -2711,6 +2976,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,
@@ -2732,6 +2998,7 @@ class _$_DartBotTargetAverageUpdated implements _DartBotTargetAverageUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_GameCanceled value)? gameCanceled,
     TResult Function(_PlayerReordered value)? playerReordered,
     TResult Function(_PlayerAdded value)? playerAdded,

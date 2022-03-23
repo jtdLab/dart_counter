@@ -23,9 +23,11 @@ class _$CreateOfflineGameStateTearOff {
   }
 
   CreateOfflineGameSuccess success(
-      {required OfflineGameSnapshot initialSnapshot}) {
+      {required OfflineGameSnapshot initialSnapshot,
+      required KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings}) {
     return CreateOfflineGameSuccess(
       initialSnapshot: initialSnapshot,
+      initialAdvancedSettings: initialAdvancedSettings,
     );
   }
 }
@@ -38,19 +40,25 @@ mixin _$CreateOfflineGameState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(OfflineGameSnapshot initialSnapshot) success,
+    required TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,7 +143,9 @@ class _$CreateOfflineGameInitial implements CreateOfflineGameInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(OfflineGameSnapshot initialSnapshot) success,
+    required TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)
+        success,
   }) {
     return initial();
   }
@@ -144,7 +154,9 @@ class _$CreateOfflineGameInitial implements CreateOfflineGameInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
   }) {
     return initial?.call();
   }
@@ -153,7 +165,9 @@ class _$CreateOfflineGameInitial implements CreateOfflineGameInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -203,7 +217,9 @@ abstract class $CreateOfflineGameSuccessCopyWith<$Res> {
   factory $CreateOfflineGameSuccessCopyWith(CreateOfflineGameSuccess value,
           $Res Function(CreateOfflineGameSuccess) then) =
       _$CreateOfflineGameSuccessCopyWithImpl<$Res>;
-  $Res call({OfflineGameSnapshot initialSnapshot});
+  $Res call(
+      {OfflineGameSnapshot initialSnapshot,
+      KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings});
 
   $OfflineGameSnapshotCopyWith<$Res> get initialSnapshot;
 }
@@ -223,12 +239,17 @@ class _$CreateOfflineGameSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? initialSnapshot = freezed,
+    Object? initialAdvancedSettings = freezed,
   }) {
     return _then(CreateOfflineGameSuccess(
       initialSnapshot: initialSnapshot == freezed
           ? _value.initialSnapshot
           : initialSnapshot // ignore: cast_nullable_to_non_nullable
               as OfflineGameSnapshot,
+      initialAdvancedSettings: initialAdvancedSettings == freezed
+          ? _value.initialAdvancedSettings
+          : initialAdvancedSettings // ignore: cast_nullable_to_non_nullable
+              as KtMap<UniqueId, AdvancedSettings>,
     ));
   }
 
@@ -243,14 +264,17 @@ class _$CreateOfflineGameSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateOfflineGameSuccess implements CreateOfflineGameSuccess {
-  const _$CreateOfflineGameSuccess({required this.initialSnapshot});
+  const _$CreateOfflineGameSuccess(
+      {required this.initialSnapshot, required this.initialAdvancedSettings});
 
   @override
   final OfflineGameSnapshot initialSnapshot;
+  @override
+  final KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings;
 
   @override
   String toString() {
-    return 'CreateOfflineGameState.success(initialSnapshot: $initialSnapshot)';
+    return 'CreateOfflineGameState.success(initialSnapshot: $initialSnapshot, initialAdvancedSettings: $initialAdvancedSettings)';
   }
 
   @override
@@ -259,12 +283,16 @@ class _$CreateOfflineGameSuccess implements CreateOfflineGameSuccess {
         (other.runtimeType == runtimeType &&
             other is CreateOfflineGameSuccess &&
             const DeepCollectionEquality()
-                .equals(other.initialSnapshot, initialSnapshot));
+                .equals(other.initialSnapshot, initialSnapshot) &&
+            const DeepCollectionEquality().equals(
+                other.initialAdvancedSettings, initialAdvancedSettings));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(initialSnapshot));
+      runtimeType,
+      const DeepCollectionEquality().hash(initialSnapshot),
+      const DeepCollectionEquality().hash(initialAdvancedSettings));
 
   @JsonKey(ignore: true)
   @override
@@ -276,29 +304,35 @@ class _$CreateOfflineGameSuccess implements CreateOfflineGameSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(OfflineGameSnapshot initialSnapshot) success,
+    required TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)
+        success,
   }) {
-    return success(initialSnapshot);
+    return success(initialSnapshot, initialAdvancedSettings);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
   }) {
-    return success?.call(initialSnapshot);
+    return success?.call(initialSnapshot, initialAdvancedSettings);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OfflineGameSnapshot initialSnapshot)? success,
+    TResult Function(OfflineGameSnapshot initialSnapshot,
+            KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(initialSnapshot);
+      return success(initialSnapshot, initialAdvancedSettings);
     }
     return orElse();
   }
@@ -337,10 +371,12 @@ class _$CreateOfflineGameSuccess implements CreateOfflineGameSuccess {
 
 abstract class CreateOfflineGameSuccess implements CreateOfflineGameState {
   const factory CreateOfflineGameSuccess(
-          {required OfflineGameSnapshot initialSnapshot}) =
+          {required OfflineGameSnapshot initialSnapshot,
+          required KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings}) =
       _$CreateOfflineGameSuccess;
 
   OfflineGameSnapshot get initialSnapshot;
+  KtMap<UniqueId, AdvancedSettings> get initialAdvancedSettings;
   @JsonKey(ignore: true)
   $CreateOfflineGameSuccessCopyWith<CreateOfflineGameSuccess> get copyWith =>
       throw _privateConstructorUsedError;

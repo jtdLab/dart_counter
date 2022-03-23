@@ -1,7 +1,6 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/presentation/ios/main/play/shared/widgets.dart';
 
@@ -9,8 +8,11 @@ import 'package:dart_counter/presentation/ios/main/play/shared/widgets.dart';
 part 'widgets.dart';
 
 class OnlineStatsModal extends StatelessWidget {
+  final OnlineGameSnapshot snapshot;
+
   const OnlineStatsModal({
     Key? key,
+    required this.snapshot,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class OnlineStatsModal extends StatelessWidget {
     return AppPage(
       padding: modalPagePadding(context),
       //child: const SingleChildScrollView(
-      child: const _StatsWidget(),
+      child: StatsWidget(players: snapshot.players),
       //),
     );
   }

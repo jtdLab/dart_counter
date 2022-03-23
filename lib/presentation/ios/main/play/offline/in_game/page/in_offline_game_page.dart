@@ -1,11 +1,9 @@
 // CORE
-import 'package:dart_counter/application/main/core/play/offline/play_offline_cubit.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/offline/in_game/standard_input_area/key_board/key_board_bloc.dart';
-import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/blocs.dart'
@@ -27,8 +25,11 @@ part 'widgets.dart';
 
 // TODO responsivness
 class InOfflineGamePage extends StatelessWidget {
+  final OfflineGameSnapshot initialSnapshot;
+
   const InOfflineGamePage({
     Key? key,
+    required this.initialSnapshot,
   }) : super(key: key);
 
   @override
@@ -36,24 +37,23 @@ class InOfflineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => InOfflineGameBloc.getIt(),
+          create: (context) => InOfflineGameBloc.getIt(initialSnapshot),
         ),
       ],
-      child: BlocConsumer<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
-        listener: (context, gameSnapshot) {
+      child: BlocConsumer<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
+        listener: (context, state) {
+          final gameSnapshot = state.gameSnapshot;
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (gameSnapshot.status == Status.finished) {
-            context.router.replace(const PostOfflineGamePageRoute());
+            context.router
+                .replace(PostOfflineGamePageRoute(snapshot: gameSnapshot));
           }
-        },
-        builder: (context, gameSnapshot) {
-          return BlocListener<InOfflineGameBloc, InGameState>(
-            listener: (context, state) {
-              final showCheckoutDetails = state.showCheckoutDetails;
 
-              // TODO
-              /**
+          final showCheckoutDetails = state.showCheckoutDetails;
+
+          // TODO
+          /**
               *  final keyBoardType =
                   context.read<InOfflineGameBloc>().state.keyBoardType;
               final Bloc<CheckoutDetailsEvent, CheckoutDetailsState> bloc;
@@ -79,53 +79,53 @@ class InOfflineGamePage extends StatelessWidget {
                 context.router.push(CheckoutDetailsModalRoute(bloc: bloc));
               }
               */
-            },
-            child: AppPage(
-              navigationBar: AppNavigationBar(
-                leading: Builder(
-                  builder: (context) => CancelButton(
-                    onPressed: () {
-                      context.router.push(
-                        YouReallyWantToCancelGameDialogRoute(
-                          onYesPressed: () =>
-                              context.read<InOfflineGameBloc>().add(
-                                    const InGameEvent.canceled(),
-                                  ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                middle: Text(gameSnapshot.description()),
-                trailing: Row(
-                  children: [
-                    StatsButton(
-                      // TODO rework
-                      onPressed: () {
-                        context.router.push(const OfflineStatsModalRoute());
-                      },
-                    ),
-                    AppNavigationBarButton(
-                      onPressed: () {
-                        // TODO player rly passed
-                        context.router.push(
-                          AdvancedSettingsModalRoute(
-                            players: context
-                                .read<PlayOfflineWatcherCubit>()
-                                .state
-                                .players,
-                          ),
-                        );
-                        // TODO show ingame settings modal
-                        //context.router.push(const InGameSettingsModalRoute());
-                      },
-                      child: Image.asset(AppImages.settingsNew),
-                    ),
-                  ],
+        },
+        builder: (context, state) {
+          final gameSnapshot = state.gameSnapshot;
+
+          return AppPage(
+            navigationBar: AppNavigationBar(
+              leading: Builder(
+                builder: (context) => CancelButton(
+                  onPressed: () {
+                    context.router.push(
+                      YouReallyWantToCancelGameDialogRoute(
+                        onYesPressed: () =>
+                            context.read<InOfflineGameBloc>().add(
+                                  const InGameEvent.canceled(),
+                                ),
+                      ),
+                    );
+                  },
                 ),
               ),
-              child: const _InOfflineGameWidget(),
+              middle: Text(gameSnapshot.description()),
+              trailing: Row(
+                children: [
+                  StatsButton(
+                    // TODO rework
+                    onPressed: () {
+                      context.router
+                          .push(OfflineStatsModalRoute(snapshot: gameSnapshot));
+                    },
+                  ),
+                  AppNavigationBarButton(
+                    onPressed: () {
+                      // TODO player rly need be passed here
+                      context.router.push(
+                        AdvancedSettingsModalRoute(
+                          players: gameSnapshot.players,
+                        ),
+                      );
+                      // TODO show ingame settings modal
+                      //context.router.push(const InGameSettingsModalRoute());
+                    },
+                    child: Image.asset(AppImages.settingsNew),
+                  ),
+                ],
+              ),
             ),
+            child: const _InOfflineGameWidget(),
           );
         },
       ),

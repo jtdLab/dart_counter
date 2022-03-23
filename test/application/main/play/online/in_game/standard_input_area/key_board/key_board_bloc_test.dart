@@ -57,8 +57,8 @@ void main() {
     playOnlineCubit = MockPlayOnlineCubit();
     whenListen(
       playOnlineCubit,
-      Stream.value(PlayState.active(gameSnapshot: onlineGameSnapshot)),
-      initialState: PlayState.active(gameSnapshot: onlineGameSnapshot),
+      Stream.value(PlayState.active(snapshot: onlineGameSnapshot)),
+      initialState: PlayState.active(snapshot: onlineGameSnapshot),
     );
     advancedSettingsBloc = MockAdvancedSettingsBloc();
     final advancedSettings = AdvancedSettings.dummy();

@@ -2,7 +2,6 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/online/create_game/create_online_game_bloc.dart';
 
 // DOMAIN
@@ -22,8 +21,11 @@ import '../../../shared/create_game/widgets.dart';
 part 'widgets.dart';
 
 class CreateOnlineGamePage extends StatelessWidget {
+  final OnlineGameSnapshot initialSnapshot;
+
   const CreateOnlineGamePage({
     Key? key,
+    required this.initialSnapshot,
   }) : super(key: key);
 
   @override
@@ -31,10 +33,11 @@ class CreateOnlineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CreateOnlineGameBloc.getIt(),
+          create: (context) => CreateOnlineGameBloc.getIt(initialSnapshot)
+            ..add(const CreateOnlineGameEvent.started()),
         ),
       ],
-      child: BlocListener<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
+      child: BlocListener<CreateOnlineGameBloc, OnlineGameSnapshot>(
         listener: (context, gameSnapshot) {
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());

@@ -18,7 +18,7 @@ class _CreateOnlineGameWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: spacerLarge(context)),
-        BlocBuilder<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
+        BlocBuilder<CreateOnlineGameBloc, OnlineGameSnapshot>(
           builder: (context, state) {
             final startingPoints = state.startingPoints;
             final mode = state.mode;
@@ -73,7 +73,7 @@ class _PlayerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
+    return BlocBuilder<CreateOnlineGameBloc, OnlineGameSnapshot>(
       buildWhen: (oldState, newState) {
         final oldIds = oldState.players.map((p) => p.id);
         final newIds = newState.players.map((p) => p.id);

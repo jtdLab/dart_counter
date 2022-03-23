@@ -18,7 +18,7 @@ class _CreateOfflineGameWidget extends StatelessWidget {
               .add(const CreateOfflineGameEvent.playerAdded()),
         ),
         SizedBox(height: spacerLarge(context)),
-        BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+        BlocBuilder<CreateOfflineGameBloc, OfflineGameSnapshot>(
           builder: (context, state) {
             final startingPoints = state.startingPoints;
             final mode = state.mode;
@@ -73,7 +73,7 @@ class _DartBotCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<CreateOfflineGameBloc, OfflineGameSnapshot>(
       builder: (context, state) {
         final hasDartBot = state.hasDartBot();
 
@@ -154,7 +154,7 @@ class _PlayerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<CreateOfflineGameBloc, OfflineGameSnapshot>(
       buildWhen: (oldState, newState) {
         final oldIds = oldState.players.map((p) => p.id);
         final newIds = newState.players.map((p) => p.id);

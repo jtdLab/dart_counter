@@ -7,5 +7,6 @@ class CreateOfflineGameState with _$CreateOfflineGameState {
   const factory CreateOfflineGameState.initial() = CreateOfflineGameInitial;
   const factory CreateOfflineGameState.success({
     required OfflineGameSnapshot initialSnapshot,
+    required KtMap<UniqueId, AdvancedSettings> initialAdvancedSettings,
   }) = CreateOfflineGameSuccess;
 }

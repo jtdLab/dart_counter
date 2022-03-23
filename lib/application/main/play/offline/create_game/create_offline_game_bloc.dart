@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,16 +16,22 @@ part 'create_offline_game_event.dart';
 // TODO doc
 
 @injectable
-class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
+class CreateOfflineGameBloc
+    extends Bloc<CreateOfflineGameEvent, OfflineGameSnapshot> {
   final IPlayOfflineService _playOfflineService;
 
   CreateOfflineGameBloc(
     this._playOfflineService,
+    OfflineGameSnapshot initialSnapshot,
   ) : super(
           // Set initial state
-          null,
+          initialSnapshot,
         ) {
     // Register event handlers
+    on<_Started>(
+      (_, emit) async => _handleStarted(emit),
+      transformer: restartable(),
+    );
     on<_GameCanceled>((_, __) => _handleGameCanceled());
     on<_PlayerReordered>((event, _) => _handlePlayerReordered(event));
     on<_PlayerAdded>((_, __) => _handlePlayerAdded());
@@ -42,7 +52,35 @@ class CreateOfflineGameBloc extends Bloc<CreateOfflineGameEvent, void> {
   }
 
   /// Returns instance registered inside getIt.
-  factory CreateOfflineGameBloc.getIt() => getIt<CreateOfflineGameBloc>();
+  factory CreateOfflineGameBloc.getIt(
+    OfflineGameSnapshot initialSnapshot,
+  ) =>
+      getIt<CreateOfflineGameBloc>(param1: [initialSnapshot]);
+
+  /// Constructor only for injectable.
+  ///
+  /// [otherDependencies] must containg in following order:
+  ///
+  /// 1. Instance of `OfflineGameSnapshot`
+  @factoryMethod
+  factory CreateOfflineGameBloc.injectable(
+    IPlayOfflineService playOfflineService,
+    @factoryParam List<Object> otherDependencies,
+  ) =>
+      CreateOfflineGameBloc(
+        playOfflineService,
+        otherDependencies[0] as OfflineGameSnapshot,
+      );
+
+  /// Handle incoming [_Started] event.
+  Future<void> _handleStarted(
+    Emitter<OfflineGameSnapshot> emit,
+  ) async {
+    await emit.forEach<OfflineGameSnapshot>(
+      _playOfflineService.watchGame(),
+      onData: (snapshot) => snapshot,
+    );
+  }
 
   /// Handle incoming [_GameCanceled] event.
   void _handleGameCanceled() {

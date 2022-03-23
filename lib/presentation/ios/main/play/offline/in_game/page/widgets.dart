@@ -13,9 +13,10 @@ class _InOfflineGameWidget extends StatelessWidget {
       children: [
         Expanded(
           flex: 45,
-          child: BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+          child:
+              BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
             builder: (context, state) {
-              final amountOfPlayers = state.players.size;
+              final amountOfPlayers = state.gameSnapshot.players.size;
 
               if (amountOfPlayers == 1) {
                 return const _OnePlayerDisplayer();
@@ -38,7 +39,6 @@ class _InOfflineGameWidget extends StatelessWidget {
                   BlocProvider<Bloc<InputRowEvent, int>>(
                     create: (context) =>
                         InputRowBlocOfflineStandardInputArea.getIt(
-                      context.read<PlayOfflineCubit>(),
                       context.read<InOfflineGameBloc>(),
                     ),
                   ),
@@ -46,8 +46,8 @@ class _InOfflineGameWidget extends StatelessWidget {
                       Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>(
                     create: (context) =>
                         KeyBoardBlocOfflineStandardInputArea.getIt(
-                      context.read<PlayOfflineCubit>(),
                       context.read<AdvancedSettingsBloc>(),
+                      context.read<InOfflineGameBloc>(),
                       context.read<Bloc<InputRowEvent, int>>()
                           as InputRowBlocOfflineStandardInputArea,
                     )..add(const standard.KeyBoardEvent.started()),
@@ -59,7 +59,7 @@ class _InOfflineGameWidget extends StatelessWidget {
                 providers: [
                   BlocProvider<Bloc<DartsDisplayerEvent, DartsDisplayerState>>(
                     create: (context) => DartsDisplayerBloc.getIt(
-                      context.read<PlayOfflineCubit>(), // TODO
+                      context.read<InOfflineGameBloc>(),
                     ),
                   ),
                   BlocProvider<Bloc<InputRowEvent, int>>(
@@ -74,8 +74,8 @@ class _InOfflineGameWidget extends StatelessWidget {
                       Bloc<detailed.KeyBoardEvent, detailed.KeyBoardState>>(
                     create: (context) =>
                         KeyBoardBlocOfflineDetailedInputArea.getIt(
-                      context.read<PlayOfflineCubit>(),
                       context.read<AdvancedSettingsBloc>(),
+                      context.read<InOfflineGameBloc>(),
                       context.read<
                               Bloc<DartsDisplayerEvent, DartsDisplayerState>>()
                           as DartsDisplayerBloc,
@@ -129,10 +129,10 @@ class _OnePlayerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       // TODO is this builder most inner positioned
       builder: (context, state) {
-        final player = state.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Stack(
           children: [
@@ -219,10 +219,10 @@ class _OnePlayerLegsSetsDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       // TODO is this builder most inner positioned
       builder: (context, state) {
-        final player = state.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Container(
           color: AppColors.black,
@@ -263,10 +263,10 @@ class _OnePlayerPointsLeftLastThrowDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       // TODO is this builder most inner positioned
       builder: (context, state) {
-        final player = state.players[0];
+        final player = state.gameSnapshot.players[0];
 
         return Container(
           decoration: BoxDecoration(
@@ -316,10 +316,11 @@ class _OnePlayerFinishRecommendationDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       // TODO is this builder most inner positioned
       builder: (context, state) {
-        final finishRecommendation = state.players[0].finishRecommendation;
+        final finishRecommendation =
+            state.gameSnapshot.players[0].finishRecommendation;
 
         return Container(
           color: AppColors.orangeNew,
@@ -356,10 +357,10 @@ class _OnePlayerFooter extends StatelessWidget {
       color: AppColors.black,
       child: Padding(
         padding: EdgeInsets.all(size6(context)),
-        child: BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+        child: BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
           // TODO is this builder most inner positioned
           builder: (context, state) {
-            final player = state.players[0];
+            final player = state.gameSnapshot.players[0];
 
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -432,9 +433,9 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       builder: (context, state) {
-        final players = state.players;
+        final players = state.gameSnapshot.players;
 
         return AppRow(
           spacing: size6(context),
@@ -471,7 +472,8 @@ class _ThreePlayerDisplayer extends HookWidget {
         final itemExtent = constraints.maxHeight *
             responsiveValue(context, defaultValue: 0.5, mobileNormal: 0.45);
 
-        return BlocConsumer<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+        return BlocConsumer<InOfflineGameBloc,
+            InGameState<OfflineGameSnapshot>>(
           // TODO listener doesnt work as intended
           listener: (context, state) {
             /**
@@ -535,7 +537,7 @@ class _ThreePlayerDisplayer extends HookWidget {
              */
           },
           builder: (context, state) {
-            final players = state.players;
+            final players = state.gameSnapshot.players;
 
             return RotatedBox(
               quarterTurns: -1,
@@ -598,10 +600,10 @@ class _FourPlayerDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+    return BlocBuilder<InOfflineGameBloc, InGameState<OfflineGameSnapshot>>(
       builder: (context, state) {
-        final currentTurn = state.currentTurn();
-        final players = state.players;
+        final currentTurn = state.gameSnapshot.currentTurn();
+        final players = state.gameSnapshot.players;
 
         return AppColumn(
           spacing: size6(context),

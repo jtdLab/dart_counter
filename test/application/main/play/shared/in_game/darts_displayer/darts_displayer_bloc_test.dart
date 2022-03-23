@@ -39,8 +39,8 @@ void main() {
     playCubit = MockPlayCubit();
     whenListen(
       playCubit,
-      Stream.value(PlayState.active(gameSnapshot: gameSnapshot)),
-      initialState: PlayState.active(gameSnapshot: gameSnapshot),
+      Stream.value(PlayState.active(snapshot: gameSnapshot)),
+      initialState: PlayState.active(snapshot: gameSnapshot),
     );
   });
 

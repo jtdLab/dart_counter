@@ -19,12 +19,10 @@ class _$AdvancedSettingsTearOff {
   const _$AdvancedSettingsTearOff();
 
   _AdvancedSettings call(
-      {required UniqueId playerId,
-      required bool showAverage,
+      {required bool showAverage,
       required bool showCheckoutPercentage,
       required bool smartKeyBoardActivated}) {
     return _AdvancedSettings(
-      playerId: playerId,
       showAverage: showAverage,
       showCheckoutPercentage: showCheckoutPercentage,
       smartKeyBoardActivated: smartKeyBoardActivated,
@@ -37,7 +35,6 @@ const $AdvancedSettings = _$AdvancedSettingsTearOff();
 
 /// @nodoc
 mixin _$AdvancedSettings {
-  UniqueId get playerId => throw _privateConstructorUsedError;
   bool get showAverage => throw _privateConstructorUsedError;
   bool get showCheckoutPercentage => throw _privateConstructorUsedError;
   bool get smartKeyBoardActivated => throw _privateConstructorUsedError;
@@ -53,8 +50,7 @@ abstract class $AdvancedSettingsCopyWith<$Res> {
           AdvancedSettings value, $Res Function(AdvancedSettings) then) =
       _$AdvancedSettingsCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId playerId,
-      bool showAverage,
+      {bool showAverage,
       bool showCheckoutPercentage,
       bool smartKeyBoardActivated});
 }
@@ -70,16 +66,11 @@ class _$AdvancedSettingsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? playerId = freezed,
     Object? showAverage = freezed,
     Object? showCheckoutPercentage = freezed,
     Object? smartKeyBoardActivated = freezed,
   }) {
     return _then(_value.copyWith(
-      playerId: playerId == freezed
-          ? _value.playerId
-          : playerId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       showAverage: showAverage == freezed
           ? _value.showAverage
           : showAverage // ignore: cast_nullable_to_non_nullable
@@ -104,8 +95,7 @@ abstract class _$AdvancedSettingsCopyWith<$Res>
       __$AdvancedSettingsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId playerId,
-      bool showAverage,
+      {bool showAverage,
       bool showCheckoutPercentage,
       bool smartKeyBoardActivated});
 }
@@ -123,16 +113,11 @@ class __$AdvancedSettingsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? playerId = freezed,
     Object? showAverage = freezed,
     Object? showCheckoutPercentage = freezed,
     Object? smartKeyBoardActivated = freezed,
   }) {
     return _then(_AdvancedSettings(
-      playerId: playerId == freezed
-          ? _value.playerId
-          : playerId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       showAverage: showAverage == freezed
           ? _value.showAverage
           : showAverage // ignore: cast_nullable_to_non_nullable
@@ -153,13 +138,10 @@ class __$AdvancedSettingsCopyWithImpl<$Res>
 
 class _$_AdvancedSettings implements _AdvancedSettings {
   const _$_AdvancedSettings(
-      {required this.playerId,
-      required this.showAverage,
+      {required this.showAverage,
       required this.showCheckoutPercentage,
       required this.smartKeyBoardActivated});
 
-  @override
-  final UniqueId playerId;
   @override
   final bool showAverage;
   @override
@@ -169,7 +151,7 @@ class _$_AdvancedSettings implements _AdvancedSettings {
 
   @override
   String toString() {
-    return 'AdvancedSettings(playerId: $playerId, showAverage: $showAverage, showCheckoutPercentage: $showCheckoutPercentage, smartKeyBoardActivated: $smartKeyBoardActivated)';
+    return 'AdvancedSettings(showAverage: $showAverage, showCheckoutPercentage: $showCheckoutPercentage, smartKeyBoardActivated: $smartKeyBoardActivated)';
   }
 
   @override
@@ -177,7 +159,6 @@ class _$_AdvancedSettings implements _AdvancedSettings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AdvancedSettings &&
-            const DeepCollectionEquality().equals(other.playerId, playerId) &&
             const DeepCollectionEquality()
                 .equals(other.showAverage, showAverage) &&
             const DeepCollectionEquality()
@@ -189,7 +170,6 @@ class _$_AdvancedSettings implements _AdvancedSettings {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(playerId),
       const DeepCollectionEquality().hash(showAverage),
       const DeepCollectionEquality().hash(showCheckoutPercentage),
       const DeepCollectionEquality().hash(smartKeyBoardActivated));
@@ -202,13 +182,10 @@ class _$_AdvancedSettings implements _AdvancedSettings {
 
 abstract class _AdvancedSettings implements AdvancedSettings {
   const factory _AdvancedSettings(
-      {required UniqueId playerId,
-      required bool showAverage,
+      {required bool showAverage,
       required bool showCheckoutPercentage,
       required bool smartKeyBoardActivated}) = _$_AdvancedSettings;
 
-  @override
-  UniqueId get playerId;
   @override
   bool get showAverage;
   @override

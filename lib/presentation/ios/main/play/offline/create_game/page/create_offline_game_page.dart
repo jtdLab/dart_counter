@@ -3,7 +3,6 @@ import 'package:dart_counter/application/main/play/shared/advanced_settings/adva
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/offline/create_game/create_offline_game_bloc.dart';
 
 // DOMAIN
@@ -22,8 +21,11 @@ import '../../../shared/create_game/widgets.dart';
 part 'widgets.dart';
 
 class CreateOfflineGamePage extends StatelessWidget {
+  final OfflineGameSnapshot initialSnapshot;
+
   const CreateOfflineGamePage({
     Key? key,
+    required this.initialSnapshot,
   }) : super(key: key);
 
   @override
@@ -31,10 +33,11 @@ class CreateOfflineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CreateOfflineGameBloc.getIt(),
+          create: (context) => CreateOfflineGameBloc.getIt(initialSnapshot)
+            ..add(const CreateOfflineGameEvent.started()),
         ),
       ],
-      child: BlocListener<PlayOfflineWatcherCubit, OfflineGameSnapshot>(
+      child: BlocListener<CreateOfflineGameBloc, OfflineGameSnapshot>(
         listener: (context, gameSnapshot) {
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
@@ -56,7 +59,13 @@ class CreateOfflineGamePage extends StatelessWidget {
               }
             }
 
-            context.router.replace(const InOfflineGameFlowRoute());
+            context.router.replace(
+              InOfflineGameFlowRoute(
+                children: [
+                  InOfflineGamePageRoute(initialSnapshot: initialSnapshot),
+                ],
+              ),
+            );
           }
         },
         child: AppPage(

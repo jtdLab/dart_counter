@@ -15,12 +15,12 @@ import 'package:flutter/material.dart' as _i64;
 
 import '../../application/main/game_history/game_history_bloc.dart' as _i67;
 import '../../application/main/play/shared/in_game/checkout_details/checkout_details_event.dart'
-    as _i70;
+    as _i69;
 import '../../application/main/play/shared/in_game/checkout_details/checkout_details_state.dart'
-    as _i71;
-import '../../domain/play/abstract_player_snapshot.dart' as _i72;
+    as _i70;
+import '../../domain/play/abstract_game_snapshot.dart' as _i72;
+import '../../domain/play/abstract_player_snapshot.dart' as _i71;
 import '../../domain/play/offline/offline_game_snapshot.dart' as _i68;
-import '../../domain/play/online/online_game_snapshot.dart' as _i69;
 import 'auth/auth_flow.dart' as _i1;
 import 'auth/modals/forgot_password/forgot_password_modal.dart' as _i4;
 import 'auth/modals/forgot_password/initial/initial_page.dart' as _i5;
@@ -189,18 +189,12 @@ class Router extends _i63.RootStackRouter {
               key: args.key, gameHistoryBloc: args.gameHistoryBloc));
     },
     PlayOfflineFlowRoute.name: (routeData) {
-      final args = routeData.argsAs<PlayOfflineFlowRouteArgs>();
       return _i63.CupertinoPageX<dynamic>(
-          routeData: routeData,
-          child: _i15.PlayOfflineFlow(
-              key: args.key, initialSnapshot: args.initialSnapshot));
+          routeData: routeData, child: const _i15.PlayOfflineFlow());
     },
     PlayOnlineFlowRoute.name: (routeData) {
-      final args = routeData.argsAs<PlayOnlineFlowRouteArgs>();
       return _i63.CupertinoPageX<dynamic>(
-          routeData: routeData,
-          child: _i16.PlayOnlineFlow(
-              key: args.key, initialSnapshot: args.initialSnapshot));
+          routeData: routeData, child: const _i16.PlayOnlineFlow());
     },
     TrainingFlowRoute.name: (routeData) {
       return _i63.CupertinoPageX<dynamic>(
@@ -340,13 +334,18 @@ class Router extends _i63.RootStackRouter {
           routeData: routeData, child: const _i37.InOfflineGameFlow());
     },
     PostOfflineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<PostOfflineGamePageRouteArgs>();
       return _i63.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i38.PostOfflineGamePage());
+          routeData: routeData,
+          child:
+              _i38.PostOfflineGamePage(key: args.key, snapshot: args.snapshot));
     },
     CreateOfflineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateOfflineGamePageRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i39.CreateOfflineGamePage(),
+          child: _i39.CreateOfflineGamePage(
+              key: args.key, initialSnapshot: args.initialSnapshot),
           customRouteBuilder: _i65.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -372,9 +371,11 @@ class Router extends _i63.RootStackRouter {
           barrierDismissible: false);
     },
     InOfflineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<InOfflineGamePageRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i42.InOfflineGamePage(),
+          child: _i42.InOfflineGamePage(
+              key: args.key, initialSnapshot: args.initialSnapshot),
           customRouteBuilder: _i65.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -389,9 +390,10 @@ class Router extends _i63.RootStackRouter {
           barrierDismissible: false);
     },
     OfflineStatsModalRoute.name: (routeData) {
+      final args = routeData.argsAs<OfflineStatsModalRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i44.OfflineStatsModal(),
+          child: _i44.OfflineStatsModal(key: args.key, snapshot: args.snapshot),
           customRouteBuilder: _i65.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -418,29 +420,37 @@ class Router extends _i63.RootStackRouter {
           routeData: routeData, child: const _i47.InOnlineGameFlow());
     },
     PostOnlineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<PostOnlineGamePageRouteArgs>();
       return _i63.CupertinoPageX<dynamic>(
-          routeData: routeData, child: const _i48.PostOnlineGamePage());
+          routeData: routeData,
+          child:
+              _i48.PostOnlineGamePage(key: args.key, snapshot: args.snapshot));
     },
     CreateOnlineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateOnlineGamePageRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i49.CreateOnlineGamePage(),
+          child: _i49.CreateOnlineGamePage(
+              key: args.key, initialSnapshot: args.initialSnapshot),
           customRouteBuilder: _i65.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     InOnlineGamePageRoute.name: (routeData) {
+      final args = routeData.argsAs<InOnlineGamePageRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i50.InOnlineGamePage(),
+          child: _i50.InOnlineGamePage(
+              key: args.key, initialSnapshot: args.initialSnapshot),
           customRouteBuilder: _i65.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
     },
     OnlineStatsModalRoute.name: (routeData) {
+      final args = routeData.argsAs<OnlineStatsModalRouteArgs>();
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i51.OnlineStatsModal(),
+          child: _i51.OnlineStatsModal(key: args.key, snapshot: args.snapshot),
           customRouteBuilder: _i65.expandedModalRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -894,61 +904,22 @@ class GameHistoryFlowRouteArgs {
 
 /// generated route for
 /// [_i15.PlayOfflineFlow]
-class PlayOfflineFlowRoute
-    extends _i63.PageRouteInfo<PlayOfflineFlowRouteArgs> {
-  PlayOfflineFlowRoute(
-      {_i66.Key? key,
-      required _i68.OfflineGameSnapshot initialSnapshot,
-      List<_i63.PageRouteInfo>? children})
+class PlayOfflineFlowRoute extends _i63.PageRouteInfo<void> {
+  const PlayOfflineFlowRoute({List<_i63.PageRouteInfo>? children})
       : super(PlayOfflineFlowRoute.name,
-            path: 'play-offline-flow',
-            args: PlayOfflineFlowRouteArgs(
-                key: key, initialSnapshot: initialSnapshot),
-            initialChildren: children);
+            path: 'play-offline-flow', initialChildren: children);
 
   static const String name = 'PlayOfflineFlowRoute';
 }
 
-class PlayOfflineFlowRouteArgs {
-  const PlayOfflineFlowRouteArgs({this.key, required this.initialSnapshot});
-
-  final _i66.Key? key;
-
-  final _i68.OfflineGameSnapshot initialSnapshot;
-
-  @override
-  String toString() {
-    return 'PlayOfflineFlowRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
-  }
-}
-
 /// generated route for
 /// [_i16.PlayOnlineFlow]
-class PlayOnlineFlowRoute extends _i63.PageRouteInfo<PlayOnlineFlowRouteArgs> {
-  PlayOnlineFlowRoute(
-      {_i66.Key? key,
-      required _i69.OnlineGameSnapshot initialSnapshot,
-      List<_i63.PageRouteInfo>? children})
+class PlayOnlineFlowRoute extends _i63.PageRouteInfo<void> {
+  const PlayOnlineFlowRoute({List<_i63.PageRouteInfo>? children})
       : super(PlayOnlineFlowRoute.name,
-            path: 'play-online-flow',
-            args: PlayOnlineFlowRouteArgs(
-                key: key, initialSnapshot: initialSnapshot),
-            initialChildren: children);
+            path: 'play-online-flow', initialChildren: children);
 
   static const String name = 'PlayOnlineFlowRoute';
-}
-
-class PlayOnlineFlowRouteArgs {
-  const PlayOnlineFlowRouteArgs({this.key, required this.initialSnapshot});
-
-  final _i66.Key? key;
-
-  final _i69.OnlineGameSnapshot initialSnapshot;
-
-  @override
-  String toString() {
-    return 'PlayOnlineFlowRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
-  }
 }
 
 /// generated route for
@@ -1152,20 +1123,56 @@ class InOfflineGameFlowRoute extends _i63.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i38.PostOfflineGamePage]
-class PostOfflineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const PostOfflineGamePageRoute()
-      : super(PostOfflineGamePageRoute.name, path: 'post-offline-game-page');
+class PostOfflineGamePageRoute
+    extends _i63.PageRouteInfo<PostOfflineGamePageRouteArgs> {
+  PostOfflineGamePageRoute(
+      {_i66.Key? key, required _i68.OfflineGameSnapshot snapshot})
+      : super(PostOfflineGamePageRoute.name,
+            path: 'post-offline-game-page',
+            args: PostOfflineGamePageRouteArgs(key: key, snapshot: snapshot));
 
   static const String name = 'PostOfflineGamePageRoute';
 }
 
+class PostOfflineGamePageRouteArgs {
+  const PostOfflineGamePageRouteArgs({this.key, required this.snapshot});
+
+  final _i66.Key? key;
+
+  final _i68.OfflineGameSnapshot snapshot;
+
+  @override
+  String toString() {
+    return 'PostOfflineGamePageRouteArgs{key: $key, snapshot: $snapshot}';
+  }
+}
+
 /// generated route for
 /// [_i39.CreateOfflineGamePage]
-class CreateOfflineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const CreateOfflineGamePageRoute()
-      : super(CreateOfflineGamePageRoute.name, path: '');
+class CreateOfflineGamePageRoute
+    extends _i63.PageRouteInfo<CreateOfflineGamePageRouteArgs> {
+  CreateOfflineGamePageRoute(
+      {_i66.Key? key, required _i68.OfflineGameSnapshot initialSnapshot})
+      : super(CreateOfflineGamePageRoute.name,
+            path: '',
+            args: CreateOfflineGamePageRouteArgs(
+                key: key, initialSnapshot: initialSnapshot));
 
   static const String name = 'CreateOfflineGamePageRoute';
+}
+
+class CreateOfflineGamePageRouteArgs {
+  const CreateOfflineGamePageRouteArgs(
+      {this.key, required this.initialSnapshot});
+
+  final _i66.Key? key;
+
+  final _i68.OfflineGameSnapshot initialSnapshot;
+
+  @override
+  String toString() {
+    return 'CreateOfflineGamePageRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
+  }
 }
 
 /// generated route for
@@ -1225,10 +1232,29 @@ class YouReallyWantToCancelGameDialogRouteArgs {
 
 /// generated route for
 /// [_i42.InOfflineGamePage]
-class InOfflineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const InOfflineGamePageRoute() : super(InOfflineGamePageRoute.name, path: '');
+class InOfflineGamePageRoute
+    extends _i63.PageRouteInfo<InOfflineGamePageRouteArgs> {
+  InOfflineGamePageRoute(
+      {_i66.Key? key, required _i68.OfflineGameSnapshot initialSnapshot})
+      : super(InOfflineGamePageRoute.name,
+            path: '',
+            args: InOfflineGamePageRouteArgs(
+                key: key, initialSnapshot: initialSnapshot));
 
   static const String name = 'InOfflineGamePageRoute';
+}
+
+class InOfflineGamePageRouteArgs {
+  const InOfflineGamePageRouteArgs({this.key, required this.initialSnapshot});
+
+  final _i66.Key? key;
+
+  final _i68.OfflineGameSnapshot initialSnapshot;
+
+  @override
+  String toString() {
+    return 'InOfflineGamePageRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
+  }
 }
 
 /// generated route for
@@ -1237,7 +1263,7 @@ class CheckoutDetailsModalRoute
     extends _i63.PageRouteInfo<CheckoutDetailsModalRouteArgs> {
   CheckoutDetailsModalRoute(
       {_i66.Key? key,
-      required _i66.Bloc<_i70.CheckoutDetailsEvent, _i71.CheckoutDetailsState>
+      required _i66.Bloc<_i69.CheckoutDetailsEvent, _i70.CheckoutDetailsState>
           bloc})
       : super(CheckoutDetailsModalRoute.name,
             path: 'checkout-details-modal',
@@ -1251,7 +1277,7 @@ class CheckoutDetailsModalRouteArgs {
 
   final _i66.Key? key;
 
-  final _i66.Bloc<_i70.CheckoutDetailsEvent, _i71.CheckoutDetailsState> bloc;
+  final _i66.Bloc<_i69.CheckoutDetailsEvent, _i70.CheckoutDetailsState> bloc;
 
   @override
   String toString() {
@@ -1261,11 +1287,28 @@ class CheckoutDetailsModalRouteArgs {
 
 /// generated route for
 /// [_i44.OfflineStatsModal]
-class OfflineStatsModalRoute extends _i63.PageRouteInfo<void> {
-  const OfflineStatsModalRoute()
-      : super(OfflineStatsModalRoute.name, path: 'offline-stats-modal');
+class OfflineStatsModalRoute
+    extends _i63.PageRouteInfo<OfflineStatsModalRouteArgs> {
+  OfflineStatsModalRoute(
+      {_i66.Key? key, required _i68.OfflineGameSnapshot snapshot})
+      : super(OfflineStatsModalRoute.name,
+            path: 'offline-stats-modal',
+            args: OfflineStatsModalRouteArgs(key: key, snapshot: snapshot));
 
   static const String name = 'OfflineStatsModalRoute';
+}
+
+class OfflineStatsModalRouteArgs {
+  const OfflineStatsModalRouteArgs({this.key, required this.snapshot});
+
+  final _i66.Key? key;
+
+  final _i68.OfflineGameSnapshot snapshot;
+
+  @override
+  String toString() {
+    return 'OfflineStatsModalRouteArgs{key: $key, snapshot: $snapshot}';
+  }
 }
 
 /// generated route for
@@ -1274,7 +1317,7 @@ class AdvancedSettingsModalRoute
     extends _i63.PageRouteInfo<AdvancedSettingsModalRouteArgs> {
   AdvancedSettingsModalRoute(
       {_i66.Key? key,
-      required _i66.KtList<_i72.AbstractPlayerSnapshot> players})
+      required _i66.KtList<_i71.AbstractPlayerSnapshot> players})
       : super(AdvancedSettingsModalRoute.name,
             path: 'advanced-settings-modal',
             args: AdvancedSettingsModalRouteArgs(key: key, players: players));
@@ -1287,7 +1330,7 @@ class AdvancedSettingsModalRouteArgs {
 
   final _i66.Key? key;
 
-  final _i66.KtList<_i72.AbstractPlayerSnapshot> players;
+  final _i66.KtList<_i71.AbstractPlayerSnapshot> players;
 
   @override
   String toString() {
@@ -1317,37 +1360,109 @@ class InOnlineGameFlowRoute extends _i63.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i48.PostOnlineGamePage]
-class PostOnlineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const PostOnlineGamePageRoute()
-      : super(PostOnlineGamePageRoute.name, path: 'post-online-game-page');
+class PostOnlineGamePageRoute
+    extends _i63.PageRouteInfo<PostOnlineGamePageRouteArgs> {
+  PostOnlineGamePageRoute(
+      {_i66.Key? key, required _i72.OnlineGameSnapshot snapshot})
+      : super(PostOnlineGamePageRoute.name,
+            path: 'post-online-game-page',
+            args: PostOnlineGamePageRouteArgs(key: key, snapshot: snapshot));
 
   static const String name = 'PostOnlineGamePageRoute';
 }
 
+class PostOnlineGamePageRouteArgs {
+  const PostOnlineGamePageRouteArgs({this.key, required this.snapshot});
+
+  final _i66.Key? key;
+
+  final _i72.OnlineGameSnapshot snapshot;
+
+  @override
+  String toString() {
+    return 'PostOnlineGamePageRouteArgs{key: $key, snapshot: $snapshot}';
+  }
+}
+
 /// generated route for
 /// [_i49.CreateOnlineGamePage]
-class CreateOnlineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const CreateOnlineGamePageRoute()
-      : super(CreateOnlineGamePageRoute.name, path: '');
+class CreateOnlineGamePageRoute
+    extends _i63.PageRouteInfo<CreateOnlineGamePageRouteArgs> {
+  CreateOnlineGamePageRoute(
+      {_i66.Key? key, required _i72.OnlineGameSnapshot initialSnapshot})
+      : super(CreateOnlineGamePageRoute.name,
+            path: '',
+            args: CreateOnlineGamePageRouteArgs(
+                key: key, initialSnapshot: initialSnapshot));
 
   static const String name = 'CreateOnlineGamePageRoute';
 }
 
+class CreateOnlineGamePageRouteArgs {
+  const CreateOnlineGamePageRouteArgs(
+      {this.key, required this.initialSnapshot});
+
+  final _i66.Key? key;
+
+  final _i72.OnlineGameSnapshot initialSnapshot;
+
+  @override
+  String toString() {
+    return 'CreateOnlineGamePageRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
+  }
+}
+
 /// generated route for
 /// [_i50.InOnlineGamePage]
-class InOnlineGamePageRoute extends _i63.PageRouteInfo<void> {
-  const InOnlineGamePageRoute() : super(InOnlineGamePageRoute.name, path: '');
+class InOnlineGamePageRoute
+    extends _i63.PageRouteInfo<InOnlineGamePageRouteArgs> {
+  InOnlineGamePageRoute(
+      {_i66.Key? key, required _i72.OnlineGameSnapshot initialSnapshot})
+      : super(InOnlineGamePageRoute.name,
+            path: '',
+            args: InOnlineGamePageRouteArgs(
+                key: key, initialSnapshot: initialSnapshot));
 
   static const String name = 'InOnlineGamePageRoute';
 }
 
+class InOnlineGamePageRouteArgs {
+  const InOnlineGamePageRouteArgs({this.key, required this.initialSnapshot});
+
+  final _i66.Key? key;
+
+  final _i72.OnlineGameSnapshot initialSnapshot;
+
+  @override
+  String toString() {
+    return 'InOnlineGamePageRouteArgs{key: $key, initialSnapshot: $initialSnapshot}';
+  }
+}
+
 /// generated route for
 /// [_i51.OnlineStatsModal]
-class OnlineStatsModalRoute extends _i63.PageRouteInfo<void> {
-  const OnlineStatsModalRoute()
-      : super(OnlineStatsModalRoute.name, path: 'online-stats-modal');
+class OnlineStatsModalRoute
+    extends _i63.PageRouteInfo<OnlineStatsModalRouteArgs> {
+  OnlineStatsModalRoute(
+      {_i66.Key? key, required _i72.OnlineGameSnapshot snapshot})
+      : super(OnlineStatsModalRoute.name,
+            path: 'online-stats-modal',
+            args: OnlineStatsModalRouteArgs(key: key, snapshot: snapshot));
 
   static const String name = 'OnlineStatsModalRoute';
+}
+
+class OnlineStatsModalRouteArgs {
+  const OnlineStatsModalRouteArgs({this.key, required this.snapshot});
+
+  final _i66.Key? key;
+
+  final _i72.OnlineGameSnapshot snapshot;
+
+  @override
+  String toString() {
+    return 'OnlineStatsModalRouteArgs{key: $key, snapshot: $snapshot}';
+  }
 }
 
 /// generated route for

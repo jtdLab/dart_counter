@@ -12,6 +12,7 @@ part 'advanced_settings_bloc.freezed.dart';
 part 'advanced_settings_event.dart';
 part 'advanced_settings_state.dart';
 
+// TODO remove
 @injectable
 class AdvancedSettingsBloc
     extends Bloc<AdvancedSettingsEvent, AdvancedSettingsState> {
@@ -24,7 +25,7 @@ class AdvancedSettingsBloc
           AdvancedSettingsState.createGame(
             advancedSettings: [
               AdvancedSettings(
-                playerId: _playWatcherCubit.state.players.first().id,
+                //playerId: _playWatcherCubit.state.players.first().id,
                 showAverage: true,
                 showCheckoutPercentage: true,
                 smartKeyBoardActivated: false,
@@ -69,7 +70,7 @@ class AdvancedSettingsBloc
   Future<void> _handleStarted(
     Emitter<AdvancedSettingsState> emit,
   ) async {
-    //_onGameSnapshot(_playWatcherCubit.state, emit); // TODO
+    // _onGameSnapshot(_playWatcherCubit.state, emit); // TODO
     await _playWatcherCubit.stream.forEach(
       (gameSnapshot) => _onGameSnapshot(gameSnapshot, emit),
     );
@@ -205,7 +206,8 @@ class AdvancedSettingsBloc
     AbstractGameSnapshot gameSnapshot,
     Emitter<AdvancedSettingsState> emit,
   ) {
-    state.map(
+    /**
+    *  state.map(
       createGame: (createGame) {
         if (gameSnapshot.status == Status.pending) {
           final advancedSettings = createGame.advancedSettings;
@@ -252,5 +254,6 @@ class AdvancedSettingsBloc
         emit(inGame.copyWith(currentTurnAdvancedSettings: newAdvancedSettings));
       },
     );
+    */
   }
 }

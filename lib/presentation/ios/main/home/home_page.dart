@@ -44,8 +44,19 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
         state.mapOrNull(
           success: (success) {
             final initialSnapshot = success.initialSnapshot;
+
             context.router.replace(
-              PlayOnlineFlowRoute(initialSnapshot: initialSnapshot),
+              PlayOnlineFlowRoute(
+                children: [
+                  CreateOnlineGameFlowRoute(
+                    children: [
+                      CreateOnlineGamePageRoute(
+                        initialSnapshot: initialSnapshot,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             );
           },
           // TODO localize + test
@@ -59,7 +70,17 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
               final initialSnapshot = success.initialSnapshot;
 
               context.router.replace(
-                PlayOfflineFlowRoute(initialSnapshot: initialSnapshot),
+                PlayOfflineFlowRoute(
+                  children: [
+                    CreateOfflineGameFlowRoute(
+                      children: [
+                        CreateOfflineGamePageRoute(
+                          initialSnapshot: initialSnapshot,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               );
             },
           );

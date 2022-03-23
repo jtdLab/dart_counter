@@ -4,6 +4,7 @@ part of 'create_offline_game_bloc.dart';
 
 @freezed
 class CreateOfflineGameEvent with _$CreateOfflineGameEvent {
+  const factory CreateOfflineGameEvent.started() = _Started;
   const factory CreateOfflineGameEvent.gameCanceled() = _GameCanceled;
   const factory CreateOfflineGameEvent.playerReordered({
     required int oldIndex,

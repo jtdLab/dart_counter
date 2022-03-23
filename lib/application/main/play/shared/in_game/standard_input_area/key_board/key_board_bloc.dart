@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/standard_input_area/input_row/input_row_bloc.dart'
     hide Started;
 import 'package:dart_counter/application/main/shared/standard_input_area/key_board_event.dart';
 import 'package:dart_counter/application/main/shared/standard_input_area/key_board_state.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 
 export 'package:dart_counter/application/main/shared/standard_input_area/key_board_event.dart';
@@ -15,14 +14,14 @@ export 'package:dart_counter/application/main/shared/standard_input_area/key_boa
 abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
 
-  final Cubit<PlayState<AbstractGameSnapshot>> _playCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
+  final InGameBloc _inGameBloc;
   final InputRowBloc _inputRowBloc;
 
   KeyBoardBloc(
     this._dartUtils,
-    this._playCubit,
     this._advancedSettingsBloc,
+    this._inGameBloc,
     this._inputRowBloc,
   ) : super(
           // Set inital state
@@ -249,7 +248,7 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   bool _validatePoints(int points) {
     return _dartUtils.validatePoints(
       points: points,
-      pointsLeft: _playCubit.state.gameSnapshot.currentTurn().pointsLeft,
+      pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
     );
   }
 }

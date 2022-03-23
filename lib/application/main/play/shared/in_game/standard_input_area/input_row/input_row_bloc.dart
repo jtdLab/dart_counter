@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/throw.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/abstract_i_play_service.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 
@@ -13,13 +11,11 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
   final IDartUtils _dartUtils;
   final AbstractIPlayService _playService;
 
-  final Cubit<PlayState<AbstractGameSnapshot>> _playCubit;
   final InGameBloc _inGameBloc;
 
   InputRowBloc(
     this._dartUtils,
     this._playService,
-    this._playCubit,
     this._inGameBloc,
   ) : // set inital state
         super(0) {
@@ -46,7 +42,7 @@ abstract class InputRowBloc extends Bloc<InputRowEvent, int> {
     final points = state;
 
     // read points left of current turn
-    final pointsLeft = _playCubit.state.gameSnapshot.currentTurn().pointsLeft;
+    final pointsLeft = _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft;
 
     final minDartsThrown =
         _dartUtils.minDartsThrown(pointsLeft: pointsLeft, points: points);

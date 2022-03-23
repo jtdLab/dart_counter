@@ -1,7 +1,9 @@
 part of 'offline_stats_modal.dart';
 
 // BODY
-class _StatsWidget extends StatelessWidget {
+// TODO remove
+/**
+ * class _StatsWidget extends StatelessWidget {
   const _StatsWidget({
     Key? key,
   }) : super(key: key);
@@ -17,6 +19,7 @@ class _StatsWidget extends StatelessWidget {
     );
   }
 }
+ */
 
 /*
 class _TitleColumn extends StatelessWidget {

@@ -1,12 +1,10 @@
 // CORE
-import 'package:dart_counter/application/main/core/play/online/play_online_cubit.dart';
 import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/in_online_game_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/application/main/play/online/in_game/standard_input_area/key_board/key_board_bloc.dart';
 // BLOCS
-import 'package:dart_counter/application/main/play/online/watcher/play_online_watcher_cubit.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/detailed_input_area/blocs.dart'
@@ -29,8 +27,11 @@ part 'widgets.dart';
 
 // TODO responsivness
 class InOnlineGamePage extends StatelessWidget {
+  final OnlineGameSnapshot initialSnapshot;
+
   const InOnlineGamePage({
     Key? key,
+    required this.initialSnapshot,
   }) : super(key: key);
 
   @override
@@ -38,23 +39,23 @@ class InOnlineGamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => InOnlineGameBloc.getIt(),
+          create: (context) => InOnlineGameBloc.getIt(initialSnapshot),
         ),
       ],
-      child: BlocConsumer<PlayOnlineWatcherCubit, OnlineGameSnapshot>(
-        listener: (context, gameSnapshot) {
+      child: BlocConsumer<InOnlineGameBloc, InGameState<OnlineGameSnapshot>>(
+        listener: (context, state) {
+          final gameSnapshot = state.gameSnapshot;
+
           if (gameSnapshot.status == Status.canceled) {
             context.router.replace(const HomePageRoute());
           } else if (gameSnapshot.status == Status.finished) {
-            context.router.replace(const PostOnlineGamePageRoute());
+            context.router
+                .replace(PostOnlineGamePageRoute(snapshot: gameSnapshot));
           }
-        },
-        builder: (context, gameSnapshot) {
-          return BlocListener<InOnlineGameBloc, InGameState>(
-            listener: (context, state) {
-              final showCheckoutDetails = state.showCheckoutDetails;
 
-              /**
+          final showCheckoutDetails = state.showCheckoutDetails;
+
+          /**
                * final keyBoardType =
                   context.read<InOnlineGameBloc>().state.keyBoardType;
               final Bloc<CheckoutDetailsEvent, CheckoutDetailsState> bloc;
@@ -84,50 +85,50 @@ class InOnlineGamePage extends StatelessWidget {
                 );
               }
                */
-            },
-            child: AppPage(
-              navigationBar: AppNavigationBar(
-                leading: Builder(
-                  builder: (context) => CancelButton(
+        },
+        builder: (context, state) {
+          final gameSnapshot = state.gameSnapshot;
+
+          return AppPage(
+            navigationBar: AppNavigationBar(
+              leading: Builder(
+                builder: (context) => CancelButton(
+                  onPressed: () {
+                    context.router.push(
+                      YouReallyWantToCancelGameDialogRoute(
+                        onYesPressed: () =>
+                            context.read<InOnlineGameBloc>().add(
+                                  const InGameEvent.canceled(),
+                                ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              middle: Text(gameSnapshot.description()),
+              trailing: Row(
+                children: [
+                  StatsButton(
                     onPressed: () {
+                      context.router
+                          .push(OnlineStatsModalRoute(snapshot: gameSnapshot));
+                    },
+                  ),
+                  AppNavigationBarButton(
+                    onPressed: () {
+                      // TODO advanced settings
                       context.router.push(
-                        YouReallyWantToCancelGameDialogRoute(
-                          onYesPressed: () =>
-                              context.read<InOnlineGameBloc>().add(
-                                    const InGameEvent.canceled(),
-                                  ),
+                        AdvancedSettingsModalRoute(
+                          players: gameSnapshot.players,
                         ),
                       );
                     },
+                    child: Image.asset(AppImages.settingsNew),
                   ),
-                ),
-                middle: Text(gameSnapshot.description()),
-                trailing: Row(
-                  children: [
-                    StatsButton(
-                      onPressed: () {
-                        context.router.push(const OnlineStatsModalRoute());
-                      },
-                    ),
-                    AppNavigationBarButton(
-                      onPressed: () {
-                        // TODO advanced settings
-                        context.router.push(
-                          AdvancedSettingsModalRoute(
-                            players: context
-                                .read<PlayOnlineWatcherCubit>()
-                                .state
-                                .players,
-                          ),
-                        );
-                      },
-                      child: Image.asset(AppImages.settingsNew),
-                    ),
-                  ],
-                ),
+                ],
               ),
-              child: const _InOnlineGameWidget(),
             ),
+            child: const _InOnlineGameWidget(),
           );
         },
       ),

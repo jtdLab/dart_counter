@@ -23,6 +23,9 @@ class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
           const CreateOnlineGameState.initial(),
         );
 
+  /// Returns instance registered inside getIt.
+  factory CreateOnlineGameCubit.getIt() => getIt<CreateOnlineGameCubit>();
+
   Future<void> createGame() async {
     final failureOrGameSnapshot = await _playOnlineService.createGame();
 
@@ -33,9 +36,6 @@ class CreateOnlineGameCubit extends Cubit<CreateOnlineGameState> {
       ),
     );
   }
-
-  /// Returns instance registered inside getIt.
-  factory CreateOnlineGameCubit.getIt() => getIt<CreateOnlineGameCubit>();
 
   /**
   *  @override

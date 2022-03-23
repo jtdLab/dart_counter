@@ -2,14 +2,13 @@ import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
 import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_event.dart';
 import 'package:dart_counter/application/main/shared/detailed_input_area/key_board_state.dart';
 import 'package:dart_counter/core/stream_x.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -27,21 +26,21 @@ export 'package:dart_counter/application/main/shared/detailed_input_area/key_boa
 abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
   final IDartUtils _dartUtils;
 
-  final Cubit<PlayState<AbstractGameSnapshot>> _playCubit;
   final AdvancedSettingsBloc _advancedSettingsBloc;
+  final InGameBloc _inGameBloc;
   final DartsDisplayerBloc _dartsDisplayerBloc;
 
   KeyBoardBloc(
     this._dartUtils,
-    this._playCubit,
     this._advancedSettingsBloc,
+    this._inGameBloc,
     this._dartsDisplayerBloc,
   ) : super(
           // Set initial state
           __getUnfocusedState(
             __isSmartKeyBoardEnabled(_advancedSettingsBloc),
             __darts(_dartsDisplayerBloc),
-            __pointsLeft(_playCubit),
+            __pointsLeft(_inGameBloc),
             _dartUtils,
           ),
         ) {
@@ -571,7 +570,7 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   /// Returns the points left of the current turn.
   int _pointsLeft() {
-    return __pointsLeft(_playCubit);
+    return __pointsLeft(_inGameBloc);
   }
 
   /// Returns list that contains all [DartType]s which would lead to valid next throw.
@@ -680,9 +679,9 @@ abstract class KeyBoardBloc extends Bloc<KeyBoardEvent, KeyBoardState> {
 
   /// Returns the points left of the current turn using [service].
   static int __pointsLeft(
-    Cubit<PlayState<AbstractGameSnapshot>> cubit,
+    InGameBloc bloc,
   ) {
-    return cubit.state.gameSnapshot.currentTurn().pointsLeft;
+    return bloc.state.gameSnapshot.currentTurn().pointsLeft;
   }
 
   // TODO docs

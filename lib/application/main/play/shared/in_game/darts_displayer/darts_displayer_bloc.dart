@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_counter/application/main/core/shared/play/play_state.dart';
+import 'package:dart_counter/application/main/play/shared/in_game/in_game_bloc.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
 import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
@@ -20,11 +20,11 @@ export 'package:dart_counter/application/main/shared/darts_displayer/darts_displ
 class DartsDisplayerBloc
     extends Bloc<DartsDisplayerEvent, DartsDisplayerState> {
   final IDartUtils _dartUtils;
-  final Cubit<PlayState> _playCubit;
+  final InGameBloc _inGameBloc;
 
   DartsDisplayerBloc(
     this._dartUtils,
-    this._playCubit,
+    this._inGameBloc,
   ) : super(
           // Set initial state
           const DartsDisplayerState.empty(),
@@ -37,15 +37,15 @@ class DartsDisplayerBloc
 
   /// Returns instance registered inside getIt.
   factory DartsDisplayerBloc.getIt(
-    Cubit<PlayState> playCubit,
+    InGameBloc inGameBloc,
   ) =>
-      getIt<DartsDisplayerBloc>(param1: [playCubit]);
+      getIt<DartsDisplayerBloc>(param1: [inGameBloc]);
 
   /// Constructor only for injectable.
   ///
   /// [otherDependencies] must containg in following order:
   ///
-  /// 1. Instance of `Cubit<PlayState>`.
+  /// 1. Instance of `InGameBloc`.
   @factoryMethod
   factory DartsDisplayerBloc.injectable(
     IDartUtils dartUtils,
@@ -53,7 +53,7 @@ class DartsDisplayerBloc
   ) =>
       DartsDisplayerBloc(
         dartUtils,
-        otherDependencies[0] as Cubit<PlayState>,
+        otherDependencies[0] as InGameBloc,
       );
 
   /// Handle incoming [DartAdded] event.
@@ -65,7 +65,7 @@ class DartsDisplayerBloc
     void emitWhenValid(KtList<Dart> newDarts) {
       // if new darts are valid in current game state
       if (_dartUtils.validateDarts(
-        pointsLeft: _playCubit.state.gameSnapshot.currentTurn().pointsLeft,
+        pointsLeft: _inGameBloc.state.gameSnapshot.currentTurn().pointsLeft,
         darts: newDarts,
       )) {
         // emit darts with new darts
