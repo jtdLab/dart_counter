@@ -49,10 +49,12 @@ class _AdvancedSettingsPlayerCard extends StatelessWidget {
 
     return AppCard(
       middle: Text(
-        players.iter
+        /**
+        *  players.iter
                 .firstWhere((element) => element.id == settings.playerId)
                 .name ??
-            'TODO Default name',
+        */
+        'TODO Default name',
         style: CupertinoTheme.of(context)
             .textTheme
             .textStyle
