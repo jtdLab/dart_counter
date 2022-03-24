@@ -80,6 +80,7 @@ dependencies:
   font_awesome_flutter: ^10.0.0
   syncfusion_flutter_charts: ^19.4.55
   intl: ^0.17.0
+  golden_toolkit: ^0.13.0
   #sealed_flutter_bloc: ^8.0.0
 
 dev_dependencies:
@@ -110,8 +111,16 @@ flutter:
   uses-material-design: true
   generate: true
 
+  fonts:
+    - family: SF-Pro
+      fonts:
+        - asset: assets/fonts/SF-Pro.ttf
+        - asset: assets/fonts/SF-Pro-Text-Bold.otf
+
   assets:
     - assets/animations/
     - assets/images/png/
     - assets/images/png/2.0x/
     - assets/images/png/3.0x/
+
+  

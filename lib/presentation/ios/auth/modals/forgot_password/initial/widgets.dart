@@ -58,7 +58,6 @@ class ForgotPasswordInitialView extends StatelessWidget {
                     selector: (state) =>
                         state is ForgotPasswordSubmitInProgress,
                     builder: (context, isSubmitting) {
-                      
                       return AppPrimaryButton(
                         key: confirmButtonKey,
                         isSubmitting: isSubmitting,

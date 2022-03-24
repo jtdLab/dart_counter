@@ -25,5 +25,14 @@
       "request": "launch",
       "program": "lib/main_playground.dart"
     },
+    {
+      "name": "Golden",
+      "type": "dart",
+      "request": "launch",
+      "codeLens": {
+        "for": ["run-test", "run-test-file"]
+      },
+      "args": ["--update-goldens"]
+    }
   ]
 }

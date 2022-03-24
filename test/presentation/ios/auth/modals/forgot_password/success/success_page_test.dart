@@ -1,32 +1,45 @@
 import 'package:dart_counter/presentation/ios/auth/modals/forgot_password/success/success_page.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:golden_toolkit/golden_toolkit.dart';
 
-// TODO embed into working cuprtino app setup
-Widget embedd(Widget widget) {
-  return CupertinoApp(
-    home: Localizations(
-      delegates: AppLocalizations.localizationsDelegates,
-      locale: AppLocalizations.supportedLocales.first,
-      child: widget,
-    ),
-  );
-}
+import '../../../../../flutter_test_config.dart';
 
 void main() {
+  group('#Golden#', () {
+    testGoldens('ForgotPasswordSuccessPage should look correct on iPhones.',
+        (tester) async {
+      // Act
+      const ForgotPasswordSuccessPage underTest = ForgotPasswordSuccessPage();
+      final builder = DeviceBuilder()
+        ..overrideDevicesForAllScenarios(devices: iPhones)
+        ..addScenario(
+          widget: cupertinoAppWrapper(underTest),
+          name: 'ForgotPasswordSuccessPage',
+        );
+      await tester.pumpDeviceBuilder(builder);
+
+      // Assert
+      await screenMatchesGolden(tester, 'forgot_password_success_page_mobile');
+    });
+  });
+
   group('#Visual#', () {
-    testWidgets(
-      'Contains ForgotPasswordSuccessView.',
-      (tester) async {
-        // Arrange
-        tester.binding.window.physicalSizeTestValue = const Size(414, 896);
+    for (final phone in iPhones) {
+      testWidgets(
+        'Contains ForgotPasswordSuccessView on ${phone.name}.',
+        (tester) async {
+          // Arrange
+          await tester.binding.setSurfaceSize(phone.size);
 
-        const ForgotPasswordSuccessPage underTest = ForgotPasswordSuccessPage();
-        await tester.pumpWidget(embedd(underTest));
+          // Act
+          const ForgotPasswordSuccessPage underTest =
+              ForgotPasswordSuccessPage();
+          await tester.pumpWidget(cupertinoAppWrapper(underTest));
 
-        // Assert
-        expect(find.byType(ForgotPasswordSuccessView), findsOneWidget);
-      },
-    );
+          // Assert
+          expect(find.byType(ForgotPasswordSuccessView), findsOneWidget);
+        },
+      );
+    }
   });
 }

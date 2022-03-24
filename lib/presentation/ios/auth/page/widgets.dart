@@ -213,6 +213,7 @@ class _SocialSignInButton extends StatelessWidget {
   }
 }
 
+
 class _SignUpPage extends StatelessWidget {
   const _SignUpPage({
     Key? key,
