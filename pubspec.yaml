@@ -25,6 +25,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   dart_game:
     path: packages/dart_game
   dart_client:
@@ -43,7 +45,6 @@ dependencies:
   crypto: ^3.0.1
   cupertino_icons: ^1.0.4
   dartz: ^0.10.1
-  easy_localization: ^3.0.0
   email_validator: ^2.0.1
   faker: ^2.0.0
   firebase_auth: ^3.3.9
@@ -78,6 +79,7 @@ dependencies:
   permission_handler: ^9.2.0
   font_awesome_flutter: ^10.0.0
   syncfusion_flutter_charts: ^19.4.55
+  intl: ^0.17.0
   #sealed_flutter_bloc: ^8.0.0
 
 dev_dependencies:
