@@ -10,13 +10,14 @@ class AppPrimaryButton extends StatelessWidget {
   final Color color;
 
   const AppPrimaryButton({
+    Key? key,
     required this.text,
     this.isSubmitting = false,
     this.borderRadius = BorderRadius.zero,
     this.fontColor = AppColors.white,
     this.onPressed,
     this.color = AppColors.black,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

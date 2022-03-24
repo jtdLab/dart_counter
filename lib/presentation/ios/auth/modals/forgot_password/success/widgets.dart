@@ -1,6 +1,12 @@
 part of 'success_page.dart';
 
 class ForgotPasswordSuccessView extends StatelessWidget {
+  // Keys for widget-testing
+  static const Key logoKey = Key('logo');
+  static const Key emailSentTextKey = Key('email_sent_text');
+  static const Key successIconKey = Key('success_icon');
+  static const Key goToSignInButtonKey = Key('go_to_sign_in_button');
+
   const ForgotPasswordSuccessView({
     Key? key,
   }) : super(key: key);
@@ -10,37 +16,40 @@ class ForgotPasswordSuccessView extends StatelessWidget {
     return AppPage(
       child: Column(
         children: [
-          SizedBox(
-            height: modalLogoMarginTop(context),
-          ),
-          const LogoDisplayer(),
-          SizedBox(
-            height: modalLogoMarginBottom(context),
-          ),
+          SizedBox(height: modalLogoMarginTop(context)),
+          const LogoDisplayer(key: logoKey),
+          SizedBox(height: modalLogoMarginBottom(context)),
           SizedBox(
             height: 4 * (size40(context) + size12(context)),
             child: Column(
               children: [
                 AutoSizeText(
                   LocaleKeys.emailSent.tr().toUpperCase(),
+                  key: emailSentTextKey,
                   maxLines: 1,
                   minFontSize: 8,
                   maxFontSize: maxFontSizeNormal(context),
                 ),
-                SizedBox(
-                  height: spacerLarge(context),
-                ),
-                Image.asset(AppImages.checkmarkNew)
+                SizedBox(height: spacerLarge(context)),
+                Image.asset(
+                  AppImages.checkmarkNew,
+                  key: successIconKey,
+                )
               ],
             ),
           ),
           AppPrimaryButton(
+            key: goToSignInButtonKey,
             text: LocaleKeys.signIn.tr(),
-            onPressed: () => context.router.pop(),
+            onPressed: () => _onGoToSignInPressed(context),
           ),
           const Spacer(),
         ],
       ),
     );
+  }
+
+  void _onGoToSignInPressed(BuildContext context) {
+    context.router.pop();
   }
 }

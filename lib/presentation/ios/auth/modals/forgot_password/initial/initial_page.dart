@@ -15,40 +15,32 @@ class ForgotPasswordInitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
-      listenWhen: (_, newState) =>
-          newState is ForgotPasswordSubmitSuccess ||
-          newState is ForgotPasswordSubmitFailure,
+      listenWhen: (previous, current) =>
+          current is ForgotPasswordSubmitSuccess ||
+          current is ForgotPasswordSubmitFailure,
       listener: (context, state) => state.mapOrNull(
-        submitSuccess: (_) =>
-            context.router.replace(const ForgotPasswordSuccessPageRoute()),
-        submitFailure: (submitFailure) => submitFailure.authFailure.maybeWhen(
-          invalidEmail: () => showToast(
-            LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
-          ),
-          // TODO display other errors better
-          orElse: () => showToast(
-            'AutFailure happended',
-          ),
-        ),
+        submitSuccess: (_) => _onSubmitSuccess(context),
+        submitFailure: (failure) => _onSubmitFailure(context, failure),
       ),
-      child: AppPage(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
-            return SingleChildScrollView(
-              physics: bottomInsets == 0
-                  ? const NeverScrollableScrollPhysics()
-                  : null,
-              child: ConstrainedBox(
-                constraints: constraints.copyWith(
-                  maxHeight: constraints.maxHeight + bottomInsets,
-                ),
-                child: const _ForgotPasswordInitialWidget(),
-              ),
-            );
-          },
-        ),
+      child: const ForgotPasswordInitialView(),
+    );
+  }
+
+  void _onSubmitSuccess(BuildContext context) {
+    context.router.replace(const ForgotPasswordSuccessPageRoute());
+  }
+
+  void _onSubmitFailure(
+    BuildContext context,
+    ForgotPasswordSubmitFailure failure,
+  ) {
+    failure.authFailure.maybeWhen(
+      invalidEmail: () => showToast(
+        LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
+      ),
+      // TODO display other errors better
+      orElse: () => showToast(
+        'AutFailure happended',
       ),
     );
   }

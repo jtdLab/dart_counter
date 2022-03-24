@@ -1,7 +1,7 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/material.dart';
-
+// TODO rename to scaffold
 /// A page for the ios app.
 ///
 /// Providing layout and other utility that every page might have.

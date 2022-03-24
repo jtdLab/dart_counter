@@ -21,6 +21,7 @@ class AppTextField extends HookWidget {
   final VoidCallback? onClear;
 
   const AppTextField({
+    Key? key,
     this.text = '',
     this.withErrorDisplayer = true,
     required this.onChanged,
@@ -35,7 +36,7 @@ class AppTextField extends HookWidget {
     this.errorMessage,
     this.showClear = false,
     this.onClear,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
