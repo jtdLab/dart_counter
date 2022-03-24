@@ -111,7 +111,6 @@ flutter:
   generate: true
 
   assets:
-    - assets/languages/
     - assets/animations/
     - assets/images/png/
     - assets/images/png/2.0x/
