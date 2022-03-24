@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/l10n/l10n.dart';
 import 'package:dart_counter/presentation/core/route_observer.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
@@ -32,15 +33,8 @@ class AppWidget extends StatelessWidget {
           ),
         );
       },
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('de'),
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(
         initialRoutes: context.read<AuthBloc>().state.when(

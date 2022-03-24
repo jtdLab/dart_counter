@@ -110,18 +110,7 @@
   "practice": "Practice",
   "noGamesFound": "No games found",
   "mainMenu": "Main Menu",
-  "single": {
-    "one": "single",
-    "many": "singles"
-  },
-  "double": {
-    "one": "double",
-    "many": "doubles"
-  },
-  "triple": {
-    "one": "triple",
-    "many": "triples"
-  },
+  
   "missed": "missed",
   "target": "Target",
   "takesLeft": "{} takes left",

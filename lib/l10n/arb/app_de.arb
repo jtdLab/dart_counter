@@ -110,18 +110,6 @@
     "practice": "Training",
     "noGamesFound": "Keine Spiele gefunden",
     "mainMenu": "Hauptmenü",
-    "single": {
-        "one": "single",
-        "many": "singles"
-    },
-    "double": {
-        "one": "double",
-        "many": "doubles"
-    },
-    "triple": {
-        "one": "triple",
-        "many": "triples"
-    },
     "missed": "verpasst",
     "target": "Ziel",
     "takesLeft": "Noch {} Aufnahmen",
