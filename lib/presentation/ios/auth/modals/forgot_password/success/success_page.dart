@@ -11,8 +11,6 @@ class ForgotPasswordSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
-      child: _ForgotPasswordSuccessWidget(),
-    );
+    return const ForgotPasswordSuccessView();
   }
 }

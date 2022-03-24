@@ -4,16 +4,21 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/auth/forgot_password/forgot_password_bloc.dart';
 
-class ForgotPasswordModal extends StatelessWidget {
+class ForgotPasswordModal extends StatelessWidget implements AutoRouteWrapper {
   const ForgotPasswordModal({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => ForgotPasswordBloc.getIt(),
-      child: const AutoRouter(),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
   }
 }
