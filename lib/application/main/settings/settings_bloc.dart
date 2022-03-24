@@ -8,32 +8,24 @@ import 'package:injectable/injectable.dart';
 
 part 'settings_bloc.freezed.dart';
 part 'settings_event.dart';
-part 'settings_state.dart';
 
 @injectable
-class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
+class SettingsBloc extends Bloc<SettingsEvent, void> {
   final IAuthService _authService;
 
   SettingsBloc(
     this._authService,
   ) : super(
           // Set initial state
-          const SettingsState.initial(localeChanged: false),
+          null,
         ) {
     // Register event handlers
-    on<_LocaleChanged>((_, emit) => _handleLocaleChanged(emit));
+
     on<_SignOutPressed>((_, __) async => _handleSignOutPressed());
   }
 
   /// Returns instance registered inside getIt.
   factory SettingsBloc.getIt() => getIt<SettingsBloc>();
-
-  /// Handle incoming [_LocaleChanged] event.
-  void _handleLocaleChanged(Emitter<SettingsState> emit) {
-    // TODO Only work around because EasyLocalization doesn't rebuilt properly.
-    emit(state.copyWith(localeChanged: true));
-    emit(state.copyWith(localeChanged: false));
-  }
 
   /// Handle incoming [_SignOutPressed] event.
   Future<void> _handleSignOutPressed() async => _authService.signOut();

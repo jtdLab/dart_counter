@@ -31,23 +31,16 @@ class SettingsPage extends StatelessWidget {
             context.router.replace(const AuthFlowRoute());
           }
         },
-        child: BlocBuilder<SettingsBloc, SettingsState>(
-          buildWhen: (oldState, newState) =>
-              oldState.localeChanged != newState.localeChanged &&
-              newState.localeChanged,
-          builder: (context, state) {
-            return AppPage(
-              navigationBar: AppNavigationBar(
-                leading: const BackButton(),
-                middle: Text(
-                  context.l10n.settings.toUpperCase(),
-                ),
-              ),
-              child: const SingleChildScrollView(
-                child: _SettingsWidget(),
-              ),
-            );
-          },
+        child: AppPage(
+          navigationBar: AppNavigationBar(
+            leading: const BackButton(),
+            middle: Text(
+              context.l10n.settings.toUpperCase(),
+            ),
+          ),
+          child: const SingleChildScrollView(
+            child: _SettingsWidget(),
+          ),
         ),
       ),
     );
