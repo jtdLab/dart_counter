@@ -46,7 +46,7 @@ class _SettingsWidget extends StatelessWidget {
               height: spacerLarge(context),
             ),
             AppPrimaryButton(
-              text: LocaleKeys.signOut.tr(),
+              text: context.l10n.signOut,
               color: AppColors.red,
               onPressed: () {
                 context
@@ -66,7 +66,7 @@ class _LanguageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.language.tr().toUpperCase(),
+        context.l10n.language.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -179,7 +179,7 @@ class _AccountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.account.tr().toUpperCase(),
+        context.l10n.account.toUpperCase(),
         maxFontSize: 14,
         minFontSize: 8,
         maxLines: 1,
@@ -190,17 +190,17 @@ class _AccountCard extends StatelessWidget {
       ),
       children: [
         _AccountItem(
-          title: LocaleKeys.username.tr(),
+          title: context.l10n.username,
           onPressed: () =>
               context.router.push(const ChangeUsernameModalRoute()),
         ),
         _AccountItem(
-          title: LocaleKeys.password.tr(),
+          title: context.l10n.password,
           onPressed: () =>
               context.router.push(const ChangePasswordModalRoute()),
         ),
         _AccountItem(
-          title: LocaleKeys.email.tr(),
+          title: context.l10n.email,
           onPressed: () => context.router.push(const ChangeEmailModalRoute()),
         ),
       ],
@@ -261,11 +261,11 @@ class _DartsGerCard extends StatelessWidget {
       ),
       children: [
         _DartsGerCardItem(
-          title: LocaleKeys.privacyPolicy.tr().toUpperCase(),
+          title: context.l10n.privacyPolicy.toUpperCase(),
           onPressed: () => context.router.push(const PrivacyPolicyPageRoute()),
         ),
         _DartsGerCardItem(
-          title: LocaleKeys.contact.tr().toUpperCase(),
+          title: context.l10n.contact.toUpperCase(),
           onPressed: () => context.router.push(const ContactPageRoute()),
         ),
       ],

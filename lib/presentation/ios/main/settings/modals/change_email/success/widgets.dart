@@ -22,7 +22,7 @@ class _ChangeEmailSuccessWidget extends StatelessWidget {
           child: Column(
             children: [
               AutoSizeText(
-                LocaleKeys.emailChanged.tr().toUpperCase(),
+                context.l10n.emailChanged.toUpperCase(),
                 maxLines: 1,
                 minFontSize: 8,
                 maxFontSize: maxFontSizeNormal(context),
@@ -35,7 +35,7 @@ class _ChangeEmailSuccessWidget extends StatelessWidget {
           ),
         ),
         AppPrimaryButton(
-          text: LocaleKeys.confirm.tr().toUpperCase(),
+          text: context.l10n.confirm.toUpperCase(),
           onPressed: () => context.router.pop(),
         ),
         const Spacer(),

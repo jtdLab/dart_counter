@@ -21,14 +21,14 @@ class _ChangeEmailInitialWidget extends StatelessWidget {
         SizedBox(
           height: 3 * (size40(context) + size12(context)),
           child: AutoSizeText(
-            LocaleKeys.changeEmail.tr().toUpperCase(),
+            context.l10n.changeEmail.toUpperCase(),
             maxLines: 1,
             minFontSize: 8,
             maxFontSize: maxFontSizeNormal(context),
           ),
         ),
         AppTextField(
-          placeholder: LocaleKeys.email.tr().toUpperCase(),
+          placeholder: context.l10n.email.toUpperCase(),
           textInputAction: TextInputAction.done,
           keyboardType: TextInputType.emailAddress,
           onEditingComplete: () => node.unfocus(),
@@ -48,7 +48,7 @@ class _ChangeEmailInitialWidget extends StatelessWidget {
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,
-              text: LocaleKeys.confirm.tr().toUpperCase(),
+              text: context.l10n.confirm.toUpperCase(),
               onPressed: () => context
                   .read<ChangeEmailBloc>()
                   .add(const ChangeEmailEvent.confirmPressed()),

@@ -17,7 +17,7 @@ class _OverviewWidget extends StatelessWidget {
 
             if (games.isEmpty()) {
               return Center(
-                child: Text(LocaleKeys.noGamesFound.tr().toUpperCase()),
+                child: Text(context.l10n.noGamesFound.toUpperCase()),
               );
             }
 
@@ -102,7 +102,7 @@ class _GameHistoryCard extends StatelessWidget {
                     Row(
                       children: [
                         AutoSizeText(
-                          '${LocaleKeys.averrage.tr().toUpperCase()}:',
+                          '${context.l10n.averrage.toUpperCase()}:',
                           maxLines: 1,
                           minFontSize: 8,
                           maxFontSize: 14,
@@ -124,7 +124,7 @@ class _GameHistoryCard extends StatelessWidget {
                     Row(
                       children: [
                         AutoSizeText(
-                          '${LocaleKeys.checkoutPercentageShort.tr().toUpperCase()}:',
+                          '${context.l10n.checkoutPercentageShort.toUpperCase()}:',
                           maxLines: 1,
                           minFontSize: 8,
                           maxFontSize: 14,

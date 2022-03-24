@@ -28,7 +28,7 @@ class ChangeEmailInitialPage extends StatelessWidget {
           state.userFailure.maybeWhen(
             /* TODO
                       invalidEmail: () => showToast(
-                        LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
+                        context.l10n.errorInvalidEmailAddress.toUpperCase(),
                       ),
                       */
             orElse: () => showToast(

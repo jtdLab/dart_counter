@@ -15,7 +15,7 @@ class PrivacyPolicyPage extends StatelessWidget {
     return AppPage(
       navigationBar: AppNavigationBar(
         middle: Text(
-          LocaleKeys.privacyPolicy.tr().toUpperCase(),
+          context.l10n.privacyPolicy.toUpperCase(),
         ),
         leading: const BackButton(),
       ),

@@ -118,7 +118,7 @@ class _FriendsCard extends StatelessWidget {
 
         return AppCard(
           middle: Text(
-            LocaleKeys.friends.tr().toUpperCase(),
+            context.l10n.friends.toUpperCase(),
             style: CupertinoTheme.of(context)
                 .textTheme
                 .textStyle

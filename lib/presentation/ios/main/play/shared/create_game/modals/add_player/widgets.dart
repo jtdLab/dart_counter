@@ -29,7 +29,7 @@ class _AddPlayerWidgetState extends State<_AddPlayerWidget> {
                   ),
               */
               showClear: true,
-              placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
+              placeholder: context.l10n.searchUser.toUpperCase(),
               onChanged: (_) {}, // TODO
               /**
                * onChanged: (newSearchString) {

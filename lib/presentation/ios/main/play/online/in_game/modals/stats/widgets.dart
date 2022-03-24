@@ -41,21 +41,21 @@ class _TitleColumn extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
       ), // TODO translate
-      headerItem1: LocaleKeys.sets.tr(),
-      headerItem2: LocaleKeys.legs.tr(),
+      headerItem1: context.l10n.sets,
+      headerItem2: context.l10n.legs,
       subheader1: Center(
         child: Text(
-          LocaleKeys.averrage.tr().toUpperCase(),
+          context.l10n.averrage.toUpperCase(),
           style: CupertinoTheme.of(context)
               .textTheme
               .textStyle
               .copyWith(color: AppColors.white),
         ),
       ),
-      subHeader1Item1: LocaleKeys.averrage.tr(),
-      subHeader1Item2: LocaleKeys.firstNine.tr(),
-      subHeader1Item3: LocaleKeys.bestLeg.tr(),
-      subHeader1Item4: LocaleKeys.worstLeg.tr(),
+      subHeader1Item1: context.l10n.averrage,
+      subHeader1Item2: context.l10n.firstNine,
+      subHeader1Item3: context.l10n.bestLeg,
+      subHeader1Item4: context.l10n.worstLeg,
       subheader2: Center(
         child: Text(
           'Checkout'.toUpperCase(), // TODO translate
@@ -65,9 +65,9 @@ class _TitleColumn extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
       ),
-      subHeader2Item1: LocaleKeys.checkoutPercentageShort.tr(),
-      subHeader2Item2: LocaleKeys.dartsPerLeg.tr(),
-      subHeader2Item3: LocaleKeys.hightestFinishShort.tr(),
+      subHeader2Item1: context.l10n.checkoutPercentageShort,
+      subHeader2Item2: context.l10n.dartsPerLeg,
+      subHeader2Item3: context.l10n.hightestFinishShort,
       subheader3: Center(
         child: Text(
           'Aufnahmen'.toUpperCase(), // TODO translate

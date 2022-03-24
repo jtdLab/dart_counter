@@ -25,7 +25,7 @@ class _CheckoutDetailsWidget extends StatelessWidget {
             if (minDartsThrown < maxDartsThrown) ...[
               AppCard(
                 middle: Text(
-                  LocaleKeys.dartsThrown.tr().toUpperCase(),
+                  context.l10n.dartsThrown.toUpperCase(),
                   style: CupertinoTheme.of(context)
                       .textTheme
                       .textStyle
@@ -63,7 +63,7 @@ class _CheckoutDetailsWidget extends StatelessWidget {
             if (minDartsOnDouble < maxDartsOnDouble) ...[
               AppCard(
                 middle: Text(
-                  LocaleKeys.dartsOnDouble.tr().toUpperCase(),
+                  context.l10n.dartsOnDouble.toUpperCase(),
                   style: CupertinoTheme.of(context)
                       .textTheme
                       .textStyle
@@ -106,7 +106,7 @@ class _CheckoutDetailsWidget extends StatelessWidget {
                     .add(const CheckoutDetailsEvent.confirmPressed());
                 context.router.pop();
               },
-              text: LocaleKeys.confirm.tr().toUpperCase(),
+              text: context.l10n.confirm.toUpperCase(),
             ),
             const Spacer(
               flex: 2,

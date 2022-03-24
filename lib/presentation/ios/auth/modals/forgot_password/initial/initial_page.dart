@@ -36,7 +36,7 @@ class ForgotPasswordInitialPage extends StatelessWidget {
   ) {
     failure.authFailure.maybeWhen(
       invalidEmail: () => showToast(
-        LocaleKeys.errorInvalidEmailAddress.tr().toUpperCase(),
+        context.l10n.errorInvalidEmailAddress.toUpperCase(),
       ),
       // TODO display other errors better
       orElse: () => showToast(

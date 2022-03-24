@@ -28,7 +28,7 @@ class FriendsOverviewPage extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       navigationBar: AppNavigationBar(
         leading: const BackButton(),
-        middle: Text(LocaleKeys.friends.tr().toUpperCase()),
+        middle: Text(context.l10n.friends.toUpperCase()),
         trailing: AppNavigationBarButton(
           noPaddingRight: true,
           onPressed: () {

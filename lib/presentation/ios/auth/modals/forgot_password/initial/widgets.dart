@@ -36,7 +36,7 @@ class ForgotPasswordInitialView extends StatelessWidget {
                   SizedBox(
                     height: 3 * (size40(context) + size12(context)),
                     child: AutoSizeText(
-                      LocaleKeys.forgotPassword.tr().toUpperCase(),
+                      context.l10n.forgotPassword.toUpperCase(),
                       key: forgotPasswordTextKey,
                       maxLines: 1,
                       minFontSize: 8,
@@ -45,7 +45,7 @@ class ForgotPasswordInitialView extends StatelessWidget {
                   ),
                   AppTextField(
                     key: emailTextFieldKey,
-                    placeholder: LocaleKeys.email.tr(),
+                    placeholder: context.l10n.email,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.emailAddress,
                     onEditingComplete: () => node.unfocus(),
@@ -58,10 +58,11 @@ class ForgotPasswordInitialView extends StatelessWidget {
                     selector: (state) =>
                         state is ForgotPasswordSubmitInProgress,
                     builder: (context, isSubmitting) {
+                      
                       return AppPrimaryButton(
                         key: confirmButtonKey,
                         isSubmitting: isSubmitting,
-                        text: LocaleKeys.confirm.tr(),
+                        text: context.l10n.confirm,
                         onPressed: () => _onConfirmPressed(context),
                       );
                     },

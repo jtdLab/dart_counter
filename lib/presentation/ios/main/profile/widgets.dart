@@ -83,8 +83,8 @@ class _ProfileWidget extends HookWidget {
                                   .tr()
                                   .toUpperCase() // TODO better string
                               : pageIndex.value == 1
-                                  ? LocaleKeys.online.tr().toUpperCase()
-                                  : LocaleKeys.offline.tr().toUpperCase(),
+                                  ? context.l10n.online.toUpperCase()
+                                  : context.l10n.offline.toUpperCase(),
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .textStyle
@@ -138,7 +138,7 @@ class _ProfileWidget extends HookWidget {
                   ),
                 ),
                 AppActionButton.normal(
-                  text: LocaleKeys.gameHistory.tr().toUpperCase(),
+                  text: context.l10n.gameHistory.toUpperCase(),
                   onPressed: () {
                     if (pageIndex.value == 0) {
                       context.router.push(
@@ -199,25 +199,25 @@ class _CareerStatsDisplayer extends StatelessWidget {
       spacing: size6(context),
       children: [
         _CareerStatsItem(
-          title: LocaleKeys.averrage.tr().toUpperCase(),
+          title: context.l10n.averrage.toUpperCase(),
           value: careerStats.average.toStringAsFixed(2),
           trend: careerStats.averageTrend,
         ),
         _CareerStatsItem(
-          title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+          title: context.l10n.checkoutPercentageShort.toUpperCase(),
           value: careerStats.checkoutPercentage.toStringAsFixed(2),
           trend: careerStats.checkoutPercentageTrend,
         ),
         _CareerStatsItem(
           value: careerStats.firstNine.toStringAsFixed(2),
-          title: LocaleKeys.firstNine.tr().toUpperCase(),
+          title: context.l10n.firstNine.toUpperCase(),
           trend: careerStats.firstNineTrend,
         ),
         // TODO
         /*
         _CareerStatsItem(
           value: '19',
-          title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
+          title: context.l10n.dartsPerLeg.toUpperCase(),
         ),
         const _CareerStatsItem(
           title: '180s',
@@ -226,15 +226,15 @@ class _CareerStatsDisplayer extends StatelessWidget {
         */
         _CareerStatsItem(
           value: careerStats.games.toString(),
-          title: LocaleKeys.games.tr().toUpperCase(),
+          title: context.l10n.games.toUpperCase(),
         ),
         _CareerStatsItem(
           value: careerStats.wins.toString(),
-          title: LocaleKeys.wins.tr().toUpperCase(),
+          title: context.l10n.wins.toUpperCase(),
         ),
         _CareerStatsItem(
           value: careerStats.defeats.toString(),
-          title: LocaleKeys.defeats.tr().toUpperCase(),
+          title: context.l10n.defeats.toUpperCase(),
         ),
       ],
     );

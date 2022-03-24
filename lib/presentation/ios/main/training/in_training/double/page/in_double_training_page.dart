@@ -74,7 +74,7 @@ class InDoubleTrainingPage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.doubleTraining.tr().toUpperCase()),
+            middle: Text(context.l10n.doubleTraining.toUpperCase()),
           ),
           child: const _InDoubleTrainingWidget(),
         ),

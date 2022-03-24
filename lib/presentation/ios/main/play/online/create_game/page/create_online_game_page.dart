@@ -62,7 +62,7 @@ class CreateOnlineGamePage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.createGame.tr().toUpperCase()),
+            middle: Text(context.l10n.createGame.toUpperCase()),
           ),
           child: const SingleChildScrollView(child: _CreateOnlineGameWidget()),
         ),

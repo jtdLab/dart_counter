@@ -45,7 +45,7 @@ class _PlayerCard extends StatelessWidget {
     return AppCard(
       // TODO text + fontsize
       middle: AutoSizeText(
-        LocaleKeys.player.tr().toUpperCase(),
+        context.l10n.player.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -228,7 +228,7 @@ class _EditablePlayerItem extends StatelessWidget {
                       AppTextField(
                         text: player.name ?? '',
                         withErrorDisplayer: false,
-                        placeholder: LocaleKeys.name.tr().toUpperCase(),
+                        placeholder: context.l10n.name.toUpperCase(),
                         onChanged: (newName) {
                           context.read<CreateTrainingBloc>().add(
                                 CreateTrainingEvent.playerNameUpdated(
@@ -265,7 +265,7 @@ class _AddPlayerButton extends StatelessWidget {
             .read<CreateTrainingBloc>()
             .add(const CreateTrainingEvent.playerAdded());
       },
-      text: LocaleKeys.addPlayer.tr().toUpperCase(),
+      text: context.l10n.addPlayer.toUpperCase(),
     );
   }
 }
@@ -290,7 +290,7 @@ class _ModusCard extends StatelessWidget {
         return AppCard(
           // TODO text + fontsize
           middle: AutoSizeText(
-            LocaleKeys.modus.tr().toUpperCase(),
+            context.l10n.modus.toUpperCase(),
             minFontSize: 8,
             maxFontSize: 14,
             maxLines: 1,
@@ -315,7 +315,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: LocaleKeys.singleTraining.tr().toUpperCase(),
+                    text: context.l10n.singleTraining.toUpperCase(),
                   ),
                 ),
                 Expanded(
@@ -330,7 +330,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: LocaleKeys.doubleTraining.tr().toUpperCase(),
+                    text: context.l10n.doubleTraining.toUpperCase(),
                   ),
                 ),
               ],
@@ -350,7 +350,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: LocaleKeys.scoreTraining.tr().toUpperCase(),
+                    text: context.l10n.scoreTraining.toUpperCase(),
                   ),
                 ),
                 Expanded(
@@ -365,7 +365,7 @@ class _ModusCard extends StatelessWidget {
                             ),
                           );
                     },
-                    text: LocaleKeys.bobs27.tr().toUpperCase(),
+                    text: context.l10n.bobs27.toUpperCase(),
                   ),
                 ),
               ],
@@ -391,7 +391,7 @@ class _OrderCard extends StatelessWidget {
     return AppCard(
       // TODO text + fontsize
       middle: AutoSizeText(
-        LocaleKeys.order.tr().toUpperCase(),
+        context.l10n.order.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -460,7 +460,7 @@ class _TakesCard extends StatelessWidget {
     return AppCard(
       // TODO text + fontsize
       middle: AutoSizeText(
-        LocaleKeys.numberOfTakes.tr().toUpperCase(),
+        context.l10n.numberOfTakes.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -499,7 +499,7 @@ class _PlayButton extends StatelessWidget {
             .add(const CreateTrainingEvent.trainingStarted());
       },
       icon: Image.asset(AppImages.targetNew),
-      text: LocaleKeys.play.tr().toUpperCase(),
+      text: context.l10n.play.toUpperCase(),
     );
   }
 }

@@ -21,14 +21,14 @@ class _ChangePasswordInitialWidget extends StatelessWidget {
         SizedBox(
           height: size40(context) + size12(context),
           child: AutoSizeText(
-            LocaleKeys.changePassword.tr().toUpperCase(),
+            context.l10n.changePassword.toUpperCase(),
             maxLines: 1,
             minFontSize: 8,
             maxFontSize: maxFontSizeNormal(context),
           ),
         ),
         AppTextField(
-          placeholder: LocaleKeys.oldPassword.tr().toUpperCase(),
+          placeholder: context.l10n.oldPassword.toUpperCase(),
           textInputAction: TextInputAction.next,
           onEditingComplete: () => node.nextFocus(),
           obscureText: true,
@@ -40,7 +40,7 @@ class _ChangePasswordInitialWidget extends StatelessWidget {
                   ),
         ),
         AppTextField(
-          placeholder: LocaleKeys.newPassword.tr().toUpperCase(),
+          placeholder: context.l10n.newPassword.toUpperCase(),
           textInputAction: TextInputAction.next,
           onEditingComplete: () => node.nextFocus(),
           obscureText: true,
@@ -52,7 +52,7 @@ class _ChangePasswordInitialWidget extends StatelessWidget {
                   ),
         ),
         AppTextField(
-          placeholder: LocaleKeys.newPasswordAgain.tr().toUpperCase(),
+          placeholder: context.l10n.newPasswordAgain.toUpperCase(),
           textInputAction: TextInputAction.done,
           onEditingComplete: () => node.unfocus(),
           obscureText: true,
@@ -73,7 +73,7 @@ class _ChangePasswordInitialWidget extends StatelessWidget {
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,
-              text: LocaleKeys.confirm.tr().toUpperCase(),
+              text: context.l10n.confirm.toUpperCase(),
               onPressed: () => context
                   .read<ChangePasswordBloc>()
                   .add(const ChangePasswordEvent.confirmPressed()),

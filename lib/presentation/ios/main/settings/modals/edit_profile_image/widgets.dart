@@ -18,7 +18,7 @@ class _EditProfileImageWidget extends StatelessWidget {
           height: spacerLarge(context),
         ),
         AppPrimaryButton(
-          text: LocaleKeys.deletePhoto.tr().toUpperCase(),
+          text: context.l10n.deletePhoto.toUpperCase(),
           color: AppColors.red,
           onPressed: () {
             context
@@ -28,7 +28,7 @@ class _EditProfileImageWidget extends StatelessWidget {
           },
         ),
         AppPrimaryButton(
-          text: LocaleKeys.takePhoto.tr().toUpperCase(),
+          text: context.l10n.takePhoto.toUpperCase(),
           onPressed: () {
             context
                 .read<EditProfileImageBloc>()
@@ -37,7 +37,7 @@ class _EditProfileImageWidget extends StatelessWidget {
           },
         ),
         AppPrimaryButton(
-          text: LocaleKeys.choosePhoto.tr().toUpperCase(),
+          text: context.l10n.choosePhoto.toUpperCase(),
           onPressed: () {
             context
                 .read<EditProfileImageBloc>()
@@ -46,7 +46,7 @@ class _EditProfileImageWidget extends StatelessWidget {
           },
         ),
         AppPrimaryButton(
-          text: LocaleKeys.done.tr().toUpperCase(),
+          text: context.l10n.done.toUpperCase(),
           onPressed: () => context.router.pop(),
         ),
         SizedBox(

@@ -54,7 +54,7 @@ class _BackToHomeButton extends StatelessWidget {
         const HomePageRoute(),
       ),
       color: AppColors.red,
-      text: LocaleKeys.mainMenu.tr().toUpperCase(),
+      text: context.l10n.mainMenu.toUpperCase(),
     );
   }
 }

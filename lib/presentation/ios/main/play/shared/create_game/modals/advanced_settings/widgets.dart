@@ -24,7 +24,7 @@ class _CreateGameAdvancedSettingsWidget extends StatelessWidget {
           height: size55(context),
           content: Center(
             child: Text(
-              LocaleKeys.advancedSettings.tr().toUpperCase(),
+              context.l10n.advancedSettings.toUpperCase(),
             ),
           ),
         ),
@@ -47,7 +47,7 @@ class _CreateGameAdvancedSettingsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    LocaleKeys.showAverrage.tr().toUpperCase(),
+                    context.l10n.showAverrage.toUpperCase(),
                   ),
                   BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
                     builder: (context, state) {
@@ -82,7 +82,7 @@ class _CreateGameAdvancedSettingsWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // LocaleKeys.showCheckoutPercentage.tr().toUpperCase(), // TODO
+                  // context.l10n.showCheckoutPercentage.toUpperCase(), // TODO
                   const Text('SHOW CHECKOUT'),
                   BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
                     builder: (context, state) {
@@ -140,12 +140,12 @@ class _CreateGameAdvancedSettingsWidget extends StatelessWidget {
                     onPressed: () {},
                     color: AppColors.red,
                     fontColor: AppColors.white,
-                    text: LocaleKeys.removePlayer.tr().toUpperCase(),
+                    text: context.l10n.removePlayer.toUpperCase(),
                   ),
                   */
         AppActionButton.normal(
           onPressed: () => context.router.pop(),
-          text: LocaleKeys.done.tr().toUpperCase(),
+          text: context.l10n.done.toUpperCase(),
         ),
         SizedBox(
           height: detailedModalMarginBottom(context),

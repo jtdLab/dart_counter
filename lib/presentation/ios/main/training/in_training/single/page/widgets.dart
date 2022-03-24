@@ -54,23 +54,23 @@ class _OnePlayerDisplayer extends StatelessWidget {
           photoUrl: null, // TODO real photoUrl,
           name: player1.name!, // TODO ! needed ?
           subHeaderText:
-              '${LocaleKeys.target.tr()}: ${player1.targetValue}'.toUpperCase(),
+              '${context.l10n.target}: ${player1.targetValue}'.toUpperCase(),
           points: player1.points,
           stats: [
             Tuple2(
-              '${LocaleKeys.single}.many'.tr().toUpperCase(),
+              '${context.l10n.single}.many'.toUpperCase(),
               player1.singles.toString(),
             ),
             Tuple2(
-              '${LocaleKeys.double}.many'.tr().toUpperCase(),
+              '${context.l10n.double}.many'.toUpperCase(),
               player1.doubles.toString(),
             ),
             Tuple2(
-              '${LocaleKeys.triple}.many'.tr().toUpperCase(),
+              '${context.l10n.triple}.many'.toUpperCase(),
               player1.triples.toString(),
             ),
             Tuple2(
-              LocaleKeys.missed.tr().toUpperCase(),
+              context.l10n.missed.toUpperCase(),
               player1.missed.toString(),
             ),
           ],
@@ -241,7 +241,7 @@ class _KeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               AppActionButton.flexible(
-                text: '${LocaleKeys.single}.one'.tr().toUpperCase(),
+                text: '${context.l10n.single}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -249,7 +249,7 @@ class _KeyBoard extends StatelessWidget {
                     .add(const KeyBoardEvent.singlePressed()),
               ),
               AppActionButton.flexible(
-                text: '${LocaleKeys.double}.one'.tr().toUpperCase(),
+                text: '${context.l10n.double}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -257,7 +257,7 @@ class _KeyBoard extends StatelessWidget {
                     .add(const KeyBoardEvent.doublePressed()),
               ),
               AppActionButton.flexible(
-                text: '${LocaleKeys.triple}.one'.tr().toUpperCase(),
+                text: '${context.l10n.triple}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -272,7 +272,7 @@ class _KeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               AppActionButton.flexible(
-                text: LocaleKeys.missed.tr().toUpperCase(),
+                text: context.l10n.missed.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -314,23 +314,23 @@ class _PlayerItem extends StatelessWidget {
       photoUrl: null, // TODO real photo url
       name: player.name!, // TODO ! needed ?
       subHeaderText:
-          '${LocaleKeys.target.tr()}: ${player.targetValue}'.toUpperCase(),
+          '${context.l10n.target}: ${player.targetValue}'.toUpperCase(),
       points: player.points,
       stats: [
         Tuple2(
-          '${LocaleKeys.single}.many'.tr().toUpperCase(),
+          '${context.l10n.single}.many'.toUpperCase(),
           player.singles.toString(),
         ),
         Tuple2(
-          '${LocaleKeys.double}.many'.tr().toUpperCase(),
+          '${context.l10n.double}.many'.toUpperCase(),
           player.doubles.toString(),
         ),
         Tuple2(
-          '${LocaleKeys.triple}.many'.tr().toUpperCase(),
+          '${context.l10n.triple}.many'.toUpperCase(),
           player.triples.toString(),
         ),
         Tuple2(
-          LocaleKeys.missed.tr().toUpperCase(),
+          context.l10n.missed.toUpperCase(),
           player.missed.toString(),
         ),
       ],
@@ -355,7 +355,7 @@ class _PlayerItemSmall extends StatelessWidget {
       photoUrl: null, // TODO real photo url
       name: player.name!, // TODO ! needed ?
       subHeaderText:
-          '${LocaleKeys.target.tr()}: ${player.targetValue}'.toUpperCase(),
+          '${context.l10n.target}: ${player.targetValue}'.toUpperCase(),
       points: player.points,
     );
   }

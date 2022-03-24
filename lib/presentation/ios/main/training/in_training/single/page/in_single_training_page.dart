@@ -74,7 +74,7 @@ class InSingleTrainingPage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.singleTraining.tr().toUpperCase()),
+            middle: Text(context.l10n.singleTraining.toUpperCase()),
           ),
           child: const _InSingleTrainingWidget(),
         ),

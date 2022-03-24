@@ -54,25 +54,25 @@ class _OnePlayerDisplayer extends StatelessWidget {
           photoUrl: null, // TODO real photoUrl,
           name: player1.name!, // TODO ! needed ?
           subHeaderText:
-              '${LocaleKeys.target.tr()}: ${player1.targetValue}'.toUpperCase(),
+              '${context.l10n.target}: ${player1.targetValue}'.toUpperCase(),
           points: 34, //player1.points, // TODO
           stats: [
             /** // TODO add this to model
             *  Tuple2(
-              '${LocaleKeys.checkout}.many'.tr().toUpperCase(),
+              '${context.l10n.checkout}.many'.toUpperCase(),
               player1.checkouts.toString(),
             ),
             */
             Tuple2(
-              LocaleKeys.dartsThrown.tr().toUpperCase(),
+              context.l10n.dartsThrown.toUpperCase(),
               player1.dartsThrown.toString(),
             ),
             Tuple2(
-              LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+              context.l10n.checkoutPercentageShort.toUpperCase(),
               player1.checkoutPercentage?.toStringAsFixed(2) ?? '--',
             ),
             Tuple2(
-              LocaleKeys.missed.tr().toUpperCase(),
+              context.l10n.missed.toUpperCase(),
               player1.missed.toString(),
             ),
           ],
@@ -212,25 +212,25 @@ class _PlayerItem extends StatelessWidget {
       photoUrl: null, // TODO real photo url
       name: player.name!, // TODO ! needed ?
       subHeaderText:
-          '${LocaleKeys.target.tr()}: ${player.targetValue}'.toUpperCase(),
+          '${context.l10n.target}: ${player.targetValue}'.toUpperCase(),
       points: 44, // TODO player.points,
       stats: [
         /** // TODO add this to model
             *  Tuple2(
-              '${LocaleKeys.checkout}.many'.tr().toUpperCase(),
+              '${context.l10n.checkout}.many'.toUpperCase(),
               player1.checkouts.toString(),
             ),
             */
         Tuple2(
-          LocaleKeys.dartsThrown.tr().toUpperCase(),
+          context.l10n.dartsThrown.toUpperCase(),
           player.dartsThrown.toString(),
         ),
         Tuple2(
-          LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+          context.l10n.checkoutPercentageShort.toUpperCase(),
           player.checkoutPercentage?.toStringAsFixed(2) ?? '--',
         ),
         Tuple2(
-          LocaleKeys.missed.tr().toUpperCase(),
+          context.l10n.missed.toUpperCase(),
           player.missed.toString(),
         ),
       ],
@@ -255,7 +255,7 @@ class _PlayerItemSmall extends StatelessWidget {
       photoUrl: null, // TODO real photo url
       name: player.name!, // TODO ! needed ?
       subHeaderText:
-          '${LocaleKeys.target.tr()}: ${player.targetValue}'.toUpperCase(),
+          '${context.l10n.target}: ${player.targetValue}'.toUpperCase(),
       points: 44, // TODO player.points,
     );
   }

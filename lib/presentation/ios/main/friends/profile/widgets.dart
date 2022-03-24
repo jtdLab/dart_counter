@@ -50,7 +50,7 @@ class _FriendsProfileWidget extends StatelessWidget {
               height: spacerNormal(context),
             ),
             AppActionButton.normal(
-              text: LocaleKeys.gameHistory.tr().toUpperCase(),
+              text: context.l10n.gameHistory.toUpperCase(),
               onPressed: () => context.router.push(
                 GameHistoryFlowRoute(
                   gameHistoryBloc:
@@ -86,25 +86,25 @@ class _CareerStatsDisplayer extends StatelessWidget {
           spacing: size6(context),
           children: [
             _CareerStatsItem(
-              title: LocaleKeys.averrage.tr().toUpperCase(),
+              title: context.l10n.averrage.toUpperCase(),
               value: careerStatsOnline.average.toStringAsFixed(2),
               trend: careerStatsOnline.averageTrend,
             ),
             _CareerStatsItem(
-              title: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+              title: context.l10n.checkoutPercentageShort.toUpperCase(),
               value: careerStatsOnline.checkoutPercentage.toStringAsFixed(2),
               trend: careerStatsOnline.checkoutPercentageTrend,
             ),
             _CareerStatsItem(
               value: careerStatsOnline.firstNine.toStringAsFixed(2),
-              title: LocaleKeys.firstNine.tr().toUpperCase(),
+              title: context.l10n.firstNine.toUpperCase(),
               trend: careerStatsOnline.firstNineTrend,
             ),
             // TODO
             /**
             *  _CareerStatsItem(
               value: '19',
-              title: LocaleKeys.dartsPerLeg.tr().toUpperCase(),
+              title: context.l10n.dartsPerLeg.toUpperCase(),
             ),
             const _CareerStatsItem(
               title: '180s',
@@ -113,15 +113,15 @@ class _CareerStatsDisplayer extends StatelessWidget {
             */
             _CareerStatsItem(
               value: careerStatsOnline.games.toString(),
-              title: LocaleKeys.games.tr().toUpperCase(),
+              title: context.l10n.games.toUpperCase(),
             ),
             _CareerStatsItem(
               value: careerStatsOnline.wins.toString(),
-              title: LocaleKeys.wins.tr().toUpperCase(),
+              title: context.l10n.wins.toUpperCase(),
             ),
             _CareerStatsItem(
               value: careerStatsOnline.defeats.toString(),
-              title: LocaleKeys.defeats.tr().toUpperCase(),
+              title: context.l10n.defeats.toUpperCase(),
             ),
           ],
         );

@@ -220,7 +220,7 @@ class _PlayOnlineButton extends StatelessWidget {
       color: AppColors.orangeNew,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.playersNew),
-      text: '${LocaleKeys.play.tr()} ${LocaleKeys.online.tr()}'.toUpperCase(),
+      text: '${context.l10n.play.tr()} ${LocaleKeys.online}'.toUpperCase(),
     );
   }
 }
@@ -234,7 +234,7 @@ class _PlayOfflineButton extends StatelessWidget {
       color: AppColors.white,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.robotNew),
-      text: '${LocaleKeys.play.tr()} ${LocaleKeys.offline.tr()}'.toUpperCase(),
+      text: '${context.l10n.play.tr()} ${LocaleKeys.offline}'.toUpperCase(),
     );
   }
 }
@@ -247,7 +247,7 @@ class _TrainButton extends StatelessWidget {
       onPressed: () => context.router.replace(const TrainingFlowRoute()),
       color: AppColors.black,
       icon: Image.asset(AppImages.targetNew),
-      text: LocaleKeys.practice.tr().toUpperCase(),
+      text: context.l10n.practice.toUpperCase(),
     );
   }
 }

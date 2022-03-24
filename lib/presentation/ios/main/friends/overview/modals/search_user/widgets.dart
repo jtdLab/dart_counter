@@ -33,7 +33,7 @@ class _SearchUserWidgetState extends State<_SearchUserWidget> {
                         const SearchUserEvent.clearPressed(),
                       ),
                   showClear: true,
-                  placeholder: LocaleKeys.searchUser.tr().toUpperCase(),
+                  placeholder: context.l10n.searchUser.toUpperCase(),
                   onChanged: (newSearchString) {
                     context.read<SearchUserBloc>().add(
                           SearchUserEvent.searchStringChanged(

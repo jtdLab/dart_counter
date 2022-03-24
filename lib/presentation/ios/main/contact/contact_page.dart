@@ -15,7 +15,7 @@ class ContactPage extends StatelessWidget {
     return AppPage(
       navigationBar: AppNavigationBar(
         middle: Text(
-          LocaleKeys.contact.tr().toUpperCase(),
+          context.l10n.contact.toUpperCase(),
         ),
         leading: const BackButton(),
       ),

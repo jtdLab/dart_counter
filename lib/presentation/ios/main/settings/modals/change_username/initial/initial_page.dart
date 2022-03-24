@@ -27,7 +27,7 @@ class ChangeUsernameInitialPage extends StatelessWidget {
         if (state is ChangeUsernameSubmitFailure) {
           state.userFailure.maybeWhen(
             invalidUsername: () => showToast(
-              LocaleKeys.errorInvalidUsername.tr().toUpperCase(),
+              context.l10n.errorInvalidUsername.toUpperCase(),
             ),
             orElse: () => showToast(
               'UserFailure happended',

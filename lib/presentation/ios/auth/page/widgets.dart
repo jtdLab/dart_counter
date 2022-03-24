@@ -45,9 +45,9 @@ class _SignInPage extends StatelessWidget {
               loadFailure: (signInLoadFailure) {
                 signInLoadFailure.failure.whenOrNull(
                   // TODO show server error feels not perfect
-                  serverError: () => showToast(LocaleKeys.errorServer.tr()),
+                  serverError: () => showToast(context.l10n.errorServer),
                   invalidEmailAndPasswordCombination: () => showToast(
-                    LocaleKeys.errorInvalidEmailAndPasswordCombination.tr(),
+                    context.l10n.errorInvalidEmailAndPasswordCombination,
                   ),
                 );
               },
@@ -98,7 +98,7 @@ class _SignInWidget extends StatelessWidget {
           height: modalLogoMarginBottom(context),
         ),
         AppTextField(
-          placeholder: LocaleKeys.email.tr(),
+          placeholder: context.l10n.email,
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.emailAddress,
           onEditingComplete: () => node.nextFocus(),
@@ -110,7 +110,7 @@ class _SignInWidget extends StatelessWidget {
           textInputAction: TextInputAction.done,
           onEditingComplete: () => node.unfocus(),
           obscureText: true,
-          placeholder: LocaleKeys.password.tr(),
+          placeholder: context.l10n.password,
           onChanged: (passwordString) => context.read<SignInBloc>().add(
                 SignInEvent.passwordChanged(newPassword: passwordString),
               ),
@@ -121,7 +121,7 @@ class _SignInWidget extends StatelessWidget {
           builder: (context, state) {
             return AppPrimaryButton(
               isSubmitting: state is SignInLoadInProgress,
-              text: LocaleKeys.signIn.tr(),
+              text: context.l10n.signIn,
               onPressed: () => context.read<SignInBloc>().add(
                     const SignInEvent.signInPressed(),
                   ),
@@ -135,12 +135,12 @@ class _SignInWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppLinkButton(
-              text: LocaleKeys.forgotPassword.tr(),
+              text: context.l10n.forgotPassword,
               onPressed: () =>
                   context.router.push(const ForgotPasswordModalRoute()),
             ),
             AppLinkButton(
-              text: LocaleKeys.signUpNow.tr(),
+              text: context.l10n.signUpNow,
               onPressed: () {
                 context.read<PageController>().animateToPage(
                       1,
@@ -238,7 +238,7 @@ class _SignUpPage extends StatelessWidget {
               state.mapOrNull(
                 loadFailure: (signInLoadFailure) {
                   signInLoadFailure.failure.whenOrNull(
-                    serverError: () => showToast(LocaleKeys.errorServer.tr()),
+                    serverError: () => showToast(context.l10n.errorServer),
                   );
                 },
               );
@@ -292,7 +292,7 @@ class _SignUpWidget extends StatelessWidget {
               height: modalLogoMarginBottom(context),
             ),
             AppTextField(
-              placeholder: LocaleKeys.email.tr(),
+              placeholder: context.l10n.email,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
@@ -306,10 +306,10 @@ class _SignUpWidget extends StatelessWidget {
                     !initial.showErrorMessages ||
                     (initial.showErrorMessages && initial.email.isValid()),
               ),
-              errorMessage: LocaleKeys.errorInvalidEmailAddress.tr(),
+              errorMessage: context.l10n.errorInvalidEmailAddress,
             ),
             AppTextField(
-              placeholder: LocaleKeys.username.tr(),
+              placeholder: context.l10n.username,
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (usernameString) => context.read<SignUpBloc>().add(
@@ -320,11 +320,11 @@ class _SignUpWidget extends StatelessWidget {
                     !initial.showErrorMessages ||
                     (initial.showErrorMessages && initial.username.isValid()),
               ),
-              errorMessage: LocaleKeys.errorInvalidUsername.tr(),
+              errorMessage: context.l10n.errorInvalidUsername,
             ),
             AppTextField(
               obscureText: true,
-              placeholder: LocaleKeys.password.tr(),
+              placeholder: context.l10n.password,
               textInputAction: TextInputAction.next,
               onEditingComplete: () => node.nextFocus(),
               onChanged: (passwordString) => context.read<SignUpBloc>().add(
@@ -335,11 +335,11 @@ class _SignUpWidget extends StatelessWidget {
                     !initial.showErrorMessages ||
                     (initial.showErrorMessages && initial.password.isValid()),
               ),
-              errorMessage: LocaleKeys.errorInvalidPassword.tr(),
+              errorMessage: context.l10n.errorInvalidPassword,
             ),
             AppTextField(
               obscureText: true,
-              placeholder: LocaleKeys.passwordAgain.tr(),
+              placeholder: context.l10n.passwordAgain,
               textInputAction: TextInputAction.done,
               onEditingComplete: () => node.unfocus(),
               onChanged: (passwordAgainString) =>
@@ -355,7 +355,7 @@ class _SignUpWidget extends StatelessWidget {
                         initial.password.isValid() &&
                         initial.password == initial.passwordAgain),
               ),
-              errorMessage: LocaleKeys.errorPasswordsDontMatch.tr(),
+              errorMessage: context.l10n.errorPasswordsDontMatch,
             ),
             BlocBuilder<SignUpBloc, SignUpState>(
               buildWhen: (prev, next) =>
@@ -363,7 +363,7 @@ class _SignUpWidget extends StatelessWidget {
               builder: (context, state) {
                 return AppPrimaryButton(
                   isSubmitting: state is SignUpLoadInProgress,
-                  text: LocaleKeys.signIn.tr(),
+                  text: context.l10n.signIn,
                   onPressed: () => context.read<SignUpBloc>().add(
                         const SignUpEvent.signUpPressed(),
                       ),
@@ -374,7 +374,7 @@ class _SignUpWidget extends StatelessWidget {
               height: spacerSmall(context),
             ),
             AppLinkButton(
-              text: LocaleKeys.signIn.tr(),
+              text: context.l10n.signIn,
               onPressed: () {
                 context.read<PageController>().animateToPage(
                       0,

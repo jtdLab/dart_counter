@@ -197,7 +197,7 @@ class _PlayerItem extends StatelessWidget {
       title1: LocaleKeys.bestPointsShort
           .tr(args: ['${player.highestPoints}']).toUpperCase(),
       value1: '${player.points}',
-      title2: LocaleKeys.checkoutPercentageShort.tr().toUpperCase(),
+      title2: context.l10n.checkoutPercentageShort.toUpperCase(),
       value2: player.checkoutPercentage?.toStringAsFixed(2) ?? '--',
     );
   }

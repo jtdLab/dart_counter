@@ -59,7 +59,7 @@ class InScoreTrainingPage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.scoreTraining.tr().toUpperCase()),
+            middle: Text(context.l10n.scoreTraining.toUpperCase()),
           ),
           child: const _InScoreTrainingWidget(),
         ),

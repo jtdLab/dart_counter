@@ -22,7 +22,7 @@ class _SuccessWidget extends StatelessWidget {
           child: Column(
             children: [
               AutoSizeText(
-                LocaleKeys.passwordChanged.tr().toUpperCase(),
+                context.l10n.passwordChanged.toUpperCase(),
                 maxLines: 1,
                 minFontSize: 8,
                 maxFontSize: maxFontSizeNormal(context),
@@ -35,7 +35,7 @@ class _SuccessWidget extends StatelessWidget {
           ),
         ),
         AppPrimaryButton(
-          text: LocaleKeys.confirm.tr().toUpperCase(),
+          text: context.l10n.confirm.toUpperCase(),
           onPressed: () => context.router.pop(),
         ),
         const Spacer(),

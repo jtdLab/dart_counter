@@ -40,7 +40,7 @@ class CreateTrainingPage extends StatelessWidget {
               context.read<CreateTrainingBloc>().add(
                     CreateTrainingEvent.playerNameUpdated(
                       index: index,
-                      newName: '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
+                      newName: '${context.l10n.player} $unNamedPlayerIndex',
                     ),
                   );
               unNamedPlayerIndex++;
@@ -74,7 +74,7 @@ class CreateTrainingPage extends StatelessWidget {
             ),
           ),
           middle: Text(
-            LocaleKeys.createGame.tr().toUpperCase(),
+            context.l10n.createGame.toUpperCase(),
           ),
         ),
         child: const SingleChildScrollView(

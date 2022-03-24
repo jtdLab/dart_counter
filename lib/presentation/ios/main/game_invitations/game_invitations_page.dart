@@ -56,7 +56,7 @@ class GameInvitationsPage extends StatelessWidget {
             initial: (_) => AppPage(
               navigationBar: AppNavigationBar(
                 leading: const BackButton(),
-                middle: Text(LocaleKeys.invitations.tr().toUpperCase()),
+                middle: Text(context.l10n.invitations.toUpperCase()),
               ),
               child: const SingleChildScrollView(
                 child: _GameInvitationsWidget(),

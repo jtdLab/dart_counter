@@ -24,7 +24,7 @@ class ForgotPasswordSuccessView extends StatelessWidget {
             child: Column(
               children: [
                 AutoSizeText(
-                  LocaleKeys.emailSent.tr().toUpperCase(),
+                  context.l10n.emailSent.toUpperCase(),
                   key: emailSentTextKey,
                   maxLines: 1,
                   minFontSize: 8,
@@ -40,7 +40,7 @@ class ForgotPasswordSuccessView extends StatelessWidget {
           ),
           AppPrimaryButton(
             key: goToSignInButtonKey,
-            text: LocaleKeys.signIn.tr(),
+            text: context.l10n.signIn,
             onPressed: () => _onGoToSignInPressed(context),
           ),
           const Spacer(),

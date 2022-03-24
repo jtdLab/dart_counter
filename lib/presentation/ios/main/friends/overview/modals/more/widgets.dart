@@ -18,7 +18,7 @@ class _MoreWidget extends StatelessWidget {
           height: spacerLarge(context),
         ),
         AppPrimaryButton(
-          //text: LocaleKeys.takePhoto.tr().toUpperCase(),
+          //text: context.l10n.takePhoto.toUpperCase(),
           text: 'Show Profile'.toUpperCase(), // TODO
           onPressed: () {
             context.router.pop();
@@ -26,7 +26,7 @@ class _MoreWidget extends StatelessWidget {
           },
         ),
         AppPrimaryButton(
-          // text: LocaleKeys.choosePhoto.tr().toUpperCase(),
+          // text: context.l10n.choosePhoto.toUpperCase(),
           text: 'Remove'.toUpperCase(), // TODO
           onPressed: () {
             context.read<MoreBloc>().add(const MoreEvent.removePressed());
@@ -34,7 +34,7 @@ class _MoreWidget extends StatelessWidget {
           },
         ),
         AppPrimaryButton(
-          text: LocaleKeys.done.tr().toUpperCase(),
+          text: context.l10n.done.toUpperCase(),
           onPressed: () => context.router.pop(),
         ),
         SizedBox(

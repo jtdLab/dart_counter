@@ -1612,7 +1612,7 @@ class _CheckButton extends StatelessWidget {
               : () => context
                   .read<Bloc<standard.KeyBoardEvent, standard.KeyBoardState>>()
                   .add(const standard.KeyBoardEvent.checkPressed()),
-          text: LocaleKeys.check.tr().toUpperCase(),
+          text: context.l10n.check.toUpperCase(),
         );
       },
     );
@@ -1924,7 +1924,7 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
       spacing: size6(context),
       children: [
         AppActionButton.flexible(
-          text: '${LocaleKeys.double}.one'.tr().toUpperCase(),
+          text: '${context.l10n.double}.one'.toUpperCase(),
           fontSize: 18,
           color: AppColors.white,
           onPressed: () => context
@@ -1936,7 +1936,7 @@ class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               AppActionButton.flexible(
-                text: LocaleKeys.missed.tr().toUpperCase(),
+                text: context.l10n.missed.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context

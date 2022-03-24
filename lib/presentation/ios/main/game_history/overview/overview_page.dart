@@ -25,7 +25,7 @@ class GameHistoryOverviewPage extends StatelessWidget {
       navigationBar: AppNavigationBar(
         leading: const BackButton(),
         middle: Text(
-          LocaleKeys.gameHistory.tr().toUpperCase(),
+          context.l10n.gameHistory.toUpperCase(),
         ),
       ),
       child: const SingleChildScrollView(

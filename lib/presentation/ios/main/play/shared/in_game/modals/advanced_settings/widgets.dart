@@ -85,7 +85,7 @@ class _AdvancedSettingsPlayerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        LocaleKeys.showAverrage.tr().toUpperCase(),
+                        context.l10n.showAverrage.toUpperCase(),
                       ),
                       BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
                         builder: (context, state) {
@@ -120,7 +120,7 @@ class _AdvancedSettingsPlayerCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // LocaleKeys.showCheckoutPercentage.tr().toUpperCase(), // TODO
+                      // context.l10n.showCheckoutPercentage.toUpperCase(), // TODO
                       const Text('SHOW CHECKOUT'),
                       BlocBuilder<AdvancedSettingsBloc, AdvancedSettingsState>(
                         builder: (context, state) {

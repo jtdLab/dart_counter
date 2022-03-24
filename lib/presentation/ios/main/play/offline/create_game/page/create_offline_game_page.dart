@@ -52,7 +52,7 @@ class CreateOfflineGamePage extends StatelessWidget {
                       CreateOfflineGameEvent.playerNameUpdated(
                         index: index,
                         newName:
-                            '${LocaleKeys.player.tr()} $unNamedPlayerIndex',
+                            '${context.l10n.player} $unNamedPlayerIndex',
                       ),
                     );
                 unNamedPlayerIndex++;
@@ -85,7 +85,7 @@ class CreateOfflineGamePage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.createGame.tr().toUpperCase()),
+            middle: Text(context.l10n.createGame.toUpperCase()),
           ),
           child: const SingleChildScrollView(child: _CreateOfflineGameWidget()),
         ),

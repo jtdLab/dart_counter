@@ -235,7 +235,7 @@ class _PlayerItem extends StatelessWidget {
       title1:
           LocaleKeys.takesLeft.tr(args: ['${player.takesLeft}']).toUpperCase(),
       value1: player.average?.toStringAsFixed(2) ?? '--',
-      title2: LocaleKeys.totalPoints.tr().toUpperCase(),
+      title2: context.l10n.totalPoints.toUpperCase(),
       value2: '${player.points}',
     );
   }

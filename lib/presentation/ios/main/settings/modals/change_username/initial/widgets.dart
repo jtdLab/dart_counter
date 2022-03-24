@@ -20,14 +20,14 @@ class _ChangeUsernameInitialWidget extends StatelessWidget {
         SizedBox(
           height: 3 * (size40(context) + size12(context)),
           child: AutoSizeText(
-            LocaleKeys.changeUsername.tr().toUpperCase(),
+            context.l10n.changeUsername.toUpperCase(),
             maxLines: 1,
             minFontSize: 8,
             maxFontSize: maxFontSizeNormal(context),
           ),
         ),
         AppTextField(
-          placeholder: LocaleKeys.newUsernane.tr().toUpperCase(),
+          placeholder: context.l10n.newUsernane.toUpperCase(),
           textInputAction: TextInputAction.done,
           onEditingComplete: () => node.unfocus(),
           onChanged: (newUsernameString) =>
@@ -47,7 +47,7 @@ class _ChangeUsernameInitialWidget extends StatelessWidget {
 
             return AppPrimaryButton(
               isSubmitting: isSubmitting,
-              text: LocaleKeys.confirm.tr().toUpperCase(),
+              text: context.l10n.confirm.toUpperCase(),
               onPressed: () => context
                   .read<ChangeUsernameBloc>()
                   .add(const ChangeUsernameEvent.confirmPressed()),

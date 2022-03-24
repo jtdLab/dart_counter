@@ -82,7 +82,7 @@ class _DartBotCard extends StatelessWidget {
             AppCard(
               headerBodySpacing: hasDartBot ? null : 0,
               leading: AutoSizeText(
-                LocaleKeys.dartBot.tr().toUpperCase(),
+                context.l10n.dartBot.toUpperCase(),
                 minFontSize: 8,
                 maxFontSize: 14,
                 maxLines: 1,
@@ -102,7 +102,7 @@ class _DartBotCard extends StatelessWidget {
                                     newTargetAverage: value,
                                   ),
                                 ),
-                        title: LocaleKeys.dartbotAverrage.tr().toUpperCase(),
+                        title: context.l10n.dartbotAverrage.toUpperCase(),
                       ),
                     ]
                   : [],
@@ -321,7 +321,7 @@ class _EditablePlayerItem extends StatelessWidget {
                       AppTextField(
                         text: player.name ?? '',
                         withErrorDisplayer: false,
-                        placeholder: LocaleKeys.name.tr().toUpperCase(),
+                        placeholder: context.l10n.name.toUpperCase(),
                         onChanged: (newName) =>
                             context.read<CreateOfflineGameBloc>().add(
                                   CreateOfflineGameEvent.playerNameUpdated(
@@ -383,7 +383,7 @@ class _DartBotItem extends StatelessWidget {
                 SizedBox(width: spacerNormal(context)),
                 const AppRoundedImage.normal(imageName: AppImages.robotNew),
                 const Spacer(),
-                Text(LocaleKeys.dartBot.tr().toUpperCase()),
+                Text(context.l10n.dartBot.toUpperCase()),
                 const Spacer(),
                 // TODO
                 /**

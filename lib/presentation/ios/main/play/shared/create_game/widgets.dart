@@ -20,7 +20,7 @@ class PlayerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.player.tr().toUpperCase(),
+        context.l10n.player.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -52,7 +52,7 @@ class _AddPlayerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppActionButton.small(
       onPressed: onPressed,
-      text: LocaleKeys.addPlayer.tr().toUpperCase(),
+      text: context.l10n.addPlayer.toUpperCase(),
     );
   }
 }
@@ -81,7 +81,7 @@ class GameSettingsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       middle: AutoSizeText(
-        LocaleKeys.modus.tr().toUpperCase(),
+        context.l10n.modus.toUpperCase(),
         minFontSize: 8,
         maxFontSize: 14,
         maxLines: 1,
@@ -253,7 +253,7 @@ class PlayButton extends StatelessWidget {
     return AppActionButton.large(
       onPressed: onPressed,
       icon: Image.asset(AppImages.targetNew),
-      text: LocaleKeys.play.tr().toUpperCase(),
+      text: context.l10n.play.toUpperCase(),
     );
   }
 }

@@ -40,7 +40,7 @@ class SettingsPage extends StatelessWidget {
               navigationBar: AppNavigationBar(
                 leading: const BackButton(),
                 middle: Text(
-                  LocaleKeys.settings.tr().toUpperCase(),
+                  context.l10n.settings.toUpperCase(),
                 ),
               ),
               child: const SingleChildScrollView(

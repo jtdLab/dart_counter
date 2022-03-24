@@ -39,7 +39,7 @@ class _ReceivedGameInvitationsCard extends StatelessWidget {
 
         return AppCard(
           middle: Text(
-            LocaleKeys.received.tr().toUpperCase(),
+            context.l10n.received.toUpperCase(),
             style: CupertinoTheme.of(context)
                 .textTheme
                 .textStyle
@@ -126,7 +126,7 @@ class _SentGameInvitationsCard extends StatelessWidget {
 
         return AppCard(
           middle: Text(
-            LocaleKeys.sent.tr().toUpperCase(),
+            context.l10n.sent.toUpperCase(),
             style: CupertinoTheme.of(context)
                 .textTheme
                 .textStyle

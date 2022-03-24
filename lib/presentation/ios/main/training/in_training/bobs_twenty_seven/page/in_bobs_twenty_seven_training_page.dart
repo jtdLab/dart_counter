@@ -76,7 +76,7 @@ class InBobsTwentySeventTrainingPage extends StatelessWidget {
                 },
               ),
             ),
-            middle: Text(LocaleKeys.bobs27.tr().toUpperCase()),
+            middle: Text(context.l10n.bobs27.toUpperCase()),
           ),
           child: const _InBobsTwentySevenTrainingWidget(),
         ),
