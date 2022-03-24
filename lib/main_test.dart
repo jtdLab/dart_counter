@@ -25,7 +25,7 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
    */
-  await EasyLocalization.ensureInitialized();
+
   configureInjection(Environment.test);
   await Firebase.initializeApp();
 

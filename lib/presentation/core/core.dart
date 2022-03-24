@@ -11,8 +11,11 @@ export 'shared/shared.dart';
 export 'package:dart_counter/injection.dart';
 
 // Localization
-export 'package:easy_localization/easy_localization.dart' hide TextDirection;
-export 'package:dart_counter/generated/locale_keys.g.dart';
+
+export 'package:flutter_localizations/flutter_localizations.dart';
+// TODO remove
+//export 'package:easy_localization/easy_localization.dart' hide TextDirection;
+//export 'package:dart_counter/generated/locale_keys.g.dart';
 
 // Routing
 export 'package:auto_route/auto_route.dart';

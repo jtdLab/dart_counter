@@ -3,7 +3,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // OTHER
 import 'dart:io';
-import 'package:dart_counter/generated/codegen_loader.g.dart';
 
 // BLOCS
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
@@ -20,20 +19,11 @@ part 'widgets.dart';
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-        Locale('de'),
-      ],
-      fallbackLocale: const Locale('en'),
-      path: 'assets/languages',
-      assetLoader: const CodegenLoader(),
-      child: BlocProvider(
-        create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
-        child: PlatformWidget(
-          android: (context) => ios.AppWidget(), // TODO provide the ios widget
-          ios: (context) => ios.AppWidget(),
-        ),
+    return BlocProvider(
+      create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
+      child: PlatformWidget(
+        android: (context) => ios.AppWidget(), // TODO provide the ios widget
+        ios: (context) => ios.AppWidget(),
       ),
     );
   }

@@ -3,7 +3,6 @@
 import 'package:dart_counter/injection.dart';
 import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
@@ -23,7 +22,7 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
    */
-  await EasyLocalization.ensureInitialized();
+
   configureInjection(Environment.prod);
   await Firebase.initializeApp();
   runApp(
