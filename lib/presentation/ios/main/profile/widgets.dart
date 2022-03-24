@@ -79,8 +79,7 @@ class _ProfileWidget extends HookWidget {
                         const Spacer(),
                         Text(
                           pageIndex.value == 0
-                              ? LocaleKeys.general
-                                  .tr()
+                              ? context.l10n.general
                                   .toUpperCase() // TODO better string
                               : pageIndex.value == 1
                                   ? context.l10n.online.toUpperCase()

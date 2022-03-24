@@ -58,15 +58,15 @@ class _OnePlayerDisplayer extends StatelessWidget {
           points: player1.points,
           stats: [
             Tuple2(
-              '${context.l10n.single}.many'.toUpperCase(),
+              context.l10n.nSingle(2).toUpperCase(),
               player1.singles.toString(),
             ),
             Tuple2(
-              '${context.l10n.double}.many'.toUpperCase(),
+              context.l10n.nDouble(2).toUpperCase(),
               player1.doubles.toString(),
             ),
             Tuple2(
-              '${context.l10n.triple}.many'.toUpperCase(),
+              context.l10n.nTriple(2).toUpperCase(),
               player1.triples.toString(),
             ),
             Tuple2(
@@ -241,7 +241,7 @@ class _KeyBoard extends StatelessWidget {
             spacing: size6(context),
             children: [
               AppActionButton.flexible(
-                text: '${context.l10n.single}.one'.toUpperCase(),
+                text: '${context.l10n.nSingle}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -249,7 +249,7 @@ class _KeyBoard extends StatelessWidget {
                     .add(const KeyBoardEvent.singlePressed()),
               ),
               AppActionButton.flexible(
-                text: '${context.l10n.double}.one'.toUpperCase(),
+                text: '${context.l10n.nDouble}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -257,7 +257,7 @@ class _KeyBoard extends StatelessWidget {
                     .add(const KeyBoardEvent.doublePressed()),
               ),
               AppActionButton.flexible(
-                text: '${context.l10n.triple}.one'.toUpperCase(),
+                text: '${context.l10n.nTriple}.one'.toUpperCase(),
                 fontSize: 18,
                 color: AppColors.white,
                 onPressed: () => context
@@ -318,15 +318,15 @@ class _PlayerItem extends StatelessWidget {
       points: player.points,
       stats: [
         Tuple2(
-          '${context.l10n.single}.many'.toUpperCase(),
+          context.l10n.nSingle(2).toUpperCase(),
           player.singles.toString(),
         ),
         Tuple2(
-          '${context.l10n.double}.many'.toUpperCase(),
+          context.l10n.nDouble(2).toUpperCase(),
           player.doubles.toString(),
         ),
         Tuple2(
-          '${context.l10n.triple}.many'.toUpperCase(),
+          context.l10n.nTriple(2).toUpperCase(),
           player.triples.toString(),
         ),
         Tuple2(

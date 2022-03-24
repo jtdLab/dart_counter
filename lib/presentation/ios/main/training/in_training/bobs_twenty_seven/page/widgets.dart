@@ -53,8 +53,8 @@ class _OnePlayerDisplayer extends StatelessWidget {
           color: AppColors.blue,
           photoUrl: null, // TODO real photoUrl,
           name: player1.name!, // TODO ! needed ?
-          subHeaderText: LocaleKeys.bestPointsShort
-              .tr(args: ['${player1.highestPoints}']).toUpperCase(),
+          subHeaderText:
+              context.l10n.bestPointsShort(player1.highestPoints).toUpperCase(),
           property: '${player1.points}',
           subProperty: player1.checkoutPercentage != null
               ? '${player1.checkoutPercentage!.toStringAsFixed(2)} %'
@@ -194,8 +194,7 @@ class _PlayerItem extends StatelessWidget {
       color: color,
       photoUrl: null, // TODO real value
       name: player.name!, // TODO ! needed ?
-      title1: LocaleKeys.bestPointsShort
-          .tr(args: ['${player.highestPoints}']).toUpperCase(),
+      title1: context.l10n.bestPointsShort(player.highestPoints).toUpperCase(),
       value1: '${player.points}',
       title2: context.l10n.checkoutPercentageShort.toUpperCase(),
       value2: player.checkoutPercentage?.toStringAsFixed(2) ?? '--',

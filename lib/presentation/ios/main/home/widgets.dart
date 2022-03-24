@@ -220,7 +220,7 @@ class _PlayOnlineButton extends StatelessWidget {
       color: AppColors.orangeNew,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.playersNew),
-      text: '${context.l10n.play.tr()} ${LocaleKeys.online}'.toUpperCase(),
+      text: '${context.l10n.play} ${context.l10n.online}'.toUpperCase(),
     );
   }
 }
@@ -234,7 +234,7 @@ class _PlayOfflineButton extends StatelessWidget {
       color: AppColors.white,
       fontColor: AppColors.black,
       icon: Image.asset(AppImages.robotNew),
-      text: '${context.l10n.play.tr()} ${LocaleKeys.offline}'.toUpperCase(),
+      text: '${context.l10n.play} ${context.l10n.offline}'.toUpperCase(),
     );
   }
 }

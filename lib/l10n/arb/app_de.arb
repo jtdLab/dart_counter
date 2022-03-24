@@ -1,4 +1,5 @@
 {
+    "@@locale": "de",
     "username": "Benutzername",
     "password": "Passwort",
     "signIn": "Einloggen",
@@ -110,10 +111,42 @@
     "practice": "Training",
     "noGamesFound": "Keine Spiele gefunden",
     "mainMenu": "Hauptmenü",
+    "nSingle": "{count,plural, =1{single} other{singles}",
+    "@nSingle": {
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "nDouble": "{count,plural, =1{double} other{doubles}",
+    "@nDouble": {
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "nTriple": "{count,plural, =1{triple} other{triples}",
+    "@nTriple": {
+        "placeholders": {
+            "count": {}
+        }
+    },
     "missed": "verpasst",
     "target": "Ziel",
-    "takesLeft": "Noch {} Aufnahmen",
-    "bestPointsShort": "Best: {}",
+    "takesLeft": "Noch {takesLeft} Aufnahmen",
+    "@takesLeft": {
+        "placeholders": {
+            "takesLeft": {
+                "type": "int"
+            }
+        }
+    },
+    "bestPointsShort": "Best: {points}",
+    "@bestPointsShort": {
+        "placeholders": {
+            "points": {
+                "type": "int"
+            }
+        }
+    },
     "totalPoints": "Punkte gesamt",
     "singleTraining": "Single Training",
     "doubleTraining": "Doppel Training",

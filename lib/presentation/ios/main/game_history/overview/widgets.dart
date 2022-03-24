@@ -72,10 +72,8 @@ class _GameHistoryCard extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
         trailing: AutoSizeText(
-          timeago.format(
-            game.createdAt,
-            locale: context.locale.languageCode,
-          ),
+          // TODO works?
+          timeago.format(game.createdAt, locale: context.l10n.localeName),
           maxLines: 1,
           minFontSize: 6,
           maxFontSize: 10,

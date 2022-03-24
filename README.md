@@ -294,3 +294,5 @@ option 2: black box test only inheriting classes con: duplicate test code
 // firebase and chaching https://medium.com/firebase-developers/firestore-clients-to-cache-or-not-to-cache-or-both-8f66a239c329
 
 https://github.com/syncfusion/flutter-widgets/issues/71 charts packafge needs license
+
+https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc/edit

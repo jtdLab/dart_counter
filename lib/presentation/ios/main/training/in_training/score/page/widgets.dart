@@ -93,8 +93,8 @@ class _OnePlayerDisplayer extends StatelessWidget {
           color: AppColors.blue,
           photoUrl: null, // TODO real photoUrl,
           name: player1.name!, // TODO ! needed ?
-          subHeaderText: LocaleKeys.takesLeft
-              .tr(args: ['${player1.takesLeft}']).toUpperCase(),
+          subHeaderText:
+              context.l10n.takesLeft(player1.takesLeft).toUpperCase(),
           property: player1.average?.toStringAsFixed(2) ?? '--',
           subProperty: '${player1.points}',
         );
@@ -232,8 +232,7 @@ class _PlayerItem extends StatelessWidget {
       color: color,
       photoUrl: null, // TODO real value
       name: player.name!, // TODO ! needed ?
-      title1:
-          LocaleKeys.takesLeft.tr(args: ['${player.takesLeft}']).toUpperCase(),
+      title1: context.l10n.takesLeft(player.takesLeft).toUpperCase(),
       value1: player.average?.toStringAsFixed(2) ?? '--',
       title2: context.l10n.totalPoints.toUpperCase(),
       value2: '${player.points}',
@@ -257,8 +256,7 @@ class _PlayerItemSmall extends StatelessWidget {
       color: color,
       photoUrl: null, // TODO real value
       name: player.name!, // TODO ! needed ?
-      title:
-          LocaleKeys.takesLeft.tr(args: ['${player.takesLeft}']).toUpperCase(),
+      title: context.l10n.takesLeft(player.takesLeft).toUpperCase(),
       value: player.average?.toStringAsFixed(2) ?? '--',
     );
   }

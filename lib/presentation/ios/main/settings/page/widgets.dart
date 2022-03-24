@@ -33,7 +33,7 @@ class _SettingsWidget extends StatelessWidget {
             SizedBox(
               height: spacerLarge(context),
             ),
-            _LanguageCard(),
+            // _LanguageCard(), // TODO needed or remove
             SizedBox(
               height: spacerLarge(context),
             ),
@@ -61,7 +61,8 @@ class _SettingsWidget extends StatelessWidget {
   }
 }
 
-class _LanguageCard extends StatelessWidget {
+/**
+ * class _LanguageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
@@ -173,6 +174,8 @@ class _CheckBox extends StatelessWidget {
     }
   }
 }
+
+ */
 
 class _AccountCard extends StatelessWidget {
   @override
