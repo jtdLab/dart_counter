@@ -275,7 +275,7 @@ owner: \_userService.getUser().getOrElse(
 // TODO getit constructor test should not test initial state most classed have a testcase for that remove it in the future
 
 // TODO decide how to test abstract baseclasses
-option 1: test functionality of the super class seperate and the inheriting class in 2 
+option 1: test functionality of the super class seperate and the inheriting class in 2
 test classes pro: minimal test code
 option 2: black box test only inheriting classes con: duplicate test code
 
@@ -296,3 +296,13 @@ option 2: black box test only inheriting classes con: duplicate test code
 https://github.com/syncfusion/flutter-widgets/issues/71 charts packafge needs license
 
 https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc/edit
+
+// important testing widgets
+https://stackoverflow.com/questions/62447898/flutter-widget-test-cannot-emulate-different-screen-size-properly
+
+https://github.com/flutter/flutter/issues/12994#issuecomment-902964066
+
+https://github.com/flutter/flutter/issues/59755
+
+flutter pub add golden_toolkit
+ und gibt noch andere goldens test s
