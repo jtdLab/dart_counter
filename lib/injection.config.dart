@@ -87,19 +87,19 @@ import 'application/main/training/create_training/create_training_bloc.dart'
 import 'application/main/training/double_training/in_training/in_double_training_bloc.dart'
     as _i51;
 import 'application/main/training/double_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i56;
+    as _i57;
 import 'application/main/training/double_training/in_training/input_area/key_board/key_board_bloc.dart'
     as _i63;
 import 'application/main/training/double_training/watcher/double_training_watcher_cubit.dart'
     as _i90;
 import 'application/main/training/score_training/in_training/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i57;
+    as _i58;
 import 'application/main/training/score_training/in_training/detailed_input_area/key_board/key_board_bloc.dart'
     as _i64;
 import 'application/main/training/score_training/in_training/in_score_training_bloc.dart'
     as _i53;
 import 'application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart'
-    as _i58;
+    as _i56;
 import 'application/main/training/score_training/in_training/standard_input_area/key_board/key_board_bloc.dart'
     as _i65;
 import 'application/main/training/score_training/watcher/score_training_watcher_cubit.dart'
@@ -134,9 +134,9 @@ import 'infrastructure/auth/core/apple_sign_in.dart' as _i5;
 import 'infrastructure/auth/core/auth_provider_manager.dart' as _i6;
 import 'infrastructure/auth/fake_auth_service.dart' as _i22;
 import 'infrastructure/auth/firebase_auth_service.dart' as _i98;
-import 'infrastructure/cache/fake_cache.dart' as _i27;
+import 'infrastructure/cache/fake_cache.dart' as _i26;
 import 'infrastructure/cache/i_cache.dart' as _i25;
-import 'infrastructure/cache/sqflite_cache.dart' as _i26;
+import 'infrastructure/cache/sqflite_cache.dart' as _i27;
 import 'infrastructure/connectivity/connectivity_service.dart' as _i30;
 import 'infrastructure/connectivity/fake_connectivity_service.dart' as _i29;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i113;
@@ -207,10 +207,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i23.IBobsTwentySevenService>(
       () => _i24.BobsTwentySevenService(),
       registerFor: {_dev, _test, _prod});
+  gh.lazySingleton<_i25.ICache>(() => _i26.FakeCache(), registerFor: {_dev});
   gh.lazySingleton<_i25.ICache>(
-      () => _i26.SqfliteCache(get<_i11.DefaultCacheManager>()),
+      () => _i27.SqfliteCache(get<_i11.DefaultCacheManager>()),
       registerFor: {_test, _prod});
-  gh.lazySingleton<_i25.ICache>(() => _i27.FakeCache(), registerFor: {_dev});
   gh.lazySingleton<_i28.IConnectivityService>(
       () => _i29.FakeConnectivityService(),
       registerFor: {_dev});
@@ -256,14 +256,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factoryParam<_i55.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i55.InputRowBloc.injectable(
           get<_i23.IBobsTwentySevenService>(), otherDependencies));
-  gh.factoryParam<_i56.InputRowBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i56.InputRowBloc.injectable(
-          get<_i33.IDoubleTrainingService>(), otherDependencies));
+  gh.factory<_i56.InputRowBloc>(
+      () => _i56.InputRowBloc(get<_i43.IScoreTrainingService>()));
   gh.factoryParam<_i57.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i57.InputRowBloc.injectable(
+          get<_i33.IDoubleTrainingService>(), otherDependencies));
+  gh.factoryParam<_i58.InputRowBloc, List<Object>, dynamic>(
+      (otherDependencies, _) => _i58.InputRowBloc.injectable(
           get<_i43.IScoreTrainingService>(), otherDependencies));
-  gh.factory<_i58.InputRowBloc>(
-      () => _i58.InputRowBloc(get<_i43.IScoreTrainingService>()));
   gh.factoryParam<_i59.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i59.InputRowBloc.injectable(
           get<_i45.ISingleTrainingService>(), otherDependencies));
@@ -343,8 +343,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factoryParam<_i86.CreateOfflineGameBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i86.CreateOfflineGameBloc.injectable(
           get<_i41.IPlayOfflineService>(), otherDependencies));
-  gh.factory<_i87.CreateOfflineGameCubit>(() => _i87.CreateOfflineGameCubit(
-      get<_i41.IPlayOfflineService>(), get<_i19.IAdvancedSettingsService>()));
+  gh.factoryParam<_i87.CreateOfflineGameCubit, List<Object>, dynamic>(
+      (otherDependencies, _) => _i87.CreateOfflineGameCubit.injectable(
+          get<_i41.IPlayOfflineService>(),
+          get<_i19.IAdvancedSettingsService>(),
+          otherDependencies));
   gh.factoryParam<_i88.CreateTrainingBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i88.CreateTrainingBloc.injectable(
           get<_i45.ISingleTrainingService>(),

@@ -20,7 +20,6 @@ import '../../application/main/play/shared/in_game/checkout_details/checkout_det
     as _i70;
 import '../../domain/play/abstract_game_snapshot.dart' as _i68;
 import '../../domain/play/abstract_player_snapshot.dart' as _i71;
-import '../../domain/play/online/online_game_snapshot.dart' as _i72;
 import 'auth/auth_flow.dart' as _i1;
 import 'auth/modals/forgot_password/forgot_password_modal.dart' as _i4;
 import 'auth/modals/forgot_password/initial/initial_page.dart' as _i5;
@@ -1363,7 +1362,7 @@ class InOnlineGameFlowRoute extends _i63.PageRouteInfo<void> {
 class PostOnlineGamePageRoute
     extends _i63.PageRouteInfo<PostOnlineGamePageRouteArgs> {
   PostOnlineGamePageRoute(
-      {_i66.Key? key, required _i72.OnlineGameSnapshot snapshot})
+      {_i66.Key? key, required _i68.OnlineGameSnapshot snapshot})
       : super(PostOnlineGamePageRoute.name,
             path: 'post-online-game-page',
             args: PostOnlineGamePageRouteArgs(key: key, snapshot: snapshot));
@@ -1376,7 +1375,7 @@ class PostOnlineGamePageRouteArgs {
 
   final _i66.Key? key;
 
-  final _i72.OnlineGameSnapshot snapshot;
+  final _i68.OnlineGameSnapshot snapshot;
 
   @override
   String toString() {
@@ -1389,7 +1388,7 @@ class PostOnlineGamePageRouteArgs {
 class CreateOnlineGamePageRoute
     extends _i63.PageRouteInfo<CreateOnlineGamePageRouteArgs> {
   CreateOnlineGamePageRoute(
-      {_i66.Key? key, required _i72.OnlineGameSnapshot initialSnapshot})
+      {_i66.Key? key, required _i68.OnlineGameSnapshot initialSnapshot})
       : super(CreateOnlineGamePageRoute.name,
             path: '',
             args: CreateOnlineGamePageRouteArgs(
@@ -1404,7 +1403,7 @@ class CreateOnlineGamePageRouteArgs {
 
   final _i66.Key? key;
 
-  final _i72.OnlineGameSnapshot initialSnapshot;
+  final _i68.OnlineGameSnapshot initialSnapshot;
 
   @override
   String toString() {
@@ -1417,7 +1416,7 @@ class CreateOnlineGamePageRouteArgs {
 class InOnlineGamePageRoute
     extends _i63.PageRouteInfo<InOnlineGamePageRouteArgs> {
   InOnlineGamePageRoute(
-      {_i66.Key? key, required _i72.OnlineGameSnapshot initialSnapshot})
+      {_i66.Key? key, required _i68.OnlineGameSnapshot initialSnapshot})
       : super(InOnlineGamePageRoute.name,
             path: '',
             args: InOnlineGamePageRouteArgs(
@@ -1431,7 +1430,7 @@ class InOnlineGamePageRouteArgs {
 
   final _i66.Key? key;
 
-  final _i72.OnlineGameSnapshot initialSnapshot;
+  final _i68.OnlineGameSnapshot initialSnapshot;
 
   @override
   String toString() {
@@ -1444,7 +1443,7 @@ class InOnlineGamePageRouteArgs {
 class OnlineStatsModalRoute
     extends _i63.PageRouteInfo<OnlineStatsModalRouteArgs> {
   OnlineStatsModalRoute(
-      {_i66.Key? key, required _i72.OnlineGameSnapshot snapshot})
+      {_i66.Key? key, required _i68.OnlineGameSnapshot snapshot})
       : super(OnlineStatsModalRoute.name,
             path: 'online-stats-modal',
             args: OnlineStatsModalRouteArgs(key: key, snapshot: snapshot));
@@ -1457,7 +1456,7 @@ class OnlineStatsModalRouteArgs {
 
   final _i66.Key? key;
 
-  final _i72.OnlineGameSnapshot snapshot;
+  final _i68.OnlineGameSnapshot snapshot;
 
   @override
   String toString() {

@@ -30,11 +30,14 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
           create: (context) => CreateOnlineGameCubit.getIt(),
         ),
         BlocProvider(
-          create: (context) => CreateOfflineGameCubit.getIt(),
-        )
+          create: (context) => CreateOfflineGameCubit.getIt(
+            context.read<UserCubit>(),
+          ),
+        ),
       ],
       child: this,
     );
+    
   }
 
   @override
@@ -69,7 +72,7 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
             success: (success) {
               final initialSnapshot = success.initialSnapshot;
 
-              context.router.replace(
+              context.router.push(
                 PlayOfflineFlowRoute(
                   children: [
                     CreateOfflineGameFlowRoute(

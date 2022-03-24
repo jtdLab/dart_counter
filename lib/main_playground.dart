@@ -1,18 +1,47 @@
 // coverage:ignore-file
 
-import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart' hide Listenable;
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
+import 'play_ground/my_bloc.dart';
+
 void main() {
+  final myBloc = MyBloc();
+
   runApp(
-    const CupertinoApp(
-      home: CupertinoPageScaffold(
-        child: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: LineChart(),
+    CupertinoApp(
+      home: BlocProvider(
+        create: (context) => myBloc,
+        child: CupertinoPageScaffold(
+          child: FilteredBlocListener<MyBloc, MyState>(
+            listenWhenType: const [
+              Listenable(),
+              ListenAndBuildable(),
+            ],
+            listener: (_, state) => state.whenOrNull(
+              listenable: () => print('listenable'),
+              listenAndBuildable: () => print('listen&Buildable'),
+            ),
+            child: SafeArea(
+              child: Center(
+                child: CupertinoButton(
+                  onPressed: () {
+                    myBloc.emit(const MyState.listenable());
+                    myBloc.emit(const MyState.listenAndBuildable());
+                  },
+                  child: BlocBuilder<MyBloc, MyState>(
+                    buildWhen: (_, current) => [
+                      current is Buildable,
+                      current is ListenAndBuildable,
+                    ].fold<bool>(true, (acc, element) => acc |= element),
+                    builder: (_, state) => state.whenOrNull(
+                      buildable: () => const Text('buildable'),
+                      listenAndBuildable: () => const Text('listen&Buildable'),
+                    )!,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -21,7 +50,94 @@ void main() {
   );
 }
 
-class LineChart extends StatelessWidget {
+class FilteredBlocListener<B extends StateStreamable<S>, S>
+    extends StatelessWidget {
+  final void Function(BuildContext, S) listener;
+  final B? bloc;
+  final List<S>? listenWhenType;
+  final Widget? child;
+
+  const FilteredBlocListener({
+    Key? key,
+    required this.listener,
+    this.bloc,
+    this.listenWhenType,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<B, S>(
+      listener: listener,
+      bloc: bloc,
+      listenWhen: (_, current) => [
+        current.runtimeType == listenWhenType![0].runtimeType,
+        current.runtimeType == listenWhenType![1].runtimeType,
+      ].fold<bool>(true, (acc, element) => acc |= element),
+      // current is F && (listenWhen?.call(previous, current) ?? true),
+      child: child,
+    );
+  }
+}
+
+
+/**
+ * class FilteredBlocListener<B extends StateStreamable<S>, S, F extends S>
+    extends StatelessWidget {
+  final void Function(BuildContext, F) listener;
+  final B? bloc;
+  final bool Function(S, F)? listenWhen;
+  final Widget? child;
+
+  const FilteredBlocListener({
+    Key? key,
+    required this.listener,
+    this.bloc,
+    this.listenWhen,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<B, S>(
+      listener: (context, state) => listener(context, state as F),
+      bloc: bloc,
+      listenWhen: (previous, current) =>
+          current is F && (listenWhen?.call(previous, current) ?? true),
+      child: child,
+    );
+  }
+}
+
+class FilteredBlocBuilder<B extends StateStreamable<S>, S, F extends S>
+    extends StatelessWidget {
+  final Widget Function(BuildContext, F) builder;
+  final B? bloc;
+  final bool Function(S, F)? listenWhen;
+
+  const FilteredBlocBuilder({
+    Key? key,
+    required this.builder,
+    this.bloc,
+    this.listenWhen,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<B, S>(
+      builder: (context, state) => builder(context, state as F),
+      bloc: bloc,
+      buildWhen: (previous, current) =>
+          current is F && (listenWhen?.call(previous, current) ?? true),
+    );
+  }
+}
+
+
+ */
+
+/**
+ * class LineChart extends StatelessWidget {
   const LineChart({
     Key? key,
   }) : super(key: key);
@@ -112,3 +228,5 @@ class _PieData {
   final num yData;
   final String text;
 }
+
+ */
