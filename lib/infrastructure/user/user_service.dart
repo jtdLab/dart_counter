@@ -12,7 +12,7 @@ import 'package:dart_counter/infrastructure/cache/i_cache.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart';

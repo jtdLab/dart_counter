@@ -10,7 +10,7 @@ import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/friend/user_snapshot_dto.dart';
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';

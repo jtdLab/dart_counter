@@ -7,7 +7,7 @@ import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';

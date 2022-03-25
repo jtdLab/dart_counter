@@ -1,4 +1,4 @@
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DartCounterBlocObserver extends BlocObserver {

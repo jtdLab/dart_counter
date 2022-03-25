@@ -4,7 +4,7 @@ import 'package:dart_counter/domain/core/domain_error.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/infrastructure/auth/core/apple_sign_in.dart';
 import 'package:dart_counter/infrastructure/auth/core/auth_provider_manager.dart';
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';

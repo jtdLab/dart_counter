@@ -7,7 +7,7 @@ import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/game/abstract_game_dto.dart';
 import 'package:dart_counter/infrastructure/game/online/online_player_dto.dart';
-import 'package:dart_counter/logger.dart';
+import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
