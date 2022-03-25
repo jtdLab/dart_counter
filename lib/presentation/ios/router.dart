@@ -66,6 +66,7 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/unauthenticated_flow.dart';
+import 'package:injectable/injectable.dart';
 
 part 'router.gr.dart';
 
@@ -372,6 +373,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
     ),
   ],
 )
+@lazySingleton
 class Router extends _$Router {}
 
 // TODO maybe move the following part into seperate file??

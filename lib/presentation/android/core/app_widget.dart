@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:dart_counter/presentation/android/core/core.dart';
 
-// TODO implement
+// TODO impl
 class AppWidget extends StatelessWidget {
   const AppWidget({
     Key? key,
   }) : super(key: key);
 
-  factory AppWidget.withRouter() =>
-      const AppWidget(); // TODO pass android router
-
   @override
   Widget build(BuildContext context) {
+    d
     return MaterialApp(
       title: 'DartCounter',
       theme: ThemeData(

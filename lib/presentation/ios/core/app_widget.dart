@@ -6,14 +6,9 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // TODO rename to app flow ?? and move outside core
 class AppWidget extends StatelessWidget {
-  final Router router;
-
   const AppWidget({
     Key? key,
-    required this.router,
   }) : super(key: key);
-
-  factory AppWidget.withRouter() => AppWidget(router: Router());
 
   @override
   Widget build(BuildContext context) {
