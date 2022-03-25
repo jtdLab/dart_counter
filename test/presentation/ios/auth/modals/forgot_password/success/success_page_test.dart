@@ -1,4 +1,4 @@
-import 'package:dart_counter/presentation/ios/auth/modals/forgot_password/success/success_page.dart';
+import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
