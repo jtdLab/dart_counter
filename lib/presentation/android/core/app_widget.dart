@@ -25,7 +25,7 @@ class AppWidget extends StatelessWidget {
               authenticated: () => [const AuthenticatedFlowRoute()],
               unauthenticated: () => [const UnauthenticatedFlowRoute()],
             ),
-        navigatorObservers: () => [DartCounterRouteObserver()],
+        navigatorObservers: () => [AppRouteObserver()],
       ),
     );
   }

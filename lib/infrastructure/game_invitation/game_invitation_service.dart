@@ -7,10 +7,10 @@ import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation_failure.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
-import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
@@ -24,6 +24,8 @@ class GameInvitationService implements IGameInvitationService {
   final FirebaseFirestore _firestore;
   final DartClient _dartClient;
   final SocialClient _socialClient;
+
+  final Logger logger = Logger('GameInvitationService');
 
   GameInvitationService(
     this._authService,
@@ -128,7 +130,7 @@ class GameInvitationService implements IGameInvitationService {
       // when error occures while parsing
     } catch (e) {
       // log error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const GameInvitationFailure.unexpected());
     }
@@ -162,7 +164,7 @@ class GameInvitationService implements IGameInvitationService {
       // when error occures while parsing
     } catch (e) {
       // log error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const GameInvitationFailure.unexpected());
     }

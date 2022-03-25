@@ -7,10 +7,10 @@ import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/game/abstract_game_dto.dart';
 import 'package:dart_counter/infrastructure/game/online/online_player_dto.dart';
-import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:logging/logging.dart';
 
 @Environment(Environment.test)
 @Environment(Environment.prod)
@@ -18,6 +18,8 @@ import 'package:kt_dart/kt.dart';
 class GameHistoryService implements IGameHistoryService {
   final FirebaseFirestore _firestore;
   final IFriendService _friendService;
+
+    final Logger logger = Logger('GameHistoryService');
 
   GameHistoryService(
     this._firestore,
@@ -63,7 +65,7 @@ class GameHistoryService implements IGameHistoryService {
       // when error occured
     } catch (e) {
       // log the error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const GameHistoryFailure.unexpected()); // TODO name better
     }
@@ -131,7 +133,7 @@ class GameHistoryService implements IGameHistoryService {
       return right(List10(games.toImmutableList()));
     } catch (e) {
       // log the error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const GameHistoryFailure.unexpected()); // TODO name better
     }

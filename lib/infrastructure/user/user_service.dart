@@ -8,15 +8,14 @@ import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/infrastructure/cache/i_cache.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/core/storage_helpers.dart';
 import 'package:dart_counter/infrastructure/user/user_dto.dart';
-import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
@@ -29,6 +28,8 @@ class UserService implements IUserService {
   final IAuthService _authService;
   final SocialClient _socialClient;
   //final ICache _cache;
+
+  final Logger logger = Logger('UserService');
 
   UserService(
     this._firestore,
@@ -72,7 +73,7 @@ class UserService implements IUserService {
       // when error
     } catch (e) {
       // log error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const UserFailure.unexpected());
     }
@@ -114,7 +115,7 @@ class UserService implements IUserService {
     final decodedImage = decodeImage(newPhotoData);
     if (decodedImage == null) {
       // log error
-      logger.e('couldn not decode image.');
+      logger.warning('couldn not decode image.');
       // return unexpected failure
       return left(const UserFailure.unexpected());
     }
@@ -130,7 +131,7 @@ class UserService implements IUserService {
       return right(unit);
     } catch (e) {
       // log error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const UserFailure.unexpected());
     }
@@ -182,7 +183,7 @@ class UserService implements IUserService {
       },
     ).onErrorReturnWith((e, _) {
       // log error
-      logger.e(e);
+      logger.warning(e);
       // return unexpected failure
       return left(const UserFailure.unexpected());
     });

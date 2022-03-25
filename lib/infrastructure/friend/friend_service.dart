@@ -10,10 +10,10 @@ import 'package:dart_counter/domain/friend/user_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/friend/user_snapshot_dto.dart';
-import 'package:dart_counter/core/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:social_client/social_client.dart';
 
@@ -30,6 +30,8 @@ class FriendService implements IFriendService {
   final IUserService _userService;
   final FirebaseFirestore _firestore;
   final SocialClient _socialClient;
+
+    final Logger logger = Logger('FriendService');
 
   FriendService(
     this._authService,
@@ -115,7 +117,7 @@ class FriendService implements IFriendService {
 
       return right(receivedFriendRequests);
     } catch (e) {
-      logger.e(e);
+      logger.warning(e);
       return left(const FriendFailure.unexpected());
     }
   }
@@ -140,7 +142,7 @@ class FriendService implements IFriendService {
 
       return right(sentFriendRequests);
     } catch (e) {
-      logger.e(e);
+      logger.warning(e);
       return left(const FriendFailure.unexpected());
     }
   }
@@ -216,7 +218,7 @@ class FriendService implements IFriendService {
         searchResults.add(UserSnapshotDto.fromJson(json).toDomain());
       }
     } catch (e) {
-      logger.e(e);
+      logger.warning(e);
       return left(const FriendFailure.unexpected()); // TODO name better
     }
 
@@ -240,7 +242,7 @@ class FriendService implements IFriendService {
 
       return right(UserSnapshotDto.fromJson(json).toDomain());
     } catch (e) {
-      logger.e(e);
+      logger.warning(e);
       return left(const FriendFailure.unexpected()); // TODO name better
     }
   }
