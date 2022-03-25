@@ -306,3 +306,5 @@ https://github.com/flutter/flutter/issues/59755
 
 flutter pub add golden_toolkit
  und gibt noch andere goldens test s
+
+ // Should loggers be injected via DI 
