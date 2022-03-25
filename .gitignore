@@ -50,3 +50,6 @@ app.*.map.json
 
 # don't check in golden failure output
 **/failures/*.png
+
+# Screen shots
+/screen_shots
