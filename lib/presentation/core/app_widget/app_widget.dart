@@ -8,8 +8,9 @@ import 'dart:io';
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 
 // APPS
-import 'package:dart_counter/presentation/android/core/app_widget.dart';
-import 'package:dart_counter/presentation/ios/core/app_widget.dart';
+import 'package:dart_counter/presentation/android/core/app_widget.dart'
+    as android;
+import 'package:dart_counter/presentation/ios/core/app_widget.dart' as ios;
 
 // LOCAL WIDGETS
 part 'widgets.dart';
@@ -21,8 +22,8 @@ class AppWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
       child: PlatformWidget(
-        android: (context) => AndroidAppWidget.withRouter(),
-        ios: (context) => IosAppWidget.withRouter(),
+        android: (context) => android.AppWidget.withRouter(),
+        ios: (context) => ios.AppWidget.withRouter(),
       ),
     );
   }
