@@ -40,6 +40,7 @@ class ForgotPasswordBloc
     _EmailChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
+    throw Error();
     final email = event.newEmail;
 
     state.mapOrNull(

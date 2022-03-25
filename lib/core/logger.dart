@@ -6,7 +6,7 @@ import 'package:logger/logger.dart';
 ///
 /// For more info see: https://pub.dev/packages/logger
 final logger = Logger(
-  level: Level.nothing,
+  level: Level.debug,
   printer: PrettyPrinter(
     methodCount: 0,
     printTime: true,

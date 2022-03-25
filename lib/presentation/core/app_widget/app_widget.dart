@@ -17,6 +17,10 @@ part 'widgets.dart';
 
 /// The root widget of the application.
 class AppWidget extends StatelessWidget {
+  const AppWidget({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
