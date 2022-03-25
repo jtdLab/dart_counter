@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 

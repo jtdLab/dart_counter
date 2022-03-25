@@ -3,7 +3,7 @@ import 'package:dart_counter/application/authenticated/home/create_online_game/c
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

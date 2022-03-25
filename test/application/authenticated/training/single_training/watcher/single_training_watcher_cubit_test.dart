@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/authenticated/training/single_training/watcher/single_training_watcher_cubit.dart';
 import 'package:dart_counter/domain/training/single/i_single_training_service.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

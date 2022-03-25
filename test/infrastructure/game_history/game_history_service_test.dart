@@ -16,7 +16,7 @@ import 'package:dart_counter/domain/game_history/game_history_failure.dart';
 import 'package:dart_counter/infrastructure/core/firestore_helpers.dart';
 import 'package:dart_counter/infrastructure/game/offline/offline_game_dto.dart';
 import 'package:dart_counter/infrastructure/game_history/game_history_service.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';

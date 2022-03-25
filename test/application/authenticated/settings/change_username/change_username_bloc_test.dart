@@ -3,7 +3,7 @@ import 'package:dart_counter/application/authenticated/settings/change_username/
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

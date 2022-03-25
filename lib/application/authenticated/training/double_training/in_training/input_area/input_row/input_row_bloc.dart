@@ -4,7 +4,7 @@ import 'package:dart_counter/application/authenticated/shared/input_row/input_ro
 import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 

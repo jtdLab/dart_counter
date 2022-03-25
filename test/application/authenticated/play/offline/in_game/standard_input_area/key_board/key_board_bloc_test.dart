@@ -8,7 +8,7 @@ import 'package:dart_counter/domain/play/advanced_settings.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
 import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
 import 'package:dart_counter/domain/play/offline/offline_player_snapshot.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';

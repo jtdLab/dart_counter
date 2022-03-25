@@ -1,6 +1,6 @@
 // coverage:ignore-file
 
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +25,5 @@ Future<void> main() async {
 
   configureInjection(Environment.prod);
   await Firebase.initializeApp();
-  runApp(
-    AppWidget(),
-  );
+  runApp(AppWidget());
 }

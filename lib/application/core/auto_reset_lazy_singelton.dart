@@ -1,4 +1,4 @@
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 

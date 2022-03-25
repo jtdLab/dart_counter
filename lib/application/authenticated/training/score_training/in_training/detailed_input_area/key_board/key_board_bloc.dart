@@ -4,7 +4,7 @@ import 'package:dart_counter/application/authenticated/shared/detailed_input_are
 import 'package:dart_counter/application/authenticated/shared/detailed_input_area/key_board_state.dart';
 import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/dart.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/authenticated/shared/detailed_input_area/key_board_event.dart';

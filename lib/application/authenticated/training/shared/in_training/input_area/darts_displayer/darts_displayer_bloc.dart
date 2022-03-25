@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/authenticated/shared/darts_displayer/darts_displayer_event.dart';
 import 'package:dart_counter/application/authenticated/shared/darts_displayer/darts_displayer_state.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 

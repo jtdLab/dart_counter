@@ -3,7 +3,7 @@ import 'package:dart_counter/application/authenticated/play/shared/advanced_sett
 import 'package:dart_counter/application/authenticated/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/application/authenticated/play/shared/in_game/detailed_input_area/key_board/key_board_bloc.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/authenticated/play/shared/in_game/detailed_input_area/key_board/key_board_bloc.dart';

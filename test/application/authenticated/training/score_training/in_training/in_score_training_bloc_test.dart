@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/authenticated/training/score_training/in_training/in_score_training_bloc.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

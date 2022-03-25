@@ -7,7 +7,7 @@ import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/double/double_training_player_snapshot.dart';
 import 'package:dart_counter/domain/training/double/i_double_training_service.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';

@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
@@ -50,7 +51,5 @@ Future<void> main() async {
 
    */
 
-  runApp(
-    AppWidget(),
-  );
+  runApp(AppWidget());
 }

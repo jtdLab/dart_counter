@@ -3,7 +3,7 @@ import 'package:dart_counter/application/authenticated/shared/standard_input_are
 import 'package:dart_counter/application/authenticated/shared/standard_input_area/key_board_state.dart';
 import 'package:dart_counter/application/authenticated/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/authenticated/shared/standard_input_area/key_board_event.dart';

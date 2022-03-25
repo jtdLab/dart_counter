@@ -2,7 +2,7 @@
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/bloc_observer.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
 import 'package:firebase_core/firebase_core.dart';

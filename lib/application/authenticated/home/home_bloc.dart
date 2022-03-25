@@ -6,7 +6,7 @@ import 'package:dart_counter/application/authenticated/core/friends/friends_cubi
 import 'package:dart_counter/application/authenticated/core/game_invitations/game_invitations_cubit.dart';
 import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

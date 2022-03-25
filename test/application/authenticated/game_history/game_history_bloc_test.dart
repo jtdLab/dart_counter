@@ -7,7 +7,7 @@ import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/user.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';

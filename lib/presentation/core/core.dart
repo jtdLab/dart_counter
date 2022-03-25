@@ -7,16 +7,8 @@ export 'app_assets.dart';
 // Global shared widgets
 export 'shared/shared.dart';
 
-// Dependency injection
-export 'package:dart_counter/injection.dart';
-
-// Localization
-
-export 'package:flutter_localizations/flutter_localizations.dart';
-export 'package:dart_counter/l10n/l10n.dart';
-// TODO remove
-//export 'package:easy_localization/easy_localization.dart' hide TextDirection;
-//export 'package:dart_counter/generated/locale_keys.g.dart';
+// Core tools for an app
+export 'package:dart_counter/core/core.dart';
 
 // Routing
 export 'package:auto_route/auto_route.dart';

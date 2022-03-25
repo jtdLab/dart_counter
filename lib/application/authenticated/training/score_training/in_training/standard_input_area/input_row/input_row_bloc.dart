@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dart_counter/application/authenticated/shared/input_row/input_row_event.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
-import 'package:dart_counter/injection.dart';
+import 'package:dart_counter/core/injection.dart';
 import 'package:injectable/injectable.dart';
 
 export 'package:dart_counter/application/authenticated/shared/input_row/input_row_event.dart';
