@@ -4,11 +4,11 @@ void main() {
 
 /**
  * import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
-import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
-import 'package:dart_counter/application/main/core/user/user_cubit.dart';
-import 'package:dart_counter/application/main/home/create_online_game/create_online_game_cubit.dart';
-import 'package:dart_counter/application/main/home/home_bloc.dart';
+import 'package:dart_counter/application/authenticated/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
+import 'package:dart_counter/application/authenticated/home/create_online_game/create_online_game_cubit.dart';
+import 'package:dart_counter/application/authenticated/home/home_bloc.dart';
 import 'package:dart_counter/domain/user/user.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/main/home/home_page.dart';

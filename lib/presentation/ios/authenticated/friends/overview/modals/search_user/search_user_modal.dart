@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/friends/search_user/search_user_bloc.dart';
+import 'package:dart_counter/application/authenticated/friends/search_user/search_user_bloc.dart';
 
 // LOCAL WIDGETS
 part 'widgets.dart';

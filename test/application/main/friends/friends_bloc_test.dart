@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/friends/friends_bloc.dart';
+import 'package:dart_counter/application/authenticated/friends/friends_bloc.dart';
 import 'package:dart_counter/domain/friend/friend.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';

@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/injection.dart';

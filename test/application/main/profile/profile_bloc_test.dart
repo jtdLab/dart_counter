@@ -5,7 +5,7 @@ void main() {}
 /**
  * import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/main/profile/profile_bloc.dart';
+import 'package:dart_counter/application/authenticated/profile/profile_bloc.dart';
 import 'package:dart_counter/domain/user/career_stats.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user.dart';

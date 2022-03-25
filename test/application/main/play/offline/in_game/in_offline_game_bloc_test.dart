@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/offline/in_game/in_offline_game_bloc.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';

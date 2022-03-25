@@ -1,8 +1,8 @@
 // CORE
-import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart'
+import 'package:dart_counter/application/authenticated/core/game_invitations/game_invitations_cubit.dart'
     as cubit;
 // BLOCS
-import 'package:dart_counter/application/main/game_invitations/game_invitations_bloc.dart';
+import 'package:dart_counter/application/authenticated/game_invitations/game_invitations_bloc.dart';
 // DOMAIN
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';

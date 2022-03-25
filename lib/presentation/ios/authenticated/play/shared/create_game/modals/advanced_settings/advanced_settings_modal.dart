@@ -1,5 +1,5 @@
 // CORE
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/authenticated/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart';
 

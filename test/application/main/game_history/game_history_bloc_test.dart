@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_counter/application/core/application_error.dart';
-import 'package:dart_counter/application/main/core/user/user_cubit.dart';
-import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
+import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
+import 'package:dart_counter/application/authenticated/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/abstract_game.dart';
 import 'package:dart_counter/domain/game_history/game_history_failure.dart';

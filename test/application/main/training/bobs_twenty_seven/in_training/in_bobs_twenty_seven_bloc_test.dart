@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart';
 import 'package:dart_counter/domain/training/bobs_twenty_seven/i_bobs_twenty_seven_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';

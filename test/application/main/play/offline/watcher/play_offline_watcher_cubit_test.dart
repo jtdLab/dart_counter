@@ -1,8 +1,8 @@
 void main() {}
 /**
  * import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/core/user/user_cubit.dart';
-import 'package:dart_counter/application/main/play/offline/watcher/play_offline_watcher_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
+import 'package:dart_counter/application/authenticated/play/offline/watcher/play_offline_watcher_cubit.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/domain/play/offline/offline_game_snapshot.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';

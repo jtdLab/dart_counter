@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/core/play/online/play_online_cubit.dart';
-import 'package:dart_counter/application/main/play/online/in_game/detailed_input_area/key_board/key_board_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/core/play/online/play_online_cubit.dart';
+import 'package:dart_counter/application/authenticated/play/online/in_game/detailed_input_area/key_board/key_board_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/advanced_settings/advanced_settings_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/play/advanced_settings.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';

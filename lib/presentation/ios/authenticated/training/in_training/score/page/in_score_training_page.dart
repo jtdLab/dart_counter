@@ -1,9 +1,9 @@
-import 'package:dart_counter/application/main/training/score_training/in_training/detailed_input_area/blocs.dart' as detailed;
-import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/blocs.dart' as standard;
-import 'package:dart_counter/application/main/training/score_training/in_training/in_score_training_bloc.dart';
-import 'package:dart_counter/application/main/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
-import 'package:dart_counter/application/main/training/score_training/watcher/score_training_watcher_cubit.dart';
-import 'package:dart_counter/application/main/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/score_training/in_training/detailed_input_area/blocs.dart' as detailed;
+import 'package:dart_counter/application/authenticated/training/score_training/in_training/standard_input_area/blocs.dart' as standard;
+import 'package:dart_counter/application/authenticated/training/score_training/in_training/in_score_training_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/score_training/watcher/score_training_watcher_cubit.dart';
+import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/score/score_training_player_snapshot.dart';

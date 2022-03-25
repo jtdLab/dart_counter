@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/settings/change_email/change_email_bloc.dart';
+import 'package:dart_counter/application/authenticated/settings/change_email/change_email_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/domain/user/user_failure.dart';

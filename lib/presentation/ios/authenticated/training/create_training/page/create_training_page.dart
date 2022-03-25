@@ -3,7 +3,7 @@ import 'package:dart_counter/domain/training/abstract_training_game_snapshot.dar
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/training/create_training/create_training_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/create_training/create_training_bloc.dart';
 
 // DOMAIN
 import 'package:dart_counter/domain/training/type.dart';

@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/friends/search_user/search_user_bloc.dart';
+import 'package:dart_counter/application/authenticated/friends/search_user/search_user_bloc.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/i_friend_service.dart';
 import 'package:dart_counter/domain/friend/user_snapshot.dart';

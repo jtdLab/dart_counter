@@ -1,12 +1,12 @@
 // CORE
-import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_event.dart';
-import 'package:dart_counter/application/main/shared/darts_displayer/darts_displayer_state.dart';
-import 'package:dart_counter/application/main/shared/standard_input_area/index.dart'
+import 'package:dart_counter/application/authenticated/shared/darts_displayer/darts_displayer_event.dart';
+import 'package:dart_counter/application/authenticated/shared/darts_displayer/darts_displayer_state.dart';
+import 'package:dart_counter/application/authenticated/shared/standard_input_area/index.dart'
     as standard;
-import 'package:dart_counter/application/main/shared/detailed_input_area/index.dart'
+import 'package:dart_counter/application/authenticated/shared/detailed_input_area/index.dart'
     as detailed;
-import 'package:dart_counter/application/main/shared/input_row/input_row_event.dart';
-import 'package:dart_counter/application/main/training/shared/in_training/input_area/double_bobs_twenty_seven/key_board_event.dart'
+import 'package:dart_counter/application/authenticated/shared/input_row/input_row_event.dart';
+import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/double_bobs_twenty_seven/key_board_event.dart'
     as double_bobs_27;
 import 'package:dart_counter/presentation/ios/core/core.dart';
 

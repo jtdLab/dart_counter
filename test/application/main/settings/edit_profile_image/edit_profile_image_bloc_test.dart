@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/settings/edit_profile_image/edit_profile_image_bloc.dart';
+import 'package:dart_counter/application/authenticated/settings/edit_profile_image/edit_profile_image_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:dart_counter/injection.dart';

@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
-import 'package:dart_counter/application/main/play/online/create_game/add_player/add_player_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/online/create_game/add_player/add_player_bloc.dart';
 
 // LOCAL WIDGETS
 part 'widgets.dart';

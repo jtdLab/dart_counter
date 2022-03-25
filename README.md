@@ -127,7 +127,7 @@ BLOCBUILDER more close to location where the data they provide is needed and not
 // when doing filling and dartsOnDouble dialog
 // needs to be implemented specialliy in external modal
 
-import 'package:dart_counter/application/main/game_history/game_history_bloc.dart';
+import 'package:dart_counter/application/authenticated/game_history/game_history_bloc.dart';
 import 'package:dart_counter/domain/game_history/i_game_history_service.dart';
 import 'package:dart_counter/domain/user/i_user_service.dart';
 import 'package:flutter_test/flutter_test.dart';

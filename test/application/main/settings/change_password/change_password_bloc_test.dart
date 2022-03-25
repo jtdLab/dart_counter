@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/settings/change_password/change_password_bloc.dart';
+import 'package:dart_counter/application/authenticated/settings/change_password/change_password_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';

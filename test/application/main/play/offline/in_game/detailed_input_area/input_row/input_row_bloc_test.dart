@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/play/offline/in_game/detailed_input_area/input_row/input_row_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/offline/in_game/detailed_input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/play/offline/i_play_offline_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:flutter_test/flutter_test.dart';

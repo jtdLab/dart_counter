@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
-import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
-import 'package:dart_counter/application/main/core/user/user_cubit.dart';
-import 'package:dart_counter/application/main/home/home_bloc.dart';
+import 'package:dart_counter/application/authenticated/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
+import 'package:dart_counter/application/authenticated/home/home_bloc.dart';
 import 'package:dart_counter/domain/friend/friend_failure.dart';
 import 'package:dart_counter/domain/friend/friend_request.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';

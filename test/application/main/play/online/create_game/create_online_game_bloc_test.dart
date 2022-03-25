@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/play/online/create_game/create_online_game_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/online/create_game/create_online_game_bloc.dart';
 import 'package:dart_counter/domain/game/mode.dart';
 import 'package:dart_counter/domain/game/type.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';

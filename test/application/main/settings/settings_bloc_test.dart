@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/settings/settings_bloc.dart';
+import 'package:dart_counter/application/authenticated/settings/settings_bloc.dart';
 import 'package:dart_counter/domain/auth/i_auth_service.dart';
 import 'package:dart_counter/injection.dart';
 import 'package:dartz/dartz.dart';

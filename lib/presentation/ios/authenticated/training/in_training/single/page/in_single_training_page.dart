@@ -1,8 +1,8 @@
-import 'package:dart_counter/application/main/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/in_training/in_single_training_bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/in_training/input_area/input_row/input_row_bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/in_training/input_area/key_board/key_board_bloc.dart';
-import 'package:dart_counter/application/main/training/single_training/watcher/single_training_watcher_cubit.dart';
+import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/single_training/in_training/in_single_training_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/single_training/in_training/input_area/input_row/input_row_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/single_training/in_training/input_area/key_board/key_board_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/single_training/watcher/single_training_watcher_cubit.dart';
 import 'package:dart_counter/domain/game/status.dart';
 import 'package:dart_counter/domain/training/single/single_training_game_snapshot.dart';
 import 'package:dart_counter/domain/training/single/single_training_player_snapshot.dart';

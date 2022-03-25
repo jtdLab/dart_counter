@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/game_invitations/game_invitations_bloc.dart';
+import 'package:dart_counter/application/authenticated/game_invitations/game_invitations_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game_invitation/game_invitation.dart';
 import 'package:dart_counter/domain/game_invitation/i_game_invitation_service.dart';

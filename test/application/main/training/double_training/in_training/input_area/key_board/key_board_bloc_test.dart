@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/training/double_training/in_training/input_area/key_board/key_board_bloc.dart';
-import 'package:dart_counter/application/main/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/double_training/in_training/input_area/key_board/key_board_bloc.dart';
+import 'package:dart_counter/application/authenticated/training/shared/in_training/input_area/darts_displayer/darts_displayer_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/training/double/double_training_game_snapshot.dart';

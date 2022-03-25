@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/training/score_training/watcher/score_training_watcher_cubit.dart';
+import 'package:dart_counter/application/authenticated/training/score_training/watcher/score_training_watcher_cubit.dart';
 import 'package:dart_counter/domain/training/score/i_score_training_service.dart';
 import 'package:dart_counter/domain/training/score/score_training_game_snapshot.dart';
 import 'package:dart_counter/injection.dart';

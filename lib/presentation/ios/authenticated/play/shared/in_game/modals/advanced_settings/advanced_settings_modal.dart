@@ -1,7 +1,7 @@
 // CORE
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-import 'package:dart_counter/application/main/play/shared/advanced_settings/advanced_settings_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/advanced_settings/advanced_settings_bloc.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/domain/play/advanced_settings.dart';
 

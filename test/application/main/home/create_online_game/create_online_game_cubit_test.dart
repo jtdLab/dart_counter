@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/home/create_online_game/create_online_game_cubit.dart';
+import 'package:dart_counter/application/authenticated/home/create_online_game/create_online_game_cubit.dart';
 import 'package:dart_counter/domain/play/online/i_play_online_service.dart';
 import 'package:dart_counter/domain/play/online/online_game_snapshot.dart';
 import 'package:dart_counter/domain/play/play_failure.dart';

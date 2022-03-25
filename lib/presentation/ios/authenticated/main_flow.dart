@@ -1,7 +1,7 @@
 // CORE
-import 'package:dart_counter/application/main/core/friends/friends_cubit.dart';
-import 'package:dart_counter/application/main/core/game_invitations/game_invitations_cubit.dart';
-import 'package:dart_counter/application/main/core/user/user_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/friends/friends_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/game_invitations/game_invitations_cubit.dart';
+import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class MainFlow extends StatelessWidget {

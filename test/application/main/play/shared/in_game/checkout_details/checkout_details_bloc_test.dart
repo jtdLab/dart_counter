@@ -3,10 +3,10 @@ void main() {
 }
 /**
  * import 'package:bloc_test/bloc_test.dart';
-import 'package:dart_counter/application/main/play/offline/in_game/in_offline_game_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/checkout_details/checkout_details_bloc.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/input/input_cubit.dart';
-import 'package:dart_counter/application/main/play/shared/in_game/points_left/points_left_cubit.dart';
+import 'package:dart_counter/application/authenticated/play/offline/in_game/in_offline_game_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/checkout_details/checkout_details_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/input/input_cubit.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/points_left/points_left_cubit.dart';
 import 'package:dart_counter/domain/game/dart.dart';
 import 'package:dart_counter/domain/game/throw.dart';
 import 'package:dart_counter/domain/play/i_dart_utils.dart';
