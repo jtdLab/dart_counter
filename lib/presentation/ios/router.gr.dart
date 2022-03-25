@@ -19,8 +19,8 @@ import '../../application/authenticated/play/shared/in_game/checkout_details/che
     as _i69;
 import '../../application/authenticated/play/shared/in_game/checkout_details/checkout_details_state.dart'
     as _i70;
+import '../../domain/play/abstract_game_snapshot.dart' as _i68;
 import '../../domain/play/abstract_player_snapshot.dart' as _i71;
-import '../../domain/play/offline/offline_game_snapshot.dart' as _i68;
 import '../../domain/play/online/online_game_snapshot.dart' as _i72;
 import 'authenticated/contact/contact_page.dart' as _i10;
 import 'authenticated/friends/friends_flow.dart' as _i12;

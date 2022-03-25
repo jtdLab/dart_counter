@@ -78,9 +78,9 @@ import 'application/authenticated/settings/settings_bloc.dart' as _i75;
 import 'application/authenticated/training/bobs_twenty_seven/in_training/in_bobs_twenty_seven_bloc.dart'
     as _i50;
 import 'application/authenticated/training/bobs_twenty_seven/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i59;
+    as _i58;
 import 'application/authenticated/training/bobs_twenty_seven/in_training/input_area/key_board/key_board_bloc.dart'
-    as _i65;
+    as _i66;
 import 'application/authenticated/training/bobs_twenty_seven/watcher/bobs_twenty_seven_watcher_cubit.dart'
     as _i82;
 import 'application/authenticated/training/create_training/create_training_bloc.dart'
@@ -88,15 +88,15 @@ import 'application/authenticated/training/create_training/create_training_bloc.
 import 'application/authenticated/training/double_training/in_training/in_double_training_bloc.dart'
     as _i51;
 import 'application/authenticated/training/double_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i58;
+    as _i55;
 import 'application/authenticated/training/double_training/in_training/input_area/key_board/key_board_bloc.dart'
-    as _i64;
+    as _i65;
 import 'application/authenticated/training/double_training/watcher/double_training_watcher_cubit.dart'
     as _i90;
 import 'application/authenticated/training/score_training/in_training/detailed_input_area/input_row/input_row_bloc.dart'
-    as _i57;
+    as _i59;
 import 'application/authenticated/training/score_training/in_training/detailed_input_area/key_board/key_board_bloc.dart'
-    as _i66;
+    as _i62;
 import 'application/authenticated/training/score_training/in_training/in_score_training_bloc.dart'
     as _i53;
 import 'application/authenticated/training/score_training/in_training/standard_input_area/input_row/input_row_bloc.dart'
@@ -110,9 +110,9 @@ import 'application/authenticated/training/shared/in_training/input_area/darts_d
 import 'application/authenticated/training/single_training/in_training/in_single_training_bloc.dart'
     as _i54;
 import 'application/authenticated/training/single_training/in_training/input_area/input_row/input_row_bloc.dart'
-    as _i55;
+    as _i57;
 import 'application/authenticated/training/single_training/in_training/input_area/key_board/key_board_bloc.dart'
-    as _i62;
+    as _i64;
 import 'application/authenticated/training/single_training/watcher/single_training_watcher_cubit.dart'
     as _i78;
 import 'application/shared/auth/auth_bloc.dart' as _i81;
@@ -260,18 +260,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i54.InSingleTrainingBloc(get<_i45.ISingleTrainingService>()));
   gh.factoryParam<_i55.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i55.InputRowBloc.injectable(
-          get<_i45.ISingleTrainingService>(), otherDependencies));
+          get<_i33.IDoubleTrainingService>(), otherDependencies));
   gh.factory<_i56.InputRowBloc>(
       () => _i56.InputRowBloc(get<_i43.IScoreTrainingService>()));
   gh.factoryParam<_i57.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i57.InputRowBloc.injectable(
-          get<_i43.IScoreTrainingService>(), otherDependencies));
+          get<_i45.ISingleTrainingService>(), otherDependencies));
   gh.factoryParam<_i58.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i58.InputRowBloc.injectable(
-          get<_i33.IDoubleTrainingService>(), otherDependencies));
+          get<_i23.IBobsTwentySevenService>(), otherDependencies));
   gh.factoryParam<_i59.InputRowBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i59.InputRowBloc.injectable(
-          get<_i23.IBobsTwentySevenService>(), otherDependencies));
+          get<_i43.IScoreTrainingService>(), otherDependencies));
   gh.factoryParam<_i60.InputRowBlocOfflineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
@@ -285,20 +285,20 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
               get<_i41.IPlayOfflineService>(),
               otherDependencies));
   gh.factoryParam<_i62.KeyBoardBloc, List<Object>, dynamic>(
-      (otherDependencies, _) => _i62.KeyBoardBloc.injectable(
-          get<_i45.ISingleTrainingService>(), otherDependencies));
+      (otherDependencies, _) =>
+          _i62.KeyBoardBloc.injectable(otherDependencies));
   gh.factoryParam<_i63.KeyBoardBloc, List<Object>, dynamic>((otherDependencies,
           _) =>
       _i63.KeyBoardBloc.injectable(get<_i31.IDartUtils>(), otherDependencies));
   gh.factoryParam<_i64.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i64.KeyBoardBloc.injectable(
-          get<_i33.IDoubleTrainingService>(), otherDependencies));
+          get<_i45.ISingleTrainingService>(), otherDependencies));
   gh.factoryParam<_i65.KeyBoardBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i65.KeyBoardBloc.injectable(
-          get<_i23.IBobsTwentySevenService>(), otherDependencies));
+          get<_i33.IDoubleTrainingService>(), otherDependencies));
   gh.factoryParam<_i66.KeyBoardBloc, List<Object>, dynamic>(
-      (otherDependencies, _) =>
-          _i66.KeyBoardBloc.injectable(otherDependencies));
+      (otherDependencies, _) => _i66.KeyBoardBloc.injectable(
+          get<_i23.IBobsTwentySevenService>(), otherDependencies));
   gh.factoryParam<_i67.KeyBoardBlocOfflineDetailedInputArea, List<Object>,
           dynamic>(
       (otherDependencies, _) =>
