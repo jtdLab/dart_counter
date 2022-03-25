@@ -20,84 +20,106 @@ import '../../application/main/play/shared/in_game/checkout_details/checkout_det
     as _i70;
 import '../../domain/play/abstract_game_snapshot.dart' as _i68;
 import '../../domain/play/abstract_player_snapshot.dart' as _i71;
-import 'auth/auth_flow.dart' as _i1;
-import 'auth/modals/forgot_password/forgot_password_modal.dart' as _i4;
-import 'auth/modals/forgot_password/initial/initial_page.dart' as _i5;
-import 'auth/modals/forgot_password/success/success_page.dart' as _i6;
-import 'auth/page/auth_page.dart' as _i3;
-import 'core/core.dart' as _i66;
-import 'main/contact/contact_page.dart' as _i10;
-import 'main/friends/friends_flow.dart' as _i12;
-import 'main/friends/overview/modals/more/more_modal.dart' as _i32;
-import 'main/friends/overview/modals/search_user/search_user_modal.dart'
+import 'authenticated/contact/contact_page.dart' as _i10;
+import 'authenticated/friends/friends_flow.dart' as _i12;
+import 'authenticated/friends/overview/modals/more/more_modal.dart' as _i32;
+import 'authenticated/friends/overview/modals/search_user/search_user_modal.dart'
     as _i33;
-import 'main/friends/overview/overview_flow.dart' as _i29;
-import 'main/friends/overview/page/overview_page.dart' as _i31;
-import 'main/friends/profile/profile_page.dart' as _i30;
-import 'main/game_history/details/details_page.dart' as _i35;
-import 'main/game_history/game_history_flow.dart' as _i14;
-import 'main/game_history/overview/overview_page.dart' as _i34;
-import 'main/game_invitations/game_invitations_page.dart' as _i11;
-import 'main/home/home_page.dart' as _i7;
-import 'main/main_flow.dart' as _i2;
-import 'main/play/offline/create_game/create_offline_game_flow.dart' as _i36;
-import 'main/play/offline/create_game/page/create_offline_game_page.dart'
+import 'authenticated/friends/overview/overview_flow.dart' as _i29;
+import 'authenticated/friends/overview/page/overview_page.dart' as _i31;
+import 'authenticated/friends/profile/profile_page.dart' as _i30;
+import 'authenticated/game_history/details/details_page.dart' as _i35;
+import 'authenticated/game_history/game_history_flow.dart' as _i14;
+import 'authenticated/game_history/overview/overview_page.dart' as _i34;
+import 'authenticated/game_invitations/game_invitations_page.dart' as _i11;
+import 'authenticated/home/home_page.dart' as _i7;
+import 'authenticated/main_flow.dart' as _i2;
+import 'authenticated/play/offline/create_game/create_offline_game_flow.dart'
+    as _i36;
+import 'authenticated/play/offline/create_game/page/create_offline_game_page.dart'
     as _i39;
-import 'main/play/offline/in_game/in_offline_game_flow.dart' as _i37;
-import 'main/play/offline/in_game/modals/stats/offline_stats_modal.dart'
+import 'authenticated/play/offline/in_game/in_offline_game_flow.dart' as _i37;
+import 'authenticated/play/offline/in_game/modals/stats/offline_stats_modal.dart'
     as _i44;
-import 'main/play/offline/in_game/page/in_offline_game_page.dart' as _i42;
-import 'main/play/offline/play_offline_flow.dart' as _i15;
-import 'main/play/offline/post_game/post_offline_game_page.dart' as _i38;
-import 'main/play/online/create_game/create_online_game_flow.dart' as _i46;
-import 'main/play/online/create_game/page/create_online_game_page.dart' as _i49;
-import 'main/play/online/in_game/in_online_game_flow.dart' as _i47;
-import 'main/play/online/in_game/modals/stats/online_stats_modal.dart' as _i51;
-import 'main/play/online/in_game/page/in_online_game_page.dart' as _i50;
-import 'main/play/online/play_online_flow.dart' as _i16;
-import 'main/play/online/post_game/post_online_game_page.dart' as _i48;
-import 'main/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart'
+import 'authenticated/play/offline/in_game/page/in_offline_game_page.dart'
+    as _i42;
+import 'authenticated/play/offline/play_offline_flow.dart' as _i15;
+import 'authenticated/play/offline/post_game/post_offline_game_page.dart'
+    as _i38;
+import 'authenticated/play/online/create_game/create_online_game_flow.dart'
+    as _i46;
+import 'authenticated/play/online/create_game/page/create_online_game_page.dart'
+    as _i49;
+import 'authenticated/play/online/in_game/in_online_game_flow.dart' as _i47;
+import 'authenticated/play/online/in_game/modals/stats/online_stats_modal.dart'
+    as _i51;
+import 'authenticated/play/online/in_game/page/in_online_game_page.dart'
+    as _i50;
+import 'authenticated/play/online/play_online_flow.dart' as _i16;
+import 'authenticated/play/online/post_game/post_online_game_page.dart' as _i48;
+import 'authenticated/play/shared/create_game/modals/advanced_settings/advanced_settings_modal.dart'
     as _i40;
-import 'main/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart'
+import 'authenticated/play/shared/in_game/modals/advanced_settings/advanced_settings_modal.dart'
     as _i45;
-import 'main/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart'
+import 'authenticated/play/shared/in_game/modals/checkout_details/checkout_details_modal.dart'
     as _i43;
-import 'main/privacy_policy/privacy_policy_page.dart' as _i9;
-import 'main/profile/profile_page.dart' as _i13;
-import 'main/settings/modals/change_email/change_email_modal.dart' as _i19;
-import 'main/settings/modals/change_email/initial/initial_page.dart' as _i23;
-import 'main/settings/modals/change_email/success/success_page.dart' as _i24;
-import 'main/settings/modals/change_password/change_password_modal.dart'
+import 'authenticated/privacy_policy/privacy_policy_page.dart' as _i9;
+import 'authenticated/profile/profile_page.dart' as _i13;
+import 'authenticated/settings/modals/change_email/change_email_modal.dart'
+    as _i19;
+import 'authenticated/settings/modals/change_email/initial/initial_page.dart'
+    as _i23;
+import 'authenticated/settings/modals/change_email/success/success_page.dart'
+    as _i24;
+import 'authenticated/settings/modals/change_password/change_password_modal.dart'
     as _i20;
-import 'main/settings/modals/change_password/initial/initial_page.dart' as _i25;
-import 'main/settings/modals/change_password/success/success_page.dart' as _i26;
-import 'main/settings/modals/change_username/change_username_modal.dart'
+import 'authenticated/settings/modals/change_password/initial/initial_page.dart'
+    as _i25;
+import 'authenticated/settings/modals/change_password/success/success_page.dart'
+    as _i26;
+import 'authenticated/settings/modals/change_username/change_username_modal.dart'
     as _i21;
-import 'main/settings/modals/change_username/initial/initial_page.dart' as _i27;
-import 'main/settings/modals/change_username/success/success_page.dart' as _i28;
-import 'main/settings/modals/edit_profile_image/edit_profile_image_modal.dart'
+import 'authenticated/settings/modals/change_username/initial/initial_page.dart'
+    as _i27;
+import 'authenticated/settings/modals/change_username/success/success_page.dart'
+    as _i28;
+import 'authenticated/settings/modals/edit_profile_image/edit_profile_image_modal.dart'
     as _i22;
-import 'main/settings/page/settings_page.dart' as _i18;
-import 'main/settings/settings_flow.dart' as _i8;
-import 'main/shared/widgets.dart' as _i41;
-import 'main/training/create_training/create_training_flow.dart' as _i52;
-import 'main/training/create_training/page/create_training_page.dart' as _i58;
-import 'main/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_flow.dart'
+import 'authenticated/settings/page/settings_page.dart' as _i18;
+import 'authenticated/settings/settings_flow.dart' as _i8;
+import 'authenticated/shared/widgets.dart' as _i41;
+import 'authenticated/training/create_training/create_training_flow.dart'
+    as _i52;
+import 'authenticated/training/create_training/page/create_training_page.dart'
+    as _i58;
+import 'authenticated/training/in_training/bobs_twenty_seven/in_bobs_twenty_seven_training_flow.dart'
     as _i53;
-import 'main/training/in_training/bobs_twenty_seven/page/in_bobs_twenty_seven_training_page.dart'
+import 'authenticated/training/in_training/bobs_twenty_seven/page/in_bobs_twenty_seven_training_page.dart'
     as _i59;
-import 'main/training/in_training/double/in_double_training_flow.dart' as _i56;
-import 'main/training/in_training/double/page/in_double_training_page.dart'
+import 'authenticated/training/in_training/double/in_double_training_flow.dart'
+    as _i56;
+import 'authenticated/training/in_training/double/page/in_double_training_page.dart'
     as _i62;
-import 'main/training/in_training/score/in_score_training_flow.dart' as _i54;
-import 'main/training/in_training/score/page/in_score_training_page.dart'
+import 'authenticated/training/in_training/score/in_score_training_flow.dart'
+    as _i54;
+import 'authenticated/training/in_training/score/page/in_score_training_page.dart'
     as _i60;
-import 'main/training/in_training/single/in_single_training_flow.dart' as _i55;
-import 'main/training/in_training/single/page/in_single_training_page.dart'
+import 'authenticated/training/in_training/single/in_single_training_flow.dart'
+    as _i55;
+import 'authenticated/training/in_training/single/page/in_single_training_page.dart'
     as _i61;
-import 'main/training/post_training/post_training_page.dart' as _i57;
-import 'main/training/training_flow.dart' as _i17;
+import 'authenticated/training/post_training/post_training_page.dart' as _i57;
+import 'authenticated/training/training_flow.dart' as _i17;
+import 'core/core.dart' as _i66;
 import 'router.dart' as _i65;
+import 'unauthenticated/auth/auth_wrapper.dart' as _i3;
+import 'unauthenticated/modals/forgot_password/forgot_password_modal.dart'
+    as _i4;
+import 'unauthenticated/modals/forgot_password/initial/initial_page.dart'
+    as _i5;
+import 'unauthenticated/modals/forgot_password/success/success_page.dart'
+    as _i6;
+import 'unauthenticated/unauthenticated_flow.dart' as _i1;
 
 class Router extends _i63.RootStackRouter {
   Router([_i64.GlobalKey<_i64.NavigatorState>? navigatorKey])
@@ -105,10 +127,10 @@ class Router extends _i63.RootStackRouter {
 
   @override
   final Map<String, _i63.PageFactory> pagesMap = {
-    AuthFlowRoute.name: (routeData) {
+    UnauthenticatedFlowRoute.name: (routeData) {
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i1.AuthFlow(),
+          child: const _i1.UnauthenticatedFlow(),
           opaque: true,
           barrierDismissible: false);
     },
@@ -119,10 +141,10 @@ class Router extends _i63.RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    AuthPageRoute.name: (routeData) {
+    AuthWrapperRoute.name: (routeData) {
       return _i63.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i3.AuthPage(),
+          child: const _i3.AuthWrapper(),
           customRouteBuilder: _i65.modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -504,20 +526,22 @@ class Router extends _i63.RootStackRouter {
 
   @override
   List<_i63.RouteConfig> get routes => [
-        _i63.RouteConfig(AuthFlowRoute.name, path: '/auth-flow', children: [
-          _i63.RouteConfig(AuthPageRoute.name,
-              path: '', parent: AuthFlowRoute.name),
-          _i63.RouteConfig(ForgotPasswordModalRoute.name,
-              path: 'forgot-password-modal',
-              parent: AuthFlowRoute.name,
-              children: [
-                _i63.RouteConfig(ForgotPasswordInitialPageRoute.name,
-                    path: '', parent: ForgotPasswordModalRoute.name),
-                _i63.RouteConfig(ForgotPasswordSuccessPageRoute.name,
-                    path: 'forgot-password-success-page',
-                    parent: ForgotPasswordModalRoute.name)
-              ])
-        ]),
+        _i63.RouteConfig(UnauthenticatedFlowRoute.name,
+            path: '/unauthenticated-flow',
+            children: [
+              _i63.RouteConfig(AuthWrapperRoute.name,
+                  path: '', parent: UnauthenticatedFlowRoute.name),
+              _i63.RouteConfig(ForgotPasswordModalRoute.name,
+                  path: 'forgot-password-modal',
+                  parent: UnauthenticatedFlowRoute.name,
+                  children: [
+                    _i63.RouteConfig(ForgotPasswordInitialPageRoute.name,
+                        path: '', parent: ForgotPasswordModalRoute.name),
+                    _i63.RouteConfig(ForgotPasswordSuccessPageRoute.name,
+                        path: 'forgot-password-success-page',
+                        parent: ForgotPasswordModalRoute.name)
+                  ])
+            ]),
         _i63.RouteConfig(MainFlowRoute.name, path: '/main-flow', children: [
           _i63.RouteConfig(HomePageRoute.name,
               path: '', parent: MainFlowRoute.name),
@@ -753,13 +777,13 @@ class Router extends _i63.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.AuthFlow]
-class AuthFlowRoute extends _i63.PageRouteInfo<void> {
-  const AuthFlowRoute({List<_i63.PageRouteInfo>? children})
-      : super(AuthFlowRoute.name,
-            path: '/auth-flow', initialChildren: children);
+/// [_i1.UnauthenticatedFlow]
+class UnauthenticatedFlowRoute extends _i63.PageRouteInfo<void> {
+  const UnauthenticatedFlowRoute({List<_i63.PageRouteInfo>? children})
+      : super(UnauthenticatedFlowRoute.name,
+            path: '/unauthenticated-flow', initialChildren: children);
 
-  static const String name = 'AuthFlowRoute';
+  static const String name = 'UnauthenticatedFlowRoute';
 }
 
 /// generated route for
@@ -773,11 +797,11 @@ class MainFlowRoute extends _i63.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.AuthPage]
-class AuthPageRoute extends _i63.PageRouteInfo<void> {
-  const AuthPageRoute() : super(AuthPageRoute.name, path: '');
+/// [_i3.AuthWrapper]
+class AuthWrapperRoute extends _i63.PageRouteInfo<void> {
+  const AuthWrapperRoute() : super(AuthWrapperRoute.name, path: '');
 
-  static const String name = 'AuthPageRoute';
+  static const String name = 'AuthWrapperRoute';
 }
 
 /// generated route for

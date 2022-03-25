@@ -39,7 +39,7 @@ class AppWidget extends StatelessWidget {
       routerDelegate: router.delegate(
         initialRoutes: context.read<AuthBloc>().state.when(
               authenticated: () => [const MainFlowRoute()],
-              unauthenticated: () => [const AuthFlowRoute()],
+              unauthenticated: () => [const UnauthenticatedFlowRoute()],
             ),
         navigatorObservers: () => [DartCounterRouteObserver()],
       ),
