@@ -60,40 +60,42 @@ void main() {
   });
   group('#Visual#', () {
     for (final phone in iPhones) {
-      testWidgets(
-        'Contains ForgotPasswordInitialView on ${phone.name}.',
-        (tester) async {
-          // Arrange
-          await tester.binding.setSurfaceSize(phone.size);
+      group('#${phone.name}#', () {
+        testWidgets(
+          'Contains ForgotPasswordInitialView.',
+          (tester) async {
+            // Arrange
+            await tester.binding.setSurfaceSize(phone.size);
 
-          final email = EmailAddress.empty();
-          const showErrorMessages = false;
-          final state = ForgotPasswordState.initial(
-            email: email,
-            showErrorMessages: showErrorMessages,
-          );
-          whenListen(
-            mockForgotPasswordBloc,
-            Stream.value(state),
-            initialState: state,
-          );
+            final email = EmailAddress.empty();
+            const showErrorMessages = false;
+            final state = ForgotPasswordState.initial(
+              email: email,
+              showErrorMessages: showErrorMessages,
+            );
+            whenListen(
+              mockForgotPasswordBloc,
+              Stream.value(state),
+              initialState: state,
+            );
 
-          // Act
-          const ForgotPasswordInitialPage underTest =
-              ForgotPasswordInitialPage();
-          await tester.pumpWidget(
-            cupertinoAppWrapper(
-              BlocProvider(
-                create: (context) => mockForgotPasswordBloc,
-                child: underTest,
+            // Act
+            const ForgotPasswordInitialPage underTest =
+                ForgotPasswordInitialPage();
+            await tester.pumpWidget(
+              cupertinoAppWrapper(
+                BlocProvider(
+                  create: (context) => mockForgotPasswordBloc,
+                  child: underTest,
+                ),
               ),
-            ),
-          );
+            );
 
-          // Assert
-          expect(find.byType(ForgotPasswordInitialView), findsOneWidget);
-        },
-      );
+            // Assert
+            expect(find.byType(ForgotPasswordInitialView), findsOneWidget);
+          },
+        );
+      });
     }
   });
 }

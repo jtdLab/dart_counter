@@ -25,21 +25,23 @@ void main() {
 
   group('#Visual#', () {
     for (final phone in iPhones) {
-      testWidgets(
-        'Contains ForgotPasswordSuccessView on ${phone.name}.',
-        (tester) async {
-          // Arrange
-          await tester.binding.setSurfaceSize(phone.size);
+      group('#${phone.name}#', () {
+        testWidgets(
+          'Contains ForgotPasswordSuccessView.',
+          (tester) async {
+            // Arrange
+            await tester.binding.setSurfaceSize(phone.size);
 
-          // Act
-          const ForgotPasswordSuccessPage underTest =
-              ForgotPasswordSuccessPage();
-          await tester.pumpWidget(cupertinoAppWrapper(underTest));
+            // Act
+            const ForgotPasswordSuccessPage underTest =
+                ForgotPasswordSuccessPage();
+            await tester.pumpWidget(cupertinoAppWrapper(underTest));
 
-          // Assert
-          expect(find.byType(ForgotPasswordSuccessView), findsOneWidget);
-        },
-      );
+            // Assert
+            expect(find.byType(ForgotPasswordSuccessView), findsOneWidget);
+          },
+        );
+      });
     }
   });
 }
