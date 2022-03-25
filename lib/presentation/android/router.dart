@@ -15,5 +15,12 @@ part 'router.gr.dart';
     ),
   ],
 )
+class _Router extends _$_Router {}
+
+/// The android router.
 @lazySingleton
-class Router extends _$Router {}
+class Router extends _Router {
+  Router();
+
+  factory Router.getIt() => getIt<Router>();
+}

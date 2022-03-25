@@ -373,8 +373,15 @@ const youReallyWantToCancelGameDialog = CustomRoute(
     ),
   ],
 )
+class _Router extends _$_Router {}
+
+/// The ios router.
 @lazySingleton
-class Router extends _$Router {}
+class Router extends _Router {
+  Router();
+
+  factory Router.getIt() => getIt<Router>();
+}
 
 // TODO maybe move the following part into seperate file??
 

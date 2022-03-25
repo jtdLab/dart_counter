@@ -12,6 +12,8 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = Router.getIt();
+
     return CupertinoApp.router(
       builder: (context, widget) {
         final style = TextStyle(

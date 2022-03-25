@@ -12,8 +12,8 @@
 
 part of 'router.dart';
 
-class _$Router extends RootStackRouter {
-  _$Router([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+class _$_Router extends RootStackRouter {
+  _$_Router([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, PageFactory> pagesMap = {

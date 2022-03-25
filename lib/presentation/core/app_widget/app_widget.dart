@@ -22,8 +22,8 @@ class AppWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
       child: PlatformWidget(
-        android: (context) => android.AppWidget.withRouter(),
-        ios: (context) => ios.AppWidget.withRouter(),
+        android: (context) => const android.AppWidget(),
+        ios: (context) => const ios.AppWidget(),
       ),
     );
   }
