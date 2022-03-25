@@ -1,4 +1,8 @@
-import 'package:dart_counter/presentation/ios/core/core.dart';
+import 'package:dart_counter/application/authenticated/game_history/game_history_bloc.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/checkout_details/checkout_details_event.dart';
+import 'package:dart_counter/application/authenticated/play/shared/in_game/checkout_details/checkout_details_state.dart';
+import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
+import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
 import 'package:dart_counter/presentation/ios/authenticated/contact/contact_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/friends/friends_flow.dart';
 import 'package:dart_counter/presentation/ios/authenticated/friends/overview/modals/more/more_modal.dart';
@@ -11,7 +15,7 @@ import 'package:dart_counter/presentation/ios/authenticated/game_history/game_hi
 import 'package:dart_counter/presentation/ios/authenticated/game_history/overview/overview_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/game_invitations/game_invitations_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/home/home_page.dart';
-import 'package:dart_counter/presentation/ios/authenticated/main_flow.dart';
+import 'package:dart_counter/presentation/ios/authenticated/authenticated_flow.dart';
 import 'package:dart_counter/presentation/ios/authenticated/play/offline/create_game/create_offline_game_flow.dart';
 import 'package:dart_counter/presentation/ios/authenticated/play/offline/create_game/page/create_offline_game_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/play/offline/in_game/in_offline_game_flow.dart';
@@ -56,11 +60,14 @@ import 'package:dart_counter/presentation/ios/authenticated/training/in_training
 import 'package:dart_counter/presentation/ios/authenticated/training/in_training/single/page/in_single_training_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/training/post_training/post_training_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/training/training_flow.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/auth_wrapper.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/forgot_password_modal.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/unauthenticated_flow.dart';
+
+part 'router.gr.dart';
 
 const youReallyWantToCancelGameDialog = CustomRoute(
   page: YouReallyWantToCancelGameDialog,
@@ -98,7 +105,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
       ],
     ),
     CustomRoute(
-      page: MainFlow,
+      page: AuthenticatedFlow,
       children: [
         CustomRoute(
           initial: true,
@@ -365,7 +372,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
     ),
   ],
 )
-class $Router {}
+class Router extends _$Router {}
 
 // TODO maybe move the following part into seperate file??
 

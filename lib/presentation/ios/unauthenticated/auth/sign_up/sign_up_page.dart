@@ -21,7 +21,7 @@ class SignUpPage extends StatelessWidget {
             listener: (context, state) {
               state.whenOrNull(
                 authenticated: () =>
-                    context.router.replace(const MainFlowRoute()),
+                    context.router.replace(const AuthenticatedFlowRoute()),
               );
             },
           ),

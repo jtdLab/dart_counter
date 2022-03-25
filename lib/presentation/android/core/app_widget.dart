@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 // TODO implement
-class AppWidget extends StatelessWidget {
+class AndroidAppWidget extends StatelessWidget {
+  const AndroidAppWidget({
+    Key? key,
+  }) : super(key: key);
+
+  factory AndroidAppWidget.withRouter() =>
+      const AndroidAppWidget(); // TODO pass android router
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

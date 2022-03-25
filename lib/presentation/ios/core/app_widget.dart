@@ -1,17 +1,20 @@
 // CORE
-import 'package:dart_counter/l10n/l10n.dart';
+// BLOCS
+import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/core/route_observer.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-// BLOCS
-import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-
-// TODO is this global var even used or is it done over context
-// Fore more info look auto_route pub dev read.me
-final Router router = Router();
-
 // TODO rename to app flow ?? and move outside core
-class AppWidget extends StatelessWidget {
+class IosAppWidget extends StatelessWidget {
+  final Router router;
+
+  const IosAppWidget({
+    Key? key,
+    required this.router,
+  }) : super(key: key);
+
+  factory IosAppWidget.withRouter() => IosAppWidget(router: Router());
+
   @override
   Widget build(BuildContext context) {
     return CupertinoApp.router(
@@ -38,7 +41,7 @@ class AppWidget extends StatelessWidget {
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: router.delegate(
         initialRoutes: context.read<AuthBloc>().state.when(
-              authenticated: () => [const MainFlowRoute()],
+              authenticated: () => [const AuthenticatedFlowRoute()],
               unauthenticated: () => [const UnauthenticatedFlowRoute()],
             ),
         navigatorObservers: () => [DartCounterRouteObserver()],

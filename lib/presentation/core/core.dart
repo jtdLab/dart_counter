@@ -20,7 +20,6 @@ export 'package:dart_counter/l10n/l10n.dart';
 
 // Routing
 export 'package:auto_route/auto_route.dart';
-export 'package:dart_counter/presentation/ios/router.gr.dart';
 
 // State management
 export 'package:provider/provider.dart';

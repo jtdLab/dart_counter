@@ -4,8 +4,8 @@ import 'package:dart_counter/application/authenticated/core/game_invitations/gam
 import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-class MainFlow extends StatelessWidget {
-  const MainFlow({
+class AuthenticatedFlow extends StatelessWidget {
+  const AuthenticatedFlow({
     Key? key,
   }) : super(key: key);
 
