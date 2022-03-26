@@ -7,7 +7,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dart_counter/bootstrap.dart';
 import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/core/logging.dart';
-import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
+import 'package:dart_counter/presentation/core/app.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +44,6 @@ void main() {
     FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 
-    return const AppWidget();
+    return const App();
   });
 }

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:dart_counter/bootstrap.dart';
 import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/core/logging.dart';
-import 'package:dart_counter/presentation/core/app_widget/app_widget.dart';
+import 'package:dart_counter/presentation/core/app.dart';
 import 'package:dart_counter/presentation/core/de_messages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:injectable/injectable.dart';
@@ -36,6 +36,6 @@ void main() {
 
     await Firebase.initializeApp();
 
-    return const AppWidget();
+    return const App();
   });
 }

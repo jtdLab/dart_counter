@@ -11,3 +11,7 @@ class PresentationError extends Error {
     return 'PresentationError: $msg';
   }
 }
+
+class PlatformNotSupportedError extends PresentationError {
+  PlatformNotSupportedError() : super('Platform not supported.');
+}
