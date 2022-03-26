@@ -7,7 +7,8 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
-import '../../../../../flutter_test_config.dart';
+import '../../../../flutter_test_config.dart';
+import '../../../../helpers/helpers.dart';
 
 class MockForgotPasswordBloc
     extends MockBloc<ForgotPasswordEvent, ForgotPasswordState>
@@ -82,12 +83,11 @@ void main() {
             // Act
             const ForgotPasswordInitialPage underTest =
                 ForgotPasswordInitialPage();
+            await tester.pumpApp(underTest);
             await tester.pumpWidget(
-              cupertinoAppWrapper(
-                BlocProvider(
-                  create: (context) => mockForgotPasswordBloc,
-                  child: underTest,
-                ),
+              BlocProvider(
+                create: (context) => mockForgotPasswordBloc,
+                child: underTest,
               ),
             );
 

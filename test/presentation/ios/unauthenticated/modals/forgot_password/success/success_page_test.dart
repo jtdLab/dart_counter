@@ -2,7 +2,7 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
-import '../../../../../flutter_test_config.dart';
+import '../../../../helpers/helpers.dart';
 
 void main() {
   group('#Golden#', () {
@@ -35,7 +35,7 @@ void main() {
             // Act
             const ForgotPasswordSuccessPage underTest =
                 ForgotPasswordSuccessPage();
-            await tester.pumpWidget(cupertinoAppWrapper(underTest));
+            await tester.pumpApp(underTest);
 
             // Assert
             expect(find.byType(ForgotPasswordSuccessView), findsOneWidget);
