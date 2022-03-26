@@ -15,7 +15,8 @@ class AppWidget extends StatelessWidget {
     final router = Router.getIt();
 
     return CupertinoApp.router(
-      builder: (context, widget) {
+      /**
+      *  builder: (context, widget) {
         final style = TextStyle(
           fontWeight: FontWeight.w800,
           fontSize: maxFontSizeNormal(context),
@@ -33,6 +34,7 @@ class AppWidget extends StatelessWidget {
           ),
         );
       },
+      */
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routeInformationParser: router.defaultRouteParser(),
@@ -47,6 +49,13 @@ class AppWidget extends StatelessWidget {
         primaryColor: AppColors.black,
         primaryContrastingColor: AppColors.white,
         scaffoldBackgroundColor: AppColors.white,
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(
+            fontWeight: FontWeight.w800,
+            //fontSize: maxFontSizeNormal(context),
+            color: AppColors.black,
+          ),
+        ),
       ),
     );
   }

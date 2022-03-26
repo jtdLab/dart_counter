@@ -1,5 +1,7 @@
 // coverage:ignore-file
 
+import 'dart:io';
+
 import 'package:dart_counter/bootstrap.dart';
 import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/core/logging.dart';
@@ -26,7 +28,10 @@ void main() {
 
     configureLogging();
 
-    configureInjection(Environment.prod);
+    configureInjection({
+      Environment.prod,
+      if (Platform.isAndroid) EnvironmentX.android else EnvironmentX.ios
+    });
 
     await Firebase.initializeApp();
 

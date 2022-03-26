@@ -376,6 +376,7 @@ const youReallyWantToCancelGameDialog = CustomRoute(
 class _Router extends _$_Router {}
 
 /// The ios router.
+@ios
 @lazySingleton
 class Router extends _Router {
   Router();

@@ -13,6 +13,24 @@ final getIt = GetIt.instance;
 ///
 /// For more info see: https://pub.dev/packages/injectable
 @InjectableInit()
-void configureInjection(String env) {
-  $initGetIt(getIt, environment: env);
+void configureInjection(Set<String> envs) {
+  $initGetIt(getIt, environmentFilter: NoEnvOrContainsAny(envs));
 }
+
+// Platform-based environments.
+//
+// Used for dependencies that should only be registered in the dependency injection container
+// when the app runs on specific platform.
+extension EnvironmentX on Environment {
+  /// platform env name 'android'
+  static const android = 'android';
+
+  /// platform env name 'ios'
+  static const ios = 'ios';
+}
+
+/// instance of platform env 'android'
+const Environment android = Environment(EnvironmentX.android);
+
+/// instance of platform env 'ios'
+const Environment ios = Environment(EnvironmentX.ios);

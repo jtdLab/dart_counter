@@ -174,6 +174,8 @@ import '../presentation/ios/router.dart' as _i74;
 const String _test = 'test';
 const String _prod = 'prod';
 const String _dev = 'dev';
+const String _android = 'android';
+const String _ios = 'ios';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -328,8 +330,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i71.MoreBloc.injectable(get<_i35.IFriendService>(), otherDependencies));
   gh.factoryParam<_i72.ProfileBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i72.ProfileBloc.injectable(otherDependencies));
-  gh.lazySingleton<_i73.Router>(() => _i73.Router());
-  gh.lazySingleton<_i74.Router>(() => _i74.Router());
+  gh.lazySingleton<_i73.Router>(() => _i73.Router(), registerFor: {_android});
+  gh.lazySingleton<_i74.Router>(() => _i74.Router(), registerFor: {_ios});
   gh.factory<_i75.ScoreTrainingWatcherCubit>(
       () => _i75.ScoreTrainingWatcherCubit(get<_i43.IScoreTrainingService>()));
   gh.factory<_i76.SearchUserBloc>(

@@ -1,5 +1,7 @@
 // coverage:ignore-file // TODO needed ?
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dart_counter/bootstrap.dart';
@@ -11,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -28,9 +31,12 @@ void main() {
       DeviceOrientation.portraitDown,
     ]); */
 
-    configureLogging();
+    configureLogging(Level.INFO);
 
-    configureInjection(Environment.test);
+    configureInjection({
+      Environment.test,
+      if (Platform.isAndroid) EnvironmentX.android else EnvironmentX.ios
+    });
 
     await Firebase.initializeApp();
     FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5002);
