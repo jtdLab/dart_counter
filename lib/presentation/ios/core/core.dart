@@ -8,7 +8,7 @@ export 'package:flutter/cupertino.dart' hide Orientation, Router;
 export 'package:flutter/material.dart' show Colors, ReorderableListView;
 
 // Routing
-export 'package:dart_counter/presentation/ios/router.dart';
+export 'router.dart';
 
 // Ios shared widgets + extensions
 export 'shared/shared.dart'; // TODO this could cylce

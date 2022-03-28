@@ -1,7 +1,6 @@
+import 'package:dart_counter/presentation/ios/app.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'wrap_app.dart';
 
 extension PumpApp on WidgetTester {
   // TODO doc
@@ -11,6 +10,6 @@ extension PumpApp on WidgetTester {
   ///
   /// The theme of the original app is used.
   Future<void> pumpApp(Widget widget, [Locale? locale]) {
-    return pumpWidget(wrapCupertinoApp(widget));
+    return pumpWidget(App());
   }
 }

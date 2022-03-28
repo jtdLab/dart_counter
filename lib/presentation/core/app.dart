@@ -1,14 +1,10 @@
 // CORE
-import 'package:dart_counter/core/injection.dart';
-import 'package:dart_counter/presentation/core/presentation_error.dart';
-
 // APPS
-import 'package:dart_counter/presentation/android/app.dart'
-    as android;
+import 'package:dart_counter/presentation/android/app.dart' as android;
+import 'package:dart_counter/presentation/core/platform.dart';
+import 'package:dart_counter/presentation/core/presentation_error.dart';
 import 'package:dart_counter/presentation/ios/app.dart' as ios;
 import 'package:flutter/widgets.dart';
-
-import 'package:platform/platform.dart';
 
 /// The root widget of the application.
 class App extends StatelessWidget {
@@ -18,7 +14,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platform = getIt<Platform>();
+    final platform = Platform.getIt();
 
     if (platform.isAndroid) {
       return const android.App();

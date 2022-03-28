@@ -17,7 +17,6 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i17;
 import 'package:image_picker/image_picker.dart' as _i49;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:platform/platform.dart' as _i72;
 import 'package:social_client/social_client.dart' as _i82;
 
 import '../application/authenticated/core/friends/friends_cubit.dart' as _i97;
@@ -169,9 +168,9 @@ import '../infrastructure/training/score/score_training_service.dart' as _i44;
 import '../infrastructure/training/single/single_training_service.dart' as _i46;
 import '../infrastructure/user/fake_user_service.dart' as _i48;
 import '../infrastructure/user/user_service.dart' as _i105;
-import '../presentation/android/router.dart' as _i75;
-import '../presentation/core/platform_injectable_module.dart' as _i117;
-import '../presentation/ios/router.dart' as _i74;
+import '../presentation/android/core/router.dart' as _i75;
+import '../presentation/core/platform.dart' as _i72;
+import '../presentation/ios/core/router.dart' as _i74;
 
 const String _test = 'test';
 const String _prod = 'prod';
@@ -186,7 +185,6 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final jtdInjectableModule = _$JtdInjectableModule();
   final fireBaseInjectableModule = _$FireBaseInjectableModule();
-  final platformInjectableModule = _$PlatformInjectableModule();
   gh.factory<_i3.AddPlayerBloc>(() => _i3.AddPlayerBloc());
   gh.factoryParam<_i4.AdvancedSettingsBloc, List<Object>, dynamic>(
       (otherDependencies, _) =>
@@ -331,7 +329,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factoryParam<_i71.MoreBloc, List<Object>, dynamic>((otherDependencies,
           _) =>
       _i71.MoreBloc.injectable(get<_i35.IFriendService>(), otherDependencies));
-  gh.lazySingleton<_i72.Platform>(() => platformInjectableModule.platform);
+  gh.lazySingleton<_i72.Platform>(() => _i72.Platform());
   gh.factoryParam<_i73.ProfileBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i73.ProfileBloc.injectable(otherDependencies));
   gh.lazySingleton<_i74.Router>(() => _i74.Router(), registerFor: {_ios});
@@ -462,5 +460,3 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
 class _$JtdInjectableModule extends _i115.JtdInjectableModule {}
 
 class _$FireBaseInjectableModule extends _i116.FireBaseInjectableModule {}
-
-class _$PlatformInjectableModule extends _i117.PlatformInjectableModule {}

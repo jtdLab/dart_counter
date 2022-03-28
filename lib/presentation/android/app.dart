@@ -14,21 +14,25 @@ class App extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
-      child: MaterialApp.router(
-        title: 'DartCounter',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        routeInformationParser: router.defaultRouteParser(),
-        routerDelegate: router.delegate(
-          initialRoutes: context.read<AuthBloc>().state.when(
-                authenticated: () => [const AuthenticatedFlowRoute()],
-                unauthenticated: () => [const UnauthenticatedFlowRoute()],
-              ),
-          navigatorObservers: () => [AppRouteObserver()],
-        ),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            title: 'DartCounter',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            routeInformationParser: router.defaultRouteParser(),
+            routerDelegate: router.delegate(
+              initialRoutes: context.read<AuthBloc>().state.when(
+                    authenticated: () => [const AuthenticatedFlowRoute()],
+                    unauthenticated: () => [const UnauthenticatedFlowRoute()],
+                  ),
+              navigatorObservers: () => [AppRouteObserver()],
+            ),
+          );
+        },
       ),
     );
   }
