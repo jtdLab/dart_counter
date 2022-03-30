@@ -15,7 +15,7 @@ class Theme {
         ),
         scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
           color: AppColors.white,
-          darkColor: AppColors.black,
+          darkColor: CupertinoColors.secondarySystemFill,
         ),
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
