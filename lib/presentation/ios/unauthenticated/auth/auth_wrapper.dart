@@ -12,7 +12,6 @@ class AuthWrapper extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.router;
     return const AutoRoutePageView();
 
     /**
