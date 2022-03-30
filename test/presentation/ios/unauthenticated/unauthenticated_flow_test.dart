@@ -1,4 +1,6 @@
-import 'package:auto_route/auto_route.dart';
+void main() {} // TODO
+
+/* import 'package:auto_route/auto_route.dart';
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/presentation/ios/app.dart';
@@ -50,3 +52,4 @@ void main() {
   );
  */
 }
+ */

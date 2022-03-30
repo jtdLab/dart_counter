@@ -14,7 +14,7 @@ class MockRouterProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return StackRouterScope(
       controller: router,
-      stateHash: router.stateHash,
+      stateHash: 88888,
       child: child,
     );
   }

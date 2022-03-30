@@ -12,10 +12,21 @@ class MockRouterProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StackRouterScope(
-      controller: router,
-      stateHash: 8888,
-      child: child,
+    const stateHash = 88888;
+
+    return RouteDataScope(
+      routeData: router.routeData,
+      child: RouterScope(
+        controller: router,
+        inheritableObserversBuilder: () => [],
+        navigatorObservers: const [],
+        stateHash: stateHash,
+        child: StackRouterScope(
+          controller: router,
+          stateHash: stateHash,
+          child: child,
+        ),
+      ),
     );
   }
 }
