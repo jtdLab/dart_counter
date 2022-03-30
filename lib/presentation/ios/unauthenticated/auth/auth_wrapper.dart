@@ -62,3 +62,28 @@ class AuthWrapper extends HookWidget {
      */
   }
 }
+ 
+
+/**
+ * class AuthWrapper extends StatefulWidget {
+  const AuthWrapper({Key? key}) : super(key: key);
+
+  @override
+  State<AuthWrapper> createState() => _AuthWrapperState();
+}
+
+class _AuthWrapperState extends State<AuthWrapper> {
+  @override
+  void initState() {
+    super.initState();
+    //context.router.push(const SignUpPageRoute());
+    print(context.router.stack);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRoutePageView();
+  }
+}
+
+ */

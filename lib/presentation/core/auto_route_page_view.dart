@@ -1,7 +1,7 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/src/matcher/route_matcher.dart';
 
 class AutoRoutePageView extends StatefulWidget {
   // TODO Page view fields
@@ -30,7 +30,7 @@ class AutoRoutePageView extends StatefulWidget {
   AutoRoutePageViewState createState() => AutoRoutePageViewState();
 
   static StackRouter of(BuildContext context, {bool watch = false}) {
-    var scope = StackRouterScope.of(context, watch: watch);
+    final scope = StackRouterScope.of(context, watch: watch);
     assert(() {
       if (scope == null) {
         throw FlutterError(
@@ -63,28 +63,41 @@ class AutoRoutePageViewState extends State<AutoRoutePageView> {
       final parentRouteData = RouteData.of(context);
       final parentScope = RouterScope.of(context, watch: true);
       _inheritableObserversBuilder = () {
-        var observers = widget.navigatorObservers();
+        final observers = widget.navigatorObservers();
         if (!widget.inheritNavigatorObservers) {
           return observers;
         }
-        var inheritedObservers = parentScope.inheritableObserversBuilder();
+        final inheritedObservers = parentScope.inheritableObserversBuilder();
         return inheritedObservers + observers;
       };
       _navigatorObservers = _inheritableObserversBuilder();
 
       _parentController = parentScope.controller;
+
+      // TODO custom
+      final routeCollection = _parentController.routeCollection.subCollectionOf(
+        parentRouteData.name,
+      );
+      final temp = RouteData(
+        route: parentRouteData.route,
+        router: parentRouteData.router,
+        parent: parentRouteData.parent,
+        pendingChildren: [
+          RouteMatcher(routeCollection).matchByRoute(const SignInPageRoute())!,
+          RouteMatcher(routeCollection).matchByRoute(const SignUpPageRoute())!
+        ],
+      );
+      // TODO custom
+
       _controller = NestedStackRouter(
         parent: _parentController,
         key: parentRouteData.key,
-        routeData: parentRouteData,
+        routeData: temp,
         navigatorKey: widget.navigatorKey,
-        routeCollection: _parentController.routeCollection.subCollectionOf(
-          parentRouteData.name,
-        ),
+        routeCollection: routeCollection,
         pageBuilder: _parentController.pageBuilder,
       );
 
-      _parentController.attachChildController(_controller!);
       _controller!.addListener(_rebuildListener);
     }
   }
@@ -99,7 +112,9 @@ class AutoRoutePageViewState extends State<AutoRoutePageView> {
   Widget build(BuildContext context) {
     assert(_controller != null);
 
+    // TODO custom
     final stack = _controller!.stack;
+    // stack.forEach(print);
     final routeCollection = _controller!.routeCollection;
 
     final pages = stack
@@ -115,6 +130,7 @@ class AutoRoutePageViewState extends State<AutoRoutePageView> {
         _controller!.replace(newRoute);
       },
     );
+    // TODO custom
 
     final stateHash = controller!.stateHash;
     return RouterScope(
