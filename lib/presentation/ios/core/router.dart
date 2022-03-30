@@ -93,7 +93,6 @@ const youReallyWantToCancelGameDialog = CustomRoute(
           page: AuthWrapper,
           children: [
             CustomRoute(
-              initial: true,
               page: SignInPage,
             ),
             CustomRoute(

@@ -168,16 +168,16 @@ import '../infrastructure/training/score/score_training_service.dart' as _i45;
 import '../infrastructure/training/single/single_training_service.dart' as _i47;
 import '../infrastructure/user/fake_user_service.dart' as _i49;
 import '../infrastructure/user/user_service.dart' as _i106;
-import '../presentation/android/core/router.dart' as _i76;
+import '../presentation/android/core/router.dart' as _i75;
 import '../presentation/core/app_toast.dart' as _i5;
 import '../presentation/core/platform.dart' as _i73;
-import '../presentation/ios/core/router.dart' as _i75;
+import '../presentation/ios/core/router.dart' as _i76;
 
 const String _test = 'test';
 const String _prod = 'prod';
 const String _dev = 'dev';
-const String _ios = 'ios';
 const String _android = 'android';
+const String _ios = 'ios';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -335,8 +335,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i73.Platform>(() => _i73.Platform());
   gh.factoryParam<_i74.ProfileBloc, List<Object>, dynamic>(
       (otherDependencies, _) => _i74.ProfileBloc.injectable(otherDependencies));
-  gh.lazySingleton<_i75.Router>(() => _i75.Router(), registerFor: {_ios});
-  gh.lazySingleton<_i76.Router>(() => _i76.Router(), registerFor: {_android});
+  gh.lazySingleton<_i75.Router>(() => _i75.Router(), registerFor: {_android});
+  gh.lazySingleton<_i76.Router>(() => _i76.Router(), registerFor: {_ios});
   gh.factory<_i77.ScoreTrainingWatcherCubit>(
       () => _i77.ScoreTrainingWatcherCubit(get<_i44.IScoreTrainingService>()));
   gh.factory<_i78.SearchUserBloc>(

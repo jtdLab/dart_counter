@@ -433,7 +433,7 @@ class _$_Router extends RootStackRouter {
                   parent: UnauthenticatedFlowRoute.name,
                   children: [
                     RouteConfig(SignInPageRoute.name,
-                        path: '', parent: AuthWrapperRoute.name),
+                        path: 'sign-in-page', parent: AuthWrapperRoute.name),
                     RouteConfig(SignUpPageRoute.name,
                         path: 'sign-up-page', parent: AuthWrapperRoute.name)
                   ]),
@@ -720,7 +720,7 @@ class ForgotPasswordModalRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [SignInPage]
 class SignInPageRoute extends PageRouteInfo<void> {
-  const SignInPageRoute() : super(SignInPageRoute.name, path: '');
+  const SignInPageRoute() : super(SignInPageRoute.name, path: 'sign-in-page');
 
   static const String name = 'SignInPageRoute';
 }
